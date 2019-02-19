@@ -1,0 +1,408 @@
+\NeedsTeXFormat{LaTeX2e}[1994/06/01]
+\ProvidesPackage{mypackage}[2018/09/28 MyPackage]
+
+
+\makeatletter
+
+% TODO
+%  automatic parentheses command
+%  cls file화
+%  prb class 맘에 안들어
+
+ %  A note for xparse
+ %   If a command has defined, then
+ %     New     : error
+ %     Renew   : define
+ %     Declare : define
+ %     Provide : not define
+ %   If a command has "not" defined, then
+ %     New     : define
+ %     Renew   : error
+ %     Declare : define
+ %     Provide : define
+
+
+\RequirePackage{amsfonts,amsmath,amssymb}
+%\RequirePackage[margin=100pt]{geometry}             % beamer 충돌
+%\RequirePackage[many]{tcolorbox}
+
+
+\ifx\nauthor\undefined
+  \def\nauthor{Ikhan Choi}
+\fi
+
+
+
+% Theorems and Proofs
+\RequirePackage{amsthm,xparse}
+\theoremstyle{plain}
+  \newtheorem{thm}{Theorem}[section]
+  \newtheorem*{thm*}{Theorem}
+  \newtheorem{prop}[thm]{Proposition}
+  \newtheorem*{prop*}{Proposition}
+  \newtheorem{cor}[thm]{Corollary}
+  \newtheorem{lem}[thm]{Lemma}
+\theoremstyle{definition}
+  \newtheorem*{defn}{Definition}
+  \newtheorem{ex}[thm]{Example}
+  \newtheorem{prob}{Problem}[section]
+\theoremstyle{remark}
+  \newtheorem*{rmk}{Remark}
+
+\newenvironment{pf}[1][\unskip]{\begin{proof}[Proof #1]}{\end{proof}}
+\newenvironment{idea}[1][\unskip]{\begin{proof}[Proof idea #1]\renewcommand{\qedsymbol}{}}{\end{proof}}
+\DeclareDocumentCommand{\Step}{ r[] +o }{\emph{Step #1: #2}}
+
+
+
+
+\iffalse
+% List environments
+\RequirePackage{enumitem}
+\newlist{cond}{enumerate}{1}
+  \setlist[cond,1]{label=\rm{(\arabic*)}}
+\newlist{exer}{enumerate}{2}
+  \setlist[exer,1]{label=\arabic*.,before={\large Exercises}}
+  \setlist[exer,2]{label=(\alph*)}
+
+\let\@@item\item
+\newcommand{\sitem}{\refstepcounter{\@enumctr}\@@item[$^*$\csname label\@enumctr\endcsname]}
+\renewcommand*{\item}{\@ifstar\sitem\@@item}
+
+\let\q\item
+\fi
+
+
+
+
+% Commutative diagrams
+\RequirePackage{tikz-cd,xparse}
+\DeclareDocumentEnvironment{cd}{}{\[\begin{tikzcd}}{\end{tikzcd}\]}
+\DeclareDocumentEnvironment{es}{}
+  {
+    \renewcommand{\>}{\ar{r}\&}
+    \[\begin{tikzcd}[column sep=small,ampersand replacement=\&]
+  }
+  {\end{tikzcd}\]}
+\def\mn{\ar[tail]}
+\def\ep{\ar[two heads]}
+
+
+
+
+
+% Differential operators
+\RequirePackage{xparse}
+\DeclareDocumentCommand{\pd}{ o g g g }{
+  \IfNoValueTF{#2}
+  {\partial \IfNoValueTF{#1}{}{^{#1}}}
+  {
+    \IfNoValueTF{#3}
+    {\frac{\partial\IfNoValueTF{#1}{}{^{#1}}}{\partial#2\IfNoValueTF{#1}{}{^{#1}}}}
+    {
+      \IfNoValueTF{#4}
+      {\frac{\partial\IfNoValueTF{#1}{}{^{#1}}#2}{\partial#3\IfNoValueTF{#1}{}{^{#1}}}}
+      {\frac{\partial^2#2}{\partial#3\partial#4}}
+    }
+  }
+}
+\DeclareDocumentCommand{\dd}{ o g g g }{
+  \IfNoValueTF{#3}
+  {\frac{d\IfNoValueTF{#1}{}{^{#1}}}{d#2\IfNoValueTF{#1}{}{^{#1}}}}
+  {
+    \IfNoValueTF{#4}
+    {\frac{d\IfNoValueTF{#1}{}{^{#1}}#2}{d#3\IfNoValueTF{#1}{}{^{#1}}}}
+    {\frac{d^2#2}{d#3d#4}}
+  }
+}
+\let\del\nabla % del
+\DeclareMathOperator{\grad}{grad}
+\DeclareMathOperator{\curl}{curl}
+\let\division\div
+\let\div\relax
+\DeclareMathOperator{\div}{div}
+
+
+
+
+
+
+
+% Parantheses
+\RequirePackage{xparse}
+\DeclareDocumentCommand{\abs}{m}{\left\lvert#1\right\rvert}
+\DeclareDocumentCommand{\norm}{m}{\left\lVert#1\right\rVert}
+\DeclareDocumentCommand{\flr}{m}{\left\lfloor#1\right\rfloor}
+\DeclareDocumentCommand{\ceil}{m}{\left\lceil#1\right\rceil}
+\DeclareDocumentCommand{\inn}{mm}{\left\langle#1,#2\right\rangle}
+
+
+
+
+
+
+
+% PDE problems
+\RequirePackage[overload]{empheq}
+\RequirePackage{xparse}
+\DeclareDocumentEnvironment{pde}{s}
+{
+  \[\left\{\begin{alignedat}{2}
+}
+{
+  \IfBooleanTF{#1}
+    {\end{alignedat}\right.\]}
+    {\end{alignedat}\right.\stepcounter{equation}\tag{\theequation}\]}
+}
+\ExplSyntaxOn
+\cs_new:cpn{pde*}{\pde*}
+\cs_new_eq:cN{endpde*}\endpde
+\ExplSyntaxOff
+
+
+% 얘 왜인지 문제있음
+\NewDocumentEnvironment{subpdes}{}
+{
+  \begin{subequations}
+  \begin{alignat}{2}[left={\empheqlbrace\,}]
+}
+{
+  \end{alignat}
+  \end{subequations}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+%% Shorthands for Notations
+
+\g@addto@macro\beamer@lastminutepatches{
+% Binary operators
+\let\.\cdot % dot product
+\let\o\circ % function composition
+\let\x\times % cross product
+\let\dsum\oplus % direct sum
+\let\tn\otimes % tensor product
+\let\wdg\wedge % wedge
+
+% Big operators
+\let\bigdsum\bigoplus
+\let\bigtn\bigotimes
+
+% Diacritics
+\let\bar\overline % bar               % beamer 충돌
+\let\cl\overline % bar (closure)
+\let\hat\widehat % hat
+\let\tld\widetilde % tilde
+
+% Standalone notations
+\let\bul\bullet % bullet
+\let\oo\infty % infinity
+\let\mt\varnothing % emptyset
+\let\bd\partial % boundary
+
+\let\bigmath\displaystyle
+\def\1{\bold{1}} % characteristic function
+\def\impl{\,\Rightarrow\,}
+}
+
+
+
+
+
+
+
+
+
+%% Shorthands for Alphabets
+
+% Some greeks
+\def\e{\varepsilon}
+\def\f{\varphi}
+
+% Blackboard fonts
+\def\B{\mathbb{B}}
+\def\C{\mathbb{C}}
+\def\E{\mathbb{E}}
+\def\F{\mathbb{F}}
+\def\G{\mathbb{G}}
+\def\H{\mathbb{H}}
+\def\N{\mathbb{N}}
+\def\P{\mathbb{P}}
+\def\Q{\mathbb{Q}}
+\def\R{\mathbb{R}}
+\def\T{\mathbb{T}}
+\def\Z{\mathbb{Z}}
+
+% Bold fonts
+\def\bA{\mathbf{A}}
+\def\bB{\mathbf{B}}
+\def\bC{\mathbf{C}}
+\def\bD{\mathbf{D}}
+\def\bE{\mathbf{E}}
+\def\bF{\mathbf{F}}
+\def\bG{\mathbf{G}}
+\def\bH{\mathbf{H}}
+\def\bI{\mathbf{I}}
+\def\bJ{\mathbf{J}}
+\def\bK{\mathbf{K}}
+\def\bL{\mathbf{L}}
+\def\bM{\mathbf{M}}
+\def\bN{\mathbf{N}}
+\def\bO{\mathbf{O}}
+\def\bP{\mathbf{P}}
+\def\bQ{\mathbf{Z}}
+\def\bR{\mathbf{R}}
+\def\bS{\mathbf{S}}
+\def\bT{\mathbf{T}}
+\def\bU{\mathbf{U}}
+\def\bV{\mathbf{V}}
+\def\bW{\mathbf{W}}
+\def\bX{\mathbf{X}}
+\def\bY{\mathbf{Y}}
+\def\bZ{\mathbf{Z}}
+
+% Caligraphy fonts
+\def\cA{\mathcal{A}}
+\def\cB{\mathcal{B}}
+\def\cC{\mathcal{C}}
+\def\cD{\mathcal{D}}
+\def\cE{\mathcal{E}}
+\def\cF{\mathcal{F}}
+\def\cG{\mathcal{G}}
+\def\cH{\mathcal{H}}
+\def\cI{\mathcal{I}}
+\def\cJ{\mathcal{J}}
+\def\cK{\mathcal{K}}
+\def\cL{\mathcal{L}}
+\def\cM{\mathcal{M}}
+\def\cN{\mathcal{N}}
+\def\cO{\mathcal{O}}
+\def\cP{\mathcal{P}}
+\def\cQ{\mathcal{Q}}
+\def\cR{\mathcal{R}}
+\def\cS{\mathcal{S}}
+\def\cT{\mathcal{T}}
+\def\cU{\mathcal{U}}
+\def\cV{\mathcal{V}}
+\def\cW{\mathcal{W}}
+\def\cX{\mathcal{X}}
+\def\cY{\mathcal{Y}}
+\def\cZ{\mathcal{Z}}
+
+% Fraktur fonts
+\def\fA{\mathfrak{A}}
+\def\fB{\mathfrak{B}}
+\def\fC{\mathfrak{C}}
+\def\fD{\mathfrak{D}}
+\def\fE{\mathfrak{E}}
+\def\fF{\mathfrak{F}}
+\def\fG{\mathfrak{G}}
+\def\fH{\mathfrak{H}}
+\def\fI{\mathfrak{I}}
+\def\fJ{\mathfrak{J}}
+\def\fK{\mathfrak{K}}
+\def\fL{\mathfrak{L}}
+\def\fM{\mathfrak{M}}
+\def\fN{\mathfrak{N}}
+\def\fO{\mathfrak{O}}
+\def\fP{\mathfrak{P}}
+\def\fQ{\mathfrak{Q}}
+\def\fR{\mathfrak{R}}
+\def\fS{\mathfrak{S}}
+\def\fT{\mathfrak{T}}
+\def\fU{\mathfrak{U}}
+\def\fV{\mathfrak{V}}
+\def\fW{\mathfrak{W}}
+\def\fX{\mathfrak{X}}
+\def\fY{\mathfrak{Y}}
+\def\fZ{\mathfrak{Z}}
+\def\fa{\mathfrak{a}}
+\def\fb{\mathfrak{b}}
+\def\fc{\mathfrak{c}}
+\def\ff{\mathfrak{f}}
+\def\fg{\mathfrak{g}}
+\def\fh{\mathfrak{h}}
+\def\fm{\mathfrak{m}}
+\def\fp{\mathfrak{p}}
+\def\fq{\mathfrak{q}}
+\def\fu{\mathfrak{u}}
+
+% Lie theory
+\newcommand{\gl}{\mathfrak{gl}}
+\renewcommand{\sl}{\mathfrak{sl}}
+\newcommand{\so}{\mathfrak{so}}
+\newcommand{\su}{\mathfrak{su}}
+\newcommand{\GL}{\mathrm{GL}}
+\newcommand{\SL}{\mathrm{SL}}
+\newcommand{\SO}{\mathrm{SO}}
+\newcommand{\SU}{\mathrm{SU}}
+\def\U{\mathrm{U}}                   % beamer충돌
+\newcommand{\PGL}{\mathrm{PGL}}
+\newcommand{\PSL}{\mathrm{PSL}}
+\newcommand{\PSO}{\mathrm{PSO}}
+\newcommand{\PSU}{\mathrm{PSU}}
+\newcommand{\Sp}{\mathrm{Sp}}
+\newcommand{\Spin}{\mathrm{Spin}}
+\newcommand{\Mat}{\mathrm{Mat}}
+
+% Miscellany
+\let\Re\relax
+\let\Im\relax
+\DeclareMathOperator{\ad}{ad}
+\DeclareMathOperator{\Ad}{Ad}
+\DeclareMathOperator{\adj}{adj}
+\DeclareMathOperator{\Ann}{Ann}
+\DeclareMathOperator{\Aut}{Aut}
+\DeclareMathOperator{\Char}{char}
+\DeclareMathOperator{\coker}{coker}
+\DeclareMathOperator{\conv}{conv}
+\DeclareMathOperator{\diag}{diag}
+\DeclareMathOperator{\diam}{diam}
+\DeclareMathOperator{\disc}{disc}
+\DeclareMathOperator{\dom}{dom}
+\DeclareMathOperator{\End}{End}
+\DeclareMathOperator{\Ext}{Ext}
+\DeclareMathOperator{\Fix}{Fix}
+\DeclareMathOperator{\Frac}{Frac}
+\DeclareMathOperator{\Gal}{Gal}
+\DeclareMathOperator{\Hess}{Hess}
+\DeclareMathOperator{\Hom}{Hom}
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\im}{im}
+\DeclareMathOperator{\Im}{Im}
+\DeclareMathOperator{\Ind}{Ind}
+\DeclareMathOperator{\Lip}{Lip}
+\DeclareMathOperator{\Orb}{Orb}
+\DeclareMathOperator{\ord}{ord}
+\DeclareMathOperator{\Re}{Re}
+\DeclareMathOperator{\rel}{rel}
+\DeclareMathOperator*{\res}{res}
+\DeclareMathOperator{\rk}{rk}
+\DeclareMathOperator{\sgn}{sgn}
+\DeclareMathOperator{\Spec}{Spec}
+\DeclareMathOperator{\spn}{span}
+\DeclareMathOperator{\Stab}{Stab}
+\DeclareMathOperator{\supp}{supp}
+\DeclareMathOperator{\Syl}{Syl}
+\DeclareMathOperator{\Sym}{Sym}
+\DeclareMathOperator{\vol}{vol}
+\DeclareMathOperator{\Tor}{Tor}
+\DeclareMathOperator{\tr}{tr}
+\DeclareMathOperator{\Tr}{Tr}
+
+\makeatother
+
+\endinput

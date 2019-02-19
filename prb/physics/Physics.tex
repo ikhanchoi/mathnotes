@@ -1,0 +1,85 @@
+\documentclass[11pt]{article}
+\input{../../header}
+\input{../prb}
+
+\def\ntitle{Physics}
+
+% brackets
+\newcommand{\bket}[1]{\left\lvert #1\right\rangle}
+\newcommand{\brak}[1]{\left\langle #1 \right\rvert}
+\newcommand{\braket}[2]{\left\langle #1\middle\vert #2 \right\rangle}
+
+\begin{document}
+\maketitle
+\tableofcontents
+
+
+\section{Classical mechanics}
+
+In Hamiltonian mechanics, the phase space $M$ is defined to be cotangent bundle of a configuration manifold.
+According to Newton's principle of determinacy, a particle at a specific time corresponds to a point in $M$, and the point contains all informations of a particle.
+A function on $M$ is a physical quantity, such as position, momentum, angular momentum, etc.
+Especially, positions and momenta with respect to each dimension provide with canonical coordinate functions on $M$.
+Therefore, every function on $M$ can be realized by a function of positions and momenta.
+
+A \emph{Hamiltonian function} $H$ is also just a function on $M$.
+In physics, if a Hamiltonian function is given, the equation of motion is generated.
+In other words, Hamiltonian function defines a physical problem.
+
+\begin{defn}[Hamilton's equations of motion]
+For a Hamiltonian function $H$, Hamilton's equations of motion are given by
+\[\dot x=\pd{H}{p},\qquad\dot p=-\pd{H}{x}.\]
+Using the Poisson bracket, the equations can be represented by
+\[\dd{f}{t} = \{f,H\} + \pd{f}{t}.\]
+\end{defn}
+
+\begin{ex}[Harmonic oscillator]
+Let $M=T^*\R$ and
+\[H(x,p)=\frac{p^2}{2m}+\frac12kx^2.\]
+This Hamiltonian function defines a problem of 1-dimensional harmonic oscillator.
+The equations of motion are
+\[\dot x=\pd{H}{p}=\frac pm,\qquad\dot p=-\pd{H}{x}=-kx.\]
+Therefore, we get the familiar equation for a harmonic oscillator
+\end{ex}
+
+
+
+If $H$ has a symmetry under transformations in time, namely, $H$ does not depend on $t$ explicitly, then 
+
+A problem that $H$ is explicitly independent on $p$ is difficult to occur physically.
+
+
+\section{Quantum mechanics}
+\begin{prb}[Hydrogen atom]
+Hydrogen
+\q hydrogen
+\end{prb}
+
+\section{Relativity theory}
+
+\section{Particle physics}
+\begin{prb}[Yukawa potential]
+The wave equation for a massive field is the Klein-Gordon equation
+\[(\Box+m^2)U=0.\]
+\q deriving the Yukawa potential as a Green function by assuming static case.
+\q relation with Coulomb potential.
+\q the Fourier transformation.
+\q range of (strong) nuclear force and mass of pion
+\end{prb}
+
+\begin{prb}[Negative energy solution and antiparticles]
+Dirac's interpretation.
+\q negative energy solution of the Klein-Gordon equation
+\q time reversal?
+\end{prb}
+
+\begin{prb}[Polarization of photon field]
+\mtprb
+\end{prb}
+
+\begin{prb}[Aharonov-Bohm effect]
+\mtprb
+\end{prb}
+
+
+\end{document}

@@ -1,0 +1,68 @@
+\documentclass{../exp}
+\usepackage{../../ikany}
+\title{The computation of Galois group}
+
+\begin{document}
+\maketitle
+
+
+\section{}
+In this section, we assume the following setting:
+\begin{itemize}
+\item $F$ is a perfect field, %유한체는 사실 잘 모르겠음
+\item $f$ is an irreducible quartic over $F$,
+\item $E$ is the splitting of $f$ over $F$,
+\item $G=\Gal(E/F)$,
+\item $H=G\cap V_4$. 
+\end{itemize}
+\begin{thm}
+There are only five isomorphic types of transitive subgroups of the symmetric group $S_4$.
+\end{thm}
+\begin{cor}
+$G\cong S_4,\ A_4,\ D_4,\ V_4,\ or\ C_4$.
+\end{cor}
+\begin{prop}
+Two groups $A_4$ and $V_4$ are only transitive normal subgroups of $S_4$.
+\end{prop}
+
+Now we define our resolvent polynomial.
+\begin{prop}
+Let $K$ be the fixed field of $H$.
+Then,
+\[K=F(\alpha_1\alpha_2+\alpha_3\alpha_4,\ \alpha_1\alpha_3+\alpha_2\alpha_4,\ \alpha_1\alpha_4+\alpha_2\alpha_3).\]
+\end{prop}
+\begin{defn}
+Let $K$ be the fixed field of $H$.
+A \emph{resolvent cubic} is a cubic $R_3$ that has $K$ as the splitting field over $F$.
+\end{defn}
+
+\begin{thm}
+We have
+\begin{cond}
+\item $G\cong S_4$ if $R_3$ is irreducible and ,
+\item $G\cong A_4$ if $R_3$ is irreducible and ,
+\item $G\cong D_4$ if $R_3$ has only one root in $K$ and $f$ is irreducible over $K$,
+\item $G\cong C_4$ if $R_3$ has only one root in $K$ and $f$ is reducible over $K$,
+\item $G\cong V_4$ if $R_3$ splits in $K$.
+\end{cond}
+\end{thm}
+\begin{pf}
+There are five possible cases:
+\[(G,H)=(S_4,V_4),\ (A_4,V_4),\ (D_4,V_4),\ (V_4,V_4),\ (C_4,C_2).\]
+We have
+\[[K:F]=|G/H|,\qquad[E:K]=|H|.\]
+
+If $f$ is reducible over $K$, then $\Gal(E/K)$ is no more a transitive subgroup of $S_4$ so that $H\ne V_4$ and $G\cong C_4$.
+\end{pf}
+\begin{cd}
+E \ar{rrrr}\ds{dd} & & & & 1 \ds{d}{2} &\\
+&&&& C_2 \ds{dl}[swap]{2}\ds{dr}{2}&\\
+K=F_{V_4\cap G}\ds{d}&&& V_4 \ds{dl}[swap]{3}\ds{dr}{2} && C_4 \ds{dl}{2}\\
+F \ar{r}& ? & A_4 \ds{dr}[swap]{2} && D_4 \ds{dl}{3} &\\
+&&&S_4&&
+\end{cd}
+
+
+
+
+\end{document}

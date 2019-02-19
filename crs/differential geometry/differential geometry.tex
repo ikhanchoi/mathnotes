@@ -1,0 +1,207 @@
+\documentclass{../crs}
+\usepackage{../../ikany}
+
+\title{Differential Geometry}
+
+\begin{document}
+\maketitle
+\tableofcontents
+
+\chapter{Manifolds}
+
+\section{Vector bundle}
+
+
+\section{Differentiable manifold}
+
+\subsection{Manifold and Atlas}
+\begin{defn}
+A \emph{locally Euclidean space} $M$ of dimension $m$ is a Hausdorff topological space $M$ for which each point $x\in M$ has a neighborhood $U$ homeomorphic to an open subset of $\Bbb{R}^d$.
+\end{defn}
+\begin{defn}
+A \emph{manifold} is a locally Euclidean space satisfying the one of following equivalent conditions: second countability, blabla%
+\end{defn}
+
+\begin{defn}
+A \emph{chart} or a \emph{coordinate system} for a locally Euclidean space is a map $\varphi$ is a homeomorphism from an open set $U\subset M$ to an open subset of $\Bbb{R}^d$.
+A chart is often written by a pair $(U,\varphi)$.
+\end{defn}
+
+\begin{defn}
+An \emph{atlas} $\mathcal{F}$ is a collection $\mathcal{F}=\{(U_\alpha,\varphi_\alpha)\mid\alpha\in A\}$ of charts on $M$ such that $\bigcup_{\alpha\in A} U_\alpha=M$.
+\end{defn}
+
+
+\begin{defn}
+A \emph{differentiable maifold} is a manifold on which a differentiable structure is equipped.
+\end{defn}
+The definition of differentiable structure will be given in the next subsection.
+Actually, a differentiable structure can be defined for a locally Euclidean space.
+
+
+
+\subsection{Definition of Differentiable Structure}
+
+
+\begin{defn}
+An atlas $\mathcal{F}$ is called \emph{differentiable} if any two charts $\varphi_\alpha,\varphi_\beta\in\mathcal{F}$ is \emph{compatible}: each \emph{transition function} $\tau_{\alpha\beta}\colon\varphi_\alpha(U_\alpha\cap U_\beta)\to\varphi_\beta(U_\alpha\cap U_\beta)$ which is defined by $\tau_{\alpha\beta}=\varphi_\beta\circ\varphi_\alpha^{-1}$ is differentiable.
+\end{defn}
+It is called a \emph{gluing condition}.
+
+\begin{defn}
+For two differentiable atlases $\mathcal{F},\mathcal{F}'$, the two atlases are \emph{equivalent} if $\mathcal{F}\cup\mathcal{F}'$ is also differentiable.
+\end{defn}
+
+\begin{defn}
+An differentiable atlas $\mathcal{F}$ is called \emph{maximal} if the following holds:
+if a chart $(U,\varphi)$ is compatible to all charts in $\mathcal{F}$, then $(U,\varphi)\in\mathcal{F}$.
+\end{defn}
+
+\begin{defn}
+A \emph{differentiable structure} on $M$ is a maximal differentiable atlas.
+\end{defn}
+
+To differentiate a function on a flexible manofold, first we should define the differentiability of a function.
+A differentiable structure, which is usually defined by a maximal differentiable atlas, is roughly a collection of differentiable functions on $M$.
+When the charts is already equipped on $M$, it is natural to define a function $f\colon M\to\Bbb{R}$ differentiable if the functions $f\circ\varphi^{-1}\colon\Bbb{R}^d\to\Bbb{R}$ is differentiable.
+
+The gluing condition makes the differentiable function for a chart is also differentiable for any charts because $f\circ\varphi_\alpha^{-1}=(f\circ\varphi_\beta^{-1})\circ(\varphi_\beta\circ\varphi_\alpha^{-1})
+=(f\circ\varphi_\beta^{-1})\circ\tau_{\alpha\beta}$.
+If a function $f$ is differentiable on an atlas $\mathcal{F}$, then $f$ is also differentiable on any atlases which is equivalent to $\mathcal{F}$ by the definition of the equivalence relation for differential atlases.
+We can construct the equivalence classes respected to this equivalence relation.
+
+Therefore, we want to define a differentiable structure as a one of the equivalence classes.
+However the differentiable structure is frequently defined as a maximal atlas for the convenience since each equivalence class is determined by a unique maximal atlas.
+
+
+\begin{ex}
+While the circle $S^1$ has a unique smooth structure, $S^7$ has 28 smooth structures.
+The number of smooth structures on $S^4$ is still unknown.
+\end{ex}
+
+\begin{defn}
+A continuous function $f\colon M\to N$ is differentiable if $\psi\circ f\circ\varphi^{-1}$ is differentiable for charts $\varphi,\psi$ on $M,N$ respectively.
+\end{defn}
+
+
+
+
+\begin{defn}[Partition of unity]
+\end{defn}
+
+
+
+
+
+\section{}
+
+\begin{defn}
+For $f\colon M\to\R$ and $(U,\phi)$ a chart,
+\[df\left(\pd{x^\mu}\right):=\pd{f\circ\phi^{-1}}{x^\mu}.\]
+\end{defn}
+
+
+
+\begin{defn}
+Let $\gamma\colon I\to M$ be a smooth curve.
+Then, $\dot\gamma(t)$ is defined by a tangent vector at $\gamma(t)$ such that
+\[\dot\gamma(t):=d\gamma\left(\pd{t}\right).\]
+Let $\phi\colon M\to N$ be a smoth map.
+Then, $\phi(t)$ can refer to a curve on $N$ such that
+\[\phi(t):=\phi(\gamma(t)).\]
+Let $f\colon M\to\R$ be a smooth function.
+Then, $\dot f(t)$ is defined by a function $\R\to\R$ such that
+\[\dot f(t):=\dd{t}f\circ\gamma.\]
+\end{defn}
+
+\begin{prop}
+Let $\gamma\colon I\to M$ be a smooth curve on a manifold $M$.
+The notation $\dot\gamma^\mu$ is not confusing thanks to
+\[(\dot\gamma)^\mu=\dot{(\gamma^\mu)}.\]
+In other words,
+\[dx^\mu(\dot\gamma)=\dd{t}x^\mu\circ\gamma.\]
+\end{prop}
+
+
+
+
+
+
+
+
+
+
+\chapter{Riemannian geometry}
+
+\section{Connection}
+
+
+\subsection{Connection}
+
+\begin{align*}
+\nabla_XY&=X^\mu\nabla_\mu(Y^\nu\pd_\nu)\\
+&=X^\mu(\nabla_\mu Y^\nu)\pd_\nu+X^\mu Y^\nu(\nabla_\mu\pd_\nu)\\
+&=X^\mu\left(\pd{Y^\nu}{x^\mu}\right)\pd_\nu+X^\mu Y^\nu(\Gamma_{\mu\nu}^\lambda\pd_\lambda)\\
+&=X^\mu\left(\pd{Y^\nu}{x^\mu}+\Gamma_{\mu\lambda}^\nu Y^\lambda\right)\pd_\nu.
+\end{align*}
+The covariant derivative $\nabla_XY$ does not depend on derivatives of $X^\mu$.
+
+\[Y^\nu_{,\mu}=\nabla_\mu Y^\nu=\pd{Y^\nu}{x^\mu},\qquad Y^\nu_{;\mu}=(\nabla_\mu Y)^\nu=\pd{Y^\nu}{x^\mu}+\Gamma_{\mu\lambda}^\nu Y^\lambda.\]
+\begin{thm}
+For Levi-civita connection for $g$,
+\[\Gamma^l_{ij}=\frac12(\pd_ig_{jk}+\pd_jg_{ki}-\pd_kg_{ij}).\]
+\end{thm}
+\begin{pf}
+\begin{align*}
+(\nabla_ig)_{jk}&=\pd_ig_{jk}-\Gamma^l_{ij}g_{lk}-\Gamma^l_{ik}g_{jl}\\
+(\nabla_jg)_{kl}&=\pd_jg_{kl}-\Gamma^l_{jk}g_{li}-\Gamma^l_{ji}g_{kl}\\
+(\nabla_kg)_{ij}&=\pd_kg_{ij}-\Gamma^l_{ki}g_{lj}-\Gamma^l_{kj}g_{il}\\
+\end{align*}
+If $\nabla$ is a Levi-civita connection, then $\nabla g=0$ and $\Gamma_{ij}^k=\Gamma_{ji}^k$.
+Thus,
+\[\Gamma^l_{ij}g_{kl}=\frac12(\pd_ig_{jk}+\pd_jg_{ki}-\pd_kg_{ij}).\]
+\[\Gamma^l_{ij}=\frac12g^{kl}(\pd_ig_{jk}+\pd_jg_{ki}-\pd_kg_{ij}).\]
+\end{pf}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\section{}
+
+\begin{thm}
+If $c$ is a geodesic curve, then components of $c$ satisfies a second-order differential equation
+\[\dd[2]{\gamma^\mu}{t}+\Gamma_{\nu\lambda}^\mu\dd{\gamma^\nu}{t}\dd{\gamma^\lambda}{t}=0.\]
+\end{thm}
+\begin{pf}
+Note
+\[0=\nabla_{\dot\gamma}\dot\gamma=\dot\gamma^\mu\nabla_\mu(\dot\gamma^\lambda\pd_\lambda)
+=(\dot\gamma^\nu\pd_\nu\dot\gamma^\mu+\dot\gamma^\nu\dot\gamma^\lambda\Gamma_{\nu\lambda}^\mu)\pd_\mu.\]
+Since
+\[\dot\gamma^\nu\pd_\nu\dot\gamma^\mu=\dot\gamma(\dot\gamma^\mu)=d\dot\gamma^\mu(\dot\gamma)=d\dot\gamma^\mu\circ d\gamma\left(\pd{t}\right)=d\dot\gamma^\mu\left(\pd{t}\right)=\ddot\gamma^\mu,\]
+we get a second-order differential equation
+\[\dd[2]{\gamma^\mu}{t}+\Gamma_{\nu\lambda}^\mu\dd{\gamma^\nu}{t}\dd{\gamma^\lambda}{t}=0\]
+for each $\mu$.
+\end{pf}
+
+
+
+
+
+
+
+
+
+
+
+\end{document}

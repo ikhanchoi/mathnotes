@@ -1,0 +1,208 @@
+\documentclass{../exp}
+\usepackage{../../ikany}
+
+\title{The Arzela-Ascoli theorem}
+
+\begin{document}
+\maketitle
+
+\section{Introduction}
+Compactness gives us a notion of a certian ``finiteness'' of a topological space.
+When doing analysis, we often encounter situations where we need to check compactness of a subset.
+There are a lot of tools, including the Heine-Borel theorem, the Tychonoff theorem, and the Banach-Alaoglu theorem, that make it possible.
+In case of continuous function spaces, we have a great solution, the Arzela-Ascoli theorem.
+
+The purpose of this article is to provide varied viewpoints for the compactness and space of continuous functions via the Arzela-Ascoli theorem, which is my favorite theorem.
+By doing so, we can learn deeper and more generalized understanding of the nature of topologies on continuous function spaces.
+
+For preliminaries, we will review on compactness at first.
+Next, the definitions and properties of topologies on continuous function spaces are going to be introduced.
+After that, various statements with various proofs and some applications of the theorem will follow.
+
+
+
+
+
+
+\section{More on compactness}
+
+\subsection{Relative compactness}
+
+\begin{defn}
+A uniform space is called \emph{relatively compact} or \emph{precompact} if its completion is compact.
+\end{defn}
+\begin{prop}
+Let $X$ be a complete uniform space.
+A subset of $X$ is relatively compact if and only if its closure is compact.
+\end{prop}
+\begin{defn}
+A uniform space is called \emph{relatively net compact} if every net has a Cauchy subnet.
+\end{defn}
+\begin{defn}
+A uniform space is called \emph{totally bounded} if for every entourage $E$ there is a finite cover $\{U_i\}$ with $U_i^2\in E$ for each index $i$.
+\end{defn}
+\begin{thm}
+Let $X$ be a uniform space.
+The followings are all equivalent:
+\begin{cond}
+\item $X$ is relatively compact;
+\item $X$ is relatively net compact;
+\item $X$ is totally bounded.
+\end{cond}
+\end{thm}
+\begin{pf}
+Let $\tld X$ be a completion of $X$.
+
+(1)$\impl$(2).
+Every net in $X$ has a subnet that converges in $\tld X$.
+The subnet is Cauchy.
+
+(1)$\impl$(3).
+Let $E$ be an entourage.
+Since $\{U\in\tld X:U^2\in E\}$ is an open cover of $\tld X$, there is a finite subcover $\{U_i\}$ of $\tld X$.
+Then, $\{U_i\cap X\}$ is a finite cover of $X$ satisfying $(U_i\cap X)^2\in E$.
+
+(2)$\impl$(1).
+Let $\tld x:\cD\to\tld X$ be a net in $\tld X$.
+Take a net $x:\cD\x\cU\to X$ such that $x_{(d,E)}$ is $E$-closed to $\tld x_d$, where $\cU$ is the uniformity of $\tld X$.
+By the condition, there is a Cuachy subnet $x:\cE\to[h]\cD\x\cU\to X$.
+Then, a subnet $\tld x:\cE\to[h]\cD\x\cU\to\cD\to\tld X$ is Cauchy.
+
+In order to show this, take an entourage $E$.
+By the Cauchyness, we can find $e_0\in\cE$ such that $h(e_0)=(d_{e_0},E_{e_0})$ satisfies $E_{e_0}\subset E$ and $e,e'>e_0\impl(x_e,x_{e'})\in E$.
+Then, we get $(\tld x_e,\tld x_{e'})\in E^3$ because $(\tld x_e,x_e)=(\tld x_{d_e},x_{(d_e,E_e)})\in E_e\subset E_{e_0}\subset E$, $(x_e,x_{e'})\in E$, and $(x_{e'},\tld x_{e'})=(x_{(d_{e'},E_{e'})},\tld x_{d_{e'}})\in E_{e'}\subset E_{e_0}\subset E$.
+Therefore, $\tld x:\cE\to\tld X$ is Cauchy.
+
+(3)$\impl$(1).
+Clearly, $\tld X$ is totally bounded.
+
+
+\end{pf}
+
+Empirically, problems related to proof of compactness seem to be fallen into two cases: one is to show completeness and relative compactness, and the other is to apply Tychonoff's theorem.
+Followings are some examples.
+\begin{ex}[The Heine-Borel theorem]
+
+\end{ex}
+\begin{ex}[The Blaschke selection theorem]
+Let $H(X)$ be the metric space of nonempty compact subsets of a metric space $X$ with Hausdorff metric.
+If $X$ is compact, then $H(X)$ is compact.
+\end{ex}
+
+\begin{ex}[The Banach-Alaoglu theorem]
+Let $X$ be a locally convex space and $X^*$ the continuous dual of $X$ with weak$^*$ topology.
+If $B\subset X^*$ satisfies $\sup_{f\in B}|f(x)|<\infty$ for each $x\in X$, then $B$ is compact.
+\end{ex}
+\begin{pf}
+We can embed $X^*$ into $\F^X$.
+\end{pf}
+
+\subsection{Some weeker compactness}
+sigma compact and hemicompact
+
+
+
+
+
+
+
+\section{Two topologies on continuous function spaces}
+\subsection{Pointwise topology}
+
+\subsection{Compact-open topology}
+
+
+
+
+
+
+
+
+
+
+
+\section{Variations on the Arzela-Ascoli theorem}
+
+\begin{thm}[Arzela-Ascoli, conventional version]
+Let $X$ be a compact space.
+For $(f_n)_{n\in\N}\subset C(X)$, if it is equicontinuous and pointwisely bounded, then there is a subsequence that uniformly converges.
+\end{thm}
+
+Let $\cT_p$ be the topology of pointwise convergence and $\cT_c$ be the topology of compact convergence.
+\begin{thm}[Arzela-Ascoli, metrized version]
+Let $X$ be a hemicompact space and $Y$ be a metric space.
+If $\cF\subset C(X,Y)$ is equicontinuous and relatively compact in $\cT_p$, then it is relatively compact in $\cT_c$.
+\end{thm}
+\begin{pf}
+Let $\{f_n\}_{n\in\N}$ be a sequence in $\cF$ and $K\subset X$ be a compact.
+
+By equicontinuity, for each $k\in\N$ a finite open cover $\{U_s\}_{s\in S_k}$ with a finite set $S_k\subset K$ can be taken such that $x\in U_s\,\impl\,d(f(x),f(s))<\frac1k$ for all $f\in\cF$.
+By the pointwise relative compactness, we can extract a subsequence $\{f_m\}_{m\in\N}$ of $\{f_n\}_n$ such that $\{f_m(s)\}_m$ is Cauchy for each $s\in\bigcup_{k\in\N}S_k$ by the diagonal argument.
+
+For every $\e>0$, let $k=\ceil{\e^{-1}}$ so that $\frac1k\le\e$.
+Let $m_{0,s}$ be an index such that $m,m'>m_{0,s}\impl d(f_m(s),f_{m'}(s))<\e$, and define $m_0=\max\{m_{0,s}:s\in S_k\}$.
+Then, for arbitrary $x\in K$, we obtain $m,m'>m_0\impl$
+\[d(f_m(x),f_{m'}(x))\le d(f_m(x),f_m(s))+d(f_m(s),f_{m'}(s))+d(f_{m'}(s),f_{m'}(x))<3\e\]
+by taking $s\in S_k$ such that $x\in U_s$.
+Thus, $\{f_m\}_m$ is a subsequence of $\{f_n\}_n$ that is uniformly Cauchy on $K$.
+\end{pf}
+
+
+If $C(X,Y)$ is not metrizable, or even $Y$ is only uniform but not metrizable, the subsequence extracting procedure is not available.
+
+\begin{thm}[Arzela-Ascoli, generalized version]
+Let $X$ be a topological space and $Y$ be a uniform space.
+If $\cF\subset C(X,Y)$ is equicontinuous and relatively compact in $\cT_p$, then it is relatively compact in $\cT_c$.
+\end{thm}
+\begin{pf}[1]
+Every net in $F$ has a subnet that is pointwisely Cauchy.
+We are going to prove this subnet is in fact uniformly Cauchy on a compact set $K$.
+
+Let $(f_d)_{d\in\cD}$ be the pointwisely Cauchy subnet.
+Let $E$ be an entourage in $Y$.
+By equicontinuity, a finite open cover $\{U_s\}_{s\in S}$ of $K$ can be taken such that $x\in U_s\impl(f(x),f(s))\in E$ for all $f\in\cF$.
+(In here, we do not need to extract a subnet because the subnet is already pointwisely convergent.)
+Let $d_{0,s}$ be an index such that $d,d'>d_{0,s}\impl(f_d(s),f_{d'}(s))\in E$, and define $d_0=\max\{d_{0,s}:s\in S\}$.
+Then, for arbitrary $x\in K$, we get $d,d'>d_0\impl(f_d(x),f_{d'}(x))\in E^3$ by taking $s\in S$ such that $x\in U_s$.
+Thus, $(f_d)_d$ is uniformly Cauchy on $K$.
+\end{pf}
+
+\begin{proof}[Proof 2]
+
+\end{proof}
+
+\begin{proof}[Proof 3]
+We are going to prove the two topologies coincide in $\cF$.
+Note that subspace topologies $\cT_p\vert_\cF$ and $\cT_c\vert_\cF$ are also generated by pseudometrics $\rho_{\{x\}}(f,g)=d(f(x),g(x))$ and $\rho_K(f,g)=\sup\{d(f(x),g(x)):x\in K\}$ defined on $\cF$ respectively.
+Since $\cT_p\vert_\cF\subset\cT_c\vert_\cF$ clearly, it is enough to show the converse.
+
+Take a subbasis element $B_K(f_0,\e)\cap\cF$ of $\cT_c\vert_\cF$ with $f_0\in\cF$.
+By equicontinuity of $\cF$, there is a finite cover $\{U_s\}_{s\in S}$ of a compact subset $K$ such that $x\in U_s\,\impl\,d(f(x),f(s))<\e$ for all $f\in\cF$.
+
+If $f\in\cF$ satisfies $\rho_{\{s\}}(f,f_0)<\e$ for all $s\in S$, then we get
+\[\rho_K(f,f_0)\le\sup_{x\in K}d(f(x),f(s))+d(f(s),f_0(s))+\sup_{x\in K}d(f_0(s),f_0(x))<\e\]
+by taking $s\in S$ such that $x\in U_s$.
+This means
+\[\bigcap_{s\in S}B_{\{s\}}(f_0,\e)\subset B_K(f_0,3\e).\]
+It implies that the subbasis element contains an open set in $\cT_p\vert_\cF$.
+Therefore, $\cT_c\vert_\cF\subset\cT_p\vert_\cF$.
+\end{proof}
+
+
+\section{Applications}
+
+\end{document}
+
+발표!!
+1.topology, metric, norm, pseudometric, seminorm
+  (countability/merging)
+2.compactness in top, cau, unif, met spaces
+  (cpt, net cpt, tot bd, seq cpt)
+3.topologies on continuous function space
+4.arzela-ascoli 증명
+5.루딘과의 비교
+6.쓰임새
+
+
+
+
