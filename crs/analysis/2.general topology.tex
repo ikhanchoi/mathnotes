@@ -1,0 +1,606 @@
+\documentclass{../crs}
+\usepackage{../../ikany}
+
+\title{Analysis II : General Topology}
+
+\begin{document}
+\maketitle
+\tableofcontents
+
+
+\chapter{Topological structures}
+
+The word topology is used in two different contexts: analytic sense and geometric sense.
+When we are saying the stories about doughnuts and coffee mugs, they are in fact involved in topology of geometric sense, which is also referred to as a branch of mathematics that studies geometric objects called manifolds.
+In analysis, topology is mostly unrelated to the manifolds, but it refers to the minimal structure that is required in order to define concepts of limit and continuity.
+
+
+
+
+
+
+
+
+
+
+
+\section{Definition of topology}
+% purpose
+This subsection contains an independent investigation of the reason why topology is defined by the famous three axioms for open sets.
+A possible reasonable explanation involves a certain equivalence among filters.
+To introduce filter and topology, we are going to generalize the classical metric space.
+
+If someone wants to avoid some concepts such as filters, then one can jump to the next section without any logical gaps.
+
+
+\subsection{Metric spaces}
+
+% metric and limit
+Before 19th century, theory of limits, infinite series, differentiation, and integration was so focused on calculation of particular values that it does not have sufficient rigor.
+Cauchy, a pioneer of mathematical analysis, made a numerous mistakes on his theses.
+Establishing a rigid framework for analysis was one of the central problems of mathematics in 19th century.
+It contains the definition of limits.
+
+Metric space was the first successful trial to find an abstract framework for studying limits.
+I guess it was discovered empirically after uncountably many fails, not logically.
+Later, we will find that metric provides a extremely appropriate and widely-applicable tool to understand the nature of analysis.
+
+\begin{defn}
+Let $X$ be a set.
+A \emph{metric} is a function $d:X\x X\to\R_{\ge0}$ such that
+\begin{cond}
+\item $d(x,y)=0$ iff $x=y$, \hfill(nondegenracy)
+\item $d(x,y)=d(y,x)$, \hfill(symmetry)
+\item $d(x,z)\le d(x,y)+d(y,z)$. \hfill(triangle inequality)
+\end{cond}
+A set $(X,d)$ endowed with a metric is called a \emph{metric space}.
+\end{defn}
+
+
+
+% metric is a geometric object?
+Many freshmen misunderstand that metric is something belonging to the study of geoemtry.
+We cannot affirm it is false, but I hope to mention that a metric is quite far from geometric structures, and is rather an analytic structure.
+Meaning, metric is in fact not interested in measuring a distance between two points; metric helps define balls.
+The balls provide a concrete images of ``system of neighborhoods at a point'' in a more intuistic and geometric sense.
+Metric can be considered as a device to let someone naturally accept the notion of neighborhoods, which is vital for analysis of limits and continuity.
+\begin{defn}
+Let $X$ be a metric space.
+A set of the form 
+\[\{y\in X:d(x,y)<\e\}\]
+for $\e>0$ is called a \emph{ball centered at $x$} and denoted by $B(x,\e)$ or $B_\e(x)$.
+\end{defn}
+The most familiar metric comes from the standard norm on Euclidean space $\R^d$.
+When we use an analytic theory on Euclidean space, the following metric is considered as the standard.
+\begin{ex}
+Let $\R^d$ be the Euclidean space of dimension $d$.
+Then a real-valued function $d$ on $\R^d\x\R^d$ defined by $d(x,y):=\|x-y\|=\sqrt{\langle x-y,x-y\rangle}$ forms a metric.
+\end{ex}
+\begin{pf}
+Since the other two conditions are so clear, we will only show the triangle inequality.
+
+\end{pf}
+
+
+
+% continuity
+\begin{defn}
+A function $f:X\to Y$ between metric spaces is called \emph{continuous at $x\in X$} if $f(\cB_x)$ refines $\cB_{f(x)}$; in other words, for any $\e>0$ there is $\delta>0$ such that $f(B(x,\delta))\subset B(f(x),\e)$.
+The function $f$ is called \emph{continuous} if it is continuous at every point on $X$.
+\end{defn}
+
+
+
+
+
+
+
+
+
+
+Base
+\begin{ex}
+Let $X$ be a metric space.
+A set of all balls $\cB=\{B(x,\e):x\in X,\,\e>0\}$ is a basis on $X$ because for every point $x\in B(x_1,\e_1)\cap B(x_2,\e_2)$, we have $x\in B(x,\e)\subset B(x_1,\e_1)\cap B(x_2,\e_2)$ where $\e=\min\{\e_1-d(x,x_1),\,\e_2-d(x,x_2)\}$.
+\end{ex}
+
+\begin{rmk}
+In metric spaces, of course, there can exist infinitely many bases, but they are hardly considered except $\mathcal{B}$.
+Sometimes in the context of metric spaces, the term neighborhood or basis are used to say $\mathcal{B}$.
+As we have seen, balls in metric spaces are the main concept to state $\e$-$\delta$ argument.
+This example would show a basis is fundamental language to describe the nature of limits in metric spaces.
+\end{rmk}
+Basis elements are able to be interpreted as a ``neighborhood'' of each point.
+To be so, each condition lets points always have their at least one, and arbitrarily small neighborhood.
+Next is the most proper example to establish intuitions of basis.
+
+
+Due to this proposition, topology is conventionally defined as the maximal basis.
+In other words, topology is defined to be an equivalence class of topological bases.
+
+
+
+
+Before defining topology, recall that it plays the most important role in the definition of continuous functions to deal with neighborhoods of a point.
+We want a structure to give a notion of neighborhoods of a point such as metrics, in other words, we want to generalize metric in a suitable way.
+There is a conventional definition of topology: topology is defined as a subset of the power set of underlying space satisfying some axioms, and it is said to consist of open sets so that a topology indicates that which subsets are open or not.
+However, this definition is so abstract that it might allow first-readers to lose its intuitions.
+Thereby, we attempt to take another way.
+Before introducing topology, we shall define a topological basis.
+Topological bases are often used to describe a particular topology as bases of vector spaces do.
+The main definition of topology will follow.
+
+\subsection{Filters}
+Suppose we want to find a proper way to define limit and convergence.
+Recall how we define convergence of a sequence of real numbers: we say a sequence $(x_n)_{n\in\N}$ converges to a number $x$ if for each $\e>0$ there is $n_0(\e)\in\N$ such that $|x-x_n|<\e$ whenever $n>n_0$.
+Simply, $x_n$ is close to $x$ if $n$ is close to the infinity.
+
+Observe the two necessary structures to make this possible; the ``system of neighborhoods'' at each point $x$, and the total order on the index set $\N$ the set of natural numbers.
+
+Without the order structure, we would not be able to formulate the intuition of the direction toward which a sequence is converging.
+Even though the order on $\N$ is totally defined so that we can compare every pair of two elements, but it can be generalized to the case of partial orders.
+
+\begin{defn}
+A subset $\cD$ of a poset is called \emph{(upward) directed} if for every $a,b\in\cD$ there is $c\in\cD$ such that $a\le c$ and $b\le c$.
+Similarly, $\cD$ is called \emph{downward directed} if for every $a,b\in\cD$ there is $c\in\cD$ such that $c\le a$ and $c\le b$.
+\end{defn}
+\begin{defn}
+A \emph{filter base} is a nonempty and downward directed subset of a poset.
+\end{defn}
+The directedness of a partially ordered set is an essential notion to define limit.
+
+\bigskip
+Let $X$ be a set and $x\in X$.
+Then, the power set $\cP(X)$ is a poset with inclusion relation.
+\begin{defn}
+A collection $\cB_x$ of subsets of $X$ is called a \emph{filter base at $x$} if every element of $\cB_x$ contains $x$ and it forms a nonempty downward directed subset; every $U\in\cB_x$ contains $x$, and for all $U_1,U_2\in\cB_x$ there is $U\in\cB_x$ such that $U\subset U_1\cap U_2$.
+\end{defn}
+\begin{defn}
+Let $\cB_x,\cB'_x$ be filter bases at $x$.
+We say $\cB'_x$ is \emph{finer than} $\cB_x$, or a \emph{refinement} of $\cB_x$ if for every $U\in\cB_x$ there is $U'\in\cB'_x$ such that $U'\subset U$.
+\end{defn}
+\begin{prop}
+The refinement relation between filter bases is a preorder, and each equivalence class contains a unique maximal element.
+\end{prop}
+\begin{pf}
+
+\end{pf}
+\begin{defn}
+A \emph{filter at $x$} is the maximal element of an equivalence class of filter bases at $x$.
+\end{defn}
+\begin{thm}
+A collection $\cF_x$ of subsets of $X$ is a filter at $x$ if and only if every element contains $x$ and it is closed under supersets and finite intersections;
+\begin{cond}
+\item $x\in U$ for $U\in\cF_x$,
+\item if $U\subset V$ and $U\in\cF_x$, then $V\in\cF_x$,
+\item if $U,V\in\cF_x$, then $U\cap V\in\cF_x$.
+\end{cond}
+\end{thm}
+\begin{pf}
+
+\end{pf}
+
+Many references use this theorem as the definition of filter.
+
+\begin{ex}
+Let $x\in\R^n$.
+The set of all open balls containing $x$ is a filter base at $x$.
+\end{ex}
+\begin{ex}
+Let $x$ be an element of a set $X$.
+The set of all subsets containing $x$ is a filter at $x$.
+Filters defined as this are called \emph{principal filters}.
+\end{ex}
+
+\subsection{Topologies}
+
+Let $X$ be a set.
+\begin{defn}
+A collection $\cB$ of subsets of $X$ is called a \emph{topological base} or simply a \emph{base on $X$} if
+\[\{U:x\in U\in\cB\}\]
+is a filter base at $x$ for every $x\in X$.
+\end{defn}
+\begin{defn}
+Let $\cB$ be a topological base on $X$ and $x\in X$.
+A filter base at $x$ is called a \emph{local base} of $x$ if it is equivalent to the filter base $\{U:x\in U\in\cB\}$.
+\end{defn}
+\begin{defn}
+Let $\cB,\cB'$ be topological bases on $X$.
+We say $\cB$ is \emph{coarser} or \emph{weaker} than $\cB'$, and $\cB'$ is \emph{finer}, \emph{stronger} than $\cB$, or a \emph{refinement} of $\cB$ if every local base $\cB'_x$ is finer than $\cB_x$ at every point $x\in X$.
+\end{defn}
+\begin{prop}
+The refinement relation between topological bases is a preorder, and each equivalence class contains a unique maximal element.
+\end{prop}
+\begin{pf}
+
+\end{pf}
+Due to this proposition, topology is conventionally defined as the maximal basis.
+In other words, topology is defined to be an equivalence class of topological bases.
+\begin{defn}
+A \emph{topology on $X$} is the maximal element of an equivalence class of topological bases on $X$.
+\end{defn}
+\begin{thm}\label{thm:def_of_top}
+A collection $\cT$ of subsets of $X$ is a topology on $X$ if and only if
+\begin{cond}
+\item $\varnothing,X\in\mathcal{T}$,
+\item if $\{U_\alpha\}_{\alpha\in\mathcal{A}}\subset\mathcal{T}$, then $\bigcup_{\alpha\in\mathcal{A}}U_\alpha\in\mathcal{T}$,
+\item if $U_1,U_2\in\mathcal{T}$, then $U_1\cap U_2\in\mathcal{T}$.
+\end{cond}
+\end{thm}
+\begin{pf}
+
+\end{pf}
+Theorem \ref{thm:def_of_top} is usually used as a definition of topology because it allows us to check without difficulty whether a collection of subsets is a topology.
+
+
+
+\bigskip
+\begin{defn}
+Let $\cB$ and $\cT$ be a base and a topology on a set $X$.
+If $\cT$ is the coarsest topology containing $\cB$, then we say the topology $\cT$ is \emph{generated by} $\cB$.
+\end{defn}
+\begin{thm}
+Let $\cB$ and $\cT$ be a base and a topology on a set $X$.
+The followings are equivalent:
+\begin{cond}
+\item $\cB$ generates $\cT$,
+\item $\cB$ and $\cT$ are equivaent bases,
+\item $\cT$ is the set of all arbitrary unions of elements of $\cB$.
+\end{cond}
+\end{thm}
+
+\begin{defn}
+Let $\cS\subset\cP(X)$.
+If a topology $\cT$ is the coarsest topology containing $\cS$, then we say $\cS$ is called a \emph{subbase} of $\cT$.
+\end{defn}
+\begin{prop}
+Let $\cS\subset\cP(X)$.
+The set of finite intersections of elements of $\cS$ is a basis.
+\end{prop}
+
+
+
+
+
+
+\bigskip
+def:nbhd and neighborhood filter
+
+continuity
+
+
+
+
+\subsection{Base and subbase}
+
+\section{Topological spaces}
+
+\subsection{Open sets and neighborhoods}
+
+\subsection{Closed sets and limit points}
+
+\subsection{Interior and closure}
+
+\subsection{Continuous maps}
+
+\subsection{Subspace topology}
+
+\subsection{Quotient topology}
+
+\subsection{Product topology}
+
+
+
+
+
+
+
+
+
+
+
+
+\section{Uniform spaces}
+\subsection{Uniformness of metric}
+
+\subsection{Entourages}
+\subsection{Pseudometrics I}
+\subsection{Pseudometrics II}
+Metric can be regarded as the ``countably'' uniform structure in some sense. 
+In other texts, for this reason, one frequently introduces metric instead of uniformity in order to avoid superfluously complicated and less intuitive notions of uniform structures, when only doing elementary analysis not requiring uncountable local bases.
+\subsection{Algebraic structures with topology}
+\subsection{Norms and seminorms}
+\subsection{Uniform continuity}
+\subsection{Constructions}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\chapter{Continuity}
+-- various levels of continuity
+- continuity, Cauchy, uniform, Lipschitz
+- continuity by convergence
+-- homeomorphism
+- topological property: connected, compact
+-- connectedness
+- connected, path-connected, locally path-connected
+- component
+- homotopy
+
+
+
+
+
+
+
+
+
+
+
+
+
+\chapter{Convergence}
+-- sequences
+- density and approximation
+- sequential spaces, first countable
+-- nets and filters
+-- completeness
+- completion
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\chapter{Compactness}
+\begin{defn}
+Let $X$ be a topological space.
+A \emph{cover} of a subset $A\subset X$ is a collection $\{U_\alpha\}_{\alpha\in\cA}$ of subsets of $X$ such that $A\subset\bigcup_{\alpha\in\cA}U_\alpha$.
+If $U_\alpha$ are all open, then it is called \emph{open cover}.
+\end{defn}
+\begin{defn}
+Let $X$ be a topological space.
+A subset $K\subset X$ is called \emph{compact} if every open cover of $K$ has a finite subcover.
+\end{defn}
+\begin{prop}
+Let $X$ be a topological space with a basis $\mathcal{B}$.
+A subset $K\subset X$ is compact if and only if every cover of the form $\{B_x\in\mathcal{B}\}_{x\in K}$ has a finite subcover.
+\end{prop}
+\begin{rmk}
+Let $\cP$ be a property of a fuction $f\colon X\to Y$, such as continuity
+If we say $f$ has $\cP$ at a point $x$, then it would implies that $x$ has a neighborhood $U$ such that 
+\end{rmk}
+
+\subsection{Properties of compactness}
+\begin{thm}
+Let $X$ and $Y$ be topological spaces.
+For a continuous map $f\colon X\to Y$, the image $f(K)$ is compact for compact $K\subset X$.
+\end{thm}
+
+\begin{rmk}
+This is why the term ``compact space'' is widely used.
+\end{rmk}
+
+\begin{cor}[The extreme value theorem]
+A continuous function on a closed interval has a global maximum and
+\end{cor}
+
+Heine-Cantor,
+
+
+
+\subsection{Characterizations of compactness}
+\[
+\begin{tikzcd}[column sep=large,row sep=large]
+\text{net compact} \arrow{d} & \text{sequentially compact} \arrow{d} & \\
+\text{compact} \arrow{u}\arrow{r} & \text{countably compact} \arrow{r}\arrow[dashed,bend left]{l}{\scriptsize\begin{tabular}{c}\text{metrizable }\\or\text{ 2nd countable}\end{tabular}} \arrow[dashed,bend right,swap]{u}{\text{sequential}} & \text{limit point compact} \arrow[dashed,bend left]{l}{T_1}
+\end{tikzcd}
+\]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\chapter{Separation axioms}
+
+\section{Separation axioms}
+\section{Metrization theorems}
+
+
+
+
+
+\chapter{Function spaces}
+
+
+
+
+
+
+\section{Continuous function spaces}
+
+\begin{defn}
+Let $X$ and $Y$ be topological spaces.
+The \emph{continuous functions space} $C(X,Y)$ is the set of continuous functions from $X$ to $Y$.
+If $Y=\mathbb{R}$ or $\mathbb{C}$, then the continuous function space is denoted by $C(X)$.
+\end{defn}
+
+In considering the continuous function space, $Y$ will be assumed to be a metric space because of its usefulness in most applications.
+Then, there are two useful topologies on $C(X,Y)$.
+Since there is a difficulty to deal with open sets or basis directly in a function space, the convergence will be a reliable alternative to describe the topologies.
+Before giving definition of the topologies, define pseudometrics $\rho_K$ on $C(X,Y)$ by
+\[\rho_K(f,g)=\sup_{x\in K}d(f(x),g(x))\]
+for $K\subset X$ compact.
+
+\begin{defn}
+Let $X$ and $Y$ be topological spaces.
+The \emph{topology of pointwise convergence} on $C(X,Y)$ is a subspace topology inherited from the product topology on $Y^X$.
+\end{defn}
+
+\begin{prop}
+Let $X$ be a topological space and $Y$ be a metric space.
+The topology of pointwise convergence on $C(X,Y)$ is generated by pseudometrics $\rho_{\{x\}}$, namely all $\{g:d(f(x),g(x))<\e\}$ for $f\in C(X,Y)$, $\e>0$, and $x\in X$.
+\end{prop}
+
+\begin{defn}
+Let $X$ be a topological space and $Y$ be a metric space.
+The \emph{topology of compact convergence} on $C(X,Y)$ is a topology generated by pseudometrics $\rho_K$, namely all $\{g:\rho_K(f,g)<\e\}$ for $f\in C(X,Y)$, $\e>0$, and compact $K\subset X$.
+\end{defn}
+
+\begin{prop}
+Let $C(X,Y)$ be a continuous function space for a topological space $X$ and a metric space $Y$.
+A functional sequence in $C(X,Y)$ converges in the topology of compact convergence if and only if the functional sequence converges compactly.
+\end{prop}
+
+\begin{thm}
+Let $X$ be a topological space and $Y$ be a metric space.
+If $X$ is hemicompact, in other words, $X$ has a sequence of compact subsets $\{K_n\}_{n\in\N}$ such that every compact subset of $X$ is contained in $K_n$ for some $n\in\N$, then the topology of compact convergence on $C(X,Y)$ is metrizable.
+\end{thm}
+
+\begin{proof}
+bounding and merging pseudometrics
+\end{proof}
+
+
+$\frac\e3$ argument
+
+
+
+
+
+
+
+
+
+\subsection{The Arzela-Ascoli theorem}
+
+The Arzela-Ascoli theorem is a main technique to verify compactness of a subspace of continuous function space.
+The theorem requires the notion of equicontinuity, which lifts pointwise compactness up onto compactness in topology of compact convergence.
+
+\begin{defn}
+Let $X$ be a topological space and $Y$ be a metric space.
+A subset $\mathcal{F}\subset C(X,Y)$ is called \emph{(pointwise) equicontinuous} if for every $\e>0$ and each $x_0\in X$, there is an open neighborhood $U$ of $x_0$ such that $x\in U\,\Rightarrow\,d(f(x),f(x_0))<\e$ for all $f\in\mathcal{F}$.
+\end{defn}
+
+
+\begin{thm}[Arzela-Ascoli, conventional version]
+Let $X$ be a compact space.
+For $(f_n)_{n\in\N}\subset C(X)$, if it is equicontinuous and pointwisely bounded, then there is a subsequence that uniformly converges.
+\end{thm}
+
+
+\begin{thm}[Arzela-Ascoli, metrized version]
+Let $X$ be a hemicompact space and $Y$ be a metric space.
+Let $\cT_p$ and $\cT_c$ be the topology of pointwise and compact convergence on $C(X,Y)$ relatively.
+For $\cF\subset C(X,Y)$, if $\cF$ is equicontinuous and relatively compact in $\cT_p$, then $\cF$ is relatively compact in $\cT_c$.
+\end{thm}
+\begin{pf}
+Let $\{f_n\}_{n\in\N}$ be a sequence in $\cF$ and $K\subset X$ be a compact.
+By equicontinuity, for each $k\in\N$ a finite open cover $\{U_s\}_{s\in S_k}$ with a finite set $S_k\subset K$ can be taken such that $x\in U_s\,\impl\,d(f(x),f(s))<\frac1k$ for all $f\in\cF$.
+By the pointwise relative compactness, we can extract a subsequence $\{f_m\}_{m\in\N}$ of $\{f_n\}_n$ such that $\{f_m(s)\}_m$ is Cauchy for each $s\in\bigcup_{k\in\N}S_k$ by the diagonal argument.
+
+For every $\e>0$, let $k=\ceil{(\frac\e3)^{-1}}$ and $m_0=\max\{m_{0,s}:s\in S_k\}$ where $m_{0,s}$ satisfies that $m,m'>m_{0,s}\impl d(f_m(s),f_{m'}(s))<\frac\e3$.
+By taking $s\in S_k$ such that $x\in U_s$ for arbitrary $x\in K$, we obtain, for $m,m'>m_0$,
+\[d(f_m(x),f_{m'}(x))\le d(f_m(x),f_m(s))+d(f_m(s),f_{m'}(s))+d(f_{m'}(s),f_{m'}(x))<\e.\]
+Thus, $\{f_m\}_m$ is a subsequence of $\{f_n\}_n$ that is uniformly Cauchy on $K$.
+\end{pf}
+
+
+converse of Arzela-Ascoli
+
+
+
+
+\subsection{The Stone-Weierstrass theorem} %
+
+
+
+
+
+
+
+
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+Limiting inequality
+dependency diagram
+double limit table
+
+
+
+
+
+
+
+
+
+

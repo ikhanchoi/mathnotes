@@ -1,0 +1,123 @@
+\documentclass{../crs}
+\usepackage{../../ikany}
+
+\title{Real Analysis I : Measure Theory}
+
+\begin{document}
+\maketitle
+\tableofcontents
+
+
+
+
+\chapter{Topological measures}
+
+\section{Radon measures}
+In LCH, compact finiteness and locally finiteness are equivalent.
+\begin{defn}
+A \emph{Radon measure} is a Borel measure which is
+\begin{cond}
+\item outer regular on all Borel sets,
+\item inner regular on all open sets,
+\item compact finite.
+\end{cond}
+\end{defn}
+
+Radon measures are rather simply characterized when the base space is $\sigma$-compact.
+\begin{thm}
+A Radon measure is inner regular on all $\sigma$-finite Borel sets.
+\end{thm}
+\begin{pf}
+Let $E$ be a Borel set with $\mu(E)<\oo$.
+By outer regularity, there is an open set $U\supset E$ such that
+\[\mu(U)<\mu(E)+\frac\e2.\]
+Then,
+\[\mu(U\setminus E)<\frac\e2.\]
+By outer regularity, there is an open set $V\supset U\setminus E$ such that
+\[\mu(V)<\mu(U\setminus E)+\frac\e2.\]
+
+By inner regularity, there is a compact set $K\subset U$ such that
+\[\mu(K)\frac\e2>\mu(U).\]
+Then, we have $K\setminus V\subset E$ and
+\[\mu(K\setminus V)=blabla\]
+\end{pf}
+
+												cptfin Borel regular => Radon => cptfin Borel
+sigma-cpt											cptfin Borel regular == Radon => cptfin Borel
+second countable => every open is sigma cpt			cptfin Borel regular == Radon == cptfin Borel
+
+\begin{cor}
+If $X$ is $\sigma$-compact, then a compact finite Borel measure is Radon if and only if it is regular.
+\end{cor}
+
+\begin{thm}
+If $X$ is second countable, then every compact finite Borel measure is regular.
+\end{thm}
+
+
+
+
+\section{The Riesz-Markov-Kakutani theorem}
+In this section, we always assume $X$ is a locally compact Hausdorff space.
+Hence we can use the Urysohn lemma: If $K$ is compact and $F$ is closed, then we can find a continuous function $f:X\to[0,1]$ such that $f|_K=1$ and $f|_F=0$.
+\subsection{The first theorem}
+Positivity of linear functional itself implies a rather strong continuity property.
+\begin{thm}
+Let $C_c(X)$ be a space of compactly supported continuous functions on $X$.
+(Give an LF topology with a directed inductive family $C_K(X)$.)
+If a linear functional $I$ is positive, then continuous with respect to the topology.
+\end{thm}
+\begin{pf}
+Let $K$ be a compact subset.
+We want to show $|I(f)|\lesssim\|f\|$ for $f\in C_K(X)$.
+The proof idea comes from $|\int_K f\,d\mu|\le\mu(K)\|f\|$.
+
+Choose $\phi\in C_c(X)$ such that $\phi|_K=1$.
+\end{pf}
+
+
+
+
+
+Jordan decomposition: $(C_0(X),u)^*\subset(C_c(X),LF)^*$
+converse?
+
+
+
+
+\chapter{Hmmmm}
+
+\subsection{Convergence in measure}
+Since $\{f_n(x)\}_n$ diverges if and only if
+\[\exists k>0,\quad\forall n_0>0.\quad\exists n>n_0:\quad |f_n(x)-f(x)|>n^{-1},\]
+we have
+\begin{align*}
+\{x:\{f_n(x)\}_n\text{ diverges}\}&=\bigcup_{k>0}\bigcap_{n_0>0}\bigcup_{n>n_0}\{x:|f_n(x)-f(x)|>n^{-1}\}\\
+&=\bigcup_{k>0}\limsup_n\{x:|f_n(x)-f(x)|>n^{-1}\}.
+\end{align*}
+Since for every $k$
+\[\limsup_n\{x:|f_n(x)-f(x)|>k^{-1}\}\subset\limsup_n\{x:|f_n(x)-f(x)|>n^{-1}\},\]
+we have
+\[\{x:\{f_n(x)\}_n\text{ diverges}\}\subset\limsup_n\{x:|f_n(x)-f(x)|>n^{-1}\}.\]
+
+
+
+
+\begin{thm}
+Let $f_n$ be a sequence of measurable functions on a measure space $(X,\mu)$.
+If $f_n$ converges to $f$ in measure, then $f_n$ has a subsequence that converges to $f$ $\mu$-a.e.
+\end{thm}
+\begin{pf}
+Since $d_{f_n-f}(1/k)\to0$ as $n\to\infty$, we can extract a subsequence $f_{n_k}$ such that
+\[\mu(\{x:|f_{n_k}(x)-f(x)|>k^{-1}\})>2^{-k}.\]
+Since
+\[\sum_{k=1}^\infty\mu(\{x:|f_{n_k}(x)-f(x)|>k^{-1}\})<\infty,\]
+by the Borel-Canteli lemma, we get
+\[\mu(\limsup_k\{x:|f_{n_k}(x)-f(x)|>k^{-1}\})=0.\]
+Therefore, $f_{n_k}$ converges $\mu$-a.e.
+\end{pf}
+
+
+
+
+\end{document}
