@@ -1,0 +1,73 @@
+\documentclass{../exp}
+\usepackage{../../ikany}
+
+\title{Category Theory for Homological Algerba}
+
+\begin{document}
+\maketitle
+
+
+\section{Additive category}
+
+There are three main concepts we need to catch:
+\begin{cond}
+\item zero morphisms and zero object;
+\item biproduct;
+\item additive functors and enriched functors.
+\end{cond}
+
+\subsection{Zeros}
+We get started from definitions.
+\begin{defn}
+A \emph{zero object} is an object which is initial and terminal.
+\end{defn}
+\begin{defn}
+A category is said to have \emph{zero morphisms} if every hom-set contains a specified morphism denoted by 0 that satisfies $0\circ f=0$ and $f\circ 0=0$ for all morphisms $f$.
+\end{defn}
+
+
+In other words, we can say that the existence of zero morphisms is equivalent to $\cat{Set_*}$-enrichment.
+
+
+\subsection{Biproducts}
+Simply saying, biproducts is something that is both product and coproduct.
+To define biproduct, we need zero morphisms, so the $\cat{Set_*}$-enrichment will be assumed.
+\begin{defn}
+aaa
+\end{defn}
+
+
+
+
+
+\subsection{Categories}
+
+Here are definitions of categories in which we are interested.
+\begin{defn}
+A \emph{pointed category} is a cateogry with a zero object.
+\end{defn}
+\begin{defn}
+A \emph{semiadditive category} is a $\cat{CMon}$-enriched category with a zero object.
+\end{defn}
+\begin{defn}
+A \emph{additive category} is a $\cat{Ab}$-enriched category with a zero object.
+\end{defn}
+Note that we have of course several possible ways to give some equivalent definitions.
+For example, the following proposition is well-admitted as the definition of semiadditive category.
+\begin{thm}
+A $\cat{Set_*}$-enriched category is semiadditive if and only if it has all finite biproducts.
+\end{thm}
+
+A \emph{preadditive category} is another name of $\cat{Ab}$-enriched category.
+
+
+\begin{cd}
+\text{Additive category} \ar{d}\ar{r} & \text{Semiadditive category} \ar{d}\ar{r} & \text{Pointed category} \ar{d} \\
+\text{$\cat{Ab}$-enriched category} \ar{r}\lds{u}{\text{zero object}} & \text{$\cat{CMon}$-enriched category} \ar{r}\lds{u}{\text{zero object}} & \text{$\cat{Set_*}$-enriched category} \lds{u}{\text{zero object}}\\
+\end{cd}
+
+
+
+
+
+\end{document}

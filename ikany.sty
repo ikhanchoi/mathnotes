@@ -100,6 +100,13 @@
 
 
 
+
+
+
+
+
+
+
 % Commutative diagrams
 \RequirePackage{tikz-cd,xparse}
 \NewDocumentEnvironment{cd}{}{\[\begin{tikzcd}}{\end{tikzcd}\]}
@@ -109,20 +116,34 @@
     \[\begin{tikzcd}[column sep=small,ampersand replacement=\&]
   }
   {\end{tikzcd}\]}
-\def\ds{\ar[dash]}
+\def\lar{\ar[bend left]}
+\def\rar{\ar[bend right]}
+\def\ds{\ar[dashed]}
+\def\lds{\ar[dashed,bend left]}
+\def\rds{\ar[dashed,bend right]}
 \def\hk{\ar[hook]}
 \def\mn{\ar[tail]}
 \def\ep{\ar[two heads]}
-
 
 \iffalse % Example code
 	\begin{es}
 	0 \> A \> B \> C \> 0
 	\end{es}
-	\begin{cd}
-	A \ds[swap,\exists !] B \mn[dashed] C
+	\begin{cd}[row sep={24pt,between origins}, column sep={36pt,between origins}]
+	A \ds[swap,\exists !]{r} & B \mn{r} & C \ar[dashed]{r}{text} & D
 	\end{cd}
 \fi
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -170,6 +191,46 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+% Matrices shortcut
+\newcommand{\mat}[2][b]{%
+  \begin{#1matrix}
+    #2
+  \end{#1matrix}
+}
+% option:p,b,B,v,V
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 % Parantheses    고치자
 \RequirePackage{xparse}
 \DeclareDocumentCommand{\abs}{m}{\left\lvert#1\right\rvert}
@@ -177,6 +238,20 @@
 \DeclareDocumentCommand{\flr}{m}{\left\lfloor#1\right\rfloor}
 \DeclareDocumentCommand{\ceil}{m}{\left\lceil#1\right\rceil}
 \DeclareDocumentCommand{\inn}{mm}{\left\langle#1,#2\right\rangle}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -257,11 +332,12 @@
 \let\mt\varnothing % emptyset
 \let\bd\partial % boundary
 
+% 기타
 \let\bigmath\displaystyle
 \def\1{\bold{1}} % characteristic function
 \def\impl{\,\Rightarrow\,}
 \def\for{\qquad}
-
+\def\cat{\mathbf}
 
 \let\@@to\to
 \RenewDocumentCommand{\to}{g}{\IfNoValueTF{#1}{\@@to}{\overset{#1}{\@@to}}}

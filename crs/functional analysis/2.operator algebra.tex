@@ -13,11 +13,61 @@
 \section{Spectral theory}
 
 \chapter{$C^*$-algebras}
+\section{Basics}
+
+
 
 
 \section{The Gelfand-Naimark theorems}
 \subsection{Commutative Banach algebras}
 
+The Gelfand representation $A\to C_0(\hat A)$ can be defined for commutative Banach algebras.
+
+\begin{defn}
+A \emph{symmetric} Banach algebra is an involutive Banach algebra for which the Gelfand representation preserves the involution.
+We will not consider non-symmetric involutive Banach algebras in this section.
+\end{defn}
+Notice the following implication:
+\begin{cd}
+& \text{symmetirc Banach algebra} \ar[dr] &\\
+\text{$C^*$-algebra} \ar[ur]\ar[dr]&& \text{Banach algebra}.\\
+& \text{semisimple Banach algebra} \ar[ur] &
+\end{cd}
+
+Let $A$ be a commutative Banach algebra.
+\begin{thm}
+If $A$ is semisimple, then the Gelfand representation is a monomorphism; it is injective.
+\end{thm}
+\begin{pf}
+It is because the kernel is given by the Jacobson radical.
+\end{pf}
+\begin{thm}
+If $A$ is symmetric, then the Gelfand representation is an epimorphism; it has a dense range.
+\end{thm}
+\begin{pf}
+The image is closed under all operations except involution, separates points, and vanishes nowhere.
+If $A$ is symmetric, then the image is closed under involution.
+Thus, by the Stone-Weierstrass theorem, we get the result.
+\end{pf}
+
+$C^*$-algebras are semisimple and symmetric (even if it is noncommutative).
+\begin{thm}
+A $C^*$-algebra is semisimple.
+\end{thm}
+\begin{thm}
+A $C^*$-algebra is symmetric.
+\end{thm}
+\begin{pf}[1]
+It is by Arens.
+\end{pf}
+\begin{pf}[2]
+It is by Fukamiya.
+\end{pf}
+Furethermore,
+\begin{thm}
+If $A$ is a commutative $C^*$-algebra, then the Gelfand representation is isometric.
+\end{thm}
+Since an isometry is injective and has a closed range, therefore, it should be isometric $^*$-isomorphism.
 
 
 \chapter{Von Neumann algebras}

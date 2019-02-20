@@ -57,7 +57,7 @@ I say this as $\frac12B(0,2)$ is ``fatter'' than $B(0,1)$.
 
 
 
-\section{Barreled spaces}
+\chapter{Barreled spaces}
 
 \subsection{The Baire category theorem}
 
@@ -106,19 +106,31 @@ Then we can take $\{V_n\}_n$ with (2) as we mentioned above.
 Simultaneously we can have it satisfy (3) because $Y$ is metrizable.
 \end{proof}
 \begin{cor}
-Let $X$ be a metric space and $Y$ be a barreled space.
+Let $X$ be metrizable and $Y$ be barreled.
 Then, the open mapping theorem holds.
 \end{cor}
 \begin{pf}
-The isomorphism $Y\cong X/\ker T$ forces $Y$ to be also metrizable.
+The quotient of metrizable space is also metrizable, so $Y$ is a metrizble barreled space.
 \end{pf}
 \begin{cor}[The Banach Isomorphy]
-A continuous linear bijection onto a metrizable barreled space is a homeomorphism.
+A continuous linear bijection onto a metrizable barreled space is a homeomorphism, i.e. topological isomorphism.
 \end{cor}
 \begin{cor}[The first isomorphism theorem]
 Let $T:X\to Y$ be a bounded linear operator between Banach spaces.
 Then, the induced map $X/\ker T\to\im T$ is a topological isomorphism.
 \end{cor}
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -133,12 +145,84 @@ polar
 \section{Weak topology}
 
 
-\chapter{Operators on Banach space}
 
-The range of an operator $T:X\to Y$ is closed if and only if
-\[\im T\to X/\ker T\]
-is bounded.(maybe)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\chapter{Operators on Banach space}
+DO NOT contain topics tht can be generalized within Banach algebras or any other operator algebras(e.g. polar decomposition, Gelfand theory, functional calculus, spectral resolution)
+
+\begin{thm}
+Let $X$ be complete and $Y$ be complete metrizable.
+The range of a continuous operator $T:X\to Y$ is closed if and only if the induced linear isomorphism
+\[\frac X{\ker T}\to\im T\]
+has a continuous inverse so that it becomes a topological isomorphism.
+\end{thm}
+\begin{pf}
+One direction is easy.
+
+For the other direction, suppose $\im T$ is closed in $Y$.
+Note that the metrizability condition of $Y$ is set in order to apply the open mapping theorem.
+\end{pf}
+\begin{cor}
+Let $T:X\to Y$ be a bounded operator between Banach spaces.
+Then, $T$ is bounded below if and only if $\im T$ is closed and $T$ is injective.
+\end{cor}
+
+
+
+\section{Spectral theory}
+When a Banach algebra is realized as a concrete operator space, then the spectral theory on it changes drastically.
+For example we can categorize three cases for a linear operator between Banach spaces to fail the invertibility:
+\begin{cond}
+\item it is not injective;\hfill (point spectrum)
+\item it is injective, its range is not dense;\hfill (residual spectrum)
+\item it is injective, its range is dense, but not closed;\hfill (continuous spectrum)
+\end{cond}
+
+
+
+\section{Compact operators}
+
+\section{Unbounded operators}
+
+\section{Nuclear operators}
+
+\section{Fredholm theory}
+
+\section{Perturbation theory}
+
+
+
+
 
 
 
 \end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
