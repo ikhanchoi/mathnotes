@@ -29,36 +29,16 @@ A category is said to have \emph{zero morphisms} if every hom-set contains a spe
 In other words, we can say that the existence of zero morphisms is equivalent to $\cat{Set_*}$-enrichment.
 
 
-\subsection{Biproducts}
-Simply saying, biproducts is something that is both product and coproduct.
-To define biproduct, we need zero morphisms, so the $\cat{Set_*}$-enrichment will be assumed.
-\begin{defn}
-aaa
-\end{defn}
-
-
-
-
-
-\subsection{Categories}
-
 Here are definitions of categories in which we are interested.
 \begin{defn}
 A \emph{pointed category} is a cateogry with a zero object.
-\end{defn}
-\begin{defn}
 A \emph{semiadditive category} is a $\cat{CMon}$-enriched category with a zero object.
-\end{defn}
-\begin{defn}
 A \emph{additive category} is a $\cat{Ab}$-enriched category with a zero object.
+A \emph{preadditive category} is another name of $\cat{Ab}$-enriched category.
 \end{defn}
 Note that we have of course several possible ways to give some equivalent definitions.
 For example, the following proposition is well-admitted as the definition of semiadditive category.
-\begin{thm}
-A $\cat{Set_*}$-enriched category is semiadditive if and only if it has all finite biproducts.
-\end{thm}
 
-A \emph{preadditive category} is another name of $\cat{Ab}$-enriched category.
 
 
 \begin{cd}
@@ -67,6 +47,29 @@ A \emph{preadditive category} is another name of $\cat{Ab}$-enriched category.
 \end{cd}
 
 
+\subsection{Biproducts}
+Simply saying, biproducts is something that is both product and coproduct.
+To define biproduct, we need zero morphisms, so the $\cat{Set_*}$-enrichment will be assumed in all statements in this subsection.
+\begin{defn}
+A \emph{canonical morphism from coproduct to product} is a morphism blabla
+\end{defn}
+\begin{defn}[Biproduct]
+If the canonical morphism from coproduct to product is an isomorphism, then we call it by the \emph{biproduct}.
+\end{defn}
+There is a counterexample that coproduct and product are isomorphic but it is not the biproduct.
+
+
+
+
+The following two theorems must be highlightened.
+The first theorem captures the familiar isomorphisms between direct sum and direct product of finitely many modules.
+\begin{thm}
+In a $\cat{CMon}$-enriched cateogry, finitary product is also the coproduct so that it forms the biproduct, and vice versa.
+\end{thm}
+
+\begin{thm}
+A category is semiadditive if and only if it has all finite biproducts.
+\end{thm}
 
 
 
