@@ -19,21 +19,8 @@ In analysis, topology is mostly unrelated to the manifolds, but it refers to the
 
 
 
+\section{Metric}
 
-
-
-
-
-\section{Definition of topology}
-% purpose
-This subsection contains an independent investigation of the reason why topology is defined by the famous three axioms for open sets.
-A possible reasonable explanation involves a certain equivalence among filters.
-To introduce filter and topology, we are going to generalize the classical metric space.
-
-If someone wants to avoid some concepts such as filters, then one can jump to the next section without any logical gaps.
-
-
-\subsection{Metric spaces}
 
 % metric and limit
 Before 19th century, theory of limits, infinite series, differentiation, and integration was so focused on calculation of particular values that it does not have sufficient rigor.
@@ -110,33 +97,22 @@ Sometimes in the context of metric spaces, the term neighborhood or basis are us
 As we have seen, balls in metric spaces are the main concept to state $\e$-$\delta$ argument.
 This example would show a basis is fundamental language to describe the nature of limits in metric spaces.
 \end{rmk}
-Basis elements are able to be interpreted as a ``neighborhood'' of each point.
-To be so, each condition lets points always have their at least one, and arbitrarily small neighborhood.
-Next is the most proper example to establish intuitions of basis.
-
-
-Due to this proposition, topology is conventionally defined as the maximal basis.
-In other words, topology is defined to be an equivalence class of topological bases.
 
 
 
 
-Before defining topology, recall that it plays the most important role in the definition of continuous functions to deal with neighborhoods of a point.
-We want a structure to give a notion of neighborhoods of a point such as metrics, in other words, we want to generalize metric in a suitable way.
-There is a conventional definition of topology: topology is defined as a subset of the power set of underlying space satisfying some axioms, and it is said to consist of open sets so that a topology indicates that which subsets are open or not.
-However, this definition is so abstract that it might allow first-readers to lose its intuitions.
-Thereby, we attempt to take another way.
-Before introducing topology, we shall define a topological basis.
-Topological bases are often used to describe a particular topology as bases of vector spaces do.
-The main definition of topology will follow.
+
+
+\section{Topology}
+We define topology and introduce some supplementary notions.
+
 
 \subsection{Filters}
+
 Suppose we want to find a proper way to define limit and convergence.
 Recall how we define convergence of a sequence of real numbers: we say a sequence $(x_n)_{n\in\N}$ converges to a number $x$ if for each $\e>0$ there is $n_0(\e)\in\N$ such that $|x-x_n|<\e$ whenever $n>n_0$.
 Simply, $x_n$ is close to $x$ if $n$ is close to the infinity.
-
 Observe the two necessary structures to make this possible; the ``system of neighborhoods'' at each point $x$, and the total order on the index set $\N$ the set of natural numbers.
-
 Without the order structure, we would not be able to formulate the intuition of the direction toward which a sequence is converging.
 Even though the order on $\N$ is totally defined so that we can compare every pair of two elements, but it can be generalized to the case of partial orders.
 
@@ -144,30 +120,60 @@ Even though the order on $\N$ is totally defined so that we can compare every pa
 A subset $\cD$ of a poset is called \emph{(upward) directed} if for every $a,b\in\cD$ there is $c\in\cD$ such that $a\le c$ and $b\le c$.
 Similarly, $\cD$ is called \emph{downward directed} if for every $a,b\in\cD$ there is $c\in\cD$ such that $c\le a$ and $c\le b$.
 \end{defn}
+
+
+The directedness of a partially ordered set is an essential notion to define limit.
+
+Let $X$ be a set and $x\in X$.
+Then, the power set $\cP(X)$ is a poset with inclusion relation.
+The filter bases are defined abstractly:
 \begin{defn}
 A \emph{filter base} is a nonempty and downward directed subset of a poset.
 \end{defn}
-The directedness of a partially ordered set is an essential notion to define limit.
-
-\bigskip
-Let $X$ be a set and $x\in X$.
-Then, the power set $\cP(X)$ is a poset with inclusion relation.
+And concretely:
 \begin{defn}
 A collection $\cB_x$ of subsets of $X$ is called a \emph{filter base at $x$} if every element of $\cB_x$ contains $x$ and it forms a nonempty downward directed subset; every $U\in\cB_x$ contains $x$, and for all $U_1,U_2\in\cB_x$ there is $U\in\cB_x$ such that $U\subset U_1\cap U_2$.
 \end{defn}
+
+Among filters, we can give a preorder structure as follows.
+
 \begin{defn}
 Let $\cB_x,\cB'_x$ be filter bases at $x$.
 We say $\cB'_x$ is \emph{finer than} $\cB_x$, or a \emph{refinement} of $\cB_x$ if for every $U\in\cB_x$ there is $U'\in\cB'_x$ such that $U'\subset U$.
 \end{defn}
+
+As synonyms, all the following expressions tell same thing.
+\begin{cond}
+\item $\cB'_x$ is \emph{finer than} $\cB_x$,
+\item $\cB'_x$ is \emph{stronger than} $\cB_x$,
+\item $\cB_x$ is \emph{coarser than} $\cB'_x$,
+\item $\cB_x$ is \emph{weaker than} $\cB'_x$.
+\end{cond}
+
 \begin{prop}
 The refinement relation between filter bases is a preorder, and each equivalence class contains a unique maximal element.
 \end{prop}
 \begin{pf}
+To show a relation is a preorder, we need to check transitivity.
+Suppose $\cB''_x$ is finer than $\cB'_x$ and $\cB'_x$ is finer than $\cB_x$.
+For any $U\in\cB_x$, there is $U'\in\cB'_x$ such that $U'\subset U$, and there is also $U''\in\cB''_x$ such that $U''\subset U'$.
+Since $U''\subset U$, we can conclude $\cB''_x$ is finer than $\cB_x$.
 
+We can say two filter bases are equivalent if they are both finer than each other.
+Consider an equivalence class of filter bases and just denote it by $A$.
+Then, $\bigcup_{\cB_x\in A}\cB_x$ is also contained in $A$ since it is equivalent to an arbitrary filter base $\cB_x$ in $A$.
+It is also easy to check that this is maximal.
 \end{pf}
+
+Now we define filters.
+
 \begin{defn}
 A \emph{filter at $x$} is the maximal element of an equivalence class of filter bases at $x$.
 \end{defn}
+
+In other words, filters have one-to-one correspondence to the equivalence classes of filter bases.
+They can be also characterized by three axioms.
+
 \begin{thm}
 A collection $\cF_x$ of subsets of $X$ is a filter at $x$ if and only if every element contains $x$ and it is closed under supersets and finite intersections;
 \begin{cond}
@@ -182,9 +188,18 @@ A collection $\cF_x$ of subsets of $X$ is a filter at $x$ if and only if every e
 
 Many references use this theorem as the definition of filter.
 
+\begin{thm}
+A filter $\cF'_x$ is finer than another filter $\cF_x$ if and only if $\cF'_x\supset\cF_x$.
+\end{thm}
+
+The following example will be helpful to catch the intuition.
+Since all topological structures are made to generalize the standard metric of Euclidean space, so drawing balls for representing base elements is always helpful in the whole story of general topology.
+
 \begin{ex}
 Let $x\in\R^n$.
-The set of all open balls containing $x$ is a filter base at $x$.
+The set of all open balls cenetered at $x$ is a filter base at $x$.
+The set of all open balls containing $x$ is aslo a filter base and they are equivalent.
+A filter equivalent to these filter bases are called \emph{neighborhood filter at $x$}.
 \end{ex}
 \begin{ex}
 Let $x$ be an element of a set $X$.
@@ -192,7 +207,24 @@ The set of all subsets containing $x$ is a filter at $x$.
 Filters defined as this are called \emph{principal filters}.
 \end{ex}
 
+
+
+
+
+
 \subsection{Topologies}
+
+
+Before defining topology, recall that it plays the most important role in the definition of continuous functions to deal with neighborhoods of a point.
+We want a structure to give a notion of neighborhoods of a point such as metrics, in other words, we want to generalize metric in a suitable way.
+There is a conventional definition of topology: topology is defined as a subset of the power set of underlying space satisfying some axioms, and it is said to consist of open sets so that a topology indicates that which subsets are open or not.
+However, this definition is so abstract that it might allow first-readers to lose its intuitions.
+Thereby, we attempt to take another way.
+Before introducing topology, we shall define a topological basis.
+Topological bases are often used to describe a particular topology as bases of vector spaces do.
+The main definition of topology will follow.
+
+
 
 Let $X$ be a set.
 \begin{defn}
@@ -200,10 +232,16 @@ A collection $\cB$ of subsets of $X$ is called a \emph{topological base} or simp
 \[\{U:x\in U\in\cB\}\]
 is a filter base at $x$ for every $x\in X$.
 \end{defn}
+
+A topological base is a kind of global version of filter base.
+
 \begin{defn}
 Let $\cB$ be a topological base on $X$ and $x\in X$.
 A filter base at $x$ is called a \emph{local base} of $x$ if it is equivalent to the filter base $\{U:x\in U\in\cB\}$.
 \end{defn}
+
+As we have done in the previous section, we can settle the refinement order on the set of topological bases.
+
 \begin{defn}
 Let $\cB,\cB'$ be topological bases on $X$.
 We say $\cB$ is \emph{coarser} or \emph{weaker} than $\cB'$, and $\cB'$ is \emph{finer}, \emph{stronger} than $\cB$, or a \emph{refinement} of $\cB$ if every local base $\cB'_x$ is finer than $\cB_x$ at every point $x\in X$.
@@ -214,11 +252,15 @@ The refinement relation between topological bases is a preorder, and each equiva
 \begin{pf}
 
 \end{pf}
-Due to this proposition, topology is conventionally defined as the maximal basis.
-In other words, topology is defined to be an equivalence class of topological bases.
+
+A topology is defined to be the maximal element, which means in fact an equivalence class of topological bases.
+
 \begin{defn}
 A \emph{topology on $X$} is the maximal element of an equivalence class of topological bases on $X$.
 \end{defn}
+
+There is also a criterion for topology.
+
 \begin{thm}\label{thm:def_of_top}
 A collection $\cT$ of subsets of $X$ is a topology on $X$ if and only if
 \begin{cond}
