@@ -8,29 +8,33 @@
 \tableofcontents
 
 
+
+
+
+
+
+
+% CHAPTER 1
 \chapter{Topological structures}
 
 The word topology is used in two different contexts: analytic sense and geometric sense.
 When we are saying the stories about doughnuts and coffee mugs, they are in fact involved in topology of geometric sense, which is also referred to as a branch of mathematics that studies geometric objects called manifolds.
-In analysis, topology is mostly unrelated to the manifolds, but it refers to the minimal structure that is required in order to define concepts of limit and continuity.
+In analysis, topology is mostly unrelated to the manifolds, but it refers to the minimal structure that is required in order to define concepts of limit and continuity. % preface?
 
 
 
 
 
 
+% SECTION 1-1
 \section{Metric}
 
-
-% metric and limit
-Before 19th century, theory of limits, infinite series, differentiation, and integration was so focused on calculation of particular values that it does not have sufficient rigor.
-Cauchy, a pioneer of mathematical analysis, made a numerous mistakes on his theses.
+Before 19th century, theory of limits, infinite series, differentiation, and integration was so focused on calculation of particular values that they do not have sufficient rigor.
+Cauchy, a pioneer of mathematical analysis, is known to have made numerous mistakes on his theses.
 Establishing a rigid framework for analysis was one of the central problems of mathematics in 19th century.
 It contains the definition of limits.
-
 Metric space was the first successful trial to find an abstract framework for studying limits.
-I guess it was discovered empirically after uncountably many fails, not logically.
-Later, we will find that metric provides a extremely appropriate and widely-applicable tool to understand the nature of analysis.
+Later, we will find that metric provides a surprisingly appropriate and widely-applicable tool to understand the nature of mathematical analysis.
 
 \begin{defn}
 Let $X$ be a set.
@@ -43,34 +47,52 @@ A \emph{metric} is a function $d:X\x X\to\R_{\ge0}$ such that
 A set $(X,d)$ endowed with a metric is called a \emph{metric space}.
 \end{defn}
 
-
-
-% metric is a geometric object?
 Many freshmen misunderstand that metric is something belonging to the study of geoemtry.
 We cannot affirm it is false, but I hope to mention that a metric is quite far from geometric structures, and is rather an analytic structure.
-Meaning, metric is in fact not interested in measuring a distance between two points; metric helps define balls.
+Meaning, metric is in fact not interested in measuring a distance between two points; the main function of metric is to make balls.
 The balls provide a concrete images of ``system of neighborhoods at a point'' in a more intuistic and geometric sense.
 Metric can be considered as a device to let someone naturally accept the notion of neighborhoods, which is vital for analysis of limits and continuity.
+
 \begin{defn}
 Let $X$ be a metric space.
 A set of the form 
 \[\{y\in X:d(x,y)<\e\}\]
 for $\e>0$ is called a \emph{ball centered at $x$} and denoted by $B(x,\e)$ or $B_\e(x)$.
 \end{defn}
+
 The most familiar metric comes from the standard norm on Euclidean space $\R^d$.
-When we use an analytic theory on Euclidean space, the following metric is considered as the standard.
+When we use an analytic theory on Euclidean spaces or more generally normed spaces, the following metric is considered as the standard.
+In this context, we can see metrics as a generalization of norms for spaces not admitting the vector space structure.
+
 \begin{ex}
-Let $\R^d$ be the Euclidean space of dimension $d$.
-Then a real-valued function $d$ on $\R^d\x\R^d$ defined by $d(x,y):=\|x-y\|=\sqrt{\langle x-y,x-y\rangle}$ forms a metric.
+A normed space $X$ induces a natural metric.
+Precisely, a real-valued function $d$ on $X\x X$ defined by $d(x,y):=\|x-y\|$ forms a metric.
 \end{ex}
 \begin{pf}
-Since the other two conditions are so clear, we will only show the triangle inequality.
-
+It is quite easy.
+Just recall the axioms of norm and deduce the conclusion for each axiom of metric.
 \end{pf}
 
+Now let us reformulate the definitions of limits and continuity, which we use in the usual calculus on Euclidean spaces.
+
+\begin{defn}
+Let $(x_n)_n$ be a sequence of points on a metric space $(X,d)$.
+We say that a point $x$ is a \emph{limit} of the sequence or the sequence \emph{converges to $x$} if for every $\e>0$ there is a positive integer $n_0$ such that $n>n_0$ implies $d(x_n,x)<\e$.
+If it is satisfied, then we write
+\[\lim_{n\to\oo}x_n=x,\]
+or simply
+\[x_n\to x\]
+as $n\to\oo$.
+\end{defn}
+
+Note that taking $\e$ or $\delta$ really means that we have taken a ball of the very size.
+The thing is, it is equivalent to say $x_n$ converges to $x$ that for arbitrarily small ball of size $\e$ cenetered at $x$, $B(x,\e)$, we can find $n_0$ such that $x_n\in B(x,\e)$ for $n>n_0$.
 
 
-% continuity
+
+
+Similarly,
+
 \begin{defn}
 A function $f:X\to Y$ between metric spaces is called \emph{continuous at $x\in X$} if $f(\cB_x)$ refines $\cB_{f(x)}$; in other words, for any $\e>0$ there is $\delta>0$ such that $f(B(x,\delta))\subset B(f(x),\e)$.
 The function $f$ is called \emph{continuous} if it is continuous at every point on $X$.
@@ -85,30 +107,24 @@ The function $f$ is called \emph{continuous} if it is continuous at every point 
 
 
 
-Base
-\begin{ex}
-Let $X$ be a metric space.
-A set of all balls $\cB=\{B(x,\e):x\in X,\,\e>0\}$ is a basis on $X$ because for every point $x\in B(x_1,\e_1)\cap B(x_2,\e_2)$, we have $x\in B(x,\e)\subset B(x_1,\e_1)\cap B(x_2,\e_2)$ where $\e=\min\{\e_1-d(x,x_1),\,\e_2-d(x,x_2)\}$.
-\end{ex}
-
-\begin{rmk}
-In metric spaces, of course, there can exist infinitely many bases, but they are hardly considered except $\mathcal{B}$.
-Sometimes in the context of metric spaces, the term neighborhood or basis are used to say $\mathcal{B}$.
-As we have seen, balls in metric spaces are the main concept to state $\e$-$\delta$ argument.
-This example would show a basis is fundamental language to describe the nature of limits in metric spaces.
-\end{rmk}
 
 
 
 
 
 
+
+
+
+% SECTION 1-2
 \section{Topology}
 We define topology and introduce some supplementary notions.
 
 
-\subsection{Filters}
 
+
+% 1-2-1
+\subsection{Filters}
 Suppose we want to find a proper way to define limit and convergence.
 Recall how we define convergence of a sequence of real numbers: we say a sequence $(x_n)_{n\in\N}$ converges to a number $x$ if for each $\e>0$ there is $n_0(\e)\in\N$ such that $|x-x_n|<\e$ whenever $n>n_0$.
 Simply, $x_n$ is close to $x$ if $n$ is close to the infinity.
@@ -120,7 +136,6 @@ Even though the order on $\N$ is totally defined so that we can compare every pa
 A subset $\cD$ of a poset is called \emph{(upward) directed} if for every $a,b\in\cD$ there is $c\in\cD$ such that $a\le c$ and $b\le c$.
 Similarly, $\cD$ is called \emph{downward directed} if for every $a,b\in\cD$ there is $c\in\cD$ such that $c\le a$ and $c\le b$.
 \end{defn}
-
 
 The directedness of a partially ordered set is an essential notion to define limit.
 
@@ -196,13 +211,13 @@ The following example will be helpful to catch the intuition.
 Since all topological structures are made to generalize the standard metric of Euclidean space, so drawing balls for representing base elements is always helpful in the whole story of general topology.
 
 \begin{ex}
-Let $x\in\R^n$.
+Let $x$ be a point in a metric space.
 The set of all open balls cenetered at $x$ is a filter base at $x$.
 The set of all open balls containing $x$ is aslo a filter base and they are equivalent.
 A filter equivalent to these filter bases are called \emph{neighborhood filter at $x$}.
 \end{ex}
 \begin{ex}
-Let $x$ be an element of a set $X$.
+Let $x$ be an element of a set.
 The set of all subsets containing $x$ is a filter at $x$.
 Filters defined as this are called \emph{principal filters}.
 \end{ex}
@@ -212,9 +227,12 @@ Filters defined as this are called \emph{principal filters}.
 
 
 
+
+
+
+
+% 1-2-2
 \subsection{Topologies}
-
-
 Before defining topology, recall that it plays the most important role in the definition of continuous functions to deal with neighborhoods of a point.
 We want a structure to give a notion of neighborhoods of a point such as metrics, in other words, we want to generalize metric in a suitable way.
 There is a conventional definition of topology: topology is defined as a subset of the power set of underlying space satisfying some axioms, and it is said to consist of open sets so that a topology indicates that which subsets are open or not.
@@ -223,8 +241,6 @@ Thereby, we attempt to take another way.
 Before introducing topology, we shall define a topological basis.
 Topological bases are often used to describe a particular topology as bases of vector spaces do.
 The main definition of topology will follow.
-
-
 
 Let $X$ be a set.
 \begin{defn}
@@ -276,7 +292,14 @@ Theorem \ref{thm:def_of_top} is usually used as a definition of topology because
 
 
 
-\bigskip
+
+
+
+
+
+% 1-2-3
+\subsection{Bases and subbases}
+
 \begin{defn}
 Let $\cB$ and $\cT$ be a base and a topology on a set $X$.
 If $\cT$ is the coarsest topology containing $\cB$, then we say the topology $\cT$ is \emph{generated by} $\cB$.
@@ -300,36 +323,37 @@ Let $\cS\subset\cP(X)$.
 The set of finite intersections of elements of $\cS$ is a basis.
 \end{prop}
 
+Here is the metric space example.
+\begin{ex}
+Let $X$ be a metric space.
+A set of all balls $\cB=\{B(x,\e):x\in X,\,\e>0\}$ is a base on $X$ because for every point $x\in B(x_1,\e_1)\cap B(x_2,\e_2)$, we have $x\in B(x,\e)\subset B(x_1,\e_1)\cap B(x_2,\e_2)$ where $\e=\min\{\e_1-d(x,x_1),\,\e_2-d(x,x_2)\}$.
+\end{ex}
+
+In metric spaces, of course, there can exist infinitely many bases, but they are hardly considered except $\mathcal{B}$.
+Sometimes in the context of metric spaces, the term neighborhood or basis are used to say $\mathcal{B}$.
+As we have seen, balls in metric spaces are the main concept to state $\e$-$\delta$ argument.
+This example would show a basis is fundamental language to describe the nature of limits in metric spaces.
 
 
 
 
 
-\bigskip
+
+
+
+
+
+% 1-2-4
+\subsection{Open sets and neighborhoods}
 def:nbhd and neighborhood filter
 
-continuity
 
-
-
-
-\subsection{Base and subbase}
-
-\section{Topological spaces}
-
-\subsection{Open sets and neighborhoods}
-
+% 1-2-5
 \subsection{Closed sets and limit points}
 
+% 1-2-6
 \subsection{Interior and closure}
 
-\subsection{Continuous maps}
-
-\subsection{Subspace topology}
-
-\subsection{Quotient topology}
-
-\subsection{Product topology}
 
 
 
@@ -342,12 +366,32 @@ continuity
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+% SECTION 1-3
 \section{Uniform spaces}
 \subsection{Uniformness of metric}
-
 \subsection{Entourages}
 \subsection{Pseudometrics I}
 \subsection{Pseudometrics II}
+
+
+
+
+
 Metric can be regarded as the ``countably'' uniform structure in some sense. 
 In other texts, for this reason, one frequently introduces metric instead of uniformity in order to avoid superfluously complicated and less intuitive notions of uniform structures, when only doing elementary analysis not requiring uncountable local bases.
 \subsection{Algebraic structures with topology}
