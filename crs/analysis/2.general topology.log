@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99991 (TeX Live 2014/W32TeX) (preloaded format=xelatex 2015.4.30)  25 JAN 2019 02:53
+This is XeTeX, Version 3.14159265-2.6-0.99991 (TeX Live 2014/W32TeX) (preloaded format=xelatex 2015.4.30)  3 MAR 2019 01:14
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -815,52 +815,52 @@ File: pgflibraryarrows.meta.code.tex 2013/12/13 v3.0.0 (rcs-revision 1.12)
 .................................................
 . LaTeX info: "xparse/define-environment"
 . 
-. Defining environment 'cd' with sig. '' on line 105.
+. Defining environment 'cd' with sig. '' on line 112.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-environment"
 . 
-. Defining environment 'es' with sig. '' on line 111.
+. Defining environment 'es' with sig. '' on line 118.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
 . 
-. Defining command \pd with sig. ' o g g g ' on line 145.
+. Defining command \pd with sig. ' o g g g ' on line 166.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
 . 
-. Defining command \dd with sig. ' o g g g ' on line 154.
+. Defining command \dd with sig. ' o g g g ' on line 175.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
 . 
-. Defining command \abs with sig. 'm' on line 175.
+. Defining command \abs with sig. 'm' on line 236.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
 . 
-. Defining command \norm with sig. 'm' on line 176.
+. Defining command \norm with sig. 'm' on line 237.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
 . 
-. Defining command \flr with sig. 'm' on line 177.
+. Defining command \flr with sig. 'm' on line 238.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
 . 
-. Defining command \ceil with sig. 'm' on line 178.
+. Defining command \ceil with sig. 'm' on line 239.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
 . 
-. Defining command \inn with sig. 'mm' on line 179.
+. Defining command \inn with sig. 'mm' on line 240.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-environment"
 . 
-. Defining environment 'pde' with sig. 's' on line 198.
+. Defining environment 'pde' with sig. 's' on line 273.
 .................................................
 
 (c:/Program Files (x86)/texlive/2014/texmf-dist/tex/latex/mathtools/empheq.sty
@@ -916,12 +916,12 @@ LaTeX Info: Thecontrolsequence`\]'isalreadyrobust on input line 129.
 .................................................
 . LaTeX info: "xparse/define-environment"
 . 
-. Defining environment 'pdes' with sig. '' on line 214.
+. Defining environment 'pdes' with sig. '' on line 289.
 .................................................
 .................................................
 . LaTeX info: "xparse/redefine-command"
 . 
-. Redefining command \to with sig. 'g' on line 267.
+. Redefining command \to with sig. 'g' on line 343.
 .................................................
 ) (./2.general topology.aux)
 \openout1 = `"2.general topology.aux"'.
@@ -1025,19 +1025,12 @@ Contents
  [3
 
 
+] [4
+
+
 ]
-
-Package Fancyhdr Warning: \headheight is too small (8.0pt): 
- Make it at least 13.0pt.
- We now make it that large for the rest of the document.
- This may cause the page layout to be inconsistent, however.
-
-[4]
 Chapter 1
-[5
-
-
-]
+[5]
 
 Package Fancyhdr Warning: \headheight is too small (8.0pt): 
  Make it at least 13.0pt.
@@ -1079,12 +1072,19 @@ Package Fancyhdr Warning: \headheight is too small (8.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[11] [12
+[11]
 
+Package Fancyhdr Warning: \headheight is too small (8.0pt): 
+ Make it at least 13.0pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
 
-]
+[12]
 Chapter 2
-[13] [14
+[13
+
+
+] [14
 
 
 ]
@@ -1096,10 +1096,10 @@ Chapter 3
 Chapter 4
 
 Package hyperref Warning: Difference (2) between bookmark levels is greater 
-(hyperref)                than one, level fixed on input line 408.
+(hyperref)                than one, level fixed on input line 494.
 
 
-LaTeX Font Warning: Command \SMALL invalid in math mode on input line 430.
+LaTeX Font Warning: Command \SMALL invalid in math mode on input line 516.
 
 [17] [18
 
@@ -1140,7 +1140,7 @@ Package Fancyhdr Warning: \headheight is too small (8.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [25]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 581.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 667.
 
 
 Package Fancyhdr Warning: \headheight is too small (8.0pt): 
@@ -1149,19 +1149,19 @@ Package Fancyhdr Warning: \headheight is too small (8.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [26]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 581.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 667.
  (./2.general topology.aux)
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 581.
-Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 581.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 581.
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 667.
+Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 667.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 667.
  ) 
 Here is how much of TeX's memory you used:
- 27998 strings out of 493724
- 524643 string characters out of 6141171
- 557862 words of memory out of 5000000
- 30831 multiletter control sequences out of 15000+600000
+ 28002 strings out of 493724
+ 524646 string characters out of 6141171
+ 557494 words of memory out of 5000000
+ 30835 multiletter control sequences out of 15000+600000
  12706 words of font info for 48 fonts, out of 8000000 for 9000
  1489 hyphenation exceptions out of 8191
- 68i,16n,84p,10392b,942s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 68i,16n,84p,10392b,944s stack positions out of 5000i,500n,10000p,200000b,80000s
 
 Output written on 2.general topology.pdf (26 pages).
