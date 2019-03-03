@@ -1,12 +1,149 @@
 \documentclass{../exp}
 \usepackage{../../ikany}
-\title{The computation of Galois group}
+\title{Galois Theory}
 
 \begin{document}
 \maketitle
 
+\section{Elementary field theory}
 
-\section{}
+\begin{thm}
+Let $E/F$ be a field extension.
+Then, $E$ is a vector space over $F$.
+\end{thm}
+
+\begin{defn}
+A \emph{degree} of a field extension $E/F$ is the dimension of the vector space $E$ over $F$ and denoted by $[E:F]$.
+\end{defn}
+
+\begin{defn}
+A field extension is called \emph{finite} if its degree is finite.
+\end{defn}
+
+\begin{thm}
+If $K$ is an intermediate field in a field extension $E/F$, then
+\[[E:F]=[E:K][K:F].\]
+\end{thm}
+\begin{pf}
+Boring basis counting.
+\end{pf}
+
+\begin{cor}
+Finite extension of finite extension is finite.
+\end{cor}
+
+\begin{thm}
+Let $E/F$ be a finite extension.
+There is a tower of simple extensions.
+\end{thm}
+
+
+
+\subsection{Simple extensions}
+
+\begin{defn}
+A field extension $E/F$ is called \emph{simple} if there is an element $\alpha\in E$ such that $E$ is the smallest field containing $\alpha$ and $F$.
+In this case, we write $E=F(\alpha)$.
+\end{defn}
+
+
+
+
+\section{Algebraic extension}
+
+\subsection{Algebraic elements}
+
+\begin{defn}
+Let $E/F$ be a field extension.
+An element $\alpha\in E$ is \emph{algebraic over $F$} if $F(\alpha)/F$ is finite.
+\end{defn}
+
+\begin{thm}
+Let $E/F$ be a field extension and $\alpha\in E$.
+Then, $\alpha$ is algebraic over $F$ iff there is a polynomial $f\in F[x]$ such that $f(\alpha)=0$.
+\end{thm}
+\begin{pf}
+Since $d=[F(\alpha):F]<\oo$, we can find linearly dependent finite subset of $\{1,\alpha,\alpha^2,\cdots\}$.
+The coefficients construct the polynomial.
+
+Conversely, if there is such $f$, every element of $F(\alpha)$ is represented as a linear combination of $\{1,\alpha,\cdots,\alpha^{\deg f-1}\}$.
+\end{pf}
+
+\begin{prop}
+Let $E/F$ be a field extension and $\alpha\in E$is algebraic over $F$.
+Then there is a unique monic irreducible polynomial $\mu_\alpha\in F[x]$ such that $\mu_\alpha(\alpha)=0$.
+\end{prop}
+\begin{pf}
+The polynomials satisfying $\alpha$ form an ideal of $F[x]$.
+Since $F[x]$ is a PID, there is a generator which can be taken to be monic.
+Since the ideal is prime, the generator is prime(=irreducible), and it is the only irreducible in the ideal.
+\end{pf}
+
+\begin{defn}
+Let $E/F$ be a field extension and $\alpha\in E$ is algebraic.
+A monic irreducible polynomial $\mu_\alpha\in F[x]$ satisfying $\mu_\alpha(\alpha)=0$ is called the \emph{minimal polynomial} of $\alpha$ over $F$.
+\end{defn}
+
+\begin{thm}
+Let $E/F$ be a field extension and $\alpha\in E$ is algebraic.
+$[F(\alpha):F]=\deg_F\mu_\alpha$.
+\end{thm}
+\begin{pf}
+\end{pf}
+
+
+\begin{ex}
+A complex number is called an \emph{algebraic number} if it is algebraic over $\Q$.
+\end{ex}
+
+
+
+\subsection{Algebraic extensions}
+\begin{defn}
+A field extension $E/F$ is called \emph{algebraic} if all elements $\alpha\in E$ is algebraic over $F$.
+\end{defn}
+
+Equivalently,
+\begin{defn}
+A field extension is called \emph{algebraic} if it is a direct limit of finite extensions.
+\end{defn}
+
+\begin{thm}
+Algebraic extension of algebraic extension is algebraic.
+\end{thm}
+\begin{pf}
+Suppose $E/K$ and $K/F$ are algebraic.
+Take $\alpha\in E$.
+There is a polynomial 
+\end{pf}
+
+\subsection{Algebraic closure}
+
+
+
+
+
+
+
+
+
+
+
+\section{Separable extension}
+
+
+
+\section{Normal extension}
+
+
+
+
+
+
+
+\section{Computation of Galois groups}
+
+\subsection{Quartic}
 In this section, we assume the following setting:
 \begin{itemize}
 \item $F$ is a perfect field, %유한체는 사실 잘 모르겠음
