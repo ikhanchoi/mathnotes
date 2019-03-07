@@ -29,6 +29,8 @@ In analysis, topology is mostly unrelated to the doughnuts, but it refers to the
 % SECTION 1-1
 \section{Metric}
 
+% 1-1-1
+\subsection{Metric spaces}
 Before 19th century, theory of limits, infinite series, differentiation, and integration was so focused on calculation of particular values that they do not have sufficient rigor.
 Cauchy, a pioneer of mathematical analysis, is known to have made numerous mistakes on his theses.
 Establishing a rigid framework for analysis was one of the central problems of mathematics in 19th century.
@@ -72,6 +74,17 @@ Precisely, a real-valued function $d$ on $X\x X$ defined by $d(x,y):=\|x-y\|$ fo
 It is quite easy.
 Just recall the axioms of norm and deduce the conclusion for each axiom of metric.
 \end{pf}
+\begin{ex}
+Let $(X,d)$ be a metric space.
+Every subset of $X$ has a natural induced metric, just the restriction of original metric $d$.
+\end{ex}
+
+
+
+
+
+% 1-1-2
+\subsection{Limits and Continuity}
 
 Now let us reformulate the definitions of limits and continuity, which we use in the usual calculus on Euclidean spaces.
 
@@ -97,6 +110,18 @@ Similarly,
 A function $f:X\to Y$ between metric spaces is called \emph{continuous at $x\in X$} if $f(\cB_x)$ refines $\cB_{f(x)}$; in other words, for any $\e>0$ there is $\delta>0$ such that $f(B(x,\delta))\subset B(f(x),\e)$.
 The function $f$ is called \emph{continuous} if it is continuous at every point on $X$.
 \end{defn}
+
+
+
+
+
+
+% 1-1-3
+\subsection{Pseudometrics}
+
+
+
+
 
 
 
@@ -217,11 +242,14 @@ The set of all open balls containing $x$ is aslo a filter base and they are equi
 A filter equivalent to these filter bases are called \emph{neighborhood filter at $x$}.
 \end{ex}
 \begin{ex}
-Let $x$ be an element of a set.
-The set of all subsets containing $x$ is a filter at $x$.
-Filters defined as this are called \emph{principal filters}.
+Let $S$ be a subset of a set.
+The set of all subsets containing $S$ is a filter at $x$ for every $x\in S$.
+If $S=\{x\}$, then it is called a \emph{principal filter} at $x$.
 \end{ex}
-
+\begin{ex}
+The set of all subsets of $\N$ whose complement is finite is a filter, but it is not a filter at a point.
+However, it is intuitively a filter at infinity.
+\end{ex}
 
 
 
@@ -266,7 +294,7 @@ We say $\cB$ is \emph{coarser} or \emph{weaker} than $\cB'$, and $\cB'$ is \emph
 The refinement relation between topological bases is a preorder, and each equivalence class contains a unique maximal element.
 \end{prop}
 \begin{pf}
-
+%%%
 \end{pf}
 
 A topology is defined to be the maximal element, which means in fact an equivalence class of topological bases.
@@ -286,7 +314,7 @@ A collection $\cT$ of subsets of $X$ is a topology on $X$ if and only if
 \end{cond}
 \end{thm}
 \begin{pf}
-
+%%%
 \end{pf}
 Theorem \ref{thm:def_of_top} is usually used as a definition of topology because it allows us to check without difficulty whether a collection of subsets is a topology.
 
