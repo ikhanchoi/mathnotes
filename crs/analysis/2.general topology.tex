@@ -21,7 +21,7 @@ The word topology is used in two different contexts: analytic sense and geometri
 When we are saying the stories about doughnuts and coffee mugs, they are in fact involved in topology of geometric sense, which is also referred to as a branch of mathematics that studies objects such as manifolds or CW complexes.
 In analysis, topology is mostly unrelated to the doughnuts, but it refers to the minimal structure that is required in order to define concepts of limit and continuity. % preface?
 
-
+We assume the reader is already familiar to the theory of normed spaces.
 
 
 
@@ -49,7 +49,66 @@ A \emph{metric} is a function $d:X\x X\to\R_{\ge0}$ such that
 A set $(X,d)$ endowed with a metric is called a \emph{metric space}.
 \end{defn}
 
-Many freshmen misunderstand that metric is something belonging to the study of geoemtry.
+The most familiar metric comes from the standard norm on Euclidean space $\R^d$.
+Notice that the third axiom, the triangle inequality, is named after the one for norms.
+In this context, we can see metrics as a generalization of norms for spaces not admitting the vector space structure.
+When we use an analytic theory on Euclidean spaces or more generally normed spaces, the following metric is considered as the standard.
+Moreover, every subset of normed space is also an example of metric space because metric can be inherited to every subset of  metric space.
+
+\begin{ex}
+A normed space $X$ is a metric space.
+Precisely, the norm structure naturally induces a real-valued function $d$ on $X\x X$ defined by $d(x,y):=\|x-y\|$ and it satisfies the axioms of metric.
+\end{ex}
+\begin{pf}
+It is quite easy.
+Just recall the axioms of norm and deduce the conclusion for each axiom of metric.
+\end{pf}
+\begin{ex}
+Let $(X,d)$ be a metric space.
+Every subset of $X$ has a natural induced metric, just the restriction of original metric $d$.
+\end{ex}
+
+In fact, the converse holds; every metric space can be viewed as a subset of a normed space.
+This deeper result on the relation between normed spaces and metric spaces is discovered by Kuratowski.
+To state the theorem, we introduce isometries.
+
+\begin{defn}
+Let $X$ and $Y$ be metric spaces.
+A map $\phi:X\to Y$ is called an \emph{isometry} if $d(x,y)=d(\phi(x),\phi(y))$ for all $x,y\in X$.
+If there is a bijective isometry between $X$ and $Y$, then we say the spaces are \emph{isometric}.
+\end{defn}
+
+Note that every isometry is clearly injective so that it is bijective if and only if it is surjective, and the inverse of bijective isometry is also an isometry.
+If two metric spaces are isometric, we can view them as virtually same, in the sense of metrics.
+The following theorem tells another characterization of metric spaces.
+
+\begin{prop}[Kuratowski embedding]
+Every metric space is isometric to a subset of a normed space.
+In other words, for every metric space $(X,d)$, there is an isometry $\phi$ from $X$ to a normed space.
+\end{prop}
+\begin{pf}
+Choose any point $p\in X$.
+Let $Y$ be the space of bounded real-valued functions on $X$.
+It is a normed space with uniform norm.
+Define $\phi:X\to Y$ by $\phi(x)(t)=d(x,t)-d(p,t)$.
+Note that $\phi(x)$ is bounded with $\|\phi(x)\|=\sup_{t\in X}|d(x,t)-d(p,t)|=d(x,p)$.
+Then,
+\[\|\phi(x)-\phi(y)\|=\sup_{t\in X}|\phi(x)(t)-\phi(y)(t)|=\sup_{t\in X}|d(x,t)-d(y,t)|=d(x,y).\]
+This proves $\phi$ is a isometry.
+\end{pf}
+\begin{rmk}
+The space $Y$ is somtimes denoted by $\ell^\oo(X)$, and it is in fact a Banach space.
+In addition, the image of the isometry $\phi$ is in a closed subspace $C_b(X)\subset\ell^\oo(X)$, the space of bounded real-valued continuous functions.
+\end{rmk}
+
+
+
+
+
+% 1-1-2
+\subsection{Limits and continuity}
+
+Many freshmen misunderstand, for its name, that metric is something belonging to the study of geoemtry.
 We cannot affirm it is false, but I hope to mention that a metric is quite far from geometric structures, and is rather an analytic structure.
 Meaning, metric is in fact not interested in measuring a distance between two points; the main function of metric is to make balls.
 The balls provide a concrete images of ``system of neighborhoods at a point'' in a more intuistic and geometric sense.
@@ -62,64 +121,36 @@ A set of the form
 for $\e>0$ is called a \emph{ball centered at $x$} and denoted by $B(x,\e)$ or $B_\e(x)$.
 \end{defn}
 
-The most familiar metric comes from the standard norm on Euclidean space $\R^d$.
-When we use an analytic theory on Euclidean spaces or more generally normed spaces, the following metric is considered as the standard.
-In this context, we can see metrics as a generalization of norms for spaces not admitting the vector space structure.
-
-\begin{ex}
-A normed space $X$ induces a natural metric.
-Precisely, a real-valued function $d$ on $X\x X$ defined by $d(x,y):=\|x-y\|$ forms a metric.
-\end{ex}
-\begin{pf}
-It is quite easy.
-Just recall the axioms of norm and deduce the conclusion for each axiom of metric.
-\end{pf}
-\begin{ex}
-Let $(X,d)$ be a metric space.
-Every subset of $X$ has a natural induced metric, just the restriction of original metric $d$.
-\end{ex}
-
-
-
-
-
-% 1-1-2
-\subsection{Limits and Continuity}
-
-Now let us reformulate the definitions of limits and continuity, which we use in the usual calculus on Euclidean spaces.
+Now let us reformulate the definitions of limits and continuity with balls, which we actually use in the usual calculus on Euclidean spaces.
+Compare the following definitions to what you remember.
 
 \begin{defn}
 Let $(x_n)_n$ be a sequence of points on a metric space $(X,d)$.
-We say that a point $x$ is a \emph{limit} of the sequence or the sequence \emph{converges to $x$} if for every $\e>0$ there is a positive integer $n_0$ such that $n>n_0$ implies $d(x_n,x)<\e$.
+We say that a point $x$ is a \emph{limit} of the sequence or the sequence \emph{converges to $x$} if for arbitrarily small ball of size $\e$ cenetered at $x$, $B(x,\e)$, we can find $n_0$ such that $x_n\in B(x,\e)$ for $n>n_0$.
 If it is satisfied, then we write
 \[\lim_{n\to\oo}x_n=x,\]
 or simply
 \[x_n\to x\]
 as $n\to\oo$.
 \end{defn}
-
-Note that taking $\e$ or $\delta$ really means that we have taken a ball of the very size.
-The thing is, it is equivalent to say $x_n$ converges to $x$ that for arbitrarily small ball of size $\e$ cenetered at $x$, $B(x,\e)$, we can find $n_0$ such that $x_n\in B(x,\e)$ for $n>n_0$.
-
-
-%%%%%%%%
-
-Similarly,
-
 \begin{defn}
-A function $f:X\to Y$ between metric spaces is called \emph{continuous at $x\in X$} if $f(\cB_x)$ refines $\cB_{f(x)}$; in other words, for any $\e>0$ there is $\delta>0$ such that $f(B(x,\delta))\subset B(f(x),\e)$.
+A function $f:X\to Y$ between metric spaces is called \emph{continuous at $x\in X$} if for any ball $B(f(x),\e)\subset Y$ centered at $f(x)$ there is a ball $B(x,\delta)\subset X$ centered at $x$ such that $f(B(x,\delta))\subset B(f(x),\e)$.
 The function $f$ is called \emph{continuous} if it is continuous at every point on $X$.
 \end{defn}
 
+Note that taking $\e$ or $\delta$ really means taking a ball of the very size.
 
 
+
+
+%%% examples
 
 
 
 % 1-1-3
 \subsection{Pseudometrics}
 
-
+%%%
 
 
 
@@ -175,20 +206,21 @@ And concretely:
 A collection $\cB_x$ of subsets of $X$ is called a \emph{filter base at $x$} if every element of $\cB_x$ contains $x$ and it forms a nonempty downward directed subset; every $U\in\cB_x$ contains $x$, and for all $U_1,U_2\in\cB_x$ there is $U\in\cB_x$ such that $U\subset U_1\cap U_2$.
 \end{defn}
 
-Among filters, we can give a preorder structure as follows.
+Among filters, we can give a relation structure as follows.
 
 \begin{defn}
 Let $\cB_x,\cB'_x$ be filter bases at $x$.
 We say $\cB'_x$ is \emph{finer than} $\cB_x$, or a \emph{refinement} of $\cB_x$ if for every $U\in\cB_x$ there is $U'\in\cB'_x$ such that $U'\subset U$.
 \end{defn}
 
-As synonyms, all the following expressions tell same thing.
+As synonyms, all the following expressions tell the same thing.
 \begin{cond}
 \item $\cB'_x$ is \emph{finer than} $\cB_x$,
 \item $\cB'_x$ is \emph{stronger than} $\cB_x$,
 \item $\cB_x$ is \emph{coarser than} $\cB'_x$,
 \item $\cB_x$ is \emph{weaker than} $\cB'_x$.
 \end{cond}
+The relation is a preorder so that we can consider the equivalence classes on which the natural partial order can be defined.
 
 \begin{prop}
 The refinement relation between filter bases is a preorder, and each equivalence class contains a unique maximal element.
@@ -212,6 +244,7 @@ A \emph{filter at $x$} is the maximal element of an equivalence class of filter 
 \end{defn}
 
 In other words, filters have one-to-one correspondence to the equivalence classes of filter bases.
+A filter is identified to an equivalence class of filter bases.
 They can be also characterized by three axioms.
 
 \begin{thm}
@@ -223,17 +256,19 @@ A collection $\cF_x$ of subsets of $X$ is a filter at $x$ if and only if every e
 \end{cond}
 \end{thm}
 \begin{pf}
-
+%%%
 \end{pf}
 
-Many references use this theorem as the definition of filter.
+Many references use the above theorem as the definition of filter because it is useful for someone who wants to check whether a given family is a filter.
 
 \begin{thm}
 A filter $\cF'_x$ is finer than another filter $\cF_x$ if and only if $\cF'_x\supset\cF_x$.
 \end{thm}
+\begin{pf}
+%%%
+\end{pf}
 
-The following example will be helpful to catch the intuition.
-Since all topological structures are made to generalize the standard metric of Euclidean space, so drawing balls for representing base elements is always helpful in the whole story of general topology.
+The following examples will be helpful to catch the intuition.
 
 \begin{ex}
 Let $x$ be a point in a metric space.
@@ -261,6 +296,7 @@ However, it is intuitively a filter at infinity.
 
 % 1-2-2
 \subsection{Topologies}
+%%%
 Before defining topology, recall that it plays the most important role in the definition of continuous functions to deal with neighborhoods of a point.
 We want a structure to give a notion of neighborhoods of a point such as metrics, in other words, we want to generalize metric in a suitable way.
 There is a conventional definition of topology: topology is defined as a subset of the power set of underlying space satisfying some axioms, and it is said to consist of open sets so that a topology indicates that which subsets are open or not.
@@ -319,6 +355,7 @@ A collection $\cT$ of subsets of $X$ is a topology on $X$ if and only if
 Theorem \ref{thm:def_of_top} is usually used as a definition of topology because it allows us to check without difficulty whether a collection of subsets is a topology.
 
 
+Since all topological structures are made to generalize the standard metric of Euclidean space, so drawing balls for representing base elements is always helpful in the whole story of general topology.
 
 
 
@@ -413,24 +450,14 @@ def:nbhd and neighborhood filter
 \section{Uniform spaces}
 \subsection{Uniformness of metric}
 \subsection{Entourages}
-\subsection{Pseudometrics I}
-\subsection{Pseudometrics II}
 
 
 
 
+\subsection{Pseudometrics}
 
 Metric can be regarded as the ``countably'' uniform structure in some sense. 
 In other texts, for this reason, one frequently introduces metric instead of uniformity in order to avoid superfluously complicated and less intuitive notions of uniform structures, when only doing elementary analysis not requiring uncountable local bases.
-\subsection{Algebraic structures with topology}
-\subsection{Norms and seminorms}
-\subsection{Uniform continuity}
-\subsection{Constructions}
-
-
-
-
-
 
 
 
