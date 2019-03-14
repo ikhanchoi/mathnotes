@@ -129,7 +129,7 @@ They are said to be \emph{conjugate over $F$} if they have a common minimal poly
 
 \begin{thm}
 Let  $\alpha,\beta\in\cl F$.
-They are conjugates over $F$ iff $F(\alpha)$ and $F(\beta)$ are isomorphic.
+They are conjugates over $F$ iff a map $F(\alpha)\to F(\beta):\alpha\mapsto\beta$ fixing $F$ is an isomorphism.
 \end{thm}
 \begin{pf}
 %%%
@@ -140,7 +140,7 @@ They are conjugates over $F$ iff $F(\alpha)$ and $F(\beta)$ are isomorphic.
 
 
 
-\subsection{Algebraic extensions and isomorphism extension}
+\subsection{Algebraic extensions}
 
 \begin{defn}
 A field extension $E/F$ is called \emph{algebraic} if all elements $\alpha\in E$ is algebraic over $F$.
@@ -168,26 +168,6 @@ A simple extension is finite iff it is algebraic.
 \end{prop}
 \begin{pf} Trivial. \end{pf}
 
-\begin{thm}[Isomorphism extension theorem]
-Let $E/F$ be an algebraic extension.
-Let $\phi:F\cong F'$ be a field isomorphism.
-Let $\cl F'$ be an algebraic closure of $F'$.
-Then, there is an embedding $\tld\phi:E\to\cl F'$ which extends $\phi$.
-\end{thm}
-\begin{pf}
-Let $S$ be the set of all field homomorphisms $K\to\cl F'$ which extends $\phi$ for all $K<E$.
-Use the Zorn's lemma.
-Let $\tld\phi:K\to\cl F'$ be a maximal element.
-If $K$ is a proper subfield of $E$, then
-%%%
-\end{pf}
-
-
-
-
-
-
-\subsection{Algebraic closure}
 
 \begin{thm}
 Let $E/F$ be a field extension.
@@ -200,6 +180,12 @@ The set of all algebraic elements in $E$ over $F$ forms a field.
 
 
 
+\subsection{Algebraic closure}
+
+
+
+
+
 \begin{defn}
 A field $F$ is called \emph{algebraically closed} if it has no proper algebraic extension.
 \end{defn}
@@ -208,14 +194,34 @@ A field $F$ is called \emph{algebraically closed} if it has no proper algebraic 
 A field $\cl F$ is called an \emph{algebraic closure} if $\cl F$ is algebraically closed field and $\cl F/F$ is algebraic.
 \end{defn}
 
-\begin{thm}
+\begin{thm}[Existence of algebraic closure]
 Every field has an algebraic closure.
 \end{thm}
 \begin{pf}
 %%%
 \end{pf}
 
-\begin{thm}
+
+\begin{thm}[Isomorphism extension theorem]
+Let $E/F$ be an algebraic extension.
+Let $\phi:F\cong F'$ be a field isomorphism.
+Let $\cl F'$ be an algebraic closure of $F'$.
+Then, there is an embedding $\tld\phi:E\to\cl F'$ which extends $\phi$.
+\end{thm}
+\begin{pf}
+Let $S$ be the set of all field homomorphisms $K\to\cl F'$ which extends $\phi$ for all $K<E$.
+Use the Zorn's lemma.
+Let $\tld\phi:K\to\cl F'$ be a maximal element.
+
+Suppose $K$ is a proper subfield of $E$ and let $\alpha\in E\setminus K$.
+Let $\alpha'\in\cl F'$ be a root of $\phi_*\mu_{\alpha,F}\in F'[x]$.
+Then, we can construct a field homomorphism $K(\alpha)\to\tld\phi(K)(\alpha')$.
+It leads a contradiction to the maximality.
+Therefore, $K=E$.
+\end{pf}
+
+
+\begin{thm}[Uniqueness of algebraic closure]
 Algebraic closure is unique up to isomorphism.
 \end{thm}
 \begin{pf}
@@ -246,6 +252,53 @@ The set of algebraic elements is algebraically closed.
 
 
 \section{Separable extension}
+
+
+
+\begin{defn}
+A polynomial $f\in F[x]$ is called \emph{separable} if it is square-free in$\cl F[x]$.
+An element $\alpha\in\cl F'$ is called \emph{separable} over $F$ if $\mu_{\alpha,F}$ is separable.
+\end{defn}
+
+\begin{defn}
+A field extension $E/F$ is called \emph{separable} if all elements in $E$ is separable over $F$.
+\end{defn}
+
+
+
+
+\begin{defn}
+The \emph{index} of a field extension $E/F$ is the number of field homomorphisms $E\to\cl F$ fixing $F$.
+It is denoted by $\{E:F\}$.
+\end{defn}
+
+\begin{prop}
+All roots of an irreducible polynomial has same multiplicity.
+\end{prop}
+\begin{pf}
+%%%
+\end{pf}
+
+\begin{thm}
+Let $K$ be an intermediate field of a finite extension $E/F$.
+Then,
+\[\{E:F\}|[E:F]\]
+\end{thm}
+\begin{pf}
+%%%
+\end{pf}
+
+
+
+
+
+\subsection{Separable closure}
+
+
+
+
+
+\subsection{Perfect fields}
 
 
 
