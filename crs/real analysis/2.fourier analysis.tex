@@ -137,12 +137,23 @@ Putting $z=\theta$ in the last inequality, we get the desired result.
 We often want to show a net of linear operators $\{T_t\}_t$ is an ``approximate identity'' in the sense of pointwise convergence, not a certain norm; in other words, say, we want to show
 \[\lim_{t\to0}T_tf(x)=f(x)\for a.e.\]
 
-If we introduce maximal function $Mf$ defined by
-\[Mf(x)=\sup_t|T_tf(x)|\]
-and if it satisfies a boundedness, then for a suitable seminorm or a quasinorm $\|\cdot\|$, we can apply the approximation argument
+Suppose $T=\lim_tT_t$ is defined on $L^1$ and let $I:L^1\hookrightarrow X$ be a canonical embedding.
+Assume that we have proved $T-I$ is continuous operator $L^1\to X$ and $\ker(T-I)$ is dense in $L^1$.
+Then, $T-I$ must vanish at entire space $L^1$.
+It implies $Tf$ and $f$ are equal almost everywhere.
+
+We introduce maximal function $Mf$ defined by
+\[Mf(x)=\sup_t|T_tf(x)|.\]
+If it satisfies a boundedness, for example, if it satisfies something we call the weak-type estimate $\|Mf\|_{1,\oo}\lesssim\|f\|_1$, then
+\[\|(T-I)f\|_{1,\oo}\le\|Tf\|_{1,\oo}+\|f\|_{1,\oo}\le\|Mf\|_{1,\oo}+\|f\|_1\lesssim\|f\|_1\]
+implies the continuity of $T-I$.
+If $\ker(T-I)$ contains test function space above this, then we get the desired result.
+This density argument can also be explained using approximation by $g$ such that $Tg=g$:
 \begin{align*}
-\|\lim_t T_tf-f\|&\le \|\lim_t T_t(f-g)\|+\|\lim_t T_tg-g\|+\|g-f\|\\&\le \|M(f-g)\|+\|g-f\|\\&\lesssim \|f-g\|.
+\|Tf-f\|_{1,\oo}&\le \|T(f-g)\|_{1,\oo}+\|Tg-g\|_{1,\oo}+\|g-f\|_{1,\oo}\\&\le \|M(f-g)\|_{1,\oo}+\|g-f\|_1\\&\lesssim \|f-g\|_1\to0.
 \end{align*}
+
+
 
 \subsection{The Hardy-Littlewood maximal function}
 Hardy-Littlewood maximal function is the most famous maximal function.
