@@ -1,11 +1,27 @@
 \documentclass{article}
-\input{./header}
+\usepackage{ikany}
 
 \let\realsection\section
 \renewcommand\section{\newpage\realsection}
 
 \begin{document}
 \tableofcontents
+
+
+\section{Vector calculus on spherical coordinates}
+
+\begin{tikzcd}[row sep=5pt, column sep=3pt]
+V&=&(V_r,V_\theta,V_\phi)&&&&&&&&\\
+&=&V_r&\hat{r}&+&V_\theta&\hat{\theta}&+&V_\phi&\hat{\phi}&(\text{normalized coords})\\
+&=&V_r&\pd{r}&+&\frac1r\ V_\theta&\pd{\theta}&+&\frac1{r\sin\theta}\ V_\phi&\pd{\phi}&(\Gamma(TM))\\
+&=&V_r&dr&+&r\ V_\theta&d\theta&+&r\sin\theta\ V_\phi&d\phi&(\Omega^1(M))\\
+&=&r^2\sin\theta\ V_r&d\theta\wdg d\phi&+&r\sin\theta\ V_\theta&d\phi\wdg dr&+&r\ V_\phi&dr\wdg d\theta&(\Omega^2(M)).
+\end{tikzcd}
+
+\[
+\del\cdot V=\frac1{r^2\sin\theta}\left[  \pd{r}\left(r^2\sin\theta\ V_r\right) + \pd{\theta}\left(r\sin\theta\ V_\theta\right) + \pd{\phi}\left(r\ V_\phi\right)  \right]
+\]
+
 
 \section{Statements in functional analysis and general topology}
 Function analysis:
