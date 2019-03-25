@@ -4,7 +4,7 @@
 \makeatletter
 
 
-\usepackage[margin=100pt]{geometry}
+\usepackage[margin=100pt,headheight=10pt]{geometry}
 
 
 \let\@@author\author

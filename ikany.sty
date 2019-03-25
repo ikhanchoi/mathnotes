@@ -47,11 +47,13 @@
 \theoremstyle{definition}
   \newtheorem{defn}{Definition}[section]
   \newtheorem{ex}[thm]{Example}
-  \newtheorem{prob}{Problem}[section]
+  \newtheorem{prb}{Problem}[section]
 \theoremstyle{remark}
   \newtheorem*{rmk}{Remark}
 
 \newenvironment{pf}[1][\unskip]{\begin{proof}[Proof #1]}{\end{proof}}
+\newenvironment{sol}[1][\unskip]{\begin{proof}[Solution #1]}{\end{proof}}
+\newenvironment{note}[1][\unskip]{\begin{proof}[Note #1]\renewcommand{\qedsymbol}{}}{\end{proof}}
 \newenvironment{idea}[1][\unskip]{\begin{proof}[Proof idea #1]\renewcommand{\qedsymbol}{}}{\end{proof}}
 \DeclareDocumentCommand{\Case}{ r[] +o }{\emph{Case #1: #2}}
 \DeclareDocumentCommand{\Step}{ r[] +o }{\emph{Step #1: #2}}
