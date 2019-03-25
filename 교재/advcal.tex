@@ -18,7 +18,7 @@
 \newcommand\Solution{\vspace{12pt}\noindent\large\textbf{Solution: }\par\noindent\normalsize}
 \newcommand\Note{\vspace{12pt}\noindent\large\textbf{Note: }\par\noindent\normalsize}
 
-\DeclareDocumentEnvironment{sol}{}{\begin{solution}}{\end{solution}\clearpage}
+\DeclareDocumentEnvironment{sol}{}{\begin{solution}}{\end{solution}}
 
 \iffalse % 예문
 \question 문제
@@ -43,7 +43,16 @@
 \question 실수 $x$에 대하여 다음 함수 $f$의 최댓값과 최솟값을 구하여라:
 \[f(x)=\frac{x^2-x+1}{x^2+x+1}.\]
 \begin{sol}
-aaa
+우리가 구하고자 하는 $f$의 범위라는 것은 곧 $f$의 치역을 말한다.
+함수 $f$의 치역이란 정의상 $f(x)=k$를 만족하는 정의역의 원소 $x$가 존재하는 $k$들의 집합이다.
+그러므로 $(x^2-x+1)=k(x^2+x+1)$를 만족하는 \emph{실수} $x$가 존재하는 $k$를 구하면 된다.
+이는 이차방정식의 판별식으로 해의 존재성을 판별하는 문제가 된다.
+위의 이차방정식을 $x$에 대해 묶으면 $(k-1)x^2+(k+1)x+(k-1)=0$이고, 판별식 $(k+1)^2-4(k-1)(k-1)=-(3k-1)(k-3)$이 0 이상일 필요충분조건은 $\frac13\le k\le 3$인 것이다.
+따라서 답은 최솟값 $\frac13$, 최댓값 3이 된다.
+
+많은 학생들은 최댓값과 최솟값을 구하는 문제에서 기계적으로 미분을 하려는 경향이 있다.
+하지만 의외로 미적분학의 복잡한 계산 없이 부등식 문제가 깔끔히 풀리는 경우가 있는데 그 중 한 가지로 \emph{판별식}을 사용하는 방법이 있다.
+이 방법은 우선 이 문제처럼 분모분자가 이차식인 유리함수에서 유용하게 사용될 수 있고, 또한 코시 슈바르츠 부등식의 가장 표준적인 증명에 판별식이 사용되기도 한다.
 \end{sol}
 
 
