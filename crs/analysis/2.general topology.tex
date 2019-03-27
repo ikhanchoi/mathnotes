@@ -10,18 +10,35 @@
 \frontmatter
 
 
-\chapter{Preface}
+\chapter*{Preface}
 
 The word topology is used in two different contexts: analytic sense and geometric sense.
-When we are saying the stories about doughnuts and coffee mugs, they are in fact involved in topology of geometric sense, which is also referred to as a branch of mathematics that studies spaces such as manifolds or CW complexes.
-In analysis, the topology is mentioned mostly unrelatedly to the stuffs like doughnuts, but it refers to the minimal structure that is required in order to define concepts of limit and continuity.
-
+When we are talking the stories of doughnuts and coffee mugs, they are in fact involved in topology of geometric sense, which is also referred to as a branch of mathematics that studies spaces such as manifolds or CW complexes.
+In analysis, the topology is mentioned greatly unrelatedly to the stuffs like doughnuts, but it refers to the minimal structure that is required in order to define concepts of limit and continuity.
+More precisely, once a structure called topology is settled on a set, then we can expand some basic analytic theories using limit and continuity.
 Normed spaces are the first examples which possess a certain topology.
-With the topology, we could describe why a sequence converges to a point or whether a function is continuous.
-Simply, we say a norm induce a natural topology.
+With the topology, we could describe formally why a sequence converges to a point or whether a function is continuous.
+Simply, we say a norm induces a natural topology.
+This book is of course interested in the latter issues, as we have seen the title of the book.
+
+Then, why should we study topologies for analysis? 
+In Euclidean spaces or the space of continuout functions on a compact set that we have usually studied, we have a fixed standard norm to determine if a sequence converges.
+For different topologies in analysis provides a sort of different criteria, the convergence changes even for a same sequence when we judge it in different topologies so that we can argue in what sense a sequence converges.
+Especially in real analysis or functional analysis it is an extremely important way of recognizing the various convergence modes of functional sequences.
+A nonnegligible problem that occurs here is that some convergences cannot be formulated with neither norms nor metrics anymore, like pointwise convergence of functional sequences defined with uncountable domain.
+Thereby, the study of topologies necessarily made sophisticated connections with mathematical analysis.
+
+General topology is the abstract study of topologies and topological spaces.
+Similarly as mentioned above, there are two large branches of general topology; both are contributed to build nice frameworks of other mathematics.
+One is for algebraic topology and studies the category of convinient spaces in which well-known constructions and computational tools are available, and the other is for doing abstract analysis.
+One interesting feature of general topology is that the basic topology in analysis is a preliminary of the abstract study of the spaces used in algebraic topology, so everyone starts to learn it from analysis.
+
 In this book, we are going to assume the reader is already familiar to the theory of normed spaces.
 For instance, we can require the reader to know what the uniform convergence is because it can be regarded as just a convergence in a properly defined norm.
+Metrics are defined at the first of this book.
 
+For the first, ...
+In Chapters 2 and 3, ...
 
 
 
@@ -40,10 +57,10 @@ Recall that we measured how near the two points are by taking absolute value of 
 How can we dismiss the subtraction?
 Saying only the results, mathematicians succeeded to generalize limit of sequences and continuity of functions, but compromising the theory of differentiation and integration.
 Topology is the term for this successful solution.
-In other words, for the most part, wonderful statements purely related to limit and continuity were possible to be extended without big flaws even if we forget the vector space operations by introducing the concept of topology, but differenatiation and integration could not on the other hand.
+In other words, for the most part, wonderful statements purely related to limit and continuity were possible to be extended without big flaws even if we forget the vector space operations by introducing the concept of topology, but differentiation and integration could not on the other hand.
  
 Topological structure refers to an additional function on a given set or a more complicated mathematical device which solves the problem by being put on a set.
-Norm is a typical example of topology, and so is ``topology''.
+Norm is a typical example of topological structure, and so is ``topology''.
 
 
 % SECTION 1-1
@@ -107,7 +124,8 @@ A map $\phi:X\to Y$ is called an \emph{isometry} if $d(x,y)=d(\phi(x),\phi(y))$ 
 If there is a bijective isometry between $X$ and $Y$, then we say the spaces are \emph{isometric}.
 \end{defn}
 
-Note that every isometry is clearly injective so that it is bijective if and only if it is surjective, and the inverse of bijective isometry is also an isometry.
+Every isometry is clearly injective so that it is bijective if and only if it is surjective.
+Also, the inverse of bijective isometry is also an isometry.
 If two metric spaces are isometric, we can view them as virtually same, in the ``category'' of metric spaces.
 The following theorem tells another characterization of metric spaces.
 
