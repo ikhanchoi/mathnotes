@@ -37,11 +37,20 @@ In this book, we are going to assume the reader is already familiar to the theor
 For instance, we can require the reader to know what the uniform convergence is because it can be regarded as just a convergence in a properly defined norm.
 Metrics are defined at the first of this book.
 
+
+
 For the first, ...
 In Chapters 2 and 3, ...
 
+% mukres
 
 
+
+This book is written in order to be used in my imaginary lectures for students who lost their chances to learn professional educations for various reasons.
+I tried to put convincing explanations at every newly defined concept as with clear logics as possible and cram supplementary stories that are not necessary, which might not be really satisfied.
+Therefore, I think this book would never be a good choice for a standard course text relative to the other existing great books.
+However, I sincerely organized the materials hoping there would be at least one student in the world affected affirmitively.
+I will be very satisfied if one of you just could enjoy math with this book.
 
 \mainmatter
 
@@ -115,7 +124,7 @@ Obvious.
 
 In fact, the converse holds; every metric space can be viewed as a subset of a normed space.
 This deeper result on the relation between normed spaces and metric spaces is discovered by Kuratowski.
-Since the theorem does not play any important role in the whole book, reader may skip to the next subsection.
+Since the theorem does not play any important role in the whole book, readers who want to read fast may skip.
 To state the theorem, we introduce isometry, a map preserving metrics.
 
 \begin{defn}
@@ -148,7 +157,36 @@ The space $Y$ is somtimes denoted by $\ell^\oo(X)$, and it is in fact a Banach s
 In addition, the image of the isometry $\phi$ is in a closed subspace $C_b(X)\subset\ell^\oo(X)$, the space of bounded real-valued continuous functions.
 \end{rmk}
 
+We have seen metrics can be seen as the generalization of norms.
+However, there are also many examples of metrics that are not involved directly in the norms.
+Even if they are far from subsets of a normed space, we can apply our intuition of balls.
+The examples below are given without proofs.
 
+\begin{ex}\label{ex:discrete metric}
+Let $X$ be a set.
+Then, a function $d:X\x X\to\R_{\ge0}$ defined by
+\[d(x,y):=\begin{cases}0&,x=y\\1&,x\ne y\end{cases}\]
+is a metric on $X$.
+This metric is sometimes called \emph{discrete metric} because balls can separate all single points out.
+\end{ex}
+\begin{ex}
+Let $G=(V,E)$ be a connected graph.
+Define $d:V\x V\to\Z_{\ge0}\subset\R_{\ge0}$ as the distance of two vertices; the length of shortest path connecting two vertices.
+Then, $(V,d)$ is a metric space.
+\end{ex}
+\begin{ex}
+Let $\cP(X)$ be the power set of a finite set $X$.
+Define $d:\cP(X)\x\cP(X)\to\Z_{\ge0}\subset\R_{\ge0}$ as the cardinality of the symmetric difference; $d(A,B):=|(A-B)\cup(B-A)|$.
+Then $(\cP(X),d)$ is a metric space.
+\end{ex}
+\begin{ex}
+Let $C$ be the set of all compact subsets of $\R^n$.
+Recall that a subset of $\R^n$ is compact if and only if it is closed and bounded.
+Then, $d:C\x C\to\R_{\ge0}$ defined by
+\[d(A,B):=\max\{\sup_{a\in A}\inf_{b\in B}\|a-b\|,\sup_{b\in B}\inf_{a\in A}\|a-b\|\}\]
+is a metric on $C$.
+It is a little special case of \emph{Hausdorff metric}.
+\end{ex}
 
 
 
@@ -190,16 +228,39 @@ We have to emphasize that taking either $\e$ or $\delta$ really means taking a b
 
 
 
+%%% neighborhoods system
+
 
 %%% examples 
+
+\begin{ex}
+Let $X$ and $Y$ be metric spaces.
+If $X$ is equipped with the discrete metric defined in Example \ref{ex:discrete metric}, then every function $f:X\to Y$ is continuous.
+\end{ex}
 
 
 
 % 1-1-3
 \subsection{Pseudometrics}
 
-%%%
 
+%defn
+%%% one pseudometric can generate a topology so that we can use limit and continuity
+%%% but not unique limit
+%% example : finite product space
+
+
+% family of pseudometrics
+%%% separates points
+% sum of pseudometrics is a pseudometric
+
+% bounding
+% combining
+%% countable pseudometric
+
+%%% example sequence space ptwise
+
+% first example that a topology which cannot be given by a metric
 
 
 
@@ -235,7 +296,7 @@ Simply, $x_n$ is close to $x$ if $n$ is close to the infinity.
 Observe the two necessary structures to make this possible; the ``system of neighborhoods'' at each point $x$, and the total order on the index set $\N$ the set of natural numbers.
 Without the order structure, we would not be able to formulate the intuition of the direction toward which a sequence is converging.
 Even though the order on $\N$ is totally defined so that we can compare every pair of two elements, but it can be generalized to the case of partial orders.
-
+%% poset can be order-embedded in a power set(complete atomic boolean lattice)
 \begin{defn}
 A subset $\cD$ of a poset is called \emph{(upward) directed} if for every $a,b\in\cD$ there is $c\in\cD$ such that $a\le c$ and $b\le c$.
 Similarly, $\cD$ is called \emph{downward directed} if for every $a,b\in\cD$ there is $c\in\cD$ such that $c\le a$ and $c\le b$.
