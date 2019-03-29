@@ -218,6 +218,7 @@ If it is satisfied, then we write
 or simply
 \[x_n\to x\]
 as $n\to\oo$.
+If there is no such limit $x$, then we say the sequence \emph{diverges}.
 \end{defn}
 \begin{defn}
 A function $f:X\to Y$ between metric spaces is called \emph{continuous at $x\in X$} if for any ball $B(f(x),\e)\subset Y$ centered at $f(x)$ there is a ball $B(x,\delta)\subset X$ centered at $x$ such that $f(B(x,\delta))\subset B(f(x),\e)$.
@@ -232,9 +233,8 @@ We have to emphasize that taking either $\e$ or $\delta$ really means taking a b
 
 
 
-There are a lot of valuable propositions for limit and continuity, but we postpone to mention them to later because they are generalized to topological spaces.
+There are a lot of valuable propositions for limit and continuity, but we postpone to mention them to later because they are generalized to topological spaces: for example, the limit of a sequence is unique.....
 
-%%% examples 
 \begin{ex}
 Let $X$ be the discrete metric space in Example \ref{ex:discrete metric}.
 A sequence $\{x_n\}_n$ converges to $x$ if and only if it is eventually $x$; there is a positive integer $n_0$ such that $x_n=x$ for all $n>n_0$.
@@ -243,7 +243,30 @@ A sequence $\{x_n\}_n$ converges to $x$ if and only if it is eventually $x$; the
 Let $X$ and $Y$ be metric spaces.
 If $X$ is equipped with the discrete metric in Example \ref{ex:discrete metric}, then every function $f:X\to Y$ is continuous.
 \end{ex}
+\begin{ex}
+An isometry is always continuous.
+\end{ex}
 
+
+The sequence of real numbers defined by $x_n=\frac1n$ diverges in discrete metric.
+Even for the same sequence on a same set, the convergence depends on the attached metric.
+However, we cannot say different metrics always provide different criteria for convergence.
+In other words, when we consider a metric as a function that takes a sequence as input and outputs whether a sequence converges or diverges, there may be two different metrics which gives exactly same answer about convergence.
+Of course, the continuity of functions has the same issue.
+This allows us to think an equivalence relation on the set of metrics, that is, two equivalent metrics give a common criterion for convergence and continuity.
+In this situation, it can be paraphrased into that the two metrics induce exactly same topology.
+Some definitions and theorems for the equivalence checking will be given as follows.
+
+%%%
+
+\begin{rmk}
+There exist two different topologies that have same sequential convergence data.
+For example, %%
+This means the informations of sequence convergence are not sufficient to uniquely characterize a topology.
+Instead, convergence data of generalized sequences, which is called nets, recover the topology.
+For topologies having a property called the first countability, it is enough to consider only usual sequences.
+These problem will be profoundly treated in Chapter 3.
+\end{rmk}
 
 
 % 1-1-3
@@ -280,7 +303,7 @@ If $X$ is equipped with the discrete metric in Example \ref{ex:discrete metric},
 
 
 
-\+
+\subsection*{Problems}
 \begin{prb}
 Show that there is a metric $d$ on $\R$ such that a sequence $\{x_n\}_n$ defined by $x_n=x+\frac1n$ is convergent with respect to $d$ if and only if $x\ne0$.
 \end{prb}
@@ -292,6 +315,13 @@ Show that $x=x'$.
 \begin{prb}
 
 \end{prb}
+
+
+
+
+
+
+
 
 
 
@@ -571,13 +601,19 @@ def:nbhd and neighborhood filter
 
 
 % SECTION 1-3
-\section{Uniform spaces}
-\subsection{Uniformness of metric}
+\section{Uniformity}
+
+% 1-3-1
+\subsection{Uniform spaces}
+uniformness of metric
+
+
+% 1-3-2
 \subsection{Entourages}
 
 
 
-
+% 1-3-3
 \subsection{Pseudometrics}
 
 Metric can be regarded as the ``countably'' uniform structure in some sense. 
@@ -604,14 +640,27 @@ In other texts, for this reason, one frequently introduces metric instead of uni
 
 
 
-
+% CHAPTER 2
 \chapter{Continuity}
--- various levels of continuity
-- continuity, Cauchy, uniform, Lipschitz
-- continuity by convergence
--- homeomorphism
+
+
+% SECTION 2-1
+\section{Continuous maps}
+
+- continuity, Cauchy, uniform, 
+
+Lipschitz
+\begin{ex}
+An isometry between metric spaces is Lipschitz continuous with costant 1.
+\end{ex}
+
+\subsection{Sequential continuity}
+
+\section{Homeomorphisms}
 - topological property: connected, compact
--- connectedness
+
+
+\section{Connectedness}
 - connected, path-connected, locally path-connected
 - component
 - homotopy
