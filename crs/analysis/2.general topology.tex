@@ -33,18 +33,16 @@ Similarly as mentioned above, there are two large branches of general topology; 
 One is for algebraic topology and studies the category of convinient spaces in which well-known constructions and computational tools are available, and the other is for doing abstract analysis.
 One interesting feature of general topology is that the basic topology in analysis is a preliminary of the abstract study of the spaces used in algebraic topology, so everyone starts to learn it from analysis.
 
-In this book, we are going to assume the reader is already familiar to the theory of normed spaces.
-For instance, we can require the reader to know what the uniform convergence is because it can be regarded as just a convergence in a properly defined norm.
-Metrics are defined at the first of this book.
-
-
-
-For the first, ...
-In Chapters 2 and 3, ...
-
-% mukres
-
-
+The purpose of this book is to catch a big picture and learn basic languages in order for preparing the next study of modern analysis such as harmonic analysis or functional analysis following after calculus topics, in the quite abstract viewpoint.
+In this book, we are going to assume the reader is already familiar to the theory of normed spaces and elementary foundations of calculus including the epsilon-delta definitions.
+For instance, we can require the reader to know what the uniform convergence is because it can be regarded as just a convergence in a properly defined norm on a space of functions.
+For the first, the basic topological structures including metrics, topologies, and uniformities are introduced in Chapter 1.
+Although many texts do not cover uniform spaces, they give a great answer of what metric spaces can do and what metric spaces exactly are in general topology, so we are going to 
+In Chapter 2, we learn about continuity of functions and maps.
+Continuous maps functionally connects two different topological spaces and allow us to compare them.
+Homeomorphisms and some connectivity will be also covered.
+Chapter 3 is dedicated to the deeper study of convergence of sequences or nets, which can be said as the 
+In Chapter 4, 5, and 6, we learn compact spaces, separability axioms, and continuous function spaces.
 
 This book is written in order to be used in my imaginary lectures for students who lost their chances to learn professional educations for various reasons.
 I tried to put convincing explanations at every newly defined concept as with clear logics as possible and cram supplementary stories that are not necessary, which might not be really satisfied.
@@ -233,7 +231,7 @@ We have to emphasize that taking either $\e$ or $\delta$ really means taking a b
 
 
 
-There are a lot of valuable propositions for limit and continuity, but we postpone to mention them to later because they are generalized to topological spaces: for example, the limit of a sequence is unique.....
+There are a lot of valuable propositions for limit and continuity, but we postpone to mention them to later because they are generalized to topological spaces.
 
 \begin{ex}
 Let $X$ be the discrete metric space in Example \ref{ex:discrete metric}.
@@ -247,10 +245,9 @@ If $X$ is equipped with the discrete metric in Example \ref{ex:discrete metric},
 An isometry is always continuous.
 \end{ex}
 
-
 The sequence of real numbers defined by $x_n=\frac1n$ diverges in discrete metric.
-Even for the same sequence on a same set, the convergence depends on the attached metric.
-However, we cannot say different metrics always provide different criteria for convergence.
+Like this example, even for the same sequence on a same set, the convergence depends on the attached metric.
+However, we cannot conversely say that different metrics always provide different criteria for convergence.
 In other words, when we consider a metric as a function that takes a sequence as input and outputs whether a sequence converges or diverges, there may be two different metrics which gives exactly same answer about convergence.
 Of course, the continuity of functions has the same issue.
 This allows us to think an equivalence relation on the set of metrics, that is, two equivalent metrics give a common criterion for convergence and continuity.
@@ -260,17 +257,18 @@ Some definitions and theorems for the equivalence checking will be given as foll
 %%%
 
 \begin{rmk}
-There exist two different topologies that have same sequential convergence data.
-For example, %%
+Generally, there exist two different topologies that have same sequential convergence data.
+For example, a sequence in an uncountable set with cocountable topology converges to a point if and only if it is eventually at the point, which is same with discrete topology.
 This means the informations of sequence convergence are not sufficient to uniquely characterize a topology.
-Instead, convergence data of generalized sequences, which is called nets, recover the topology.
-For topologies having a property called the first countability, it is enough to consider only usual sequences.
-These problem will be profoundly treated in Chapter 3.
+Instead, convergence data of generalized sequences also called nets, recover the topology.
+For topologies having a property called the first countability, it is enough to consider only usual sequences in spite of nets.
+What we did in this subsection is not useless because topology induced from metric is a typical example of first countable topologies.
+These kinds of problems will be profoundly treated in Chapter 3.
 \end{rmk}
 
 
 % 1-1-3
-\subsection{Pseudometrics}
+\subsection{Combining and bounding}
 
 
 %defn
