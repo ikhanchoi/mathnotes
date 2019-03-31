@@ -12,29 +12,30 @@ When doing analysis, we often encounter situations where we need to check compac
 There are a lot of tools, including the Heine-Borel theorem, the Tychonoff theorem, and the Banach-Alaoglu theorem, that make it possible.
 In case of continuous function spaces, we have a great solution, the Arzela-Ascoli theorem.
 
-The purpose of this article is to provide varied viewpoints for the compactness and space of continuous functions via the Arzela-Ascoli theorem, which is my favorite theorem.
+The purpose of this article is to provide varied viewpoints for the compactness and space of continuous functions via the Arzela-Ascoli theorem, which is one of my favorite theorems.
 By doing so, we can learn deeper and more generalized understanding of the nature of topologies on continuous function spaces.
 
-For preliminaries, we will review on compactness at first.
+For preliminaries, we will discuss on compactness at first.
 Next, the definitions and properties of topologies on continuous function spaces are going to be introduced.
 After that, various statements with various proofs and some applications of the theorem will follow.
 
 
 
 
-
-
 \section{More on compactness}
-
 \subsection{Relative compactness}
 
 \begin{defn}
 A uniform space is called \emph{relatively compact} or \emph{precompact} if its completion is compact.
 \end{defn}
+
+The relative compactness is in particular useful in uniform spaces.
 \begin{prop}
-Let $X$ be a complete uniform space.
-A subset of $X$ is relatively compact if and only if its closure is compact.
+A subset of a complete uniform space, like Banach or Fr\'echet space, is relatively compact if and only if its closure is compact.
 \end{prop}
+\begin{pf}
+In a complete uniform space, the completion can be charaterized as the closure.
+\end{pf}
 \begin{defn}
 A uniform space is called \emph{relatively net compact} if every net has a Cauchy subnet.
 \end{defn}
@@ -51,7 +52,7 @@ The followings are all equivalent:
 \end{cond}
 \end{thm}
 \begin{pf}
-Let $\tld X$ be a completion of $X$.
+Let $\tld X$ be the completion of $X$.
 
 (1)$\impl$(2).
 Every net in $X$ has a subnet that converges in $\tld X$.
@@ -59,14 +60,17 @@ The subnet is Cauchy.
 
 (1)$\impl$(3).
 Let $E$ be an entourage.
-Since $\{U\in\tld X:U^2\in E\}$ is an open cover of $\tld X$, there is a finite subcover $\{U_i\}$ of $\tld X$.
-Then, $\{U_i\cap X\}$ is a finite cover of $X$ satisfying $(U_i\cap X)^2\in E$.
+Since $\{U\in\tld X:U^2\in E\}$ is an open cover of $\tld X$, there is a finite subcover $\{U_i\}_i$ of $\tld X$.
+Then, $\{U_i\cap X\}_i$ is a finite cover of $X$ satisfying $(U_i\cap X)^2\in E$.
+
+The following two directions use the fact that compactness and net compactness are always equivalent in all topological spaces.
+So, if we show every net in $\tld X$ has a Cuachy subnet, then we are done.
 
 (2)$\impl$(1).
 Let $\tld x:\cD\to\tld X$ be a net in $\tld X$.
-Take a net $x:\cD\x\cU\to X$ such that $x_{(d,E)}$ is $E$-closed to $\tld x_d$, where $\cU$ is the uniformity of $\tld X$.
-By the condition, there is a Cuachy subnet $x:\cE\to[h]\cD\x\cU\to X$.
-Then, a subnet $\tld x:\cE\to[h]\cD\x\cU\to\cD\to\tld X$ is Cauchy.
+Take a net $x:\cD\x\cU\to X$ such that $x_{(d,E)}$ is $E$-closed to $\tld x_d$, where $\cU$ is the uniquely extended uniformity of $\tld X$ from $X$.
+By the assumption, there is a Cuachy subnet $xh:\cE\to[h]\cD\x\cU\to X$ of $x$.
+We claim the subnet $\tld xh:\cE\to[h]\cD\x\cU\to\cD\to\tld X$ of $\tld x$ is Cauchy.
 
 In order to show this, take an entourage $E$.
 By the Cauchyness, we can find $e_0\in\cE$ such that $h(e_0)=(d_{e_0},E_{e_0})$ satisfies $E_{e_0}\subset E$ and $e,e'>e_0\impl(x_e,x_{e'})\in E$.
@@ -75,20 +79,22 @@ Therefore, $\tld x:\cE\to\tld X$ is Cauchy.
 
 (3)$\impl$(1).
 Clearly, $\tld X$ is totally bounded.
+What we are going to show here is that a complete totally bounded space is compact.
+Let $\tld x:\cD\to\tld X$ be a net in $\tld X$.
 
 
 \end{pf}
 
-Empirically, problems related to proof of compactness seem to be fallen into two cases: one is to show completeness and relative compactness, and the other is to apply Tychonoff's theorem.
+Empirically, compactness checking problems seem to be fallen into two cases: one is to show both completeness and relative compactness, and the other is to apply Tychonoff's theorem.
 Followings are some examples.
-\begin{ex}[The Heine-Borel theorem]
 
+\begin{ex}[The Heine-Borel theorem]
+A subset of a Euclidean space is compact if and only if it is closed and bounded.
 \end{ex}
 \begin{ex}[The Blaschke selection theorem]
 Let $H(X)$ be the metric space of nonempty compact subsets of a metric space $X$ with Hausdorff metric.
 If $X$ is compact, then $H(X)$ is compact.
 \end{ex}
-
 \begin{ex}[The Banach-Alaoglu theorem]
 Let $X$ be a locally convex space and $X^*$ the continuous dual of $X$ with weak$^*$ topology.
 If $B\subset X^*$ satisfies $\sup_{f\in B}|f(x)|<\infty$ for each $x\in X$, then $B$ is compact.
@@ -129,6 +135,7 @@ For $(f_n)_{n\in\N}\subset C(X)$, if it is equicontinuous and pointwisely bounde
 \end{thm}
 
 Let $\cT_p$ be the topology of pointwise convergence and $\cT_c$ be the topology of compact convergence.
+
 \begin{thm}[Arzela-Ascoli, metrized version]
 Let $X$ be a hemicompact space and $Y$ be a metric space.
 If $\cF\subset C(X,Y)$ is equicontinuous and relatively compact in $\cT_p$, then it is relatively compact in $\cT_c$.
@@ -147,8 +154,7 @@ by taking $s\in S_k$ such that $x\in U_s$.
 Thus, $\{f_m\}_m$ is a subsequence of $\{f_n\}_n$ that is uniformly Cauchy on $K$.
 \end{pf}
 
-
-If $C(X,Y)$ is not metrizable, or even $Y$ is only uniform but not metrizable, the subsequence extracting procedure is not available.
+If $C(X,Y)$ is not metrizable, or if $Y$ is uniform but not metrizable, the subsequence extracting procedure is no more available.
 
 \begin{thm}[Arzela-Ascoli, generalized version]
 Let $X$ be a topological space and $Y$ be a uniform space.

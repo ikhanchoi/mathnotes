@@ -33,11 +33,21 @@ Similarly as mentioned above, there are two large branches of general topology; 
 One is for algebraic topology and studies the category of convinient spaces in which well-known constructions and computational tools are available, and the other is for doing abstract analysis.
 One interesting feature of general topology is that the basic topology in analysis is a preliminary of the abstract study of the spaces used in algebraic topology, so everyone starts to learn it from analysis.
 
-The purpose of this book is to catch a big picture and learn basic languages in order for preparing the next study of modern analysis such as harmonic analysis or functional analysis following after calculus topics, in the quite abstract viewpoint.
+The purpose of this book is to catch a big picture and learn basic languages in order for preparing the next study of modern analysis such as harmonic analysis or functional analysis following after calculus topics, in the quite abstract viewpoints.
+In particular, we mainly focus on finding admissible answers for notoriously hazy questions:
+\begin{itemize}
+\item Why are topologies defined in that way?
+\item What can metric spaces do more than topological spaces?
+\item When can we use sequences instead of nets without any anxiety? 
+\item What does compactness mean?
+\item Why do locally compact Hausdorff spaces so frequently appears?
+\item What is the importance of complicated theorems of like Arzela-Ascoli or Stone-Weierstrass?
+\end{itemize}
+
 In this book, we are going to assume the reader is already familiar to the theory of normed spaces and elementary foundations of calculus including the epsilon-delta definitions.
 For instance, we can require the reader to know what the uniform convergence is because it can be regarded as just a convergence in a properly defined norm on a space of functions.
 For the first, the basic topological structures including metrics, topologies, and uniformities are introduced in Chapter 1.
-Although many texts do not cover uniform spaces, they give a great answer of what metric spaces can do and what metric spaces exactly are in general topology, so we are going to 
+Although many texts do not cover uniform spaces, they are greatly useful in studying nonmetrizable topologies.
 In Chapter 2, we learn about continuity of functions and maps.
 Continuous maps functionally connects two different topological spaces and allow us to compare them.
 Homeomorphisms and some connectivity will be also covered.
@@ -563,7 +573,7 @@ This example would show a basis is fundamental language to describe the nature o
 % 1-2-4
 \subsection{Open sets and neighborhoods}
 def:nbhd and neighborhood filter
-
+convergence and limit
 
 % 1-2-5
 \subsection{Closed sets and limit points}
@@ -643,25 +653,45 @@ In other texts, for this reason, one frequently introduces metric instead of uni
 
 
 % SECTION 2-1
-\section{Continuous maps}
+\section{Continuous functions}
 
-- continuity, Cauchy, uniform, 
+\subsection{Various continuity}
+continuity, Cauchy continuity, uniform continuity, 
 
-Lipschitz
+Lipschitz continuity
 \begin{ex}
 An isometry between metric spaces is Lipschitz continuous with costant 1.
 \end{ex}
 
 \subsection{Sequential continuity}
 
-\section{Homeomorphisms}
+
+
+
+\section{Continuous maps}
+
+\subsection{Mono and epi}
+
+\subsection{Subspaces and quotient spaces}
+
+\subsection{Product space}
+
+\subsection{Homeomorphisms}
+continuous bijection
+open map
+how to show two spaces are not homeomorphic
 - topological property: connected, compact
 
 
 \section{Connectedness}
-- connected, path-connected, locally path-connected
-- component
-- homotopy
+
+\subsection{Connected spaces}
+component
+\subsection{Path connected spaces}
+
+\subsection{Locally connected spaces}
+
+\subsection{Homotopy}
 
 
 
@@ -698,6 +728,8 @@ An isometry between metric spaces is Lipschitz continuous with costant 1.
 
 
 \chapter{Compactness}
+
+
 \begin{defn}
 Let $X$ be a topological space.
 A \emph{cover} of a subset $A\subset X$ is a collection $\{U_\alpha\}_{\alpha\in\cA}$ of subsets of $X$ such that $A\subset\bigcup_{\alpha\in\cA}U_\alpha$.
@@ -782,12 +814,16 @@ Heine-Cantor,
 
 \chapter{Function spaces}
 
+\section{Examples}
+\subsection{C(X), C_0(X), C_b(X)}
+\subsection{Topology of pointwise convergence}
 
+\section{Compact-open topology}
+locally compact Hausdorff spaces
+exponentiability
+topology of uniform convergence
+topology of compact convergence
 
-
-
-
-\section{Continuous function spaces}
 
 \begin{defn}
 Let $X$ and $Y$ be topological spaces.
@@ -840,7 +876,7 @@ $\frac\e3$ argument
 
 
 
-
+\section{Important theorems on function space}
 
 \subsection{The Arzela-Ascoli theorem}
 
@@ -881,7 +917,7 @@ converse of Arzela-Ascoli
 
 
 
-\subsection{The Stone-Weierstrass theorem} %
+\subsection{The Stone-Weierstrass theorem}
 
 
 
