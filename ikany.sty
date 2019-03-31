@@ -55,8 +55,8 @@
 \newenvironment{sol}[1][\unskip]{\begin{proof}[Solution #1]}{\end{proof}}
 \newenvironment{note}[1][\unskip]{\begin{proof}[Note #1]\renewcommand{\qedsymbol}{}}{\end{proof}}
 \newenvironment{idea}[1][\unskip]{\begin{proof}[Proof idea #1]\renewcommand{\qedsymbol}{}}{\end{proof}}
-\DeclareDocumentCommand{\Case}{ r[] +o }{\emph{Case #1: #2}}
-\DeclareDocumentCommand{\Step}{ r[] +o }{\emph{Step #1: #2}}
+\DeclareDocumentCommand{\Case}{ r[] +g }{\emph{Case #1: #2.}}
+\DeclareDocumentCommand{\Step}{ r[] +g }{\emph{Step #1: #2.}}
 
 \iffalse % Example code
 	\begin{ex}
@@ -111,26 +111,31 @@
 
 % Commutative diagrams
 \RequirePackage{tikz-cd,xparse}
-\NewDocumentEnvironment{cd}{}{\[\begin{tikzcd}}{\end{tikzcd}\]}
-\NewDocumentEnvironment{es}{}
+\NewDocumentEnvironment{cd}{}
   {
-    \renewcommand{\>}{\ar{r}\&}
-    \[\begin{tikzcd}[column sep=small,ampersand replacement=\&]
+    \[\begin{tikzcd}
+    \renewcommand{\mn}{\ar[tail]}
+    \renewcommand{\ep}{\ar[two heads]}
   }
   {\end{tikzcd}\]}
+\NewDocumentEnvironment{es}{}
+  {
+    \[\begin{tikzcd}[column sep=small,ampersand replacement=\&]
+    \renewcommand{\>}{\ar{r}\&}
+    \renewcommand{\mn}{\ar[tail]}
+    \renewcommand{\ep}{\ar[two heads]}
+  }
+  {\end{tikzcd}\]}
+
 \def\lar{\ar[bend left]}
 \def\rar{\ar[bend right]}
 \def\ds{\ar[dashed]}
 \def\lds{\ar[dashed,bend left]}
 \def\rds{\ar[dashed,bend right]}
 \def\hk{\ar[hook]}
-\def\mn{\ar[tail]}
-\def\ep{\ar[two heads]}
 
+%	\begin{es}  0 \> A \> B \> C \> 0  \end{es}
 \iffalse % Example code
-	\begin{es}
-	0 \> A \> B \> C \> 0
-	\end{es}
 	\begin{cd}[row sep={24pt,between origins}, column sep={36pt,between origins}]
 	A \ds[swap,\exists !]{r} & B \mn{r} & C \ar[dashed]{r}{text} & D
 	\end{cd}
@@ -182,9 +187,52 @@
 \let\div\relax
 \DeclareMathOperator{\div}{div}
 
-% \pd[2]{x}
-% \pd[2]{f}{x}
-% \pd{f}{x}{y}
+%	\pd[2]{x}
+%	\pd[2]{f}{x}
+%	\pd{f}{x}{y}
+
+
+
+
+
+
+
+
+
+% PDE problems
+\RequirePackage{xparse}
+\DeclareDocumentEnvironment{pde}{s}
+{
+  \[\left\{\begin{alignedat}{2}
+  \renewcommand{\for}{&\qquad&}
+}
+{
+  \IfBooleanTF{#1}
+    {\end{alignedat}\right.\]}
+    {\end{alignedat}\right.\stepcounter{equation}\tag{\theequation}\]}
+}
+\ExplSyntaxOn
+\cs_new:cpn{pde*}{\pde*}
+\cs_new_eq:cN{endpde*}\endpde
+\ExplSyntaxOff
+
+% align이나 alignat이 environment에 들어가서 \end{pdes}를 뺏어버렸다.... 언제 고치지
+\RequirePackage[overload]{empheq}
+\NewDocumentEnvironment{pdes}{}
+{
+  \begin{subequations}
+  \begin{alignat}{2}[left={\empheqlbrace\,}]
+}
+{
+  \end{alignat}
+  \end{subequations}
+}
+
+
+%	\begin{pde}{\label{eq:Pois}}
+%	\Delta u(x)&=0,	\for x\in\Omega,\\
+%	u(x)&=f, 			\for x\in\bd\Omega.
+%	\end{pde}
 
 
 
@@ -261,49 +309,6 @@
 
 
 
-% PDE problems
-\RequirePackage{xparse}
-\DeclareDocumentEnvironment{pde}{s}
-{
-  \[\left\{\begin{alignedat}{2}
-  \renewcommand{\for}{&\qquad&}
-}
-{
-  \IfBooleanTF{#1}
-    {\end{alignedat}\right.\]}
-    {\end{alignedat}\right.\stepcounter{equation}\tag{\theequation}\]}
-}
-\ExplSyntaxOn
-\cs_new:cpn{pde*}{\pde*}
-\cs_new_eq:cN{endpde*}\endpde
-\ExplSyntaxOff
-
-% align이나 alignat이 environment에 들어가서 \end{pdes}를 뺏어버렸다.... 언제 고치지
-\RequirePackage[overload]{empheq}
-\NewDocumentEnvironment{pdes}{}
-{
-  \begin{subequations}
-  \begin{alignat}{2}[left={\empheqlbrace\,}]
-}
-{
-  \end{alignat}
-  \end{subequations}
-}
-
-
-\iffalse % Example code
-	\begin{pde}{\label{eq:Pois}}
-	\Delta u(x)&=0, \for x\in\Omega,\\
-	u(x)&=f, \for x\in\bd\Omega.
-	\end{pde}
-\fi
-
-
-
-
-
-
-
 
 
 
@@ -316,6 +321,20 @@
 \let\dsum\oplus % direct sum
 \let\tn\otimes % tensor product
 \let\wdg\wedge % wedge
+\let\smsh\vee
+
+% Arrows
+\let\@@to\to
+\RenewDocumentCommand{\to}{g}{\IfNoValueTF{#1}{\@@to}{\overset{#1}{\@@to}}}
+\let\emb\hookrightarrow
+\let\mn\rightarrowtail
+\let\ep\twoheadrightarrow
+\let\acts\curvearrowright
+
+% Relations
+\let\les\lesssim
+\let\hmtp\simeq
+\let\isom\cong
 
 % Big operators
 \let\bigdsum\bigoplus
@@ -332,17 +351,14 @@
 \let\oo\infty % infinity
 \let\mt\varnothing % emptyset
 \let\bd\partial % boundary
+\def\1{\bold{1}} % characteristic function
 
 % 기타
 \let\bigmath\displaystyle
-\def\1{\bold{1}} % characteristic function
-\def\impl{\,\Rightarrow\,}
 \def\for{\qquad}
 \def\cat{\mathbf}
-
-\let\@@to\to
-\RenewDocumentCommand{\to}{g}{\IfNoValueTF{#1}{\@@to}{\overset{#1}{\@@to}}}
-
+\def\impl{\mathchoice{\;\Longrightarrow\;}{\,\Rightarrow\,}{\,\Rightarrow\,}{\,\Rightarrow\,}}
+\renewcommand{\iff}{\mathchoice{\;\Longleftrightarrow\;}{\,\Leftrightarrow\,}{\,\Leftrightarrow\,}{\,\Leftrightarrow\,}}
 
 
 
