@@ -4,15 +4,29 @@
 
 \begin{document}
 \maketitle
+\tableofcontents
+
+
+
+
+
+
+
 
 \section{Elementary field theory}
 
-\subsection{Finite extensions}
+
+
+
+\subsection{Vector space over a subfield}
 
 \begin{thm}
 Let $E/F$ be a field extension.
 Then, $E$ is a vector space over $F$.
 \end{thm}
+\begin{pf}
+Obvious.
+\end{pf}
 
 \begin{defn}
 A \emph{degree} of a field extension $E/F$ is the dimension of the vector space $E$ over $F$ and denoted by $[E:F]$.
@@ -34,105 +48,171 @@ Boring basis counting.
 Finite extension of finite extension is finite.
 \end{cor}
 
-\begin{thm}
-Let $E/F$ be a finite extension.
-There is a finite tower of simple extensions.
-\end{thm}
+
+
+
+\subsection{Field homomorphisms}
+
+Unlike general rings, field homomorphisms is extremely rigid.
+The following theorem deeply related to Schur's lemma in representation theory, and it holds for not only fields but also division rings.
 
 \begin{prop}
 A nontrivial field homomorphism is injective.
 \end{prop}
-\begin{defn}
-A nontrivial field homomorphism is called \emph{embedding} of \emph{isomorphism onto a subfield of codomain}.
-\end{defn}
+\begin{pf}
+The kernel should be either entire or zero.
+\end{pf}
+A nontrivial field homomorphism is also called \emph{embedding} of \emph{isomorphism onto a subfield of codomain}.
+A field isomorphism is just a nontrivial surjective field homomorphism.
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-\section{Algebraic extension}
-
-\subsection{Finite simple extensions}
-We will discuss minimal polynomial and conjugates
+\subsection{Simple extensions}
+Simple extension is a field extension by an element.
+It is very useful when we consider where specific element goes to through a given field homomorphism.
 
 \begin{defn}
-A field extension $E/F$ is called \emph{simple} if there is an element $\alpha\in E$ such that $E$ is the smallest field containing $\alpha$ and $F$.
+A field extension $E/F$ is called \emph{simple} if there is an element $\alpha\in E$ such that $E$ is the smallest field containing both $\alpha$ and $F$.
 In this case, we write $E=F(\alpha)$.
 \end{defn}
 
-\begin{defn}
+\begin{lem}
+Let $E/F$ be a finite extension.
+There is a finite tower of finite simple extensions.
+\end{lem}
+
+Although it is hard to find a counterexample, there is a finite extension which is not simple.
+We will see in Section 3.
+
+
+
+
+
+
+
+
+
+
+
+
+
+\section{Algebraic extensions}
+
+We do not prove the basic properties of polynomial ring over a field: they satisfy the axioms of ED, PID, and UFD, so every prime ideal is maximal and every irreducible element is prime.
+In other words, there exists a one-to-one correspondence:
+\[\text{maximal ideals in }F[x] \iff \text{monic irreducible polynomials in }F[x].\]
+
+\subsection{Algebraic elements}
+Finite simple extensions are the most basic examples of the field extensions that we should become perfectly familiar with them.
+An element that generates a finite simple extension field is called algebraic.
+For these elements, we can define minimal polynomials and conjugates for algebraic elements.
+The minimal polynomial is an essential tool to investigate a given finite simple extension.
+Conjugates are for useful when we construct a homomorphism between fields.
+Let us get started from the minimal polynomials.
+
+\begin{defn}[Algebraic element]
 Let $E/F$ be a field extension.
-An element $\alpha\in E$ is \emph{algebraic over $F$} if $F(\alpha)/F$ is finite.
+An element $\alpha\in E$ is \emph{algebraic over $F$} if the simple extension $F(\alpha)/F$ is finite.
+If $\alpha$ is not algebraic over $F$, we call it \emph{transcendental} over $F$.
 \end{defn}
 
-\begin{prop}
-Let $\alpha$ be algebraic over $F$.
-Then, $F(\alpha)=F[\alpha]$.
-\end{prop}
-
+We give some equivalent conditions for algebraicity.
 \begin{thm}
 Let $E/F$ be a field extension and $\alpha\in E$.
-Then, $\alpha$ is algebraic over $F$ iff there is a polynomial $f\in F[x]$ such that $f(\alpha)=0$.
+TFAE:
+\begin{cond}
+\item $\alpha$ is algebraic over $F$,
+\item there is a polynomial $f\in F[x]$ such that $f(\alpha)=0$,
+\item $F(\alpha)=F[\alpha]$.
+\end{cond}
 \end{thm}
 \begin{pf}
-Since $d=[F(\alpha):F]<\oo$, we can find linearly dependent finite subset of $\{1,\alpha,\alpha^2,\cdots\}$.
-The coefficients construct the polynomial.
+(1)$\impl$(2).
+Since $d=[F(\alpha):F]<\oo$, we can find a linearly dependent finite subset of infinite set $\{1,\alpha,\alpha^2,\cdots\}\subset F(\alpha)$ over $F$.
+The coefficients on the linear dependency relation construct the polynomial.
 
-Conversely, if there is such $f$, every element of $F(\alpha)$ is represented as a linear combination of $\{1,\alpha,\cdots,\alpha^{\deg f-1}\}$.
+(2)$\impl$(1).
+If there is $f\in F[x]$ with $f(\alpha)=0$, then we can show every element of $F(\alpha)$ is represented as a linear combination of $\{1,\alpha,\cdots,\alpha^{\deg f-1}\}$ by the Euclidean algorithm.
+Therefore, a finite set spans $F(\alpha)$, so the dimension $F(\alpha)$ over $F$ is finite.
+
+(2)$\impl$(3).
+We claim $F[\alpha]$ is a field.
+Take a nonzero element in $F[\alpha]$.
+Then, the element must be same with $g(\alpha)$ for some polynomial $g\in F[x]$.
+
+The existence of $f\in F[x]$ such that $f(\alpha)=0$ implies that the kernel of evaluation $\eval_\alpha:F[x]\to F[\alpha]$ is nonempty.
+The kernel is a prime ideal because the codomain $F[\alpha]$ is an integral domain, and it is also maximal.
+Let $f\in F[x]$ be the generator of the ideal.
+Then, we can find two polynomials $a,b\in F[x]$ such that 
+\[a(x)f(x)+b(x)g(x)=1\]
+since $g\notin(f)$ implies $1\in(f)+(g)$.
+Putting $x=\alpha$, we deducr that $b(\alpha)$ is the multiplicative inverse of $g(\alpha)$.
+
+(3)$\impl$(2).
+There is $g\in F[x]$ such that $\alpha^{-1}=g(\alpha)$.
+Then, $f\in F[x]$ defined by $f(x)=xg(x)-1$ satisfies $f(\alpha)=0$.
 \end{pf}
 
-\begin{thm}
-Let $E/F$ be a field extension and $\alpha\in E$is algebraic over $F$.
-Then there is a unique monic irreducible polynomial $\mu_{\alpha,F}\in F[x]$ such that $\mu_{\alpha,F}(\alpha)=0$.
-\end{thm}
-\begin{pf}
-The polynomials satisfying $\alpha$ form an ideal of $F[x]$.
-Since $F[x]$ is a PID, there is a generator which can be taken to be monic.
-Since the ideal is prime, the generator is prime(=irreducible), and it is the only irreducible in the ideal.
-\end{pf}
-
-\begin{defn}
+Since the ideal $\ker(\eval_\alpha)$ is maximal, the following definition makes sense.
+\begin{defn}[Minimal polynomial]
 Let $E/F$ be a field extension and $\alpha\in E$ is algebraic.
-A monic irreducible polynomial $\mu_{\alpha,F}\in F[x]$ satisfying $\mu_{\alpha,F}(\alpha)=0$ is called the \emph{minimal polynomial} of $\alpha$ over $F$.
+The unique monic irreducible polynomial $\mu_{\alpha,F}\in F[x]$ satisfying $\mu_{\alpha,F}(\alpha)=0$ is called the \emph{minimal polynomial} of $\alpha$ over $F$.
 \end{defn}
 
+The following theorem says that we can compute the degree of a finite simple extension via finding the minimal polynomial.
 \begin{thm}
 Let $E/F$ be a field extension and $\alpha\in E$ is algebraic.
-Then, $F(\alpha)\cong F[x]/\mu_{\alpha,F}$, and $[F(\alpha):F]=\deg\mu_{\alpha,F}$.
+Then,
+\[F(\alpha)\cong F[x]/(\mu_{\alpha,F}).\]
+In particular, $[F(\alpha):F]=\deg\mu_{\alpha,F}$.
 \end{thm}
 \begin{pf}
-Consider $\eval_\alpha:F[x]\to F(\alpha)$.
-The kernel is characterized as the principal ideal generated by $\mu_{\alpha,F}$.
-Since $\mu_{\alpha,F}$ is irreducible, $F[x]/(\mu_{\alpha,F})$ is a field, which implies the isomorphism $F[x]/(\mu_{\alpha,F})\cong F(\alpha)$.
+The kernel of $\eval_\alpha:F[x]\to F(\alpha)$ is characterized as the principal ideal generated by $\mu_{\alpha,F}$, so we find the isomorphism $F[x]/(\mu_{\alpha,F})\cong F(\alpha)$.
 
 Now we claim the dimension of $F[x]/(f)$ over $F$ is the degree of $f\in F[x]$.
 It is enough to show $\{1,x,\cdots,x^{d-1}\}$ is a basis where $d=\deg f$.
 We can check this with the Euclidean algorithm.
 \end{pf}
+\begin{rmk}
+Polynomials are usually used in order to be provided as a computational tool, so we frequently want to find a suitable minimal polynomial for a given field extension.
+However, note that while an element determines the unique minimal polynomial, a finite simple extension does not specify only one polynomial.
+For example, although $\Q(\sqrt2)=\Q(1+\sqrt2)$, the minimal polynomial of each generator over $\Q$ are $x^2-2$ and $(x-1)^2-2$ respectively.
+You may just find a minimal polynomial that is easy to compute.
+\end{rmk}
 
+
+Now, we begin to define conjugates.
 
 \begin{defn}
 Let $E/F$ be a field extension and $\alpha,\beta\in E$ be algebraic over $F$
-They are said to be \emph{conjugate over $F$} if they have a common minimal polynomial over $F$.
+They are said to be \emph{conjugate over $F$} if they share a common minimal polynomial over $F$.
 \end{defn}
 
-\begin{thm}
-Let  $\alpha,\beta\in\cl F$.
-They are conjugates over $F$ iff a map $F(\alpha)\to F(\beta):\alpha\mapsto\beta$ fixing $F$ is an isomorphism.
+\begin{thm}[Conjugation isomorphism]
+Let $E/F$ be a field extension and $\alpha,\beta\in E$.
+A map
+\[\phi:F(\alpha)\to F(\beta):\alpha\mapsto\beta\]
+fixing $F$ provides a well-defined field isomomorphism iff they are conjugates over $F$.
 \end{thm}
 \begin{pf}
-%%%
+($\Leftarrow$)
+For well-definedness, since the two conditions that $\phi(\alpha)=\beta$ and $\phi$ fixes $F$ determines $\phi$ uniquely, so we just need to show the existence of such $\phi$.
+
+Let $\mu\in F[x]$ be the common minimal polynomial of $\alpha$ and $\beta$ over $F$.
+We will show that a map
+\[\psi:F(\alpha)\to{\sim}F[x]/(\mu)\to{\sim}F(\beta)\]
+is in fact $\phi$.
+The intermediate isomorphisms are defined by the quotient of evaluation maps.
+Since we have $\psi(\alpha)=\beta$ and $\psi$ fixes $F$ clearly, $\phi$ is well-defined.
+The fact that $\phi$ is a field isomorphism is followed by $\psi$.
+
+($\Rightarrow$)
+Suppose $\phi$ is an isomorphism fixing $F$.
+Then, $\phi$ commutes with a polynomial function with coefficients in $F$.
+From
+\[\mu_{\alpha,F}(\beta)=\mu_{\alpha,F}(\phi(\alpha))=\phi(\mu_{\alpha,F}(\alpha))=\phi(0)=0,\]
+we get $\mu_{\beta,F}\mid\mu_{\alpha,F}$.
+The irreducibility of $\mu_{\alpha,F}$ implies $\mu_{\alpha,F}=\mu_{\beta,F}$.
 \end{pf}
 
 
@@ -142,14 +222,61 @@ They are conjugates over $F$ iff a map $F(\alpha)\to F(\beta):\alpha\mapsto\beta
 
 \subsection{Algebraic extensions}
 
+In Galois theory, we will not care an element that is not algebriac.
+Therefore, 
+The main interests in Galois theory will be restricted to algebraic extensions.
+For people who knows the category theory, an algebraic extension is just a direct limit of finite simple extensions.
+
 \begin{defn}
 A field extension $E/F$ is called \emph{algebraic} if all elements $\alpha\in E$ is algebraic over $F$.
 \end{defn}
+The easiest example of an algebraic extension is a finite extension.
+The relations between finite extensions and algebraic extension are as follows.
+\begin{thm}
+For finite extensions and algebraic extensions, we have:
+\begin{cond}
+\item a finite extension is algebraic,
+\item a simple algebraic extension is finite.
+\end{cond}
+\end{thm}
+\begin{pf} Easy. \end{pf}
 
-Equivalently,
+
+Now, we are going to get some criteria for determining or constructing algebraic extensions.
+Before that, if we name the set of all algebraic elements, then the proof becomes rather easy.
+
 \begin{defn}
-A field extension is called \emph{algebraic} if it is a direct limit of finite extensions.
+The set of all algebraic elements in $E$ over $F$ is called \emph{relative algebraic closure} and denoted by $\cl F_E$.
 \end{defn}
+\begin{prop}
+A relative algebraic closure is a field.
+\end{prop}
+\begin{pf}
+%%%
+\end{pf}
+\begin{lem}
+Let $E/F$ be a field extension and $L>E$.
+Then,
+\begin{cond}
+\item $\cl F_L<\cl E_L$,
+\item $\cl{(\cl F_E)}_E=\cl F_E$.
+\end{cond}
+\begin{pf}
+%%%
+\end{pf}
+\end{lem}
+\begin{lem}\label{relalgcl}
+A field extension $E/F$ is algebraic iff $\cl E_L=\cl F_L$ for all field $L>E$.
+\end{lem}
+\begin{pf}
+%%%
+\end{pf}
+\begin{rmk}
+In fact, it is sufficient to check $\cl E_L=\cl F_L$ just for one algebraically closed field $L$ in Lemma \ref{relalgcl}, but since we have not defined the algebraically closed fields yet, we let $L$ be all superfields of $E$.
+\end{rmk}
+
+Theorems what we want to know are given as follows.
+They are all obviously proved from the lemmas above, so we give elementary proofs here.
 
 \begin{thm}
 Let $K$ be an intermediate field of a field extension $E/F$.
@@ -158,20 +285,14 @@ Then, $E/F$ is algebraic iff $E/K$ and $K/F$ are algebraic.
 \begin{pf}
 One direction is clear.
 Suppose $E/K$ and $K/F$ are algebraic.
-Take $\alpha\in E$ and $\mu_{\alpha,K}$ be the minimal polynomial of $\alpha$ over $K$.
-Let $L$ be a field generated by $F$ and the coefficients of $\mu_{\alpha,K}$.
-Then, $F(\alpha)/L$ and $L/F$ are finite.
+Take $\alpha\in E$ and let $L$ be a field generated by $F$ and the coefficients of $\mu_{\alpha,K}$ so that $\mu_{\alpha,K}\in L[x]$ and $L(\alpha)/L$ is finite.
+The extension $L/F$ is finite since $K/F$ is algebraic.
+Since $L(\alpha)/F$ is finite, $F(\alpha)/F$ is finite.
 \end{pf}
 
-\begin{prop}
-A simple extension is finite iff it is algebraic.
-\end{prop}
-\begin{pf} Trivial. \end{pf}
-
-
 \begin{thm}
-Let $E/F$ be a field extension.
-The set of all algebraic elements in $E$ over $F$ forms a field.
+Let $E/F$ and $E'/F$ are algebraic extensions in a superfield $L$.
+Then, the compositum $EE'/F$ is algebriac.
 \end{thm}
 \begin{pf}
 %%%
@@ -180,7 +301,13 @@ The set of all algebraic elements in $E$ over $F$ forms a field.
 
 
 
-\subsection{Algebraic closure}
+
+
+
+
+
+
+\subsection{Algebraic closures}
 
 
 
@@ -194,12 +321,16 @@ A field $F$ is called \emph{algebraically closed} if it has no proper algebraic 
 A field $\cl F$ is called an \emph{algebraic closure} if $\cl F$ is algebraically closed field and $\cl F/F$ is algebraic.
 \end{defn}
 
-\begin{thm}[Existence of algebraic closure]
-Every field has an algebraic closure.
+There is another important characterization of algebraically closed fields.
+
+\begin{thm}
+A field $F$ is algebraically closed iff every polynomial in $F[x]$ has a root in $F$.
 \end{thm}
-\begin{pf}
-%%%
-\end{pf}
+
+If $f$ has a root $\alpha$, then we can inductively apply this theorem for a new polynomial $f(x)/(x-\alpha)$ of a lower degree to make the complete linear factorization.
+In particular, the theorem implies that algebraically closedness is a internal property; it is preserved under isomorphisms.
+
+
 
 
 \begin{thm}[Isomorphism extension theorem]
@@ -209,14 +340,15 @@ Let $\cl F'$ be an algebraic closure of $F'$.
 Then, there is an embedding $\tld\phi:E\to\cl F'$ which extends $\phi$.
 \end{thm}
 \begin{pf}
-Let $S$ be the set of all field homomorphisms $K\to\cl F'$ which extends $\phi$ for all $K<E$.
-Use the Zorn's lemma.
-Let $\tld\phi:K\to\cl F'$ be a maximal element.
+Let $S$ be the set of all field homomorphisms $K\to\cl F'$ which extends $\phi$ and satisfies $K<E$.
+The set $S$ is nonempty since $\phi\in S$ and satisfies the chain condition since the increasing union defines the upper bound of chain.
+Use the Zorn's lemma on $S$ to obtain a maximal element $\tld\phi:K\to\cl F'$.
+We want to show $K=E$.
 
 Suppose $K$ is a proper subfield of $E$ and let $\alpha\in E\setminus K$.
-Let $\alpha'\in\cl F'$ be a root of $\phi_*\mu_{\alpha,F}\in F'[x]$.
-Then, we can construct a field homomorphism $K(\alpha)\to\tld\phi(K)(\alpha')$.
-It leads a contradiction to the maximality.
+Let $\alpha'\in\cl F'$ be a root of the pushforward polynomial $\phi_*(\mu_{\alpha,F})\in F'[x]$.
+Then, we can construct a field homomorphism $K(\alpha)\to\cl F':\alpha\mapsto\alpha'$.
+It leads a contradiction to the maximality of $\tld\phi$.
 Therefore, $K=E$.
 \end{pf}
 
@@ -225,8 +357,20 @@ Therefore, $K=E$.
 Algebraic closure is unique up to isomorphism.
 \end{thm}
 \begin{pf}
+Suppose there are two algebraic closures $\cl F_1, \cl F_2$ of a field $F$.
+By the isomorphism extension theorem, we have a field homomorphism $\phi:\cl F_1\to\cl F_2$ which extends the identitiy map on $F$.
+Since the image $\phi(F_1)$ is also algebraically closed and the field extension $F_2/\phi(F_1)$ is algebraic, we must have $\phi(F_1)=F_2$ by the definition of algebraically closedness.
+Thus, $\phi$ is surjective so that it is an isomorphism.
+\end{pf}
+
+\begin{thm}[Existence of algebraic closure]
+Every field has an algebraic closure.
+\end{thm}
+\begin{pf}
 %%%
 \end{pf}
+
+
 
 \begin{prop}
 Let $E/F$ be a field extension with algebraically closed field $E$.
@@ -237,6 +381,9 @@ The set of algebraic elements is algebraically closed.
 %%%
 \end{pf}
 
+This is a relation with relative algebraic closure: the relative algebraic closure in a algebraically closed field is really an algebraically closure.
+The proposition allows us to choose a standard algebraic closure when provided a large superfield like $\C$.
+In number theory, algebraically closed fields are all considered to be in $\C$. 
 
 
 
@@ -251,12 +398,27 @@ The set of algebraic elements is algebraically closed.
 
 
 
-\section{Separable extension}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\section{Separable extensions}
 
 
 
 \begin{defn}
-A polynomial $f\in F[x]$ is called \emph{separable} if it is square-free in$\cl F[x]$.
+A polynomial $f\in F[x]$ is called \emph{separable} if it is square-free in $\cl F[x]$.
 An element $\alpha\in\cl F'$ is called \emph{separable} over $F$ if $\mu_{\alpha,F}$ is separable.
 \end{defn}
 
@@ -282,7 +444,7 @@ All roots of an irreducible polynomial has same multiplicity.
 \begin{thm}
 Let $K$ be an intermediate field of a finite extension $E/F$.
 Then,
-\[\{E:F\}|[E:F]\]
+\[\{E:F\}\mid[E:F]\]
 \end{thm}
 \begin{pf}
 %%%
@@ -292,7 +454,7 @@ Then,
 
 
 
-\subsection{Separable closure}
+\subsection{Separable closures}
 
 
 
@@ -308,7 +470,10 @@ Then,
 
 
 
-\section{Normal extension}
+\section{Normal extensions}
+
+
+
 
 
 

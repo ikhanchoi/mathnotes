@@ -476,8 +476,17 @@ A topological base is a kind of global version of filter base.
 
 \begin{defn}
 Let $\cB$ be a topological base on $X$ and $x\in X$.
-A filter base at $x$ is called a \emph{local base} of $x$ if it is equivalent to the filter base $\{U:x\in U\in\cB\}$.
+A filter base at $x$ is called a \emph{local base} at $x$ if it is equivalent to the filter base $\{U:x\in U\in\cB\}$.
+If a local base is a filter at $x$, then it is called \emph{neighborhood filter} of $x$.
 \end{defn}
+All the followings are synonyns:
+\begin{cond}
+\item local base
+\item neighborhood system
+\item fundamental system of neighborhoods
+\item complete system of neighborhoods
+\item filter base of neighborhood filter
+\end{cond}
 
 As we have done in the previous section, we can settle the refinement order on the set of topological bases.
 
@@ -617,6 +626,52 @@ uniformness of metric
 % 1-3-2
 \subsection{Entourages}
 
+\subsection{Uniform structure via entourages}
+
+Uniform spaces are generalization of metric spaces.
+The uniform structure is required to define uniform continuity, uniform convergence, completeness, etc.
+Although the definition of uniform structure is not so easy at first, they have enormous advantage to learn.
+For example, they are extremely useful in functional analysis since every compatible topology on algebraic structures such as topological group and topological vector space must admit a natural uniform structure.
+Hence, we can use completeness or something uniform without unnecessary concerns.
+
+\begin{defn}[Uniform space]
+A \emph{uniform space} is a set $X$ equipped with a filter of binary relations $\cU\subset\cP(X^2)$ such that for every $E\in\cU$,
+\begin{cond}
+\item reflexivity: $(x,x)\in E$ for all $x\in X$,
+\item triangle inequality: $\exists E'\in\cU:\,E'\circ E'\subset E$,
+\item symmetry: $E^{-1}\in\cU$,
+\end{cond}
+where $\Delta_X=\{(x,x):x\in X\}$ and
+\[E\circ F=\{(x,z):(x,y)\in E,(y,z)\in F\},\quad E^{-1}=\{(y,x):(x,y)\in E\}.\]
+The collection $\cU$ is called a \emph{uniformity}, and a relation $E\in\cU$ is called an \emph{entourage}.
+If $(x,y)\in E$, then we say $x$ and $y$ are $E$-close.
+\end{defn}
+\begin{defn}
+Let $(X,\cU)$ be a uniform space.
+Let $\tau$ be a set containing all $U\subset X$ such that for every $x\in U$ there is an entourage $E$ with $E_x\subset U$.
+Then $\tau$ defines a topology on $X$, which is called \emph{uniform topology}, or \emph{induced topology}.
+\end{defn}
+\begin{defn}
+A uniform space is called \emph{Hausdorff} if there is an entourage $E$ such that $x\in E$ and $y\notin E$ for every pair of distinct points $x,y\in X$.
+This is equivalent for the induced topology to be Hausdorff.
+\end{defn}
+
+Note that the axioms for the definition of uniform spaces bear a similarity with the one of metric spaces.
+For one exception, the Hausdorffness implies the nondegeneracy.
+A uniform space is defined by the collection of relations that embody the concept of nearness.
+Unlike neighborhoods in general topological space, an entourage measures the nearness not pointwisely(locally) but uniformly(globally).
+We have the following hierarchy:
+\[\text{topological space} \supset \text{uniform space} \supset \text{metric space}.\]
+\begin{ex}
+Let $G$ be a topological group.
+Let $U$ be an open neighborhood of the identity $e$.
+Define
+\[E_U:=\{(g,h):gh^{-1}\in U\}.\]
+Then, the set of $E_U$ forms a uniformity.
+The difficult part is the triangle inequality, which can be shown from the continuity of group operation.
+\end{ex}
+
+
 
 
 % 1-3-3
@@ -625,9 +680,21 @@ uniformness of metric
 Metric can be regarded as the ``countably'' uniform structure in some sense. 
 In other texts, for this reason, one frequently introduces metric instead of uniformity in order to avoid superfluously complicated and less intuitive notions of uniform structures, when only doing elementary analysis not requiring uncountable local bases.
 
-A fundamental system of entourages can be given by the pseudo balls.
 
 
+One of the mostly used way of characterizing uniformity is to induce the fundamental system of entourages from a family of pseudometrics.
+The manner is simple: just take all pseudoballs as the fundamental system of entourages.
+\begin{defn}
+Let 
+\end{defn}
+The proof of the following theorem is based on Bourbaki's text (General topology part2, chapter 9).
+
+\begin{thm}
+Every uniformity is induced by a family of pesudometrics.
+\end{thm}
+\begin{pf}
+
+\end{pf}
 
 
 

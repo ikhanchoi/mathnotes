@@ -6,7 +6,6 @@
 
 \usepackage[margin=100pt]{geometry}
 
-
 \let\@@title\title
 \renewcommand{\title}[1]{
   \def\ltitle{#1}
@@ -19,7 +18,9 @@
   \@@author{\small\lauthor}
 }
 
-\author{Ikhan Choi}
+\renewcommand{\datename}{\textit{Last Update}:}
 
+\author{Ikhan Choi}
+\date{\today}
 
 \makeatother
