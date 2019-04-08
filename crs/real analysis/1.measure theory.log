@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99991 (TeX Live 2014/W32TeX) (preloaded format=xelatex 2015.4.30)  16 FEB 2019 21:15
+This is XeTeX, Version 3.14159265-2.6-0.99991 (TeX Live 2014/W32TeX) (preloaded format=xelatex 2015.4.30)  8 APR 2019 22:57
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -424,16 +424,17 @@ Package: xparse 2014/11/25 v5471 L3 Experimental document command parser
 )
 \c@thm=\count144
 \c@defn=\count145
-\c@prob=\count146
+\c@ex=\count146
+\c@prb=\count147
 .................................................
 . LaTeX info: "xparse/define-command"
 . 
-. Defining command \Case with sig. ' r[] +o ' on line 56.
+. Defining command \Case with sig. ' r[] +g ' on line 58.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
 . 
-. Defining command \Step with sig. ' r[] +o ' on line 57.
+. Defining command \Step with sig. ' r[] +g ' on line 59.
 .................................................
 
 (c:/Program Files (x86)/texlive/2014/texmf-dist/tex/latex/enumitem/enumitem.sty
@@ -442,13 +443,13 @@ Package: enumitem 2011/09/28 v3.5.2 Customized lists
 \enit@outerparindent=\dimen157
 \enit@toks=\toks27
 \enit@inbox=\box45
-\enitdp@description=\count147
+\enitdp@description=\count148
 )
-\c@condi=\count148
-\enitdp@cond=\count149
-\c@exeri=\count150
-\c@exerii=\count151
-\enitdp@exer=\count152
+\c@condi=\count149
+\enitdp@cond=\count150
+\c@exeri=\count151
+\c@exerii=\count152
+\enitdp@exer=\count153
  (c:/Program Files (x86)/texlive/2014/texmf-dist/tex/latex/tikz-cd/tikz-cd.sty
 Package: tikz-cd 2014/10/30 v0.9e Commutative diagrams with tikz
 
@@ -527,10 +528,10 @@ ysfiltered.code.tex
 \pgf@yc=\dimen169
 \w@pgf@writea=\write3
 \r@pgf@reada=\read1
-\c@pgf@counta=\count153
-\c@pgf@countb=\count154
-\c@pgf@countc=\count155
-\c@pgf@countd=\count156
+\c@pgf@counta=\count154
+\c@pgf@countb=\count155
+\c@pgf@countc=\count156
+\c@pgf@countd=\count157
 \t@pgf@toka=\toks32
 \t@pgf@tokb=\toks33
 \t@pgf@tokc=\toks34
@@ -553,13 +554,13 @@ File: pgfsys-dvipdfmx.def 2013/08/28  (rcs-revision 1.12)
 sys-common-pdf.def
 File: pgfsys-common-pdf.def 2013/10/10  (rcs-revision 1.13)
 )
-\pgfsys@objnum=\count157
+\pgfsys@objnum=\count158
 )))
 (c:/Program Files (x86)/texlive/2014/texmf-dist/tex/generic/pgf/systemlayer/pgf
 syssoftpath.code.tex
 File: pgfsyssoftpath.code.tex 2013/09/09  (rcs-revision 1.9)
-\pgfsyssoftpath@smallbuffer@items=\count158
-\pgfsyssoftpath@bigbuffer@items=\count159
+\pgfsyssoftpath@smallbuffer@items=\count159
+\pgfsyssoftpath@bigbuffer@items=\count160
 )
 (c:/Program Files (x86)/texlive/2014/texmf-dist/tex/generic/pgf/systemlayer/pgf
 sysprotocol.code.tex
@@ -594,7 +595,7 @@ l.code.tex)
 (c:/Program Files (x86)/texlive/2014/texmf-dist/tex/generic/pgf/math/pgfmathpar
 ser.code.tex
 \pgfmath@dimen=\dimen170
-\pgfmath@count=\count160
+\pgfmath@count=\count161
 \pgfmath@box=\box47
 \pgfmath@toks=\toks35
 \pgfmath@stack@operand=\toks36
@@ -620,7 +621,7 @@ ctions.misc.code.tex)
 ctions.integerarithmetics.code.tex)))
 (c:/Program Files (x86)/texlive/2014/texmf-dist/tex/generic/pgf/math/pgfmathflo
 at.code.tex
-\c@pgfmathroundto@lastzeros=\count161
+\c@pgfmathroundto@lastzeros=\count162
 ))
 (c:/Program Files (x86)/texlive/2014/texmf-dist/tex/generic/pgf/basiclayer/pgfc
 orepoints.code.tex
@@ -658,7 +659,7 @@ File: pgfcorescopes.code.tex 2013/10/09  (rcs-revision 1.44)
 \pgfpic=\box48
 \pgf@hbox=\box49
 \pgf@layerbox@main=\box50
-\pgf@picture@serial@count=\count162
+\pgf@picture@serial@count=\count163
 )
 (c:/Program Files (x86)/texlive/2014/texmf-dist/tex/generic/pgf/basiclayer/pgfc
 oregraphicstate.code.tex
@@ -693,7 +694,7 @@ File: pgfcorearrows.code.tex 2013/11/07  (rcs-revision 1.40)
 oreshade.code.tex
 File: pgfcoreshade.code.tex 2013/07/15  (rcs-revision 1.15)
 \pgf@max=\dimen194
-\pgf@sys@shading@range@num=\count163
+\pgf@sys@shading@range@num=\count164
 )
 (c:/Program Files (x86)/texlive/2014/texmf-dist/tex/generic/pgf/basiclayer/pgfc
 oreimage.code.tex
@@ -762,7 +763,7 @@ Package: tikz 2013/12/13 v3.0.0 (rcs-revision 1.142)
 (c:/Program Files (x86)/texlive/2014/texmf-dist/tex/generic/pgf/libraries/pgfli
 braryplothandlers.code.tex
 File: pgflibraryplothandlers.code.tex 2013/08/31 v3.0.0 (rcs-revision 1.20)
-\pgf@plot@mark@count=\count164
+\pgf@plot@mark@count=\count165
 \pgfplotmarksize=\dimen199
 )
 \tikz@lastx=\dimen200
@@ -776,19 +777,19 @@ Normal \dimen register pool exhausted, switching to extended pool.
 \tikz@figbox@bg=\box54
 \tikz@tempbox=\box55
 \tikz@tempbox@bg=\box56
-\tikztreelevel=\count165
-\tikznumberofchildren=\count166
-\tikznumberofcurrentchild=\count167
-\tikz@fig@count=\count168
+\tikztreelevel=\count166
+\tikznumberofchildren=\count167
+\tikznumberofcurrentchild=\count168
+\tikz@fig@count=\count169
 
 (c:/Program Files (x86)/texlive/2014/texmf-dist/tex/generic/pgf/modules/pgfmodu
 lematrix.code.tex
 File: pgfmodulematrix.code.tex 2013/09/17  (rcs-revision 1.8)
-\pgfmatrixcurrentrow=\count169
-\pgfmatrixcurrentcolumn=\count170
-\pgf@matrix@numberofcolumns=\count171
+\pgfmatrixcurrentrow=\count170
+\pgfmatrixcurrentcolumn=\count171
+\pgf@matrix@numberofcolumns=\count172
 )
-\tikz@expandcount=\count172
+\tikz@expandcount=\count173
 
 (c:/Program Files (x86)/texlive/2014/texmf-dist/tex/generic/pgf/frontendlayer/t
 ikz/libraries/tikzlibrarytopaths.code.tex
@@ -815,52 +816,27 @@ File: pgflibraryarrows.meta.code.tex 2013/12/13 v3.0.0 (rcs-revision 1.12)
 .................................................
 . LaTeX info: "xparse/define-environment"
 . 
-. Defining environment 'cd' with sig. '' on line 105.
+. Defining environment 'cd' with sig. '' on line 120.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-environment"
 . 
-. Defining environment 'es' with sig. '' on line 111.
+. Defining environment 'es' with sig. '' on line 128.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
 . 
-. Defining command \pd with sig. ' o g g g ' on line 145.
+. Defining command \pd with sig. ' o g g g ' on line 173.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
 . 
-. Defining command \dd with sig. ' o g g g ' on line 154.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-. 
-. Defining command \abs with sig. 'm' on line 175.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-. 
-. Defining command \norm with sig. 'm' on line 176.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-. 
-. Defining command \flr with sig. 'm' on line 177.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-. 
-. Defining command \ceil with sig. 'm' on line 178.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-. 
-. Defining command \inn with sig. 'mm' on line 179.
+. Defining command \dd with sig. ' o g g g ' on line 182.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-environment"
 . 
-. Defining environment 'pde' with sig. 's' on line 198.
+. Defining environment 'pde' with sig. 's' on line 213.
 .................................................
 
 (c:/Program Files (x86)/texlive/2014/texmf-dist/tex/latex/mathtools/empheq.sty
@@ -874,20 +850,20 @@ ty
 Package: mathtools 2014/07/16 v1.15 mathematical typesetting tools
  (c:/Program Files (x86)/texlive/2014/texmf-dist/tex/latex/tools/calc.sty
 Package: calc 2014/10/28 v4.3 Infix arithmetic (KKT,FJ)
-\calc@Acount=\count173
-\calc@Bcount=\count174
+\calc@Acount=\count174
+\calc@Bcount=\count175
 \calc@Adimen=\dimen265
 \calc@Bdimen=\dimen266
 \calc@Askip=\skip68
 \calc@Bskip=\skip69
 LaTeX Info: Redefining \setlength on input line 75.
 LaTeX Info: Redefining \addtolength on input line 76.
-\calc@Ccount=\count175
+\calc@Ccount=\count176
 \calc@Cskip=\skip70
 )
 LaTeX Info: Thecontrolsequence`\['isalreadyrobust on input line 129.
 LaTeX Info: Thecontrolsequence`\]'isalreadyrobust on input line 129.
-\g_MT_multlinerow_int=\count176
+\g_MT_multlinerow_int=\count177
 \l_MT_multwidth_dim=\dimen267
 \origjot=\skip71
 \l_MT_shortvdotswithinadjustabove_dim=\dimen268
@@ -897,13 +873,13 @@ LaTeX Info: Thecontrolsequence`\]'isalreadyrobust on input line 129.
 \l_MT_above_shortintertext_sep=\dimen272
 \l_MT_below_shortintertext_sep=\dimen273
 )
-\l_EQ_equationtype_int=\count177
-\l_EQ_alignmentmode_int=\count178
+\l_EQ_equationtype_int=\count178
+\l_EQ_alignmentmode_int=\count179
 \l_EQ_totalwidth_dim=\dimen274
 \l_EQ_displaywidth_dim=\dimen275
 \l_EQ_temp_linewidth_dim=\dimen276
 \EmphEqdelimitershortfall=\dimen277
-\EmphEqdelimiterfactor=\count179
+\EmphEqdelimiterfactor=\count180
 \g_EQ_toptag_height_dim=\dimen278
 \g_EQ_bottomtag_depth_dim=\dimen279
 \g_EQ_toprow_height_dim=\dimen280
@@ -911,17 +887,42 @@ LaTeX Info: Thecontrolsequence`\]'isalreadyrobust on input line 129.
 \g_EQ_widesttag_dim=\dimen282
 \EQ_mathdisplay_box=\box57
 \EQ_tag_box=\box58
-\g_EQ_temprow_int=\count180
+\g_EQ_temprow_int=\count181
 )
 .................................................
 . LaTeX info: "xparse/define-environment"
 . 
-. Defining environment 'pdes' with sig. '' on line 214.
+. Defining environment 'pdes' with sig. '' on line 229.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \abs with sig. 'm' on line 286.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \norm with sig. 'm' on line 287.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \flr with sig. 'm' on line 288.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \ceil with sig. 'm' on line 289.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \inn with sig. 'mm' on line 290.
 .................................................
 .................................................
 . LaTeX info: "xparse/redefine-command"
 . 
-. Redefining command \to with sig. 'g' on line 267.
+. Redefining command \to with sig. 'g' on line 328.
 .................................................
 ) (./1.measure theory.aux)
 \openout1 = `"1.measure theory.aux"'.
@@ -968,8 +969,8 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 * \textheight=594.96999pt
 * \oddsidemargin=27.73001pt
 * \evensidemargin=27.73001pt
-* \topmargin=5.73001pt
-* \headheight=8.0pt
+* \topmargin=3.73001pt
+* \headheight=10.0pt
 * \headsep=14.0pt
 * \topskip=10.0pt
 * \footskip=18.0pt
@@ -995,7 +996,7 @@ Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
 ring.sty
 Package: gettitlestring 2010/12/03 v1.4 Cleanup title references (HO)
 )
-\c@section@level=\count181
+\c@section@level=\count182
 )
 LaTeX Info: Redefining \ref on input line 6.
 LaTeX Info: Redefining \pageref on input line 6.
@@ -1030,44 +1031,60 @@ Contents
 
 ]
 Chapter 1
-[5]
-
-Package Fancyhdr Warning: \headheight is too small (8.0pt): 
- Make it at least 13.0pt.
- We now make it that large for the rest of the document.
- This may cause the page layout to be inconsistent, however.
-
-[6]
-
-Package Fancyhdr Warning: \headheight is too small (8.0pt): 
- Make it at least 13.0pt.
- We now make it that large for the rest of the document.
- This may cause the page layout to be inconsistent, however.
-
-[7] [8
+[5] [6
 
 
 ]
 Chapter 2
+[7] [8
+
+
+]
+Chapter 3
+[9]
+
+LaTeX Font Warning: Command \SMALL invalid in math mode on input line 55.
+
+
+LaTeX Font Warning: Command \SMALL invalid in math mode on input line 55.
+
+
+Package Fancyhdr Warning: \headheight is too small (10.0pt): 
+ Make it at least 13.0pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[10]
+
+Package Fancyhdr Warning: \headheight is too small (10.0pt): 
+ Make it at least 13.0pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[11] [12
+
+
+]
+Chapter 4
 
 Package hyperref Warning: Difference (2) between bookmark levels is greater 
-(hyperref)                than one, level fixed on input line 91.
+(hyperref)                than one, level fixed on input line 108.
 
-[9]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 123.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 123.
+[13]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 140.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 140.
  (./1.measure theory.aux)
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 123.
-Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 123.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 123.
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 140.
+Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 140.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 140.
  ) 
 Here is how much of TeX's memory you used:
- 27866 strings out of 493724
- 521383 string characters out of 6141171
- 553233 words of memory out of 5000000
- 30699 multiletter control sequences out of 15000+600000
+ 27998 strings out of 493724
+ 524198 string characters out of 6141171
+ 556514 words of memory out of 5000000
+ 30831 multiletter control sequences out of 15000+600000
  12706 words of font info for 48 fonts, out of 8000000 for 9000
  1489 hyphenation exceptions out of 8191
- 68i,13n,84p,10390b,354s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 68i,19n,84p,10390b,1011s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on 1.measure theory.pdf (9 pages).
+Output written on 1.measure theory.pdf (13 pages).

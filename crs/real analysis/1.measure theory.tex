@@ -7,19 +7,24 @@
 \maketitle
 \tableofcontents
 
+\chapter{Measure spaces}
+
+
+\chapter{Riesz spaces}
 
 
 
 \chapter{Topological measures}
 
 \section{Radon measures}
-In LCH, compact finiteness and locally finiteness are equivalent.
+In this section, we assume every base space is locally compact Hausdorff.
+In locally compact Hausdorff spaces, compact finiteness and locally finiteness are equivalent.
 \begin{defn}
-A \emph{Radon measure} is a Borel measure which is
+A \emph{Radon measure} is a Borel measure which satisfies the following three conditions:
 \begin{cond}
 \item outer regular on all Borel sets,
 \item inner regular on all open sets,
-\item compact finite.
+\item locally finite.
 \end{cond}
 \end{defn}
 
@@ -42,17 +47,26 @@ Then, we have $K\setminus V\subset E$ and
 \[\mu(K\setminus V)=blabla\]
 \end{pf}
 
-												cptfin Borel regular => Radon => cptfin Borel
-sigma-cpt											cptfin Borel regular == Radon => cptfin Borel
-second countable => every open is sigma cpt			cptfin Borel regular == Radon == cptfin Borel
+\begin{center}
+\begin{tikzcd}[column sep={120pt,between origins}]
+\begin{tabular}{c}\text{locally finite}\\\text{Borel regular}\end{tabular}\ar{r} &
+\text{\quad Radon\quad} \ar{r}\ar[dashed, bend right]{l}{\scriptsize X\text{ is $\sigma$-compact}} &
+\begin{tabular}{c}\text{locally finite}\\\text{Borel}\end{tabular} \ar[dashed, bend left]{ll}{\scriptsize X\text{ is second countable}}
+\end{tikzcd}
+\end{center}
+
+\[L_{\text{loc}}^1=\text{absolutely continuous measures}\subset\text{Radon measures}\subset\cD'.\]
 
 \begin{cor}
 If $X$ is $\sigma$-compact, then a compact finite Borel measure is Radon if and only if it is regular.
 \end{cor}
 
 \begin{thm}
-If $X$ is second countable, then every compact finite Borel measure is regular.
+If every open set in $X$ is $\sigma$-compact, then every locally finite Borel measure is regular.
 \end{thm}
+\begin{prop}
+In a second countable space, every open set is $\sigma$-compact.
+\end{prop}
 
 
 
@@ -60,6 +74,9 @@ If $X$ is second countable, then every compact finite Borel measure is regular.
 \section{The Riesz-Markov-Kakutani theorem}
 In this section, we always assume $X$ is a locally compact Hausdorff space.
 Hence we can use the Urysohn lemma: If $K$ is compact and $F$ is closed, then we can find a continuous function $f:X\to[0,1]$ such that $f|_K=1$ and $f|_F=0$.
+
+There are two Riesz-Markov-Kakutani theorems: the first theorem describes the positive elements in $C_c(X)^*$ as Radon measures when LF topology is assumed, and the second theorem describes $C_c(X)^*$ as the space of finite Radon measures when uniform topology is assumed.
+
 \subsection{The first theorem}
 Positivity of linear functional itself implies a rather strong continuity property.
 \begin{thm}
