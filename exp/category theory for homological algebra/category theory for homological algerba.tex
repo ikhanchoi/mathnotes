@@ -9,7 +9,7 @@
 
 \section{Additive category}
 
-There are three main concepts we need to catch:
+There are three main concepts that we are going to grasp in this note:
 \begin{cond}
 \item zero morphisms and zero object;
 \item biproduct;
@@ -17,12 +17,13 @@ There are three main concepts we need to catch:
 \end{cond}
 
 \subsection{Zeros}
-We get started from definitions.
+
+Let us get started from the definitions of zero morphisms and zero objects.
 \begin{defn}
 A \emph{zero object} is an object which is initial and terminal.
 \end{defn}
 \begin{defn}
-A category is said to have \emph{zero morphisms} if every hom-set contains a specified morphism denoted by 0 that satisfies $0\circ f=0$ and $f\circ 0=0$ for all morphisms $f$.
+A category is said to have \emph{zero morphisms} if every hom-set contains a specified morphism denoted by 0 that satisfies $0f=0$ and $f0=0$ for all morphisms $f$.
 \end{defn}
 
 
@@ -41,10 +42,10 @@ For example, the following proposition is well-admitted as the definition of sem
 
 
 
-\begin{cd}
-\text{Additive category} \ar{d}\ar{r} & \text{Semiadditive category} \ar{d}\ar{r} & \text{Pointed category} \ar{d} \\
-\text{$\cat{Ab}$-enriched category} \ar{r}\lds{u}{\text{zero object}} & \text{$\cat{CMon}$-enriched category} \ar{r}\lds{u}{\text{zero object}} & \text{$\cat{Set_*}$-enriched category} \lds{u}{\text{zero object}}\\
-\end{cd}
+\begin{rd}
+Additive category \ar{d}\ar{r} & Semiadditive category \ar{d}\ar{r} & Pointed category \ar{d} \\
+$\cat{Ab}$-enriched category \ar{r}\lds{u}{zero object} & $\cat{CMon}$-enriched category \ar{r}\lds{u}{zero object} & $\cat{Set_*}$-enriched category \lds{u}{zero object}\\
+\end{rd}
 
 
 \subsection{Biproducts}

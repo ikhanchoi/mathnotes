@@ -11,7 +11,7 @@
 
 
 
-\chapter{Topological vector spaces}
+\chapter{Category of topological vector spaces}
 
 \section{Elementary properties}
 definition - how to use the continuity of vector space operations effectively
@@ -23,25 +23,15 @@ boundedness and continuity
 
 
 \section{Classification}
-\[
-\begin{tikzcd}[row sep={50pt,between origins}, column sep={60pt,between origins}]
-& \text{inner product} \ar{d} & \\
-& \begin{tabular}{c}finite\\seminorms\\(= normable)\end{tabular} \ar{d} & \\
-& \begin{tabular}{c}countable\\seminorms\end{tabular} \ar{ld}\ar{rd} & \\
-  \begin{tabular}{c}countable\\pseudometrics\\(= metrizable)\end{tabular} \ar{rd} &
-& \begin{tabular}{c}uncountable\\seminorms\\(= locally convex)\end{tabular} \ar{ld} \\
-& \begin{tabular}{c}uncountable\\pseudometrics\end{tabular}
-\end{tikzcd}
-\quad
-\begin{tikzcd}[row sep={50pt,between origins}, column sep={60pt,between origins}]
-& \text{Hilbert space} \ar{d} & \\
-& \text{Banach space} \ar{d} & \\
-& \text{Fr\'echet space} \ar{ld}\ar{rd} & \\
-  \text{F-space} \ar{rd} &
-& \text{(no name)} \ar{ld} \\
-& \text{(no name)}
-\end{tikzcd}
-\]
+\begin{rd}[row sep={50pt,between origins}, column sep={60pt,between origins}]
+& inner product \ar{d} &&& Hilbert space \ar{d} & \\
+& \block{finite\\seminorms\\(= normable)} \ar{d} &&& Banach space \ar{d} & \\
+& \block{countable\\seminorms} \ar{ld}\ar{rd} &&& Fr\'echet space \ar{ld}\ar{rd} & \\
+  \block{countable\\pseudometrics\\(= metrizable)} \ar{rd} &
+& \block{uncountable\\seminorms\\(= locally convex)} \ar{ld} &
+  F-space \ar{rd} && (no name) \ar{ld} \\
+& \block{uncountable\\pseudometrics} &&& (no name) &
+\end{rd}
 
 \begin{prop}
 Let $\rho$ be a pseudometric.
@@ -57,7 +47,7 @@ I say this as $\frac12B(0,2)$ is ``fatter'' than $B(0,1)$.
 
 
 
-\chapter{Barreled spaces}
+\chapter{Barreled spaces and bornological spaces}
 
 \subsection{The Baire category theorem}
 

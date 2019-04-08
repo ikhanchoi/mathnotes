@@ -113,25 +113,33 @@
 \RequirePackage{tikz-cd,xparse}
 \NewDocumentEnvironment{cd}{}
   {
-    \[\begin{tikzcd}
     \renewcommand{\mn}{\ar[tail]}
     \renewcommand{\ep}{\ar[two heads]}
+    \[\begin{tikzcd}
   }
   {\end{tikzcd}\]}
 \NewDocumentEnvironment{es}{}
   {
-    \[\begin{tikzcd}[column sep=small,ampersand replacement=\&]
     \renewcommand{\>}{\ar{r}\&}
     \renewcommand{\mn}{\ar[tail]}
     \renewcommand{\ep}{\ar[two heads]}
+    \tikzcdset{column sep=small,ampersand replacement=\&}
+    \[\begin{tikzcd}
   }
   {\end{tikzcd}\]}
-
+\NewDocumentEnvironment{rd}{}
+  {
+    \tikzcdset{math mode=false,labels={font=\scriptsize}}
+    \[\begin{tikzcd}
+  }
+  {\end{tikzcd}\]}
+  
+\newcommand{\block}[1]{\begin{tabular}{c}#1\end{tabular}}
 \def\lar{\ar[bend left]}
-\def\rar{\ar[bend right]}
+\def\rar{\ar[bend right,swap]}
 \def\ds{\ar[dashed]}
 \def\lds{\ar[dashed,bend left]}
-\def\rds{\ar[dashed,bend right]}
+\def\rds{\ar[dashed,bend right,swap]}
 \def\hk{\ar[hook]}
 
 %	\begin{es}  0 \> A \> B \> C \> 0  \end{es}
