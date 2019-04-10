@@ -178,6 +178,13 @@ is a metric on $X$.
 This metric is sometimes called \emph{discrete metric} because balls can separate all single points out.
 \end{ex}
 \begin{ex}
+Let $d$ be a metric on a set $X$.
+Let $f:[0,\oo)\to[0,\oo)$ be a strictly increasing function such that $f(0)=0$.
+If $f$ is subadditive, in other words $f$ satisfies
+\[f(x+y)\le f(x)+f(y)\]
+for all $x,y\in\R_{\ge0}$, then $f\o d$ is another metric on $X$.
+\end{ex}
+\begin{ex}
 Let $G=(V,E)$ be a connected graph.
 Define $d:V\x V\to\Z_{\ge0}\subset\R_{\ge0}$ as the distance of two vertices; the length of shortest path connecting two vertices.
 Then, $(V,d)$ is a metric space.
@@ -215,6 +222,8 @@ A set of the form
 for $\e>0$ is called a \emph{ball centered at $x$} and denoted by $B(x,\e)$ or $B_\e(x)$.
 \end{defn}
 
+The balls are also called open balls in order to distinguish from the closed balls; $\cl{B(x,\e)}=\{y\in X:d(x,y)\le\e\}$.
+The terms openness and closedness will be discussed again in the next section.
 Now let us reformulate the definitions of limits and continuity with balls, which we actually use in the usual calculus on Euclidean spaces or generally on normed spaces.
 Compare the following definitions to what we remember.
 
@@ -229,23 +238,21 @@ as $n\to\oo$.
 If there is no such limit $x$, then we say the sequence \emph{diverges}.
 \end{defn}
 \begin{defn}
-A function $f:X\to Y$ between metric spaces is called \emph{continuous at $x\in X$} if for any ball $B(f(x),\e)\subset Y$ centered at $f(x)$ there is a ball $B(x,\delta)\subset X$ centered at $x$ such that $f(B(x,\delta))\subset B(f(x),\e)$.
+A function $f:X\to Y$ between metric spaces is called \emph{continuous at $x\in X$} if for any ball $B(f(x),\e)\subset Y$ centered at $f(x)$ there is a ball $B(x,\delta)\subset X$ centered at $x$ such that
+\[f(B(x,\delta))\subset B(f(x),\e).\]
 The function $f$ is called \emph{continuous} if it is continuous at every point on $X$.
 \end{defn}
 
-We have to emphasize that taking either $\e$ or $\delta$ really means taking a ball of the very radius.
-
-
-
-%%% neighborhoods system
-
-
-
-There are a lot of valuable propositions for limit and continuity, but we postpone to mention them to later because they are generalized to topological spaces.
+There are a lot of deeper and valuable propositions and results for limit and continuity, but we postpone to mention them to later because they are generalized to topological spaces.
+However, for a while, let us just check that taking either $\e$ or $\delta$ really means taking a ball of the very radius.
+For continuity of a function, we can intuitively describe it by saying that no matter how small ball is taken in the codomain, we can take much smaller ball in the domain.
+Then, what we want to know would be how the balls centered at each point are distributed because what the set of balls looks like may determine the continuity or convergence.
+To make a vivid illustration, let us give an example.
 
 \begin{ex}
 Let $X$ be the discrete metric space in Example \ref{ex:discrete metric}.
-A sequence $\{x_n\}_n$ converges to $x$ if and only if it is eventually $x$; there is a positive integer $n_0$ such that $x_n=x$ for all $n>n_0$.
+Every ball centered at a point $x$ with respect to the discrete metric is either a singleton $B(x,\e)=\{x\}$ when $\e\le1$, or the entire space $B(x,\e)=X$ when $\e>1$.
+In particular, a sequence $\{x_n\}_n$ converges to $x$ if and only if it is eventually $x$; there is a positive integer $n_0$ such that $x_n=x$ for all $n>n_0$.
 \end{ex}
 \begin{ex}
 Let $X$ and $Y$ be metric spaces.
@@ -255,7 +262,15 @@ If $X$ is equipped with the discrete metric in Example \ref{ex:discrete metric},
 An isometry is always continuous.
 \end{ex}
 
-The sequence of real numbers defined by $x_n=\frac1n$ diverges in discrete metric.
+The set of balls at each point plays an important role in determining properties for limits and continuity.
+Intuitively, the balls indicate the varying degrees of neighborhoods and relative nearness from a point.
+Refer to Example \ref{ex:neighborhood filter}.
+
+
+
+% 1-1-3
+\subsection{Topological equivalence}
+Take note on the fact that the sequence of real numbers defined by $x_n=\frac1n$ diverges in discrete metric.
 Like this example, even for the same sequence on a same set, the convergence depends on the attached metric.
 However, we cannot conversely say that different metrics always provide different criteria for convergence.
 In other words, when we consider a metric as a function that takes a sequence as input and outputs whether a sequence converges or diverges, there may be two different metrics which gives exactly same answer about convergence.
@@ -264,21 +279,102 @@ This allows us to think an equivalence relation on the set of metrics, that is, 
 In this situation, it can be paraphrased into that the two metrics induce exactly same topology.
 Some definitions and theorems for the equivalence checking will be given as follows.
 
+\begin{defn}
+Let $d_1$ and $d_2$ are metric on a set $X$.
+The two metrics are called \emph{topologically equivalent} if the set of open balls are mutually nested;
+for arbitrary $\e>0$, we can find $\e_1>0$ and $\e_2>0$ such that
+\[B_1(x,\e_1)\subset B_2(x,\e)\quad\text{and}\quad B_2(x,\e_2)\subset B_1(x,\e),\]
+where the notations $B_1$ and $B_2$ refer to balls defined with the metrics $d_1$ and $d_2$ respectively.
+\end{defn}
+
+The word ``topologically'' is frequently omitted.
+This definition looks quite strange, but is directly related to the way how a metric gives rise to a topology.
+There are various characterizations of equivalence among metrics.
+
+\begin{prop}
+Let $d_1$ and $d_2$ are metric on a set $X$.
+They are equivalent if and only if they share the same sequential convergence data; a sequence converges in $d_1$ if and only if it converges in $d_2$.
+\end{prop}
+\begin{pf}
 %%%
+\end{pf}
+\begin{prop}
+Let $d_1$ and $d_2$ are metric on a set $X$.
+They are equivalent if and only if the two identity functions $I:(X,d_1)\to(X,d_2)$ and $I:(X,d_2)\to(X,d_1)$ are continuous.
+\end{prop}
+\begin{pf}
+Obvious by definitions.
+\end{pf}
 
 \begin{rmk}
 Generally, there exist two different topologies that have same sequential convergence data.
 For example, a sequence in an uncountable set with cocountable topology converges to a point if and only if it is eventually at the point, which is same with discrete topology.
 This means the informations of sequence convergence are not sufficient to uniquely characterize a topology.
-Instead, convergence data of generalized sequences also called nets, recover the topology.
+Instead, convergence data of generalized sequences also called nets, recover the whole topology.
 For topologies having a property called the first countability, it is enough to consider only usual sequences in spite of nets.
 What we did in this subsection is not useless because topology induced from metric is a typical example of first countable topologies.
 These kinds of problems will be profoundly treated in Chapter 3.
 \end{rmk}
+\begin{rmk}
+One can ask some results for the equivalence of metrics characterized by a same set of continuous functions.
+However, they are generally difficult problems: is it possible to recover the base space from a continuous function space or a path space?
+\end{rmk}
 
 
-% 1-1-3
-\subsection{Combining and bounding}
+The following two theorems give sufficient conditions for equivalence.
+The first theorem is well used to compare norms on a vector space in particular, and the second theorem is going to be used in the next subsection.
+
+\begin{thm}
+Let $d_1$ and $d_2$ are metric on a set $X$.
+If for each point $x$ there exist two constants $C_1$ and $C_2$ which may depend on $x$ such that
+\[d_1(x,y)\le C_1d_2(x,y)\quad\text{and}\quad d_2(x,y)\le C_2d_1(x,y)\]
+for all $y$ in $X$, then $d_1$ and $d_2$ are equivalent.
+\end{thm}
+\begin{pf}
+%%%
+\end{pf}
+
+\begin{thm}
+Let $d$ be a metric on a set $X$ and let $f$ be a strictly increasing subadditive real function on $\R_{\ge0}$ such that $f(0)=0$ so that $f\o d$ is a metric.
+If $f$ is continuous in addition, then $f\o d$ is equivalent to $d$.
+\end{thm}
+\begin{pf}
+%%%
+\end{pf}
+\begin{cor}
+Let $f:[0,\oo)\to[0,\oo)$ be a continuous function.
+If
+\[f(0)=0,\quad f'(x)>0,\quad f''(x)\le0\]
+for all $x>0$, then $f\o d$ and $d$ are equivalent metrics where $d$ is a metric on a set.
+\end{cor}
+
+
+It is also natural to apply the concept of topological equivalence to norms.
+The idea is same; if two norms gives rise to a same topology, or equivalently, topologically equivalent metrics, then we call them equivalent.
+However, the checking procedure becomes rather simple.
+The following thereom is often taken as the definition of norm equivalence.
+
+\begin{thm}
+Let $\|\cdot\|_1$ and $\|\cdot\|_2$ be two norms on a vector space $V$.
+They induce the equivalent metrics if and only if there are constants $C_1$ and $C_2$ such that
+\[\|x\|_1\le C_1\|x\|_2\quad\text{and}\quad\|x\|_2\le C_2\|x\|_1\]
+for all $x\in V$.
+\end{thm}
+\begin{pf}
+%%%
+\end{pf}
+
+Especially, when we work on a vector space with finite dimension such as a Euclidean space $\R^n$, the situation gets better dramatically.
+
+\begin{thm}
+Every norm on a finite dimensional vector space is equivalent.
+\end{thm}
+\begin{pf}
+%%%
+\end{pf}
+
+% 1-1-4
+\subsection{Bounding and combining metrics}
 
 
 %defn
@@ -316,12 +412,18 @@ These kinds of problems will be profoundly treated in Chapter 3.
 Show that there is a metric $d$ on $\R$ such that a sequence $\{x_n\}_n$ defined by $x_n=x+\frac1n$ is convergent with respect to $d$ if and only if $x\ne0$.
 \end{prb}
 \begin{prb}
+Let $\{x_n\}_n$ be a convergent sequence in a metric space $X$.
+Show that for each point $p\in X$ there is $M>0$ such that $d(x_n,p)<M$ for all $n$.
+\end{prb}
+\begin{prb}
 Let $d$ and $d'$ be metrics on a set $X$.
 Suppose that a sequence $\{x_n\}_n$ in $X$ converges to $x$ in $d$ and converges to $x'$ in $d'$.
 Show that $x=x'$.
 \end{prb}
-
-
+\begin{prb}
+Let $d$ a metric on a set $X$.
+Show that a function $d_p$ defined by $d_p(x,y)=d(x,y)^p$ is a metric equivalent to $d$ for every $p>0$.
+\end{prb}
 
 
 
@@ -429,7 +531,7 @@ A filter $\cF'_x$ is finer than another filter $\cF_x$ if and only if $\cF'_x\su
 
 The following examples will be helpful to catch the intuition.
 
-\begin{ex}
+\begin{ex}\label{ex:neighborhood filter}
 Let $x$ be a point in a metric space.
 The set of all open balls cenetered at $x$ is a filter base at $x$.
 The set of all open balls containing $x$ is aslo a filter base and they are equivalent.
