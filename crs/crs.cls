@@ -4,7 +4,7 @@
 \makeatletter
 
 
-\usepackage[margin=100pt,headheight=10pt]{geometry}
+\usepackage[margin=100pt,headheight=13pt]{geometry}
 
 
 \let\@@author\author
@@ -14,6 +14,10 @@
 }
 
 \author{Ikhan Choi}
+
+
+
+
 
 \usepackage{fancyhdr}
 \pagestyle{fancy}
@@ -34,6 +38,14 @@
 
 
 \usepackage{hyperref}
+
+
+
+\iffalse
+\usepackage[T1]{fontenc}
+\usepackage{etoolbox}
+\patchcmd{\@thm}{\thm@headfont{\scshape}}{\thm@headfont{\scshape\bfseries}}{}{}
+\fi
 
 
 \makeatother
