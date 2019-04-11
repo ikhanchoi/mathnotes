@@ -162,13 +162,16 @@ Hardy-Littlewood maximal function is the most famous maximal function.
 \[\|Mf\|_{1,\oo}\le 3^d\|f\|_1.\]
 \end{thm}
 \begin{pf}
-Let $E_\alpha=\{|f|>\alpha\}$.
-By the inner regularity of $\mu$, we may assume $E_\alpha$ is compact.
-For every $x\in E_\alpha$, we can choose $B_x$ such that
-\[\frac1{B_x}\int_{B_x}|f|>\alpha\quad\impl\quad\mu(B_x)<\alpha\int_{B_x}|f|.\]
-By the Vitali covering and by the compactness of $E_\alpha$,
-\[\lambda_f(\alpha)=\mu(E_\alpha)\le3^d\sum\mu(B_k)\le\frac{3^d}\alpha\sum_k\int_{B_k}|f|\le\frac{3^d}\alpha\|f\|_1.\]
-The disjointness is important in showing the constant $3^d$ does not depend on the number of $B_k$'s.
+By the inner regularity of $\mu$, there is a compact subset $K$ of $\{|Mf|>\alpha\}$ such that
+\[\mu(K)>\mu(\{|Mf|>\alpha\})-\e.\]
+For every $x\in K$, since $|Mf(x)|>\alpha$, we can choose an open ball $B_x$ such that
+\[\frac1{\mu(B_x)}\int_{B_x}|f|>\alpha\iff\mu(B_x)<\frac1\alpha\int_{B_x}|f|.\]
+With these balls, extract a finite open cover $\{B_i\}_i$ of $K$.
+Since the diameter of elements in this cover is clearly bounded, so the Vitali covering lemma can be applied to obtain a disjoint subcollection $\{B_k\}_k$ such that
+\[K\subset\bigcup_iBi\subset\bigcup_k3B_k.\]
+Therefore,
+\[\mu(\{|Mf|>\alpha\})-\e<3\mu(K)\le\sum_k3^d\mu(B_k)\le3^d\frac1\alpha\sum_k\int_{B_k}|f|\le3^d\frac{\|f\_1|}\alpha.\]
+The disjointness is important in the last inequality which shows the constant does not depend on the number of $B_k$'s.
 \end{pf}
 
 \begin{defn}
