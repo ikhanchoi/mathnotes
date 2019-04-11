@@ -426,11 +426,14 @@ On a finite dimensional vector space over a complete field such as $\R$ and $\C$
 \begin{rmk}
 Equivalence of norms on finite dimensional space is due to the locally compactness and the completeness.
 A closed ball follows the relation diagram:
-\begin{rd}
+\begin{rd}[column sep=huge]
 Bounded \ds{r}{fin. dim.} & Totally bounded \ds{r}{complete} & Compact.
 \end{rd}
 It is also an important result in functional analysis.
 \end{rmk}
+
+
+
 
 % 1-1-4
 \subsection{Bounding and combining metrics}
@@ -455,9 +458,9 @@ Let $\{y:d'_1(x,y)+d'_2(x,y)<\e\}$ be an arbitrary ball centered at a point $x$ 
 By the equivalence, we can find $\delta_1>0$ and $\delta_2>0$ such that
 \[B_1(x,\delta_1)\subset B_{1'}(x,\tfrac\e2)\quad\text{and}\quad B_2(x,\delta_2)\subset B_{2'}(x,\tfrac\e2).\]
 Let $\delta:=\min\{\delta_1,\delta_2\}$.
-Then,
+Then, the ball of radius $\delta$ in the metric $d_1+d_2$ is contained in the ball of radius $\e$ in the metric $d'_1+d'_2$:
 \[\{y:d_1(x,y)+d_2(x,y)<\delta\}\subset\{y:d'_1(x,y)+d'_2(x,y)<\e\}.\]
-%%
+The opposite part is shown in the same way.
 \end{pf}
 
 In fact, there is also a method for combining not only finite family of metrics, but also countable family of metrics.
