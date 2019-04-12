@@ -170,7 +170,13 @@ With these balls, extract a finite open cover $\{B_i\}_i$ of $K$.
 Since the diameter of elements in this cover is clearly bounded, so the Vitali covering lemma can be applied to obtain a disjoint subcollection $\{B_k\}_k$ such that
 \[K\subset\bigcup_iBi\subset\bigcup_k3B_k.\]
 Therefore,
-\[\mu(\{|Mf|>\alpha\})-\e<3\mu(K)\le\sum_k3^d\mu(B_k)\le3^d\frac1\alpha\sum_k\int_{B_k}|f|\le3^d\frac{\|f\_1|}\alpha.\]
+\begin{align*}
+\mu(\{|Mf|>\alpha\})-\e
+&<\mu(K)\\
+&\le\sum_k3^d\mu(B_k)\\
+&\le3^d\frac1\alpha\sum_k\int_{B_k}|f|\\
+&\le3^d\frac{\|f\|_1}\alpha.
+\end{align*}
 The disjointness is important in the last inequality which shows the constant does not depend on the number of $B_k$'s.
 \end{pf}
 
