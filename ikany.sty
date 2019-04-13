@@ -207,9 +207,9 @@
 
 
 
-% PDE problems
+% system of equations
 \RequirePackage{xparse}
-\DeclareDocumentEnvironment{pde}{s}
+\DeclareDocumentEnvironment{syseq}{s}
 {
   \[\left\{\begin{alignedat}{2}
   \renewcommand{\for}{&\qquad&}
@@ -220,13 +220,13 @@
     {\end{alignedat}\right.\stepcounter{equation}\tag{\theequation}\]}
 }
 \ExplSyntaxOn
-\cs_new:cpn{pde*}{\pde*}
-\cs_new_eq:cN{endpde*}\endpde
+\cs_new:cpn{syseq*}{\syseq*}
+\cs_new_eq:cN{endsyseq*}\endsyseq
 \ExplSyntaxOff
 
-% align이나 alignat이 environment에 들어가서 \end{pdes}를 뺏어버렸다.... 언제 고치지
+% align이나 alignat이 environment에 들어가서 \end{syseqs}를 뺏어버렸다.... 언제 고치지
 \RequirePackage[overload]{empheq}
-\NewDocumentEnvironment{pdes}{}
+\NewDocumentEnvironment{syseqs}{}
 {
   \begin{subequations}
   \begin{alignat}{2}[left={\empheqlbrace\,}]
@@ -237,7 +237,7 @@
 }
 
 
-%	\begin{pde}{\label{eq:Pois}}
+%	\begin{syseq}{\label{eq:Pois}}
 %	\Delta u(x)&=0,	\for x\in\Omega,\\
 %	u(x)&=f, 			\for x\in\bd\Omega.
 %	\end{pde}
@@ -367,8 +367,7 @@
 \def\cat{\mathbf}
 \def\impl{\mathchoice{\quad\Longrightarrow\quad}{\,\Rightarrow\,}{\,\Rightarrow\,}{\,\Rightarrow\,}}
 \renewcommand{\iff}{\mathchoice{\quad\Longleftrightarrow\quad}{\,\Leftrightarrow\,}{\,\Leftrightarrow\,}{\,\Leftrightarrow\,}}
-
-
+\NewDocumentCommand{\evalat}{mmg}{\left.#1\right\rvert_{#2}\IfNoValueTF{}{^{#3}}}
 
 
 
