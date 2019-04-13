@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99991 (TeX Live 2014/W32TeX) (preloaded format=xelatex 2015.4.30)  22 MAR 2019 23:57
+This is XeTeX, Version 3.14159265-2.6-0.99991 (TeX Live 2014/W32TeX) (preloaded format=xelatex 2015.4.30)  14 APR 2019 01:47
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -236,16 +236,16 @@ Package: xparse 2014/11/25 v5471 L3 Experimental document command parser
 )
 \c@thm=\count128
 \c@defn=\count129
-\c@prob=\count130
+\c@prb=\count130
 .................................................
 . LaTeX info: "xparse/define-command"
 . 
-. Defining command \Case with sig. ' r[] +o ' on line 56.
+. Defining command \Case with sig. ' r[] +g ' on line 58.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
 . 
-. Defining command \Step with sig. ' r[] +o ' on line 57.
+. Defining command \Step with sig. ' r[] +g ' on line 59.
 .................................................
 
 (c:/Program Files (x86)/texlive/2014/texmf-dist/tex/latex/enumitem/enumitem.sty
@@ -630,52 +630,32 @@ File: pgflibraryarrows.meta.code.tex 2013/12/13 v3.0.0 (rcs-revision 1.12)
 .................................................
 . LaTeX info: "xparse/define-environment"
 . 
-. Defining environment 'cd' with sig. '' on line 112.
+. Defining environment 'cd' with sig. '' on line 120.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-environment"
 . 
-. Defining environment 'es' with sig. '' on line 118.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-. 
-. Defining command \pd with sig. ' o g g g ' on line 166.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-. 
-. Defining command \dd with sig. ' o g g g ' on line 175.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-. 
-. Defining command \abs with sig. 'm' on line 236.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-. 
-. Defining command \norm with sig. 'm' on line 237.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-. 
-. Defining command \flr with sig. 'm' on line 238.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-. 
-. Defining command \ceil with sig. 'm' on line 239.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-. 
-. Defining command \inn with sig. 'mm' on line 240.
+. Defining environment 'es' with sig. '' on line 129.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-environment"
 . 
-. Defining environment 'pde' with sig. 's' on line 273.
+. Defining environment 'rd' with sig. '' on line 135.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \pd with sig. ' o g g g ' on line 181.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \dd with sig. ' o g g g ' on line 190.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-environment"
+. 
+. Defining environment 'syseq' with sig. 's' on line 221.
 .................................................
 
 (c:/Program Files (x86)/texlive/2014/texmf-dist/tex/latex/mathtools/empheq.sty
@@ -732,12 +712,42 @@ Normal \dimen register pool exhausted, switching to extended pool.
 .................................................
 . LaTeX info: "xparse/define-environment"
 . 
-. Defining environment 'pdes' with sig. '' on line 289.
+. Defining environment 'syseqs' with sig. '' on line 237.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \abs with sig. 'm' on line 294.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \norm with sig. 'm' on line 295.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \flr with sig. 'm' on line 296.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \ceil with sig. 'm' on line 297.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \inn with sig. 'mm' on line 298.
 .................................................
 .................................................
 . LaTeX info: "xparse/redefine-command"
 . 
-. Redefining command \to with sig. 'g' on line 343.
+. Redefining command \to with sig. 'g' on line 336.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \evalat with sig. 'mmg' on line 370.
 .................................................
 ) (./note.aux)
 \openout1 = `note.aux'.
@@ -759,12 +769,12 @@ LaTeX Font Info:    ... okay on input line 7.
 LaTeX Info: Redefining \[ on input line 7.
 LaTeX Info: Redefining \] on input line 7.
  (./note.toc
-LaTeX Font Info:    Try loading font information for U+msa on input line 6.
+LaTeX Font Info:    Try loading font information for U+msa on input line 7.
 
 (c:/Program Files (x86)/texlive/2014/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 6.
+LaTeX Font Info:    Try loading font information for U+msb on input line 7.
 
 (c:/Program Files (x86)/texlive/2014/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
@@ -775,51 +785,56 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 
 [1
 
-]
-Overfull \hbox (121.50739pt too wide) in paragraph at lines 19--20
+] [2]
+Overfull \hbox (121.50739pt too wide) in paragraph at lines 41--42
 [] 
  []
 
-[2]
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 29.
+[3]
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 51.
  (c:/Program Files (x86)/texlive/2014/texmf-dist/tex/latex/base/omscmr.fd
 File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 29.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 51.
 
-[3]
-LaTeX Font Info:    Try loading font information for U+euf on input line 56.
+[4]
+LaTeX Font Info:    Try loading font information for U+euf on input line 78.
  (c:/Program Files (x86)/texlive/2014/texmf-dist/tex/latex/amsfonts/ueuf.fd
 File: ueuf.fd 2013/01/14 v3.01 Euler Fraktur
-) [4] [5] [6] [7] [8] [9] [10]
-Overfull \hbox (39.40506pt too wide) detected at line 434
+) [5] [6] [7] [8] [9] [10] [11]
+Overfull \hbox (26.83481pt too wide) detected at line 429
 []
  []
 
 
-Overfull \hbox (9.83179pt too wide) detected at line 439
-[]
- []
-
-[11]
-Overfull \hbox (57.88422pt too wide) detected at line 464
+Overfull \hbox (111.40497pt too wide) detected at line 456
 []
  []
 
 
-Overfull \hbox (26.4339pt too wide) detected at line 468
+Overfull \hbox (81.8317pt too wide) detected at line 461
 []
  []
 
-[12] [13] [14] [15] [16] [17] [18] [19] [20] (./note.aux) ) 
+[12]
+Overfull \hbox (129.88412pt too wide) detected at line 486
+[]
+ []
+
+
+Overfull \hbox (98.4338pt too wide) detected at line 490
+[]
+ []
+
+[13] [14] [15] [16] [17] [18] [19] [20] [21] (./note.aux) ) 
 Here is how much of TeX's memory you used:
- 21299 strings out of 493724
- 444275 string characters out of 6141171
- 503324 words of memory out of 5000000
- 24364 multiletter control sequences out of 15000+600000
+ 21323 strings out of 493724
+ 444503 string characters out of 6141171
+ 502783 words of memory out of 5000000
+ 24388 multiletter control sequences out of 15000+600000
  9228 words of font info for 35 fonts, out of 8000000 for 9000
  1328 hyphenation exceptions out of 8191
- 68i,25n,86p,10376b,1054s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 68i,25n,86p,10376b,1102s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on note.pdf (20 pages).
+Output written on note.pdf (21 pages).
