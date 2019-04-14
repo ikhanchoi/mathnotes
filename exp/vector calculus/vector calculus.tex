@@ -7,22 +7,18 @@
 \maketitle
 \tableofcontents
 
-In this notes, we use some conventions:
-\begin{cond}
-\item Every function is sufficiently differentiable,
-\item $I$ is either an open interval containing 0 or the closed interval $[0,1]$.
-\end{cond}
 
-Let $M$ denote a certain nice subset of the space $\R^3$.
-The set $M$ is our own world; we hope to expand the calculus theory on the set $M$. 
-For example, in this note, we may think $M$ as one of the following:
-\begin{cond}
+In this note, $M$ always denote a certain nice subset of the space $\R^3$.
+The set $M$ is our own world; we hope to expand the calculus theory on the set $M$.
+For example, we may think $M$ as one of the following:
+\begin{itemize}
 \item $\R^3$,
 \item an open subset of $\R^3$,
 \item $S^2=\{(x,y,z)\in\R^3:x^2+y^2+z^2=1\}$.
-\end{cond}
+\end{itemize}
 These are examples of a special class of spaces what we call ``manifold''.
-From Section 3, we restrict the situation for the case $M=\R^3$.
+We will not give an exact definition because it is superfluously complicated only to study vector calculus.
+From Section 3, we are only concerned with $M=\R^3$.
 
 Note that $M$ and $\R^3$ are different even when $M=\R^3$ ``as a set'' because we cannot say they are equal as vector spaces: $M$ does not have an intrinsic vector space structure like vector addition and scalar multiplication, while $\R^3$ has.
 In other words, we are assumed to be basically prohibited to apply vector addition or scalar multipication among ``points'' in $M$, while they can be done among ``vectors'' in $\R^3$, if nothing is mentioned.
@@ -30,43 +26,47 @@ Thus, readers may think we are having declared that we will not add or multiply 
 
 In vector calculus, there are extremely various way to formulate and construct the theory.
 Every course and note just chose one of them according to their own purposes and levels of students.
-It is same for me.
+It is same for this note.
 
-
-
+In this notes, we use some conventions:
+\begin{cond}
+\item Every function is sufficiently differentiable so that all definitions are peaceful,
+\item $I$ is either an open interval containing 0 or the closed interval $[0,1]$.
+\end{cond}
 
 
 
 
 \section{Vector fields}
 Our objective is to understand what are vector fields.
-
+Intuitively, it is just what assigns a vector to each point of $M$.
+More precisely, a vector field assigns a vector that is ``tangent'' to $M$.
 
 \subsection{Tangent vectors of curves}
 A curve on $M$ can be defined by a function $\gamma:I\to M$.
-When we differentiate $\gamma$, the vector space structure of $\R^3$ that contains $M$ is used.
-So we will temporarily allow points in $M$ to be summed and multiplied by scalars.
-This is why 
+Recall that a tangent vector of a curve in Euclidean space is obtained by differentiating each component of the curve.
+When differentiating $\gamma$ in $M$ to get a tangent vector, we are going to borrow the vector space structure of $\R^3$ that contains $M$.
+So we will temporarily allow points in $M$ to be summed and multiplied by scalars, only in the following definition.
+This is why we let $M$ be embedded in $\R^3$.
 \begin{defn}
 Let $\gamma:I\to M$ be a curve such that $\gamma(t)=p$.
 Consider $\gamma$ as a curve on $\R^3$ using the inclusion $M\subset\R^3$.
 Then, the \emph{tangent vector} of $\gamma$ at $t$ or at $p$ is a vector in $\R^3$ defined by
-\[\gamma'(t):=\lim_{h\to0}\frac{\gamma(t+h)-\gamma(t)}{h}.\]
+\[\gamma'(t):=\lim_{h\to0}\frac1h\cdot(\gamma(t+h)-\gamma(t)).\]
 \end{defn}
 The definition looks so familiar, but never let your guard down.
 We must note that $\gamma(t)\in M$ but $\gamma'(t)\in\R^3$.
-Generally, $\gamma'$ might be outside $M$, and tangent vectors are ``vector''.
-
-Points are not vectors; in some special cases we describe points with vectors, but it is just for special cases.
+Tangent vectors are ``vector'' and they might be outside $M$. 
+Points in $M$ are not vectors; in some special cases we describe points with vectors for its convenience, but it is just for special cases.
 
 
 \subsection{Tangent vectors at a point}
 
 Vectors usually used in Newtonian mechanics or linear algebra do not care the starting point.
-However, when we consider vector fields, we must care the points at which vectors are attched.
-In particular, we often consider the tangent vectors attached at a point.
+However, when we consider vector fields, we must care the points at which vectors are attached.
+Thus, for a tangent vector at a point $p$, it is usual to imagine it as an arrow that starts from the point $p$.
 The term ``vector field'' can be seen as an abbreviation of ``tangent vector field''.
-From the definition of tangent vectors of curves, we want to forget the curves in order to consider tangent vectors at a point.
+In order to consider tangent vectors at a point, we introduce an idea: forgetting the data of specific curves from the definition of tangent vectors.
 There are the definitions.
 
 \begin{defn}
@@ -75,10 +75,13 @@ A vector $v$ in $\R^3$ is called a \emph{tangent vector at a point} $p\in M$ if 
 \end{defn}
 
 \begin{ex}
-Let $M=S^2$, $p=(1,0,0)\in M$, and $v=(1,0,0)\in\R^3$.
-Then, $v$ is not a tangent vector at $p$ since there is no curve $\gamma:I\to S^2$ such that $\gamma(0)=(1,0,0)$ and $\gamma'=(1,0,0)$.
+Let $M=S^2$, $p=(1,0,0)\in M$, and $\hat x=(1,0,0)\in\R^3$.
+Then, $\hat x$ is not a tangent vector at $p$ since there is no curve $\gamma:I\to S^2$ such that $\gamma(0)=(1,0,0)$ and $\gamma'=(1,0,0)$.
+Intuitively, $\hat x$ 
 \end{ex}
 
+In fact, the set of tangent vectors form a linear subspace of $\R^3$.
+We will not prove it.
 
 \begin{defn}
 Let $p\in M$ be a point.
@@ -91,13 +94,13 @@ If $M$ is open in $\R^3$, then $T_pM=\R^3$ for every $p\in M$.
 \begin{ex}
 For $p=(1,0,0)\in S^2$, we have $T_pS^2=\{(x,y,z)\in\R^3:x=0\}$.
 \end{ex}
+\begin{prop}
+Every tangent space $T_pM$ is a linear subspace of $\R^3$.
+\end{prop}
 
 
 \subsection{Tangent vectors as derivations}
 
-\begin{defn}[Derivation]
-Let 
-\end{defn}
 \begin{defn}
 Let $f:M\to\R$ and $X_p\in T_pM$.
 We can view $X_p$ as a function 
@@ -106,8 +109,14 @@ $X_p:C^\oo(\R^3)\to\R$ as follows:
 for some a curve $\gamma:I\to M$ satisfying $\gamma'(0)=X_p$.
 \end{defn}
 \begin{prop}
-The function $X_p:C^\oo(\R^3)\to\R$ is well defined: the $X_pf$ is independent of choice of the curve $\gamma$.
+The function $X_p:C^\oo(\R^3)\to\R$ is well defined, i.e. the value of $X_pf$ is independent of choice of the curve $\gamma$.
 \end{prop}
+
+\begin{defn}[Derivation]
+Let 
+\end{defn}
+
+
 
 partial derivatives
 \[\pd{x}:=\gamma'(0)\quad\text{for}\quad \gamma(t)=(t,0,0).\]
@@ -165,7 +174,7 @@ A scalar field is just a function.
 \section{Inner product}
 \subsection{Musical isomorphisms}
 \subsection{Hodge dual}
-
+\subsection{Gradient, curl, divergence}
 
 
 
@@ -182,7 +191,7 @@ A scalar field is just a function.
 
 
 \section{Stokes' theorem}
-
+\subsection{Chains}
 
 
 

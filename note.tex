@@ -1,5 +1,6 @@
-\documentclass{article}
+\documentclass[11pt]{article}
 \usepackage{ikany}
+\usepackage[margin=1.2in]{geometry}
 
 \let\realsection\section
 \renewcommand\section{\newpage\realsection}
@@ -8,27 +9,75 @@
 \tableofcontents
 
 \section{Fock space reading notes}
-\subsection{Operators on Banach spaces}
+\subsection{Closed operators}
 \begin{thm}
 Let $A,B$ be closed operators between Banach spaces.
 Then, $A+B$ is closed iff
-\[\|Ax\|+\|Bx\|\les\|(A+B)x\|+\|x\|.\]
+\[\|Ax\|+\|Bx\|\les\|(A+B)x\|+\|x\|,\]
+i.e. $A$ and $B$ are $A+B$-bounded.
 \end{thm}
 \begin{thm}
-Let $A$ be a closed, and $B$ be a linear operator between Banach spaces.
+Let $A$ be a closed, and $B$ be a closable operator between Banach spaces with $D(A)\subset D(B)$.
 Then, $A+B$ is closed if
-\[\|Bx\|\les\|Ax\|+\|x\|.\]
+\[\|Bx\|\les\|Ax\|+\|x\|,\]
+i.e. $B$ is $A$-bounded.
+Hmmmmmmmm
 \end{thm}
 Any idea to prove?
 
-The resolvent set is defined as the set of $\lambda$ such that $T-\lambda$ is invertible: $T-\lambda$ has a \emph{densly defined} bounded inverse.
-Note that densely defined operator is uniquely extended to everywhere defined operator.
+\begin{prop}
+For $T\in D_{cl}(X,Y)$,
+\[T\text{ is unbounded}\iff T\text{ is not everywhere defined}.\]
+\end{prop}
 
-Residual spectrum leaves the empty space(residual) in codomain.
 
-Discrete spectrum: finite dim eigenspace, isolated.
+\subsection{Decomposition of spectrum}
+Note that decomposition of spectrum is usually for closed operators.
+\begin{cond}
+\item For closed operators, we do not have to consider cores.
+\item We will not distinguish everywhere defined operators and densely defined operators.
+\item We will not care whether its domain for unbounded densely defined operators. If closed, then unboundedness is equivalent to everywhere defined.
+\end{cond}
 
-Read to Thm 1.5.
+Let $X=Y$ in order to see $L(X,Y)$ as a ring.
+Let $L(X)\subset D(X)\subset B(X)$ be spaces of linear operators, densely defined operators, densely define bounded operators respectively.
+For $T\in L(X)$,
+\[\lambda\begin{cases}\text{is in }\rho(T)\\\text{is in }\sigma_c(T)\\\text{is in }\sigma_r(T)\\\text{is in }\sigma_p(T)\end{cases}\qquad\text{iff}\qquad R_\lambda(T)\begin{cases}\in B(X)\\\in D(X)\setminus B(X)\\\in L(X)\setminus D(X)\\\text{does not exist in }L(X)\end{cases}.\]
+
+Discrete spectrum consists of scalars having finite dimensional eigenspace and is isolated from any other elements in spectrum.
+\clearpage
+\subsection{Adjoint}
+For Banach spaces, we have
+\[\adj:D(X,Y)\to cl(Y^*,X^*)\]
+that is not injetcive. (I don't know it's surjective)
+
+For reflexive $Y$, we have
+\[\adj:D_{cl}(X,Y)\to D_{cl}(Y^*,X^*)\]
+that is inj? surj?
+
+For reflexive $X$, we have
+\[\adj:D_{closable}(X)\ep D_{cl}(X^*).\]
+
+\begin{thm}
+The adjoint $B_{cl}(H)\to{\sim}B_{cl}(H)$ can be extended to $D_{cl}(H)\to{\sim}D_{cl}(H)$.
+\end{thm}
+\begin{thm}
+For $T\in D_{cl}(H)$, $H=\ker T\dsum\cl{\im T^*}$.
+\end{thm}
+The space $D_{cl}$ is optimized when we think adjoints for reflexive spacse.
+
+unitarily equivalence can defined for $T_1\in L(H_1)$ and $T_2\in L(H_2)$.
+
+
+
+
+
+
+
+
+
+
+
 
 \section{Vector calculus on spherical coordinates}
 
