@@ -4,6 +4,7 @@
 \title{Interchanging limits, derivatives, and integrals}
 
 \begin{document}
+\maketitle
 
 \section{Limit and derivative}
 
@@ -18,7 +19,7 @@ $f_n$ pointwisely, $Df_n$ uniformly
 
 \section{Limit and integral}
 We want to find a criterion for 
-This question is equivalent to the convergence
+This question asks the convergence
 \[f_n\to f\quad\text{in}\quad L^1.\]
 
 \begin{thm}[Lebesgue dominated convergence theorem]
@@ -27,7 +28,7 @@ Define a maximal function
 \[Mf(x)=\sup_\alpha|f_\alpha(x)|.\]
 
 If $\|Mf\|_1<\oo$, then
-\[\lim_\alpha|f_\alpha(x)-f(x)|=0\quad a.e.\impl\lim_\alpha\|f_\alpha-f\|=0.\]
+\[\lim_\alpha|f_\alpha(x)-f(x)|=0\quad a.e.\impl\lim_\alpha\|f_\alpha-f\|_{L^1}=0.\]
 \end{thm}
 
 continuity application
@@ -50,14 +51,44 @@ for $t\ne t_0$
 Let $I$ be an interval in $\R$ that containing $t_0$.
 Let $f:X\x I\to\R$ be a measurable function such that for a.e. $x$ the function $t\mapsto f(x,t)$ is continuous on $I$ and differentiable on $I^\o$.
 
-If $\|\pd_tf(x,t)\|_{L_x^1(L_t^\oo)}<\oo$, then
+If $\|\pd_tf\|_{L_x^1(L_t^\oo)}<\oo$, then
 \[\dd{t}\int f(x,t)\,dx=\int\pd{t}f(x,t)\,dx.\]
 \end{thm}
 \begin{pf}
 Define a maximal function
-\[Mf(x,t_0)=\sup_t|N_tf(x,t_0)|.\]
-By the mean value theorem, we get $\|Mf(x,t_0)\|_{L_x^1}<\oo$.
+\[Mf(x,t_0)=\sup_{t\in I\setminus\{t_0\}}|N_tf(x,t_0)|.\]
+By the mean value theorem, we get
+\[\|\pd_tf\|_{L_x^1(L_t^\oo)}<\oo\impl\|Mf(x,t_0)\|_{L_x^1}<\oo.\]
 Apply the LDCT.
 \end{pf}
+
+$F$ is absolutely continuous,
+\[\pd_tF=f\iff F(x,t)=\int_c^tf(x,s)\,dx.\]
+Then, for
+\[T_hf(x,0):=\frac1h\int_0^hf(x,s)\,ds,\]
+
+For $\|f\|_{L_x^1L_t^\oo}=\|\sup_t|f(x,t)|\|_{L_x^1}<\oo$
+we have
+\begin{align*}
+|T_hf(x,0)|&\le\frac1h\int_0^h|f(x,s)|\,ds\\
+&\le\left[\frac1h\int_0^h\,ds\right]\cdot\sup_t|f(x,t)|\\
+&=\sup_t|f(x,t)|.
+\end{align*}
+Thus,
+\[Mf(x,0)=\sup_h|T_hf(x,0)|\le\sup_t|f(x,t)|\in L_x^1.\]
+
+Since $f(x,0)\in L_x^1$, by the Lebesgue differentiation theorem, we get
+\[\lim_{h\to0}T_hf(x,0)=f(x,0)\]
+for a.e. $x$.
+
+
+
+
+
+
+
+
+
+
 
 \end{document}
