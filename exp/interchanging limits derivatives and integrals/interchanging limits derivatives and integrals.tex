@@ -1,0 +1,63 @@
+\documentclass{../exp}
+\usepackage{../../ikany}
+
+\title{Interchanging limits, derivatives, and integrals}
+
+\begin{document}
+
+\section{Limit and derivative}
+
+$f_n$ pointwisely, $Df_n$ uniformly
+
+
+
+
+
+
+
+
+\section{Limit and integral}
+We want to find a criterion for 
+This question is equivalent to the convergence
+\[f_n\to f\quad\text{in}\quad L^1.\]
+
+\begin{thm}[Lebesgue dominated convergence theorem]
+Let $\{f_\alpha\}_\alpha$ be a net of measurable functions $(X,\mu)\to\R$.
+Define a maximal function
+\[Mf(x)=\sup_\alpha|f_\alpha(x)|.\]
+
+If $\|Mf\|_1<\oo$, then
+\[\lim_\alpha|f_\alpha(x)-f(x)|=0\quad a.e.\impl\lim_\alpha\|f_\alpha-f\|=0.\]
+\end{thm}
+
+continuity application
+
+
+
+
+
+
+
+
+\section{Derivative and integral}
+This question asks under what conditions the following convergence holds: for fixed $t_0$,
+\[\lim_{t\to t_0}\|N_tf(x,t_0)-\pd_tf(x,t_0)\|_{L_x^1}=0,\]
+where the Newton quotient is defined as
+\[N_tf(x,t_0):=\frac{f(x,t)-f(x,t_0)}{t-t_0}\]
+for $t\ne t_0$
+
+\begin{thm}[Leibniz rule]
+Let $I$ be an interval in $\R$ that containing $t_0$.
+Let $f:X\x I\to\R$ be a measurable function such that for a.e. $x$ the function $t\mapsto f(x,t)$ is continuous on $I$ and differentiable on $I^\o$.
+
+If $\|\pd_tf(x,t)\|_{L_x^1(L_t^\oo)}<\oo$, then
+\[\dd{t}\int f(x,t)\,dx=\int\pd{t}f(x,t)\,dx.\]
+\end{thm}
+\begin{pf}
+Define a maximal function
+\[Mf(x,t_0)=\sup_t|N_tf(x,t_0)|.\]
+By the mean value theorem, we get $\|Mf(x,t_0)\|_{L_x^1}<\oo$.
+Apply the LDCT.
+\end{pf}
+
+\end{document}
