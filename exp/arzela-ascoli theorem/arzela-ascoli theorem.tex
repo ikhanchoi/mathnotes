@@ -39,13 +39,11 @@ In a complete uniform space, the completion can be charaterized as closure.
 
 The following two definitions are helpful when we need to check relative compactness.
 \begin{defn}
-A uniform space is called \emph{relatively net compact} if every net has a Cauchy subnet.
+A Cauchy space is called \emph{relatively Cauchy compact} if every net has a Cauchy subnet.
 \footnote{There are three well-known different definitions: Willard subnet, Kelly subnet, and Aarnes-Anden{\ae}s subnet. However, since the existence of each subnet associated to a common eventuality filter is equivalent, there will be no conflicts among them. In this note, we define a subnet as the monotone cofinal function between the index sets. See Eric schechter's book [].}
-\footnote{The relatively net compactness can defined not only for uniform spaces but also Cauchy spaces, more generally.}
 \end{defn}
 \begin{defn}
 A uniform space is called \emph{totally bounded} if for every entourage $E$ there is a finite cover $\{U_i\}_i$ with $U_i\x U_i\subset E$ for each index $i$.
-\footnote{Uniformity is the minimal structure to define totally bounded spaces.}
 \end{defn}
 
 \begin{thm}
@@ -53,7 +51,7 @@ Let $X$ be a uniform space.
 The followings are all equivalent:
 \begin{cond}
 \item $X$ is relatively compact;
-\item $X$ is relatively net compact;
+\item $X$ is relatively Cauchy compact;
 \item $X$ is totally bounded.
 \end{cond}
 \end{thm}
@@ -70,13 +68,15 @@ Since $\{U:U\text{ is open in }\tld X,\ U\x U\subset E\}$ is an open cover of $\
 Then, $\{U_i\cap X\}_i$ is a finite cover of $X$ satisfying $(U_i\cap X)\x(U_i\cap X)\subset E$.
 
 (2)$\impl$(1).
-By the fact that compactness and net compactness are always equivalent in all topological spaces, we are done if we show every net in $\tld X$ has a Cauchy subnet.
+If we show $\tld X$ is also relatively Cauchy compact, we are done.
+That is because of the fact that compactness and net compactness are always equivalent in all topological spaces.
+
 Let $\tld x:\fA\to\tld X$ be a net in $\tld X$.
 Take an approximating net $x:\fA\x\cU\to X$ in $X$ such that
 \[(x_{(\alpha,E)},\tld x_\alpha)\in E\]
 for all $\alpha\in\fA$ and all entourages $E\in\cU$.
 Recall that $(\alpha,E)\succ(\alpha',E')$ if and only if $\alpha\succ\alpha'$ and $E\subset E'$.
-By the assumption that $X$ is relatively net compact, there is a Cauchy subnet
+By the assumption that $X$ is relatively Cauchy compact, there is a Cauchy subnet
 \[xh:\fB\to{h}\fA\x\cU\to X\]
 of $x$.
 Then,
