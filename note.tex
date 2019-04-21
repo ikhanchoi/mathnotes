@@ -30,17 +30,21 @@ For $T\in D_{cl}(X,Y)$,
 \[T\text{ is unbounded}\iff T\text{ is not everywhere defined}.\]
 \end{prop}
 
-
-\subsection{Decomposition of spectrum}
-Note that decomposition of spectrum is usually for closed operators.
+Closed operators,
 \begin{cond}
-\item For closed operators, we do not have to consider cores.
-\item We will not distinguish everywhere defined operators and densely defined operators.
-\item We will not care whether its domain for unbounded densely defined operators. If closed, then unboundedness is equivalent to everywhere defined.
+\item provide with the optimal extended domain for adjoint operators,
+\item have maximal essential domains,
+\item are closed under invertibility,
+\item do not distinguish everywhere defined denslely defined, since everywhere definedness is equivalent to boundedness.
 \end{cond}
 
+
+\subsection{Decomposition of spectrum}
+Note that since decomposition of spectrum is orginated for application to quantum mechanics, this traditional definition is usually for closed operators. Even though the following definitions can be applied for non-closable operators, but it does not make nice senses. So, every operator in this subsection is assumed to be closed.
+
 Let $X=Y$ in order to see $L(X,Y)$ as a ring.
-Let $L(X)\subset D(X)\subset B(X)$ be spaces of linear operators, densely defined operators, densely define bounded operators respectively.
+Let $L(X)\subset D(X)\subset B(X)$ be spaces of linear operators, densely defined operators, bounded operators respectively.
+Note that $D(X)$ is not a vector space.
 For $T\in L(X)$,
 \[\lambda\begin{cases}\text{is in }\rho(T)\\\text{is in }\sigma_c(T)\\\text{is in }\sigma_r(T)\\\text{is in }\sigma_p(T)\end{cases}\qquad\text{iff}\qquad R_\lambda(T)\begin{cases}\in B(X)\\\in D(X)\setminus B(X)\\\in L(X)\setminus D(X)\\\text{does not exist in }L(X)\end{cases}.\]
 
@@ -56,7 +60,9 @@ For reflexive $Y$, we have
 that is inj? surj?
 
 For reflexive $X$, we have
-\[\adj:D_{closable}(X)\ep D_{cl}(X^*).\]
+\[adj:D_{closable}(X)\equiv D_{cl}(X^*).\]
+For $f:X\to Y$ the predicate $f:A\equiv B$ means
+\[f(A)=B and A=f^{-1}(B).\]
 
 \begin{thm}
 The adjoint $B_{cl}(H)\to{\sim}B_{cl}(H)$ can be extended to $D_{cl}(H)\to{\sim}D_{cl}(H)$.

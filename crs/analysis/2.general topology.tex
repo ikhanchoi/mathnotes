@@ -277,6 +277,7 @@ In other words, when we consider a metric as a function that takes a sequence as
 Of course, the continuity of functions has the same issue.
 This allows us to think an equivalence relation on the set of metrics, that is, two equivalent metrics give a common criterion for convergence and continuity.
 In this situation, it can be paraphrased into that the two metrics induce exactly same topology.
+Then, we want to classfy the metrics by their topologies.
 Some definitions and theorems for the equivalence checking will be given as follows.
 
 \begin{defn}
@@ -288,7 +289,7 @@ where the notations $B_1$ and $B_2$ refer to balls defined with the metrics $d_1
 \end{defn}
 
 The word ``topologically'' is frequently omitted.
-This definition looks quite strange, but is directly related to the way how a metric gives rise to a topology.
+This definition looks quite strange, but is directly related to the way how a metric gives rise to a topology, which we have not defined yet.
 There are various characterizations of equivalence among metrics.
 
 \begin{prop}
@@ -354,7 +355,7 @@ However, they are generally difficult problems: is it possible to recover the ba
 \end{rmk}
 
 
-The following two theorems give sufficient conditions for equivalence.
+The following two theorems give useful sufficient conditions for equivalence.
 The first theorem is well used to compare norms on a vector space in particular, and the second theorem is going to be used in the next subsection.
 
 \begin{thm}\label{thm:equivalent metrics}
@@ -391,7 +392,7 @@ It is also natural to apply the concept of topological equivalence to norms.
 The idea is same; if two norms gives rise to a same topology, or equivalently, topologically equivalent metrics, then we call them equivalent.
 However, the checking procedure becomes rather simple; the converse of Theorem \ref{thm:equivalent metrics} holds for norms.
 It is because metrics on a vector space induced from norms has the property called translation invariance.
-The following thereom is often taken as the definition of norm equivalence.
+The following thereom is related to the converse result of Theorem \ref{thm: equivalent metrics} and often taken as the definition of norm equivalence.
 
 \begin{thm}
 Let $\|\cdot\|_1$ and $\|\cdot\|_2$ be two norms on a vector space $V$.

@@ -1,0 +1,38 @@
+\documentclass{../exp}
+\usepackage{../../ikany}
+
+\title{Generative Adversarial Networks}
+
+\begin{document}
+
+
+The AI paradigm changes when a new approximating method is discovered.
+
+\section{Maximum likelihood estimate}
+
+\section{Gradient descent method}
+ascending stochastic gradient
+
+
+\section{Minimax game}
+
+Minimax is a \emph{decision policy} in a competitive game.
+
+\section{Generative adversarial networks}
+Let $X$ be the set of images.
+Suppose the data distribution $p_{data}$ on $X$ which embodies learning materials is given.
+If $x\in X$ is an image that looks like a real human face, then the distribution function $p_{data}$ has nonnegligible values near the point $x$.
+We cannot describe the distribution function $p_{data}$ completely, but only can sample from it.
+
+Let $p_g$ be a distribution on $X$.
+The generator $G:\Omega\to X$ is just an arbitrarily taken random variable satisfying $p_g$ for sampling.
+The discriminator $D:X\to[0,1]$ is a function
+Our purpose is to construct a new method for approximating $p_g\to p_{data}$ by simultaneously updating the discriminator function $D$.
+
+
+Balancing the convergence rates between $p_g$ and $D$ is important.
+
+
+
+
+\end{document}
