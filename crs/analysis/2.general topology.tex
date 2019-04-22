@@ -392,7 +392,7 @@ It is also natural to apply the concept of topological equivalence to norms.
 The idea is same; if two norms gives rise to a same topology, or equivalently, topologically equivalent metrics, then we call them equivalent.
 However, the checking procedure becomes rather simple; the converse of Theorem \ref{thm:equivalent metrics} holds for norms.
 It is because metrics on a vector space induced from norms has the property called translation invariance.
-The following thereom is related to the converse result of Theorem \ref{thm: equivalent metrics} and often taken as the definition of norm equivalence.
+The following thereom is often taken as the definition of norm equivalence.
 
 \begin{thm}
 Let $\|\cdot\|_1$ and $\|\cdot\|_2$ be two norms on a vector space $V$.
@@ -421,16 +421,52 @@ Especially, when we work on a vector space with finite dimension such as a Eucli
 On a finite dimensional vector space over a complete field such as $\R$ and $\C$, all norms are equivalent.
 \end{thm}
 \begin{pf}
-%%%
+Let $\F$ be the complete field $\R$ or $\C$.
+Both have the absolute value function that makes the vector space complete.
+Then, a finite dimensional vector space is isomorphic to $\F^d$ for some $d$.
+Fix a basis $\{e_i\}_{i=1}^d$ on $\F^d$ and let $x=\sum_{i=1}^dx_ie_i$ denote an arbitrary element of $\F_d$.
+We will prove all norms are equivalent to the standard norm:
+\[\|x\|_2=\norm{\sum_{i=1}^dx_ie_i}_2:=\left(\sum_{i=1}^d|x_i|^2\right)^{\frac12}.\]
+With this standard norm, we can use any theorems we learn in elementary analysis.
+For example, we are allowed to use the Bolzano-Weierstrass theorem.
+We usd the subscript 2 for the standard norm since the norm is frequently called $\ell^2$ norm.
+
+
+Take a norm $\|\cdot\|$ on $\F^d$.
+One direction is easy: if we let $C_2:=\sqrt{d}\cdot\max_i\|e_i\|$, then
+\begin{align*}
+\|x\|=\norm{\sum_{i=1}^dx_ie_i}&\le\sum_{i=1}^d|x_i|\|e_i\|\\
+&\le\max_i\|e_i\|\sum_{i=1}^d|x_i|\\
+&\le\max_i\|e_i\|\left(\sum_{i=1}^d1^2\right)^{\frac12}\left(\sum_{i=1}^d|x_i|^2\right)^{\frac12}=C_2\|x\|_2.
+\end{align*}
+For your information, this inequality show that the function $(\F^d,\|\cdot\|_2)\to\R:x\mapsto\|x\|$ is continuous.
+
+There are many proofs for the other direction.
+We give a proof using sequences.
+Suppose there is no constant $C$ such that the inequality $\|x\|_2\le C\|x\|$ holds.
+In other words, for every positive integer $n$, we can find $x_n\in\F^d\setminus\{0\}$ such that
+\[\|x_n\|_2>n\|x_n\|.\]
+Normalize $x_n$ with respect to $\|\cdot\|_2$ to define a new sequence $y_n:=\frac{x_n}{\|x_n\|_2}$.
+Then, we have
+\[\|y_n\|_2=1\quad\text{and}\quad\|y_n\|<\tfrac1n.\]
+Since the set $\{x:\|x\|_2=1\}$ is bounded in the standard norm, the Bolzano-Weierstrass theorem implies the existence of a subsequence $\{y_{n_k}\}_k$ of $\{y_n\}$ that converges to a point $y$ in $\|\cdot\|_2$.
+For this $y$, we have $\|y\|_2=1$ while $\|y\|=0$, which is a contradiction to the axiom of norm.
+
+More rigorously, we get $\|y\|_2=1$ and $\|y\|=0$ by taking limit $k\to\oo$ on the inequalities
+\[\bigl|\|y_{n_k}\|_2-\|y\|_2\bigr|\le\|y_{n_k}-y\|_2\]
+and
+\[\bigl|\|y_{n_k}\|-\|y\|\bigr|\le\|y_{n_k}-y\|\le C_2\|y_{n_k}-y\|_2.\]
+This proves that $\|\cdot\|$ is equivalent to the standard norm.
 \end{pf}
 
 \begin{rmk}
 Equivalence of norms on finite dimensional space is due to the locally compactness and the completeness.
-A closed ball follows the relation diagram:
+Hence we may also apply the Heine-Borel theorem or the extreme value theorem instead of the Bolzano-Weierstrass theorem.
+Notice a closed ball is compact in such spaces, following the relation diagram:
 \begin{rd}[column sep=huge]
 Bounded \ds{r}{fin. dim.} & Totally bounded \ds{r}{complete} & Compact.
 \end{rd}
-It is also an important result in functional analysis.
+This result is also important in functional analysis.
 \end{rmk}
 
 
@@ -517,6 +553,9 @@ Show that $x=x'$.
 \begin{prb}
 Let $d$ a metric on a set $X$.
 Show that a function $d_p$ defined by $d_p(x,y)=d(x,y)^p$ is a metric equivalent to $d$ for every $p>0$.
+\end{prb}
+\begin{prb}
+Find the range of the function $f(x)=\|x\|_p/\|x\|_q$ defined for $x\in\R^d$, where $\|x\|_p^p:=\sum_{i=1}^d|x_i|^p$ for $x=(x_1,\cdots,x_d)$.
 \end{prb}
 
 
