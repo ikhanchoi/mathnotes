@@ -111,38 +111,63 @@ This can be easily proved with diagonal subsequence extracting argument under th
 A complete totally bounded uniform space is compact.
 \end{thm}
 \begin{pf}[1]
-Let $X$ be a complete totally bounded uniform space.
-Let $\cU$ and $\cT$ be the uniformity and topology of $X$.
+Let $X$ be a totally bounded complete uniform space.
+Let $\cU$ and $\cT$ be the uniformity and topology of $X$ respectively.
 Let $x:\fA\to X$ be a net in $X$.
+We are going to show $x$ has a Cauchy subnet.
 
 \Step[1]{Applying Zorn's lemma}
+
 Define a subset $\fA'\subset\fA\x\cT\x\cU$ by
-\[(\alpha,U,E)\in\fA'\iff U^2\in E,\ x^{-1}(U)\text{ is cofinal},\ x_\alpha\in U.\]
+\[(\alpha,U,E)\in\fA'\iff x_\alpha\in U,\ U^2\subset E,\ x^{-1}(U)\text{ is cofinal in }\fA.\]
+The third condition is a necessary condition for $U$ to contain a limit of a subnet of $x$.
 Define a subset $Z\subset\cP(\fA')$ by
-\[\fB\in Z\iff \pi_\cT(\fB)\subset\cT\text{ is a totally ordered set},\]
+\[\fB\in Z\iff \pi_\cT(\fB)\subset\cT\text{ is directed},\]
 where $\pi_\cT:\fA\x\cT\x\cU\to\cT$ is the canonical projection.
 We apply Zorn's lemma on $Z$.
 
 First, we claim $Z\ne\mt$.
-For any entourage $E\in\cU$, using totally boundedness, we can find a finite open cover $\{U_i\}_i$ of $\tld X$ such that $U_i^2\subset E$.
-Since $\bigcup_ix^{-1}(U_i)=x^{-1}(\tld X)=\fA$, we can find an open set $U$ such that $U^2\subset E$ and $x^{-1}(U)$ is a cofinal subset of $\fA$.
-If we choose any $\alpha\in x^{-1}(U)$, then the singleton $\{(\alpha,U,E)\}$ is in $Z$.
-In particular, we get an additional result $\pi_\cU(Z)=\cU$ from this.
+For an entourage $E\in\cU$, using totally boundedness, we can find a finite open cover $\{U_i\}_i$ of $X$ such that $U_i^2\subset E$ for all $i$.
+Since $\bigcup_ix^{-1}(U_i)=x^{-1}(X)=\fA$, there is at least one $i$ such that $x^{-1}(U_i)$ is a cofinal subset of $\fA$.
+If we choose any $\alpha\in x^{-1}(U_i)$, then the singleton $\{(\alpha,U_i,E)\}$ is an element of $Z$, because singleton can be always said to be directed.
+(We cannot choose $U=X$ since no entourages may contain $X^2$ without totally boundedness.)
 
-The upper bound of chain is obtained by union.
+The upper bound of each chain is obtained by union.
 Therefore, there is a maximal element in $Z$.
 Let it denoted by $\fM$.
+Note that $\fM\subset\fA'$ inherits the order relation from $\fA\x\cT\x\cU$.
+Also note that if $U\in\pi_\cT(\fM)$, then $\alpha\in x^{-1}(U)$ and $U^2\subset E$ imply $(\alpha,U,E)\in\fM$ by the maximality.
 
 \Step[2]{Verification of Cauchy subnet}
-We need to show the three conditions: Cauchyness, directedness of $\fM$, and monotone cofinality of $\fM\to\fA$.
 
-By the maximality, $\pi_\cU(\fM)$ must contains every entourage.
-The Cauchyness follows from this easily.
-The directedness is from the linearity of $\pi_\cT(\fM)$.
-The cofinality is shown by the cofinality of $x^{-1}(U)$.
+The goal is to show $x\o\pi_\fA:\fM\to X$ is a subnet that is Cauchy.
+So, we need to show the three conditions: directedness of $\fM$, monotone cofinality of $\pi_\fA|_\fM$, and finally Cauchyness.
+
+(directedness)
+For $(\alpha,U,E),(\alpha',U',E')\in\fM$ we can find $V\in\pi_\cT(\fM)$ such that $U\cup U'\supset V$ by the directedness $\pi_\cT(\fM)$.
+Since $x^{-1}(V)$ is cofinal, there is $\beta\in x^{-1}(V)$ satisfies $\alpha,\alpha'\succ\beta$.
+Then, $(\beta,V,E\cap E')\in\fM$ gives an upper bound.
+
+(monotonicity) Trivial.
+
+(cofinality)
+Take any $(\alpha,U,E)\in\fM$.
+For any $\alpha'\in\fA$ there is $(\beta,U,E)\in\fM$ such that $\alpha,\alpha'\succ\beta$ since $x^{-1}(U)$ is cofinal.
+
+(Cauchyness)
+Assume $E\notin\pi_\cU(\fM)$.
+Let $\{U_i\}_i$ be a finite open cover of $X$ such that $U_i^2\subset E$ for all $i$.
+Suppose for every $i$ we have $V_i\in\pi_\cT(\fM)$ such that $U_i\cap V_i=\mt$.
+If we let $V\in\pi_\cT(\fM)$ be an upper bound of $\{V_i\}_i$, then $U_i\cap V=\mt$ for all $i$, which is impossible.
+This implies we have an open set $U$ such that $U^2\subset E$ and $U\cap V\ne\mt$ for all $V\in\pi_\cT(\fM)$.
+Then we have
+\[\fM\cup\{(\alpha,U\cap V,E)\in\fA':V\in\pi_\cT(\fM)\}\in Z,\]
+which contradicts to the maximality.
+Therefore, $\pi_\cU(\fM)=\cU$.
+The Cauchyness follows easily from this.
 \end{pf}
 \begin{pf}[2]
-This proof is by DL Frank, Columbia university, 1965 [].
+This proof is by DL Frank, Columbia university, 1965 [ ].
 
 \end{pf}
 
