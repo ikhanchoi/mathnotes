@@ -1,0 +1,83 @@
+\documentclass{../exp}
+\usepackage{../../ikany}
+
+\title{Propositions on Differential Geometry}
+
+\begin{document}
+\maketitle
+\tableofcontents
+
+
+\section{Smooth manifolds}
+
+\begin{prop}
+Let $\gamma:I\to M$ be a curve with $\gamma(0)=p$.
+There is a chart $(U,\f)$ of $p$ such that $\f^{-1}|_I=\gamma$.
+\end{prop}
+
+\begin{prop}
+Let $M$ be a connected manifold.
+For distinct two points on $M$, there is a curve connecting them that is an embedding into $M$.
+\end{prop}
+\begin{pf}
+Let $\gamma:I\to M$ be a curve connecting the given two points, say $p,q$.
+
+\Step[1]{Constructing a piecewise linear curve}
+For $t\in I$, take a convex chart $U_t$ at $\gamma(t)$.
+Since $I$ is compact, we can choose a finite $\{t_i\}_i$ such that $\bigcup_i\gamma^{-1}(U_{t_i})=I$.
+This implies $\im\gamma\subset\bigcup_iU_{t_i}$.
+Reorganize indices such that $\gamma(t_1)=p$, $\gamma(t_n)=q$, and $U_{t_i}\cap U_{t_{i+1}}\ne\mt$ for all $1\le i\le n-1$.
+It is possible since the graph with $V=\{i\}_i$ and $E=\{(i,j):U_{t_i}\cap U_{t_j}\ne\mt$ is connected.
+Choose $p_i\in U_{t_i}\cap U_{t_{i+1}}$ such that they are all dis for $1\le i\le n-1$ and let $p_0=p$, $p_n=q$.
+
+How can we treat intersections?
+
+Therefore, we get a piecewise linear curve which has no self intersection from $p$ to $q$.
+
+\Step[2]{Smoothing the curve}
+\end{pf}
+
+
+\begin{prop}
+Let $M$ is an embedded manifold with boundary in $N$.
+Any kind of sections on $M$ can be extended on $N$.
+\end{prop}
+
+
+
+\begin{prop}
+Every ring homomorphism $C^\oo(M)\to\R$ is obtained by an evaluation at a point of $M$.
+\end{prop}
+\begin{pf}
+Suppose $\phi:C^\oo(M)\to\R$ is not an evaluation.
+Let $h$ be a positive exhaustion function.
+Take a compact set $K:=h^{-1}([0,\phi(h)])$.
+For every $p\in K$, we can find $f_p\in C^\oo(M)$ such that $\phi(f_p)\ne f_p(p)$ by the assumption.
+Summing $(f_p-\phi(f_p))^2$ finitely on $K$ and applying the extreme value theorem, we obtain a function $f\in C^\oo(M)$ such that $f\ge0$, $f|_K>1$, and $\phi(f)=0$.
+Then, the function $h+\phi(h)f-\phi(h)$ is in kernel of $\phi$ although it is strictly positive and thereby a unit.
+It is a contradiction.
+\end{pf}
+
+
+\section{Tangent bundle}
+
+
+\begin{prop}
+The $n$-sphere $S^n$ possesses a nonvanishing vector field iff $n$ is odd.
+\end{prop}
+
+
+\section{Geodesics}
+
+\begin{prop}
+Let $p\in M$.
+The set of points that is geodesically connected to $p$ is open.
+\end{prop}
+
+
+
+
+
+
+
+\end{document}

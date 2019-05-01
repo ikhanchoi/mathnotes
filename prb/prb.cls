@@ -7,15 +7,13 @@
 \usepackage[margin=100pt,headheight=10pt]{geometry}
 
 \newcommand{\korean}{
-  \usepackage{kotex}
-  \linespread{1.6}
-  \renewcommand{\arraystretch}{0.625}
+  \usepackage[hangul]{kotex}
   \geometry{headheight=20pt}
 }
 
 
-\newcommand{\+}{\begin{center}$\blacklozenge$\end{center}}
-
+\newcommand{\+}{\begin{center}$\cdot\qquad\cdot\qquad\cdot\qquad\cdot\qquad\cdot$\end{center}}
+% \blacklozenge
 
 
 \let\@@author\author
