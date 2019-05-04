@@ -179,10 +179,11 @@ This metric is sometimes called \emph{discrete metric} because balls can separat
 \end{ex}
 \begin{ex}\label{ex:subadditive function metric}
 Let $d$ be a metric on a set $X$.
-Let $f:[0,\oo)\to[0,\oo)$ be a monotonically increasing function such that $f^{-1}(0)=\{0\}$.
-If $f$ is subadditive, in other words $f$ satisfies
+Let $f:[0,\oo)\to[0,\oo)$ be a function such that $f^{-1}(0)=\{0\}$.
+If $f$ is monotonically increasing and subadditive, then $f\o d$ satisfies the triangle inequality, hence is another metric on $X$.
+Note that a function $f$ is called subadditive if
 \[f(x+y)\le f(x)+f(y)\]
-for all $x,y\in\R_{\ge0}$, then $f\o d$ is another metric on $X$.
+for all $x,y$ in the domain.
 \end{ex}
 \begin{ex}
 Let $G=(V,E)$ be a connected graph.
@@ -195,8 +196,8 @@ Define $d:\cP(X)\x\cP(X)\to\Z_{\ge0}\subset\R_{\ge0}$ as the cardinality of the 
 Then $(\cP(X),d)$ is a metric space.
 \end{ex}
 \begin{ex}
-Let $C$ be the set of all compact subsets of $\R^n$.
-Recall that a subset of $\R^n$ is compact if and only if it is closed and bounded.
+Let $C$ be the set of all compact subsets of $\R^d$.
+Recall that a subset of $\R^d$ is compact if and only if it is closed and bounded.
 Then, $d:C\x C\to\R_{\ge0}$ defined by
 \[d(A,B):=\max\{\sup_{a\in A}\inf_{b\in B}\|a-b\|,\sup_{b\in B}\inf_{a\in A}\|a-b\|\}\]
 is a metric on $C$.
@@ -278,6 +279,8 @@ Of course, the continuity of functions has the same issue.
 This allows us to think an equivalence relation on the set of metrics, that is, two equivalent metrics give a common criterion for convergence and continuity.
 In this situation, it can be paraphrased into that the two metrics induce exactly same topology.
 Then, we want to classfy the metrics by their topologies.
+
+\subsubsection{Topological equivalence of metrics}
 Some definitions and theorems for the equivalence checking will be given as follows.
 
 \begin{defn}
@@ -359,7 +362,7 @@ However, they are generally difficult problems: is it possible to recover the ba
 The following two theorems give useful sufficient conditions for equivalence.
 The first theorem is well used to compare norms on a vector space in particular, and the second theorem is going to be used in the next subsection.
 
-\begin{thm}\label{thm:equivalent metrics}
+\begin{thm}\label{thm:equivalent metrics by inequalities}
 Let $d_1$ and $d_2$ are metric on a set $X$.
 If for each point $x$ there exist two constants $C_1$ and $C_2$ which may depend on $x$ such that
 \[d_2(x,y)\le C_1d_1(x,y)\quad\text{and}\quad d_1(x,y)\le C_2d_2(x,y)\]
@@ -371,7 +374,7 @@ Since $d_1(x,y)<\e/C_1$ implies $d_2(x,y)<\e$ and $d_2(x,y)<\e/C_2$ implies $d_1
 By letting $\delta_1=\e/C_1$ and $\delta_2=\e/C_2$, we can see the two metrics are equivalent.
 \end{pf}
 
-\begin{thm}\label{thm:subadditive equivalent metrics}
+\begin{thm}\label{thm:equivalent metrics by subadditive function}
 Let $d$ be a metric on a set $X$ and let $f$ be a monotonically increasing subadditive real function on $\R_{\ge0}$ such that $f^{-1}(0)=\{0\}$ so that $f\o d$ is a metric.
 If $f$ is continuous at 0 in addition, then $f\o d$ is equivalent to $d$.
 \end{thm}
@@ -388,10 +391,10 @@ Since $f$ is continuous at 0, we can find $\delta>0$ such that
 which implies $B(x,\delta)\subset B_f(x,\e)$.
 \end{pf}
 
-
+\subsubsection{Topological equivalence of norms}
 It is also natural to apply the concept of topological equivalence to norms.
 The idea is same; if two norms gives rise to a same topology, or equivalently, topologically equivalent metrics, then we call them equivalent.
-However, the checking procedure becomes rather simple; the converse of Theorem \ref{thm:equivalent metrics} holds for norms.
+However, the checking procedure becomes rather simple; the converse of Theorem \ref{thm:equivalent metrics by inequalities} holds for norms.
 It is because metrics on a vector space induced from norms has the property called translation invariance.
 The following thereom is often taken as the definition of norm equivalence.
 
@@ -402,7 +405,7 @@ They induce the equivalent metrics if and only if there are constants $C_1$ and 
 for all $x\in V$.
 \end{thm}
 \begin{pf}
-($\Leftarrow$) It is a corollary of Theorem \ref{thm:equivalent metrics}.
+($\Leftarrow$) It is a corollary of Theorem \ref{thm:equivalent metrics by inequalities}.
 
 ($\Rightarrow$)
 For any ball $B_2(0,\e)$, there is a smaller ball $B_1(0,\delta)$ such that $B_1(0,\delta)\subset B_2(0,\e)$ by the definition of equivalence of metrics.
@@ -416,9 +419,9 @@ Therefore, $\|x\|_2\le C_1\|x\|_1$ for all $x\in V$.
 The other inequality is also shown by the same way.
 \end{pf}
 
-Especially, when we work on a vector space with finite dimension such as a Euclidean space $\R^n$, the situation gets better dramatically.
+Especially, when we work on a vector space with finite dimension such as a Euclidean space $\R^d$, the situation gets better dramatically.
 
-\begin{thm}
+\begin{thm}\label{thm:equivalent norms on finite dimension}
 On a finite dimensional vector space over a complete field such as $\R$ and $\C$, all norms are equivalent.
 \end{thm}
 \begin{pf}
@@ -471,17 +474,119 @@ Bounded \ds{r}{fin. dim.} & Totally bounded \ds{r}{complete} & Compact.
 This result is also important in functional analysis.
 \end{rmk}
 
+\begin{ex}
+Let $\|\cdot\|_1$ and $\|\cdot\|_2$ be norms on $\R^2$ defined as
+\[\|(x,y)\|_1:=|x|+|y|,\quad\|(x,y)\|_2:=\sqrt{|x|^2+|y|^2}.\]
+Then, since we have inequalities
+\[\|(x,y)\|_2\le\|(x,y)\|_1\le\sqrt2\|(x,y)\|_2\]
+for all $(x,y)\in\R^2$, the two norms are equivalent.
+\end{ex}
 
 
 
 % 1-1-4
-\subsection{Bounding and combining metrics}
+\subsection{Family of pseudometrics}
 
-In this subsection, we want to describe a topology generated by several metrics, and, in general, by several ``pseudometrics''.
-This idea provides a useful way to construct a metric or topology, which can be applied to a quite wide range of applications.
-To motivate and introduce pseudometrics, we give an example problem.
+In this subsection, we will describe a topology generated by several metrics, and, in general, by several ``pseudometrics''.
+This idea provides a useful method to construct a metric or topology, which can be applied to a quite wide range of applications.
 
-Consider a cartesian product of two metric spaces $(X,d_X)$ and $(Y,d_Y)$.
+\subsubsection{Combining metrics}
+At first, let us look into combination of metrics.
+Specifically, in a conventional way, metrics are summed to make another metric out of olds since sum of two metrics also satisfies the all axioms of metric.
+However, here we give a slightly more general construction using a norm on the Euclidean space $\R^d$.
+
+\begin{prop}
+Let $\{d_i\}_{i=1}^d$ be a family of metrics on a set $X$.
+Let $\|\cdot\|$ be a norm on $\R^d$.
+Then, $d(x,y):=\|(d_1(x,y),\cdots,d_d(x,y))\|$ is another metric on $X$.
+\end{prop}
+\begin{pf}
+Obvious.
+\end{pf}
+\begin{rmk}
+Although it is possible to figure out conditions for $f:[0,\oo)^2\to[0,\oo)$ to have $f(d_1,d_2)$ be a metric, we just compromised it for simplicity and usefulness.
+Also, if we use norms, then the same method can be extended to the case of norms.
+\end{rmk}
+Furthermore, the newly defined metric is unique up to equivalence.
+We prove only for a pair of metrics, but it is easy to check by mathematical induction that any finite family of metrics can be combined to make new metrics, which are essentially equivalent.
+
+\begin{prop}
+Let $d_1$, $d_2$, $d'_1$, and $d'_2$ be metrics on a set.
+Let $\|\cdot\|$ and $\|\cdot\|'$ be norms on $\R^2$.
+If $d_1$, $d_2$, and $\|\cdot\|$ are equivalent to $d'_1$, $d'_2$, and $\|\cdot\|'$ repsectively, then $\|(d_1,d_2)\|$ and $\|(d'_1,d'_2)\|'$ are equivalent metrics.
+\end{prop}
+\begin{pf}
+Let $\{y:\|(d'_1(x,y),d'_2(x,y))\|'<\e\}$ be an arbitrary ball centered at a point $x$ taken by the metric $\|(d'_1,d'_2)\|'$.
+By Theorem \ref{thm:equivalent norms on finite dimension}, there is a constant $C,C'>0$ such that $C'\|\cdot\|'\le\|\cdot\|_\oo\le C\|\cdot\|$, where we denote $\|(x,y)\|_\oo=\max\{|x|,|y|\}$.
+
+By the equivalence, we can find $\delta_1>0$ and $\delta_2>0$ such that
+\[B_1(x,\delta_1)\subset B_{1'}(x,C'\e)\quad\text{and}\quad B_2(x,\delta_2)\subset B_{2'}(x,C'\e),\]
+where $B_1,B_{1'},B_2$, and $B_{2'}$ denotes the ball with respect to metrics $d_1,d'_1,d_2$, and $d'_2$ respectively.
+With $\delta_1$ and $\delta_2$, define $\delta:=\min\{\delta_1,\delta_2\}/C$.
+Then, the ball of radius $\delta$ in the metric $\|(d_1,d_2)\|$ is contained in the ball of radius $\e$ in the metric $\|(d'_1,d'_2)\|'$:
+\[\{y:\|(d_1(x,y),d_2(x,y))\|<\delta\}\subset\{y:\|(d'_1(x,y),d'_2(x,y))\|'<\e\}.\]
+The opposite part is shown in the same way symmetrically.
+\end{pf}
+
+\begin{ex}
+Let $d_1$ and $d_2$ be metrics.
+Then
+\[d_1(x,y)+d_2(x,y)\quad\text{and}\quad\max\{d_1(x,y),d_2(x,y)\}\]
+are equivalent metrics.
+\end{ex}
+\begin{ex}
+If $d_1$ and $d_2$ are equivalent metrics, then $d_1+d_2$ is also equivalent to $d_1$ and $d_2$.
+\end{ex}
+
+From now, when we need to write a combined metric of a family of metrics, we will just adopt the sum $d_1+d_2$.
+
+Above this, there is also a method for combining not only finite family of metrics, but also countable family of metrics.
+Since the sum of countably many numbers may diverges, we cannot sum the metrics directly.
+The strategy used here is to ``bound'' the metrics.
+We call a metric bounded when the image of metric is bounded.
+
+\begin{prop}
+Every metric possesses an equivalent bounded metric.
+\end{prop}
+\begin{pf}
+Let $d$ be a metric on a set.
+Let $f$ be a bounded, monotonically increasing, and subadditive function on $\R_{\ge0}$ that is continuous at 0 and satisfies $f^{-1}(0)=\{0\}$.
+The mostly used examples are
+\[f(x)=\frac x{1+x}\quad\text{and}\quad f(x)=\min\{x,1\}.\]
+Then, $f\o d$ is a bounded metric equivalent to $d$ by Theorem \ref{thm:equivalent metrics by subadditive function}.
+\end{pf}
+
+
+
+
+
+% bounding
+% combining
+%% countable metric
+
+%%% example sequence space ptwise
+
+% A topology generated by countable family of metrics is metrizable.
+
+% first example that a topology which cannot be given by a metric
+
+\begin{prop}
+Let $d_1$ and $d_2$ be metrics on a set $X$.
+A sequecne $\{x_n\}_n$ converges to $x$ in $d_1+d_2$ if and only if it converges to $x$ in both $d_1$ and $d_2$.
+\end{prop}
+\begin{pf}
+
+\end{pf}
+
+
+
+
+\subsubsection{Definition of pseudometric}
+In fact, the metric combining technique is used for a family of metrics once in a while; it is frequently used for a family of pseudometrics, which has not been defined yet.
+At the last of this section, we give a typical example that requires a metric constructed by bounding and combining pseudometrics.
+
+To motivate and introduce pseudometrics, consider an example problem.
+Let $X\x Y$ be a cartesian product of two metric spaces $(X,d_X)$ and $(Y,d_Y)$.
 We may ask what metric is chosen in the most natural way, and a possible answer will be as follows:
 \[(x_n,y_n)\to(x,y)\iff x_n\to x\quad\text{and}\quad y_n\to y\]
 as $n\to\oo$.
@@ -500,60 +605,6 @@ A function $\rho:X\x X\to\R_{\ge0}$ is called a \emph{pseudometric} if
 \end{cond}
 \end{defn}
 Compare this with the definition of metric.
-
-%%%%% equivalence between pseudometrics?
-
-In detail, we can sum the metrics to make another metric out of old two metrics.
-Fortunately, the new metric is unique up to equivalence.
-By repeating the summation, it is easy to check any finite family of metrics can be combined to make a new metric.
-
-\begin{prop}
-Sum of two pseudometrics are a pseudometric.
-\end{prop}
-\begin{pf}
-Obvious.
-\end{pf}
-\begin{prop}
-Let $d_1$, $d_2$, $d'_1$, and $d'_2$ be metrics on a set.
-If $d_1$ and $d_2$ are equivalent to $d'_1$ and $d'_2$ repsectively, then $d_1+d_2$ and $d'_1+d'_2$ are equivalent.
-\end{prop}
-\begin{pf}
-Let $\{y:d'_1(x,y)+d'_2(x,y)<\e\}$ be an arbitrary ball centered at a point $x$ taken by the metric $d'_1+d'_2$.
-By the equivalence, we can find $\delta_1>0$ and $\delta_2>0$ such that
-\[B_1(x,\delta_1)\subset B_{1'}(x,\tfrac\e2)\quad\text{and}\quad B_2(x,\delta_2)\subset B_{2'}(x,\tfrac\e2).\]
-Let $\delta:=\min\{\delta_1,\delta_2\}$.
-Then, the ball of radius $\delta$ in the metric $d_1+d_2$ is contained in the ball of radius $\e$ in the metric $d'_1+d'_2$:
-\[\{y:d_1(x,y)+d_2(x,y)<\delta\}\subset\{y:d'_1(x,y)+d'_2(x,y)<\e\}.\]
-The opposite part is shown in the same way.
-\end{pf}
-
-In fact, there is also a method for combining not only finite family of metrics, but also countable family of metrics.
-Since the sum of countably many numbers may diverges, we cannot sum the metrics directly.
-The strategy used here is to ``bound'' the metrics.
-We call a metric bounded when the image of metric is bounded.
-
-\begin{prop}
-Every metric possesses an equivalent bounded metric.
-\end{prop}
-\begin{pf}
-Let $d$ be a metric on a set.
-Let $f$ be a bounded, monotonically increasing, and subadditive function on $\R_{\ge0}$ that is continuous at 0 and satisfies $f^{-1}(0)=\{0\}$.
-The mostly used examples are
-\[f(x)=\frac x{1+x}\quad\text{or}\quad f(x)=\min\{x,1\}.\]
-Then, $f\o d$ is a bounded metric equivalent to $d$ by Theorem \ref{thm:subadditive equivalent metrics}.
-\end{pf}
-
-
-% bounding
-% combining
-%% countable metric
-
-%%% example sequence space ptwise
-
-% first example that a topology which cannot be given by a metric
-
-
-
 
 
 
