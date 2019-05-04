@@ -7,7 +7,7 @@
 \maketitle
 \tableofcontents
 
-\chapter{Measure spaces}
+\chapter{Carath\'eodory's theory}
 
 
 \chapter{Riesz spaces}
@@ -16,12 +16,33 @@
 
 \chapter{Topological measures}
 
-\section{Radon measures}
-In this section, we assume every base space $X$ is locally compact Hausdorff (Why?).
-In locally compact Hausdorff spaces, compact finiteness and locally finiteness are equivalent.
-We will consider locally finite Borel measures as the minimally compatible measures with a given topology on $X$.
+\section{Descriptive set theory}
+
+
+
+
+
+\section{Borel measures}
+
+
+\subsection{Regular measures}
+
+\begin{thm}
+A Borel measure is inner regular on $\sigma$-bounded sets if and only if outer regular on $\sigma$-bounded sets.
+\end{thm}
+
+
+
+\subsection{Radon measures}
+
+Locally compact Hausdorff spaces have at least two important applications in abstract analysis related to measure theory: one is locally compact groups and the associated Harr measures in abstract harmonic analysis, the other is the Gelfand-Naimark theorem which states every commutative $C^*$-algebra can be represented as a function space on a locally compact Hausdorff space.
+In the set of this section, we assume every base space $X$ is locally compact Hausdorff.
+
+Note that locally finite measures are compact finite but the converser holds only if in locally compact Hausdorff spaces.
+We want to consider locally finite Borel measures as the minimally compatible measures with a given topology on $X$.
+For locally finite Borel measures, a set is finite-measured if and only if it is contained in a compact set.
 \begin{defn}
-A \emph{Radon measure} is a Borel measure on $X$ which satisfies the following three conditions:
+(Folland's)A \emph{Radon measure} is a Borel measure on $X$ which satisfies the following three conditions:
 \begin{cond}
 \item locally finite,
 \item outer regular on all Borel sets,
@@ -32,10 +53,10 @@ A \emph{Radon measure} is a Borel measure on $X$ which satisfies the following t
 Radon measures are rather simply characterized when the base space $X$ is $\sigma$-compact.
 The following proposition proves the equivalence between regularity and Radonness of locally finite Borel measure on a $\sigma$-compact space.
 \begin{prop}
-A Radon measure is inner regular on all $\sigma$-finite Borel sets.
+A Radon measure is inner regular on all $\sigma$-finite Borel sets.(Folland's)
 \end{prop}
 \begin{pf}
-First we prove for Borel sets of finite measure.
+First we approximate Borel sets of finite measure, with compact sets.
 Let $E$ be a Borel set with $\mu(E)<\oo$ and $U$ be an open set containing $E$.
 By outer regularity, there is an open set $V\supset U-E$ such that
 \[\mu(V)<\mu(U-E)+\frac\e2.\]
@@ -64,14 +85,12 @@ If $X$ is $\sigma$-compact, then a locally finite Borel measure is Radon if and 
 \end{cor}
 
 \begin{thm}
-If every open set in $X$ is $\sigma$-compact, then every locally finite Borel measure is regular.
+If every open set in $X$ is $\sigma$-compact(i.e. Borel sets and Baire sets coincide), then every locally finite Borel measure is regular.
 \end{thm}
 \begin{prop}
-In a second countable space, every open set is $\sigma$-compact.
+In a second countable space, every open set is $\sigma$-compact(i.e. Borel sets and Baire sets coincide).
 \end{prop}
-\begin{cor}
-If $X$ is second countable, then every locally finite Borel measure is regular and also Radon.
-\end{cor}
+
 
 Two corollaries are presented as follows:
 \begin{rd}[column sep={120pt,between origins}]
@@ -91,6 +110,10 @@ In this case, the followings will be synonym: A measure is
 
 \[L_{\text{loc}}^1=\text{absolutely continuous measures}\subset\text{Radon measures}\subset\cD'.\]
 
+
+\begin{thm}
+Every finite Radon measure is regular.
+\end{thm}
 
 \section{Riesz-Markov-Kakutani representation theorem}
 In this section, we always assume $X$ is a locally compact Hausdorff space.
