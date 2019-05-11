@@ -295,7 +295,7 @@
 \DeclareDocumentCommand{\norm}{m}{\left\lVert#1\right\rVert}
 \DeclareDocumentCommand{\flr}{m}{\left\lfloor#1\right\rfloor}
 \DeclareDocumentCommand{\ceil}{m}{\left\lceil#1\right\rceil}
-\DeclareDocumentCommand{\inn}{mm}{\left\langle#1,#2\right\rangle}
+\DeclareDocumentCommand{\inn}{mg}{\IfNoValueTF{#2}{\left\langle#1\right\rangle}{\left\langle#1,#2\right\rangle}}
 
 
 
