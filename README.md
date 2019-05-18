@@ -7,7 +7,7 @@ As you can see, all notes are so poor.
 It contains notes for imaginary course lectures.
 The purpose of these notes is not to teach.
 I made them in order to organize the whole picture of mathematics for my own purposes, and to use them in mentoring programs.
-I think writing them is a knid of my hobby.
+I think writing them is a kind of my hobby.
 
 # Expository notes (exp)
 They are literally expository notes.
