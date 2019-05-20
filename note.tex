@@ -311,8 +311,40 @@ This theorem holds because $K/\Q$ is separable and $\Z$ is a PID.
 
 
 \section{Diophantine equations}
-The reciprocity laws let us know not only what primes split, but also what prime factors a polynomial has.
+
+\subsection{Quadratic equation on a plane}
+Ellipse is reduced by finitely many computations.
+
+
+Especially for hyperbola, here is a strategy to use infinite descent.
+\begin{cond}
+\item Let midpoint to be origin.
+\item Find the subgroup of $\SL_2(\Z)$ preserving the image of hyperbola(which would be isomorphic to $\Z$).
+\item Find an impossible region.
+\item Assume a solution and reduce it to the either impossible region or the ground solution.
+\end{cond}
+\begin{ex}[Pell's equation]
+Consider\[x^2-2y^2=1.\]
+A generator of hyperbola generating group is $g=\begin{pmatrix}3&4\\2&3\end{pmatrix}$.
+It has a ground solution $(1,0)$ and impossible region $1<x<3$.
+If $(a,b)$ is a solution with $a>0$, then we can find $n$ such that $g^n(a,b)$ is in the region $[1,3)$.
+The possible case is $g^n(a,b)=(1,0)$.
+\end{ex}
+\begin{ex}[IMO 1988, the last problem]
+Consider a family of equations\[x^2+y^2-kxy-k=0.\]
+By the vieta jumping, a generator is $g:(a,b)\mapsto(b,kb-a)$.
+It has an impossible region $xy<0$ : $x^2+y^2-kxy-k\ge x^2+y^2>0$.
+If $(a,b)$ is a solution with $a>b$, then we can find $n$ such that $g^n(a,b)$ is in the region $xy\le0$.
+Only possible case is $g^n(a,b)=(\sqrt k,0)$ or $g^n(a,b)=(0,-\sqrt k)$.
+In ohter words, the equation has a solution iff $k$ is a perfect square.
+\end{ex}
+
+
+\clearpage
+
+
 \subsection{The Mordell equations}
+(The reciprocity laws let us learn not only which prime splits, but also which prime factors a given polynomial has.)
 \[y^2=x^3+k\]
 There are two strategies for the Mordell equations:
 \begin{itemize}
