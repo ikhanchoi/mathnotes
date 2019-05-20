@@ -22,11 +22,19 @@ Recall that compactness is equivalent to the existence of convergence subnet of 
 Then, it is a corollary of Theorme 1.1.
 
 ($\Rightarrow$)
-Totally boundedness is easily shown by the definition of compactness.
+Totally boundedness follows from the definition of compactness.
 To prove completeness, let $x:\cA\to X$ be a Cauchy net on a compact uniform space $X$.
 Since $X$ is compact, $x$ has a convergent subnet $xh:\cB\to{h}\cA\to X$.
-Let $xh$ converges to $x_0$.
-%%%
+Let $x_0$ be the limit of the net $xh$.
+
+Let $E$ be an arbitrary entourage.
+There is $\beta_0$ such that $\beta\succ\beta_0$ implies $(x_{h(\beta)},x_0)\in E$ by the convergence of $xh$.
+There is $\alpha_0$ such that $\alpha,\alpha'\succ\alpha_0$ implies $(x_\alpha,x_{\alpha'})\in E$ by the Cauchyness of $x$.
+We may assume $\alpha_0\succ h(\beta_0)$.
+For this $\alpha_0$, we have
+\[\alpha\succ\alpha_0\impl(x_\alpha,x_0)\in E^2\]
+because the cofinality of $h$ allows us to find $\beta$ with $h(\beta)\succ\alpha$ so that $(x_\alpha,x_{h(\beta)})\in E$ and $(x_{h(\beta)},x_0)\in E$.
+So we are done.
 \end{pf}
 
 
@@ -75,13 +83,12 @@ Even though the sequence $x_n$ is frequently in both $U_\e$ and $U_{\e'}$, we ha
 
 \section{Our proof using Zorn's lemma}
 
-Then, the problem is:
-How can we deal with the diagonal arguement in non-countable situation?
+Then, the problem is: how can we deal with the diagonal arguement in non-countable situation?
 Concretely, which strategy for existence proof can replace the diagonal subsequence?
 The answer is the axiom of choice.
 
 As we have seen in the Section 1, the main obstacle is that non-directedness of $\Gamma$.
-The reason why $\Gamma$ is not directed was there can be several possible limit points of subnets of a given net.
+The reason why $\Gamma$ is not directed was there can be several ``possible'' limits of subnets of a given net.
 Therefore, we are required to ``choose'' one of them and focus on it in order to make a directed set.
 Exactly in this step, Zorn's lemma will be used.
  
@@ -110,7 +117,7 @@ First, we claim $Z\ne\mt$.
 For an entourage $E\in\cU$, using totally boundedness, we can find a finite open cover $\{U_i\}_i$ of $X$ such that $U_i^2\subset E$ for all $i$.
 Since $\bigcup_ix^{-1}(U_i)=x^{-1}(X)=\fA$, there is at least one $i$ such that $x^{-1}(U_i)$ is a cofinal subset of $\fA$.
 If we choose any $\alpha\in x^{-1}(U_i)$, then the singleton $\{(\alpha,U_i,E)\}$ is an element of $Z$, because singleton can be always said to be directed.
-(We cannot choose $U=X$ since no entourages may contain $X^2$ without totally boundedness.)
+(We cannot choose $U=X$ since there is no entourage $E$ such that $X^2\subset E$ in general, hence the totally boundedness is required.)
 
 The upper bound of each chain is obtained by union.
 Therefore, there is a maximal element in $Z$.
@@ -118,7 +125,7 @@ Let it denoted by $\fM$.
 Here are several facts about $\fM$:
 \begin{cond}
 \item $\fM\subset\fA'$ inherits the order relation from $\fA\x\cT\x\cU$,
-\item if $U\in\pi_\cT(\fM)$, then $\alpha\in x^{-1}(U)$ and $U^2\subset E$ imply $(\alpha,U,E)\in\fM$ by the maximality,
+\item if $U\in\pi_\cT(\fM)$, then \[x_\alpha\in U,\ U^2\subset E\impl(\alpha,U,E)\in\fM\] by the maximality,
 \item $\fM\in Z$, i.e. $\pi_\cT(\fM)$ is directed,
 \item $\fM\subset\fA'$, i.e. $x^{-1}(U)$ is cofinal for $U\in\pi_\cT(\fM)$.
 \end{cond}
@@ -126,33 +133,42 @@ Here are several facts about $\fM$:
 \Step[2]{Verification of Cauchy subnet}
 
 The goal is to show $x\o\pi_\fA:\fM\to X$ is a subnet that is Cauchy.
-So, we need to show the three conditions: directedness of $\fM$, monotone cofinality of $\pi_\fA|_\fM$, and finally Cauchyness.
+So, we need to show the followings:
+\begin{cond}
+\item it is a net; $\fM$ is directed,
+\item it is a subnet of $x$; $\pi_\fA|_\fM:\fM\to\fA$ is monotone and cofinal,
+\item it is Cauchy.
+\end{cond}
 
 (directedness)
-For $(\alpha,U,E),(\alpha',U',E')\in\fM$ we can find $V\in\pi_\cT(\fM)$ such that $U\cup U'\supset V$ by the directedness $\pi_\cT(\fM)$.
-Since $x^{-1}(V)$ is cofinal, there is $\beta\in x^{-1}(V)$ satisfies $\alpha,\alpha'\prec\beta$.
-Then, $(\beta,V,E\cap E')\in\fM$ gives an upper bound.
+For $(\alpha,U,E),(\alpha',U',E')\in\fM$ we can find $U_0\in\pi_\cT(\fM)$ such that $U\cap U'\supset U_0$ by the directedness $\pi_\cT(\fM)$.
+There is $\alpha_0\in x^{-1}(U_0)$ satisfies $\alpha,\alpha'\prec\alpha_0$ by the cofinality of $x^{-1}(U_0)$.
+Since $x_{\alpha_0}\in U_0$ and $U_0^2\in U^2\cap U'^2\subset E\cap E'$, we have $(\alpha_0,U_0,E\cap E')\in\fM$.
+It gives an upper bound.
 
 (monotone cofinality)
 Monotonicity is trivial.
-Take any $(\alpha,U,E)\in\fM$.
-For any $\alpha'\in\fA$ there is $(\beta,U,E)\in\fM$ such that $\alpha,\alpha'\prec\beta$ since $x^{-1}(U)$ is cofinal.
+Take any element $(\alpha',U,E)\in\fM$.
+For every $\alpha\in\fA$, we can find $\alpha_0\in x^{-1}(U)$ such that $\alpha\prec\alpha_0$ by the cofinality of $x^{-1}(U)$.
+Since $x_{\alpha_0}\in U$ and $U^2\subset E$, we have $(\alpha_0,U,E)\in\fM$.
+Then, $\pi_\fA(\alpha_0,U,E)\succ\alpha$ implies $\pi_\fA|_\fM$ is a cofinal map.
 
 (Cauchyness)
 We claim $\pi_\cU(\fM)=\cU$.
 Assume $E\notin\pi_\cU(\fM)$.
 Let $\{V_i\}_i$ be a finite open cover of $X$ such that $V_i^2\subset E$ for all $i$.
-Suppose for every $i$ there exists $U_i\in\pi_\cT(\fM)$ such that $x^{-1}(U_i\cap V_i)$ is bounded above, i.e. not cofinal.
-If we let $U\in\pi_\cT(\fM)$ be an upper bound of $\{U_i\}_i$, then $x^{-1}(U\cap V_i)\subset x^{-1}(U_i\cap V_i)$ is clearly bounded above for all $i$, so
+Suppose for each $i$ there is at least one $U_i\in\pi_\cT(\fM)$ such that $x^{-1}(U_i\cap V_i)$ is bounded above, i.e. not cofinal.
+If we let $U\in\pi_\cT(\fM)$ be an upper bound of $\{U_i\}_i$, then $x^{-1}(U\cap V_i)\subset x^{-1}(U_i\cap V_i)$ is clearly bounded above for each $i$, so
 \[\bigcup_ix^{-1}(U\cap V_i)=x^{-1}(U\cap X)=x^{-1}(U)\]
 is also bounded above, which gives a contradiction to the cofinality of $x^{-1}(U)$.
-This implies the existence of an open set $V$ such that $V^2\subset E$ and $x^{-1}(U\cap V)$ is cofinal for all $U\in\pi_\cT(\fM)$.
-With this $V$, we can deduce that the cofinality of $x^{-1}(U\cap V)$ lets the following collection
-\[\fM\cup\{\,(\alpha,U\cap V,E):U\in\pi_\cT(\fM),\ \alpha\in U\cap V,\ (U\cap V)^2\in E\,\}\]
+This implies the existence of an open set $V$ that satisfies $V^2\subset E$ and has $x^{-1}(U\cap V)$ cofinal for all $U\in\pi_\cT(\fM)$.
+With this $V$, it is deduced that $(U\cap V)^2\subset E$ and the cofinality of $x^{-1}(U\cap V)$ make the following collection
+\[\fM_{V,E}:=\fM\cup\{\,(\alpha,U\cap V,E):U\in\pi_\cT(\fM),\ \alpha\in U\cap V\,\}\]
 be a subset of $\fA'$.
-Furthermore, it is contained in $Z$ as an element because $\{U\cap V\}_{U\in\pi_\cT(\fM)}$ is directed.
+Note that the union is a disjoint union because $E\notin\pi_\cU(\fM)$.
+Furthermore, $\fM_{V,E}$ is contained in $Z$ as an element because $\pi_\cT(\fM_{V,E})=\pi_\cT(\fM)\cup\{U\cap V\}_{U\in\pi_\cT(\fM)}$ is directed.
 It is a contradiction to the maximality of $\fM$, therefore, $\pi_\cU(\fM)=\cU$.
-The Cauchyness follows easily from this.
+Then, the Cauchyness follows easily: for an arbitrary entourage $E_0$, there is $(\alpha_0,U_0,E_0)\in\fM$ so that $(\alpha,U,E),(\alpha',U',E')\succ(\alpha_0,U_0,E_0)$ implies $(x_\alpha,x_{\alpha'})\in U\x U'\subset U_0^2\subset E_0$.
 \end{pf}
 
 
