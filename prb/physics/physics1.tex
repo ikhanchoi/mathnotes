@@ -1,21 +1,61 @@
-\documentclass[11pt]{article}
-\input{../../header}
-\input{../prb}
+\documentclass{../prb}
+\usepackage{../../ikany}
 
-\def\ntitle{Physics}
+\title{Physics I : Classical theory}
 
 % brackets
 \newcommand{\bket}[1]{\left\lvert #1\right\rangle}
 \newcommand{\brak}[1]{\left\langle #1 \right\rvert}
 \newcommand{\braket}[2]{\left\langle #1\middle\vert #2 \right\rangle}
 
+
 \begin{document}
 \maketitle
 \tableofcontents
 
 
-\section{Classical mechanics}
+\chapter{Classical mechanics}
 
+
+\section{Newtonian mechanics}
+
+
+\subsection*{Uniformly accelerated motion}
+
+\begin{prb}
+Take $x$-axis to be the horizontal earth and $y$-axis to be vertical.
+A boy is on the earth, and let the position of the boy be $(0,0)$.
+A bird in the sky $(l,h)$ get a shot at time $t=0$ and falls freely.
+Almost simultaneously, The boy throw a small rock with the initial velocity $v_0$ and the angle $\theta$ from the earth.
+Let $g$ be the gravitational acceleration.
+\begin{cond}
+\item Find the time $t$ at which the rock reaches a vertical line $x=l$.
+\item At this time, find the $y$-coordinate of the rock and the bird $y_r$, $y_{bird}$.
+\item They collided. Find $\theta$.
+\item Find the condition for $v_0$ to make them collide each other.
+\item Show that if you are a bird, a rock is in a uniform rectilinear motion. Find the time for collision after throwing.
+\end{cond}
+\end{prb}
+\begin{sol}\ \par
+(1)
+The horizontal component of the velocity is $v_0\cos\theta$.
+Therefore, the time traveling the length $l$ is
+\[t=\boxed{\frac l{v_0\cos\theta}}\,.\]
+
+(2)
+Let $t$ be the answer of the previous problem.
+Their accelerations are $-g$.
+Therefore,
+\[y_{rock}=\frac12(-g)t^2+(v_0\sin\theta)t+(0)=\]
+and
+\[y_{bird}=\frac12(-g)t^2+(0)t+(h)=.\]
+
+(3)
+
+\end{sol}
+
+
+\clearpage
 In Hamiltonian mechanics, the phase space $M$ is defined to be cotangent bundle of a configuration manifold.
 According to Newton's principle of determinacy, a particle at a specific time corresponds to a point in $M$, and the point contains all informations of a particle.
 A function on $M$ is a physical quantity, such as position, momentum, angular momentum, etc.
@@ -33,20 +73,33 @@ Using the Poisson bracket, the equations can be represented by
 \[\dd{f}{t} = \{f,H\} + \pd{f}{t}.\]
 \end{defn}
 
-\begin{ex}[Harmonic oscillator]
+\begin{prb}[Harmonic oscillator]
 Let $M=T^*\R$ and
 \[H(x,p)=\frac{p^2}{2m}+\frac12kx^2.\]
 This Hamiltonian function defines a problem of 1-dimensional harmonic oscillator.
 The equations of motion are
 \[\dot x=\pd{H}{p}=\frac pm,\qquad\dot p=-\pd{H}{x}=-kx.\]
 Therefore, we get the familiar equation for a harmonic oscillator
-\end{ex}
+\end{prb}
+\begin{sol}\ \par
+(1) Here is the proof.
 
+(2) Here is a proof.
+\end{sol}
 
 
 If $H$ has a symmetry under transformations in time, namely, $H$ does not depend on $t$ explicitly, then 
 
 A problem that $H$ is explicitly independent on $p$ is difficult to occur physically.
+
+\chapter{Electromagnetism}
+
+\chapter{Relativity theory}
+
+\chapter{Statistical mechanics}
+
+\chapter{Fluid dynamics}
+
 
 
 \section{Quantum mechanics}
@@ -55,16 +108,18 @@ Hydrogen
 \q hydrogen
 \end{prb}
 
-\section{Relativity theory}
 
 \section{Particle physics}
 \begin{prb}[Yukawa potential]
-The wave equation for a massive field is the Klein-Gordon equation
-\[(\Box+m^2)U=0.\]
-\q deriving the Yukawa potential as a Green function by assuming static case.
-\q relation with Coulomb potential.
-\q the Fourier transformation.
-\q range of (strong) nuclear force and mass of pion
+The wave equation for a massive field is given by the Klein-Gordon equation
+\[(\Box+m^2)u(t,x)=0,\]
+where $m$ is mass.
+\begin{cond}
+\item Derive the Yukawa potential\[u(x)=k\frac{e^{-\frac rm}}r\]where $r=|x|$, as a Green function by assuming static case.
+\item Letting $m=0$, discuss the relation with Coulomb potential.
+\item By taking Fourier transform.
+\item Find an approximate range of strong nuclear force and mass of pion.
+\end{cond}
 \end{prb}
 
 \begin{prb}[Negative energy solution and antiparticles]
@@ -74,11 +129,9 @@ Dirac's interpretation.
 \end{prb}
 
 \begin{prb}[Polarization of photon field]
-\mtprb
 \end{prb}
 
 \begin{prb}[Aharonov-Bohm effect]
-\mtprb
 \end{prb}
 
 

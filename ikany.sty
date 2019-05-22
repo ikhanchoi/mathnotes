@@ -58,6 +58,11 @@
 \DeclareDocumentCommand{\Case}{ r[] +g }{\emph{Case #1: #2.}}
 \DeclareDocumentCommand{\Step}{ r[] +g }{\emph{Step #1: #2.}}
 
+\ifx\thisisprbcls\undefined\else
+  \renewcommand{\theprb}{\arabic{section}.\arabic{prb}}
+  \renewenvironment{sol}[1][\unskip]{\noindent\textbf{Solution.}\par\begin{cond}}{\end{cond}\hfill\qedsymbol}
+\fi
+
 \iffalse % Example code
 	\begin{ex}
 	Here is an example.
@@ -379,6 +384,7 @@
 \def\f{\varphi}
 
 % Blackboard fonts
+\def\A{\mathbb{A}}
 \def\B{\mathbb{B}}
 \def\C{\mathbb{C}}
 \def\E{\mathbb{E}}
@@ -487,10 +493,10 @@
 \def\fu{\mathfrak{u}}
 
 % Lie theory
-\newcommand{\gl}{\mathfrak{gl}}
-\renewcommand{\sl}{\mathfrak{sl}}
-\newcommand{\so}{\mathfrak{so}}
-\newcommand{\su}{\mathfrak{su}}
+\newcommand{\fgl}{\mathfrak{gl}}
+\newcommand{\fsl}{\mathfrak{sl}}
+\newcommand{\fso}{\mathfrak{so}}
+\newcommand{\fsu}{\mathfrak{su}}
 \newcommand{\GL}{\mathrm{GL}}
 \newcommand{\SL}{\mathrm{SL}}
 \newcommand{\SO}{\mathrm{SO}}
@@ -514,9 +520,11 @@
 \DeclareMathOperator{\Aut}{Aut}
 \DeclareMathOperator{\Char}{char}
 \DeclareMathOperator{\coker}{coker}
+\DeclareMathOperator*{\colim}{colim}
 \DeclareMathOperator{\conv}{conv}
 \DeclareMathOperator{\diag}{diag}
 \DeclareMathOperator{\diam}{diam}
+\DeclareMathOperator{\Diff}{Diff}
 \DeclareMathOperator{\disc}{disc}
 \DeclareMathOperator{\dom}{dom}
 \DeclareMathOperator{\End}{End}
@@ -534,6 +542,7 @@
 \DeclareMathOperator{\Lip}{Lip}
 \DeclareMathOperator{\Orb}{Orb}
 \DeclareMathOperator{\ord}{ord}
+\DeclareMathOperator{\pv}{p.v.}
 \DeclareMathOperator{\Re}{Re}
 \DeclareMathOperator{\rel}{rel}
 \DeclareMathOperator*{\res}{res}

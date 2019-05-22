@@ -1,20 +1,11 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{prb}[2019/03/25 prb]
-\LoadClass[11pt]{amsbook}
+\LoadClass[11pt]{report}
 \makeatletter
 
+\def\thisisprbcls{1}
 
-\usepackage[margin=100pt,headheight=10pt]{geometry}
-
-\newcommand{\korean}{
-  \usepackage[hangul]{kotex}
-  \geometry{headheight=20pt}
-}
-
-
-\newcommand{\+}{\begin{center}$\cdot\qquad\cdot\qquad\cdot\qquad\cdot\qquad\cdot$\end{center}}
-% \blacklozenge
-
+\usepackage[margin = 100pt]{geometry}
 
 \let\@@author\author
 \renewcommand{\author}[1]{
@@ -36,9 +27,8 @@
 
 
 
-
-\setcounter{tocdepth}{2}
-\def\l@subsection{\@tocline{2}{0pt}{2pc}{4pc}{}}
+%\setcounter{tocdepth}{2}
+%\def\l@subsection{\@tocline{2}{0pt}{2pc}{4pc}{}}
 
 
 

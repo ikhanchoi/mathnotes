@@ -1,7 +1,30 @@
-\documentclass{../prb}
+\documentclass[11pt]{amsbook}
 \usepackage{../../ikany}
-\korean
 
+\usepackage{kotex}
+\linespread{1.6}
+\usepackage[margin=100pt,headheight=10pt]{geometry}
+\geometry{headheight=20pt}
+\newcommand{\+}{\begin{center}$\cdot\qquad\cdot\qquad\cdot\qquad\cdot\qquad\cdot$\end{center}}
+% \blacklozenge
+
+\author{Ikhan Choi}
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\nouppercase{\leftmark}}
+\fancyhead[R]{\nouppercase{\rightmark}}
+\fancyfoot[C]{\scriptsize{\thepage}}
+\makeatletter
+\let\@@section\section
+\renewcommand{\section}{\newpage\@@section}
+\setcounter{tocdepth}{2}
+\def\l@subsection{\@tocline{2}{0pt}{2pc}{4pc}{}}
+\makeatother
+\usepackage{hyperref}
+
+  
 \title{고급 미적분 훈련}
 
 \begin{document}
