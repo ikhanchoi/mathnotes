@@ -24,4 +24,4 @@ It would be also great if these notes become used for a systematic course in the
 A file "note.tex" is just a memo.
 
 
-Contact: ikany@bawi.org
+Contact: dlrgks623@naver.com
