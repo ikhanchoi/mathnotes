@@ -275,11 +275,20 @@ Let $d$ be a square-free.
 \[\cO_{\Q(\sqrt d)}=\begin{cases}\Z+\sqrt d\Z&,d\equiv2,3\pmod4\\\bigmath\Z+\frac{1+\sqrt d}2\Z&,d\equiv1\pmod4\end{cases}\]
 \[\Delta_{\Q(\sqrt d)}=\begin{cases}4d&,d\equiv2,3\pmod4\\ d&,d\equiv1\pmod4\end{cases}\]
 \end{thm}
+\begin{ex}
+\[\Delta_{\Q(i)}=-4,\quad\Delta_{\Q(\sqrt2)}=8,\quad\Delta_{\Q(\gamma)}=5,\quad\Delta_{\Q(\omega)}=-3\]
+where $\gamma:=\frac{1+\sqrt5}2$ and $\omega=\zeta_3$.
+\end{ex}
 \begin{thm}
 Let $\theta^3=hk^2$ for $h,k$ square-free's.
-\[\cO_{\Q(\theta)}=\begin{cases}\bigmath\Z+\sqrt[3]{hk^2}\Z+\sqrt[3]{h^2k}\Z&,m\not\equiv\pm1\pmod9\\
+\[\cO_{\Q(\theta)}=\begin{cases}\bigmath\Z+\theta\Z+\frac{\theta^2}k\Z&,m\not\equiv\pm1\pmod9\\
 \bigmath\Z+\theta\Z+\frac{\theta^2\pm\theta k+k^2}{3k}\Z&,m\equiv\pm1\pmod9\end{cases}\]
 \end{thm}
+\begin{cor}
+If $\theta^3$ is a square free integer, then
+\[\cO_{\Q(\theta)}=\Z[\theta].\]
+\end{cor}
+
 \subsection{Integral basis}
 \begin{thm}
 Let $\alpha\in K$.
@@ -298,12 +307,61 @@ If $p^2\mid\Delta$ and it is not an integral basis, then there is a nonzero alge
 
 \subsection{Fractional ideals}
 \begin{thm}
-Every fractional ideal of $K$ is a free $\Z$-module with rank $[K,\Q]$.
+Every fractional ideal of $K$ is a free $\Z$-module with rank $[K:\Q]$.
 \end{thm}
 \begin{pf}
 This theorem holds because $K/\Q$ is separable and $\Z$ is a PID.
 
 \end{pf}
+
+
+\clearpage
+\subsection{Frobenius element}
+Consider an abelian extension $L/K$.
+Let $\fp$ be a prime in $\cO_K$.
+Since $L/K$ is Galois, the followings do not depend on the choice of $\fP$ over $\fp$.
+
+\begin{lem}
+The following sequence of abelian groups is exact:
+\begin{es} 0 \> I(\fP|\fp) \> D(\fP|\fp) \> \Gal(k(\fP)/k(\fp)) \> 0, \end{es}
+where $k(\fP):=\cO_L/\fP$ and $k(\fp):=\cO_K/\fp$ are residue fields.
+\end{lem}
+The Frobenius element is defined as an element of $D(\fP|\fp)/I(\fP|\fp)\cong\Gal(k(\fP)/k(\fp))$, which is a cyclic group.
+\begin{defn}
+For an unramified prime $\fp\subset\cO_K$ so that $I(\fP|\fp)$ is trivial, the Frobenius element $\phi(\fP|\fp)\in\Gal(L/K)$ is defined by
+\[\phi_{\fP|\fp}(\fP)=\fP,\quad\text{and}\quad\phi_{\fP|\fp}(x)\equiv x^{|\cO_K/\fp|}\pmod{\fP}\quad\text{for}\quad x\in\cO_L.\]
+\end{defn}
+The first condition is equivalent to $\phi_{\fP|\fp}\in D(\fP|\fp)$.
+In fact, the Frobenius element is in fact a generator of the cyclic group $D(\fP|\fp)\cong\Gal(k(\fP)/k(\fp))$ by the Galois theory of finite fields.
+\begin{rmk}
+Fermat's little theorem states
+\[\phi_{\fP|\fp}(x)\equiv x\pmod{\fp},\for x\in\cO_K,\]
+which means $\phi_{\fP|\fp}$ fixes the field $\cO_K/\fp$ so that $\phi_{\fP|\fp}\in\Gal(k(\fP)/k(\fp))$.
+\end{rmk}
+
+
+
+\subsection{Quadratic Dirichlet character}
+Let $K=\Q(\sqrt D)$ be a quadratic field with discriminant $D$ and $L=\Q(\zeta_D)$ be the cyclotomic field for $\zeta_D=e^{\frac{2\pi i}D}$.
+\begin{cd}[column sep = 0pt]
+D(\fP/p) & \subset & \Gal(L/\Q) \ep{d}{q} & \cong & (\Z/D\Z)^\x \ep{d}{\chi_K=\left(\frac D\cdot\right)} & \qquad & L=\Q(\zeta_D)\\
+D(\fp/p) & \subset & \Gal(K/\Q) & \cong & \{\pm1\} && K=\Q(\sqrt D).
+\end{cd}
+
+For $p\nmid D$ so that $p$ is unramified, let $\sigma_p:=(\zeta_D\mapsto\zeta_D^p)\in\Gal(L/\Q)$.
+Then, what is $\sigma_p|_K$ in $\Gal(K/\Q)$.
+In other words, for $\sigma_p(\zeta_D)=\zeta_D^p$ which is true: $\sigma_p(\sqrt D)=\pm\sqrt D$?
+
+Note that $\sigma$ satisfies the condition to be the Frobenius element: $\sigma_p=\phi_{\fP|p}$.
+Therefore, $q(\phi_{\fP|p})=\phi_{\fp|p}=\sigma_p|_K$ is also a Frobenius element.
+There are only two cases:
+\begin{cond}
+\item If $f=|D(\fp/p)|=1$, then $\sigma|_K$ is the identity, so $\chi_K(p)=1$
+\item If $f=|D(\fp/p)|=2$, then $\sigma|_K$ is not trivial, so $\chi_K(p)=-1$
+\end{cond}
+
+Artin reciprocity: $(\Z/D\Z)^\x$ is extended to $I_K^S$.
+
 
 
 

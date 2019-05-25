@@ -9,21 +9,25 @@
 The AI paradigm changes when a new approximating method is discovered.
 
 \section{Maximum likelihood estimate}
-If $x\sim f$, which means $\Pr(x^{-1}(A))=\int_Af\,d\lambda$, then the likelihood function $L_n(\theta|-):\Omega^n\to\R_{\ge0}$ for a fixed parameter $\theta$ defined by
-\[L_n(\theta|\vec x):=\prod_{i=1}^nf_\theta(x_i)\]
-is also a variable.
+\begin{defn}
+Let $\{f_\theta\}_\theta$ be a parametrized family of distrubution functions on a measure space $X$.
+The \emph{likelihood} $L_n(\theta):\Omega^n\to\R_{\ge0}$ for a fixed parameter $\theta$ is a random variable defined by
+\[L_n(\theta):=\prod_{i=1}^nf_\theta(x_i)\]
+where $\{x_i\}_i$ is a family of i.i.d. $X$-valued random variables with a distriburion $f$ different from $f_\theta$.
+\end{defn}
+The objective of the likelihood function is to find $\theta$ such that $f_\theta$ approximates the unknown distribution $f$.
 Write
-\[\frac1n\log L_n(\theta|\vec x)=\frac1n\sum_{i=1}^n\log f_\theta(x_i).\]
-By the law of large numbers, $\frac1n\log L_n(\theta|-)$ converges to a constant function
+\[\frac1n\log L_n(\theta)=\frac1n\sum_{i=1}^n\log f_\theta(x_i).\]
+By the law of large numbers, $\frac1n\log L_n(\theta)$ converges to a constant function
 \[\E(\log f_\theta(x))=\int_Xf\log f_\theta\]
-in measure.
+in measure as $n\to\oo$.
 
 Note that
 \begin{align*}
 \int_Xf\log f_\theta&\le\int_Xf(f_\theta-1)\\
 &=\frac12(\|f\|_2^2+\|f_\theta\|_2^2-\|f-f_\theta\|_2^2)-1.
 \end{align*}
-Intuitively, bigger $L_n$ is, closer $f_\theta$ and $f$ are.
+Intuitively, bigger $L_n(\theta)$ is, closer $f_\theta$ and $f$ are.
 
 
 \section{Gradient descent method}
