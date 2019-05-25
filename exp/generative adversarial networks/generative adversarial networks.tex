@@ -22,12 +22,15 @@ By the law of large numbers, $\frac1n\log L_n(\theta)$ converges to a constant f
 \[\E(\log f_\theta(x))=\int_Xf\log f_\theta\]
 in measure as $n\to\oo$.
 
-Note that
+By the Jensen inequality, 
 \begin{align*}
-\int_Xf\log f_\theta&\le\int_Xf(f_\theta-1)\\
-&=\frac12(\|f\|_2^2+\|f_\theta\|_2^2-\|f-f_\theta\|_2^2)-1.
+\int_Xf\log f_\theta-\int_Xf\log f&
+=\int_Xf\log\frac{f_\theta}f\\
+&\le\log\left(\int f\frac{f_\theta}f\right)\\
+&=0.
 \end{align*}
-Intuitively, bigger $L_n(\theta)$ is, closer $f_\theta$ and $f$ are.
+Exclude the region $f=0$ from the integration region.
+In other words, bigger $L_n(\theta)$ is, closer $f_\theta$ and $f$ are.
 
 
 \section{Gradient descent method}
