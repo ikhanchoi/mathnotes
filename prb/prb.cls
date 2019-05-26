@@ -1,6 +1,6 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{prb}[2019/03/25 prb]
-\LoadClass[11pt]{report}
+\LoadClass[11pt]{amsbook}
 \makeatletter
 
 \def\thisisprbcls{1}

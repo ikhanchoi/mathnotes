@@ -60,7 +60,7 @@
 
 \ifx\thisisprbcls\undefined\else
   \renewcommand{\theprb}{\arabic{section}.\arabic{prb}}
-  \renewenvironment{sol}[1][\unskip]{\noindent\textbf{Solution.}\par\begin{cond}}{\end{cond}\hfill\qedsymbol}
+  \renewenvironment{sol}[1][\unskip]{\noindent\begin{proof}[Solution]\ \par\begin{cond}}{\end{cond}\end{proof}}
 \fi
 
 \iffalse % Example code
