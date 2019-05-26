@@ -10,10 +10,11 @@ The AI paradigm changes when a new approximating method is discovered.
 
 \section{Maximum likelihood estimate}
 \begin{defn}
-Let $\{f_\theta\}_\theta$ be a parametrized family of distrubution functions on a measure space $X$.
+Let $f$ be a distribution function on a measure space $X$.
+Let $\{f_\theta\}_\theta$ be a parametrized family of distrubution functions on $X$.
 The \emph{likelihood} $L_n(\theta):\Omega^n\to\R_{\ge0}$ for a fixed parameter $\theta$ is a random variable defined by
 \[L_n(\theta):=\prod_{i=1}^nf_\theta(x_i)\]
-where $\{x_i\}_i$ is a family of i.i.d. $X$-valued random variables with a distriburion $f$ different from $f_\theta$.
+where $\{x_i\}_i$ is a family of i.i.d. $X$-valued random variables with a distriburion $f$.
 \end{defn}
 The objective of the likelihood function is to find $\theta$ such that $f_\theta$ approximates the unknown distribution $f$.
 Write
@@ -23,12 +24,7 @@ By the law of large numbers, $\frac1n\log L_n(\theta)$ converges to a constant f
 in measure as $n\to\oo$.
 
 By the Jensen inequality, 
-\begin{align*}
-\int_Xf\log f_\theta-\int_Xf\log f&
-=\int_Xf\log\frac{f_\theta}f\\
-&\le\log\left(\int f\frac{f_\theta}f\right)\\
-&=0.
-\end{align*}
+\[\int_Xf\log f_\theta-\int_Xf\log f=\int_Xf\log\frac{f_\theta}f\le\log\left(\int_Xf\frac{f_\theta}f\right)=0.\]
 Exclude the region $f=0$ from the integration region.
 In other words, bigger $L_n(\theta)$ is, closer $f_\theta$ and $f$ are.
 
