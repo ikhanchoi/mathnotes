@@ -1,7 +1,7 @@
 \documentclass{../prb}
 \usepackage{../../ikany}
 
-\title{Physics I : Classical theory}
+\title{Physics}
 
 % brackets
 \newcommand{\bket}[1]{\left\lvert #1\right\rangle}
@@ -17,67 +17,7 @@
 \chapter{Classical mechanics}
 
 
-\section{Newtonian mechanics}
 
-
-\subsection*{Uniformly accelerated motion}
-For rectilinear motion with constant velocity $v$,
-\[x(t)=vt+x_0.\]
-For uniformly accelerated motion with constant acceleration $a$ and the initial velocity $v_0$, we have
-\[v(t)=at+v_0,\]
-and by integrating
-\[x(t)=\frac12at^2+v_0t+x_0.\]
-
-\subsubsection*{Problems}
-\begin{prb}
-Take $x$-axis to be the horizontal earth and $y$-axis to be vertical.
-A boy is on the earth, and let the position of the boy be $(0,0)$.
-A bird in the sky $(l,h)$ get a shot at time $t=0$ and falls freely.
-Almost simultaneously, The boy throw a small rock with the initial velocity $v_0$ and the angle $\theta$ from the earth.
-Let $g$ be the gravitational acceleration.
-\begin{cond}
-\item Find the time $t$ at which the rock reaches a vertical line $x=l$.
-\item At this time, find the $y$-coordinate of the rock and the bird $y_r$, $y_{bird}$.
-\item They collided. Find $\theta$.
-\item Find the condition for $v_0$ to make them collide each other.
-\item Show that if you are a bird, a rock is in a uniform rectilinear motion. Find the time for collision after throwing.
-\end{cond}
-\end{prb}
-\begin{sol}
-\item
-The horizontal component of the velocity is $v_0\cos\theta$.
-Therefore, the time traveling the length $l$ is
-\[t=\boxed{\frac l{v_0\cos\theta}}\,.\]
-\item
-Let $t$ be the answer of the previous problem.
-Their accelerations are $-g$.
-Therefore,
-\[y_{rock}=\frac12(-g)t^2+(v_0\sin\theta)t+(0)=\]
-and
-\[y_{bird}=\frac12(-g)t^2+(0)t+(h)=.\]
-
-\item
-
-
-\end{sol}
-
-\begin{prb}
-Let $m$, $b$, and $k$ be a positive constant such that $b^2-4mk<0$.
-Consider an underdamped oscillatior with sinusoidal driving force
-\[m\ddot x+b\dot x+kx=A\sin\omega t,\qquad x(0)=x_0,\ \dot x(0)=0.\]
-For convenience, define positive constants $\beta:=\frac b{2m}$, $\omega_0:=\sqrt{\frac km}$, and $\omega_1:=\sqrt{\omega_0^2-\beta^2}$.
-
-The solution of this equation when $A=0$ is called the complementary solution and is given by
-\[x_c(t)=x_0e^{-\beta t}\cos\omega_1t.\]
-\begin{cond}
-\item
-\item Find the value of $\omega$ such that the amplitude of particular solution is maximized.
-\end{cond}
-\end{prb}
-
-
-
-\clearpage
 In Hamiltonian mechanics, the phase space $M$ is defined to be cotangent bundle of a configuration manifold.
 According to Newton's principle of determinacy, a particle at a specific time corresponds to a point in $M$, and the point contains all informations of a particle.
 A function on $M$ is a physical quantity, such as position, momentum, angular momentum, etc.
@@ -113,17 +53,15 @@ If $H$ has a symmetry under transformations in time, namely, $H$ does not depend
 
 A problem that $H$ is explicitly independent on $p$ is difficult to occur physically.
 
-\chapter{Electromagnetism}
+\chapter{Classical field theory}
+
+
 
 \chapter{Relativity theory}
 
-\chapter{Statistical mechanics}
-
-\chapter{Fluid dynamics}
 
 
-
-\section{Quantum mechanics}
+\chapter{Quantum mechanics}
 \begin{prb}[Hydrogen atom]
 Hydrogen
 \q hydrogen
