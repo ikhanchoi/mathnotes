@@ -1,0 +1,188 @@
+\documentclass{../crs}
+\usepackage{../../ikany}
+
+\title{Analysis III : Measure Theory}
+
+\begin{document}
+\maketitle
+\tableofcontents
+
+\chapter{Carath\'eodory's theory}
+
+
+\chapter{Riesz spaces}
+
+
+
+\chapter{Topological measures}
+
+\section{Descriptive set theory}
+
+
+
+
+
+\section{Borel measures}
+
+
+\subsection{Regular measures}
+
+\begin{thm}
+A Borel measure is inner regular on $\sigma$-bounded sets if and only if outer regular on $\sigma$-bounded sets.
+\end{thm}
+
+
+
+\subsection{Radon measures}
+
+Locally compact Hausdorff spaces have at least two important applications in abstract analysis related to measure theory: one is locally compact groups and the associated Harr measures in abstract harmonic analysis, the other is the Gelfand-Naimark theorem which states every commutative $C^*$-algebra can be represented as a function space on a locally compact Hausdorff space.
+In the set of this section, we assume every base space $X$ is locally compact Hausdorff.
+
+Note that locally finite measures are compact finite but the converser holds only if in locally compact Hausdorff spaces.
+We want to consider locally finite Borel measures as the minimally compatible measures with a given topology on $X$.
+For locally finite Borel measures, a set is finite-measured if and only if it is contained in a compact set.
+\begin{defn}
+(Folland's)A \emph{Radon measure} is a Borel measure on $X$ which satisfies the following three conditions:
+\begin{cond}
+\item locally finite,
+\item outer regular on all Borel sets,
+\item inner regular on all open sets.
+\end{cond}
+\end{defn}
+
+Radon measures are rather simply characterized when the base space $X$ is $\sigma$-compact.
+The following proposition proves the equivalence between regularity and Radonness of locally finite Borel measure on a $\sigma$-compact space.
+\begin{prop}
+A Radon measure is inner regular on all $\sigma$-finite Borel sets.(Folland's)
+\end{prop}
+\begin{pf}
+First we approximate Borel sets of finite measure, with compact sets.
+Let $E$ be a Borel set with $\mu(E)<\oo$ and $U$ be an open set containing $E$.
+By outer regularity, there is an open set $V\supset U-E$ such that
+\[\mu(V)<\mu(U-E)+\frac\e2.\]
+By inner regularity, there is a compact set $K\subset U$ such that
+\[\mu(K)>\mu(U)-\frac\e2.\]
+Then, we have a compact set $K-V\subset K-(U-E)\subset E$ such that
+\begin{align*}
+\mu(K-V)&\ge\mu(K)-\mu(V)\\
+&>\left(\mu(U)-\frac\e2\right)-\left(\mu(U-E)+\frac\e2\right)\\
+&\ge\mu(E)-\e.
+\end{align*}
+It implies that a Radon measure is inner regular on Borel sets of finite measures.
+
+Suppose $E$ is a $\sigma$-finite Borel set so that $E=\bigcup_{n=1}^\oo E_n$ with $\mu(E_n)<\oo$.
+We may assume $E_n$ are pairwise disjoint.
+Let $K_n$ be a compact subset of $E_n$ such that
+\[\mu(K_n)>\mu(E_n)-\frac\e{2^n},\]
+and define $K=\bigcup_{n=1}^\oo K_n\subset E$.
+Then,
+\[\mu(K)=\sum_{n=1}^\oo\mu(K_n)>\sum_{n=1}^\oo\left(\mu(E_n)-\frac\e{2^n}\right)=\mu(E)-\e.\]
+Therefore, a Radon measure is inner regular on all $\sigma$-finite Borel sets.
+\end{pf}
+We get a corollary:
+\begin{cor}
+If $X$ is $\sigma$-compact, then a locally finite Borel measure is Radon if and only if it is regular.
+\end{cor}
+
+\begin{thm}
+If every open set in $X$ is $\sigma$-compact(i.e. Borel sets and Baire sets coincide), then every locally finite Borel measure is regular.
+\end{thm}
+\begin{prop}
+In a second countable space, every open set is $\sigma$-compact(i.e. Borel sets and Baire sets coincide).
+\end{prop}
+
+
+Two corollaries are presented as follows:
+\begin{rd}[column sep={120pt,between origins}]
+\block{locally finite \\ Borel regular} \ar{r} &
+\block{Radon}   \ar{r} \rds{l}{$X$ is $\sigma$-compact} &
+\block{locally finite \\ Borel}  \lds{ll}{$X$ is second countable}
+\end{rd}
+
+
+Many applications assume $X$ is an open subset of a Euclidean space, so $X$ is usually second countable.
+In this case, the followings will be synonym: A measure is
+\begin{cond}
+\item 
+\end{cond}
+
+
+
+\[L_{\text{loc}}^1=\text{absolutely continuous measures}\subset\text{Radon measures}\subset\cD'.\]
+
+
+\begin{thm}
+Every finite Radon measure is regular.
+\end{thm}
+
+\section{Riesz-Markov-Kakutani representation theorem}
+In this section, we always assume $X$ is a locally compact Hausdorff space.
+Hence we can use the Urysohn lemma in the following way: If a compact subset $K$ and a closed subset $F$ are disjoint, then by applying the Urysohn lemma on a compact neighborhood of $K$, we can find a continuous function $f:X\to[0,1]$ such that $f|_K=1$ and $f|_F=0$.
+In particular, there always exists a ``continuous characteristic function'' $\phi\in C_c(X)$ with $\phi|_K=1$.
+
+There are two Riesz-Markov-Kakutani theorems: the first theorem describes the positive elements in $C_c(X)^*$ as Radon measures when the natural colimit topology is assumed, and the second theorem describes $C_c(X)^*$ as the space of finite Radon measures when uniform topology is assumed.
+
+\subsection{The first theorem}
+Positivity of linear functional itself implies a rather strong continuity property.
+\begin{thm}
+Let $X$ be a locally compact Hausdorff space.
+If a linear functional on $C_c(X)$ is positive, then it is continuous with respect to the colimit topology.
+\end{thm}
+\begin{pf}
+Let $I$ be a positive linear functional on $C_c(X)$.
+We want to show that on every compact subset $K$ of $X$ we have $|I(f)|\les_K\|f\|$ for all $f\in C_K(X)$.
+The proof idea comes from the H\"older inequality $|\int_K f\,d\mu|\le\mu(K)\|f\|$.
+
+Choose $\phi\in C_c(X)$ such that $\phi|_K=1$ using the Urysohn lemma.
+Since $f=\phi f\le I(\phi)\|f\|$, we have
+\[I(f)\le I(\phi\|f\|)=I(\phi)\|f\|.\]
+Putting $-f$ instead of $f$, we also get $-I(f)\le I(\phi)\|f\|$.
+Therefore, $|I(f)|\le I(\phi)\|f\|$.
+\end{pf}
+
+
+
+
+
+Jordan decomposition: $(C_0(X),\|\cdot\|)^*=(C_c(X),\|\cdot\|)^*\subset(C_c(X),\lim_{\to})^*$
+converse?
+
+
+
+
+\chapter{Hmmmm}
+
+\subsection{Convergence in measure}
+Since $\{f_n(x)\}_n$ diverges if and only if
+\[\exists k>0,\quad\forall n_0>0.\quad\exists n>n_0:\quad |f_n(x)-f(x)|>n^{-1},\]
+we have
+\begin{align*}
+\{x:\{f_n(x)\}_n\text{ diverges}\}&=\bigcup_{k>0}\bigcap_{n_0>0}\bigcup_{n>n_0}\{x:|f_n(x)-f(x)|>n^{-1}\}\\
+&=\bigcup_{k>0}\limsup_n\{x:|f_n(x)-f(x)|>n^{-1}\}.
+\end{align*}
+Since for every $k$
+\[\limsup_n\{x:|f_n(x)-f(x)|>k^{-1}\}\subset\limsup_n\{x:|f_n(x)-f(x)|>n^{-1}\},\]
+we have
+\[\{x:\{f_n(x)\}_n\text{ diverges}\}\subset\limsup_n\{x:|f_n(x)-f(x)|>n^{-1}\}.\]
+
+
+
+
+\begin{thm}
+Let $f_n$ be a sequence of measurable functions on a measure space $(X,\mu)$.
+If $f_n$ converges to $f$ in measure, then $f_n$ has a subsequence that converges to $f$ $\mu$-a.e.
+\end{thm}
+\begin{pf}
+Since $d_{f_n-f}(1/k)\to0$ as $n\to\infty$, we can extract a subsequence $f_{n_k}$ such that
+\[\mu(\{x:|f_{n_k}(x)-f(x)|>k^{-1}\})>2^{-k}.\]
+Since
+\[\sum_{k=1}^\infty\mu(\{x:|f_{n_k}(x)-f(x)|>k^{-1}\})<\infty,\]
+by the Borel-Canteli lemma, we get
+\[\mu(\limsup_k\{x:|f_{n_k}(x)-f(x)|>k^{-1}\})=0.\]
+Therefore, $f_{n_k}$ converges $\mu$-a.e.
+\end{pf}
+
+
+
+
+\end{document}

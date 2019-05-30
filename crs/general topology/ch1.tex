@@ -1,83 +1,4 @@
-\documentclass{../crs}
-\usepackage{../../ikany}
-
-\title{Analysis II : General Topology}
-
-\begin{document}
-\maketitle
-\tableofcontents
-
-\frontmatter
-
-
-\chapter*{Preface}
-
-% essentially penetrating short definition
-% relation to the other fields
-%
-
-
-One way to state the definition for general topology is the abstract study of topologies and topological spaces.
-The word topology is used in two different contexts: analytic sense and geometric sense.
-When we are talking the stories of doughnuts and coffee mugs, they are in fact involved in topology of geometric sense, which is also referred to as a branch of mathematics that studies constinuous structures of spaces such as manifolds or CW complexes.
-In analysis, the topology is mentioned greatly unrelatedly to the doughnuts, but it refers to the minimal structure that is required in order to define concepts of limit and continuity.
-More precisely, once a structure called ``topology'' is settled on a set, then we can expand basic analytic theories about limit and continuity.
-Normed spaces are the first examples which possess a particularly nice topology.
-With the topologies, we can describe formally whether a sequence converges or a function is continuous.
-This book is interested in the latter issues as noted in the title of the book.
-
-According to the usage of topologies, similarly as mentioned, there are two large branches of general topology; both contribute to build nice frameworks for wide regions of mathematics.
-One is for algebraic topology and studies the category of convenient spaces in which well-known constructions and computational tools are available, and the other is for abstract analysis.
-In general topology focused on analysis, we are more concerned with the implications among individual topologies and special properties of them, rather than the global shapes of topological spaces.
-For real analysis or functional analysis, general topology provides with extremely important viewpoints for recognizing the various convergence modes of functional sequences.
-An interesting feature of general topology is that the basic topology in analysis is a preliminary of the abstract study of the spaces used in algebraic topology, hence everyone starts to learn it from analysis.
-
-\iffalse
-For generalization, we firstly come up with the following question: exactly what aspects of norms could have made them used to define the notion of convergence?
-This leads the concept of neighborhood system, and unltimately, topology.
-We may, furthermore, compare different topologies.
-For example, the convergence changes even for a same sequence when judged in different topologies so that we can argue in what sense a sequence converges.
-We can ask if a convergence implies another convergence.
-Also, as a generalization of metric, we want to ask the essential difference between metric and topology.
-The uniformity will answer the question.
-
-Also, we are concerned with the properties of a given topology.
-Some convergences that occur within various applications such as pointwise convergence of functional sequences with uncountable domain cannot be formulated with neither norms nor metrics.
-They are in fact non-metrizable topologies.
-\fi
-
-
-
-
-The purpose of this book is to grasp a big picture and learn basic languages in order to establish frameworks for the next study of modern analysis such as harmonic analysis or functional analysis following after calculus topics, in a quite abstract viewpoints.
-In particular, we mainly focus on finding admissible answers for notoriously hazy questions:
-\begin{itemize}
-\item Why are topologies defined in that way?
-\item What can metric spaces do more than topological spaces?
-\item When can we use sequences instead of nets without any anxiety? 
-\item What does compactness mean?
-\item Why do locally compact Hausdorff spaces so frequently appear?
-\item What is the importance of complicated theorems of like Arzela-Ascoli or Stone-Weierstrass?
-\end{itemize}
-For the first in this book, the basic topological structures including metrics, topologies, and uniformities are introduced in Chapter 1.
-Although many texts do not cover uniform spaces, they are greatly useful in studying nonmetrizable topologies.
-In Chapter 2, we learn about continuity of functions and maps.
-Continuous maps functionally connects two different topological spaces and allow us to compare them.
-Homeomorphisms and some connectivity will be also covered.
-Chapter 3 is dedicated to the deeper study of convergence of sequences or nets.
-In Chapter 4, 5, and 6, we learn compact spaces, separability axioms, and continuous function spaces.
-
-In this book, we are going to assume the reader is already familiar to the theory of normed spaces and elementary foundations of calculus including the epsilon-delta definitions.
-For instance, we can require the reader to know what the uniform convergence is and that it can be regarded as just a convergence in the properly defined norm on a space of functions.
-
-This book would not be a good choice for a standard course text relative to the other existing great books, because it is written to be helpful in self-teaching.
-It has been tried to put convincing explanations at every newly defined concept and to cram supplementary stories that are not necessary, but they might not be really satisfied.
-Nevertheless, I will be very satisfied only if just one of readers could enjoy math with this book.
-
-\mainmatter
-
-
-% CHAPTER 1
+%!TeX root=general topology.tex
 \chapter{Topological structures}
 
 Firstly we discuss to what extent the definition of analytic notions such as limit and continuity can be extended.
@@ -94,7 +15,7 @@ Topological structure refers to an additional function on a given set or a more 
 Norm is a typical example of topological structure, and so is ``topology''.
 
 
-% SECTION 1-1
+% 1
 \section{Metric}
 
 Metric is a generalization of norm and a special example of ``topology''.
@@ -105,7 +26,7 @@ Before start, henceforth, readers should be noticed that the following facts abo
 Later, by applying the abstract theory of general topology to metrics as examples, we will find that metric provides with a surprisingly appropriate and widely-applicable tool to understand the nature of mathematical analysis.
 To give a short answer for the essentiality of metric is ``a countable uniform topology'' in a sense; understanding what it means would be one of primary goals of this chapter.
 
-% 1-1-1
+% 1-1
 \subsection{Metric spaces}
 
 Metric was the first successful trial to find an abstract framework for studying limits.
@@ -223,7 +144,7 @@ It is a little special case of \emph{Hausdorff metric}.
 
 
 
-% 1-1-2
+% 1-2
 \subsection{Limits and continuity}
 
 Many freshmen misunderstand the main role of metric for its name.
@@ -286,7 +207,7 @@ Refer to Example \ref{ex:neighborhood filter}.
 
 
 
-% 1-1-3
+% 1-3
 \subsection{Topological equivalence}
 Take note on the fact that the sequence of real numbers defined by $x_n=\frac1n$ diverges in discrete metric.
 Like this example, even for the same sequence on a same set, the convergence depends on the attached metric.
@@ -298,7 +219,7 @@ In this situation, it can be paraphrased into that the two metrics induce exactl
 Then, we want to classfy the metrics by their topologies.
 
 \subsubsection{Topological equivalence of metrics}
-Some definitions and theorems for the equivalence checking will be given as follows.
+Some definitions are given as follows.
 
 \begin{defn}
 Let $d_1$ and $d_2$ are metric on a set $X$.
@@ -315,17 +236,26 @@ There are various characterizations of equivalence among metrics.
 Especially the first proposition states that we can recover an equivalence class of metrics when it is known that which sequence converges.
 
 \begin{prop}\label{prop:sequential convergence data}
-Let $d_1$ and $d_2$ are metric on a set $X$.
+Let $d_1$ and $d_2$ are metrics on a set $X$.
 They are equivalent if and only if they share the same sequential convergence data; a sequence converges in $d_1$ if and only if it converges in $d_2$.
 \end{prop}
 \begin{pf}
-($\Rightarrow$)
-Suppose $d_1$ and $d_2$ are equivalent.
-It is enough to show that the convergence of a sequence in $d_1$ implies the convergence in $d_2$ because the converse is shown in the same way.
+It is easily deduced by applying the following lemma twice.
+\end{pf}
 
+\begin{lem}
+Let $d_1$ and $d_2$ are metrics on a set $X$.
+The followings are equivalent:
+\begin{cond}
+\item For any $x\in X$ and for arbitrary $\e>0$, there is $\delta>0$ such that
+\[B_1(x,\delta)\subset B_2(x,\e),\]
+\item If a sequence converges to a point $x$ in $d_1$, then it also converges to $x$ in $d_2$.
+\end{cond}
+\end{lem}
+\begin{pf}
+(1)$\Rightarrow$(2)
 Let $\{x_n\}_n$ be a sequence in $X$ that converges to $x$ in $d_1$.
-Take an arbitrary ball $B_2(x,\e)=\{y:d_2(x,y)<\e\}$.
-By the definition of equivalence, there is $\delta>0$ such that
+By the assumption, for an arbitrary ball $B_2(x,\e)=\{y:d_2(x,y)<\e\}$ centered at $x$, there is $\delta>0$ such that
 \[B_1(x,\delta)\subset B_2(x,\e),\]
 where $B_1(x,\delta)=\{y:d_1(x,y)<\delta\}$.
 Since $\{x_n\}_n$ converges to $x$ in $d_1$, there is an integer $n_0$ such that
@@ -334,15 +264,13 @@ Combining them, we obtain an integer $n_0$ such that
 \[n>n_0\impl x_n\in B_2(x,\e).\]
 It means $\{x_n\}$ converges to $x$ in the metric $d_2$.
 
-($\Leftarrow$)
+(2)$\Rightarrow$(1)
 We prove it by contradiction.
-Assuming $d_1$ and $d_2$ are not equivalent, we will construct a sequence that converges in one metric but not in the other metric.
-
-Since $d_1$ and $d_2$ are not equivalent, without loss of generality, for some point $x\in X$, we can find $\e_0>0$ such that there is no $\delta>0$ satisfying $B_1(x,\delta)\subset B_2(x,\e_0)$.
+Assume that for some point $x\in X$ we can find $\e_0>0$ such that there is no $\delta>0$ satisfying $B_1(x,\delta)\subset B_2(x,\e_0)$.
 In other words, at the point $x$, the difference set $B_1(x,\delta)\setminus B_2(x,\e_0)$ is not empty for every $\delta>0$.
 Thus, we can choose $x_n$ to be a point such that
 \[x_n\in B_1\left(x,\tfrac1n\right)\setminus B_2(x,\e_0)\]
-for each positive integer $n$.
+for each positive integer $n$ by putting $\delta=\frac1n$.
 
 We claim $\{x_n\}_n$ converges to $x$ in $d_1$ but not in $d_2$.
 For $\e>0$, if we let $n_0=\ceil{\frac1\e}$ so that we have $\frac1{n_0}\le\e$, then
@@ -391,6 +319,7 @@ Since $d_1(x,y)<\e/C_1$ implies $d_2(x,y)<\e$ and $d_2(x,y)<\e/C_2$ implies $d_1
 \[B_1\left(x,\frac\e{C_1}\right)\subset B_2(x,\e),\quad B_2\left(x,\frac\e{C_2}\right)\subset B_1(x,\e).\]
 By letting $\delta_1=\e/C_1$ and $\delta_2=\e/C_2$, we can see the two metrics are equivalent.
 \end{pf}
+This theorem can be used only for half:  $d_2\le Cd_1$ for some $C>0$ if and only if convergence of a sequence in $d_1$ implies the convergence in $d_2$.
 
 \begin{thm}\label{thm:equivalent metrics by subadditive function}
 Let $d$ be a metric on a set $X$ and let $f$ be a monotonically increasing subadditive real function on $\R_{\ge0}$ such that $f^{-1}(0)=\{0\}$ so that $f\o d$ is a metric.
@@ -506,7 +435,7 @@ for all $(x,y)\in\R^2$, the two norms are equivalent.
 
 
 
-% 1-1-4
+% 1-4
 \subsection{Family of pseudometrics}
 
 Our goal in this subsection is to describe a topology generated by several metrics, and, in general, by several ``pseudometrics''.
@@ -516,7 +445,7 @@ This idea provides a useful method to construct a metric or topology, which can 
 At first, let us look into combination of metrics.
 Specifically, in a conventional way, metrics are summed to make another metric out of olds since sum of two metrics also satisfies the all axioms of metric.
 They are summed because convergence of a sequence in the resulted metric is equivalent to convergence in the summands.
-See Proposition \ref{prop: summed metric convergence}.
+See Proposition \ref{prop:summed metric convergence}.
 However, here we give a slightly more general construction using norms restricted onto the closed orthant $(\R_{\ge0})^d$, of which summation becomes just a special case.
 
 \begin{prop}
@@ -567,7 +496,7 @@ If $d_1$ and $d_2$ are equivalent metrics, then $d_1+d_2$ is also equivalent to 
 From now, when we need to write a combined metric of a family of metrics, we will just adopt the sum $d_1+d_2$.
 Another characterization of the summed metric is given as follows; see Proposition \ref{prop:sequential convergence data}.
 
-\begin{prop}\label{prop: summed metric convergence}
+\begin{prop}\label{prop:summed metric convergence}
 Let $d_1$ and $d_2$ be metrics on a set $X$.
 A sequecne $\{x_n\}_n$ converges to $x$ in $d_1+d_2$ if and only if it converges to $x$ in both $d_1$ and $d_2$.
 \end{prop}
@@ -579,8 +508,8 @@ For $\e>0$, we have an positive integet $n_0$ such that
 With this $n_0$, by the nonnegativity of metric functions, we get $d_1(x_n,x)<\e$ and $d_2(x_n,x)<\e$ for $n>n_0$.
 
 ($\Leftarrow$)
-% exercise ? ?? cut?? 1.2? Hausdorffness? ?? ?? ??? ?
-So, suppose a sequence $\{x_n\}_n$ converges to a common point $x$ with respect to both $d_1$ and $d_2$.
+Suppose a sequence $\{x_n\}_n$ is convergent with respect to both $d_1$ and $d_2$.
+By the Hausdorffness of metrics, the sequence converges to a common point $x$ in both metircs.
 For $\e>0$, we may find positive integers $n_1$ and $n_2$ such that $n>n_1$ and $n>n_2$ imply $d_1(x_n,x)<\frac\e2$ and $d_2(x_n,x)<\frac\e2$ respectively.
 If we define $n_0:=\max\{n_1,n_2\}$, then
 \[n>n_0\impl d_1(x_n,x)+d_2(x_n,x)<\e.\qedhere\]
@@ -604,28 +533,79 @@ The mostly used examples are
 Then, $f\o d$ is a bounded metric equivalent to $d$ by Theorem \ref{thm:equivalent metrics by subadditive function}.
 \end{pf}
 
-Every metric can be bounded above by an arbitrary constant, which was 1 in the proof, keeping the topological equivalence.
+\begin{defn}
+Let $d$ be a metric on a set $X$.
+A \emph{standard bounded metric} means either metric
+\[\min\{d,1\}\quad\text{or}\quad\frac d{d+1},\]
+and we will denote it by $\hat d$.
+\end{defn}
+
+The supremum of the standard bounded metric is 1.
+Every metric can be bounded above by not only 1 but also an arbitrary constant, keeping the topological equivalence, just by giving the constant as a coefficient to $\hat d$.
+Following propositions are the reason why we bound the metric.
 
 \begin{prop}
 Let $\{d_i\}_{i\in\N}$ be a countable family of metrics on a set $X$.
 Then a function $d:X^2\to\R_{\ge0}$ defined by
-\[d(x,y):=\sum_{i\in\N}\,2^{-i}d_i(x,y)\]
+\[d(x,y):=\sum_{i\in\N}\,2^{-i}\hat d_i(x,y)\]
 is a metric.
 Furthermore, a sequence $\{x_n\}_n$ converges in $d$ if and only if it converges in every $d_i$.
 \end{prop}
 \begin{pf}
-%%%%
+The function is well-defined by the monotone convergence theorem.
+The only nontrivial axiom is the triangle inequality.
+Consider the triangle inequality of truncated sum of metrics
+\[\sum_{i=1}^k2^{-i}\hat d_i(x,z)\le\sum_{i=1}^k2^{-i}\hat d_i(x,y)+\sum_{i=1}^k2^{-i}\hat d_i(y,z).\]
+By taking limit $k\to\oo$, we obtain the triangle inequality for $d$, hence a metric.
+Let us show the rest part.
+
+($\Rightarrow$)
+We have an ineuqlaity $d_i\le2^i\hat d$ for each $i$, so convergence in $d$ implies the convergence in each $\hat d_i$.
+See Theorem \ref{thm:equivalent metrics by inequalities}.
+The equivalence of $\hat d_i$ and $d_i$ implies the desired result.
+
+($\Leftarrow$)
+Suppose a sequence $\{x_n\}_n$ converges to a point $x$ in $d_i$ for every index $i$.
+Take an arbitrary small ball $B(x,\e)=\{y:d(x,y)<\e\}$ with metric $d$.
+By the assumption, we can find $n_i$ for each $i$ satisfying
+\[n>n_i\impl\hat d_i(x_n,x)<\frac\e2.\]
+Define $k:=\lceil1-\log_2\e\rceil$ so that we have $2^{-k}\le\frac\e2$.
+With this $k$, define
+\[n_0:=\max_{1\le i\le k}n_i.\]
+If $n>n_0$, then
+\begin{align*}
+d(x_n,x)&=\sum_{i=1}^k2^{-i}\hat d_i(x_n,x)+\sum_{i=k+1}^\oo2^{-i}\hat d_i(x_n,x)\\
+&<\sum_{i=1}^k2^{-i}\frac\e2+\sum_{i=k+1}^\oo2^{-i}\\
+&<\frac\e2+2^{-k}\le\e,
+\end{align*}
+so $x_n$ converges to $x$ in the metric $d$.
 \end{pf}
 \begin{prop}
 Let $\{d_i\}_{i\in\N}$ be a countable family of metrics on a set $X$.
 Then a function $d:X^2\to\R_{\ge0}$ defined by
-\[d(x,y):=\sup_{i\in\N}\,i^{-1}d_i(x,y)\]
+\[d(x,y):=\sup_{i\in\N}\,i^{-1}\hat d_i(x,y)\]
 is a metric.
 Furthermore, a sequence $\{x_n\}_n$ converges in $d$ if and only if it converges in every $d_i$.
 \end{prop}
 \begin{pf}
-%%%%
+The function is well-defined by the least upper bound property of real numbers.
+The triangle inequality and the direction ($\Rightarrow$) have the same proof with the previous one.
+
+($\Leftarrow$)
+Suppose a sequence $\{x_n\}_n$ converges to a point $x$ in each $d_i$, and take an arbitrary small ball $B(x,\e)=\{y:d(x,y)<\e\}$ with metric $d$.
+By the assumption, we can find $n_i$ for each $i$ satisfying
+\[n>n_i\impl\hat d_i(x_n,x)<\e.\]
+Define $k:=\lceil\frac1\e\rceil$ so that we have $k^{-1}\le\e$.
+With this $k$, define
+\[n_0:=\max_{1\le i\le k}n_i.\]
+If $n>n_0$, then
+\[i^{-1}\hat d_i(x,y)\le\hat d_i(x,y)<\e\quad\text{for}\quad i\le k\]
+and
+\[i^{-1}\hat d_i(x,y)\le i^{-1}<k^{-1}\le\e\quad\text{for}\quad i>k\]
+imply $d(x_n,x)<\e$, which means that $x_n$ converges to $x$ in the metric $d$.
 \end{pf}
+
+From the two propositions and Proposition \ref{prop:sequential convergence data}, we get a corollary:
 \begin{cor}
 Let $\{d_i\}_{i\in\N}$ be a countable family of metrics on a set $X$.
 Then, two metrics
@@ -738,14 +718,17 @@ Find the range of the function $f(x)=\|x\|_p/\|x\|_q$ defined for $x\in\R^d$, wh
 
 
 
-% SECTION 1-2
+
+
+
+% 2
 \section{Topology}
 We define topology and introduce some supplementary notions.
 
 
 
 
-% 1-2-1
+% 2-1
 \subsection{Filters}
 Suppose we want to find a proper way to define limit and convergence.
 Recall how we define convergence of a sequence of real numbers: we say a sequence $(x_n)_{n\in\N}$ converges to a number $x$ if for each $\e>0$ there is $n_0(\e)\in\N$ such that $|x-x_n|<\e$ whenever $n>n_0$.
@@ -864,7 +847,7 @@ However, it is intuitively a filter at infinity.
 
 
 
-% 1-2-2
+% 2-2
 \subsection{Topologies}
 %%%
 Before defining topology, recall that it plays the most important role in the definition of continuous functions to deal with neighborhoods of a point.
@@ -941,7 +924,7 @@ Since all topological structures are made to generalize the standard metric of E
 
 
 
-% 1-2-3
+% 2-3
 \subsection{Bases and subbases}
 
 \begin{defn}
@@ -987,16 +970,16 @@ This example would show a basis is fundamental language to describe the nature o
 
 
 
-% 1-2-4
+% 2-4
 \subsection{Open sets and neighborhoods}
 def:nbhd and neighborhood filter
 convergence and limit
 
-% 1-2-5
+% 2-5
 \subsection{Closed sets and limit points}
  closure
  dense set,
-% 1-2-6
+% 2-6
 \subsection{Interior and closure}
 
 
@@ -1026,15 +1009,15 @@ convergence and limit
 
 
 
-% SECTION 1-3
+% 3
 \section{Uniformity}
 
-% 1-3-1
+% 3-1
 \subsection{Uniform spaces}
 uniformness of metric
 
 
-% 1-3-2
+% 3-2
 \subsection{Entourages}
 
 
@@ -1084,7 +1067,7 @@ The difficult part is the triangle inequality, which can be shown from the conti
 
 
 
-% 1-3-3
+% 3-3
 \subsection{Pseudometrics}
 
 %defn
@@ -1115,354 +1098,6 @@ Every uniformity is induced by a family of pesudometrics.
 \begin{pf}
 
 \end{pf}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-% CHAPTER 2
-\chapter{Continuity}
-
-
-% SECTION 2-1
-\section{Continuous functions}
-
-\subsection{Various continuity}
-continuity, Cauchy continuity, uniform continuity, 
-
-Lipschitz continuity
-\begin{ex}
-An isometry between metric spaces is Lipschitz continuous with costant 1.
-\end{ex}
-
-\subsection{Sequential continuity}
-
-
-
-
-\section{Continuous maps}
-
-\subsection{Mono and epi}
-
-\subsection{Subspaces and quotient spaces}
-
-\subsection{Product space}
-
-\subsection{Homeomorphisms}
-continuous bijection
-open map
-how to show two spaces are not homeomorphic
-- topological property: connected, compact
-
-
-\section{Connectedness}
-
-\subsection{Connected spaces}
-component
-\subsection{Path connected spaces}
-
-\subsection{Locally connected spaces}
-
-\subsection{Homotopy}
-
-
-
-
-
-
-
-
-
-
-
-
-
-\chapter{Convergence}
-
-\section{Nets}
-
-product of two directed sets
-projection is monotone final
-uniformity is itself an upward directed set by reverse inclusion, like $\R_{\ge0}$.
-cofinality and subsequence
-
-eventuality filter, three definitions of subnets
-
-\section{Sequences}
-sequential spaces, first countable
-
-\section{Completeness}
-completion
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-\chapter{Compactness}
-
-
-\begin{defn}
-Let $X$ be a topological space.
-A \emph{cover} of a subset $A\subset X$ is a collection $\{U_\alpha\}_{\alpha\in\cA}$ of subsets of $X$ such that $A\subset\bigcup_{\alpha\in\cA}U_\alpha$.
-If $U_\alpha$ are all open, then it is called \emph{open cover}.
-\end{defn}
-\begin{defn}
-Let $X$ be a topological space.
-A subset $K\subset X$ is called \emph{compact} if every open cover of $K$ has a finite subcover.
-\end{defn}
-\begin{prop}
-Let $X$ be a topological space with a basis $\mathcal{B}$.
-A subset $K\subset X$ is compact if and only if every cover of the form $\{B_x\in\mathcal{B}\}_{x\in K}$ has a finite subcover.
-\end{prop}
-\begin{rmk}
-Let $\cP$ be a property of a fuction $f\colon X\to Y$, such as continuity
-If we say $f$ has $\cP$ at a point $x$, then it would implies that $x$ has a neighborhood $U$ such that 
-\end{rmk}
-
-\subsection{Properties of compactness}
-\begin{thm}
-Let $X$ and $Y$ be topological spaces.
-For a continuous map $f\colon X\to Y$, the image $f(K)$ is compact for compact $K\subset X$.
-\end{thm}
-
-\begin{rmk}
-This is why the term ``compact space'' is widely used.
-\end{rmk}
-
-\begin{cor}[The extreme value theorem]
-A continuous function on a closed interval has a global maximum and
-\end{cor}
-
-Heine-Cantor,
-
-
-
-\subsection{Characterizations of compactness}
-
-\begin{rd}[column sep=large,row sep=large]
-net compact \ar{d} & sequentially compact \ar{d} & \\
-compact \ar{u}\ar{r} & countably compact \ar{r}\lds{l}{\block{metrizable\\\emph{or} 2nd countable}}\rds{u}{sequential} & limit point compact \lds{l}{$T_1$}
-\end{rd}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-\chapter{Separation axioms}
-
-\section{Separation axioms}
-\section{Metrization theorems}
-
-
-
-
-
-
-
-
-
-\chapter{Function spaces}
-
-
-
-
-\section{Compact-open topology}
-
-% 6-1-1
-\subsection{Definition}
-
-\begin{defn}
-Let $X$ and $Y$ be topological spaces.
-The \emph{continuous functions space} $C(X,Y)$ is the set of continuous functions from $X$ to $Y$.
-If $Y=\mathbb{R}$ or $\mathbb{C}$, then the continuous function space is denoted by $C(X)$.
-\end{defn}
-
-% 6-1-2
-\subsection{Compact convergence}
-topology of compact convergence
-metrizability and hemicompact
-topology of uniform convergence
-uniform structure of pointwise convergence
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-In considering the continuous function space, $Y$ will be assumed to be a metric space because of its usefulness in most applications.
-Then, there are two useful topologies on $C(X,Y)$.
-Since there is a difficulty to deal with open sets or basis directly in a function space, the convergence will be a reliable alternative to describe the topologies.
-Before giving definition of the topologies, define pseudometrics $\rho_K$ on $C(X,Y)$ by
-\[\rho_K(f,g)=\sup_{x\in K}d(f(x),g(x))\]
-for $K\subset X$ compact.
-
-\begin{defn}
-Let $X$ and $Y$ be topological spaces.
-The \emph{topology of pointwise convergence} on $C(X,Y)$ is a subspace topology inherited from the product topology on $Y^X$.
-\end{defn}
-
-\begin{prop}
-Let $X$ be a topological space and $Y$ be a metric space.
-The topology of pointwise convergence on $C(X,Y)$ is generated by pseudometrics $\rho_{\{x\}}$, namely all $\{g:d(f(x),g(x))<\e\}$ for $f\in C(X,Y)$, $\e>0$, and $x\in X$.
-\end{prop}
-
-\begin{defn}
-Let $X$ be a topological space and $Y$ be a metric space.
-The \emph{topology of compact convergence} on $C(X,Y)$ is a topology generated by pseudometrics $\rho_K$, namely all $\{g:\rho_K(f,g)<\e\}$ for $f\in C(X,Y)$, $\e>0$, and compact $K\subset X$.
-\end{defn}
-
-\begin{prop}
-Let $C(X,Y)$ be a continuous function space for a topological space $X$ and a metric space $Y$.
-A functional sequence in $C(X,Y)$ converges in the topology of compact convergence if and only if the functional sequence converges compactly.
-\end{prop}
-
-\begin{thm}
-Let $X$ be a topological space and $Y$ be a metric space.
-If $X$ is hemicompact, in other words, $X$ has a sequence of compact subsets $\{K_n\}_{n\in\N}$ such that every compact subset of $X$ is contained in $K_n$ for some $n\in\N$, then the topology of compact convergence on $C(X,Y)$ is metrizable.
-\end{thm}
-
-\begin{proof}
-bounding and merging pseudometrics
-\end{proof}
-
-
-
-% 6-1-3
-\subsection{Exponentiability}
-locally compact Hausdorff spaces
-exponential space
-
-
-
-
-
-
-$\frac\e3$ argument
-
-
-
-
-
-% SECTION 6-2
-\section{Rings of continuous functions}
-\subsection{$C(X), C_0(X), C_b(X)$}
-
-
-
-\section{Important theorems on function space}
-
-\subsection{The Arzela-Ascoli theorem}
-
-The Arzela-Ascoli theorem is a main technique to verify compactness of a subspace of continuous function space.
-The theorem requires the notion of equicontinuity, which lifts pointwise compactness up onto compactness in topology of compact convergence.
-
-\begin{defn}
-Let $X$ be a topological space and $Y$ be a metric space.
-A subset $\mathcal{F}\subset C(X,Y)$ is called \emph{(pointwise or locally) equicontinuous} if for every $\e>0$ and each $x_0\in X$, there is an open neighborhood $U$ of $x_0$ such that $x\in U\impl d(f(x),f(x_0))<\e$ for all $f\in\cF$.
-\end{defn}
-Compare with the following definition:
-\begin{defn}
-Let $X$ be a metric space and $Y$ be a metric space.
-A subset $\mathcal{F}\subset C(X,Y)$ is called \emph{uniformly equicontinuous} if for every $\e>0$ there exists $\delta>0$ such that $d(x,y)<\delta\impl d(f(x),f(y))<\e$ for all $f\in\cF$.
-\end{defn}
-The uniform equicontinuity is what the Rudin's book says it just equicontinuous.
-
-\begin{thm}[Arzela-Ascoli, conventional version]
-Let $X$ be a compact space.
-For $(f_n)_{n\in\N}\subset C(X)$, if it is equicontinuous and pointwisely bounded, then there is a subsequence that uniformly converges.
-\end{thm}
-
-
-\begin{thm}[Arzela-Ascoli, metrized version]
-Let $X$ be a hemicompact space and $Y$ be a metric space.
-Let $\cT_p$ and $\cT_c$ be the topology of pointwise and compact convergence on $C(X,Y)$ relatively.
-For $\cF\subset C(X,Y)$, if $\cF$ is equicontinuous and relatively compact in $\cT_p$, then $\cF$ is relatively compact in $\cT_c$.
-\end{thm}
-\begin{pf}
-Let $\{f_n\}_{n\in\N}$ be a sequence in $\cF$ and $K\subset X$ be a compact.
-By equicontinuity, for each $k\in\N$ a finite open cover $\{U_s\}_{s\in S_k}$ with a finite set $S_k\subset K$ can be taken such that $x\in U_s\,\impl\,d(f(x),f(s))<\frac1k$ for all $f\in\cF$.
-By the pointwise relative compactness, we can extract a subsequence $\{f_m\}_{m\in\N}$ of $\{f_n\}_n$ such that $\{f_m(s)\}_m$ is Cauchy for each $s\in\bigcup_{k\in\N}S_k$ by the diagonal argument.
-
-For every $\e>0$, let $k=\ceil{(\frac\e3)^{-1}}$ and $m_0=\max\{m_{0,s}:s\in S_k\}$ where $m_{0,s}$ satisfies that $m,m'>m_{0,s}\impl d(f_m(s),f_{m'}(s))<\frac\e3$.
-By taking $s\in S_k$ such that $x\in U_s$ for arbitrary $x\in K$, we obtain, for $m,m'>m_0$,
-\[d(f_m(x),f_{m'}(x))\le d(f_m(x),f_m(s))+d(f_m(s),f_{m'}(s))+d(f_{m'}(s),f_{m'}(x))<\e.\]
-Thus, $\{f_m\}_m$ is a subsequence of $\{f_n\}_n$ that is uniformly Cauchy on $K$.
-\end{pf}
-
-
-converse of Arzela-Ascoli
-
-
-
-
-\subsection{The Stone-Weierstrass theorem}
-
-
-
-
-
-
-
-
-\end{document}
-
-
-
-
-
-
-
-
-
-
-
-
-Limiting inequality
-dependency diagram
-double limit table
 
 
 

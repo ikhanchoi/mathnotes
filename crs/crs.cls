@@ -31,9 +31,11 @@
 
 
 
-
-\setcounter{tocdepth}{2}
-\def\l@subsection{\@tocline{2}{0pt}{2pc}{4pc}{}}
+\setcounter{tocdepth}{3}
+\setcounter{secnumdepth}{2}
+\providecommand{\@dotsep}{4.5}
+\renewcommand*\l@subsection{\@tocline{2}{0pt}{2pc}{}{}}
+\renewcommand*\l@subsubsection{\@tocline{3}{0pt}{5pc}{}{}}
 
 
 
@@ -44,7 +46,7 @@
 \iffalse
 \usepackage[T1]{fontenc}
 \usepackage{etoolbox}
-\patchcmd{\@thm}{\thm@headfont{\scshape}}{\thm@headfont{\scshape\bfseries}}{}{}
+\patchcmd{\@thm}{\thm@headfont{\scshape}}{\thm@headfont{\scshape\bfseries}}{\S}{}
 \fi
 
 
