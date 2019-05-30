@@ -609,15 +609,31 @@ Every metric can be bounded above by an arbitrary constant, which was 1 in the p
 \begin{prop}
 Let $\{d_i\}_{i\in\N}$ be a countable family of metrics on a set $X$.
 Then a function $d:X^2\to\R_{\ge0}$ defined by
-\[d(x,y):=\sum_{i\in\N}\,2^{-i}d_i(x,y)\quad\text{or}\quad d(x,y):=\sup_{i\in\N}\,i^{-1}d_i(x,y)\]
+\[d(x,y):=\sum_{i\in\N}\,2^{-i}d_i(x,y)\]
 is a metric.
 Furthermore, a sequence $\{x_n\}_n$ converges in $d$ if and only if it converges in every $d_i$.
 \end{prop}
 \begin{pf}
 %%%%
 \end{pf}
+\begin{prop}
+Let $\{d_i\}_{i\in\N}$ be a countable family of metrics on a set $X$.
+Then a function $d:X^2\to\R_{\ge0}$ defined by
+\[d(x,y):=\sup_{i\in\N}\,i^{-1}d_i(x,y)\]
+is a metric.
+Furthermore, a sequence $\{x_n\}_n$ converges in $d$ if and only if it converges in every $d_i$.
+\end{prop}
+\begin{pf}
+%%%%
+\end{pf}
+\begin{cor}
+Let $\{d_i\}_{i\in\N}$ be a countable family of metrics on a set $X$.
+Then, two metrics
+\[d(x,y):=\sum_{i\in\N}\,2^{-i}d_i(x,y)\quad\text{and}\quad d(x,y):=\sup_{i\in\N}\,i^{-1}d_i(x,y)\]
+are equivalent.
+\end{cor}
 
-The sequences $\{2^{-i}\}_i$ and $\{i^{-1}\}_i$ can be replaced into any positive real sequences $\{a_i\}_{i=1}^\oo$ such that
+The sequences $\{2^{-i}\}_i$ and $\{i^{-1}\}_i$ in the above propositions can be replaced into any positive real sequences $\{a_i\}_{i=1}^\oo$ such that
 \[\sum_{i\in\N}a_i<\oo\quad\text{and}\quad\lim_{i\to\oo}a_i=0,\]
 respectively.
 \begin{rmk}
