@@ -14,7 +14,7 @@ The purpose of these notes is not to teach.
 I made them in order to organize what I have studies for my own purposes, and to use them in mentoring programs.
 I think writing them is a kind of my hobby.
 
-General Topology: https://github.com/ikhanchoi/mathnotes/blob/master/crs/analysis/2.general%20topology.pdf
+General Topology: https://github.com/ikhanchoi/mathnotes/blob/master/crs/general%20topology/general%20topology.pdf
 
 ## Expository notes (exp)
 They are literally expository notes.
