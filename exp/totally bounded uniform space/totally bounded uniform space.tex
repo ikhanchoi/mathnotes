@@ -73,7 +73,17 @@ Even though the sequence $x_n$ is frequently in both $U_\e$ and $U_{\e'}$, we ha
 
 \section{Metric space case}
 
-
+\begin{thm}
+Every sequence in a totally bounded metric space has a Cauchy subsequence.
+\end{thm}
+\begin{pf}
+Let $x_k$ be a sequence in a totally bounded metric space $X$.
+For each $n\in\N$, using totally boundedness, take a finite open cover $\{U_{n,i}\}_i$ such that $\diam U_{n,i}<\frac1n$ for all $i$.
+Since there must be $i$ such that $U_{1,i}$ contains infinitely many $x_k$'s, we may take a subsequence $\{x_{1,k}\}_k$ of $\{x_k\}_k$ satisfying $x_{1,k}\in U_{1,i}$.
+By induction, for every $n\in\N$, take a subsequence $\{x_{n,k}\}_k$ of $\{x_{n-1,k}\}_k$ satisfying $x_{n,k}\in U_{n,i}$ for some $i$.
+Define a sequence $y_k:=x_{k,k}$.
+Then it is clearly a subsequence of $x_k$ and
+\end{pf}
 
 
 
