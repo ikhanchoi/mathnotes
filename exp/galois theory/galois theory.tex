@@ -62,7 +62,7 @@ A nontrivial field homomorphism is injective.
 \begin{pf}
 The kernel should be either entire or zero.
 \end{pf}
-A nontrivial field homomorphism is also called \emph{embedding} of \emph{isomorphism onto a subfield of codomain}.
+A nontrivial field homomorphism is also called \emph{embedding} or \emph{isomorphism onto a subfield of codomain}.
 A field isomorphism is just a nontrivial surjective field homomorphism.
 
 
@@ -99,8 +99,6 @@ We will see in Section 3.
 \section{Algebraic extensions}
 
 We do not prove the basic properties of polynomial ring over a field: they satisfy the axioms of ED, PID, and UFD, so every prime ideal is maximal and every irreducible element is prime.
-In other words, there exists a one-to-one correspondence:
-\[\text{maximal ideals in }F[x] \iff \text{monic irreducible polynomials in }F[x].\]
 
 \subsection{Algebraic elements}
 Finite simple extensions are the most basic examples of the field extensions that we should become perfectly familiar with them.
@@ -108,6 +106,8 @@ An element that generates a finite simple extension field is called algebraic.
 For these elements, we can define minimal polynomials and conjugates for algebraic elements.
 The minimal polynomial is an essential tool to investigate a given finite simple extension.
 Conjugates are for useful when we construct a homomorphism between fields.
+
+\subsubsection{Minimal polynomials}
 Let us get started from the minimal polynomials.
 
 \begin{defn}[Algebraic element]
@@ -122,8 +122,8 @@ Let $E/F$ be a field extension and $\alpha\in E$.
 TFAE:
 \begin{cond}
 \item $\alpha$ is algebraic over $F$,
-\item there is a polynomial $f\in F[x]$ such that $f(\alpha)=0$,
-\item $F(\alpha)=F[\alpha]$.
+\item there is a nonzero polynomial $f\in F[x]$ such that $f(\alpha)=0$,
+\item $F(\alpha)=F[\alpha]$, i.e. $F[\alpha]$ is a field.
 \end{cond}
 \end{thm}
 \begin{pf}
@@ -131,29 +131,26 @@ TFAE:
 Since $d=[F(\alpha):F]<\oo$, we can find a linearly dependent finite subset of infinite set $\{1,\alpha,\alpha^2,\cdots\}\subset F(\alpha)$ over $F$.
 The coefficients on the linear dependency relation construct the polynomial.
 
-(2)$\impl$(1).
-If there is $f\in F[x]$ with $f(\alpha)=0$, then we can show every element of $F(\alpha)$ is represented as a linear combination of $\{1,\alpha,\cdots,\alpha^{\deg f-1}\}$ by the Euclidean algorithm.
-Therefore, a finite set spans $F(\alpha)$, so the dimension $F(\alpha)$ over $F$ is finite.
-
 (2)$\impl$(3).
-We claim $F[\alpha]$ is a field.
-Take a nonzero element in $F[\alpha]$.
-Then, the element must be same with $g(\alpha)$ for some polynomial $g\in F[x]$.
-
-The existence of $f\in F[x]$ such that $f(\alpha)=0$ implies that the kernel of evaluation $\eval_\alpha:F[x]\to F[\alpha]$ is nonempty.
-The kernel is a prime ideal because the codomain $F[\alpha]$ is an integral domain, and it is also maximal.
-Let $f\in F[x]$ be the generator of the ideal.
-Then, we can find two polynomials $a,b\in F[x]$ such that 
-\[a(x)f(x)+b(x)g(x)=1\]
-since $g\notin(f)$ implies $1\in(f)+(g)$.
-Putting $x=\alpha$, we deducr that $b(\alpha)$ is the multiplicative inverse of $g(\alpha)$.
+The existence of $f\in F[x]$ such that $f(\alpha)=0$ implies that the kernel of evaluation ring homomorphism $\eval_\alpha:F[x]\to F[\alpha]$ is nonempty.
+The kernel is a prime ideal because the quotient $F[x]/\ker(\eval_\alpha)\cong\im(\eval_\alpha)=F[\alpha]$ is an integral domain.
+It is also maximal since $F[x]$ is a PID(Krull dimension 1).
+Therefore, the quotient $F[\alpha]$ is a field.
 
 (3)$\impl$(2).
 There is $g\in F[x]$ such that $\alpha^{-1}=g(\alpha)$.
 Then, $f\in F[x]$ defined by $f(x)=xg(x)-1$ satisfies $f(\alpha)=0$.
+
+(2) and (3)$\impl$(1).
+If there is $f\in F[x]$ with $f(\alpha)=0$, then we can show every element $g(\alpha)$ of $F(\alpha)=F[\alpha]$ for some $g\in F[x]$ is represented as a linear combination of $\{1,\alpha,\cdots,\alpha^{\deg f-1}\}$ by the Euclidean algorithm; divide $g$ by $f$.
+Therefore, a finite set spans $F(\alpha)$, so the dimension $F(\alpha)$ over $F$ is finite.
 \end{pf}
 
-Since the ideal $\ker(\eval_\alpha)$ is maximal, the following definition makes sense.
+Note that, due to the fact that $F[x]$ is a PID, there exists a one-to-one correspondence:
+\begin{rd}
+\textbf{M}aximal \textbf{I}deal in $F[x]$ \lds{r}{generator}& \textbf{M}onic \textbf{I}rreducible polynomial in $F[x]$. \lds{l}{principal ideal}\]
+Since the ideal $\ker(\eval_\alpha)\subset F[x]$ for algebraic $\alpha$ is maximal, the following definition makes sense:
+
 \begin{defn}[Minimal polynomial]
 Let $E/F$ be a field extension and $\alpha\in E$ is algebraic.
 The unique monic irreducible polynomial $\mu_{\alpha,F}\in F[x]$ satisfying $\mu_{\alpha,F}(\alpha)=0$ is called the \emph{minimal polynomial} of $\alpha$ over $F$.
@@ -177,16 +174,19 @@ We can check this with the Euclidean algorithm.
 Polynomials are usually used in order to be provided as a computational tool, so we frequently want to find a suitable minimal polynomial for a given field extension.
 However, note that while an element determines the unique minimal polynomial, a finite simple extension does not specify only one polynomial.
 For example, although $\Q(\sqrt2)=\Q(1+\sqrt2)$, the minimal polynomial of each generator over $\Q$ are $x^2-2$ and $(x-1)^2-2$ respectively.
-You may just find a minimal polynomial that is easy to compute.
+It is enough to find a suitable minimal polynomial that is easy to compute.
 \end{rmk}
 
-
+\subsubsection{Conjugates}
 Now, we begin to define conjugates.
 
 \begin{defn}
 Let $E/F$ be a field extension and $\alpha,\beta\in E$ be algebraic over $F$
 They are said to be \emph{conjugate over $F$} if they share a common minimal polynomial over $F$.
 \end{defn}
+
+In other words, conjugates share the maximal ideal $\ker(\eval)$, hence we get that $F(\alpha)$ and $F(\beta)$ are isomorphic.
+For the practical isomorphism map, we have the following great theorem.
 
 \begin{thm}[Conjugation isomorphism]
 Let $E/F$ be a field extension and $\alpha,\beta\in E$.
@@ -223,15 +223,17 @@ The irreducibility of $\mu_{\alpha,F}$ implies $\mu_{\alpha,F}=\mu_{\beta,F}$.
 \subsection{Algebraic extensions}
 
 In Galois theory, we will not care an element that is not algebriac.
-Therefore, 
+Therefore, it is natural to think a field extension that only consists of algebraic elements, which is called also algebraic.
 The main interests in Galois theory will be restricted to algebraic extensions.
-For people who knows the category theory, an algebraic extension is just a direct limit of finite simple extensions.
+To people who know the category theory, an algebraic extension is just a direct limit of finite simple extensions.
 
 \begin{defn}
 A field extension $E/F$ is called \emph{algebraic} if all elements $\alpha\in E$ is algebraic over $F$.
 \end{defn}
+
 The easiest example of an algebraic extension is a finite extension.
 The relations between finite extensions and algebraic extension are as follows.
+
 \begin{thm}
 For finite extensions and algebraic extensions, we have:
 \begin{cond}
@@ -243,7 +245,8 @@ For finite extensions and algebraic extensions, we have:
 
 
 Now, we are going to get some criteria for determining or constructing algebraic extensions.
-Before that, if we name the set of all algebraic elements, then the proof becomes rather easy.
+For example, the intersection of algebraic extensions is algebraic.
+Before that, we introduce a good notion about algebraic extensions, and it is just the set of all algebraic elements in a given field.
 
 \begin{defn}
 The set of all algebraic elements in $E$ over $F$ is called \emph{relative algebraic closure} and denoted by $\cl F_E$.

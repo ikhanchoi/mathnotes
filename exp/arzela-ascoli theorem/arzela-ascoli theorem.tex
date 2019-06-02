@@ -110,73 +110,9 @@ This can be easily proved with diagonal subsequence extracting argument under th
 \begin{thm}
 A complete totally bounded uniform space is compact.
 \end{thm}
-\begin{pf}[1]
-Let $X$ be a totally bounded complete uniform space.
-Let $\cU$ and $\cT$ be the uniformity and topology of $X$ respectively.
-Let $x:\fA\to X$ be a net in $X$.
-We are going to show $x$ has a Cauchy subnet.
-
-\Step[1]{Applying Zorn's lemma}
-
-Define a subset $\fA'\subset\fA\x\cT\x\cU$ by
-\[(\alpha,U,E)\in\fA'\iff x_\alpha\in U,\ U^2\subset E,\text{ and }x^{-1}(U)\text{ is cofinal in }\fA.\]
-The third condition is a necessary condition for $U$ to contain a limit of a subnet of $x$.
-Define a subset $Z\subset\cP(\fA')$ by
-\[\fB\in Z\iff \pi_\cT(\fB)\subset\cT\text{ is directed}.\]
-The image of $\pi_\cT$ will play a similar role like a ``filter''.
-We apply Zorn's lemma on $Z$ to make an ``ultrafilter''.
-
-First, we claim $Z\ne\mt$.
-For an entourage $E\in\cU$, using totally boundedness, we can find a finite open cover $\{U_i\}_i$ of $X$ such that $U_i^2\subset E$ for all $i$.
-Since $\bigcup_ix^{-1}(U_i)=x^{-1}(X)=\fA$, there is at least one $i$ such that $x^{-1}(U_i)$ is a cofinal subset of $\fA$.
-If we choose any $\alpha\in x^{-1}(U_i)$, then the singleton $\{(\alpha,U_i,E)\}$ is an element of $Z$, because singleton can be always said to be directed.
-(We cannot choose $U=X$ since no entourages may contain $X^2$ without totally boundedness.)
-
-The upper bound of each chain is obtained by union.
-Therefore, there is a maximal element in $Z$.
-Let it denoted by $\fM$.
-Here are several facts about $\fM$:
-\begin{cond}
-\item $\fM\subset\fA'$ inherits the order relation from $\fA\x\cT\x\cU$,
-\item if $U\in\pi_\cT(\fM)$, then $\alpha\in x^{-1}(U)$ and $U^2\subset E$ imply $(\alpha,U,E)\in\fM$ by the maximality,
-\item $\fM\in Z$, i.e. $\pi_\cT(\fM)$ is directed,
-\item $\fM\subset\fA'$, i.e. $x^{-1}(U)$ is cofinal for $U\in\pi_\cT(\fM)$.
-\end{cond}
-
-\Step[2]{Verification of Cauchy subnet}
-
-The goal is to show $x\o\pi_\fA:\fM\to X$ is a subnet that is Cauchy.
-So, we need to show the three conditions: directedness of $\fM$, monotone cofinality of $\pi_\fA|_\fM$, and finally Cauchyness.
-
-(directedness)
-For $(\alpha,U,E),(\alpha',U',E')\in\fM$ we can find $V\in\pi_\cT(\fM)$ such that $U\cup U'\supset V$ by the directedness $\pi_\cT(\fM)$.
-Since $x^{-1}(V)$ is cofinal, there is $\beta\in x^{-1}(V)$ satisfies $\alpha,\alpha'\succ\beta$.
-Then, $(\beta,V,E\cap E')\in\fM$ gives an upper bound.
-
-(monotone cofinality)
-Monotonicity is trivial.
-Take any $(\alpha,U,E)\in\fM$.
-For any $\alpha'\in\fA$ there is $(\beta,U,E)\in\fM$ such that $\alpha,\alpha'\succ\beta$ since $x^{-1}(U)$ is cofinal.
-
-(Cauchyness)
-We claim $\pi_\cU(\fM)=\cU$.
-Assume $E\notin\pi_\cU(\fM)$.
-Let $\{V_i\}_i$ be a finite open cover of $X$ such that $V_i^2\subset E$ for all $i$.
-Suppose for every $i$ there exists $U_i\in\pi_\cT(\fM)$ such that $x^{-1}(U_i\cap V_i)$ is bounded above, i.e. not cofinal.
-If we let $U\in\pi_\cT(\fM)$ be an upper bound of $\{U_i\}_i$, then $x^{-1}(U\cap V_i)\subset x^{-1}(U_i\cap V_i)$ is clearly bounded above for all $i$, so
-\[\bigcup_ix^{-1}(U\cap V_i)=x^{-1}(U\cap X)=x^{-1}(U)\]
-is also bounded above, which gives a contradiction to the cofinality of $x^{-1}(U)$.
-This implies the existence of an open set $V$ such that $V^2\subset E$ and $x^{-1}(U\cap V)$ is cofinal for all $U\in\pi_\cT(\fM)$.
-With this $V$, we can deduce that the cofinality of $x^{-1}(U\cap V)$ lets the following collection
-\[\fM\cup\{\,(\alpha,U\cap V,E):U\in\pi_\cT(\fM),\ \alpha\in U\cap V,\ (U\cap V)^2\in E\,\}\]
-be a subset of $\fA'$.
-Furthermore, it is contained in $Z$ as an element because $\{U\cap V\}_{U\in\pi_\cT(\fM)}$ is directed.
-It is a contradiction to the maximality of $\fM$, therefore, $\pi_\cU(\fM)=\cU$.
-The Cauchyness follows easily from this.
-\end{pf}
-\begin{pf}[2]
-This proof is by DL Frank, Columbia university, 1965 [ ].
-
+\begin{pf}
+Omitted.
+Refer to any advanced general topology text or my other expository essay: totally bounded uniform spaces.
 \end{pf}
 
 
