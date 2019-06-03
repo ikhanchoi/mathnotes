@@ -91,6 +91,10 @@ Then it is clearly a subsequence of $x_k$ and is Cauchy.
 \end{pf}
 
 
+
+
+
+
 \section{Our proof using Zorn's lemma}
 
 Then, the problem is: how can we deal with the diagonal arguement in non-countable situation?
@@ -221,7 +225,58 @@ Therefore, for any $\beta,\beta'\succ\beta_0$ we have
 \end{pf}
 
 
-\section{Another proof using universal nets}
-Joshi's book
 
+
+
+
+
+\section{Another proof using universal nets}
+
+Universal net is the counterpart of ultrafilter in nets, so it is also called ultranet.
+Provided the following theorem by Kelly, proof of Theorem 1.1 becomes a piece of cake.
+
+\begin{thm}[Kelly's theorem]
+Every filter is contained in an ultrafilter.
+\end{thm}
+\begin{pf}
+A set of proper filters on a set is partially ordered, and the upper set of an element has a maximal element by Zorn's lemma.
+\end{pf}
+
+\begin{thm}[Kelly's theorem]
+Every net has a universal subnet.
+\end{thm}
+\begin{pf}
+Let $x:\fA\to X$ be a net on a topological space $X$.
+Let $\cF$ be the ultrafilter containing an eventuality filter of the net $x$.
+Define a directed set $\fB\subset\fA\x\cF$ such that $(\alpha,U)\in\fB$ if and only if $\alpha\in U$, and a subnet $xh:\fB\to\fA\to X$ by $h(\alpha,U)=\alpha$ ($U$ is not open!).
+
+We claim $xh$ is universal.
+Take any subset $A\subset X$.
+Either $A$ or $X\setminus A$ is in $\cF$.
+Let $U\in\cF$ for $U=A$ or $U=X\setminus A$, and let $\beta_0:=(\alpha_0,U)$ for a properly chosen $\alpha_0\in U$.
+Then, $\beta\succ\beta_0$ implies $x_{h(\beta)}\in U$.
+\end{pf}
+
+\begin{thm}
+A universal net in a uniform space is Cauchy.
+\end{thm}
+\begin{pf}
+The definition statement of universal net can be directly applied like this: given a universal net in $X$ every finite cover $\{U_i\}_i$ of $X$ contains at least one element to which the net eventually belongs.
+
+Let $x$ be a net in a uniform space $X$ and extract a universal subnet $xh$.
+With an arbitrary entourage, construct a finite open cover whose elements are bounded by the entourage.
+Then, we can find an element that $xh$ is eventually in.
+It means that $xh$ is Cauchy.
+\end{pf}
+
+So, we finally get:
+\begin{pf}[3 of Theorem 1.1]
+Trivial, by the above results.
+\end{pf}
 \end{document}
+
+
+
+
+
+
