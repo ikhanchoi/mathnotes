@@ -85,7 +85,8 @@ Although it is hard to find a counterexample, there is a finite extension which 
 We will see in Section 3.
 
 
-
+% notation F<E
+% fixing a field
 
 
 
@@ -141,14 +142,15 @@ Therefore, the quotient $F[\alpha]$ is a field.
 There is $g\in F[x]$ such that $\alpha^{-1}=g(\alpha)$.
 Then, $f\in F[x]$ defined by $f(x)=xg(x)-1$ satisfies $f(\alpha)=0$.
 
-(2) and (3)$\impl$(1).
+(2)$+$(3)$\impl$(1).
 If there is $f\in F[x]$ with $f(\alpha)=0$, then we can show every element $g(\alpha)$ of $F(\alpha)=F[\alpha]$ for some $g\in F[x]$ is represented as a linear combination of $\{1,\alpha,\cdots,\alpha^{\deg f-1}\}$ by the Euclidean algorithm; divide $g$ by $f$.
 Therefore, a finite set spans $F(\alpha)$, so the dimension $F(\alpha)$ over $F$ is finite.
 \end{pf}
 
 Note that, due to the fact that $F[x]$ is a PID, there exists a one-to-one correspondence:
 \begin{rd}
-\textbf{M}aximal \textbf{I}deal in $F[x]$ \lds{r}{generator}& \textbf{M}onic \textbf{I}rreducible polynomial in $F[x]$. \lds{l}{principal ideal}\]
+\textbf{M}aximal \textbf{I}deal in $F[x]$ \lds{rr}{generator}&\quad& \textbf{M}onic \textbf{I}rreducible polynomial in $F[x]$. \lds{ll}{principal ideal}
+\end{rd}
 Since the ideal $\ker(\eval_\alpha)\subset F[x]$ for algebraic $\alpha$ is maximal, the following definition makes sense:
 
 \begin{defn}[Minimal polynomial]
@@ -170,6 +172,26 @@ Now we claim the dimension of $F[x]/(f)$ over $F$ is the degree of $f\in F[x]$.
 It is enough to show $\{1,x,\cdots,x^{d-1}\}$ is a basis where $d=\deg f$.
 We can check this with the Euclidean algorithm.
 \end{pf}
+
+\begin{ex}
+Let the base field is $\Q$.
+The minimal polynomial of $\sqrt2$ is $x^2-2$ since it is monic irreducible and has a root $\sqrt2$.
+Similarly, the minimal polynomial of $\frac{-1+\sqrt{-3}}2$ is $x^2+x+1$.
+\end{ex}
+\begin{ex}
+The minimal polynomial $\sqrt2+\sqrt3$ over $\Q$ is $x^4-10x^2+1$.
+Therefore, $[\Q(\sqrt2+\sqrt3):\Q]=4$.
+
+On the other hand, we have
+\[[\Q(\sqrt2,\sqrt3):\Q]=[\Q(\sqrt2,\sqrt3):\Q(\sqrt2)][\Q(\sqrt2):\Q]=2\cdot2=4.\]
+Also, $\sqrt2+\sqrt3\in\Q(\sqrt2,\sqrt3)$ implies $\Q(\sqrt2+\sqrt3)<\Q(\sqrt2,\sqrt3)$.
+Since the dimensions as vector spaces are equal, we get $\Q(\sqrt2+\sqrt3)=\Q(\sqrt2,\sqrt3)$.
+
+Actually, we have
+\[\sqrt2=\frac12\left(\alpha-\frac1\alpha\right)\quad\text{and}\quad\sqrt3=\frac12\left(\alpha+\frac1\alpha\right),\]
+where $\alpha=\sqrt2+\sqrt3$.
+\end{ex}
+
 \begin{rmk}
 Polynomials are usually used in order to be provided as a computational tool, so we frequently want to find a suitable minimal polynomial for a given field extension.
 However, note that while an element determines the unique minimal polynomial, a finite simple extension does not specify only one polynomial.
@@ -214,9 +236,30 @@ From
 we get $\mu_{\beta,F}\mid\mu_{\alpha,F}$.
 The irreducibility of $\mu_{\alpha,F}$ implies $\mu_{\alpha,F}=\mu_{\beta,F}$.
 \end{pf}
+\begin{cor}
+Let $\phi:F\to F$ is a field automorphism.
+Then, $\alpha$ and $\phi(\alpha)$ are always conjugates.
+\end{cor}
 
-
-
+In the following examples, let $E=\C$ and $F=\Q$.
+\begin{ex}
+There are two conjugates of $\sqrt2$ over $\Q$: $\pm\sqrt2$.
+However, there is only one conjugate of $\sqrt2$ over $\Q(\sqrt2)$: itself.
+\end{ex}
+\begin{ex}
+There are two conjugates of $\omega:=\frac{-1+\sqrt{-3}}2$ over $\Q$: $\omega$ and $\cl\omega$.
+It means that there are only two automorphisms on $\Q(\omega)$: one is identity, the other is complex conjugation.
+\end{ex}
+\begin{ex}
+Two different conjugates can define the same isomomorphism.
+See Section 3.
+\end{ex}
+\begin{ex}
+The isomorphism does not have to be an automorphism.
+There are four conjugates of $\sqrt[4]2$ over $\Q$: $\pm\sqrt[4]2$ and $\pm i\sqrt[4]2$.
+However, $\Q(\sqrt[4]2)\ne\Q(i\sqrt[4]2)$ even though they are isomorphic.
+See Section 4.
+\end{ex}
 
 
 
@@ -249,7 +292,7 @@ For example, the intersection of algebraic extensions is algebraic.
 Before that, we introduce a good notion about algebraic extensions, and it is just the set of all algebraic elements in a given field.
 
 \begin{defn}
-The set of all algebraic elements in $E$ over $F$ is called \emph{relative algebraic closure} and denoted by $\cl F_E$.
+The set of all algebraic elements in $E$ over $F$ is called \emph{relative algebraic closure} and denoted by $\cl F|_E$.
 \end{defn}
 \begin{prop}
 A relative algebraic closure is a field.
@@ -261,21 +304,21 @@ A relative algebraic closure is a field.
 Let $E/F$ be a field extension and $L>E$.
 Then,
 \begin{cond}
-\item $\cl F_L<\cl E_L$,
-\item $\cl{(\cl F_E)}_E=\cl F_E$.
+\item $\cl F|_L<\cl E|_L$,
+\item $\cl{(\cl F|_E)}|_E=\cl F|_E$.
 \end{cond}
 \begin{pf}
 %%%
 \end{pf}
 \end{lem}
 \begin{lem}\label{relalgcl}
-A field extension $E/F$ is algebraic iff $\cl E_L=\cl F_L$ for all field $L>E$.
+A field extension $E/F$ is algebraic iff $\cl E|_L=\cl F|_L$ for all field $L>E$.
 \end{lem}
 \begin{pf}
 %%%
 \end{pf}
 \begin{rmk}
-In fact, it is sufficient to check $\cl E_L=\cl F_L$ just for one algebraically closed field $L$ in Lemma \ref{relalgcl}, but since we have not defined the algebraically closed fields yet, we let $L$ be all superfields of $E$.
+In fact, it is sufficient to check $\cl E|_L=\cl F|_L$ just for one algebraically closed field $L$ in Lemma \ref{relalgcl}, but since we have not defined the algebraically closed fields yet, we let $L$ be all superfields of $E$.
 \end{rmk}
 
 Theorems what we want to know are given as follows.
@@ -312,35 +355,65 @@ Then, the compositum $EE'/F$ is algebriac.
 
 \subsection{Algebraic closures}
 
+Algebraic closure is intuitively a maximal algebraic extension.
+It is well described using the notion of algebraically closed fields.
+Although the existence will be proved later, we give definitions.
 
-
-
-
+\subsubsection{Algebraically closed fields}
 \begin{defn}
 A field $F$ is called \emph{algebraically closed} if it has no proper algebraic extension.
 \end{defn}
 
-\begin{defn}
-A field $\cl F$ is called an \emph{algebraic closure} if $\cl F$ is algebraically closed field and $\cl F/F$ is algebraic.
-\end{defn}
-
 There is another important characterization of algebraically closed fields.
 
-\begin{thm}
+\begin{prop}
 A field $F$ is algebraically closed iff every polynomial in $F[x]$ has a root in $F$.
-\end{thm}
+\end{prop}
+\begin{pf}
+Easy.
+\end{pf}
 
 If $f$ has a root $\alpha$, then we can inductively apply this theorem for a new polynomial $f(x)/(x-\alpha)$ of a lower degree to make the complete linear factorization.
 In particular, the theorem implies that algebraically closedness is a internal property; it is preserved under isomorphisms.
 
+\begin{defn}
+A field $\cl F$ is called an \emph{algebraic closure} of a field $F$ if $\cl F$ is algebraically closed field and $\cl F/F$ is algebraic.
+\end{defn}
 
 
+\begin{prop}
+Let $E/F$ be a field extension with algebraically closed field $E$.
+Then the set of all algebraic elements in $E$ over $F$ is the only algebraic closure of $F$ contained in $E$.
+\end{prop}
+\begin{pf}
+The set of algebraic elements is algebraically closed.
+%%%
+\end{pf}
+
+This is a relation with relative algebraic closure: the relative algebraic closure in a algebraically closed field is really an algebraically closure.
+The proposition allows us to choose a standard algebraic closure when provided a large superfield like $\C$.
+In number theory, algebraically closed fields are all considered to be in $\C$. 
+
+\begin{ex}
+The set of all complex numbers $\C$ is an algebraically closed field by the fundamental theorem of algebra.
+\end{ex}
+\begin{ex}
+The set of all algebraic numbers (over $\Q$) is an algebraically closed field by the proposition above and is a subfield of $\C$.
+\end{ex}
+
+\subsubsection{Uniqueness and existence}
+Here is an extremely useful lemma that allows to apply the axiom of choice to field theory.
 
 \begin{thm}[Isomorphism extension theorem]
 Let $E/F$ be an algebraic extension.
 Let $\phi:F\cong F'$ be a field isomorphism.
 Let $\cl F'$ be an algebraic closure of $F'$.
 Then, there is an embedding $\tld\phi:E\to\cl F'$ which extends $\phi$.
+\begin{cd}
+&\cl F' \ar[dash]{dd}\\
+E\ar{r}{\tld\phi}\ar[dash]{d}&\quad\\
+F\ar{r}{\phi}&F'
+\end{cd}
 \end{thm}
 \begin{pf}
 Let $S$ be the set of all field homomorphisms $K\to\cl F'$ which extends $\phi$ and satisfies $K<E$.
@@ -370,23 +443,29 @@ Thus, $\phi$ is surjective so that it is an isomorphism.
 Every field has an algebraic closure.
 \end{thm}
 \begin{pf}
-%%%
+Let $F$ be a field.
+
+\Step[1]{Construct an algebraically closed field containing $F$}
+At first we want to construct a field $K_1>F$ such that every $f\in F[x]$ has a root in $K_1$.
+This is satisfied by $K_1:=R/\fm$, where $R$ and $\fm$ is defined as follows:
+Let $S$ be the set of all irreducibles and nonconstant polynomials in $F[x]$.
+Define $R:=F[\{x_f\}_{f\in S}]$.
+Let $I$ be an ideal in $R$ generated by $f(x_f)$ as $f$ runs through all $S$.
+It has a maximal ideal $\fm\supset I$ in $R$.
+
+Construct a sequence $\{K_n\}_n$ of fields inductively such that every nonconstant $k\in K_n[x]$ has a root in $K_{n+1}$.
+Define $K:=\lim_{\to}K_n$ as the inductive limit.
+It is in other word just the union of $K_n$ for all $n\in\N$.
+Then, $K$ is easily checked to be algebraically closed.
+
+\Step[2]{Construct the algebraic closure of $F$}
+Let $\cl F$ be the set of all algebraic elements of $K$ over $F$.
+Then, this is an algebraic closure.
 \end{pf}
+\begin{rmk}
+In fact, this $K_1$ is already algebraically closed, but it is hard to prove directly, so we are going to construct another algebraically closed field, $K$.
+\end{rmk}
 
-
-
-\begin{prop}
-Let $E/F$ be a field extension with algebraically closed field $E$.
-Then the set of all algebraic elements in $E$ over $F$ is the only algebraic closure of $F$ contained in $E$.
-\end{prop}
-\begin{pf}
-The set of algebraic elements is algebraically closed.
-%%%
-\end{pf}
-
-This is a relation with relative algebraic closure: the relative algebraic closure in a algebraically closed field is really an algebraically closure.
-The proposition allows us to choose a standard algebraic closure when provided a large superfield like $\C$.
-In number theory, algebraically closed fields are all considered to be in $\C$. 
 
 
 
@@ -489,10 +568,10 @@ Then,
  * reducible case, irreducible<=>transitivity
  * resolvent polynomial1: discriminant
  * resolvent polynomial2: cubic resolvent
- * 복이차식, 상반다항식 등 대칭찾기
- * 허근개수=2n: composition of n transpositions
- * xⁿ-α 꼴  Jacobson-Velez
- * reduction modulo p (over Fₚ)
+ * double quadratic, reciprocal equation: finding symmetry
+ * number of imaginary roots=2n: composition of n transpositions
+ * $x^n-\alpha$ :  Jacobson-Velez
+ * reduction modulo p (over $\F_p$)
 
 \subsection{Quartic}
 In this section, we assume the following setting:
