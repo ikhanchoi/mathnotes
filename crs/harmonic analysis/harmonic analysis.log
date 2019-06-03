@@ -1,9 +1,9 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/W32TeX) (preloaded format=pdflatex 2019.5.27)  3 JUN 2019 14:54
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/W32TeX) (preloaded format=pdflatex 2019.5.27)  3 JUN 2019 14:53
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**"measure theory.tex"
-(./measure theory.tex
+**"harmonic analysis.tex"
+(./harmonic analysis.tex
 LaTeX2e <2018-12-01>
 (../crs.cls
 
@@ -822,8 +822,9 @@ LaTeX Info: Thecontrolsequence`\]'isalreadyrobust on input line 129.
 \EQ_mathdisplay_box=\box61
 \EQ_tag_box=\box62
 \g_EQ_temprow_int=\count310
-)) (./measure theory.aux)
-\openout1 = `"measure theory.aux"'.
+))
+(./harmonic analysis.aux)
+\openout1 = `"harmonic analysis.aux"'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 6.
 LaTeX Font Info:    ... okay on input line 6.
@@ -840,6 +841,7 @@ LaTeX Font Info:    ... okay on input line 6.
 LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 6.
 LaTeX Font Info:    ... okay on input line 6.
 LaTeX Font Info:    Try loading font information for U+msa on input line 6.
+
 (c:/texlive/2019/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
@@ -896,9 +898,9 @@ LaTeX Info: Redefining \ref on input line 6.
 LaTeX Info: Redefining \pageref on input line 6.
 LaTeX Info: Redefining \nameref on input line 6.
 
-(./measure theory.out) (./measure theory.out)
+(./harmonic analysis.out) (./harmonic analysis.out)
 \@outlinefile=\write4
-\openout4 = `"measure theory.out"'.
+\openout4 = `"harmonic analysis.out"'.
 
 
 ABD: EveryShipout initializing macros
@@ -939,9 +941,9 @@ LaTeX Info: Redefining \] on input line 6.
 
 {c:/texlive/2019/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] [2]
 Contents
-(./measure theory.toc)
+(./harmonic analysis.toc)
 \tf@toc=\write5
-\openout5 = `"measure theory.toc"'.
+\openout5 = `"harmonic analysis.toc"'.
 
  [3
 
@@ -951,67 +953,67 @@ Contents
 
 ]
 Chapter 1
-[5] [6
+[5] [6] [7] [8] [9] [10]
 
+Package amsfonts Warning: Obsolete command \bold; \mathbf should be used instea
+d on input line 206.
 
-]
+[11] [12]
 Chapter 2
-[7] [8
+[13
 
 
 ]
-Chapter 3
-[9] [10]
-Overfull \hbox (21.72745pt too wide) in paragraph at lines 56--57
-[][][]\OT1/cmr/m/sc/10.95 Proposition \OT1/cmr/m/n/10.95 2.2\OT1/cmr/m/sc/10.95
- . []\OT1/cmr/m/it/10.95 A Radon mea-sure is in-ner reg-u-lar on all $\OML/cmm/
-m/it/10.95 ^^[$\OT1/cmr/m/it/10.95 -finite Borel sets.(Folland's) 
- []
-
-[11] [12] [13] [14
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 293.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 293.
+ (./harmonic analysis.aux)
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 293.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 293.
 
 
-]
-Chapter 4
+Package rerunfilecheck Warning: File `"harmonic analysis".out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
 
-Package hyperref Warning: Difference (2) between bookmark levels is greater 
-(hyperref)                than one, level fixed on input line 156.
-
-[15]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 188.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 188.
- (./measure theory.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 188.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 188.
-Package rerunfilecheck Info: File `"measure theory".out' has not changed.
-(rerunfilecheck)             Checksum: 8705D85EE9BCC8FE90981CB27B6DCDAC;773.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 188.
+Package rerunfilecheck Info: Checksums for `"harmonic analysis".out':
+(rerunfilecheck)             Before: 57843F38358CEFBC02E4CD6062007FA4;808
+(rerunfilecheck)             After:  9987E426AB22368778979186FFB7CCFE;668.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 293.
  ) 
 Here is how much of TeX's memory you used:
- 29219 strings out of 492609
- 557936 string characters out of 6132818
- 606601 words of memory out of 5000000
- 32594 multiletter control sequences out of 15000+600000
- 541044 words of font info for 57 fonts, out of 8000000 for 9000
+ 29099 strings out of 492609
+ 554813 string characters out of 6132818
+ 613634 words of memory out of 5000000
+ 32465 multiletter control sequences out of 15000+600000
+ 541665 words of font info for 59 fonts, out of 8000000 for 9000
  1302 hyphenation exceptions out of 8191
- 68i,17n,84p,490b,1041s stack positions out of 5000i,500n,10000p,200000b,80000s
-<c:/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb><c:/tex
-live/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb><c:/texlive/2019
-/texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb><c:/texlive/2019/texmf-d
-ist/fonts/type1/public/amsfonts/cm/cmex10.pfb><c:/texlive/2019/texmf-dist/fonts
-/type1/public/amsfonts/cm/cmmi10.pfb><c:/texlive/2019/texmf-dist/fonts/type1/pu
-blic/amsfonts/cm/cmmi6.pfb><c:/texlive/2019/texmf-dist/fonts/type1/public/amsfo
-nts/cm/cmmi8.pfb><c:/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr
-10.pfb><c:/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb><c:/
-texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb><c:/texlive/201
-9/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><c:/texlive/2019/texmf-d
-ist/fonts/type1/public/amsfonts/cm/cmsy8.pfb><c:/texlive/2019/texmf-dist/fonts/
-type1/public/amsfonts/cm/cmti10.pfb><c:/texlive/2019/texmf-dist/fonts/type1/pub
-lic/amsfonts/symbols/msam10.pfb>
-Output written on "measure theory.pdf" (15 pages, 175340 bytes).
+ 68i,13n,84p,493b,483s stack positions out of 5000i,500n,10000p,200000b,80000s
+pdfTeX warning (dest): name{chapter.4} has been referenced but does not exist
+, replaced by a fixed one
+
+pdfTeX warning (dest): name{chapter.3} has been referenced but does not exist, 
+replaced by a fixed one
+
+<c:/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb><c:/texli
+ve/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb><c:/texlive/2019/t
+exmf-dist/fonts/type1/public/amsfonts/cm/cmbx8.pfb><c:/texlive/2019/texmf-dist/
+fonts/type1/public/amsfonts/cm/cmcsc10.pfb><c:/texlive/2019/texmf-dist/fonts/ty
+pe1/public/amsfonts/cm/cmex10.pfb><c:/texlive/2019/texmf-dist/fonts/type1/publi
+c/amsfonts/cm/cmmi10.pfb><c:/texlive/2019/texmf-dist/fonts/type1/public/amsfont
+s/cm/cmmi6.pfb><c:/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8
+.pfb><c:/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb><c:/t
+exlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb><c:/texlive/2019
+/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb><c:/texlive/2019/texmf-dist
+/fonts/type1/public/amsfonts/cm/cmsy10.pfb><c:/texlive/2019/texmf-dist/fonts/ty
+pe1/public/amsfonts/cm/cmsy6.pfb><c:/texlive/2019/texmf-dist/fonts/type1/public
+/amsfonts/cm/cmsy8.pfb><c:/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/
+cm/cmti10.pfb><c:/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/symbols/m
+sam10.pfb><c:/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm1
+0.pfb>
+Output written on "harmonic analysis.pdf" (13 pages, 203622 bytes).
 PDF statistics:
- 210 PDF objects out of 1000 (max. 8388607)
- 177 compressed objects within 2 object streams
- 40 named destinations out of 1000 (max. 500000)
+ 224 PDF objects out of 1000 (max. 8388607)
+ 190 compressed objects within 2 object streams
+ 47 named destinations out of 1000 (max. 500000)
  101 words of extra memory for PDF output out of 10000 (max. 10000000)
 
