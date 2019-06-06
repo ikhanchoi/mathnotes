@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/W32TeX) (preloaded format=pdflatex 2019.5.27)  3 JUN 2019 14:54
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/W32TeX) (preloaded format=pdflatex 2019.5.27)  7 JUN 2019 00:12
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -951,47 +951,60 @@ Contents
 
 ]
 Chapter 1
-[5] [6
+[5]
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `math shift' on input line 12.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `\sigma' on input line 12.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `math shift' on input line 12.
+
+[6] [7] [8
 
 
 ]
 Chapter 2
-[7] [8
+[9] [10
 
 
 ]
 Chapter 3
-[9] [10]
-Overfull \hbox (21.72745pt too wide) in paragraph at lines 56--57
+[11] [12]
+Overfull \hbox (21.72745pt too wide) in paragraph at lines 115--116
 [][][]\OT1/cmr/m/sc/10.95 Proposition \OT1/cmr/m/n/10.95 2.2\OT1/cmr/m/sc/10.95
  . []\OT1/cmr/m/it/10.95 A Radon mea-sure is in-ner reg-u-lar on all $\OML/cmm/
 m/it/10.95 ^^[$\OT1/cmr/m/it/10.95 -finite Borel sets.(Folland's) 
  []
 
-[11] [12] [13] [14
+[13] [14] [15] [16
 
 
 ]
 Chapter 4
 
 Package hyperref Warning: Difference (2) between bookmark levels is greater 
-(hyperref)                than one, level fixed on input line 156.
+(hyperref)                than one, level fixed on input line 215.
 
-[15]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 188.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 188.
+[17]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 247.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 247.
  (./measure theory.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 188.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 188.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 247.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 247.
 Package rerunfilecheck Info: File `"measure theory".out' has not changed.
-(rerunfilecheck)             Checksum: 8705D85EE9BCC8FE90981CB27B6DCDAC;773.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 188.
+(rerunfilecheck)             Checksum: B6E4C5D6AC5AA0724824D3D6C85E9A14;905.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 247.
  ) 
 Here is how much of TeX's memory you used:
- 29219 strings out of 492609
- 557936 string characters out of 6132818
- 606601 words of memory out of 5000000
- 32594 multiletter control sequences out of 15000+600000
+ 29242 strings out of 492609
+ 558126 string characters out of 6132818
+ 607602 words of memory out of 5000000
+ 32596 multiletter control sequences out of 15000+600000
  541044 words of font info for 57 fonts, out of 8000000 for 9000
  1302 hyphenation exceptions out of 8191
  68i,17n,84p,490b,1041s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1008,10 +1021,10 @@ texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb><c:/texlive/201
 ist/fonts/type1/public/amsfonts/cm/cmsy8.pfb><c:/texlive/2019/texmf-dist/fonts/
 type1/public/amsfonts/cm/cmti10.pfb><c:/texlive/2019/texmf-dist/fonts/type1/pub
 lic/amsfonts/symbols/msam10.pfb>
-Output written on "measure theory.pdf" (15 pages, 175340 bytes).
+Output written on "measure theory.pdf" (17 pages, 181631 bytes).
 PDF statistics:
- 210 PDF objects out of 1000 (max. 8388607)
- 177 compressed objects within 2 object streams
- 40 named destinations out of 1000 (max. 500000)
- 101 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 250 PDF objects out of 1000 (max. 8388607)
+ 214 compressed objects within 3 object streams
+ 61 named destinations out of 1000 (max. 500000)
+ 117 words of extra memory for PDF output out of 10000 (max. 10000000)
 
