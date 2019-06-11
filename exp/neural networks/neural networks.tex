@@ -1,12 +1,36 @@
 \documentclass{../exp}
 \usepackage{../../ikany}
 
-\title{Generative Adversarial Networks}
+\title{Neural Networks}
 
 \begin{document}
 \maketitle
 
 The AI paradigm changes when a new approximating method is discovered.
+
+
+
+
+\section{Update of parameters}
+
+\subsection{Gradient descent method}
+ascending stochastic gradient
+
+
+\subsection{Back propagation}
+Consider
+\[b=\sigma(wa),\quad c=\sigma(Wb),\quad J=J(c).\]
+
+We have
+\[\pd{c^k}{b^j}=[c^k(1-c^k)]\cdot W_j^k\quad\text{and}\quad\pd{c^k}{W_j^k}=[c^k(1-c^k)]\cdot b^j.\]
+
+Let $J$ be the objectivity function.
+Then,
+\[dJ=\pd{J}{c^k}\pd{c^k}{W_j^k}\,dW_j^k=\pd{J}{c^k}[c^k(1-c^k)]b^j\,dW_j^k,\]
+and
+\[dJ=\pd{J}{c^k}\pd{c^k}{b^j}\pd{b^j}{w_i^j}\,dw_i^j=\pd{J}{c^k}\cdot[c^k(1-c^k)]W_j^k\cdot[b^j(1-b^j)]a^i\,dw_i^j.\]
+
+
 
 \section{Maximum likelihood estimate}
 \begin{defn}
@@ -29,13 +53,7 @@ Exclude the region $f=0$ from the integration region.
 In other words, bigger $L_n(\theta)$ is, closer $f_\theta$ and $f$ are.
 
 
-\section{Gradient descent method}
-ascending stochastic gradient
 
-
-\section{Minimax game}
-
-Minimax is a \emph{decision policy} in a competitive game.
 
 \section{Generative adversarial networks}
 Let $X$ be the set of all images having a given pixel size.
