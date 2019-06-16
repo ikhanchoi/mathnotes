@@ -1,14 +1,3 @@
-\NeedsTeXFormat{LaTeX2e}[1994/06/01]
-\ProvidesPackage{ikany}[2018/10/29 ikany]
-
-\makeatletter
-
-% TODO
-%  automatic parentheses command
-%  cls file화
-%  prb class 맘에 안들어
-
- %  A note for xparse
  %   If a command has defined, then
  %     New     : error
  %     Renew   : define
@@ -20,7 +9,26 @@
  %     Declare : define
  %     Provide : define
 
-
+ %   \let\foo\bar             -> copy the value of \bar and paste to \foo
+ %   \def\foo{\bar}           -> consider \foo as an alternative command of \bar
+ %   \newcommand\foo{\bar}    -> basically sam with \def but (1) check if it is defined, (2) can get optional arguments
+ 
+ %   Argument specification in xparse package
+ %   m:            {mandatory}
+ %   r[]:          [mandatory]
+ %   g:            {optional}
+ %   o:            [optional]
+ %   O{default}:   [optional with default]
+ %   d():          (optional)
+ %   D<>{default}: <optional with default>
+ %   s:            star -> \IfBooleanTF{#?}{starred}{unstarred}
+ %   +m:           {mandatory, which can be a sentence}
+ 
+ 
+ 
+\NeedsTeXFormat{LaTeX2e}[1994/06/01]
+\ProvidesPackage{ikany}[2018/10/29 ikany]
+\makeatletter
 \RequirePackage{amsfonts,amsmath,amssymb}
 %\RequirePackage[many]{tcolorbox}
 
@@ -28,14 +36,19 @@
 
 
 
-
-
-
-
-
-
-
-% Theorems and Proofs
+%///////////////////////%
+%  Theorems and Proofs  %
+%///////////////////////%
+%
+% Example Code:
+%	\begin{ex}
+%	This is an example.
+%	\end{ex}
+%	\begin{pf}[2]    % second proof
+%	\Case[1] Easy.
+%	\Case[2]{When $p=2$.} Not easy.
+%	\end{pf}
+%
 \RequirePackage{amsthm,xparse}
 \theoremstyle{plain}
   \newtheorem{thm}{Theorem}[section]
@@ -55,66 +68,58 @@
 \newenvironment{sol}[1][\unskip]{\begin{proof}[Solution #1]}{\end{proof}}
 \newenvironment{note}[1][\unskip]{\begin{proof}[Note #1]\renewcommand{\qedsymbol}{}}{\end{proof}}
 \newenvironment{idea}[1][\unskip]{\begin{proof}[Proof idea #1]\renewcommand{\qedsymbol}{}}{\end{proof}}
-\DeclareDocumentCommand{\Case}{ r[] +g }{\emph{Case #1: #2.}}
-\DeclareDocumentCommand{\Step}{ r[] +g }{\emph{Step #1: #2.}}
+\NewDocumentCommand{\Case}{r[]+g}{\IfNoValueTF{#2}{\emph{Case #1.}}{\emph{Case #1: #2.}}}
+\NewDocumentCommand{\Step}{r[]+g}{\emph{Step #1: #2.}}
 
 \ifx\thisisprbcls\undefined\else
   \renewcommand{\theprb}{\arabic{section}.\arabic{prb}}
-  \renewenvironment{sol}[1][\unskip]{\noindent\begin{proof}[Solution]\ \par\begin{cond}}{\end{cond}\end{proof}}
-\fi
-
-\iffalse % Example code
-	\begin{ex}
-	Here is an example.
-	\end{ex}
-	\begin{pf}
-	\Case[1] Easy.
-	\Case[2]{When $p=2$.} Not easy
-	\end{pf}
+  \renewenvironment{sol}[1][\unskip]{\noindent\begin{proof}[Solution]\ \par\begin{cond}}{\end{cond}\end{proof}} % line break
 \fi
 
 
 
 
 
-
-% List environments
+%/////////////////////%
+%  List environments  %
+%/////////////////////%
+%
+% Example Code:
+%	\begin{exer}
+%	\item  easy problem
+%	\item* hard problem
+%	\begin{exer}
+%	\item subproblem
+%	\end{exer}
+%	\end{exer}
+%
 \RequirePackage{enumitem}
 \newlist{cond}{enumerate}{1}
   \setlist[cond,1]{label=\rm{(\arabic*)}}
 \newlist{exer}{enumerate}{2}
   \setlist[exer,1]{label=\arabic*.,before={\large Exercises}}
   \setlist[exer,2]{label=(\alph*)}
-
 \let\@@item\item
 \newcommand{\sitem}{\refstepcounter{\@enumctr}\@@item[$^*$\csname label\@enumctr\endcsname]}
 \renewcommand*{\item}{\@ifstar\sitem\@@item}
 
-\let\q\item
-
-\iffalse % Example code
-	\begin{exer}
-	\q  easy problem
-	\q* hard problem
-	\begin{exer}
-	\q subproblem
-	\end{exer}
-	\end{exer}
-\fi
 
 
 
 
-
-
-
-
-
-
-
-
-
-% Commutative diagrams
+%////////////////////////%
+%  Commutative diagrams  %
+%////////////////////////%
+%
+% Example Code:
+%	\begin{es}  0  \>  A  \mn  B  \ep  C  \>  0  \end{es}
+%
+%	\begin{cd}[row sep={24pt,between origins}, column sep={36pt,between origins}]
+%	A  \ds{rd}{\exists !} \lar{rrd} \rar{ddr}  &                           &     \\
+%	                                           &  X\times Y  \ar{r}\ar{d}  &  X  \\
+%	                                           &  Y                        &
+%	\end{cd}
+%
 \RequirePackage{tikz-cd,xparse}
 \NewDocumentEnvironment{cd}{}
   {
@@ -147,31 +152,24 @@
 \def\rds{\ar[dashed,bend right,swap]}
 \def\hk{\ar[hook]}
 
-%	\begin{es}  0 \> A \> B \> C \> 0  \end{es}
-\iffalse % Example code
-	\begin{cd}[row sep={24pt,between origins}, column sep={36pt,between origins}]
-	A \ds[swap,\exists !]{r} & B \mn{r} & C \ar[dashed]{r}{text} & D
-	\end{cd}
-\fi
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-% Differential operators
+%//////////////////////////%
+%  Differential operators  %
+%//////////////////////////%
+%
+% Example Code:
+%	\pd
+%	\pd{x}
+%	\pd[2]{x}
+%	\pd[2]{f}{x}
+%	\pd{f}{x}{y}
+%	\frac{\pd^3 f}{\pd x^2\pd y}
+%
 \RequirePackage{xparse}
-\NewDocumentCommand{\pd}{ o g g g }{
+\NewDocumentCommand{\pd}{oggg}{
   \IfNoValueTF{#2}
   {\partial \IfNoValueTF{#1}{}{^{#1}}}
   {
@@ -184,7 +182,7 @@
     }
   }
 }
-\NewDocumentCommand{\dd}{ o g g g }{
+\NewDocumentCommand{\dd}{oggg}{
   \IfNoValueTF{#3}
   {\frac{d\IfNoValueTF{#1}{}{^{#1}}}{d#2\IfNoValueTF{#1}{}{^{#1}}}}
   {
@@ -193,31 +191,33 @@
     {\frac{d^2#2}{d#3\,d#4}}
   }
 }
-\let\del\nabla % del
+\newcommand\del{\nabla} % del
 \DeclareMathOperator{\grad}{grad}
 \DeclareMathOperator{\curl}{curl}
 \let\division\div
 \let\div\relax
 \DeclareMathOperator{\div}{div}
 
-%	\pd[2]{x}
-%	\pd[2]{f}{x}
-%	\pd{f}{x}{y}
 
 
 
 
-
-
-
-
-
-% system of equations
+%///////////////////////%
+%  System of equations  %
+%///////////////////////%
+%
+% Example Code:
+%	\begin{pde}{\label{eq:Pois}}
+%	\Delta u(x) &= 0,  \for  x\in\Omega,\\
+%	       u(x) &= f,  \for  x\in\bd\Omega.
+%	\end{pde}
+%
 \RequirePackage{xparse}
-\DeclareDocumentEnvironment{syseq}{s}
+\NewDocumentEnvironment{pde}{s} % number it as a single equation
 {
-  \[\left\{\begin{alignedat}{2}
-  \renewcommand{\for}{&\qquad&}
+  \renewcommand\:{&\qquad&}
+  \[\left\{
+  \begin{alignedat}{2}
 }
 {
   \IfBooleanTF{#1}
@@ -225,13 +225,13 @@
     {\end{alignedat}\right.\stepcounter{equation}\tag{\theequation}\]}
 }
 \ExplSyntaxOn
-\cs_new:cpn{syseq*}{\syseq*}
-\cs_new_eq:cN{endsyseq*}\endsyseq
+\cs_new:cpn{pde*}{\pde*}
+\cs_new_eq:cN{endpde*}\endpde
 \ExplSyntaxOff
 
-% align이나 alignat이 environment에 들어가서 \end{syseqs}를 뺏어버렸다.... 언제 고치지
+% align이나 alignat이 environment에 들어가서 \end{pdes}를 뺏어버렸다.... 언제 고치지
 \RequirePackage[overload]{empheq}
-\NewDocumentEnvironment{syseqs}{}
+\NewDocumentEnvironment{pdes}{}
 {
   \begin{subequations}
   \begin{alignat}{2}[left={\empheqlbrace\,}]
@@ -242,33 +242,19 @@
 }
 
 
-%	\begin{syseq}{\label{eq:Pois}}
-%	\Delta u(x)&=0,	\for x\in\Omega,\\
-%	u(x)&=f, 			\for x\in\bd\Omega.
-%	\end{pde}
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-% Matrices shortcut
-\newcommand{\mat}[2][b]{%
-  \begin{#1matrix}
-    #2
-  \end{#1matrix}
+%////////////////////%
+%  Matrix shortcuts  %
+%////////////////////%
+%
+% Example Code
+%	\mat{1&0//0&1}
+%	\mat[v]{1&0//0&1}  % determinant
+%
+\newcommand{\mat}[2][p]{%
+  \begin{#1matrix}#2\end{#1matrix}
 }
 % option:p,b,B,v,V
 
@@ -277,24 +263,13 @@
 
 
 
+%/////////////////////////////////////%
+%  Parentheses, Braces, and Brackets  %
+%/////////////////////////////////////%
 
+\let\<\langle
+\let\>\rangle  % overlapped
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-% Parantheses    고치자
 \RequirePackage{xparse}
 \DeclareDocumentCommand{\abs}{m}{\left\lvert#1\right\rvert}
 \DeclareDocumentCommand{\norm}{m}{\left\lVert#1\right\rVert}
@@ -306,69 +281,66 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-%% Shorthands for Notations
-
+%////////////////////////////%
+%  Shorthands for Notations  %
+%////////////////////////////%
+%
+% Example Code
+%
+%	f(x)=0 \p{for all} x\in\R 
+%	f(x)=0 \c{and} g(x)=0
+%
+%	\evalat{f(x)}{x=0}
+%	\evalat{f(x)}{x=a}{x=b}
+%
 % Binary operators
-\let\.\cdot % dot product
-\let\o\circ % function composition
-\let\x\times % cross product
-\let\dsum\oplus % direct sum
-\let\tn\otimes % tensor product
-\let\wdg\wedge % wedge
-\let\smsh\vee
+\def\.{\cdot} % dot product
+\def\o{\circ} % function composition
+\def\x{\times} % cross product
+\def\dsum{\oplus} % direct sum
+\def\tn{\otimes} % tensor product
+\def\wdg{\wedge} % wedge
+\def\smsh{\vee} % smash product
+
+% Big operators
+\def\bigdsum{\bigoplus}
+\def\bigtn{\bigotimes}
+
+% Texts - prepositions and conjunctions
+\newcommand\p[1]{\text{ #1 }}
+\newcommand\st{\p{s.t.}}
+\def\cc{\c c} % french c
+\def\cC{\c C} % french C
+\renewcommand\c[1]{\quad\text{#1}\quad}
 
 % Arrows
 \let\@@to\to
 \RenewDocumentCommand{\to}{g}{\IfNoValueTF{#1}{\@@to}{\overset{#1}{\@@to}}}
-\let\emb\hookrightarrow
-\let\mn\rightarrowtail
-\let\ep\twoheadrightarrow
-\let\acts\curvearrowright
+\def\emb{\hookrightarrow}
+\def\mn{\rightarrowtail}
+\def\ep{\twoheadrightarrow}
+\def\acts{\curvearrowright}
 
 % Relations
-\let\les\lesssim
-\let\hmtp\simeq
-\let\isom\cong
-
-% Big operators
-\let\bigdsum\bigoplus
-\let\bigtn\bigotimes
+\def\les{\lesssim}
+\def\hmtp{\simeq}
+\def\isom{\cong}
 
 % Diacritics
-\let\cl\overline % bar (closure)
-\let\conj\overline
+\def\cl{\overline} % bar (closure)
+\def\conj{\overline}
 \let\hat\widehat % hat
 \let\tld\widetilde % tilde
 
 % Standalone notations
-\let\bul\bullet % bullet
-\let\oo\infty % infinity
-\let\mt\varnothing % emptyset
-\let\bd\partial % boundary
+\def\bul{\bullet} % bullet
+\def\oo{\infty} % infinity
+\def\mt{\varnothing} % emptyset
+\def\bd{\partial} % boundary
 \def\1{\bold{1}} % characteristic function
 
 % 기타
 \let\bigmath\displaystyle
-\def\for{\qquad}
 \def\cat{\mathbf}
 \def\impl{\mathchoice{\quad\Longrightarrow\quad}{\,\Rightarrow\,}{\,\Rightarrow\,}{\,\Rightarrow\,}}
 \renewcommand{\iff}{\mathchoice{\quad\Longleftrightarrow\quad}{\,\Leftrightarrow\,}{\,\Leftrightarrow\,}{\,\Leftrightarrow\,}}
@@ -377,7 +349,10 @@
 
 
 
-%% Shorthands for Alphabets
+
+%////////////////////////////%
+%  Shorthands for Alphabets  %
+%////////////////////////////%
 
 % Some greeks
 \def\e{\varepsilon}

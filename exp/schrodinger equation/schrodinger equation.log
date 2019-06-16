@@ -1,112 +1,153 @@
-This is XeTeX, Version 3.14159265-2.6-0.99991 (TeX Live 2014/W32TeX) (preloaded format=xelatex 2015.4.30)  17 JUN 2019 02:02
+This is XeTeX, Version 3.14159265-2.6-0.99991 (TeX Live 2014/W32TeX) (preloaded format=xelatex 2015.4.30)  17 JUN 2019 01:53
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**roughbook.tex
-(./roughbook.tex
+**"schrodinger equation.tex"
+(./schrodinger equation.tex
 LaTeX2e <2014/05/01>
 Babel <3.9l> and hyphenation patterns for 79 languages loaded.
-(c:/Program Files (x86)/texlive/2014/texmf-dist/tex/latex/base/article.cls
-Document Class: article 2014/09/29 v1.4h Standard LaTeX document class
-(c:/Program Files (x86)/texlive/2014/texmf-dist/tex/latex/base/size11.clo
-File: size11.clo 2014/09/29 v1.4h Standard LaTeX file (size option)
-)
-\c@part=\count80
-\c@section=\count81
-\c@subsection=\count82
-\c@subsubsection=\count83
-\c@paragraph=\count84
-\c@subparagraph=\count85
-\c@figure=\count86
-\c@table=\count87
-\abovecaptionskip=\skip41
-\belowcaptionskip=\skip42
-\bibindent=\dimen102
-)
-(../ikany.sty
+(../exp.cls
 
-LaTeX Warning: You have requested package `../ikany',
-               but the package provides `ikany'.
+LaTeX Warning: You have requested document class `../exp',
+               but the document class provides `exp'.
 
-Package: ikany 2018/10/29 ikany
-
-(c:/Program Files (x86)/texlive/2014/texmf-dist/tex/latex/amsfonts/amsfonts.sty
-Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
-\@emptytoks=\toks14
-\symAMSa=\mathgroup4
-\symAMSb=\mathgroup5
-LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
-(Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
-) (c:/Program Files (x86)/texlive/2014/texmf-dist/tex/latex/amsmath/amsmath.sty
+Document Class: exp 2018/10/29 exp
+(c:/Program Files (x86)/texlive/2014/texmf-dist/tex/latex/amscls/amsart.cls
+Document Class: amsart 2009/07/02 v2.20.1
+\linespacing=\dimen102
+\normalparindent=\dimen103
+\normaltopskip=\skip41
+(c:/Program Files (x86)/texlive/2014/texmf-dist/tex/latex/amsmath/amsmath.sty
 Package: amsmath 2013/01/14 v2.14 AMS math features
-\@mathmargin=\skip43
+\@mathmargin=\skip42
+
 For additional information on amsmath, use the `?' option.
 (c:/Program Files (x86)/texlive/2014/texmf-dist/tex/latex/amsmath/amstext.sty
 Package: amstext 2000/06/29 v2.01
 
 (c:/Program Files (x86)/texlive/2014/texmf-dist/tex/latex/amsmath/amsgen.sty
 File: amsgen.sty 1999/11/30 v2.0
-\@emptytoks=\toks15
-\ex@=\dimen103
+\@emptytoks=\toks14
+\ex@=\dimen104
 ))
 (c:/Program Files (x86)/texlive/2014/texmf-dist/tex/latex/amsmath/amsbsy.sty
 Package: amsbsy 1999/11/29 v1.2d
-\pmbraise@=\dimen104
+\pmbraise@=\dimen105
 )
 (c:/Program Files (x86)/texlive/2014/texmf-dist/tex/latex/amsmath/amsopn.sty
 Package: amsopn 1999/12/14 v2.01 operator names
 )
-\inf@bad=\count88
+\inf@bad=\count80
 LaTeX Info: Redefining \frac on input line 210.
-\uproot@=\count89
-\leftroot@=\count90
+\uproot@=\count81
+\leftroot@=\count82
 LaTeX Info: Redefining \overline on input line 306.
-\classnum@=\count91
-\DOTSCASE@=\count92
+\classnum@=\count83
+\DOTSCASE@=\count84
 LaTeX Info: Redefining \ldots on input line 378.
 LaTeX Info: Redefining \dots on input line 381.
 LaTeX Info: Redefining \cdots on input line 466.
 \Mathstrutbox@=\box26
 \strutbox@=\box27
-\big@size=\dimen105
+\big@size=\dimen106
 LaTeX Font Info:    Redeclaring font encoding OML on input line 566.
 LaTeX Font Info:    Redeclaring font encoding OMS on input line 567.
-\macc@depth=\count93
-\c@MaxMatrixCols=\count94
+\macc@depth=\count85
+\c@MaxMatrixCols=\count86
 \dotsspace@=\muskip10
-\c@parentequation=\count95
-\dspbrk@lvl=\count96
-\tag@help=\toks16
-\row@=\count97
-\column@=\count98
-\maxfields@=\count99
-\andhelp@=\toks17
-\eqnshift@=\dimen106
-\alignsep@=\dimen107
-\tagshift@=\dimen108
-\tagwidth@=\dimen109
-\totwidth@=\dimen110
-\lineht@=\dimen111
-\@envbody=\toks18
-\multlinegap=\skip44
-\multlinetaggap=\skip45
-\mathdisplay@stack=\toks19
+\c@parentequation=\count87
+\dspbrk@lvl=\count88
+\tag@help=\toks15
+\row@=\count89
+\column@=\count90
+\maxfields@=\count91
+\andhelp@=\toks16
+\eqnshift@=\dimen107
+\alignsep@=\dimen108
+\tagshift@=\dimen109
+\tagwidth@=\dimen110
+\totwidth@=\dimen111
+\lineht@=\dimen112
+\@envbody=\toks17
+\multlinegap=\skip43
+\multlinetaggap=\skip44
+\mathdisplay@stack=\toks18
 LaTeX Info: Redefining \[ on input line 2665.
 LaTeX Info: Redefining \] on input line 2666.
 )
+LaTeX Font Info:    Try loading font information for U+msa on input line 388.
+
+(c:/Program Files (x86)/texlive/2014/texmf-dist/tex/latex/amsfonts/umsa.fd
+File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+)
+(c:/Program Files (x86)/texlive/2014/texmf-dist/tex/latex/amsfonts/amsfonts.sty
+Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
+\symAMSa=\mathgroup4
+\symAMSb=\mathgroup5
+LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
+(Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
+)
+\copyins=\insert233
+\abstractbox=\box28
+\listisep=\skip45
+\c@part=\count92
+\c@section=\count93
+\c@subsection=\count94
+\c@subsubsection=\count95
+\c@paragraph=\count96
+\c@subparagraph=\count97
+\c@figure=\count98
+\c@table=\count99
+\abovecaptionskip=\skip46
+\belowcaptionskip=\skip47
+\captionindent=\dimen113
+\thm@style=\toks19
+\thm@bodyfont=\toks20
+\thm@headfont=\toks21
+\thm@notefont=\toks22
+\thm@headpunct=\toks23
+\thm@preskip=\skip48
+\thm@postskip=\skip49
+\thm@headsep=\skip50
+\dth@everypar=\toks24
+)
+(c:/Program Files (x86)/texlive/2014/texmf-dist/tex/latex/geometry/geometry.sty
+Package: geometry 2010/09/12 v5.6 Page Geometry
+(c:/Program Files (x86)/texlive/2014/texmf-dist/tex/latex/graphics/keyval.sty
+Package: keyval 2014/10/28 v1.15 key=value parser (DPC)
+\KV@toks@=\toks25
+)
+(c:/Program Files (x86)/texlive/2014/texmf-dist/tex/generic/oberdiek/ifpdf.sty
+Package: ifpdf 2011/01/30 v2.3 Provides the ifpdf switch (HO)
+Package ifpdf Info: pdfTeX in PDF mode is not detected.
+)
+(c:/Program Files (x86)/texlive/2014/texmf-dist/tex/generic/oberdiek/ifvtex.sty
+Package: ifvtex 2010/03/01 v1.5 Detect VTeX and its facilities (HO)
+Package ifvtex Info: VTeX not detected.
+)
+(c:/Program Files (x86)/texlive/2014/texmf-dist/tex/generic/ifxetex/ifxetex.sty
+Package: ifxetex 2010/09/12 v0.6 Provides ifxetex conditional
+)
+\Gm@cnth=\count100
+\Gm@cntv=\count101
+\c@Gm@tempcnt=\count102
+\Gm@bindingoffset=\dimen114
+\Gm@wd@mp=\dimen115
+\Gm@odd@mp=\dimen116
+\Gm@even@mp=\dimen117
+\Gm@layoutwidth=\dimen118
+\Gm@layoutheight=\dimen119
+\Gm@layouthoffset=\dimen120
+\Gm@layoutvoffset=\dimen121
+\Gm@dimlist=\toks26
+)) (../../ikany.sty
+
+LaTeX Warning: You have requested package `../../ikany',
+               but the package provides `ikany'.
+
+Package: ikany 2018/10/29 ikany
 (c:/Program Files (x86)/texlive/2014/texmf-dist/tex/latex/amsfonts/amssymb.sty
 Package: amssymb 2013/01/14 v3.01 AMS font symbols
-) (c:/Program Files (x86)/texlive/2014/texmf-dist/tex/latex/amscls/amsthm.sty
-Package: amsthm 2009/07/02 v2.20.1
-\thm@style=\toks20
-\thm@bodyfont=\toks21
-\thm@headfont=\toks22
-\thm@notefont=\toks23
-\thm@headpunct=\toks24
-\thm@preskip=\skip46
-\thm@postskip=\skip47
-\thm@headsep=\skip48
-\dth@everypar=\toks25
 )
 (c:/Program Files (x86)/texlive/2014/texmf-dist/tex/latex/l3packages/xparse/xpa
 rse.sty
@@ -119,7 +160,7 @@ Package: expl3 2015/03/01 v5547 L3 programming layer (code)
 L3 Module: l3bootstrap 2015/02/28 v5542 L3 Bootstrap code
  (c:/Program Files (x86)/texlive/2014/texmf-dist/tex/latex/etex-pkg/etex.sty
 Package: etex 2015/03/02 v2.1 eTeX basic definition package (PEB,DPC)
-\et@xins=\count100
+\et@xins=\count103
 )
 L3 Module: l3names 2015/02/24 v5535 L3 Namespace for primitives
 L3 Module: l3basics 2015/01/27 v5500 L3 Basic definitions
@@ -128,37 +169,37 @@ L3 Module: l3tl 2015/01/27 v5500 L3 Token lists
 L3 Module: l3str 2015/03/01 v5545 L3 Strings
 L3 Module: l3seq 2014/08/23 v5354 L3 Sequences and stacks
 L3 Module: l3int 2015/02/21 v5529 L3 Integers
-\c_max_int=\count101
-\l_tmpa_int=\count102
-\l_tmpb_int=\count103
-\g_tmpa_int=\count104
-\g_tmpb_int=\count105
+\c_max_int=\count104
+\l_tmpa_int=\count105
+\l_tmpb_int=\count106
+\g_tmpa_int=\count107
+\g_tmpb_int=\count108
 L3 Module: l3quark 2014/08/23 v5354 L3 Quarks
 L3 Module: l3prg 2014/08/23 v5354 L3 Control structures
-\g__prg_map_int=\count106
+\g__prg_map_int=\count109
 L3 Module: l3clist 2014/08/23 v5354 L3 Comma separated lists
 L3 Module: l3token 2014/09/15 v5422 L3 Experimental token manipulation
 L3 Module: l3prop 2014/08/23 v5354 L3 Property lists
 L3 Module: l3msg 2015/02/26 v5537 L3 Messages
 L3 Module: l3file 2014/08/24 v5369 L3 File and I/O operations
-\l_iow_line_count_int=\count107
-\l__iow_target_count_int=\count108
-\l__iow_current_line_int=\count109
-\l__iow_current_word_int=\count110
-\l__iow_current_indentation_int=\count111
+\l_iow_line_count_int=\count110
+\l__iow_target_count_int=\count111
+\l__iow_current_line_int=\count112
+\l__iow_current_word_int=\count113
+\l__iow_current_indentation_int=\count114
 L3 Module: l3skip 2014/08/23 v5354 L3 Dimensions and skips
-\c_zero_dim=\dimen112
-\c_max_dim=\dimen113
-\l_tmpa_dim=\dimen114
-\l_tmpb_dim=\dimen115
-\g_tmpa_dim=\dimen116
-\g_tmpb_dim=\dimen117
-\c_zero_skip=\skip49
-\c_max_skip=\skip50
-\l_tmpa_skip=\skip51
-\l_tmpb_skip=\skip52
-\g_tmpa_skip=\skip53
-\g_tmpb_skip=\skip54
+\c_zero_dim=\dimen122
+\c_max_dim=\dimen123
+\l_tmpa_dim=\dimen124
+\l_tmpb_dim=\dimen125
+\g_tmpa_dim=\dimen126
+\g_tmpb_dim=\dimen127
+\c_zero_skip=\skip51
+\c_max_skip=\skip52
+\l_tmpa_skip=\skip53
+\l_tmpb_skip=\skip54
+\g_tmpa_skip=\skip55
+\g_tmpb_skip=\skip56
 \c_zero_muskip=\muskip11
 \c_max_muskip=\muskip12
 \l_tmpa_muskip=\muskip13
@@ -166,62 +207,62 @@ L3 Module: l3skip 2014/08/23 v5354 L3 Dimensions and skips
 \g_tmpa_muskip=\muskip15
 \g_tmpb_muskip=\muskip16
 L3 Module: l3keys 2015/01/27 v5500 L3 Key-value interfaces
-\g__keyval_level_int=\count112
-\l_keys_choice_int=\count113
+\g__keyval_level_int=\count115
+\l_keys_choice_int=\count116
 L3 Module: l3fp 2014/08/22 v5336 L3 Floating points
-\c__fp_leading_shift_int=\count114
-\c__fp_middle_shift_int=\count115
-\c__fp_trailing_shift_int=\count116
-\c__fp_big_leading_shift_int=\count117
-\c__fp_big_middle_shift_int=\count118
-\c__fp_big_trailing_shift_int=\count119
-\c__fp_Bigg_leading_shift_int=\count120
-\c__fp_Bigg_middle_shift_int=\count121
-\c__fp_Bigg_trailing_shift_int=\count122
+\c__fp_leading_shift_int=\count117
+\c__fp_middle_shift_int=\count118
+\c__fp_trailing_shift_int=\count119
+\c__fp_big_leading_shift_int=\count120
+\c__fp_big_middle_shift_int=\count121
+\c__fp_big_trailing_shift_int=\count122
+\c__fp_Bigg_leading_shift_int=\count123
+\c__fp_Bigg_middle_shift_int=\count124
+\c__fp_Bigg_trailing_shift_int=\count125
 L3 Module: l3box 2014/08/23 v5354 L3 Experimental boxes
-\c_empty_box=\box28
-\l_tmpa_box=\box29
-\l_tmpb_box=\box30
-\g_tmpa_box=\box31
-\g_tmpb_box=\box32
+\c_empty_box=\box29
+\l_tmpa_box=\box30
+\l_tmpb_box=\box31
+\g_tmpa_box=\box32
+\g_tmpb_box=\box33
 L3 Module: l3coffins 2014/08/23 v5354 L3 Coffin code layer
-\l__coffin_internal_box=\box33
-\l__coffin_internal_dim=\dimen118
-\l__coffin_offset_x_dim=\dimen119
-\l__coffin_offset_y_dim=\dimen120
-\l__coffin_x_dim=\dimen121
-\l__coffin_y_dim=\dimen122
-\l__coffin_x_prime_dim=\dimen123
-\l__coffin_y_prime_dim=\dimen124
-\c_empty_coffin=\box34
-\l__coffin_aligned_coffin=\box35
-\l__coffin_aligned_internal_coffin=\box36
-\l_tmpa_coffin=\box37
-\l_tmpb_coffin=\box38
-\l__coffin_display_coffin=\box39
-\l__coffin_display_coord_coffin=\box40
-\l__coffin_display_pole_coffin=\box41
-\l__coffin_display_offset_dim=\dimen125
-\l__coffin_display_x_dim=\dimen126
-\l__coffin_display_y_dim=\dimen127
+\l__coffin_internal_box=\box34
+\l__coffin_internal_dim=\dimen128
+\l__coffin_offset_x_dim=\dimen129
+\l__coffin_offset_y_dim=\dimen130
+\l__coffin_x_dim=\dimen131
+\l__coffin_y_dim=\dimen132
+\l__coffin_x_prime_dim=\dimen133
+\l__coffin_y_prime_dim=\dimen134
+\c_empty_coffin=\box35
+\l__coffin_aligned_coffin=\box36
+\l__coffin_aligned_internal_coffin=\box37
+\l_tmpa_coffin=\box38
+\l_tmpb_coffin=\box39
+\l__coffin_display_coffin=\box40
+\l__coffin_display_coord_coffin=\box41
+\l__coffin_display_pole_coffin=\box42
+\l__coffin_display_offset_dim=\dimen135
+\l__coffin_display_x_dim=\dimen136
+\l__coffin_display_y_dim=\dimen137
 L3 Module: l3color 2014/08/23 v5354 L3 Experimental color support
 L3 Module: l3candidates 2015/03/01 v5544 L3 Experimental additions to l3kernel
-\l__box_top_dim=\dimen128
-\l__box_bottom_dim=\dimen129
-\l__box_left_dim=\dimen130
-\l__box_right_dim=\dimen131
-\l__box_top_new_dim=\dimen132
-\l__box_bottom_new_dim=\dimen133
-\l__box_left_new_dim=\dimen134
-\l__box_right_new_dim=\dimen135
-\l__box_internal_box=\box42
-\l__coffin_bounding_shift_dim=\dimen136
-\l__coffin_left_corner_dim=\dimen137
-\l__coffin_right_corner_dim=\dimen138
-\l__coffin_bottom_corner_dim=\dimen139
-\l__coffin_top_corner_dim=\dimen140
-\l__coffin_scaled_total_height_dim=\dimen141
-\l__coffin_scaled_width_dim=\dimen142
+\l__box_top_dim=\dimen138
+\l__box_bottom_dim=\dimen139
+\l__box_left_dim=\dimen140
+\l__box_right_dim=\dimen141
+\l__box_top_new_dim=\dimen142
+\l__box_bottom_new_dim=\dimen143
+\l__box_left_new_dim=\dimen144
+\l__box_right_new_dim=\dimen145
+\l__box_internal_box=\box43
+\l__coffin_bounding_shift_dim=\dimen146
+\l__coffin_left_corner_dim=\dimen147
+\l__coffin_right_corner_dim=\dimen148
+\l__coffin_bottom_corner_dim=\dimen149
+\l__coffin_top_corner_dim=\dimen150
+\l__coffin_scaled_total_height_dim=\dimen151
+\l__coffin_scaled_width_dim=\dimen152
 )
 (c:/Program Files (x86)/texlive/2014/texmf-dist/tex/latex/l3kernel/l3unicode-da
 ta.def
@@ -232,15 +273,15 @@ def
 File: l3xdvidpfmx.def 2015/03/01 v5544 L3 Experimental driver: xdvipdfmx
 ))
 Package: xparse 2014/11/25 v5471 L3 Experimental document command parser
-\l__xparse_current_arg_int=\count123
-\l__xparse_m_args_int=\count124
-\l__xparse_mandatory_args_int=\count125
-\l__xparse_processor_int=\count126
-\l__xparse_v_nesting_int=\count127
+\l__xparse_current_arg_int=\count126
+\l__xparse_m_args_int=\count127
+\l__xparse_mandatory_args_int=\count128
+\l__xparse_processor_int=\count129
+\l__xparse_v_nesting_int=\count130
 )
-\c@thm=\count128
-\c@defn=\count129
-\c@prb=\count130
+\c@thm=\count131
+\c@defn=\count132
+\c@prb=\count133
 .................................................
 . LaTeX info: "xparse/define-command"
 . 
@@ -254,18 +295,17 @@ Package: xparse 2014/11/25 v5471 L3 Experimental document command parser
 
 (c:/Program Files (x86)/texlive/2014/texmf-dist/tex/latex/enumitem/enumitem.sty
 Package: enumitem 2011/09/28 v3.5.2 Customized lists
-\enitkv@toks@=\toks26
-\labelindent=\skip55
-\enit@outerparindent=\dimen143
+\labelindent=\skip57
+\enit@outerparindent=\dimen153
 \enit@toks=\toks27
-\enit@inbox=\box43
-\enitdp@description=\count131
+\enit@inbox=\box44
+\enitdp@description=\count134
 )
-\c@condi=\count132
-\enitdp@cond=\count133
-\c@exeri=\count134
-\c@exerii=\count135
-\enitdp@exer=\count136
+\c@condi=\count135
+\enitdp@cond=\count136
+\c@exeri=\count137
+\c@exerii=\count138
+\enitdp@exer=\count139
  (c:/Program Files (x86)/texlive/2014/texmf-dist/tex/latex/tikz-cd/tikz-cd.sty
 Package: tikz-cd 2014/10/30 v0.9e Commutative diagrams with tikz
 
@@ -278,14 +318,14 @@ sty
 (c:/Program Files (x86)/texlive/2014/texmf-dist/tex/generic/pgf/utilities/pgfut
 il-common.tex
 \pgfutil@everybye=\toks28
-\pgfutil@tempdima=\dimen144
-\pgfutil@tempdimb=\dimen145
+\pgfutil@tempdima=\dimen154
+\pgfutil@tempdimb=\dimen155
 
 (c:/Program Files (x86)/texlive/2014/texmf-dist/tex/generic/pgf/utilities/pgfut
 il-common-lists.tex))
 (c:/Program Files (x86)/texlive/2014/texmf-dist/tex/generic/pgf/utilities/pgfut
 il-latex.def
-\pgfutil@abb=\box44
+\pgfutil@abb=\box45
 
 (c:/Program Files (x86)/texlive/2014/texmf-dist/tex/latex/ms/everyshi.sty
 Package: everyshi 2001/05/15 v3.00 EveryShipout Package (MS)
@@ -300,10 +340,7 @@ Package: pgf 2013/12/18 v3.0.0 (rcs-revision 1.14)
 e.sty
 (c:/Program Files (x86)/texlive/2014/texmf-dist/tex/latex/graphics/graphicx.sty
 Package: graphicx 2014/10/28 v1.0g Enhanced LaTeX Graphics (DPC,SPQR)
-(c:/Program Files (x86)/texlive/2014/texmf-dist/tex/latex/graphics/keyval.sty
-Package: keyval 2014/10/28 v1.15 key=value parser (DPC)
-\KV@toks@=\toks29
-)
+
 (c:/Program Files (x86)/texlive/2014/texmf-dist/tex/latex/graphics/graphics.sty
 Package: graphics 2014/10/28 v1.0p Standard LaTeX Graphics (DPC,SPQR)
 (c:/Program Files (x86)/texlive/2014/texmf-dist/tex/latex/graphics/trig.sty
@@ -319,8 +356,8 @@ Package graphics Info: Driver file: xetex.def on input line 91.
 File: xetex.def 2015/03/25 v4.04 LaTeX color/graphics driver for XeTeX (TeX Liv
 e/RRM/JK)
 ))
-\Gin@req@height=\dimen146
-\Gin@req@width=\dimen147
+\Gin@req@height=\dimen156
+\Gin@req@width=\dimen157
 )
 (c:/Program Files (x86)/texlive/2014/texmf-dist/tex/latex/pgf/systemlayer/pgfsy
 s.sty
@@ -330,30 +367,30 @@ Package: pgfsys 2013/11/30 v3.0.0 (rcs-revision 1.47)
 
 (c:/Program Files (x86)/texlive/2014/texmf-dist/tex/generic/pgf/utilities/pgfke
 ys.code.tex
-\pgfkeys@pathtoks=\toks30
-\pgfkeys@temptoks=\toks31
+\pgfkeys@pathtoks=\toks29
+\pgfkeys@temptoks=\toks30
 
 (c:/Program Files (x86)/texlive/2014/texmf-dist/tex/generic/pgf/utilities/pgfke
 ysfiltered.code.tex
-\pgfkeys@tmptoks=\toks32
+\pgfkeys@tmptoks=\toks31
 ))
-\pgf@x=\dimen148
-\pgf@y=\dimen149
-\pgf@xa=\dimen150
-\pgf@ya=\dimen151
-\pgf@xb=\dimen152
-\pgf@yb=\dimen153
-\pgf@xc=\dimen154
-\pgf@yc=\dimen155
+\pgf@x=\dimen158
+\pgf@y=\dimen159
+\pgf@xa=\dimen160
+\pgf@ya=\dimen161
+\pgf@xb=\dimen162
+\pgf@yb=\dimen163
+\pgf@xc=\dimen164
+\pgf@yc=\dimen165
 \w@pgf@writea=\write3
 \r@pgf@reada=\read1
-\c@pgf@counta=\count137
-\c@pgf@countb=\count138
-\c@pgf@countc=\count139
-\c@pgf@countd=\count140
-\t@pgf@toka=\toks33
-\t@pgf@tokb=\toks34
-\t@pgf@tokc=\toks35
+\c@pgf@counta=\count140
+\c@pgf@countb=\count141
+\c@pgf@countc=\count142
+\c@pgf@countd=\count143
+\t@pgf@toka=\toks32
+\t@pgf@tokb=\toks33
+\t@pgf@tokc=\toks34
 
 (c:/Program Files (x86)/texlive/2014/texmf-dist/tex/generic/pgf/systemlayer/pgf
 .cfg
@@ -373,13 +410,13 @@ File: pgfsys-dvipdfmx.def 2013/08/28  (rcs-revision 1.12)
 sys-common-pdf.def
 File: pgfsys-common-pdf.def 2013/10/10  (rcs-revision 1.13)
 )
-\pgfsys@objnum=\count141
+\pgfsys@objnum=\count144
 )))
 (c:/Program Files (x86)/texlive/2014/texmf-dist/tex/generic/pgf/systemlayer/pgf
 syssoftpath.code.tex
 File: pgfsyssoftpath.code.tex 2013/09/09  (rcs-revision 1.9)
-\pgfsyssoftpath@smallbuffer@items=\count142
-\pgfsyssoftpath@bigbuffer@items=\count143
+\pgfsyssoftpath@smallbuffer@items=\count145
+\pgfsyssoftpath@bigbuffer@items=\count146
 )
 (c:/Program Files (x86)/texlive/2014/texmf-dist/tex/generic/pgf/systemlayer/pgf
 sysprotocol.code.tex
@@ -413,12 +450,12 @@ c.code.tex
 l.code.tex)
 (c:/Program Files (x86)/texlive/2014/texmf-dist/tex/generic/pgf/math/pgfmathpar
 ser.code.tex
-\pgfmath@dimen=\dimen156
-\pgfmath@count=\count144
-\pgfmath@box=\box45
-\pgfmath@toks=\toks36
-\pgfmath@stack@operand=\toks37
-\pgfmath@stack@operation=\toks38
+\pgfmath@dimen=\dimen166
+\pgfmath@count=\count147
+\pgfmath@box=\box46
+\pgfmath@toks=\toks35
+\pgfmath@stack@operand=\toks36
+\pgfmath@stack@operation=\toks37
 )
 (c:/Program Files (x86)/texlive/2014/texmf-dist/tex/generic/pgf/math/pgfmathfun
 ctions.code.tex
@@ -440,57 +477,57 @@ ctions.misc.code.tex)
 ctions.integerarithmetics.code.tex)))
 (c:/Program Files (x86)/texlive/2014/texmf-dist/tex/generic/pgf/math/pgfmathflo
 at.code.tex
-\c@pgfmathroundto@lastzeros=\count145
+\c@pgfmathroundto@lastzeros=\count148
 ))
 (c:/Program Files (x86)/texlive/2014/texmf-dist/tex/generic/pgf/basiclayer/pgfc
 orepoints.code.tex
 File: pgfcorepoints.code.tex 2013/10/07  (rcs-revision 1.27)
-\pgf@picminx=\dimen157
-\pgf@picmaxx=\dimen158
-\pgf@picminy=\dimen159
-\pgf@picmaxy=\dimen160
-\pgf@pathminx=\dimen161
-\pgf@pathmaxx=\dimen162
-\pgf@pathminy=\dimen163
-\pgf@pathmaxy=\dimen164
-\pgf@xx=\dimen165
-\pgf@xy=\dimen166
-\pgf@yx=\dimen167
-\pgf@yy=\dimen168
-\pgf@zx=\dimen169
-\pgf@zy=\dimen170
+\pgf@picminx=\dimen167
+\pgf@picmaxx=\dimen168
+\pgf@picminy=\dimen169
+\pgf@picmaxy=\dimen170
+\pgf@pathminx=\dimen171
+\pgf@pathmaxx=\dimen172
+\pgf@pathminy=\dimen173
+\pgf@pathmaxy=\dimen174
+\pgf@xx=\dimen175
+\pgf@xy=\dimen176
+\pgf@yx=\dimen177
+\pgf@yy=\dimen178
+\pgf@zx=\dimen179
+\pgf@zy=\dimen180
 )
 (c:/Program Files (x86)/texlive/2014/texmf-dist/tex/generic/pgf/basiclayer/pgfc
 orepathconstruct.code.tex
 File: pgfcorepathconstruct.code.tex 2013/10/07  (rcs-revision 1.29)
-\pgf@path@lastx=\dimen171
-\pgf@path@lasty=\dimen172
+\pgf@path@lastx=\dimen181
+\pgf@path@lasty=\dimen182
 )
 (c:/Program Files (x86)/texlive/2014/texmf-dist/tex/generic/pgf/basiclayer/pgfc
 orepathusage.code.tex
 File: pgfcorepathusage.code.tex 2013/12/13  (rcs-revision 1.23)
-\pgf@shorten@end@additional=\dimen173
-\pgf@shorten@start@additional=\dimen174
+\pgf@shorten@end@additional=\dimen183
+\pgf@shorten@start@additional=\dimen184
 )
 (c:/Program Files (x86)/texlive/2014/texmf-dist/tex/generic/pgf/basiclayer/pgfc
 orescopes.code.tex
 File: pgfcorescopes.code.tex 2013/10/09  (rcs-revision 1.44)
-\pgfpic=\box46
-\pgf@hbox=\box47
-\pgf@layerbox@main=\box48
-\pgf@picture@serial@count=\count146
+\pgfpic=\box47
+\pgf@hbox=\box48
+\pgf@layerbox@main=\box49
+\pgf@picture@serial@count=\count149
 )
 (c:/Program Files (x86)/texlive/2014/texmf-dist/tex/generic/pgf/basiclayer/pgfc
 oregraphicstate.code.tex
 File: pgfcoregraphicstate.code.tex 2013/09/19  (rcs-revision 1.11)
-\pgflinewidth=\dimen175
+\pgflinewidth=\dimen185
 )
 (c:/Program Files (x86)/texlive/2014/texmf-dist/tex/generic/pgf/basiclayer/pgfc
 oretransformations.code.tex
 File: pgfcoretransformations.code.tex 2013/10/10  (rcs-revision 1.17)
-\pgf@pt@x=\dimen176
-\pgf@pt@y=\dimen177
-\pgf@pt@temp=\dimen178
+\pgf@pt@x=\dimen186
+\pgf@pt@y=\dimen187
+\pgf@pt@temp=\dimen188
 )
 (c:/Program Files (x86)/texlive/2014/texmf-dist/tex/generic/pgf/basiclayer/pgfc
 orequick.code.tex
@@ -507,13 +544,13 @@ File: pgfcorepathprocessing.code.tex 2013/09/09  (rcs-revision 1.9)
 (c:/Program Files (x86)/texlive/2014/texmf-dist/tex/generic/pgf/basiclayer/pgfc
 orearrows.code.tex
 File: pgfcorearrows.code.tex 2013/11/07  (rcs-revision 1.40)
-\pgfarrowsep=\dimen179
+\pgfarrowsep=\dimen189
 )
 (c:/Program Files (x86)/texlive/2014/texmf-dist/tex/generic/pgf/basiclayer/pgfc
 oreshade.code.tex
 File: pgfcoreshade.code.tex 2013/07/15  (rcs-revision 1.15)
-\pgf@max=\dimen180
-\pgf@sys@shading@range@num=\count147
+\pgf@max=\dimen190
+\pgf@sys@shading@range@num=\count150
 )
 (c:/Program Files (x86)/texlive/2014/texmf-dist/tex/generic/pgf/basiclayer/pgfc
 oreimage.code.tex
@@ -522,7 +559,7 @@ File: pgfcoreimage.code.tex 2013/07/15  (rcs-revision 1.18)
 (c:/Program Files (x86)/texlive/2014/texmf-dist/tex/generic/pgf/basiclayer/pgfc
 oreexternal.code.tex
 File: pgfcoreexternal.code.tex 2013/07/15  (rcs-revision 1.20)
-\pgfexternal@startupbox=\box49
+\pgfexternal@startupbox=\box50
 ))
 (c:/Program Files (x86)/texlive/2014/texmf-dist/tex/generic/pgf/basiclayer/pgfc
 orelayers.code.tex
@@ -539,7 +576,7 @@ File: pgfcorepatterns.code.tex 2013/11/07  (rcs-revision 1.5)
 (c:/Program Files (x86)/texlive/2014/texmf-dist/tex/generic/pgf/modules/pgfmodu
 leshapes.code.tex
 File: pgfmoduleshapes.code.tex 2013/10/31  (rcs-revision 1.34)
-\pgfnodeparttextbox=\box50
+\pgfnodeparttextbox=\box51
 )
 (c:/Program Files (x86)/texlive/2014/texmf-dist/tex/generic/pgf/modules/pgfmodu
 leplot.code.tex
@@ -548,8 +585,8 @@ File: pgfmoduleplot.code.tex 2013/07/31  (rcs-revision 1.12)
 (c:/Program Files (x86)/texlive/2014/texmf-dist/tex/latex/pgf/compatibility/pgf
 comp-version-0-65.sty
 Package: pgfcomp-version-0-65 2007/07/03 v3.0.0 (rcs-revision 1.7)
-\pgf@nodesepstart=\dimen181
-\pgf@nodesepend=\dimen182
+\pgf@nodesepstart=\dimen191
+\pgf@nodesepend=\dimen192
 )
 (c:/Program Files (x86)/texlive/2014/texmf-dist/tex/latex/pgf/compatibility/pgf
 comp-version-1-18.sty
@@ -570,10 +607,10 @@ Package: pgffor 2013/12/13 v3.0.0 (rcs-revision 1.25)
 
 (c:/Program Files (x86)/texlive/2014/texmf-dist/tex/generic/pgf/math/pgfmath.co
 de.tex)
-\pgffor@iter=\dimen183
-\pgffor@skip=\dimen184
-\pgffor@stack=\toks39
-\pgffor@toks=\toks40
+\pgffor@iter=\dimen193
+\pgffor@skip=\dimen194
+\pgffor@stack=\toks38
+\pgffor@toks=\toks39
 ))
 (c:/Program Files (x86)/texlive/2014/texmf-dist/tex/generic/pgf/frontendlayer/t
 ikz/tikz.code.tex
@@ -582,32 +619,33 @@ Package: tikz 2013/12/13 v3.0.0 (rcs-revision 1.142)
 (c:/Program Files (x86)/texlive/2014/texmf-dist/tex/generic/pgf/libraries/pgfli
 braryplothandlers.code.tex
 File: pgflibraryplothandlers.code.tex 2013/08/31 v3.0.0 (rcs-revision 1.20)
-\pgf@plot@mark@count=\count148
-\pgfplotmarksize=\dimen185
+\pgf@plot@mark@count=\count151
+\pgfplotmarksize=\dimen195
 )
-\tikz@lastx=\dimen186
-\tikz@lasty=\dimen187
-\tikz@lastxsaved=\dimen188
-\tikz@lastysaved=\dimen189
-\tikzleveldistance=\dimen190
-\tikzsiblingdistance=\dimen191
-\tikz@figbox=\box51
-\tikz@figbox@bg=\box52
-\tikz@tempbox=\box53
-\tikz@tempbox@bg=\box54
-\tikztreelevel=\count149
-\tikznumberofchildren=\count150
-\tikznumberofcurrentchild=\count151
-\tikz@fig@count=\count152
+\tikz@lastx=\dimen196
+\tikz@lasty=\dimen197
+\tikz@lastxsaved=\dimen198
+\tikz@lastysaved=\dimen199
+\tikzleveldistance=\dimen200
+Normal \dimen register pool exhausted, switching to extended pool.
+\tikzsiblingdistance=\dimen256
+\tikz@figbox=\box52
+\tikz@figbox@bg=\box53
+\tikz@tempbox=\box54
+\tikz@tempbox@bg=\box55
+\tikztreelevel=\count152
+\tikznumberofchildren=\count153
+\tikznumberofcurrentchild=\count154
+\tikz@fig@count=\count155
 
 (c:/Program Files (x86)/texlive/2014/texmf-dist/tex/generic/pgf/modules/pgfmodu
 lematrix.code.tex
 File: pgfmodulematrix.code.tex 2013/09/17  (rcs-revision 1.8)
-\pgfmatrixcurrentrow=\count153
-\pgfmatrixcurrentcolumn=\count154
-\pgf@matrix@numberofcolumns=\count155
+\pgfmatrixcurrentrow=\count156
+\pgfmatrixcurrentcolumn=\count157
+\pgf@matrix@numberofcolumns=\count158
 )
-\tikz@expandcount=\count156
+\tikz@expandcount=\count159
 
 (c:/Program Files (x86)/texlive/2014/texmf-dist/tex/generic/pgf/frontendlayer/t
 ikz/libraries/tikzlibrarytopaths.code.tex
@@ -626,10 +664,10 @@ File: tikzlibraryquotes.code.tex 2013/08/28 v3.0.0 (rcs-revision 1.3)
 (c:/Program Files (x86)/texlive/2014/texmf-dist/tex/generic/pgf/libraries/pgfli
 braryarrows.meta.code.tex
 File: pgflibraryarrows.meta.code.tex 2013/12/13 v3.0.0 (rcs-revision 1.12)
-\pgfarrowinset=\dimen192
-\pgfarrowlength=\dimen193
-\pgfarrowwidth=\dimen194
-\pgfarrowlinewidth=\dimen195
+\pgfarrowinset=\dimen257
+\pgfarrowlength=\dimen258
+\pgfarrowwidth=\dimen259
+\pgfarrowlinewidth=\dimen260
 )))
 .................................................
 . LaTeX info: "xparse/define-environment"
@@ -649,12 +687,12 @@ File: pgflibraryarrows.meta.code.tex 2013/12/13 v3.0.0 (rcs-revision 1.12)
 .................................................
 . LaTeX info: "xparse/define-command"
 . 
-. Defining command \pd with sig. 'oggg' on line 184.
+. Defining command \pd with sig. ' o g g g ' on line 184.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
 . 
-. Defining command \dd with sig. 'oggg' on line 193.
+. Defining command \dd with sig. ' o g g g ' on line 193.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-environment"
@@ -673,45 +711,44 @@ ty
 Package: mathtools 2014/07/16 v1.15 mathematical typesetting tools
  (c:/Program Files (x86)/texlive/2014/texmf-dist/tex/latex/tools/calc.sty
 Package: calc 2014/10/28 v4.3 Infix arithmetic (KKT,FJ)
-\calc@Acount=\count157
-\calc@Bcount=\count158
-\calc@Adimen=\dimen196
-\calc@Bdimen=\dimen197
-\calc@Askip=\skip56
-\calc@Bskip=\skip57
+\calc@Acount=\count160
+\calc@Bcount=\count161
+\calc@Adimen=\dimen261
+\calc@Bdimen=\dimen262
+\calc@Askip=\skip58
+\calc@Bskip=\skip59
 LaTeX Info: Redefining \setlength on input line 75.
 LaTeX Info: Redefining \addtolength on input line 76.
-\calc@Ccount=\count159
-\calc@Cskip=\skip58
+\calc@Ccount=\count162
+\calc@Cskip=\skip60
 )
 LaTeX Info: Thecontrolsequence`\['isalreadyrobust on input line 129.
 LaTeX Info: Thecontrolsequence`\]'isalreadyrobust on input line 129.
-\g_MT_multlinerow_int=\count160
-\l_MT_multwidth_dim=\dimen198
-\origjot=\skip59
-\l_MT_shortvdotswithinadjustabove_dim=\dimen199
-\l_MT_shortvdotswithinadjustbelow_dim=\dimen200
-\l_MT_above_intertext_sep=\dimen201
-Normal \dimen register pool exhausted, switching to extended pool.
-\l_MT_below_intertext_sep=\dimen256
-\l_MT_above_shortintertext_sep=\dimen257
-\l_MT_below_shortintertext_sep=\dimen258
+\g_MT_multlinerow_int=\count163
+\l_MT_multwidth_dim=\dimen263
+\origjot=\skip61
+\l_MT_shortvdotswithinadjustabove_dim=\dimen264
+\l_MT_shortvdotswithinadjustbelow_dim=\dimen265
+\l_MT_above_intertext_sep=\dimen266
+\l_MT_below_intertext_sep=\dimen267
+\l_MT_above_shortintertext_sep=\dimen268
+\l_MT_below_shortintertext_sep=\dimen269
 )
-\l_EQ_equationtype_int=\count161
-\l_EQ_alignmentmode_int=\count162
-\l_EQ_totalwidth_dim=\dimen259
-\l_EQ_displaywidth_dim=\dimen260
-\l_EQ_temp_linewidth_dim=\dimen261
-\EmphEqdelimitershortfall=\dimen262
-\EmphEqdelimiterfactor=\count163
-\g_EQ_toptag_height_dim=\dimen263
-\g_EQ_bottomtag_depth_dim=\dimen264
-\g_EQ_toprow_height_dim=\dimen265
-\g_EQ_bottomrow_depth_dim=\dimen266
-\g_EQ_widesttag_dim=\dimen267
-\EQ_mathdisplay_box=\box55
-\EQ_tag_box=\box56
-\g_EQ_temprow_int=\count164
+\l_EQ_equationtype_int=\count164
+\l_EQ_alignmentmode_int=\count165
+\l_EQ_totalwidth_dim=\dimen270
+\l_EQ_displaywidth_dim=\dimen271
+\l_EQ_temp_linewidth_dim=\dimen272
+\EmphEqdelimitershortfall=\dimen273
+\EmphEqdelimiterfactor=\count166
+\g_EQ_toptag_height_dim=\dimen274
+\g_EQ_bottomtag_depth_dim=\dimen275
+\g_EQ_toprow_height_dim=\dimen276
+\g_EQ_bottomrow_depth_dim=\dimen277
+\g_EQ_widesttag_dim=\dimen278
+\EQ_mathdisplay_box=\box56
+\EQ_tag_box=\box57
+\g_EQ_temprow_int=\count167
 )
 .................................................
 . LaTeX info: "xparse/define-environment"
@@ -753,52 +790,31 @@ Normal \dimen register pool exhausted, switching to extended pool.
 . 
 . Defining command \evalat with sig. 'mmg' on line 339.
 .................................................
-)
-(c:/Program Files (x86)/texlive/2014/texmf-dist/tex/latex/geometry/geometry.sty
-Package: geometry 2010/09/12 v5.6 Page Geometry
-(c:/Program Files (x86)/texlive/2014/texmf-dist/tex/generic/oberdiek/ifpdf.sty
-Package: ifpdf 2011/01/30 v2.3 Provides the ifpdf switch (HO)
-Package ifpdf Info: pdfTeX in PDF mode is not detected.
-)
-(c:/Program Files (x86)/texlive/2014/texmf-dist/tex/generic/oberdiek/ifvtex.sty
-Package: ifvtex 2010/03/01 v1.5 Detect VTeX and its facilities (HO)
-Package ifvtex Info: VTeX not detected.
-)
-(c:/Program Files (x86)/texlive/2014/texmf-dist/tex/generic/ifxetex/ifxetex.sty
-Package: ifxetex 2010/09/12 v0.6 Provides ifxetex conditional
-)
-\Gm@cnth=\count165
-\Gm@cntv=\count166
-\c@Gm@tempcnt=\count167
-\Gm@bindingoffset=\dimen268
-\Gm@wd@mp=\dimen269
-\Gm@odd@mp=\dimen270
-\Gm@even@mp=\dimen271
-\Gm@layoutwidth=\dimen272
-\Gm@layoutheight=\dimen273
-\Gm@layouthoffset=\dimen274
-\Gm@layoutvoffset=\dimen275
-\Gm@dimlist=\toks41
-) (./roughbook.aux)
-\openout1 = `roughbook.aux'.
+) (./schrodinger equation.aux)
+\openout1 = `"schrodinger equation.aux"'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 8.
-LaTeX Font Info:    ... okay on input line 8.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 8.
-LaTeX Font Info:    ... okay on input line 8.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 8.
-LaTeX Font Info:    ... okay on input line 8.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 8.
-LaTeX Font Info:    ... okay on input line 8.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 8.
-LaTeX Font Info:    ... okay on input line 8.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 8.
-LaTeX Font Info:    ... okay on input line 8.
- ABD: EveryShipout initializing macros
-\Hy@linkcounter=\count168
-LaTeX Info: Redefining \[ on input line 8.
-LaTeX Info: Redefining \] on input line 8.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 6.
+LaTeX Font Info:    ... okay on input line 6.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 6.
+LaTeX Font Info:    ... okay on input line 6.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 6.
+LaTeX Font Info:    ... okay on input line 6.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 6.
+LaTeX Font Info:    ... okay on input line 6.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 6.
+LaTeX Font Info:    ... okay on input line 6.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 6.
+LaTeX Font Info:    ... okay on input line 6.
+LaTeX Font Info:    Try loading font information for U+msa on input line 6.
 
+(c:/Program Files (x86)/texlive/2014/texmf-dist/tex/latex/amsfonts/umsa.fd
+File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+)
+LaTeX Font Info:    Try loading font information for U+msb on input line 6.
+
+(c:/Program Files (x86)/texlive/2014/texmf-dist/tex/latex/amsfonts/umsb.fd
+File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+)
 *geometry* driver: auto-detecting
 *geometry* detected driver: xetex
 *geometry* verbose mode - [ preamble ] result:
@@ -806,121 +822,60 @@ LaTeX Info: Redefining \] on input line 8.
 * paper: <default>
 * layout: <same size as paper>
 * layoutoffset:(h,v)=(0.0pt,0.0pt)
-* modes: 
-* h-part:(L,W,R)=(86.72377pt, 440.84746pt, 86.72377pt)
-* v-part:(T,H,B)=(86.72377pt, 621.52245pt, 86.72377pt)
+* modes: twoside 
+* h-part:(L,W,R)=(100.0pt, 414.295pt, 100.0pt)
+* v-part:(T,H,B)=(100.0pt, 594.96999pt, 100.0pt)
 * \paperwidth=614.295pt
 * \paperheight=794.96999pt
-* \textwidth=440.84746pt
-* \textheight=621.52245pt
-* \oddsidemargin=14.45378pt
-* \evensidemargin=14.45378pt
-* \topmargin=-22.54622pt
-* \headheight=12.0pt
-* \headsep=25.0pt
-* \topskip=11.0pt
-* \footskip=30.0pt
-* \marginparwidth=59.0pt
-* \marginparsep=10.0pt
+* \textwidth=414.295pt
+* \textheight=594.96999pt
+* \oddsidemargin=27.73001pt
+* \evensidemargin=27.73001pt
+* \topmargin=5.73001pt
+* \headheight=8.0pt
+* \headsep=14.0pt
+* \topskip=10.0pt
+* \footskip=12.0pt
+* \marginparwidth=90.0pt
+* \marginparsep=11.0pt
 * \columnsep=10.0pt
-* \skip\footins=10.0pt plus 4.0pt minus 2.0pt
+* \skip\footins=7.0pt plus 11.0pt
 * \hoffset=0.0pt
 * \voffset=0.0pt
 * \mag=1000
 * \@twocolumnfalse
-* \@twosidefalse
-* \@mparswitchfalse
+* \@twosidetrue
+* \@mparswitchtrue
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-(./roughbook.toc)
-\tf@toc=\write4
-\openout4 = `roughbook.toc'.
-
- [1
-
-]
-LaTeX Font Info:    Try loading font information for U+msa on input line 20.
-
-(c:/Program Files (x86)/texlive/2014/texmf-dist/tex/latex/amsfonts/umsa.fd
-File: umsa.fd 2013/01/14 v3.01 AMS symbols A
-)
-LaTeX Font Info:    Try loading font information for U+msb on input line 20.
-
-(c:/Program Files (x86)/texlive/2014/texmf-dist/tex/latex/amsfonts/umsb.fd
-File: umsb.fd 2013/01/14 v3.01 AMS symbols B
-)
-
-Package amsfonts Warning: Obsolete command \Bbb; \mathbb should be used instead
- on input line 20.
-
-[2] [3] [4]
-Overfull \hbox (65.82622pt too wide) in paragraph at lines 184--185
-[] 
- []
+ABD: EveryShipout initializing macros
+\Hy@linkcounter=\count168
+LaTeX Info: Redefining \[ on input line 6.
+LaTeX Info: Redefining \] on input line 6.
 
 
-Overfull \hbox (8.39464pt too wide) in paragraph at lines 205--205
-[] 
- []
+LaTeX Warning: Reference `eq:Schrod' on page 1 undefined on input line 21.
 
-[5]
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 217.
+[1] [2]
 
- (c:/Program Files (x86)/texlive/2014/texmf-dist/tex/latex/base/omscmr.fd
-File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
-)
-LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10.95> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 217.
+LaTeX Warning: Reference `eq:Schrod' on page 3 undefined on input line 143.
 
-[6] [7] [8]
-LaTeX Font Info:    Try loading font information for U+euf on input line 345.
+[3] [4] [5] (./schrodinger equation.aux)
 
-(c:/Program Files (x86)/texlive/2014/texmf-dist/tex/latex/amsfonts/ueuf.fd
-File: ueuf.fd 2013/01/14 v3.01 Euler Fraktur
-)
-[9
-
-] [10] [11
-
-]
-Overfull \hbox (5.17065pt too wide) in paragraph at lines 531--532
-[]\OT1/cmr/bx/n/10.95 Theorem 7.3. []\OT1/cmr/m/it/10.95 The ab-so-lute value $
-\OMS/cmsy/m/n/10.95 j ^^A j[]$ \OT1/cmr/m/it/10.95 is nonar-chimedean: it sat-i
-s-fies $\OMS/cmsy/m/n/10.95 j\OML/cmm/m/it/10.95 x \OT1/cmr/m/n/10.95 + \OML/cm
-m/m/it/10.95 y\OMS/cmsy/m/n/10.95 j[] ^^T []fj\OML/cmm/m/it/10.95 x\OMS/cmsy/m/
-n/10.95 j[]\OML/cmm/m/it/10.95 ; \OMS/cmsy/m/n/10.95 j\OML/cmm/m/it/10.95 y\OMS
-/cmsy/m/n/10.95 j[]g$\OT1/cmr/m/it/10.95 . 
- []
-
-[12] [13] [14]
-Overfull \hbox (56.70668pt too wide) detected at line 687
-[]
- []
+LaTeX Warning: There were undefined references.
 
 
-Overfull \hbox (24.32408pt too wide) detected at line 692
-[]
- []
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
-
-Overfull \hbox (76.29234pt too wide) detected at line 717
-[]
- []
-
-[15]
-Overfull \hbox (41.85448pt too wide) detected at line 721
-[]
- []
-
-[16] [17] [18] [19] [20] [21] [22] [23] [24] (./roughbook.aux) ) 
+ ) 
 Here is how much of TeX's memory you used:
- 22009 strings out of 493724
- 456379 string characters out of 6141171
- 523708 words of memory out of 5000000
- 25050 multiletter control sequences out of 15000+600000
- 13372 words of font info for 50 fonts, out of 8000000 for 9000
- 1328 hyphenation exceptions out of 8191
- 68i,25n,86p,10416b,1106s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 20714 strings out of 493724
+ 418002 string characters out of 6141171
+ 441818 words of memory out of 5000000
+ 23607 multiletter control sequences out of 15000+600000
+ 12085 words of font info for 46 fonts, out of 8000000 for 9000
+ 1489 hyphenation exceptions out of 8191
+ 68i,17n,84p,10394b,283s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on roughbook.pdf (24 pages).
+Output written on schrodinger equation.pdf (5 pages).
