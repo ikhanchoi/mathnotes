@@ -7,6 +7,12 @@
 
 \usepackage[margin = 100pt]{geometry}
 
+
+\let\@@title\title
+\renewcommand{\title}[1]{
+  \def\ltitle{#1}
+  \@@title{Problem Set : \ltitle}
+}
 \let\@@author\author
 \renewcommand{\author}[1]{
   \def\lauthor{#1}
