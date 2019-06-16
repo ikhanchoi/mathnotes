@@ -1,28 +1,37 @@
+# Ikhan Choi's mathematics notes
+
+## About
+
 I am Ikhan Choi.
+
 I am a math-majored undergraduate student from South Korea.
 
-As you can see, all notes are so poor.
+I am interested in:
+ * Foundations of analysis within a general topological viewpoint.
+ * Various applications of functional and harmonic analysis, especially on PDE and physics.
+ * Numerical and statistical simulations of physical phenomena.
 
 Contact: dlrgks623@naver.com
 
-# Notes
-A file "note.tex" is just a memo.
+## Notes
 
-## Course notes (crs)
-It contains notes for imaginary course lectures.
+
+### Course notes (crs)
+These notes are written to categorize and converge unorganized knowledge.
 The purpose of these notes is not to teach.
-I made them in order to organize what I have studies for my own purposes, and to use them in mentoring programs.
-I think writing them is a kind of my hobby.
 
-General Topology: [pdf](https://github.com/ikhanchoi/mathnotes/raw/master/crs/general%20topology/general%20topology.pdf)
+| Title                         | Link | 
+|-------------------------------|------|
+| General Topology (incomplete) | [pdf](https://github.com/ikhanchoi/mathnotes/raw/master/crs/general%20topology/general%20topology.pdf) |
 
-## Expository notes (exp)
-They are literally expository notes.
-Almost every note is incomplete, but the following links are for complete notes.
+### Expository notes (exp)
+Recorded the logical flows or tangle ideas on specific topics.
 
-Totally bounded uniform space: [pdf](https://github.com/ikhanchoi/mathnotes/raw/master/exp/totally%20bounded%20uniform%20space/totally%20bounded%20uniform%20space.pdf)
+| Title                                               | Link |
+|-----------------------------------------------------|------|
+| Wrong proof on totally bounded uniform space        | [pdf](https://github.com/ikhanchoi/mathnotes/raw/master/exp/totally%20bounded%20uniform%20space/totally%20bounded%20uniform%20space.pdf) |
 
-## Problem notes (prb)
-Nothing goes well.
-My initial plan was to fill this foler with problems that I often forget or I made.
-It would be also great if these notes become used for a systematic course in the remote future.
+### Problem notes (prb)
+Problems motivate Theories.
+Also when we try to acquire an abstract theory, the problem-oriented approaches are often effective on learning process, especially within some branches like differential equations, number theory, and physics.
+
