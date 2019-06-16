@@ -29,7 +29,7 @@ Recorded the logical flows or tangle ideas on specific topics.
 
 | Title                                               | Link |
 |-----------------------------------------------------|------|
-| Wrong proof on totally bounded uniform space        | [pdf](https://github.com/ikhanchoi/mathnotes/raw/master/exp/totally%20bounded%20uniform%20space/totally%20bounded%20uniform%20space.pdf) |
+| Wrong proof on totally bounded uniform space        | [pdf](https://github.com/ikhanchoi/mathnotes/raw/master/exp/wrong%20proof%20on%20totally%20bounded%20uniform%20space/wrong%20proof%20on%20totally%20bounded%20uniform%20space.pdf) |
 
 ### Problem notes (prb)
 Problems motivate Theories.
