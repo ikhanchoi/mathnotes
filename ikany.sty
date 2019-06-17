@@ -207,10 +207,10 @@
 %///////////////////////%
 %
 % Example Code:
-%	\begin{pde}{\label{eq:Pois}}
-%	\Delta u(x) &= 0,  \for  x\in\Omega,\\
-%	       u(x) &= f,  \for  x\in\bd\Omega.
-%	\end{pde}
+%	\begin{pde*}{\label{eq:heat}}
+%	\pd_tu-\Delta u &= 0,  \: \p{in}\R_x\x\R_t,\\
+%	      u(x,0) &= f(x),  \:
+%	\end{pde*}
 %
 \RequirePackage{xparse}
 \NewDocumentEnvironment{pde}{s} % number it as a single equation
