@@ -13,10 +13,24 @@
 
 
 
-\section{Elementary field theory}
+\section{Basic field theory}
+\begin{defn}
+A \emph{field extension} is a pair of fields $(E,F)$ such that $E>F$, i.e. $F$ belongs to $E$ as a subset.
+We often denote it by $E/F$.
+\end{defn}
+A field $E$ is also called a \emph{field extension} or a\emph{superfield} of another field $F$ if $E>F$.
+Notice that we may write $E>F$ even if $E=F$.
+Our goal is to understand field extensions.
 
+We review three basic topics on field theory.
+One is about vector space structure on field extension.
+The degree, defined by the dimension of the vector space, measures the size of field extension.
 
+Next, an important property of field homomorphism that general ring homomorpgisms do not have will be investigated.
+This can be one of main reasons why field theory has its own unique features that are quite far from commutative ring theory.
 
+Finally, some languages about simple extensions will be studied.
+Because of its simplicity, simple extensions are often used to construct examples or to make computations.
 
 \subsection{Vector space over a subfield}
 
@@ -51,7 +65,7 @@ Finite extension of finite extension is finite.
 
 
 
-\subsection{Field homomorphisms}
+\subsection{Field embeddings}
 
 Unlike general rings, field homomorphisms is extremely rigid.
 The following theorem deeply related to Schur's lemma in representation theory, and it holds for not only fields but also division rings.
@@ -62,12 +76,12 @@ A nontrivial field homomorphism is injective.
 \begin{pf}
 The kernel should be either entire or zero.
 \end{pf}
-A nontrivial field homomorphism is also called \emph{embedding} or \emph{isomorphism onto a subfield of codomain}.
-A field isomorphism is just a nontrivial surjective field homomorphism.
+A nontrivial field homomorphism is called \emph{embedding} or \emph{isomorphism onto a subfield}.
+A field isomorphism is just a surjective field embedding.
 
 
 
-\subsection{Simple extensions}
+\subsection{Simple extension}
 Simple extension is a field extension by an element.
 It is very useful when we consider where specific element goes to through a given field homomorphism.
 
@@ -85,7 +99,9 @@ Although it is hard to find a counterexample, there is a finite extension which 
 We will see in Section 3.
 
 
-% notation F<E
+
+\subsection{Characteristic of fields}
+
 % fixing a field
 
 
@@ -97,7 +113,7 @@ We will see in Section 3.
 
 
 
-\section{Algebraic extensions}
+\section{Algebraic extension}
 
 We do not prove the basic properties of polynomial ring over a field: they satisfy the axioms of ED, PID, and UFD, so every prime ideal is maximal and every irreducible element is prime.
 
@@ -108,7 +124,7 @@ For these elements, we can define minimal polynomials and conjugates for algebra
 The minimal polynomial is an essential tool to compute basic information of a given finite simple extension.
 Conjugates are for useful when we construct a map between finite simple field extensions.
 
-\subsubsection{Minimal polynomials}
+\subsubsection{Minimal polynomial}
 Let us get started from the minimal polynomials.
 
 \begin{defn}[Algebraic element]
@@ -123,7 +139,9 @@ Let $E/F$ be a field extension and $\alpha\in E$.
 TFAE:
 \begin{cond}
 \item $\alpha$ is algebraic over $F$,
-\item there is a nonzero polynomial $f\in F[x]$ such that $f(\alpha)=0$,
+\item there is a nonzero polynomial $f\in F[x]$ such that $f(\alpha)=0$, in other words, an ideal given by the kernel of ring homomorphism
+\[\eval_\alpha:F[x]\to F[\alpha]:f(x)\mapsto f(\alpha)\]
+is nonempty,
 \item $F(\alpha)=F[\alpha]$, i.e. $F[\alpha]$ is a field.
 \end{cond}
 \end{thm}
@@ -133,8 +151,7 @@ Since $d=[F(\alpha):F]<\oo$, we can find a linearly dependent finite subset of i
 The coefficients on the linear dependency relation construct the polynomial.
 
 (2)$\impl$(3).
-The existence of $f\in F[x]$ such that $f(\alpha)=0$ implies that the kernel of evaluation ring homomorphism $\eval_\alpha:F[x]\to F[\alpha]$ is nonempty.
-The kernel is a prime ideal because the quotient $F[x]/\ker(\eval_\alpha)\cong\im(\eval_\alpha)=F[\alpha]$ is an integral domain.
+The kernel of $\eval_\alpha$ is a prime ideal because the quotient $F[x]/\ker(\eval_\alpha)\cong\im(\eval_\alpha)=F[\alpha]$ is an integral domain.
 It is also maximal since $F[x]$ is a PID(Krull dimension 1).
 Therefore, the quotient $F[\alpha]$ is a field.
 
@@ -155,7 +172,9 @@ Since the ideal $\ker(\eval_\alpha)\subset F[x]$ for algebraic $\alpha$ is maxim
 
 \begin{defn}[Minimal polynomial]
 Let $E/F$ be a field extension and $\alpha\in E$ is algebraic.
-The unique monic irreducible polynomial $\mu_{\alpha,F}\in F[x]$ satisfying $\mu_{\alpha,F}(\alpha)=0$ is called the \emph{minimal polynomial} of $\alpha$ over $F$.
+The unique monic irreducible polynomial $\mu_{\alpha,F}\in F[x]$ satisfying 
+\[\mu_{\alpha,F}(\alpha)=0\]
+is called the \emph{minimal polynomial of $\alpha$ over $F$}.
 \end{defn}
 
 The following theorem says that we can compute the degree of a finite simple extension via finding the minimal polynomial.
@@ -173,6 +192,7 @@ It is enough to show $\{1,x,\cdots,x^{d-1}\}$ is a basis where $d=\deg f$.
 We can check this with the Euclidean algorithm.
 \end{pf}
 
+
 \begin{ex}
 Let the base field is $\Q$.
 The minimal polynomial of $\sqrt2$ is $x^2-2$ since it is monic irreducible and has a root $\sqrt2$.
@@ -182,22 +202,31 @@ Similarly, the minimal polynomial of $\frac{-1+\sqrt{-3}}2$ is $x^2+x+1$.
 The minimal polynomial $\sqrt2+\sqrt3$ over $\Q$ is $x^4-10x^2+1$.
 Therefore, $[\Q(\sqrt2+\sqrt3):\Q]=4$.
 
-On the other hand, we have
-\[[\Q(\sqrt2,\sqrt3):\Q]=[\Q(\sqrt2,\sqrt3):\Q(\sqrt2)][\Q(\sqrt2):\Q]=2\cdot2=4.\]
+On the other hand, recall that we have
+\[\left[\Q(\sqrt2,\sqrt3):\Q\right]=\left[\Q(\sqrt2,\sqrt3):\Q(\sqrt2)\right]\cdot\left[\Q(\sqrt2):\Q\right]=2\cdot2=4.\]
 Also, $\sqrt2+\sqrt3\in\Q(\sqrt2,\sqrt3)$ implies $\Q(\sqrt2+\sqrt3)<\Q(\sqrt2,\sqrt3)$.
 Since the dimensions as vector spaces are equal, we get $\Q(\sqrt2+\sqrt3)=\Q(\sqrt2,\sqrt3)$.
 
 Actually, we have
 \[\sqrt2=\frac12\left(\alpha-\frac1\alpha\right)\quad\text{and}\quad\sqrt3=\frac12\left(\alpha+\frac1\alpha\right),\]
 where $\alpha=\sqrt2+\sqrt3$.
+
+These kind of \emph{dimension argument} is one of powerful tools to attack field theory.
+It will be discovered later that the dimension argument has an analogy with computation of group orders in finite group theory.
 \end{ex}
 
-\begin{rmk}
+\begin{ex}
+The base field is important: we have
+\[\mu_{\sqrt2,\Q}(x)=x^2-2,\c{but} \mu_{\sqrt2,\Q(\sqrt2)}=x-\sqrt2.\]
+\end{ex}
+
+\begin{ex}
+Although $\Q(\sqrt2)=\Q(1+\sqrt2)$, the minimal polynomial of each generator over $\Q$ are $x^2-2$ and $(x-1)^2-2$ respectively.
+
 Polynomials are usually used in order to be provided as a computational tool, so we frequently want to find a suitable minimal polynomial for a given field extension.
-However, note that while an element determines the unique minimal polynomial, a finite simple extension does not specify only one polynomial.
-For example, although $\Q(\sqrt2)=\Q(1+\sqrt2)$, the minimal polynomial of each generator over $\Q$ are $x^2-2$ and $(x-1)^2-2$ respectively.
+However, note that a finite simple extension does not specify only one minimal polynomial as the above example.
 It is enough to find a suitable minimal polynomial that is easy to compute.
-\end{rmk}
+\end{ex}
 
 \subsubsection{Conjugates}
 Now, we begin to define conjugates.
@@ -241,10 +270,11 @@ Let $\phi:F\to F$ is a field automorphism.
 Then, $\alpha$ and $\phi(\alpha)$ are always conjugates.
 \end{cor}
 
-In the following examples, let $E=\C$ and $F=\Q$.
+In the following examples, it would be helpful to consider the case that $E=\C$ and $F=\Q$.
 \begin{ex}
+The base fields are important.
 There are two conjugates of $\sqrt2$ over $\Q$: $\pm\sqrt2$.
-However, there is only one conjugate of $\sqrt2$ over $\Q(\sqrt2)$: itself.
+However, there is only one conjugate of $\sqrt2$ over $\Q(\sqrt2)$ or $\C$: itself.
 \end{ex}
 \begin{ex}
 There are two conjugates of $\omega:=\frac{-1+\sqrt{-3}}2$ over $\Q$: $\omega$ and $\cl\omega$.
@@ -263,15 +293,16 @@ See Section 4.
 
 
 
-\subsection{Algebraic extensions}
+\subsection{Algebraic extension}
 
-In Galois theory, we will not care an element that is not algebriac.
-Therefore, it is natural to think a field extension that only consists of algebraic elements, which is called also algebraic.
+Algebraic extension is a generalization of finite extension, for instance, every finite extension
+In Galois theory, which will be studied later, we will not care elements that are not algebriac.
+Therefore, it is natural to think of a field extension that only consists of algebraic elements, which is called also algebraic.
 The main interests in Galois theory will be restricted to algebraic extensions.
 To people who know the category theory, an algebraic extension is just a direct limit of finite simple extensions.
 
 \begin{defn}
-A field extension $E/F$ is called \emph{algebraic} if all elements $\alpha\in E$ is algebraic over $F$.
+A field extension $E/F$ is called \emph{algebraic} if all elements $\alpha\in E$ are algebraic over $F$.
 \end{defn}
 
 The easiest example of an algebraic extension is a finite extension.
@@ -287,41 +318,61 @@ For finite extensions and algebraic extensions, we have:
 \begin{pf} Easy. \end{pf}
 
 
-Now, we are going to get some criteria for determining or constructing algebraic extensions.
-For example, the intersection of algebraic extensions is algebraic.
+Now, we are going to get some basic criteria for determining or constructing algebraic extensions.
+If summarized, we can just say any operations of algebraic extensions are algebraic.
 Before that, we introduce a good notion about algebraic extensions, and it is just the set of all algebraic elements in a given field.
 
+In the rest of this subsection, assume that we have fixed a sufficiently large field $L$.
+Restricting the ``domain of discourse'' by assuming a large entire field is a greatly helpful idea in order not to be confused with the theory of extensions, which might be able to grow without limits.
+Note that the following definition depends on choice of $L$.
 \begin{defn}
-The set of all algebraic elements in $E$ over $F$ is called \emph{relative algebraic closure} and denoted by $\cl F|_E$.
+The set of all algebraic elements in $L$ over $F$ is called \emph{relative algebraic closure of $F$ in $L$} and denoted by $\cl F$.
 \end{defn}
+\begin{rmk}
+The reason of the word ``relative'' is explained later.
+Also, honestly, the notation $\cl F$ is not so good that it is often used to represent an ``algebraic closure'', not a relative one.
+We, however, proceed with this notation to grasp concepts of algebraic extensions.
+\end{rmk}
 \begin{prop}
-A relative algebraic closure is a field.
+The relative algebraic closure $\cl F$ of $F$ in $L$ is always a field.
 \end{prop}
 \begin{pf}
-%%%
+An element is algebraic over $F$ if and only if it is contained in a finite extension $E/F$ because $\alpha\in E$ is equivalent to $F(\alpha)<E$.
+
+Let $\alpha,\beta\in L$ be nonzero algebraic elements over a field $F$.
+Since $\alpha+\beta$, $\alpha\beta$, and $\alpha^{-1}$ are all in $F(\alpha,\beta)$, which is a finite extension of $F$ with degree $\deg_F(\alpha)\deg_F(\beta)$, the set of algebraic elements over $F$ in $L$ is a field.
 \end{pf}
+
 \begin{lem}
-Let $E/F$ be a field extension and $L>E$.
+Let $E,F<L$ be fields.
 Then,
 \begin{cond}
-\item $\cl F|_L<\cl E|_L$,
-\item $\cl{(\cl F|_E)}|_E=\cl F|_E$.
+\item $F<E$ implies $\cl F<\cl E$,
+\item $\cl{(\cl F)}=\cl F$.
 \end{cond}
 \begin{pf}
 %%%
 \end{pf}
 \end{lem}
-\begin{lem}\label{relalgcl}
-A field extension $E/F$ is algebraic iff $\cl E|_L=\cl F|_L$ for all field $L>E$.
+\begin{lem}
+Given a condition that every algebraic element over $L$ is in $L$, a field extension $E/F$ is algebraic iff $\cl E=\cl F$.
 \end{lem}
 \begin{pf}
 %%%
 \end{pf}
 \begin{rmk}
-In fact, it is sufficient to check $\cl E|_L=\cl F|_L$ just for one algebraically closed field $L$ in Lemma \ref{relalgcl}, but since we have not defined the algebraically closed fields yet, we let $L$ be all superfields of $E$.
+The condition of $L$ has a name \emph{algebraiclly closedness}.
+The above lemma is useful because we already know a field $L$ such that
+\begin{itemize}
+\item algebraic elements over $L$ is in $L$,
+\item $L$ contains a lot of usual example fields.
+\end{itemize}
+It is the field of complex numbers, $\C$.
+
+After studying algebraic closures in the next subsection, this lemma will be dealt within more details.
 \end{rmk}
 
-Theorems what we want to know are given as follows.
+By the above lemma, theorems we want to get are given as follows.
 They are all obviously proved from the lemmas above, so we give elementary proofs here.
 
 \begin{thm}
@@ -330,14 +381,24 @@ Then, $E/F$ is algebraic iff $E/K$ and $K/F$ are algebraic.
 \end{thm}
 \begin{pf}
 One direction is clear.
+
 Suppose $E/K$ and $K/F$ are algebraic.
-Take $\alpha\in E$ and let $L$ be a field generated by $F$ and the coefficients of $\mu_{\alpha,K}$ so that $\mu_{\alpha,K}\in L[x]$ and $L(\alpha)/L$ is finite.
-The extension $L/F$ is finite since $K/F$ is algebraic.
-Since $L(\alpha)/F$ is finite, $F(\alpha)/F$ is finite.
+Taking $\alpha\in E$, we show that it is algebraic over $F$.
+Let $L$ be a field generated by the coefficients of $\mu_{\alpha,K}$ on $F$ so that $\mu_{\alpha,K}\in L[x]$ and $L(\alpha)/L$ is finite.
+The extension $L/F$ is also finite since coefficients of $\mu_{\alpha,K}$ are finitely many and algebraic.
+
+Since finite extensions $L(\alpha)/L$ and $L/F$ imply that $L(\alpha)/F$ is finite, a subextension $F(\alpha)/F$ is therefore finite.
 \end{pf}
 
 \begin{thm}
-Let $E/F$ and $E'/F$ are algebraic extensions in a superfield $L$.
+A field $E$ is algebraic over $F$ if and only if there is a tower of fields $\{K_n\}_n$ such that $K_n/F$ are all finite and the ascending union is $E$.
+\end{thm}
+\begin{pf}
+%%%
+\end{pf}
+
+\begin{thm}
+Let $E/F$ and $E/F$ are algebraic extensions in a superfield $L$.
 Then, the compositum $EE'/F$ is algebriac.
 \end{thm}
 \begin{pf}
@@ -345,6 +406,16 @@ Then, the compositum $EE'/F$ is algebriac.
 \end{pf}
 
 
+\begin{ex}
+For a transcendental number such as $\pi$, an extension $\Q(\alpha)/\Q$ is not algebraic since it contains an element that is not algebraif.
+To give another reason, that is because a simple extension is algebraic if and only if it is finite.
+\end{ex}
+\begin{ex}
+Finite extensions are not only the algebraic extensions.
+For examples,
+\[\Q(\sqrt2,\sqrt[4]2,\sqrt[8]2,\cdots),\c{or}\Q(\sqrt2,\sqrt3,\sqrt5,\sqrt7,\cdots)\]
+are infinite algebraic extensions.
+\end{ex}
 
 
 
@@ -392,7 +463,7 @@ The set of algebraic elements is algebraically closed.
 
 This is a relation with relative algebraic closure: the relative algebraic closure in a algebraically closed field is really an algebraically closure.
 The proposition allows us to choose a standard algebraic closure when provided a large superfield like $\C$.
-In number theory, algebraically closed fields are all considered to be in $\C$. 
+In number theory, it is convenient for all algebraically closed fields to be considered that they are in $\C$. 
 
 \begin{ex}
 The set of all complex numbers $\C$ is an algebraically closed field by the fundamental theorem of algebra.
@@ -495,10 +566,11 @@ In fact, this $K_1$ is already algebraically closed, but it is hard to prove dir
 
 
 
-\section{Separable extensions}
+\section{Separable extension}
 
+The most fields considered in mathematics is separable.
 
-
+\subection{Separable polynomial}
 \begin{defn}
 A polynomial $f\in F[x]$ is called \emph{separable} if it is square-free in $\cl F[x]$.
 An element $\alpha\in\cl F'$ is called \emph{separable} over $F$ if $\mu_{\alpha,F}$ is separable.
@@ -508,17 +580,26 @@ An element $\alpha\in\cl F'$ is called \emph{separable} over $F$ if $\mu_{\alpha
 A field extension $E/F$ is called \emph{separable} if all elements in $E$ is separable over $F$.
 \end{defn}
 
+separable degree
+
+differentiation
 
 
 
-\begin{defn}
-The \emph{index} of a field extension $E/F$ is the number of field homomorphisms $E\to\cl F$ fixing $F$.
+\subsection{Separable closure}
+
+
+
+\subsection{Separable degree}
+
+\begin{thm}
+The separable degree of a field extension $E/F$ is the number of field homomorphisms $E\to\cl F$ fixing $F$.
 It is denoted by $\{E:F\}$.
-\end{defn}
+\end{thm}
 
-\begin{prop}
+\begin{lem}
 All roots of an irreducible polynomial has same multiplicity.
-\end{prop}
+\end{lem}
 \begin{pf}
 %%%
 \end{pf}
@@ -532,11 +613,16 @@ Then,
 %%%
 \end{pf}
 
+\begin{thm}
+A finite field extension $E/F$ is separable if and only if
+\[\{E:F\}=[E:F].\]
+\end{thm}
+\begin{pf}
+%%%
+\end{pf}
 
 
-
-
-\subsection{Separable closures}
+multiplcation formula
 
 
 
@@ -552,7 +638,10 @@ Then,
 
 
 
-\section{Normal extensions}
+\section{Normal extension}
+\subsection{Automorphism group}
+
+\subsection{Normal extension}
 
 
 
@@ -562,8 +651,7 @@ Then,
 
 
 
-
-\section{Computation of Galois groups}
+\section{Galois theory}
 
  * reducible case, irreducible<=>transitivity
  * resolvent polynomial1: discriminant
