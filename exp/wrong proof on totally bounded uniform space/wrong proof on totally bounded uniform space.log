@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99991 (TeX Live 2014/W32TeX) (preloaded format=xelatex 2015.4.30)  16 JUN 2019 18:08
+This is XeTeX, Version 3.14159265-2.6-0.99991 (TeX Live 2014/W32TeX) (preloaded format=xelatex 2015.4.30)  28 JUN 2019 22:53
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -285,12 +285,12 @@ Package: xparse 2014/11/25 v5471 L3 Experimental document command parser
 .................................................
 . LaTeX info: "xparse/define-command"
 . 
-. Defining command \Case with sig. ' r[] +g ' on line 58.
+. Defining command \Case with sig. 'r[]+g' on line 71.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
 . 
-. Defining command \Step with sig. ' r[] +g ' on line 59.
+. Defining command \Step with sig. 'r[]+g' on line 72.
 .................................................
 
 (c:/Program Files (x86)/texlive/2014/texmf-dist/tex/latex/enumitem/enumitem.sty
@@ -672,32 +672,32 @@ File: pgflibraryarrows.meta.code.tex 2013/12/13 v3.0.0 (rcs-revision 1.12)
 .................................................
 . LaTeX info: "xparse/define-environment"
 . 
-. Defining environment 'cd' with sig. '' on line 125.
+. Defining environment 'cd' with sig. '' on line 130.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-environment"
 . 
-. Defining environment 'es' with sig. '' on line 134.
+. Defining environment 'es' with sig. '' on line 139.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-environment"
 . 
-. Defining environment 'rd' with sig. '' on line 140.
+. Defining environment 'rd' with sig. '' on line 145.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
 . 
-. Defining command \pd with sig. ' o g g g ' on line 186.
+. Defining command \pd with sig. 'oggg' on line 184.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
 . 
-. Defining command \dd with sig. ' o g g g ' on line 195.
+. Defining command \dd with sig. 'oggg' on line 193.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-environment"
 . 
-. Defining environment 'syseq' with sig. 's' on line 226.
+. Defining environment 'pde' with sig. 's' on line 226.
 .................................................
 
 (c:/Program Files (x86)/texlive/2014/texmf-dist/tex/latex/mathtools/empheq.sty
@@ -753,42 +753,42 @@ LaTeX Info: Thecontrolsequence`\]'isalreadyrobust on input line 129.
 .................................................
 . LaTeX info: "xparse/define-environment"
 . 
-. Defining environment 'syseqs' with sig. '' on line 242.
+. Defining environment 'pdes' with sig. '' on line 242.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
 . 
-. Defining command \abs with sig. 'm' on line 299.
+. Defining command \abs with sig. 'm' on line 274.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
 . 
-. Defining command \norm with sig. 'm' on line 300.
+. Defining command \norm with sig. 'm' on line 275.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
 . 
-. Defining command \flr with sig. 'm' on line 301.
+. Defining command \flr with sig. 'm' on line 276.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
 . 
-. Defining command \ceil with sig. 'm' on line 302.
+. Defining command \ceil with sig. 'm' on line 277.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
 . 
-. Defining command \inn with sig. 'mg' on line 303.
+. Defining command \inn with sig. 'mg' on line 278.
 .................................................
 .................................................
 . LaTeX info: "xparse/redefine-command"
 . 
-. Redefining command \to with sig. 'g' on line 341.
+. Redefining command \to with sig. 'g' on line 318.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
 . 
-. Defining command \evalat with sig. 'mmg' on line 375.
+. Defining command \evalat with sig. 'mmg' on line 347.
 .................................................
 ) (./wrong proof on totally bounded uniform space.aux)
 \openout1 = `"wrong proof on totally bounded uniform space.aux"'.
@@ -858,36 +858,21 @@ LaTeX Info: Redefining \] on input line 6.
 \tf@toc=\write4
 \openout4 = `"wrong proof on totally bounded uniform space.toc"'.
 
-
-
-LaTeX Warning: Citation `willard2004general' on page 1 undefined on input line 
-43.
-
-[1] [2]
+ [1] [2]
 LaTeX Font Info:    Try loading font information for U+euf on input line 115.
 
 (c:/Program Files (x86)/texlive/2014/texmf-dist/tex/latex/amsfonts/ueuf.fd
 File: ueuf.fd 2013/01/14 v3.01 Euler Fraktur
 )
-[3]
-
-LaTeX Warning: Citation `frank1965totally' on page 4 undefined on input line 19
-6.
-
-[4]
-No file "wrong proof on totally bounded uniform space".bbl.
-[5] (./wrong proof on totally bounded uniform space.aux)
-
-LaTeX Warning: There were undefined references.
-
- ) 
+[3] [4] (./wrong proof on totally bounded uniform space.bbl [5]) [6]
+(./wrong proof on totally bounded uniform space.aux) ) 
 Here is how much of TeX's memory you used:
- 20733 strings out of 493724
- 418714 string characters out of 6141171
- 441837 words of memory out of 5000000
- 23617 multiletter control sequences out of 15000+600000
- 12793 words of font info for 49 fonts, out of 8000000 for 9000
+ 20742 strings out of 493724
+ 418808 string characters out of 6141171
+ 441833 words of memory out of 5000000
+ 23624 multiletter control sequences out of 15000+600000
+ 13094 words of font info for 50 fonts, out of 8000000 for 9000
  1489 hyphenation exceptions out of 8191
  68i,8n,84p,10418b,404s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on wrong proof on totally bounded uniform space.pdf (5 pages).
+Output written on wrong proof on totally bounded uniform space.pdf (6 pages).

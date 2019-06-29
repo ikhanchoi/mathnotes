@@ -9,7 +9,7 @@
 
 \chapter{Carath\'eodory's theory}
 
-\section{$\sigma$-algebras}
+\section{\texorpdfstring{$\sigma$}{Lg}-algebras}
 \begin{defn}
 Let $X$ be a set.
 A \emph{ring of sets} is a family of subsets of $X$ that is closed under finite union and finite relative complement; in other words, $\cR\subset\cP(X)$ is called a ring of sets if the following two conditions are satisfied:
@@ -181,27 +181,68 @@ In particular, there always exists a ``continuous characteristic function'' $\ph
 
 There are two Riesz-Markov-Kakutani theorems: the first theorem describes the positive elements in $C_c(X)^*$ as Radon measures when the natural colimit topology is assumed, and the second theorem describes $C_c(X)^*$ as the space of finite Radon measures when uniform topology is assumed.
 
-\subsection{The first theorem}
+\subsection{Positive linear functional}
 Positivity of linear functional itself implies a rather strong continuity property.
 \begin{thm}
 Let $X$ be a locally compact Hausdorff space.
-If a linear functional on $C_c(X)$ is positive, then it is continuous with respect to the colimit topology.
+If a linear functional on $C_c(X)$ is positive, then it is continuous with respect to the inductive topology.
 \end{thm}
 \begin{pf}
 Let $I$ be a positive linear functional on $C_c(X)$.
-We want to show that on every compact subset $K$ of $X$ we have $|I(f)|\les_K\|f\|$ for all $f\in C_K(X)$.
-The proof idea comes from the H\"older inequality $|\int_K f\,d\mu|\le\mu(K)\|f\|$.
-
-Choose $\phi\in C_c(X)$ such that $\phi|_K=1$ using the Urysohn lemma.
-Since $f=\phi f\le I(\phi)\|f\|$, we have
-\[I(f)\le I(\phi\|f\|)=I(\phi)\|f\|.\]
-Putting $-f$ instead of $f$, we also get $-I(f)\le I(\phi)\|f\|$.
-Therefore, $|I(f)|\le I(\phi)\|f\|$.
+Take a open subset $U$ of $X$ that has a compact closure.
+Choose a nonnegative $\phi\in C_c(X)$ such that $\phi|_{\cl{U}}=1$ using the Urysohn lemma.
+Since
+\[|I(f)|\le I(|f|)=I(\phi|f|)\le I(\phi\|f\|)=I(\phi)\|f\|_{\sup}\]
+for $f\in C_c(U)$,
+\[\|I\|_{C_c^*(U)}\le I(\phi)<\oo.\]
 \end{pf}
 
+Borel regular measure is tight on every measurable set.
 
 
+\subsubsection{Proof of the first theorem}
+A regular measure of an open set $U$ can be realized by the norm of integration functional on $C_c(U)$.
+\begin{lem}
+Let $\mu$ be a Borel regular measure on a locally compact Hausdorff space $X$.
+Then,
+\[\mu(U)=\|I_\mu\|_{C_c^*(U)}\]
+for every open $U$ in $X$, where $I_\mu$ is a linear functional on $C^c(U)$ defined by
+\[I_\mu(f):=\int f\,d\mu.\]
+\end{lem}
+\begin{pf}
+($\ge$)
+For $f\in C_c(U)$, we have
+\[|\int f\,d\mu|=|\int_Uf\,d\mu|\le\mu(U)\|f\|_{\sup}.\]
 
+($\le$)
+Since $\mu$ is tight on $U$, there is $K\in U$ such that $\mu(U\setminus K)<\e$.
+By the construction of Uryshon, we can find a nonnegative function $f\in C_c(U)$ with $f|_K \equiv 1$ and $\|f\|_{C_c(U)} = 1$ so that
+\[\mu(K) \le \int f\,d\mu. \]
+Thus,
+\[ \mu(U)-\e < \int f\,d\mu \le \|I_\mu\|_{C_c(U)} \]
+for arbitrary $\e>0$.
+\end{pf}
+
+\begin{thm}[The Riesz-Markov-Kakutani representation theorem]
+Let $X$ be a locally compact Hausdorff space.
+Let $I:C_c(X)\to\R$ be a positive linear functional.
+Then, there is a unique Radon measure $\mu$ on $X$ such that
+\[I(f)=\int f\,d\mu.\]
+\end{thm}
+Note that any continuity of $I$ is not assumed except positivity.
+\begin{pf}
+For existence, define $\mu$ by
+\[ \mu(U) := \|I\|_{C_c^*(U)} \]
+for open sets and
+\[ \mu(E) := \inf_{U\supset E}\mu(E)\]
+for Borel sets.
+We need to show
+\begin{cond}
+\item countable additivityt
+\item inner regularity
+\item $I(f)=\int f\,d\mu$.
+\end{cond}
+\end{pf}
 
 Jordan decomposition: $(C_0(X),\|\cdot\|)^*=(C_c(X),\|\cdot\|)^*\subset(C_c(X),\lim_{\to})^*$
 converse?
