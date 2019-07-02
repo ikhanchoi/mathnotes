@@ -230,11 +230,10 @@
 \ExplSyntaxOff
 
 % align이나 alignat이 environment에 들어가서 \end{pdes}를 뺏어버렸다.... 언제 고치지
-\RequirePackage[overload]{empheq}
 \NewDocumentEnvironment{pdes}{}
 {
   \begin{subequations}
-  \begin{alignat}{2}[left={\empheqlbrace\,}]
+  \begin{alignat}{2}
 }
 {
   \end{alignat}
