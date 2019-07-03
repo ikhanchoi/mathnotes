@@ -765,7 +765,7 @@ H_n(C;G)&=\ker(\coker\pd_{n+1}\tn G\to\im(\pd_n\tn1_G))\\
 \end{pf}
 
 
-\section{Estimates}
+\section{Analysis problems}
 
 \begin{thm}
 The following series diverges: \[\sum_{n=1}^\infty\frac1{n^{1+|\sin n|}}.\]
@@ -810,6 +810,67 @@ we have for any $\e>0$
 \[\limsup_{x\to\infty}|f(x)-L|\le\e\]
 where $a$ is defined by $\frac{x-a}a=\frac\e M$.
 \end{pf}
+
+
+\begin{thm}
+Let $f_n:I\to I$ be a sequence of real functions that satisfies $|f_n(x)-f_n(y)|\le|x-y|$ whenever $|x-y|\ge\frac1n$, where $I=[0,1]$.
+Then, it has a uniformly convergent subsequence.
+\end{thm}
+\begin{pf}
+By the Bolzano-Weierstrass theorem and the diagonal argument for subsequence extraction, we may assume that $f_n$ converges to a function $f:\Q\cap I\to I$ pointwisely.
+
+\Step[1]{A kind of continuity.}
+We claim
+\[|x-y|\le\frac1n\impl|f_n(x)-f_n(y)|\le\frac5n.\]
+
+\Step[2]{$f$ is uniformly continuous.}
+For $\e>0$, let $N:=\ceil{\frac{15}\e}$.
+We claim
+\[n>N,\ |x-y|\le\frac1N\impl|f_n(x)-f_n(y)|\le\frac\e3.\]
+We can have two cases:
+\[|x-y|\le\frac1n,\c{or}\frac1n<|x-y|\le\frac1N.\]
+For the former case, by the inequality proved in Step 1, we have
+\[|f_n(x)-f_n(y)|\le\frac5n<\frac5N\le\frac\e3.\]
+For the latter case, by the assumption at the beginning, we have
+\[|f_n(x)-f_n(y)|\le|x-y|\le\frac1N<\frac\e3.\]
+Hence the claim is proved.
+
+Take $\delta:=\frac1N$.
+We need to show
+\[|x-y|<\delta\impl|f(x)-f(y)|<\e\]
+for $x,y\in\Q$.
+Fix rational numbers $x$ and $y$ in $I$ which satisfy $|x-y|<\delta$.
+Since $f_n(x)$ and $f_n(y)$ converges to $f(x)$ and $f(y)$ respectively, we may take an integer $n_x$ and $n_y$, such that
+\[n>n_x\impl |f_n(x)-f(x)|<\frac\e3\]
+and
+\[n>n_y\impl |f_n(y)-f(y)|<\frac\e3.\]
+Choosing an integer $n$ such that $n>\max\{n_x,n_y,N\}$, we have
+\[n>n_x,\quad n>n_y,\c{and} n>N,\ |x-y|<\frac1N,\]
+so an inequality follows:
+\[|f(x)-f(y)|\le\frac\e3+\frac\e3+\frac\e3=\e.\]
+
+Since $f$ is continuous on a dense subset $\Q\cap I$, it has a unique continuous extension on the whole $I$.
+Let it denoted by the same notation $f$.
+
+\Step[3]{$f_n\to f$ uniformly.}
+For $\e>0$, let $N:=\ceil{\frac{15}\e}$.
+The uniform continuity of $f$ allows to have $\delta>0$ such that
+\[|x-y|<\delta\impl|f(x)-f(y)|<\frac23\e.\]
+Take a rational $r\in I$, depending on $x\in I$, such that $|x-r|<\min\{\frac1N,\delta\}$.
+
+Then, given $n>N$, we have an inequality
+\begin{align*}
+|f_n(x)-f(x)|&\le|f_n(x)-f_n(r)|+|f_n(r)-f(r)|+|f(r)-f(x)|\\
+&<\frac\e3+|f_n(r)-f(r)|+\frac23\e
+\end{align*}
+for any $x\in I$.
+By limiting $n\to\oo$, we obtain
+\[\lim_{n\to\oo}|f_n(x)-f(x)|<\e.\]
+Since $\e$ and $x$ are arbitrary, we can deduce the uniform convergence of $f_n$ as $n\to\oo$.
+\end{pf}
+
+
+
 
 
 %%%
