@@ -17,14 +17,14 @@
 
 \subsection{Manifold and Atlas}
 \begin{defn}
-A \emph{locally Euclidean space} $M$ of dimension $m$ is a Hausdorff topological space $M$ for which each point $x\in M$ has a neighborhood $U$ homeomorphic to an open subset of $\Bbb{R}^d$.
+A \emph{locally Euclidean space} $M$ of dimension $m$ is a Hausdorff topological space $M$ for which each point $x\in M$ has a neighborhood $U$ homeomorphic to an open subset of $\mathbb{R}^d$.
 \end{defn}
 \begin{defn}
 A \emph{manifold} is a locally Euclidean space satisfying the one of following equivalent conditions: second countability, blabla%
 \end{defn}
 
 \begin{defn}
-A \emph{chart} or a \emph{coordinate system} for a locally Euclidean space is a map $\varphi$ is a homeomorphism from an open set $U\subset M$ to an open subset of $\Bbb{R}^d$.
+A \emph{chart} or a \emph{coordinate system} for a locally Euclidean space is a map $\varphi$ is a homeomorphism from an open set $U\subset M$ to an open subset of $\mathbb{R}^d$.
 A chart is often written by a pair $(U,\varphi)$.
 \end{defn}
 
@@ -64,7 +64,7 @@ A \emph{differentiable structure} on $M$ is a maximal differentiable atlas.
 
 To differentiate a function on a flexible manofold, first we should define the differentiability of a function.
 A differentiable structure, which is usually defined by a maximal differentiable atlas, is roughly a collection of differentiable functions on $M$.
-When the charts is already equipped on $M$, it is natural to define a function $f\colon M\to\Bbb{R}$ differentiable if the functions $f\circ\varphi^{-1}\colon\Bbb{R}^d\to\Bbb{R}$ is differentiable.
+When the charts is already equipped on $M$, it is natural to define a function $f\colon M\to\R$ differentiable if the functions $f\circ\varphi^{-1}\colon\R^d\to\R$ is differentiable.
 
 The gluing condition makes the differentiable function for a chart is also differentiable for any charts because $f\circ\varphi_\alpha^{-1}=(f\circ\varphi_\beta^{-1})\circ(\varphi_\beta\circ\varphi_\alpha^{-1})
 =(f\circ\varphi_\beta^{-1})\circ\tau_{\alpha\beta}$.
@@ -811,6 +811,7 @@ we have for any $\e>0$
 where $a$ is defined by $\frac{x-a}a=\frac\e M$.
 \end{pf}
 
+\clearpage
 
 \begin{thm}
 Let $f_n:I\to I$ be a sequence of real functions that satisfies $|f_n(x)-f_n(y)|\le|x-y|$ whenever $|x-y|\ge\frac1n$, where $I=[0,1]$.
@@ -819,46 +820,55 @@ Then, it has a uniformly convergent subsequence.
 \begin{pf}
 By the Bolzano-Weierstrass theorem and the diagonal argument for subsequence extraction, we may assume that $f_n$ converges to a function $f:\Q\cap I\to I$ pointwisely.
 
-\Step[1]{A kind of continuity.}
-We claim
-\[|x-y|\le\frac1n\impl|f_n(x)-f_n(y)|\le\frac5n.\]
+\Step[1]
+For $n\ge4$, we claim
+\begin{align}|x-y|\le\frac1n\impl|f_n(x)-f_n(y)|\le\frac5n.\end{align}
+Fix $x\in I$ and take $z\in I$ such that $|x-z|=\frac2n$ so that
+\[|f_n(x)-f_n(z)|\le|x-z|=\frac2n.\]
+If $y$ satisfies $|x-y|\le\frac1n$, then we have $|y-z|\ge|x-z|-|x-y|\ge\frac1n$, so we get
+\[|f_n(y)-f_n(z)|\le|y-z|\le|y-x|+|x-z|\le\frac3n.\]
+Combining these two inequalities proves what we want.
 
-\Step[2]{$f$ is uniformly continuous.}
-For $\e>0$, let $N:=\ceil{\frac{15}\e}$.
-We claim
-\[n>N,\ |x-y|\le\frac1N\impl|f_n(x)-f_n(y)|\le\frac\e3.\]
-We can have two cases:
-\[|x-y|\le\frac1n,\c{or}\frac1n<|x-y|\le\frac1N.\]
-For the former case, by the inequality proved in Step 1, we have
+\Step[2]
+For $\e>0$ and $N:=\ceil{\frac{15}\e}$ we claim
+\begin{align}|x-y|\le\frac1N\p{and}n>N\impl|f_n(x)-f_n(y)|\le\frac\e3\end{align}
+when $N\ge4$.
+It is allowed for $|x-y|$ to have the following two cases:
+\[|x-y|\le\frac1n\c{or}\frac1n<|x-y|\le\frac1N.\]
+For the former case, by the inequality (1) we have
 \[|f_n(x)-f_n(y)|\le\frac5n<\frac5N\le\frac\e3.\]
-For the latter case, by the assumption at the beginning, we have
-\[|f_n(x)-f_n(y)|\le|x-y|\le\frac1N<\frac\e3.\]
+For the latter case, by the assumption at the beginning of the problem, we have
+\[|f_n(x)-f_n(y)|\le|x-y|\le\frac1N\le\frac\e{15}.\]
 Hence the claim is proved.
 
-Take $\delta:=\frac1N$.
-We need to show
+\Step[3]
+We will prove $f$ is uniformly continuous.
+For $\e>0$, take $\delta:=\frac1N$, where $N:=\ceil{\frac{15}\e}$.
+We will show
 \[|x-y|<\delta\impl|f(x)-f(y)|<\e\]
-for $x,y\in\Q$.
+for $x,y\in\Q\cap I$ and $N\ge4$.
 Fix rational numbers $x$ and $y$ in $I$ which satisfy $|x-y|<\delta$.
 Since $f_n(x)$ and $f_n(y)$ converges to $f(x)$ and $f(y)$ respectively, we may take an integer $n_x$ and $n_y$, such that
-\[n>n_x\impl |f_n(x)-f(x)|<\frac\e3\]
+\begin{align}n>n_x\impl |f_n(x)-f(x)|<\frac\e3\end{align}
 and
-\[n>n_y\impl |f_n(y)-f(y)|<\frac\e3.\]
-Choosing an integer $n$ such that $n>\max\{n_x,n_y,N\}$, we have
-\[n>n_x,\quad n>n_y,\c{and} n>N,\ |x-y|<\frac1N,\]
-so an inequality follows:
-\[|f(x)-f(y)|\le\frac\e3+\frac\e3+\frac\e3=\e.\]
+\begin{align}n>n_y\impl |f_n(y)-f(y)|<\frac\e3.\end{align}
+Choose an integer $n$ such that $n>\max\{n_x,n_y,N\}$.
+Then, combining (3), (2), and (4), we obtain
+\begin{align*}
+|f(x)-f(y)|&\le|f(x)-f_n(x)|+|f_n(x)-f_n(y)|+|f_n(y)-f(y)|\\
+&<\frac\e3+\frac\e3+\frac\e3=\e.
+\end{align*}
 
 Since $f$ is continuous on a dense subset $\Q\cap I$, it has a unique continuous extension on the whole $I$.
 Let it denoted by the same notation $f$.
 
-\Step[3]{$f_n\to f$ uniformly.}
+\Step[4]
+Finally, we are going to show $f_n\to f$ uniformly.
 For $\e>0$, let $N:=\ceil{\frac{15}\e}$.
 The uniform continuity of $f$ allows to have $\delta>0$ such that
-\[|x-y|<\delta\impl|f(x)-f(y)|<\frac23\e.\]
+\begin{align}|x-y|<\delta\impl|f(x)-f(y)|<\frac23\e.\end{align}
 Take a rational $r\in I$, depending on $x\in I$, such that $|x-r|<\min\{\frac1N,\delta\}$.
-
-Then, given $n>N$, we have an inequality
+Then, by (2) and (5), given $n>N\ge4$, we have an inequality
 \begin{align*}
 |f_n(x)-f(x)|&\le|f_n(x)-f_n(r)|+|f_n(r)-f(r)|+|f(r)-f(x)|\\
 &<\frac\e3+|f_n(r)-f(r)|+\frac23\e

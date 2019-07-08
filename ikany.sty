@@ -69,7 +69,7 @@
 \newenvironment{note}[1][\unskip]{\begin{proof}[Note #1]\renewcommand{\qedsymbol}{}}{\end{proof}}
 \newenvironment{idea}[1][\unskip]{\begin{proof}[Proof idea #1]\renewcommand{\qedsymbol}{}}{\end{proof}}
 \NewDocumentCommand{\Case}{r[]+g}{\IfNoValueTF{#2}{\emph{Case #1.}}{\emph{Case #1: #2.}}}
-\NewDocumentCommand{\Step}{r[]+g}{\emph{Step #1: #2.}}
+\NewDocumentCommand{\Step}{r[]+g}{\IfNoValueTF{#2}{\emph{Step #1.}}{\emph{Step #1: #2.}}}
 
 \ifx\thisisprbcls\undefined\else
   \renewcommand{\theprb}{\arabic{section}.\arabic{prb}}
@@ -306,11 +306,11 @@
 \def\bigtn{\bigotimes}
 
 % Texts - prepositions and conjunctions
-\newcommand\p[1]{\text{ #1 }}
-\newcommand\st{\p{s.t.}}
 \def\cc{\c c} % french c
 \def\cC{\c C} % french C
 \renewcommand\c[1]{\quad\text{#1}\quad}
+\newcommand\p[1]{\enspace\text{#1}\enspace}
+\newcommand\st{\p{s.t.}}
 
 % Arrows
 \let\@@to\to

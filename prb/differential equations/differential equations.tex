@@ -14,20 +14,40 @@
 
 
 \begin{prb}
-Let $m$, $b$, and $k$ be a positive constant such that $b^2-4mk<0$.
-Consider an underdamped oscillatior with sinusoidal driving force
+Let $m$, $b$, $k$, $A$, and $\omega$ be positive real constants.
+Consider an underdamped oscillatior with sinusoidal driving force, which is descibed by the following second order ordinary differential equation.
 \[m\ddot x+b\dot x+kx=A\sin\omega t,\qquad x(0)=x_0,\ \dot x(0)=0.\]
-For convenience, define positive constants $\beta:=\frac b{2m}$, $\omega_0:=\sqrt{\frac km}$, and $\omega_1:=\sqrt{\omega_0^2-\beta^2}$.
-
-The solution of this equation when $A=0$ is called the complementary solution and is given by
-\[x_c(t)=x_0e^{-\beta t}\cos\omega_1t.\]
+For convenience, define $\omega_0:=\sqrt{\frac km}$.
 \begin{cond}
-\item
+\item The solution of this equation when given the free oscillation condition $A=0$ has the form
+\[x_c(t)=x_0e^{-\beta t}\cos\omega_1t.\]
+Compute the constants $\beta$ and $\omega_1$.
+This solution is called the \emph{complementary solution}.
+\item Show that the contemporary solution is asymptotically stable, i.e.
+\[\lim_{t\to\oo}x_c(t)=0.\]
+\item Show that the solution decays most fastly at $\beta=\omega_0$.
 \item Find the value of $\omega$ such that the amplitude of particular solution is maximized.
+
 \end{cond}
 \end{prb}
 
+\begin{sol}
+\item $\beta=\frac b{2m}$, $\omega_1=\sqrt{\omega_0^2-\beta^2}$.
+\item 
+\end{sol}
 
+
+
+\begin{prb}
+Let $\Omega$ be a bounded Lipschitz domain.
+Consider an eigenvalue problem
+\begin{pde*}
+-\Delta u&=\lambda u, \: \p{in}x\in\Omega,\\
+u&=0, \: \p{on}x\in\bd\Omega.
+\end{pde*}
+
+
+\end{prb}
 
 
 
