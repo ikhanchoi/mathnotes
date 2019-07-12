@@ -11,7 +11,7 @@
 
  %   \let\foo\bar             -> copy the value of \bar and paste to \foo
  %   \def\foo{\bar}           -> consider \foo as an alternative command of \bar
- %   \newcommand\foo{\bar}    -> basically sam with \def but (1) check if it is defined, (2) can get optional arguments
+ %   \newcommand\foo{\bar}    -> basically sam with \def but (1) check if defined, (2) can get optional arguments
  
  %   Argument specification in xparse package
  %   m:            {mandatory}
@@ -208,7 +208,7 @@
 %
 % Example Code:
 %	\begin{pde*}{\label{eq:heat}}
-%	\pd_tu-\Delta u &= 0,  \: \p{in}\R_x\x\R_t,\\
+%	\pd_tu-\Delta u &= 0,  \: \p{in} \R_x\x\R_t,\\
 %	      u(x,0) &= f(x),  \:
 %	\end{pde*}
 %
@@ -240,6 +240,18 @@
   \end{subequations}
 }
 
+\NewDocumentEnvironment{de}{s} % number it as a single equation
+{
+  \renewcommand\:{&\qquad&}
+  \IfBooleanTF{#1}
+    {\alignat{2}}
+    {\alignat*{2}}
+}
+{
+  \IfBooleanTF{#1}
+    {\endalignat}
+    {\endalignat*}
+}
 
 
 
@@ -467,15 +479,17 @@
 \def\fu{\mathfrak{u}}
 
 % Lie theory
-\newcommand{\fgl}{\mathfrak{gl}}
-\newcommand{\fsl}{\mathfrak{sl}}
-\newcommand{\fso}{\mathfrak{so}}
-\newcommand{\fsu}{\mathfrak{su}}
+\def\fgl{\mathfrak{gl}}
+\def\fsl{\mathfrak{sl}}
+\def\fso{\mathfrak{so}}
+\def\fsu{\mathfrak{su}}
+
 \newcommand{\GL}{\mathrm{GL}}
+\newcommand{\OO}{\mathrm{O}}
+\newcommand{\UU}{\mathrm{U}}           % \U : collide with beamer, hyperref
 \newcommand{\SL}{\mathrm{SL}}
 \newcommand{\SO}{\mathrm{SO}}
 \newcommand{\SU}{\mathrm{SU}}
-%\newcommand{\U}{\mathrm{U}}                   % beamer충돌, hyperref충돌
 \newcommand{\PGL}{\mathrm{PGL}}
 \newcommand{\PSL}{\mathrm{PSL}}
 \newcommand{\PSO}{\mathrm{PSO}}
@@ -492,6 +506,7 @@
 \DeclareMathOperator{\adj}{adj}
 \DeclareMathOperator{\Ann}{Ann}
 \DeclareMathOperator*{\argmax}{arg\,max}
+\DeclareMathOperator*{\argmin}{arg\,min}
 \DeclareMathOperator{\Aut}{Aut}
 \DeclareMathOperator{\Ban}{Ban}
 \DeclareMathOperator{\Char}{char}
