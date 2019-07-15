@@ -14,21 +14,44 @@ The AI paradigm changes when a new approximating method is discovered.
 \section{Update of parameters}
 
 \subsection{Gradient descent method}
-ascending stochastic gradient
+
 
 
 \subsection{Back propagation}
-Consider
-\[b=\sigma(wa),\quad c=\sigma(Wb),\quad J=J(c).\]
+Backpropagation refers to algorithms to train the weight matrices for minimizing the cost function $J$, which does not depend explicitly on any variables except the last layer vector $a^{(n)}$.
+However, since $J$ is a function of the weight matrices implicitly, via $a^{(n)}$, we may find the representation of the gradiant of $J$ as viewing it as a function on the space of weight matrices of each given layer.
+In other words, we want to find the coefficients of the differential form $dJ$ on the basis $\{dW_{ij}^{(n-1)}\}_{i,j}$, $\{dW_{jk}^{(n-2)}\}_{j,k}$, or $\{dW_{kl}^{(n-3)}\}_{k,l}$, and so on.
 
-We have
-\[\pd{c^k}{b^j}=[c^k(1-c^k)]\cdot W_j^k\quad\text{and}\quad\pd{c^k}{W_j^k}=[c^k(1-c^k)]\cdot b^j.\]
+Recall the definitions:
+\[a_i^{(n)}=\sigma\left(\sum_jW_{ij}^{(n-1)}a_j^{(n-1)}\right).\]
+Since the derivative of the sigmoid function is given by $\sigma'=\sigma-\sigma^2$, we can compute the following auxiliary relations
+\[\pd{a_i^{(n)}}{a_j^{(n-1)}}=h(a_i^{(n)})W_{ij}^{(n-1)}\c{and}\pd{a_i^{(n)}}{W_{i'j}^{(n-1)}}=\delta_{ii'}h(a_i^{(n)})a_j^{(n-1)},\]
+where $h(x)=x-x^2$.
 
-Let $J$ be the objectivity function.
-Then,
-\[dJ=\pd{J}{c^k}\pd{c^k}{W_j^k}\,dW_j^k=\pd{J}{c^k}[c^k(1-c^k)]b^j\,dW_j^k,\]
-and
-\[dJ=\pd{J}{c^k}\pd{c^k}{b^j}\pd{b^j}{w_i^j}\,dw_i^j=\pd{J}{c^k}\cdot[c^k(1-c^k)]W_j^k\cdot[b^j(1-b^j)]a^i\,dw_i^j.\]
+Then, we can compute
+\[dJ=\sum_i\pd{J}{a_i^{(n)}}\sum_j\pd{a_i^{(n)}}{W_{ij}^{(n-1)}}\,dW_{ij}^{(n-1)}=\sum_{i,j}\pd{J}{a_i^{(n)}}h(a_i^{(n)})a_j^{(n-1)}\,dW_{ij}^{(n-1)},\]
+which implies
+\[\del J(W^{(n-1)})=\left[\pd{J}{a_i^{(n)}}h(a_i^{(n)})a_j^{(n-1)}\right]\pd{W_{ij}^{(n-1)}}.\]
+Note that it is a function of $a_i$ and $a_j$.
+The gradient descent method will take
+\[{W_{ij}^{(n-1)}}^+:=W_{ij}^{(n-1)}-\alpha\cdot\pd{J}{a_i^{(n)}}h(a_i^{(n)})a_j^{(n-1)}\]
+with a proper parameter $\alpha>0$.
+
+By the same reason,
+\begin{align*}
+dJ&=\sum_{i,j,k}\pd{J}{a_i^{(n)}}\pd{a_i^{(n)}}{a_j^{(n-1)}}\pd{a_j^{(n-1)}}{W_{jk}^{(n-2)}}\,dW_{jk}^{(n-2)}\\
+&=\sum_{i,j,k}\pd{J}{a_i^{(n)}}\cdot h(a_i^{(n)})W_{ij}^{(n-1)}\cdot h(a_j^{(n-1)})a_k^{(n-2)}\,dW_{jk}^{(n-2)},
+\end{align*}
+which implies
+\[\del J(W^{(n-2)})=\left[\sum_i\pd{J}{a_i^{(n)}}\cdot h(a_i^{(n)})W_{ij}^{(n-1)}\cdot h(a_j^{(n-1)})a_k^{(n-2)}\right]\pd{W_{jk}^{(n-2)}}.\]
+Therefore, the gradient descent method will take
+\begin{align*}
+{W_{jk}^{(n-2)}}^+:&=W_{jk}^{(n-2)}-\alpha\cdot\sum_i\pd{J}{a_i^{(n)}}h(a_i^{(n)})W_{ij}^{(n-1)}h(a_j^{(n-1)})a_k^{(n-2)}\\
+&=W_{jk}^{(n-2)}+(1-a_j^{(n-1)})a_k^{(n-2)}\sum_i({W_{ij}^{(n-1)}}^+-W_{ij}^{(n-1)})W_{ij}^{(n-1)}.
+\end{align*}
+In similar way,
+\[{W_{kl}^{(n-3)}}^+:=W_{kl}^{(n-3)}+(1-a_k^{(n-2)})a_l^{(n-3)}\sum_i({W_{jk}^{(n-2)}}^+-W_{jk}^{(n-2)})W_{jk}^{(n-2)}(?)\]
+
 
 
 
@@ -46,16 +69,21 @@ Write
 By the law of large numbers, $\frac1n\log L_n(\theta)$ converges to a constant function
 \[\E(\log f_\theta(x))=\int_Xf\log f_\theta\]
 in measure as $n\to\oo$.
+This constant function is exactly what we call \emph{cross entropy}.
 
-By the Jensen inequality, 
+The \emph{Kullback-Leibler divergence} is a kind of asymmetric distance function defined from the difference with cross entropy
+\[D_{KL}(f\|f_\theta):=\int_Xf\log f-\int_Xf\log f_\theta.\]
+It is proved to be always nonnegative by the Jensen inequality: 
 \[\int_Xf\log f_\theta-\int_Xf\log f=\int_Xf\log\frac{f_\theta}f\le\log\left(\int_Xf\frac{f_\theta}f\right)=0.\]
-Exclude the region $f=0$ from the integration region.
-In other words, bigger $L_n(\theta)$ is, closer $f_\theta$ and $f$ are.
+Here, we exclude the region $f=0$ from the integration region.
+Then, we can say, bigger $L_n(\theta)$ is, closer $f_\theta$ and $f$ are.
 
 
 
 
 \section{Generative adversarial networks}
+
+\iffalse
 Let $X$ be the set of all images having a given pixel size.
 Suppose the data distribution $p_{data}$ on $X$ which embodies learning materials is given.
 If $x\in X$ is an image that looks like a real human face, then the distribution(mass) function $p_{data}$ has nonnegligible values near the point $x$.
@@ -74,7 +102,7 @@ and $p_g$ minimize
 
 
 Balancing the convergence rates between $p_g$ and $D$ is important.
-
+\fi
 
 
 
