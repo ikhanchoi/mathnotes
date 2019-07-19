@@ -1,36 +1,61 @@
- %   If a command has defined, then
- %     New     : error
- %     Renew   : define
- %     Declare : define
- %     Provide : not define
- %   If a command has "not" defined, then
- %     New     : define
- %     Renew   : error
- %     Declare : define
- %     Provide : define
+% Custom Package for Mathematics Notes
 
- %   \let\foo\bar             -> copy the value of \bar and paste to \foo
- %   \def\foo{\bar}           -> consider \foo as an alternative command of \bar
- %   \newcommand\foo{\bar}    -> basically sam with \def but (1) check if defined, (2) can get optional arguments
- 
- %   Argument specification in xparse package
- %   m:            {mandatory}
- %   r[]:          [mandatory]
- %   g:            {optional}
- %   o:            [optional]
- %   O{default}:   [optional with default]
- %   d():          (optional)
- %   D<>{default}: <optional with default>
- %   s:            star -> \IfBooleanTF{#?}{starred}{unstarred}
- %   +m:           {mandatory, which can be a sentence}
- 
- 
- 
+%   dlrgks623@naver.com
+%   https://github.com/ikhanchoi
+
+%   ** Table of Contents **
+%     - Tips on macros
+%     - Theorems and Proofs
+%     - List environments
+%     - Commutative diagrams
+%     - Differential operators
+%     - System of equations
+%     - Parantheses, braces, and brackets
+%     - Shorthanded notations
+%     - Shorthanded alphabets
+
 \NeedsTeXFormat{LaTeX2e}[1994/06/01]
-\ProvidesPackage{ikany}[2018/10/29 ikany]
+\ProvidesPackage{ikany}[2019/07/19 ikany]
 \makeatletter
 \RequirePackage{amsfonts,amsmath,amssymb}
 %\RequirePackage[many]{tcolorbox}
+
+
+
+
+%//////////////////%
+%  Tips on macros  %
+%//////////////////%
+%
+%   \let\foo\bar   -> CALL BY VALUE: the value of \bar is copied to \foo
+%   \def\foo{\bar} -> CALL BY REFERENCE: view \foo as an alternative command of \bar
+%   \newcommand\foo{\bar}
+%     -> basically same with \def but
+%       (1) check if defined,
+%       (2) can get optional arguments
+ 
+%   Argument specification in xparse package
+%   m:            {mandatory}
+%   r[]:          [mandatory]
+%   g:            {optional}
+%   o:            [optional]
+%   O{default}:   [optional with default]
+%   d():          (optional)
+%   D<>{default}: <optional with default>
+%   s:            star -> \IfBooleanTF{#?}{starred}{unstarred}
+%   +m:           {mandatory, which can be a sentence}
+
+%   If a command has defined, then
+%     New     : error
+%     Renew   : define
+%     Declare : define
+%     Provide : not define
+%   If a command has "not" defined, then
+%     New     : define
+%     Renew   : error
+%     Declare : define
+%     Provide : define
+
 
 
 
@@ -66,7 +91,7 @@
 
 \newenvironment{pf}[1][\unskip]{\begin{proof}[Proof #1]}{\end{proof}}
 \newenvironment{sol}[1][\unskip]{\begin{proof}[Solution #1]}{\end{proof}}
-\newenvironment{note}[1][\unskip]{\begin{proof}[Note #1]\renewcommand{\qedsymbol}{}}{\end{proof}}
+\newenvironment{nt}[1][\unskip]{\begin{proof}[Note #1]\renewcommand{\qedsymbol}{}}{\end{proof}}
 \newenvironment{idea}[1][\unskip]{\begin{proof}[Proof idea #1]\renewcommand{\qedsymbol}{}}{\end{proof}}
 \NewDocumentCommand{\Case}{r[]+g}{\IfNoValueTF{#2}{\emph{Case #1.}}{\emph{Case #1: #2.}}}
 \NewDocumentCommand{\Step}{r[]+g}{\IfNoValueTF{#2}{\emph{Step #1.}}{\emph{Step #1: #2.}}}
@@ -74,8 +99,7 @@
 \ifx\thisisprbcls\undefined\else
   \renewcommand{\theprb}{\arabic{section}.\arabic{prb}}
   \renewenvironment{sol}[1][\unskip]{\noindent\begin{proof}[Solution]\ \par\begin{cond}}{\end{cond}\end{proof}} % line break
-\fi
-
+\fi % A variable `\thisisprbcls` is defined in `prb.cls`.
 
 
 
@@ -88,9 +112,9 @@
 %	\begin{exer}
 %	\item  easy problem
 %	\item* hard problem
-%	\begin{exer}
-%	\item subproblem
-%	\end{exer}
+%	  \begin{exer}
+%	  \item subproblem
+%	  \end{exer}
 %	\end{exer}
 %
 \RequirePackage{enumitem}
@@ -144,7 +168,7 @@
   }
   {\end{tikzcd}\]}
   
-\newcommand{\block}[1]{\begin{tabular}{c}#1\end{tabular}}
+%\newcommand{\block}[1]{\begin{tabular}{c}#1\end{tabular}}
 \def\lar{\ar[bend left]}
 \def\rar{\ar[bend right,swap]}
 \def\ds{\ar[dashed]}
@@ -205,6 +229,9 @@
 %///////////////////////%
 %  System of equations  %
 %///////////////////////%
+
+%  WARNING: The following commands are unstable.
+
 %
 % Example Code:
 %	\begin{pde*}{\label{eq:heat}}
@@ -256,26 +283,11 @@
 
 
 
-%////////////////////%
-%  Matrix shortcuts  %
-%////////////////////%
-%
-% Example Code
-%	\mat{1&0//0&1}
-%	\mat[v]{1&0//0&1}  % determinant
-%
-\newcommand{\mat}[2][p]{%
-  \begin{#1matrix}#2\end{#1matrix}
-}
-% option:p,b,B,v,V
-
-
-
 
 
 
 %/////////////////////////////////////%
-%  Parentheses, Braces, and Brackets  %
+%  Parentheses, braces, and brackets  %
 %/////////////////////////////////////%
 
 \let\<\langle
@@ -292,9 +304,9 @@
 
 
 
-%////////////////////////////%
-%  Shorthands for Notations  %
-%////////////////////////////%
+%/////////////////////////%
+%  Shorthanded notations  %
+%/////////////////////////%
 %
 % Example Code
 %
@@ -304,6 +316,10 @@
 %	\evalat{f(x)}{x=0}
 %	\evalat{f(x)}{x=a}{x=b}
 %
+% \mat{1&0//0&1}
+% \mat[v]{1&0//0&1}  % determinant
+%
+
 % Binary operators
 \def\.{\cdot} % dot product
 \def\o{\circ} % function composition
@@ -312,6 +328,7 @@
 \def\tn{\otimes} % tensor product
 \def\wdg{\wedge} % wedge
 \def\smsh{\vee} % smash product
+\def\indep{\mathrel{\perp\mspace{-10mu}\perp}}
 
 % Big operators
 \def\bigdsum{\bigoplus}
@@ -331,6 +348,8 @@
 \def\mn{\rightarrowtail}
 \def\ep{\twoheadrightarrow}
 \def\acts{\curvearrowright}
+\def\impl{\mathchoice{\quad\Longrightarrow\quad}{\,\Rightarrow\,}{\,\Rightarrow\,}{\,\Rightarrow\,}}
+\renewcommand{\iff}{\mathchoice{\quad\Longleftrightarrow\quad}{\,\Leftrightarrow\,}{\,\Leftrightarrow\,}{\,\Leftrightarrow\,}}
 
 % Relations
 \def\les{\lesssim}
@@ -338,10 +357,19 @@
 \def\isom{\cong}
 
 % Diacritics
-\def\cl{\overline} % bar (closure)
+\def\cl{\overline}
 \def\conj{\overline}
 \let\hat\widehat % hat
 \let\tld\widetilde % tilde
+
+% Matrices
+\newcommand{\mat}[2][p]{%
+  \begin{#1matrix}#2\end{#1matrix}
+} % option:p,b,B,v,V
+
+% Fonts
+\let\bigmath\displaystyle
+\def\cat{\mathbf}
 
 % Standalone notations
 \def\bul{\bullet} % bullet
@@ -349,21 +377,15 @@
 \def\mt{\varnothing} % emptyset
 \def\bd{\partial} % boundary
 \def\1{\bold{1}} % characteristic function
-
-% 기타
-\let\bigmath\displaystyle
-\def\cat{\mathbf}
-\def\impl{\mathchoice{\quad\Longrightarrow\quad}{\,\Rightarrow\,}{\,\Rightarrow\,}{\,\Rightarrow\,}}
-\renewcommand{\iff}{\mathchoice{\quad\Longleftrightarrow\quad}{\,\Leftrightarrow\,}{\,\Leftrightarrow\,}{\,\Leftrightarrow\,}}
 \NewDocumentCommand{\evalat}{mmg}{\left.#1\right\rvert_{#2}\IfNoValueTF{}{^{#3}}}
 
 
 
 
 
-%////////////////////////////%
-%  Shorthands for Alphabets  %
-%////////////////////////////%
+%/////////////////////////%
+%  Shorthanded alphabets  %
+%/////////////////////////%
 
 % Some greeks
 \def\e{\varepsilon}
@@ -484,19 +506,21 @@
 \def\fso{\mathfrak{so}}
 \def\fsu{\mathfrak{su}}
 
-\newcommand{\GL}{\mathrm{GL}}
-\newcommand{\OO}{\mathrm{O}}
-\newcommand{\UU}{\mathrm{U}}           % \U : collide with beamer, hyperref
-\newcommand{\SL}{\mathrm{SL}}
-\newcommand{\SO}{\mathrm{SO}}
-\newcommand{\SU}{\mathrm{SU}}
-\newcommand{\PGL}{\mathrm{PGL}}
-\newcommand{\PSL}{\mathrm{PSL}}
-\newcommand{\PSO}{\mathrm{PSO}}
-\newcommand{\PSU}{\mathrm{PSU}}
-\newcommand{\Sp}{\mathrm{Sp}}
-\newcommand{\Spin}{\mathrm{Spin}}
-\newcommand{\Mat}{\mathrm{Mat}}
+\def\GL{\mathrm{GL}}
+\def\OO{\mathrm{O}}
+\def\UU{\mathrm{U}}           % \U : collide with beamer, hyperref
+\def\SL{\mathrm{SL}}
+\def\SO{\mathrm{SO}}
+\def\SU{\mathrm{SU}}
+\def\PGL{\mathrm{PGL}}
+\def\PSL{\mathrm{PSL}}
+\def\PSO{\mathrm{PSO}}
+\def\PSU{\mathrm{PSU}}
+\def\Sp{\mathrm{Sp}}
+\def\Spin{\mathrm{Spin}}
+\def\Mat{\mathrm{Mat}}
+
+\def\EE{\mathrm{E}}
 
 % Miscellany
 \let\Re\relax
@@ -547,6 +571,7 @@
 \DeclareMathOperator{\supp}{supp}
 \DeclareMathOperator{\Syl}{Syl}
 \DeclareMathOperator{\Sym}{Sym}
+\DeclareMathOperator{\Var}{Var}
 \DeclareMathOperator{\vol}{vol}
 \DeclareMathOperator{\Tor}{Tor}
 \DeclareMathOperator{\tr}{tr}

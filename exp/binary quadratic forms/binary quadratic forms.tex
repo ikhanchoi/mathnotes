@@ -1,7 +1,7 @@
 \documentclass{../exp}
 \usepackage{../../ikany}
 
-\title{Binary quadratic forms}
+\title{Binary Quadratic Forms}
 
 \begin{document}
 \maketitle
@@ -17,9 +17,17 @@ Two forms are called \emph{equivalent} if they are in a same oribit with respect
 Two forms are called \emph{properly equivalent} if they are in a same oribit with respect to $\SL_2(\Z)$-action.
 \end{defn}
 
+For representation problems, $\GL_2(\Z)$-action is important.
+For the correspondence with the theory of qudratic fields, $\SL_2(\Z)$ is rather important.
+From now, all equivalence relations are by $\SL_2(\Z)$.
+
+\begin{ex}
+Two forms $(a,b,c)$ and $(a,-b,c)$ are equivalent but not properly equivalent.
+\end{ex}
+The term ``reduced'' means that it is considered as the unique representative of each orbit.
+The thing is that the group action may differ in the context.
 
 \section{Definite forms}
-
 
 \begin{prop}
 The $\SL_2(\Z)$-action on the definite forms is not faithful, i.e. the kernel is given by a nontrivial group $\{\pm I\}$.
@@ -27,14 +35,17 @@ The $\SL_2(\Z)$-action on the definite forms is not faithful, i.e. the kernel is
 \begin{prop}
 The $\PSL_2(\Z)$-action on the definite forms is faithful.
 \end{prop}
+The faithfulness is not important though, so we choose $\Gamma=\SL_2(\Z)$ as the modular group instead of $\PSL_2(\Z)$.
 
 \subsection{Positive definite forms}
 \begin{prop}
-The set of positive definite forms admits the $\SL_2(\Z)$-action(also $\PSL_2(\Z)$-action).
+The set of positive definite forms admits the $\SL_2(\Z)$-action.
 \end{prop}
 \begin{prop}
-The $\PSL_2(\Z)$-actions on positive definite forms and negative definite forms are isomorphic.
+The $\SL_2(\Z)$-actions on positive definite forms and negative definite forms are isomorphic.
 \end{prop}
+
+
 
 \section{Indefinite forms}
 

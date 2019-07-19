@@ -5,25 +5,104 @@
 
 \begin{document}
 \maketitle
+\tableofcontents
 
 The AI paradigm changes when a new approximating method is discovered.
 
+\section{Motivation: statistical mechanics}
 
-\section{Bayesian Networks}
+
+\section{Models}
+
+\subsection{Random fields}
+\begin{defn}[Random field]
+A \emph{random field} is a set of random variables parametrized by a topological space or a (directed or undirected)graph.
+\end{defn}
+\begin{defn}
+In this note, we will call the random fields on a graph as \emph{networks}.
+\end{defn}
+Actually, networks and graphs are often used as synonyms.
+
+\begin{ex}[Markov chain]
+Let $G=(V,E)$ be a directed graph defined by
+\[V=\Z_{\ge0},\quad E=\{(t,t+1)\}_{t\in V},\]
+that is, an element $t\in V$ denotes the time $t$.
+
+Let $\cS$ be a finite set of states such that every subset is measurable.
+Then, the set of $\cS$-valued random variables $\{X_t\}_{t\in V}$ indexed by $V$ defines a random field.
+The Markov property is given by
+\[X_t\indep X_s\mid X_{t-1}\]
+for $s\le t$.
+Since $\cS$ is finite, we may rewrite it by
+\[\Pr(X_t=x_t\mid X_{t-1}=x_{t-1})=\Pr(X_t=x_t\mid X_{t-1}=x_{t-1},\cdots,X_0=x_0).\]
+\end{ex}
+
+\begin{ex}[Maxwell-Boltzman distribution]
+Let $G=(V,E)$ be a graph defined by
+\[V=\{n\}_{n=1}^N,\quad E=\mt\]
+for a large natural number $N$; the set $V$ is considered to be the set of ideal gas particles.
+
+Define the space of microstates $\cS=\Z_x^3\x\Z_p^3$, which embodies the discretized phase space.
+At each particle $n\in V$, an $\cS$-valued random variable denoted by $X_n=(x_n,p_n)$ is attached.
+Fix two constants $m>0$ and $\beta:=\frac1{k_BT}>0$, and define the energy function $E:\cS\to\R$ with
+\[E(x,p):=\frac{|p|^2}{2m}.\]
+
+The assumption for Boltzmann factors is as follows:
+given the reciprocal thermodynamic temperature $\beta$
+\[\Pr(X_n=i)\propto e^{-\beta E_i},\]
+where $E_i:=E(x_i,p_i)$.
+Thus, we can write
+\[\Pr(X_n=i)=\frac{e^{-\beta E_i}}{\sum_{j=1}^Ne^{-\beta E_j}}=:\frac1Z\,e^{-\frac\beta{2m}|p_i|^2}.\]
+The function $Z$ is called \emph{partition function}.
+Note that it depends on the data of $E$ and $\beta$.
+\end{ex}
+
+
+\subsection{Bayesian networks}
 
 
 \begin{defn}[Bayesian network]
 Let $G$ be a directed acyclic graph.
 \end{defn}
-The graph acts like a parameter space.
+The graph acts as a parameter space.
 We want to investigate mutual effects among the paramtrized random variables.
 \begin{thm}[Factorization of probablity]
 
 \end{thm}
 
+\begin{ex}[NBC, Naive Bayesian Classifier]
+\end{ex}
+\begin{ex}[HMM, Hidden Markov Model]
+\end{ex}
 
-\section{Neural Networks}
 
+\subsection{Markov networks}
+
+\begin{defn}[Markov network]
+\end{defn}
+Markov networks are sometimes called MRF, Markov random field.
+\begin{ex}[CRF, Conditional Random Field]
+Consider a network with a graph $G$ such that vertices are divided into two classes.
+\end{ex}
+
+\subsection{Neural networks}
+Probabilistic graphical models provide effective explanations of the neural networks, but neural networks are not confined only to graphical models.
+\begin{defn}[Neural network]
+\emph{Neural network} cannot be defined mathematically.
+It indicates statistical models that can solve problems with a collection of artificial neurons by adjusting connection strength among them.
+\end{defn}
+
+\begin{ex}[MLP, Multi-layer Perceptron]
+
+\end{ex}
+
+\begin{ex}[RNN, Recurrent Neural Network]
+
+\end{ex}
+
+\section{Inference}
+\subsection{Viterbi algorithm}
+\section{Learning}
 \subsection{Gradient descent method}
 
 
@@ -66,7 +145,7 @@ In similar way,
 
 
 
-\section{Maximum likelihood estimate}
+\subsection{Maximum likelihood estimate}
 \begin{defn}
 Let $f$ be a distribution function on a measure space $X$.
 Let $\{f_\theta\}_\theta$ be a parametrized family of distrubution functions on $X$.
