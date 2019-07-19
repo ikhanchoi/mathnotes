@@ -15,7 +15,7 @@
 \let\@@author\author
 \renewcommand{\author}[1]{
   \def\lauthor{#1}
-  \@@author{\small\lauthor}
+  \@@author[\lauthor]{\small\lauthor}
 }
 
 \renewcommand{\datename}{\textit{Last Update}:}
