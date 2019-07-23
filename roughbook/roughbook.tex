@@ -37,14 +37,14 @@ If $c$ is on a
 
 \subsection{Manifold and Atlas}
 \begin{defn}
-A \emph{locally Euclidean space} $M$ of dimension $m$ is a Hausdorff topological space $M$ for which each point $x\in M$ has a neighborhood $U$ homeomorphic to an open subset of $\mathbb{R}^d$.
+A \emph{locally Euclidean space} $M$ of dimension $m$ is a Hausdorff topological space $M$ for which each point $x\in M$ has a neighborhood $U$ homeomorphic to an open subset of $\R^d$.
 \end{defn}
 \begin{defn}
 A \emph{manifold} is a locally Euclidean space satisfying the one of following equivalent conditions: second countability, blabla%
 \end{defn}
 
 \begin{defn}
-A \emph{chart} or a \emph{coordinate system} for a locally Euclidean space is a map $\varphi$ is a homeomorphism from an open set $U\subset M$ to an open subset of $\mathbb{R}^d$.
+A \emph{chart} or a \emph{coordinate system} for a locally Euclidean space is a map $\varphi$ is a homeomorphism from an open set $U\subset M$ to an open subset of $\R^d$.
 A chart is often written by a pair $(U,\varphi)$.
 \end{defn}
 
@@ -794,10 +794,10 @@ H_n(C;G)&=\ker(\coker\pd_{n+1}\tn G\to\im(\pd_n\tn1_G))\\
 
 \section{Analysis problems}
 
-\begin{thm}
+\begin{prb}
 The following series diverges: \[\sum_{n=1}^\infty\frac1{n^{1+|\sin n|}}.\]
-\end{thm}
-\begin{pf}
+\end{prb}
+\begin{sol}
 Let $A_k:=[1,2^k]\cap\{x:|\sin x|<\frac1k\}$.
 Divide the unit circle $\R/2\pi\Z$ by $7k$ uniform arcs.
 There are at least $2^k/7k$ integers that are not exceed $2^k$ and are in a same arc.
@@ -817,12 +817,13 @@ Therefore,
 &=\frac1{28}\sum_{k=1}^N\frac1k\\
 &\to\infty.
 \end{align*}
-\end{pf}
+\end{sol}
 
-\begin{thm}
+\clearpage
+\begin{prb}
 If $|xf'(x)|\le M$ and $\frac1x\int_0^xf(y)\,dy\to L$, then $f(x)\to L$ as $x\to\infty$.
-\end{thm}
-\begin{pf}
+\end{prb}
+\begin{sol}
 Since
 \begin{align*}
 \abs{f(x)-\frac{F(x)-F(a)}{x-a}}
@@ -836,15 +837,14 @@ by the mean value theorem and
 we have for any $\e>0$
 \[\limsup_{x\to\infty}|f(x)-L|\le\e\]
 where $a$ is defined by $\frac{x-a}a=\frac\e M$.
-\end{pf}
+\end{sol}
 
 \clearpage
-
-\begin{thm}
+\begin{prb}
 Let $f_n:I\to I$ be a sequence of real functions that satisfies $|f_n(x)-f_n(y)|\le|x-y|$ whenever $|x-y|\ge\frac1n$, where $I=[0,1]$.
 Then, it has a uniformly convergent subsequence.
-\end{thm}
-\begin{pf}
+\end{prb}
+\begin{sol}
 By the Bolzano-Weierstrass theorem and the diagonal argument for subsequence extraction, we may assume that $f_n$ converges to a function $f:\Q\cap I\to I$ pointwisely.
 
 \Step[1]
@@ -904,11 +904,59 @@ for any $x\in I$.
 By limiting $n\to\oo$, we obtain
 \[\lim_{n\to\oo}|f_n(x)-f(x)|<\e.\]
 Since $\e$ and $x$ are arbitrary, we can deduce the uniform convergence of $f_n$ as $n\to\oo$.
-\end{pf}
+\end{sol}
+
+
+\clearpage
+\begin{prb}
+A measurable subset of $\R$ with positive measure contains an arbitrarily long subsequence of an arithmetic progression. (made by me!)
+\end{prb}
+\begin{sol}
+Let $E\subset\R$ be measurable with $\mu(E)>0$. We may assume $E$ is bounded so that we have $E\subset I$ for a closed bounded interval since $\R$ is $\sigma$-compact.
+Let $n$ be a positive integer arbitrarily taken. Then, we can find $N$ such that $\sum_{k=1}^N\frac1k>(n-1)\frac{\mu(I)}{\mu(E)}$.
+
+Assume that every point $x$ in $E$ is contained in at most $n-1$ sets among
+\[E,\ \frac12E,\ \frac13E,\ \cdots,\ \frac1NE.\]
+In other words, it is equivalent to:
+\[\bigcap_{k\in A}\frac1kE=\mt\]
+for any subset $A\subset\{1,\cdots,N\}$ with $|A|\ge n$.
+Define
+\[E_A:=\bigcap_{k\in A}\frac1kE\cap\bigcap_{k'\in A}\left(\frac1{k'}E\right)^c\]
+for $A\subset\{1,\cdots,N\}$.
+Then, $\mu(E_A)=0$ for $|A|\ge n$.
+
+Note that we have
+\[\mu(\tfrac1kE)=\sum_{k\in A}\mu(E_A)=\sum_{\substack{k\in A\\|A|<n}}\mu(E_A).\]
+Summing up, we get
+\[\sum_{k=1}^N\mu(\tfrac1kE)=\sum_{k=1}^N\sum_{\substack{k\in A\\|A|<n}}\mu(E_A)=\sum_{|A|<n}|A|\mu(E_A)\]
+by double counting,
+and since $E_A$ are dijoint, we have
+\[\sum_{|A|<n}|A|\mu(E_A)=(n-1)\sum_{0<|A|<n}\mu(E_A)\le(n-1)\mu(I),\]
+hence a contradiction to
+\[\sum_{k=1}^N\mu(\tfrac1kE)>(n-1)\mu(I).\]
+Therefore, we may find an element $x$ that belongs to $\frac1kE$ for $k\in A$, where $A\subset\{1,\cdots,N\}$ with $|A|=n$.
+Then, $ax\in E$ for all $a\in A\subset\Z$.
+
+\end{sol}
 
 
 
+\section{Bundles}
+Show that $S^n$ has a nonvanishing vector field if and only if $n$ is odd.
+\begin{sol}
+Since $S^n$ is embedded in $\R^{n+1}$, the tangent bundle $TS^n$ can be considered as an embedded manifold in $S^n\times\R^{n+1}$ which consists of $(x,v)$ such that $\<x,x\>=1$ and $\<x,v\>=0$, where the inner product is the standard one of $\R^{n+1}$.
 
+Suppose $n$ is odd.
+We have a vector field
+$(x_1,x_2,\cdots,x_{n+1};x_2,-x_1,\cdots,-x_n)$
+which is nonvanishing.
+
+Conversely, suppose we have a nonvanishing vector field $X$.
+Consider a map
+\[\phi:S^n\to{X}TS^n\to S^n\x\R^{n+1}\to{\phi}\R^{n+1}\to S^n.\]
+
+The last map can be defined since $X$ is nowhere zero. Since this map satisfies $\<x,\phi(x)\>=0$ for all $x\in S^n$, we can define homotopies from $\phi$ to the identity map and the antipodal map respectively. Therefore, the antipodal map must have positive degree, $+1$, so $n$ is odd.
+\end{sol}
 
 %%%
 \section{Action}
@@ -1017,7 +1065,7 @@ Problems I made:
 \item Show that the tangent space of the unitary group at the identity is identified with the space of skew Hermitian matrices.
 \item Prove the Jacobi formula for matrix.
 \item Show that $S^3$ and $T^2$ are parallelizable.
-\item Show that $\mathbb{R}P^n=S^n/Z_2$ is orientable if and only if $n$ is odd.
+\item Show that $\R P^n=S^n/Z_2$ is orientable if and only if $n$ is odd.
 \end{enumerate}
 
 

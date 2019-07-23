@@ -5,6 +5,7 @@
 
 %   ** Table of Contents **
 %     - Tips on macros
+%     - Compatibility
 %     - Theorems and Proofs
 %     - List environments
 %     - Commutative diagrams
@@ -15,7 +16,7 @@
 %     - Shorthanded alphabets
 
 \NeedsTeXFormat{LaTeX2e}[1994/06/01]
-\ProvidesPackage{ikany}[2019/07/19 ikany]
+\ProvidesPackage{ikany}[2019/07/23 ikany]
 \makeatletter
 \RequirePackage{amsfonts,amsmath,amssymb}
 %\RequirePackage[many]{tcolorbox}
@@ -28,7 +29,7 @@
 %//////////////////%
 %
 %   \let\foo\bar   -> CALL BY VALUE: the value of \bar is copied to \foo
-%   \def\foo{\bar} -> CALL BY REFERENCE: view \foo as an alternative command of \bar
+%   \newcommand\foo{\bar} -> CALL BY REFERENCE: view \foo as an alternative command of \bar
 %   \newcommand\foo{\bar}
 %     -> basically same with \def but
 %       (1) check if defined,
@@ -56,6 +57,14 @@
 %     Declare : define
 %     Provide : define
 
+
+
+
+%/////////////////%
+%  Compatibility  %
+%/////////////////%
+%
+\newcommand\ifnotbeamer[1]{\@ifclassloaded{beamer}{}{#1}}
 
 
 
@@ -96,10 +105,10 @@
 \NewDocumentCommand{\Case}{r[]+g}{\IfNoValueTF{#2}{\emph{Case #1.}}{\emph{Case #1: #2.}}}
 \NewDocumentCommand{\Step}{r[]+g}{\IfNoValueTF{#2}{\emph{Step #1.}}{\emph{Step #1: #2.}}}
 
-\ifx\thisisprbcls\undefined\else
+\@ifclassloaded{prb}{
   \renewcommand{\theprb}{\arabic{section}.\arabic{prb}}
   \renewenvironment{sol}[1][\unskip]{\noindent\begin{proof}[Solution]\ \par\begin{cond}}{\end{cond}\end{proof}} % line break
-\fi % A variable `\thisisprbcls` is defined in `prb.cls`.
+}{}
 
 
 
@@ -117,16 +126,17 @@
 %	  \end{exer}
 %	\end{exer}
 %
-\RequirePackage{enumitem}
-\newlist{cond}{enumerate}{1}
-  \setlist[cond,1]{label=\rm{(\arabic*)}}
-\newlist{exer}{enumerate}{2}
-  \setlist[exer,1]{label=\arabic*.,before={\large Exercises}}
-  \setlist[exer,2]{label=(\alph*)}
-\let\@@item\item
-\newcommand{\sitem}{\refstepcounter{\@enumctr}\@@item[$^*$\csname label\@enumctr\endcsname]}
-\renewcommand*{\item}{\@ifstar\sitem\@@item}
-
+\ifnotbeamer{
+  \RequirePackage{enumitem}
+  \newlist{cond}{enumerate}{1}
+    \setlist[cond,1]{label=\rm{(\arabic*)}}
+  \newlist{exer}{enumerate}{2}
+    \setlist[exer,1]{label=\arabic*.,before={\large Exercises}}
+    \setlist[exer,2]{label=(\alph*)}
+  \let\@@item\item
+  \newcommand{\sitem}{\refstepcounter{\@enumctr}\@@item[$^*$\csname label\@enumctr\endcsname]}
+  \renewcommand*{\item}{\@ifstar\sitem\@@item}
+}% It is famous that enumitem redefines beamer's itemize environment
 
 
 
@@ -169,12 +179,12 @@
   {\end{tikzcd}\]}
   
 %\newcommand{\block}[1]{\begin{tabular}{c}#1\end{tabular}}
-\def\lar{\ar[bend left]}
-\def\rar{\ar[bend right,swap]}
-\def\ds{\ar[dashed]}
-\def\lds{\ar[dashed,bend left]}
-\def\rds{\ar[dashed,bend right,swap]}
-\def\hk{\ar[hook]}
+\newcommand\lar{\ar[bend left]}
+\newcommand\rar{\ar[bend right,swap]}
+\newcommand\ds{\ar[dashed]}
+\newcommand\lds{\ar[dashed,bend left]}
+\newcommand\rds{\ar[dashed,bend right,swap]}
+\newcommand\hk{\ar[hook]}
 
 
 
@@ -289,7 +299,7 @@
 %/////////////////////////////////////%
 %  Parentheses, braces, and brackets  %
 %/////////////////////////////////////%
-
+%
 \let\<\langle
 \let\>\rangle  % overlapped
 
@@ -299,6 +309,8 @@
 \DeclareDocumentCommand{\flr}{m}{\left\lfloor#1\right\rfloor}
 \DeclareDocumentCommand{\ceil}{m}{\left\lceil#1\right\rceil}
 \DeclareDocumentCommand{\inn}{mg}{\IfNoValueTF{#2}{\left\langle#1\right\rangle}{\left\langle#1,#2\right\rangle}}
+
+
 
 
 
@@ -321,22 +333,22 @@
 %
 
 % Binary operators
-\def\.{\cdot} % dot product
-\def\o{\circ} % function composition
-\def\x{\times} % cross product
-\def\dsum{\oplus} % direct sum
-\def\tn{\otimes} % tensor product
-\def\wdg{\wedge} % wedge
-\def\smsh{\vee} % smash product
-\def\indep{\mathrel{\perp\mspace{-10mu}\perp}}
+\ifnotbeamer{\newcommand\.{\cdot}} % dot product
+\ifnotbeamer{\newcommand\o{\circ}} % function composition
+\newcommand\x{\times} % cross product
+\newcommand\dsum{\oplus} % direct sum
+\newcommand\tn{\otimes} % tensor product
+\newcommand\wdg{\wedge} % wedge
+\newcommand\smsh{\vee} % smash product
+\newcommand\indep{\mathrel{\perp\mspace{-10mu}\perp}}
 
 % Big operators
-\def\bigdsum{\bigoplus}
-\def\bigtn{\bigotimes}
+\newcommand\bigdsum{\bigoplus}
+\newcommand\bigtn{\bigotimes}
 
 % Texts - prepositions and conjunctions
-\def\cc{\c c} % french c
-\def\cC{\c C} % french C
+\newcommand\cc{\c c} % french c
+\newcommand\cC{\c C} % french C
 \renewcommand\c[1]{\quad\text{#1}\quad}
 \newcommand\p[1]{\enspace\text{#1}\enspace}
 \newcommand\st{\p{s.t.}}
@@ -344,21 +356,21 @@
 % Arrows
 \let\@@to\to
 \RenewDocumentCommand{\to}{g}{\IfNoValueTF{#1}{\@@to}{\overset{#1}{\@@to}}}
-\def\emb{\hookrightarrow}
-\def\mn{\rightarrowtail}
-\def\ep{\twoheadrightarrow}
-\def\acts{\curvearrowright}
-\def\impl{\mathchoice{\quad\Longrightarrow\quad}{\,\Rightarrow\,}{\,\Rightarrow\,}{\,\Rightarrow\,}}
+\newcommand\emb{\hookrightarrow}
+\newcommand\mn{\rightarrowtail}
+\newcommand\ep{\twoheadrightarrow}
+\newcommand\acts{\curvearrowright}
+\newcommand\impl{\mathchoice{\quad\Longrightarrow\quad}{\,\Rightarrow\,}{\,\Rightarrow\,}{\,\Rightarrow\,}}
 \renewcommand{\iff}{\mathchoice{\quad\Longleftrightarrow\quad}{\,\Leftrightarrow\,}{\,\Leftrightarrow\,}{\,\Leftrightarrow\,}}
 
 % Relations
-\def\les{\lesssim}
-\def\hmtp{\simeq}
-\def\isom{\cong}
+\newcommand\les{\lesssim}
+\newcommand\hmtp{\simeq}
+\newcommand\isom{\cong}
 
 % Diacritics
-\def\cl{\overline}
-\def\conj{\overline}
+\newcommand\cl{\overline}
+\newcommand\conj{\overline}
 \let\hat\widehat % hat
 \let\tld\widetilde % tilde
 
@@ -369,14 +381,14 @@
 
 % Fonts
 \let\bigmath\displaystyle
-\def\cat{\mathbf}
+\newcommand\cat{\mathbf}
 
 % Standalone notations
-\def\bul{\bullet} % bullet
-\def\oo{\infty} % infinity
-\def\mt{\varnothing} % emptyset
-\def\bd{\partial} % boundary
-\def\1{\bold{1}} % characteristic function
+\newcommand\bul{\bullet} % bullet
+\newcommand\oo{\infty} % infinity
+\newcommand\mt{\varnothing} % emptyset
+\newcommand\bd{\partial} % boundary
+\newcommand\1{\bold{1}} % characteristic function
 \NewDocumentCommand{\evalat}{mmg}{\left.#1\right\rvert_{#2}\IfNoValueTF{}{^{#3}}}
 
 
@@ -388,139 +400,139 @@
 %/////////////////////////%
 
 % Some greeks
-\def\e{\varepsilon}
-\def\f{\varphi}
+\newcommand\e{\varepsilon}
+\newcommand\f{\varphi}
 
 % Blackboard fonts
-\def\A{\mathbb{A}}
-\def\B{\mathbb{B}}
-\def\C{\mathbb{C}}
-\def\E{\mathbb{E}}
-\def\F{\mathbb{F}}
-\def\G{\mathbb{G}}
-\def\H{\mathbb{H}}
-\def\N{\mathbb{N}}
-\def\P{\mathbb{P}}
-\def\Q{\mathbb{Q}}
-\def\R{\mathbb{R}}
-\def\T{\mathbb{T}}
-\def\Z{\mathbb{Z}}
+\newcommand\A{\mathbb{A}}
+\newcommand\B{\mathbb{B}}
+\ifnotbeamer{\newcommand\C{\mathbb{C}}} % collision with beamer
+\newcommand\E{\mathbb{E}}
+\newcommand\F{\mathbb{F}}
+\ifnotbeamer{\newcommand\G{\mathbb{G}}} % collision with beamer
+\ifnotbeamer{\newcommand\H{\mathbb{H}}} % collision with beamer
+\newcommand\N{\mathbb{N}}
+\ifnotbeamer{\newcommand\P{\mathbb{P}}} % collision with beamer
+\newcommand\Q{\mathbb{Q}}
+\newcommand\R{\mathbb{R}}
+\newcommand\T{\mathbb{T}}
+\newcommand\Z{\mathbb{Z}}
 
 % Bold fonts
-\def\bA{\mathbf{A}}
-\def\bB{\mathbf{B}}
-\def\bC{\mathbf{C}}
-\def\bD{\mathbf{D}}
-\def\bE{\mathbf{E}}
-\def\bF{\mathbf{F}}
-\def\bG{\mathbf{G}}
-\def\bH{\mathbf{H}}
-\def\bI{\mathbf{I}}
-\def\bJ{\mathbf{J}}
-\def\bK{\mathbf{K}}
-\def\bL{\mathbf{L}}
-\def\bM{\mathbf{M}}
-\def\bN{\mathbf{N}}
-\def\bO{\mathbf{O}}
-\def\bP{\mathbf{P}}
-\def\bQ{\mathbf{Z}}
-\def\bR{\mathbf{R}}
-\def\bS{\mathbf{S}}
-\def\bT{\mathbf{T}}
-\def\bU{\mathbf{U}}
-\def\bV{\mathbf{V}}
-\def\bW{\mathbf{W}}
-\def\bX{\mathbf{X}}
-\def\bY{\mathbf{Y}}
-\def\bZ{\mathbf{Z}}
+\newcommand\bA{\mathbf{A}}
+\newcommand\bB{\mathbf{B}}
+\newcommand\bC{\mathbf{C}}
+\newcommand\bD{\mathbf{D}}
+\newcommand\bE{\mathbf{E}}
+\newcommand\bF{\mathbf{F}}
+\newcommand\bG{\mathbf{G}}
+\newcommand\bH{\mathbf{H}}
+\newcommand\bI{\mathbf{I}}
+\newcommand\bJ{\mathbf{J}}
+\newcommand\bK{\mathbf{K}}
+\newcommand\bL{\mathbf{L}}
+\newcommand\bM{\mathbf{M}}
+\newcommand\bN{\mathbf{N}}
+\newcommand\bO{\mathbf{O}}
+\newcommand\bP{\mathbf{P}}
+\newcommand\bQ{\mathbf{Z}}
+\newcommand\bR{\mathbf{R}}
+\newcommand\bS{\mathbf{S}}
+\newcommand\bT{\mathbf{T}}
+\newcommand\bU{\mathbf{U}}
+\newcommand\bV{\mathbf{V}}
+\newcommand\bW{\mathbf{W}}
+\newcommand\bX{\mathbf{X}}
+\newcommand\bY{\mathbf{Y}}
+\newcommand\bZ{\mathbf{Z}}
 
 % Caligraphy fonts
-\def\cA{\mathcal{A}}
-\def\cB{\mathcal{B}}
-\def\cC{\mathcal{C}}
-\def\cD{\mathcal{D}}
-\def\cE{\mathcal{E}}
-\def\cF{\mathcal{F}}
-\def\cG{\mathcal{G}}
-\def\cH{\mathcal{H}}
-\def\cI{\mathcal{I}}
-\def\cJ{\mathcal{J}}
-\def\cK{\mathcal{K}}
-\def\cL{\mathcal{L}}
-\def\cM{\mathcal{M}}
-\def\cN{\mathcal{N}}
-\def\cO{\mathcal{O}}
-\def\cP{\mathcal{P}}
-\def\cQ{\mathcal{Q}}
-\def\cR{\mathcal{R}}
-\def\cS{\mathcal{S}}
-\def\cT{\mathcal{T}}
-\def\cU{\mathcal{U}}
-\def\cV{\mathcal{V}}
-\def\cW{\mathcal{W}}
-\def\cX{\mathcal{X}}
-\def\cY{\mathcal{Y}}
-\def\cZ{\mathcal{Z}}
+\newcommand\cA{\mathcal{A}}
+\newcommand\cB{\mathcal{B}}
+\ifnotbeamer{\newcommand\cC{\mathcal{C}}} % collision with beamer
+\newcommand\cD{\mathcal{D}}
+\newcommand\cE{\mathcal{E}}
+\newcommand\cF{\mathcal{F}}
+\newcommand\cG{\mathcal{G}}
+\newcommand\cH{\mathcal{H}}
+\newcommand\cI{\mathcal{I}}
+\newcommand\cJ{\mathcal{J}}
+\newcommand\cK{\mathcal{K}}
+\newcommand\cL{\mathcal{L}}
+\newcommand\cM{\mathcal{M}}
+\newcommand\cN{\mathcal{N}}
+\newcommand\cO{\mathcal{O}}
+\newcommand\cP{\mathcal{P}}
+\newcommand\cQ{\mathcal{Q}}
+\newcommand\cR{\mathcal{R}}
+\newcommand\cS{\mathcal{S}}
+\newcommand\cT{\mathcal{T}}
+\newcommand\cU{\mathcal{U}}
+\newcommand\cV{\mathcal{V}}
+\newcommand\cW{\mathcal{W}}
+\newcommand\cX{\mathcal{X}}
+\newcommand\cY{\mathcal{Y}}
+\newcommand\cZ{\mathcal{Z}}
 
 % Fraktur fonts
-\def\fA{\mathfrak{A}}
-\def\fB{\mathfrak{B}}
-\def\fC{\mathfrak{C}}
-\def\fD{\mathfrak{D}}
-\def\fE{\mathfrak{E}}
-\def\fF{\mathfrak{F}}
-\def\fG{\mathfrak{G}}
-\def\fH{\mathfrak{H}}
-\def\fI{\mathfrak{I}}
-\def\fJ{\mathfrak{J}}
-\def\fK{\mathfrak{K}}
-\def\fL{\mathfrak{L}}
-\def\fM{\mathfrak{M}}
-\def\fN{\mathfrak{N}}
-\def\fO{\mathfrak{O}}
-\def\fP{\mathfrak{P}}
-\def\fQ{\mathfrak{Q}}
-\def\fR{\mathfrak{R}}
-\def\fS{\mathfrak{S}}
-\def\fT{\mathfrak{T}}
-\def\fU{\mathfrak{U}}
-\def\fV{\mathfrak{V}}
-\def\fW{\mathfrak{W}}
-\def\fX{\mathfrak{X}}
-\def\fY{\mathfrak{Y}}
-\def\fZ{\mathfrak{Z}}
-\def\fa{\mathfrak{a}}
-\def\fb{\mathfrak{b}}
-\def\fc{\mathfrak{c}}
-\def\ff{\mathfrak{f}}
-\def\fg{\mathfrak{g}}
-\def\fh{\mathfrak{h}}
-\def\fm{\mathfrak{m}}
-\def\fp{\mathfrak{p}}
-\def\fq{\mathfrak{q}}
-\def\fu{\mathfrak{u}}
+\newcommand\fA{\mathfrak{A}}
+\newcommand\fB{\mathfrak{B}}
+\newcommand\fC{\mathfrak{C}}
+\newcommand\fD{\mathfrak{D}}
+\newcommand\fE{\mathfrak{E}}
+\newcommand\fF{\mathfrak{F}}
+\newcommand\fG{\mathfrak{G}}
+\newcommand\fH{\mathfrak{H}}
+\newcommand\fI{\mathfrak{I}}
+\newcommand\fJ{\mathfrak{J}}
+\newcommand\fK{\mathfrak{K}}
+\newcommand\fL{\mathfrak{L}}
+\newcommand\fM{\mathfrak{M}}
+\newcommand\fN{\mathfrak{N}}
+\newcommand\fO{\mathfrak{O}}
+\newcommand\fP{\mathfrak{P}}
+\newcommand\fQ{\mathfrak{Q}}
+\newcommand\fR{\mathfrak{R}}
+\newcommand\fS{\mathfrak{S}}
+\newcommand\fT{\mathfrak{T}}
+\newcommand\fU{\mathfrak{U}}
+\newcommand\fV{\mathfrak{V}}
+\newcommand\fW{\mathfrak{W}}
+\newcommand\fX{\mathfrak{X}}
+\newcommand\fY{\mathfrak{Y}}
+\newcommand\fZ{\mathfrak{Z}}
+\newcommand\fa{\mathfrak{a}}
+\newcommand\fb{\mathfrak{b}}
+\newcommand\fc{\mathfrak{c}}
+\newcommand\ff{\mathfrak{f}}
+\newcommand\fg{\mathfrak{g}}
+\newcommand\fh{\mathfrak{h}}
+\newcommand\fm{\mathfrak{m}}
+\newcommand\fp{\mathfrak{p}}
+\newcommand\fq{\mathfrak{q}}
+\newcommand\fu{\mathfrak{u}}
 
 % Lie theory
-\def\fgl{\mathfrak{gl}}
-\def\fsl{\mathfrak{sl}}
-\def\fso{\mathfrak{so}}
-\def\fsu{\mathfrak{su}}
+\newcommand\fgl{\mathfrak{gl}}
+\newcommand\fsl{\mathfrak{sl}}
+\newcommand\fso{\mathfrak{so}}
+\newcommand\fsu{\mathfrak{su}}
 
-\def\GL{\mathrm{GL}}
-\def\OO{\mathrm{O}}
-\def\UU{\mathrm{U}}           % \U : collide with beamer, hyperref
-\def\SL{\mathrm{SL}}
-\def\SO{\mathrm{SO}}
-\def\SU{\mathrm{SU}}
-\def\PGL{\mathrm{PGL}}
-\def\PSL{\mathrm{PSL}}
-\def\PSO{\mathrm{PSO}}
-\def\PSU{\mathrm{PSU}}
-\def\Sp{\mathrm{Sp}}
-\def\Spin{\mathrm{Spin}}
-\def\Mat{\mathrm{Mat}}
+\newcommand\GL{\mathrm{GL}}
+\newcommand\OO{\mathrm{O}}
+\newcommand\UU{\mathrm{U}}           % \U : collision with beamer, hyperref
+\newcommand\SL{\mathrm{SL}}
+\newcommand\SO{\mathrm{SO}}
+\newcommand\SU{\mathrm{SU}}
+\newcommand\PGL{\mathrm{PGL}}
+\newcommand\PSL{\mathrm{PSL}}
+\newcommand\PSO{\mathrm{PSO}}
+\newcommand\PSU{\mathrm{PSU}}
+\newcommand\Sp{\mathrm{Sp}}
+\newcommand\Spin{\mathrm{Spin}}
+\newcommand\Mat{\mathrm{Mat}}
 
-\def\EE{\mathrm{E}}
+\newcommand\rE{\mathrm{E}}
 
 % Miscellany
 \let\Re\relax
