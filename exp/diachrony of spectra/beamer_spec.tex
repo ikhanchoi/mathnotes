@@ -82,20 +82,22 @@
   \pause \hspace{5em} energy \hspace{2em} kinetic energy \hspace{1em} potential energy\\
   \bigskip
   \pause where $V$ is given by the Coulomb potential
-  \[V(x)=-\frac1{|x|}.\]
-  \pause Solving the euqation, we obtain the probability distribution function $|\Psi(t,x)|^2$ of the electron at time $t$!
+  \[V(x)=-\frac2{|x|}.\]
+  \pause By solving it, we obtain the probability distribution $|\Psi(t,x)|^2$ of the electron at time $t$.
+  \pause Let's solve.
 \end{frame}
 
 \begin{frame}
 \frametitle{Rydberg's formula : Schr\"odinger equation}
   Schr\"odinger equation:
-  \[i\hslash\dd{\Psi(t,x)}{t}=-\frac{\hslash^2}{2m}\del^2\Psi(t,x)+V(x)\Psi(t,x).\]
+  \[i\hslash\pd{\Psi(t,x)}{t}=-\frac{\hslash^2}{2m}\del^2\Psi(t,x)+V(x)\Psi(t,x).\]
   \pause ``Mathematization'':
   \[i\pd_t\Psi(t,x)=(-\Delta+V(x))\Psi(t,x).\]
   \pause
   Ansatz: if the solutions has the form $\Psi(t,x)=\phi(t)\psi(x)$, then\pause
-  \[\frac{i\pd_t\phi(t)}{\phi(t)}=\frac{-\Delta\psi(x)+V(x)}{\psi(x)}\pause=E.\]
-  \pause We have two \emph{eigenvalue problems} with shared eigenvalue $E$:\pause
+  \[\frac{i\pd_t\phi(t)}{\phi(t)}=\frac{(-\Delta+V(x))\psi(x)}{\psi(x)}\pause=E.\]
+  \pause The constant $E$ is interpreted as the energy of electrons.
+  \pause We have two \emph{eigenvalue problems} with \emph{shared eigenvalue} $E$:\pause
   \begin{gather*}
     i\dd{t}\phi(t)=E\phi(t),\\
     (-\Delta+V(x))\psi(x)=E\psi(x).
@@ -106,12 +108,11 @@
 \frametitle{Rydberg's formula : Schr\"odinger equation}
   Suppose we already have found the solutions $\phi_E(t)$, $\psi_E(x)$ of the eigenvalue problems for each complex number $E$.\pause
   \begin{itemize}[<+->]
-    \item All functions of the form \[\sum_Ec_E\psi_E(t)\phi_E(x)\] are solutions of the original Schr\"odinger equation.
+    \item All functions of the form \[\Phi(t,x)=\sum_Ec_E\psi_E(t)\phi_E(x)\] are solutions of the original Schr\"odinger equation(in fact we can find all solutions in this way).
     \item For a given $E$, $\phi_E$ and $\psi_E$ are of course not unique. In fact they form a vector space which is called the eigenspace.
     \item Note that for some $E$ we probably cannot find the solution $\psi_E(x)$ that satisfies $\int|\psi_E(x)|^2\,dx=1$: the eigenspace is trivial.
     \item Since $\phi_E(t)\propto e^{-iEt}$ is easily solved, the main difficulty is $\psi_E$.
   \end{itemize}
-  \pause
   \begin{rmk}
     The first one is not mathematically correct statement because we should resolve some technical issues on convergence.
   \end{rmk}
@@ -130,14 +131,22 @@
 
 \begin{frame}
 \frametitle{Rydberg's formula : Schr\"odinger equation}
-  By long long calculations, we can obtain the following heuristically:
+  With long long calculations and hard hard mathematics, experts found the following result:
   \begin{prop}
-    The eigenvalues of $\cH=-\Delta-|x|^{-1}$ is
-    \[\]
+    The eigenvalues of $\cH=-\Delta-2|x|^{-1}$ are
+    \[-1,-\frac14,-\frac19,-\frac1{16},\cdots\]
+    \pause with multiplicity $1$, $1+3$, $1+3+5$, $1+3+5+7$, and so on.
   \end{prop}
+  \pause Since the eigenvalues embody the possible energy values of an electron, we just gave the Rydberg formula a reasonable explanation.
+  \pause This result explains not only the discretized energy spectrum but also the number of each orbitals!
 \end{frame}
 
 \section{Spectral theory of elliptic equations}
+\begin{frame}
+\frametitle{Contents}
+  \tableofcontents[currentsection]
+\end{frame}
+
 \begin{frame}
 \frametitle{Separation of variables}
 \end{frame}
