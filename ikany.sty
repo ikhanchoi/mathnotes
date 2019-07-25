@@ -66,6 +66,8 @@
 %
 \newcommand\ifnotbeamer[1]{\@ifclassloaded{beamer}{}{#1}}
 
+%\let\@@temp#1\renewcommand#1{\ifmmode#2\else\@@temp\fi}\let\@@temp\relax
+%\newcommand\ifnottextmode[1]{}
 
 
 
@@ -320,14 +322,13 @@
 
 
 
+
+
 %/////////////////////////%
 %  Shorthanded notations  %
 %/////////////////////////%
 %
 % Example Code
-%
-%	f(x)=0 \p{for all} x\in\R 
-%	f(x)=0 \c{and} g(x)=0
 %
 %	\evalat{f(x)}{x=0}
 %	\evalat{f(x)}{x=a}{x=b}
@@ -335,10 +336,13 @@
 % \mat{1&0//0&1}
 % \mat[v]{1&0//0&1}  % determinant
 %
+\RequirePackage{xparse}
 
 % Binary operators
-\ifnotbeamer{\newcommand\.{\cdot}} % dot product
-\ifnotbeamer{\newcommand\o{\circ}} % function composition
+\let\@@dot\.
+\renewcommand\.{\ifmmode\cdot\else\@@dot\fi} % dot product dotted
+\let\@@o\o
+\renewcommand\o{\ifmmode\circ\else\@@o\fi} % function composition
 \newcommand\x{\times} % cross product
 \newcommand\dsum{\oplus} % direct sum
 \newcommand\tn{\otimes} % tensor product
@@ -349,13 +353,6 @@
 % Big operators
 \newcommand\bigdsum{\bigoplus}
 \newcommand\bigtn{\bigotimes}
-
-% Texts - prepositions and conjunctions
-\newcommand\cc{\c c} % french c
-\newcommand\cC{\c C} % french C
-\renewcommand\c[1]{\quad\text{#1}\quad}
-\newcommand\p[1]{\enspace\text{#1}\enspace}
-\newcommand\st{\p{s.t.}}
 
 % Arrows
 \let\@@to\to
@@ -414,9 +411,11 @@
 \newcommand\E{\mathbb{E}}
 \newcommand\F{\mathbb{F}}
 \ifnotbeamer{\newcommand\G{\mathbb{G}}} % collision with beamer
-\ifnotbeamer{\newcommand\H{\mathbb{H}}} % collision with beamer
+\let\@@H\H
+\renewcommand\H{\ifmmode\mathbb{H}\else\@@H\fi} % horig
 \newcommand\N{\mathbb{N}}
-\ifnotbeamer{\newcommand\P{\mathbb{P}}} % collision with beamer
+\let\@@P\P
+\renewcommand\P{\ifmmode\mathbb{P}\else\@@P\fi} %pilcrow
 \newcommand\Q{\mathbb{Q}}
 \newcommand\R{\mathbb{R}}
 \newcommand\T{\mathbb{T}}

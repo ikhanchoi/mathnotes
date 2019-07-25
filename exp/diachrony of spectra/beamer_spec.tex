@@ -6,7 +6,7 @@
 \usefonttheme[onlymath]{serif}
 
 \title{Diachrony of Spectra}
-\author{Ikhan Choi}
+\author{Ikhan Choi \\ Postech - Unist - Kaist Joint Seminar}
 
 \begin{document}
 \maketitle
@@ -69,7 +69,7 @@
   \pause
   \begin{prop}[Rydberg formula]
     The wavelengths $\lambda$ of absorbed or emitted photons from a hydrogen atom is estimated by the following formula:
-    \[\frac1\lambda=R\left(\frac1{n_1^2}-\frac1{n_2^2}\right),\c{for}n_1,n_2\in\N,\]
+    \[\frac1\lambda=R\left(\frac1{n_1^2}-\frac1{n_2^2}\right),\quad\text{for}\quad n_1,n_2\in\N,\]
     where $R:=\frac{k^2e^4m}{4\pi\hslash^3c}$ is the \emph{Rydberg constant}.
   \end{prop}
 \end{frame}
@@ -113,9 +113,10 @@
     \item Note that for some $E$ we probably cannot find the solution $\psi_E(x)$ that satisfies $\int|\psi_E(x)|^2\,dx=1$: the eigenspace is trivial.
     \item Since $\phi_E(t)\propto e^{-iEt}$ is easily solved, the main difficulty is $\psi_E$.
   \end{itemize}
+  \uncover<6->{
   \begin{rmk}
     The first one is not mathematically correct statement because we should resolve some technical issues on convergence.
-  \end{rmk}
+  \end{rmk}}
 \end{frame}
 
 \begin{frame}
@@ -124,24 +125,26 @@
   \pause\emph{what are the eigenvalues and eigenvectors of the operator}
   \[\cH:L^2(\R^3)\to L^2(\R^3)\]
   \emph{defined by}
-  \[\cH\psi(x):=(-\Delta-|x|^{-1})\psi(x)?\]
+  \[\cH\psi(x):=(-\Delta-2|x|^{-1})\psi(x)?\]
   \emph{Also, how can we compute them?}
+  \pause
+  \begin{rmk} Simply, $L^2(\R^3)$ is the space of $f:\R^3\to\R$ such that $\int|f|^2<\infty$.\end{rmk}
   \pause \[\textbf{The Beginning of Spectral Theory}\]
 \end{frame}
 
 \begin{frame}
 \frametitle{Rydberg's formula : Schr\"odinger equation}
-  With long long calculations and hard hard mathematics, experts found the following result:
+  With long long calculations and hard hard mathematics, experts found the following result: \pause
   \begin{prop}
-    The eigenvalues of $\cH=-\Delta-2|x|^{-1}$ are
+    The eigenvalues of $\cH=-\Delta-2|x|^{-1}$ are \pause
     \[-1,-\frac14,-\frac19,-\frac1{16},\cdots\]
-    \pause with multiplicity $1$, $1+3$, $1+3+5$, $1+3+5+7$, and so on.
+    \pause with multiplicity 1, 4, 9, 16 and so on.
   \end{prop}
   \pause Since the eigenvalues embody the possible energy values of an electron, we just gave the Rydberg formula a reasonable explanation.
   \pause This result explains not only the discretized energy spectrum but also the number of each orbitals!
 \end{frame}
 
-\section{Spectral theory of elliptic equations}
+\section{Spectral theory on Hilbert spaces}
 \begin{frame}
 \frametitle{Contents}
   \tableofcontents[currentsection]
@@ -162,6 +165,11 @@
 
 
 \section{Gelfand theory}
+\begin{frame}
+\frametitle{Contents}
+  \tableofcontents[currentsection]
+\end{frame}
+
 \begin{frame}
 \frametitle{Banach algebras and $C^*$-algebras}
 \end{frame}
