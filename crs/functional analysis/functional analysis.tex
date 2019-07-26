@@ -23,14 +23,14 @@ boundedness and continuity
 
 
 \section{Classification}
-\begin{rd}[row sep={50pt,between origins}, column sep={60pt,between origins}]
-& inner product \ar{d} &&& Hilbert space \ar{d} & \\
-& \block{finite\\seminorms\\(= normable)} \ar{d} &&& Banach space \ar{d} & \\
-& \block{countable\\seminorms} \ar{ld}\ar{rd} &&& Fr\'echet space \ar{ld}\ar{rd} & \\
-  \block{countable\\pseudometrics\\(= metrizable)} \ar{rd} &
-& \block{uncountable\\seminorms\\(= locally convex)} \ar{ld} &
+\begin{rd}[row sep={50pt,between origins}, column sep={50pt,between origins}]
+& inner product \ar{d} &&&& Hilbert space \ar{d} & \\
+& \parbox{10em}{\centering finite\\seminorms\\(= normable)} \ar{d} &&&& Banach space \ar{d} & \\
+& \parbox{10em}{\centering countable\\seminorms} \ar{ld}\ar{rd} &&&& Fr\'echet space \ar{ld}\ar{rd} & \\
+  \parbox{10em}{\centering countable\\pseudometrics\\(= metrizable)} \ar{rd} &
+& \parbox{10em}{\centering uncountable\\seminorms\\(= locally convex)} \ar{ld} &&
   F-space \ar{rd} && (no name) \ar{ld} \\
-& \block{uncountable\\pseudometrics} &&& (no name) &
+& \parbox{10em}{\centering uncountable\\pseudometrics} &&&& (no name) &
 \end{rd}
 
 \begin{prop}
@@ -42,73 +42,6 @@ If $\rho$ is a seminorm, then the equalities hold.
 I say this as $\frac12B(0,2)$ is ``fatter'' than $B(0,1)$.
 
 
-
-
-
-
-
-\section{Barreled spaces and bornological spaces}
-
-\subsection{The Baire category theorem}
-
-\subsection{Uniform boundedness principle}
-\begin{thm}[Uniform boundedness principle]
-Let $X$ be a barreled space and $Y$ be a topological vector space.
-Let $\cF\subset B(X,Y)$.
-If $\cF$ is pointwise bounded, then $\cF$\ is equicontinuous.
-\end{thm}
-
-
-
-\subsection{Open mapping theorem}
-\begin{thm}[Open mapping theorem]
-Let $X$ be a topological vector space and $Y$ be a metrizable barreled space.
-Let $T\colon X\to Y$ be linear.
-If $T$ is surjective and continuous, then $T$ is open.
-\end{thm}
-\begin{proof}
-If we let $U$ be an open neighborhood in $X$, then we want to show $TU$ is a neighborhood.
-Because $T$ is surjective so that $\cl{TU}$ is absorbent, $\cl{TU}$ is a neighborhood.
-Note that an open set intersects $\cl{TU}$ also intersects $TU$.
-
-If there exist two sequences of balanced open neighborhoods $U_n\subset X$ and $V_n\subset Y$ with
-\begin{cond}
-\item $U_1+\cdots+U_n\subset U$,
-\item $V_n\subset\cl{TU_n}$,
-\item $\bigcap_{n\in\N}V_n=\{0\}$,
-\end{cond}
-then we can show $V_1\subset TU$.
-Here is the proof:
-Suppose $y\in V_1$.
-Then,
-\begin{cd}[row sep={30pt,between origins}, column sep={140pt,between origins}]
-y\cap V_1\ne\mt\ar{r}&y\cap\cl{TU_1}\ne\mt\ar{r}&(y+V_2)\cap TU_1\ne\mt\ar{lld}\\
-(y+TU_1)\cap V_2\ne\mt\ar{r}&(y+TU_1)\cap\cl{TU_2}\ne\mt\ar{r}&((y+TU_1)+V_3)\cap TU_2\ne\mt\ar{lld}\\
-(y+TU_1+TU_2)\cap V_3\ne\varnothing\ar{r}&\quad\cdots.&
-\end{cd}
-From the first columns, and by the conditions (1) and (3), we obtain
-\[(y+TU)\cap\bigcap_{n\in\N}V_n\ne\mt.\]
-Therefore, the set $y+TU$ contains 0, hence $y\in TU$.
-
-Let us show the existence of such sequences.
-At first, take $U_n=2^{-n}U$ for (1).
-Then we can take $\{V_n\}_n$ with (2) as we mentioned above.
-Simultaneously we can have it satisfy (3) because $Y$ is metrizable.
-\end{proof}
-\begin{cor}
-Let $X$ be metrizable and $Y$ be barreled.
-Then, the open mapping theorem holds.
-\end{cor}
-\begin{pf}
-The quotient of metrizable space is also metrizable, so $Y$ is a metrizble barreled space.
-\end{pf}
-\begin{cor}[The Banach Isomorphy]
-A continuous linear bijection onto a metrizable barreled space is a homeomorphism, i.e. topological isomorphism.
-\end{cor}
-\begin{cor}[The first isomorphism theorem]
-Let $T:X\to Y$ be a bounded linear operator between Banach spaces.
-Then, the induced map $X/\ker T\to\im T$ is a topological isomorphism.
-\end{cor}
 
 
 
@@ -138,6 +71,72 @@ polar
 
 
 
+\chapter{Banach spaces}
+
+
+
+\section{Barreled spaces}
+
+\subsection{The Baire category theorem}
+
+\subsection{Uniform boundedness principle}
+\begin{thm}[Uniform boundedness principle]
+Let $X$ be a barreled space and $Y$ be a topological vector space.
+Let $\cF\subset B(X,Y)$.
+If $\cF$ is pointwise bounded, then $\cF$\ is equicontinuous.
+\end{thm}
+
+
+
+\subsection{Open mapping theorem}
+\begin{thm}[Open mapping theorem]
+Let $X$ be a topological vector space and $Y$ be a metrizable barreled space.
+Let $T\colon X\to Y$ be linear.
+If $T$ is surjective and continuous, then $T$ is open.
+\end{thm}
+\begin{pf}
+If we let $U$ be an open neighborhood in $X$, then we want to show $TU$ is a neighborhood.
+Because $T$ is surjective so that $\cl{TU}$ is absorbent, $\cl{TU}$ is a neighborhood.
+Note that an open set intersects $\cl{TU}$ also intersects $TU$.
+
+If there exist two sequences of balanced open neighborhoods $U_n\subset X$ and $V_n\subset Y$ with
+\begin{cond}
+\item $U_1+\cdots+U_n\subset U$,
+\item $V_n\subset\cl{TU_n}$,
+\item $\bigcap_{n\in\N}V_n=\{0\}$,
+\end{cond}
+then we can show $V_1\subset TU$.
+Here is the proof:
+Suppose $y\in V_1$.
+Then,
+\begin{cd}[row sep={30pt,between origins}, column sep={140pt,between origins}]
+y\cap V_1\ne\mt\ar{r}&y\cap\cl{TU_1}\ne\mt\ar{r}&(y+V_2)\cap TU_1\ne\mt\ar{lld}\\
+(y+TU_1)\cap V_2\ne\mt\ar{r}&(y+TU_1)\cap\cl{TU_2}\ne\mt\ar{r}&((y+TU_1)+V_3)\cap TU_2\ne\mt\ar{lld}\\
+(y+TU_1+TU_2)\cap V_3\ne\varnothing\ar{r}&\quad\cdots.&
+\end{cd}
+From the first columns, and by the conditions (1) and (3), we obtain
+\[(y+TU)\cap\bigcap_{n\in\N}V_n\ne\mt.\]
+Therefore, the set $y+TU$ contains 0, hence $y\in TU$.
+
+Let us show the existence of such sequences.
+At first, take $U_n=2^{-n}U$ for (1).
+Then we can take $\{V_n\}_n$ with (2) as we mentioned above.
+Simultaneously we can have it satisfy (3) because $Y$ is metrizable.
+\end{pf}
+\begin{cor}
+Let $X$ be metrizable and $Y$ be barreled.
+Then, the open mapping theorem holds.
+\end{cor}
+\begin{pf}
+The quotient of metrizable space is also metrizable, so $Y$ is a metrizble barreled space.
+\end{pf}
+\begin{cor}[The Banach Isomorphy]
+A continuous linear bijection onto a metrizable barreled space is a homeomorphism, i.e. topological isomorphism.
+\end{cor}
+\begin{cor}[The first isomorphism theorem]
+Let $T:X\to Y$ be a bounded linear operator between Banach spaces.
+Then, the induced map $X/\ker T\to\im T$ is a topological isomorphism.
+\end{cor}
 
 
 
@@ -152,7 +151,8 @@ polar
 
 
 
-\chapter{Operators on Hilbert spaces}
+
+\chapter{Hilbert spaces}
 DO NOT contain topics that can be generalized within Banach algebras or any other operator algebras(e.g. polar decomposition, Gelfand theory, functional calculus, spectral resolution)
 
 \begin{thm}
@@ -180,7 +180,7 @@ Then, $T$ is bounded below if and only if $\im T$ is closed and $T$ is injective
 \subsection{Closed operators}
 \begin{defn}
 An operator $A$ is said to be \emph{closable} if
-\[x_n\text{ and }Ax_n\text{ are Cauchy}\impl\lim_{n\to\oo}Ax_n=A\lim_{n\to\oo}x_n.\]
+\[x_n\text{ and }Ax_n\text{ are Cauchy}\impl\lim_{n\to\infty}Ax_n=A\lim_{n\to\infty}x_n.\]
 Note that the opposite direction is always true.
 \end{defn}
 \subsubsection{Properties of closed operators}
@@ -377,7 +377,7 @@ Let $\cA$ be a unital Banach algebra.
 All elements in the open ball $B(e,1)$ in $\cA$ are invertiable.
 \end{cor}
 \begin{ex}
-For $\cA=C_b(X)$, given the locally compact Hausdorff $X$, the ball is $B(e,1)=\{f\in C(X):0<|f(x)|<2\p{for all}x\}$.
+For $\cA=C_b(X)$, given the locally compact Hausdorff $X$, the ball is $B(e,1)=\{f\in C(X):0<|f(x)|<2\quad\text{for all }x\}$.
 Every function in this set is invertible.
 \end{ex}
 
