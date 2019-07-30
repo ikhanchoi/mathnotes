@@ -170,14 +170,25 @@
     \item we review the spectral theory on finite dimensional vector spaces
     \item and introduce Hilbert spaces --- a typical example of infinite dimensional vector spaces --- to state some results which extend the spectral theory to infinite dimensional spaces.
   \end{itemize}
+  \pause From now, we basically assume $\C$ as the scalar field for vector spaces.
 \end{frame}
 
 \begin{frame}
-\frametitle{Spectral theorem of normal matrices}
+\frametitle{Spectral theorem for normal matrices}
+  The term ``spectral theorem'' is given to several theorems that show a condition for a linear operator to be diagonalizable.\\
+  \pause (diagonalizability is the firstly important ``spectral property''!)\\
+  \pause In particular, spectral theorems state the relation
+  \[\text{condition related to adjoint} \iff \text{a kind of diagonalizability}.\]
+  \pause The most famous one is:
   \begin{defn}
-    Let $A$ be an $n\x n$ complex matrix.
-    The matrix $A$ is said to be \emph{normal} if $AA^*=A^*A$.
+    Let $V$ be a finite dimensional inner product space of complex scalars and $A:V\to V$ be linear.
+    (i.e., let $A$ be a complex square matrix.)
+    Then, $A$ is said to be \emph{normal} if $AA^*=A^*A$.
   \end{defn}
+  \pause Note that the complex conjugate depends on the inner product structure of $V$. \pause
+  \begin{thm}[Spectral theorem for normal matrices]
+    A complex square matrix $A$ is normal if unitarily normalizable.
+  \end{thm}
 \end{frame}
 
 \begin{frame}
@@ -189,11 +200,26 @@
 \end{frame}
 
 \begin{frame}
+\frametitle{Bounded operators}
+\end{frame}
+
+\begin{frame}
 \frametitle{Spectral theorem of compact normal operators}
 \end{frame}
 
 \begin{frame}
-\frametitle{Spectral theorem of elliptic operators (Skipped)}
+\frametitle{Spectral theorem of elliptic operators (Bonus)}
+  The operator $-\Delta-2|x|^{-1}$ is an example of what we call \emph{elliptic operators}.
+  \pause We will not deal with this, but:
+  \bigskip
+  \begin{center}
+    \pause The operator $-\Delta-2|x|^{-1}$ is unbounded,\\
+    \pause but it is known that we can view it as the\\
+    inverse of a compact self-adjoint operator.\\
+    \pause $\downarrow$ \\
+    The eigenvalues are distributed like
+    \[0<\lambda_1<\lambda_2<\cdots\to\infty.\]
+  \end{center}
 \end{frame}
 
 
@@ -203,8 +229,21 @@
   \tableofcontents[currentsection]
 \end{frame}
 
+\newtheorem{pdefn}{Psudo-definition}
 \begin{frame}
-\frametitle{Banach algebras and $C^*$-algebras}
+\frametitle{$C^*$-algebras}
+
+First we give definitions:
+  \begin{pdefn}
+    An algebra is a vector space with multiplication.
+  \end{pdefn}
+  \begin{defn}
+    A \emph{$C^*$-algebra} is a complex associative algebra with norm $\|\cdot\|$ such that:
+    \begin{enumerate}
+      \item $\|x^*x\|=\|x\|^2$
+    \end{enumerate}
+
+  \end{defn}
 \end{frame}
 \begin{frame}
 \frametitle{Example 1 : Bounded operators}
