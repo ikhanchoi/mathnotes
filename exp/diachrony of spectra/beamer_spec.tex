@@ -6,7 +6,7 @@
 \usefonttheme[onlymath]{serif}
 
 \title{Diachrony of Spectra}
-\author{Ikhan Choi \\ Postech - Unist - Kaist Joint Seminar}
+\author{Ikhan Choi \\ \quad \\ Postech - Unist - Kaist Joint Seminar}
 
 \begin{document}
 \maketitle
@@ -83,65 +83,77 @@
   \bigskip
   \pause where $V$ is given by the Coulomb potential
   \[V(x)=-\frac2{|x|}.\]
-  \pause By solving it, we obtain the probability distribution $|\Psi(t,x)|^2$ of the electron at time $t$.
+  \pause By solving it, we obtain the probability distribution $|\Psi(t,x)|^2$ of the electron at time $t$,
+  \pause hence the assumption $\forall t,\ \int|\Psi(t,x)|^2\,dx<\infty$.
   \pause Let's solve.
 \end{frame}
 
 \begin{frame}
 \frametitle{Rydberg's formula : Schr\"odinger equation}
-  Schr\"odinger equation:
   \[i\hslash\pd{\Psi(t,x)}{t}=-\frac{\hslash^2}{2m}\del^2\Psi(t,x)+V(x)\Psi(t,x).\]
   \pause ``Mathematization'':
   \[i\pd_t\Psi(t,x)=(-\Delta+V(x))\Psi(t,x).\]
-  \pause
-  Ansatz: if the solutions has the form $\Psi(t,x)=\phi(t)\psi(x)$, then\pause
+  \pause \textbf{Ansatz:} if the solutions has the form $\Psi(t,x)=\phi(t)\psi(x)$, then\pause
   \[\frac{i\pd_t\phi(t)}{\phi(t)}=\frac{(-\Delta+V(x))\psi(x)}{\psi(x)}\pause=E.\]
-  \pause The constant $E$ is interpreted as the energy of electrons.
+  \pause The constant $E$ is interpreted as the energy of electrons.\\
   \pause We have two \emph{eigenvalue problems} with \emph{shared eigenvalue} $E$:\pause
-  \begin{gather*}
-    i\dd{t}\phi(t)=E\phi(t),\\
-    (-\Delta+V(x))\psi(x)=E\psi(x).
-  \end{gather*}
+  \[i\dd{t}\phi(t)=E\phi(t),\qquad(-\Delta+V(x))\psi(x)=E\psi(x).\]
 \end{frame}
 
 \begin{frame}
 \frametitle{Rydberg's formula : Schr\"odinger equation}
-  Suppose we already have found the solutions $\phi_E(t)$, $\psi_E(x)$ of the eigenvalue problems for each complex number $E$.\pause
+  Suppose we already have found the solutions $\phi_E(t)$, $\psi_E(x)$ of the eigenvalue problems for each complex number $E$.\\
+  \pause Some facts:
+  \pause
   \begin{itemize}[<+->]
-    \item All functions of the form \[\Phi(t,x)=\sum_Ec_E\psi_E(t)\phi_E(x)\] are solutions of the original Schr\"odinger equation(in fact we can find all solutions in this way).
     \item For a given $E$, $\phi_E$ and $\psi_E$ are of course not unique. In fact they form a vector space which is called the eigenspace.
     \item Note that for some $E$ we probably cannot find the solution $\psi_E(x)$ that satisfies $\int|\psi_E(x)|^2\,dx=1$: the eigenspace is trivial.
+    \item All functions that look like \[\Phi(t,x)=\sum_Ec_E\psi_E(t)\phi_E(x)\] are solutions of the original Schr\"odinger equation and \emph{all solutions are found in this way}(think physically!).
     \item Since $\phi_E(t)\propto e^{-iEt}$ is easily solved, the main difficulty is $\psi_E$.
   \end{itemize}
-  \uncover<6->{
-  \begin{rmk}
-    The first one is not mathematically correct statement because we should resolve some technical issues on convergence.
-  \end{rmk}}
 \end{frame}
 
 \begin{frame}
 \frametitle{Rydberg's formula : Schr\"odinger equation}
-  So, what we need to investigate seriously is:
-  \pause\emph{what are the eigenvalues and eigenvectors of the operator}
+  So, here are what we need to investigate seriously:
+  \pause\emph{what are the eigenvalues and eigenvectors of the linear operator}
   \[\cH:L^2(\R^3)\to L^2(\R^3)\]
   \emph{defined by}
   \[\cH\psi(x):=(-\Delta-2|x|^{-1})\psi(x)?\]
   \emph{Also, how can we compute them?}
+  \pause \[\star\star\star\textbf{ The Beginning of Spectral Theory }\star\star\star\]
+  \pause \vspace{-2em}
+  \begin{rmk}
+    Simply, $L^2(\R^3)$ is the space of $f:\R^3\to\R$ such that $\int|f|^2<\infty$.
+  \end{rmk}
   \pause
-  \begin{rmk} Simply, $L^2(\R^3)$ is the space of $f:\R^3\to\R$ such that $\int|f|^2<\infty$.\end{rmk}
-  \pause \[\textbf{The Beginning of Spectral Theory}\]
+  \begin{rmk}
+    In fact, there are many technical issues to formalize this problem, for example, $L^2$ function is in general not differentiable.\\
+    \pause Don't be so pedantic in doing physics.
+  \end{rmk}
 \end{frame}
 
 \begin{frame}
 \frametitle{Rydberg's formula : Schr\"odinger equation}
-  With long long calculations and hard hard mathematics, experts found the following result: \pause
+  With long long calculations and hard hard mathematics, experts have found the following result: \pause
   \begin{prop}
-    The eigenvalues of $\cH=-\Delta-2|x|^{-1}$ are \pause
+    The eigenvalues of the operator $\cH=-\Delta-2|x|^{-1}$ are \pause
     \[-1,-\frac14,-\frac19,-\frac1{16},\cdots\]
     \pause with multiplicity 1, 4, 9, 16 and so on.
   \end{prop}
-  \pause Since the eigenvalues embody the possible energy values of an electron, we just gave the Rydberg formula a reasonable explanation.
-  \pause This result explains not only the discretized energy spectrum but also the number of each orbitals!
+  \begin{itemize}[<+->]
+    \item Eigenvalues embody the possible energies of an electron, so we can give the Rydberg formula a reasonable explanation.
+    \item This result explains not only the discretized energy spectrum but also the number of each orbitals!
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Conclusion of Section 1}
+  \begin{rd}
+  Partial Differential Equations with Time Evolution \ar{d}{Separation of variables}\\
+  Simultaneous Eigenvalue Problems \ar{d} \\
+  Study of Eigenvalues $=$ Study of Hydrogen Spectrum
+  \end{rd}
 \end{frame}
 
 \section{Spectral theory on Hilbert spaces}
@@ -151,16 +163,33 @@
 \end{frame}
 
 \begin{frame}
-\frametitle{Separation of variables}
+\frametitle{Spectral theory?}
+  So far, we have seen that spectral theory refers to the theory about eigenvalues and eigenvectors, \pause especially for INFINITE dimensional linear operators.\\
+  \pause In this section,
+  \begin{itemize}
+    \item we review the spectral theory on finite dimensional vector spaces
+    \item and introduce Hilbert spaces --- a typical example of infinite dimensional vector spaces --- to state some results which extend the spectral theory to infinite dimensional spaces.
+  \end{itemize}
 \end{frame}
+
 \begin{frame}
 \frametitle{Spectral theorem of normal matrices}
 \end{frame}
+
+\begin{frame}
+\frametitle{Spectral theorem of normal matrices}
+\end{frame}
+
+\begin{frame}
+\frametitle{Hilbert space}
+\end{frame}
+
 \begin{frame}
 \frametitle{Spectral theorem of compact operators}
 \end{frame}
+
 \begin{frame}
-\frametitle{Spectral theorem of elliptic operators}
+\frametitle{Spectral theorem of elliptic operators (Skipped)}
 \end{frame}
 
 
