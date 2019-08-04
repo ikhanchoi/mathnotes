@@ -1,4 +1,4 @@
-\documentclass[10pt]{beamer}
+\documentclass[10pt,handout]{beamer}
 \usepackage{../../ikany}
 
 \usepackage[small]{eulervm}
@@ -20,7 +20,7 @@
   \end{defn}
   \pause
   \begin{ex}
-  	\[\Spec(\Z)=\{\,2\Z,3\Z,5\Z,7\Z,11\Z,\cdots\,\}.\]
+  	\[\Spec(\Z)=\{\{0\},\,2\Z,3\Z,5\Z,7\Z,11\Z,\cdots\,\}.\]
   \end{ex}
   \pause
   \begin{qn}
@@ -143,7 +143,7 @@
   \begin{itemize}[<+->]
     \item Eigenvalues embody the possible energies of an electron, so we can give the Rydberg formula a reasonable explanation.
     \item This result explains not only the discretized energy spectrum but also the number of orbitals in each electron shell!
-    \item We call the set of eigenvalues by \textbf{spectrum} of $\cH$.
+    \item We call the set of eigenvalues by (discrete) \textbf{spectrum} of $\cH$.
   \end{itemize}
 \end{frame}
 
@@ -297,22 +297,25 @@
 
 \begin{frame}
 \frametitle{Discrete spectrum}
-  The operator $-\Delta-2|x|^{-1}$ is an example of what we call \emph{elliptic operators} with discrete spectrum.\\
+  An application of spectral theorem:\\
+  The Hamiltonian operator for harmonic oscillator $-\Delta-|x|^2$ is an example of what we call \emph{elliptic operators} with discrete spectrum.\\
   We will not deal with this in detail, but:
   \bigskip
   \begin{center}
-    \pause The operator $-\Delta-2|x|^{-1}$ is unbounded,\\$\ $\\
+    \pause The operator $-\Delta-|x|^2$ is unbounded,\\$\ $\\
     \pause but it is known that we can view it as the\\
     inverse of a compact self-adjoint(positive) operator.\\
     \pause $\downarrow$ \\
     The eigenvalues are distributed like
     \[0<\lambda_1<\lambda_2<\cdots\to\infty.\]
   \end{center}
+  \pause Hydrogen atom is more complicated: it has both discrete spectra $\{-\frac1{n^2}\}$ and continuous spectra $[0,\infty)$.
+  What is continuous spectrum?
 \end{frame}
 
 \begin{frame}
 \frametitle{Continuous spectrum}
-  For hydrogen atom $\impl$ we can define the spectrum of Hamiltonian $\cH=-\Delta+2|x|^{-1}$ as the set of \emph{eigenvalues}.\\
+  For hydrogen atom $\impl$ we defined the discrete spectrum of Hamiltonian $\cH=-\Delta+2|x|^{-1}$ as the set of \emph{eigenvalues}.\\
   \bigskip
   \pause For a free particle $\impl$\pause$\cH=-\Delta+V=-\Delta$, we cannot; eigenvectors exist for $E\ge0$, and they are ``linear combinations'' of
   \[\psi_E(x)=e^{ik\cdot x},\qquad\text{ for }k\in\R^3\text{ s.t. }|k|^2=E,\]
@@ -443,15 +446,17 @@
 \begin{frame}
 \frametitle{Spectrum as a topological space}
   Let $\sigma(A)$ be the spectrum of a comm. unit. $C^*$-algebra $A$.\\
-  \bigskip
-  \pause We set up the topology of pointwise convergence on $\sigma(A)$:\\for example, consider $C(X)$.
-  Since $X$ is naturally corresponded to $\sigma(C(X))$ as a set,
+  \smallskip
+  \pause We set up the \emph{topology of pointwise convergence} on $\sigma(A)$, by identifying maximal ideals with the projections to $\C$:\\
+  \smallskip
+  for example, consider $C(X)$.
+  Since $X$ is naturally 1-1 corresponded to $\sigma(C(X))$ as a set,
   \[x\to y\in X \iff f(x)\to f(y)\quad\text{ for all }f\in C(X).\]
   \pause
   Then,
   \begin{prop}
     Let $A$ be a comm. unit. $C^*$-algebra.
-    Then, the spectrum $\sigma(A)\subset\C$ is compact (by the Banach-Alaoglu).
+    Then, the spectrum $\sigma(A)$ is compact (by the Banach-Alaoglu).
   \end{prop}
   \pause
   \begin{ex}
