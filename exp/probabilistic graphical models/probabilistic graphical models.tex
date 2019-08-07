@@ -1,13 +1,12 @@
 \documentclass{../exp}
 \usepackage{../../ikany}
 
-\title{Neural Networks}
+\title{Probabilistic Graphical Models}
 
 \begin{document}
 \maketitle
 \tableofcontents
 
-The AI paradigm changes when a new approximating method is discovered.
 
 \section{Motivations}
 
@@ -18,10 +17,10 @@ The following is not mathematically sound.
 \begin{defn}
 A \emph{statistical model} is an approximation scheme for unknown probability distribution.
 \end{defn}
-In particular, the general purpose of many statistical models is to estimate the joint probability distribution of two random variables $X$ and $Y$.
-The joint probability distrbution contains data about relation between $X$ and $Y$.
-Suppose our goal is to obtain the most possible value of $Y$ when given $X=x$, and we have estimated the joint distribution function $f_{X,Y}$.
-Then, the function $y\mapsto f_{X,Y}(x,y)$ describes the distribution of $Y|X=x$, so what we wanted is reasonably defined as
+In particular, the general purpose of many statistical models is to \emph{estimate the joint probability distribution} of several random variables.
+The joint probability distrbution contains data about relations of the random variables.
+For example, suppose our goal is to obtain the most possible value of $Y$ when given $X=x$, and we have already estimated the joint distribution function $f_{X,Y}$.
+Then, since the function $y\mapsto f_{X,Y}(x,y)$ describes the distribution of the random variable $Y|X=x$, what we want to find can be defined reasonably as
 \[\hat y=\argmax_yf_{X,Y}(x,y).\]
 
 \subsection{Statistical mechanics}
@@ -52,6 +51,7 @@ Since $\cS$ is finite, alternatively we may rewrite it by
 \end{ex}
 
 \begin{ex}[Maxwell-Boltzman distribution]
+WRONGWRONGWRONG
 Let $G=(V,E)$ be a graph defined by
 \[V=\{n\}_{n=1}^N,\quad E=\mt\]
 for a large natural number $N$; the set $V$ is considered to be the set of ideal gas particles.
