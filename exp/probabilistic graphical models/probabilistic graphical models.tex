@@ -8,41 +8,44 @@
 \tableofcontents
 
 
-\section{Motivations}
 
+
+\section{Models}
 
 \subsection{Statistical model}
-\[\in\]
-The following is not mathematically sound.
 \begin{defn}
-A \emph{statistical model} is an approximation scheme for unknown probability distribution.
+A \emph{statistical model} is an approximation scheme for unknown joint probability distribution.
 \end{defn}
-In particular, the general purpose of many statistical models is to \emph{estimate the joint probability distribution} of several random variables.
+The general purpose of many statistical models is to \emph{estimate the joint probability distribution} of several random variables.
 The joint probability distrbution contains data about relations of the random variables.
 For example, suppose our goal is to obtain the most possible value of $Y$ when given $X=x$, and we have already estimated the joint distribution function $f_{X,Y}$.
 Then, since the function $y\mapsto f_{X,Y}(x,y)$ describes the distribution of the random variable $Y|X=x$, what we want to find can be defined reasonably as
 \[\hat y=\argmax_yf_{X,Y}(x,y).\]
 
-\subsection{Statistical mechanics}
-
-\section{Models}
+\begin{ex}
+A random field, which we have not defined yet, is a way to represent several random variables together with their dependecies.
+Therefore, a paramterized random field gives a statistical model.
+In this case, training means an approximating process to find the best parameter, usually written as $\beta$.
+\end{ex}
 
 \subsection{Random fields}
 \begin{defn}[Random field]
-A \emph{random field} is a set of random variables parametrized by a topological space or a (directed or undirected)graph.
+A \emph{random field} is a set of random variables parametrized by a topological space or a (directed or undirected) graph.
 \end{defn}
 \begin{defn}
-In this note, we will call the random fields on a graph as \emph{networks}.
+In this note, a term \emph{random field} or \emph{network} will be used to refer to random fields on a graph.
 \end{defn}
-Actually, networks and graphs are often used as synonyms.
 
 \begin{ex}[Markov chain]
-Let $G=(V,E)$ be a directed graph defined by
-\[V=\Z_{\ge0},\quad E=\{(t,t+1)\}_{t\in V},\]
-that is, an element $t\in V$ denotes the time $t$.
-
-Let $\cS$ be a finite set of states such that every subset is measurable.
+Define a graph $G=(V,E)$ and $\cS$ such that:
+\begin{align*}
+V&=\Z_{t\ge0},\\
+E&=\{(t,t+1)\}_{t\in V},\\
+\cS&=\text{a finite set}.
+\end{align*}
+An element $t\in V$ denotes the time $t$.
 Then, the set of $\cS$-valued random variables $\{X_t\}_{t\in V}$ indexed by $V$ defines a random field.
+
 The Markov property is given by
 \[X_t\indep X_s\mid X_{t-1}\]
 for $s\le t$.
@@ -51,31 +54,44 @@ Since $\cS$ is finite, alternatively we may rewrite it by
 \end{ex}
 
 \begin{ex}[Maxwell-Boltzman distribution]
-WRONGWRONGWRONG
-Let $G=(V,E)$ be a graph defined by
-\[V=\{n\}_{n=1}^N,\quad E=\mt\]
-for a large natural number $N$; the set $V$ is considered to be the set of ideal gas particles.
-Define the space of microstates $\cS=\Z_x^3\x\Z_p^3$, which embodies the discretized phase space.
-At each particle $n\in V$, an $\cS$-valued random variable denoted by $X_n$ is attached.
+Let $X$ be a $\cS$-valued random field on a graph $G=(V,E)$ such that:
+\begin{align*}
+V&=\{n\}_{n=1}^N,\\
+E&=\mt,\\
+\cS&=\Z_x^3\x\Z_p^3
+\end{align*}
+for a large natural number $N$.
+The set $V$ is the set of ideal gas particles, and the space of states $\cS$ embodies the discretized phase space.
+At each particle $n\in V$ is attached an $\cS$-valued random variable denoted by $X_n$.
+Our ultimate goal is to describe the joint probability distribution of $X_n$'s; equivalently, the distribution of a $\cS^V$-valued random variable $X=(X_1,\cdots,X_N)$.
+Elements of $\cS^V$ are called \emph{microstates}.
 
-Let $m>0$ be a constant.
-Define the \emph{Boltzmann factor} as a function $\phi:\R_{>0}\x V\to\R$ such that
-\[\phi(\beta,i):=e^{-\beta E_i},\]
-where $\beta=\frac1{k_BT}>0$ is called \emph{coldness} and the \emph{energy function} $E:\cS\to\R$ is defined by
+Let $m>0$ be a constant and fix a parameter $\beta=\frac1{k_BT}>0$ which is called \emph{coldness}.
+Define the \emph{Boltzmann factor} as a function $\phi_n:\R_{\beta>0}\x\cS\to\R$ such that
+\[\phi_n(\beta,i):=e^{-\beta E(i)},\]
+where the \emph{energy function} $E:\cS\to\R$ is defined by
 \[E(x,p):=\frac{\|p\|^2}{2m}.\]
-
 The assumption for Boltzmann factors states that given $\beta$, the probability for a particle to be in the state $i$ is proportional to the Boltzmann factor: 
-\[\Pr(X_n=i)\propto e^{-\beta E_i}\]
-for each state $i\in\cS$ and particle $n\in V$.
+\[\Pr(X_n=i_n)\propto\phi_n(\beta,i_n)=e^{-\beta E_{i_n}}\]
+for each state $i_n\in\cS$ and a fixed particle $n\in V$.
 Thus, we can write
-\[\Pr(X_n=i)=\frac{e^{-\beta E_i}}{\sum_{j=1}^Ne^{-\beta E_j}}=:\frac1{Z(\beta)}\,e^{-\frac\beta{2m}\|p_i\|^2}.\]
-The denominator $Z$ is called the \emph{partition function}.
-Note that it depends on the data of the Boltzmann factor.
-% X가 베타인 것이 아니라 에너지가 X,Y에 모두 의존한다고 보는 게 맞는 것 같다.
-% 그리고 베타를 조정해서 학습을 하는 것이다.
-% 그러므로 위의 내용을 고쳐야 한다.
+\[\Pr(X_n=i_n)=\frac{\phi_n(\beta,i_n)}{\sum_{j_n\in\cS}\phi_n(\beta,j_n)}=:\frac{\phi_n(\beta,i_n)}{Z_n(\beta)}.\]
+If we assume the independence of $X_n$'s, then we get the disjoint probability distribution
+\[\Pr(X=i)=\frac{\phi(\beta,i)}{\sum_{j\in\cS^V}\phi(\beta,j)}=:\frac{\phi(\beta,i)}{Z(\beta)},\]
+where
+\[\phi(\beta,i):=\prod_{n=1}^N\phi_n(\beta,i_n),\qquad Z(\beta)=\prod_{n=1}^NZ_n(\beta).\]
+The denominator $Z:\R_{\beta>0}\to\R^+$ is called the \emph{partition function}.
 \end{ex}
 
+\begin{ex}[Ising model]
+Let $X$ be a $\cS$-valued random field on a graph $G=(V,E)$ such that:
+\begin{align*}
+V&=\Z^2,\\
+E&=\{\,(x,y):\|x-y\|=1\,\},\\
+\cS&=\{\pm1\}.
+\end{align*}
+
+\end{ex}
 
 \subsection{Bayesian networks}
 
