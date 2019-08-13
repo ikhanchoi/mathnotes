@@ -10,7 +10,7 @@
 
 
 
-\section{Models}
+\section{Introduction}
 
 \subsection{Statistical model}
 \begin{defn}
@@ -90,10 +90,38 @@ V&=\Z^2,\\
 E&=\{\,(x,y):\|x-y\|=1\,\},\\
 \cS&=\{\pm1\}.
 \end{align*}
-
 \end{ex}
 
-\subsection{Bayesian networks}
+
+\subsection{Independencies}
+
+We review the measure-theoretic definition of probability distribution.
+\begin{defn}
+Let $\Omega$ be a measure space with probability measure $\Pr$ and $\cS$ a measurable space.
+Let $X:\Omega\to\cS$ be a random variable.
+The \emph{probability distribution} of $X$ is the pushforward measure $X_*\Pr$ on $\cS$ defined as $X_*\Pr(A)=\Pr(X^{-1}(A))$ for measurable $A\in\cS$.
+We often also write $\Pr(X\in A)$ for $X_*\Pr(A)$.
+\end{defn}
+
+We mainly deal with several random variables and their joint distribution.
+Suppose $X=\{X_n\}_{n=1}^N$ is a set of random variables and let $(\cS_n,\cF_n)$ be the codomain of $X_n$.
+\begin{defn}
+Radon space?
+\[\Pr(X\in A\mid Y\in B):=\lim_{U\downarrow B}\frac{\Pr(X\in A,\,Y\in U)}{\Pr(Y\in U)}.\]
+\end{defn}
+
+
+Consequently, we may find
+\begin{itemize}
+\item $\Pr(X_1)$ is a probability measure on $\cS_1$,
+\item $\Pr(X_1,X_2)$ is a probability measure on $\cS_1\times\cS_2$,
+\item $\Pr(X_2\mid X_1)$ is a set of probability measures on $\cS_2$ parametrized by $\cF_1$.
+\end{itemize}
+
+
+
+
+\section{Bayesian networks}
 
 
 \begin{defn}[Bayesian network]
@@ -111,7 +139,7 @@ We want to investigate mutual effects among the paramtrized random variables.
 \end{ex}
 
 
-\subsection{Markov networks}
+\section{Markov networks}
 
 \begin{defn}[Markov network]
 \end{defn}
@@ -121,7 +149,7 @@ Markov networks are sometimes called MRF, Markov random field.
 Consider a network with a graph $G$ such that vertices are divided into two classes.
 \end{ex}
 
-\subsection{Neural networks}
+\section{Neural networks}
 Probabilistic graphical models provide effective explanations of the neural networks, but neural networks are not confined only to graphical models.
 \begin{defn}[Neural network]
 \emph{Neural network} cannot be defined mathematically.
@@ -135,6 +163,12 @@ It indicates statistical models that can solve problems with a collection of art
 \begin{ex}[RNN, Recurrent Neural Network]
 
 \end{ex}
+
+
+
+
+\end{document}
+
 
 \section{Inference}
 \subsection{Viterbi algorithm}
@@ -238,5 +272,3 @@ Balancing the convergence rates between $p_g$ and $D$ is important.
 \fi
 
 
-
-\end{document}
