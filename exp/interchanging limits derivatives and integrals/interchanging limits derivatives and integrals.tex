@@ -1,7 +1,7 @@
 \documentclass{../exp}
 \usepackage{../../ikany}
 
-\title{Interchanging limits, derivatives, and integrals}
+\title{Interchanging Limits, Derivatives, and Integrals}
 
 \begin{document}
 \maketitle
@@ -49,27 +49,50 @@ Then,
 \[\lim_{n\to\oo}\|f_n\|_1=\|f\|_1\iff\lim_{n\to\oo}\|f_n-f\|_1=0.\]
 \end{thm}
 
+Define the Newton quotient as
+\[D_hf(t,x):=\frac{f(t+h,x)-f(t,x)}h\]
+for $h\ne0$.
+We mainly recognize $D_h$ as an operator that maps $f(0,x)$ to a function of $x$.
+Then, we can say that the partial derivative $\pd_tf(0,x)$ is well-defined a.e. $x$ if and only if
+\[\lim_{h\to0}D_hf(0,x)=\pd_tf(0,x)\qquad\text{a.e. }x.\]
 
-This question asks under what conditions the following convergence holds: for fixed $t_0$,
-\[\lim_{t\to t_0}\|N_tf(x,t_0)-\pd_tf(x,t_0)\|_{L_x^1}=0,\]
-where the Newton quotient is defined as
-\[N_tf(x,t_0):=\frac{f(x,t)-f(x,t_0)}{t-t_0}\]
-for $t\ne t_0$
-
+We may ask about conditions for the following to hold:
+\[\lim_{h\to0}D_hf(0,x)=\pd_tf(0,x)\qquad\text{in }L_x^1(X).\]
+This question naturally arise because it implies the commutability
+\[\dd{t}\int f(t,x)\,dx=\int\pd{t}f(t,x)\,dx\]
+at $t=0$.
+As necessary conditions to formalize the statement, we must basically assume that $f(t,x)\in L_x^1$ for $|t|<\e$, and $\pd_tf(0,x)\in L_x^1$.
+Above this, if we give a stronger condition $\esssup_{|t|<\e}|\pd_tf(t,x)|\in L_x^1$ than $\pd_tf(0,x)\in L_x^1$, then the $L_x^1$ convergence is obtained.
 \begin{thm}[Leibniz rule]
-Let $I$ be an interval in $\R$ that containing $t_0$.
-Let $f:X\x I\to\R$ be a measurable function such that for a.e. $x$ the function $t\mapsto f(x,t)$ is continuous on $I$ and differentiable on $I^\o$.
-
-If $\|\pd_tf\|_{L_x^1(L_t^\oo)}<\oo$, then
-\[\dd{t}\int f(x,t)\,dx=\int\pd{t}f(x,t)\,dx.\]
+Let $f:(-\e,\e)\times X\to\R$ be a curve of integrable functions such that $f(t,x)$ is absolutely continuous in $t$ for a.e. $x$.
+If
+\[\esssup_{|t|<\e}|\pd_tf(t,x)|\]
+is in $L_x^1$, then
+\[\lim_{h\to0}D_hf(0,x)=\pd_tf(0,x)\qquad\text{in }L_x^1(X).\]
 \end{thm}
 \begin{pf}
+Our strategy is 
 Define a maximal function
-\[Mf(x,t_0)=\sup_{t\in I\setminus\{t_0\}}|N_tf(x,t_0)|.\]
-By the mean value theorem, we get
-\[\|\pd_tf\|_{L_x^1(L_t^\oo)}<\oo\impl\|Mf(x,t_0)\|_{L_x^1}<\oo.\]
-Apply the LDCT.
+\[Mf(x):=\sup_{|h|<\e}|D_hf(0,x)|.\]
+Since
+\[D_hf(0,x)=\frac{f(h,x)-f(0,x)}h=\frac1h\int_0^h\pd_tf(t,x)\,dt,\]
+we have
+\begin{align*}
+|D_hf(0,x)|&\le\frac1h\int_0^h|\pd_tf(t,x)|\,dt\\
+&\le\esssup_{|t|\le|h|}|\pd_tf(t,x)|\left[\frac1h\int_0^h\,dt\right]\\
+&\le\esssup_{|t|<\e}|\pd_tf(t,x)|.
+\end{align*}
+Since the right hand side is constant with respect to $h$, we can deduce that $Mf$ is in $L_x^1$.
+The pointwise 
+Applying the Lebesgue dominated convergence theorem, we get the desired result...???
 \end{pf}
+\begin{rmk}
+If $f$ is assumed to be differentiable everywhere on $t\in(-\e,\e)$, then we may use the mean value theorem to prove the theorem instead of the differentiation theorem:
+we directly get
+\[|D_hf(0,x)|\le\sup_{|t|<\e}|\pd_tf(t,x)|.\]
+If $f$ is assumed to be continuously differentiable on $t\in(-\e,\e)$, then 
+\end{rmk}
+
 
 $F$ is absolutely continuous,
 \[\pd_tF=f\iff F(x,t)=\int_c^tf(x,s)\,dx.\]
