@@ -71,28 +71,39 @@ is in $L_x^1$, then
 \[\lim_{h\to0}D_hf(0,x)=\pd_tf(0,x)\qquad\text{in }L_x^1(X).\]
 \end{thm}
 \begin{pf}
-Our strategy is 
-Define a maximal function
+Our strategy is to apply the Lebesgue dominated convergence theorem.
+The pointwise convergence (in a.e. sense) is satisfied due to the absolute continuity.
+
+Define the maximal function
 \[Mf(x):=\sup_{|h|<\e}|D_hf(0,x)|.\]
-Since
+The fundamental theorem of calculus for absolute continuous functions implies
 \[D_hf(0,x)=\frac{f(h,x)-f(0,x)}h=\frac1h\int_0^h\pd_tf(t,x)\,dt,\]
-we have
+so we have
 \begin{align*}
 |D_hf(0,x)|&\le\frac1h\int_0^h|\pd_tf(t,x)|\,dt\\
 &\le\esssup_{|t|\le|h|}|\pd_tf(t,x)|\left[\frac1h\int_0^h\,dt\right]\\
 &\le\esssup_{|t|<\e}|\pd_tf(t,x)|.
 \end{align*}
 Since the right hand side is constant with respect to $h$, we can deduce that $Mf$ is in $L_x^1$.
-The pointwise 
-Applying the Lebesgue dominated convergence theorem, we get the desired result...???
+By the Lebesgue dominated convergence theorem, we get the desired result.
 \end{pf}
 \begin{rmk}
-If $f$ is assumed to be differentiable everywhere on $t\in(-\e,\e)$, then we may use the mean value theorem to prove the theorem instead of the differentiation theorem:
+If $f$ is assumed to be differentiable everywhere on $t\in(-\e,\e)$, then we may use the mean value theorem to prove the theorem instead of the fundamental theorem of calculus:
 we directly get
 \[|D_hf(0,x)|\le\sup_{|t|<\e}|\pd_tf(t,x)|.\]
 If $f$ is assumed to be continuously differentiable on $t\in(-\e,\e)$, then 
 \end{rmk}
 
+
+
+
+
+
+
+
+
+
+\end{document}
 
 $F$ is absolutely continuous,
 \[\pd_tF=f\iff F(x,t)=\int_c^tf(x,s)\,dx.\]
@@ -114,13 +125,3 @@ Since $f(x,0)\in L_x^1$, by the Lebesgue differentiation theorem, we get
 for a.e. $x$.
 
 
-
-
-
-
-
-
-
-
-
-\end{document}
