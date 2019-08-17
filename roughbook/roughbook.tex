@@ -13,21 +13,36 @@
 
 Consider
 \begin{pde*}
-u_t+u^2u_x&=0 \: (t,x)\in\R_t^+\x\in\R_x,\\
-u(0,x)&=x+2 \: \text{at}\ x\in\R.
+u_t+u^2u_x&=0, \: (t,x)\in\R_{t\ge0}\x\R_x,\\
+u(0,x)&=x+2, \: \text{at}\ x\in\R.
 \end{pde*}
-Suppose that $u$ is the solution.
-The equation $y=u(t,x)$ gives a surface.
-Let $c(\theta)\in\R_t^+\x\R_x\x\R_y$ be an integral curve of
-\[\pd{t}+y^2\pd{x}-0\cdot\pd{y}.\]
+Suppose that $u:\R_{t\ge0}\x\R_x\to\R_y$ is a solution.
+Let $M$ be the surface $y=u(t,x)$ and let $E$ be the ambient space $\R_{t\ge0}\x\R_x\x\R_y$.
 
-The kernel of the differential form
-\[d(u(t-x)-y)=u_t\,dt+u_x\,dx-dy\]
-is exactly the tangent space of the graph of $y=u$.
-
-Note that
-\[d(u-y)(c')=u_t+y^2u_x.\]
-If $c$ is on a 
+\begin{prop}
+Let $p$ be a point on $M$.
+Let $c:I\to E$ be the integral curve of the vector field
+\[X=\pd{t}+y^2\pd{x}-0\pd{y}\]
+such that $c(0)=p$.
+Then, $c(\theta)\in M$ for all $\theta$.
+\end{prop}
+\begin{pf}
+Define $\tld c:I\to M$ as the integral curve of the vector field
+\[\tld X=\pd{t}+u^2\pd{x}-0\pd{y}\in\Gamma(TM)\]
+such that $\tld c(0)=p$.
+Since $X$ and $\tld X$ coincide on $M$, the curve $\tld c$ is also an integral curve of $X$ with $\tld c(0)=p$.
+By the uniqueness of the integral curve, we get $c=\tld c$.
+\end{pf}
+This proposition implies that we might be able to describe the points on the surface $M$ explicitly by finding the integral curves of the vector field $X$.
+Since $X$ does not depend on $u$, we can solve the ODE: let $c(\theta)=(t(\theta),x(\theta),y(\theta))$ be the integral curve of $X$ such that $c(0)=(0,\xi,\xi+2)$.
+Then, the system of ODEs
+\begin{alignat*}{2}
+\dd{t}{\theta}&=1,   &\qquad t(0)&=0,\\
+\dd{x}{\theta}&=y^2, & x(0)&=\xi,\\
+\dd{y}{\theta}&=0,   & y(0)&=\xi+2
+\end{alignat*}
+is solved as
+\[t(\theta)=\theta,\qquad y(\theta)=\xi+2,\qquad x(\theta)=(\xi+2)^2\theta+\xi.\]
 
 
 
