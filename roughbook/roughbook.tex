@@ -13,39 +13,45 @@
 
 Consider
 \begin{pde*}
-u_t+u^2u_x&=0, \: (t,x)\in\R_{t\ge0}\x\R_x,\\
-u(0,x)&=x+2, \: \text{at}\ x\in\R.
+u_t+u^2u_x&=0, \: (t,x)\in\Omega\subset\R_{t\ge0}\x\R_x,\\
+u(0,x)&=x, \: \text{at}\ x\in\R.
 \end{pde*}
-Suppose that $u:\R_{t\ge0}\x\R_x\to\R_y$ is a solution.
-Let $M$ be the surface $y=u(t,x)$ and let $E$ be the ambient space $\R_{t\ge0}\x\R_x\x\R_y$.
+Suppose that a function $u:\Omega\to\R_y$ is a solution.
+Let $M$ be the surface $y=u(t,x)$ and let $E$ be the ambient space $\Omega\x\R_y$.
 
 \begin{prop}
-Let $p$ be a point on $M$.
-Let $c:I\to E$ be the integral curve of the vector field
+Let $\gamma:I\to E$ be an integral curve of the vector field
 \[X=\pd{t}+y^2\pd{x}-0\pd{y}\]
-such that $c(0)=p$.
-Then, $c(\theta)\in M$ for all $\theta$.
+such that $\gamma(0)\in M$.
+Then, $\gamma(\theta)\in M$ for all $\theta\in I$.
 \end{prop}
 \begin{pf}
-Define $\tld c:I\to M$ as the integral curve of the vector field
-\[\tld X=\pd{t}+u^2\pd{x}-0\pd{y}\in\Gamma(TM)\]
-such that $\tld c(0)=p$.
-Since $X$ and $\tld X$ coincide on $M$, the curve $\tld c$ is also an integral curve of $X$ with $\tld c(0)=p$.
-By the uniqueness of the integral curve, we get $c=\tld c$.
+We may assume $\gamma$ is maximal.
+Define $\tilde\gamma:\tilde I\to M$ as the maximal integral curve of the vector field
+\[\tilde X=\pd{t}+u^2\pd{x}-0\pd{y}\in\Gamma(TM)\]
+such that $\tilde\gamma(0)=\gamma(0)$.
+Since $X$ and $\tilde X$ coincide on $M$, the curve $\tilde\gamma$ is also an integral curve of $X$ with $\tilde\gamma(0)=\gamma(0)$.
+By the uniqueness of the integral curve, we get $\tilde I\subset I$ and $\gamma(\theta)=\tilde\gamma(\theta)$ for all $\theta\in\tilde I$.
+
+Since $M$ is closed in $E$, the open interval $\tilde I=\gamma^{-1}(M)$ is closed in $I$, hence $\tilde I=I$ by the connectedness.
 \end{pf}
+\begin{defn}
+The projection of the integral curve $\gamma$ onto $\Omega$ is called a \emph{characteristic}.
+\end{defn}
 This proposition implies that we might be able to describe the points on the surface $M$ explicitly by finding the integral curves of the vector field $X$.
-Since $X$ does not depend on $u$, we can solve the ODE: let $c(\theta)=(t(\theta),x(\theta),y(\theta))$ be the integral curve of $X$ such that $c(0)=(0,\xi,\xi+2)$.
+Since $X$ does not depend on $u$, we can solve the ODE: let $\gamma(\theta)=(t(\theta),x(\theta),y(\theta))$ be the integral curve of $X$ such that $\gamma(0)=(0,\xi,\xi)$.
 Then, the system of ODEs
 \begin{alignat*}{2}
 \dd{t}{\theta}&=1,   &\qquad t(0)&=0,\\
-\dd{x}{\theta}&=y^2, & x(0)&=\xi,\\
-\dd{y}{\theta}&=0,   & y(0)&=\xi+2
+\dd{x}{\theta}&=y(\theta)^2, & x(0)&=\xi,\\
+\dd{y}{\theta}&=0,   & y(0)&=\xi
 \end{alignat*}
 is solved as
-\[t(\theta)=\theta,\qquad y(\theta)=\xi+2,\qquad x(\theta)=(\xi+2)^2\theta+\xi.\]
-
-
-
+\[t(\theta)=\theta,\qquad y(\theta)=\xi,\qquad x(\theta)=\xi^2\theta+\xi.\]
+Therefore,
+\[u(t,x)=\frac{-1+\sqrt{1+4tx}}{2t}.\]
+From this formula, we would be able to determine the suitable domain $\Omega$ as
+\[\Omega=\{\,(t,x):tx>-\tfrac14\,\}.\]
 
 
 \section{Fundamental differential geometry}
