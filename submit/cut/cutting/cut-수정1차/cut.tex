@@ -1,0 +1,674 @@
+\documentclass{amsart}
+
+%%% Start of the area for technical editor.
+\newcommand{\publname}{Seoul Science High School}
+%\newcommand{\doiname}{http://dx.doi.org/10.4134/JKMS}
+\issueinfo{}% volume number
+  {}%        % issue number
+  {}%        % month
+  {}%     % year
+\pagespan{1}{}
+%\received{Received January 5, 2005}
+%\received{Received August 25, 2005;\enspace Revised October 20, 2005}
+\copyrightinfo{}%              % copyright year
+  {Seoul Science High School}% copyright holder
+%%% End of the area for technical editor.
+
+\usepackage{kotex}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage{dhucs-nanumfont}
+\else\ifXeTeX
+  \setmainhangulfont[Ligatures=TeX]{HCR Batang LVT}
+  \setsanshangulfont[Ligatures=TeX]{HCR Dotum LVT}
+\else\ifLuaTeX
+  \setmainhangulfont[Ligatures=TeX]{HCR Batang LVT}
+  \setsanshangulfont[Ligatures=TeX]{HCR Dotum LVT}
+\fi\fi\fi
+\usepackage{amssymb}
+
+\allowdisplaybreaks
+
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+
+\theoremstyle{definition}
+\newtheorem*{definition}{Definition}
+
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\begin{document}
+
+\title[Fold-and-Cuttable Pattern]
+{Simple Closed Curve that is Conically Fold-and-Cuttable in 3-Dimensional Space}
+
+\author[I. Choi, J. W. Jung]{Ikhan Choi, Jong Wook Jung}
+\address{address}
+\email{email}
+
+\subjclass{subclass}
+\keywords{keywords}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\begin{abstract}
+\iffalse
+기초적 미적분학, 기하학에 의한 증명
+\fi
+In this paper, we defined an expansion of {\it fold-and-cut theorem} to 3-euclidean space by treating origami sheets as developable surfaces.
+With basic calculus and geometry, we suggested a sufficient condition that given piecewise differentiable simple closed curve on a plane is to be conically fold-and-cuttable.
+
+\end{abstract}
+
+\maketitle
+
+\section{Introduction}
+\iffalse
+-오리가미 분야소개
+
+-주제에 대한 간략한 소개
+크리즈패턴과 폴드컷정리
+정리스테이트
+
+-배경지식
+
+로컬 폴더빌리티와 글로벌 폴더빌리티
+폴더빌리티 :
+ 마에카와 : 엠-브이=2
+ 카와사키 : 180도
+ 두 낫 페네트레이트, 관통규칙
+
+공간으로의 확장 : 접는 함수를 생각할 수 있다. 공간에서도 관통규칙을 그대로 생각해볼 수 있다.
+
+데벨로퍼블 분류 : (렘마)
+
+까지
+
+
+-인 섹션 왓
+\fi
+
+A crease pattern is a finite planar straight-line graph drawn on a convex planar region (the paper). A crease is an edge of the planar graph.
+
+Fold-and-cut 정리란 평면 위의 straight side로 만들어진 어떤 모양이라도 적당한 crease pattern이 존재하여 한 장의 종이를 납작하게 접고 직선으로 단 한번 자름으로써 얻을 수 있다는 정리이다.
+우리는 미분가능한 곡선으로 이루어진 모양에 대하여 3차원 유클리드 공간에서 평면으로 단 한번 자름으로써 그 모양을 얻을 수 있는 조건에 대한 문제를 정의하였다.
+특별한 경우에 대하여 local-foldability를 확장하여 conical folding을 정의하고 특수한 경우의 조각적 미분가능한 단순폐곡선에 대하여 이러한 straight cut의 존재성을 증명하였고 구체적으로 정리 \ref{36}으로 표현되었다.
+
+
+어떤 crease pattern이 flat-foldable인지 판단하는 문제는 다음 규칙들로써 완성되었다.
+
+\begin{lemma}
+어떤 crease pattern이 flat-foldable할 조건은 다음과 같다: at any vertex,
+\begin{itemize}
+\item {\rm Maekawa's theorem:} The number of mountain folds minus the number of valley folds meeting at v is either $2$ or $−2$.
+\item {\rm Kawasaki's theorem:} the sum of alternate angles around v is $\pi$.
+\item a sheet can never penetrate itself.
+\end{itemize}
+\end{lemma}
+
+Kawasaki's theorem에서 필요한 조건으로 flat-foldable한 crease pattern의 모든 점의 차수가 짝수여야 함은 Maekawa's theorem으로부터 알 수 있다.
+종이가 자신을 관통하지 않는 것은 물리적으로 모델링하기 위해 필요한 조건이다.
+Crease pattern에서 flat-foldability를 따질 때 vertex가 단 하나인 경우를 local-foldability, 아닌 경우는 global-foldability라 한다.
+일반적으로 주어진 crease pattern이 global-foldability를 가지는지를 판별하는 알고리즘은 NP-hard라 알려져 있다 \cite{Be}.
+공간에서의 local-foldability를 생각하였을 때 나머지 규칙들은 없애거나 따로의 확장이 필요하지만 sheet를 관통하지 않는 것에 대한 규칙은 sheet의 위상적 성질을 그대로 3차원으로 끌어올림으로써 자연스럽게 확장시킬 수 있다.
+
+
+Developable surface란 모든 점에서 가우스 곡률이 0인 곡면을 말한다. 자명하게 평면과 isometric하며 국소적으로 다음 세 가지로 분류된다: cylinder, cone, tangent developable.
+3차원에 매장된 developable surface는 일반적으로 generator라 불리는 one-parameter family of lines의 합집합으로 표현되는 ruled surface이다.
+우리는 모든 점에서 같은 꼭지점을 공유하는 cone들의 일부가 되는 developable surface를 다루고자 한다.
+이 때 곡면의 모든 genrator가 한 점을 꼭짓점으로 갖는 반직선의 일부이고 이 점-vertex-은 local flat-foldable한 crease pattern이 가지는 하나의 vertex에 대응된다.
+그러나 구체적으로는 우리가 다루는 대상-sheet-은 모든 점에서 연속이고 거리를 보존하지만 미분불가능한 점이 존재하고 따라서 surface라 부르기엔 적절하지 않으며 이는 자세하게 2장에서 정의될 것이다.
+
+
+2장에서는 문제를 정의하기 위해 folding, pattern, cutting을 정의하고 초등적 문제 해결을 위해 도입할 함수 transition의 정의와 간단한 성질을 설명할 것이다.
+
+3장에서는 transition와 cuttability 사이에 어떤 관계가 있음을 보이고 최종적으로 정리 \ref{36}를 통해 제시될 특수한 조건을 만족하는 경우에 대하여 cut이 가능함을 보일 것이다.
+
+
+
+
+
+
+
+
+
+
+\section{Cutting and Transition}
+
+
+
+
+
+ 문제를 수학적으로 접근하기 위하여 먼저 우리가 다루게 될 사상과 공간을 정의하자.
+ 
+\begin{definition}
+극점이 $O$이고 극좌표 $(r,\theta)$를 가지는 평면 $U$와 $z$축이 더해진 원통좌표계를 가지는 공간 $U\times {\mathbb R}$를 생각하자.
+두 공간 $U$와 $U\times{\mathbb R}$에 euclidean metric을 줄 때 거리를 보존하는 조각적 미분동형사상 $\varphi : U\to M\subset U\times {\mathbb R}$에 대해 $\varphi(U)\cap U$가 열린 영역을 포함하지 않고 $\varphi(O)$이 $z$축 위에 오는 사상 $\varphi$를 {\it folding}이라 하고, 이 때 $\varphi(O)$의 $z$-좌표의 절댓값을 $\varphi$의 {\it height}라 하자.
+\end{definition}
+
+조각적 미분동형사상은 조각적으로 미분가능한 위상동형사상을 말하는 것으로 한다.
+거리를 보존하므로 $M=\varphi(U)$을 적당히 가산 개의 영역으로 나누었을 때 각 영역은 developable surface이다.
+사상 $\varphi$가 folding이면 단사함수이므로 $M$은 자연스럽게 자신을 관통하지 않는다.
+
+\begin{definition}
+Folding $\varphi$의 상 $M$을 분할하는 모든 developable surface가 $\varphi(O)$를 꼭짓점으로 하는 generalized cone일 때 folding $\varphi$를 {\it conical folding}이라 하자.
+\end{definition}
+
+Conical folding에 대한 개념은 vertex $\varphi(O)$에서 뻗어나가는 반직선들의 연속적 자취, 즉 generalized cone의 형태를 가지는 folding을 다루고자 정의한 것이며 flat origami model에서의 local-foldability를 공간으로 확장시킨 것으로 볼 수 있다.
+여기서 점 $O$는 crease pattern의 vertex에 대응된다.
+
+
+\begin{definition}
+Fold-and-cut이 가능한지 결정될 조각적 미분가능한 단순폐곡선 $\gamma : [0,2\pi]\to U$를 {\it pattern}이라 하자.
+어떤 folding $\varphi$와 임의의 $\theta\in [0,2\pi]$에 대하여 $\varphi(\gamma(\theta))$의 $z$-좌표가 $0$일 때, $\varphi$를 pattern $\gamma$의 {\it cutting}이라 하고, cutting $\varphi$가 conical folding이면 $\varphi$를 {\it conical cutting}이라 하자.
+반대로 pattern $\gamma$에 대하여 어떤 folding $\varphi$가 존재하여 $\varphi$가 $\gamma$의 cutting이 될 때 이 $\gamma$를 {\it cuttable}하다고 하자.
+\end{definition}
+
+평면 $U$ 위에 주어진 pattern $\gamma$에 대하여 cutting $\varphi$가 존재할 때 상 $\varphi(\gamma)$ 또한 단순폐곡선이 된다.
+
+우리는 평면 위에 어떤 단순폐곡선이 주어졌을 때 적절한 folding에 의해 평면을 접은 후 그 단순폐곡선을 평면으로 자를 수 있는가를 묻는 문제에 대하여 대답할 것이다.
+``Cuttable''이란 이 문제를 수학적으로 개념화시킨 것이며 어떤 pattern에 대하여 cutting이 존재하는가에 대한 것만 묻고 있으므로 conical folding, cutting의 존재성을 증명하는 것으로 충분하다.
+앞으로 이 논문에서 ``cutting''과 ``cuttable''은 각각 conical cutting과 주어진 pattern에 대해 conical cutting이 존재함을 의미하는 것으로 하자.
+
+\begin{theorem}\label{nec1}%2.1
+주어진 pattern $\gamma$가 cuttable하다면 $\gamma$ 위의 각 점에서 $\theta$-좌표로 가는 함수는 단사함수이다.
+\end{theorem}
+
+\begin{proof}
+Pattern $\gamma$ 위의 서로 다른 두 점 ${\bold p}$와 ${\bold q}$가 존재하여 같은 $\theta$-좌표를 갖는다고 하자.
+$\gamma$의 cutting $\varphi$에 대하여 $\varphi({\bold p}),\varphi({\bold q}),\varphi(O)$는 한 직선 $g$ 위에 있고 $M=\varphi(U)$은 $\varphi(O)$를 꼭짓점으로 하는 generalized cone이므로 $\varphi(g)$는 $M$ 의 generator이고 $U$ 위에 있다.
+직선 $g$ 위에 있지 않은 임의의 점 ${\bold r}$에 대하여 $\varphi({\bold r})$도 $U$ 위에 있으므로 $\varphi({\bold r})$의 generator 또한 $U$ 위에 있다.
+모든 generator들의 집합은 $M$의 부분집합이고 단순폐곡선 $\varphi(\gamma)$의 내부를 덮으므로 $M\cap U$는 열린 영역인 $\varphi(\gamma)$의 내부를 포함한다.
+따라서 $\varphi$가 folding임에 모순이므로 $\gamma$ 위의 임의의 서로 다른 두 점 ${\bold p}$와 ${\bold q}$의 $\theta$-좌표는 다르다.
+\end{proof}
+
+\begin{corollary}%2.2
+주어진 pattern $\gamma$가 cuttable하다면 $O$는 $\gamma$ 내부에 존재한다.
+\end{corollary}
+
+정리 \ref{nec1}에 의해 pattern $\gamma$가 cuttable일 필요조건은 조각적 미분가능한 연속함수 $r : [0,2\pi]\to (0,\infty)$가 존재하여 $\gamma(\theta)=(r(\theta),\theta)$로 두는 것이 가능한 것이다.
+이와 같이 정의되는 함수 $r$을 pattern $\gamma$의 {\it radius}라 하고 반드시 cuttable하지는 않은 pattern $\gamma$에 대하여 radius가 정의되면 pattern $\gamma$를 {\it injective pattern}이라 하자.
+
+\begin{theorem}\label{inc}%2.3
+점 $O$를 중심으로 하는 원이 아닌 injective pattern $\gamma$의 radius $r$에 대하여 적당한 구간 $[a,b]$가 존재하여 $r(\theta)$가 $\theta$에 대하여 구간$[a,b]$에서 증가 또는 감소함수이다. 
+\end{theorem}
+
+\begin{proof}
+조각적 미분가능인 pattern이 폐곡선이므로 미분불가능점은 많아야 유한 개이고 $r(\theta)$의 미분불가능점도 많아야 유한 개이다.
+$\gamma$는 조건에 의해 상수함수가 아니므로 $r(\theta)$의 미분불가능점들의 집합을 $K$, $n+2$개의 실수 $k_0<k_1<k_2<\cdots<k_{n+1}$를 집합 $K\cup\{0,2\pi\}$의 원소로 정의할 때 집합족 $\{[k_i,k_{i+1}]\}_{i\in{\mathbb Z}\cap[0,n]}$의 원소가 되는 구간 중 $r$이 상수함수가 되지 않는 구간이 존재한다.
+이 구간을 $[k_m, k_{m+1}]$이라 하자.
+함수 $r$은 구간 $(k_m, k_{m+1})$에서 미분가능이므로 $r'(\theta_0)\ne0$를 만족하는 $\theta_0$가 존재한다.
+다르부의 정리에 의해 $\theta_0$를 포함하는 적절한 근방$[a,b]$가 존재하여 이 구간에 속한 모든 $\theta$에 대하여 $r'(\theta)\ne0$이다.
+이 때 $r'(\theta)>0$이면 $r$은 증가함수이고 $r'(\theta)$이면 $r$은 감소함수이다.
+\end{proof}
+
+
+
+
+
+
+\iffalse
+자명상한의 존재성 설명
+트랜지션의 정의 : 이변수함수(제트와 세타, 제트 0부터 자명상한까지 개구간, 특히 세타 정의 0부터 2파이 폐구간), 식으로, 양수 : 타우
+
+트랜지션에 대한 설명 : 트랜지션 의미 - 뿔의 트라이앵귤레이션으로부터, 트랜지션은 패턴과 대응, 폴딩과는 독립적
+자명상한 정의 : 수식으로 정의 triangulation
+
+(정리)트랜지션의 성질
+ 제트세타 조각적 연속 유계 (정확히는 미분가능)
+ 세타 루프
+ 제트 0으로 가면 1로 감
+
+(정리)트랜지션의 성질2
+ 제트 적당한 구간까지 강증가 필충조건 알프라임<알 (고전기하 좀 써야 할 듯)
+
+(정리)커터블 필요조건2 : 원점을 지나는 접선 존재하면 안됨 - 즉 트랜지션이 발산하면 안됨
+증명 : 자명상한이 0이 되므로
+
+커터블 필요조건1과2는 유계인 트랜지션이 정의될 필충
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%55
+
+사인드 트랜지션 : 트랜지션과 절댓값 같음, 피스와이즈 : 시그마
+심플 트랜지션 정의 : 사인드 트랜지션, 페네트레이션 규칙 만족(알의 심플) : 시그마
+커터블 트랜지션 정의 : 사인드 트랜지션, 심플 트랜지션, 어떤 제트에 대해 트랜지션 적분 : 시그마
+
+사인드 설명 : 카와사키 정리
+심플 설명 : (정리)강증가 or 강감소 구간 카파잡을 때 심플
+커터블 설명 : 어떤 패턴에 대해 존재성 of (커터블 트랜지션과 커팅)이 동치임을 보일 것이다
+
+
+(정리) 커터블 트랜지션 존재 iff 커팅 존재, 동치정리%트랜지션 존재는 커팅 존재의 필요충분조건이다
+ 커팅 조건 : 거리보존 단사(심플) 파이오 내포아님 제트사라짐
+
+증명 : 트랜지션 존재가 커팅 존재의 충분조건
+        적분되는 제트를 파이오로 두고 알이에프젠
+       트랜지션 존재가 커팅 존재의 필요조건
+        파이오를 제트로 두면
+      
+\fi
+
+
+
+
+
+
+
+
+
+
+Cuttable pattern $\gamma$를 생각하자.
+$\gamma$의 cutting $\varphi$와 radius $r$에 대하여 $\varphi$의 height를 $z$라 할 때 $z<\inf r(\theta)$이므로 $z$들의 집합은 상한이 존재한다.
+이 상한을 $L$이라 하자.
+
+\begin{definition}
+주어진 injective pattern $\gamma$와 그 radius $r$에 대하여 $r(\theta)$의 미분불가능점들의 집합을 $K$라 할 때 {\it transition} $\tau : (0,L)\times\left([0,2\pi]\backslash K\right)\to[0,\infty]$를 다음과 같이 정의하자:
+\begin{align}\label{tr1}
+\tau(z,\theta)=\left(1+\frac{z^2}{r(\theta)^2 -z^2}\left(1-\frac{r'(\theta)^2}{r(\theta)^2 -z^2}\right)\right)^{\frac12}.
+\end{align}
+$r'$은 $r$의 도함수이다.
+\end{definition}
+
+주어진 pattern $\gamma$에 transition가 정의될 필요충분조건은 $\gamma$가 injective pattern인 것이다.
+
+어떤 developable surface를 작은 삼각형들로 분할하여 근사시키는 것을 triangulation approximating이라 한다.
+Pattern $\gamma$의 내부 영역을 $I$라 할 때 상 $\varphi(I)$는 generalized cone이므로 triangulation 과정에 있는 모든 삼각형은 꼭짓점 중 하나가 $\varphi(O)$에 있고 그 변이 $\varphi(\gamma)$ 위에 있게 분할할 수 있을 것이다.
+각 $\theta$의 변화량 $\Delta\theta$를 생각하여 세 점 $\varphi(\gamma(\theta))$와 $\varphi(\gamma(\theta+\Delta\theta)), \varphi(O)$를 꼭짓점으로 갖는 삼각형을 $T$라 할 때 $T$는 삼각형 $(\gamma(\theta), \gamma(\theta+\Delta\theta), O)$와 합동이며 triangulation에 의한 분할의 원소 중 하나가 될 수 있다.
+
+삼각형 $T$와 각 $\Delta\theta$를 평면 $U$에 정사영시킨 삼각형 $T^*$와 정사영된 각 $\Delta\theta^*$를 생각하자.
+이 때 삼각형 $T^*$는 세 점 $\varphi(\gamma(\theta))$와 $\varphi(\gamma(\theta+\Delta\theta)), O$를 꼭짓점으로 가지는 삼각형이다.
+
+
+$r_1=r(\theta), r_2=r(\theta+\Delta\theta)$라 할 때 코사인 법칙에 의하여 다음을 얻는다.
+\begin{align*}
+r_1^2+r_2^2-2r_1r_2\cos\Delta\theta\,&=\,\left(r_1^2-z^2\right)+\left(r_2^2-z^2\right)
+\\&\quad-2\sqrt{r_1^2-z^2}\sqrt{r_2^2-z^2}\cos\Delta\theta^*.
+\end{align*}
+다음과 같이 식을 변형하자.
+\begin{align*}
+r_1r_2(1-\cos\Delta\theta)\,&=\,r_1r_2-z^2-\sqrt{r_1^2-z^2}\sqrt{r_2^2-z^2}
+\\&\quad+\sqrt{r_1^2-z^2}\sqrt{r_2^2-z^2}(1-\cos\Delta\theta^*).
+\end{align*}
+삼각함수의 반각공식에 의하여 다음을 얻는다.
+\begin{align*}
+r_1r_2\sin^2\frac{\Delta\theta}2=\frac{(r_2-r_1)^2z^2}{r_1r_2-z^2+\sqrt{r_1^2-z^2}\sqrt{r_2^2-z^2}}+\sqrt{r_1^2-z^2}\sqrt{r_2^2-z^2}\sin^2\frac{\Delta\theta^*}2.
+\end{align*}
+양변을 $(\Delta\theta/2)^2$로 나누고 극한 $\lim_{\Delta\theta\to0}$를 취하면 $\lim_{\Delta\theta\to0}(r_2-r_1)/\Delta\theta=r'(\theta)$이고 $\lim_{\Delta\theta\to0}\sin\Delta\theta/\Delta\theta=1$이므로 다음을 얻는다.
+\begin{align*}
+r(\theta)^2=\frac{2r'(\theta)^2z^2}{r(\theta)^2-z^2}+\left(r(\theta)^2-z^2\right)\left(\frac{d\theta^*}{d\theta}\right)^2.
+\end{align*}
+간단한 계산을 통해 다음을 얻는다.
+\begin{align}\label{tr2}
+\frac{d\theta^*}{d\theta}=\left(1+\frac{z^2}{r(\theta)^2 -z^2}\left(1-\frac{r'(\theta)^2}{r(\theta)^2 -z^2}\right)\right)^{\frac12}.
+\end{align}
+식 (\ref{tr2})에 의해 함수 transition이 식 (\ref{tr1})과 같이 정의되었음을 확인하자.
+
+\begin{definition}
+각 $\psi\in[0,2\pi]$에 대하여 {\it transitioned angle} $\psi^*$를 다음과 같이 정의하자:
+\begin{align*}
+\psi^*=\int_0^{\psi}\tau(z,\theta)d\theta
+\end{align*}
+\end{definition}
+
+삼각형 $T$의 두 꼭짓점 $\varphi(\gamma(\theta))$와 $\varphi(\gamma(\theta+\Delta\theta))$가 평면 $U$ 위에 있으므로 height의 값은 삼각형 $T$와 평면 $U$ 사이의 이면각이 직각일 때의 $\varphi(O)$의 $z$-좌표보다 커질 수 없다.
+삼각형 $T$와 평면 $U$ 이면각이 직각일 때 다음과 같은 식이 성립한다.
+\begin{align*}
+{\rm area}\,{\rm of}\,T=\frac12r_1r_2\sin\Delta\theta&=\frac12\left|\sqrt{r_1^2-z^2}-\sqrt{r_2^2-z^2}\right|z
+\\&=\frac12\frac{r_1^2-r_2^2}{\sqrt{r_1^2-z^2}-\sqrt{r_2^2-z^2}}z.
+\end{align*}
+마찬가지로 $\Delta\theta$가 $0$에 가까워질 때 적절한 식 변형을 통하여 다음을 얻을 수 있다.
+\begin{align}\label{r'}
+r(\theta)=\frac{\left|r'(\theta)\right|}{\sqrt{r(\theta)^2-z^2}}z \implies
+z=\frac{r(\theta)^2}{\sqrt{r(\theta)^2+r'(\theta)^2}}.
+\end{align}
+이 $z$의 $\theta$에 대한 하한을 height의 상한 $L$로 정의하자.
+
+\begin{definition}
+주어진 injective pattern $\gamma$에 대하여 $\gamma$가 cuttable하기 위한 height의 {\it trivial supremum} $L$을 다음과 같이 정의하자:
+\begin{align*}
+L=\inf_{\theta}\frac{r(\theta)^2}{\sqrt{r(\theta)^2+r'(\theta)^2}}.
+\end{align*}
+\end{definition}
+
+Transition은 folding에 의한 $\theta$가 이루는 공간의 확대와 축소를 나타내는 지표로 볼 수 있다.
+Transition이 정의되는 pattern에 대해 transition과 trivial supremum 모두 유일하게 존재하고 folding 및 cutting과 독립적이다.
+
+\begin{theorem}%2.4
+주어진 injective pattern $\gamma$에 대하여 $\gamma$의 transition $\tau$는 $z$에 대하여 연속이고 $\theta$에 대하여 조각적으로 연속이며 미분가능이다.
+또한 각각 임의의 $z$와 $\theta$에 대하여 $\tau(z,0)=\tau(z,2\pi)$와 $\lim_{z\to0}\tau(z,\theta)=1$가 성립한다.
+\end{theorem}
+
+
+
+
+
+\iffalse
+\begin{theorem}
+주어진 injective pattern $\gamma$를 생각하자. 양의 실수 $Z<L$가 존재하여 구간 $(0,Z)$ 안의 모든 $z$에 대하여 $\tau(z,\theta)$는 상수함수일 수 없고 증가함수일 필요충분조건은 $|r'(\theta)|<r(\theta)$이다.
+\end{theorem}
+
+\begin{proof}
+한 변 $\varphi(\Delta r)$을 공유하는 두 삼각형 $T$와 $T^*$를 같은 평면 위에 놓고자 한다.
+공간에서 변 $\varphi(\Delta r)$의 위치를 고정시킨 $T^*$의 합동변환은 $\varphi(\Delta r)$를 축으로 하는 회전변환이다.
+이 회전변환에 의한 삼각형 $T^*$의 상들 중 삼각형 $T$와 같은 평면에 있는 삼각형은 두 개이다.
+이 두 삼각형 중 $\varphi(\Delta r)$을 기준으로 $T$와 같은 쪽에 있는 삼각형을 $T'$라 하자.
+이 회전변환에 의해 점 $O$가 이동한 점들은 항상 직선 $\varphi(\Delta r)$에 수직이고 $z$축을 포함하는 평면 위에 있고 이 점들 중 삼각형 $T$와 같은 평면에 있는 점 두 개중 $T'$의 꼭짓점이 되는 하나를 $O'$라 하면 두 점 $\varphi(O)$와 $O'$을 지나는 직선은 $\varphi(\Delta r)$에 수직이다.
+
+삼각형 $T$를 평면 $U$에 정사영시키는 과정에서 넓이 및 길이가 축소되기 때문에 직선 $\varphi(\Delta r)$부터 $\varphi(O)$까지의 거리보다 $O'$까지의 거리가 더 짧고 height $z$의 값이 커질수록 정사영에 의한 축소 효과는 커지므로 두 거리 사이의 차 또한 커진다.
+$\Delta\theta$가 $0$에 가까워질 때 삼각형 $T$의 외접원 내부에 $O'$가 존재하면 $\Delta\theta<\Delta\theta^*$이므로 $\tau=\Delta\theta^*/\Delta\theta$가 증가하고  점 $O$가 $\varphi(\Delta r)$ 쪽으로 충분히 작은 거리를 이동하여 외접원 내에 있을 필요충분조건은 $r(\theta)>\sqrt2 z$이다.
+이를 식 (\ref{r'})에 대입하면 $|r'(\theta)|<r(\theta)$를 얻는다.
+\end{proof}
+\fi
+
+
+\begin{theorem}\label{nec2}%2.5
+주어진 pattern $\gamma$가 cuttable하다면 점 $O$를 지나고 $\gamma$에 접하는 직선이 존재하지 않는다.
+\end{theorem}
+
+\begin{proof}
+점 $O$를 지나고 $\gamma$에 접하는 직선이 존재한다고 가정하고 이 접점을 $\gamma(\theta)=(r(\theta),\theta)$라 하면 $r'(\theta)$의 값은 무한대로 발산해 존재하지 않는다.
+이 때 height의 값은 $0$이고 따라서 이 pattern $\gamma$의 trivial supremum $L$은 $0$이므로 $z$는 정의역을 가질 수 없다.
+\end{proof}
+
+정리 \ref{nec1}과 \ref{nec2}에 제시된 조건은 주어진 pattern $\gamma$에 대해 $\gamma$가 cuttable할 필요조건임과 동시에 유계인 transition이 정의될 필요충분조건이다.
+
+\bigskip
+
+
+
+
+
+
+
+
+
+
+\section{Cuttable Transition and Conditions of Cuttability}
+
+\begin{definition}
+주어진 injective pattern $\gamma$의 transition $\tau$에 대하여 유한 개의 닫힌 구간들의 합집합 $\kappa\subset[0,2\pi]$가 존재하여 다음이 성립하는 함수 $\sigma(z,\theta) : (0,L)\times[0,2\pi]\backslash K\to{\mathbb R}$를 {\it signed transtion}이라 하자:
+\begin{align*}
+\sigma(z,\theta)=s_{\kappa}(\theta)\tau(z,\theta)\quad{\rm where}\quad s_{\kappa}(\theta)=
+\begin{cases}
+-1&,\theta\in\kappa\\
+1&,{\rm otherwise.}
+\end{cases}
+\end{align*}
+만약 어떤 signed transition $\sigma$와 적당한 $z\in(0,L)$에 대하여 {\it generated folding by $\sigma$}, $\varphi : U\to M$, $U=[0,\infty)\times[0,2\pi)$을 다음과 같이 정의할 때 $\theta\in[0,2\pi)$에서 곡선 $\varphi(\gamma(\theta))$가 단순곡선이면 이 $\sigma$를 $z$에 대한 {\it simple transition}이라 하자:
+\begin{align}\label{gen}
+\varphi(\rho,\psi)=\left(\rho\sqrt{1-\frac{z^2}{r(\psi)^2}},\int_0^{\psi} \sigma(z,\theta)d\theta,z\left(1-\frac{\rho}{r(\psi)}\right) \right).
+\end{align}
+어떤 $z$에 대한 simple transition $\sigma$에 대하여 다음 식이 성립하면 이 $\sigma$를 $z$에 대한 {\it cuttable transition}이라 하자:
+\begin{align}
+\int_0^{2\pi} \sigma(z,\theta)d\theta\equiv0\quad\left({\rm mod}\, 2\pi\right).
+\end{align} 
+\end{definition}
+
+\begin{theorem}\label{iso}%3.1
+임의의 simple transition $\sigma$와 $z\in(0,L)$에 대하여 generated folding $\varphi$는 local piecewise isometry이다.
+\end{theorem}
+
+\begin{proof}
+점 $\varphi(O)$가 $z$축에 있는 것과 $\varphi(U)\cap U$가 열린 영역을 포함하지 않는 것은 자명하다.
+또한 $\varphi$의 각 성분이 연속이므로 $\varphi(O)$는 연결되어 있다.
+Generated folding $\varphi$의 상 $M$에 대하여 $M$의 미분불가능한 점은 면적을 가지지 않고 radius $r$이 미분불가능한 점과 같으므로 transition $\tau$가 정의되는 점에 대해서 거리가 보존됨을 보이면 충분하다.
+
+$\varphi$의 편도함수 $\varphi_{\rho},\varphi_{\psi}$는 다음과 같다.
+\begin{align*}
+\varphi_{\rho}=\left(\sqrt{1-\frac{z^2}{r^2}},\,0,\,-\frac{z}r\right),\ 
+\varphi_{\psi}=\left(\rho\frac{z^2r'}{r^2\sqrt{r^2-z^2}},\,\sigma(z,\psi),\,\rho\frac{zr'}{r^2}\right).
+\end{align*}
+극좌표를 가지는 공간 $U$와 원통좌표계를 가지는 공간 $U\times{\mathbb R}$의 거리 텐서는 각각
+\begin{align*}
+{\bold I}_{U}=\begin{pmatrix}1&0\\0&\rho^2\end{pmatrix},\ 
+{\bold I}_{U\times{\mathbb R}}=\begin{pmatrix}1&0&0\\0&\rho\sqrt{1-\frac{z^2}{r^2}}&0\\0&0&1\end{pmatrix}
+\end{align*}
+이므로 $M$ 위의 거리 텐서의 성분을 어느 정도의 계산을 통해 다음과 같이 구할 수 있다.
+\begin{align*}
+E&=\left\langle\varphi_{\rho},\varphi_{\rho}\right\rangle=1\\
+F&=\left\langle\varphi_{\rho},\varphi_{\psi}\right\rangle=0\\
+G&=\left\langle\varphi_{\psi},\varphi_{\psi}\right\rangle=\rho^2.
+\end{align*}
+이 때의 내적은 $U\times{\mathbb R}$ 위에서의 내적이다. 우리는 다음을 얻는다.
+\begin{align*}
+{\bold I}_M=\begin{pmatrix}E&F\\F&G\end{pmatrix}=\begin{pmatrix}1&0\\0&\rho^2\end{pmatrix}={\bold I}_U
+\end{align*}
+따라서 $\varphi$는 $r$이 미분가능한 점에서 거리를 보존하므로 local piecewise isometry이다.
+\end{proof}
+
+Generated folding의 상은 generalized cone임을 확인하자.
+
+Flat origaami model의 local-foldability의 규칙 중 Kawasaki theorem은 구간 $[0,2\pi]$를 양의 방향의 각도와 음의 방향의 각도로 분할하여 모두 더할 때 $0$이 되게끔 해야 함을 의미하고 이를 공간으로 확장할 때 signed transition의 정의는 이러한 구간의 분할을 결정한다.
+정리 \ref{inc}와 관련하여 다음의 simple transition에 관한 정리를 보자.
+
+\begin{theorem}%3.2
+주어진 injective pattern $\gamma$의 transition $\tau$와 적당한 $z\in(0,L)$에 대하여 $\gamma$의 radius $r(\theta)$가 $\theta\in[a,b]$에서 증가 또는 감소함수이고 각도 $\alpha, \beta$가 $\alpha^*=\frac{2a^*+b^*}3, \beta^*=\frac{a^*+2b^*}3$를 만족할 때 $\kappa=[\alpha,\beta]$라 하면 signed transition $\sigma(z,\theta)=s_{\kappa}(\theta)\tau(z,\theta)$는 $z$에 대한 simple transition이다.
+\end{theorem}
+
+\begin{proof}
+구간 $\kappa$에서 정의된 signed transition $\sigma$가 simple이 아니라고 가정하면 어떤 두 실수 $\psi_1<\psi_2\in[0,2\pi]$가 존재해 식 (\ref{gen})에 의해 $\varphi(\gamma(\psi_1))=\varphi(\gamma(\psi_2))$이므로 다음이 성립한다.
+\begin{align*}
+r(\psi_1)=r(\psi_2),
+\end{align*}
+\begin{align}\label{psieq}
+\int_0^{\psi_1} \sigma(z,\theta)d\theta=\int_0^{\psi_2} \sigma(z,\theta)d\theta
+\iff \int_{\psi_1}^{\psi_2} \sigma(z,\theta)d\theta=0.
+\end{align}
+
+$\psi_2<\alpha$라 가정하면 $[\psi_1,\psi_2]\cap[\alpha,\beta]=\varnothing$이므로
+\begin{align*}
+\int_{\psi_1}^{\psi_2} \sigma(z,\theta)d\theta=\int_{\psi_1}^{\psi_2} \tau(z,\theta)d\theta>0
+\end{align*}
+식 (\ref{psieq})에 모순되어 $\psi_2\ge\alpha$를 얻는다.
+
+$\psi_1<a$라 가정하고 다음과 같이 식을 전개하자.
+\begin{align*}
+\int_{\psi_1}^{\psi_2} \sigma(z,\theta)d\theta=\left(a^*-\psi_1^*\right)+\left(\alpha^*-a^*\right)+\int_{\alpha}^{\psi_2} \sigma(z,\theta)d\theta.
+\end{align*}
+다음 부등식에 의하여
+\begin{align*}
+\int_{\alpha}^{\psi_2} \sigma(z,\theta)d\theta
+\ge\int_{\alpha}^{\beta} \sigma(z,\theta)d\theta
+=-\int_{\alpha}^{\beta} \tau(z,\theta)d\theta=-\beta^*+\alpha^*
+\end{align*}
+다음과 같은 식 (\ref{psieq})에 대한 모순을 얻는다.
+\begin{align*}
+\int_{\psi_1}^{\psi_2} \sigma(z,\theta)d\theta\ge\left(a^*-\psi_1^*\right)+\left(\alpha^*-a^*\right)-\left(\beta^*-\alpha^*\right)=a^*-\psi_1^*>0.
+\end{align*}
+따라서 $\psi_1\ge a$이고 비슷하게 $\psi_2\le b$를 증명할 수 있으므로 $[\psi_1,\psi_2]\subset[a,b]$이고 함수 $r(\theta)$는 구간 $[a,b]$에서 증가 또는 감소함수이므로 $r(\psi_1)=r(\psi_2)$가 성립하지 않는다.
+구간 $\kappa$에서 정의된 $\sigma$가 simple이 아니라는 가정은 조건에 위배된다.
+\end{proof}
+
+만약 $\gamma$의 radius $r$이 증가 또는 감소함수가 되는 구간이 존재한다면 적당한 $\kappa$가 존재하여 simple한 signed transition을 잡을 수 있다.
+다음은 transtion을 정의한 이유에 대한 정리이다.
+
+\begin{theorem}%3.3
+임의의 cuttable transition $\sigma$와 $z\in(0,L)$에 대하여 generated folding $\varphi$는 piecewise isometry, 즉 conical folding이다.
+\end{theorem}
+
+\begin{proof}
+동점 ${\bold p}=(\rho,\psi)$에 대하여 반평면 $\theta=\psi,r>0$에서 점 $\varphi({\bold p})$의 자취는 다음과 같이 $\rho$에 대한 매개변수 방정식으로 나타난다.
+\begin{align*}
+\varphi({\bold p})_r=\rho\sqrt{1-\frac{z^2}{r(\psi)^2}},\ 
+\varphi({\bold p})_z=z\left(1-\frac{\rho}{r(\psi)}\right).
+\end{align*}
+따라서 $\varphi$의 상 $M$은 $\theta$에 따른 직선
+\begin{align*}
+\varphi({\bold p})_z=-\frac{z}{\sqrt{r(\psi)^2-z^2}}\varphi({\bold p})_r+z
+\end{align*}
+의 자취가 되므로 generalized cone이다.
+
+$\sigma$가 cuttable transition이므로
+\begin{align*}
+\int_0^{2\pi}\sigma(z,\theta)d\theta\equiv0\quad\left({\rm mod}\, 2\pi\right)\iff\varphi(\rho,0)=\varphi(\rho,2\pi)
+\end{align*}
+이고 generated folding $\varphi$가 ${\bold p}\in[0,\infty)\times[0,2\pi]$에서 정의가능하고 이 때 새로 정의된 $\varphi$는 연속이고 전단사이므로 위상동형사상이다.
+
+정리 \ref{iso}에 의해 $\varphi$는 거리를 보존하므로 piecewise isometry이고 곡면이 generalized cone을 이루므로 conical folding이다.
+\end{proof}
+
+\begin{corollary}\label{34}%3.4
+주어진 injective pattern $\gamma$에 대하여 적당한 $z\in(0,L)$에 대한 cuttable transition이 존재하면 $\gamma$는 cuttable하다.
+\end{corollary}
+
+\begin{proof}
+식 (\ref{gen})를 따라 generated된 folding에 pattern $\gamma$를 대입하자.
+\begin{align*}
+\varphi\left(r(\psi),\psi\right)=\left(\sqrt{r^2-z^2},\int^{\psi}_0 \sigma(z,\theta)\,d\theta,0\right).
+\end{align*}
+$z$성분이 $0$이므로 generated folding $\varphi$는 cutting이다.
+\end{proof}
+
+
+
+
+
+
+
+\iffalse
+(정리)커터블 충분조건 : 상수가 아니고 세타에 무관하게 제트에 대해 전구간 강증가하는 트랜지션 정의되면 커터블 트랜지션 존재
+증명 : 
+
+
+트랜지션의 성질 앞의 다섯가지
+
+정리에 의해 나오는 트랜지션 성질-커터블 : 타우
+ 사인드 트랜지션
+ 심플 트랜지션
+ 트랜지션 적분
+
+
+
+
+결론정리 : 원이 아닌 패턴이 커터블일 필요충분조건은 유계 트랜지션이 정의되는 것, 즉 필요조건1,2이다
+
+리마크 : 폴딩에서 페네트레이션 규칙을 유지하며 단사조건을 배제하면 원도 커터블
+\fi
+\begin{theorem}\label{35}%3.5
+점 $O$를 중심으로 하는 원이 아닌 injective pattern $\gamma$에 대하여 유계인 transition $\tau$이 정의될 때 $\tau$에 대하여 다음이 성립하면 적절한 $z_0\in(0,L)$이 존재하여 $z_0$에 대한 cuttable transition $\sigma$가 존재한다.
+\begin{align*}
+\sup_z\int_0^{2\pi}\tau(z,\theta)d\theta\ge0.
+\end{align*}
+\end{theorem}
+
+\begin{proof}
+적절한 $z_0\in(0,L)$가 존재하여
+\begin{align*}
+\int_0^{2\pi}\tau(z_0,\theta)d\theta=0
+\end{align*}
+이 성립하면 $\kappa=\varnothing$이라 할 때 다음이 성립한다.
+\begin{align*}
+\int_0^{2\pi}\sigma(z,\theta)d\theta=\int_0^{2\pi}\tau(z,\theta)d\theta=2\pi
+\end{align*}
+이 때 $\sigma$는 cuttable transition이다.
+
+모든 $z\in(0,L)$에 대하여
+\begin{align*}
+\int_0^{2\pi}\tau(z,\theta)d\theta>2\pi
+\end{align*}
+이 성립하는 경우를 생각하자.
+적절한 실수 $Z\in(0,L)$에 대하여 다음과 같이 양수 $\lambda$를 정의하자:
+\begin{align*}
+\lambda=\int_0^{2\pi}\tau(Z,\theta)d\theta-2\pi>0.
+\end{align*}
+실수 $z\in(0,Z)$와 구간 $[\alpha,\beta]\subset[0,2\pi]$에 대하여 다음과 같이 함수 $\Sigma(z;\alpha,\beta)$를 정의하자:
+\begin{align*}
+\Sigma(z;\alpha,\beta)=\int_0^{2\pi}\tau(z,\theta)d\theta-2\int_{\frac{2\alpha+\beta}3}^{\frac{\alpha+2\beta}3}\tau(z,\theta)d\theta.
+\end{align*}
+$\tau$가 유계이므로 $\tau(Z,\theta)$의 상한 $\sup_{\theta}\tau(Z,\theta)$를 ${\rm Sup}$라 간단히 쓸 때 다음이 성립한다.
+\begin{align*}
+\int_{\frac{2\alpha+\beta}3}^{\frac{\alpha+2\beta}3}\tau(Z,\theta)d\theta\le\frac{\beta-\alpha}3 {\rm Sup}
+\end{align*}
+정리 \ref{inc}에 의해 존재하는 radius $r$이 증가 또는 감소하는 구간 $[a,b]$에 대하여 $\alpha^*=\frac{2a^*+b^*}3, \beta^*=\frac{a^*+2b^*}3$라 하고 $[\alpha_0,\beta_0]\subset[\alpha,\beta]$와 $\beta_0-\alpha_0<3\lambda/2{\rm Sup}$를 만족하는 구간 $[\alpha_0,\beta_0]$를 잡으면 다음과 같은 식이 성립한다.
+\begin{align*}
+\Sigma(Z;\alpha_0,\beta_0)
+&=\int_0^{2\pi}\tau(Z,\tau)d\theta-2\int_{\frac{2\alpha_0+\beta_0}3}^{\frac{\alpha_0+2\beta_0}3}\tau(Z,\theta)d\theta\\
+&\ge\int_0^{2\pi}\tau(Z,\theta)d\theta-\frac23(\beta_0-\alpha_0){\rm Sup}\\
+&>\int_0^{2\pi}\tau(Z,\theta)d\theta-\lambda=2\pi.
+\end{align*}
+반면 $z=0$을 대입하면 다음을 얻는다.
+\begin{align*}
+\Sigma(0;\alpha_0,\beta_0)=2\pi-\frac23(\beta_0-\alpha_0)<2\pi.
+\end{align*}
+함수 $\Sigma(z;\alpha_0,\beta_0)$는 $z$에 대하여 연속이므로 중간값 정리에 의하여 다음 식이 성립하는 $z_0\in(0,Z)$이 존재한다.
+\begin{align*}
+\Sigma(z_0;\alpha_0,\beta_0)=2\pi
+\end{align*}
+또한 $[\alpha_0,\beta_0]\subset[\alpha,\beta]$이므로 $\alpha_0^*=\frac{2a_0^*+b_0^*}3, \beta_0^*=\frac{a_0^*+2b_0^*}3$을 만족하는 구간 $[a_0,b_0]\subset[a,b]$가 존재하고 이 구간에서 $r$은 증가 또는 감소함수이다.
+$\kappa$를 구간 $[\alpha_0,\beta_0]$로 정의하면
+\begin{align*}
+\int_0^{2\pi}\sigma(z_0,\theta)d\theta=\Sigma(z_0;\alpha_0,\beta_0)=2\pi
+\end{align*}
+이므로 $\sigma$는 simple transition이고 cuttable transition이다.
+\end{proof}
+
+\begin{theorem}\label{36}%3.6
+점 $O$를 중심으로 하는 원이 아닌 injective pattern $\gamma$에 대하여 유계인 transition $\tau$이 정의될 때 $\tau$에 대하여 다음이 성립하면 $\gamma$는 cuttable하다.
+\begin{align*}
+\sup_z\int_0^{2\pi}\tau(z,\theta)d\theta\ge0.
+\end{align*}
+\end{theorem}
+
+\begin{proof}
+정리 \ref{34}와 정리 \ref{35}에 의해 자명하다.
+\end{proof}
+
+
+
+
+
+
+\iffalse
+\section{Continuous distribution of Cutting}
+
+커팅들의 집합을 잘 정의해야 되는데...
+
+(정리)제트제로에 대한 커터블 트랜지션이 존재하면
+ 제트제로보다 작은 모든 제트에 대해서도 커터블 트랜지션존재
+
+
+\fi
+
+
+
+
+
+\begin{thebibliography}{99}
+
+\bibitem{Be} M. Bern, B. Hayes {\it The complexity of flat origami}, Proceedings of the seventh annual ACM-SIAM symposium on Discrete algorithms (SODA `96), Society for Industrial and Applied Mathmatics, Philadelphia, 175-183, 1996.
+
+\bibitem{Bo} F. Borceux {\it A Differential Approach to Geometry: Geometric Trilogy III}, Springer, 2014.
+
+\bibitem{ON} B. O'Neill, {\it Elementary Differential Geometry}, Elsevier, 2006.
+
+\end{thebibliography}
+
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+

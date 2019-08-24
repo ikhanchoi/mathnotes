@@ -1,0 +1,190 @@
+
+Thanks for the comments. I have revised the manuscript accordingly. 
+
+
+The change I made for Comment 2 seems need more explanation. 
+
+I redefined "conical origami" by adding a condition that the domain is restricted 
+to $\Bbb{R}^2$ from any connected set $\Omega$. Then, the problem vanishes by defining "conical origami" as a map whose image is 'a cone', not 'CONTAINED IN a cone'.
+The half-lines lying on the cone are guaranted to be fully contained in $\im u$.
+
+
+
+In what follows is the list of all the changes made to the previously submitted manuscript.  
+
+
+¡Ú page 1, abstract and 4th line of the 1st paragraph of Introduction 
+
+any desired plane graph with straight sides. ->  any desired polygon.
+
+
+
+¡Ú page 1, 4th line of the 1st paragraph of Introduction
+
+In this paper, we suggest a kind of fold-and-cut theorem not just for flat folding
+
+ ->  Inspired by this theorem we suggest in this paper a problem not for flat folding
+
+
+
+¡Ú page 1 line -4
+
+We call the origami whose image is a cone by the \emph{conical origami}.
+
+ ->  We call the origami $u$ whose image is a cone a \emph{conical origami} when the domain $\Omega$ of $u$ is taken to be the whole plane $\mathbb{R}^2$.
+
+
+
+¡Ú page 2 line 10
+
+Exactly the kernel ->  More precisely, the kernel
+
+
+
+¡Ú page 2, added after the 4th paragraph of Introduction
+
+> The function $A_z$ is defined by the following formula:
+> \begin{align*}
+> A_z(\psi):=\int_0^{\psi}\sqrt{\biggl(\frac{r(\theta)}{\sqrt{r(\theta)^2-z^2}}\biggr)^2-\left(\frac{zr'(\theta)}{r(\theta)^2-z^2}\right)^2}\,d\theta.
+> \end{align*}
+
+
+
+¡Ú page 2,3, 1st paragraph of Section2, entirely changed
+
+< For a connected set $\Omega\subset\mathbb{R}^n$, if a map $f \colon \Omega\to\mathbb{R}^m$ is piecewise $C^1$, of course, then $f$ is almost everywhere differentiable.
+< The \emph{singular set} $\Sigma_f\subset\Omega$ of the map $f$ refers to the set of points  at which $f$ is not differentiable.
+< The singular set $\Sigma_f$ is closed in $\Omega$ and each arbitrary compact set in $\Omega$ intersects a finite number of connected components of $\Omega\setminus\Sigma_f$.
+< A conical origami is the origami whose image is a (general) cone, where the \emph{origami} will be defined as a kind of rigid map that models the paper folding embedded in $\mathbb{R}^3$.
+
+ ->
+
+> For a connected set $\Omega\subset\mathbb{R}^n$ and a piecewise $C^1$ map $f\colon\Omega\to\mathbb{R}^m$, the \emph{singular set} $\Sigma_f\subset\Omega$ of the map $f$ refers to the set of points at which $f$ is not differentiable. %revised1
+> The map $f$ is $C^1$ on $\Omega\setminus\Sigma_f$, and also, the singular set $\Sigma_f$ is closed in $\Omega$ and each arbitrary compact set in $\Omega$ intersects a finite number of connected components of $\Omega\setminus\Sigma_f$; it is the definition of a piecewise $C^1$ function. %revised1
+> A conical origami is the origami whose image is a (general) cone with the domain $\mathbb{R}^2$, where the \emph{origami} will be defined as a kind of rigid map that models the paper folding embedded in $\mathbb{R}^3$. %revised2
+
+
+
+¡Ú page 3 line 6
+
+map $u\colon\mathbb{R}^2\to\mathbb{R}^3$ such that
+
+ ->  map $u\colon\Omega\to\mathbb{R}^3$ such that
+
+
+
+¡Ú page 3, definition of a Conical Origami
+
+"Let $\Omega\subset \mathbb{R}^2$ be a connected set." is deleted and
+"\Omega" is replaced with "\mathbb{R}^2"
+
+
+
+¡Ú page 3 line 20
+
+If the condition that the image of $u$ is a cone is excluded,
+
+ ->  If the condition that the image of $u$ is a cone is excluded and the domain $\mathbb{R}^2$ is replaced with any connected set $\Omega\subset\mathbb{R}^2$,
+
+
+
+¡Ú page 3 line 27
+
+the curve \emph{cut on $u$}. ->  the curve a \emph{cut on $u$}.
+
+
+
+¡Ú page 3, definition of a Cut
+
+< A curve $\gamma\colon I\to\mathbb{R}^2$ is a \emph{cut on origami $u\colon\Omega=\mathbb{R}^2\to\mathbb{R}^3$}
+
+ ->
+
+> Let $\Omega$ be a connected set in $\mathbb{R}^2$.
+> A curve $\gamma\colon I\to\Omega$ is a \emph{cut on origami $u\colon\Omega\to\mathbb{R}^3$}
+
+
+
+¡Ú page 3 line -10
+
+to be cut on a conical origami, ->  to be a cut on a conical origami,
+
+
+
+¡Ú page 3, Proposition 2.1.
+
+be the preimage of its vertex. ->  as the preimage of its vertex.
+
+
+
+¡Ú page 4 line -11
+
+it is contradiction ->  it is a contradiction
+
+
+
+¡Ú page 4 line -3
+
+intersects ->  which intersects
+
+
+
+¡Ú page 5 line -3, deleted
+
+In addition, the differential coefficient of $A_z$ does not need to be always greater than $1$, but it is less than $1$ if and only if $r'(\psi)>r(\psi)$ for sufficiently small positive number $z$ where $r'$ denotes the derivative of $r$.
+
+
+
+¡Ú page 6 line -11, added
+
+> where $r'$ denotes the derivative of $r$.
+
+
+
+¡Ú page 7 line 13
+
+increasing for $\psi$ ->  increasing in $\psi$
+
+
+
+¡Ú page 7, Theorem 3.1.
+
+\sup_{z\in U_r}\,A_z(2\pi)\ge2\pi,
+
+ ->  \sup_{z\in U_r}\,A_z(2\pi)\ge2\pi, \tag{\ref{condition}}
+
+
+
+¡Ú page 7, added after Theorem 3.1.
+
+> The condition (\ref{condition}) is required.
+> For an example let $r(\psi)=96+\arccos(\cos100\psi)$, then $|r'(\psi)|>r(\psi)$ for all $\psi$, so $A'_z(\psi)<1$ for all $z$ and $\psi$; since $A'_z(\psi)<1$ if and only if $r(\psi)^2-z^2<r'(\psi)^2$.
+> For this example we have 
+> \begin{align*}
+> A_z(2\pi)=\int_0^{2\pi}A'_z(\psi)\,d\psi<\int_0^{2\pi}\,d\psi=2\pi
+> \end{align*}
+> for all $z\in U_r$.
+
+
+
+¡Ú page 7 line -7
+
+the map $u$ is the conical origami, ->  the map $u$ is a conical origami,
+
+
+
+¡Ú page 8 line -9
+
+belongs to between ->  is between
+
+
+
+¡Ú page 10 line 13
+
+linear for $\rho$. ->  linear in $\rho$.
+
+
+
+¡Ú page 10 line -2
+
+such that ->  by
