@@ -1,36 +1,38 @@
 %!TeX root=general topology.tex
 \chapter{Topological structures}
 
-Firstly we discuss to what extent the definition of analytic notions such as limit and continuity can be extended.
-One of main interest in general topology is to make extended version of mathematical calculus on a set without algebraic operations.
-However, lay it up in the heart that several properties must be compromised when we try to make generalizations.
+Firstly we discuss how far the definition of analytic notions such as limit and continuity can be extended.
+One of the main interests in general topology is to make extended version of mathematical calculus, on the sets on which algebraic operations are not allowed.
+We should note that, however, some properties must be compromised when we try to generalize something.
 
-Recall that we measured how near the two points are by taking absolute value of algebraic subtraction of two position vectors in normed spaces.
-How can we dismiss the subtraction?
-Saying only the results, mathematicians succeeded to generalize limit of sequences and continuity of functions, but compromising the theory of differentiation and integration.
+Recall that we have measured the closeness of two points in a normed space by taking the norm at the algebraic subtraction of their position vectors.
+As the first trial, we can consider dismissing the algebraic operations.
+This trial has succeeded to find a structure for measuring the nearness between points and to generalize limit of sequences and continuity of functions.
+Nevertheless, we compromised the theory of differentiation and integration in the lack of algebraic structures.
 Topology is the term for this successful solution.
-In other words, for the most part, wonderful statements purely related to limit and continuity were possible to be extended without big flaws even if we forget the vector space operations by introducing the concept of topology, but differentiation and integration could not on the other hand.
+In other words, for the most part, wonderful statements that are purely related to limits and continuity were possible to be extended without big flaws, even if we forget the vector space operations by introducing the concept of topology.
  
-Topological structure refers to an additional function on a given set or a more complicated mathematical device which solves the problem by being put on a set.
-Norm is a typical example of topological structure, and so is ``topology''.
+More precisely, topological structure on a set may refer to either an additional function on the set or a more complicated mathematical device which solves the problem by being put on the set.
+The norms are typical examples of topological structures, and so is ``topology''.
 
 
 % 1
 \section{Metric}
 
-Metric is a generalization of norm and a special example of ``topology''.
+Metric is a generalization of norm and induces a special example of ``topology''.
 For example, every subset of a normed vector space is equipped with a natural metric.
-Since general topology might be too abstract for novices to grasp, we will make a bridge from norms to topologies.
+Metrics which are in between norms and topologies will be helpful to catch the intuition.
 
-Before start, henceforth, readers should be noticed that the following facts about metrics are widely used in applications in analysis, even though, are nicely generalized into more fundamental and structural forms after the introduction of topology: we are not needed to give propositions too much authority to be memorized by force.
-Later, by applying the abstract theory of general topology to metrics as examples, we will find that metric provides with a surprisingly appropriate and widely-applicable tool to understand the nature of mathematical analysis.
+The propositions below are not needed to be memorized by force.
+Later, by applying the results on topologies to metrics as examples, we will naturally find that metric provides with a surprisingly appropriate and widely-applicable tool to understand the nature of mathematical analysis.
 To give a short answer for the essentiality of metric is ``a countable uniform topology'' in a sense; understanding what it means would be one of primary goals of this chapter.
 
 % 1-1
 \subsection{Metric spaces}
 
-Metric was the first successful trial to find an abstract framework for studying limits.
-It is defined as a function which assigns a nonnegative real number, which has a meaning of distance, to an unordered pair of two points.
+Metric can be viewed as the first successful trial to find an abstract framework for studying limits.
+It is defined as a function which assigns a nonnegative real number to an unordered pair of two points.
+The assigned real number has the meaning of distance between the points.
 A metric space is just a set endowed with a metric.
 
 \begin{defn}
@@ -47,10 +49,10 @@ We often write it simply $X$.
 
 The most familiar metric comes from the standard norm on Euclidean space $\R^d$.
 Notice that the third axiom, the triangle inequality, is named after the one for norms.
-In this context, we can see metrics as a generalization of norms for spaces not admitting the vector space structure.
-When we use an analytic theory on Euclidean spaces or more generally normed spaces, the metric given in the following example is considered as the standard.
+In this context, we can see metrics as a generalization of norms for spaces that does not admit a vector space structure.
+In particular, when we study analysis on Euclidean spaces or more generally normed spaces, the metric given in the following example is considered as the standard.
 Therefore, if not particularly mentioned, then we will implicitly assume this induced metric out of the norm for any subset of a Euclidean space.
-Moreover, every subset of normed space is also an example of metric space because the metric function can be always inherited to every subset of a given metric space.
+Moreover, every subset of normed space is also an example of metric space because the metric function can be always inherited to every subset from a metric space.
 
 \begin{ex}
 A normed space $X$ is a metric space.
@@ -70,8 +72,8 @@ Obvious.
 
 In fact, the converse holds; every metric space can be viewed as a subset of a normed space.
 This deeper result on the relation between normed spaces and metric spaces is discovered by Kuratowski[].
-Since the theorem does not play any important role in the whole book, readers who want to read fast may skip.
-To state the theorem, we introduce isometry, a map preserving metrics.
+Since it does not play any important role in the rest of the book, we may skip this theorem.
+To state the theorem, we introduce an isometry, a map preserving metrics.
 
 \begin{defn}
 Let $X$ and $Y$ be metric spaces.
@@ -80,7 +82,7 @@ If there is a bijective isometry between $X$ and $Y$, then we say the spaces are
 \end{defn}
 
 Every isometry is clearly injective so that it is bijective if and only if it is surjective.
-Also, the inverse of bijective isometry is also an isometry.
+Also, the inverse of bijective isometry is an isometry, so the bijective isometries define an equivalent relation on the set of metric spaces.
 If two metric spaces are isometric, we can view them as virtually same, in the ``category'' of metric spaces.
 The following theorem tells another characterization of metric spaces.
 
@@ -105,7 +107,7 @@ In addition, the image of the isometry $\phi$ is in a closed subspace $C_b(X)\su
 
 We have seen metrics can be seen as the generalization of norms.
 However, there are also many examples of metrics that are not involved directly in the norms.
-Even if they are far from subsets of a normed space, we can apply our intuition of balls.
+Even if they are far from subsets of a normed space, we can apply our intuition of norms.
 The examples below are given without proofs.
 
 \begin{ex}\label{ex:discrete metric}
