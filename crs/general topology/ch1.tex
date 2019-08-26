@@ -1,7 +1,7 @@
 %!TeX root=general topology.tex
 \chapter{Topological structures}
 
-Firstly we discuss how far the definition of analytic notions such as limit and continuity can be extended.
+Firstly we discuss how far the definitions of analytic notions such as limit and continuity can be extended.
 One of the main interests in general topology is to make extended version of mathematical calculus, on the sets on which algebraic operations are not allowed.
 We should note that, however, some properties must be compromised when we try to generalize something.
 
@@ -28,10 +28,15 @@ Later, by applying the results on topologies to metrics as examples, we will nat
 To give a short answer for the essentiality of metric is ``a countable uniform topology'' in a sense; understanding what it means would be one of primary goals of this chapter.
 
 % 1-1
-\subsection{Metric spaces}
+\subsection{Metric structure}
 
 Metric can be viewed as the first successful trial to find an abstract framework for studying limits.
-It is defined as a function which assigns a nonnegative real number to an unordered pair of two points.
+In this subsection, we discuss the definitions and examples of metric spaces and its basic functions.
+
+% 1-1-1
+\subsubsection{Metric spaces}
+b
+A metric on a set is defined as a function which assigns a nonnegative real number to an unordered pair of two points.
 The assigned real number has the meaning of distance between the points.
 A metric space is just a set endowed with a metric.
 
@@ -72,7 +77,7 @@ Obvious.
 
 In fact, the converse holds; every metric space can be viewed as a subset of a normed space.
 This deeper result on the relation between normed spaces and metric spaces is discovered by Kuratowski[].
-Since it does not play any important role in the rest of the book, we may skip this theorem.
+Since it does not play any important role in the rest of the book, we may jump to Example \ref{ex:discrete metric}.
 To state the theorem, we introduce an isometry, a map preserving metrics.
 
 \begin{defn}
@@ -139,55 +144,61 @@ Then $(\cP(X),d)$ is a metric space.
 Let $C$ be the set of all compact subsets of $\R^d$.
 Recall that a subset of $\R^d$ is compact if and only if it is closed and bounded.
 Then, $d:C\x C\to\R_{\ge0}$ defined by
-\[d(A,B):=\max\{\sup_{a\in A}\inf_{b\in B}\|a-b\|,\sup_{b\in B}\inf_{a\in A}\|a-b\|\}\]
+\[d(A,B):=\max\{\,\sup_{a\in A}\inf_{b\in B}\|a-b\|,\ \sup_{b\in B}\inf_{a\in A}\|a-b\|\,\}\]
 is a metric on $C$.
 It is a little special case of \emph{Hausdorff metric}.
 \end{ex}
 
 
 
-% 1-2
-\subsection{Limits and continuity}
+% 1-1-2
+\subsubsection{Limits and continuity}
 
-Many freshmen misunderstand the main role of metric for its name.
-They recognize metric as something measures a distance and belonging to the study of geoemtry.
-We cannot strongly affirm it is false, but I hope to mention that a metric is quite far from geometric structures, and is rather an analytic structure.
-Meaning, metric is in fact not interested in measuring a distance between two points; the main function of metric is to make balls.
-The balls centered at each point provide a concrete images of ``system of neighborhoods at a point'' in a more intuistic sense.
-Metric can be considered as a device to let someone accept the notion of neighborhoods more friendly, which is vital for analysis of limits and continuity.
+The name ``metric'' confuses the main role of metrics.
+Metrics are often recognized as something measures a distance and belonging to the study of geoemtry.
+We cannot say that it is false, but it should be mentioned that a metric is far from geometric structures.
+It is rather an analytic structure.
+
+Metrics are not interested in measuring a distance between two points; the main function of metrics is to make balls.
+A ball centered at a point is defined as a set of points such that the distance from the center point is less than a fixed number.
+The balls centered at each point provide a concrete images of ``system of neighborhoods at a point'' in a more intuitive sense.
+In this viewpoint, a metric can be considered as a structure that lets someone accept the notion of neighborhoods more friendly, which is vital for analysis of limits and continuity.
+The neighborhoods will be defined precisely in the next section.
+To sum up, metrics allow to define limits and continuity and to think in an intuitive way.
 
 \begin{defn}
 Let $X$ be a metric space.
 A set of the form 
 \[\{y\in X:d(x,y)<\e\}\]
-for $\e>0$ is called a \emph{ball centered at $x$} and denoted by $B(x,\e)$ or $B_\e(x)$.
+for $\e>0$ is called a \emph{ball centered at $x$ with radius $\e$} and denoted by $B(x,\e)$ or $B_\e(x)$.
 \end{defn}
 
-The balls are also called open balls in order to distinguish from the closed balls; $\cl{B(x,\e)}=\{y\in X:d(x,y)\le\e\}$.
-The terms openness and closedness will be discussed again in the next section.
-Now let us reformulate the definitions of limits and continuity with balls, which we actually use in the usual calculus on Euclidean spaces or generally on normed spaces.
-Compare the following definitions to what we remember.
+The balls defined as above are also called open balls in order to distinguish from the closed balls; $\cl{B(x,\e)}=\{y\in X:d(x,y)\le\e\}$.
+The terms ``open'' and ``closed'' will be discussed again in the next section.
+Now let us reformulate the definitions of limits and continuity with balls, which we used in the usual calculus on Euclidean spaces or normed spaces.
+Compare the following definitions to what we know.
 
 \begin{defn}
 Let $\{x_n\}_n$ be a sequence of points on a metric space $(X,d)$.
-We say that a point $x$ is a \emph{limit} of the sequence or the sequence \emph{converges to $x$} if for arbitrarily small ball of size $\e$ cenetered at $x$, $B(x,\e)$, we can find $n_0$ such that $x_n\in B(x,\e)$ for all $n>n_0$.
+We say that a point $x$ is a \emph{limit} of the sequence or the sequence \emph{converges to $x$} if for arbitrarily small ball $B(x,\e)$, we can find $n_0$ such that $x_n\in B(x,\e)$ for all $n>n_0$.
 If it is satisfied, then we write
 \[\lim_{n\to\oo}x_n=x,\]
 or simply
-\[x_n\to x\]
-as $n\to\oo$.
+\[x_n\to x\qquad\text{as}\qquad n\to\infty.\]
 If there is no such limit $x$, then we say the sequence \emph{diverges}.
 \end{defn}
 \begin{defn}
-A function $f:X\to Y$ between metric spaces is called \emph{continuous at $x\in X$} if for any ball $B(f(x),\e)\subset Y$ centered at $f(x)$ there is a ball $B(x,\delta)\subset X$ centered at $x$ such that
+A function $f:X\to Y$ between metric spaces is called \emph{continuous at $x\in X$} if for any ball $B(f(x),\e)\subset Y$, there is a ball $B(x,\delta)\subset X$ such that
 \[f(B(x,\delta))\subset B(f(x),\e).\]
 The function $f$ is called \emph{continuous} if it is continuous at every point on $X$.
 \end{defn}
 
-There are a lot of deeper and valuable propositions and results for limit and continuity, but we postpone to mention them to later because they are generalized to topological spaces.
-However, for a while, let us just check that taking either $\e$ or $\delta$ really means taking a ball of the very radius.
-For continuity of a function, we can intuitively describe it by saying that no matter how small ball is taken in the codomain, we can take much smaller ball in the domain.
-Then, what we want to know would be how the balls centered at each point are distributed because what the set of balls looks like may determine the continuity or convergence.
+There are a lot of deeper propositions and results for limit and continuity, but we postpone to mention them to later because they are generalized to topological spaces.
+
+Note that taking either $\e$ or $\delta$ really means taking a ball of the very radius.
+For continuity of a function, we can describe it intuitively that no matter how small ball is taken in the codomain, we can take much smaller ball in the domain.
+What we sould know is that in what shape the balls centered at each point are distributed.
+It is because the shape of the set of balls determines the continuity or convergence.
 To make a vivid illustration, let us give an example.
 
 \begin{ex}
@@ -197,31 +208,38 @@ In particular, a sequence $\{x_n\}_n$ converges to $x$ if and only if it is even
 \end{ex}
 \begin{ex}
 Let $X$ and $Y$ be metric spaces.
-If $X$ is equipped with the discrete metric in Example \ref{ex:discrete metric}, then every function $f:X\to Y$ is continuous.
+If $X$ is equipped with the discrete metric in Example \ref{ex:discrete metric}, then every function $f:X\to Y$ is continuous on the discrete metric.
 \end{ex}
 \begin{ex}
 An isometry is always continuous.
 \end{ex}
 
-The set of balls at each point plays an important role in determining properties for limits and continuity.
+The set of balls at each point determines properties about limits and continuity.
 Intuitively, the balls indicate the varying degrees of neighborhoods and relative nearness from a point.
 Refer to Example \ref{ex:neighborhood filter}.
 
 
 
-% 1-3
-\subsection{Topological equivalence}
-Take note on the fact that the sequence of real numbers defined by $x_n=\frac1n$ diverges in discrete metric.
-Like this example, even for the same sequence on a same set, the convergence depends on the attached metric.
-However, we cannot conversely say that different metrics always provide different criteria for convergence.
-In other words, when we consider a metric as a function that takes a sequence as input and outputs whether a sequence converges or diverges, there may be two different metrics which gives exactly same answer about convergence.
+% 1-2
+\subsection{Refinement relation}
+
+\subsubsection{Refinement relation on neighborhood systems}
+
+
+% 1-2-1
+\subsubsection{Topological equivalence of metrics}
+
+A metric is a function that takes a sequence as input and returns whether the sequence converges or diverges.
+Take note on the fact that the sequence of real numbers defined by $x_n=\frac1n$ converges in standard metric but diverges in discrete metric.
+Like this example, even for the same sequence on a same set, the convergence depends on the attached metrics.
+
+However, there exist two different metrics which give exactly same answers about convergence for all sequences.
 Of course, the continuity of functions has the same issue.
 This allows us to think an equivalence relation on the set of metrics, that is, two equivalent metrics give a common criterion for convergence and continuity.
-In this situation, it can be paraphrased into that the two metrics induce exactly same topology.
-Then, we want to classfy the metrics by their topologies.
+This equivalence relation is obtained from the refinement relation; two metrics are equivalent if they refines each other.
+In this situation, the two metrics is said to induce exactly the same topology.
+Some results on the classification of the metrics by their topologies will be discussed.
 
-\subsubsection{Topological equivalence of metrics}
-Some definitions are given as follows.
 
 \begin{defn}
 Let $d_1$ and $d_2$ are metric on a set $X$.
@@ -342,13 +360,12 @@ which implies $B(x,\delta)\subset B_f(x,\e)$.
 
 \subsubsection{Topological equivalence of norms}
 
-Topological equivalence of two metrics is quite abstract.
-Typical examples of equivalent metrics are given when we consider norms.
+A typical example of equivalent metrics occurs when we consider norms.
+It is natural to extend the concept of topological equivalence to norms.
+The idea is same; if two norms on a vector space give rise to a same topology, or equivalently, topologically equivalent metrics, then we call them equivalent.
 
-It would be natural to apply the concept of topological equivalence to norms.
-The idea is same; if two norms gives rise to a same topology, or equivalently, topologically equivalent metrics, then we call them equivalent.
-However, the checking procedure becomes rather simple; the converse of Theorem \ref{thm:equivalent metrics by inequalities} holds for norms.
-It is because metrics on a vector space induced from norms has the property called translation invariance.
+The checking procedure is rather simple; the converse of Theorem \ref{thm:equivalent metrics by inequalities} holds for norms.
+It is because metrics induced from norms have the property called ``translation invariance''.
 The following thereom is often taken as the definition of norm equivalence.
 
 \begin{thm}
@@ -375,10 +392,10 @@ The other inequality is also shown by the same way.
 Especially, when we work on a vector space with finite dimension such as a Euclidean space $\R^d$, the situation gets better dramatically.
 
 \begin{thm}\label{thm:equivalent norms on finite dimension}
-On a finite dimensional vector space over a complete field such as $\R$ and $\C$, all norms are equivalent.
+On a finite dimensional vector space over $\R$ or $\C$, all norms are equivalent.
 \end{thm}
 \begin{pf}
-Let $\F$ be the complete field $\R$ or $\C$.
+Let $\F$ be the field $\R$ or $\C$.
 Both have the absolute value function that makes the vector space complete.
 Then, a finite dimensional vector space is isomorphic to $\F^d$ for some $d$.
 Fix a basis $\{e_i\}_{i=1}^d$ on $\F^d$ and let $x=\sum_{i=1}^dx_ie_i$ denote an arbitrary element of $\F_d$.

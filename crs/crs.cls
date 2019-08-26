@@ -32,10 +32,10 @@
 
 
 \setcounter{tocdepth}{3}
-\setcounter{secnumdepth}{2}
+\setcounter{secnumdepth}{3}
 \providecommand{\@dotsep}{4.5}
 \renewcommand*\l@subsection{\@tocline{2}{0pt}{2pc}{}{}}
-\renewcommand*\l@subsubsection{\@tocline{3}{0pt}{5pc}{}{}}
+\renewcommand*\l@subsubsection{\@tocline{3}{0pt}{4pc}{}{}}
 
 
 
