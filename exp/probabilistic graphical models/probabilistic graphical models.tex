@@ -17,9 +17,9 @@
 A \emph{statistical model} is an approximation scheme for unknown joint probability distribution.
 \end{defn}
 The general purpose of many statistical models is to \emph{estimate the joint probability distribution} of several random variables.
-The joint probability distrbution contains data about relations of the random variables.
-For example, suppose our goal is to obtain the most possible value of $Y$ when given $X=x$, and we have already estimated the joint distribution function $f_{X,Y}$.
-Then, since the function $y\mapsto f_{X,Y}(x,y)$ describes the distribution of the random variable $Y|X=x$, what we want to find can be defined reasonably as
+The joint probability distrbution contains data about correlations among the random variables.
+For example, suppose that we have to obtain the most possible value of $Y$ when given $X=x$, and we have already estimated the joint distribution function $f_{X,Y}$.
+Then, since the function $y\mapsto f_{X,Y}(x,y)$ describes the distribution of the random variable $Y|X=$x, what we want to find can be defined reasonably as
 \[\hat y=\argmax_yf_{X,Y}(x,y).\]
 
 \begin{ex}
@@ -37,116 +37,204 @@ In this note, a term \emph{random field} or \emph{network} will be used to refer
 \end{defn}
 
 \begin{ex}[Markov chain]
-Define a graph $G=(V,E)$ and $\cS$ such that:
+Define a graph $G=(V,E)$ and $S$ such that:
 \begin{align*}
 V&=\Z_{t\ge0},\\
 E&=\{(t,t+1)\}_{t\in V},\\
-\cS&=\text{a finite set}.
+S&=\text{a finite set}.
 \end{align*}
 An element $t\in V$ denotes the time $t$.
-Then, the set of $\cS$-valued random variables $\{X_t\}_{t\in V}$ indexed by $V$ defines a random field.
+Then, the set of $S$-valued random variables $\{X_t\}_{t\in V}$ indexed by $V$ defines a random field.
 
 The Markov property is given by
 \[X_t\indep X_s\mid X_{t-1}\]
 for $s\le t$.
-Since $\cS$ is finite, alternatively we may rewrite it by
-\[\Pr(X_t=x_t\mid X_{t-1}=x_{t-1})=\Pr(X_t=x_t\mid X_{t-1}=x_{t-1},\cdots,X_0=x_0).\]
+Since $S$ is finite, alternatively we may write it by
+\[\Pr(X_t=x_t\mid X_{t-1}=x_{t-1})=\Pr(X_t=x_t\mid X_{t-1}=x_{t-1},\cdots,X_0=x_0)\]
+for all $x_i\in S$ with $i=0,\cdots,t$.
+With abusing notation, it is often written as
+\[p(x_t|x_{t-1})=p(x_t|x_{t-1},\cdots,x_0).\]
 \end{ex}
 
-\begin{ex}[Maxwell-Boltzman distribution]
-Let $X$ be a $\cS$-valued random field on a graph $G=(V,E)$ such that:
+\begin{ex}[Boltzman distribution]
+Let $X$ be a $S$-valued random field on a graph $G=(V,E)$ such that:
 \begin{align*}
 V&=\{n\}_{n=1}^N,\\
 E&=\mt,\\
-\cS&=\Z_x^3\x\Z_p^3
+S&=\text{ a discretized space}
 \end{align*}
 for a large natural number $N$.
-The set $V$ is the set of ideal gas particles, and the space of states $\cS$ embodies the discretized phase space.
-At each particle $n\in V$ is attached an $\cS$-valued random variable denoted by $X_n$.
-Our ultimate goal is to describe the joint probability distribution of $X_n$'s; equivalently, the distribution of a $\cS^V$-valued random variable $X=(X_1,\cdots,X_N)$.
-Elements of $\cS^V$ are called \emph{microstates}.
+Also, suppose we have energy function $E:S\to\R$ and parametrized family of functions $\phi:S\times(0,\infty)\to\R$ defined by
+\[\phi(s_n;\beta)=e^{-\beta E(s_n)}.\]
+The functions $\phi$ are called \emph{Boltzmann factors} and the paramter $\beta$ is sometimes called \emph{coldness}.
+As a typical example, we may choose
+\[S=\Z_x^3\times\Z_p^3,\qquad E(x,p)=\frac{\|p\|^2}{2m}\quad(m:\text{ mass of particle})\]
+for the Maxwell-Boltzmann statistics of ideal gas.
+In this case, the set $V$ is the set of ideal gas particles, and the space of states $S$ embodies the discretized phase space.
 
-Let $m>0$ be a constant and fix a parameter $\beta=\frac1{k_BT}>0$ which is called \emph{coldness}.
-Define the \emph{Boltzmann factor} as a function $\phi_n:\R_{\beta>0}\x\cS\to\R$ such that
-\[\phi_n(\beta,i):=e^{-\beta E(i)},\]
-where the \emph{energy function} $E:\cS\to\R$ is defined by
-\[E(x,p):=\frac{\|p\|^2}{2m}.\]
-The assumption for Boltzmann factors states that given $\beta$, the probability for a particle to be in the state $i$ is proportional to the Boltzmann factor: 
-\[\Pr(X_n=i_n)\propto\phi_n(\beta,i_n)=e^{-\beta E_{i_n}}\]
-for each state $i_n\in\cS$ and a fixed particle $n\in V$.
+At each particle $n\in V$ is attached an $S$-valued random variable $X_n$.
+Our ultimate goal is to describe the joint probability distribution of $X_n$'s; equivalently, the distribution of a $S^N$-valued random variable $X=(X_1,\cdots,X_N)$.
+Elements of $S^N$ are called \emph{microstates}.
+
+First, we give the probability distribution of an individual random variable $X_n$.
+The assumption for Boltzmann factors states that if given $\beta$ then the probability for a particle $n$ to be in a state $s_n\in S$ is proportional to the Boltzmann factor: 
+\[\Pr(X_n=s_n)\propto_\beta\phi(s_n;\beta)=e^{-\beta E(s_n)}\]
+for each state $s_n\in S$ and a fixed particle $n$.
 Thus, we can write
-\[\Pr(X_n=i_n)=\frac{\phi_n(\beta,i_n)}{\sum_{j_n\in\cS}\phi_n(\beta,j_n)}=:\frac{\phi_n(\beta,i_n)}{Z_n(\beta)}.\]
+\[\Pr(X_n=s_n)=\frac{\phi(s_n;\beta)}{\sum_{s'_n\in S}\phi(s'_n;\beta)}=:\frac{\phi(s_n;\beta)}{Z_n(\beta)}.\]
+
+Next, consider the entire random field $X:\Omega\to S^N$.
 If we assume the independence of $X_n$'s, then we get the disjoint probability distribution
-\[\Pr(X=i)=\frac{\phi(\beta,i)}{\sum_{j\in\cS^V}\phi(\beta,j)}=:\frac{\phi(\beta,i)}{Z(\beta)},\]
-where
-\[\phi(\beta,i):=\prod_{n=1}^N\phi_n(\beta,i_n),\qquad Z(\beta)=\prod_{n=1}^NZ_n(\beta).\]
+\[\Pr(X=s)=\frac{\phi(s;\beta)}{\sum_{s'\in S^N}\phi(s';\beta)}=:\frac{\phi(s;\beta)}{Z(\beta)},\]
+where $Z(\beta)=\prod_{n=1}^NZ_n(\beta)$ and the definitions of $\phi$ and $E$ are extended as follows:
+\[\phi(s;\beta)=\prod_{n=1}^N\phi(s_n;\beta)=e^{-\beta\sum_{n=1}^NE(s_n)}=e^{-\beta E(s)}.\]
 The denominator $Z:\R_{\beta>0}\to\R^+$ is called the \emph{partition function}.
 \end{ex}
 
-\begin{ex}[Ising model]
-Let $X$ be a $\cS$-valued random field on a graph $G=(V,E)$ such that:
-\begin{align*}
-V&=\Z^2,\\
-E&=\{\,(x,y):\|x-y\|=1\,\},\\
-\cS&=\{\pm1\}.
-\end{align*}
-\end{ex}
 
+\subsection{Notations}
 
-\subsection{Independencies}
-
-We review the measure-theoretic definition of probability distribution.
+We review the definition of probability distribution.
+In this subsection, let $(\Omega,\cF,\Pr)$ be a probability space and $(S,\cS)$ a measurable space.
 \begin{defn}
-Let $\Omega$ be a probability space and $\cS$ a measurable space.
-Let $X:\Omega\to\cS$ be a random variable.
-The \emph{probability distribution} of $X$ is the pushforward measure $X_*\Pr$ on $\cS$ defined as $X_*\Pr(A)=\Pr(X^{-1}(A))$ for measurable $A\in\cS$.
+Let $X:\Omega\to S$ be a random variable.
+The \emph{probability distribution} of $X$ is the pushforward measure $X_*\Pr$ on $S$ defined as $X_*\Pr(A)=\Pr(X^{-1}(A))$ for measurable $A\in S$.
 We often also write $\Pr(X\in A)$ for $X_*\Pr(A)$.
 \end{defn}
-
-We mainly deal with several random variables and their joint distribution.
-Suppose $X=\{X_n\}_{n=1}^N$ is a set of random variables and let $(\cS_n,\cF_n)$ be the codomain of $X_n$.
 \begin{defn}
-Radon space?
-\[\Pr(X\in A\mid Y\in B):=\lim_{U\downarrow B}\frac{\Pr(X\in A,\,Y\in U)}{\Pr(Y\in U)}.\]
+Let $S$ be a Lebesgue measurable subset of a Euclidean space.
+Let $X:\Omega\to S$ be a random variable.
+If the probability distribution of $X$ is absolutely continuous with respect to the Lebesgue measure, then we have the Radon-Nikodym derivative.
+We call the derivative \emph{probability distribution function} or shortly \emph{pdf} of $X$.
+\end{defn}
+\begin{defn}
+Furthermore, let $S$ be finite or countable with discrete measurable structure.
+Let $X:\Omega\to S$ be a random variable.
+We call a function $p(s)=\Pr(X=s)$ the \emph{probability mass function} or shortly \emph{pmf} of $X$.
 \end{defn}
 
+We will not consider a random variable that has neither pdf nor pmf.
+If we do not restrict the regularity of distributions, we must resolve intractable technical issues.
+Also note that pdf is more general notion than pmf.
 
-Consequently, we may find
+We mainly deal with several random variables and their joint distribution.
+The notations then become dirty and equations get longer due to the number of random variables, so we introduce alternative notations.
+Suppose $X=\{X_n\}_{n=1}^N$ is a set of random variables and let $(S_n,\cS_n)$ be the codomain of $X_n$.
+The pdf and pmf of an individual random variable $X_i$ will be denoted by $f(x_i)$ and $p(x_i)$ using lower case alphabets for the random variables.
+Moreover, we will admit the abuse of notations more generally without precise definitions, but for examples, just note that
 \begin{itemize}
-\item $\Pr(X_1)$ is a probability measure on $\cS_1$,
-\item $\Pr(X_1,X_2)$ is a probability measure on $\cS_1\times\cS_2$,
-\item $\Pr(X_2\mid X_1)$ is a set of probability measures on $\cS_2$ parametrized by $\cF_1$.
+\item $f(x_1)$ is a pdf on $S_1$,
+\item $f(x_1,x_2)=f(x_{\{1,2\}})$ is a pdf on $S_1\times S_2$,
+\item $f(x)$ is a pdf on $S=\prod_{n=1}^NS_n$ (joint distribution),
+\item $f(x_2|x_1)$ is a pdf on $S_2$ parametrized by $S_1$, or more generally $\cS_1$,
+\item $f(x_A|x_B)$ is a pdf on $\prod_{n\in A}S_n$ parametrized by $\prod_{n\in B}S_n$.
 \end{itemize}
+Every notation above in fact can be recognized as a real-valued function on $S$ via projections.
+For instance, the function $f(x_1):S_1\to\R_{\ge0}$ can have extended domain like $f(x_1):S\ep S_1\to\R_{\ge0}$ that is constant for all variables except $X_1$.
 
+According to this notation, our goal is always to estimate the joint distribution $f(x)$ of a random field.
 
 
 
 \section{Bayesian networks}
 
-
+\subsection{Factorization of probability}
+Recall the definition of descendants/ancestors and children/parents of nodes.
 \begin{defn}[Bayesian network]
-Let $G$ be a directed acyclic graph.
+Let $X$ be a random field on a directed acyclic graph $G$.
+We say $X$ is a \emph{Bayesian network} or satisfies the \emph{local Markov property} if
+\[X_v\indep X_{V\setminus de(v)}\mid X_{pa(v)}.\]
 \end{defn}
-The graph acts as a parameter space.
-We want to investigate mutual effects among the paramtrized random variables.
-\begin{thm}[Factorization of probablity]
 
+\begin{defn}[Factorization]
+Let $X$ be a random field on a directed acyclic graph $G$.
+We say $X$ \emph{factorizes over} $G$ if
+\[f(x)=\prod_{v\in V}f(x_v|x_{pa(v)}).\]
+\end{defn}
+
+\begin{thm}
+A random field $X$ on a directed acyclic graph $G$ is a bayesian network if and only if it factorizes over $G$.
 \end{thm}
+\begin{pf}
+
+\end{pf}
 
 \begin{ex}[NBC, Naive Bayesian Classifier]
+Consider a random field on the following directed acyclic graph(DAG):
+\begin{cd}
+&& c\ar{ld}\ar{d}\ar{rd} && \\
+\cdots & x_{n-1} & x_n & x_{n+1} & \cdots,
+\end{cd}
+where $n=1,\cdots,N$.
+The joint distribution is
+\[p(c,x)=p(c)\prod_{n=1}^Np(x_n|c).\]
+It is represented by factors $p(c)$ and $p(x_n|c)$'s; the conditional probability $p(c|x)=p(c,x)/p(x)$ can be computed if we assume that the input feature $x$ has been given and the probability $p(c)$, $p(x_n|c)$ had been estimated.
+
+If we view $p(c)\in[0,1]^{S_c}$ and $p(x_n|c)\in[0,1]^{S_x\times S_c}$ as \emph{parameters} which parametrize the joint distribution $p(c,x)\in[0,1]^{S_c\times S_x^N}$, then we can say the NBC defines a family of distribution functions for approximating $p(x,c)$ that is parametrized by $(|S_c|+N|S_x||S_c|)$-dimensional parameter, which is much smaller than $|S_c||S_x|^N$.
+The NBC provides with a statistical model via ``conditional parametrization''.
 \end{ex}
+
 \begin{ex}[HMM, Hidden Markov Model]
+Consider a random field on the following DAG:
+\begin{cd}
+y_0\ar{r}\ar{d} & y_1\ar{r}\ar{d} & \cdots\ar{r} & y_{T-2}\ar{r}\ar{d} & y_{T-1}\ar{d}\\
+x_0 & x_1 && x_{T-2} & x_{T-1}.
+\end{cd}
+The joint distribution is
+\[p(y,x)=p(x_0|y_0)p(y_0)\prod_{t=1}^{T-1}p(x_t|y_t)p(y_t|y_{t-1}).\]
+The terms $p(y_0)$, $p(y_t|y_{t-1})$, and $p(x_t|y_t)$ are called \emph{start probability}, \emph{transition probability}, and \emph{emmision probability} respectively, and they play a role of parameters.
 \end{ex}
+
+\begin{ex}[MEMM, Maximaum entropy Markov Model]
+Consider a random field on the following DAG:
+\begin{cd}
+y_0\ar{r} & y_1\ar{r} & \cdots\ar{r} & y_{T-2}\ar{r} & y_{T-1}\\
+x_0\ar{u} & x_1\ar{u} && x_{T-2}\ar{u} & x_{T-1}\ar{u}.
+\end{cd}
+The joint distribution is
+\[p(y,x)=p(x_0)p(y_0|x_0)\prod_{t=1}^{T-1}p(x_t)p(y_t|y_{t-1},x_t).\]
+The MEMM introduces exponential modeling
+\[p(y_i|y_{i-1},x_i)\propto_{y_{i-1},x,\beta}e^{-\beta\cdot H(y_i,y_{i-1},x_i)}\]
+with a appropriately designed energy function $H:S_y^2\times S_x\to\R^d$.
+The normalizing constant $Z$ depends only on $y_{i-1}$ and $x_i$, hence
+\[p(y_i|y_{i-1},x_i)=\frac{e^{-\beta\cdot H(y_i,y_{i-1},x_i)}}{Z(y_{i-1},x_i;\beta)}.\]
+Estimate of the joint distribution is done by adjusting the $d$-dimensional parameter $\beta$.
+\end{ex}
+
+
 
 
 \section{Markov networks}
 
+In this section, we discuss random fields on undirected graphs.
+As in Bayesian networks, we expect the whole joint probability to be factorized into a computable form with smaller dimensional parameters.
+In this factorization, a modified version of Markov property on the graph that is different from the classical Markov process is required.
+
+It would seem that the initial and general definitions are too abstract that they are hardly applied in practical problems..... But...
+
+
+\begin{defn}[Markov properties on a graph]
+There are three Markov properties:
+\begin{cond}
+\item \emph{Pairwise Markov property}
+\end{cond}
+\end{defn}
+
 \begin{defn}[Markov network]
+Let $X$ be a random field on a undirected graph $G$.
+
 \end{defn}
 Markov networks are sometimes called MRF, Markov random field.
 
+\begin{ex}[Ising model]
+
+\end{ex}
+
 \begin{ex}[CRF, Conditional Random Field]
 Consider a network with a graph $G$ such that vertices are divided into two classes.
+\[p(y|x)\propto_{x,\beta}e^{-\beta\cdot H(y,x)}.\]
+For the Viterbi algorithm, the energy function $H$ is frequently taken to have the form
+\[H(y,x)=\sum_iE(y_i,y_{i-1},x).\]
 \end{ex}
 
 \section{Neural networks}
@@ -163,6 +251,32 @@ It indicates statistical models that can solve problems with a collection of art
 \begin{ex}[RNN, Recurrent Neural Network]
 
 \end{ex}
+
+
+
+\subsection{Maximum likelihood estimate}
+\begin{defn}
+Let $f$ be a distribution function on a measure space $X$.
+Let $\{f_\theta\}_\theta$ be a parametrized family of distrubution functions on $X$.
+The \emph{likelihood} $L_n(\theta):\Omega^n\to\R_{\ge0}$ for a fixed parameter $\theta$ is a random variable defined by
+\[L_n(\theta):=\prod_{i=1}^nf_\theta(x_i)\]
+where $\{x_i\}_i$ is a family of i.i.d. $X$-valued random variables with a distriburion $f$.
+\end{defn}
+The objective of the likelihood function is to find $\theta$ such that $f_\theta$ approximates the unknown distribution $f$.
+Write
+\[\frac1n\log L_n(\theta)=\frac1n\sum_{i=1}^n\log f_\theta(x_i).\]
+By the law of large numbers, $\frac1n\log L_n(\theta)$ converges to a constant function
+\[\E(\log f_\theta(x))=\int_Xf\log f_\theta\]
+in measure as $n\to\oo$.
+This constant function is exactly what we call \emph{cross entropy}.
+
+The \emph{Kullback-Leibler divergence} is a kind of asymmetric distance function defined from the difference with cross entropy
+\[D_{KL}(f\|f_\theta):=\int_Xf\log f-\int_Xf\log f_\theta.\]
+It is proved to be always nonnegative by the Jensen inequality: 
+\[\int_Xf\log f_\theta-\int_Xf\log f=\int_Xf\log\frac{f_\theta}f\le\log\left(\int_Xf\frac{f_\theta}f\right)=0.\]
+Here, we exclude the region $f=0$ from the integration region.
+Then, we can say, bigger $L_n(\theta)$ is, closer $f_\theta$ and $f$ are.
+
 
 
 
@@ -211,32 +325,6 @@ Therefore, the gradient descent method will take
 \end{align*}
 In similar way,
 \[{W_{kl}^{(n-3)}}^+:=W_{kl}^{(n-3)}+(1-a_k^{(n-2)})a_l^{(n-3)}\sum_i({W_{jk}^{(n-2)}}^+-W_{jk}^{(n-2)})W_{jk}^{(n-2)}(?)\]
-
-
-
-
-\subsection{Maximum likelihood estimate}
-\begin{defn}
-Let $f$ be a distribution function on a measure space $X$.
-Let $\{f_\theta\}_\theta$ be a parametrized family of distrubution functions on $X$.
-The \emph{likelihood} $L_n(\theta):\Omega^n\to\R_{\ge0}$ for a fixed parameter $\theta$ is a random variable defined by
-\[L_n(\theta):=\prod_{i=1}^nf_\theta(x_i)\]
-where $\{x_i\}_i$ is a family of i.i.d. $X$-valued random variables with a distriburion $f$.
-\end{defn}
-The objective of the likelihood function is to find $\theta$ such that $f_\theta$ approximates the unknown distribution $f$.
-Write
-\[\frac1n\log L_n(\theta)=\frac1n\sum_{i=1}^n\log f_\theta(x_i).\]
-By the law of large numbers, $\frac1n\log L_n(\theta)$ converges to a constant function
-\[\E(\log f_\theta(x))=\int_Xf\log f_\theta\]
-in measure as $n\to\oo$.
-This constant function is exactly what we call \emph{cross entropy}.
-
-The \emph{Kullback-Leibler divergence} is a kind of asymmetric distance function defined from the difference with cross entropy
-\[D_{KL}(f\|f_\theta):=\int_Xf\log f-\int_Xf\log f_\theta.\]
-It is proved to be always nonnegative by the Jensen inequality: 
-\[\int_Xf\log f_\theta-\int_Xf\log f=\int_Xf\log\frac{f_\theta}f\le\log\left(\int_Xf\frac{f_\theta}f\right)=0.\]
-Here, we exclude the region $f=0$ from the integration region.
-Then, we can say, bigger $L_n(\theta)$ is, closer $f_\theta$ and $f$ are.
 
 
 
