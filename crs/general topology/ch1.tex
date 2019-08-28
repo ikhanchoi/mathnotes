@@ -223,59 +223,38 @@ Refer to Example \ref{ex:neighborhood filter}.
 % 1-2
 \subsection{Refinement relation}
 
-\subsubsection{Refinement relation on neighborhood systems}
-
-
-% 1-2-1
-\subsubsection{Topological equivalence of metrics}
-
-A metric is a function that takes a sequence as input and returns whether the sequence converges or diverges.
+A metric can be viewed as a function that takes a sequence as input and returns whether the sequence converges or diverges.
+That is, metric acts like a criterion which decides convergence of sequences.
 Take note on the fact that the sequence of real numbers defined by $x_n=\frac1n$ converges in standard metric but diverges in discrete metric.
 Like this example, even for the same sequence on a same set, the convergence depends on the attached metrics.
+What we are interested in is comparison of metrics and to find a proper order relation.
 
-However, there exist two different metrics which give exactly same answers about convergence for all sequences.
-Of course, the continuity of functions has the same issue.
-This allows us to think an equivalence relation on the set of metrics, that is, two equivalent metrics give a common criterion for convergence and continuity.
-This equivalence relation is obtained from the refinement relation; two metrics are equivalent if they refines each other.
-In this situation, the two metrics is said to induce exactly the same topology.
-Some results on the classification of the metrics by their topologies will be discussed.
 
+
+\subsubsection{}
 
 \begin{defn}
 Let $d_1$ and $d_2$ are metric on a set $X$.
-The two metrics are called \emph{topologically equivalent} if the sets of open balls at each point are mutually nested;
-for any $x\in X$ and for arbitrary $\e>0$, we can find $\delta_1>0$ and $\delta_2>0$ such that
-\[B_1(x,\delta_1)\subset B_2(x,\e)\quad\text{and}\quad B_2(x,\delta_2)\subset B_1(x,\e),\]
+We say $d_1$ \emph{refines} $d_2$ or $d_1$ is stronger than $d_2$ if for any $x\in X$ and for arbitrary $\e>0$, we can find $\delta>0$ such that
+\[B_1(x,\delta)\subset B_2(x,\e),\]
 where the notations $B_1$ and $B_2$ refer to balls defined with the metrics $d_1$ and $d_2$ respectively.
 \end{defn}
 
-The word ``topologically'' is frequently omitted.
-This definition looks quite strange, but is directly related to the way how a metric gives rise to a topology, which we have not defined yet.
-Intuitively, we can say the neighborhood systems of balls from each metric ``refine'' each other.
-There are various characterizations of equivalence among metrics.
-Especially the first proposition states that we can recover an equivalence class of metrics when it is known that which sequence converges.
 
-\begin{prop}\label{prop:sequential convergence data}
-Let $d_1$ and $d_2$ are metrics on a set $X$.
-They are equivalent if and only if they share the same sequential convergence data; a sequence converges in $d_1$ if and only if it converges in $d_2$.
-\end{prop}
-\begin{pf}
-It is easily deduced by applying the following lemma twice.
-\end{pf}
 
-\begin{lem}
+\begin{prop}
 Let $d_1$ and $d_2$ are metrics on a set $X$.
-The followings are equivalent:
+Then, the followings are equivalent:
 \begin{cond}
-\item For any $x\in X$ and for arbitrary $\e>0$, there is $\delta>0$ such that
-\[B_1(x,\delta)\subset B_2(x,\e),\]
-\item If a sequence converges to a point $x$ in $d_1$, then it also converges to $x$ in $d_2$.
+\item the metric $d_1$ is stronger than $d_2$,
+\item a sequence that converges in $d_1$ converges in $d_2$,
+\item the identity function $\id:(X,d_1)\to(X,d_2)$ is continuous.
 \end{cond}
-\end{lem}
+\end{prop}
 \begin{pf}
 (1)$\Rightarrow$(2)
 Let $\{x_n\}_n$ be a sequence in $X$ that converges to $x$ in $d_1$.
-By the assumption, for an arbitrary ball $B_2(x,\e)=\{y:d_2(x,y)<\e\}$ centered at $x$, there is $\delta>0$ such that
+By the assumption, for an arbitrary ball $B_2(x,\e)=\{y:d_2(x,y)<\e\}$, there is $\delta>0$ such that
 \[B_1(x,\delta)\subset B_2(x,\e),\]
 where $B_1(x,\delta)=\{y:d_1(x,y)<\delta\}$.
 Since $\{x_n\}_n$ converges to $x$ in $d_1$, there is an integer $n_0$ such that
@@ -301,6 +280,48 @@ However in $d_2$, for $\e=\e_0$, we can find such $n_0$ like $d_1$ since
 for every $n$.
 Therefore, $\{x_n\}$ does not converges to $x$ in $d_2$.
 \end{pf}
+
+
+
+
+
+
+
+
+
+
+% 1-2-2
+\subsubsection{Topological equivalence of metrics}
+
+There exist two different metrics which give exactly same answers about convergence for all sequences.
+This also occurs on the continuity of functions.
+It allows us to think an equivalence relation on the set of metrics, that is, two equivalent metrics give a common criterion for convergence and continuity.
+This equivalence relation is obtained from the refinement relation; two metrics are equivalent if they refines each other.
+In this situation, the two metrics is said to induce exactly the same topology.
+Some results on the classification of the metrics by their topologies will be discussed.
+
+
+
+\begin{defn}
+Two metrics on a set are called \emph{topologically equivalent} if the sets of open balls centered at each point are mutually nested; in other words, they refines each other.
+\end{defn}
+
+The word ``topologically'' is frequently omitted.
+This definition looks quite strange, but is directly related to the way how a metric gives rise to a topology, which we have not defined yet.
+Intuitively, we can say the neighborhood systems of balls from each metric ``refine'' each other.
+There are various characterizations of equivalence among metrics.
+Especially the first proposition states that we can recover an equivalence class of metrics when it is known that which sequence converges.
+
+\begin{prop}\label{prop:sequential convergence data}
+Let $d_1$ and $d_2$ are metrics on a set $X$.
+They are equivalent if and only if they share the same sequential convergence data; a sequence converges in $d_1$ if and only if it converges in $d_2$.
+\end{prop}
+\begin{pf}
+It is easily deduced by applying the following lemma twice.
+\end{pf}
+
+
+
 \begin{prop}
 Let $d_1$ and $d_2$ are metric on a set $X$.
 They are equivalent if and only if the two identity functions $I:(X,d_1)\to(X,d_2)$ and $I:(X,d_2)\to(X,d_1)$ are continuous.
