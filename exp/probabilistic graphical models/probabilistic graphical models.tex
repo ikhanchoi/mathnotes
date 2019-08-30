@@ -7,25 +7,40 @@
 \maketitle
 \tableofcontents
 
-% G가 X에 Independency에 관해 무엇을 알려주는가
-%   Bayesian network: local Markov property or local independencies
-%   Markov network: three Markov properties
-%
-% G가 X에 Factorization에 관해 무엇을 알려주는가
-%   Bayesian network: chain rule
-%   Markov network: clique factorization
+% 책의 정의
+% BN structure: random graph on DAG
+% MN structure: random graph on UG
+% BN: BN structure satisfying local Markov
+% MN: 
+
+% Intro
+%   Statistical model
+%   random fields
+%   conditional independece
+%     G가 X에 Independency에 관해 무엇을 알려주는가
+%   parametrization by factorization
+%     G가 X에 Factorization에 관해 무엇을 알려주는가
+%     dimension counting
+%   notations
+
+
+% Bayesian network
+%   Independency: local Markov property
+%   Parametrization:
+%     chain rule
+%     parameter independence => numer counting
+
+% Markov network
+%   Independency: the three Markov property
+%   Parametrization:
 %     Gibbs distribution
-%     Hammersley–Clifford theorem: Let P be a positive distribution over X, and H a Markov network over X. If H is an I-map for P, then P is a Gibbs distribution over H.
+%     clique factorization
+%     finer-grained factors
+%     Hammersley-Clifford
+%     
 
 
-% 그리고 이 두 가지의 equivalence
-%   Clique factorization => Markov property: 그렇대
-%   Markov property => Gibbs distribution: 해머슬리 클리포드
-
-
-
-% factor graph와 features in log-linear model에 관하여 추론 및 매개화에서 할 말이 있음
-% pairwise MRF, conditional MRF, Ising model, Boltzmann machine
+% 수식 전개: bayes(여러 개도 넘길 수 있음), marginalizing, facotorizing, cond indep
 
 \section{Introduction}
 
@@ -86,7 +101,7 @@ Also, suppose we have energy function $E:S\to\R$ and parametrized family of func
 The functions $\phi$ are called \emph{Boltzmann factors} and the paramter $\beta$ is sometimes called \emph{coldness}.
 As a typical example, we may choose
 \[S=\Z_x^3\times\Z_p^3,\qquad E(x,p)=\frac{\|p\|^2}{2m}\quad(m:\text{ mass of particle})\]
-for the Maxwell-Boltzmann statistics of ideal gas.
+for the Maxwell-Boltzmann statistics for ideal gas.
 In this case, the set $V$ is the set of ideal gas particles, and the space of states $S$ embodies the discretized phase space.
 
 At each particle $n\in V$ is attached an $S$-valued random variable $X_n$.
@@ -187,7 +202,7 @@ The joint distribution is
 \[p(c,x)=p(c)\prod_{n=1}^Np(x_n|c).\]
 It is represented by factors $p(c)$ and $p(x_n|c)$'s; the conditional probability $p(c|x)=p(c,x)/p(x)$ can be computed if we assume that the input feature $x$ has been given and the probability $p(c)$, $p(x_n|c)$ had been estimated.
 
-If we view $p(c)\in[0,1]^{S_c}$ and $p(x_n|c)\in[0,1]^{S_x\times S_c}$ as \emph{parameters} which parametrize the joint distribution $p(c,x)\in[0,1]^{S_c\times S_x^N}$, then we can say the NBC defines a family of distribution functions for approximating $p(x,c)$ that is parametrized by $(|S_c|+N|S_x||S_c|)$-dimensional parameter, which is much smaller than $|S_c||S_x|^N$.
+If we view $p(c)\in[0,1]^{S_c}$ and $p(x_n|c)\in[0,1]^{S_x\times S_c}$ as \emph{parameters} which parametrize the joint distribution $p(c,x)\in[0,1]^{S_c\times S_x^N}$, then we can say the NBC defines a family of distribution functions for approximating $p(x,c)$ that is parametrized by $(|S_c|-1+N(|S_x|-1)|S_c|)$-dimensional parameter, which is much smaller than $|S_c||S_x|^N-1$.
 The NBC provides with a statistical model via ``conditional parametrization''.
 \end{ex}
 

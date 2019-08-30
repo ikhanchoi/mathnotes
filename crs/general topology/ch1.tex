@@ -35,7 +35,7 @@ In this subsection, we discuss the definitions and examples of metric spaces and
 
 % 1-1-1
 \subsubsection{Metric spaces}
-b
+
 A metric on a set is defined as a function which assigns a nonnegative real number to an unordered pair of two points.
 The assigned real number has the meaning of distance between the points.
 A metric space is just a set endowed with a metric.
@@ -76,8 +76,8 @@ Obvious.
 \end{pf}
 
 In fact, the converse holds; every metric space can be viewed as a subset of a normed space.
-This deeper result on the relation between normed spaces and metric spaces is discovered by Kuratowski[].
-Since it does not play any important role in the rest of the book, we may jump to Example \ref{ex:discrete metric}.
+This deeper result on the relation between normed spaces and metric spaces is discovered by Kuratowski \cite{}.
+Since it does not play any important role in the rest of the book, we may jump to Example \ref{ex:discrete metric is a metric}.
 To state the theorem, we introduce an isometry, a map preserving metrics.
 
 \begin{defn}
@@ -91,10 +91,10 @@ Also, the inverse of bijective isometry is an isometry, so the bijective isometr
 If two metric spaces are isometric, we can view them as virtually same, in the ``category'' of metric spaces.
 The following theorem tells another characterization of metric spaces.
 
-\begin{prop}[Kuratowski embedding]
+\begin{thm}[Kuratowski embedding]
 Every metric space is isometric to a subset of a normed space.
 In other words, for every metric space $(X,d)$, there is an isometry $\phi$ from $X$ to a normed space.
-\end{prop}
+\end{thm}
 \begin{pf}
 Choose any point $p\in X$.
 Let $Y$ be the space of bounded real-valued functions on $X$.
@@ -115,14 +115,14 @@ However, there are also many examples of metrics that are not involved directly 
 Even if they are far from subsets of a normed space, we can apply our intuition of norms.
 The examples below are given without proofs.
 
-\begin{ex}\label{ex:discrete metric}
+\begin{ex}\label{ex:discrete metric is a metric}
 Let $X$ be a set.
 Then, a function $d:X\x X\to\R_{\ge0}$ defined by
 \[d(x,y):=\begin{cases}0&,x=y\\1&,x\ne y\end{cases}\]
 is a metric on $X$.
 This metric is sometimes called \emph{discrete metric} because balls can separate all single points out.
 \end{ex}
-\begin{ex}\label{ex:subadditive function metric}
+\begin{ex}\label{ex:composition with mis function is still metric}
 Let $d$ be a metric on a set $X$.
 Let $f:[0,\oo)\to[0,\oo)$ be a function such that $f^{-1}(0)=\{0\}$.
 If $f$ is monotonically increasing and subadditive, then $f\o d$ satisfies the triangle inequality, hence is another metric on $X$.
@@ -185,13 +185,23 @@ If it is satisfied, then we write
 \[\lim_{n\to\oo}x_n=x,\]
 or simply
 \[x_n\to x\qquad\text{as}\qquad n\to\infty.\]
-If there is no such limit $x$, then we say the sequence \emph{diverges}.
+
+We say a sequence is \emph{convergent} if it converges to a point.
+If it does not converge to any points, then we say the sequence \emph{diverges}.
 \end{defn}
 \begin{defn}
 A function $f:X\to Y$ between metric spaces is called \emph{continuous at $x\in X$} if for any ball $B(f(x),\e)\subset Y$, there is a ball $B(x,\delta)\subset X$ such that
 \[f(B(x,\delta))\subset B(f(x),\e).\]
 The function $f$ is called \emph{continuous} if it is continuous at every point on $X$.
 \end{defn}
+
+The convergence can be also represented by limit of real numbers:
+\begin{prop}
+Let $x_n$ be a sequence in a metric space $X$ and $x\in X$.
+Then,
+\[\lim_{n\to\infty}x_n=x\iff\lim_{n\to\infty}d(x_n,x)=0.\]
+\end{prop}
+
 
 There are a lot of deeper propositions and results for limit and continuity, but we postpone to mention them to later because they are generalized to topological spaces.
 
@@ -202,13 +212,13 @@ It is because the shape of the set of balls determines the continuity or converg
 To make a vivid illustration, let us give an example.
 
 \begin{ex}
-Let $X$ be the discrete metric space in Example \ref{ex:discrete metric}.
+Let $X$ be the discrete metric space in Example \ref{ex:discrete metric is a metric}.
 Every ball centered at a point $x$ with respect to the discrete metric is either a singleton $B(x,\e)=\{x\}$ when $\e\le1$, or the entire space $B(x,\e)=X$ when $\e>1$.
 In particular, a sequence $\{x_n\}_n$ converges to $x$ if and only if it is eventually $x$; there is a positive integer $n_0$ such that $x_n=x$ for all $n>n_0$.
 \end{ex}
 \begin{ex}
 Let $X$ and $Y$ be metric spaces.
-If $X$ is equipped with the discrete metric in Example \ref{ex:discrete metric}, then every function $f:X\to Y$ is continuous on the discrete metric.
+If $X$ is equipped with the discrete metric in Example \ref{ex:discrete metric is a metric}, then every function $f:X\to Y$ is continuous on the discrete metric.
 \end{ex}
 \begin{ex}
 An isometry is always continuous.
@@ -216,7 +226,7 @@ An isometry is always continuous.
 
 The set of balls at each point determines properties about limits and continuity.
 Intuitively, the balls indicate the varying degrees of neighborhoods and relative nearness from a point.
-Refer to Example \ref{ex:neighborhood filter}.
+Refer to Example \ref{ex:neighborhood filter is a filter}.
 
 
 
@@ -229,23 +239,41 @@ Take note on the fact that the sequence of real numbers defined by $x_n=\frac1n$
 Like this example, even for the same sequence on a same set, the convergence depends on the attached metrics.
 What we are interested in is comparison of metrics and to find a proper relation structure.
 
-
-
+% 1-2-1
 \subsubsection{Refinement relation}
+
+If a sequence converges in a metric $d_2$ but diverges in another metric $d_1$, we would say $d_1$ has stronger rules to decide the convergence.
+Refinement relation formalizes the idea.
 
 \begin{defn}
 Let $d_1$ and $d_2$ are metric on a set $X$.
-We say $d_1$ \emph{refines} $d_2$ or $d_1$ is stronger than $d_2$ if for any $x\in X$ and for arbitrary $\e>0$, we can find $\delta>0$ such that
-\[B_1(x,\delta)\subset B_2(x,\e),\]
-where the notations $B_1$ and $B_2$ refer to balls defined with the metrics $d_1$ and $d_2$ respectively.
+We say $d_1$ is \emph{stronger than} $d_2$ (equivalently, $d_2$ is \emph{weaker than} $d_1$) or $d_1$ \emph{refines} $d_2$, if for any $x\in X$ and for arbitrary $\e>0$ we can find $\delta>0$ such that
+\[B_1(x,\delta)\subset B_2(x,\e).\]
+The notations $B_1$ and $B_2$ refer to balls defined with the metrics $d_1$ and $d_2$ respectively.
 \end{defn}
+
+\begin{prop}
+The refinement relation is a preorder.
+\end{prop}
+\begin{pf}
+It is enough to show the transitivity.
+Suppose there are three metric $d_1$, $d_2$, and $d_3$ on a set $X$ such that $d_1$ is stronger than $d_2$ and $d_2$ is stronger than $d_3$.
+For $i=1,2,3$, let $B_i$ be a notation for the balls defined with the metric $d_i$.
+
+Take $x\in X$ and $\e>0$ arbitrarily.
+Then, we can find $\e'>0$ such that
+\[B_2(x,\e')\subset B_3(x,\e).\]
+Also, we can find $\delta>0$ such that
+\[B_1(x,\delta)\subset B_2(x,\e').\]
+Therefore, we have $B_1(x,\delta)\subset B_3(x,\e)$ which implies that $d_1$ refines $d_3$.
+\end{pf}
 
 This definition looks quite strange, but is directly related to the way how a metric gives rise to a topology, which we have not defined yet.
 Intuitively, the neighborhood systems of balls from a metric ``refine'' the others.
+The relation can be described in several ways.
 
-
-\begin{prop}
-Let $d_1$ and $d_2$ are metrics on a set $X$.
+\begin{prop}\label{prop:metric refinements are variously described}
+Let $d_1$ and $d_2$ be metrics on a set $X$.
 Then, the followings are equivalent:
 \begin{cond}
 \item the metric $d_1$ is stronger than $d_2$,
@@ -286,23 +314,38 @@ Therefore, $\{x_n\}$ does not converges to $x$ in $d_2$.
 Obvious by definition.
 \end{pf}
 
+\begin{prop}\label{prop:metric refinements can be described by inequality}
+Let $d_1$ and $d_2$ be metrics on a set $X$.
+Suppose for each point $x$ there exists a constant $C$ which may depend on $x$ such that
+\[d_2(x,y)\le Cd_1(x,y)\]
+for all $Y$.
+Then, $d_1$ is stronger than $d_2$.
+\end{prop}
+\begin{pf}[1]
+Take a ball $B_2(x,\e)$ measured with $d_2$.
+Define $\delta=\e/C$.
+If $y\in B_1(x,\delta)$, then $d_1(x,y)<\e/C$ implies $d_2(x,y)<\e$ so that we have $y\in B_2(x,\e)$.
+Therefore, $d_1$ is stronger than $d_2$.
+\end{pf}
+\begin{pf}[2]
+Let $x_n$ be a sequence converges to $x$ in $d_1$.
+Since $d_1(x_n,x)\to0$, by taking limit on the inequality, we obtain $d_2(x_n,x)\to0$, hence $x_n$ converges to $x$ in $d_2$.
+By the previous proposition, $d_1$ is stronger than $d_2$.
+\end{pf}
 
-
-
-
-
-
-
-
+\begin{ex}
+There is always no stronger metric than the discrete metric.
+In other words, discrete metric is the strongest metric.
+\end{ex}
 
 % 1-2-2
 \subsubsection{Topological equivalence of metrics}
 
 There exist two different metrics which give exactly same answers about convergence for all sequences.
-This also occurs on checking continuity of functions.
+The same issue also occurs on checking continuity of functions.
 We consider an equivalence relation on the set of metrics, that is, two equivalent metrics give a common criterion for convergence and continuity.
 This equivalence relation is obtained from the refinement relation; two metrics are equivalent if they refines each other.
-In this situation, the two metrics is also said to induce exactly the same topology.
+In this situation, the two metrics are also said to induce exactly the same topology.
 Some results on the classification of the metrics by their topologies will be discussed.
 
 \begin{defn}
@@ -313,16 +356,16 @@ The word ``topologically'' is frequently omitted.
 There are various characterizations of equivalence among metrics.
 Especially the following proposition states that we can recover an equivalence class of metrics when it is known that which sequence converges or diverges.
 
-\begin{prop}\label{prop:sequential convergence data}
+\begin{prop}\label{prop:sequential convergence determines equivalent metrics}
 Let $d_1$ and $d_2$ are metrics on a set $X$.
 They are equivalent if and only if they share the same sequential convergence data; a sequence converges in $d_1$ if and only if it converges in $d_2$.
 \end{prop}
 \begin{pf}
-It is easily deduced by applying the lemma \ref{} twice.
+It is easily deduced by applying Proposition \ref{prop:metric refinements are variously described} twice.
 \end{pf}
 
 \begin{rmk}
-Generally, there exist two different topologies that have same sequential convergence data.
+Unlike metrics, there exist two different topologies that have same sequential convergence data.
 For example, a sequence in an uncountable set with cocountable topology converges to a point if and only if it is eventually at the point, which is same with discrete topology.
 This means the informations of sequence convergence are not sufficient to uniquely characterize a topology.
 Instead, convergence data of generalized sequences also called nets, recover the whole topology.
@@ -338,43 +381,41 @@ However, they are generally difficult problems: is it possible to recover the ba
 The following two theorems give sufficient conditions for equivalence.
 The first theorem is well used to compare norms on a vector space in particular, and the second theorem is going to be used in the next subsection.
 
-\begin{thm}\label{thm:equivalent metrics by inequalities}
-Let $d_1$ and $d_2$ are metric on a set $X$.
+\begin{thm}\label{thm:metric equivalence can be described by inequalities}
+Let $d_1$ and $d_2$ be metrics on a set $X$.
 If for each point $x$ there exist two constants $C_1$ and $C_2$ which may depend on $x$ such that
 \[d_2(x,y)\le C_1d_1(x,y)\quad\text{and}\quad d_1(x,y)\le C_2d_2(x,y)\]
 for all $y$ in $X$, then $d_1$ and $d_2$ are equivalent.
 \end{thm}
 \begin{pf}
-Since $d_1(x,y)<\e/C_1$ implies $d_2(x,y)<\e$ and $d_2(x,y)<\e/C_2$ implies $d_1(x,y)<\e$, we have
-\[B_1\left(x,\frac\e{C_1}\right)\subset B_2(x,\e),\quad B_2\left(x,\frac\e{C_2}\right)\subset B_1(x,\e).\]
-By letting $\delta_1=\e/C_1$ and $\delta_2=\e/C_2$, we can see the two metrics are equivalent.
+It is a corollary of Proposition \ref{prop:metric refinements can be described by inequality}.
 \end{pf}
-This theorem can be used only for half:  $d_2\le Cd_1$ for some $C>0$ if and only if convergence of a sequence in $d_1$ implies the convergence in $d_2$.
 
-\begin{thm}\label{thm:equivalent metrics by subadditive function}
+\begin{thm}\label{thm:composition with continuous mis function is equivalent}
 Let $d$ be a metric on a set $X$ and let $f$ be a monotonically increasing subadditive real function on $\R_{\ge0}$ such that $f^{-1}(0)=\{0\}$ so that $f\o d$ is a metric.
 If $f$ is continuous at 0 in addition, then $f\o d$ is equivalent to $d$.
 \end{thm}
 \begin{pf}
-We have seen that $f\o d$ is a metric in Example \ref{ex:subadditive function metric}.
+We have seen that $f\o d$ is a metric in Example \ref{ex:composition with mis function is still metric}.
 Firstly, for any ball $B(x,\e)=\{y:d(x,y)<\e\}$, we have a smaller ball
 \[B_f(x,f(\e))\subset B(x,\e),\]
 where $B_f(x,f(\e))=\{y:f(d(x,y))<f(\e)\}$, since $f(d(x,y))<f(\e)$ implies $d(x,y)<\e$.
 
-The second inclusion requires the continuity of $f$.
+The opposite inclusion only requires the continuity of $f$.
 Take an arbitrary ball $B_f(x,\e)$.
 Since $f$ is continuous at 0, we can find $\delta>0$ such that
 \[d(x,y)<\delta\impl f(d(x,y))<\e,\]
 which implies $B(x,\delta)\subset B_f(x,\e)$.
 \end{pf}
 
+% 1-2-3
 \subsubsection{Topological equivalence of norms}
 
 A typical example of equivalent metrics occurs when we consider norms.
 It is natural to extend the concept of topological equivalence to norms.
 The idea is same; if two norms on a vector space give rise to a same topology, or equivalently, topologically equivalent metrics, then we call them equivalent.
 
-The checking procedure is rather simple; the converse of Theorem \ref{thm:equivalent metrics by inequalities} holds for norms.
+The checking procedure is rather simple; the converse of Theorem \ref{thm:metric equivalence can be described by inequalities} holds for norms.
 It is because metrics induced from norms have the property called ``translation invariance''.
 The following thereom is often taken as the definition of norm equivalence.
 
@@ -385,7 +426,8 @@ They induce the equivalent metrics if and only if there are constants $C_1$ and 
 for all $x\in V$.
 \end{thm}
 \begin{pf}
-($\Leftarrow$) It is a corollary of Theorem \ref{thm:equivalent metrics by inequalities}.
+($\Leftarrow$) Substitute $x\mapsto x-y$.
+Then, it is just a corollary of Theorem \ref{thm:metric equivalence can be described by inequalities}.
 
 ($\Rightarrow$)
 For any ball $B_2(0,\e)$, there is a smaller ball $B_1(0,\delta)$ such that $B_1(0,\delta)\subset B_2(0,\e)$ by the definition of equivalence of metrics.
@@ -394,9 +436,9 @@ It means we have
 for all $x\in V$.
 If we let $C_1:=\e/\delta$, then it is equivalent to
 \[C_1\|x\|_1<\e\impl\|x\|_2<\e.\]
-If there is a vector $x\in V$ such that $\|x\|_2>C_1\|x\|_1$, then we can lead a contradiction by taking $\e$ between $\|x\|_2$ and $C_1\|x\|_1$.
+If there is a vector $x\in V$ such that $\|x\|_2>C_1\|x\|_1$, then we can lead a contradiction by taking $\e$ such that $\|x\|_2>\e>C_1\|x\|_1$.
 Therefore, $\|x\|_2\le C_1\|x\|_1$ for all $x\in V$.
-The other inequality is also shown by the same way.
+The other inequality is also shown in the same way.
 \end{pf}
 
 Especially, when we work on a vector space with finite dimension such as a Euclidean space $\R^d$, the situation gets better dramatically.
@@ -409,21 +451,20 @@ Let $\F$ be the field $\R$ or $\C$.
 Both have the absolute value function that makes the vector space complete.
 Then, a finite dimensional vector space is isomorphic to $\F^d$ for some $d$.
 Fix a basis $\{e_i\}_{i=1}^d$ on $\F^d$ and let $x=\sum_{i=1}^dx_ie_i$ denote an arbitrary element of $\F_d$.
-We will prove all norms are equivalent to the standard norm:
-\[\|x\|_2=\norm{\sum_{i=1}^dx_ie_i}_2:=\left(\sum_{i=1}^d|x_i|^2\right)^{\frac12}.\]
-With this standard norm, we can use any theorems we learn in elementary analysis.
+We will prove all norms are equivalent to the standard Euclidean norm defined for the fixed basis:
+\[\|x\|_2=\|\sum_{i=1}^dx_ie_i\|_2:=\left(\sum_{i=1}^d|x_i|^2\right)^{\frac12}.\]
+With this standard norm, we can use any theorems we learned in elementary analysis.
 For example, we are allowed to use the Bolzano-Weierstrass theorem.
-We usd the subscript 2 for the standard norm since the norm is frequently called $\ell^2$ norm.
-
+We used the subscript 2 for the standard Euclidean norm since the norm is frequently called $\ell^2$ norm.
 
 Take a norm $\|\cdot\|$ on $\F^d$.
 One direction is easy: if we let $C_2:=\sqrt{d}\cdot\max_i\|e_i\|$, then
 \begin{align*}
-\|x\|=\norm{\sum_{i=1}^dx_ie_i}&\le\sum_{i=1}^d|x_i|\|e_i\|\\
+\|x\|=\|\sum_{i=1}^dx_ie_i\|&\le\sum_{i=1}^d|x_i|\|e_i\|\\
 &\le\max_i\|e_i\|\sum_{i=1}^d|x_i|\\
 &\le\max_i\|e_i\|\left(\sum_{i=1}^d1^2\right)^{\frac12}\left(\sum_{i=1}^d|x_i|^2\right)^{\frac12}=C_2\|x\|_2.
 \end{align*}
-For your information, this inequality show that the function $(\F^d,\|\cdot\|_2)\to\R:x\mapsto\|x\|$ is continuous.
+In addition, this inequality show that the function $(\F^d,\|\cdot\|_2)\to\R:x\mapsto\|x\|$ is continuous.
 
 There are many proofs for the other direction.
 We give a proof using sequences.
@@ -433,25 +474,29 @@ In other words, for every positive integer $n$, we can find $x_n\in\F^d\setminus
 Normalize $x_n$ with respect to $\|\cdot\|_2$ to define a new sequence $y_n:=\frac{x_n}{\|x_n\|_2}$.
 Then, we have
 \[\|y_n\|_2=1\quad\text{and}\quad\|y_n\|<\tfrac1n.\]
-Since the set $\{x:\|x\|_2=1\}$ is bounded in the standard norm, the Bolzano-Weierstrass theorem implies the existence of a subsequence $\{y_{n_k}\}_k$ of $\{y_n\}$ that converges to a point $y$ in $\|\cdot\|_2$.
-For this $y$, we have $\|y\|_2=1$ while $\|y\|=0$, which is a contradiction to the axiom of norm.
-
-More rigorously, we get $\|y\|_2=1$ and $\|y\|=0$ by taking limit $k\to\oo$ on the inequalities
+Since the set $\{x:\|x\|_2=1\}$ is bounded in the standard norm, the Bolzano-Weierstrass theorem implies the existence of a convergent subsequence $\{y_{n_k}\}_k$ of $\{y_n\}$ in the standard norm $\|\cdot\|_2$.
+For the limit point $y$ of $\{y_{n_k}\}_k$, take limits $k\to\oo$ on the inequalities
 \[\bigl|\|y_{n_k}\|_2-\|y\|_2\bigr|\le\|y_{n_k}-y\|_2\]
 and
 \[\bigl|\|y_{n_k}\|-\|y\|\bigr|\le\|y_{n_k}-y\|\le C_2\|y_{n_k}-y\|_2.\]
+Then since $\|y_{n_k}\|_2\to1$ and $\|y_{n_k}\|\to0$ as $k\to\infty$, we get $\|y\|_2=1$ and $\|y\|=0$, which is a contradiction to the axiom of norm.
 This proves that $\|\cdot\|$ is equivalent to the standard norm.
 \end{pf}
 
 \begin{rmk}
-The equivalence of norms is due to the locally compactness and the completeness.
-In fact, locally compactness is a way to characterize finite dimensional spaces.
+Even if we choose $\|\cdot\|_p$ instead of the standard Euclidean norm, the proof still works.
+It suffices to manipulate the Schwarz inequality in proper way.
+The reason why we chose the Euclidean norm is that we assumed the Bolzano-Weierstrass theorem was proved in the Euclidean norm.
+\end{rmk}
+\begin{rmk}
+More generally, the equivalence of norms is due to the locally compactness and the completeness.
+In fact, locally compactness is a way to characterize finite dimensional Banach spaces.
 Hence we may also apply the Heine-Borel theorem or the extreme value theorem instead of the Bolzano-Weierstrass theorem, which are exactly equivalent statements for compactness.
 Notice a closed ball is compact in such spaces, following the relation diagram:
 \begin{rd}[column sep=huge]
 Bounded \ds{r}{fin. dim.} & Totally bounded \ds{r}{complete} & Compact.
 \end{rd}
-This result is also important in functional analysis.
+This result is important in functional analysis.
 \end{rmk}
 
 \begin{ex}
@@ -464,16 +509,17 @@ for all $(x,y)\in\R^2$, the two norms are equivalent.
 
 
 
-% 1-4
+% 1-3
 \subsection{Family of pseudometrics}
 
 Our goal in this subsection is to describe a topology generated by several metrics, and, in general, by several ``pseudometrics''.
 This idea provides a useful method to construct a metric or topology, which can be applied to a quite wide range of applications.
 
+% 1-3-1
 \subsubsection{Finite family of metrics}
 At first, let us look into combination of metrics.
 Specifically, in a conventional way, metrics are summed to make another metric out of olds since sum of two metrics also satisfies the all axioms of metric.
-They are summed because convergence of a sequence in the resulted metric is equivalent to convergence in the summands.
+They have been usefully summed because convergence of a sequence in the resulted metric is equivalent to convergence in the summands.
 See Proposition \ref{prop:summed metric convergence}.
 However, here we give a slightly more general construction using norms restricted onto the closed orthant $(\R_{\ge0})^d$, of which summation becomes just a special case.
 
@@ -483,7 +529,7 @@ Let $\|\cdot\|$ be a norm on $\R^d$.
 Then, $d(x,y):=\|(d_1(x,y),\cdots,d_d(x,y))\|$ is another metric on $X$.
 \end{prop}
 \begin{pf}
-Obvious.
+All of the three axioms of metric can be checked without difficulty.
 \end{pf}
 \begin{rmk}
 Although it is possible to figure out conditions for $f:[0,\oo)^2\to[0,\oo)$ to have $f(d_1,d_2)$ be a metric, we just compromised it for simplicity and usefulness.
@@ -492,7 +538,7 @@ Also, if we use norms, then the same method can be extended to the case of norms
 
 Furthermore, the newly defined metric is unique up to equivalence.
 We prove only for a pair of two metrics, but it is easy to check by mathematical induction that any finite family of metrics can be combined to make new metrics, which are essentially equivalent.
-In fact, it can be checked to be obviously true without long proof like any other corollaries if we introduce bases of topology.
+In fact, the following proposition can be checked trivially without long proof if we introduce a concept called bases of topology, which will be seen later.
 
 \begin{prop}
 Let $d_1$, $d_2$, $d'_1$, and $d'_2$ be metrics on a set.
@@ -503,11 +549,12 @@ If $d_1$, $d_2$, and $\|\cdot\|$ are equivalent to $d'_1$, $d'_2$, and $\|\cdot\
 Let $\{y:\|(d'_1(x,y),d'_2(x,y))\|'<\e\}$ be an arbitrary ball centered at a point $x$ taken by the metric $\|(d'_1,d'_2)\|'$.
 By Theorem \ref{thm:equivalent norms on finite dimension}, there is a constant $C,C'>0$ such that $C'\|\cdot\|'\le\|\cdot\|_\oo\le C\|\cdot\|$, where we denote $\|(x,y)\|_\oo=\max\{|x|,|y|\}$.
 
-By the equivalence, we can find $\delta_1>0$ and $\delta_2>0$ such that
+By the equivalence of each pair of metrics, there are $\delta_1>0$ and $\delta_2>0$ such that
 \[B_1(x,\delta_1)\subset B_{1'}(x,C'\e)\quad\text{and}\quad B_2(x,\delta_2)\subset B_{2'}(x,C'\e),\]
 where $B_1,B_{1'},B_2$, and $B_{2'}$ denotes the ball with respect to metrics $d_1,d'_1,d_2$, and $d'_2$ respectively.
 With $\delta_1$ and $\delta_2$, define $\delta:=\min\{\delta_1,\delta_2\}/C$.
-Then, the ball of radius $\delta$ in the metric $\|(d_1,d_2)\|$ is contained in the ball of radius $\e$ in the metric $\|(d'_1,d'_2)\|'$:
+
+Then, we can manually check the ball of radius $\delta$ made in the metric $\|(d_1,d_2)\|$ is contained in the ball of radius $\e$ made in the metric $\|(d'_1,d'_2)\|'$:
 \[\{y:\|(d_1(x,y),d_2(x,y))\|<\delta\}\subset\{y:\|(d'_1(x,y),d'_2(x,y))\|'<\e\}.\]
 The opposite part is shown in the same way symmetrically.
 \end{pf}
@@ -522,8 +569,8 @@ are equivalent metrics.
 If $d_1$ and $d_2$ are equivalent metrics, then $d_1+d_2$ is also equivalent to $d_1$ and $d_2$.
 \end{ex}
 
-From now, when we need to write a combined metric of a family of metrics, we will just adopt the sum $d_1+d_2$.
-Another characterization of the summed metric is given as follows; see Proposition \ref{prop:sequential convergence data}.
+From now, whenever we need to write a combined metric of a family of metrics, we will just adopt the sum $d_1+d_2$.
+Then, another characterization of the summed metric is given as follows; see Proposition \ref{prop:sequential convergence determines equivalent metrics} and ponder about the meaning of the following proposition.
 
 \begin{prop}\label{prop:summed metric convergence}
 Let $d_1$ and $d_2$ be metrics on a set $X$.
@@ -537,19 +584,18 @@ For $\e>0$, we have an positive integet $n_0$ such that
 With this $n_0$, by the nonnegativity of metric functions, we get $d_1(x_n,x)<\e$ and $d_2(x_n,x)<\e$ for $n>n_0$.
 
 ($\Leftarrow$)
-Suppose a sequence $\{x_n\}_n$ is convergent with respect to both $d_1$ and $d_2$.
-By the Hausdorffness of metrics, the sequence converges to a common point $x$ in both metircs.
+Suppose a sequence $\{x_n\}_n$ is converges to $x$ in both $d_1$ and $d_2$.
 For $\e>0$, we may find positive integers $n_1$ and $n_2$ such that $n>n_1$ and $n>n_2$ imply $d_1(x_n,x)<\frac\e2$ and $d_2(x_n,x)<\frac\e2$ respectively.
 If we define $n_0:=\max\{n_1,n_2\}$, then
 \[n>n_0\impl d_1(x_n,x)+d_2(x_n,x)<\e.\qedhere\]
 \end{pf}
 
-
+% 1-3-2
 \subsubsection{Countable family of metrics}
-Above this, there is also a method for combining not only finite family of metrics, but also countable family of metrics.
-Since the sum of countably many numbers may diverges, we cannot sum the metrics directly.
+There is also a method for combining not only finite family of metrics, but also countable family of metrics.
+Since the sum of countably many positive numbers may diverges to infinity, we cannot sum the metrics directly.
 The strategy used here is to ``bound'' the metrics.
-We call a metric bounded when the image of metric is bounded.
+We call a metric bounded when the range of metric function is bounded.
 
 \begin{prop}
 Every metric possesses an equivalent bounded metric.
@@ -559,7 +605,7 @@ Let $d$ be a metric on a set.
 Let $f$ be a bounded, monotonically increasing, and subadditive function on $\R_{\ge0}$ that is continuous at 0 and satisfies $f^{-1}(0)=\{0\}$.
 The mostly used examples are
 \[f(x)=\frac x{1+x}\quad\text{and}\quad f(x)=\min\{x,1\}.\]
-Then, $f\o d$ is a bounded metric equivalent to $d$ by Theorem \ref{thm:equivalent metrics by subadditive function}.
+Then, $f\o d$ is a bounded metric equivalent to $d$ by Theorem \ref{thm:composition with continuous mis function is equivalent}.
 \end{pf}
 
 \begin{defn}
@@ -571,7 +617,7 @@ and we will denote it by $\hat d$.
 
 The supremum of the standard bounded metric is 1.
 Every metric can be bounded above by not only 1 but also an arbitrary constant, keeping the topological equivalence, just by giving the constant as a coefficient to $\hat d$.
-Following propositions are the reason why we bound the metric.
+Then, following propositions give methods for combining countable metrics.
 
 \begin{prop}
 Let $\{d_i\}_{i\in\N}$ be a countable family of metrics on a set $X$.
@@ -590,7 +636,7 @@ Let us show the rest part.
 
 ($\Rightarrow$)
 We have an ineuqlaity $d_i\le2^i\hat d$ for each $i$, so convergence in $d$ implies the convergence in each $\hat d_i$.
-See Theorem \ref{thm:equivalent metrics by inequalities}.
+See Theorem \ref{thm:metric equivalence can be described by inequalities}.
 The equivalence of $\hat d_i$ and $d_i$ implies the desired result.
 
 ($\Leftarrow$)
@@ -634,7 +680,7 @@ and
 imply $d(x_n,x)<\e$, which means that $x_n$ converges to $x$ in the metric $d$.
 \end{pf}
 
-From the two propositions and Proposition \ref{prop:sequential convergence data}, we get a corollary:
+From the two propositions and Proposition \ref{prop:sequential convergence determines equivalent metrics}, we get an additional corollary:
 \begin{cor}
 Let $\{d_i\}_{i\in\N}$ be a countable family of metrics on a set $X$.
 Then, two metrics
@@ -649,27 +695,24 @@ respectively.
 A metric
 \[d'(x,y)=\sup_{i\in\N}\,d_i(x,y)\]
 is not used because the convergence in this metric is a stronger condition than the convergence with respect to each metric $d_i$.
-In other words, this metric generates a finer topology than the topology generated by subbase of balls.
-For example, the topology on $\R^\N$ generated by this metric defined with projection pseudometrics is exactly what we often call the box topology.
+In other words, this metric generates a finer(stronger) topology than the topology generated by subbase of balls.
+For example, the topology on $\R^\N$ generated by this metric defined with the projection pseudometrics is exactly what we often call the box topology.
 \end{rmk}
 
-How about an uncountable family of metrics?
-This question will be answered in later sections.
-
-
+% 1-3-3
 \subsubsection{Pseudometrics}
-It is often required to consider combining a family of pseudometrics, which has not been defined yet.
-To motivate and introduce pseudometrics, consider an example problem.
+It is often required to consider combining a possibly uncountable family of generalized metrics, called pseudometrics.
+To motivate and introduce pseudometrics, we give an example problem.
 Let $X\x Y$ be a cartesian product of two metric spaces $(X,d_X)$ and $(Y,d_Y)$.
-We may ask what metric is chosen in the most natural way, and a possible answer will be as follows:
+We can ask which metric should be chosen in the most natural way, and a possible answer is as follows:
 \[(x_n,y_n)\to(x,y)\iff x_n\to x\quad\text{and}\quad y_n\to y\]
 as $n\to\oo$.
 We wish to recognize this as the sum of two different convergences: one is $x_n\to x$, and the other is $y_n\to y$.
-So then try to define two metric functions $d_X$ and $d_Y$ on $X\x Y$ such that
+So then try to define two metric functions $\rho_X$ and $\rho_Y$ on $X\x Y$ such that
 \[\rho_X((x,y),(x',y'))=d_X(x,x')\quad\text{and}\quad\rho_Y((x,y),(x',y'))=d_Y(y,y').\]
-We wish that each function would satisfies axioms of metrics, but they fail on the identity of indiscernibles: $\rho_X((x,y),(x',y'))=0$ does not imply $(x,y)=(x',y')$.
-The thing is, we can still define convergence or continuity with them; they also give rise to topologies, which lacks some good features including the Hausdorffness.
-The definition of pseudometric comes from missing the nondegeneracy condition.
+We expect these functions to satisfy axioms of metrics, but they fail on the identity of indiscernibles: $\rho_X((x,y),(x',y'))=0$ does not imply $(x,y)=(x',y')$.
+However, the thing is, we can still define convergence or continuity with them; they also give rise to topologies, which lack some good features including the uniqueness of the limit point of a convergent sequence.
+We define pseudometrics by missing the nondegeneracy condition from the original definition of metric.
 
 \begin{defn}
 A function $\rho:X\x X\to\R_{\ge0}$ is called a \emph{pseudometric} if
@@ -681,7 +724,7 @@ A function $\rho:X\x X\to\R_{\ge0}$ is called a \emph{pseudometric} if
 \end{defn}
 Compare this with the definition of metric.
 
-Every statement and concept in 1.3.1, topological equivalence of metrics, except Proposition \ref{prop:sequential convergence data} is extended to the pseudometrics.
+Every statement and concept in 1.3.1, topological equivalence of metrics, except Proposition \ref{prop:sequential convergence determines equivalent metrics} is extended to the pseudometrics.
 More precisely, for examples, we have the following propositions:
 
 
@@ -698,6 +741,8 @@ sequence space pointwise convergence.
 
 
 
+
+\clearpage
 \subsection*{Exercises}
 Determine true or false and give a reason briefly:
 \begin{enumerate}
@@ -707,23 +752,26 @@ Determine true or false and give a reason briefly:
 
 \subsection*{Problems}
 \begin{prb}
-Show that there is a metric $d$ on $\R$ such that a sequence $\{x_n\}_n$ defined by $x_n=x+\frac1n$ is convergent with respect to $d$ if and only if $x\ne0$.
-\end{prb}
-\begin{prb}
 Let $\{x_n\}_n$ be a convergent sequence in a metric space $X$.
 Show that for each point $p\in X$ there is $M>0$ such that $d(x_n,p)<M$ for all $n$.
 \end{prb}
 \begin{prb}
-Let $d$ and $d'$ be metrics on a set $X$.
-Suppose that a sequence $\{x_n\}_n$ in $X$ converges to $x$ in $d$ and converges to $x'$ in $d'$.
+Show that there is a metric $d$ on $\R$ such that a sequence $x_n=\frac1n$ converges to 1 and a sequence $y_n=1-\frac1n$ converges to 0.
+\end{prb}
+\begin{prb}
+Show that there is a metric $d$ on $\R$ such that a sequence $\{x_n\}_n$ defined by $x_n=x+\frac1n$ is convergent with respect to $d$ if and only if $x\ne0$.
+\end{prb}
+\begin{prb}
+Let $\|\cdot\|$ and $\|\cdot\|'$ be norms on a vector space $X$.
+Suppose that a sequence $\{x_n\}_n$ in $X$ converges to $x$ in $\|\cdot\|$ and converges to $x'$ in $\|\cdot\|'$.
 Show that $x=x'$.
 \end{prb}
 \begin{prb}
-Let $d$ a metric on a set $X$.
-Show that a function $d_p$ defined by $d_p(x,y):=d(x,y)^p$ is a metric equivalent to $d$ for every $p>0$.
+Let $d$ a metric on a set $X$ and $p>0$.
+Show that a function $d_p$ defined by $d_p(x,y):=d(x,y)^p$ is a metric and it is equivalent to $d$.
 \end{prb}
 \begin{prb}
-Find the range of the function $f(x)=\|x\|_p/\|x\|_q$ defined for $x\in\R^d$, where $\|x\|_p^p:=\sum_{i=1}^d|x_i|^p$ for $x=(x_1,\cdots,x_d)$.
+Compute the range of the function $f(x)=\|x\|_p/\|x\|_q$ defined for $x\in\R^d$, where $\|x\|_p^p:=\sum_{i=1}^d|x_i|^p$ for $x=(x_1,\cdots,x_d)$.
 \end{prb}
 
 
@@ -848,11 +896,11 @@ A filter $\cF'_x$ is finer than another filter $\cF_x$ if and only if $\cF'_x\su
 
 The following examples will be helpful to catch the intuition.
 
-\begin{ex}\label{ex:neighborhood filter}
+\begin{ex}\label{ex:neighborhood filter is a filter}
 Let $x$ be a point in a metric space.
 The set of all open balls cenetered at $x$ is a filter base at $x$.
 The set of all open balls containing $x$ is aslo a filter base and they are equivalent.
-A filter equivalent to these filter bases are called \emph{neighborhood filter at $x$}.
+A filter equivalent to these filter bases are called \emph{neighborhood filter at $x$} or \emph{neighborgood system of $x$}.
 \end{ex}
 \begin{ex}
 Let $S$ be a subset of a set.
@@ -863,13 +911,6 @@ If $S=\{x\}$, then it is called a \emph{principal filter} at $x$.
 The set of all subsets of $\N$ whose complement is finite is a filter, but it is not a filter at a point.
 However, it is intuitively a filter at infinity.
 \end{ex}
-
-
-
-
-
-
-
 
 
 
@@ -932,7 +973,7 @@ A \emph{topology on $X$} is the maximal element of an equivalence class of topol
 
 There is also a criterion for topology.
 
-\begin{thm}\label{thm:def_of_top}
+\begin{thm}\label{thm:def of top}
 A collection $\cT$ of subsets of $X$ is a topology on $X$ if and only if
 \begin{cond}
 \item $\varnothing,X\in\mathcal{T}$,
@@ -943,7 +984,7 @@ A collection $\cT$ of subsets of $X$ is a topology on $X$ if and only if
 \begin{pf}
 %%%
 \end{pf}
-Theorem \ref{thm:def_of_top} is usually used as a definition of topology because it allows us to check without difficulty whether a collection of subsets is a topology.
+Theorem \ref{thm:def of top} is usually used as a definition of topology because it allows us to check without difficulty whether a collection of subsets is a topology.
 
 
 Since all topological structures are made to generalize the standard metric of Euclidean space, so drawing balls for representing base elements is always helpful in the whole story of general topology.
