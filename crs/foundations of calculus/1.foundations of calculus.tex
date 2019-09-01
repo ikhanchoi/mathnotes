@@ -100,7 +100,40 @@ We often abbreviate $\|f\|_{L^p(X)}$ as $\|f\|_{L^p}$ or $\|f\|_p$.
 
 
 
+
+
+
 \chapter{Multivariable calculus}
+$T<\min\{1/K,R/M\}$ and $|f(t,x)|\le M$ on $[0,T]\times\cl{B(x_0,R)}$
+\[x'=f(t,x),\qquad x(0)=x_0.\]
+
+\[\phi(x)(t)=x_0+\int_0^tf(s,x(s))\,ds.\]
+\begin{align*}
+|\phi(x)(t)-x_0|&\le\int_0^t|f(s,x(s))|\,ds\\
+\le TM
+\end{align*}
+\begin{align*}
+|\phi(g)(t)-\phi(h)(t)|&=|\int_0^t(f(s,g(s))-f(s,h(s)))\,ds|\\
+&\le\int_0^t|f(s,g(s))-f(s,h(s))|\,ds\\
+&\le\int_0^tK|g(s)-h(s)|\,ds\\
+&\le TK\sup_s|g(s)-h(s)|
+\end{align*}
+
+\subsection{Inverse function theorem}
+
+\begin{pf}[1]
+Take $y$.
+We must first define $x$ such that $f(x)=y$.
+Let
+\[\f_y(x)=x+df_p^{-1}(y-f(x)).\]
+Note that $f(x)=y$ if and only if $x$ is a fixed point of $\f_y$.
+
+Since $df$ is continuous, there is an open ball $U$ such that
+\[\|df(x)-df(p)\|<\frac1{2\|df(p)^{-1}\|}.\]
+For $x\in U$,
+\[d\f_y(x)=\id-df_p^{-1}df_x\]
+\end{pf}
+
 
 
 \end{document}

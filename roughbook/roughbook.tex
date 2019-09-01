@@ -9,6 +9,100 @@
 \tableofcontents
 
 
+\section{Elliptic curves}
+\subsection{Reduction of Weierstrass equations}
+In this subsection, we want to investigate the important constants of elliptic curves such as $c_4$, $c_6$, $\Delta$, $j$ by calculating equations with hands.
+
+\textbf{Step 1.}
+The Riemann-Roch theorem proves that every curve of genus 1 with a specified base point can be described by the first kind of Weierstrass equation.
+Explicitly, the first form of Weierstrass equation is
+\[y^2+a_1xy+a_3y=x^3+a_2x^2+a_4x+a_6.\tag{1}\]
+
+\textbf{Step 2.}
+\emph{Elimination of $xy$ and $y$}.
+Factorize the left hand side
+\begin{align*}
+y\,(y+a_1x+a_3)=x^3+a_2x^2+a_4x+a_6.
+\end{align*}
+By translation
+\begin{align*}
+\boxed{x\mapsto x,\qquad y\mapsto y-\tfrac12(a_1x+a_3)}
+\end{align*}
+we have
+\begin{align*}
+y^2-(\tfrac12(a_1x+a_3))^2&=x^3+a_2x^2+a_4x+a_6,\\
+y^2&=x^3+(\tfrac14a_1^2+a_2)x^2+(\tfrac12a_1a_3+a_4)x+(\tfrac14a_3^2+a_6),\\
+y^2&=x^3+\frac14(a_1^2+4a_2)x^2+\frac12(a_1a_2+2a_4)x+\frac14(a_3^2+4a_6).
+\end{align*}
+Introduce new coefficients $b$ to write it as
+\begin{align*}
+y^2=x^3+\frac14b_2x^2+\frac12b_4x+\frac14b_6.
+\end{align*}
+By scaling
+\begin{align*}
+\boxed{x\mapsto x,\qquad y\mapsto \tfrac12y}
+\end{align*}
+we get
+\[y^2=4x^3+b_2x^2+2b_4x+b_6.\tag{2}\]
+
+\textbf{Step 3.}
+\emph{Elimination of $x^2$}.
+By translation
+\begin{align*}
+\boxed{x\mapsto x-\tfrac1{12}b_2}
+\end{align*}
+we have
+\begin{align*}
+y^2=4\left(x^3-3\cdot\frac1{12}b_2x^2+3\cdot\frac1{12^2}b_2^2x-\frac1{12^3}b_2^3\right)&\\
++b_2\left(x^2-2\cdot\frac1{12}b_2x+\frac1{12^2}b_2^2\right)&\\
++2b_4\left(x-\frac1{12}b_2\right)&\\
++b_6,&
+\end{align*}
+so
+\begin{align*}
+y^2&=4x^3+\left(4\cdot3\cdot\frac1{12^2}b_2^2-2\cdot\frac1{12}b_2^2+2b_4\right)x+\left(-4\cdot\frac1{12^3}b_2^3+\frac1{12^2}b_2^3-2\cdot\frac1{12}b_2b_4+b_6\right)\\
+&=4x^3+\frac1{12}\left(-b_2^2+24b_4\right)x+\frac1{216}\left(b_2^3-36b_2b_4+216b_6\right).
+\end{align*}
+Write it as
+\begin{align*}
+y^2=4x^3-\frac1{12}c_4x-\frac1{216}c_6.
+\end{align*}
+We want to match the coefficients of $y^2$ and $x^3$ but also want the coefficients of $c_4x$ and $c_6$ to be integers.
+Iterative scaling implies
+\begin{align*}
+x\mapsto\tfrac16x:&\qquad 216y^2=4x^3-3c_4x-c_6\\
+y\mapsto\tfrac1{36}y:&\qquad y^2=24x^3-18c_4x-6c_6\\
+x\mapsto\tfrac16x:&\qquad 9y^2=x^3-27c_4x-54c_6\\
+y\mapsto\tfrac13y:&\qquad y^2=x^3-27c_4x-54c_6.
+\end{align*}
+Thus, we get the famous third form of Weierstrass equation:
+\[y^2=x^3-27c_4x-54c_6.\tag{3}\]
+
+
+
+\begin{thm}
+Let
+\[E:y^2=x^3-Ax-B.\]
+TFAE:
+\begin{cond}
+\item A point $(x,y)$ is a singular point of $E$.
+\item $y=0$ and $x$ is a double root of $x^3-Ax-B$.
+\item $\Delta=0$.
+\end{cond}
+\end{thm}
+\begin{pf}
+(1)$\Rightarrow$(2)
+$\pd_yf=0$ implies $y=0$. $f=\pd_xf=0$ implies $x$ is a double root of $x^3-Ax-B$.
+$A$ determines whether $x$ is either cusp of node.
+\end{pf}
+
+
+
+
+
+
+
+
 \section{Characteristic curve}
 
 Consider
