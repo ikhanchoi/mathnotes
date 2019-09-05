@@ -31,12 +31,12 @@
 
 
 
-\setcounter{tocdepth}{3}
 \setcounter{secnumdepth}{3}
-\providecommand{\@dotsep}{4.5}
+\@ifclassloaded{amsbook}{
+\setcounter{tocdepth}{3}
 \renewcommand*\l@subsection{\@tocline{2}{0pt}{2pc}{}{}}
-\renewcommand*\l@subsubsection{\@tocline{3}{0pt}{4pc}{}{}}
-
+\renewcommand*\l@subsubsection{\@tocline{3}{0pt}{3pc}{}{}}
+}{}
 
 
 

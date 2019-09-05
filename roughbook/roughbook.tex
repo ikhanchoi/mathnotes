@@ -104,35 +104,42 @@ $A$ determines whether $x$ is either cusp of node.
 
 
 \section{Characteristic curve}
-
-Consider
+Algorithm:
+\begin{cond}
+\item Establish the associated vector field by substituting $u\mapsto y$.
+\item Find the integral curve.
+\item Eliminate the auxiliary variables to get an algebraic equation.
+\item Verify the computed solution is in fact the real solution.
+\end{cond}
+\begin{prop}
+Suppose that there exists a smooth solution $u:\Omega\to\R_y$ of an initial value problem
 \begin{pde*}
 u_t+u^2u_x&=0, \: (t,x)\in\Omega\subset\R_{t\ge0}\x\R_x,\\
-u(0,x)&=x, \: \text{at}\ x\in\R.
+u(0,x)&=x, \: \text{at}\ x\in\R,
 \end{pde*}
-Suppose that a function $u:\Omega\to\R_y$ is a solution.
-Let $M$ be the surface $y=u(t,x)$ and let $E$ be the ambient space $\Omega\x\R_y$.
+and let $M$ be the embedded surface defined by $y=u(t,x)$.
 
-\begin{prop}
-Let $\gamma:I\to E$ be an integral curve of the vector field
-\[X=\pd{t}+y^2\pd{x}-0\pd{y}\]
+Let $\gamma:I\to\Omega\times\R_y$ be an integral curve of the vector field
+\[X=\pd{t}+y^2\pd{x}\]
 such that $\gamma(0)\in M$.
 Then, $\gamma(\theta)\in M$ for all $\theta\in I$.
 \end{prop}
 \begin{pf}
 We may assume $\gamma$ is maximal.
 Define $\tilde\gamma:\tilde I\to M$ as the maximal integral curve of the vector field
-\[\tilde X=\pd{t}+u^2\pd{x}-0\pd{y}\in\Gamma(TM)\]
+\[\tilde X=\pd{t}+u^2\pd{x}\in\Gamma(TM)\]
 such that $\tilde\gamma(0)=\gamma(0)$.
 Since $X$ and $\tilde X$ coincide on $M$, the curve $\tilde\gamma$ is also an integral curve of $X$ with $\tilde\gamma(0)=\gamma(0)$.
 By the uniqueness of the integral curve, we get $\tilde I\subset I$ and $\gamma(\theta)=\tilde\gamma(\theta)$ for all $\theta\in\tilde I$.
 
-Since $M$ is closed in $E$, the open interval $\tilde I=\gamma^{-1}(M)$ is closed in $I$, hence $\tilde I=I$ by the connectedness.
+Since $M$ is closed in $E$, the open interval $\tilde I=\gamma^{-1}(M)$ is closed in $I$, hence $\tilde I=I$ by the connectedness of $I$.
 \end{pf}
 \begin{defn}
 The projection of the integral curve $\gamma$ onto $\Omega$ is called a \emph{characteristic}.
 \end{defn}
 This proposition implies that we might be able to describe the points on the surface $M$ explicitly by finding the integral curves of the vector field $X$.
+Once we find a necessary condition of the form of algebraic equation, we can demostrate the computed hypothetical solution by explicitly checking if it satisfies the original PDE.
+
 Since $X$ does not depend on $u$, we can solve the ODE: let $\gamma(\theta)=(t(\theta),x(\theta),y(\theta))$ be the integral curve of $X$ such that $\gamma(0)=(0,\xi,\xi)$.
 Then, the system of ODEs
 \begin{alignat*}{2}

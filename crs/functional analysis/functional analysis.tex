@@ -298,18 +298,149 @@ Therefore, $T$ is closable.
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 \chapter{Operator algebra}
 We are concerned with algebras, which get action by a scalar field.
 In this chapter, the scalar field is always assumed to be $\C$ unless any mention.
 
-\section{Banach algebras}
+% 1
+\section{Banach algebras and $C^*$-algebras}
 
-\subsection{}
+% 1-1
+\subsection{Basics}
 
+% 1-1-1
+\subsubsection{Normed algebras}
+In this book, we adopt the following definition:
+\begin{defn}
+A \emph{algebra} is a vector space $\cA$ over $\F=\R\text{ or }\C$ with a ring structure comparable with scalars.
+\end{defn}
+In this book, we always assume for the term \emph{algebra} that:
+\begin{cond}
+\item every algebra is associative,
+\item every algebra is unital,
+\item base field is either $\R$ or $\C$.
+\end{cond}
+Nonunital cases are dealt with specially, so we basically assume every algebra we concern contains unity.
+
+
+
+
+\begin{defn}
+A \emph{normed algebra} is an algebra $\cA$ with a norm $\|\cdot\|$ such that $\|xy\|\le\|x\|\|y\|$ for all $x,y\in\cA$ and $\|e\|=1$.
+\end{defn}
+
+
+For $a$ in a normed algebra, let us define:
+\[\nu(x):=\limsup_{n\to\infty}\|x^n\|^{\frac1n}.\]
+For this function, we have basic properties:
+\begin{prop}
+Let $\cA$ be a normed algebra.
+We have
+\begin{cond}
+\item $\nu(x)=\inf_n\|x^n\|^{\frac1n}=\lim_{n\to\infty}\|x^n\|^{\frac1n}$,
+\item $\nu(\lambda x)=|\lambda|\nu(x)$,
+\item $\nu(xy)=\nu(yx)$,
+\item $\nu(x^n)=\nu(x)^n$.
+\end{cond}
+\end{prop}
+\begin{pf}
+(1)
+Let $\lambda=\inf_n\|x^n\|^{\frac1n}$.
+Since $\lambda\le\|x^n\|^{\frac1n}$ for all $n$, we have $\lambda\le\nu(x)$.
+
+Conversely, take $\e>0$.
+There is an integer $m$ such that $\|x^m\|^{\frac1m}<\lambda+\e$.
+For each $n$, divide $n$ by $m$ to write $n=qm+r$.
+Limiting the inequality
+\[\|x^n\|^{\frac1n}\le\|x^m\|^{\frac qn}\|x\|^{\frac rn}<(\lambda+\e)^{\frac{qm}n}\|x\|^{\frac rn},\]
+we get $\nu(x)\le\lambda+\e$, hence $\nu(x)\le\lambda$.
+
+The limit is obvious from
+\[\nu(x)=\inf_n\|x^n\|^{\frac1n}\le\liminf_{n\to\infty}\|x^n\|^{\frac1n}\le\limsup_{n\to\infty}\|x^n\|^{\frac1n}=\nu(x).\]
+
+(3)
+Let $\e>0$.
+For $n$ such that $\|x\|^{\frac1n}<(1+\e)$ and $\|x^{-1}\|^{\frac1n}<(1+\e)$, we have
+\[\|(xy)^n\|^{\frac1n}\le\|x\|^{\frac1n}\|(yx)^n\|^{\frac1n}\|x^{-1}\|^{\frac1n}<(1+\e)^2\|(yx)^n\|^{\frac1n}.\]
+Limiting $n\to\infty$,
+\[\nu(xy)\le(1+\e)^2\nu(yx),\]
+which implies $\nu(xy)\le\nu(yx)$.
+The other direction is same.
+\end{pf}
 \begin{thm}
-Let $\cA$ be a unital Banach algebra.
+Let $\cA$ be a normed algebra.
+Then, $\nu(x)=\|x\|$ for all $x\in\cA$ if and only if $\|x^2\|=\|x\|^2$ for all $x\in\cA$.
+\end{thm}
+\begin{pf}
+($\Rightarrow$)
+See (4) of the previous proposition.
+
+($\Leftarrow$)
+By (1) of the previous proposition, and since subsequences converge to the original limit point,
+\[\nu(x)=\lim_{n\to\infty}\|x^n\|^{\frac1n}=\lim_{n\to\infty}\|x^{2^n}\|^{\frac1{2^n}}=\|x\|.\]
+\end{pf}
+\begin{thm}
+Let $\cA$ be a normed algebra and let $x,y\in\cA$.
+If $xy=yx$, then $\nu(xy)\le \nu(x)\nu(y)$ and $\nu(x+y)\le\nu(x)+\nu(y)$.
+\end{thm}
+
+We introduce Banach algerbas.
+\begin{defn}[Banach algebra]
+A \emph{Banach algebra} is a normed algebra that is complete with its norm.
+\end{defn}
+A main difference between Banach algebras and plain normed algebras is that we can construct an absolutely convergent series to show the existence of a specific element.
+For examples, we have the following propositions:
+\begin{prop}[Power series]
+Let $\cA$ be a Banach algebra.
+\begin{cond}
+\item If $x\in\cA$ satisfies $\|x\|<1$, then $e-x$ is invertible.
+\item The set of invertible elements $\cA^\times$ is open.
+\item The inverse $\cA^\times\to\cA^\times$ is a homeomorphism.
+\end{cond}
+\end{prop}
+
+
+% 1-1-2
+\subsubsection{Complex Banach algebras}
+
+One can use abolute convergent series in Banach algebras.
+In particular, when the base field of the Banach algebra is $\C$, the theory of power series plays a powerful role.
+\begin{defn}
+Let $\cA$ be an algebra.
+The \emph{spectrum} of $x\in\cA$ is defined as the set:
+\[\sigma_\cA(x):=\{\,\lambda\in\C:\lambda e-x\text{ is not invertible.}\,\}.\]
+Its complement is called \emph{resolvent set} and denoted as $\rho_\cA(x)\subset\C$.
+The \emph{resolvent function} $R_x:\rho_\cA(x)\subset\C\to\cA^\times$ is defined by $R_x(\lambda)=(\lambda e-x)^{-1}$
+\end{defn}
+\begin{thm}
+Let $\cA$ be a Banach algebra.
+For every $a\in\cA$, the spectrum $\sigma(a)$ is compact.
+\end{thm}
+Furthermore, if the scalar field is the complex field $\C$, then the spectrum is always nonempty.
+\begin{thm}
+Let $\cA$ be a complex Banach algebra.
 For every $a\in\cA$, the spectrum $\sigma(a)$ is nonempty.
 \end{thm}
+
+This is the Gelfand-Mazur theorem.
 \begin{thm}[The Gelfand-Mazur theorem]
 Every complex Banach division algebra is isomorphic to $\C$.
 \end{thm}
@@ -324,7 +455,46 @@ Every real Banach division algebra is isomorphic to either $\R$, $\C$, or $\H$.
 \end{thm}
 
 
-\subsection{Commutative Banach algebras}
+
+
+
+\subsection{$C^*$-algebras}
+
+\begin{thm}
+Every nonunital $C^*$-algebra is a $C^*$-subalgebra of a unital $C^*$-algebra.
+In particular, it is a maximal ideal of a codimension 1.
+\end{thm}
+\begin{pf}
+Let $\cA$ be a nonunital $C^*$-algebra.
+Since $\cA$ is a Banach space, the space of bounded operators $B(\cA)$ is a Banach algebra.
+Define a normed $*$-algebra $\tilde\cA$ as the subalgebra:
+\[\tilde\cA:=\{\,L_{x+\lambda e}\in B(\cA):x\in\cA,\,\lambda\in\C\,\}.\]
+Since $\tilde\cA\cong \cA\oplus\C$, let us write $L_{x+\lambda e}$ as $(x,\lambda)$.
+
+\Step{1}[$\cA$ is a normed $*$-subalgebra of $\tilde\cA$]
+The $C^*$-algebra $\cA$ is recognized to be a $*$-subalgebra of $\tilde\cA$ with an injection $\cA\to\tilde\cA:x\mapsto L_x$.
+Note that the norm in $\tilde\cA$ is induced from $B(\cA)$ as
+\[\|(x,\lambda)\|=\sup_{y\in\cA}\frac{\|xy+\lambda y\|}{\|y\|}.\]
+For $\lambda=0$, putting $y=x^*/\|x\|$, we get
+\[\|(x,0)\|=\sup_{y\in\cA}\frac{\|xy\|}{\|y\|}=\|x\|\]
+by the $C^*$-identity, hence the norm of $\cA$ agrees the norm of $\tilde\cA$.
+
+\Step{2}[$\tilde\cA$ is Banach]
+Suppose $(x_n,\lambda_n)$ is Cauchy in $\tilde\cA$.
+Since $\cA$ is complete so that it is closed in $\tilde\cA$, we can induce a norm on the quotient $\tilde\cA/\cA$ so that the canonical projection is (Cauchy) continuous.
+A finite dimensional vector space over $\C$ is alwyas Banach, so the Cauchy sequence $\lambda_n$ converges to a complex number $\lambda$.
+By the inequality
+\[\|x\|\le\|(x,\lambda)\|+|\lambda|,\]
+the sequence $x_n$ is also Cauchy in $\cA$, so $x_n$ converges to $x\in\cA$.
+Also, the inequality $\|(x,\lambda)\|\le\|x\|+|\lambda|$ implies that $(x_n,\lambda_n)$ converges to $(x,\lambda)$
+
+\Step{3}[$\tilde\cA$ is $C^*$]
+\end{pf}
+
+
+
+
+\subsection{Gelfand theory}
 This subsection is about theory of commutative Banach algebras.
 Since a Banach algebra or a $C^*$-algebra generated by one element is always commutative, commutative theory plays a powerful role when we are interested in a specific element.
 Applications are found in functional calculi.

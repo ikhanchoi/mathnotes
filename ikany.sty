@@ -109,8 +109,8 @@
 \newenvironment{nt}[1][\unskip]{\begin{proof}[Note #1]\renewcommand{\qedsymbol}{}}{\end{proof}}
 \newenvironment{idea}[1][\unskip]{\begin{proof}[Proof idea #1]\renewcommand{\qedsymbol}{}}{\end{proof}}
 \NewDocumentCommand{\Case}{r[]+g}{\IfNoValueTF{#2}{\emph{Case #1.}}{\emph{Case #1: #2.}}}
-\NewDocumentCommand{\Step}{r[]+g}{\IfNoValueTF{#2}{\emph{Step #1.}}{\emph{Step #1: #2.}}}
-
+\NewDocumentCommand{\Step}{mo}{\IfNoValueTF{#2}{\emph{Step #1.}}{\emph{Step #1: #2.}}}
+%{r[]+g}
 \@ifclassloaded{prb}{
   \renewcommand{\theprb}{\arabic{section}.\arabic{prb}}
   \renewenvironment{sol}[1][\unskip]{\noindent\begin{proof}[Solution]\ \par\begin{cond}}{\end{cond}\end{proof}} % line break
