@@ -1,0 +1,115 @@
+\documentclass{../exp}
+\usepackage{../../ikany}
+
+\def\a{\alpha}
+\title{Classical differential geometry}
+
+\begin{document}
+\maketitle
+
+\section{Introduction}
+\subsection{Two ways to represent curves or surfaces}
+
+\subsection{Coordinates and parametrizations}
+\begin{defn}
+A \emph{parametrization} is a smooth map $U\to\R^d$ such that
+\begin{cond}
+\item $U\subset\R^c$ is open and connected,
+\item $\a$ is one-to-one,
+\item $d\a$ is nondegenerate; $\{\pd_i\a\}_{i=1}^c$ is linearly independent.
+\end{cond}
+\end{defn}
+
+\begin{defn}
+A \emph{regular curve} is a subset of $\R^d$ that is the image of some parametrization $\a:I\subset\R\to\R^d$.
+\end{defn}
+\begin{defn}
+A \emph{regular surface} is a subset of $\R^d$ that is the image of some parametrization $\a:U\subset\R^2\to\R^d$.
+\end{defn}
+
+
+
+
+
+\section{Curves in a space}
+\subsection{Arc-length parameterization}
+\begin{thm}
+For every regular curve, there is a parametrization $\a$ such that $\|\a'\|=1$.
+\end{thm}
+\begin{pf}
+Suppose we have a parametrization $\beta:I_t\to\R^d$.
+Define $\tau:I_t\to I_s$ such that
+\[\tau(t_0):=\int_0^{t_0}\|\beta'(t)\|\,dt.\]
+Then, $s$ is a diffeomorphism.
+Define $\a:I_s\to\R^d$ by $\a:=\beta\circ\tau^{-1}$.
+Then, by the chain rule,
+\[\a'=\dd{\a}{s}=\dd{\beta}{t}\dd{\tau^{-1}}{s}=\beta'\left(\dd{\tau}{t}\right)^{-1}=\frac{\beta'}{\|\beta'\|}.\qedhere\]
+\end{pf}
+
+
+\begin{defn}[Frenet-Serret frame]
+Let $\a$ be a curve such that $\kappa\ne0$.
+Define \emph{tangent unit vector}, \emph{normal unit vector}, \emph{binormal unit vector} by:
+\[\bT:=\frac{\a'}{\norm{\a'}},\qquad\bN:=\frac{\bT'}{\|\bT'\|},\qquad\bB:=\bT\x\bN.\]
+\end{defn}
+\begin{defn}
+\[\kappa:=\bT'\cdot\bN,\quad\tau:=-\bB'\cdot\bN.\]
+\end{defn}
+
+\begin{thm}[Frenet-Serret formula]
+Let $\a$ be a unit speed curve.
+\[\begin{pmatrix}\bT'\\\bN'\\\bB'\end{pmatrix}=\begin{pmatrix}0&\kappa&0\\-\kappa&0&\tau\\0&-\tau&0\end{pmatrix}\begin{pmatrix}\bT\\\bN\\\bB\end{pmatrix}.\]
+\end{thm}
+\begin{pf}
+The vectors $\bT',\bB',\bN$ are collinear.
+\end{pf}
+
+
+\begin{thm}
+Let $\a$ be a unit speed curve.
+\begin{align*}
+\a'&=\bT\\
+\a''&=\kappa\bN\\
+\a'''&=-\kappa^2\bT+\kappa'\bN+\kappa\tau\bB
+\end{align*}
+\end{thm}
+
+Skew-symmetricity is due to the fact the differential of an orthogonal matrix forms a skew symmetric matrix.
+
+\begin{ex}
+Let $\a$ be a curve in $\R^3$.
+If the normal line always passes through a point, then $\a$ is contained in a circle.
+\end{ex}
+\begin{pf}
+Let $\a$ be a unit speed curve.
+By the assumption, there is a constant point $p\in\R^3$ such that the vectors $\a-p$ and $\bN$ are parallel so that we have
+\[\<\a-p,\bT\>=0,\qquad\<\a-p,\bB\>=0.\]
+Our goal is that $\|\a-p\|$ is constant and there is a constant vector $v$ such that $\<\a-p,v\>=0$.
+
+\[0=\<\a-p,\bT\>'=\<\a',\bT\>+\<\a-p,\kappa\bN\>=1+\kappa\<\a-p,\bN\>.\]
+
+\[0=\<\a-p,\bB\>'=\<\a-p,-\tau\bN\>=-\tau\cdot(-\frac1{\kappa})\]
+
+\begin{align*}
+(\|\a-p\|^2)'&=\<\a-p,\a-p\>'\\
+&=2\<\a-p,\a'\>\\
+&=2\<\a-p,\bT\>\\
+&=0
+\end{align*}
+
+
+\begin{align*}
+\bB'&=-\tau\bN=0.
+\end{align*}
+\end{pf}
+
+
+
+\section{Surfaces in a space}
+\[\nu_x=S(\alpha_x)=\kappa_1\alpha_x\]
+
+
+\section{Curves on a surface}
+
+
+\end{document}
