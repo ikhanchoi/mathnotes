@@ -155,6 +155,49 @@ From this formula, we would be able to determine the suitable domain $\Omega$ as
 \[\Omega=\{\,(t,x):tx>-\tfrac14\,\}.\]
 
 
+\subsection{Wave equation}
+
+\begin{align*}
+&u_{tt}-c^2u_{xx}=0 \quad\text{for}\quad t,x>0, \\
+&u(0,x)=g(x),\qquad u(0,x)=h(x),\qquad u_x(t,0)=\alpha(t).
+\end{align*}
+
+Define $v:=u_t-cu_x$.
+Then we have
+\begin{pde*}
+v_t+cv_x &= 0 \: t,x>0,\\
+v(0,x) &= h(x)-cg'(x). \:
+\end{pde*}
+By method of characteristic,
+\[v(t,x)=h(x-ct)-cg'(x-ct).\]
+
+Then, we can solve two system
+\begin{pde*}
+u_t-cu_x &= v, \: x>ct>0,\\
+u(0,x) &= g(x), \:
+\end{pde*}
+and
+\begin{pde*}
+u_t-cu_x &= v, \: ct>x>0,\\
+u_x(t,0) &= \alpha(t), \:
+\end{pde*}
+
+For the first system, introducing parameter $\xi>0$,
+\begin{gather*}
+\dd{t}{\theta}=1,\qquad\dd{x}{\theta}=-c,\qquad\dd{y}{\theta}=-v(t,x),\\
+t(0)=0,\qquad x(0)=\xi,\qquad y(0)=g(\xi)
+\end{gather*}
+is solved as
+\[t(\theta)=\theta,\qquad x(\theta)=-c\theta+\xi,\qquad y(\theta)=g(\xi)+\int_0^\theta-v(\theta',\xi-c\theta')\,d\theta',\]
+hence for $x>ct>0$,
+
+\begin{align*}
+u(t,x)&=g(\xi)-\int_0^\theta v(s,\xi-cs)\,ds\\
+&=g(x+ct)\\
+&=\frac{3g(x+ct)-g(x-ct)}2-\int_0^th(x+c(t-2s))\,ds
+\end{align*}
+
+
 \section{Fundamental differential geometry}
 
 \subsection{Manifold and Atlas}

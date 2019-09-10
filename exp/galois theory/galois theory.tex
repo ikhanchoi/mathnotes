@@ -24,7 +24,7 @@ Our goal is to understand field extensions.
 
 We review three basic topics on field theory.
 One is about vector space structure on field extension.
-The degree, defined by the dimension of the vector space, measures the size of field extension.
+We define the degree of a field extension as the dimension of the vector space to measure the size of field extension.
 
 Next, an important property of field homomorphism that general ring homomorpgisms do not have will be investigated.
 This can be one of main reasons why field theory has its own unique features that are quite far from commutative ring theory.
@@ -68,13 +68,13 @@ Finite extension of finite extension is finite.
 \subsection{Field embeddings}
 
 Unlike general rings, field homomorphisms is extremely rigid.
-The following theorem deeply related to Schur's lemma in representation theory, and it holds for not only fields but also division rings.
+The following theorem deeply related to Schur's lemma in representation theory, which means it holds for not only fields but also division rings.
 
 \begin{prop}
 A nontrivial field homomorphism is injective.
 \end{prop}
 \begin{pf}
-The kernel should be either entire or zero.
+The kernel is an ideal in a field so that it should be either entire or zero.
 \end{pf}
 A nontrivial field homomorphism is called \emph{embedding} or \emph{isomorphism onto a subfield}.
 A field isomorphism is just a surjective field embedding.
@@ -97,13 +97,6 @@ There is a finite tower of finite simple extensions.
 
 Although it is hard to find a counterexample, there is a finite extension which is not simple.
 We will see in Section 3.
-
-
-
-\subsection{Finite fields}
-
-% fixing a field
-
 
 
 
@@ -217,7 +210,7 @@ It will be discovered later that the dimension argument has an analogy with comp
 
 \begin{ex}
 The base field is important: we have
-\[\mu_{\sqrt2,\Q}(x)=x^2-2,\c{but} \mu_{\sqrt2,\Q(\sqrt2)}=x-\sqrt2.\]
+\[\mu_{\sqrt2,\Q}(x)=x^2-2,\quad\text{but}\quad\mu_{\sqrt2,\Q(\sqrt2)}=x-\sqrt2.\]
 \end{ex}
 
 \begin{ex}
@@ -293,9 +286,10 @@ See Section 4.
 
 
 
+
 \subsection{Algebraic extension}
 
-Algebraic extension is a generalization of finite extension, for instance, every finite extension
+Algebraic extension is a generalization of finite extensions, for instance, every finite extension.
 In Galois theory, which will be studied later, we will not care elements that are not algebriac.
 Therefore, it is natural to think of a field extension that only consists of algebraic elements, which is called also algebraic.
 The main interests in Galois theory will be restricted to algebraic extensions.
@@ -320,21 +314,26 @@ For finite extensions and algebraic extensions, we have:
 
 Now, we are going to get some basic criteria for determining or constructing algebraic extensions.
 If summarized, we can just say any operations of algebraic extensions are algebraic.
-Before that, we introduce a good notion about algebraic extensions, and it is just the set of all algebraic elements in a given field.
+Before that, we introduce a good notion about algebraic extensions: the set of all algebraic elements in a given field.
 
-In the rest of this subsection, assume that we have fixed a sufficiently large field $L$.
-Restricting the ``domain of discourse'' by assuming a large entire field is a greatly helpful idea in order not to be confused with the theory of extensions, which might be able to grow without limits.
-Note that the following definition depends on choice of $L$.
+In the rest of this subsection, assume that we have fixed a sufficiently large ambient field $L$.
+Restricting the ``domain of discourse'' by assuming a large entire field is a greatly helpful idea in order not to be confused in the theory of extensions.
+For example, if we have not fixed the such a field $L$, we are able to consider useless large fields which may grow without limits.
+Moreover, we cannot say about the number of field extensions satisfying particular properties.
+
+Note that the following definition depends on the choice of $L$, and we will use it only in this subsection.
 \begin{defn}
-The set of all algebraic elements in $L$ over $F$ is called \emph{relative algebraic closure of $F$ in $L$} and denoted by $\cl F$.
+Let $\cl F$ denote the set of all algebraic elements in $L$ over $F$.
 \end{defn}
 \begin{rmk}
+In fact, the field $\cl F$ is called the \emph{relative algebraic closure of $F$ in $L$}.
+Since we have not defined algebraic closures yet, we will only adopt the notation.
 The reason of the word ``relative'' is explained later.
-Also, honestly, the notation $\cl F$ is not so good that it is often used to represent an ``algebraic closure'', not a relative one.
+Also, honestly, the notation $\cl F$ is not so good that it is often used to represent an algebraic closure, not a relative one.
 We, however, proceed with this notation to grasp concepts of algebraic extensions.
 \end{rmk}
 \begin{prop}
-The relative algebraic closure $\cl F$ of $F$ in $L$ is always a field.
+The set $\cl F$ of $F$ in $L$ is always a field.
 \end{prop}
 \begin{pf}
 An element is algebraic over $F$ if and only if it is contained in a finite extension $E/F$ because $\alpha\in E$ is equivalent to $F(\alpha)<E$.
@@ -348,62 +347,72 @@ Let $E,F<L$ be fields.
 Then,
 \begin{cond}
 \item $F<E$ implies $\cl F<\cl E$,
-\item $\cl{(\cl F)}=\cl F$.
+\item $\cl{\cl F}=\cl F$.
 \end{cond}
 \begin{pf}
-%%%
+(1)
+Suppose $\alpha\in\cl F$ so that there is $f\in F[x]$ such that $f(\alpha)=0$.
+Since $f\in F[x]\subset E[x]$, the element $\alpha$ is also algebraic over $E$, hence $\alpha\in\cl E$.
+
+(2)
+It is enough to show $\cl{\cl F}\subset\cl F$.
+Let $\alpha\in\cl{\cl F}$ so that we can find $f\in\cl F[x]$ such that
+\[f(\alpha)=\sum_{i=0}^na_i\alpha^i=0.\]
+If we consider the field $E=F(a_0,\cdots,a_n)$ of coefficients, then $f\in E[x]$.
+In other words, $\alpha$ is algebraic over $E$.
+
+The field extension $E/F$ is finite since all generators $a_i$ are algebraic over $F$, and $E(\alpha)/E$ is also finite since $\alpha$ is algebraic over $E$.
+Therefore, the field extension $E(\alpha)/F$ is finite, and $F(\alpha)/F$ is also finite, hence the algebraicity of $\alpha$ over $F$.
 \end{pf}
 \end{lem}
 \begin{lem}
 Given a condition that every algebraic element over $L$ is in $L$, a field extension $E/F$ is algebraic iff $\cl E=\cl F$.
 \end{lem}
 \begin{pf}
-%%%
+If $E/F$ is algebraic, then $F<E<\cl F$ implies $\cl F<\cl E<\cl{\cl F}=\cl F$.
+Conversely, if $\cl E=\cl F$, then $\alpha\in E$ implies $\alpha\in E<\cl E=\cl F$, hence $E$ is algebraic over $F$.
 \end{pf}
 \begin{rmk}
-The condition of $L$ has a name \emph{algebraiclly closedness}.
+The condition of $L$ has a name \emph{algebraically closedness}.
 The above lemma is useful because we already know a field $L$ such that
 \begin{itemize}
 \item algebraic elements over $L$ is in $L$,
-\item $L$ contains a lot of usual example fields.
+\item $L$ contains a lot of usual example fields,
 \end{itemize}
-It is the field of complex numbers, $\C$.
+which includes the field of complex numbers, $\C$.
 
 After studying algebraic closures in the next subsection, this lemma will be dealt within more details.
 \end{rmk}
 
-By the above lemma, theorems we want to get are given as follows.
-They are all obviously proved from the lemmas above, so we give elementary proofs here.
+By the above lemmas, theorems we want to get are given as follows.
 
 \begin{thm}
 Let $K$ be an intermediate field of a field extension $E/F$.
 Then, $E/F$ is algebraic iff $E/K$ and $K/F$ are algebraic.
 \end{thm}
-\begin{pf}
-One direction is clear.
-
-Suppose $E/K$ and $K/F$ are algebraic.
-Taking $\alpha\in E$, we show that it is algebraic over $F$.
-Let $L$ be a field generated by the coefficients of $\mu_{\alpha,K}$ on $F$ so that $\mu_{\alpha,K}\in L[x]$ and $L(\alpha)/L$ is finite.
-The extension $L/F$ is also finite since coefficients of $\mu_{\alpha,K}$ are finitely many and algebraic.
-
-Since finite extensions $L(\alpha)/L$ and $L/F$ imply that $L(\alpha)/F$ is finite, a subextension $F(\alpha)/F$ is therefore finite.
+\begin{pf}[1]
+Since $\cl E>\cl K>\cl F$, we have $\cl E=\cl F$ if and only if $\cl E=\cl K$ and $\cl K=\cl F$.
 \end{pf}
-
 \begin{thm}
-A field $E$ is algebraic over $F$ if and only if there is a tower of fields $\{K_n\}_n$ such that $K_n/F$ are all finite and the ascending union is $E$.
+Let $E_1/F$ and $E_2/F$ are algebraic extensions in a superfield $L$.
+Then, the compositum $E_1E_2/F$ is algebriac.
 \end{thm}
 \begin{pf}
-%%%
+Since $E_1<\cl F$ and $E_2<\cl F$, we have $E_1E_2<\cl F$, so $\cl{E_1E_2}=\cl{F}$.
 \end{pf}
 
+The following theorem states that algebraic extension is a direct limit of finite extensions.
 \begin{thm}
-Let $E/F$ and $E/F$ are algebraic extensions in a superfield $L$.
-Then, the compositum $EE'/F$ is algebriac.
+A field $E$ is algebraic over $F$ if and only if there is a tower of fields $\{K_\alpha\}_\alpha$ such that $K_\alpha/F$ are all finite and the ascending union is $E$.
 \end{thm}
 \begin{pf}
+($\Rightarrow$)
 %%%
+
+($\Leftarrow$)
+For every $\alpha\in E$, there is $n$ such that $\alpha\in K_n$ by the assumption.
 \end{pf}
+
 
 
 \begin{ex}
@@ -413,7 +422,7 @@ To give another reason, that is because a simple extension is algebraic if and o
 \begin{ex}
 Finite extensions are not only the algebraic extensions.
 For examples,
-\[\Q(\sqrt2,\sqrt[4]2,\sqrt[8]2,\cdots),\c{or}\Q(\sqrt2,\sqrt3,\sqrt5,\sqrt7,\cdots)\]
+\[\Q(\sqrt2,\sqrt[4]2,\sqrt[8]2,\cdots),\quad\Q(\sqrt2,\sqrt3,\sqrt5,\sqrt7,\cdots)\]
 are infinite algebraic extensions.
 \end{ex}
 
@@ -438,10 +447,15 @@ A field $F$ is called \emph{algebraically closed} if it has no proper algebraic 
 There is another important characterization of algebraically closed fields.
 
 \begin{prop}
-A field $F$ is algebraically closed iff every polynomial in $F[x]$ has a root in $F$.
+For a field $F$, TFAE:
+\begin{cond}
+\item $F$ is algebraically closed,
+\item every polynomial in $F[x]$ has a root in $F$,
+\item every polynomial in $F[x]$ is linearly factorized in $F$.
+\end{cond}
 \end{prop}
 \begin{pf}
-Easy.
+Skipped.
 \end{pf}
 
 If $f$ has a root $\alpha$, then we can inductively apply this theorem for a new polynomial $f(x)/(x-\alpha)$ of a lower degree to make the complete linear factorization.
@@ -516,20 +530,21 @@ Every field has an algebraic closure.
 \begin{pf}
 Let $F$ be a field.
 
-\Step[1]{Construct an algebraically closed field containing $F$}
+\Step{1}[Construct an algebraically closed field containing $F$]
 At first we want to construct a field $K_1>F$ such that every $f\in F[x]$ has a root in $K_1$.
-This is satisfied by $K_1:=R/\fm$, where $R$ and $\fm$ is defined as follows:
-Let $S$ be the set of all irreducibles and nonconstant polynomials in $F[x]$.
+This is satisfied by $K_1:=R/\fm$, where a ring $R$ and its maximal ideal $\fm$ is defined as follows:
+Let $S$ be the set of all nonconstant irreducibles in $F[x]$.
 Define $R:=F[\{x_f\}_{f\in S}]$.
 Let $I$ be an ideal in $R$ generated by $f(x_f)$ as $f$ runs through all $S$.
-It has a maximal ideal $\fm\supset I$ in $R$.
+It has a maximal ideal $\fm\supset I$ in $R$ since $I$ does not contain constants.
+If $f\in F[x]$, then $\alpha=x_f+\fm\in K_1$ satisfies $f(\alpha)=f(x_f)+\fm=\fm$.
 
 Construct a sequence $\{K_n\}_n$ of fields inductively such that every nonconstant $k\in K_n[x]$ has a root in $K_{n+1}$.
 Define $K:=\lim_{\to}K_n$ as the inductive limit.
 It is in other word just the union of $K_n$ for all $n\in\N$.
 Then, $K$ is easily checked to be algebraically closed.
 
-\Step[2]{Construct the algebraic closure of $F$}
+\Step{2}[Construct the algebraic closure of $F$]
 Let $\cl F$ be the set of all algebraic elements of $K$ over $F$.
 Then, this is an algebraic closure.
 \end{pf}
@@ -569,6 +584,31 @@ In fact, this $K_1$ is already algebraically closed, but it is hard to prove dir
 \section{Separable extension}
 
 The most fields considered in mathematics is separable.
+
+
+
+
+\subsection{Finite fields}
+
+\begin{lem}
+Let $F$ be a field of characteristic $p$.
+Then, the map $\sigma:x\mapsto x^p$ is a field automorphism on $F$.
+\end{lem}
+
+
+\begin{lem}
+Let $F$ denote an algebraically closed field of characteristic $p>0$.
+In $F$, the set of all finite subfields is described as a totally ordered set
+\[\{\,\F_p,\F_{p^2},\F_{p^3},\cdots\,\},\]
+where $\F_q$ denotes a field of cardinality $q$.
+\end{lem}
+
+
+
+
+
+
+
 
 \subsection{Separable polynomial}
 \begin{defn}
