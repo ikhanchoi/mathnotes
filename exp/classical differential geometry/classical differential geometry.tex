@@ -12,19 +12,21 @@
 
 \subsection{Coordinates and parametrizations}
 \begin{defn}
-A \emph{parametrization} is a smooth map $U\to\R^d$ such that
+An \emph{$m$-dimensional parametrization} is a smooth map $U\to\R^n$ such that
 \begin{cond}
-\item $U\subset\R^c$ is open and connected,
-\item $\a$ is one-to-one,
-\item $d\a$ is nondegenerate; $\{\pd_i\a\}_{i=1}^c$ is linearly independent.
+\item $U\subset\R^m$ is open and connected,
+\item $\a$ is one-to-one (optional),
+\item $d\a$ is nondegenerate; $\{\pd_i\a\}_{i=1}^m$ is linearly independent.
 \end{cond}
 \end{defn}
+The third condition is important; in language of manifolds, the third condition defines what we call \emph{immersed submanifolds}.
+We will see that the second condition is not important at all.
 
 \begin{defn}
-A \emph{regular curve} is a subset of $\R^d$ that is the image of some parametrization $\a:I\subset\R\to\R^d$.
+A \emph{regular curve} is a subset of $\R^n$ that is the image of a one-dimensional parametrization.
 \end{defn}
 \begin{defn}
-A \emph{regular surface} is a subset of $\R^d$ that is the image of some parametrization $\a:U\subset\R^2\to\R^d$.
+A \emph{regular surface} is a subset of $\R^n$ that is the image of a two-dimensional parametrization.
 \end{defn}
 
 
@@ -48,12 +50,12 @@ Then, by the chain rule,
 
 
 \begin{defn}[Frenet-Serret frame]
-Let $\a$ be a curve such that $\kappa\ne0$.
-Define \emph{tangent unit vector}, \emph{normal unit vector}, \emph{binormal unit vector} by:
-\[\bT:=\frac{\a'}{\norm{\a'}},\qquad\bN:=\frac{\bT'}{\|\bT'\|},\qquad\bB:=\bT\x\bN.\]
-\end{defn}
-\begin{defn}
-\[\kappa:=\bT'\cdot\bN,\quad\tau:=-\bB'\cdot\bN.\]
+Let $\a$ be a nondegenerate curve.
+We define \emph{tangent unit vector}, \emph{normal unit vector}, \emph{binormal unit vector} by:
+\[\bT:=\frac{\a'}{\norm{\a'}},\qquad\bN:=\frac{\bT'}{\|\bT'\|},\qquad\bB:=\bT\x\bN,\]
+and \emph{curvature} and \emph{torsion} by:
+\[\kappa:=\<\bT',\bN\>,\quad\tau:=-\<\bB',\bN\>.\]
+Note that $\kappa$ cannot vanish by definition.
 \end{defn}
 
 \begin{thm}[Frenet-Serret formula]
@@ -61,47 +63,121 @@ Let $\a$ be a unit speed curve.
 \[\begin{pmatrix}\bT'\\\bN'\\\bB'\end{pmatrix}=\begin{pmatrix}0&\kappa&0\\-\kappa&0&\tau\\0&-\tau&0\end{pmatrix}\begin{pmatrix}\bT\\\bN\\\bB\end{pmatrix}.\]
 \end{thm}
 \begin{pf}
-The vectors $\bT',\bB',\bN$ are collinear.
+\Step{1}[$\bT',\bB',\bN$ are parallel]
+Two vectors $\bT'$ and $\bN$ are parallel by definition.
+Since $\<\bT,\bB\>=0$ and $\<\bB,\bB\>=1$ are constant, we have
+\[\<\bB',\bT\>=\<\bB,\bT\>'-\<\bB,\bT'\>=0,\qquad\<\bB',\bB\>=\tfrac12\<\bB,\bB\>'=0,\]
+which show $\bB'$ and $\bN$ are parallel.
+%%%
 \end{pf}
 
 
 \begin{thm}
 Let $\a$ be a unit speed curve.
 \begin{align*}
-\a'&=\bT\\
-\a''&=\kappa\bN\\
-\a'''&=-\kappa^2\bT+\kappa'\bN+\kappa\tau\bB
+\a'&=\bT,\\
+\a''&=\kappa\bN,\\
+\a'''&=-\kappa^2\bT+\kappa'\bN+\kappa\tau\bB.
 \end{align*}
 \end{thm}
 
 Skew-symmetricity is due to the fact the differential of an orthogonal matrix forms a skew symmetric matrix.
 
+%%% Strategies !!!
+\begin{itemize}
+\item Aim for finding the coefficients of a special vector and its derivatives with respect to the Frenet-Serret frame.
+\item In particular, differentiate equations of the form
+\[\<v^{(k)},\bT\text{ or }\bN\text{ or }\bB\>=\const\]
+to get useful information.
+\item Heuristically find represent a vector and show what you want directly.
+\end{itemize}
+
+
+
 \begin{ex}
 Let $\a$ be a curve in $\R^3$.
-If the normal line always passes through a point, then $\a$ is contained in a circle.
+If the normal line of $\a$ always passes through a fixed point, then $\a$ is contained in a circle.
 \end{ex}
 \begin{pf}
-Let $\a$ be a unit speed curve.
+\Step{1}[Formulate conditions]
+Reparametrize $\a$ to become a unit speed curve.
 By the assumption, there is a constant point $p\in\R^3$ such that the vectors $\a-p$ and $\bN$ are parallel so that we have
 \[\<\a-p,\bT\>=0,\qquad\<\a-p,\bB\>=0.\]
-Our goal is that $\|\a-p\|$ is constant and there is a constant vector $v$ such that $\<\a-p,v\>=0$.
+Our goal is to show that $\|\a-p\|$ is constant and there is a constant vector $v$ such that $\<\a-p,v\>=0$.
 
-\[0=\<\a-p,\bT\>'=\<\a',\bT\>+\<\a-p,\kappa\bN\>=1+\kappa\<\a-p,\bN\>.\]
+\Step{2}[Collect information]
+Differentiate $\<\a-p,\bT\>=0$ to get
+\[\<\a-p,\bN\>=-\frac1\kappa.\]
+%\[\<\a-p,\bN\>=\frac1\kappa\<\a-p,\bT'\>=\frac1\kappa(\<\a-p,\bT\>'-\<\a',\bT\>)=-\frac1\kappa.\]
+Differentiate $\<\a-p,\bB\>=0$ to get
+\[\tau=0.\]
 
-\[0=\<\a-p,\bB\>'=\<\a-p,-\tau\bN\>=-\tau\cdot(-\frac1{\kappa})\]
-
-\begin{align*}
-(\|\a-p\|^2)'&=\<\a-p,\a-p\>'\\
-&=2\<\a-p,\a'\>\\
-&=2\<\a-p,\bT\>\\
-&=0
-\end{align*}
-
-
-\begin{align*}
-\bB'&=-\tau\bN=0.
-\end{align*}
+\Step{3}[Complete proof]
+We can deduce that $\|\a-p\|$ is constant from
+\[(\|\a-p\|^2)'=\<\a-p,\a-p\>'=2\<\a-p,\bT\>=0.\]
+Also, if we let $v=\bB$, then $\bB$ is constant since
+\[v=-\tau\bN=0,\]
+and $\<\a-p,v\>=0$
 \end{pf}
+
+\begin{ex}[Plane curves]
+Let $\a$ be a nondegenerate curve in $\R^3$.
+TFAE:
+\begin{cond}
+\item the curve $\alpha$ lies on a plane,
+\item $\tau=0$,
+\item the osculating plane constains a fixed point.
+\end{cond}
+\end{ex}
+
+
+\begin{ex}[Helices]
+Let $\a$ be a nondegenerate curve in $\R^3$.
+TFAE:
+\begin{cond}
+\item the curve $\a$ is a helix,
+\item $\tau/\kappa=\const$,
+\item normal lines are parallel to a plane.
+\end{cond}
+\end{ex}
+
+\begin{ex}[Sphere curves]
+Let $\a$ be a nondegenerate curve in $\R^3$.
+TFAE:
+\begin{cond}
+\item the curve $\a$ lies on a sphere,
+\item $(1/\kappa)^2+((1/\kappa)'/\tau)^2=\const$,
+\item $\tau/\kappa=(\kappa'/\tau\kappa^2)'$,
+\item normal planes contain a fixed point.
+\end{cond}
+$^*$ A sphere curve of constant curvature lies in a circle.
+\end{ex}
+
+\begin{ex}[Bertrand mates]
+Let $\a$ be a nondegenerate curve in $\R^3$.
+TFAE:
+\begin{cond}
+\item the curve $\a$ has a Bertrand mate,
+\item there are two constants $\lambda\ne0,\mu$ such that $1/\lambda=\kappa+\mu\tau$.
+\end{cond}
+$^*$ A curve is a circular helix iff it has more than one Bertrand mates.
+\end{ex}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
