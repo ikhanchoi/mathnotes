@@ -104,20 +104,40 @@ We often abbreviate $\|f\|_{L^p(X)}$ as $\|f\|_{L^p}$ or $\|f\|_p$.
 
 
 \chapter{Multivariable calculus}
-$T<\min\{1/K,R/M\}$ and $|f(t,x)|\le M$ on $[0,T]\times\cl{B(x_0,R)}$
-\[x'=f(t,x),\qquad x(0)=x_0.\]
 
-\[\phi(x)(t)=x_0+\int_0^tf(s,x(s))\,ds.\]
+\section{Picard-Lindel\"of theorem}
+\begin{thm}
+Consider the following initial value problem:
+\[x'=f(t,x),\qquad x(0)=x_0,\]
+where
+\[f(-,x)\in C([0,T]),\qquad f(t,-)\in\Lip(\cl{B(x_0,R)}).\]
+If $T$ and $R$ satisfy
+\begin{cond}
+\item $TK<1$,
+\item $TM\le R$,
+\item $|f(t,x)|\le M$ on $[0,T]\times\cl{B(x_0,R)}$,
+\end{cond}
+then the equation has a unique solution on $[0,T]$.
+\end{thm}
+\begin{pf}
+Define $\f:C([0,T],\cl{B(x_0,R)})\to C([0,T],\cl{B(x_0,R)})$ as:
+\[\f(x)(t):=x_0+\int_0^tf(s,x(s))\,ds.\]
+It is well-defined since
 \begin{align*}
-|\phi(x)(t)-x_0|&\le\int_0^t|f(s,x(s))|\,ds\\
-\le TM
+|\f(x)(t)-x_0|&\le\int_0^t|f(s,x(s))|\,ds\\
+&\le TM\le R.
 \end{align*}
+It is a contraction since we have
 \begin{align*}
-|\phi(g)(t)-\phi(h)(t)|&=|\int_0^t(f(s,g(s))-f(s,h(s)))\,ds|\\
-&\le\int_0^t|f(s,g(s))-f(s,h(s))|\,ds\\
-&\le\int_0^tK|g(s)-h(s)|\,ds\\
-&\le TK\sup_s|g(s)-h(s)|
+|\f(x)(t)-\f(y)(t)|
+&\le\int_0^t|f(s,x(s))-f(s,y(s))|\,ds\\
+&\le\int_0^tK|x(s)-y(s)|\,ds\\
+&\le TK\sup_s|x(s)-y(s)|
 \end{align*}
+so that
+\[\|\f(x)-\f(y)\|\le TK\|x-y\|\]
+\end{pf}
+
 
 \subsection{Inverse function theorem}
 

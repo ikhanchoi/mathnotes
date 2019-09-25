@@ -2,15 +2,14 @@
 \usepackage{../../ikany}
 
 \def\a{\alpha}
+
 \title{Classical differential geometry}
+\date{\today}
 
 \begin{document}
 \maketitle
 
-\section{Introduction}
-\subsection{Two ways to represent curves or surfaces}
-
-\subsection{Coordinates and parametrizations}
+\section{Coordinates and parametrizations}
 \begin{defn}
 An \emph{$m$-dimensional parametrization} is a smooth map $U\to\R^n$ such that
 \begin{cond}
@@ -34,7 +33,6 @@ A \emph{regular surface} is a subset of $\R^n$ that is the image of a two-dimens
 
 
 \section{Curves in a space}
-\subsection{Arc-length parameterization}
 \begin{thm}
 For every regular curve, there is a parametrization $\a$ such that $\|\a'\|=1$.
 \end{thm}
@@ -49,82 +47,107 @@ Then, by the chain rule,
 \end{pf}
 
 
+
+\subsection{Frenet-Serret theory}
+
+\subsubsection{Theory}
+\begin{defn}
+We say a curve parametrized as $\a:I\to\R^3$ is \emph{degenerate} if the normalized tangent vector $\a'/\|\a'\|$ is never locally constant everywhere.
+In other words, $\a$ is nowhere straight.
+\end{defn}
+
 \begin{defn}[Frenet-Serret frame]
 Let $\a$ be a nondegenerate curve.
 We define \emph{tangent unit vector}, \emph{normal unit vector}, \emph{binormal unit vector} by:
-\[\bT:=\frac{\a'}{\norm{\a'}},\qquad\bN:=\frac{\bT'}{\|\bT'\|},\qquad\bB:=\bT\x\bN,\]
+\[\bT(t):=\frac{\a'(t)}{\norm{\a'(t)}},\qquad\bN(t):=\frac{\bT'(t)}{\|\bT'(t)\|},\qquad\bB(t):=\bT(t)\times\bN(t),\]
 and \emph{curvature} and \emph{torsion} by:
-\[\kappa:=\<\bT',\bN\>,\quad\tau:=-\<\bB',\bN\>.\]
+\[\kappa(t):=\<\bT'(t),\bN(t)\>,\quad\tau(t):=-\<\bB'(t),\bN(t)\>.\]
 Note that $\kappa$ cannot vanish by definition.
 \end{defn}
 
 \begin{thm}[Frenet-Serret formula]
-Let $\a$ be a unit speed curve.
+Let $\a$ be a unit speed nondegenerate curve.
 \[\begin{pmatrix}\bT'\\\bN'\\\bB'\end{pmatrix}=\begin{pmatrix}0&\kappa&0\\-\kappa&0&\tau\\0&-\tau&0\end{pmatrix}\begin{pmatrix}\bT\\\bN\\\bB\end{pmatrix}.\]
 \end{thm}
 \begin{pf}
-\Step{1}[$\bT',\bB',\bN$ are parallel]
+Note that $\{\bT,\bN,\bB\}$ is an orthonormal basis.
+
+\Step{1}[Show that $\bT',\bB',\bN$ are parallel]
 Two vectors $\bT'$ and $\bN$ are parallel by definition.
 Since $\<\bT,\bB\>=0$ and $\<\bB,\bB\>=1$ are constant, we have
 \[\<\bB',\bT\>=\<\bB,\bT\>'-\<\bB,\bT'\>=0,\qquad\<\bB',\bB\>=\tfrac12\<\bB,\bB\>'=0,\]
 which show $\bB'$ and $\bN$ are parallel.
-%%%
-\end{pf}
+By the definition of $\kappa$ and $\tau$, we have
+\[\bT'=\kappa\bN,\qquad\bB'=-\tau\bB.\]
 
-
-\begin{thm}
-Let $\a$ be a unit speed curve.
+\Step{2}[Describe $\bN'$]
+Since
 \begin{align*}
-\a'&=\bT,\\
-\a''&=\kappa\bN,\\
-\a'''&=-\kappa^2\bT+\kappa'\bN+\kappa\tau\bB.
+\<\bN',\bT\>&=-\<\bN,\bT'\>=-\kappa,\\
+\<\bN',\bN\>&=\tfrac12\<\bN,\bN\>'=0,\\
+\<\bN',\bB\>&=-\<\bN,\bB'\>=\tau,
 \end{align*}
-\end{thm}
-
-Skew-symmetricity is due to the fact the differential of an orthogonal matrix forms a skew symmetric matrix.
-
-%%% Strategies !!!
-\begin{itemize}
-\item Aim for finding the coefficients of a special vector and its derivatives with respect to the Frenet-Serret frame.
-\item In particular, differentiate equations of the form
-\[\<v^{(k)},\bT\text{ or }\bN\text{ or }\bB\>=\const\]
-to get useful information.
-\item Heuristically find represent a vector and show what you want directly.
-\end{itemize}
-
-
-
-\begin{ex}
-Let $\a$ be a curve in $\R^3$.
-If the normal line of $\a$ always passes through a fixed point, then $\a$ is contained in a circle.
-\end{ex}
-\begin{pf}
-\Step{1}[Formulate conditions]
-Reparametrize $\a$ to become a unit speed curve.
-By the assumption, there is a constant point $p\in\R^3$ such that the vectors $\a-p$ and $\bN$ are parallel so that we have
-\[\<\a-p,\bT\>=0,\qquad\<\a-p,\bB\>=0.\]
-Our goal is to show that $\|\a-p\|$ is constant and there is a constant vector $v$ such that $\<\a-p,v\>=0$.
-
-\Step{2}[Collect information]
-Differentiate $\<\a-p,\bT\>=0$ to get
-\[\<\a-p,\bN\>=-\frac1\kappa.\]
-%\[\<\a-p,\bN\>=\frac1\kappa\<\a-p,\bT'\>=\frac1\kappa(\<\a-p,\bT\>'-\<\a',\bT\>)=-\frac1\kappa.\]
-Differentiate $\<\a-p,\bB\>=0$ to get
-\[\tau=0.\]
-
-\Step{3}[Complete proof]
-We can deduce that $\|\a-p\|$ is constant from
-\[(\|\a-p\|^2)'=\<\a-p,\a-p\>'=2\<\a-p,\bT\>=0.\]
-Also, if we let $v=\bB$, then $\bB$ is constant since
-\[v=-\tau\bN=0,\]
-and $\<\a-p,v\>=0$
+we have
+\[\bN'=-\kappa\bT+\tau\bB.\qedhere\]
 \end{pf}
+\begin{rmk}
+Skew-symmetricity in the Frenet-Serret formula is not by chance.
+Let $\bX(t)$ be the curve of orthogonal matrices $(\bT(t),\bN(t),\bB(t))^T$.
+Then, the Frenet-Serret formula reads
+\[\bX'(t)=A(t)\bX(t)\]
+for a matrix curve $A(t)$.
+Since $\bX(t+h)=R_t(h)\bX(t)$ for a family of orthogonal matrices $\{R_t(h)\}_h$ with $R_t(0)=I$, we can describe $A(t)$ as 
+\[A(t)=\left.\dd{R_t}{h}\right\rvert_{h=0}.\]
+By differentiating the relation $R_t^T(h)R_t(h)=I$ with respect to $h$, we get to know that $A(t)$ is skew-symmetric for all $t$.
+In other words, the tangent space $T_I\SO(3)$ forms a skew symmetric matrix.
+\end{rmk}
+
+\begin{prop}
+Let $\a$ be a nondegenerate space curve.
+\[\kappa=\frac{\|\a'\x\a''\|}{\|\a'\|^3},\qquad\tau=\frac{\a'\x\a''\cdot\a'''}{\|\a'\x\a''\|}.\]
+\end{prop}
+\begin{pf}
+If we let $s=\|\a'\|$, then
+\begin{align*}
+\a'&=s\bT,\\
+\a''&=s'\bT+s^2\kappa\bN,\\
+\a'''&=(s''-s^3\kappa^2)\bT+(3ss'\kappa+s^2\kappa')\bN+(s^3\kappa\tau)\bB.
+\end{align*}
+Now the formulas are easily derived.
+\end{pf}
+
+\subsubsection{Problems}
+
+Let $\a$ be a nondegenerate unit speed space curve, and let $\{\bT,\bN,\bB\}$ be the Frenet-Serret frame for $\a$.
+Consider a diagram as follows:
+\begin{cd}
+\<\a,\bT\>=\ ?\ar{r}\ar{d} & \<\a,\bN\>=\ ? \ar{l}\ar{d}\ar{r} & \<\a,\bB\>=\ ? \ar{l}\ar{d} \\
+\<\a',\bT\>=1 & \<\a',\bN\>=0 &\<\a',\bB\>=0.
+\end{cd}
+Here the arrows indicate which information we are able to get by differentiation.
+For example, if we know a condition
+\[\<\a(t),\bT(t)\>=f(t),\]
+then we can obtain by differentiating it
+\[\<\a(t),\bN(t)\>=\frac{f'(t)-1}{\kappa(t)}\]
+since we have known $\<\a',\bT\>$ but not $\<\a,\bN\>$, and further
+\[\<\a(t),\bB(t)\>=\frac{\left(\frac{f'(t)-1}{\kappa(t)}\right)'+\kappa(t)f(t)}{\tau(t)}\]
+since we have known $\<\a,\bT\>$ and $\<\a',\bN\>$ but not $\<\a,\bB\>$.
+Thus, $\<\a,\bT\>=f$ implies
+\[\a(t)=f(t)\cdot\bT+\frac{f'(t)-1}{\kappa(t)}\cdot\bN+\frac{\left(\frac{f'(t)-1}{\kappa(t)}\right)'+\kappa(t)f(t)}{\tau(t)}\cdot\bB.\]
+
+Suggested a strategy for space curve problems:
+\begin{itemize}
+\item Formulate the assumptions of the problem as the form
+\[\<\ \text{(interesting vector)},\ \text{(Frenet-Serret basis)}\ \>\ =\ \text{(some function)}.\]
+\item Aim for finding the coefficients of the position vector in the Frenet-Serret frame, and obtain relations of $\kappa$ and $\tau$ by comparing with assumptions.
+\item Heuristically find a constant vector and show what you want directly.
+\end{itemize}
 
 \begin{ex}[Plane curves]
 Let $\a$ be a nondegenerate curve in $\R^3$.
 TFAE:
 \begin{cond}
-\item the curve $\alpha$ lies on a plane,
+\item the curve $\a$ lies on a plane,
 \item $\tau=0$,
 \item the osculating plane constains a fixed point.
 \end{cond}
@@ -150,7 +173,6 @@ TFAE:
 \item $\tau/\kappa=(\kappa'/\tau\kappa^2)'$,
 \item normal planes contain a fixed point.
 \end{cond}
-$^*$ A sphere curve of constant curvature lies in a circle.
 \end{ex}
 
 \begin{ex}[Bertrand mates]
@@ -160,17 +182,44 @@ TFAE:
 \item the curve $\a$ has a Bertrand mate,
 \item there are two constants $\lambda\ne0,\mu$ such that $1/\lambda=\kappa+\mu\tau$.
 \end{cond}
-$^*$ A curve is a circular helix iff it has more than one Bertrand mates.
 \end{ex}
 
 
+\subsection{Example problems}
+Here we give an example solution of several problems.
+
+\begin{ex}
+A space curve whose normal lines always pass through a fixed point lies in a circle.
+\end{ex}
+\begin{pf}
+\Step{1}[Formulate conditions]
+Reparametrize $\a$ to become a unit speed curve.
+By the assumption, there is a constant point $p\in\R^3$ such that the vectors $\a-p$ and $\bN$ are parallel so that we have
+\[\<\a-p,\bT\>=0,\qquad\<\a-p,\bB\>=0.\]
+Our goal is to show that $\|\a-p\|$ is constant and there is a constant vector $v$ such that $\<\a-p,v\>=0$.
+
+\Step{2}[Collect information]
+Differentiate $\<\a-p,\bT\>=0$ to get
+\[\<\a-p,\bN\>=-\frac1\kappa.\]
+%\[\<\a-p,\bN\>=\frac1\kappa\<\a-p,\bT'\>=\frac1\kappa(\<\a-p,\bT\>'-\<\a',\bT\>)=-\frac1\kappa.\]
+Differentiate $\<\a-p,\bB\>=0$ to get
+\[\tau=0.\]
+
+\Step{3}[Complete proof]
+We can deduce that $\|\a-p\|$ is constant from
+\[(\|\a-p\|^2)'=\<\a-p,\a-p\>'=2\<\a-p,\bT\>=0.\]
+Also, if we heuristically define a vector $v:=\bB$, then $v$ is constant since
+\[v'=-\tau\bN=0,\]
+and clearly $\<\a-p,v\>=0$
+\end{pf}
 
 
-
-
-
-
-
+\begin{ex}
+A sphere curve of constant curvature lies in a circle.
+\end{ex}
+\begin{ex}
+A curve is a circular helix iff it has more than one Bertrand mates.
+\end{ex}
 
 
 
@@ -182,7 +231,7 @@ $^*$ A curve is a circular helix iff it has more than one Bertrand mates.
 
 
 \section{Surfaces in a space}
-\[\nu_x=S(\alpha_x)=\kappa_1\alpha_x\]
+\[\nu_x=S(\a_x)=\kappa_1\a_x\]
 
 
 \section{Curves on a surface}

@@ -18,7 +18,19 @@
   \@@author[\lauthor]{\small\lauthor}
 }
 
-\renewcommand{\datename}{\textit{Last Update}:}
+
+% date
+\def\@setdate{
+	\datename\ \@date \@addpunct. \par
+	\lastupdatename\ \today \@addpunct.
+}
+\def\datename{\textit{First Written} :}
+\def\lastupdatename{\textit{Last Updated} :}
+
+
+
+
+
 
 \author{Ikhan Choi}
 \date{\today}

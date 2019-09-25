@@ -13,7 +13,9 @@
 
 
 
-\section{Basic field theory}
+\section{Preliminaries}
+
+\subsection{Field extension}
 \begin{defn}
 A \emph{field extension} is a pair of fields $(E,F)$ such that $E>F$, i.e. $F$ belongs to $E$ as a subset.
 We often denote it by $E/F$.
@@ -44,9 +46,6 @@ Obvious.
 
 \begin{defn}
 A \emph{degree} of a field extension $E/F$ is the dimension of the vector space $E$ over $F$ and denoted by $[E:F]$.
-\end{defn}
-
-\begin{defn}
 A field extension is called \emph{finite} if its degree is finite.
 \end{defn}
 
@@ -67,15 +66,15 @@ Finite extension of finite extension is finite.
 
 \subsection{Field embeddings}
 
-Unlike general rings, field homomorphisms is extremely rigid.
-The following theorem deeply related to Schur's lemma in representation theory, which means it holds for not only fields but also division rings.
-
 \begin{prop}
 A nontrivial field homomorphism is injective.
 \end{prop}
 \begin{pf}
 The kernel is an ideal in a field so that it should be either entire or zero.
 \end{pf}
+
+Unlike general rings, field homomorphisms is extremely rigid.
+The above theorem deeply related to Schur's lemma in representation theory, which means it holds for not only fields but also division rings.
 A nontrivial field homomorphism is called \emph{embedding} or \emph{isomorphism onto a subfield}.
 A field isomorphism is just a surjective field embedding.
 
@@ -99,16 +98,21 @@ Although it is hard to find a counterexample, there is a finite extension which 
 We will see in Section 3.
 
 
+\subsection{Polynomial ring over a field}
+Let $F$ be a field.
+Recall the following:
+\begin{rd}
+$F$ \ar{d} & $F[x]$ \ar{d} & $F[x,y]$ \ar{d} & $F[x,y,z]$ \ar{d} & $\cdots$ \\
+Field & ED (hence PID) & UFD & UFD & $\cdots$
+\end{rd}
 
-
+Since $F[x]$ is PID, every prime ideal is maximal (Krull dimension 1), and every irreducible element generates a nonzero prime ideal (Euclid's lemma).
 
 
 
 
 
 \section{Algebraic extension}
-
-We do not prove the basic properties of polynomial ring over a field: they satisfy the axioms of ED, PID, and UFD, so every prime ideal is maximal and every irreducible element is prime.
 
 \subsection{Algebraic elements}
 Finite simple extensions are the most basic examples of the field extensions that we should become perfectly familiar with them.
@@ -402,16 +406,10 @@ Since $E_1<\cl F$ and $E_2<\cl F$, we have $E_1E_2<\cl F$, so $\cl{E_1E_2}=\cl{F
 \end{pf}
 
 The following theorem states that algebraic extension is a direct limit of finite extensions.
+We skip the proof.
 \begin{thm}
 A field $E$ is algebraic over $F$ if and only if there is a tower of fields $\{K_\alpha\}_\alpha$ such that $K_\alpha/F$ are all finite and the ascending union is $E$.
 \end{thm}
-\begin{pf}
-($\Rightarrow$)
-%%%
-
-($\Leftarrow$)
-For every $\alpha\in E$, there is $n$ such that $\alpha\in K_n$ by the assumption.
-\end{pf}
 
 
 
@@ -451,28 +449,46 @@ For a field $F$, TFAE:
 \begin{cond}
 \item $F$ is algebraically closed,
 \item every polynomial in $F[x]$ has a root in $F$,
-\item every polynomial in $F[x]$ is linearly factorized in $F$.
+\item every polynomial in $F[x]$ is linearly factorized in $F$; every root is in $F$.
 \end{cond}
 \end{prop}
 \begin{pf}
-Skipped.
+(1)$\impl$(2)
+If $f\in F[x]$ does not have root in $F$, then the proper finite extension $(F[x]/(f))/F$ shows that $F$ is not algebraically closed.
+
+(2)$\impl$(3)
+If $f$ has a root $\alpha$, then we can inductively apply this theorem for a new polynomial $f(x)/(x-\alpha)$ of a lower degree to make the complete linear factorization.
+
+(3)$\impl$(1)
+If $F$ is not algebraically closed so that there is a proper algebraic extension $E/F$, then the minimal polynomial $\alpha\in E\setminus F$ should be irreducible with degree bigger than 1.
 \end{pf}
 
-If $f$ has a root $\alpha$, then we can inductively apply this theorem for a new polynomial $f(x)/(x-\alpha)$ of a lower degree to make the complete linear factorization.
-In particular, the theorem implies that algebraically closedness is a internal property; it is preserved under isomorphisms.
+In particular, this proposition implies that algebraically closedness can be described by the factorization in itself so that it is an internal property; it is preserved under isomorphisms.
+
+Algebraic closures are defined as follows
 
 \begin{defn}
 A field $\cl F$ is called an \emph{algebraic closure} of a field $F$ if $\cl F$ is algebraically closed field and $\cl F/F$ is algebraic.
 \end{defn}
 
-
 \begin{prop}
-Let $E/F$ be a field extension with algebraically closed field $E$.
+Let $E/F$ be a field extension with $E$ algebraically closed.
 Then the set of all algebraic elements in $E$ over $F$ is the only algebraic closure of $F$ contained in $E$.
 \end{prop}
 \begin{pf}
-The set of algebraic elements is algebraically closed.
-%%%
+For a while in this proof, let $\cl F$ denote the set of all algebraic elements of $F$ in $E$.
+
+\Step{1}[Algebraic closure]
+We will show that $\cl F$ is algebraically closed because the extension $\cl F/F$ is clearly algebraic.
+Let $f\in\cl F[x]$ and take a root $\alpha\in E$.
+Since both $\cl F(\alpha)/\cl F$ and $\cl F/F$ are algebraic, $\alpha$ is algebraic over $F$.
+Thus we have $\alpha\in\cl F$, and by the previous proposition, $\cl F$ is algebraically closed.
+
+\Step{2}[Uniqueness]
+Suppose $K$ is an algebraic closure of $F$ in $E$.
+We have $\cl F<K$ since every algebraic element $\alpha$ with $f(\alpha)=0$ for $f\in F[x]\subset K[x]$ should be contained in $K$.
+Also, $K/\cl F$ is algebraic because $K/F$ is algebraic.
+Since $\cl F$ is algebraically closed, $K=\cl F$.
 \end{pf}
 
 This is a relation with relative algebraic closure: the relative algebraic closure in a algebraically closed field is really an algebraically closure.

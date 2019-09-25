@@ -5,7 +5,7 @@
 
 
 ## Post
-- totally bounded space
+- double counting
 - curvature of ellipsoid
 
 ## Note
@@ -16,8 +16,15 @@
 
 - arzela-ascoli와 wrong proof를 uniform space 노트로 합치기
 
+## Jekyll
+- horizontal scroll bar
+- square bracket
+- macro
+	- qedbox
 
-
+## Edit
+- totally bounded space: DL Frank -> D. L. Frank
+- uniformly convergent subseq: upper case after colon -> lower case
 
 ## Project
 NA

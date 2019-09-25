@@ -67,9 +67,21 @@ polar
 
 \section{Weak topology}
 
-
-
-
+\section{}
+\begin{prop}
+Let $X$ be a topological vector space.
+Then, $X$ has an open convex set if and only if $X^*\ne0$.
+\end{prop}
+\begin{prop}
+For $0<p<1$, $L^p$ is not locally convex set.
+If $\mu$ has infinite values, then $(L^p)^*=0$.
+\end{prop}
+\begin{pf}
+Assume $L^p$ is locally convex.
+We have $R,r>0$ and a convex set $C$ such that $B_r\subset C\subset B_R$.
+We can construct a convex combination of functions in $B_r$ which is not in $B_R$.
+It is a contradiction.
+\end{pf}
 
 \chapter{Banach spaces}
 
@@ -83,8 +95,12 @@ polar
 \begin{thm}[Uniform boundedness principle]
 Let $X$ be a barreled space and $Y$ be a topological vector space.
 Let $\cF\subset B(X,Y)$.
-If $\cF$ is pointwise bounded, then $\cF$\ is equicontinuous.
+If $\cF$ is pointwisely bounded, then $\cF$ is equicontinuous.
 \end{thm}
+\begin{cor}
+Let $\cF\in\subset B(H)$ for a Hilbert space $H$.
+If $\cF$ is poinwisely bounded, then $\cF$ is norm-bounded.
+\end{cor}
 
 
 
@@ -324,7 +340,7 @@ In this chapter, the scalar field is always assumed to be $\C$ unless any mentio
 \section{Banach algebras and $C^*$-algebras}
 
 % 1-1
-\subsection{Basics}
+\subsection{Banach algebras}
 
 % 1-1-1
 \subsubsection{Normed algebras}
@@ -423,6 +439,8 @@ Let $\cA$ be a Banach algebra.
 
 One can use abolute convergent series in Banach algebras.
 In particular, when the base field of the Banach algebra is $\C$, the theory of power series plays a powerful role.
+This property comes out when we introduce holomorphic functional calculus.
+
 \begin{defn}
 Let $\cA$ be an algebra.
 The \emph{spectrum} of $x\in\cA$ is defined as the set:
