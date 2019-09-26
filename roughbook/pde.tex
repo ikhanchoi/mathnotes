@@ -1,0 +1,447 @@
+\documentclass[11pt]{article}
+\usepackage{../ikany}
+\usepackage[margin=1.5in]{geometry}
+
+\let\realsection\section
+\renewcommand\section{\newpage\realsection}
+
+\begin{document}
+\tableofcontents
+
+
+
+\section{Kinetic theory}
+
+The velocity averaging lemma is used to get regularity of averaged quantity when boundary condition is not given.
+\begin{thm}[Velocity averaging]
+Let $T$ be a free transport operator $\pd_t+v\cdot\del_x$ on $\R_t\x\R_x^n\x\R_v^n$.
+Then,
+\[\|\int u\f\,dv\|_{H_{t,x}^{1/2}}\les_\f\|u\|_{L_{t,x,v}^2}^{1/2}\|Tu\|_{L_{t,x,v}^2}^{1/2}\]
+for $\f\in C_c^\infty(\R_v^n)$,
+\end{thm}
+\begin{pf}
+Let $m(t,x)=\int u\f\,dv$.
+By Fourier transform with respect to $t$ and $x$, we have
+\[\hat u(\tau,\xi,v)=i\,\frac{\hat{Tu}(\tau,\xi,v)}{\tau+v\cdot\xi}\]
+and
+\[\hat m(\tau,\xi)=\int\hat u(\tau,\xi,v)\f(v)\,dv.\]
+Fixing $\tau,\xi$, decompose the integral and use H\"older's inequality to get
+\begin{align*}
+|\hat m(\tau,\xi)|
+&\le\int_{|\tau+v\cdot\xi|<\alpha}|\hat u\f|\,dv+\int_{|\tau+v\cdot\xi|\ge\alpha}\frac{|\hat{Tu}\f|}{|\tau+v\cdot\xi|}\,dv\\
+&\le\|\hat u\|_{L_v^2}^{1/2}\ (\int_{|\tau+v\cdot\xi|<\alpha}|\f|^2\,dv)^{1/2}+\|\hat{Tu}\|_{L_v^2}^{1/2}\ (\int_{|\tau+v\cdot\xi|\ge\alpha}\frac{|\f|^2}{|\tau+v\cdot\xi|^2}\,dv)^{1/2}
+\end{align*}
+We are going to estimate the integrals as
+\[\int_{|\tau+v\cdot\xi|<\alpha}|\f|^2\,dv\les\frac{\alpha}{\sqrt{\tau^2+|\xi|^2}},\qquad
+\int_{|\tau+v\cdot\xi|\ge\alpha}\frac{|\f|^2}{|\tau+v\cdot\xi|}\,dv\les\frac1{\alpha\sqrt{\tau^2+|\xi|^2}}.\]
+We may assume that $\sqrt{\tau^2+|\xi|^2}\gg1$, that is, it is enough to show them for $\sqrt{\tau^2+|\xi|^2}\ge C$ with arbitrarily taken constant $C$, because the case that $\sqrt{\tau^2+|\xi|^2}\les1$ easily proves the inequality.
+
+Define coordinates $(v_1,v_2)$ on $\R_v$ as follows:
+\[v_1:=\frac{\tau+v\cdot\xi}{|\xi|}\ \in\R\ ,\qquad v_2:=v-\frac{v\cdot\xi}{|\xi|^2}\xi\ \in\ker(\xi^T)\cong\R^{n-1}.\]
+Note that
+\[|v|^2=(v-\frac\tau{|\xi|})^2+|v_2|^2\qquad\text{and}\qquad\int\,dv=\iint\,dv_2\,dv_1.\]
+
+For the first integral, suppose that $\f$ is supported on a ball $|v|<R$.
+Then,
+\begin{align*}
+\int_{|\tau+v\cdot\xi|<\alpha}|\f|^2\,dv
+&\les\int_{|v_1|<\frac\alpha{|\xi|}}\int_{|v_2|^2\le R^2-(v_1-\frac\tau{|\xi|})^2}\,dv_2\,dv_1\\
+&\les(R^2-\frac{\tau^2}{|\xi|^2})^{\frac{n-1}2}\cdot\frac{2\alpha}{|\xi|},
+\end{align*}
+where we value the term $(R^2-\frac{\tau^2}{|\xi|^2})$ as 0 when $R^2<\frac{\tau^2}{|\xi|^2}$.
+Since
+\[(R^2-\frac{\tau^2}{|\xi|^2})^{\frac{n-1}2}\frac{2\alpha}{|\xi|}\cdot\sqrt{\tau^2+|\xi|^2}\les\begin{cases}0,&|\tau|\gg1\\C,&|\xi|\gg1\end{cases},\]
+we have
+\[\int_{|\tau+v\cdot\xi|<\alpha}|\f|^2\,dv\les\frac{\alpha}{\sqrt{\tau^2+|\xi|^2}}.\]
+
+For the second integral, suppose that $\f$ is supported on $|v|<C$ so that $|v_1-\frac\tau{|\xi|}|,|v_2|<C$.
+Then,
+\begin{align*}
+\int_{|\tau+v\cdot\xi|\ge\alpha}\frac{|\f|^2}{|\tau+v\cdot\xi|}\,dv
+&\les\int_{|v_1|<\frac\alpha{|\xi|},\ |v_1-\frac\tau{|\xi|}|<C}\int_{|v_2|<C}\frac1{v_1^2|\xi|^2}\,dv_2\,dv_1\\
+&\simeq\int_{|v_1|<\frac\alpha{|\xi|},\ |v_1-\frac\tau{|\xi|}|<C}\frac{dv_1}{v_1^2|\xi|^2}.
+\end{align*}
+If $|\xi|\ges|\tau|$, then
+\begin{align*}
+\int_{|v_1|<\frac\alpha{|\xi|},\ |v_1-\frac\tau{|\xi|}|<C}\frac{dv_1}{v_1^2|\xi|^2}
+&\les\int_{|v_1|<\frac\alpha{|\xi|}}\frac{dv_1}{v_1^2|\xi|^2}\\
+&\simeq\frac1{\alpha|\xi|}\les\frac1{\alpha\sqrt{\tau^2+|\xi|^2}}.
+\end{align*}
+If $|\xi|\ll|\tau|$ such that at least $|\tau|>C|\xi|$, then
+\begin{align*}
+\int_{|v_1|<\frac\alpha{|\xi|},\ |v_1-\frac\tau{|\xi|}|<C}\frac{dv_1}{v_1^2|\xi|^2}
+&\les\int_{|v_1-\frac\tau{|\xi|}|<C}\frac{dv_1}{v_1^2|\xi|^2}\\
+&\simeq\frac1{|\xi|^2}(\frac1{\frac\tau{|\xi|}-C}-\frac1{\frac\tau{|\xi|}+C})\\
+&=\frac{2C}{\tau^2-C^2|\xi|^2}\ll\frac1{\sqrt{\tau^2+|\xi|^2}},
+\end{align*}
+hence
+\[\int_{|\tau+v\cdot\xi|\ge\alpha}\frac{|\f|^2}{|\tau+v\cdot\xi|}\,dv\les\frac1{\alpha\sqrt{\tau^2+|\xi|^2}}.\]
+
+To sum up, we have
+\[|\hat m(\tau,\xi)|\les\frac1{(\tau^2+|\xi|^2)^{1/4}}(\sqrt\alpha\cdot\|\hat u\|_{L_v^2}^{1/2}+\frac1{\sqrt\alpha}\cdot\|\hat{Tu}\|_{L_v^2}^{1/2}).\]
+Letting $\alpha=\sqrt{\|\hat{Tu}\|_{L_v^2}/\|\hat u\|_{L_v^2}}$ and squaring,
+\[(\tau^2+|\xi|^2)^{1/2}|\hat m(\tau,\xi)|^2\les\|\hat u\|_{L_v^2}^{1/2}\|\hat{Tu}\|_{L_v^2}^{1/2}.\]
+Therefore, the integration on $\R_\tau\x\R_\xi^n$ and Plancheral's theorem gives
+\[\|m\|_{H_{t,x}^{1/2}}\les_\f\|u\|_{L_{t,x,v}^2}^{1/2}\|Tu\|_{L_{t,x,v}^2}^{1/2}.\]
+\end{pf}
+
+\begin{cor}
+Let $\cF$ be a family of functions on $\R_t\x\R_x^n\x\R_v^n$.
+If $\cF$ and $T\cF$ are bounded in $L_{t,x,v}^2$, then $\int\cF\f\,dv$ is bounded in $H_{t,x}^{1/2}$.
+\end{cor}
+
+\begin{thm}
+Let $\cF$ be a family of functions on $I_t\x\R_x^n\x\R_v^n$.
+If $\cF$ is weakly relatively compact and $T\cF$ is bounded in $L_{t,x,v}^1$, then $\int\cF\f\,dv$ is relatively compact in $L_{t,x}^1$.
+\end{thm}
+
+
+
+
+
+
+
+\section{Peetre's theorem}
+
+
+\begin{lem}
+Suppose a linear operator $L:C_c^\infty(M)\to C_c^\infty(M)$ satisfies
+\[\supp(Lu)\subset\supp(u)\quad\text{for}\quad u\in C_c^\infty(X).\]
+For each point $x\in M$, there is a bounded neighborhood $U$ together with a nonnegative integer $m$ such that 
+\[\|Lu\|_{C^0}\les\|u\|_{C^m}\]
+for $u\in C_c^\infty(U\setminus\{x\})$.
+\end{lem}
+\begin{pf}
+Suppose not.
+There is a point $x$ at which the inequality fails; for every bounded neighborhood $U$ and for every nonnegative $m$, we can find $u\in C_c^\infty(U\setminus\{x\})$ such that
+\[\|Lu\|_{C^0}\ge C\|u\|_{C^m},\]
+for arbitrarily large $C$.
+We want to construct a function $u\in C_c^\infty(U)$ such that $Lu$ has a singularity at $x$.
+
+(Induction step)
+Take a bounded neighborhood $U_m$ of $x$ such that
+\[U_m\subset U\setminus\bigcup_{i=0}^{m-1}\cl U_i.\]
+There is $u_m\in C_c^\infty(U_m\setminus\{x\})$ such that
+\[\|Lu_m\|_{C^0}>4^m\|u_m\|_{C^m}.\]
+
+Note that
+\[\supp(u_i)\cap\supp(u_j)=\varnothing\quad\text{for}\quad i\ne j.\]
+Define
+\[u:=\sum_{i\ge0}2^{-i}\frac{u_i}{\|u_i\|_{C^i}}.\]
+We have that $u\in C_c^\infty(U)$ since the series converges in the inductive topology of the LF space $C_c^\infty(U)$: it converges absolutely with respect to the seminorms $\|\cdot\|_{C^m}$ for all $m$:
+\begin{align*}
+\sum_{i\ge0}\|2^{-i}\frac{u_i}{\|u_i\|_{C^i}}\|_{C^m}
+&=\sum_{0\le i<m}2^{-i}\frac{\|u_i\|_{C^m}}{\|u_i\|_{C^i}}+\sum_{i\ge m}2^{-i}\frac{\|u_i\|_{C^m}}{\|u_i\|_{C^i}}\\
+&\le\sum_{0\le i<m}2^{-i}\frac{\|u_i\|_{C^m}}{\|u_i\|_{C^i}}+\sum_{i\ge m}2^{-i}\\
+&<\infty.
+\end{align*}
+Also, since the supports of each term are disjoint and $L$ is locally defined, we have
+\[Lu=\sum_{i\ge0}2^{-i}\frac{Lu_i}{\|u_i\|_{C^i}}.\]
+Thus,
+\[\|Lu\|_{C^0}=\sup_{i\ge0}2^{-i}\frac{\|Lu_i\|_{C^0}}{\|u_i\|_{C^i}}>\sup_{i\ge0}2^{-i}\cdot4^i=\infty,\]
+which leads a contradiction.
+
+\end{pf}
+
+
+
+\section{Characteristic curve}
+Algorithm:
+\begin{cond}
+\item Establish the associated vector field by substituting $u\mapsto y$.
+\item Find the integral curve.
+\item Eliminate the auxiliary variables to get an algebraic equation.
+\item Verify the computed solution is in fact the real solution.
+\end{cond}
+\begin{prop}
+Suppose that there exists a smooth solution $u:\Omega\to\R_y$ of an initial value problem
+\begin{pde*}
+u_t+u^2u_x&=0, \: (t,x)\in\Omega\subset\R_{t\ge0}\x\R_x,\\
+u(0,x)&=x, \: \text{at}\ x\in\R,
+\end{pde*}
+and let $M$ be the embedded surface defined by $y=u(t,x)$.
+
+Let $\gamma:I\to\Omega\times\R_y$ be an integral curve of the vector field
+\[X=\pd{t}+y^2\pd{x}\]
+such that $\gamma(0)\in M$.
+Then, $\gamma(\theta)\in M$ for all $\theta\in I$.
+\end{prop}
+\begin{pf}
+We may assume $\gamma$ is maximal.
+Define $\tilde\gamma:\tilde I\to M$ as the maximal integral curve of the vector field
+\[\tilde X=\pd{t}+u^2\pd{x}\in\Gamma(TM)\]
+such that $\tilde\gamma(0)=\gamma(0)$.
+Since $X$ and $\tilde X$ coincide on $M$, the curve $\tilde\gamma$ is also an integral curve of $X$ with $\tilde\gamma(0)=\gamma(0)$.
+By the uniqueness of the integral curve, we get $\tilde I\subset I$ and $\gamma(\theta)=\tilde\gamma(\theta)$ for all $\theta\in\tilde I$.
+
+Since $M$ is closed in $E$, the open interval $\tilde I=\gamma^{-1}(M)$ is closed in $I$, hence $\tilde I=I$ by the connectedness of $I$.
+\end{pf}
+\begin{defn}
+The projection of the integral curve $\gamma$ onto $\Omega$ is called a \emph{characteristic}.
+\end{defn}
+This proposition implies that we might be able to describe the points on the surface $M$ explicitly by finding the integral curves of the vector field $X$.
+Once we find a necessary condition of the form of algebraic equation, we can demostrate the computed hypothetical solution by explicitly checking if it satisfies the original PDE.
+
+Since $X$ does not depend on $u$, we can solve the ODE: let $\gamma(\theta)=(t(\theta),x(\theta),y(\theta))$ be the integral curve of $X$ such that $\gamma(0)=(0,\xi,\xi)$.
+Then, the system of ODEs
+\begin{alignat*}{2}
+\dd{t}{\theta}&=1,   &\qquad t(0)&=0,\\
+\dd{x}{\theta}&=y(\theta)^2, & x(0)&=\xi,\\
+\dd{y}{\theta}&=0,   & y(0)&=\xi
+\end{alignat*}
+is solved as
+\[t(\theta)=\theta,\qquad y(\theta)=\xi,\qquad x(\theta)=\xi^2\theta+\xi.\]
+Therefore,
+\[u(t,x)=\frac{-1+\sqrt{1+4tx}}{2t}.\]
+From this formula, we would be able to determine the suitable domain $\Omega$ as
+\[\Omega=\{\,(t,x):tx>-\tfrac14\,\}.\]
+
+
+\subsection{Wave equation}
+
+\begin{align*}
+&u_{tt}-c^2u_{xx}=0 \quad\text{for}\quad t,x>0, \\
+&u(0,x)=g(x),\qquad u(0,x)=h(x),\qquad u_x(t,0)=\alpha(t).
+\end{align*}
+
+Define $v:=u_t-cu_x$.
+Then we have
+\begin{pde*}
+v_t+cv_x &= 0 \: t,x>0,\\
+v(0,x) &= h(x)-cg'(x). \:
+\end{pde*}
+By method of characteristic,
+\[v(t,x)=h(x-ct)-cg'(x-ct).\]
+
+Then, we can solve two system
+\begin{pde*}
+u_t-cu_x &= v, \: x>ct>0,\\
+u(0,x) &= g(x), \:
+\end{pde*}
+and
+\begin{pde*}
+u_t-cu_x &= v, \: ct>x>0,\\
+u_x(t,0) &= \alpha(t), \:
+\end{pde*}
+
+For the first system, introducing parameter $\xi>0$,
+\begin{gather*}
+\dd{t}{\theta}=1,\qquad\dd{x}{\theta}=-c,\qquad\dd{y}{\theta}=-v(t,x),\\
+t(0)=0,\qquad x(0)=\xi,\qquad y(0)=g(\xi)
+\end{gather*}
+is solved as
+\[t(\theta)=\theta,\qquad x(\theta)=-c\theta+\xi,\qquad y(\theta)=g(\xi)+\int_0^\theta-v(\theta',\xi-c\theta')\,d\theta',\]
+hence for $x>ct>0$,
+
+\begin{align*}
+u(t,x)&=g(\xi)-\int_0^\theta v(s,\xi-cs)\,ds\\
+&=g(x+ct)\\
+&=\frac{3g(x+ct)-g(x-ct)}2-\int_0^th(x+c(t-2s))\,ds
+\end{align*}
+
+
+
+\clearpage
+\subsection{Burgers' equation}
+
+Consider the inviscid Burgers' equation
+\[u_t+uu_x=0.\]
+\begin{cond}
+\item Suppose $u(0,x)=\tanh(x)$. For what values of $t>0$ does the solution of the quasi-linear PDE remain smooth and single valued? Given an approximation sketch of the characteristics in the $tx$-plane.
+\item Suppose $u(0,x)=-\tanh(x)$. For what values of $t>0$ does the solution of the quasilinear PDE remain smooth and single valued? Given an approximation sketch of the characteristics in the $tx$-plane.
+\item Suppose
+\[u(0,x)=\begin{cases}0,&x<0\\x,&0\le x<1,\\1,&1\le x\end{cases}.\]
+Sketch the characteristics. Solve the Cauchy problem. Hint: solve the problem in each region separately and ``paste'' the solution together.
+\end{cond}
+
+
+
+
+
+
+
+
+
+
+
+
+
+\section{Statements in functional analysis and general topology}
+Function analysis:
+\begin{itemize}
+\item Suppose a densely defined operator $T$ induces a Hilbert space structure on its domain. If the inclusion is bounded, then $T$ has the bounded inverse. If the inclusion is compact, then $T$ has the compact inverse.
+\item A closed subspace of an incomplete inner product space may not have orthogonal complement: setting $L^2$ inner product on $C([0,1])$, define $\phi(f)=\int_0^{\frac12}f$.
+\item Every seperable Banach space is linearly isomorphic and homeomorphic. But there are two non-isomorphic Banach spaces.
+\item open mapping theorem -> continuous embedding is really an embedding.
+\item $D(\Omega)$ is defined by a \emph{countable stict} inductive limit of $D_K(\Omega)$, $K\subset\Omega$ compact. Hence it is not metrizable by the Baire category theorem. (Here strict means that whenever $\alpha<\beta$ the induced topology by $\cT_\beta$ coincides with $\cT_\alpha$)
+\item A net $(\phi_d)_d$ in $D(\Omega)$ converges if and only if there is a compact $K$ such that $\phi_d\in D_K(\Omega)$ for all $d$ and $\phi_d$ converges uniformly.
+\item Th integration with a locally integrable function is a distribution. This kind of distribution is called \emph{regular}. The nonregular distribution such as $\delta$ is called \emph{singular}.
+\item $D'$ is equipped with the weak$^*$ topology.
+\item $\pd{x}\colon D'\to D'$ is continuous. They commute (Schwarz theorem holds).
+\item $D\to S\to L^p$ are continuous (immersion) but not imply closed subspaces (embedding).
+\end{itemize}
+General topology:
+\begin{itemize}
+\item $H\subset\C$ and $H\subset\hat\C$ have distinct Cauchy structures which give a same topology. In addition, the latter is precompact while the former is not.
+\end{itemize}
+
+
+
+
+
+
+
+
+\section{Analysis problems}
+
+\begin{prb}
+The following series diverges: \[\sum_{n=1}^\infty\frac1{n^{1+|\sin n|}}.\]
+\end{prb}
+\begin{sol}
+Let $A_k:=[1,2^k]\cap\{x:|\sin x|<\frac1k\}$.
+Divide the unit circle $\R/2\pi\Z$ by $7k$ uniform arcs.
+There are at least $2^k/7k$ integers that are not exceed $2^k$ and are in a same arc.
+Let $S$ be the integers and $x_0$ be the smallest element.
+Since, $|x-x_0|\pmod{2\pi}<\frac{2\pi}{7k}$ for $x\in S$,
+\[|\sin(x-x_0)|<|x-x_0|\pmod{2\pi}<\frac{2\pi}{7k}<\frac1k.\]
+Also, $1\le x-x_0\le x\le2^k$, $x-x_0\in A_k$.
+\[|A_k|\ge\frac{2^k}{7k}.\]
+Therefore,
+\begin{align*}
+\sum_{n=1}^\infty\frac1{n^{1+|\sin n|}}
+&\ge\sum_{n\in A_N}\frac1{n^{1+|\sin n|}}\\
+&\ge\sum_{k=1}^N(|A_k|-|A_{k-1}|)\frac1{2^{k+1}}\\
+&=\sum_{k=1}^N\frac{|A_k|}{2^{k+1}}-\sum_{k=1}^{N-1}\frac{|A_k|}{2^{k+2}}\\
+&=\frac{|A_N|}{2^{N+1}}+\sum_{k=1}^{N-1}\frac{|A_k|}{2^{k+2}}\\
+&>\sum_{k=1}^N\frac{2^k}{2^{k+2}}\frac1{7k}\\
+&=\frac1{28}\sum_{k=1}^N\frac1k\\
+&\to\infty.
+\end{align*}
+\end{sol}
+
+\clearpage
+\begin{prb}
+If $|xf'(x)|\le M$ and $\frac1x\int_0^xf(y)\,dy\to L$, then $f(x)\to L$ as $x\to\infty$.
+\end{prb}
+\begin{sol}
+Since
+\begin{align*}
+\abs{f(x)-\frac{F(x)-F(a)}{x-a}}
+&\le\frac1{x-a}\int_a^x|f(x)-f(y)|\,dy\\
+&=\frac1{x-a}\int_a^x(x-y)|f'(c)|\,dy\\
+&\le\frac M{x-a}\int_a^x\frac{x-y}c\,dy\\
+&\le M\frac{x-a}a
+\end{align*}
+by the mean value theorem and 
+\[f(x)-L=\left[f(x)-\frac{F(x)-F(a)}{x-a}\right]+\frac x{x-a}\left[\frac{F(x)}x-L\right]+\frac a{x-a}\left[\frac{F(a)}a-L\right],\]
+we have for any $\e>0$
+\[\limsup_{x\to\infty}|f(x)-L|\le\e\]
+where $a$ is defined by $\frac{x-a}a=\frac\e M$.
+\end{sol}
+
+\clearpage
+\begin{prb}
+Let $f_n:I\to I$ be a sequence of real functions that satisfies $|f_n(x)-f_n(y)|\le|x-y|$ whenever $|x-y|\ge\frac1n$, where $I=[0,1]$.
+Then, it has a uniformly convergent subsequence.
+\end{prb}
+\begin{sol}
+By the Bolzano-Weierstrass theorem and the diagonal argument for subsequence extraction, we may assume that $f_n$ converges to a function $f:\Q\cap I\to I$ pointwisely.
+
+\Step[1]
+For $n\ge4$, we claim
+\begin{align}|x-y|\le\frac1n\impl|f_n(x)-f_n(y)|\le\frac5n.\end{align}
+Fix $x\in I$ and take $z\in I$ such that $|x-z|=\frac2n$ so that
+\[|f_n(x)-f_n(z)|\le|x-z|=\frac2n.\]
+If $y$ satisfies $|x-y|\le\frac1n$, then we have $|y-z|\ge|x-z|-|x-y|\ge\frac1n$, so we get
+\[|f_n(y)-f_n(z)|\le|y-z|\le|y-x|+|x-z|\le\frac3n.\]
+Combining these two inequalities proves what we want.
+
+\Step[2]
+For $\e>0$ and $N:=\ceil{\frac{15}\e}$ we claim
+\begin{align}|x-y|\le\frac1N\quad\text{and}\quad n>N\impl|f_n(x)-f_n(y)|\le\frac\e3\end{align}
+when $N\ge4$.
+It is allowed for $|x-y|$ to have the following two cases:
+\[|x-y|\le\frac1n\quad\text{or}\quad\frac1n<|x-y|\le\frac1N.\]
+For the former case, by the inequality (1) we have
+\[|f_n(x)-f_n(y)|\le\frac5n<\frac5N\le\frac\e3.\]
+For the latter case, by the assumption at the beginning of the problem, we have
+\[|f_n(x)-f_n(y)|\le|x-y|\le\frac1N\le\frac\e{15}.\]
+Hence the claim is proved.
+
+\Step[3]
+We will prove $f$ is uniformly continuous.
+For $\e>0$, take $\delta:=\frac1N$, where $N:=\ceil{\frac{15}\e}$.
+We will show
+\[|x-y|<\delta\impl|f(x)-f(y)|<\e\]
+for $x,y\in\Q\cap I$ and $N\ge4$.
+Fix rational numbers $x$ and $y$ in $I$ which satisfy $|x-y|<\delta$.
+Since $f_n(x)$ and $f_n(y)$ converges to $f(x)$ and $f(y)$ respectively, we may take an integer $n_x$ and $n_y$, such that
+\begin{align}n>n_x\impl |f_n(x)-f(x)|<\frac\e3\end{align}
+and
+\begin{align}n>n_y\impl |f_n(y)-f(y)|<\frac\e3.\end{align}
+Choose an integer $n$ such that $n>\max\{n_x,n_y,N\}$.
+Then, combining (3), (2), and (4), we obtain
+\begin{align*}
+|f(x)-f(y)|&\le|f(x)-f_n(x)|+|f_n(x)-f_n(y)|+|f_n(y)-f(y)|\\
+&<\frac\e3+\frac\e3+\frac\e3=\e.
+\end{align*}
+
+Since $f$ is continuous on a dense subset $\Q\cap I$, it has a unique continuous extension on the whole $I$.
+Let it denoted by the same notation $f$.
+
+\Step[4]
+Finally, we are going to show $f_n\to f$ uniformly.
+For $\e>0$, let $N:=\ceil{\frac{15}\e}$.
+The uniform continuity of $f$ allows to have $\delta>0$ such that
+\begin{align}|x-y|<\delta\impl|f(x)-f(y)|<\frac23\e.\end{align}
+Take a rational $r\in I$, depending on $x\in I$, such that $|x-r|<\min\{\frac1N,\delta\}$.
+Then, by (2) and (5), given $n>N\ge4$, we have an inequality
+\begin{align*}
+|f_n(x)-f(x)|&\le|f_n(x)-f_n(r)|+|f_n(r)-f(r)|+|f(r)-f(x)|\\
+&<\frac\e3+|f_n(r)-f(r)|+\frac23\e
+\end{align*}
+for any $x\in I$.
+By limiting $n\to\oo$, we obtain
+\[\lim_{n\to\oo}|f_n(x)-f(x)|<\e.\]
+Since $\e$ and $x$ are arbitrary, we can deduce the uniform convergence of $f_n$ as $n\to\oo$.
+\end{sol}
+
+
+\clearpage
+\begin{prb}
+A measurable subset of $\R$ with positive measure contains an arbitrarily long subsequence of an arithmetic progression. (made by me!)
+\end{prb}
+\begin{sol}
+Let $E\subset\R$ be measurable with $\mu(E)>0$. We may assume $E$ is bounded so that we have $E\subset I$ for a closed bounded interval since $\R$ is $\sigma$-compact.
+Let $n$ be a positive integer arbitrarily taken. Then, we can find $N$ such that $\sum_{k=1}^N\frac1k>(n-1)\frac{\mu(I)}{\mu(E)}$.
+
+Assume that every point $x$ in $E$ is contained in at most $n-1$ sets among
+\[E,\ \frac12E,\ \frac13E,\ \cdots,\ \frac1NE.\]
+In other words, it is equivalent to:
+\[\bigcap_{k\in A}\frac1kE=\mt\]
+for any subset $A\subset\{1,\cdots,N\}$ with $|A|\ge n$.
+Define
+\[E_A:=\bigcap_{k\in A}\frac1kE\cap\bigcap_{k'\in A}\left(\frac1{k'}E\right)^c\]
+for $A\subset\{1,\cdots,N\}$.
+Then, $\mu(E_A)=0$ for $|A|\ge n$.
+
+Note that we have
+\[\mu(\tfrac1kE)=\sum_{k\in A}\mu(E_A)=\sum_{\substack{k\in A\\|A|<n}}\mu(E_A).\]
+Summing up, we get
+\[\sum_{k=1}^N\mu(\tfrac1kE)=\sum_{k=1}^N\sum_{\substack{k\in A\\|A|<n}}\mu(E_A)=\sum_{|A|<n}|A|\mu(E_A)\]
+by double counting,
+and since $E_A$ are dijoint, we have
+\[\sum_{|A|<n}|A|\mu(E_A)=(n-1)\sum_{0<|A|<n}\mu(E_A)\le(n-1)\mu(I),\]
+hence a contradiction to
+\[\sum_{k=1}^N\mu(\tfrac1kE)>(n-1)\mu(I).\]
+Therefore, we may find an element $x$ that belongs to $\frac1kE$ for $k\in A$, where $A\subset\{1,\cdots,N\}$ with $|A|=n$.
+Then, $ax\in E$ for all $a\in A\subset\Z$.
+
+\end{sol}
+
+
+
+
+
+
+\end{document}

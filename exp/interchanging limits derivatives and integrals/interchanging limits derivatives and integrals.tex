@@ -7,10 +7,12 @@
 \maketitle
 
 \section{Limit and derivative}
-
+\begin{thm}
 $f_n$ pointwisely, $Df_n$ uniformly
-
-
+\end{thm}
+\begin{cor}
+If $f_n\to f$ in $C^1$, then $Df_n\to Df$.
+\end{cor}
 
 
 
@@ -22,13 +24,10 @@ We want to find a criterion for
 This question asks the convergence
 \[f_n\to f\quad\text{in}\quad L^1.\]
 
-\begin{thm}[Lebesgue dominated convergence theorem]
-Let $\{f_\alpha\}_\alpha$ be a net of measurable functions $(X,\mu)\to\R$.
-Define a maximal function
-\[Mf(x)=\sup_\alpha|f_\alpha(x)|.\]
-
-If $\|Mf\|_1<\oo$, then
-\[\lim_\alpha|f_\alpha(x)-f(x)|=0\quad a.e.\impl\lim_\alpha\|f_\alpha-f\|_{L^1}=0.\]
+For a sequence of measurable functions $f_n:(X,\mu)\to\R$, define the maximal function
+\[Mf(x):=\sup_n|f_n(x)|.\]
+\begin{thm}[LDCT]
+If $\|Mf\|_{L^1}<\oo$ and $f_n\to f$ a.e., then $f_n\to f$ in $L^1$.
 \end{thm}
 
 continuity application
@@ -38,61 +37,50 @@ continuity application
 
 
 
-
-
-\section{Derivative and integral}
-
 \begin{thm}[Scheffe]
 Let $\{f_n\}_n$ be a sequence of nonnegative functions in $L^1$.
 Suppose it converges to $f$ pointwisely.
 Then,
-\[\lim_{n\to\oo}\|f_n\|_1=\|f\|_1\iff\lim_{n\to\oo}\|f_n-f\|_1=0.\]
+\[\lim_{n\to\oo}\|f_n\|_1=\|f\|_1\impl\lim_{n\to\oo}\|f_n-f\|_1=0.\]
 \end{thm}
 
+
+
+\section{Derivative and integral}
+
 Define the Newton quotient as
-\[D_hf(t,x):=\frac{f(t+h,x)-f(t,x)}h\]
-for $h\ne0$.
-We mainly recognize $D_h$ as an operator that maps $f(0,x)$ to a function of $x$.
+\[D_kf(t,x):=\frac{f(t+k,x)-f(t,x)}k\]
+for $k\ne0$.
+We mainly recognize $D_k$ as an operator that maps $f(0,x)$ to a function of $x$.
 Then, we can say that the partial derivative $\pd_tf(0,x)$ is well-defined a.e. $x$ if and only if
-\[\lim_{h\to0}D_hf(0,x)=\pd_tf(0,x)\qquad\text{a.e. }x.\]
+\[\lim_{k\to0}D_kf(0,x)=\pd_tf(0,x)\qquad\text{a.e. }x.\]
 
 We may ask about conditions for the following to hold:
-\[\lim_{h\to0}D_hf(0,x)=\pd_tf(0,x)\qquad\text{in }L_x^1(X).\]
+\[\lim_{h\to0}D_kf(0,x)=\pd_tf(0,x)\qquad\text{in }L_x^1(X).\]
 This question naturally arise because it implies the commutability
 \[\dd{t}\int f(t,x)\,dx=\int\pd{t}f(t,x)\,dx\]
 at $t=0$.
 As necessary conditions to formalize the statement, we must basically assume that $f(t,x)\in L_x^1$ for $|t|<\e$, and $\pd_tf(0,x)\in L_x^1$.
 Above this, if we give a stronger condition $\esssup_{|t|<\e}|\pd_tf(t,x)|\in L_x^1$ than $\pd_tf(0,x)\in L_x^1$, then the $L_x^1$ convergence is obtained.
+
+
 \begin{thm}[Leibniz rule]
 Let $f:(-\e,\e)\times X\to\R$ be a curve of integrable functions such that $f(t,x)$ is absolutely continuous in $t$ for a.e. $x$.
-If
-\[\esssup_{|t|<\e}|\pd_tf(t,x)|\]
-is in $L_x^1$, then
-\[\lim_{h\to0}D_hf(0,x)=\pd_tf(0,x)\qquad\text{in }L_x^1(X).\]
+If $\pd_tf\in L_x^1(L_t^\infty)$, then $D_kf(0,x)\to\pd_tf(0,x)$ in $L_x^1$.
 \end{thm}
 \begin{pf}
 Our strategy is to apply the Lebesgue dominated convergence theorem.
-The pointwise convergence (in a.e. sense) is satisfied due to the absolute continuity.
+In order to do this, we should control $D_kf(0,x)$ uniformly on $k$.
 
-Define the maximal function
-\[Mf(x):=\sup_{|h|<\e}|D_hf(0,x)|.\]
 The fundamental theorem of calculus for absolute continuous functions implies
-\[D_hf(0,x)=\frac{f(h,x)-f(0,x)}h=\frac1h\int_0^h\pd_tf(t,x)\,dt,\]
+\[D_kf(0,x)=\frac1k\int_0^k\pd_tf(t,x)\,dt,\]
 so we have
-\begin{align*}
-|D_hf(0,x)|&\le\frac1h\int_0^h|\pd_tf(t,x)|\,dt\\
-&\le\esssup_{|t|\le|h|}|\pd_tf(t,x)|\left[\frac1h\int_0^h\,dt\right]\\
-&\le\esssup_{|t|<\e}|\pd_tf(t,x)|.
-\end{align*}
-Since the right hand side is constant with respect to $h$, we can deduce that $Mf$ is in $L_x^1$.
+\[|D_kf(0,x)|\le\frac1k\int_0^k|\pd_tf(t,x)|\,dt\le\|\pd_tf(t,x)\|_{L_t^\infty}.\]
+Since the right hand side does not depend on $k$, the main condition for LDCT is satisfied.
+
+The pointwise convergence (in a.e. sense) is satisfied due to the absolute continuity.
 By the Lebesgue dominated convergence theorem, we get the desired result.
 \end{pf}
-\begin{rmk}
-If $f$ is assumed to be differentiable everywhere on $t\in(-\e,\e)$, then we may use the mean value theorem to prove the theorem instead of the fundamental theorem of calculus:
-we directly get
-\[|D_hf(0,x)|\le\sup_{|t|<\e}|\pd_tf(t,x)|.\]
-If $f$ is assumed to be continuously differentiable on $t\in(-\e,\e)$, then 
-\end{rmk}
 
 
 

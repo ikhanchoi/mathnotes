@@ -8,12 +8,14 @@
 
 \begin{document}
 \maketitle
+\tableofcontents
 
-\section{Coordinates and parametrizations}
+\section{Parametrizations and Coordinates}
+\subsection{Parametrizations}
 \begin{defn}
-An \emph{$m$-dimensional parametrization} is a smooth map $U\to\R^n$ such that
+An \emph{$m$-dimensional parametrization} is a smooth map $\a:U\to\R^n$ such that
 \begin{cond}
-\item $U\subset\R^m$ is open and connected,
+\item $U\subset\R^m$ is open,
 \item $\a$ is one-to-one (optional),
 \item $d\a$ is nondegenerate; $\{\pd_i\a\}_{i=1}^m$ is linearly independent.
 \end{cond}
@@ -21,13 +23,26 @@ An \emph{$m$-dimensional parametrization} is a smooth map $U\to\R^n$ such that
 The third condition is important; in language of manifolds, the third condition defines what we call \emph{immersed submanifolds}.
 We will see that the second condition is not important at all.
 
+For each text on classical differential geometry, the definitions of regular curves and surfaces frequently vary.
+In this note, we define as follows.
 \begin{defn}
-A \emph{regular curve} is a subset of $\R^n$ that is the image of a one-dimensional parametrization.
+A \emph{regular curve} is a subset of $\R^n$ that can be given as the image of a one-dimensional parametrization.
+A \emph{regular surface} is a subset of $\R^n$ that can be given as the image of a two-dimensional parametrization.
 \end{defn}
+With this definition, the regular surface is not appropriate to deal with the global nature of, for example, spheres or tori.
+
+Reparametrization is just a choice of another parametrization for the same curve or surface.
+
+
+
+\subsection{Coordinates}
 \begin{defn}
-A \emph{regular surface} is a subset of $\R^n$ that is the image of a two-dimensional parametrization.
+Let $M\subset\R^3$ be a regular curve or a regular surface.
+The inverse $\f:M\to U$ of a parametrization is called a \emph{coordinate map}.
 \end{defn}
 
+
+The choice of coordinate(parametrization) is extremely important in differential geometry.
 
 
 
@@ -50,7 +65,6 @@ Then, by the chain rule,
 
 \subsection{Frenet-Serret theory}
 
-\subsubsection{Theory}
 \begin{defn}
 We say a curve parametrized as $\a:I\to\R^3$ is \emph{degenerate} if the normalized tangent vector $\a'/\|\a'\|$ is never locally constant everywhere.
 In other words, $\a$ is nowhere straight.
@@ -116,7 +130,8 @@ If we let $s=\|\a'\|$, then
 Now the formulas are easily derived.
 \end{pf}
 
-\subsubsection{Problems}
+
+\subsection{Problems}
 
 Let $\a$ be a nondegenerate unit speed space curve, and let $\{\bT,\bN,\bB\}$ be the Frenet-Serret frame for $\a$.
 Consider a diagram as follows:
@@ -133,7 +148,8 @@ since we have known $\<\a',\bT\>$ but not $\<\a,\bN\>$, and further
 \[\<\a(t),\bB(t)\>=\frac{\left(\frac{f'(t)-1}{\kappa(t)}\right)'+\kappa(t)f(t)}{\tau(t)}\]
 since we have known $\<\a,\bT\>$ and $\<\a',\bN\>$ but not $\<\a,\bB\>$.
 Thus, $\<\a,\bT\>=f$ implies
-\[\a(t)=f(t)\cdot\bT+\frac{f'(t)-1}{\kappa(t)}\cdot\bN+\frac{\left(\frac{f'(t)-1}{\kappa(t)}\right)'+\kappa(t)f(t)}{\tau(t)}\cdot\bB.\]
+\[\a(t)=f(t)\cdot\bT+\frac{f'(t)-1}{\kappa(t)}\cdot\bN+\frac{\left(\frac{f'(t)-1}{\kappa(t)}\right)'+\kappa(t)f(t)}{\tau(t)}\cdot\bB,\]
+when given $\tau(t)\ne0$.
 
 Suggested a strategy for space curve problems:
 \begin{itemize}
@@ -142,7 +158,104 @@ Suggested a strategy for space curve problems:
 \item Aim for finding the coefficients of the position vector in the Frenet-Serret frame, and obtain relations of $\kappa$ and $\tau$ by comparing with assumptions.
 \item Heuristically find a constant vector and show what you want directly.
 \end{itemize}
+Here we give an example solution of several problems.
+Always $\a$ denote a reparametrized unit speed curve.
 
+\begin{ex}
+A space curve whose normal lines always pass through a fixed point lies in a circle.
+\end{ex}
+\begin{pf}
+\Step{1}[Formulate conditions]
+By the assumption, there is a constant point $p\in\R^3$ such that the vectors $\a-p$ and $\bN$ are parallel so that we have
+\[\<\a-p,\bT\>=0,\qquad\<\a-p,\bB\>=0.\]
+Our goal is to show that $\|\a-p\|$ is constant and there is a constant vector $v$ such that $\<\a-p,v\>=0$.
+
+\Step{2}[Collect information]
+Differentiate $\<\a-p,\bT\>=0$ to get
+\[\<\a-p,\bN\>=-\frac1\kappa.\]
+%\[\<\a-p,\bN\>=\frac1\kappa\<\a-p,\bT'\>=\frac1\kappa(\<\a-p,\bT\>'-\<\a',\bT\>)=-\frac1\kappa.\]
+Differentiate $\<\a-p,\bB\>=0$ to get
+\[\tau=0.\]
+
+\Step{3}[Complete proof]
+We can deduce that $\|\a-p\|$ is constant from
+\[(\|\a-p\|^2)'=\<\a-p,\a-p\>'=2\<\a-p,\bT\>=0.\]
+Also, if we heuristically define a vector $v:=\bB$, then $v$ is constant since
+\[v'=-\tau\bN=0,\]
+and clearly $\<\a-p,v\>=0$
+\end{pf}
+
+
+\begin{ex}
+A sphere curve of constant curvature lies in a circle.
+\end{ex}
+\begin{pf}
+\Step{1}[Formulate conditions]
+The condition that $\a$ lies on a sphere can be given as follows: for a constant point $p\in\R^3$,
+\[\|\a-p\|=\const.\]
+Also we have
+\[\kappa=\const.\]
+
+\Step{2}[Collect information]
+Differentiate $\|\a-p\|^2=\const$ to get
+\[\<\a-p,\bT\>=0.\]
+Differentiate $\<\a-p,\bT\>=0$ to get
+\[\<\a-p,\bN\>=-\frac1\kappa.\]
+Differentiate $\<\a-p,\bN\>=-1/\kappa=\const$ to get
+\[\tau\<\a-p,\bB\>=0.\]
+
+There are two ways to show that $\tau=0$.
+
+\emph{Method 1}:
+Assume that there is $t$ such that $\tau(t)\ne0$.
+By the continuity of $\tau$, we can deduce that $\tau$ is locally nonvanishing.
+In other words, we have $\<\a-p,\bB\>=0$ on an open interval containing $t$.
+Differentiate $\<\a-p,\bB\>=0$ at $t$ to get $\<\a-p,\bN\>=0$ near $t$, which is a contradiction.
+Therefore, $\tau=0$ everywhere.
+
+\emph{Method 2}:
+Since $\<\a-p,\bB\>$ is continuous and
+\[\<\a-p,\bB\>=\pm\sqrt{\|\a-p\|^2-\<\a-p,\bT\>^2-\<\a-p,\bN\>^2}=\pm\const,\]
+we get $\<\a-p,\bB\>=\const$.
+Differentiate to get $\tau\<\a-p,\bN\>=0$.
+Finally we can deduce $\tau=0$ since $\<\a-p,\bN\>\ne0$.
+
+\Step{3}[Complete proof]
+The zero torsion implies that the curve lies on a plane.
+A planar curve in a sphere is a circle.
+\end{pf}
+
+\begin{ex}
+A curve such that $\tau/\kappa=(\kappa'/\tau\kappa^2)'$ lies on a sphere.
+\end{ex}
+\begin{pf}
+\Step{1}[Find center heuristically]
+If we assume that $\a$ is on a sphere so that we have $\|\a-p\|=r$ for constants $p\in\R^3$ and $\r>0$, then by the routine differentiations give
+\[\<\a-p,\bT\>=0,\qquad\<\a-p,\bN\>=-\frac1\kappa,\qquad\<\a-p,\bB\>=-\left(\frac1\kappa\right)'\frac1\tau,\]
+that is,
+\[\a-p=-\frac1\kappa\bN-\left(\frac1\kappa\right)'\frac1\tau\bB.\]
+
+\Step{2}[Complete proof]
+Let us get started the proof.
+Define
+\[p:=\a+\frac1\kappa\bN+\left(\frac1\kappa\right)'\frac1\tau\bB.\]
+We can show that it is constant by differentiation.
+Also we can show that
+\[\<\a-p,\a-p\>\]
+is constant by differentiation.
+So we are done.
+\end{pf}
+
+\begin{ex}
+A curve with more than one Bertrand mates is a circular helix.
+\end{ex}
+\begin{pf}
+\Step{1}[Formulate conditions]
+\Step{2}[Collect information]
+\Step{3}[Complete proof]
+\end{pf}
+
+Here are representative problem sets.
 \begin{ex}[Plane curves]
 Let $\a$ be a nondegenerate curve in $\R^3$.
 TFAE:
@@ -152,7 +265,6 @@ TFAE:
 \item the osculating plane constains a fixed point.
 \end{cond}
 \end{ex}
-
 
 \begin{ex}[Helices]
 Let $\a$ be a nondegenerate curve in $\R^3$.
@@ -183,44 +295,6 @@ TFAE:
 \item there are two constants $\lambda\ne0,\mu$ such that $1/\lambda=\kappa+\mu\tau$.
 \end{cond}
 \end{ex}
-
-
-\subsection{Example problems}
-Here we give an example solution of several problems.
-
-\begin{ex}
-A space curve whose normal lines always pass through a fixed point lies in a circle.
-\end{ex}
-\begin{pf}
-\Step{1}[Formulate conditions]
-Reparametrize $\a$ to become a unit speed curve.
-By the assumption, there is a constant point $p\in\R^3$ such that the vectors $\a-p$ and $\bN$ are parallel so that we have
-\[\<\a-p,\bT\>=0,\qquad\<\a-p,\bB\>=0.\]
-Our goal is to show that $\|\a-p\|$ is constant and there is a constant vector $v$ such that $\<\a-p,v\>=0$.
-
-\Step{2}[Collect information]
-Differentiate $\<\a-p,\bT\>=0$ to get
-\[\<\a-p,\bN\>=-\frac1\kappa.\]
-%\[\<\a-p,\bN\>=\frac1\kappa\<\a-p,\bT'\>=\frac1\kappa(\<\a-p,\bT\>'-\<\a',\bT\>)=-\frac1\kappa.\]
-Differentiate $\<\a-p,\bB\>=0$ to get
-\[\tau=0.\]
-
-\Step{3}[Complete proof]
-We can deduce that $\|\a-p\|$ is constant from
-\[(\|\a-p\|^2)'=\<\a-p,\a-p\>'=2\<\a-p,\bT\>=0.\]
-Also, if we heuristically define a vector $v:=\bB$, then $v$ is constant since
-\[v'=-\tau\bN=0,\]
-and clearly $\<\a-p,v\>=0$
-\end{pf}
-
-
-\begin{ex}
-A sphere curve of constant curvature lies in a circle.
-\end{ex}
-\begin{ex}
-A curve is a circular helix iff it has more than one Bertrand mates.
-\end{ex}
-
 
 
 
