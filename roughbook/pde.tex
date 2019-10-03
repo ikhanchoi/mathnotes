@@ -22,7 +22,7 @@ for $\f\in C_c^\infty(\R_v^n)$,
 \begin{pf}
 Let $m(t,x)=\int u\f\,dv$.
 By Fourier transform with respect to $t$ and $x$, we have
-\[\hat u(\tau,\xi,v)=i\,\frac{\hat{Tu}(\tau,\xi,v)}{\tau+v\cdot\xi}\]
+\[\hat u(\tau,\xi,v)=\frac1i\,\frac{\hat{Tu}(\tau,\xi,v)}{\tau+v\cdot\xi}\]
 and
 \[\hat m(\tau,\xi)=\int\hat u(\tau,\xi,v)\f(v)\,dv.\]
 Fixing $\tau,\xi$, decompose the integral and use H\"older's inequality to get
@@ -255,8 +255,45 @@ Sketch the characteristics. Solve the Cauchy problem. Hint: solve the problem in
 \end{cond}
 
 
+\section{Weak convergences}
 
 
+
+\section{Fixed point methods}
+
+\subsection{Picard-Lindel\"of theorem}
+\begin{thm}
+Consider the following initial value problem:
+\[x'=f(t,x),\qquad x(0)=x_0,\]
+where
+\[f(-,x)\in C([0,T]),\qquad f(t,-)\in\Lip(\cl{B(x_0,R)}).\]
+If $T$ and $R$ satisfy
+\begin{cond}
+\item $TK<1$,
+\item $TM\le R$,
+\item $|f(t,x)|\le M$ on $[0,T]\times\cl{B(x_0,R)}$,
+\end{cond}
+then the equation has a unique solution on $[-T,T]$.
+\end{thm}
+\begin{pf}
+Define $\f:C([0,T],\cl{B(x_0,R)})\to C([0,T],\cl{B(x_0,R)})$ as:
+\[\f(x)(t):=x_0+\int_0^tf(s,x(s))\,ds.\]
+It is well-defined since
+\begin{align*}
+|\f(x)(t)-x_0|&\le\int_0^t|f(s,x(s))|\,ds\\
+&\le TM\le R.
+\end{align*}
+It is a contraction since we have
+\begin{align*}
+|\f(x)(t)-\f(y)(t)|
+&\le\int_0^t|f(s,x(s))-f(s,y(s))|\,ds\\
+&\le\int_0^tK|x(s)-y(s)|\,ds\\
+&\le TK\|x(s)-y(s)\|
+\end{align*}
+so that
+\[\|\f(x)-\f(y)\|\le TK\|x-y\|\]
+\end{pf}
+The above one looses the Lipschitz condition to local condition.
 
 
 
@@ -436,11 +473,28 @@ hence a contradiction to
 \[\sum_{k=1}^N\mu(\tfrac1kE)>(n-1)\mu(I).\]
 Therefore, we may find an element $x$ that belongs to $\frac1kE$ for $k\in A$, where $A\subset\{1,\cdots,N\}$ with $|A|=n$.
 Then, $ax\in E$ for all $a\in A\subset\Z$.
-
 \end{sol}
 
 
-
+\section{Physics problem}
+\subsection{Resonance}
+Let $m,b,k,A,\omega_d$ be positive real constants.
+Consider an underdamped oscillator with sinusoidal diving force described as
+\[mx''+bx'+kx=A\sin\omega_dt,\quad x(0)=x_0,\ x'(0)=0.\]
+There are some observations:
+\begin{cond}
+\item The underdamping condition means $b^2-4mk<0$ so that the roots of characteristic equation are imaginary.
+\item The positivity of $m,b$ implies the real part of solution that will be denoted by $-\beta=-\frac b{2m}$ is negative; it shows exponential decay of solutions.
+\item Introducing the natural frequency $\omega_n=\sqrt{k/m}$, we can rewrite the equation as
+\[x''+2\zeta\omega_n x'+\omega_n^2x=A\sin\omega t.\]
+\item The complementary solution is computed as
+\[x_c(t)=x_0\ e^{-\beta t}\cos\sqrt{\beta^2-\omega_n^2}t,\]
+and it can be verified that this solution is asymptotically stable, i.e.
+\[\lim_{t\to\infty}x_c(t)=0.\]
+\item The condition $\beta>\omega_n$ is equivalent to that the oscillator is underdamped.
+\item Let $m,k$ be fixed. Then, the solution $x_c$ decays most fastly when $b$ satisfied $b^2=4mk$, equivalently, $\beta=\omega_n$.
+\item When $\omega_d=\omega_n$ such that the amplitude of particular solution diverges.
+\end{cond}
 
 
 

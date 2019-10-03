@@ -9,12 +9,20 @@
 - curvature of ellipsoid
 
 ## Note
-- galois theory
-- C* -algebras
-- floer homology
-- hilbert nullstellensatz
+- wrong proof, spectra, dispersion 처리하기
+- smooth manifolds 없애고 multivariable calculus와 de rham theory 강화하기
 
-- arzela-ascoli와 wrong proof를 uniform space 노트로 합치기
+Topics:
+- Analysis
+	- Distribution theory
+	- Calderon-Zygmund theory
+	- Kinetic theory
+- Algebra
+	- Hilbert nullstellensatz
+- Geometry
+	- De Rham theory
+	- Morse theory and Floer homology
+	- Connection theory
 
 ## Jekyll
 - macro

@@ -33,11 +33,9 @@ It is same for this note.
 
 In this notes, we use some conventions:
 \begin{cond}
-\item Every function is sufficiently differentiable so that all definitions are peaceful,
-\item $I$ is either an open interval containing 0 or the closed interval $[0,1]$.
+\item every function is sufficiently differentiable so that all definitions are peaceful,
+\item a symbol $I$ denotes either an open interval containing 0 or the closed interval $[0,1]$.
 \end{cond}
-
-
 
 
 \section{Vector fields}
@@ -102,23 +100,6 @@ Every tangent space $T_pM$ is a linear subspace of $\R^3$.
 \end{prop}
 
 
-\subsection{Tangent vectors as derivations}
-
-\begin{defn}
-Let $f:M\to\R$ and $X_p\in T_pM$.
-We can view $X_p$ as a function 
-$X_p:C^\oo(\R^3)\to\R$ as follows:
-\[X_pf:=\evalat{\dd{t}f\o\gamma}{t=0}\]
-for some a curve $\gamma:I\to M$ satisfying $\gamma'(0)=X_p$.
-\end{defn}
-\begin{prop}
-The function $X_p:C^\oo(\R^3)\to\R$ is well defined, i.e. the value of $X_pf$ is independent of choice of the curve $\gamma$.
-\end{prop}
-
-\begin{defn}[Derivation]
-Let 
-\end{defn}
-
 
 
 partial derivatives
@@ -173,7 +154,6 @@ A scalar field is just a function.
 
 
 
-
 \section{Inner product}
 \subsection{Musical isomorphisms}
 \subsection{Hodge dual}
@@ -194,7 +174,10 @@ A scalar field is just a function.
 
 
 \section{Stokes' theorem}
-\subsection{Chains}
+\subsection{Boundary}
+
+
+
 
 
 
@@ -207,3 +190,35 @@ vector spaces -> frechet, gateaux
 
 
 \end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\subsection{Inverse function theorem}
+
+\begin{pf}[1]
+Take $y$.
+We must first define $x$ such that $f(x)=y$.
+Let
+\[\f_y(x)=x+df_p^{-1}(y-f(x)).\]
+Note that $f(x)=y$ if and only if $x$ is a fixed point of $\f_y$.
+
+Since $df$ is continuous, there is an open ball $U$ such that
+\[\|df(x)-df(p)\|<\frac1{2\|df(p)^{-1}\|}.\]
+For $x\in U$,
+\[d\f_y(x)=\id-df_p^{-1}df_x\]
+\end{pf}

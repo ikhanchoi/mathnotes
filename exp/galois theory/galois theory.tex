@@ -519,7 +519,7 @@ F\ar{r}{\phi}&F'
 \begin{pf}
 Let $S$ be the set of all field homomorphisms $K\to\cl F'$ which extends $\phi$ and satisfies $K<E$.
 The set $S$ is nonempty since $\phi\in S$ and satisfies the chain condition since the increasing union defines the upper bound of chain.
-Use the Zorn's lemma on $S$ to obtain a maximal element $\tld\phi:K\to\cl F'$.
+Use the Zorn lemma on $S$ to obtain a maximal element $\tld\phi:K\to\cl F'$.
 We want to show $K=E$.
 
 Suppose $K$ is a proper subfield of $E$ and let $\alpha\in E\setminus K$.
@@ -557,7 +557,7 @@ If $f\in F[x]$, then $\alpha=x_f+\fm\in K_1$ satisfies $f(\alpha)=f(x_f)+\fm=\fm
 
 Construct a sequence $\{K_n\}_n$ of fields inductively such that every nonconstant $k\in K_n[x]$ has a root in $K_{n+1}$.
 Define $K:=\lim_{\to}K_n$ as the inductive limit.
-It is in other word just the union of $K_n$ for all $n\in\N$.
+It is in other word just the directed union of $K_n$ through all $n\in\N$.
 Then, $K$ is easily checked to be algebraically closed.
 
 \Step{2}[Construct the algebraic closure of $F$]
@@ -606,7 +606,7 @@ The most fields considered in mathematics is separable.
 
 \subsection{Finite fields}
 
-\begin{lem}
+\begin{lem}[Frobenius automorphism]
 Let $F$ be a field of characteristic $p$.
 Then, the map $\sigma:x\mapsto x^p$ is a field automorphism on $F$.
 \end{lem}
