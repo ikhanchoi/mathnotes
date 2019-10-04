@@ -1,0 +1,394 @@
+\documentclass{../exp}
+\usepackage{../../ikany}
+
+\title{Probabilistic Graphical Models}
+
+\begin{document}
+\maketitle
+\tableofcontents
+
+% 책의 정의
+% BN structure: random graph on DAG
+% MN structure: random graph on UG
+% BN: BN structure satisfying local Markov
+% MN: 
+
+% Intro
+%   Statistical model
+%   random fields
+%   conditional independece
+%     G가 X에 Independency에 관해 무엇을 알려주는가
+%   parametrization by factorization
+%     G가 X에 Factorization에 관해 무엇을 알려주는가
+%     dimension counting
+%   notations
+
+
+% Bayesian network
+%   Independency: local Markov property
+%   Parametrization:
+%     chain rule
+%     parameter independence => numer counting
+
+% Markov network
+%   Independency: the three Markov property
+%   Parametrization:
+%     Gibbs distribution
+%     clique factorization
+%     finer-grained factors
+%     Hammersley-Clifford
+%     
+
+
+% 수식 전개: bayes(여러 개도 넘길 수 있음), marginalizing, facotorizing, cond indep
+
+\section{Introduction}
+
+\subsection{Statistical model}
+\begin{defn}
+A \emph{statistical model} is an approximation scheme for unknown joint probability distribution.
+\end{defn}
+The general purpose of many statistical models is to \emph{estimate the joint probability distribution} of several random variables.
+The joint probability distrbution contains data about correlations among the random variables.
+For example, suppose that we have to obtain the most possible value of $Y$ when given $X=x$, and we have already estimated the joint distribution function $f_{X,Y}$.
+Then, since the function $y\mapsto f_{X,Y}(x,y)$ describes the distribution of the random variable $Y|X=$x, what we want to find can be defined reasonably as
+\[\hat y=\argmax_yf_{X,Y}(x,y).\]
+
+\begin{ex}
+A random field, which we have not defined yet, is a way to represent several random variables together with their dependecies.
+Therefore, a paramterized random field gives a statistical model.
+In this case, training means an approximating process to find the best parameter, usually written as $\beta$.
+\end{ex}
+
+\subsection{Random fields}
+\begin{defn}[Random field]
+A \emph{random field} is a set of random variables parametrized by a topological space or a (directed or undirected) graph.
+\end{defn}
+\begin{defn}
+In this note, a term \emph{random field} or \emph{network} will be used to refer to random fields on a graph.
+\end{defn}
+
+\begin{ex}[Markov chain]
+Define a graph $G=(V,E)$ and $S$ such that:
+\begin{align*}
+V&=\Z_{t\ge0},\\
+E&=\{(t,t+1)\}_{t\in V},\\
+S&=\text{a finite set}.
+\end{align*}
+An element $t\in V$ denotes the time $t$.
+Then, the set of $S$-valued random variables $\{X_t\}_{t\in V}$ indexed by $V$ defines a random field.
+
+The Markov property is given by
+\[X_t\indep X_s\mid X_{t-1}\]
+for $s\le t$.
+Since $S$ is finite, alternatively we may write it by
+\[\Pr(X_t=x_t\mid X_{t-1}=x_{t-1})=\Pr(X_t=x_t\mid X_{t-1}=x_{t-1},\cdots,X_0=x_0)\]
+for all $x_i\in S$ with $i=0,\cdots,t$.
+With abusing notation, it is often written as
+\[p(x_t|x_{t-1})=p(x_t|x_{t-1},\cdots,x_0).\]
+\end{ex}
+
+\begin{ex}[Boltzman distribution]
+Let $X$ be a $S$-valued random field on a graph $G=(V,E)$ such that:
+\begin{align*}
+V&=\{n\}_{n=1}^N,\\
+E&=\mt,\\
+S&=\text{ a discretized space}
+\end{align*}
+for a large natural number $N$.
+Also, suppose we have energy function $E:S\to\R$ and parametrized family of functions $\phi:S\times(0,\infty)\to\R$ defined by
+\[\phi(s_n;\beta)=e^{-\beta E(s_n)}.\]
+The functions $\phi$ are called \emph{Boltzmann factors} and the paramter $\beta$ is sometimes called \emph{coldness}.
+As a typical example, we may choose
+\[S=\Z_x^3\times\Z_p^3,\qquad E(x,p)=\frac{\|p\|^2}{2m}\quad(m:\text{ mass of particle})\]
+for the Maxwell-Boltzmann statistics for ideal gas.
+In this case, the set $V$ is the set of ideal gas particles, and the space of states $S$ embodies the discretized phase space.
+
+At each particle $n\in V$ is attached an $S$-valued random variable $X_n$.
+Our ultimate goal is to describe the joint probability distribution of $X_n$'s; equivalently, the distribution of a $S^N$-valued random variable $X=(X_1,\cdots,X_N)$.
+Elements of $S^N$ are called \emph{microstates}.
+
+First, we give the probability distribution of an individual random variable $X_n$.
+The assumption for Boltzmann factors states that if given $\beta$ then the probability for a particle $n$ to be in a state $s_n\in S$ is proportional to the Boltzmann factor: 
+\[\Pr(X_n=s_n)\propto_\beta\phi(s_n;\beta)=e^{-\beta E(s_n)}\]
+for each state $s_n\in S$ and a fixed particle $n$.
+Thus, we can write
+\[\Pr(X_n=s_n)=\frac{\phi(s_n;\beta)}{\sum_{s'_n\in S}\phi(s'_n;\beta)}=:\frac{\phi(s_n;\beta)}{Z_n(\beta)}.\]
+
+Next, consider the entire random field $X:\Omega\to S^N$.
+If we assume the independence of $X_n$'s, then we get the disjoint probability distribution
+\[\Pr(X=s)=\frac{\phi(s;\beta)}{\sum_{s'\in S^N}\phi(s';\beta)}=:\frac{\phi(s;\beta)}{Z(\beta)},\]
+where $Z(\beta)=\prod_{n=1}^NZ_n(\beta)$ and the definitions of $\phi$ and $E$ are extended as follows:
+\[\phi(s;\beta)=\prod_{n=1}^N\phi(s_n;\beta)=e^{-\beta\sum_{n=1}^NE(s_n)}=e^{-\beta E(s)}.\]
+The denominator $Z:\R_{\beta>0}\to\R^+$ is called the \emph{partition function}.
+\end{ex}
+
+
+\subsection{Notations}
+
+We review the definition of probability distribution.
+In this subsection, let $(\Omega,\cF,\Pr)$ be a probability space and $(S,\cS)$ a measurable space.
+\begin{defn}
+Let $X:\Omega\to S$ be a random variable.
+The \emph{probability distribution} of $X$ is the pushforward measure $X_*\Pr$ on $S$ defined as $X_*\Pr(A)=\Pr(X^{-1}(A))$ for measurable $A\in S$.
+We often also write $\Pr(X\in A)$ for $X_*\Pr(A)$.
+\end{defn}
+\begin{defn}
+Let $S$ be a Lebesgue measurable subset of a Euclidean space.
+Let $X:\Omega\to S$ be a random variable.
+If the probability distribution of $X$ is absolutely continuous with respect to the Lebesgue measure, then we have the Radon-Nikodym derivative.
+We call the derivative \emph{probability distribution function} or shortly \emph{pdf} of $X$.
+\end{defn}
+\begin{defn}
+Furthermore, let $S$ be finite or countable with discrete measurable structure.
+Let $X:\Omega\to S$ be a random variable.
+We call a function $p(s)=\Pr(X=s)$ the \emph{probability mass function} or shortly \emph{pmf} of $X$.
+\end{defn}
+
+We will not consider a random variable that has neither pdf nor pmf.
+If we do not restrict the regularity of distributions, we must resolve intractable technical issues.
+Also note that pdf is more general notion than pmf.
+
+We mainly deal with several random variables and their joint distribution.
+The notations then become dirty and equations get longer due to the number of random variables, so we introduce alternative notations.
+Suppose $X=\{X_n\}_{n=1}^N$ is a set of random variables and let $(S_n,\cS_n)$ be the codomain of $X_n$.
+The pdf and pmf of an individual random variable $X_i$ will be denoted by $f(x_i)$ and $p(x_i)$ using lower case alphabets for the random variables.
+Moreover, we will admit the abuse of notations more generally without precise definitions, but for examples, just note that
+\begin{itemize}
+\item $f(x_1)$ is a pdf on $S_1$,
+\item $f(x_1,x_2)=f(x_{\{1,2\}})$ is a pdf on $S_1\times S_2$,
+\item $f(x)$ is a pdf on $S=\prod_{n=1}^NS_n$ (joint distribution),
+\item $f(x_2|x_1)$ is a pdf on $S_2$ parametrized by $S_1$, or more generally $\cS_1$,
+\item $f(x_A|x_B)$ is a pdf on $\prod_{n\in A}S_n$ parametrized by $\prod_{n\in B}S_n$.
+\end{itemize}
+Every notation above in fact can be recognized as a real-valued function on $S$ via projections.
+For instance, the function $f(x_1):S_1\to\R_{\ge0}$ can have extended domain like $f(x_1):S\ep S_1\to\R_{\ge0}$ that is constant for all variables except $X_1$.
+
+According to this notation, our goal is always to estimate the joint distribution $f(x)$ of a random field.
+
+
+
+\section{Bayesian networks}
+
+\subsection{Factorization of probability}
+Recall the definition of descendants/ancestors and children/parents of nodes.
+\begin{defn}[Bayesian network]
+Let $X$ be a random field on a directed acyclic graph $G$.
+We say $X$ is a \emph{Bayesian network} or satisfies the \emph{local Markov property} if
+\[X_v\indep X_{V\setminus de(v)}\mid X_{pa(v)}.\]
+\end{defn}
+
+\begin{defn}[Factorization]
+Let $X$ be a random field on a directed acyclic graph $G$.
+We say $X$ \emph{factorizes over} $G$ if
+\[f(x)=\prod_{v\in V}f(x_v|x_{pa(v)}).\]
+\end{defn}
+
+\begin{thm}
+A random field $X$ on a directed acyclic graph $G$ is a bayesian network if and only if it factorizes over $G$.
+\end{thm}
+\begin{pf}
+
+\end{pf}
+
+\begin{ex}[NBC, Naive Bayesian Classifier]
+Consider a random field on the following directed acyclic graph(DAG):
+\begin{cd}
+&& c\ar{ld}\ar{d}\ar{rd} && \\
+\cdots & x_{n-1} & x_n & x_{n+1} & \cdots,
+\end{cd}
+where $n=1,\cdots,N$.
+The joint distribution is
+\[p(c,x)=p(c)\prod_{n=1}^Np(x_n|c).\]
+It is represented by factors $p(c)$ and $p(x_n|c)$'s; the conditional probability $p(c|x)=p(c,x)/p(x)$ can be computed if we assume that the input feature $x$ has been given and the probability $p(c)$, $p(x_n|c)$ had been estimated.
+
+If we view $p(c)\in[0,1]^{S_c}$ and $p(x_n|c)\in[0,1]^{S_x\times S_c}$ as \emph{parameters} which parametrize the joint distribution $p(c,x)\in[0,1]^{S_c\times S_x^N}$, then we can say the NBC defines a family of distribution functions for approximating $p(x,c)$ that is parametrized by $(|S_c|-1+N(|S_x|-1)|S_c|)$-dimensional parameter, which is much smaller than $|S_c||S_x|^N-1$.
+The NBC provides with a statistical model via ``conditional parametrization''.
+\end{ex}
+
+\begin{ex}[HMM, Hidden Markov Model]
+Consider a random field on the following DAG:
+\begin{cd}
+y_0\ar{r}\ar{d} & y_1\ar{r}\ar{d} & \cdots\ar{r} & y_{T-2}\ar{r}\ar{d} & y_{T-1}\ar{d}\\
+x_0 & x_1 && x_{T-2} & x_{T-1}.
+\end{cd}
+The joint distribution is
+\[p(y,x)=p(x_0|y_0)p(y_0)\prod_{t=1}^{T-1}p(x_t|y_t)p(y_t|y_{t-1}).\]
+The terms $p(y_0)$, $p(y_t|y_{t-1})$, and $p(x_t|y_t)$ are called \emph{start probability}, \emph{transition probability}, and \emph{emmision probability} respectively, and they play a role of parameters.
+\end{ex}
+
+\begin{ex}[MEMM, Maximaum entropy Markov Model]
+Consider a random field on the following DAG:
+\begin{cd}
+y_0\ar{r} & y_1\ar{r} & \cdots\ar{r} & y_{T-2}\ar{r} & y_{T-1}\\
+x_0\ar{u} & x_1\ar{u} && x_{T-2}\ar{u} & x_{T-1}\ar{u}.
+\end{cd}
+The joint distribution is
+\[p(y,x)=p(x_0)p(y_0|x_0)\prod_{t=1}^{T-1}p(x_t)p(y_t|y_{t-1},x_t).\]
+The MEMM introduces exponential modeling
+\[p(y_i|y_{i-1},x_i)\propto_{y_{i-1},x,\beta}e^{-\beta\cdot H(y_i,y_{i-1},x_i)}\]
+with a appropriately designed energy function $H:S_y^2\times S_x\to\R^d$.
+The normalizing constant $Z$ depends only on $y_{i-1}$ and $x_i$, hence
+\[p(y_i|y_{i-1},x_i)=\frac{e^{-\beta\cdot H(y_i,y_{i-1},x_i)}}{Z(y_{i-1},x_i;\beta)}.\]
+Estimate of the joint distribution is done by adjusting the $d$-dimensional parameter $\beta$.
+\end{ex}
+
+
+
+
+\section{Markov networks}
+
+In this section, we discuss random fields on undirected graphs.
+As in Bayesian networks, we expect the whole joint probability to be factorized into a computable form with smaller dimensional parameters.
+In this factorization, a modified version of Markov property on the graph that is different from the classical Markov process is required.
+
+It would seem that the initial and general definitions are too abstract that they are hardly applied in practical problems..... But...
+
+
+\begin{defn}[Markov properties on a graph]
+There are three Markov properties:
+\begin{cond}
+\item \emph{Pairwise Markov property}
+\end{cond}
+\end{defn}
+
+\begin{defn}[Markov network]
+Let $X$ be a random field on a undirected graph $G$.
+
+\end{defn}
+Markov networks are sometimes called MRF, Markov random field.
+
+\begin{ex}[Ising model]
+
+\end{ex}
+
+\begin{ex}[CRF, Conditional Random Field]
+Consider a network with a graph $G$ such that vertices are divided into two classes.
+\[p(y|x)\propto_{x,\beta}e^{-\beta\cdot H(y,x)}.\]
+For the Viterbi algorithm, the energy function $H$ is frequently taken to have the form
+\[H(y,x)=\sum_iE(y_i,y_{i-1},x).\]
+\end{ex}
+
+\section{Neural networks}
+Probabilistic graphical models provide effective explanations of the neural networks, but neural networks are not confined only to graphical models.
+\begin{defn}[Neural network]
+\emph{Neural network} cannot be defined mathematically.
+It indicates statistical models that can solve problems with a collection of artificial neurons by adjusting connection strength among them.
+\end{defn}
+
+\begin{ex}[MLP, Multi-layer Perceptron]
+
+\end{ex}
+
+\begin{ex}[RNN, Recurrent Neural Network]
+
+\end{ex}
+
+
+
+\subsection{Maximum likelihood estimate}
+\begin{defn}
+Let $f$ be a distribution function on a measure space $X$.
+Let $\{f_\theta\}_\theta$ be a parametrized family of distrubution functions on $X$.
+The \emph{likelihood} $L_n(\theta):\Omega^n\to\R_{\ge0}$ for a fixed parameter $\theta$ is a random variable defined by
+\[L_n(\theta):=\prod_{i=1}^nf_\theta(x_i)\]
+where $\{x_i\}_i$ is a family of i.i.d. $X$-valued random variables with a distriburion $f$.
+\end{defn}
+The objective of the likelihood function is to find $\theta$ such that $f_\theta$ approximates the unknown distribution $f$.
+Write
+\[\frac1n\log L_n(\theta)=\frac1n\sum_{i=1}^n\log f_\theta(x_i).\]
+By the law of large numbers, $\frac1n\log L_n(\theta)$ converges to a constant function
+\[\E(\log f_\theta(x))=\int_Xf\log f_\theta\]
+in measure as $n\to\oo$.
+This constant function is exactly what we call \emph{cross entropy}.
+
+The \emph{Kullback-Leibler divergence} is a kind of asymmetric distance function defined from the difference with cross entropy
+\[D_{KL}(f\|f_\theta):=\int_Xf\log f-\int_Xf\log f_\theta.\]
+It is proved to be always nonnegative by the Jensen inequality: 
+\[\int_Xf\log f_\theta-\int_Xf\log f=\int_Xf\log\frac{f_\theta}f\le\log\left(\int_Xf\frac{f_\theta}f\right)=0.\]
+Here, we exclude the region $f=0$ from the integration region.
+Then, we can say, bigger $L_n(\theta)$ is, closer $f_\theta$ and $f$ are.
+
+
+
+
+
+\end{document}
+
+
+\section{Inference}
+\subsection{Viterbi algorithm}
+\section{Learning}
+\subsection{Gradient descent method}
+
+
+
+\subsection{Back propagation}
+Backpropagation refers to algorithms to train the weight matrices for minimizing the cost function $J$, which does not depend explicitly on any variables except the last layer vector $a^{(n)}$.
+However, since $J$ is a function of the weight matrices implicitly, via $a^{(n)}$, we may find the representation of the gradiant of $J$ as viewing it as a function on the space of weight matrices of each given layer.
+In other words, we want to find the coefficients of the differential form $dJ$ on the basis $\{dW_{ij}^{(n-1)}\}_{i,j}$, $\{dW_{jk}^{(n-2)}\}_{j,k}$, or $\{dW_{kl}^{(n-3)}\}_{k,l}$, and so on.
+
+Recall the definitions:
+\[a_i^{(n)}=\sigma\left(\sum_jW_{ij}^{(n-1)}a_j^{(n-1)}\right).\]
+Since the derivative of the sigmoid function is given by $\sigma'=\sigma-\sigma^2$, we can compute the following auxiliary relations
+\[\pd{a_i^{(n)}}{a_j^{(n-1)}}=h(a_i^{(n)})W_{ij}^{(n-1)}\c{and}\pd{a_i^{(n)}}{W_{i'j}^{(n-1)}}=\delta_{ii'}h(a_i^{(n)})a_j^{(n-1)},\]
+where $h(x)=x-x^2$.
+
+Then, we can compute
+\[dJ=\sum_i\pd{J}{a_i^{(n)}}\sum_j\pd{a_i^{(n)}}{W_{ij}^{(n-1)}}\,dW_{ij}^{(n-1)}=\sum_{i,j}\pd{J}{a_i^{(n)}}h(a_i^{(n)})a_j^{(n-1)}\,dW_{ij}^{(n-1)},\]
+which implies
+\[\del J(W^{(n-1)})=\left[\pd{J}{a_i^{(n)}}h(a_i^{(n)})a_j^{(n-1)}\right]\pd{W_{ij}^{(n-1)}}.\]
+Note that it is a function of $a_i$ and $a_j$.
+The gradient descent method will take
+\[{W_{ij}^{(n-1)}}^+:=W_{ij}^{(n-1)}-\alpha\cdot\pd{J}{a_i^{(n)}}h(a_i^{(n)})a_j^{(n-1)}\]
+with a proper parameter $\alpha>0$.
+
+By the same reason,
+\begin{align*}
+dJ&=\sum_{i,j,k}\pd{J}{a_i^{(n)}}\pd{a_i^{(n)}}{a_j^{(n-1)}}\pd{a_j^{(n-1)}}{W_{jk}^{(n-2)}}\,dW_{jk}^{(n-2)}\\
+&=\sum_{i,j,k}\pd{J}{a_i^{(n)}}\cdot h(a_i^{(n)})W_{ij}^{(n-1)}\cdot h(a_j^{(n-1)})a_k^{(n-2)}\,dW_{jk}^{(n-2)},
+\end{align*}
+which implies
+\[\del J(W^{(n-2)})=\left[\sum_i\pd{J}{a_i^{(n)}}\cdot h(a_i^{(n)})W_{ij}^{(n-1)}\cdot h(a_j^{(n-1)})a_k^{(n-2)}\right]\pd{W_{jk}^{(n-2)}}.\]
+Therefore, the gradient descent method will take
+\begin{align*}
+{W_{jk}^{(n-2)}}^+:&=W_{jk}^{(n-2)}-\alpha\cdot\sum_i\pd{J}{a_i^{(n)}}h(a_i^{(n)})W_{ij}^{(n-1)}h(a_j^{(n-1)})a_k^{(n-2)}\\
+&=W_{jk}^{(n-2)}+(1-a_j^{(n-1)})a_k^{(n-2)}\sum_i({W_{ij}^{(n-1)}}^+-W_{ij}^{(n-1)})W_{ij}^{(n-1)}.
+\end{align*}
+In similar way,
+\[{W_{kl}^{(n-3)}}^+:=W_{kl}^{(n-3)}+(1-a_k^{(n-2)})a_l^{(n-3)}\sum_i({W_{jk}^{(n-2)}}^+-W_{jk}^{(n-2)})W_{jk}^{(n-2)}(?)\]
+
+
+
+
+
+
+
+
+
+
+
+
+\iffalse
+\section{Generative adversarial networks}
+Let $X$ be the set of all images having a given pixel size.
+Suppose the data distribution $p_{data}$ on $X$ which embodies learning materials is given.
+If $x\in X$ is an image that looks like a real human face, then the distribution(mass) function $p_{data}$ has nonnegligible values near the point $x$.
+We cannot describe the distribution function $p_{data}$ completely, but only can sample from it.
+
+Let $p_g$ be a distribution on $X$.
+The generator $G:\Omega\to X$ is just an arbitrarily taken random variable satisfying $p_g$ for sampling.
+The discriminator $D:X\to[0,1]$ is a function
+Our purpose is to construct a new method for approximating $p_g\to p_{data}$ by simultaneously updating the discriminator function $D$.
+
+Let $x_i\sim p_{data}$ and $z\sim p_g$ be random variables $\Omega\to X$.
+Let $D$ maximize
+\[\log D(x)+\log(1-D(z))\]
+and $p_g$ minimize
+\[\log(1-D(z)).\]
+
+
+Balancing the convergence rates between $p_g$ and $D$ is important.
+\fi
+
+

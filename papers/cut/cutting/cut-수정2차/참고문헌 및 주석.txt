@@ -1,0 +1,83 @@
+Lipschitz-continuous local isometric immersions
+The complexity
+Folding and Cutting Paper
+
+
+
+R.C. Alperin, A mathematical theory of origami constructions and numbers, New York J. Math. 6 (2000) 119?133.
+
+E.M. Arkin, M.A. Bender, E.D. Demaine, et al., When can you fold a map? Comput. Geom. 29 (2004) 23?46.
+
+M. Bern, B. Hayes, The complexity of flat origami, in: Proceedings of the 7th Annual ACM.SIAM Symposium on Discrete Algorithms, 1996,
+pp. 175.183.
+
+T. Hull, On the mathematics of flat origamis, Congr. Numer. 100 (1994) 215?224.
+
+T. Kawasaki, On the relation between mountain-creases and valley creases of a flat origami, in: H. Huzita (Ed.), Proceedings of the 1st
+International Meeting of Origami Science and Technology, Ferrara, 1989, pp. 229?237.
+
+R.J. Lang, A computational algorithm for origami design, in: Proceedings of the 12th Annual ACM Symposium on Computational Geometry,
+1996, pp. 98?105.
+
+J. Justin. Mathematics of Origami. British Origami
+110 (Feb. 1985) to 118 (June 1986).
+
+
+
+
+
+
+주석
+
+\section2
+
+%이 장에서 piecewise c1과 origami를 정의할 것이다. see[Lipschitz-continuous local]
+%conical도 정의할 것이다.
+%cut도 정의할 것이다.
+%geometrical approach 다음 논문을 보자. see[]??????????????
+
+def
+
+%Du와 이걸로 origami를 정의할 것이다.
+%physical model of origami, exclude self intersection (reachable) see[The complexity]
+
+def
+
+%crease pattern은 시그마, conical을 정의한 이유
+
+%cut by는 straight cut
+%see[cutcutcut]
+
+def
+
+%이제 conical origami에 의해 cut이 되는 폐곡선의 성질을 조사하고
+%정리~~에 제시된 조건을 만족하는 폐곡선에 대해 cut을 하는 conical origami가 존재함을 보일 것이다.
+
+
+
+\section3
+
+%폐곡선이 cut by a conical origami이기 위한 필요조건 세 개-3.1 3.2 3.4-를 제시할 것이다.
+%다음은 그 중 두개이다.
+
+thm
+
+thm
+
+%cut이 될 수 있는지를 조사할 곡선을 다음과 같이 cut graph로 정의하자. 위 두 조건을 만족하는 폐곡선으로서
+%단어는 따왔음 in [fac]
+
+def
+
+%우리는 이 폐곡선을 O를 극점으로 하는 극좌표계에 둠으로써 쉽게 다룰 수 있을 것이다.
+%다음 따름정리는 이 극좌표계를 정의한다.
+
+cor
+
+%다음은 폐곡선이 cut by a conical origami일 세 번째 필요조건
+
+
+
+
+
+\section4

@@ -1,0 +1,120 @@
+\documentclass{../exp}
+\usepackage{../../ikany}
+
+\title{Smooth Manifolds}
+
+\begin{document}
+\maketitle
+\tableofcontents
+
+\section{Manifolds}
+\subsection{Smooth structure}
+
+
+\subsection{Partition of unity}
+We prove the existence of partition of unity and exhaustion function.
+
+
+
+
+
+
+
+
+\section{Tangent bundle}
+
+\subsection{Definition of tangent space}
+We will provide four different definitions of tangent spaces:
+\begin{cond}
+\item the space of equivalence classes of smooth curves,
+\item the space of tangent vectors embedded in an ambient space,
+\item the space of derivations on the ring of smooth functions,
+\item the dual space of algebraically defined cotangent spaces.
+\end{cond}
+
+
+\subsection{Definition of tangent bundle}
+Consider the disjoint union of tangent spaces where the base points run through the whole manifold.
+This subsection discusses two ways of giving topology on the disjoint union to make it a vector bundle: one uses the local trivializations and coefficients to make a map to a Euclidean space, and the other inherits the topology of the ambient space.
+Both topologies are so sufficiently smooth that we can settle a smooth structure, which are identical.
+
+The latter case is essentially same with the topologize pullback bundle with respect to the embedding $M\to\R^A$ for some $A$.
+We need to show it does not depend on the choice of the index set $A$.
+(We have checked that there is a natural choice of $A=C^\oo(M)$ with embedding $i:M\to\R^{C^\oo(M)}$ such that $\pi_f(i(x))=f(x)$.)
+
+
+
+
+
+
+
+
+
+
+\section{Categorical aspects}
+
+\subsection{Immersion, submersion, and embedding}
+
+
+\subsection{Basic differential topology}
+We are going to summary the basic tools to investigate the nature of smooth manifolds.
+These includes the inverse function theorem, the implicit function theorem, the slice lemma, the constant rank theorem.
+
+\subsection{Category of smooth manifolds}
+
+
+\subsection{Tangent bundle functor}
+
+\begin{thm}
+The tangent bundle functor $T$ preserves finitary products
+\end{thm}
+
+
+\subsection{Pullbacks}
+When is the pullback possible?
+
+
+
+
+
+
+
+
+\section{Sheaf theoretical aspects}
+Consider a (commutative unital) ring $A$ such that every residue field is isomorphic to a field $k$.
+Familiar examples include any Banach algebras by the Gelfand-Mazur theorem.
+The unital condition is attached because we want to treat maximal ideals.
+Then, maximal ideals correspond to a nonzero multipicative linear functional to $k$ because the residue field is $k$.
+Therefore, the set of maximal ideals can be identified with the set of all nonzero multiplicative linear functionals.
+
+
+\begin{rd}
+Point \ar{r} & Multiplicative functional to $k$ \ar{r}\lds{l}{case by case} & Maximal ideal \lds{l}{every residue field is isomorphic}
+\end{rd}
+
+\subsection{The ring $C^\oo(M)$}
+The following theorem is presented as the problem 1-C in the book of Milnor and Stasheff about characteristic classes.
+\begin{thm}
+Every ring homomorphism $C^\oo(M)\to\R$ is obtained by an evaluation at a point of $M$.
+\end{thm}
+\begin{pf}
+Suppose $\phi:C^\oo(M)\to\R$ is not an evaluation.
+Let $h$ be a positive exhaustion function.
+Take a compact set $K:=h^{-1}([0,\phi(h)])$.
+For every $p\in K$, we can find $f_p\in C^\oo(M)$ such that $\phi(f_p)\ne f_p(p)$ by the assumption.
+Summing $(f_p-\phi(f_p))^2$ finitely on $K$ and applying the extreme value theorem, we obtain a function $f\in C^\oo(M)$ such that $f\ge0$, $f|_K>1$, and $\phi(f)=0$.
+Then, the function $h+\phi(h)f-\phi(h)$ is in kernel of $\phi$ although it is strictly positive and thereby a unit.
+It is a contradiction.
+\end{pf}
+
+
+
+
+
+
+
+
+
+
+
+\end{document}

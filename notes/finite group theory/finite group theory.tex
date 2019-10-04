@@ -1,0 +1,102 @@
+\documentclass{../exp}
+\usepackage{../../ikany}
+
+\title{Finite Group Theory}
+
+\begin{document}
+\maketitle
+\tableofcontents
+
+\section{Sylow game}
+\begin{defn}[Sylow $p$-subgroup]
+Let $G$ be a finite group of order $n=p^am$ for a prime $p\nmid m$.
+A \emph{Sylow $p$-subgroup} is a subgroup of order $p^a$.
+We are going to denote the set of Sylow $p$-subgroups by $\Syl_p(G)$ and the number of Sylow $p$-subgroups by $n_p(G)$.
+\end{defn}
+
+\begin{thm}[The Sylow theorem]
+Let $G$ be a finite group of order $n=p^am$ for a prime $p\nmid m$.
+Then,
+\[p\mid n_p-1,\qquad n_p\mid m\]
+for some $k\in\N$.
+\end{thm}
+\begin{pf}
+\Step{1}[Sylow $p$-subgroups exist]
+We apply mathematical induction.
+The base step is trivial.
+Suppose every finite group of order less than $n$ possesses a Sylow $p$-subgroup.
+
+By applying the orbit-stabilizer theorem for the action $G\acts G$ by conjugation, build the class equation
+\[|G|=|Z(G)|+\sum_i|G:C_G(g_i)|.\]
+There are two cases: $p\mid|Z(G)|$ or $p\nmid|Z(G)|$.
+
+\Case{1}[$p\mid|Z(G)|$]
+The group $G$ has a normal cyclic subgroup $C$ of order $p$, because $Z(G)$ has a subgroup of order $p$ by Cauchy's theorem.
+If we let $P$ be a Sylow $p$-subgroup of $G/C$, then
+\[|P|=p^{a-1}.\]
+For the quotient map $\pi:G\to G/C$ we have
+\[|\pi^{-1}(P)|=|C|\cdot|P|=p^a,\]
+by applying the first isomorphism theorem to $\pi$ restricted onto $\pi^{-1}(P)$.
+
+\Case{2}[$p\nmid|Z(G)|$]
+Since $p\mid n$, we have $p\nmid|G:C_G(g)|$ for some $g\in G$.
+It means $p^a\mid|C_G(g)|$, thereby, by the inductive assumption, there is a Sylow $p$-subgroup $P$ of $|C_G(g)|$ such that
+\[|P|=p^a,\]
+which is also a Sylow $p$-subgroup of $G$.
+
+Therefore, we are done for Step 1.
+
+\bigskip
+\Step{2}[A lemma]
+We prove a lemma: given a Sylow $p$-subgroup $P$ of $G$ the normalizer subgroup $N_G(P)$ has a unique Sylow $p$-subgroup, $P$.
+
+Here is the proof.
+Note that $P$ is normal in $N_G(P)$ and $p$ does not divide the order of the quotient group.
+Let $P'$ be a Sylow $p$-subgroup of $N_G(P)$.
+Since every element of $P'$ has order that is a power of $p$, the image of $P'$ under the quotient map $\pi:N_G(P)\to N_G(P)/P$ is trivial.
+Therefore, $P'=P$.
+
+\bigskip
+\Step{3}[Sylow $p$-subgroups get action by conjugation]
+Let $P$ be a Sylow $p$-subgroup of $G$.
+We construct equations via the orbit-stabilizer theorm for various actions to extract information on $n_p$.
+Note that stabilizers in setwise conjugation action is represented by normalizer subgroups.
+\begin{cond}
+\item The action $P\acts\Syl_p(G)$ gives
+\[n_p=1+\sum_i|P:N_P(P_i)|.\]
+Here we have $p\mid |P:N_P(P_i)|$ since $P=N_P(P_i)\subset N_G(P_i)$ if and only if $P=P_i$.
+\item Suppose the action $G\acts\Syl_p(G)$ is not transitive.
+Take another Sylow $p$-subgroup $P'$ is not conjugate with $P$ in $G$.
+The two actions $P\acts\Orb_G(P)$ and $P'\acts\Orb_G(P)$ gives
+\[|\Orb_G(P)|=1+\sum_i|P:N_P(P_i)|=\sum_i|P':N_{P'}(P_i)|.\]
+It implies $|\Orb_G(P)|\equiv0,1\pmod{p}$ simultaneously, which leas a contradiction.
+\item The action $G\acts\Syl_p(G)$ gives
+\[n_p=|G:N_G(P_i)|\]
+for all $P_i\in\Syl_p(G)$ because the action is transitive.
+\end{cond}
+Then, (1) proves $p\mid n_p-1$, and (3) proves $n_p\mid m$.
+\end{pf}
+
+\begin{cor}
+Let $G$ be a finite group.
+Then,
+\begin{cond}
+\item every pair of two Sylow $p$-subgroup is conjugate.
+\item every $p$-subgroup is contained in a Sylow $p$-subgroup.
+\item a Sylow $p$-subgroup is normal if and only if $n_p=1$.
+\end{cond}
+\end{cor}
+
+
+
+
+
+\section{Simple groups}
+
+\subsection{Symmetric groups}
+
+\subsection{Linear groups}
+
+
+
+\end{document}

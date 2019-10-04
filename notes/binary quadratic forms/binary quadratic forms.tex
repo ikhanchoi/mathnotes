@@ -1,0 +1,75 @@
+\documentclass{../exp}
+\usepackage{../../ikany}
+
+\title{Binary Quadratic Forms}
+
+\begin{document}
+\maketitle
+
+\section{Equivalence}
+
+
+\begin{defn}
+Two forms are called \emph{equivalent} if they are in a same oribit with respect to $\GL_2(\Z)$-action.
+\end{defn}
+
+\begin{defn}
+Two forms are called \emph{properly equivalent} if they are in a same oribit with respect to $\SL_2(\Z)$-action.
+\end{defn}
+
+For representation problems, $\GL_2(\Z)$-action is important.
+For the correspondence with the theory of qudratic fields, $\SL_2(\Z)$ is rather important.
+From now, all equivalence relations are by $\SL_2(\Z)$.
+
+\begin{ex}
+Two forms $(a,b,c)$ and $(a,-b,c)$ are equivalent but not properly equivalent in general.
+\end{ex}
+\begin{lem}
+For a form $(a,b,c)$ and an integer $n$, we have
+\begin{cond}
+\item $(a,b,c)\sim(a,\ 2an+b,\ an^2+bn+c)$
+\item $(a,b,c)\sim(cn^2+bn+a,\ 2cn+b,\ c)$
+\item $(a,b,c)\sim(c,-b,a)$
+\end{cond}
+\end{lem}
+
+\section{Definite forms}
+
+\begin{prop}
+The $\SL_2(\Z)$-action on the definite forms is not faithful, i.e. the kernel is given by a nontrivial group $\{\pm I\}$.
+\end{prop}
+\begin{prop}
+The $\PSL_2(\Z)$-action on the definite forms is faithful.
+\end{prop}
+The faithfulness is not important though, so we choose $\Gamma=\SL_2(\Z)$ as the modular group instead of $\PSL_2(\Z)$.
+
+
+
+\subsection{Positive definite forms}
+\begin{prop}
+The set of positive definite forms admits the $\SL_2(\Z)$-action.
+\end{prop}
+\begin{prop}
+The $\SL_2(\Z)$-actions on positive definite forms and negative definite forms are isomorphic.
+\end{prop}
+
+\begin{defn}
+A positive definite form $(a,b,c)$ is \emph{reduced} if it satisfies
+\begin{cond}
+\item $|b|\le a\le c$,
+\item if $|b|=a$ or $a=c$, then $b\ge0$.
+\end{cond}
+\end{defn}
+The term ``reduced'' means that it is considered as the unique representative of each orbit, under the action of $\SL_2(\Z)$.
+
+
+
+\section{Indefinite forms}
+
+
+\section{Class group}
+% SL2(Z)는
+% - form을 앞뒤로 때린다
+% - root를 뫼비우스로 때린다
+
+\end{document}
