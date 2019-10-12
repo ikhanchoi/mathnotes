@@ -147,6 +147,9 @@
 
 
 
+
+
+
 %////////////////////////%
 %  Commutative diagrams  %
 %////////////////////////%
@@ -251,15 +254,15 @@
 %
 % Example Code:
 %	\begin{pde*}{\label{eq:heat}}
-%	\pd_tu-\Delta u &= 0,  \: \p{in} \R_x\x\R_t,\\
-%	      u(x,0) &= f(x),  \:
+%	\pd_tu-\Delta u &= 0,    \: \p{in} \R_x\x\R_t,\\
+%	         u(x,0) &= f(x),
 %	\end{pde*}
 %
 \RequirePackage{xparse}
 \NewDocumentEnvironment{pde}{s} % number it as a single equation
 {
   \renewcommand\:{&\qquad&}
-  \[\left\{
+  \[\left\{\ %
   \begin{alignedat}{2}
 }
 {
@@ -267,36 +270,25 @@
     {\end{alignedat}\right.\]}
     {\end{alignedat}\right.\stepcounter{equation}\tag{\theequation}\]}
 }
-\ExplSyntaxOn
-\cs_new:cpn{pde*}{\pde*}
-\cs_new_eq:cN{endpde*}\endpde
-\ExplSyntaxOff
-
-% align이나 alignat이 environment에 들어가서 \end{pdes}를 뺏어버렸다.... 언제 고치지
-\NewDocumentEnvironment{pdes}{}
-{
-  \begin{subequations}
-  \begin{alignat}{2}
-}
-{
-  \end{alignat}
-  \end{subequations}
-}
-
 \NewDocumentEnvironment{de}{s} % number it as a single equation
 {
   \renewcommand\:{&\qquad&}
-  \IfBooleanTF{#1}
-    {\alignat{2}}
-    {\alignat*{2}}
+  \[
+  \begin{alignedat}{2}
 }
 {
   \IfBooleanTF{#1}
-    {\endalignat}
-    {\endalignat*}
+    {\end{alignedat}\]}
+    {\end{alignedat}\stepcounter{equation}\tag{\theequation}\]}
 }
 
-
+% Make possible to use \begin{pde*}
+\ExplSyntaxOn
+\cs_new:cpn{pde*}{\pde*}
+\cs_new_eq:cN{endpde*}\endpde
+\cs_new:cpn{de*}{\de*}
+\cs_new_eq:cN{endde*}\endde
+\ExplSyntaxOff
 
 
 

@@ -5,94 +5,218 @@
 \let\realsection\section
 \renewcommand\section{\newpage\realsection}
 
+\def\tint{{\textstyle\int}}
+
 \begin{document}
 \tableofcontents
+
+\section{Sturm-Liouville theory}
+\subsection{Self-adjointness}
+Let $I=[a,b]$ and
+\begin{gather*}
+L=-\frac1{w(x)}\left[\dd{x}\left(p(x)\dd{x}\right)+q(x)\right],\\
+0\le p(x)\in C^\infty(I),\quad q(x)\in C^\infty(I),\quad 0<w(x)\in C^\infty(I).
+\end{gather*}
+We expect $L$ to be self-adjoint.
+In this regard, our interest is ellimination of the difference term
+\[\<f,Lg\>-\<Lf,g\>=p(f'g-fg')|_a^b.\]
+
+
+\begin{center}
+\renewcommand{\arraystretch}{2.5}
+\begin{tabular}{l|l|c|l}
+\hline
+Name & Operator & Domain & B.C. \\[5pt]
+\hline
+Helmholtz & $\displaystyle L=-\dd[2]{x}$ & $[a,b]$ & Periodic \\
+Helmholtz & $\displaystyle L=-\dd[2]{x}$ & $[a,b]$ & Separated Robin \\[5pt]
+\hline
+Legendre & $\displaystyle L=-\dd{x}\left((1-x^2)\dd{x}\right)$ & $[-1,1]$ & None \\
+A. Legendre & $\displaystyle L=-\left[\dd{x}\left((1-x^2)\dd{x}\right)-\frac{m^2}{1-x^2}\right]$ & $[-1,1]$ & Dirichlet \\
+Hermite & $\displaystyle L=-e^{x^2}\left[\dd{x}\left(e^{-x^2}\dd{x}\right)\right]$ & $(-\infty,\infty)$ & Polynomial growth\\
+Laguerre
+\\[5pt]
+\hline
+\end{tabular}
+\end{center}
+
+
+\subsection{Regular Sturm-Liouville problem}
+We mean regular Sturm-Liouville problems by the case that $p$ does not vanish on the boundary of $I$.
+View the Sturm-Liouville operator $L$ as a non-densely defined operator on the space $C^\infty(I)$ with inner product $\<f,g\>=\int_Ifgw$ with domain
+\[D(L)=\{\,u\in C^\infty(I):\alpha_1u(a)+\alpha_2u'(a)=0,\ \beta_1u(b)+\beta_2u'(b)=0\,\},\]
+the subspace for the \emph{separated} Robin boundary condition.
+\begin{prop}
+The operator $L:D(L)\to C^\infty(I)$ is self-adjoint when $C^\infty(I)$ has the inner product $\<f,g\>=\int_Ifgw$.
+\end{prop}
+We are interested in the eigenvalue problem of $L:D(L)\to C^\infty(I)$ on $V$.
+Fortunately, if we choose a constant $z\in\C\setminus\R$, then $(L-z)^{-1}:C^\infty(I)\to D(L)$ is well-defined.
+\begin{prop}
+If $z$ is not an eigenvalue of $L$, then $L-z: D(L)\to C^\infty(I)$ is bijective.
+\end{prop}
+\begin{pf}
+The injectivity follows from the definition of eigenvalues.
+We may assume that $L$ is injective by translation $q\mapsto q-\lambda$.
+
+Suppose $f\in C^\infty(I)$.
+The surjectivity is equivalent to the existence of a second order inhomogeneous boundary problem:
+\begin{gather*}
+pu''+p'u'+qu=-wf,\\
+a_0u(0)+b_0u'(0)=0,\quad a_1u(1)+b_1u'(1)=0.
+\end{gather*}
+Let $u_0$, $u_1$ be the unique solutions of the corresponding homogeneous equation with initial conditions
+\[a_0u(0)+b_0u'(0)=0,\qquad a_1u(1)+b_1u'(1)=0.\]
+Then we can define $L^{-1}:C^\infty([0,1])\to D(L)$ by
+\[L^{-1}f(x):=u_0(x)\int_x^1\frac{u_1}{W[u_0,u_1]}\frac fpw+u_1(x)\int_0^x\frac{u_0}{W[u_0,u_1]}\frac fpw,\]
+where $W[u_0,u_1]:=u_0'u_1-u_1'u_0$ denotes the Wronskian.
+This formula is derived from variation of parameters: compute $c_0$ and $c_1$ from the fact that
+\[\begin{pmatrix}-\frac fpw\\0\end{pmatrix}=\begin{pmatrix}u_0'&u_1'\\u_0&u_1\end{pmatrix}\begin{pmatrix}c_0'\\c_1'\end{pmatrix}\impl L(c_0u_0+c_1u_1)=f.\]
+Then, we can easily check that
+\[L^{-1}Lu=u\]
+for $u\in D(L)$, which implies $L$ is surjective.
+\end{pf}
+
+
+\subsection{Legendre's equation}
+The Legendre equation is
+\[(1-x^2)u''-2xu'+l(l+1)u=0,\quad\text{ on }[-1,1].\]
+The Sturm-Liouville operator is
+\[L=-\dd{x}\left((1-x^2)\dd{x}\right).\]
+Since $p(\pm1)=0$, the operator $L:C^\infty([-1,1])\to C^\infty([-1,1])$ is self-adjoint on the whole domain.
+
+
+Its eigenvalues and corresponding eigenspaces are
+\begin{center}\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{c|c|l}
+\hline
+    & Eigenvalue & Eigenbasis \\
+$l$ & $l(l+1)$   & \\
+\hline
+0   & 0          & $P_0(x)=1$ \\
+1   & 2          & $P_1(x)=x$ \\
+2   & 6          & $P_2(x)=\frac32x^2-\frac12$ \\
+3   & 12         & $P_3(x)=\frac52x^3-\frac32x$ \\
+4   & 20         & $P_4(x)=\frac{35}8x^4-\frac{15}4x^2+\frac38$\\
+\hline
+\end{tabular}
+\end{center}
+If we admit
+\[Q_0(x)=\frac12\log\frac{1+x}{1-x},\quad Q_1(x)=1-\frac12x\log\frac{1+x}{1-x},\ \cdots\ \in L^2(-1,1)\setminus C^\infty([-1,1])\]
+as eigenvectors of $L$, then the self-adjointness fails on the extended domain.
+For example,
+\begin{align*}
+\<Q_0,Lf\>-\<LQ_0,f\>
+&=\left.p(x)\bigl(Q_0'(x)f(x)-Q_0(x)f'(x)\bigr)\right|_{-1}^1\\
+&=f(1)-f(-1)
+\end{align*}
+does not vanish in general even for $f\in C^\infty([-1,1])$.
+
+\subsection{Bessel's equation}
+The Bessel equation is
+\[x^2u''+xu'+(k^2x^2-\nu^2)u=0,\quad\text{ on }(0,\infty).\]
+The Sturm-Liouville operator is
+\[-\frac1x\left[\dd{x}\left(x\dd{x}\right)-\nu^2\frac1x\right].\]
+
+
 
 
 
 \section{Kinetic theory}
 
+\subsection{Vlasov-Poisson equation}
+Consider a Cauchy problem of the \emph{Valsov-Poisson system}:
+\begin{pde*}
+&f_t+v\cdot\del_xf+\gamma E\cdot\del_vf=0,\:(t,x,v)\in[0,T]\x\R_x^3\x\R_v^3,\\
+&E(t,x)=\del_x\Delta_x^{-1}\rho,\\
+&\rho(t,x)=\tint f\,dv,\\
+&f(0,x,v)=f_0(x,v).
+\end{pde*}
+\subsubsection{A priori estimates}
+
+
+\subsection{Velocity averaging lemmas}
 The velocity averaging lemma is used to get regularity of averaged quantity when boundary condition is not given.
 \begin{thm}[Velocity averaging]
-Let $T$ be a free transport operator $\pd_t+v\cdot\del_x$ on $\R_t\x\R_x^n\x\R_v^n$.
+Let $L$ be a free transport operator $\pd_t+v\cdot\del_x$ on $\R_t\x\R_x^n\x\R_v^n$.
 Then,
-\[\|\int u\f\,dv\|_{H_{t,x}^{1/2}}\les_\f\|u\|_{L_{t,x,v}^2}^{1/2}\|Tu\|_{L_{t,x,v}^2}^{1/2}\]
+\[\|\int u\f\,dv\|_{H_{t,x}^{1/2}}\les_\f\|u\|_{L_{t,x,v}^2}^{1/2}\|Lu\|_{L_{t,x,v}^2}^{1/2}\]
 for $\f\in C_c^\infty(\R_v^n)$,
 \end{thm}
 \begin{pf}
 Let $m(t,x)=\int u\f\,dv$.
 By Fourier transform with respect to $t$ and $x$, we have
-\[\hat u(\tau,\xi,v)=\frac1i\,\frac{\hat{Tu}(\tau,\xi,v)}{\tau+v\cdot\xi}\]
+\[\hat u(\tau,\xi,v)=\frac1i\,\frac{\hat{Lu}(\tau,\xi,v)}{\tau+v\cdot\xi}\]
 and
 \[\hat m(\tau,\xi)=\int\hat u(\tau,\xi,v)\f(v)\,dv.\]
 Fixing $\tau,\xi$, decompose the integral and use H\"older's inequality to get
 \begin{align*}
 |\hat m(\tau,\xi)|
-&\le\int_{|\tau+v\cdot\xi|<\alpha}|\hat u\f|\,dv+\int_{|\tau+v\cdot\xi|\ge\alpha}\frac{|\hat{Tu}\f|}{|\tau+v\cdot\xi|}\,dv\\
-&\le\|\hat u\|_{L_v^2}^{1/2}\ (\int_{|\tau+v\cdot\xi|<\alpha}|\f|^2\,dv)^{1/2}+\|\hat{Tu}\|_{L_v^2}^{1/2}\ (\int_{|\tau+v\cdot\xi|\ge\alpha}\frac{|\f|^2}{|\tau+v\cdot\xi|^2}\,dv)^{1/2}
+&\le\int_{|\tau+v\cdot\xi|<\alpha}|\hat u\f|\,dv+\int_{|\tau+v\cdot\xi|\ge\alpha}\frac{|\hat{Lu}\f|}{|\tau+v\cdot\xi|}\,dv\\
+&\le\|\hat u\|_{L_v^2}^{1/2}\ (\int_{|\tau+v\cdot\xi|<\alpha}|\f|^2\,dv)^{1/2}+\|\hat{Lu}\|_{L_v^2}^{1/2}\ (\int_{|\tau+v\cdot\xi|\ge\alpha}\frac{|\f|^2}{|\tau+v\cdot\xi|^2}\,dv)^{1/2},
 \end{align*}
+where $\alpha>0$ is an arbitrary constant that will be determined later.
+Let
+\[I_s(\tau,\xi,\alpha):=\int_{|\tau+v\cdot\xi|<\alpha}|\f|^2\,dv,\qquad
+I_n(\tau,\xi,\alpha):=\int_{|\tau+v\cdot\xi|\ge\alpha}\frac{|\f|^2}{|\tau+v\cdot\xi|}\,dv.\]
 We are going to estimate the integrals as
-\[\int_{|\tau+v\cdot\xi|<\alpha}|\f|^2\,dv\les\frac{\alpha}{\sqrt{\tau^2+|\xi|^2}},\qquad
-\int_{|\tau+v\cdot\xi|\ge\alpha}\frac{|\f|^2}{|\tau+v\cdot\xi|}\,dv\les\frac1{\alpha\sqrt{\tau^2+|\xi|^2}}.\]
-We may assume that $\sqrt{\tau^2+|\xi|^2}\gg1$, that is, it is enough to show them for $\sqrt{\tau^2+|\xi|^2}\ge C$ with arbitrarily taken constant $C$, because the case that $\sqrt{\tau^2+|\xi|^2}\les1$ easily proves the inequality.
+\[I_s\les\frac{\alpha}{\sqrt{\tau^2+|\xi|^2}},\qquad
+I_n\les\frac1{\alpha\sqrt{\tau^2+|\xi|^2}}.\]
 
 Define coordinates $(v_1,v_2)$ on $\R_v$ as follows:
 \[v_1:=\frac{\tau+v\cdot\xi}{|\xi|}\ \in\R\ ,\qquad v_2:=v-\frac{v\cdot\xi}{|\xi|^2}\xi\ \in\ker(\xi^T)\cong\R^{n-1}.\]
 Note that
-\[|v|^2=(v-\frac\tau{|\xi|})^2+|v_2|^2\qquad\text{and}\qquad\int\,dv=\iint\,dv_2\,dv_1.\]
+\[|v|^2=(v_1-\frac\tau{|\xi|})^2+|v_2|^2\qquad\text{and}\qquad\int\,dv=\iint\,dv_2\,dv_1.\]
 
-For the first integral, suppose that $\f$ is supported on a ball $|v|<R$.
-Then,
+For the first integral, suppose that $\f$ is supported on a ball $|v|\le R$.
+If $\frac{|\tau|-\alpha}{|\xi|}>R$, then the region of integration vanishes so that $I_s=0$.
+If $|\tau|\le\alpha+R|\xi|$, then
 \begin{align*}
-\int_{|\tau+v\cdot\xi|<\alpha}|\f|^2\,dv
-&\les\int_{|v_1|<\frac\alpha{|\xi|}}\int_{|v_2|^2\le R^2-(v_1-\frac\tau{|\xi|})^2}\,dv_2\,dv_1\\
-&\les(R^2-\frac{\tau^2}{|\xi|^2})^{\frac{n-1}2}\cdot\frac{2\alpha}{|\xi|},
+I_s&\les\int_{|v_1|<\frac\alpha{|\xi|}}\int_{|v_2|^2\le R^2-(v_1-\frac\tau{|\xi|})^2}\,dv_2\,dv_1\\
+&\les\int_{|v_1|<\frac\alpha{|\xi|},\ |v_1|\le R}\int_{|v_2|\le R}\,dv_2\,dv_1\\
+&\les\min\{\frac{2\alpha}{|\xi|},R\}\cdot R^{n-1}\\
+&\les\frac1{\sqrt{1+(\frac{|\xi|}\alpha)^2}}\\
+&\les\frac\alpha{\sqrt{\tau^2+|\xi|^2}}.
 \end{align*}
-where we value the term $(R^2-\frac{\tau^2}{|\xi|^2})$ as 0 when $R^2<\frac{\tau^2}{|\xi|^2}$.
-Since
-\[(R^2-\frac{\tau^2}{|\xi|^2})^{\frac{n-1}2}\frac{2\alpha}{|\xi|}\cdot\sqrt{\tau^2+|\xi|^2}\les\begin{cases}0,&|\tau|\gg1\\C,&|\xi|\gg1\end{cases},\]
-we have
-\[\int_{|\tau+v\cdot\xi|<\alpha}|\f|^2\,dv\les\frac{\alpha}{\sqrt{\tau^2+|\xi|^2}}.\]
 
 For the second integral, suppose that $\f$ is supported on $|v|<C$ so that $|v_1-\frac\tau{|\xi|}|,|v_2|<C$.
 Then,
 \begin{align*}
-\int_{|\tau+v\cdot\xi|\ge\alpha}\frac{|\f|^2}{|\tau+v\cdot\xi|}\,dv
-&\les\int_{|v_1|<\frac\alpha{|\xi|},\ |v_1-\frac\tau{|\xi|}|<C}\int_{|v_2|<C}\frac1{v_1^2|\xi|^2}\,dv_2\,dv_1\\
-&\simeq\int_{|v_1|<\frac\alpha{|\xi|},\ |v_1-\frac\tau{|\xi|}|<C}\frac{dv_1}{v_1^2|\xi|^2}.
+I_n&\les\int_{|v_1|\ge\frac\alpha{|\xi|},\ |v_1-\frac\tau{|\xi|}|<C}\int_{|v_2|<C}\frac1{v_1^2|\xi|^2}\,dv_2\,dv_1\\
+&\simeq\int_{|v_1|\ge\frac\alpha{|\xi|},\ |v_1-\frac\tau{|\xi|}|<C}\frac{dv_1}{v_1^2|\xi|^2}.
 \end{align*}
 If $|\xi|\ges|\tau|$, then
-\begin{align*}
-\int_{|v_1|<\frac\alpha{|\xi|},\ |v_1-\frac\tau{|\xi|}|<C}\frac{dv_1}{v_1^2|\xi|^2}
-&\les\int_{|v_1|<\frac\alpha{|\xi|}}\frac{dv_1}{v_1^2|\xi|^2}\\
-&\simeq\frac1{\alpha|\xi|}\les\frac1{\alpha\sqrt{\tau^2+|\xi|^2}}.
-\end{align*}
+\[I_n\les\int_{|v_1|\ge\frac\alpha{|\xi|}}\frac{dv_1}{v_1^2|\xi|^2}\simeq\frac1{\alpha|\xi|}\les\frac1{\alpha\sqrt{\tau^2+|\xi|^2}}.\]
 If $|\xi|\ll|\tau|$ such that at least $|\tau|>C|\xi|$, then
 \begin{align*}
-\int_{|v_1|<\frac\alpha{|\xi|},\ |v_1-\frac\tau{|\xi|}|<C}\frac{dv_1}{v_1^2|\xi|^2}
-&\les\int_{|v_1-\frac\tau{|\xi|}|<C}\frac{dv_1}{v_1^2|\xi|^2}\\
-&\simeq\frac1{|\xi|^2}(\frac1{\frac\tau{|\xi|}-C}-\frac1{\frac\tau{|\xi|}+C})\\
-&=\frac{2C}{\tau^2-C^2|\xi|^2}\ll\frac1{\sqrt{\tau^2+|\xi|^2}},
+I_n&\les\int_{\max\{\frac\alpha{|\xi|},\frac{|\tau|}{|\xi|}-C\}\le v_1<\frac{|\tau|}{|\xi|}+C}\frac{dv_1}{v_1^2|\xi|^2}\\
+&\simeq\frac1{|\xi|^2}(\frac1{\max\{\frac\alpha{|\xi|},\frac{|\tau|}{|\xi|}-C\}}-\frac1{\frac{|\tau|}{|\xi|}+C})\\
+&\les\frac1{\alpha\sqrt{\tau^2+|\xi|^2}}.\quad(\text{This is not easy..!})
 \end{align*}
-hence
-\[\int_{|\tau+v\cdot\xi|\ge\alpha}\frac{|\f|^2}{|\tau+v\cdot\xi|}\,dv\les\frac1{\alpha\sqrt{\tau^2+|\xi|^2}}.\]
 
 To sum up, we have
-\[|\hat m(\tau,\xi)|\les\frac1{(\tau^2+|\xi|^2)^{1/4}}(\sqrt\alpha\cdot\|\hat u\|_{L_v^2}^{1/2}+\frac1{\sqrt\alpha}\cdot\|\hat{Tu}\|_{L_v^2}^{1/2}).\]
-Letting $\alpha=\sqrt{\|\hat{Tu}\|_{L_v^2}/\|\hat u\|_{L_v^2}}$ and squaring,
-\[(\tau^2+|\xi|^2)^{1/2}|\hat m(\tau,\xi)|^2\les\|\hat u\|_{L_v^2}^{1/2}\|\hat{Tu}\|_{L_v^2}^{1/2}.\]
+\[|\hat m(\tau,\xi)|\les\frac1{(\tau^2+|\xi|^2)^{1/4}}(\sqrt\alpha\cdot\|\hat u\|_{L_v^2}^{1/2}+\frac1{\sqrt\alpha}\cdot\|\hat{Lu}\|_{L_v^2}^{1/2}).\]
+Letting $\alpha=\sqrt{\|\hat{Lu}\|_{L_v^2}/\|\hat u\|_{L_v^2}}$ and squaring,
+\[(\tau^2+|\xi|^2)^{1/2}|\hat m(\tau,\xi)|^2\les\|\hat u\|_{L_v^2}^{1/2}\|\hat{Lu}\|_{L_v^2}^{1/2}.\]
 Therefore, the integration on $\R_\tau\x\R_\xi^n$ and Plancheral's theorem gives
-\[\|m\|_{H_{t,x}^{1/2}}\les_\f\|u\|_{L_{t,x,v}^2}^{1/2}\|Tu\|_{L_{t,x,v}^2}^{1/2}.\]
+\[\|m\|_{H_{t,x}^{1/2}}\les_\f\|u\|_{L_{t,x,v}^2}^{1/2}\|Lu\|_{L_{t,x,v}^2}^{1/2}.\]
 \end{pf}
+
+\begin{rmk}
+We can obtain $L^p$ result by applying
+\[\min\{\frac1x,\frac1y\}\le\frac2{(x^p+y^p)^{1/p}}\le\max\{\frac1x,\frac1y\}\]
+on the first integral, and
+\[x\gg1\impl\frac1{\max\{a,x-c\}}-\frac1{x+c}\les\frac1{a(x^p+1)^{1/p}}\]
+on the second integral.
+\end{rmk}
 
 \begin{cor}
 Let $\cF$ be a family of functions on $\R_t\x\R_x^n\x\R_v^n$.
-If $\cF$ and $T\cF$ are bounded in $L_{t,x,v}^2$, then $\int\cF\f\,dv$ is bounded in $H_{t,x}^{1/2}$.
+If $\cF$ and $L\cF$ are bounded in $L_{t,x,v}^2$, then $\int\cF\f\,dv$ is bounded in $H_{t,x}^{1/2}$.
 \end{cor}
 
 \begin{thm}
 Let $\cF$ be a family of functions on $I_t\x\R_x^n\x\R_v^n$.
-If $\cF$ is weakly relatively compact and $T\cF$ is bounded in $L_{t,x,v}^1$, then $\int\cF\f\,dv$ is relatively compact in $L_{t,x}^1$.
+If $\cF$ is weakly relatively compact and $L\cF$ is bounded in $L_{t,x,v}^1$, then $\int\cF\f\,dv$ is relatively compact in $L_{t,x}^1$.
 \end{thm}
 
 
@@ -162,7 +286,7 @@ u(0,x)&=x, \: \text{at}\ x\in\R,
 and let $M$ be the embedded surface defined by $y=u(t,x)$.
 
 Let $\gamma:I\to\Omega\times\R_y$ be an integral curve of the vector field
-\[X=\pd{t}+y^2\pd{x}\]
+\[\pd{t}+y^2\pd{x}\]
 such that $\gamma(0)\in M$.
 Then, $\gamma(\theta)\in M$ for all $\theta\in I$.
 \end{prop}

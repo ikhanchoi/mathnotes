@@ -46,18 +46,52 @@
 
 \subsection{Statistical model}
 \begin{defn}
-A \emph{statistical model} is an approximation scheme for unknown joint probability distribution.
+A \emph{statistical model} is a set of statistical assumptions that provides with an approximation scheme for unknown probability distribution.
 \end{defn}
-The general purpose of many statistical models is to \emph{estimate the joint probability distribution} of several random variables.
+A typical way to define statistical models is to give a parametrized family of probability distributions of special form.
+A model is said to be \emph{parametric} if the parameter space has finite dimensional.
+Although there are nonparametric models, we only deal with parametrized models.
+
+In the family, we want to find a particular distribution, i.e. particular parameter, that is sufficiently approximated to the unknown ideal distribution.
+This parameter finding procedure from samples is called \emph{(statistical) estimation}.
+
+\begin{ex}
+Let $X$ be a real-valued random variable with probability density $f$.
+Suppose we have a set of trials $\{X_i\}_{i\in\N}$ of a same experiment designed for finding $f$.
+We can define trials $X_i$ as i.i.d. real-valued random vaiables with distribution $f$.
+Assuming a fate $\omega\in\Omega$ has been determined, the notation $x_i$ then now denotes the sample data $X_i(\omega)=x_i$ obtained from the trial $X_i$.
+We want to find the approximated distribution for $f$ from the sampled dataset $\{x_i\}_i$ after $\omega$ is realized.
+
+Consider a statiscal model defined with normal distributions
+\[f_\theta(x)=\frac1{\sigma\sqrt{2\pi}}e^{-\frac{(x-\mu)^2}{2\sigma^2}},\qquad\theta=(\mu,\sigma^2)\in\R\x\R_{>0}=\Theta.\]
+The dimension of the model is the dimension of the parameter space $\Theta=\R\x\R_{>0}$, hence 2.
+In other words, we set a statistical assumption that the ideal distribution would follow the normal distribution.
+
+We can find the parameter $\theta$ by a classical method called maximum likelihood estimate(MLE).
+The \emph{likelihood} $L_n:\Theta\times\Omega\to\R_{\ge0}$ is defined by a parametrized random variable
+\[L_n(\theta)(\omega):=\prod_{i=1}^nf_\theta(x_i).\]
+Intuitionally, data $x_i$ are distributed on regions where the original density function $f$ is large.
+If we apply the law of large numbers on the random variables $\{\log f_\theta(X_i)\}_{i\in\N}$ for each fixed $\theta$, then since $\frac1n\log L_n$ is the average of $\log f_\theta(X_i)$ for $1\le i\le n$, we get a convergence to a constant random variable, also called \emph{cross entropy}:
+\[\frac1n\log L_n(\theta)\ \to{\text{in measure}}\ \E(\log f_\theta(X))=\int_\R f\log f_\theta\quad\text{as}\quad n\to\infty.\]
+Define \emph{Kullback-Leibler divergence}, a kind of asymmetric distance function, by the difference of cross entropies
+\[D_{KL}(f\|f_\theta):=\int f\log f-\int f\log f_\theta.\]
+It is proved to be always nonnegative by the Jensen inequality: 
+\[\int f\log f_\theta-\int f\log f=\int f\log\frac{f_\theta}f\le\log\left(\int f\frac{f_\theta}f\right)=0.\]
+Then, we can say, bigger $L_n(\theta)$ is, closer $f_\theta$ and $f$ are.
+Therefore, if $\omega$ is given, we can find the most reasonable parameter by solving the following optimization problem:
+\[\hat\theta=\argmax_\theta L_n(\theta)(\omega)=\argmax_\theta\prod_{i=1}^nf_\theta(x_i).\]
+\end{ex}
+
+Unlike the above example, many statistical models are suggested to estimate \emph{joint probability distribution} of several random variables.
 The joint probability distrbution contains data about correlations among the random variables.
-For example, suppose that we have to obtain the most possible value of $Y$ when given $X=x$, and we have already estimated the joint distribution function $f_{X,Y}$.
+For example, suppose that we are asked to obtain the most possible value of $Y$ when given $X=x$, and we have already estimated the joint distribution function $f_{X,Y}$.
 Then, since the function $y\mapsto f_{X,Y}(x,y)$ describes the distribution of the random variable $Y|X=$x, what we want to find can be defined reasonably as
-\[\hat y=\argmax_yf_{X,Y}(x,y).\]
+\[\hat y(x)=\argmax_yf_{X,Y}(x,y).\]
 
 \begin{ex}
 A random field, which we have not defined yet, is a way to represent several random variables together with their dependecies.
 Therefore, a paramterized random field gives a statistical model.
-In this case, training means an approximating process to find the best parameter, usually written as $\beta$.
+In this case, training means an approximating process to find the best parameter, which will be usually written as $\theta$ or $\beta$.
 \end{ex}
 
 \subsection{Random fields}
@@ -68,12 +102,13 @@ A \emph{random field} is a set of random variables parametrized by a topological
 In this note, a term \emph{random field} or \emph{network} will be used to refer to random fields on a graph.
 \end{defn}
 
+Be cautious that the following examples are not statistical models because it is not designed for estimation from sampled data.
 \begin{ex}[Markov chain]
-Define a graph $G=(V,E)$ and $S$ such that:
+Define a graph $G=(V,E)$ and a set $S$ such that:
 \begin{align*}
 V&=\Z_{t\ge0},\\
 E&=\{(t,t+1)\}_{t\in V},\\
-S&=\text{a finite set}.
+S&=\text{a finite set of states}.
 \end{align*}
 An element $t\in V$ denotes the time $t$.
 Then, the set of $S$-valued random variables $\{X_t\}_{t\in V}$ indexed by $V$ defines a random field.
@@ -88,39 +123,44 @@ With abusing notation, it is often written as
 \[p(x_t|x_{t-1})=p(x_t|x_{t-1},\cdots,x_0).\]
 \end{ex}
 
-\begin{ex}[Boltzman distribution]
+\begin{ex}[Maxwell-Boltzmann statistics for ideal gas]
+The goal is to describe the energy distributions of noninteracting ideal gas particles that are parametrized by reciprocal temperature $\beta>0$.
+Fix $\beta$.
+
+Let us give definitions.
 Let $X$ be a $S$-valued random field on a graph $G=(V,E)$ such that:
 \begin{align*}
-V&=\{n\}_{n=1}^N,\\
+V&=\{j\}_{j=1}^N,\\
 E&=\mt,\\
-S&=\text{ a discretized space}
+S&=\R_x^3\times\R_p^3,\quad\text{phase space}
 \end{align*}
 for a large natural number $N$.
-Also, suppose we have energy function $E:S\to\R$ and parametrized family of functions $\phi:S\times(0,\infty)\to\R$ defined by
-\[\phi(s_n;\beta)=e^{-\beta E(s_n)}.\]
-The functions $\phi$ are called \emph{Boltzmann factors} and the paramter $\beta$ is sometimes called \emph{coldness}.
-As a typical example, we may choose
-\[S=\Z_x^3\times\Z_p^3,\qquad E(x,p)=\frac{\|p\|^2}{2m}\quad(m:\text{ mass of particle})\]
-for the Maxwell-Boltzmann statistics for ideal gas.
-In this case, the set $V$ is the set of ideal gas particles, and the space of states $S$ embodies the discretized phase space.
+Define the energy function $H:S\to\R$ such that
+\[H(x,p):=\frac{\|p\|^2}{2m}\quad(m:\text{ mass of particle}),\]
+and parametrized family of functions $\phi:S\to\R$ such that
+\[\phi(s_j):=e^{-\beta H(s_j)}.\]
+The functions $\phi$ are called \emph{Boltzmann factors}.
 
-At each particle $n\in V$ is attached an $S$-valued random variable $X_n$.
-Our ultimate goal is to describe the joint probability distribution of $X_n$'s; equivalently, the distribution of a $S^N$-valued random variable $X=(X_1,\cdots,X_N)$.
+In this model, the set $V$ is the set of ideal gas particles.
+At each particle $j\in V$ is attached an $S$-valued random variable $X_j$ with distribution $f_j:S\to\R_{\ge0}$.
+Our primary goal is to describe the joint probability distribution of $X_j$'s; equivalently, the distribution $f$ of a $S^N$-valued random variable $X=(X_1,\cdots,X_N)$.
 Elements of $S^N$ are called \emph{microstates}.
 
-First, we give the probability distribution of an individual random variable $X_n$.
-The assumption for Boltzmann factors states that if given $\beta$ then the probability for a particle $n$ to be in a state $s_n\in S$ is proportional to the Boltzmann factor: 
-\[\Pr(X_n=s_n)\propto_\beta\phi(s_n;\beta)=e^{-\beta E(s_n)}\]
-for each state $s_n\in S$ and a fixed particle $n$.
+First we give the probability distribution of an individual random variable $X_j$.
+The assumption for Boltzmann factors states that the probability for a particle $j$ to be in a state $s_j\in S$ is proportional to the Boltzmann factor:
+\[f_j(s_j)\propto_\beta\phi(s_j)=e^{-\beta H(s_j)}\]
+for each state $s_j\in S$ and a fixed particle $j$.
 Thus, we can write
-\[\Pr(X_n=s_n)=\frac{\phi(s_n;\beta)}{\sum_{s'_n\in S}\phi(s'_n;\beta)}=:\frac{\phi(s_n;\beta)}{Z_n(\beta)}.\]
-
+\[f_j(s_j)=\frac{\phi(s_j)}{\int_S\phi}.\]
 Next, consider the entire random field $X:\Omega\to S^N$.
-If we assume the independence of $X_n$'s, then we get the disjoint probability distribution
-\[\Pr(X=s)=\frac{\phi(s;\beta)}{\sum_{s'\in S^N}\phi(s';\beta)}=:\frac{\phi(s;\beta)}{Z(\beta)},\]
-where $Z(\beta)=\prod_{n=1}^NZ_n(\beta)$ and the definitions of $\phi$ and $E$ are extended as follows:
-\[\phi(s;\beta)=\prod_{n=1}^N\phi(s_n;\beta)=e^{-\beta\sum_{n=1}^NE(s_n)}=e^{-\beta E(s)}.\]
+If we assume the independency of $X_j$'s, then we get the disjoint probability distribution
+\[f(s)=\frac{\phi(s)}{\int_{S^N}\phi}=:\frac{\phi(s)}{Z(\beta)},\]
+where the definitions of $\phi,H:S^N\to\R$ are extended such that
+\[\phi(s)=\prod_{j=1}^N\phi(s_j),\quad H(s)=\sum_{j=1}^NH(s_j).\]
 The denominator $Z:\R_{\beta>0}\to\R^+$ is called the \emph{partition function}.
+
+Finally, we will compute the distribution of $H\circ X:\Omega\to\R$.
+%%%
 \end{ex}
 
 
@@ -130,7 +170,7 @@ We review the definition of probability distribution.
 In this subsection, let $(\Omega,\cF,\Pr)$ be a probability space and $(S,\cS)$ a measurable space.
 \begin{defn}
 Let $X:\Omega\to S$ be a random variable.
-The \emph{probability distribution} of $X$ is the pushforward measure $X_*\Pr$ on $S$ defined as $X_*\Pr(A)=\Pr(X^{-1}(A))$ for measurable $A\in S$.
+The \emph{probability distribution} of $X$ is the pushforward measure $X_*\Pr$ on $S$ defined as $X_*\Pr(A)=\Pr(X^{-1}(A))$ for measurable $A\in\cS$.
 We often also write $\Pr(X\in A)$ for $X_*\Pr(A)$.
 \end{defn}
 \begin{defn}
@@ -152,19 +192,19 @@ Also note that pdf is more general notion than pmf.
 We mainly deal with several random variables and their joint distribution.
 The notations then become dirty and equations get longer due to the number of random variables, so we introduce alternative notations.
 Suppose $X=\{X_n\}_{n=1}^N$ is a set of random variables and let $(S_n,\cS_n)$ be the codomain of $X_n$.
-The pdf and pmf of an individual random variable $X_i$ will be denoted by $f(x_i)$ and $p(x_i)$ using lower case alphabets for the random variables.
+The pdf and pmf of an individual random variable $X_n$ will be denoted by $f(x_n):S\to\R_{\ge0}$ and $p(x_n):S\to[0,1]$ using lower case alphabets for the random variables.
 Moreover, we will admit the abuse of notations more generally without precise definitions, but for examples, just note that
 \begin{itemize}
 \item $f(x_1)$ is a pdf on $S_1$,
 \item $f(x_1,x_2)=f(x_{\{1,2\}})$ is a pdf on $S_1\times S_2$,
 \item $f(x)$ is a pdf on $S=\prod_{n=1}^NS_n$ (joint distribution),
-\item $f(x_2|x_1)$ is a pdf on $S_2$ parametrized by $S_1$, or more generally $\cS_1$,
+\item $f(x_2|x_1):S_2\times S_1\to\R_{\ge0}$ is a pdf on $S_2$ parametrized by $S_1$ (or more generally by the $\sigma$-algebra $\cS_1$),
 \item $f(x_A|x_B)$ is a pdf on $\prod_{n\in A}S_n$ parametrized by $\prod_{n\in B}S_n$.
 \end{itemize}
 Every notation above in fact can be recognized as a real-valued function on $S$ via projections.
 For instance, the function $f(x_1):S_1\to\R_{\ge0}$ can have extended domain like $f(x_1):S\ep S_1\to\R_{\ge0}$ that is constant for all variables except $X_1$.
 
-According to this notation, our goal is always to estimate the joint distribution $f(x)$ of a random field.
+According to this notation, we can say that our interest is always the joint distribution $f(x)$ of a random field.
 
 
 
@@ -302,12 +342,6 @@ By the law of large numbers, $\frac1n\log L_n(\theta)$ converges to a constant f
 in measure as $n\to\oo$.
 This constant function is exactly what we call \emph{cross entropy}.
 
-The \emph{Kullback-Leibler divergence} is a kind of asymmetric distance function defined from the difference with cross entropy
-\[D_{KL}(f\|f_\theta):=\int_Xf\log f-\int_Xf\log f_\theta.\]
-It is proved to be always nonnegative by the Jensen inequality: 
-\[\int_Xf\log f_\theta-\int_Xf\log f=\int_Xf\log\frac{f_\theta}f\le\log\left(\int_Xf\frac{f_\theta}f\right)=0.\]
-Here, we exclude the region $f=0$ from the integration region.
-Then, we can say, bigger $L_n(\theta)$ is, closer $f_\theta$ and $f$ are.
 
 
 
