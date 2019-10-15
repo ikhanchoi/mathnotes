@@ -67,10 +67,10 @@ a_0u(0)+b_0u'(0)=0,\quad a_1u(1)+b_1u'(1)=0.
 Let $u_0$, $u_1$ be the unique solutions of the corresponding homogeneous equation with initial conditions
 \[a_0u(0)+b_0u'(0)=0,\qquad a_1u(1)+b_1u'(1)=0.\]
 Then we can define $L^{-1}:C^\infty([0,1])\to D(L)$ by
-\[L^{-1}f(x):=u_0(x)\int_x^1\frac{u_1}{W[u_0,u_1]}\frac fpw+u_1(x)\int_0^x\frac{u_0}{W[u_0,u_1]}\frac fpw,\]
-where $W[u_0,u_1]:=u_0'u_1-u_1'u_0$ denotes the Wronskian.
+\[L^{-1}f(x):=-u_0(x)\int_x^1\frac{u_1}{W[u_0,u_1]}\frac fpw-u_1(x)\int_0^x\frac{u_0}{W[u_0,u_1]}\frac fpw,\]
+where $W[u_0,u_1]:=u_0u_1'-u_1u_0'$ denotes the Wronskian.
 This formula is derived from variation of parameters: compute $c_0$ and $c_1$ from the fact that
-\[\begin{pmatrix}-\frac fpw\\0\end{pmatrix}=\begin{pmatrix}u_0'&u_1'\\u_0&u_1\end{pmatrix}\begin{pmatrix}c_0'\\c_1'\end{pmatrix}\impl L(c_0u_0+c_1u_1)=f.\]
+\[\begin{pmatrix}0\\-\frac fpw\end{pmatrix}=\begin{pmatrix}u_0&u_1\\u_0'&u_1'\end{pmatrix}\begin{pmatrix}c_0'\\c_1'\end{pmatrix}\impl L(c_0u_0+c_1u_1)=f.\]
 Then, we can easily check that
 \[L^{-1}Lu=u\]
 for $u\in D(L)$, which implies $L$ is surjective.

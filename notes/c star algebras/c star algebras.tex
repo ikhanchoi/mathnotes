@@ -3,6 +3,10 @@
 
 \title{$C^*$-algebras}
 
+\newcommand{\wot}{{\text{\sc wot}}}
+\newcommand{\sot}{{\text{\sc sot}}}
+\newcommand{\ran}{\mathrm{ran}}
+
 \begin{document}
 \maketitle
 \tableofcontents
@@ -114,13 +118,40 @@ For commutative $C^*$-algebra $\cA$, the Gelfand transform gives an isometric $^
 Let $f$ be a linear functional on $B(H)$ for a Hilbert space $H$.
 Then, TFAE:
 \begin{cond}
-\item $f$ is WOT-continuous,
-\item $f$ is SOT-continuous,
+\item $f$ is $\wot$-continuous,
+\item $f$ is $\sot$-continuous,
 \item $f(T)=\sum_{i=1}^n\<Tx_i,y_i\>$ for some $x_i,y_i$.
 \end{cond}
 \end{thm}
 \begin{pf}
 (2)$\impl$(3) is the only nontrivial implication.
-Suppose
+By the definition of $\sot$, there exists $v\in \cH^n$ such that
+\[|f(T)|\le\|T^{\oplus n}v\|.\]
+The functional $f:\cA\to\C$ factors through $\cH^n$ such that
+\[\cA\to{v}\cH^n\to\C.\]
+\end{pf}
+
+
+
+
+\section{von Neumann algebras}
+
+\begin{thm}[Double commutant theorem]
+Let $\cA$ be a $C^*$-algebra in $\cB(\cH)$.
+Then, $\cA''=\cl\cA^\wot$.
+\end{thm}
+\begin{pf}
+Since $\cl\cA^\wot$ is closed convex, $\cl\cA^\sot=\cl\cA^\wot$.
+Also, $\cA''$ is weakly closed, $\cl\cA^\wot\subset\cA''$.
+Let $T\in\cA''$ and $v\in\cH^n$.
+We want to show $Tv\in\cl{\cA v}$.
+
+Let $P$ be the orthogonal projection on $\cl{\cA v}\subset\cH^n$.
+If $a\in\cA$, then $a\cl{\cA v}\subset\cl{\cA v}$ because the multiplication by $a$ is continuous on $\cH^n$.
+It implies that $\ran(aP)\subset\ran(P)$ and $P(aP)=aP$ for all $a\in\cA$.
+Because $\cA$ is closed under the involution, $P$ commutes with $a$, so $P\in\cA'$.
+
+Then, $TP=PT$ implies $Tv=T(Pv)=P(Tv)\in\ran(P)=\cl{\cA v}$.
+
 \end{pf}
 \end{document}
