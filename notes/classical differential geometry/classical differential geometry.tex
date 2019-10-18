@@ -4,11 +4,46 @@
 \def\a{\alpha}
 
 \title{Classical differential geometry}
-\date{\today}
 
 \begin{document}
 \maketitle
 \tableofcontents
+
+
+% 길이 넓이, 방향
+% 벡터를 접벡터로 미분하기: 아무 설명 없는 경우 바깥의 공변미분
+
+
+% Local theory
+% -이론
+%   좌표의 설정
+%    곡선: 프레네세레,
+%    곡면: 가우스맵과 접벡터 두 개
+%         선형독립    벡터들이 한점에서 주어졌을 때 -> 
+%         선형독립    벡터장이 근방에서 주어졌을 때 -> 일반적으론 2차원에서만
+%         선형독립 가환벡터장이 근방에서 주어졌을 때 -> n차원 다돼
+%         선형독립    직교벡터들이 한점에서 주어졌을 때
+%         선형독립    직교벡터장이 근방에서 주어졌을 때
+%         선형독립 직교가환벡터장이 근방에서 주어졌을 때
+%             곡률의 선, 점근곡선, 측지좌표
+%   측정량과 구조의 의존성
+%    기본적으로 -> 기저 벡터를 미분하면 어떻게 되느냐
+%    곡선: 카파, 타우
+%    곡면: 곡률들, 기본형식 항들, 크리스토펠, 가우스곡률; 좌표의존성과 바깥의존성
+% -계산
+%   평면곡선, 구면곡선, 헬릭스, 버트런드
+%   프리이미지, 그래프, 접선쓸기, 회전체
+%   뿔, 엘립소이드, 파라볼로이드, 쌍곡면, 헬리코이드; 곡률 부호
+%    룰드 곡면, 데벨로퍼블
+% -문제
+%   곡선: 각 점에 대한 정보 -> 모양
+%   곡면: 
+
+% Global theory
+%  곡선: 등주부등식, 네 꼭짓점, 볼록성/오발, 펜첼/페리-밀너
+%  곡면: 최소곡면, 컴팩트곡면분류, 임베딩문제, 가우스-보네
+
+% 평행수송, 공변미분, 측지선, 측지꼬임/곡률, 측지완비/호프리노프, 지수사상, 야코비장, 아다마르
 
 \section{Parametrizations and Coordinates}
 \subsection{Parametrizations}
@@ -66,7 +101,7 @@ Then, by the chain rule,
 \subsection{Frenet-Serret theory}
 
 \begin{defn}
-We say a curve parametrized as $\a:I\to\R^3$ is \emph{degenerate} if the normalized tangent vector $\a'/\|\a'\|$ is never locally constant everywhere.
+We call a curve parametrized as $\a:I\to\R^3$ is \emph{nondegenerate} if the normalized tangent vector $\a'/\|\a'\|$ is never locally constant everywhere.
 In other words, $\a$ is nowhere straight.
 \end{defn}
 
