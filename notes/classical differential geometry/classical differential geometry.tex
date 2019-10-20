@@ -4,102 +4,175 @@
 \def\a{\alpha}
 
 \title{Classical differential geometry}
+\setcounter{tocdepth}{3}
 
 \begin{document}
 \maketitle
 \tableofcontents
 
 
-% 길이 넓이, 방향
-% 벡터를 접벡터로 미분하기: 아무 설명 없는 경우 바깥의 공변미분
 
-
-% Local theory
-% -이론
-%   좌표의 설정
-%    곡선: 프레네세레,
-%    곡면: 가우스맵과 접벡터 두 개
-%         선형독립    벡터들이 한점에서 주어졌을 때 -> 
+%   좌표
+%    매개화 좌표
+%   미분 
+%    <<바깥의 공변미분 사용>>
+%    매개화를 미분하기 -> 곡선의 접벡터(프라임/디디티), 곡면의 접벡터(아래첨자/라운드)
+%                     곡선을 통한 접공간 정의
+%    접벡터로 미분하기 -> 스칼라장과 벡터장, 곡선비의존, 곡선미분, 기저벡터미분
+%   접공간
+%    안쪽기저와 바깥기저
+%    내적
+%    외적
+%
+%         선형독립    벡터들이 한점에서 주어졌을 때 ->
 %         선형독립    벡터장이 근방에서 주어졌을 때 -> 일반적으론 2차원에서만
 %         선형독립 가환벡터장이 근방에서 주어졌을 때 -> n차원 다돼
 %         선형독립    직교벡터들이 한점에서 주어졌을 때
 %         선형독립    직교벡터장이 근방에서 주어졌을 때
 %         선형독립 직교가환벡터장이 근방에서 주어졌을 때
-%             곡률의 선, 점근곡선, 측지좌표
-%   측정량과 구조의 의존성
+%             -> 곡률의 선, 점근곡선, 측지좌표
+
+% Local theory
+% -이론
+%   측정량의 계산식
 %    기본적으로 -> 기저 벡터를 미분하면 어떻게 되느냐
-%    곡선: 카파, 타우
-%    곡면: 곡률들, 기본형식 항들, 크리스토펠, 가우스곡률; 좌표의존성과 바깥의존성
+%    곡선:
+%         기저깔기: 티엔비, 오소노멀
+%         프레네세레: 카파, 타우
+%    곡면:
+%         기저깔기: 접벡터 두개+법선벡터, 제1기본형식
+%         접벡터 미분: 크리스토펠
+%         법벡터 미분: 법선곡률, 제2기본형식(모양연산, 바인갈텐), 주곡률, 평균곡률, 가우스곡률
+%           곡률텐서
+%           additional topic 좌표의존성과 바깥의존성
+
 % -계산
-%   평면곡선, 구면곡선, 헬릭스, 버트런드
+%   평면곡선, 구면곡선, 헬릭스, 버트런드, 이볼루트
 %   프리이미지, 그래프, 접선쓸기, 회전체
 %   뿔, 엘립소이드, 파라볼로이드, 쌍곡면, 헬리코이드; 곡률 부호
 %    룰드 곡면, 데벨로퍼블
-% -문제
-%   곡선: 각 점에 대한 정보 -> 모양
-%   곡면: 
 
-% Global theory
-%  곡선: 등주부등식, 네 꼭짓점, 볼록성/오발, 펜첼/페리-밀너
-%  곡면: 최소곡면, 컴팩트곡면분류, 임베딩문제, 가우스-보네
-
+% Intrinsic geometry of surface
 % 평행수송, 공변미분, 측지선, 측지꼬임/곡률, 측지완비/호프리노프, 지수사상, 야코비장, 아다마르
 
-\section{Parametrizations and Coordinates}
-\subsection{Parametrizations}
+% Global theory
+%  곡선: 등주부등식, (네 꼭짓점, 펜첼/페리-밀너), 볼록성/오발
+%  곡면: 최소곡면, (컴팩트곡면분류, 가우스-보네), 임베딩문제,
+
+
+\section*{Acknowledgement}
+This note is written for teaching during the undergraduate tutoring program in 2019 fall semester.
+Main resources I refered are books by Manfredo P. do Carmo \cite{}, and Richard S. Millman and George D. Parker \cite{}.
+
+\clearpage
+\section{Introduction}
+\subsection{Parametrizations and coordinates}
+For each text on classical differential geometry, the definitions frequently vary.
+In this note, we define as follows.
 \begin{defn}
 An \emph{$m$-dimensional parametrization} is a smooth map $\a:U\to\R^n$ such that
 \begin{cond}
 \item $U\subset\R^m$ is open,
 \item $\a$ is one-to-one (optional),
-\item $d\a$ is nondegenerate; $\{\pd_i\a\}_{i=1}^m$ is linearly independent.
+\item the Fr\'echet derivative $d\a:U\times\R^m\to\R^n$ is injective everywhere.
 \end{cond}
+The Euclidean space $\R^n$ is called the \emph{ambient space}.
 \end{defn}
-The third condition is important; in language of manifolds, the third condition defines what we call \emph{immersed submanifolds}.
-We will see that the second condition is not important at all.
-
-For each text on classical differential geometry, the definitions of regular curves and surfaces frequently vary.
-In this note, we define as follows.
+\begin{rmk}
+Although it is written that the second condition is optional, we will always require the injectivity of $\a$ in this note.
+If not, two distinct ordered tuple of real numbers may represent the same point.
+To describe a geometric object that cannot be covered by a single injective parametrization, such as a circle or a sphere, we can admit several parametrizations.
+\end{rmk}
+\begin{rmk}
+The third condition is important.
+This condition is paraphrased as follows: the set of partial derivatives $\{\pd_i\a(p)\}_{i=1}^m\subset\R^n$ is linearly independent at every point $p\in U$.
+Differential geoemtry do not consider parametrizations that fail this; for example, $t=0$ should be excluded from the domain of a curve parametrization $t\mapsto(t^2,t^3,t^4)$.
+\end{rmk}
 \begin{defn}
-A \emph{regular curve} is a subset of $\R^n$ that can be given as the image of a one-dimensional parametrization.
-A \emph{regular surface} is a subset of $\R^n$ that can be given as the image of a two-dimensional parametrization.
+A subset $M\subset\R^n$ is called a \emph{regular curve} (resp. \emph{regular surface}) if there exists a one-dimensional (resp. two-dimensional) parametrization whose image is exactly $M$.
+
+We just often say that $\a$ is a regular curve (resp. regular surface) for a parametrization $\a$.
 \end{defn}
-With this definition, the regular surface is not appropriate to deal with the global nature of, for example, spheres or tori.
-
-Reparametrization is just a choice of another parametrization for the same curve or surface.
-
-
-
-\subsection{Coordinates}
 \begin{defn}
-Let $M\subset\R^3$ be a regular curve or a regular surface.
+Let $M\subset\R^n$ be a regular curve or a regular surface.
 The inverse $\f:M\to U$ of a parametrization is called a \emph{coordinate map}.
 \end{defn}
 
-
+Reparametrization is just a choice of another parametrization for the same curve or surface.
 The choice of coordinate(parametrization) is extremely important in differential geometry.
 
+% Examples
+
+
+\subsection{Differentiation}
+Differentiation in differential geometry can be understood in many different viewpoints.
+We, here, review the two kinds of main usages of differentiation: differentiation of parametrizations, and differentiation by directional vectors.
+Do not forget that all differentiations in this note will be done thanks to the structure of the ambient space $\R^n$.
+
+\subsubsection{Differentiation of parametrizations}
+We introduce the notion of tangent spaces, geometrically the spaces of vectors that starts from each base point, by differentiation of parametrization.
+Before that, let us make sure the notations for differentiation.
+The precise definition of differentiation is skipped.
+
+\begin{notn}
+Let $\a:I\to\R^n$ be a regular curve.
+Its tangent vector is denoted by
+\[\a'=\dot\a=\dd{\a}{t}:I\to\R^n.\]
+Let $\a:U\to\R^n$ be a regular surface.
+Its tangent vectors are denoted by
+\[\a_x=\pd_x\a=\pd{\a}{x},\ \a_y=\pd_y\a=\pd{\a}{y}:U\to\R^n.\]
+\end{notn}
+
+Now we define tangent spaces in several equivlent ways:
+\begin{defn}
+Let $M$ be a regular curve or a regular surface with parametrization $\a:U\to M\subset\R^n$.
+Let $p\in M$ be a point.
+
+The \emph{tangent space} of $M$ at $p$, denoted by $T_pM$, can be defined as either one of the followings:
+\begin{cond}
+\item the span of linearly independent set of vectors $\{\pd_i\a\}_{i=1}^m\subset\R^n$,
+\item the image of the Fr\'echet derivative $d\a_p:\R^m\to\R^n$.
+This definition is independent on the parametrization $\a$,
+\item the set of vectors $v\in\R^n$ such that there exists a curve $\gamma:I\to M$ satisfying $\gamma(0)=p$ and $\gamma'(0)=v$.
+\end{cond}
+\end{defn}
+\begin{rmk}
+We can show the three conditions are equivalent, but the proof will not be given; what is more important is to understand the role and meaning of tangent spaces.
+There exist a lot more neat characterizations for tangent spaces we will not cover.
+\end{rmk}
+\begin{rmk}
+We can easily check that $T_p\R^3=\R^3$ for any $p\in\R^3$.
+The notation $T_p\R^3$ will be used to emphasize that a vector in $\R^3$ is geometrically recognized to cast from the point $p$.
+\end{rmk}
+
+% Examples
+
+\subsubsection{Differentiation by tangent vectors}
+
+%%%%
 
 
 
-\section{Curves in a space}
-\begin{thm}
-For every regular curve, there is a parametrization $\a$ such that $\|\a'\|=1$.
-\end{thm}
-\begin{pf}
-Suppose we have a parametrization $\beta:I_t\to\R^d$.
-Define $\tau:I_t\to I_s$ such that
-\[\tau(t_0):=\int_0^{t_0}\|\beta'(t)\|\,dt.\]
-Then, $s$ is a diffeomorphism.
-Define $\a:I_s\to\R^d$ by $\a:=\beta\circ\tau^{-1}$.
-Then, by the chain rule,
-\[\a'=\dd{\a}{s}=\dd{\beta}{t}\dd{\tau^{-1}}{s}=\beta'\left(\dd{\tau}{t}\right)^{-1}=\frac{\beta'}{\|\beta'\|}.\qedhere\]
-\end{pf}
 
 
 
-\subsection{Frenet-Serret theory}
 
+
+
+
+
+
+
+
+
+
+\section{Local theory of curves}
+
+\subsection{Theory}
+
+\subsubsection{Frenet-Serret frame}
+The Frenet-Serret frame is defined for nondegenerate regular curves.
+It provides with a useful orthonormal basis of $T_p\R^3\supset T_pC$ for points $p$ on a regular curve $C$.
 \begin{defn}
 We call a curve parametrized as $\a:I\to\R^3$ is \emph{nondegenerate} if the normalized tangent vector $\a'/\|\a'\|$ is never locally constant everywhere.
 In other words, $\a$ is nowhere straight.
@@ -107,83 +180,117 @@ In other words, $\a$ is nowhere straight.
 
 \begin{defn}[Frenet-Serret frame]
 Let $\a$ be a nondegenerate curve.
-We define \emph{tangent unit vector}, \emph{normal unit vector}, \emph{binormal unit vector} by:
-\[\bT(t):=\frac{\a'(t)}{\norm{\a'(t)}},\qquad\bN(t):=\frac{\bT'(t)}{\|\bT'(t)\|},\qquad\bB(t):=\bT(t)\times\bN(t),\]
-and \emph{curvature} and \emph{torsion} by:
-\[\kappa(t):=\<\bT'(t),\bN(t)\>,\quad\tau(t):=-\<\bB'(t),\bN(t)\>.\]
-Note that $\kappa$ cannot vanish by definition.
+The \emph{tangent unit vector}, \emph{normal unit vector}, \emph{binormal unit vector} are $T_p\R^3$-valued vector fields on $\a$ defined by:
+\[\rT:=\frac{\a'}{\norm{\a'}},\qquad\rN:=\frac{\rT'}{\|\rT'\|},\qquad\rB:=\rT\times\rN.\]
+The set of vector fields $\{\rT,\rN,\rB\}$, which is called \emph{Frenet-Serret frame}, form an orthonormal basis of $T_p\R^3$ at each point $p$ on $\a$.
+Note that the Frenet-Serret frame is uniquely determined up to sign as parametrizations vary.
+\end{defn}
+
+
+\subsubsection{Reparametrization}
+The Frenet-Serret frame plays more powerful roles when the parametrization is properly reparametrized.
+\begin{defn}
+A parametrization $\a$ of a regular curve is called \emph{unit speed curve} if it satisfies $\|\a'\|=1$.
+\end{defn}
+\begin{thm}
+Every regular curve may be assumed to have unit speed.
+Precisely, for every regular curve, there is a parametrization $\a$ such that $\|\a'\|=1$.
+\end{thm}
+\begin{pf}
+Suppose we have a parametrization $\beta:I_t\to\R^d$ for a given regular curve.
+
+Define $\tau:I_t\to I_s$ such that
+\[\tau(t_0):=\int_0^{t_0}\|\beta'(t)\|\,dt.\]
+Since $\tau$ is smooth and $\tau'>0$ everywhere so that $\tau$ is strictly increasing, the inverse $\tau^{-1}:I_s\to I_t$ is smooth by the inverse function theorem.
+Define $\a:I_s\to\R^d$ by $\a:=\beta\circ\tau^{-1}$.
+Then, by the chain rule,
+\[\a'=\dd{\a}{s}=\dd{\beta}{t}\dd{\tau^{-1}}{s}=\beta'\left(\dd{\tau}{t}\right)^{-1}=\frac{\beta'}{\|\beta'\|}.\qedhere\]
+\end{pf}
+
+
+
+\subsubsection{Differentiation of Frenet-Serret frame}
+
+\begin{defn}
+Let $\a$ be a unit speed nondegenerate curve.
+The \emph{curvature} and \emph{torsion} are defined by:
+\[\kappa(t):=\<\rT'(t),\rN(t)\>,\quad\tau(t):=-\<\rB'(t),\rN(t)\>.\]
+Note that $\kappa>0$ cannot vanish by definition of nondegenerate curve.
 \end{defn}
 
 \begin{thm}[Frenet-Serret formula]
 Let $\a$ be a unit speed nondegenerate curve.
-\[\begin{pmatrix}\bT'\\\bN'\\\bB'\end{pmatrix}=\begin{pmatrix}0&\kappa&0\\-\kappa&0&\tau\\0&-\tau&0\end{pmatrix}\begin{pmatrix}\bT\\\bN\\\bB\end{pmatrix}.\]
+Then,
+\[\begin{pmatrix}\rT'\\\rN'\\\rB'\end{pmatrix}=\begin{pmatrix}0&\kappa&0\\-\kappa&0&\tau\\0&-\tau&0\end{pmatrix}\begin{pmatrix}\rT\\\rN\\\rB\end{pmatrix}.\]
 \end{thm}
 \begin{pf}
-Note that $\{\bT,\bN,\bB\}$ is an orthonormal basis.
+Note that $\{\rT,\rN,\rB\}$ is an orthonormal basis.
 
-\Step{1}[Show that $\bT',\bB',\bN$ are parallel]
-Two vectors $\bT'$ and $\bN$ are parallel by definition.
-Since $\<\bT,\bB\>=0$ and $\<\bB,\bB\>=1$ are constant, we have
-\[\<\bB',\bT\>=\<\bB,\bT\>'-\<\bB,\bT'\>=0,\qquad\<\bB',\bB\>=\tfrac12\<\bB,\bB\>'=0,\]
-which show $\bB'$ and $\bN$ are parallel.
+\Step{1}[Show that $\rT',\rB',\rN$ are parallel]
+Two vectors $\rT'$ and $\rN$ are parallel by definition.
+Since $\<\rT,\rB\>=0$ and $\<\rB,\rB\>=1$ are constant, we have
+\[\<\rB',\rT\>=\<\rB,\rT\>'-\<\rB,\rT'\>=0,\qquad\<\rB',\rB\>=\tfrac12\<\rB,\rB\>'=0,\]
+which show $\rB'$ and $\rN$ are parallel.
 By the definition of $\kappa$ and $\tau$, we have
-\[\bT'=\kappa\bN,\qquad\bB'=-\tau\bB.\]
+\[\rT'=\kappa\rN,\qquad\rB'=-\tau\rB.\]
 
-\Step{2}[Describe $\bN'$]
+\Step{2}[Describe $\rN'$]
 Since
 \begin{align*}
-\<\bN',\bT\>&=-\<\bN,\bT'\>=-\kappa,\\
-\<\bN',\bN\>&=\tfrac12\<\bN,\bN\>'=0,\\
-\<\bN',\bB\>&=-\<\bN,\bB'\>=\tau,
+\<\rN',\rT\>&=-\<\rN,\rT'\>=-\kappa,\\
+\<\rN',\rN\>&=\tfrac12\<\rN,\rN\>'=0,\\
+\<\rN',\rB\>&=-\<\rN,\rB'\>=\tau,
 \end{align*}
 we have
-\[\bN'=-\kappa\bT+\tau\bB.\qedhere\]
+\[\rN'=-\kappa\rT+\tau\rB.\qedhere\]
 \end{pf}
 \begin{rmk}
 Skew-symmetricity in the Frenet-Serret formula is not by chance.
-Let $\bX(t)$ be the curve of orthogonal matrices $(\bT(t),\bN(t),\bB(t))^T$.
+Let $\rX(t)$ be the curve of orthogonal matrices $(\rT(t),\rN(t),\rB(t))^T$.
 Then, the Frenet-Serret formula reads
-\[\bX'(t)=A(t)\bX(t)\]
+\[\rX'(t)=A(t)\rX(t)\]
 for a matrix curve $A(t)$.
-Since $\bX(t+h)=R_t(h)\bX(t)$ for a family of orthogonal matrices $\{R_t(h)\}_h$ with $R_t(0)=I$, we can describe $A(t)$ as 
+Since $\rX(t+h)=R_t(h)\rX(t)$ for a family of orthogonal matrices $\{R_t(h)\}_h$ with $R_t(0)=I$, we can describe $A(t)$ as 
 \[A(t)=\left.\dd{R_t}{h}\right\rvert_{h=0}.\]
 By differentiating the relation $R_t^T(h)R_t(h)=I$ with respect to $h$, we get to know that $A(t)$ is skew-symmetric for all $t$.
 In other words, the tangent space $T_I\SO(3)$ forms a skew symmetric matrix.
 \end{rmk}
 
 \begin{prop}
-Let $\a$ be a nondegenerate space curve.
+Let $\a$ be a nondegenerate curve.
 \[\kappa=\frac{\|\a'\x\a''\|}{\|\a'\|^3},\qquad\tau=\frac{\a'\x\a''\cdot\a'''}{\|\a'\x\a''\|}.\]
 \end{prop}
 \begin{pf}
 If we let $s=\|\a'\|$, then
 \begin{align*}
-\a'&=s\bT,\\
-\a''&=s'\bT+s^2\kappa\bN,\\
-\a'''&=(s''-s^3\kappa^2)\bT+(3ss'\kappa+s^2\kappa')\bN+(s^3\kappa\tau)\bB.
+\a'&=s\rT,\\
+\a''&=s'\rT+s^2\kappa\rN,\\
+\a'''&=(s''-s^3\kappa^2)\rT+(3ss'\kappa+s^2\kappa')\rN+(s^3\kappa\tau)\rB.
 \end{align*}
 Now the formulas are easily derived.
 \end{pf}
 
 
+
+
 \subsection{Problems}
 
-Let $\a$ be a nondegenerate unit speed space curve, and let $\{\bT,\bN,\bB\}$ be the Frenet-Serret frame for $\a$.
+Let $\a$ be a nondegenerate unit speed space curve, and let $\{\rT,\rN,\rB\}$ be the Frenet-Serret frame for $\a$.
 Consider a diagram as follows:
 \begin{cd}
-\<\a,\bT\>=\ ?\ar{r}\ar{d} & \<\a,\bN\>=\ ? \ar{l}\ar{d}\ar{r} & \<\a,\bB\>=\ ? \ar{l}\ar{d} \\
-\<\a',\bT\>=1 & \<\a',\bN\>=0 &\<\a',\bB\>=0.
+\<\a,\rT\>=\ ?\ar{r}\ar{d} & \<\a,\rN\>=\ ? \ar{l}\ar{d}\ar{r} & \<\a,\rB\>=\ ? \ar{l}\ar{d} \\
+\<\a',\rT\>=1 & \<\a',\rN\>=0 &\<\a',\rB\>=0.
 \end{cd}
 Here the arrows indicate which information we are able to get by differentiation.
 For example, if we know a condition
-\[\<\a(t),\bT(t)\>=f(t),\]
+\[\<\a(t),\rT(t)\>=f(t),\]
 then we can obtain by differentiating it
-\[\<\a(t),\bN(t)\>=\frac{f'(t)-1}{\kappa(t)}\]
-since we have known $\<\a',\bT\>$ but not $\<\a,\bN\>$, and further
-\[\<\a(t),\bB(t)\>=\frac{\left(\frac{f'(t)-1}{\kappa(t)}\right)'+\kappa(t)f(t)}{\tau(t)}\]
-since we have known $\<\a,\bT\>$ and $\<\a',\bN\>$ but not $\<\a,\bB\>$.
-Thus, $\<\a,\bT\>=f$ implies
-\[\a(t)=f(t)\cdot\bT+\frac{f'(t)-1}{\kappa(t)}\cdot\bN+\frac{\left(\frac{f'(t)-1}{\kappa(t)}\right)'+\kappa(t)f(t)}{\tau(t)}\cdot\bB,\]
+\[\<\a(t),\rN(t)\>=\frac{f'(t)-1}{\kappa(t)}\]
+since we have known $\<\a',\rT\>$ but not $\<\a,\rN\>$, and further
+\[\<\a(t),\rB(t)\>=\frac{\left(\frac{f'(t)-1}{\kappa(t)}\right)'+\kappa(t)f(t)}{\tau(t)}\]
+since we have known $\<\a,\rT\>$ and $\<\a',\rN\>$ but not $\<\a,\rB\>$.
+Thus, $\<\a,\rT\>=f$ implies
+\[\a(t)=f(t)\cdot\rT+\frac{f'(t)-1}{\kappa(t)}\cdot\rN+\frac{\left(\frac{f'(t)-1}{\kappa(t)}\right)'+\kappa(t)f(t)}{\tau(t)}\cdot\rB,\]
 when given $\tau(t)\ne0$.
 
 Suggested a strategy for space curve problems:
@@ -193,38 +300,38 @@ Suggested a strategy for space curve problems:
 \item Aim for finding the coefficients of the position vector in the Frenet-Serret frame, and obtain relations of $\kappa$ and $\tau$ by comparing with assumptions.
 \item Heuristically find a constant vector and show what you want directly.
 \end{itemize}
-Here we give an example solution of several problems.
-Always $\a$ denote a reparametrized unit speed curve.
+Here we give example solutions of several selected problems.
+Always $\a$ denote a reparametrized unit speed nondegenerate curve.
 
-\begin{ex}
+\begin{prb}
 A space curve whose normal lines always pass through a fixed point lies in a circle.
-\end{ex}
-\begin{pf}
+\end{prb}
+\begin{sol}
 \Step{1}[Formulate conditions]
-By the assumption, there is a constant point $p\in\R^3$ such that the vectors $\a-p$ and $\bN$ are parallel so that we have
-\[\<\a-p,\bT\>=0,\qquad\<\a-p,\bB\>=0.\]
+By the assumption, there is a constant point $p\in\R^3$ such that the vectors $\a-p$ and $\rN$ are parallel so that we have
+\[\<\a-p,\rT\>=0,\qquad\<\a-p,\rB\>=0.\]
 Our goal is to show that $\|\a-p\|$ is constant and there is a constant vector $v$ such that $\<\a-p,v\>=0$.
 
 \Step{2}[Collect information]
-Differentiate $\<\a-p,\bT\>=0$ to get
-\[\<\a-p,\bN\>=-\frac1\kappa.\]
-%\[\<\a-p,\bN\>=\frac1\kappa\<\a-p,\bT'\>=\frac1\kappa(\<\a-p,\bT\>'-\<\a',\bT\>)=-\frac1\kappa.\]
-Differentiate $\<\a-p,\bB\>=0$ to get
+Differentiate $\<\a-p,\rT\>=0$ to get
+\[\<\a-p,\rN\>=-\frac1\kappa.\]
+%\[\<\a-p,\rN\>=\frac1\kappa\<\a-p,\rT'\>=\frac1\kappa(\<\a-p,\rT\>'-\<\a',\rT\>)=-\frac1\kappa.\]
+Differentiate $\<\a-p,\rB\>=0$ to get
 \[\tau=0.\]
 
 \Step{3}[Complete proof]
 We can deduce that $\|\a-p\|$ is constant from
-\[(\|\a-p\|^2)'=\<\a-p,\a-p\>'=2\<\a-p,\bT\>=0.\]
-Also, if we heuristically define a vector $v:=\bB$, then $v$ is constant since
-\[v'=-\tau\bN=0,\]
+\[(\|\a-p\|^2)'=\<\a-p,\a-p\>'=2\<\a-p,\rT\>=0.\]
+Also, if we heuristically define a vector $v:=\rB$, then $v$ is constant since
+\[v'=-\tau\rN=0,\]
 and clearly $\<\a-p,v\>=0$
-\end{pf}
+\end{sol}
 
 
-\begin{ex}
+\begin{prb}
 A sphere curve of constant curvature lies in a circle.
-\end{ex}
-\begin{pf}
+\end{prb}
+\begin{sol}
 \Step{1}[Formulate conditions]
 The condition that $\a$ lies on a sphere can be given as follows: for a constant point $p\in\R^3$,
 \[\|\a-p\|=\const.\]
@@ -233,65 +340,67 @@ Also we have
 
 \Step{2}[Collect information]
 Differentiate $\|\a-p\|^2=\const$ to get
-\[\<\a-p,\bT\>=0.\]
-Differentiate $\<\a-p,\bT\>=0$ to get
-\[\<\a-p,\bN\>=-\frac1\kappa.\]
-Differentiate $\<\a-p,\bN\>=-1/\kappa=\const$ to get
-\[\tau\<\a-p,\bB\>=0.\]
+\[\<\a-p,\rT\>=0.\]
+Differentiate $\<\a-p,\rT\>=0$ to get
+\[\<\a-p,\rN\>=-\frac1\kappa.\]
+Differentiate $\<\a-p,\rN\>=-1/\kappa=\const$ to get
+\[\tau\<\a-p,\rB\>=0.\]
 
 There are two ways to show that $\tau=0$.
 
 \emph{Method 1}:
 Assume that there is $t$ such that $\tau(t)\ne0$.
 By the continuity of $\tau$, we can deduce that $\tau$ is locally nonvanishing.
-In other words, we have $\<\a-p,\bB\>=0$ on an open interval containing $t$.
-Differentiate $\<\a-p,\bB\>=0$ at $t$ to get $\<\a-p,\bN\>=0$ near $t$, which is a contradiction.
+In other words, we have $\<\a-p,\rB\>=0$ on an open interval containing $t$.
+Differentiate $\<\a-p,\rB\>=0$ at $t$ to get $\<\a-p,\rN\>=0$ near $t$, which is a contradiction.
 Therefore, $\tau=0$ everywhere.
 
 \emph{Method 2}:
-Since $\<\a-p,\bB\>$ is continuous and
-\[\<\a-p,\bB\>=\pm\sqrt{\|\a-p\|^2-\<\a-p,\bT\>^2-\<\a-p,\bN\>^2}=\pm\const,\]
-we get $\<\a-p,\bB\>=\const$.
-Differentiate to get $\tau\<\a-p,\bN\>=0$.
-Finally we can deduce $\tau=0$ since $\<\a-p,\bN\>\ne0$.
+Since $\<\a-p,\rB\>$ is continuous and
+\[\<\a-p,\rB\>=\pm\sqrt{\|\a-p\|^2-\<\a-p,\rT\>^2-\<\a-p,\rN\>^2}=\pm\const,\]
+we get $\<\a-p,\rB\>=\const$.
+Differentiate to get $\tau\<\a-p,\rN\>=0$.
+Finally we can deduce $\tau=0$ since $\<\a-p,\rN\>\ne0$.
 
 \Step{3}[Complete proof]
 The zero torsion implies that the curve lies on a plane.
 A planar curve in a sphere is a circle.
-\end{pf}
+\end{sol}
 
-\begin{ex}
+\begin{prb}
 A curve such that $\tau/\kappa=(\kappa'/\tau\kappa^2)'$ lies on a sphere.
-\end{ex}
-\begin{pf}
-\Step{1}[Find center heuristically]
+\end{prb}
+\begin{sol}
+\Step{1}[Find the center heuristically]
 If we assume that $\a$ is on a sphere so that we have $\|\a-p\|=r$ for constants $p\in\R^3$ and $\r>0$, then by the routine differentiations give
-\[\<\a-p,\bT\>=0,\qquad\<\a-p,\bN\>=-\frac1\kappa,\qquad\<\a-p,\bB\>=-\left(\frac1\kappa\right)'\frac1\tau,\]
+\[\<\a-p,\rT\>=0,\qquad\<\a-p,\rN\>=-\frac1\kappa,\qquad\<\a-p,\rB\>=-\left(\frac1\kappa\right)'\frac1\tau,\]
 that is,
-\[\a-p=-\frac1\kappa\bN-\left(\frac1\kappa\right)'\frac1\tau\bB.\]
+\[\a-p=-\frac1\kappa\rN-\left(\frac1\kappa\right)'\frac1\tau\rB.\]
 
 \Step{2}[Complete proof]
 Let us get started the proof.
 Define
-\[p:=\a+\frac1\kappa\bN+\left(\frac1\kappa\right)'\frac1\tau\bB.\]
+\[p:=\a+\frac1\kappa\rN+\left(\frac1\kappa\right)'\frac1\tau\rB.\]
 We can show that it is constant by differentiation.
 Also we can show that
 \[\<\a-p,\a-p\>\]
 is constant by differentiation.
 So we are done.
-\end{pf}
+\end{sol}
 
-\begin{ex}
+\begin{prb}
 A curve with more than one Bertrand mates is a circular helix.
-\end{ex}
-\begin{pf}
+\end{prb}
+\begin{sol}
 \Step{1}[Formulate conditions]
-\Step{2}[Collect information]
-\Step{3}[Complete proof]
-\end{pf}
 
-Here are representative problem sets.
-\begin{ex}[Plane curves]
+\Step{2}[Collect information]
+
+\Step{3}[Complete proof]
+\end{sol}
+
+Here are additional representative problem sets.
+\begin{prb}[Plane curves]
 Let $\a$ be a nondegenerate curve in $\R^3$.
 TFAE:
 \begin{cond}
@@ -299,9 +408,9 @@ TFAE:
 \item $\tau=0$,
 \item the osculating plane constains a fixed point.
 \end{cond}
-\end{ex}
+\end{prb}
 
-\begin{ex}[Helices]
+\begin{prb}[Helices]
 Let $\a$ be a nondegenerate curve in $\R^3$.
 TFAE:
 \begin{cond}
@@ -309,9 +418,9 @@ TFAE:
 \item $\tau/\kappa=\const$,
 \item normal lines are parallel to a plane.
 \end{cond}
-\end{ex}
+\end{prb}
 
-\begin{ex}[Sphere curves]
+\begin{prb}[Sphere curves]
 Let $\a$ be a nondegenerate curve in $\R^3$.
 TFAE:
 \begin{cond}
@@ -320,16 +429,18 @@ TFAE:
 \item $\tau/\kappa=(\kappa'/\tau\kappa^2)'$,
 \item normal planes contain a fixed point.
 \end{cond}
-\end{ex}
+\end{prb}
 
-\begin{ex}[Bertrand mates]
+\begin{prb}[Bertrand mates]
 Let $\a$ be a nondegenerate curve in $\R^3$.
 TFAE:
 \begin{cond}
 \item the curve $\a$ has a Bertrand mate,
 \item there are two constants $\lambda\ne0,\mu$ such that $1/\lambda=\kappa+\mu\tau$.
 \end{cond}
-\end{ex}
+\end{prb}
+
+% evolutes
 
 
 
@@ -339,11 +450,37 @@ TFAE:
 
 
 
-\section{Surfaces in a space}
-\[\nu_x=S(\a_x)=\kappa_1\a_x\]
 
 
-\section{Curves on a surface}
+\section{Local theory of surfaces}
+\subsection{Theory}
+\subsubsection{Gauss map}
 
+\begin{defn}
+Let $\a$ be a regular surface.
+The \emph{Gauss map} or \emph{normal unit vector} $\nu:U\to\R^3$ is a $T_p\R^3$-valued vector field on $\a$ defined by:
+\[\nu:=\frac{\a_x\times \a_y}{\|\a_x\times \a_y\|}.\]
+The set of vector fields $\{\a_x,\a_y,\nu\}$ form a basis of $T_p\R^3$ at each point $p$ on $\a$.
+\end{defn}
+\begin{prop}
+The Gauss map is independent on parametrizations up to sign.
+\end{prop}
+
+\subsubsection{Reparametrization}
+% first fundamental form
+
+
+\subsubsection{Differentiation of tangent vectors}
+% christoffel symbol
+
+
+\subsubsection{Differentiation of normal vector}
+% normal curvature
+% second fundamental form
+% shape operator, weingarten map
+% principal curvature
+% mean curvature, gaussian curvature
+
+% curvature tensor?
 
 \end{document}
