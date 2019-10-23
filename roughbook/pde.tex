@@ -121,17 +121,95 @@ The Sturm-Liouville operator is
 
 
 
+
+
+
+
 \section{Kinetic theory}
 
 \subsection{Vlasov-Poisson equation}
 Consider a Cauchy problem of the \emph{Valsov-Poisson system}:
 \begin{pde*}
-&f_t+v\cdot\del_xf+\gamma E\cdot\del_vf=0,\:(t,x,v)\in[0,T]\x\R_x^3\x\R_v^3,\\
+&f_t+v\cdot\del_xf+\gamma E\cdot\del_vf=0,\:(t,x,v)\in\R_t^+\x\R_x^3\x\R_v^3,\\
 &E(t,x)=\del_x\Delta_x^{-1}\rho,\\
 &\rho(t,x)=\tint f\,dv,\\
 &f(0,x,v)=f_0(x,v).
 \end{pde*}
-\subsubsection{A priori estimates}
+For boundaryless problem, we have
+\[E=\del_x(-\tfrac1{4\pi|x|}*\rho)=\frac{x}{4\pi|x|^3}*\rho.\]
+
+\begin{thm}[Schaeffer, 1991]
+Let $f_0\in C_{0,x,v}^1$ and $f_0\ge0$.
+Then, the Cauchy problem for the VP system has a unique $C^1$ global solution.
+\end{thm}
+\begin{defn}
+For a local solution $f$,
+\[Q(t):=1+\sup\{|v|:f(s,x,v)\ne0\text{ for some }s\in[0,t],\,x\in\R_x^3\}.\]
+\end{defn}
+
+Electric field can be controlled by density $\rho$, henceforth by $Q$.
+\begin{lem}
+For $1\le q<\frac N{N-2}=3<p\le\infty$,
+\[\|E(t,x)\|_{L_x^\infty}\les\|\rho(t,x)\|_{L_x^p}^{\frac{\frac2N-1+\frac1q}{\frac1q-\frac1p}}\|\rho(t,x)\|_{L_x^q}^{\frac{1-\frac1p-\frac2N}{\frac1q-\frac1p}}.\]
+Furthermore,
+\[\|E(t,x)\|_{L_x^\infty}\les Q(t)^\e\]
+for any $0<\e\le6$.
+\end{lem}
+\begin{pf}
+Fix time $t$.
+For $2p<N=3<2q$,
+\begin{align*}
+4\pi|E(x)|
+&=|\tfrac1{|x|^2}*\rho(x)|\\
+&\le\int_{|x-y|<R}\frac{\rho(y)}{|x-y|^2}\,dy+\int_{|x-y|\ge R}\frac{\rho(y)}{|x-y|^2}\,dy\\
+&\le\|\rho\|_{p'}(\int_{|y|<R}\frac{dy}{|y|^{2p}})^{1/p}+\|\rho\|_{q'}(\int_{|y|\ge R}\frac{dy}{|y|^{2q}})^{1/q}\\
+&\simeq\|\rho\|_{p'}(\int_0^Rr^{N-1-2p},dr)^{1/p}+\|\rho\|_{q'}(\int_R^\infty r^{N-1-2q},dr)^{1/q}\\
+&\simeq\|\rho\|_{p'}R^{\frac Np-2}+\|\rho\|_{q'}R^{\frac Nq-2}.
+\end{align*}
+By choosing $R$ such that $\|\rho\|_{p'}R^{\frac Np-2}=\|\rho\|_{q'}R^{\frac Nq-2}$, we get
+\[\|E(t,x)\|_{L_x^\infty}\les\|\rho(t,x)\|_{L_x^{p'}}^{\frac{\frac2N-\frac1q}{\frac1p-\frac1q}}\|\rho(t,x)\|_{L_x^{q'}}^{\frac{\frac1p-\frac2N}{\frac1p-\frac1q}}.\]
+
+If $p=\infty$ and $N=3$, then $1\le q<3$ implies
+\[\|E\|_\infty^3\les\|\rho\|_\infty^{3-q}\|\rho\|_q^q.\]
+For example, if we let $(p,q)=(\infty,1)$ or $(\infty,5/3)$, then
+\[\|E\|_\infty\les\|\rho\|_\infty^{2/3}\|\rho\|_1^{1/3},\qquad
+\|E\|_\infty\les\|\rho\|_\infty^{4/9}\|\rho\|_{5/3}^{5/9}.\]
+To control $E$ with $Q(t)$,
+\[\rho(t,x)=\int_{|v|<Q(t)}f(t,x,v)\,dv\les Q(t)^3\|f_0(x,v)\|_{L_v^\infty},\]
+so by letting $\e=3(3-q)$,
+\[\|E(t,x)\|_{L_x^\infty}\les Q(t)^\e\]
+for any $0<\e\le6$.
+($L^p$-norm of $\rho$ for $p<\infty$ well propagates by the measure preserving property.)
+\end{pf}
+
+
+For a characteristic curve $s\mapsto(X(s;t,x,v),V(s;t,x,v))$, we have
+\[f(t,x,v)=f(s,X(s;t,x,v),V(s;t,x,v))\]
+and
+\begin{align*}
+&\iint f(s,x,v)\f(x,v)\,dv\,dx\\
+&\qquad=\iint f(s,X(s;t,x,v),V(s;t,x,v))\f(X(s;t,x,v),V(s;t,x,v))\,dv\,dx\\
+&\qquad=\iint f(t,x,v)\f(X(s;t,x,v),V(s;t,x,v))\,dv\,dx.
+\end{align*}
+
+\subsubsection{Schaeffer's global existence proof}
+
+Fix a characteristic $(X^*(s),V^*(s))=(X(s;t^*,x^*,v^*),V(s;t^*,x^*,v^*))$.
+For $t\in[0,t^*]$,
+\begin{align*}
+\int_t^{t^*}|E(s,X^*(s))|\,ds
+&\les\int_t^{t^*}\iint\frac{f(s,x,v)}{|x-X^*(s)|^2}\,dv\,dx\,ds\\
+&=\int_t^{t^*}\iint\frac{f(t,x,v)}{|X(s;t,x,v)-X^*(s)|^2}\,dv\,dx\,ds.
+\end{align*}
+
+\begin{align*}
+|v-V(t;t^*,x,v)|
+&=|V(t^*;t^*,x,v)-V(t;t^*,x,v)|\\
+&\le\int_t^{t^*}|E(s,X(s,x,v))|\,ds
+\les(t^*-t)Q^{4/3}.
+\end{align*}
+
+
 
 
 \subsection{Velocity averaging lemmas}
@@ -451,9 +529,89 @@ General topology:
 
 
 
+\section{Ultrafilter}
+\begin{defn}
+An \emph{ultrafilter} is a synonym for maximal filter.
+If we sat $\cU$ is an \emph{ultrafilter on a set} $A$, then it means $\cU$ is a maximal filter as a directed subset of $\cP(A)$.
+\end{defn}
+existence of ultrafilter.
+\begin{thm}
+Let $\cU$ be an ultrafilter on a set $A$ and $X$ be a compact space.
+For a function $f:A\to X$, the limit $\cU$-$\lim f$ always exists.
+\end{thm}
+
+\begin{thm}
+Let $X=\prod_{\alpha\in\cA}X_\alpha$ be a product space of compact spaces $X_\alpha$.
+A net $f:\cD\to X$ has a convergent subnet.
+\end{thm}
+\begin{pf}[1]
+Use Tychonoff.
+Compactness and net compactness are equivalent.
+\end{pf}
+\begin{pf}[2]
+It is a proof without Tychonoff.
+Let $\cU$ be a ultrafilter on a set $\cD$ contatining all $\uparrow d$.
+Define a directed set $\cE=\{(d,U)\in\cD\x\cU:d\in U\}$ as $(d,U)\succ(d',U')$ for $U\subset U'$.
+Let $f:\cE\to X$ be a subnet of $f:\cD\to X$ defined by $f_{(d,U)}=f_d$.
+
+By the previous theorem, $\cU$-$\lim\pi_\alpha f_d\in X_\alpha$ exsits for each $\alpha$.
+Define $f\in X$ such that $\pi_\alpha f=\cU$-$\lim\pi_\alpha f_d$.
+Let $G=\prod_\alpha G_\alpha\subset X$ be any open neighborhood of $f$.
+Then, $\pi_\alpha f\in G_\alpha$ and we have $G_\alpha=X_\alpha$ except finite.
+For $\alpha$, we can take $U_\alpha:=\{d:\pi_\alpha f_d\in G_\alpha\}\in\cU$ by definition of convergence with ultrafilter
+Since $U_\alpha=\cD$ except finites, we can take an upper bound $U_0\in\cU$ of $\{U_\alpha\}_\alpha$.
+Then, by taking any $d_0\in U_0$, we have $f_{(d,U)}\in G$ for every $(d,U)\succ(d_0,U_0)$.
+This means $f=\lim_\cE f_{(d,U)}$, so we can say $\lim_\cE f_{(d,U)}$ exists.
+\end{pf}
+
+
+
+
+
 
 
 \section{Analysis problems}
+
+Problems I made:
+\begin{enumerate}
+\item Let $f$ be $C^2$ with $f''(c)\ne0$. Defined a function $\xi$ such that $f(x)-f(c)=f'(\xi(x))(x-c)$ with $|\xi-c|\le|x-c|$, show that $\xi'(c)=1/2$.
+\item Let $f$ be a $C^2$ function such that $f(0)=f(1)=0$. Show that $\|f\|\le\frac18\|f''\|$.
+\item Show that a measurable subset of $\R$ with positive measure contains an arbitrarily long subsequence of an arithmetic progression.
+\item Show that there is no continuous bijection from $[0,1]^2\setminus\{p\}$ to $[0,1]^2$. %나도 못풂
+\end{enumerate}
+\bigskip
+
+Elementary analysis
+\begin{cond}
+\item Show that for a nonnegative sequence $a_n$ if $\sum a_n$ diverges then $\sum\frac{a_n}{1+a_n}$ also diverges.
+\item Show that if both limits of a function and its derivative exist at infinity then the former is 0.
+\item Show that every real sequence has a monotonic subsequence that converges to the limit superior of the supersequence.
+\item Show that if a decreasing nonnegative sequence $a_n$ converges to 0 and satisfies $S_n\le1+na_n$ then $S_n$ is bounded by 1.
+\item Show that the set of local minima of a convex function is connected.
+\item Show that a smooth function such that for each $x$ there is $n$ having the $n$th derivative vanish is a polynomial.
+\item Show that if a continuously differentiable $f$ satisfies $f(x)\ne0$ for $f'(x)=0$, then in a bounded set there are only finite points at which $f$ vanishes.
+\item Let a function $f$ be differentiable. For $a<a'<b<b'$ show that there exist $a<c<b$ and $a'<c'<b'$ such that $f(b)-f(a)=f'(c)(b-a)$ and $f(b')-f(a')=f'(c')(b'-a')$.
+\item Show that if $xf'(x)$ is bounded and $x^{-1}\int_0^xf\to L$ then $f(x)\to L$ as $x\to\infty$.
+\item Show that if a sequence of real functions $f_n\colon[0,1]\to[0,1]$ satisfies $|f(x)-f(y)|\le|x-y|$ whenever $|x-y|\ge\frac1n$, then the sequence has a uniformly convergent subsequence.
+\item (Flett)
+\item Let $f$ be a differentiable function with $f(0)=0$. Show that there is $c\in(0,1)$ such that $cf(c)=(1-c)f'(c)$.
+\item Find the value of $\lim_{n\to\infty}\frac1n\left(\sum_{k=1}^n\frac1nf\left(\frac kn\right)-\int_0^1f(x)\,dx\right)$.
+\item Let $f:\R\to\R$ be continuous. Show that $f(x)=c$ cannot have exactly two solutions for every constant $c\in\R$.
+\item Show that a continuous function that takes on no value more than twice takes on some value exactly once.
+\item Let $f$ be a function that has the intermediate value property. Show that if the preimage of every singleton is closed, then f is continuous.
+\end{cond}
+
+Complex analysis
+\begin{cond}
+\item Show that if a holomorphic function has positive real parts on the open unit disk then $|f'(0)|<2\Re f(0)$.
+\item Show that if at least one coefficient in the power series of a holomorphic function at each point is 0 then the function is a polynomial.
+\item Show that if a holomorphic function on a domain containing the closed unit disk is injective on the unit circle then so is on the disk.
+\item Show that for a holomorphic function $f$ and every $z_0$ in the domain there are $z_1\ne z_2$ such that $\frac{f(z_1)-f(z_2)}{z_1-z_2}=f'(z_0)$.
+\item For two linearly independent entire functions, show that one cannot dominate the other.
+\item Show that uniform limit of injective holomorphic function is either constant or injective.
+\item Suppose the set of points in a domain $U\subset\C$ at which a sequence of bounded holomorphic functions $(f_n)$ converges has a limit point. Show that $(f_n)$ compactly converges.
+\end{cond}
+\clearpage
 
 \begin{prb}
 The following series diverges: \[\sum_{n=1}^\infty\frac1{n^{1+|\sin n|}}.\]
@@ -623,3 +781,60 @@ and it can be verified that this solution is asymptotically stable, i.e.
 
 
 \end{document}
+
+최고차항의 계수가 1인 사차함수 f(x)는 다음 조건을 만족시킨다.
+[각각의 양의 실수 s에 대하여, |f(t)|≤g(t)를 만족시키는 실수 t가 두 개 존재하고 그 차가 s가 되게 하는 이차 이하의 다항함수 g(x)가 유일하게 존재한다.]
+또한 위의 조건에서 s=1,3에 대응하는 함수 g(x)를 각각 g₁(x), g₃(x)라 할 때, 방정식 g₁(x)+g₃(x-1/2)=0을 만족시키는 실수 x가 단 한 개 존재한다. 함수 f(x)가 최솟값 -p/q을 가질 때, p+q를 구하시오. (단, p와 q는 서로 소인 자연수이다.)
+
+ans: 43
+
+\iffalse
+\begin{defn}
+A quantum field is defined as an operator valued tempered distribution satisfying:
+\end{defn}
+
+이차양자화: 임베드 L(H) -> L(F(H))
+생성소멸: f를 left tensor prod하는 작용소로 바꾸기
+		H의 원소를 L(F(H))
+
+
+일차양자화에서 R이 L(H)로 바뀐 것처럼,
+이차양자화도   R이 L(H)로 바뀐 것.
+
+
+근데 다체론에서 H 대신 F를 쓰고 싶은데, L(H) 에서 L(F(H))로 확장시키는 방법이 있어서 L(F)로 바꿔도 됨.
+
+
+양자장은 H에 작용해서 입자를 만들거나 없애는 작용소이며, 물리량과 조화롭게 연관됨
+
+Wightman quantum field theory:
+quantum field = operator valued tempered distribution
+F carries a unitary representation of restricted orthochronous Poincare group
+
+이 양자장조차 미분가능해 어머
+
+RQFT satisfies: invariance of c, Poincare covariance
+
+
+time-translation covariant quantum field에 대해서 hamiltonian과의 bracket이 미분과 같다고 식을 세우면 이게 양자장의 방정식.
+
+
+
+
+H는 해공간
+L(H)는 미분연산자공간
+
+물리과 3학년 버전 파동함수: H = C valued L2 space		L(H) = C coeff pdd valued fields (물리량)
+디랙입자에 대한 고전스피너: H = DA irrep valued L2 space	L(H) = DA coeff pdd valued fields?? (물리량)
+
+M이 국소적으로 민코프스키 메트릭을 가지면 그 접공간은 STA irrep
+spinor로서의 DA irrep은 four vector가 아냐 (이 STA irrep과 다른 거야, 접공간이 아냐)
+
+
+디랙방정식의 해 in H 를 classical Dirac field, free Dirac spinor라고 함
+
+STA = 실수 16차원    DA = 복소 16차원
+
+
+creation operator 하나로 된 field에 vaccum state를 넣으면 state vector가 나온다.
+\fi
