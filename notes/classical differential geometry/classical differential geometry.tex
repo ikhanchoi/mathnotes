@@ -91,34 +91,93 @@ To describe a geometric object that cannot be covered by a single injective para
 
 The third condition is the most important one.
 This condition is paraphrased as follows: the set of partial derivatives $\{\pd_i\a(p)\}_{i=1}^m\subset\R^n$ is linearly independent at every point $p\in U$.
-Differential geoemtry do not consider parametrizations that fail this; for example, $t=0$ should be excluded from the domain of a curve parametrization $t\mapsto(t^2,t^3,t^4)$.
+Differential geoemtry do not consider parametrizations that fail this.
+This condition is necessary for providing with appropriate and well-defined linear approximation of curves or surfaces.
+If it is not staisfied, every definition including tangent spaces in differential geometry can suffer.
 
 \begin{defn}
 A subset $M\subset\R^n$ is called a \emph{regular curve} (resp. \emph{regular surface}) if there exists a one-dimensional (resp. two-dimensional) parametrization whose image is exactly $M$.
 \end{defn}
 
 All curves and surfaces in this note are assumed to be regular.
-We also just often say that $\a$ is a regular curve (resp. regular surface) for a particular parametrization $\a$.
+We also just often say that $\a$ is a regular curve (resp. regular surface) for \emph{a particular parametrization $\a$}.
 However, note that a curve or surface admits infinitely many parametrizations.
 We can solve many geometry or physics problems very easily by choosing an appropriate parametrization.
+Related to the choice of parametrizations, the following issues are always importantly considered when developing a theory of differential geometry:
+\begin{itemize}
+\item Well-definedness of a structure with respect to the dependency on parametrizations(coordinates).
+\item Existence of a parametrization(coordiantes) that has nice properties we want.
+\end{itemize}
 
 \begin{defn}
 Let $M\subset\R^n$ be a regular curve or a regular surface.
 The inverse $\f:M\to U$ of a parametrization is called a \emph{coordinate map}.
 \end{defn}
 
-Coordinates and parametrizations give equivalent information except that the direction is opposite (only if parametrization satisfies the injectivity).
+Coordinates and parametrizations have equivalent information except that the direction is opposite (only if parametrization satisfies the injectivity).
 We mostly take a parametrization for a curve while coordinates are more usefully taken in more-than-one-dimensional geometry such as a surface, or the timespace.
-Reparametrization is just a choice of another parametrization for the same curve or surface.
-As said, the choice of coordinate(parametrization) is extremely important in differential geometry.
+We use the term \emph{reparametrization} to refer to nothing but a choice of another parametrization for the same curve or surface.
+As said, the choice of coordinate(parametrization) is important in differential geometry.
 
-% Examples
+\begin{ex}
+Let $\a:\R\to\R^3$ be a map given by
+\[\a(t)=(\cos t,\sin t, t).\]
+Since $d\a_t(1)=\a'(t)=(-\sin t,\cos t,1)$ is always nonzero so that $d\a$ is injective everywhere, $\a$ is a parametrization of the regular curve
+\[\{\,(x,y,z)\in\R^3:x=\cos z,\ y=\sin z\,\}.\]
+Notice that it is enough to check $\a(t)\ne0$ for a curve parametrization $\a$ to show the injectivity of $d\a$.
+This curve is an example of cylindrical helices.
+\end{ex}
+\begin{ex}
+Let $\a:\R\to\R^3$ be a map given by
+\[\a(t)=(t^3,t^6,t^9).\]
+Since $\a'(t)=(3t^2,6t^5,9t^8)$ is zero when $t=0$, \emph{it would be better to avoid calling $\a$ a parametrization}.
+Instead, the restrictions $\a_+:(0,\infty)\to\R^3$ and $\a_-:(-\infty,0)\to\R^3$ satisfy the axioms of parametrization at the beggining.
 
-When developing a theory of differential geometry, the followings are considered to be important issues:
-\begin{itemize}
-\item Well-definedness of a structure with respect to the dependency on parametrizations(coordinates).
-\item Existence of a coordinate system that has nice properties we want.
-\end{itemize}
+However, by reparametrization, we can show the image of $\a$ is a regular curve, that is, we can find a parametrization that shares the image with $\a$, even though \emph{we sometimes say that $\a$ is not a regular curve} according to the fact $\a'$ can vanish.
+Consider $\beta:\R\to\R^3$ defined by
+\[\beta(t)=(t,t^2,t^3).\]
+This map has the same image $\im\a=\im\beta$, but $\beta'(t)=(1,2t,3t^2)\ne0$ for all $t\in\R$.
+\end{ex}
+\begin{ex}
+Let $S^1$ be the unit circle in $\R^2$, precisely
+\[S^1:=\{\,(x,y)\in\R^2:x^2+y^2=1\,\}.\]
+It cannot be covered by a single parametrization, so we can consider two different parametrizations $\a:(0,2\pi)\to\R^2$ and $\beta:(\pi,3\pi)\to\R^2$ for $S^1$:
+\[\alpha(t)=(\cos t,\sin t),\qquad\beta(t)=(\cos t,\sin t).\]
+Then, we have $S^1=\im\a\cup\im\beta$.
+If we want to investigate the geometry of $S^1$ near the point $(1,0)$, we can choose $\beta$ rather than $\a$ because $(1,0)\notin\im\a$.
+\end{ex}
+\begin{ex}
+Let $f:\R^2\to\R$ be a smooth function and $\a:\R^2\to\R^3$ be a map given by
+\[\a(x,y)=(x,y,f(x,y)).\]
+Then, $\a$ is a two-dimensional parametrization because
+\begin{align*}
+d\a_{(x,y)}(1,0)&=\pd{\a}{x}(x,y)=\Bigl(1,0,\pd{f}{x}(x,y)\Bigr),\\
+d\a_{(x,y)}(0,1)&=\pd{\a}{y}(x,y)=\Bigl(0,1,\pd{f}{y}(x,y)\Bigr)
+\end{align*}
+are linearly independent for every $(x,y)\in\R^2$.
+Notice that it is enough to check that the two partial derivatives $\pd_x\a$ and $\pd_y\a$ are linearly independent for a surface parametrization $\a$.
+
+Let $S=\im\a$ be the regular surface determined by $\a$, and let $p$ be a point on the surface $S$ so that we have $p=(x,y,f(x,y))$.
+Associated with $\a$, a coordinate map $\f:S\to\R^2$ can be defined as
+\[\f(p)=(x,y).\]
+This map $\f$ consists of two real-valued functions on $S$,
+\[x:S\to\R:p\mapsto x,\qquad y:S\to\R:p\mapsto y.\]
+In this regard, we often write the coordinates $\f$ as $(x,y)$.
+\end{ex}
+\begin{ex}
+Let
+\[S=\{\,(x,y)\in\R^2:x>0\text{ or }y\ne0\,\}.\]
+Consider two different coordinates
+\begin{gather*}
+(x,y):S\to S:(x,y)\mapsto(x,y),\\
+(r,\theta):S\to(0,\infty)\times(-\pi,\pi):(x,y)\mapsto(\sqrt{x^2+y^2},\,2\tan^{-1}\frac y{\sqrt{x^2+y^2}+x}),
+\end{gather*}
+where $\tan^{-1}(t):=\int_0^t\frac{ds}{1+s^2}$.
+They are the inverses of parametrizations $\a:S\to\R^2$ and $\beta:(0,\infty)\times(-\pi,\pi)\to\R^2$ defined by
+\[\a(x,y)=(x,y),\qquad\beta(r,\theta)=(r\cos\theta,r\sin\theta).\]
+The coordinate maps $(x,y)$ and $(r,\theta)$ are called \emph{Cartesian coordinates} and \emph{polar coordinates} respectively.
+\end{ex}
+
  
 
 
@@ -148,19 +207,22 @@ Let $p\in M$ be a point.
 
 The \emph{tangent space} of $M$ at $p$, denoted by $T_pM$, can be defined as either one of the followings:
 \begin{cond}
-\item the span of linearly independent set of vectors $\{\pd_i\a\}_{i=1}^m\subset\R^n$,
+\item the span of the linearly independent set of vectors $\{\pd_i\a\}_{i=1}^m\subset\R^n$,
 \item the image of the Fr\'echet derivative $d\a_p:\R^m\to\R^n$.
 This definition is independent on the parametrization $\a$,
 \item the set of vectors $v\in\R^n$ such that there exists a curve $\gamma:I\to M$ satisfying $\gamma(0)=p$ and $\gamma'(0)=v$.
 \end{cond}
 \end{defn}
 \begin{rmk}
-We can show the three conditions are equivalent, but the proof will not be given; what is more important is to understand the role and meaning of tangent spaces.
-There exist a lot more neat characterizations for tangent spaces we will not cover.
+We can show the three conditions are equivalent, but the proof will not be given; what is more important is to understand the role and meaning of tangent spaces because there is no agreed standard definition of tangent spaces in the level of this note.
+There exist a lot more neat but difficult characterizations for tangent spaces we will not cover.
 \end{rmk}
 \begin{rmk}
 We can easily check that $T_p\R^3=\R^3$ for any $p\in\R^3$.
 The notation $T_p\R^3$ will be used to emphasize that a vector in $\R^3$ is geometrically recognized to cast from the point $p$.
+Since $T_p\R^3=\R^3=T_q\R^3$ for every pair of points $p,q\in\R^3$, we are able to add a vector in $T_p\R^3$ to a vector in $T_q\R^3$.
+This identification of tangent spaces are allowed \emph{only for the case of linear spaces} such as $\R^3$.
+(In fact, the identification $T_p\R^3=\R^3$ is \emph{natural}.)
 \end{rmk}
 
 % Examples
@@ -192,6 +254,8 @@ The notation $T_p\R^3$ will be used to emphasize that a vector in $\R^3$ is geom
 
 \subsubsection{Reparametrization}
 
+We introduce the arc-length reparametrization.
+This parametrization is a general choice for the local study of curves.
 \begin{defn}
 A parametrization $\a$ of a regular curve is called a \emph{unit speed curve} or an \emph{arc-length parametrization} when it satisfies $\|\a'\|=1$.
 \end{defn}
@@ -225,13 +289,16 @@ In other words, $\a$ is nowhere straight.
 Let $\a$ be a nondegenerate curve.
 The \emph{tangent unit vector}, \emph{normal unit vector}, \emph{binormal unit vector} are $T_p\R^3$-valued vector fields on $\a$ defined by:
 \[\rT(t):=\frac{\a'(t)}{\|\a'(t)\|},\qquad\rN(t):=\frac{\rT'(t)}{\|\rT'(t)\|},\qquad\rB(t):=\rT(t)\times\rN(t).\]
-The set of vector fields $\{\rT,\rN,\rB\}$, which is called \emph{Frenet-Serret frame}, form an orthonormal basis of $T_p\R^3$ at each point $p$ on $\a$.
+The set of vector fields $\{\rT,\rN,\rB\}$, which is called \emph{Frenet-Serret frame}, forms an orthonormal basis of $T_p\R^3$ at each point $p$ on $\a$.
 The Frenet-Serret frame is uniquely determined up to sign as $\a$ changes.
 \end{defn}
 
 
 
 \subsubsection{Differentiation of Frenet-Serret frame}
+
+We study the derivatives of the Frenet-Serret frame and their coordinate representations.
+In the coordinate representations on the Frenet-Serret frame, important geometric measurements such as curvatrue and torsion come out as coefficients.
 
 \begin{defn}
 Let $\a$ be a nondegenerate curve.
@@ -248,14 +315,15 @@ Then,
 \end{thm}
 \begin{pf}
 Note that $\{\rT,\rN,\rB\}$ is an orthonormal basis.
+We first show the first and third rows, and the second row later.
 
 \Step{1}[Show that $\rT',\rB',\rN$ are parallel]
-Two vectors $\rT'$ and $\rN$ are parallel by definition.
+Two vectors $\rT'$ and $\rN$ are parallel by definition of $\rN$.
 Since $\<\rT,\rB\>=0$ and $\<\rB,\rB\>=1$ are constant, we have
 \[\<\rB',\rT\>=\<\rB,\rT\>'-\<\rB,\rT'\>=0,\qquad\<\rB',\rB\>=\tfrac12\<\rB,\rB\>'=0,\]
 which show $\rB'$ and $\rN$ are parallel.
-By the definition of $\kappa$ and $\tau$, we have
-\[\rT'=\|\a'\|\kappa\rN,\qquad\rB'=-\|\a'\|\tau\rB.\]
+By the definition of $\kappa$ and $\tau$, we get
+\[\rT'=\|\a'\|\kappa\rN,\qquad\rB'=-\|\a'\|\tau\rN.\]
 
 \Step{2}[Describe $\rN'$]
 Since
@@ -268,17 +336,30 @@ we have
 \[\rN'=\|\a'\|(-\kappa\rT+\tau\rB).\qedhere\]
 \end{pf}
 \begin{rmk}
-Skew-symmetry in the Frenet-Serret formula is not by chance.
 Let $\rX(t)$ be the curve of orthogonal matrices $(\rT(t),\rN(t),\rB(t))^T$.
 Then, the Frenet-Serret formula reads
 \[\rX'(t)=A(t)\rX(t)\]
-for a matrix curve $A(t)$.
-Since $\rX(t+h)=R_t(h)\rX(t)$ for a family of orthogonal matrices $\{R_t(h)\}_h$ with $R_t(0)=I$, we can describe $A(t)$ as 
+for a matrix curve $A(t)$ that is completely determined by $\kappa(t)$ and $\tau(t)$.
+This is a typical form of an ODE system, so we can apply the Picard-Lindel\"of theorem to get the following proposition: if we know $\kappa(t)$ and $\tau(t)$ for all time $t$, and if $\rT(0)$ and $\rN(0)$ are given so that an initial condition
+\[\rX(0)=(\rT(0),\,\rN(0),\,\rT(0)\times\rN(0))\]
+is established, then the solution $\rX(t)$ exists and uniquely determined in a short time range.
+Furthermore, if $\a(0)$ is given in addition, the integration
+\[\a(t)=\a(0)+\int_0^t\rT(s)\,ds\]
+provides a complete formula for unit speed parametrization $\a$.
+\end{rmk}
+\begin{rmk}
+Skew-symmetry in the Frenet-Serret formula is not by chance.
+Let $\rX(t)=(\rT(t),\rN(t),\rB(t))^T$ and write $\rX'(t)=A(t)\rX(t)$ as we did in the above remark.
+Since $\rX(t+h)=R_t(h)\rX(t)$ for a family of special orthogonal matrices $\{R_t(h)\}_h$ with $R_t(0)=I$, we can describe $A(t)$ as 
 \[A(t)=\left.\dd{R_t}{h}\right\rvert_{h=0}.\]
 By differentiating the relation $R_t^T(h)R_t(h)=I$ with respect to $h$, we get to know that $A(t)$ is skew-symmetric for all $t$.
 In other words, the tangent space $T_I\SO(3)$ forms a skew symmetric matrix.
 \end{rmk}
 
+The following proposition gives the most effective and shortest way to compute $\kappa$ and $\tau$.
+If we try to find $\kappa$ by differentiating $\rT$, then we must encounter the normalizing term of the form $\sqrt{(-)^2+(-)^2+(-)^2}^{-1}$, and it is painful when time is limited.
+The Frenet-Serret frame is useful in proofs of interesting propositions, but not a good choice for practical computation.
+So, the direct computation from derivatives of parametrization is highly recommended, instead of differentiating $\rT$.
 \begin{prop}
 Let $\a$ be a nondegenerate curve.
 \[\kappa=\frac{\|\a'\x\a''\|}{\|\a'\|^3},\qquad\tau=\frac{\a'\x\a''\cdot\a'''}{\|\a'\x\a''\|}.\]
@@ -297,7 +378,7 @@ Now the formulas are easily derived.
 
 
 \subsection{Problems}
-We are interested in a curve, not a particular parametrization.
+We are interested in regular curves, not a particular parametrization.
 By the Theorem 2.1, we may always assume that a parametrization $\a$ has unit speed.
 Let $\a$ be a nondegenerate unit speed space curve, and let $\{\rT,\rN,\rB\}$ be the Frenet-Serret frame for $\a$.
 Consider a diagram as follows:
@@ -310,7 +391,8 @@ For example, if we know a condition
 \[\<\a(t),\rT(t)\>=f(t),\]
 then we can obtain
 \[\<\a(t),\rN(t)\>=\frac{f'(t)-1}{\kappa(t)}\]
-by direct differentiation since we have known $\<\a',\rT\>$ but not $\<\a,\rN\>$, and further
+by direct differentiation since we have known $\<\a',\rT\>$ but not $\<\a,\rN\>$.
+Further, we get
 \[\<\a(t),\rB(t)\>=\frac{\left(\frac{f'(t)-1}{\kappa(t)}\right)'+\kappa(t)f(t)}{\tau(t)}\]
 since we have known $\<\a,\rT\>$ and $\<\a',\rN\>$ but not $\<\a,\rB\>$.
 Thus, $\<\a,\rT\>=f$ implies
@@ -325,7 +407,7 @@ We suggest a strategy for space curve problems:
 \item Heuristically find a constant vector and show what you want directly.
 \end{itemize}
 Here we give example solutions of several selected problems.
-Always $\a$ denote a reparametrized unit speed nondegenerate curve in $\R^3$.
+Always $\a$ denotes a reparametrized unit speed nondegenerate curve in $\R^3$.
 
 
 
@@ -440,7 +522,7 @@ Thus, there exists a constant $\mu$ such that
 if $\a$ is not planar so that $\tau\ne0$.
 
 We have shown that the torsion is either always zero or never zero at every point: $\lambda\tau/\|\beta'\|=\const$.
-The problem can be solved by dividing the cases, but in this solution we give only for the case that $\a$ is not planar; the other hand is easy.
+The problem can be solved by dividing the cases, but in this solution we give only for the case that $\a$ is not planar; the other hand is not difficult.
 
 \Step{3}[Complete proof]
 If
@@ -511,18 +593,6 @@ TFAE:
 \subsection{Theory}
 
 \subsubsection{Reparametrization}
-% first fundamental form
-The inner product on $T_pS$ induced from the standatd inner product of $\R^3$ can be represented as a matrix
-\[\begin{pmatrix}1&0&0\\0&1&0\\0&0&1\end{pmatrix}\]
-in the basis $\{(1,0,0),(0,1,0),(0,0,1)\}\subset\R^3$, but also as a matrix
-\[\begin{pmatrix}\<\a_x,\a_x\>&\<\a_x,\a_y\>\\\<\a_y,\a_x\>&\<\a_y,\a_y\>\end{pmatrix}\]
-in the basis $\{\a_x,\a_y\}\subset T_pS$.
-
-\begin{defn}
-Let $\a$ be a regular surface.
-\[E:=\<\a_x,\a_x\>,\qquad F:=\<\a_x,\a_y\>,\qquad G:=\<\a_y,\a_y\>.\]
-\end{defn}
-
 
 
 \subsubsection{Gauss map}
@@ -550,9 +620,28 @@ The functions $L,M,$ and $N$ are not Christoffel symbols, and will be defined ag
 The Christoffel symbols \emph{do depend} on $\a$.
 \end{defn}
 
+The Christoffel symbols are deeply connected to the inner product structure of tangent spaces.
+Let $S$ be a regular surface.
+The inner product on $T_pS$ induced from the standard inner product of $\R^3$ can be represented not only as a matrix
+\[\begin{pmatrix}1&0&0\\0&1&0\\0&0&1\end{pmatrix}\]
+in the basis $\{(1,0,0),(0,1,0),(0,0,1)\}\subset\R^3$, but also as a matrix
+\[\begin{pmatrix}\<\a_x,\a_x\>&\<\a_x,\a_y\>\\\<\a_y,\a_x\>&\<\a_y,\a_y\>\end{pmatrix}\]
+in the basis $\{\a_x,\a_y\}\subset T_pS$.
+
+\begin{defn}
+Let $\a$ be a regular surface.
+\[E:=\<\a_x,\a_x\>,\qquad F:=\<\a_x,\a_y\>,\qquad G:=\<\a_y,\a_y\>.\]
+The following notations are also widely used in both geometry and physics:
+\[g_{11}:=\<\a_x,\a_x\>,\qquad g_{12}=g_{21}:=\<\a_x,\a_y\>,\qquad g_{22}:=\<\a_y,\a_y\>.\]
+\end{defn}
+
 
 \subsubsection{Differentiation of normal vector}
-% normal curvature
+\begin{defn}
+Let $\a$ be a regular curve on a regular surface $S$.
+The \emph{normal curvature} of $\a$ on $S$ is
+\[\kappa_n(t):=\<\a''(t),\nu(t)\>\]
+\end{defn}
 % second fundamental form
 % shape operator, weingarten map
 % principal curvature
