@@ -10,115 +10,6 @@
 \begin{document}
 \tableofcontents
 
-\section{Sturm-Liouville theory}
-\subsection{Self-adjointness}
-Let $I=[a,b]$ and
-\begin{gather*}
-L=-\frac1{w(x)}\left[\dd{x}\left(p(x)\dd{x}\right)+q(x)\right],\\
-0\le p(x)\in C^\infty(I),\quad q(x)\in C^\infty(I),\quad 0<w(x)\in C^\infty(I).
-\end{gather*}
-We expect $L$ to be self-adjoint.
-In this regard, our interest is ellimination of the difference term
-\[\<f,Lg\>-\<Lf,g\>=p(f'g-fg')|_a^b.\]
-
-
-\begin{center}
-\renewcommand{\arraystretch}{2.5}
-\begin{tabular}{l|l|c|l}
-\hline
-Name & Operator & Domain & B.C. \\[5pt]
-\hline
-Helmholtz & $\displaystyle L=-\dd[2]{x}$ & $[a,b]$ & Periodic \\
-Helmholtz & $\displaystyle L=-\dd[2]{x}$ & $[a,b]$ & Separated Robin \\[5pt]
-\hline
-Legendre & $\displaystyle L=-\dd{x}\left((1-x^2)\dd{x}\right)$ & $[-1,1]$ & None \\
-A. Legendre & $\displaystyle L=-\left[\dd{x}\left((1-x^2)\dd{x}\right)-\frac{m^2}{1-x^2}\right]$ & $[-1,1]$ & Dirichlet \\
-Hermite & $\displaystyle L=-e^{x^2}\left[\dd{x}\left(e^{-x^2}\dd{x}\right)\right]$ & $(-\infty,\infty)$ & Polynomial growth\\
-Laguerre
-\\[5pt]
-\hline
-\end{tabular}
-\end{center}
-
-
-\subsection{Regular Sturm-Liouville problem}
-We mean regular Sturm-Liouville problems by the case that $p$ does not vanish on the boundary of $I$.
-View the Sturm-Liouville operator $L$ as a non-densely defined operator on the space $C^\infty(I)$ with inner product $\<f,g\>=\int_Ifgw$ with domain
-\[D(L)=\{\,u\in C^\infty(I):\alpha_1u(a)+\alpha_2u'(a)=0,\ \beta_1u(b)+\beta_2u'(b)=0\,\},\]
-the subspace for the \emph{separated} Robin boundary condition.
-\begin{prop}
-The operator $L:D(L)\to C^\infty(I)$ is self-adjoint when $C^\infty(I)$ has the inner product $\<f,g\>=\int_Ifgw$.
-\end{prop}
-We are interested in the eigenvalue problem of $L:D(L)\to C^\infty(I)$ on $V$.
-Fortunately, if we choose a constant $z\in\C\setminus\R$, then $(L-z)^{-1}:C^\infty(I)\to D(L)$ is well-defined.
-\begin{prop}
-If $z$ is not an eigenvalue of $L$, then $L-z: D(L)\to C^\infty(I)$ is bijective.
-\end{prop}
-\begin{pf}
-The injectivity follows from the definition of eigenvalues.
-We may assume that $L$ is injective by translation $q\mapsto q-\lambda$.
-
-Suppose $f\in C^\infty(I)$.
-The surjectivity is equivalent to the existence of a second order inhomogeneous boundary problem:
-\begin{gather*}
-pu''+p'u'+qu=-wf,\\
-a_0u(0)+b_0u'(0)=0,\quad a_1u(1)+b_1u'(1)=0.
-\end{gather*}
-Let $u_0$, $u_1$ be the unique solutions of the corresponding homogeneous equation with initial conditions
-\[a_0u(0)+b_0u'(0)=0,\qquad a_1u(1)+b_1u'(1)=0.\]
-Then we can define $L^{-1}:C^\infty([0,1])\to D(L)$ by
-\[L^{-1}f(x):=-u_0(x)\int_x^1\frac{u_1}{W[u_0,u_1]}\frac fpw-u_1(x)\int_0^x\frac{u_0}{W[u_0,u_1]}\frac fpw,\]
-where $W[u_0,u_1]:=u_0u_1'-u_1u_0'$ denotes the Wronskian.
-This formula is derived from variation of parameters: compute $c_0$ and $c_1$ from the fact that
-\[\begin{pmatrix}0\\-\frac fpw\end{pmatrix}=\begin{pmatrix}u_0&u_1\\u_0'&u_1'\end{pmatrix}\begin{pmatrix}c_0'\\c_1'\end{pmatrix}\impl L(c_0u_0+c_1u_1)=f.\]
-Then, we can easily check that
-\[L^{-1}Lu=u\]
-for $u\in D(L)$, which implies $L$ is surjective.
-\end{pf}
-
-
-\subsection{Legendre's equation}
-The Legendre equation is
-\[(1-x^2)u''-2xu'+l(l+1)u=0,\quad\text{ on }[-1,1].\]
-The Sturm-Liouville operator is
-\[L=-\dd{x}\left((1-x^2)\dd{x}\right).\]
-Since $p(\pm1)=0$, the operator $L:C^\infty([-1,1])\to C^\infty([-1,1])$ is self-adjoint on the whole domain.
-
-
-Its eigenvalues and corresponding eigenspaces are
-\begin{center}\renewcommand{\arraystretch}{1.2}
-\begin{tabular}{c|c|l}
-\hline
-    & Eigenvalue & Eigenbasis \\
-$l$ & $l(l+1)$   & \\
-\hline
-0   & 0          & $P_0(x)=1$ \\
-1   & 2          & $P_1(x)=x$ \\
-2   & 6          & $P_2(x)=\frac32x^2-\frac12$ \\
-3   & 12         & $P_3(x)=\frac52x^3-\frac32x$ \\
-4   & 20         & $P_4(x)=\frac{35}8x^4-\frac{15}4x^2+\frac38$\\
-\hline
-\end{tabular}
-\end{center}
-If we admit
-\[Q_0(x)=\frac12\log\frac{1+x}{1-x},\quad Q_1(x)=1-\frac12x\log\frac{1+x}{1-x},\ \cdots\ \in L^2(-1,1)\setminus C^\infty([-1,1])\]
-as eigenvectors of $L$, then the self-adjointness fails on the extended domain.
-For example,
-\begin{align*}
-\<Q_0,Lf\>-\<LQ_0,f\>
-&=\left.p(x)\bigl(Q_0'(x)f(x)-Q_0(x)f'(x)\bigr)\right|_{-1}^1\\
-&=f(1)-f(-1)
-\end{align*}
-does not vanish in general even for $f\in C^\infty([-1,1])$.
-
-\subsection{Bessel's equation}
-The Bessel equation is
-\[x^2u''+xu'+(k^2x^2-\nu^2)u=0,\quad\text{ on }(0,\infty).\]
-The Sturm-Liouville operator is
-\[-\frac1x\left[\dd{x}\left(x\dd{x}\right)-\nu^2\frac1x\right].\]
-
-
-
 
 
 
@@ -298,6 +189,115 @@ If $\cF$ is weakly relatively compact and $L\cF$ is bounded in $L_{t,x,v}^1$, th
 \end{thm}
 
 
+
+
+
+\section{Sturm-Liouville theory}
+\subsection{Self-adjointness}
+Let $I=[a,b]$ and
+\begin{gather*}
+L=-\frac1{w(x)}\left[\dd{x}\left(p(x)\dd{x}\right)+q(x)\right],\\
+0\le p(x)\in C^\infty(I),\quad q(x)\in C^\infty(I),\quad 0<w(x)\in C^\infty(I).
+\end{gather*}
+We expect $L$ to be self-adjoint.
+In this regard, our interest is ellimination of the difference term
+\[\<f,Lg\>-\<Lf,g\>=p(f'g-fg')|_a^b.\]
+
+
+\begin{center}
+\renewcommand{\arraystretch}{2.5}
+\begin{tabular}{l|l|c|l}
+\hline
+Name & Operator & Domain & B.C. \\[5pt]
+\hline
+Helmholtz & $\displaystyle L=-\dd[2]{x}$ & $[a,b]$ & Periodic \\
+Helmholtz & $\displaystyle L=-\dd[2]{x}$ & $[a,b]$ & Separated Robin \\[5pt]
+\hline
+Legendre & $\displaystyle L=-\dd{x}\left((1-x^2)\dd{x}\right)$ & $[-1,1]$ & None \\
+A. Legendre & $\displaystyle L=-\left[\dd{x}\left((1-x^2)\dd{x}\right)-\frac{m^2}{1-x^2}\right]$ & $[-1,1]$ & Dirichlet \\
+Hermite & $\displaystyle L=-e^{x^2}\left[\dd{x}\left(e^{-x^2}\dd{x}\right)\right]$ & $(-\infty,\infty)$ & Polynomial growth\\
+Laguerre
+\\[5pt]
+\hline
+\end{tabular}
+\end{center}
+
+
+\subsection{Regular Sturm-Liouville problem}
+We mean \emph{regular Sturm-Liouville problems} by the case that $p$ does not vanish on the boundary of $I$ that we should cancel $f'g-fg'|_a^b$.
+View the Sturm-Liouville operator $L$ as a non-densely defined operator on the space $C^\infty(I)$ with inner product $\<f,g\>=\int_Ifgw$ with domain
+\[V=\{\,u\in C^\infty(I):\alpha_0u(a)+\alpha_1u'(a)=0,\ \beta_0u(b)+\beta_1u'(b)=0\,\},\]
+the subspace for the \emph{separated} Robin boundary condition.
+\begin{prop}
+The operator $L:V\to C^\infty(I)$ is self-adjoint when $C^\infty(I)$ has the inner product $\<f,g\>=\int_Ifgw$.
+\end{prop}
+We are interested in the eigenvalue problem of $L:V\to C^\infty(I)$ on $V$.
+Fortunately, if we choose a constant $z\in\C\setminus\R$, then $(L-z)^{-1}:C^\infty(I)\to V$ is well-defined.
+\begin{prop}
+If $z$ is not an eigenvalue of $L$, then $L-z:V\to C^\infty(I)$ is bijective.
+\end{prop}
+\begin{pf}
+The injectivity follows from the definition of eigenvalues.
+We may assume that $L$ is injective by translation $q\mapsto q-\lambda$.
+
+Suppose $f\in C^\infty(I)$.
+The surjectivity is equivalent to the existence of a second order inhomogeneous boundary problem:
+\begin{gather*}
+-pu''-p'u'-qu=fw,\\
+\alpha_0u(a)+\alpha_1u'(a)=0,\quad\beta_0u(b)+\beta_1u'(b)=0.
+\end{gather*}
+Let $u_a$, $u_b$ be the unique solutions of the corresponding homogeneous equation with initial conditions
+\[\alpha_0u(a)+\alpha_1u'(a)=0,\quad\beta_0u(b)+\beta_1u'(b)=0.\]
+Then we can define $L^{-1}:C^\infty([0,1])\to D(L)$ by
+\[L^{-1}f(x):=u_a(x)\int_x^1\frac{u_b}{W[u_a,u_b]}\frac f{(-p)}w\,+\,u_b(x)\int_0^x\frac{u_a}{W[u_a,u_b]}\frac f{(-p)}w,\]
+where $W[u_a,u_b]:=u_au_b'-u_bu_a'$ denotes the Wronskian.
+This formula is derived from variation of parameters: we can compute $c_a$ and $c_b$ from the fact that
+\[\begin{pmatrix}0\\\frac f{(-p)}w\end{pmatrix}=\begin{pmatrix}u_a&u_b\\u_a'&u_b'\end{pmatrix}\begin{pmatrix}c_a'\\c_b'\end{pmatrix}\impl L(c_au_a+c_bu_b)=f.\]
+Then, we can easily check that
+\[L^{-1}Lu=u\]
+for $u\in D(L)$, which implies $L$ is surjective.
+\end{pf}
+
+
+\subsection{Legendre's equation}
+The Legendre equation is
+\[(1-x^2)u''-2xu'+l(l+1)u=0,\quad\text{ on }[-1,1].\]
+The Sturm-Liouville operator is
+\[L=-\dd{x}\left((1-x^2)\dd{x}\right).\]
+Since $p(\pm1)=0$, the operator $L:C^\infty([-1,1])\to C^\infty([-1,1])$ is self-adjoint on the whole domain.
+
+
+Its eigenvalues and corresponding eigenspaces are
+\begin{center}\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{c|c|l}
+\hline
+    & Eigenvalue & Eigenbasis \\
+$l$ & $l(l+1)$   & \\
+\hline
+0   & 0          & $P_0(x)=1$ \\
+1   & 2          & $P_1(x)=x$ \\
+2   & 6          & $P_2(x)=\frac32x^2-\frac12$ \\
+3   & 12         & $P_3(x)=\frac52x^3-\frac32x$ \\
+4   & 20         & $P_4(x)=\frac{35}8x^4-\frac{15}4x^2+\frac38$\\
+\hline
+\end{tabular}
+\end{center}
+If we admit
+\[Q_0(x)=\frac12\log\frac{1+x}{1-x},\quad Q_1(x)=1-\frac12x\log\frac{1+x}{1-x},\ \cdots\ \in L^2(-1,1)\setminus C^\infty([-1,1])\]
+as eigenvectors of $L$, then the self-adjointness fails on the extended domain.
+For example,
+\begin{align*}
+\<Q_0,Lf\>-\<LQ_0,f\>
+&=\left.p(x)\bigl(Q_0'(x)f(x)-Q_0(x)f'(x)\bigr)\right|_{-1}^1\\
+&=f(1)-f(-1)
+\end{align*}
+does not vanish in general even for $f\in C^\infty([-1,1])$.
+
+\subsection{Bessel's equation}
+The Bessel equation is
+\[x^2u''+xu'+(k^2x^2-\nu^2)u=0,\quad\text{ on }(0,\infty).\]
+The Sturm-Liouville operator is
+\[-\frac1x\left[\dd{x}\left(x\dd{x}\right)-\nu^2\frac1x\right].\]
 
 
 
@@ -570,48 +570,7 @@ This means $f=\lim_\cE f_{(d,U)}$, so we can say $\lim_\cE f_{(d,U)}$ exists.
 
 
 
-\section{Analysis problems}
-
-Problems I made:
-\begin{enumerate}
-\item Let $f$ be $C^2$ with $f''(c)\ne0$. Defined a function $\xi$ such that $f(x)-f(c)=f'(\xi(x))(x-c)$ with $|\xi-c|\le|x-c|$, show that $\xi'(c)=1/2$.
-\item Let $f$ be a $C^2$ function such that $f(0)=f(1)=0$. Show that $\|f\|\le\frac18\|f''\|$.
-\item Show that a measurable subset of $\R$ with positive measure contains an arbitrarily long subsequence of an arithmetic progression.
-\item Show that there is no continuous bijection from $[0,1]^2\setminus\{p\}$ to $[0,1]^2$. %나도 못풂
-\end{enumerate}
-\bigskip
-
-Elementary analysis
-\begin{cond}
-\item Show that for a nonnegative sequence $a_n$ if $\sum a_n$ diverges then $\sum\frac{a_n}{1+a_n}$ also diverges.
-\item Show that if both limits of a function and its derivative exist at infinity then the former is 0.
-\item Show that every real sequence has a monotonic subsequence that converges to the limit superior of the supersequence.
-\item Show that if a decreasing nonnegative sequence $a_n$ converges to 0 and satisfies $S_n\le1+na_n$ then $S_n$ is bounded by 1.
-\item Show that the set of local minima of a convex function is connected.
-\item Show that a smooth function such that for each $x$ there is $n$ having the $n$th derivative vanish is a polynomial.
-\item Show that if a continuously differentiable $f$ satisfies $f(x)\ne0$ for $f'(x)=0$, then in a bounded set there are only finite points at which $f$ vanishes.
-\item Let a function $f$ be differentiable. For $a<a'<b<b'$ show that there exist $a<c<b$ and $a'<c'<b'$ such that $f(b)-f(a)=f'(c)(b-a)$ and $f(b')-f(a')=f'(c')(b'-a')$.
-\item Show that if $xf'(x)$ is bounded and $x^{-1}\int_0^xf\to L$ then $f(x)\to L$ as $x\to\infty$.
-\item Show that if a sequence of real functions $f_n\colon[0,1]\to[0,1]$ satisfies $|f(x)-f(y)|\le|x-y|$ whenever $|x-y|\ge\frac1n$, then the sequence has a uniformly convergent subsequence.
-\item (Flett)
-\item Let $f$ be a differentiable function with $f(0)=0$. Show that there is $c\in(0,1)$ such that $cf(c)=(1-c)f'(c)$.
-\item Find the value of $\lim_{n\to\infty}\frac1n\left(\sum_{k=1}^n\frac1nf\left(\frac kn\right)-\int_0^1f(x)\,dx\right)$.
-\item Let $f:\R\to\R$ be continuous. Show that $f(x)=c$ cannot have exactly two solutions for every constant $c\in\R$.
-\item Show that a continuous function that takes on no value more than twice takes on some value exactly once.
-\item Let $f$ be a function that has the intermediate value property. Show that if the preimage of every singleton is closed, then f is continuous.
-\end{cond}
-
-Complex analysis
-\begin{cond}
-\item Show that if a holomorphic function has positive real parts on the open unit disk then $|f'(0)|<2\Re f(0)$.
-\item Show that if at least one coefficient in the power series of a holomorphic function at each point is 0 then the function is a polynomial.
-\item Show that if a holomorphic function on a domain containing the closed unit disk is injective on the unit circle then so is on the disk.
-\item Show that for a holomorphic function $f$ and every $z_0$ in the domain there are $z_1\ne z_2$ such that $\frac{f(z_1)-f(z_2)}{z_1-z_2}=f'(z_0)$.
-\item For two linearly independent entire functions, show that one cannot dominate the other.
-\item Show that uniform limit of injective holomorphic function is either constant or injective.
-\item Suppose the set of points in a domain $U\subset\C$ at which a sequence of bounded holomorphic functions $(f_n)$ converges has a limit point. Show that $(f_n)$ compactly converges.
-\end{cond}
-\clearpage
+\section{Selected analysis problems}
 
 \begin{prb}
 The following series diverges: \[\sum_{n=1}^\infty\frac1{n^{1+|\sin n|}}.\]
@@ -756,6 +715,52 @@ hence a contradiction to
 Therefore, we may find an element $x$ that belongs to $\frac1kE$ for $k\in A$, where $A\subset\{1,\cdots,N\}$ with $|A|=n$.
 Then, $ax\in E$ for all $a\in A\subset\Z$.
 \end{sol}
+
+
+
+\section{Analysis problems}
+
+Problems I made:
+\begin{enumerate}
+\item Let $f$ be $C^2$ with $f''(c)\ne0$. Defined a function $\xi$ such that $f(x)-f(c)=f'(\xi(x))(x-c)$ with $|\xi-c|\le|x-c|$, show that $\xi'(c)=1/2$.
+\item Let $f$ be a $C^2$ function such that $f(0)=f(1)=0$. Show that $\|f\|\le\frac18\|f''\|$.
+\item Show that a measurable subset of $\R$ with positive measure contains an arbitrarily long subsequence of an arithmetic progression.
+\item Show that there is no continuous bijection from $[0,1]^2\setminus\{p\}$ to $[0,1]^2$. %나도 못풂
+\end{enumerate}
+\bigskip
+
+\subsection*{Elementary analysis}
+Every function in here is real valued and defined on $\R$ if not mentioned.
+\begin{cond}
+\item Show that for a nonnegative sequence $a_n$ if $\sum a_n$ diverges then $\sum\frac{a_n}{1+a_n}$ also diverges.
+\item Show that if both limits of a function and its derivative exist at infinity then the former is 0.
+\item Show that every real sequence has a monotonic subsequence that converges to the limit superior of the supersequence.
+\item Show that if a decreasing nonnegative sequence $a_n$ converges to 0 and satisfies $S_n\le1+na_n$ then $S_n$ is bounded by 1.
+\item Show that the set of local minima of a convex function is connected.
+\item Show that a smooth function such that for each $x$ there is $n$ having the $n$th derivative vanish is a polynomial.
+\item Show that if a $C^1$ function $f$ satisfies $f(x)\ne0$ for $x$ such that $f'(x)=0$, then in a bounded set there are only finite points at which $f$ vanishes.
+\item Let a function $f$ be differentiable. For $a<a'<b<b'$ show that there exist $a<c<b$ and $a'<c'<b'$ such that $f(b)-f(a)=f'(c)(b-a)$ and $f(b')-f(a')=f'(c')(b'-a')$.
+\item Show that if $xf'(x)$ is bounded and $x^{-1}\int_0^xf\to L$ then $f(x)\to L$ as $x\to\infty$.
+\item Show that if a sequence of real functions $f_n\colon[0,1]\to[0,1]$ satisfies $|f(x)-f(y)|\le|x-y|$ whenever $|x-y|\ge\frac1n$, then the sequence has a uniformly convergent subsequence.
+\item (Flett)
+\item Let $f$ be a differentiable function with $f(0)=0$. Show that there is $c\in(0,1)$ such that $cf(c)=(1-c)f'(c)$.
+\item Find the value of $\lim_{n\to\infty}\frac1n\left(\sum_{k=1}^n\frac1nf\left(\frac kn\right)-\int_0^1f(x)\,dx\right)$.
+\item Let $f:\R\to\R$ be continuous. Show that $f(x)=c$ cannot have exactly two solutions for every constant $c\in\R$.
+\item Show that a continuous function that takes on no value more than twice takes on some value exactly once.
+\item Let $f$ be a function that has the intermediate value property. Show that if the preimage of every singleton is closed, then f is continuous.
+\end{cond}
+
+\subsection*{Complex analysis}
+\begin{cond}
+\item Show that if a holomorphic function has positive real parts on the open unit disk then $|f'(0)|<2\Re f(0)$.
+\item Show that if at least one coefficient in the power series of a holomorphic function at each point is 0 then the function is a polynomial.
+\item Show that if a holomorphic function on a domain containing the closed unit disk is injective on the unit circle then so is on the disk.
+\item Show that for a holomorphic function $f$ and every $z_0$ in the domain there are $z_1\ne z_2$ such that $\frac{f(z_1)-f(z_2)}{z_1-z_2}=f'(z_0)$.
+\item For two linearly independent entire functions, show that one cannot dominate the other.
+\item Show that uniform limit of injective holomorphic function is either constant or injective.
+\item Suppose the set of points in a domain $U\subset\C$ at which a sequence of bounded holomorphic functions $(f_n)$ converges has a limit point. Show that $(f_n)$ compactly converges.
+\end{cond}
+
 
 
 \section{Physics problem}

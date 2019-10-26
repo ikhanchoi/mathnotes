@@ -125,7 +125,7 @@ Let $\a:\R\to\R^3$ be a map given by
 Since $d\a_t(1)=\a'(t)=(-\sin t,\cos t,1)$ is always nonzero so that $d\a$ is injective everywhere, $\a$ is a parametrization of the regular curve
 \[\{\,(x,y,z)\in\R^3:x=\cos z,\ y=\sin z\,\}.\]
 Notice that it is enough to check $\a(t)\ne0$ for a curve parametrization $\a$ to show the injectivity of $d\a$.
-This curve is an example of cylindrical helices.
+This curve is called a circular helix.
 \end{ex}
 \begin{ex}
 Let $\a:\R\to\R^3$ be a map given by
@@ -204,7 +204,6 @@ Now we define tangent spaces in several equivlent ways:
 \begin{defn}
 Let $M$ be a regular curve or a regular surface with parametrization $\a:U\to M\subset\R^n$.
 Let $p\in M$ be a point.
-
 The \emph{tangent space} of $M$ at $p$, denoted by $T_pM$, can be defined as either one of the followings:
 \begin{cond}
 \item the span of the linearly independent set of vectors $\{\pd_i\a\}_{i=1}^m\subset\R^n$,
@@ -222,7 +221,7 @@ We can easily check that $T_p\R^3=\R^3$ for any $p\in\R^3$.
 The notation $T_p\R^3$ will be used to emphasize that a vector in $\R^3$ is geometrically recognized to cast from the point $p$.
 Since $T_p\R^3=\R^3=T_q\R^3$ for every pair of points $p,q\in\R^3$, we are able to add a vector in $T_p\R^3$ to a vector in $T_q\R^3$.
 This identification of tangent spaces are allowed \emph{only for the case of linear spaces} such as $\R^3$.
-(In fact, the identification $T_p\R^3=\R^3$ is \emph{natural}.)
+(In fact, the identification $T_p\R^3=\R^3$ is \emph{natural} in categorical language.)
 \end{rmk}
 
 % Examples
@@ -255,7 +254,7 @@ This identification of tangent spaces are allowed \emph{only for the case of lin
 \subsubsection{Reparametrization}
 
 We introduce the arc-length reparametrization.
-This parametrization is a general choice for the local study of curves.
+It is a general choice for the local study of curves.
 \begin{defn}
 A parametrization $\a$ of a regular curve is called a \emph{unit speed curve} or an \emph{arc-length parametrization} when it satisfies $\|\a'\|=1$.
 \end{defn}
@@ -264,10 +263,11 @@ Every regular curve may be assumed to have unit speed.
 Precisely, for every regular curve, there is a parametrization $\a$ such that $\|\a'\|=1$.
 \end{thm}
 \begin{pf}
-Suppose we have a parametrization $\beta:I_t\to\R^d$ for a given regular curve.
+By the definition of regular curves, we can take a parametrization $\beta:I_t\to\R^d$ for a given regular curve.
+We will construct an arc-length parametrization from $\beta$.
 
 Define $\tau:I_t\to I_s$ such that
-\[\tau(t_0):=\int_0^{t_0}\|\beta'(t)\|\,dt.\]
+\[\tau(t):=\int_0^t\|\beta'(s)\|\,ds.\]
 Since $\tau$ is smooth and $\tau'>0$ everywhere so that $\tau$ is strictly increasing, the inverse $\tau^{-1}:I_s\to I_t$ is smooth by the inverse function theorem.
 Define $\a:I_s\to\R^d$ by $\a:=\beta\circ\tau^{-1}$.
 Then, by the chain rule,
@@ -495,7 +495,7 @@ So we are done.
 \end{sol}
 
 \begin{prb}
-A curve with more than one Bertrand mates is a cylindrical helix.
+A curve with more than one Bertrand mates is a circular helix.
 \end{prb}
 \begin{sol}
 \Step{1}[Formulate conditions]

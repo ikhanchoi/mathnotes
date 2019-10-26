@@ -1,0 +1,200 @@
+\documentclass{../exp}
+\usepackage{../../ikany}
+
+\title{Measure theory}
+
+\begin{document}
+\maketitle
+
+
+
+\section{Topological measures}
+
+\subsection{Regular measures}
+
+\begin{thm}
+Let $\mu$ be a Borel measure.
+Then, the followings are equivalent:
+\begin{cond}
+\item$\mu$ is inner regular on $\sigma$-bounded sets
+\item $\mu$ is outer regular on $\sigma$-bounded sets.
+\end{cond}
+\end{thm}
+
+
+
+\subsection{Radon measures}
+
+Locally compact Hausdorff spaces have at least two important applications in abstract analysis related to measure theory: one is locally compact groups and the associated Harr measures in abstract harmonic analysis, the other is the Gelfand-Naimark theorem which states every commutative $C^*$-algebra can be represented as a function space on a locally compact Hausdorff space.
+In the set of this section, we assume every base space $X$ is locally compact Hausdorff.
+
+Note that locally finite measures are compact finite but the converser holds only if in locally compact Hausdorff spaces.
+We want to consider locally finite Borel measures as the minimally compatible measures with a given topology on $X$.
+For locally finite Borel measures, a set is finite-measured if and only if it is contained in a compact set.
+\begin{defn}
+(Folland's)A \emph{Radon measure} is a Borel measure on $X$ which satisfies the following three conditions:
+\begin{cond}
+\item locally finite,
+\item outer regular on all Borel sets,
+\item inner regular on all open sets.
+\end{cond}
+\end{defn}
+
+Radon measures are rather simply characterized when the base space $X$ is $\sigma$-compact.
+The following proposition proves the equivalence between regularity and Radonness of locally finite Borel measure on a $\sigma$-compact space.
+\begin{prop}
+A Radon measure is inner regular on all $\sigma$-finite Borel sets.(Folland's)
+\end{prop}
+\begin{pf}
+First we approximate Borel sets of finite measure, with compact sets.
+Let $E$ be a Borel set with $\mu(E)<\oo$ and $U$ be an open set containing $E$.
+By outer regularity, there is an open set $V\supset U-E$ such that
+\[\mu(V)<\mu(U-E)+\frac\e2.\]
+By inner regularity, there is a compact set $K\subset U$ such that
+\[\mu(K)>\mu(U)-\frac\e2.\]
+Then, we have a compact set $K-V\subset K-(U-E)\subset E$ such that
+\begin{align*}
+\mu(K-V)&\ge\mu(K)-\mu(V)\\
+&>\left(\mu(U)-\frac\e2\right)-\left(\mu(U-E)+\frac\e2\right)\\
+&\ge\mu(E)-\e.
+\end{align*}
+It implies that a Radon measure is inner regular on Borel sets of finite measures.
+
+Suppose $E$ is a $\sigma$-finite Borel set so that $E=\bigcup_{n=1}^\oo E_n$ with $\mu(E_n)<\oo$.
+We may assume $E_n$ are pairwise disjoint.
+Let $K_n$ be a compact subset of $E_n$ such that
+\[\mu(K_n)>\mu(E_n)-\frac\e{2^n},\]
+and define $K=\bigcup_{n=1}^\oo K_n\subset E$.
+Then,
+\[\mu(K)=\sum_{n=1}^\oo\mu(K_n)>\sum_{n=1}^\oo\left(\mu(E_n)-\frac\e{2^n}\right)=\mu(E)-\e.\]
+Therefore, a Radon measure is inner regular on all $\sigma$-finite Borel sets.
+\end{pf}
+We get a corollary:
+\begin{cor}
+If $X$ is $\sigma$-compact, then a locally finite Borel measure is Radon if and only if it is regular.
+\end{cor}
+
+\begin{thm}
+If every open set in $X$ is $\sigma$-compact(i.e. Borel sets and Baire sets coincide), then every locally finite Borel measure is regular.
+\end{thm}
+\begin{prop}
+In a second countable space, every open set is $\sigma$-compact(i.e. Borel sets and Baire sets coincide).
+\end{prop}
+
+
+Two corollaries are presented as follows:
+\begin{rd}[column sep={120pt,between origins}]
+\parbox{7em}{\centering locally finite \\ Borel regular} \ar{r} &
+\parbox{5em}{\centering Radon}   \ar{r} \rds{l}{$X$ is $\sigma$-compact} &
+\parbox{7em}{\centering locally finite \\ Borel}  \lds{ll}{$X$ is second countable}
+\end{rd}
+
+
+Many applications assume $X$ is an open subset of a Euclidean space, so $X$ is usually second countable.
+In this case, the followings will be synonym: A measure is
+\begin{cond}
+\item 
+\end{cond}
+
+
+
+\[L_{\text{loc}}^1=\text{absolutely continuous measures}\subset\text{Radon measures}\subset\cD'.\]
+
+
+\begin{thm}
+Every finite Radon measure is regular.
+\end{thm}
+
+
+
+
+
+
+
+\section{Riesz-Markov-Kakutani representation theorem}
+In this section, we always assume $X$ is a locally compact Hausdorff space.
+Hence we can use the Urysohn lemma in the following way: If a compact subset $K$ and a closed subset $F$ are disjoint, then by applying the Urysohn lemma on a compact neighborhood of $K$, we can find a continuous function $f:X\to[0,1]$ such that $f|_K=1$ and $f|_F=0$.
+In particular, there always exists a ``continuous characteristic function'' $\phi\in C_c(X)$ with $\phi|_K=1$.
+
+There are two Riesz-Markov-Kakutani theorems: the first theorem describes the positive elements in $C_c(X)^*$ as Radon measures when the natural colimit topology is assumed, and the second theorem describes $C_c(X)^*$ as the space of finite Radon measures when uniform topology is assumed.
+
+\subsection{Positive linear functional}
+Positivity of linear functional itself implies a rather strong continuity property.
+\begin{thm}
+Let $X$ be LCH.
+A positive linear functional on $C_c(X)$ is continuous with respect to the inductive topology.
+\end{thm}
+\begin{pf}
+Let $I$ be a positive linear functional on $C_c(X)$.
+We want to show every restriction of $I$ on $C_c(U)\emb C_c(X)$ for $U\Subset X$ is continuous for uniform norm.
+
+Choose a nonnegative $\phi\in C_c(X)$ such that $\phi|_{\cl{U}}\equiv1$ using the Urysohn lemma.
+Then,
+\[|I(f)|\le I(|f|)=I(\phi|f|)\le I(\phi\|f\|)=I(\phi)\|f\|\les_U\|f\|\]
+for $f\in C_c(U)$.
+\end{pf}
+% 우리손 렘마에 의한 캐릭터리스틱 함수 구성 가능하다
+
+
+
+
+
+
+
+
+
+
+\begin{thm}[The Riesz-Markov-Kakutani representation theorem]
+Let $X$ be LCH.
+Let $I$ be a positive linear functional on $C_c(X)$.
+Then, there is a unique Radon measure $\mu$ on $X$ such that
+\[I(f)=\int f\,d\mu.\]
+\end{thm}
+\begin{pf}
+Uniqueness follows from the fact that Radon measures are outer regular on all Borel sets so that they are determined by open sets.
+% 정칙성은 유일성을 위해 필요한 것!!
+
+Define a set function $\mu$ on Borel $\sigma$-algebra by
+\[\mu(U):=\|I|_{C_c(U)}\|_{C_c^*(U)}\]
+for open $U$ and
+\[\mu(E):=\inf\{\,\mu(U):E\subset U,\,U\text{ is open}\,\}\]
+for Borel sets $E$.
+Since outer regularity is satisfied automatically by definition, we need to show countable additivity and inner regularity on open sets for justification of the measure $\mu$.
+
+\Step{1}[Countable additivity]
+We use the Carath\'eodory extension theorem.
+
+\Step{4}[Realization as integration]
+
+\end{pf}
+
+
+A regular measure of an open set $U$ can be realized by the norm of integration functional on $C_c(U)$.
+\begin{lem}
+Let $\mu$ be a Borel measure on a LCH $X$.
+If $\mu$ is inner regular on open sets, then
+\[\mu(U)=\|\mu\|_{C_c^*(U)}\]
+for every open $U$ in $X$.
+\end{lem}
+\begin{pf}
+($\ge$)
+For $f\in C_c(U)$, we have
+\[|\int f\,d\mu|=|\int_Uf\,d\mu|\le\mu(U)\,\|f\|.\]
+
+($\le$)
+Since $\mu$ is inner regular on $U$, there is a compact set $K\subset U$ such that $\mu(U\setminus K)<\e$.
+We can find a nonnegative function $f\in C_c(U)$ with $f|_K \equiv 1$ and $f\le1$ by the construction of Uryshon.
+Then, for all $\e>0$ we have
+\[\mu(U)<\mu(K)+\e\le\int f\,d\mu+\e\le\|\mu\|_{C_c^*(U)}+\e.\qedhere\]
+\end{pf}
+
+
+Topologies on $C_c(X)$ for LCH $X$: weaker to stronger
+\begin{cond}
+\item Topology of compact convergence: $\cl{C_c(X)}=C(X)$.
+\item Topology of uniform convergence: $\cl{C_c(X)}=C_0(X)$, $C_c(X)^*=M(X)$.
+\item Inductive topology: $\cl{C_c(X)}=C_c(X)$.
+\end{cond}
+
+
+\end{document}
