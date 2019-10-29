@@ -7,7 +7,7 @@
 \tableofcontents
 
 
-
+% automorphism groups of F(x) for an indeterminate x
 
 
 
@@ -203,12 +203,11 @@ On the other hand, recall that we have
 \[\left[\Q(\sqrt2,\sqrt3):\Q\right]=\left[\Q(\sqrt2,\sqrt3):\Q(\sqrt2)\right]\cdot\left[\Q(\sqrt2):\Q\right]=2\cdot2=4.\]
 Also, $\sqrt2+\sqrt3\in\Q(\sqrt2,\sqrt3)$ implies $\Q(\sqrt2+\sqrt3)<\Q(\sqrt2,\sqrt3)$.
 Since the dimensions as vector spaces are equal, we get $\Q(\sqrt2+\sqrt3)=\Q(\sqrt2,\sqrt3)$.
-
-Actually, we have
+We can also directly check
 \[\sqrt2=\frac12\left(\alpha-\frac1\alpha\right)\quad\text{and}\quad\sqrt3=\frac12\left(\alpha+\frac1\alpha\right),\]
 where $\alpha=\sqrt2+\sqrt3$.
 
-These kind of \emph{dimension argument} is one of powerful tools to attack field theory.
+This kind of \emph{dimension argument} is one of powerful tools to attack field theory.
 It will be discovered later that the dimension argument has an analogy with computation of group orders in finite group theory.
 \end{ex}
 
@@ -234,28 +233,27 @@ They are said to be \emph{conjugate over $F$} if they share a common minimal pol
 \end{defn}
 
 In other words, conjugates share the maximal ideal $\ker(\eval)$, hence we get that $F(\alpha)$ and $F(\beta)$ are isomorphic.
-For the practical isomorphism map, we have the following great theorem.
+For the practical isomorphism map, we have the following theorem.
+It is also useful when we compute field automorphisms explicitly.
 
 \begin{thm}[Conjugation isomorphism]
 Let $E/F$ be a field extension and $\alpha,\beta\in E$.
 A map
 \[\phi:F(\alpha)\to F(\beta):\alpha\mapsto\beta\]
-fixing $F$ provides a well-defined field isomomorphism iff they are conjugates over $F$.
+fixing $F$ is a well-defined field homomorphism iff they are conjugates over $F$.
+In addition, if that is the case, $\phi$ is in fact an isomorphism.
 \end{thm}
 \begin{pf}
 ($\Leftarrow$)
-To prove well-definedness, since the two conditions that $\phi(\alpha)=\beta$ and $\phi$ fixes $F$ determines $\phi$ uniquely, so we just need to show the existence of such $\phi$.
-
-Let $\mu\in F[x]$ be the common minimal polynomial of $\alpha$ and $\beta$ over $F$.
-We will show that a map
-\[\psi:F(\alpha)\to{\sim}F[x]/(\mu)\to{\sim}F(\beta)\]
-is in fact $\phi$.
-The intermediate isomorphisms are defined by the quotient of evaluation maps.
-Since we have $\psi(\alpha)=\beta$ and $\psi$ fixes $F$ clearly, $\phi$ is well-defined.
-The fact that $\phi$ is a field isomorphism is followed by $\psi$.
+Notice that the two conditions $\phi(\alpha)=\beta$ and $\phi|_F=\id_F$ force $\phi$ to be unique.
+Let $\mu\in F[x]$ be the common minimal polynomial of $\alpha$ and $\beta$ over $F$ and consider a map
+\[\psi:F(\alpha)\to{\sim}F[x]/(\mu)\to{\sim}F(\beta):\alpha\mapsto x+(\mu)\mapsto\beta.\]
+The intermediate isomorphisms are given by the quotient of evaluation maps.
+Since $\psi(\alpha)=\beta$ and $\psi|_F=\id_F$, we have $\psi=\phi$.
+It shows that $\phi$ is a well-defined field isomorphism.
 
 ($\Rightarrow$)
-Suppose $\phi$ is an isomorphism fixing $F$.
+Suppose $\phi$ is a field homomorphism fixing $F$.
 Then, $\phi$ commutes with a polynomial function with coefficients in $F$.
 From
 \[\mu_{\alpha,F}(\beta)=\mu_{\alpha,F}(\phi(\alpha))=\phi(\mu_{\alpha,F}(\alpha))=\phi(0)=0,\]
@@ -322,15 +320,15 @@ Before that, we introduce a good notion about algebraic extensions: the set of a
 
 In the rest of this subsection, assume that we have fixed a sufficiently large ambient field $L$.
 Restricting the ``domain of discourse'' by assuming a large entire field is a greatly helpful idea in order not to be confused in the theory of extensions.
-For example, if we have not fixed the such a field $L$, we are able to consider useless large fields which may grow without limits.
-Moreover, we cannot say about the number of field extensions satisfying particular properties.
+For example, if we do not fix such a field $L$, we might be able to consider useless large fields which may grow without limits.
+Moreover, we cannot think about the number of field extensions satisfying particular properties.
 
-Note that the following definition depends on the choice of $L$, and we will use it only in this subsection.
+Note that the following definition \emph{depends on the choice of $L$}, and we will use it \emph{only in this subsection}.
 \begin{defn}
 Let $\cl F$ denote the set of all algebraic elements in $L$ over $F$.
 \end{defn}
 \begin{rmk}
-In fact, the field $\cl F$ is called the \emph{relative algebraic closure of $F$ in $L$}.
+The field $\cl F$ is called the \emph{relative algebraic closure of $F$ in $L$}.
 Since we have not defined algebraic closures yet, we will only adopt the notation.
 The reason of the word ``relative'' is explained later.
 Also, honestly, the notation $\cl F$ is not so good that it is often used to represent an algebraic closure, not a relative one.
@@ -383,8 +381,7 @@ The above lemma is useful because we already know a field $L$ such that
 \item algebraic elements over $L$ is in $L$,
 \item $L$ contains a lot of usual example fields,
 \end{itemize}
-which includes the field of complex numbers, $\C$.
-
+the field of complex numbers, $\C$.
 After studying algebraic closures in the next subsection, this lemma will be dealt within more details.
 \end{rmk}
 
@@ -605,7 +602,7 @@ The most fields considered in mathematics is separable.
 
 
 \subsection{Finite fields}
-
+% characteristic definition
 \begin{lem}[Frobenius automorphism]
 Let $F$ be a field of characteristic $p$.
 Then, the map $\sigma:x\mapsto x^p$ is a field automorphism on $F$.
@@ -628,17 +625,23 @@ where $\F_q$ denotes a field of cardinality $q$.
 
 \subsection{Separable polynomial}
 \begin{defn}
+Let $F$ be a field.
 A polynomial $f\in F[x]$ is called \emph{separable} if it is square-free in $\cl F[x]$.
 An element $\alpha\in\cl F'$ is called \emph{separable} over $F$ if $\mu_{\alpha,F}$ is separable.
 \end{defn}
-
+This definition is independent on the base field $F$ whenever $f\in F[x]$.
 \begin{defn}
 A field extension $E/F$ is called \emph{separable} if all elements in $E$ is separable over $F$.
 \end{defn}
 
 separable degree
 
-differentiation
+\begin{defn}
+Let $f\in F[x]$ for a field $F$ such that
+\[f(x)=\sum_{k=0}^{\deg f}a_kx^k\]
+The \emph{formal derivative} of $f$ is defined as a polynomial $f'\in F[x]$ such that
+\[f'(x):=\sum_{k=1}^{\deg f}ka_kx^{k-1}.\]
+\end{defn}
 
 
 

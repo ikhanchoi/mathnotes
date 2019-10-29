@@ -180,7 +180,7 @@
     \renewcommand{\mn}{\ar[tail]}
     \renewcommand{\ep}{\ar[two heads]}
     \tikzcdset{column sep=small,ampersand replacement=\&}
-    \[\begin{tikzcd}
+    \[\begin{tikzcd}[column sep=small]
   }
   {\end{tikzcd}\]}
 \NewDocumentEnvironment{rd}{}
@@ -189,7 +189,8 @@
     \[\begin{tikzcd}
   }
   {\end{tikzcd}\]}
-  
+% `\parbox{7em}{\centering ~~ }` is useful
+
 %\newcommand{\block}[1]{\begin{tabular}{c}#1\end{tabular}}
 \newcommand\lar{\ar[bend left]}
 \newcommand\rar{\ar[bend right,swap]}

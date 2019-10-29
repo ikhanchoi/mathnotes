@@ -134,6 +134,19 @@ Then,
 \end{cond}
 \end{cor}
 
+\begin{thm}
+Alternative proof for existence of $p$-groups.
+\end{thm}
+\begin{pf}
+Let $|G|=p^{a+b}m$.
+Let $\cP_{p^a}$ be the set of all $p^a$-sets in $G$.
+Give $G\acts\cP_{p^a}$ by left multiplication.
+Since $v_p(|\cP_{p^a}|)=v_p({p^a(p^bm)\choose p^a})=b$, there is an orbit $\cO$ such that $v_p(|\cO|)\le b$.
+We have transitive action $G\acts\cO$ and the stabilizer $H$ satisfies $p^a\mid|G|/|\cO|=|H|$.
+Since $H\acts\cO$ trivially, $H\acts A$ for $A\in\cO\subset\cP_{p^a}$.
+It is only possible when $H\subset A$, hence $|H|=p^a$.
+\end{pf}
+
 
 First, find a normal subgroup.
 Second, find a normal subgroup of a subgroup.

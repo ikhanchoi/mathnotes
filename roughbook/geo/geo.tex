@@ -1,5 +1,5 @@
 \documentclass[11pt]{article}
-\usepackage{../ikany}
+\usepackage{../../ikany}
 \usepackage[margin=1.5in]{geometry}
 
 \let\realsection\section
@@ -31,7 +31,7 @@ Let $R$ be a PID.
 Let $C_\bul$ be a chain complex of flat $R$-modules and $G$ be a $R$-module.
 Then, we have a short exact sequence
 \begin{es}
-0 \>  H_n(C)\tn G  \>  H_n(C;G)  \>  \Tor(H_{n-1}(C),G)  \> 0,
+0\>H_n(C)\tn G\>H_n(C;G)\>\Tor(H_{n-1}(C),G)\>0,
 \end{es}
 which splits, but not naturally.
 \end{thm}
@@ -39,29 +39,29 @@ which splits, but not naturally.
 \begin{pf}[1]
 We have a short exact sequence of chain complexes
 \begin{es}
-0 \>  Z_\bul  \>  C_\bul  \>  B_{\bul-1}  \> 0
+0\>Z_\bul\>C_\bul\>B_{\bul-1}\>0
 \end{es}
 where every morphism in $Z_\bul$ and $B_\bul$ are zero.
 Since modules in $B_{\bul-1}$ are flat, we have a short exact sequence
 \begin{es}
-0 \>  Z_\bul\tn G  \>  C_\bul\tn G  \>  B_{\bul-1}\tn G  \> 0
+0\>Z_\bul\tn G\>C_\bul\tn G\>B_{\bul-1}\tn G\>0
 \end{es}
 and the associated long exact sequence
 \begin{es}
-\cdots \>  H_n(B;G)  \>  H_n(Z;G)  \>  H_n(C;G)  \>  H_{n-1}(B;G)  \>  H_{n-1}(Z;G)  \> \cdots
+\,\>H_n(B;G)\>H_n(Z;G)\>H_n(C;G)\>H_{n-1}(B;G)\>H_{n-1}(Z;G)\>\,
 \end{es}
 where the connecting homomomorphisms are of the form $(i_n\colon B_n\to Z_n)\tn1_G$ (It is better to think diagram chasing than a natural construction).
 Since morhpisms in $B$ and $Z$ are zero (if it is not, then the short exact sequence of chain complexes are not exact, we have
 \begin{es}
-\cdots \>  B_n\tn G  \>  Z_n\tn G  \>  H_n(C;G)  \>  B_{n-1}\tn G  \>  Z_{n-1}\tn G  \> \cdots.
+\,\>B_n\tn G\>Z_n\tn G\>H_n(C;G)\>B_{n-1}\tn G\>Z_{n-1}\tn G\>\,.
 \end{es}
 Since
 \begin{es}
-0 \>  \Tor_1^R(H_n,G)  \>  B_n\tn G  \>  Z_n\tn G  \>  H_n\tn G  \> 0
+0\>\Tor_1^R(H_n,G)\>B_n\tn G\>Z_n\tn G\>H_n\tn G\>0
 \end{es}
 for all $n$, the exact sequence splits into short exact sequence by images
 \begin{es}
-0 \>  H_n\tn G  \>  H_n(C;G)  \>  \Tor_1^R(H_{n-1},G)  \> 0.
+0\>H_n\tn G\>H_n(C;G)\>\Tor_1^R(H_{n-1},G)\>0.
 \end{es}
 
 For splitting,
@@ -70,27 +70,27 @@ For splitting,
 \begin{pf}[2]
 Since $R$ is PID, we can construct a flat resolution of $G$
 \begin{es}
-0 \>  P_1  \>  P_0  \>  G  \> 0.
+0\>P_1\>P_0\>G\>0.
 \end{es}
 Since modules in $C_\bul$ are flat so that the tensor product functors are exact and $P_1\to P_0$ and $P_0\to G$ induce the chain maps, we have a short exact sequence of chain complexes
 \begin{es}
-0 \>  C_\bul\tn P_1  \>  C_\bul\tn P_0  \>  C_\bul\tn G  \> 0.
+0\>C_\bul\tn P_1\>C_\bul\tn P_0\>C_\bul\tn G\>0.
 \end{es}
 Then, we have the associated long exact sequence
 \begin{es}
-\cdots \>  H_n(C;P_1)  \>  H_n(C;P_0)  \>  H_n(C;G)  \>  H_{n-1}(C;P_1)  \>  H_{n-1}(C;P_0)  \> \cdots.
+\,\>H_n(C;P_1)\>H_n(C;P_0)\>H_n(C;G)\>H_{n-1}(C;P_1)\>H_{n-1}(C;P_0)\>\,.
 \end{es}
 Since flat tensor product functor commutes with homology funtor from chain complexes, we have
 \begin{es}
-\cdots \>  H_n\tn P_1  \>  H_n\tn P_0  \>  H_n(C;G)  \>  H_{n-1}\tn P_1  \>  H_{n-1}\tn P_0  \> \cdots.
+\,\>H_n\tn P_1\>H_n\tn P_0\>H_n(C;G)\>H_{n-1}\tn P_1\>H_{n-1}\tn P_0\>\,.
 \end{es}
 Since
 \begin{es}
-0 \>  \Tor_1^R(G,H_n)  \>  H_n\tn P_1  \>  H_n\tn P_0  \>  H_n\tn G  \> 0
+0\>\Tor_1^R(G,H_n)\>H_n\tn P_1\>H_n\tn P_0\>H_n\tn G\>0
 \end{es}
 for all $n$, the exact sequence splits into short exact sequence by images
 \begin{es}
-0 \>  H_n\tn G  \>  H_n(C;G)  \>  \Tor_1^R(G,H_{n-1})  \> 0.
+0\>H_n\tn G\>H_n(C;G)\>\Tor_1^R(G,H_{n-1})\>0.
 \end{es}
 \end{pf}
 
@@ -417,16 +417,6 @@ The set of points that is geodesically connected to a point is open.
 \end{prop}
 
 
-
-\section{Geometry problems}
-
-\begin{cond}
-\item Show that if $A^\o\subset B$ and $B$ is closed, then $(A\cup B)^\o\subset B$.
-\item Show that the tangent space of the unitary group at the identity is identified with the space of skew Hermitian matrices.
-\item Prove the Jacobi formula for matrix.
-\item Show that $S^3$ and $T^2$ are parallelizable.
-\item Show that $\R P^n=S^n/Z_2$ is orientable if and only if $n$ is odd.
-\end{cond}
 
 
 

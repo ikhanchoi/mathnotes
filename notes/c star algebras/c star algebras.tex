@@ -7,24 +7,92 @@
 \newcommand{\sot}{{\text{\sc sot}}}
 \newcommand{\ran}{\mathrm{ran}}
 
+
+% FC: holomorphic
+
+% 겔판드 이론
+% 스펙트럼 집합: 일단 가환인 경우만 두 가지 정의(선형캐릭터, 최대아이디얼)
+
+
+
+% FC: continuous
+% self-adjoint, positive element
+
+% GNS construction
+
+% subalgebras, ideal, quotient
+
 \begin{document}
 \maketitle
 \tableofcontents
+
 \begin{defn*}
 In this note, an \emph{algbera} refers to a vector space over $\C$ that has a pseudo-ring structure; always associative but possibly nonunital.
 \end{defn*}
-\begin{defn*}
-An normed $*$-algebra $\cA$ is called \emph{$C^*$-algebra} if
+
+\section{Banach algebras}
+
+\subsection{Basics}
+\begin{defn}
+A normed algebra $\cA$ is called a \emph{Banach algebra} if the norm induces complete metric space.
+\end{defn}
+
+% quotient and ideals
+% adjoining identity
+% approximate identity, norm of left multiplication
+
+\subsection{Spectra}
+
+% spectrum of an element
+
+% polynomial functional calculus (?)
+% set of units is open
+% continuous inverse
+% power series method, banach space valued holomorphic function
+% holomorphic resolvent
+% Gelfand-Mazur: Banach field is C
+
+% spectral radius formula
+% spectrum inclusion relations
+% spectrum preserving property at boundary
+
+
+\subsection{Holomorphic functional calculus}
+
+% Dunford-Reisz functional calculus
+
+
+\subsection{Gelfand theory}
+
+
+
+% semisimplicity and symmetricity
+
+
+
+
+
+\section{$C^*$-algebras}
+
+\subsection{Basics}
+
+% C* identity
+% continuous functional calculus
+% homomorphism
+
+
+\begin{defn}
+A normed $*$-algebra $\cA$ is called a \emph{$C^*$-algebra} if
 \begin{cond}
 \item $\cA$ is Banach,
 \item $\cA$ satisfies the $C^*$-identity: $\|x^*x\|=\|x\|^2$.
 \end{cond}
-\end{defn*}
+\end{defn}
 
 
-\begin{thm*}
+\begin{thm}
 Every nonunital $C^*$-algebra is a maximal ideal of a unital $C^*$-algebra.
-\end{thm*}
+\end{thm}
 \begin{pf}
 Let $\cA$ be a nonunital $C^*$-algebra.
 It is enough to show the existence of unital $C^*$-algebra $\tld\cA$ such that $\cA$ is a normed $*$-subalgebra of $\tld\cA$ with codimension one.
@@ -61,11 +129,9 @@ The $C^*$-identity easily follows from the following inequality:
 \end{align*}
 \end{pf}
 
-
-\section{Basics}
-\subsection{Continuous functional calculus}
+\subsubsection{Continuous functional calculus}
 \begin{thm}[Gelfand-Naimark]
-For commutative unital $C^*$-algebra $\cA$, the Gelfand transform gives an isometric $^*$-isomorphism $\Gamma:\cA\to C(\sigma(\cA))$.
+For a commutative unital $C^*$-algebra $\cA$, the Gelfand transform gives an isometric $^*$-isomorphism $\Gamma:\cA\to C(\sigma(\cA))$.
 \end{thm}
 \begin{pf}
 \Step{1}[$\Gamma$ is a $*$-homomorphism]
@@ -102,7 +168,7 @@ By the Stone-Weierstrass theorem, $\Gamma(\cA)$ is dense in $C(\sigma(\cA))$.
 The step 2 shows that $\Gamma(\cA)$ is complete and hence closed so that $\Gamma(\cA)=C(\sigma(\cA)$.
 \end{pf}
 \begin{thm}[Gelfan-Naimark]
-For commutative $C^*$-algebra $\cA$, the Gelfand transform gives an isometric $^*$-isomorphism $\Gamma:\cA\to C_0(\sigma(\cA))$.
+For a commutative $C^*$-algebra $\cA$, the Gelfand transform gives an isometric $^*$-isomorphism $\Gamma:\cA\to C_0(\sigma(\cA))$.
 \end{thm}
 
 
@@ -110,6 +176,9 @@ For commutative $C^*$-algebra $\cA$, the Gelfand transform gives an isometric $^
 
 
 
+
+
+\subsection{Gelfand-Naimark-Segal construction}
 
 
 \subsection{Operator topologies}

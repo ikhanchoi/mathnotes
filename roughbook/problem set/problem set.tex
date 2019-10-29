@@ -1,0 +1,149 @@
+\documentclass[11pt]{report}
+\usepackage{../../ikany}
+\usepackage[margin=1.5in]{geometry}
+
+\let\realsection\section
+\renewcommand\section{\realsection}
+
+\begin{document}
+\tableofcontents
+
+\chapter{Analysis}
+\section{Elementary analysis}
+
+\subsection{Sequences}
+\begin{cond}
+\item Show that for a nonnegative sequence $a_n$ if $\sum a_n$ diverges then $\sum\frac{a_n}{1+a_n}$ also diverges.
+\item Show that every real sequence has a monotonic subsequence that converges to the limit superior of the original sequence.
+\item Show that if a decreasing nonnegative sequence $a_n$ converges to 0 and satisfies $S_n\le1+na_n$ then $S_n$ is bounded by 1.
+\end{cond}
+
+\subsection{Functions}
+Every function in here is real valued and defined on $\R$ if not mentioned.
+\begin{cond}
+\item Show that if both limits of a function and its derivative at infinity exist then the function vanishes at infinity.
+\item Let $f$ be $C^2$ with $f''(c)\ne0$. Defined a function $\xi$ such that $f(x)-f(c)=f'(\xi(x))(x-c)$ with $|\xi-c|\le|x-c|$, show that $\xi'(c)=1/2$.
+\item Let $f$ be a $C^2$ function such that $f(0)=f(1)=0$. Show that $\|f\|\le\frac18\|f''\|$.
+\item Show that the set of local minima of a convex function is connected.
+\item Show that a smooth function such that for each $x$ there is $n$ having the $n$th derivative vanish is a polynomial.
+\item Show that if a $C^1$ function $f$ satisfies $f(x)\ne0$ for $x$ such that $f'(x)=0$, then in a bounded set there are only finite points at which $f$ vanishes.
+\item Let a function $f$ be differentiable. For $a<a'<b<b'$ show that there exist $a<c<b$ and $a'<c'<b'$ such that $f(b)-f(a)=f'(c)(b-a)$ and $f(b')-f(a')=f'(c')(b'-a')$.
+\item Show that if a sequence of real functions $f_n\colon[0,1]\to[0,1]$ satisfies $|f(x)-f(y)|\le|x-y|$ whenever $|x-y|\ge\frac1n$, then the sequence has a uniformly convergent subsequence.
+\item Let $f$ be a differentiable function on the unit closed interval. Show that if $f(0)=0$ there is $c$ such that $cf'(c)=f(c)$. (Flett)
+\item Let $f$ be a differentiable function on the unit closed interval. Show that if $f(0)=0$ there is $c$ such that $cf(c)=(1-c)f'(c)$.
+\item Let $f:\R\to\R$ be continuous. Show that $f(x)=c$ cannot have exactly two solutions for every constant $c\in\R$.
+\item Show that a continuous function that takes on no value more than twice takes on some value exactly once.
+\item Let $f$ be a function that has the intermediate value property. Show that if the preimage of every singleton is closed, then f is continuous.
+\end{cond}
+
+\subsection{Integration}
+\begin{cond}
+\item Find the value of $\lim_{n\to\infty}\frac1n\left(\sum_{k=1}^n\frac1nf\left(\frac kn\right)-\int_0^1f(x)\,dx\right)$.
+\item Show that if $xf'(x)$ is bounded and $x^{-1}\int_0^xf\to L$ then $f(x)\to L$ as $x\to\infty$.
+\end{cond}
+
+
+\section{Real analysis}
+\subsection{Measure theory}
+\begin{cond}
+\item Show that a measurable subset of $\R$ with positive measure contains an arbitrarily long subsequence of an arithmetic progression.
+\end{cond}
+\subsection{Fourier analysis}
+
+\section{Complex analysis}
+\begin{cond}
+\item Show that if a holomorphic function has positive real parts on the open unit disk then $|f'(0)|<2\Re f(0)$.
+\item Show that if at least one coefficient in the power series of a holomorphic function at each point is 0 then the function is a polynomial.
+\item Show that if a holomorphic function on a domain containing the closed unit disk is injective on the unit circle then so is on the disk.
+\item Show that for a holomorphic function $f$ and every $z_0$ in the domain there are $z_1\ne z_2$ such that $\frac{f(z_1)-f(z_2)}{z_1-z_2}=f'(z_0)$.
+\item For two linearly independent entire functions, show that one cannot dominate the other.
+\item Show that uniform limit of injective holomorphic function is either constant or injective.
+\item Suppose the set of points in a domain $U\subset\C$ at which a sequence of bounded holomorphic functions $(f_n)$ converges has a limit point. Show that $(f_n)$ compactly converges.
+\end{cond}
+
+
+
+\section{Functional analysis}
+\begin{cond}
+\item Show that if $A^\o\subset B$ and $B$ is closed, then $(A\cup B)^\o\subset B$.
+\end{cond}
+
+\section{Proability theory}
+\begin{cond}
+\item Find the probability that arbitrarily chosen positive integers are coprime.
+\end{cond}
+
+\section{Differential equations}
+
+
+
+
+
+
+
+
+
+
+
+
+\chapter{Algebra}
+
+\section{Elementary algebra}
+
+\subsection{Linear algebra}
+\begin{cond}
+\item Show that normal nilpotent matrix equals zero.
+\item Show that two matrices $AB$ and $BA$ have same nonzero eigenvalues whose both multiplicities are coincide...
+\item Show that if $A$ is a square matrix whose characteristic polynomial is minimal then a matrix commuting $A$ is a polynomial in $A$.
+\item Show that the order of $2\times 2$ integer matrices divide 12 if it is finite.
+\end{cond}
+
+\subsection{Groups}
+\begin{cond}
+\item Show that a finite symmetric group has two generators.
+\item Show that a group of order $2p$ for a prime $p$ has exactly two isomorphic types.
+\item Show that a group $G$ is abelian if $|G|=p^2$ for a prime $p$.
+\item Show that a group $G$ is abelian if it has a surjective cube map.
+\item Let $G$ be a finite group of order $n$ and $p$ the smallest prime divisor of $n$. Show that a subgroup of $G$ of index $p$ is normal in $G$.
+\item Find all $n$ such that $(\Z/n\Z)^\times$ is cyclic.
+\item Show that a nontrivial normalizer of a $p$-group meets its center out of identity.
+\item Show that a proper subgroup of a finite $p$-group is a proper subgroup of its normalizer. In particular, every finite $p$-group is nilpotent.
+\item Show that a finite group $G$ satisfying $\sum_{g\in G}\ord(g)\le2n$ is abelian.
+\item Show that the order of a group with trivial automorphism group is either 1 or 2.
+\item Find all homomorphic images of $A_4$ up to isomorphism.
+\item Show that in a group of order 105 is a single Sylow $p$-subgroup for $p=5,7$.
+\item Show that the number of Sylow $p$-subgroups of $\SL_3(\F_p)$ is $(p^2+p+1)(p+1)$.
+\end{cond}
+
+\subsection{Rings}
+\begin{cond}
+\item Show that a finite integral domain is a field.
+\item Show that every ring of order $p^2$ for a prime $p$ is commutative.
+\item Show that a semiring with multiplicative identity and cancellative addtion has commutative addition.
+\item Show that the complement of a saturated monoid in a commutative ring is a union of prime ideals.
+\end{cond}
+
+\subsection{Galois theory}
+\begin{cond}
+\item Show that the Galois group of a quintic over $\Q$ having exactly three real roots is isomorphic to $S_5$.
+\end{cond}
+
+
+
+\chapter{Geometry}
+
+\section{Classical geometry}
+
+\section{Differential geometry}
+\begin{cond}
+\item Show that the tangent space of the unitary group at the identity is identified with the space of skew Hermitian matrices.
+\item Prove the Jacobi formula for matrix.
+\item Show that $S^3$ and $T^2$ are parallelizable.
+\item Show that $\R P^n=S^n/Z_2$ is orientable if and only if $n$ is odd.
+\end{cond}
+
+\section{Algebraic geometry}
+
+\section{Algebraic topology}
+
+\end{document}

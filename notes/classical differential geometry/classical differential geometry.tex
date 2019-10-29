@@ -50,9 +50,9 @@
 %           additional topic 좌표의존성과 바깥의존성
 
 % -계산
-%   평면곡선, 구면곡선, 헬릭스, 버트런드, 이볼루트
+%   평면곡선, 구면곡선, 헬릭스, 버트런드
 %   프리이미지, 그래프, 접선쓸기, 회전체
-%   뿔, 엘립소이드, 파라볼로이드, 쌍곡면, 헬리코이드; 곡률 부호
+%   뿔, 엘립소이드, 파라볼로이드, 쌍곡면, 헬리코이드; 가우스곡률 부호
 %    룰드 곡면, 데벨로퍼블
 
 % Intrinsic geometry of surface
@@ -87,10 +87,11 @@ Of course, it is possible to generalize the definition of differentiation on bou
 
 For the second condition, although it is written to be optional, we will always require the injectivity of $\a$ in this note.
 If not, two distinct ordered tuple of real numbers may represent the same point.
+Namely, this second condition allows to use the inverse map $\a^{-1}:\im\a\to U$.
 To describe a geometric object that cannot be covered by a single injective parametrization, such as a circle or a sphere, we can admit several parametrizations.
 
 The third condition is the most important one.
-This condition is paraphrased as follows: the set of partial derivatives $\{\pd_i\a(p)\}_{i=1}^m\subset\R^n$ is linearly independent at every point $p\in U$.
+This condition is paraphrased as follows: the set of partial derivatives $\{\pd_i\a(x)\}_{i=1}^m\subset\R^n$ is linearly independent at every point $x\in U$.
 Differential geoemtry do not consider parametrizations that fail this.
 This condition is necessary for providing with appropriate and well-defined linear approximation of curves or surfaces.
 If it is not staisfied, every definition including tangent spaces in differential geometry can suffer.
@@ -122,9 +123,9 @@ As said, the choice of coordinate(parametrization) is important in differential 
 \begin{ex}
 Let $\a:\R\to\R^3$ be a map given by
 \[\a(t)=(\cos t,\sin t, t).\]
-Since $d\a_t(1)=\a'(t)=(-\sin t,\cos t,1)$ is always nonzero so that $d\a$ is injective everywhere, $\a$ is a parametrization of the regular curve
+Since $d\a|_t(1)=\a'(t)=(-\sin t,\cos t,1)$ is always nonzero so that $d\a$ is injective everywhere, $\a$ is a parametrization of the regular curve
 \[\{\,(x,y,z)\in\R^3:x=\cos z,\ y=\sin z\,\}.\]
-Notice that it is enough to check $\a(t)\ne0$ for a curve parametrization $\a$ to show the injectivity of $d\a$.
+Notice that it is enough to check $\a'(t)\ne0$ for a curve parametrization $\a$ to show the injectivity of $d\a$.
 This curve is called a circular helix.
 \end{ex}
 \begin{ex}
@@ -151,10 +152,11 @@ Let $f:\R^2\to\R$ be a smooth function and $\a:\R^2\to\R^3$ be a map given by
 \[\a(x,y)=(x,y,f(x,y)).\]
 Then, $\a$ is a two-dimensional parametrization because
 \begin{align*}
-d\a_{(x,y)}(1,0)&=\pd{\a}{x}(x,y)=\Bigl(1,0,\pd{f}{x}(x,y)\Bigr),\\
-d\a_{(x,y)}(0,1)&=\pd{\a}{y}(x,y)=\Bigl(0,1,\pd{f}{y}(x,y)\Bigr)
+d\a|_{(x,y)}(1,0)&=\pd{\a}{x}(x,y)=\Bigl(1,0,\pd{f}{x}(x,y)\Bigr),\\
+d\a|_{(x,y)}(0,1)&=\pd{\a}{y}(x,y)=\Bigl(0,1,\pd{f}{y}(x,y)\Bigr)
 \end{align*}
 are linearly independent for every $(x,y)\in\R^2$.
+A parametrization of this form is called a \emph{Monge patch}.
 Notice that it is enough to check that the two partial derivatives $\pd_x\a$ and $\pd_y\a$ are linearly independent for a surface parametrization $\a$.
 
 Let $S=\im\a$ be the regular surface determined by $\a$, and let $p$ be a point on the surface $S$ so that we have $p=(x,y,f(x,y))$.
@@ -167,10 +169,11 @@ In this regard, we often write the coordinates $\f$ as $(x,y)$.
 \begin{ex}
 Let
 \[S=\{\,(x,y)\in\R^2:x>0\text{ or }y\ne0\,\}.\]
+The set $S$ is a regular surface.
 Consider two different coordinates
 \begin{gather*}
 (x,y):S\to S:(x,y)\mapsto(x,y),\\
-(r,\theta):S\to(0,\infty)\times(-\pi,\pi):(x,y)\mapsto(\sqrt{x^2+y^2},\,2\tan^{-1}\frac y{\sqrt{x^2+y^2}+x}),
+(r,\theta):S\to(0,\infty)\times(-\pi,\pi):(x,y)\mapsto\left(\sqrt{x^2+y^2},\ 2\tan^{-1}\frac y{\sqrt{x^2+y^2}+x}\right),
 \end{gather*}
 where $\tan^{-1}(t):=\int_0^t\frac{ds}{1+s^2}$.
 They are the inverses of parametrizations $\a:S\to\R^2$ and $\beta:(0,\infty)\times(-\pi,\pi)\to\R^2$ defined by
@@ -203,14 +206,15 @@ Its tangent vectors are denoted by
 Now we define tangent spaces in several equivlent ways:
 \begin{defn}
 Let $M$ be a regular curve or a regular surface with parametrization $\a:U\to M\subset\R^n$.
-Let $p\in M$ be a point.
+Let $p\in M$ be a point and $x:=\a^{-1}(p)\in U$ be the coordinates of $p$.
 The \emph{tangent space} of $M$ at $p$, denoted by $T_pM$, can be defined as either one of the followings:
 \begin{cond}
-\item the span of the linearly independent set of vectors $\{\pd_i\a\}_{i=1}^m\subset\R^n$,
-\item the image of the Fr\'echet derivative $d\a_p:\R^m\to\R^n$.
+\item the span of the linearly independent set of vectors $\{\pd_i\a(x)\}_{i=1}^m\subset\R^n$,
+\item the image of the Fr\'echet derivative $d\a|_x:\R^m\to\R^n$.
 This definition is independent on the parametrization $\a$,
 \item the set of vectors $v\in\R^n$ such that there exists a curve $\gamma:I\to M$ satisfying $\gamma(0)=p$ and $\gamma'(0)=v$.
 \end{cond}
+We can check the tangent space $T_pM$ is an $m$-dimensional linear subspace of $\R^n$.
 \end{defn}
 \begin{rmk}
 We can show the three conditions are equivalent, but the proof will not be given; what is more important is to understand the role and meaning of tangent spaces because there is no agreed standard definition of tangent spaces in the level of this note.
@@ -219,9 +223,15 @@ There exist a lot more neat but difficult characterizations for tangent spaces w
 \begin{rmk}
 We can easily check that $T_p\R^3=\R^3$ for any $p\in\R^3$.
 The notation $T_p\R^3$ will be used to emphasize that a vector in $\R^3$ is geometrically recognized to cast from the point $p$.
-Since $T_p\R^3=\R^3=T_q\R^3$ for every pair of points $p,q\in\R^3$, we are able to add a vector in $T_p\R^3$ to a vector in $T_q\R^3$.
+Since $T_p\R^3=\R^3=T_q\R^3$ for every pair of points $p,q\in\R^3$, summation and inner product of a vector in $T_p\R^3$ and a vector in $T_q\R^3$ make sense.
 This identification of tangent spaces are allowed \emph{only for the case of linear spaces} such as $\R^3$.
 (In fact, the identification $T_p\R^3=\R^3$ is \emph{natural} in categorical language.)
+\end{rmk}
+\begin{rmk}
+One way to view tangent spaces is to see them as domains and codomains of Fr\'echet derivatives.
+For open sets $U\subset\R^m$ and $V\subset\R^n$, the Fr\'echet derivative of a smooth map $f:U\to V$ at $x\in U$ is a linear transformation $df|_x:T_xU\to T_{f(x)}V$.
+Since $T_xU=\R^m$ and $T_{f(x)}V=\R^n$, the original definition on Euclidean spaces agrees with it.
+In this reason, the Fr\'echet derivative $df$ is also called a \emph{tangent map}, \emph{pushforward}, or \emph{differential} in differential geoemtry.
 \end{rmk}
 
 % Examples
@@ -229,7 +239,49 @@ This identification of tangent spaces are allowed \emph{only for the case of lin
 \subsubsection{Differentiation by tangent vectors}
 
 %%%%
+% 대입 기호
+%  미분 d\a|_p
+%  for a field s, s|_p
+%  접벡터 X|_p
+%  ex \pd_i\a는 접벡터
+%   따라서 \pd_i\a|_p = \pd_i\a(\a^{-1}(p))
 
+\begin{ex}
+Let $\a$ be an $m$-dimensional parametrization.
+Then, $\pd_i\a(x)$ is always a tanget vector at each point $p=\a(x)$.
+It means we may write $\pd_i\a|_p$ for $\pd_i\a(x)=\pd_i\a(\a^{-1}(p))$.
+\end{ex}
+
+
+% 벡터에 의한 방향미분
+%  공변미분 아니면 \pd_v 기호만 사용할 것
+%  \pd_x:=\pd_{\a_x}로 사용할 것
+%  \del_v는 사용하지 말 것
+
+\begin{ex}
+Let $\a$ be an $m$-dimensional parametrization and $s$ be either a function or a vector field on $\a$.
+Then, we can define the directional derivative $\pd_{\pd_i\a}s$ of $s$ with respect to the direction $\pd_i\a$.
+The abusing notation $\pd_is:=\pd_{\pd_i\a}s$ will be mostly used when we are given a fixed parametrization without confusion.
+Since the curve satisfying $\gamma$ such that $\gamma(0)=p$ and $\gamma'(0)=\pd_i\a$ is independent, we can compute the directional derivative as $\pd_is=\pd_i(s\o\a)$ by taking $\gamma(t)=\a(\a^{-1}(p)+te_i)$, where $e_i$ is the $i$th standard basis vector in $\R^m$.
+\end{ex}
+
+\begin{ex}
+Let $\a:\R^2\to\R^3$ be a regular surface given by
+\[\a(x,y)=\left(\frac{2x}{1+x^2+y^2},\,\frac{2y}{1+x^2+y^2},\,1-\frac2{1+x^2+y^2}\right).\]
+This map gives a (partial) parametrization for the sphere $S^2$, and is called the \emph{stereographic projection}.
+Let $f:\im\a\to\R$ be the height function of $\a$ defined by
+\[f(p):=z\]
+for $p=(x,y,z)$.
+Then, the directional derivative is
+\[f_x=\pd_xf=\pd{(f\o\a)}{x}=\pd{x}\left(1-\frac2{1+x^2+y^2}\right)=\frac{4x}{(1+x^2+y^2)^2}.\]
+Note that $f_x\ne\pd{x}z=0$.
+\end{ex}
+
+% 아래첨자 기호
+%  x,y: 매개화의 x,y방향 편미분
+%   for a field s,
+%   s_x=\pd_xs:=\pd_{\a_x}s   (s\o\a)_x\o\a^{-1}=\pd_x(s\o\a)\o\a^{-1}
+%  i,j 및 숫자: 메트릭 및 크리스토펠 인덱스
 
 
 
@@ -356,7 +408,11 @@ By differentiating the relation $R_t^T(h)R_t(h)=I$ with respect to $h$, we get t
 In other words, the tangent space $T_I\SO(3)$ forms a skew symmetric matrix.
 \end{rmk}
 
-The following proposition gives the most effective and shortest way to compute $\kappa$ and $\tau$.
+
+
+\subsubsection{Formulas for computation}
+
+The following proposition gives the most effective and shortest way to compute $\kappa$ and $\tau$ in general case.
 If we try to find $\kappa$ by differentiating $\rT$, then we must encounter the normalizing term of the form $\sqrt{(-)^2+(-)^2+(-)^2}^{-1}$, and it is painful when time is limited.
 The Frenet-Serret frame is useful in proofs of interesting propositions, but not a good choice for practical computation.
 So, the direct computation from derivatives of parametrization is highly recommended, instead of differentiating $\rT$.
@@ -594,6 +650,30 @@ TFAE:
 
 \subsubsection{Reparametrization}
 
+%         선형독립    벡터들이 한점에서 주어졌을 때 ->
+%         선형독립    벡터장이 근방에서 주어졌을 때 -> 일반적으론 2차원에서만
+%         선형독립 가환벡터장이 근방에서 주어졌을 때 -> n차원 다돼
+%         선형독립    직교벡터들이 한점에서 주어졌을 때
+%         선형독립    직교벡터장이 근방에서 주어졌을 때
+%         선형독립 직교가환벡터장이 근방에서 주어졌을 때
+% preimage theorem
+
+\begin{thm}
+Let $S$ be a regular surface.
+Let $v,w$ be vectors that form a basis of $T_pS$ for a point $p\in S$.
+Then, $S$ admits a parametrization $\a$ such that $\a_x|_p=v$ and $\a_y|_p=w$.
+\end{thm}
+\begin{thm}
+Let $S$ be a regular surface.
+Let $v,w$ be vector fields on $S$ such that $v|_p$ and $w|_p$ form a basis of $T_pS$ for each $p\in S$.
+Then, $S$ admits a parametrization $\a$ such that $\a_x|_p$ and $\a_y|_p$ are parallel to $v|_p,w|_p$ respectively for each $p\in S$.
+\end{thm}
+\begin{thm}
+Let $S$ be a regular surface.
+Let $v,w$ be vector fields on $S$ such that $v$ and $w_p$ form a basis of $T_pS$ for each $p\in S$.
+Then, $S$ admits a parametrization $\a$ such that $\a_x|_p=v|_p$ and $\a_y|=w|_p$ for each $p\in S$.
+\end{thm}
+
 
 \subsubsection{Gauss map}
 
@@ -642,11 +722,24 @@ Let $\a$ be a regular curve on a regular surface $S$.
 The \emph{normal curvature} of $\a$ on $S$ is
 \[\kappa_n(t):=\<\a''(t),\nu(t)\>\]
 \end{defn}
+
+
+
 % second fundamental form
 % shape operator, weingarten map
 % principal curvature
 % mean curvature, gaussian curvature
 
 % curvature tensor?
+
+\subsubsection{Formulas for computations}
+
+
+Weingarten equations:
+\begin{align*}
+\nu_x&=\frac{FM-GL}{EG-F^2}\a_x+\frac{FL-EM}{EG-F^2}\a_y,\\
+\nu_x&=\frac{FN-GM}{EG-F^2}\a_x+\frac{FM-EN}{EG-F^2}\a_y.
+\end{align*}
+
 
 \end{document}
