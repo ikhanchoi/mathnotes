@@ -115,7 +115,7 @@ Every quadratic field is of the form $\Q(\sqrt d)$ for a square-free $d$.
 \end{thm}
 \begin{thm}
 Let $d$ be a square-free.
-\[\cO_{\Q(\sqrt d)}=\begin{cases}\Z+\sqrt d\Z&,d\equiv2,3\pmod4\\\bigmath\Z+\frac{1+\sqrt d}2\Z&,d\equiv1\pmod4\end{cases}\]
+\[\cO_{\Q(\sqrt d)}=\begin{cases}\Z[\sqrt d]&,d\equiv2,3\pmod4\\\Z[\tfrac{1+\sqrt d}2]&,d\equiv1\pmod4\end{cases}\]
 \[\Delta_{\Q(\sqrt d)}=\begin{cases}4d&,d\equiv2,3\pmod4\\ d&,d\equiv1\pmod4\end{cases}\]
 \end{thm}
 \begin{ex}
@@ -160,47 +160,54 @@ This theorem holds because $K/\Q$ is separable and $\Z$ is a PID.
 
 \clearpage
 \subsection{Frobenius element}
-Consider an abelian extension $L/K$.
-Let $\fp$ be a prime in $\cO_K$.
-Since $L/K$ is Galois, the followings do not depend on the choice of $\fP$ over $\fp$.
+\begin{defn}
+Let $L/K$ be abelian.
+Let $\fp$ be a prime in $\cO_K$ and $\fq$ be a prime in $\cO_L$ over $\fp$.
+The \emph{decomposition group} $D_{\fq|\fp}$ is a subgroup of $\Gal(L/K)$ whose element fixes the prime $\fq$.
+Since $L/K$ is Galois, the followings do not depend on the choice of $\fq$ over $\fp$.
 
+By definition, $D_{\fq|\fp}$ acts on the set $\cO_L/\fq$ and fixes $\cO_K$.
+\end{defn}
 \begin{lem}
 The following sequence of abelian groups is exact:
-\begin{es} 0 \> I(\fP|\fp) \> D(\fP|\fp) \> \Gal(k(\fP)/k(\fp)) \> 0, \end{es}
-where $k(\fP):=\cO_L/\fP$ and $k(\fp):=\cO_K/\fp$ are residue fields.
+\begin{es} 0 \> I_{\fq|\fp} \> D_{\fq|\fp} \> \Gal(k(\fq)/k(\fp)) \> 0, \end{es}
+where $k(\fq):=\cO_L/\fq$ and $k(\fp):=\cO_K/\fp$ are residue fields.
 \end{lem}
-The Frobenius element is defined as an element of $D(\fP|\fp)/I(\fP|\fp)\cong\Gal(k(\fP)/k(\fp))$, which is a cyclic group.
+\begin{pf}
+We first show 
+\end{pf}
+The Frobenius element is defined as an element of $D_{\fq|\fp}/I_{\fq|\fp}\cong\Gal(k(\fq)/k(\fp))$, which is a cyclic group.
 \begin{defn}
-For an unramified prime $\fp\subset\cO_K$ so that $I(\fP|\fp)$ is trivial, the Frobenius element $\phi(\fP|\fp)\in\Gal(L/K)$ is defined by
-\[\phi_{\fP|\fp}(\fP)=\fP,\quad\text{and}\quad\phi_{\fP|\fp}(x)\equiv x^{|\cO_K/\fp|}\pmod{\fP}\quad\text{for}\quad x\in\cO_L.\]
+The Frobenius element is defined by $\phi_{\fq|\fp}\in\Gal(L/K)$ such that $\phi_{\fq|\fp}(\fq)=\fq$ and
+\[\phi_{\fq|\fp}(x)\equiv x^{|\cO_K/\fp|}\pmod{\fq}\quad\text{for}\ x\in\cO_L.\]
+It gives a generator of the cyclic group $D_{\fq|\fp}/I_{\fq|\fp}$.
 \end{defn}
-The first condition is equivalent to $\phi_{\fP|\fp}\in D(\fP|\fp)$.
-In fact, the Frobenius element is in fact a generator of the cyclic group $D(\fP|\fp)\cong\Gal(k(\fP)/k(\fp))$ by the Galois theory of finite fields.
 \begin{rmk}
-Fermat's little theorem states
-\[\phi_{\fP|\fp}(x)\equiv x\pmod{\fp},\c{for} x\in\cO_K,\]
+Fermat's little theorem states $\phi_{\fq|\fp}=\id_{\cO_K/\fp}$, i.e.
+\[\phi_{\fP|\fp}(x)\equiv x\pmod{\fp}\quad\text{for}\ x\in\cO_K,\]
 which means $\phi_{\fP|\fp}$ fixes the field $\cO_K/\fp$ so that $\phi_{\fP|\fp}\in\Gal(k(\fP)/k(\fp))$.
 \end{rmk}
 
 
-
 \subsection{Quadratic Dirichlet character}
-Let $K=\Q(\sqrt D)$ be a quadratic field with discriminant $D$ and $L=\Q(\zeta_D)$ be the cyclotomic field for $\zeta_D=e^{\frac{2\pi i}D}$.
+Let $D$ be a quadratic discriminant.
+For $\zeta_D=e^{\frac{2\pi i}D}$, it is known that the cyclotomic field $\Q(\zeta_D)$ is the smallest cyclotomic extension of the quadratic field $\Q(\sqrt D)$.
+Let $K=\Q(\sqrt{D})$ and $L=\Q(\zeta_D)$.
 \begin{cd}[column sep = 0pt]
-D(\fP/p) & \subset & \Gal(L/\Q) \ep{d}{q} & \cong & (\Z/D\Z)^\x \ep{d}{\chi_K=\left(\frac D\cdot\right)} & \qquad & L=\Q(\zeta_D)\\
-D(\fp/p) & \subset & \Gal(K/\Q) & \cong & \{\pm1\} && K=\Q(\sqrt D).
+\sigma_p \mp{d}{\cdot|_K} &\in& D_{\fq|p} &\le& \Gal(L/\Q) \ep{d}{\cdot|_K} &\cong& (\Z/|D|\Z)^\x \ep{d}{\chi_K=\left(\frac D\cdot\right)} & \\
+\sigma_p|_K&\in& D_{\fp|p} &\le& \Gal(K/\Q) &\cong& \<\pm1\>.
 \end{cd}
 
 For $p\nmid D$ so that $p$ is unramified, let $\sigma_p:=(\zeta_D\mapsto\zeta_D^p)\in\Gal(L/\Q)$.
-Then, what is $\sigma_p|_K$ in $\Gal(K/\Q)$.
-In other words, for $\sigma_p(\zeta_D)=\zeta_D^p$ which is true: $\sigma_p(\sqrt D)=\pm\sqrt D$?
+Then, what is $\sigma_p|_K$ in $\Gal(K/\Q)$?
+In other words, which is true: $\sigma_p(\sqrt D)=\pm\sqrt D$?
 
-Note that $\sigma$ satisfies the condition to be the Frobenius element: $\sigma_p=\phi_{\fP|p}$.
-Therefore, $q(\phi_{\fP|p})=\phi_{\fp|p}=\sigma_p|_K$ is also a Frobenius element.
+Notice that $\sigma$ satisfies the condition to be the Frobenius element: $\sigma_pI_{\fq|p}=\phi_{\fq|p}$.
+Therefore, $\phi_{\fp|p}=\sigma_p|_K$ is also a Frobenius element.
 There are only two cases:
 \begin{cond}
-\item If $f=|D(\fp/p)|=1$, then $\sigma|_K$ is the identity, so $\chi_K(p)=1$
-\item If $f=|D(\fp/p)|=2$, then $\sigma|_K$ is not trivial, so $\chi_K(p)=-1$
+\item If $f=|D(\fp/p)|=1$, then $\sigma_p|_K$ is the identity, so $\chi_K(p)=1$
+\item If $f=|D(\fp/p)|=2$, then $\sigma_p|_K$ is not trivial, so $\chi_K(p)=-1$
 \end{cond}
 
 Artin reciprocity: $(\Z/D\Z)^\x$ is extended to $I_K^S$.
@@ -416,11 +423,21 @@ Every $p$-adic integer is a sum of two squares of $p$-adic integers.
 
 
 
+\section{Dedekind domain}
 
+\begin{rd}
+Notherian: & ED \ar{r} & PID \ar{d}\ar{r} & UFD \ar{d} & \\
+Non-noetherian: & & B\'ezout \ar{r} & GCD \ar{r} & Euclid's lemma.
+\end{rd}
 
+\begin{prop}
+Let $A$ be a Dedekind domain.
+Then, $A$ is a PID if and only if Euclid's lemma holds.
+\end{prop}
 
+If $R$ satisfies the \emph{ascending chain condition for principal ideals}, then $R$ is a PID iff $R$ is a B\'ezout domain, and $R$ is a UFD iff Euclid's lemma holds in $R$.
 
-
+Every valuation ring is a B\'ezout domain.
 
 \end{document}
 
