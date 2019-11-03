@@ -1,0 +1,63 @@
+\documentclass{article}
+
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage[margin=1.5in]{geometry}
+
+\def\R{\mathbb{R}}
+\def\cF{\mathcal{F}}
+\def\cB{\mathcal{B}}
+\def\e{\varepsilon}
+
+% 
+%
+%
+\begin{document}
+
+\subsection*{Compact sets}
+\begin{enumerate}
+\item Let $X\subset\R^d$. Show that if $X$ is bounded then every sequence in $X$ has a convergent subsequence. (Bolzano-Weierstrass)
+\item Let $X\subset\R^d$. Show that if every sequence in $X$ has a convergent subsequence, then $X$ is closed and bounded.
+\item Let $X\subset\R^d$ be compact. Suppose an infinite set $\mathcal{C}\subset\mathcal{P}(X)$ only contains closed subsets of $X$. Show that if $\bigcap_{C\in A}C$ is nonempty for all finite subset $A\subset\mathcal{C}$, then $\bigcap_{C\in\mathcal{C}}C$ is nonempty.
+\end{enumerate}
+
+\subsection*{Continuous functions}
+\begin{enumerate}
+\item Let $X$ be a set. Let $f_n:X\to\R$ be a sequence of functions. Show that $f_n$ converges to $f:X\to\R$ uniformly if and only if $\lim_{n\to\infty}\sup_{x\in X}|f_n(x)-f(x)|=0$.
+\item Let $X\subset\R^d$. Let $f_n:X\to\R$ be a sequence of continuous functions. Show that if $f_n$ converges to $f:X\to\R$ uniformly, then $f$ is also continuous. (In other words, the set of real-valued continuous functions $C(X)$ is always closed under the topology of uniform convergence.)
+\item Let $X\subset\R^d$ be compact. Show that is $f:X\to\R$ is continuous then it is uniformly continuous.
+\item Let $f_n:[a,b]\to\R$ be a sequence of continuous functions. Show that if $f_n\to f$ pointwisely and $f'_n\to g$ uniformly, then $g=f'$.
+\end{enumerate}
+
+\clearpage
+
+\subsection*{Measures}
+Let $X$ be a set and $\cF$ be a $\sigma$-algebra on $X$.
+A \emph{measure} on $\cF$ is a function $\mu:\cF\to[0,\infty]$ such that
+\begin{itemize}
+\item $\mu(\varnothing)=0$,
+\item $\mu(\bigcup_{i=1}^\infty E_i)=\sum_{i=1}^\infty\mu(E_i)$ for a sequence of disjoint sets $E_i\in\cF$. (countable-additivity)
+\end{itemize}
+We call an element in $\cF$ \emph{measurable} (when we are known $\cF$).
+\begin{enumerate}
+\item Show that if $E_i$ is a monotonically increasing sequence of measurable subsets, then $\mu(\bigcup_{i=1}^\infty E_i)=\lim_{i\to\infty}\mu(E_i)$. (Continuity from below)
+\item Show that if $E_i$ is a monotonically decreasing sequence of measurable subsets, then $\mu(\bigcap_{i=1}^\infty E_i)=\lim_{i\to\infty}\mu(E_i)$ when given $\mu(E_1)<\infty$. (Continuity from above)
+\item Show that there is no measure $\mu$ defined on the entire power set $\mathcal{P}(\R)$ such that $\mu([a,b])=b-a$ and $\mu(x+E)=\mu(E)$ for $x\in\R,\,E\subset\R$. (Hint: Define an equivalence relation on $\R$ such that $x\sim y$ iff $x-y\in\mathbb{Q}$. Take $N\subset[0,1)$ such that $N$ contains precisely one member of each equivalence class. Show $1\le\sum_{r\in\mathbb{Q}\cap[0,1)}\mu(N)\le3$ to lead a contradiction.)
+\end{enumerate}
+
+\subsection*{Measurable functions}
+Let $X$ be a set.
+A $\sigma$-algebra $\cF$ on $X$ is also called a \emph{measurable structure} and $X$ with $\cF$ is called a \emph{measurable space}.
+A function $f:X\to Y$ between measurable spaces is called \emph{measurable} if the measurability of $E\subset Y$ implies the measurability of $f^{-1}(E)$.
+
+On $\R$, the smallest $\sigma$-algebra containing open sets is called \emph{Borel $\sigma$-algebra} and its elements are called \emph{Borel sets}.
+We will denote it by $\cB(\R)$.
+For a function $f:X\to\R$ where $X$ is a measurable space, we call $f$ just measurable if $f^{-1}(E)$ is measurable for all Borel sets $E$.
+
+\begin{enumerate}
+\item Let $X$ be a measurable space. Show that if $f,g:X\to\R$ is measurable, then $f+g$, $|f|$, $f^2$, and $fg$ are all measurable.
+\item Let $X$ be a measurable space and $f_n$ be a sequence of bounded measurable functions. Show that $g=\sup_nf_n$ and $h=\limsup_nf_n$ are measurable.
+\item Let $X$ be a measurable space. Show that if $f:X\to\R$ is measurable, then $|f|$ is measurable.
+\end{enumerate}
+
+
+\end{document}

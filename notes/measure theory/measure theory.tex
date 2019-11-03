@@ -98,6 +98,28 @@ Therefore, $f_{n_k}$ converges $\mu$-a.e.
 
 \section{Topological measures}
 
+\begin{lem}[The Urysohn lemma]
+Let $X$ be a LCH.
+Let $K$ be a compact subset of $X$ and $U$ be an open neighborhood of $K$.
+Then, there is $f\in C(X)$ such that
+\[f|_K\equiv1\quad\text{and}\quad f|_{U^c}\equiv0.\]
+\end{lem}
+
+\begin{lem}[The Tietze extension theorem]
+Let $X$ be a LCH.
+Let $K$ be a compact subset of $X$.
+For $f\in C(K)$, there is $\tilde f\in C(X)$ such that $\tilde f|_K=f$.
+\end{lem}
+
+\subsection{Lusin's theorem}
+\begin{thm}[Lusin]
+
+\end{thm}
+\begin{pf}
+tightness
+
+\end{pf}
+
 \subsection{Regular measures}
 
 \begin{thm}
@@ -120,7 +142,7 @@ Note that locally finite measures are compact finite but the converser holds onl
 We want to consider locally finite Borel measures as the minimally compatible measures with a given topology on $X$.
 For locally finite Borel measures, a set is finite-measured if and only if it is contained in a compact set.
 \begin{defn}
-(Folland's)A \emph{Radon measure} is a Borel measure on $X$ which satisfies the following three conditions:
+A \emph{Radon measure} is a Borel measure on $X$ which satisfies the following three conditions:
 \begin{cond}
 \item locally finite,
 \item outer regular on all Borel sets,
@@ -201,8 +223,8 @@ Every finite Radon measure is regular.
 
 \section{Riesz-Markov-Kakutani representation theorem}
 In this section, we always assume $X$ is a locally compact Hausdorff space.
-Hence we can use the Urysohn lemma in the following way: If a compact subset $K$ and a closed subset $F$ are disjoint, then by applying the Urysohn lemma on a compact neighborhood of $K$, we can find a continuous function $f:X\to[0,1]$ such that $f|_K=1$ and $f|_F=0$.
-In particular, there always exists a ``continuous characteristic function'' $\phi\in C_c(X)$ with $\phi|_K=1$.
+Hence we can use the Urysohn lemma in the following way: If a compact subset $K$ and a closed subset $F$ are disjoint, then by applying the Urysohn lemma on a compact neighborhood of $K$, we can find a continuous function $\f:X\to[0,1]$ such that $\f|_K=1$ and $\f|_F=0$.
+In particular, there always exists a ``continuous characteristic function'' $\f\in C_c(X)$ with $\f|_K=1$.
 
 There are two Riesz-Markov-Kakutani theorems: the first theorem describes the positive elements in $C_c(X)^*$ as Radon measures when the natural colimit topology is assumed, and the second theorem describes $C_c(X)^*$ as the space of finite Radon measures when uniform topology is assumed.
 
@@ -216,9 +238,9 @@ A positive linear functional on $C_c(X)$ is continuous with respect to the induc
 Let $I$ be a positive linear functional on $C_c(X)$.
 We want to show every restriction of $I$ on $C_c(U)\emb C_c(X)$ for $U\Subset X$ is continuous for uniform norm.
 
-Choose a nonnegative $\phi\in C_c(X)$ such that $\phi|_{\cl{U}}\equiv1$ using the Urysohn lemma.
+Choose a nonnegative $\f\in C_c(X)$ such that $\f|_{\cl{U}}\equiv1$ using the Urysohn lemma.
 Then,
-\[|I(f)|\le I(|f|)=I(\phi|f|)\le I(\phi\|f\|)=I(\phi)\|f\|\les_U\|f\|\]
+\[|I(f)|\le I(|f|)=I(\f|f|)\le I(\f\|f\|)=I(\f)\|f\|\les_U\|f\|\]
 for $f\in C_c(U)$.
 \end{pf}
 % 우리손 렘마에 의한 캐릭터리스틱 함수 구성 가능하다
@@ -239,7 +261,8 @@ Then, there is a unique Radon measure $\mu$ on $X$ such that
 \[I(f)=\int f\,d\mu.\]
 \end{thm}
 \begin{pf}
-Uniqueness follows from the fact that Radon measures are outer regular on all Borel sets so that they are determined by open sets.
+Radon measures are outer regular on all Borel sets so that they are determined by open sets.
+Uniqueness follows from the fact that measure of open sets is unique due to the inner regularity on open sets(see the next lemma).
 % 정칙성은 유일성을 위해 필요한 것!!
 
 Define a set function $\mu$ on Borel $\sigma$-algebra by
@@ -270,8 +293,8 @@ For $f\in C_c(U)$, we have
 \[|\int f\,d\mu|=|\int_Uf\,d\mu|\le\mu(U)\,\|f\|.\]
 
 ($\le$)
-Since $\mu$ is inner regular on $U$, there is a compact set $K\subset U$ such that $\mu(U\setminus K)<\e$.
-We can find a nonnegative function $f\in C_c(U)$ with $f|_K \equiv 1$ and $f\le1$ by the construction of Uryshon.
+Since $\mu$ is inner regular on $U$, there is a compact set $K\subset U$ such that $\mu(U)-\mu(K)<\e$ (for the case $\mu(U)=\infty$, we can deal with separately).
+We can find a nonnegative function $f\in C_c(U)$ with $f|_K \equiv 1$ and $f\le1$ by the construction of Urysohn.
 Then, for all $\e>0$ we have
 \[\mu(U)<\mu(K)+\e\le\int f\,d\mu+\e\le\|\mu\|_{C_c^*(U)}+\e.\qedhere\]
 \end{pf}
@@ -279,10 +302,10 @@ Then, for all $\e>0$ we have
 
 Topologies on $C_c(X)$ for LCH $X$: weaker to stronger
 \begin{cond}
-\item Topology of compact convergence: $\cl{C_c(X)}=C(X)$.
+\item Topology of compact convergence: $\cl{C_c(X)}=\cl{C_{\mathrm{loc}}(X)}=C_{\mathrm{loc}}(X)$.
 \item Topology of uniform convergence: $\cl{C_c(X)}=C_0(X)$, $C_c(X)^*=M(X)$.
-\item Inductive topology: $\cl{C_c(X)}=C_c(X)$.
+\item Inductive topology: $\cl{C_c(X)}:=\cl{\colim_{U\Subset X}C_c(U)}=C_c(X)$.
 \end{cond}
-
+The space $C_{\mathrm{loc}}(X)$ is $C(X)$ as a set and has the topology of compact convergence
 
 \end{document}
