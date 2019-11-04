@@ -2,7 +2,14 @@
 \usepackage{../../ikany}
 
 \title{Smooth Manifolds}
-
+\tikzset{%
+  symbol/.style={
+    draw=none,
+    every to/.append style={
+      edge node={node [sloped, allow upside down, auto=false]{$#1$}}
+    },
+  },
+}
 \begin{document}
 \maketitle
 \tableofcontents
@@ -122,6 +129,86 @@ A smooth map $i:M\to N$ is a smooth embedding iff it is a topological embedding.
 \subsection{Basic differential topology}
 We are going to summary the basic tools to investigate the nature of smooth manifolds.
 These includes the inverse function theorem, the implicit function theorem, the slice lemma, the constant rank theorem.
+
+\subsubsection{Contant rank theorem}
+Let $f:M\to N$ be a smooth map.
+Let $\f:U\to\R^m$ and $\psi:V\to\R^n$ be coordinate maps such that $p\in U$ and $df:TU\to TV$ has a constant rank $k$.
+\begin{pf}
+The follwoing diagram would be helpful.
+\begin{cd}[column sep=100pt]
+M\supset &[-100pt]
+	U \sar{d}{\f} \ar{r}{f} & V \ar{d}{\psi}
+&[-100pt]\subset N\\
+\R^m\supset&
+	\f(U) \ar[symbol=\supset]{d} \ar{r}{f_{(0)}\ =\ \psi\,\o\,f\,\o\,\f^{-1}}& \psi(V) \ar[symbol=\supset]{d}
+&\subset \R^n\\
+&
+	U_1 \sar{d}{\f_1} \ar{r}{f_{(0)}|_{U_1}}& V_1 \ar{d}{\psi_1}
+&\\
+&
+	\f_1(U_1) \ar[symbol=\supset]{d} \ar{r}{f_{(1)}} & \psi_1(V_1) \ar[symbol=\supset]{d}
+&\\
+&
+	U_2 \sar{d}{\f_2} \ar{r}{f_{(1)}|_{U_2}} & V_2 \ar{d}{\psi_2}
+&\\
+&
+	\f_2(U_2) \ar{r}{f_{(2)}} & \psi_2(V_2)
+&
+\end{cd}
+Consider a map
+\[f_{(0)}:=\psi\o f\o\f^{-1}:\f(U)\to\psi(V).\]
+It is smooth becuase of definition of smooth maps.
+Since $Df_{(0)}|_{\f(p)}:\R^m\to\R^n$ is a matrix of rank $k$, there is an invertible $k\x k$ minor submatrix.
+Let $A:\R^m\to\R^m$ and $B:\R^n\to\R^n$ be permutation matrices that reorder the coordinates in such a way that the invertible $k\x k$ minor submatrix becomes the leading principal minor submatrix.
+
+Define coordinate maps $\f_1:U_1\to\f_1(U_1)$ and $\psi_1:V_1\to\psi_1(V_1)$ such that
+\[\f_1(v):=A(v-\f(p)),\quad\psi_1(v):=B(v-\psi(f(p))),\]
+where $U_1$ and $V_1$ are arbitrarily taken open subsets of $\f(U)$ and $\psi(V)$ respectively.
+Check that they are clearly diffeomorphisms.
+Then,
+\[f_{(1)}:=\psi_1\o f_{(0)}\o\f_1^{-1}:\f_1(U_1)\to\psi_1(V_1)\]
+is written as
+\[f_{(1)}(x,y)=(a(x,y),b(x,y))\]
+for $(x,y)\in\f_1(U_1)\subset\R^k\x\R^{m-k}$ and for some $a:\f_1(U_1)\subset\R^m\to\R^k$ such that
+\[f_{(1)}(0,0)=(0,0)\quad\text{and}\quad\left.\pd{a}{x}\right|_{\f_1(\f(p))}\quad\text{is invertible.}\]
+
+Define $\f_2:\f_1(U)\to\R^k\x\R^{m-k}$ such that
+\[\f_2(x,y):=(a(x,y),y).\]
+Then,
+\[D\f_2=\begin{pmatrix}\pd{a}{x}&\pd{a}{y}\\0&\id_{m-k}\end{pmatrix}.\]
+Since $D\f_2$ is smooth and $D\f_2|_{\f_1(\f(p))}$ is invertible, there exists an open set $U_2\subset\f_1(U_1)$ such that the restriction $\f_2:U_2\to\f_2(U_2)$ on an open subset $U_2\subset\f_1(U_1)$ is a diffeomorphism.
+Then,
+\begin{align*}
+D(f_{(1)}\o\f_2^{-1})
+&=Df_{(1)}\o D\f_2^{-1}\\
+&=\begin{pmatrix}\pd{a}{x}&\pd{a}{y}\\\pd{b}{x}&\pd{b}{y}\end{pmatrix}\cdot\begin{pmatrix}\left(\pd{a}{x}\right)^{-1}&-\left(\pd{a}{x}\right)^{-1}\pd{a}{y}\\0&\id_{m-k}\end{pmatrix}
+=\begin{pmatrix}\id_k&0\\ * & * \end{pmatrix}
+=\begin{pmatrix}\id_k&0\\ * &0\end{pmatrix}.
+\end{align*}
+The last equality is because the matrix should have rank $k$ on $U_2$.
+Thus we have
+\[f_{(1)}\o\f_2^{-1}(x,y)=(x,c(x))\]
+for some $c:\f_2(U_2)\subset\R^{m-k}\to\R^{n-k}$.
+Define $\psi_2:V_2\to\psi_2(V_2)$ by
+\[\psi_2(x,z)=(x,z-c(x)),\]
+where $V_2\subset\psi_1(V_1)$ is arbitrarily taken such that $f_{(1)}(U_2)\subset V_2$.
+We can check $\psi_2$ is a diffeomorphism by computing the differential
+\[D\psi_2=\begin{pmatrix}\id_k&0\\-\pd{c}{x}&\id_{n-k}\end{pmatrix}.\]
+Then,
+\[f_{(2)}:=\psi_2\o f_{(1)}\o\f_2^{-1}:\f_2(U_2)\to\psi_2(V_2)\]
+satisfies
+\[f_{(2)}(x,y)=(x,0).\]
+
+Define coordinate charts $(\tld U,\tld\f)$ and $(\tld V,\tld\psi)$ around $p$ and $f(p)$ such that
+\[\tld\f:=\f_2\o\f_1\o\f,\quad\tld\psi:=\psi_2\o\psi_1\o\psi,\]
+and
+\[\tld U:=\tld\f^{-1}(\f_2(U_2)),\quad\tld V:=\tld\psi^{-1}(\psi_2(V_2)).\]
+The new charts are compatible with old charts since the transitions $\f_2\o\f_1:\f(\tld U)\to\tld\f(\tld U)$ and $\psi_2\o\psi_1:\psi(\tld V)\to\tld\psi(\tld V)$ are diffeomorphisms.
+Then, the map $f$ has the coordinate representation $f_{(2)}:(x,y)\mapsto(x,0)$ on $(\tld U,\tld\f)$ and $(\tld V,\tld\psi)$.
+\end{pf}
+
+
+
 
 \subsection{Category of smooth manifolds}
 

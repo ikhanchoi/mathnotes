@@ -54,6 +54,8 @@ p군
 \fi
 
 
+
+
 \section{Sylow game}
 \begin{defn}[Sylow $p$-subgroup]
 Let $G$ be a finite group of order $n=p^am$ for a prime $p\nmid m$.
@@ -78,45 +80,35 @@ By applying the orbit-stabilizer theorem for the action $G\acts G$ by conjugatio
 There are two cases: $p\mid|Z(G)|$ or $p\nmid|Z(G)|$.
 
 \Case{1}[$p\mid|Z(G)|$]
-The group $G$ has a normal cyclic subgroup $C$ of order $p$, because $Z(G)$ has a subgroup of order $p$ by Cauchy's theorem.
-If we let $P$ be a Sylow $p$-subgroup of $G/C$, then
-\[|P|=p^{a-1}.\]
-For the quotient map $\pi:G\to G/C$ we have
-\[|\pi^{-1}(P)|=|C|\cdot|P|=p^a,\]
-by applying the first isomorphism theorem to $\pi$ restricted onto $\pi^{-1}(P)$.
+The group $G$ has a normal subgroup of order $p$ by applying Cauchy's theorem for abelian groups on the center.
+Then, the inverse image of a Sylow $p$-subgroup of the quotient group is also a Sylow $p$-subgroup of $G$.
 
 \Case{2}[$p\nmid|Z(G)|$]
 Since $p\mid n$, we have $p\nmid|G:C_G(g)|$ for some $g\in G$.
-It means $p^a\mid|C_G(g)|$, thereby, by the inductive assumption, there is a Sylow $p$-subgroup $P$ of $|C_G(g)|$ such that
-\[|P|=p^a,\]
-which is also a Sylow $p$-subgroup of $G$.
+Then, a Sylow $p$-subgroup of the centralizer is also a Sylow $p$-subgroup of $G$.
 
 Therefore, we are done for Step 1.
 
 \bigskip
-\Step{2}[A lemma]
-We prove a lemma: given a Sylow $p$-subgroup $P$ of $G$ the normalizer subgroup $N_G(P)$ has a unique Sylow $p$-subgroup, $P$.
-
-Here is the proof.
-Note that $P$ is normal in $N_G(P)$ and $p$ does not divide the order of the quotient group.
-Let $P'$ be a Sylow $p$-subgroup of $N_G(P)$.
-Since every element of $P'$ has order that is a power of $p$, the image of $P'$ under the quotient map $\pi:N_G(P)\to N_G(P)/P$ is trivial.
-Therefore, $P'=P$.
+\Step{2}[Sylow $p$-subgroup that is normal is unique]
+Note that $p$ does not divide the order of the quotient group.
+Every $p$-subgroup should be contained in the Sylow $p$-subgroup, the kernel of the quotient map.
+The Sylow $p$-subgroup is clearly unique.
 
 \bigskip
 \Step{3}[Sylow $p$-subgroups get action by conjugation]
 Let $P$ be a Sylow $p$-subgroup of $G$.
-We construct equations via the orbit-stabilizer theorm for various actions to extract information on $n_p$.
-Note that stabilizers in setwise conjugation action is represented by normalizer subgroups.
+We construct class equations via the orbit-stabilizer theorm for various actions to extract information on $n_p$.
+Note that stabilizers in any setwise conjugation action is exactly normalizers.
 \begin{cond}
 \item The action $P\acts\Syl_p(G)$ gives
-\[n_p=1+\sum_i|P:N_P(P_i)|.\]
-Here we have $p\mid |P:N_P(P_i)|$ since $P=N_P(P_i)\subset N_G(P_i)$ if and only if $P=P_i$.
+\[n_p=1+\sum_i|P:N_P(P_i)|\]
+since $P=N_P(P_i)$ implies $P\trianglelefteq N_G(P_i)$ and $P=P_i$.
 \item Suppose the action $G\acts\Syl_p(G)$ is not transitive.
 Take another Sylow $p$-subgroup $P'$ is not conjugate with $P$ in $G$.
 The two actions $P\acts\Orb_G(P)$ and $P'\acts\Orb_G(P)$ gives
 \[|\Orb_G(P)|=1+\sum_i|P:N_P(P_i)|=\sum_i|P':N_{P'}(P_i)|.\]
-It implies $|\Orb_G(P)|\equiv0,1\pmod{p}$ simultaneously, which leas a contradiction.
+It deduces $|\Orb_G(P)|\equiv0,1\pmod{p}$ simultaneously, which leas a contradiction.
 \item The action $G\acts\Syl_p(G)$ gives
 \[n_p=|G:N_G(P_i)|\]
 for all $P_i\in\Syl_p(G)$ because the action is transitive.
@@ -148,8 +140,7 @@ It is only possible when $H\subset A$, hence $|H|=p^a$.
 \end{pf}
 
 
-First, find a normal subgroup.
-Second, find a normal subgroup of a subgroup.
+
 
 By H\"older program, normal subgroups always benefit:
 \begin{cond}
@@ -164,6 +155,28 @@ A normal subgroup of a subgroup makes \emph{normalizer lifting} that results in:
 \end{cond}
 
 Find a subgroup of nice order
+
+
+What we want to find is the \emph{distribution of subgroups} such as their orders, numbers, itersections, normality, and isomorphic types.
+
+
+In order to show the existence of subgroups of paricular orders:
+\begin{cond}
+\item use induction and expand class equation
+\item extend subgroups of a quotient group
+\item get normalizers of Sylow $p$-subgroups
+\end{cond}
+
+\begin{cond}
+\item get a permutation representation by left multiplication
+\item get normalizers or centralizers by class equation
+\end{cond}
+
+\begin{cond}
+\item count elements
+\item compare Sylow $p$-subgroups of prime dominating subgroups
+\end{cond}
+
 
 
 \section{Simple groups}
