@@ -47,7 +47,8 @@ Three actions
 부분군의 인덱스
 	푸앵카레 정리
 	least prime index -> normal
-p군
+p그룹
+실로우 게임
 
 특정 order의 그룹 분류하기
 
@@ -140,42 +141,23 @@ It is only possible when $H\subset A$, hence $|H|=p^a$.
 \end{pf}
 
 
-
-
-By H\"older program, normal subgroups always benefit:
-\begin{cond}
-\item existence of subgroup of particular order(by extension),
-\item contradiction by $n_p$ element counting
-\end{cond}
-A normal subgroup of a subgroup makes \emph{normalizer lifting} that results in:
-\begin{cond}
-\item existence of subgroup of particular order(by normalizer),
-\item existence of normal subgroup,
-\item constraint of $n_p$ by normalizer of Sylow subgroup.
-\end{cond}
-
-Find a subgroup of nice order
-
-
-What we want to find is the \emph{distribution of subgroups} such as their orders, numbers, itersections, normality, and isomorphic types.
-
+What we want to find is subgroup lattices.
+A subgroup lattice particularly contains data about orders and conjugacy classes of subgroups.
 
 In order to show the existence of subgroups of paricular orders:
 \begin{cond}
-\item use induction and expand class equation
-\item extend subgroups of a quotient group
-\item get normalizers of Sylow $p$-subgroups
+\item $p$-group theory, (including Cuachy and Sylow)
+\item extension theory, (what can subgroups of subgroups do?)
+\item normalizers,
+\item kernel of permutation representation
 \end{cond}
 
+In order to find the size of conjugacy classes:
 \begin{cond}
-\item get a permutation representation by left multiplication
-\item get normalizers or centralizers by class equation
+\item measure the order of normalizers, (find some groups normalize a subgroup)
+\item count elements,
 \end{cond}
 
-\begin{cond}
-\item count elements
-\item compare Sylow $p$-subgroups of prime dominating subgroups
-\end{cond}
 
 
 
@@ -187,14 +169,19 @@ In order to show the existence of subgroups of paricular orders:
 
 \section{Extensions}
 
-outer semidirect product and inner semidirect product
 \begin{prop}
-Let $N$ be a normal subgroup of $G$.
+Let $N$ and $H$ be groups.
+Then, the following objects have one-to-one correspondences among each other.
 \begin{cond}
-\item there is $H<G$ such that $G=NH$ and $N\cap H=1$,
-\item 
-\item
+\item isomorphic types of groups $G$ such that a sequence \begin{es}0\>N\>G\>H\>0\end{es} is exact and right split,
+\item isomorphic types of groups $G$ such that $N\normal G\ge H$ with $G=NH$ and $N\cap H=1$,
+\item group actions $H\acts N$ preserving the group structure of $N$.
 \end{cond}
 \end{prop}
+\begin{defn}
+The group $G$ in the previous proposition is called the \emph{semidirect product} of $N$ and $H$.
+\end{defn}
+
+
 
 \end{document}

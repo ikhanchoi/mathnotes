@@ -56,8 +56,36 @@ For a function $f:X\to\R$ where $X$ is a measurable space, we call $f$ just meas
 \begin{enumerate}
 \item Let $X$ be a measurable space. Show that if $f,g:X\to\R$ is measurable, then $f+g$, $|f|$, $f^2$, and $fg$ are all measurable.
 \item Let $X$ be a measurable space and $f_n$ be a sequence of bounded measurable functions. Show that $g=\sup_nf_n$ and $h=\limsup_nf_n$ are measurable.
-\item Let $X$ be a measurable space. Show that if $f:X\to\R$ is measurable, then $|f|$ is measurable.
 \end{enumerate}
+
+
+\clearpage
+
+Week 3
+
+\subsection*{Simple functions}
+Let $(X,\cF)$ be a measurable space.
+A \emph{characteristic function} or \emph{indicator function} of a measurable set $E$ is a function $\chi_E:X\to\R$ defined by
+\[\chi_E(x)=\begin{cases}1&,x\in E\\0&,x\notin E\end{cases}.\]
+A finite sum of characteristic functions is called \emph{simple function}, and it is a slight generalization of step functions used in the Riemann integral.
+
+\begin{enumerate}
+\item Show that a subset $E$ is measurable iff its characteristic function $\chi_E$ is measurable.
+\item Let $f:X\to[0,\infty]$ be a measurable function. Construct a monotonically increasing sequence of simple functions $\phi_n$ such that $\phi_n\to f$ pointwise. (Hint: $E_n^k=f^{-1}((k^{-1}2^{-n},(k+1)2^{-n}])$, $F_n=f^{-1}((2^n,\infty])$.)
+\item Show that $\phi_n\to f$ uniformly if $f$ is bounded.
+\end{enumerate}
+
+\subsection*{Almost everywhere convergence}
+Let $f_n:X\to\R$ be a sequence of measurable functions.
+We say $f_n$ converges to $f$ $\mu$-\emph{almost everwhere} if $E=\{x:f_n(x)\text{ does not converges to }f(x)\}$ satisfies $\mu(E)=0$.
+
+\begin{enumerate}
+\item Let $f_n:X\to\R$ be a sequence of measurable functions. Let $\mu$ be a complete measure(in other words, $\mu(E)=0$ implies all subsets of $E$ are measurable). Show that if $f_n\to f$ $\mu$-a.e., then $f$ is measurable.
+\item (Optional!) Prove the Egorov's theorem: Let $X$ be a probability space, and let $f_n:X\to\R$ be a sequence of measurable functions. If $f_n\to f$ a.e., then for every $\e>0$ there is a measurable subset $E\subset X$ such that $\mu(E)>1-\e$ and $f_n\to f$ uniformly on $E$.
+\end{enumerate}
+
+
+
 
 
 \end{document}

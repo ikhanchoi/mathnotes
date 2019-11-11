@@ -33,49 +33,72 @@ For boundaryless problem, we have
 Let $f_0\in C_{0,x,v}^1$ and $f_0\ge0$.
 Then, the Cauchy problem for the VP system has a unique $C^1$ global solution.
 \end{thm}
-\begin{defn}
-For a local solution $f$,
-\[Q(t):=1+\sup\{|v|:f(s,x,v)\ne0\text{ for some }s\in[0,t],\,x\in\R_x^3\}.\]
-\end{defn}
 
-Electric field can be controlled by density $\rho$, henceforth by $Q$.
+\begin{lem}
+\[\|\rho(t,x)\|_{L_x^{5/3}}\les1.\]
+\end{lem}
+\begin{pf}
+\begin{align*}
+\rho=\int f\,dv
+&\le\int_{|v|<R}f\,dv+\frac1{R^2}\int_{|v|\ge R}|v|^2f\,dv\\
+&\les R^3+ R^{-2}\int|v|^2f\,dv.
+\end{align*}
+Set $R^3=R^{-2}\int|v|^2f\,dv$ to get
+\[\rho^{5/3}\les\int|v|^2f\,dv.\]
+
+Take $N=3$, $p=2$, and $\lambda=2$.
+Then,
+\[0<\frac1p=\frac1q+\frac\lambda N-1\]
+implies $q=6/5$, so we can bound $\|E\|_2$ by interpolation of $\|\rho\|_{6/5}$ by $\|\rho\|_1$ and $\|\rho\|_{6/5}$:
+\[\|E\|_2\les\|\frac1{|x|^2}*\rho\|_2\les\|\rho\|_{6/5}\le\|\rho\|_1^{7/12}\|\rho\|_{5/3}^{5/12}.\]
+
+Thus
+\[\|E\|_2\les\|\rho\|_{5/3}^{5/12}\les(\iint|v|^2f\,dv\,dx)^{1/4}.\]
+It means $(\iint|v|^2f\,dv\,dx)^{1/2}$ bounds $(\iint|v|^2f\,dv\,dx)$, hence the total kinetic energy of the system remains bounded in any time even if $\gamma=-1$.
+As a corollary, $\|\rho\|_{5/3}$ is also bounded.
+\end{pf}
+
 \begin{lem}
 For $1\le q<\frac N{N-2}=3<p\le\infty$,
 \[\|E(t,x)\|_{L_x^\infty}\les\|\rho(t,x)\|_{L_x^p}^{\frac{\frac2N-1+\frac1q}{\frac1q-\frac1p}}\|\rho(t,x)\|_{L_x^q}^{\frac{1-\frac1p-\frac2N}{\frac1q-\frac1p}}.\]
-Furthermore,
-\[\|E(t,x)\|_{L_x^\infty}\les Q(t)^\e\]
-for any $0<\e\le2$.
 \end{lem}
-Note that $|E|\les Q(t)^\e$ does not prove global boundedness of $Q(t)$ since we cannot aplly Gronwall argument if $Q(t)=\infty$.
 \begin{pf}
 Fix time $t$.
 For $2p<N<2q$,
 \begin{align*}
-4\pi|E(x)|
-&=|\tfrac1{|x|^2}*\rho(x)|\\
-&\le\int_{|x-y|<R}\frac{\rho(y)}{|x-y|^2}\,dy+\int_{|x-y|\ge R}\frac{\rho(y)}{|x-y|^2}\,dy\\
+4\pi|E(t,x)|
+&=|\tfrac1{|x|^2}*_x\rho(t,x)|\\
+&\le\int_{|x-y|<R}\frac{\rho(t,y)}{|x-y|^2}\,dy+\int_{|x-y|\ge R}\frac{\rho(t,y)}{|x-y|^2}\,dy\\
 &\le\|\rho\|_{p'}(\int_{|y|<R}\frac{dy}{|y|^{2p}})^{1/p}+\|\rho\|_{q'}(\int_{|y|\ge R}\frac{dy}{|y|^{2q}})^{1/q}\\
 &\simeq\|\rho\|_{p'}(\int_0^Rr^{N-1-2p}\,dr)^{1/p}+\|\rho\|_{q'}(\int_R^\infty r^{N-1-2q}\,dr)^{1/q}\\
 &\simeq\|\rho\|_{p'}R^{\frac Np-2}+\|\rho\|_{q'}R^{\frac Nq-2}.
 \end{align*}
 By choosing $R$ such that $\|\rho\|_{p'}R^{\frac Np-2}=\|\rho\|_{q'}R^{\frac Nq-2}$, we get
 \[\|E(t,x)\|_{L_x^\infty}\les\|\rho(t,x)\|_{L_x^{p'}}^{\frac{\frac2N-\frac1q}{\frac1p-\frac1q}}\|\rho(t,x)\|_{L_x^{q'}}^{\frac{\frac1p-\frac2N}{\frac1p-\frac1q}},\]
-hence the inequality.
+hence the inequality by interchaning $p$ and $q$ with their conjugates.
+\end{pf}
 
-If $p=\infty$ and $N=3$, then $1\le q<3$ implies
-\[\|E\|_\infty^3\les\|\rho\|_\infty^{3-q}\|\rho\|_q^q.\]
+
+\begin{defn}
+For a local solution $f$,
+\[Q(t):=1+\sup\{|v|:f(s,x,v)\ne0\text{ for some }s\in[0,t],\,x\in\R_x^3\}.\]
+\end{defn}
+\begin{lem}
+\[\|E(t,x)\|_{L_x^\infty}\les Q(t)^{4/3}.\]
+\end{lem}
+\begin{pf}
+If $p=\infty$ and $N=3$, then $1\le q<3$ on the previous lemma implies
+\[\|E\|_\infty\les\|\rho\|_\infty^{1-q/3}\|\rho\|_q^{q/3}.\]
 For example, if we let $(p,q)=(\infty,1)$ or $(\infty,5/3)$, then
 \[\|E\|_\infty\les\|\rho\|_\infty^{2/3}\|\rho\|_1^{1/3},\qquad
 \|E\|_\infty\les\|\rho\|_\infty^{4/9}\|\rho\|_{5/3}^{5/9}.\]
+These are important since $\|\rho\|_1$ and $\|\rho\|_{5/3}$ remain bounded uniformly on time.
 
 Since the velocity support of $f$ is bounded by finite $Q(t)$, we have
 \[\rho(t,x)=\int_{|v|<Q(t)}f(t,x,v)\,dv\les Q(t)^3\|f_0(x,v)\|_{L_v^\infty}\les Q(t)^3,\]
-so by letting $\e=3-q$,
-\[\|E(t,x)\|_{L_x^\infty}\les\|\rho(t,x)\|_{L_x^\infty}^{(3-q)/3}\les Q(t)^\e\]
-for any $0<\e\le2$.
-($L^p$-norm of $\rho$ for $p<\infty$ well propagates by the measure preserving property.)
+so letting $q=\frac53$,
+\[\|E(t,x)\|_{L_x^\infty}\les\|\rho(t,x)\|_{L_x^\infty}^{4/9}\les Q(t)^{4/3}.\qedhere\]
 \end{pf}
-
 
 For a characteristic curve $s\mapsto(X(s;t,x,v),V(s;t,x,v))$, we have
 \[f(t,x,v)=f(s,X(s;t,x,v),V(s;t,x,v))\]
@@ -86,15 +109,25 @@ and
 &\qquad=\iint f(t,x,v)\f(X(s;t,x,v),V(s;t,x,v))\,dv\,dx.
 \end{align*}
 
-\subsubsection{Schaeffer's global existence proof}
 
-Fix a characteristic $(X^*(s),V^*(s))=(X(s;t^*,x^*,v^*),V(s;t^*,x^*,v^*))$.
+
+\subsection{Schaeffer's global existence proof}
+
+
+Fix a characteristic $(X^*(t),V^*(t))=(X(t;t^*,x^*,v^*),V(t;t^*,x^*,v^*))$.
 For $t\in[0,t^*]$,
 \begin{align*}
 \int_t^{t^*}|E(s,X^*(s))|\,ds
 &\les\int_t^{t^*}\iint\frac{f(s,x,v)}{|x-X^*(s)|^2}\,dv\,dx\,ds\\
 &=\int_t^{t^*}\iint\frac{f(t,x,v)}{|X(s;t,x,v)-X^*(s)|^2}\,dv\,dx\,ds.
 \end{align*}
+
+
+\begin{align*}
+I_G&=\int_t^{t^*}\iint\frac{f(t,x,v)}{|X(s;t,x,v)-X^*(s)|^2}\cdot\chi_G(t,x,v)\,dv\,dx\,ds\\
+&=\int_t^{t^*}\iint\frac{f(s,x,v)}{|x-X^*(s)|^2}\cdot\chi_G(t,X(t;s,x,v),V(t;s,x,v))\,dv\,dx\,ds.
+\end{align*}
+
 
 \begin{align*}
 |v-V(t;t^*,x,v)|
@@ -464,22 +497,66 @@ Sketch the characteristics. Solve the Cauchy problem. Hint: solve the problem in
 
 
 
-\section{Fixed point methods}
+
+
+
+
+
+
+
+\section{Existence theorems for ODE}
+
+
 
 \subsection{Picard-Lindel\"of theorem}
-\begin{thm}
+Let $I=[0,T]\subset\R_t$ and $\Omega=\cl{B_r(a)}\subset\R_x^d$.
 Consider the following initial value problem:
-\[x'=f(t,x),\qquad x(0)=x_0,\]
-where
-\[f(-,x)\in C([0,T]),\qquad f(t,-)\in\Lip(\cl{B(x_0,R)}).\]
-If $T$ and $R$ satisfy
-\begin{cond}
-\item $TK<1$,
-\item $TM\le R$,
-\item $|f(t,x)|\le M$ on $[0,T]\times\cl{B(x_0,R)}$,
-\end{cond}
-then the equation has a unique solution on $[-T,T]$.
+\[x'=f(t,x),\qquad x(0)=a.\]
+\begin{thm}[Global existence, $\Omega=\R^d$]
+If $f$ is $C_t\Lip_x$ on $I\x\R^d$, the equation has a unique $C^1$ global solution on $I$.
 \end{thm}
+\begin{pf}
+\Step{1}[Construction of an approximation]
+Define a sequence of functions $\{x_n\}$ as
+\[x_{n+1}'=f(t,x_n(t)),\quad x_{n+1}(0)=a;\qquad x_0\equiv a.\]
+The explicit formula is given by
+\[x_{n+1}(t)=a+\int_0^tf(s,x_n(s))\,dx.\]
+The sequence belongs to $C(I)$.
+
+\Step{2}[Convergence of the approximation]
+Let
+\[\sup_{t\in I}|f(t,x)-f(t,y)|\le K|x-y|\qquad\text{and}\qquad\sup_{t\in I}|f(t,a)|\le M.\]
+First we have
+\[|x_1(t)-x_0(t)|\le\int_0^t|f(s,a)|\,ds\le Mt.\]
+By induction, we have
+\begin{align*}
+|x_{n+1}(t)-x_n(t)|
+&\le\int_0^t|f(s,x_n(s))-f(s,x_{n-1}(s))|\,ds\\
+&\le K\int_0^t|x_n(s)-x_{n-1}(s)|\,dx\\
+&\le MK^n\int_0^t\frac{s^n}{n!}\,ds\\
+&=MK^n\frac{t^{n+1}}{(n+1)!}.
+\end{align*}
+This proves the absolute convergence
+\[\sum_{n=0}^n\|x_{n+1}-x_n\|_{C_t}\les e^{KT}-1,\]
+hence $x_n$ converges uniformly.
+
+\Step{3}[Verification of the approximation]
+Let $x^*$ be the limit of $x_n$.
+Then, by limiting
+\[x_{n+1}(t)=a+\int_0^tf(s,x_n(s))\,ds,\]
+we get
+\[x^*(t)=a+\int_0^tf(s,x^*(s))\,ds.\]
+Thus, $x^*$ is a solution and it is easy to check $x^*$ is $C^1$.
+\end{pf}
+
+\begin{thm}[Local existence]
+If $f$ is $C_t^0\Lip_x$ on $I\x\Omega$, then the equation has a unique $C^1$ local solution.
+
+The interval of existence may be arbitrarily chosen such that
+\[T\le R\cdot\|f\|_{C_{t,x}(I\x\Omega)}^{-1}.\]
+\end{thm}
+
+
 \begin{pf}
 Define $\f:C([0,T],\cl{B(x_0,R)})\to C([0,T],\cl{B(x_0,R)})$ as:
 \[\f(x)(t):=x_0+\int_0^tf(s,x(s))\,ds.\]

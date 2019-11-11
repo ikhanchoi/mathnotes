@@ -51,9 +51,8 @@
 
 % -계산
 %   평면곡선, 구면곡선, 헬릭스, 버트런드
-%   프리이미지, 그래프, 접선쓸기, 회전체
-%   뿔, 엘립소이드, 파라볼로이드, 쌍곡면, 헬리코이드; 가우스곡률 부호
-%    룰드 곡면, 데벨로퍼블
+%   그래프, 회전체, 룰드곡면(접선), 프리이미지
+%   뿔, 데벨로퍼블, 엘립소이드, 파라볼로이드, 쌍곡면, 헬리코이드; 가우스곡률 부호
 
 % Intrinsic geometry of surface
 % 평행수송, 공변미분, 측지선, 측지꼬임/곡률, 측지완비/호프리노프, 지수사상, 야코비장, 아다마르
@@ -191,30 +190,17 @@ Do not forget that all differentiations in this note will be done thanks to the 
 
 \subsubsection{Differentiation of parametrizations}
 We introduce the notion of tangent spaces, geometrically the spaces of vectors that starts from each base point, by differentiation of parametrization.
-Before that, let us make sure the notations for differentiation.
-The precise definition of differentiation is skipped.
-
-\begin{notn*}
-Let $\a:I\to\R^n$ be a regular curve.
-Its tangent vector is denoted by
-\[\a'=\dot\a=\dd{\a}{t}:I\to\R^n.\]
-Let $\a:U\to\R^n$ be a regular surface.
-Its tangent vectors are denoted by
-\[\a_x=\pd_x\a=\pd{\a}{x},\ \a_y=\pd_y\a=\pd{\a}{y}:U\to\R^n.\]
-\end{notn*}
-
-Now we define tangent spaces in several equivlent ways:
+In this note we define tangent spaces in several equivalent ways:
 \begin{defn}
-Let $M$ be a regular curve or a regular surface with parametrization $\a:U\to M\subset\R^n$.
-Let $p\in M$ be a point and $x:=\a^{-1}(p)\in U$ be the coordinates of $p$.
+Let $M$ be a regular curve or a regular surface with an $m$-dimensional parametrization $\a:U\to M\subset\R^n$.
+Let $p\in M$ be a point and $x=\a^{-1}(p)\in U$ be the coordinates of $p$.
 The \emph{tangent space} of $M$ at $p$, denoted by $T_pM$, can be defined as either one of the followings:
 \begin{cond}
 \item the span of the linearly independent set of vectors $\{\pd_i\a(x)\}_{i=1}^m\subset\R^n$,
-\item the image of the Fr\'echet derivative $d\a|_x:\R^m\to\R^n$.
-This definition is independent on the parametrization $\a$,
+\item the image of the Fr\'echet derivative $d\a|_x:\R^m\to\R^n$,
 \item the set of vectors $v\in\R^n$ such that there exists a curve $\gamma:I\to M$ satisfying $\gamma(0)=p$ and $\gamma'(0)=v$.
 \end{cond}
-We can check the tangent space $T_pM$ is an $m$-dimensional linear subspace of $\R^n$.
+We can check the definitions are independent on the parametrization $\a$, and that the tangent space $T_pM$ is an $m$-dimensional linear subspace of $\R^n$.
 \end{defn}
 \begin{rmk}
 We can show the three conditions are equivalent, but the proof will not be given; what is more important is to understand the role and meaning of tangent spaces because there is no agreed standard definition of tangent spaces in the level of this note.
@@ -250,8 +236,9 @@ In this reason, the Fr\'echet derivative $df$ is also called a \emph{tangent map
 
 \begin{ex}
 Let $\a$ be an $m$-dimensional parametrization.
-Then, $\pd_i\a(x)$ is always a tanget vector at each point $p=\a(x)$.
-It means we may write $\pd_i\a|_p$ for $\pd_i\a(x)=\pd_i\a(\a^{-1}(p))$.
+Then, $\pd_i\a(x)$ is always a tanget vector at each point $p=\a(x)$, and $\pd_i\a$ becomes a vector field.
+It means we may write
+\[\pd_i\a|_p=\pd_i\a(x)=\pd_i\a(\a^{-1}(p)).\]
 \end{ex}
 
 
@@ -263,15 +250,18 @@ It means we may write $\pd_i\a|_p$ for $\pd_i\a(x)=\pd_i\a(\a^{-1}(p))$.
 \begin{ex}
 Let $\a$ be an $m$-dimensional parametrization and $s$ be either a function or a vector field on $\a$.
 Then, we can define the directional derivative $\pd_{\pd_i\a}s$ of $s$ with respect to the direction $\pd_i\a$.
-The abusing notation $\pd_is:=\pd_{\pd_i\a}s$ will be mostly used when we are given a fixed parametrization without confusion.
-Since the curve satisfying $\gamma$ such that $\gamma(0)=p$ and $\gamma'(0)=\pd_i\a$ is independent, we can compute the directional derivative as $\pd_is=\pd_i(s\o\a)$ by taking $\gamma(t)=\a(\a^{-1}(p)+te_i)$, where $e_i$ is the $i$th standard basis vector in $\R^m$.
+Abusing notation
+\[\pd_is:=\pd_{\pd_i\a}s\]
+will be mostly used when we are given a fixed parametrization without confusion.
+Since directional derivatives do not depend on the choice of curves $\gamma$ but the value of $\gamma(0)=p$ and $\gamma'(0)=\pd_i\a$, we can compute the directional derivative as
+\[\pd_is=\pd_i(s\o\a)\] by taking $\gamma(t)=\a(\a^{-1}(p)+te_i)$, where $e_i$ is the $i$th standard basis vector in $\R^m$.
 \end{ex}
 
 \begin{ex}
 Let $\a:\R^2\to\R^3$ be a regular surface given by
 \[\a(x,y)=\left(\frac{2x}{1+x^2+y^2},\,\frac{2y}{1+x^2+y^2},\,1-\frac2{1+x^2+y^2}\right).\]
 This map gives a (partial) parametrization for the sphere $S^2$, and is called the \emph{stereographic projection}.
-Let $f:\im\a\to\R$ be the height function of $\a$ defined by
+Let $f:S^2\to\R$ be the height function of $\a$ defined by
 \[f(p):=z\]
 for $p=(x,y,z)$.
 Then, the directional derivative is
@@ -279,13 +269,21 @@ Then, the directional derivative is
 Note that $f_x\ne\pd{x}z=0$.
 \end{ex}
 
+
+
 % 아래첨자 기호
-%  x,y: 매개화의 x,y방향 편미분
+%  x,y: 매개화 및 필드의 x,y방향 "편미분"
 %   for a field s,
 %   s_x=\pd_xs:=\pd_{\a_x}s   (s\o\a)_x\o\a^{-1}=\pd_x(s\o\a)\o\a^{-1}
-%  i,j 및 숫자: 메트릭 및 크리스토펠 인덱스
+%  i,j 및 숫자: 섹션(=필드)의 성분 인덱스, 메트릭 및 크리스토펠 "인덱스"
+%          매개화 편미분, 즉 벡터장에도 쓰임
 
 
+% notations
+
+% \a' \a_x \pd_i\a \pd_v\a \a_v
+% f' f_x \pd_if \pd_vf f_v
+% X^i X^1
 
 \subsection{Linear algebra on tangent spaces}
 
@@ -662,18 +660,18 @@ TFAE:
 
 \begin{thm}
 Let $S$ be a regular surface.
-Let $v,w$ be vectors that form a basis of $T_pS$ for a point $p\in S$.
+Let $v,w$ be linearly independent vectors in $T_pS$ for a point $p\in S$.
 Then, $S$ admits a parametrization $\a$ such that $\a_x|_p=v$ and $\a_y|_p=w$.
 \end{thm}
 \begin{thm}
 Let $S$ be a regular surface.
-Let $v,w$ be vector fields on $S$ such that $v|_p$ and $w|_p$ form a basis of $T_pS$ for each $p\in S$.
+Let $v,w$ be linearly independent vector fields on $S$.
 Then, $S$ admits a parametrization $\a$ such that $\a_x|_p$ and $\a_y|_p$ are parallel to $v|_p,w|_p$ respectively for each $p\in S$.
 \end{thm}
 \begin{thm}
 Let $S$ be a regular surface.
-Let $v,w$ be vector fields on $S$ such that $v$ and $w_p$ form a basis of $T_pS$ for each $p\in S$.
-Then, $S$ admits a parametrization $\a$ such that $\a_x|_p=v|_p$ and $\a_y|=w|_p$ for each $p\in S$.
+Let $v,w$ be linearly independent vector fields on $S$.
+If $\pd_v\pd_wf=\pd_w\pd_vf$ for all smooth functions $f$, then $S$ admits a parametrization $\a$ such that $\a_x|_p=v|_p$ and $\a_y|=w|_p$ for each $p\in S$.
 \end{thm}
 
 

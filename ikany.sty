@@ -160,11 +160,14 @@
 % Example Code:
 %	\begin{es}  0  \>  A  \mn  B  \ep  C  \>  0  \end{es}
 %
-%	\begin{cd}[row sep={24pt,between origins}, column sep={36pt,between origins}]
-%	A  \ds{rd}{\exists !} \lar{rrd} \rar{ddr}  &                           &     \\
-%	                                           &  X\times Y  \ar{r}\ar{d}  &  X  \\
-%	                                           &  Y                        &
+%	\begin{cd}[row sep={24pt,between origins}, column sep={between origins}]
+%	A \ds{rd}{\exists !}\lar{rrd}\rar{ddr} &                        &   \\
+%	                                       & X\times Y \ar{r}\ar{d} & X \\
+%	                                       & Y                      &
 %	\end{cd}
+% A \ar[symbol=\subset]{r} & B
+% \begin{cd}
+%
 %
 \RequirePackage{tikz-cd,xparse}
 \NewDocumentEnvironment{cd}{}
@@ -172,6 +175,7 @@
     \renewcommand{\mn}{\ar[tail]}
     \renewcommand{\ep}{\ar[two heads]}
     \renewcommand{\mp}{\ar[mapsto]}
+    \newcommand{\hk}{\ar[hook]}
     \[\begin{tikzcd}
   }
   {\end{tikzcd}\]}
@@ -181,6 +185,7 @@
     \renewcommand{\mn}{\ar[tail]}
     \renewcommand{\ep}{\ar[two heads]}
     \renewcommand{\mp}{\ar[mapsto]}
+    \newcommand{\hk}{\ar[hook]}
     \tikzcdset{column sep=small,ampersand replacement=\&}
     \[\begin{tikzcd}[column sep=small]
   }
@@ -192,17 +197,23 @@
   }
   {\end{tikzcd}\]}
 % `\parbox{7em}{\centering ~~ }` is useful
-
-%\newcommand{\block}[1]{\begin{tabular}{c}#1\end{tabular}}
 \newcommand\sar{\ar[swap]}
 \newcommand\lar{\ar[bend left]}
 \newcommand\rar{\ar[bend right,swap]}
+%
 \newcommand\ds{\ar[dashed]}
 \newcommand\sds{\ar[dashed]}
 \newcommand\lds{\ar[dashed,bend left]}
 \newcommand\rds{\ar[dashed,bend right,swap]}
-\newcommand\hk{\ar[hook]}
-
+%
+\tikzset{
+  symbol/.style={
+    draw=none,
+    every to/.append style={
+      edge node={node [sloped, allow upside down, auto=false]{$#1$}}
+    },
+  },
+}
 
 
 
@@ -369,6 +380,7 @@
 \newcommand\ges{\gtrsim}
 \newcommand\hmtp{\simeq}
 \newcommand\isom{\cong}
+\newcommand\normal{\trianglelefteq}
 
 % Diacritics
 \newcommand\cl{\overline}
