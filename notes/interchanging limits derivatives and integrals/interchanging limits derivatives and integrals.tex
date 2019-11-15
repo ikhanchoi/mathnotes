@@ -66,7 +66,7 @@ Above this, if we give a stronger condition $\esssup_{|t|<\e}|\pd_tf(t,x)|\in L_
 
 \begin{thm}[Leibniz rule]
 Let $f:(-\e,\e)\times X\to\R$ be a curve of integrable functions such that $f(t,x)$ is absolutely continuous in $t$ for a.e. $x$.
-If $\pd_tf\in L_x^1(L_t^\infty)$, then $D_kf(0,x)\to\pd_tf(0,x)$ in $L_x^1$.
+If $\pd_tf\in L_x^1L_t^\infty$, then $D_kf(0,x)\to\pd_tf(0,x)$ in $L_x^1$.
 \end{thm}
 \begin{pf}
 Our strategy is to apply the Lebesgue dominated convergence theorem.
@@ -87,8 +87,10 @@ Let
 If $|k_x(x,y)|$ is monotone in $x$ and $k_x(x,y)f(y)\in L_y^1$ for all $x$, then
 \[\dd{x}Tf(x)=\int k_x(x,y)f(y)\,dy.\]
 \end{cor}
-
-
+\begin{cor}
+If $f\in C^1$ and $g\in L^1$, then
+\[\del(f*g)=(\del f)*g.\]
+\end{cor}
 
 
 

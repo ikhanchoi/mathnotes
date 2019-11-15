@@ -44,20 +44,59 @@ Three actions
 		surjective cube endomorphism
 		n-abelian implies n(n-1)-central
 		order prime to n(n-1)
-부분군의 인덱스
-	푸앵카레 정리
-	least prime index -> normal
-p그룹
-실로우 게임
 
-특정 order의 그룹 분류하기
+
+
+----------
+#
+아벨군: 순환군, n-abelian 등 여러 조건, 기본정리
+대칭군: 생성원, 트랜지티브, 교대군과 부호
+콕세터: 이면군, 프레젠테이션
+선형군: 
+
+#
+군 확장
+컴포지션 시리즈의 이해
+반직접: / 계산->아벨군의 자기동형군
+중심적: 군코호몰로지 / 계산->보편계수정리
+
+#
+액션, 실로우: existence, congruence condition
+	카운팅:
+	인덱스: 푸앵카레 정리, least prime ind
+	소인수분해 형태별 분석
+	케이스 나누기에 매우 좋은 조건을 제공
+		노말 실로우 -> 바로 반직접곱
+p: 1 - 
+p2: 2
+p3: 5
+p4: 14, 15
+pq: p<q
+	p/q-1: 1
+	p|q-1: 2
+p2q: p<q
+pq2: p<q
+p3q?
+pqr
+
+#
+p군: 비자명센터, 개수 겁나많음
+닐포턴트: 피팅, 프라티니
+솔버블?
+센트럴 시리즈?
+단순군: 단순군 아니기 테크닉, 단순군 보이기 테크닉, 교대군과 리타입 선형군
+
 
 \fi
+\section{Special groups}
+
+\subsection{Abelian groups}
+\subsection{Symmetric groups}
+\subsection{Coxeter groups}
+\subsection{Linear groups}
 
 
-
-
-\section{Sylow game}
+\section{Sylow theory}
 \begin{defn}[Sylow $p$-subgroup]
 Let $G$ be a finite group of order $n=p^am$ for a prime $p\nmid m$.
 A \emph{Sylow $p$-subgroup} is a subgroup of order $p^a$.
@@ -160,13 +199,6 @@ In order to find the size of conjugacy classes:
 
 
 
-
-\section{Simple groups}
-
-\subsection{Symmetric groups}
-
-\subsection{Linear groups}
-
 \section{Extensions}
 
 \begin{prop}
@@ -183,5 +215,39 @@ The group $G$ in the previous proposition is called the \emph{semidirect product
 \end{defn}
 
 
+\begin{es}
+0\>F\>E\>G\>0.
+\end{es}
+Four data $G,F,\f:G\to\Aut(F),c:G\x G\to F$ completely determine the extension $E$.
 
+Suppose we have an extension $F\to E\to G$.
+There is a \emph{set-theoretic section} $s:G\to E$.
+The number of $s$ is $|G||F|$.
+
+Definition of \emph{action} $\f$:
+For two sections $s$ and $s'$, $s(g)$ and $s'(g)$ acts on $F$ equivalently.
+Thus, we can define a \emph{group homomorphism} $\f:G\to\Aut(F)$ independently on sections.
+
+Definition of \emph{2-cocycle} $c$:
+It is a \emph{set-theoretic function} $c:G\x G\to F$ defined by $c(g,g')=s(g)s(g')s(gg')^{-1}$ for a section $s$.
+Actually, $c$ depends on the section $s$, and $c$ measures how much $s$ fails to be a group homomorphism.
+It requires the cocycle condition for the associativity of group operation, i.e.
+\[c(g,h)c(gh,k)=\f_g(c(h,k))c(g,hk)\]
+should be satisfied.
+Conversely, a map $G\x G\to F$ satisfying the condition the cocycle condition gives a associative group operation on $G$.
+
+If $F$ is abelian, then the set of cocycles forms an abelian group, and is denoted by $Z^2(G,F)$.
+The boundaries are also defined in abelian $F$ case.
+
+
+\begin{cond}
+\item $\f$, $c$ is trivial $\iff$ direct product,
+\item $c$ is trivial $\iff$ $s$ is a homomorphism $\iff$ semidirect product,
+\item $\f$ is trivial $\iff$ central extension.
+\end{cond}
+
+Group cohomology is defined for a group $G$ and $G$-module $A$ (three data: $G,A,\f$.
+What is important is that the cohomology depends on the action of $G$ on $A$.
+
+If $\f$ is trivial so that $A$ is just an abelian group, then the universal coefficient theorem can be applied.
 \end{document}

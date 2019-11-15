@@ -6,6 +6,7 @@
 \renewcommand\section{\newpage\realsection}
 
 \def\tint{{\textstyle\int}}
+\def\loc{\mathrm{loc}}
 
 \begin{document}
 \tableofcontents
@@ -223,6 +224,60 @@ If $\cF$ and $L\cF$ are bounded in $L_{t,x,v}^2$, then $\int\cF\f\,dv$ is bounde
 Let $\cF$ be a family of functions on $I_t\x\R_x^n\x\R_v^n$.
 If $\cF$ is weakly relatively compact and $L\cF$ is bounded in $L_{t,x,v}^1$, then $\int\cF\f\,dv$ is relatively compact in $L_{t,x}^1$.
 \end{thm}
+
+
+
+\section{Representation formulas}
+
+\begin{thm}
+Define $\Phi\in L_\loc^1(\R^d)$ by
+\[\Phi(x)
+=\begin{cases}-\dfrac1{2\pi}\log|x|&,\ d=2,\\\dfrac{\Gamma(\frac d2+1)}{d(d-2)\pi^{d/2}}\dfrac1{|x|^{d-2}}&,\ d\ge3.\end{cases}
+\]
+\begin{enumerate}
+\item
+$u=\Phi$ solves
+\[-\Delta u=\delta.\]
+\item
+$u=\Phi*f$ solves
+\[-\Delta u=f.\]
+\end{enumerate}
+\end{thm}
+\begin{pf}$ $\\[-10pt]
+\begin{enumerate}
+\item
+Fix $\f\in C_c^\infty$.
+We want to show
+\[-\int\Phi\Delta\f=\f(0).\]
+Divide and apply Stokes' theorem twice to get
+\begin{align*}
+\int\Phi\Delta\f
+&=\int_{|x|<\e}\Phi\Delta\f+\int_{|x|\ge\e}\Phi\Delta\f\\
+&=\int_{|x|<\e}\Phi\Delta\f-\int_{|x|\ge\e}\del\Phi\cdot\del\f+\int_{|x|=\e}\Phi\del\f\cdot d\sigma.\\
+&=\int_{|x|<\e}\Phi\Delta\f+\int_{|x|\ge\e}\f\Delta\Phi-\int_{|x|=\e}\f\del\Phi\cdot d\sigma+\int_{|x|=\e}\Phi\del\f\cdot d\sigma\\
+&=\int_{|x|<\e}\Phi\Delta\f-\int_{|x|=\e}\f\del\Phi\cdot d\sigma+\int_{|x|=\e}\Phi\del\f\cdot d\sigma.
+\end{align*}
+The first integral is bounded as
+\[|\int_{|x|<\e}\Phi\Delta\f|\les_\f|\int_{|x|<\e}\Phi|\les\begin{cases}\ \e^2|\log\e|&,\ d=2,\\\ \e^2&,\ d\ge3.\end{cases}\]
+The third integral is bounded as
+\[|\int_{|x|=\e}\Phi\del\f\cdot d\sigma|\les_\f|\int_{|x|=\e}\Phi\,d\sigma|\les\begin{cases}\ \e|\log\e|&,\ d=2,\\\ \e&,\ d\ge3.\end{cases}\]
+
+For the second integral, since
+\[\del\Phi=-\frac1{d\,\alpha(d)}\frac x{|x|^d},\]
+we have
+\end{enumerate}
+\end{pf}
+
+
+
+
+
+
+
+
+
+
+
 
 
 
