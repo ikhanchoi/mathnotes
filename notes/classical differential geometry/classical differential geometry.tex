@@ -159,8 +159,8 @@ A parametrization of this form is called a \emph{Monge patch}.
 Notice that it is enough to check that the two partial derivatives $\pd_x\a$ and $\pd_y\a$ are linearly independent for a surface parametrization $\a$.
 
 Let $S=\im\a$ be the regular surface determined by $\a$, and let $p$ be a point on the surface $S$ so that we have $p=(x,y,f(x,y))$.
-Associated with $\a$, a coordinate map $\f:S\to\R^2$ can be defined as
-\[\f(p)=(x,y).\]
+Associated with $\a$, a coordinate map $\f:S\to\R^2$ is defined as the inverse of $\a$:
+\[\f(p):=\a^{-1}(p)=(x,y).\]
 This map $\f$ consists of two real-valued functions on $S$,
 \[x:S\to\R:p\mapsto x,\qquad y:S\to\R:p\mapsto y.\]
 In this regard, we often write the coordinates $\f$ as $(x,y)$.
@@ -215,24 +215,29 @@ This identification of tangent spaces are allowed \emph{only for the case of lin
 \end{rmk}
 \begin{rmk}
 One way to view tangent spaces is to see them as domains and codomains of Fr\'echet derivatives.
-For open sets $U\subset\R^m$ and $V\subset\R^n$, the Fr\'echet derivative of a smooth map $f:U\to V$ at $x\in U$ is a linear transformation $df|_x:T_xU\to T_{f(x)}V$.
-Since $T_xU=\R^m$ and $T_{f(x)}V=\R^n$, the original definition on Euclidean spaces agrees with it.
-In this reason, the Fr\'echet derivative $df$ is also called a \emph{tangent map}, \emph{pushforward}, or \emph{differential} in differential geoemtry.
+For open sets $U\subset\R^m$ and $V\subset\R^n$, the Fr\'echet derivative of a smooth map $F:U\to V$ at $x\in U$ is a linear transformation $dF|_x:T_xU\to T_{F(x)}V$.
+Since $T_xU=\R^m$ and $T_{F(x)}V=\R^n$, the original definition on Euclidean spaces agrees with it.
+In this reason, the Fr\'echet derivative $dF$ is also called a \emph{tangent map}, \emph{pushforward}, or \emph{differential} in differential geoemtry.
 \end{rmk}
 
 % Examples
 
 \subsubsection{Differentiation by tangent vectors}
 
-%%%%
-% 벡터장과 스칼라장 정의
+\begin{defn}
+Let $M$ be a regular curve of a regular surface with an $m$-dimensional parametrization $\a$.
+\begin{cond}
+\item A \emph{scalar field} is a function $f:M\to\R$ such that $f\o\a:U\to\R$ is smooth.
+\item A \emph{vector field} is a map $X:M\to\R^3$ such that $X\o\a:U\to\R^3$ is smooth and $X|_p\in T_pM$.
+\end{cond}
+The scalar field is another name of \emph{smooth functions}.
+For vector fields, although the tangent condition $X|_p\in T_pM$ will be ignored occasionally, basically we assume it.
+\end{defn}
 
-% 대입 기호
-%  미분 d\a|_p
-%  for a field s, s|_p
-%  접벡터 X|_p
-%  ex \pd_i\a는 접벡터
-%   따라서 \pd_i\a|_p = \pd_i\a(\a^{-1}(p))
+\begin{defn}
+Let $v=\sum_iv^i(\pd_i\a)\in T_pM$. %%%%%%%%%% vector fields의 미분은?
+\[\pd_vf:=\sum_{i=1}^mv_i\pd{(f\o\a)}{x^i}.\]
+\end{defn}
 
 \begin{ex}
 Let $\a$ be an $m$-dimensional parametrization.
@@ -241,58 +246,46 @@ It means we may write
 \[\pd_i\a|_p=\pd_i\a(x)=\pd_i\a(\a^{-1}(p)).\]
 \end{ex}
 
-
-% 벡터에 의한 방향미분
-%  공변미분 아니면 \pd_v 기호만 사용할 것
-%  \pd_x:=\pd_{\a_x}로 사용할 것
-%  \del_v는 사용하지 말 것
-
 \begin{ex}
-Let $\a$ be an $m$-dimensional parametrization and $s$ be either a function or a vector field on $\a$.
+Let $\a$ be an $m$-dimensional parametrization and $s$ be either a smooth function or vector field on $\a$.
 Then, we can define the directional derivative $\pd_{\pd_i\a}s$ of $s$ with respect to the direction $\pd_i\a$.
 Abusing notation
 \[\pd_is:=\pd_{\pd_i\a}s\]
 will be mostly used when we are given a fixed parametrization without confusion.
-Since directional derivatives do not depend on the choice of curves $\gamma$ but the value of $\gamma(0)=p$ and $\gamma'(0)=\pd_i\a$, we can compute the directional derivative as
-\[\pd_is=\pd_i(s\o\a)\] by taking $\gamma(t)=\a(\a^{-1}(p)+te_i)$, where $e_i$ is the $i$th standard basis vector in $\R^m$.
+Since directional derivatives do not depend on the choice of curves $\gamma:I\to\im\a$ but the value of $\gamma(0)=p$ and $\gamma'(0)=\pd_i\a$, we can compute the directional derivative as
+\[\pd_is=\pd_i(s\o\a)=\pd_t(s\o\gamma)\]
+by taking $\gamma(t)=\a(\a^{-1}(p)+te_i)$, where $e_i$ is the $i$-th standard basis vector for $\R^m$.
 \end{ex}
 
 \begin{ex}
 Let $\a:\R^2\to\R^3$ be a regular surface given by
 \[\a(x,y)=\left(\frac{2x}{1+x^2+y^2},\,\frac{2y}{1+x^2+y^2},\,1-\frac2{1+x^2+y^2}\right).\]
-This map gives a (partial) parametrization for the sphere $S^2$, and is called the \emph{stereographic projection}.
-Let $f:S^2\to\R$ be the height function of $\a$ defined by
+This map gives a parametrization for the sphere $S^2$ without the north pole $(0,0,1)$, and is called the \emph{stereographic projection}.
+Let $f:S^2\setminus\{(0,0,1)\}\to\R$ be the height function of $\a$ defined by
 \[f(p):=z\]
-for $p=(x,y,z)$.
+for $p=(x,y,z)\in S^2\setminus\{(0,0,1)\}$.
 Then, the directional derivative is
-\[f_x=\pd_xf=\pd{(f\o\a)}{x}=\pd{x}\left(1-\frac2{1+x^2+y^2}\right)=\frac{4x}{(1+x^2+y^2)^2}.\]
-Note that $f_x\ne\pd{x}z=0$.
+\[\pd_xf=\pd{(f\o\a)}{x}=\pd{x}\left(1-\frac2{1+x^2+y^2}\right)=\frac{4x}{(1+x^2+y^2)^2}.\]
+Note that $\pd_xf\ne\pd_{(1,0,0)}z=0$.
 \end{ex}
 
+\subsection{Notations}
+Here we summarize notations this note will use.
+\[\pd_t\a=\a',\quad\pd_x\a=\a_x,\quad\pd_i\a=\a_i,\quad\pd_v\a=\a_v.\]
+\[\pd_tf=f',\quad\pd_xf=f_x,\quad\pd_if=f_i,\quad\pd_vf=f_v.\]
+\[\pd_tX=X',\quad\pd_xX=X_x,\quad\pd_iX=X_i,\quad\pd_vX=X_v.\]
 
+Unless indicated otherwise, \emph{every subscript letter without vertical substitution bar} will be devoted to denote partial derivatives.
 
-% 아래첨자 기호
-%  x,y: 매개화 및 필드의 x,y방향 "편미분"
-%   for a field s,
-%   s_x=\pd_xs:=\pd_{\a_x}s   (s\o\a)_x\o\a^{-1}=\pd_x(s\o\a)\o\a^{-1}
-%  i,j 및 숫자: 섹션(=필드)의 성분 인덱스, 메트릭 및 크리스토펠 "인덱스"
-%          매개화 편미분, 즉 벡터장에도 쓰임
+Also, we introduce the \emph{Einstein summation convention}:
+\[X=X^i\a_i.\]
 
-
-% notations
-
-% \a' \a_x \pd_i\a \pd_v\a \a_v
-% f' f_x \pd_if \pd_vf f_v
-% X^i X^1
 
 \subsection{Linear algebra on tangent spaces}
 
 
 %%%% 내적 외적 삼중곱
 % 벡터의 좌표표현 안쪽 기저와 바깥 기저
-
-
-
 
 
 
@@ -582,13 +575,13 @@ The problem can be solved by dividing the cases, but in this solution we give on
 
 \Step{3}[Complete proof]
 If
-\[\beta_1=\a+\lambda_1\rN,\qquad\beta_2=\a+\lambda_2\rN\]
-are different Bertrand mates of $\a$ with $\lambda_1\ne\lambda_2$, then $(\kappa,\tau)$ solves a two-dimensional linear system
+\[\beta=\a+\lambda\rN,\qquad\tld\beta=\a+\tld\lambda\rN\]
+are different Bertrand mates of $\a$ with $\lambda\ne\tld\lambda$, then $(\kappa,\tau)$ solves a two-dimensional linear system
 \begin{pde*}
-\kappa+\mu_1\tau&=\lambda_1^{-1},\\
-\kappa+\mu_2\tau&=\lambda_2^{-1}.
+\kappa+\mu\tau&=\lambda^{-1},\\
+\kappa+\tld\mu\tau&=\tld\lambda^{-1}.
 \end{pde*}
-It is nonsingular since $\mu_1=\mu_2$ implies $\lambda_1=\lambda_2$, which means we can represent $\kappa$ and $\tau$ in terms of constants $\lambda_1,\lambda_2,\mu_1,$ and $\mu_2$.
+It is nonsingular since $\mu=\tld\mu$ implies $\lambda=\tld\lambda$, which means we can represent $\kappa$ and $\tau$ in terms of constants $\lambda,\tld\lambda,\mu,$ and $\tld\mu$.
 Therefore, $\kappa$ and $\tau$ are constant.
 \end{sol}
 
