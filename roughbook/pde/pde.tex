@@ -30,11 +30,10 @@ Consider a Cauchy problem of the \emph{Valsov-Poisson system}:
 where $\gamma=\pm1$ denotes the charge of particles we are concerned with.
 For example, $\gamma=-1$ for electrons in plasma and $\gamma=+1$ for galaxies.
 For the boundaryless problem in which the conservative potential function vanishes at infinity, we have
-\[E=\del_x(\tfrac1{4\pi|x|}*\gamma\rho)=-\frac{x}{4\pi|x|^3}*\rho\]
+\[E=-\del_x(\tfrac1{4\pi|x|}*\rho)=\frac{x}{4\pi|x|^3}*\rho\]
 for $\gamma=-1$.
 ($\rho$ denotes mass density.)
 
-\subsub
 \begin{lem}
 \[\|\rho(t)\|_{L_x^{5/3}}\les1.\]
 \end{lem}
@@ -47,11 +46,11 @@ for $\gamma=-1$.
 Set $R^3=R^{-2}\int|v|^2f\,dv$ to get
 \[\rho(t,x)^{5/3}\les\int|v|^2f\,dv.\]
 
-Take $N=3$, $p=2$, and $\lambda=2$.
-Then,
-\[0<\frac1p=\frac1q+\frac\lambda N-1\]
-implies $q=6/5$, so we can bound $\|E(t)\|_2$ by interpolation of $\|\rho(t)\|_{6/5}$ and $\|\rho(t)\|_1$:
-\[\|E(t)\|_{L_x^2}\les\|\frac1{|x|^2}*_x\rho(t,x)\|_{L_x^2}\les\|\rho(t)\|_{6/5}\le\|\rho\|_1^{7/12}\|\rho\|_{5/3}^{5/12}.\]
+Take $d=3$, $p=2$, and $\lambda=2$.
+Then, by the Hardy-Littlewood-Sobolev inequality,
+\[\frac1p+1=\frac1q+\frac\lambda d\]
+implies $q=6/5$ and we can bound the $L^2$-norm of the Riesz potential $\|E(t)\|_2$ by interpolation of $\|\rho(t)\|_{6/5}$ and $\|\rho(t)\|_1$:
+\[\|E(t)\|_{L_x^2}\simeq\|\frac1{|x|^2}*_x\rho(t,x)\|_{L_x^2}\les\|\rho(t)\|_{6/5}\le\|\rho\|_1^{7/12}\|\rho\|_{5/3}^{5/12}.\]
 Thus
 \[\|E(t)\|_2\les\|\rho(t)\|_{5/3}^{5/12}\les(\iint|v|^2f\,dv\,dx)^{1/4}.\]
 It means $(\iint|v|^2f\,dv\,dx)^{1/2}$ bounds $(\iint|v|^2f\,dv\,dx)$, hence the total kinetic energy of the system remains bounded in any time even if $\gamma=+1$.
@@ -92,34 +91,26 @@ Then, the Cauchy problem for the VP system has a unique $C^1$ global solution.
 For a local solution $f$,
 \[Q(t):=1+\sup\{|v|:f(s,x,v)\ne0\text{ for some }s\in[0,t],\,x\in\R_x^3\}.\]
 \end{defn}
-\begin{lem}
-\[\|E(t)\|_{L_x^\infty}\les Q(t)^{4/3}.\]
-\end{lem}
-\begin{pf}
-If $p=\infty$ and $N=3$, then $1\le q<3$ on the previous lemma implies
-\[\|E\|_\infty\les\|\rho\|_\infty^{1-q/3}\|\rho\|_q^{q/3}.\]
-For example, if we let $(p,q)=(\infty,1)$ or $(\infty,5/3)$, then
-\[\|E\|_\infty\les\|\rho\|_\infty^{2/3}\|\rho\|_1^{1/3},\qquad
-\|E\|_\infty\les\|\rho\|_\infty^{4/9}\|\rho\|_{5/3}^{5/9}.\]
-These are important since $\|\rho\|_1$ and $\|\rho\|_{5/3}$ remain bounded uniformly on time.
-
-Since the velocity support of $f$ is bounded by finite $Q(t)$, we have
-\[\rho(t,x)=\int_{|v|<Q(t)}f(t,x,v)\,dv\les Q(t)^3\|f_0(x,v)\|_{L_v^\infty}\les Q(t)^3,\]
-so letting $q=\frac53$,
-\[\|E(t)\|_{L_x^\infty}\les\|\rho(t)\|_{L_x^\infty}^{4/9}\les Q(t)^{4/3}.\qedhere\]
-\end{pf}
 
 Decompose $[t-\Delta,t]\x\R_x^3\x\R_v^3$ as
 \begin{align*}
-U&=\left\{\,(s,x,v):\ |v|\ge P,\quad|v-\hat V(t)|\ge P,\quad|y-\hat X(s)|\ge r\,\right\},\\
-B&=\left\{\,(s,x,v):\ |v|\ge P,\quad|v-\hat V(t)|\ge P\,\right\}\setminus U,\\
-G&=\{\,(s,x,v):\ |v|<P\quad\text{or}\quad|v-\hat V(t)|<P\,\}=(B\cup U)^c.
+U&=\left\{\,(s,x,v):\ |v-\hat V(t)|\ge P,\quad|y-\hat X(s)|\ge r\,\right\},\\
+B&=\left\{\,(s,x,v):\ |v-\hat V(t)|\ge P,\quad|v|\ge P\,\right\}\setminus U,\\
+G&=\left\{\,(s,x,v):\ |v-\hat V(t)|<P\quad\text{or}\quad|v|<P\,\right\}.
 \end{align*}
-Later we choose $P=Q^{4/11}$, $r=R\max\{|v|^{-3},\,|v-\hat V(t)|^{-3}\}$, and $R=Q^{16/33}\log^{1/2}Q$.
+(We can let $U\mapsto U\cap\{|v|\ge P\}$ to make the decomposition disjoint.)
+Later we choose
+\[P=Q^{4/11},\quad r=R\max\{|v|^{-3},\,|v-\hat V(t)|^{-3}\},\quad R=Q^{16/33}\log^{1/2}Q.\]
 Also, later we choose $\Delta\cdot\sup_{s\le t}\|E(s)\|_\infty<\frac P4$.
-The condition $|v|\ge P$ for $U$ is not redundant.
 
-\subsubsection{Ugly set}
+\subsubsection{Some observations}
+Our goal is to obtain a priori estimate like
+\[\|E(t)\|_\infty\les Q(t)^a\qquad\text{for some }a<1.\]
+Since the force field $E$ measures the maximal rate of changes in velocity, the estimate can be read very roughly as
+\[Q'(t)\les Q(t)^a,\]
+which lead its polynomial growth.
+
+So we need to bound the Riesz potential $E$.
 The following observation suggests a lower bound of relative velocity.
 \begin{clm}
 Fix $t,x,v$.
@@ -155,6 +146,8 @@ and
 proves
 \[|y-\hat X(s)|=|Z(s)|\ge\frac14|v-\hat V(t)||s-s_0|.\qedhere\]
 \end{pf}
+
+We introduce time averaging to use the above lower bound.
 \begin{clm}
 Fix $t,x,v$.
 If $|v-\hat V(t)|\ge P$, then
@@ -170,6 +163,9 @@ Since $|y-\hat X(s)|\ge\frac14|v-\hat V(t)||s-s_0|$,
 &=32\,\frac{r^{-1}}{|v-\hat V(t)|}.\qedhere
 \end{align*}
 \end{pf}
+
+\subsubsection{Ugly set}
+
 Therefore, if we let $r^{-1}\simeq\min\{|v|^3,|v-\hat V(t)|^3\}$, then
 \[\int_{t-\Delta}^t\frac1{|y-\hat X(s)|^2}\chi_A(s)\,ds\les|v|^2\]
 so that we have
@@ -194,8 +190,22 @@ It follows from
 for $|v|\ge P$ and $|v-\hat V(t)|\ge P$.
 \end{pf}
 
+\subsubsection{Polynomial decay}
+\begin{lem}
+Along the time of existence we have
+\[\|E(t)\|_{L_x^\infty}\les Q(t)^{4/3}.\]
+\end{lem}
+\begin{pf}
+Note that we have
+\[\|E\|_\infty\les\|\rho\|_\infty^{4/9}\|\rho\|_{5/3}^{5/9}.\]
+Since the velocity support of $f$ is bounded by finite $Q(t)$,
+\[\rho(t,x)=\int_{|v|<Q(t)}f(t,x,v)\,dv\les Q(t)^3\|f_0(x)\|_{L_v^\infty}\les Q(t)^3,\]
+so
+\[\|E(t)\|_{L_x^\infty}\les\|\rho(t)\|_{L_x^\infty}^{4/9}\les Q(t)^{4/3}.\qedhere\]
+\end{pf}
 
 
+\clearpage
 \subsection{Velocity averaging lemmas}
 The velocity averaging lemma is used to get regularity of averaged quantity when boundary condition is not given.
 \begin{thm}[Velocity averaging]
@@ -236,24 +246,21 @@ If $|\tau|\le\alpha+R|\xi|$, then
 I_s&\les\int_{|v_1|<\frac\alpha{|\xi|}}\int_{|v_2|^2\le R^2-(v_1-\frac\tau{|\xi|})^2}\,dv_2\,dv_1\\
 &\les\int_{|v_1|<\frac\alpha{|\xi|},\ |v_1|\le R}\int_{|v_2|\le R}\,dv_2\,dv_1\\
 &\les\min\{\frac{2\alpha}{|\xi|},R\}\cdot R^{n-1}\\
-&\les\frac1{\sqrt{1+(\frac{|\xi|}\alpha)^2}}\\
+&\simeq\frac1{\sqrt{1+(\frac{|\xi|}\alpha)^2}}\\
 &\les\frac\alpha{\sqrt{\tau^2+|\xi|^2}}.
 \end{align*}
 
-For the second integral, suppose that $\f$ is supported on $|v|<C$ so that $|v_1-\frac\tau{|\xi|}|,|v_2|<C$.
+For the second integral, suppose that $\f$ is supported on $|v|<R$ so that $|v_1-\frac\tau{|\xi|}|,|v_2|<R$.
 Then,
 \begin{align*}
-I_n&\les\int_{|v_1|\ge\frac\alpha{|\xi|},\ |v_1-\frac\tau{|\xi|}|<C}\int_{|v_2|<C}\frac1{v_1^2|\xi|^2}\,dv_2\,dv_1\\
-&\simeq\int_{|v_1|\ge\frac\alpha{|\xi|},\ |v_1-\frac\tau{|\xi|}|<C}\frac{dv_1}{v_1^2|\xi|^2}.
+I_n&\les\int_{|v_1|\ge\frac\alpha{|\xi|},\ |v_1-\frac\tau{|\xi|}|<R}\int_{|v_2|<R}\frac1{v_1^2|\xi|^2}\,dv_2\,dv_1\\
+&\simeq\int_{\max\{\frac\alpha{|\xi|},\frac{|\tau|}{|\xi|}-R\}\le v_1<\frac{|\tau|}{|\xi|}+R}\frac1{v_1^2|\xi|^2}\,dv_1\\
+&\simeq\frac1{|\xi|^2}(\frac1{\max\{\frac\alpha{|\xi|},\frac{|\tau|}{|\xi|}-R\}}-\frac1{\frac{|\tau|}{|\xi|}+R}).
 \end{align*}
-If $|\xi|\ges|\tau|$, then
-\[I_n\les\int_{|v_1|\ge\frac\alpha{|\xi|}}\frac{dv_1}{v_1^2|\xi|^2}\simeq\frac1{\alpha|\xi|}\les\frac1{\alpha\sqrt{\tau^2+|\xi|^2}}.\]
-If $|\xi|\ll|\tau|$ such that at least $|\tau|>C|\xi|$, then
-\begin{align*}
-I_n&\les\int_{\max\{\frac\alpha{|\xi|},\frac{|\tau|}{|\xi|}-C\}\le v_1<\frac{|\tau|}{|\xi|}+C}\frac{dv_1}{v_1^2|\xi|^2}\\
-&\simeq\frac1{|\xi|^2}(\frac1{\max\{\frac\alpha{|\xi|},\frac{|\tau|}{|\xi|}-C\}}-\frac1{\frac{|\tau|}{|\xi|}+C})\\
-&\les\frac1{\alpha\sqrt{\tau^2+|\xi|^2}}.\quad(\text{This is not easy..!})
-\end{align*}
+If $\frac{|\tau|}{|\xi|}-R>\frac\alpha{|\xi|}$, then
+\[I_n\les\frac{2R}{\tau^2-(R|\xi|)^2}<\frac{2R}{\alpha(|\tau|+R|\xi|)}\simeq\frac1{\alpha\sqrt{\tau^2+|\xi|^2}}.\]
+If $|\tau|\le\alpha+R|\xi|$, then
+\[I_n\les\frac1{|\xi|}\frac{(|\tau|+R|\xi|)-\alpha}{\alpha(|\tau|+R|\xi|)}\le\frac{2R}{\alpha(|\tau|+R|\xi|)}\simeq\frac1{\alpha\sqrt{\tau^2+|\xi|^2}}.\]
 
 To sum up, we have
 \[|\hat m(\tau,\xi)|\les\frac1{(\tau^2+|\xi|^2)^{1/4}}(\sqrt\alpha\cdot\|\hat u\|_{L_v^2}^{1/2}+\frac1{\sqrt\alpha}\cdot\|\hat{Lu}\|_{L_v^2}^{1/2}).\]
@@ -263,13 +270,6 @@ Therefore, the integration on $\R_\tau\x\R_\xi^n$ and Plancheral's theorem gives
 \[\|m\|_{H_{t,x}^{1/2}}\les_\f\|u\|_{L_{t,x,v}^2}^{1/2}\|Lu\|_{L_{t,x,v}^2}^{1/2}.\]
 \end{pf}
 
-\begin{rmk}
-We can obtain $L^p$ result by applying
-\[\min\{\frac1x,\frac1y\}\le\frac2{(x^p+y^p)^{1/p}}\le\max\{\frac1x,\frac1y\}\]
-on the first integral, and
-\[x\gg1\impl\frac1{\max\{a,x-c\}}-\frac1{x+c}\les\frac1{a(x^p+1)^{1/p}}\]
-on the second integral.
-\end{rmk}
 
 \begin{cor}
 Let $\cF$ be a family of functions on $\R_t\x\R_x^n\x\R_v^n$.

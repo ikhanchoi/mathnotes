@@ -23,29 +23,6 @@ centralizer, center, normalizer
 	N(H)/C(H) 정리, G/Z(G)=Inn(G)
 stabilizer
 
-cyclic group
-
-
-Heisenberg group
-
-
-Three actions
-- left multiplication on coset space
-- conjugation on a set of some subgroups
-- conjugation on a normal subgroup
-
-
-
-아벨리안임을 보이기
-	G/Z(G) is cyclic
-	|G|=p^2
-	n-abelian
-		G^n commutes G^{n-1}
-		surjective cube endomorphism
-		n-abelian implies n(n-1)-central
-		order prime to n(n-1)
-
-
 
 ----------
 #
@@ -55,70 +32,90 @@ Three actions
 선형군: 
 
 #
+액션, 실로우: existence, congruence condition
+부분군격자: 1. 특정위수 부분군의 존재성, 2. 각 부분군의 컨쥬게이트 개수
+	노멀라이저의 크기를 잰다는 것 = 실로우군의 conjugate 개수 세는 것
+	- 카운팅: 너무 많은 conjugate 배제하는 법
+	- 인덱스: 푸앵카레 정리, least prime ind
+	- 노말라이즈되는 부분군 잡아 노말라이저 띄우기
+	케이스 나누기에 매우 좋은 조건을 제공
+		노말 실로우 -> 바로 반직접곱
+http://oeis.org/wiki/Number_of_groups_of_order_n
+
+#
 군 확장
 컴포지션 시리즈의 이해
 반직접: / 계산->아벨군의 자기동형군
 중심적: 군코호몰로지 / 계산->보편계수정리
 
 #
-액션, 실로우: existence, congruence condition
-	노멀라이저의 크기를 잰다는 것 = 실로우군의 conjugate 개수 세는 것
-	- 카운팅: 너무 많은 conjugate 배제하는 법
-	- 인덱스: 푸앵카레 정리, least prime ind
-	- 노말라이즈되는 
-	소인수분해 형태별 분석
-	케이스 나누기에 매우 좋은 조건을 제공
-		노말 실로우 -> 바로 반직접곱
-p: 1 - 
-p2: 2
-p3: 5
-p4: 14, 15
-pq: p<q
-	p/q-1: 1
-	p|q-1: 2
-p2q: p<q
-pq2: p<q
-p3q?
-pqr
+단순군: 단순군 아니기 테크닉, 단순군 보이기 테크닉, 교대군과 리타입 선형군
 
 #
 p군: 비자명센터, 개수 겁나많음
 닐포턴트: 피팅, 프라티니
 솔버블?
 센트럴 시리즈?
-단순군: 단순군 아니기 테크닉, 단순군 보이기 테크닉, 교대군과 리타입 선형군
 
 
 \fi
+
+
 \section{Special groups}
 
+\subsection{Cyclic groups}
+\begin{enumerate}
+\item A subgroup is also cyclic.
+\item The number of subgroups $=$ the number of divisors of its order.
+\item Endomorphism ring is given by $\Z/n\Z$.
+\item Automorphism group is given by $(\Z/n\Z)^\x$.
+\item The number elements of order $d$ is $\phi(d)$.
+\item
+\end{enumerate}
+
 \subsection{Abelian groups}
+Fundamental theorem of finitely generated abelian groups
+
+\begin{thm}
+Let $G$ be a finite group.
+If $G/Z(G)$ is cylic, then $G$ is abelian.
+\end{thm}
+\begin{thm}
+Let $G$ be a finite group.
+If $x\mapsto x^3$ is a surjective endomorhpism, then $G$ is abelian.
+\end{thm}
+
 \subsection{Symmetric groups}
 \subsection{Coxeter groups}
 \subsection{Linear groups}
 
 
-\section{Sylow theory}
+
+
+
+\section{Classification of small groups}
+
+\subsection{Sylow theorem}
 \begin{defn}[Sylow $p$-subgroup]
 Let $G$ be a finite group of order $n=p^am$ for a prime $p\nmid m$.
 A \emph{Sylow $p$-subgroup} is a subgroup of order $p^a$.
 We are going to denote the set of Sylow $p$-subgroups by $\Syl_p(G)$ and the number of Sylow $p$-subgroups by $n_p(G)$.
 \end{defn}
 
-\begin{thm}[The Sylow theorem]
+\begin{thm}[Sylow]
 Let $G$ be a finite group of order $n=p^am$ for a prime $p\nmid m$.
 Then,
 \[p\mid n_p-1,\qquad n_p\mid m\]
 for some $k\in\N$.
 \end{thm}
 \begin{pf}
-\Step{1}[Sylow $p$-subgroups exist]
-We apply mathematical induction.
+\Step{1}[A Sylow $p$-subgroup exists]
+We apply mathematical induction on orders.
 The base step is trivial.
 Suppose every finite group of order less than $n$ possesses a Sylow $p$-subgroup.
 
 By applying the orbit-stabilizer theorem for the action $G\acts G$ by conjugation, build the class equation
-\[|G|=|Z(G)|+\sum_i|G:C_G(g_i)|.\]
+\[n=|Z(G)|+\sum_i|G:C_G(g_i)|.\]
 There are two cases: $p\mid|Z(G)|$ or $p\nmid|Z(G)|$.
 
 \Case{1}[$p\mid|Z(G)|$]
@@ -132,13 +129,13 @@ Then, a Sylow $p$-subgroup of the centralizer is also a Sylow $p$-subgroup of $G
 Therefore, we are done for Step 1.
 
 \bigskip
-\Step{2}[Sylow $p$-subgroup that is normal is unique]
-Note that $p$ does not divide the order of the quotient group.
-Every $p$-subgroup should be contained in the Sylow $p$-subgroup, the kernel of the quotient map.
-The Sylow $p$-subgroup is clearly unique.
+\Step{2}[Normality implies uniqueness]
+Let $P\in\Syl_p(G)$ and $P\normal G$.
+Since $p\nmid|G/P|$, $\ker(G\to G/P)=P$ contains all $p$-subgroups of $G$.
+Thus, the Sylow $p$-subgroup is clearly unique.
 
 \bigskip
-\Step{3}[Sylow $p$-subgroups get action by conjugation]
+\Step{3}[A Sylow $p$-subgroups get action by conjugation]
 Let $P$ be a Sylow $p$-subgroup of $G$.
 We construct class equations via the orbit-stabilizer theorm for various actions to extract information on $n_p$.
 Note that stabilizers in any setwise conjugation action is exactly normalizers.
@@ -181,16 +178,14 @@ Since $H\acts\cO$ trivially, $H\acts A$ for $A\in\cO\subset\cP_{p^a}$.
 It is only possible when $H\subset A$, hence $|H|=p^a$.
 \end{pf}
 
-
-What we want to find is subgroup lattices.
-A subgroup lattice particularly contains data about orders and conjugacy classes of subgroups.
+Investigation of a group of a given order is divided into two main parts: the existence of a subgroup of particular orders and the measurement of the size of conjugate subgroups.
 
 In order to show the existence of subgroups of paricular orders:
 \begin{cond}
-\item $p$-group theory, (including Cuachy and Sylow)
+\item $p$-groups always exist,
 \item extension theory, (what can subgroups of subgroups do?)
 \item normalizers,
-\item kernel of permutation representation
+\item Poincare theorem: kernel of permutation representation
 \end{cond}
 
 In order to find the size of conjugacy classes:
@@ -200,8 +195,129 @@ In order to find the size of conjugacy classes:
 \end{cond}
 
 
+\subsection{Semidirect product}
 
-\section{Extensions}
+\begin{defn}[External semidirect product]
+Suppose we have three data: groups $(N,+),(H,\cdot)$ and a group homomorphism $\f:H\to\Aut(N)$.
+The \emph{semidirect product} $N\rtimes_\f H$ is a group defined on the set $N\x H$ by
+\[(n,h)(n',h')=(n+\f(h)n',hh').\]
+\end{defn}
+The motivation of the group structure of semidirect product is shown in the following theorem.
+\begin{thm}[Internal semidirect product]
+Let $N,H$ be subgroups of $G$ such that
+\[N\normal G,\quad N\cap H=1,\quad NH=G.\]
+Then, $G\cong N\rtimes_\f H$, where the action $\f$ is given by conjugation
+\[\f(h):N\to N:n\mapsto hnh^{-1}.\]
+\end{thm}
+
+
+
+
+\subsection{Groups of order less than 64}
+
+
+\subsubsection{Two primes}
+\begin{ex}
+Let $|G|=p^2$.
+\end{ex}
+
+\begin{ex}
+Let $|G|=pq$.
+\end{ex}
+
+
+
+
+\subsubsection{Three primes}
+\begin{lem}
+Let $N,H$ be groups.
+Let $\f,\f':H\to\Aut(N)$ be group actions.
+If $H$ is cyclic and the images of $\f$ and $\f'$ are conjugate, then
+\[N\rtimes_\f H\cong N\rtimes_{\f'}H.\]
+\end{lem}
+
+
+\begin{ex}
+Let $|G|=p^3$.
+\end{ex}
+\begin{ex}
+Let $|G|=p^2q$.
+
+Let $n_q=1$.
+\begin{cond}
+\item \[\f:Z_{p^2}\to\Aut(Z_q)\cong Z_{q-1}.\]
+\item \[\f:Z_p\x Z_p\to\Aut(Z_q)\cong Z_{q-1}.\]
+\end{cond}
+
+Let $n_p=1$.
+\begin{cond}
+\item \[\f:Z_q\to\Aut(Z_{p^2})\cong Z_{p(p-1)}.\]
+\item \[\f:Z_q\to\Aut(Z_p\x Z_p)\cong\GL_2(\F_p).\]
+\end{cond}
+\end{ex}
+\begin{ex}
+Let $|G|=pqr$.
+\end{ex}
+
+
+
+\begin{figure}[h!]
+\begin{tabular}{c|cccccccc}
+\hline
+$|G|=p^2q$&12&20&28&44&45&52&63\\
+\hline
+$\#$ of groups&5&5&4&4&2&5&4\\
+\hline
+\end{tabular}
+\vspace{10pt}
+
+\begin{tabular}{c|cccc}
+\hline
+$|G|=p^2q$&12&18&50&(75)\\
+\hline
+$\#$ of groups&5&5&5&3\\
+\hline
+\end{tabular}
+\hspace{10pt}
+\begin{tabular}{c|cc}
+\hline
+$|G|=pqr$&30&42\\
+\hline
+$\#$ of groups&4&6\\
+\hline
+\end{tabular}
+\end{figure}
+
+
+
+
+\subsubsection{More than four primes}
+Under 64, there are some exceptions whose orders are formed by product of more than four primes.
+\begin{figure}[h!]
+\begin{tabular}{c|c|cccc|c|c}
+\hline
+$|G|=p_1\cdots p_4$&16&24&40&54&56&36&60\\
+\hline
+$\#$ of groups&14&15&14&15&13&14&13\\
+\hline
+\end{tabular}
+\vspace{10pt}
+
+\begin{tabular}{c|c|c|c}
+\hline
+$|G|=p_1\cdots p_5$&32&48&64\\
+\hline
+$\#$ of groups&51&52&267\\
+\hline
+\end{tabular}
+\end{figure}
+
+
+
+
+
+
+\section{Extension theory}
 
 \begin{prop}
 Let $N$ and $H$ be groups.

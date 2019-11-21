@@ -811,13 +811,29 @@ Therefore, $F$ is a field.
 
 \Step{3}[Uniqueness]
 Let $F$ be a finite subfield of $L$ of order $q$.
-Then, every nonzero element $\alpha\in F$ satisfies $\alpha^{q-1}=1$ since $q$ is contained in a group $\F^\times$ of order $q-1$, and it implies $\alpha$ satisfies $x^q-x=0$ for all $\alpha\in F$.
+Then, every nonzero element $\alpha\in F$ satisfies $\alpha^{q-1}=1$ since $q$ is contained in a group $\F^\x$ of order $q-1$, and it implies $\alpha$ satisfies $x^q-x=0$ for all $\alpha\in F$.
 Since the number of roots of $x^q-x=0$ is less or equal than $q$, we can conclude every finite subfield of $L$ is characterized as the splitting field of a polynomial of the form $x^q-x$.
 \end{pf}
 
 \begin{thm}
-The multiplicative group of $\F_{p^n}^\times$ is cyclic.
+The multiplicative group of $\F_{p^n}^\x$ is cyclic.
 \end{thm}
+\begin{pf}
+The group $\F_{p^n}^\x$ is characterized by
+\[\F_{p^n}^\x=\{\,x\in\cl\F_p:x^{p^n-1}=1\,\}.\]
+
+We will count the number of elements of each order.
+Let $y$ be any element of $\F_{p^n}^\x$ of order $d$.
+Then,
+\[d=|\<y\>|\le|\{x:x^d=1\}|\le d\]
+implies the subgroup $\{x:x^d=1\}$ is cyclic with a generator $y$.
+Thus, the number of elements of order $d$ is given by either 0 or the Euler totient $\phi(d)$.
+
+Suppose there is no elements of order $p^n-1$.
+Then,
+\[p^n-1=|\F_{p^n}^\x|\le\sum_{\substack{d\,\mid\,p^n-1\\d\ne p^n-1}}\phi(d)<\sum_{d\,\mid\,p^n-1}\phi(d)=p^n-1\]
+leads a contradiction.
+\end{pf}
 
 \begin{thm}
 The Galois group $\Gal(\F_{p^n}/\F_p)$ is cyclic.
