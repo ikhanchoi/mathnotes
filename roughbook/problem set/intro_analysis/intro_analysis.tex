@@ -67,7 +67,7 @@ Week 3
 Let $(X,\cF)$ be a measurable space.
 A \emph{characteristic function} or \emph{indicator function} of a measurable set $E$ is a function $\chi_E:X\to\R$ defined by
 \[\chi_E(x)=\begin{cases}1&,x\in E\\0&,x\notin E\end{cases}.\]
-A finite sum of characteristic functions is called \emph{simple function}, and it is a slight generalization of step functions used in the Riemann integral.
+A finite linear combination of characteristic functions is called \emph{simple function}, and it is a slight generalization of step functions used in the Riemann integral.
 
 \begin{enumerate}
 \item Show that a subset $E$ is measurable iff its characteristic function $\chi_E$ is measurable.
@@ -85,7 +85,26 @@ We say $f_n$ converges to $f$ $\mu$-\emph{almost everwhere} if $E=\{x:f_n(x)\tex
 \end{enumerate}
 
 
+\clearpage
 
+Week 4
 
+\subsection*{Integration of positive functions}
+Let $f:(X,\mu)\to[0,\infty]$ be a measurable function.
+Define
+\[\int f\,d\mu:=\sup\,\bigl\{\int\phi\,d\mu:0\le\phi\le f,\ \phi\text{ simple }\bigr\}\]
+where
+\[\int(\sum_{i=1}^nc_i\chi_{E_i})\,d\mu:=\sum_{i=1}^nc_i\mu(E_i).\]
+
+Here, the symbol $X$ will always denote a measure space.
+\begin{enumerate}
+\item Let $f:X\to[0,\infty]$ be a measurable function. Show that if $\int f<\infty$, then $f(x)<\infty$ a.e. $x$.
+\item Show that if $\{f_n:X\to[0,\infty]\}$ is a sequence of monotonically increasing measurable functions, and if $f=\lim_{n\to\infty}f_n$ pointwise, then $\int f=\lim_{n\to\infty}\int f_n$. (Monotone convergence theorem. Hint: take simple $\phi$ such that $\int f-\e<\int\phi$ and let $E_n:=\{f_n\ge(1-\e)\phi\}$. Then, $\int f_n\ge(1-\e)\int_{E_n}\phi$ implies $\lim\int f_n\ge(1-\e)\int\phi$ by the continuity of measure.)
+\item Let $f:X\to[0,\infty]$ be a measurable function. Show that $\int f=0$ iff $f=0$ a.e.
+\item Combine above two results to obtain the following: $\{f_n:X\to[0,\infty]\}$ is a sequence of monotonically increasing measurable functions, and if $f=\lim_{n\to\infty}f_n$ a.e., then $\int f=\lim_{n\to\infty}\int f_n$. (Monotone convergence theorem: a.e. version)
+\item Show if $\{f_n:X\to[0,\infty]\}$ is a sequence of measurable functions, then
+\[\int\liminf_nf_n\le\liminf\int f_n.\]
+Give an example such that the equality does not hold. (Fatou's lemma)
+\end{enumerate}
 
 \end{document}
