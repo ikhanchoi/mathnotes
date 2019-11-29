@@ -2,6 +2,8 @@
 \usepackage{../../ikany}
 
 \def\a{\alpha}
+\def\I{\mathrm{I}}
+\def\II{\mathrm{II}}
 
 \title{Classical differential geometry}
 \setcounter{tocdepth}{3}
@@ -15,7 +17,6 @@
 This note is written for teaching during the undergraduate tutoring program in 2019 fall semester.
 Main resources I refered are books by Manfredo P. do Carmo \cite{}, and Richard S. Millman and George D. Parker \cite{}.
 
-\clearpage
 \section{Introduction}
 \subsection{Parametrizations and coordinates}
 For each text on classical differential geometry, the definitions frequently vary.
@@ -76,15 +77,16 @@ A parametrization tends to be taken for explicit computations while coordinates 
 We use the term \emph{reparametrization} to refer to nothing but a choice of another parametrization for the same curve or surface.
 As said, the choice of coordinate(parametrization) is important in differential geometry.
 
-\begin{ex}
+\begin{exs}
+\item
 Let $\a:\R\to\R^3$ be a map given by
 \[\a(t)=(\cos t,\sin t, t).\]
 Since $d\a|_t(1)=\a'(t)=(-\sin t,\cos t,1)$ is always nonzero so that $d\a$ is injective everywhere, $\a$ is a parametrization of the regular curve
 \[\{\,(x,y,z)\in\R^3:x=\cos z,\ y=\sin z\,\}.\]
 Notice that it is enough to check $\a'(t)\ne0$ for a curve parametrization $\a$ to show the injectivity of $d\a$.
-This curve is called a circular helix.
-\end{ex}
-\begin{ex}
+This curve is an example of circular helices.
+
+\item
 Let $\a:\R\to\R^3$ be a map given by
 \[\a(t)=(t^3,t^6,t^9).\]
 Since $d\a|_t(1)=\a'(t)=(3t^2,6t^5,9t^8)$ is zero when $t=0$, \emph{it would be better to avoid calling $\a$ a parametrization}.
@@ -94,16 +96,16 @@ However, by reparametrization, we can show the image of $\a$ is a regular curve,
 Consider $\beta:\R\to\R^3$ defined by
 \[\beta(t)=(t,t^2,t^3).\]
 This map has the same image $\im\a=\im\beta$, but $\beta'(t)=(1,2t,3t^2)\ne0$ for all $t\in\R$.
-\end{ex}
-\begin{ex}
+
+\item
 Let $S^1$ be the unit circle in $\R^2$, precisely
 \[S^1:=\{\,(x,y)\in\R^2:x^2+y^2=1\,\}.\]
 It cannot be covered by a single parametrization, so we can consider two different parametrizations $\a:(0,2\pi)\to\R^2$ and $\beta:(\pi,3\pi)\to\R^2$ for $S^1$:
 \[\alpha(t)=(\cos t,\sin t),\qquad\beta(t)=(\cos t,\sin t).\]
 Then, we have $S^1=\im\a\cup\im\beta$.
 If we want to investigate the geometry of $S^1$ near the point $(1,0)$, we can choose $\beta$ rather than $\a$ because $(1,0)\notin\im\a$.
-\end{ex}
-\begin{ex}
+
+\item
 Let $\a,\beta:(0,2\pi)\to\R^2$ be maps given by
 \[\a(t)=(\sin t,\sin2t),\qquad\beta(t)=(\sin t,-\sin2t).\]
 They are one-to-one smooth maps such that $d\a|_t(1)\ne0\ne d\beta|_t(1)$, and one can check that they have common images; it is shaped like the character `$\infty$'.
@@ -113,8 +115,8 @@ imply that the notion of tangent vectors at a point do depend on the choice of p
 
 Generally, since one philosophy of parametrizations is to view them as \emph{identifications} between curved spaces and flat Euclidean spaces, we want for them to have the images of open sets be open with respect to subspace topology.
 Thus, we assume parametrizations are homeomorphisms onto its images.
-\end{ex}
-\begin{ex}
+
+\item
 Let $f:\R^2\to\R$ be any smooth function and $\a:\R^2\to\R^3$ be a map given by
 \[\a(x,y)=(x,y,f(x,y)).\]
 Then, $\a$ is a two-dimensional parametrization because
@@ -132,21 +134,21 @@ Associated with $\a$, a coordinate map $\f:S\to\R^2$ is defined as the inverse o
 This map $\f$ consists of two real-valued functions on $S$,
 \[x:S\to\R:p\mapsto x,\qquad y:S\to\R:p\mapsto y.\]
 In this regard, we often write the coordinates $\f$ as $(x,y)$.
-\end{ex}
-\begin{ex}
+
+\item
 Let
 \[S=\{\,(x,y)\in\R^2:x>0\text{ or }y\ne0\,\}.\]
 The set $S$ is a regular surface.
 Consider two different coordinates
 \begin{gather*}
 (x,y):S\to S:(x,y)\mapsto(x,y),\\
-(r,\theta):S\to(0,\infty)\times(-\pi,\pi):(x,y)\mapsto\left(\sqrt{x^2+y^2},\ 2\tan^{-1}\frac y{\sqrt{x^2+y^2}+x}\right),
+(r,\theta):S\to\R_{>0}\times(-\pi,\pi):(x,y)\mapsto\left(\sqrt{x^2+y^2},\ 2\tan^{-1}\frac y{\sqrt{x^2+y^2}+x}\right),
 \end{gather*}
 where $\tan^{-1}(t):=\int_0^t\frac{ds}{1+s^2}$.
 They are the inverses of parametrizations $\a:S\to\R^2$ and $\beta:(0,\infty)\times(-\pi,\pi)\to\R^2$ defined by
 \[\a(x,y)=(x,y),\qquad\beta(r,\theta)=(r\cos\theta,r\sin\theta).\]
 The coordinate maps $(x,y)$ and $(r,\theta)$ are called \emph{Cartesian coordinates} and \emph{polar coordinates} respectively.
-\end{ex}
+\end{exs}
 
 
 
@@ -182,11 +184,11 @@ We can show the three conditions are equivalent, but the proof will not be given
 There exist a lot more neat but difficult characterizations for tangent spaces we will not cover.
 \end{rmk}
 \begin{rmk}
-We can easily check that $T_p\R^3=\R^3$ for any $p\in\R^3$.
-The notation $T_p\R^3$ will be used to emphasize that a vector in $\R^3$ is geometrically recognized to cast from the point $p$.
-Since $T_p\R^3=\R^3=T_q\R^3$ for every pair of points $p,q\in\R^3$, summation and inner product of a vector in $T_p\R^3$ and a vector in $T_q\R^3$ make sense.
-This identification of tangent spaces are allowed \emph{only for the case of linear spaces} such as $\R^3$.
-(In fact, the identification $T_p\R^3=\R^3$ is \emph{natural} in categorical language.)
+We can easily check that $T_p\R^n=\R^n$ for any $p\in\R^n$.
+The notation $T_p\R^n$ will be used to emphasize that a vector in $\R^n$ is geometrically recognized to cast from the point $p$.
+Since $T_p\R^n=\R^n=T_q\R^n$ for every pair of points $p,q\in\R^n$, summation and inner product of a vector in $T_p\R^n$ and a vector in $T_q\R^n$ make sense.
+This identification of tangent spaces are allowed \emph{only for the case of linear spaces} such as $\R^n$.
+(In fact, the identification $T_p\R^n=\R^n$ is \emph{natural} in categorical language.)
 \end{rmk}
 \begin{rmk}
 One way to view tangent spaces is to see them as domains and codomains of Fr\'echet derivatives.
@@ -195,74 +197,95 @@ Since $T_xU=\R^m$ and $T_{F(x)}V=\R^n$, the original definition on Euclidean spa
 In this reason, the Fr\'echet derivative $dF$ is also called a \emph{tangent map}, \emph{pushforward}, or \emph{differential} in differential geoemtry.
 \end{rmk}
 
+
+\begin{notn*}
+Let $\a$ be a parametrization for a regular curve or surface $M$.
+For derivatives of $\a$, we will use the following notations:
+\[\pd_t\a=\a',\quad\pd_x\a=\a_x,\quad\pd_i\a=\a_i.\]
+The set $\{\a_i\}_i$ will be used to denote a basis of tangent space $T_pM$.
+\end{notn*}
+
 % Examples
 
 
+
+
 \subsubsection{Differentiation by tangent vectors}
-
+% explanation
 \begin{defn}
-Let $M$ be a regular curve of a regular surface with an $m$-dimensional parametrization $\a$.
+Let $\a:U\to\R^n$ be an $m$-dimensional parametrization with $M=\im\a$.
 \begin{cond}
-\item A \emph{scalar field} is a function $f:M\to\R$ such that $f\o\a:U\to\R$ is smooth.
-\item A \emph{vector field} is a map $X:M\to\R^3$ such that $X\o\a:U\to\R^3$ is smooth and $X|_p\in T_pM$.
+\item A \emph{scalar field}, \emph{smooth function}, or just a \emph{function} is a function $f:M\to\R$ such that $f\o\a:U\to\R$ is smooth.
+\item A \emph{vector field} is a map $X:M\to\R^n$ such that $X\o\a:U\to\R^n$ is smooth.
+\item A \emph{tangent vector field} is a vector field $X:M\to\R^n$ such that $X|_p\in T_pM$.
 \end{cond}
-The scalar field is another name of \emph{smooth functions}.
-For vector fields, although the tangent condition $X|_p\in T_pM$ will be ignored occasionally, basically we assume it.
+In general, vector fields are basically assumed to be tangent. However, we will distinguish them in this note.
 \end{defn}
 
 \begin{defn}
-Let $v=\sum_iv^i(\pd_i\a)\in T_pM$. %%%%%%%%%% vector fields의 미분은?
-\[\pd_vf:=\sum_{i=1}^mv_i\pd{(f\o\a)}{x^i}.\]
+Let $\a:U\to\R^n$ be an $m$-dimensional parametrization $M=\im\a$.
+\begin{cond}
+\item The coordinate representation of a function $f:M\to\R$ is
+\[f\o\a:U\to\R.\]
+\item The (external) coordinate representation of a vector field $X:M\to\R^n$ is
+\[X\o\a:U\to\R^n.\]
+\item The coordinate representation of a tangent vector field $X:M\to\R^n$ is
+\[(X^1\o\a,\,\cdots,\,X^m\o\a):U\to\R^m\]
+where $X=\sum_iX^i\a_i$.
+\end{cond}
 \end{defn}
 
-\begin{ex}
+\begin{defn}
+Let $M$ be a regular curve or surface with a parametrization $\a$.
+Let $v=\sum_iv^i\a_i|_p\in T_pM$ be a tangent vector at $p=\a(x)$.
+For a function $f:M\to\R$, its partial derivative is defined by
+\[\pd_vf(p):=\sum_{i=1}^mv^i\pd_i(f\o\a)(x)\in\R.\]
+For a vector field $X:M\to\R^n$, its partial derivative is defined by
+\[\pd_vX|_p:=\sum_{i=1}^mv^i\pd_i(X\o\a)(x)\in\R^n.\]
+This definition is not dependent on parametrization $\a$.
+Notice that if $v$ is a tangent vector field on $M$, then
+\[\pd_vf:M\to\R,\qquad\pd_vX:M\to\R^n\]
+define a new scalar field and a new vector field respectively.
+\end{defn}
+
+\begin{notn*}
+Let $M$ be an either regular curve or regular surface that is embedded in $\R^3$.
+For derivatives of functions on $M$ by tangent vectors, we will use
+\[\pd_{\a_i}f=\pd_if,\quad\pd_{\a_t}f=\pd_tf=f',\quad\pd_{\a_x}f=\pd_xf=f_x.\]
+For derivatives of vector fields on $M$ by tangent vectors, we will use
+\[\pd_{\a_i}X=\pd_iX,\quad\pd_{\a_t}X=\pd_tX=X',\quad\pd_{\a_x}X=\pd_xX=X_x.\]
+We will \emph{not} use $f_i$ or $X_i$ for $\pd_if$ and $\pd_iX$ because it is confusig with coordinate representations, and \emph{not} use the nabula symbol $\del_v$ in this sense because it will be devoted to another kind of derivatives introduced in Section 4.
+\end{notn*}
+
+\begin{exs}
+\item
 Let $\a$ be an $m$-dimensional parametrization.
-Then, $\pd_i\a(x)$ is always a tanget vector at each point $p=\a(x)$, and $\pd_i\a$ becomes a vector field.
-It means we may write
-\[\pd_i\a|_p=\pd_i\a(x)=\pd_i\a(\a^{-1}(p)).\]
-\end{ex}
+The value of $\pd_i\a=\a_i:\im\a\to\R^3$ is always a tanget vector at each point $p=\a(x)$, and $\a_i$ becomes a vector field.
 
-\begin{ex}
-Let $\a$ be an $m$-dimensional parametrization and $s$ be either a smooth function or vector field on $\a$.
-Then, we can define the directional derivative $\pd_{\pd_i\a}s$ of $s$ with respect to the direction $\pd_i\a$.
-Abusing notation
-\[\pd_is:=\pd_{\pd_i\a}s\]
-will be mostly used when we are given a fixed parametrization without confusion.
-Since directional derivatives do not depend on the choice of curves $\gamma:I\to\im\a$ but the value of $\gamma(0)=p$ and $\gamma'(0)=\pd_i\a$, we can compute the directional derivative as
-\[\pd_is=\pd_i(s\o\a)=\pd_t(s\o\gamma)\]
-by taking $\gamma(t)=\a(\a^{-1}(p)+te_i)$, where $e_i$ is the $i$-th standard basis vector for $\R^m$.
-\end{ex}
+Let $s$ be either a smooth function or vector field on $\a$.
+Then, we can compute the directional derivative as
+\[\pd_is:=\pd_i(s\o\a)=\pd_t(s\o\gamma)\]
+by taking $\gamma(t)=\a(x+te_i)$, where $e_i$ is the $i$-th standard basis vector for $\R^m$.
 
-\begin{ex}
+\item
 Let $\a:\R^2\to\R^3$ be a regular surface given by
 \[\a(x,y)=\left(\frac{2x}{1+x^2+y^2},\,\frac{2y}{1+x^2+y^2},\,1-\frac2{1+x^2+y^2}\right).\]
 This map gives a parametrization for the sphere $S^2$ without the north pole $(0,0,1)$, and is called the \emph{stereographic projection}.
 Let $f:S^2\setminus\{(0,0,1)\}\to\R$ be the height function of $\a$ defined by
 \[f(p):=z\]
 for $p=(x,y,z)\in S^2\setminus\{(0,0,1)\}$.
+Its coordinate representation is
+\[f\o\a(x,y)=1-\frac2{1+x^2+y^2}.\]
 Then, the directional derivative is
 \[\pd_xf=\pd{(f\o\a)}{x}=\pd{x}\left(1-\frac2{1+x^2+y^2}\right)=\frac{4x}{(1+x^2+y^2)^2}.\]
 Note that $\pd_xf\ne\pd_{(1,0,0)}z=0$.
-\end{ex}
-
-%           접벡터로 미분해도 전부 R3의 공변미분으로 미분하는 것
-%           4장 전까지는 접벡터를 곡면 위의 미분작용소로 인식하지 말기!!!
-
-\subsection{Notations}
-Here we summarize notations this note will use.
-\[\pd_t\a=\a',\quad\pd_x\a=\a_x,\quad\pd_i\a=\a_i,\quad\pd_v\a=\a_v.\]
-\[\pd_tf=f',\quad\pd_xf=f_x,\quad\pd_vf=f_v.\]
-\[\pd_tX=X',\quad\pd_xX=X_x,\quad\pd_vX=X_v.\]
-
-
-Also, we introduce the \emph{Einstein summation convention}:
-\[X=X^i\a_i.\]
+\end{exs}
 
 
 \subsection{Linear algebra on tangent spaces}
 
 
-%%%% 내적 외적 삼중곱
+% 내적 외적 삼중곱
 % 벡터의 좌표표현 안쪽 기저와 바깥 기저
 
 % 좌표는 접공간의 기저를 준다
@@ -327,6 +350,10 @@ Then, by the chain rule,
 \end{pf}
 
 
+
+
+\subsubsection{Differentiation of Frenet-Serret frame}
+
 The Frenet-Serret frame is a standard frame for a curve, and it is in particular effective when we assume the arc-length parametrization.
 It is defined for nondegenerate regular curves, i.e. nowhere straight curves.
 It provides with a useful orthonormal basis of $T_p\R^3\supset T_pC$ for points $p$ on a regular curve $C$.
@@ -342,10 +369,6 @@ The \emph{tangent unit vector}, \emph{normal unit vector}, \emph{binormal unit v
 The set of vector fields $\{\rT,\rN,\rB\}$, which is called \emph{Frenet-Serret frame}, forms an orthonormal basis of $T_p\R^3$ at each point $p$ on $\a$.
 The Frenet-Serret frame is uniquely determined up to sign as $\a$ changes.
 \end{defn}
-
-
-
-\subsubsection{Differentiation of Frenet-Serret frame}
 
 We study the derivatives of the Frenet-Serret frame and their coordinate representations.
 In the coordinate representations on the Frenet-Serret frame, important geometric measurements such as curvatrue and torsion come out as coefficients.
@@ -407,15 +430,31 @@ In other words, the tangent space $T_I\SO(3)$ forms a skew symmetric matrix.
 \end{rmk}
 
 
-\subsubsection{Formulas for computations}
 
-The following proposition gives the most effective and shortest way to compute $\kappa$ and $\tau$ in general case.
-If we try to find $\kappa$ by differentiating $\rT$, then we must encounter the normalizing term of the form $\sqrt{(-)^2+(-)^2+(-)^2}^{-1}$, and it is painful when time is limited.
+
+
+
+
+
+
+
+
+\subsection{Problems}
+
+
+
+\subsubsection{Computational problems}
+
+The following proposition gives the most effective and shortest way to compute the Frenet-Serret apparatus in general case.
+If we try to reparametrize the given curve into a unit speed curve or find $\kappa$ by differentiating $\rT$, then we must encounter the normalizing term of the form $\sqrt{(-)^2+(-)^2+(-)^2}^{-1}$, and it must be painful when time is limited.
 The Frenet-Serret frame is useful in proofs of interesting propositions, but not a good choice for practical computation.
-So, the direct computation from derivatives of parametrization is highly recommended, instead of differentiating $\rT$.
+Instead, a computation from derivatives of parametrization is highly recommended.
 \begin{prop}
 Let $\a$ be a nondegenerate curve.
-\[\kappa=\frac{\|\a'\x\a''\|}{\|\a'\|^3},\qquad\tau=\frac{\a'\x\a''\cdot\a'''}{\|\a'\x\a''\|}.\]
+Then,
+\[\kappa=\frac{\|\a'\x\a''\|}{\|\a'\|^3},\qquad\tau=\frac{\a'\x\a''\cdot\a'''}{\|\a'\x\a''\|}\]
+and
+\[\rT=\frac{\a'}{\|\a'\|},\qquad\rB=\frac{\a'\x\a''}{\|\a'\x\a''\|},\qquad\rN=\rB\x\rT.\]
 \end{prop}
 \begin{pf}
 If we let $s=\|\a'\|$, then
@@ -427,19 +466,15 @@ If we let $s=\|\a'\|$, then
 Now the formulas are easily derived.
 \end{pf}
 
+% Examples
 
 
+\subsubsection{General problems}
 
-
-
-
-
-
-
-\subsection{Problems}
 We are interested in regular curves, not a particular parametrization.
 By the Theorem 2.1, we may always assume that a parametrization $\a$ has unit speed.
 Let $\a$ be a nondegenerate unit speed space curve, and let $\{\rT,\rN,\rB\}$ be the Frenet-Serret frame for $\a$.
+
 Consider a diagram as follows:
 \begin{cd}
 \<\a,\rT\>=\ ?\ar{r}\ar{d} & \<\a,\rN\>=\ ? \ar{l}\ar{d}\ar{r} & \<\a,\rB\>=\ ? \ar{l}\ar{d} \\
@@ -665,45 +700,18 @@ TFAE:
 
 \begin{thm}
 Let $S$ be a regular surface.
-Let $v,w$ be linearly independent vectors in $T_pS$ for a point $p\in S$.
+Let $v,w$ be linearly independent tangent vectors in $T_pS$ for a point $p\in S$.
 Then, $S$ admits a parametrization $\a$ such that $\a_x|_p=v$ and $\a_y|_p=w$.
 \end{thm}
 \begin{thm}
-Let $S$ be a regular surface.
-Let $v,w$ be linearly independent vector fields on $S$.
+Let $v,w$ be linearly independent tangent vector fields on a regular surface $S$.
 Then, $S$ admits a parametrization $\a$ such that $\a_x|_p$ and $\a_y|_p$ are parallel to $v|_p,w|_p$ respectively for each $p\in S$.
 \end{thm}
 \begin{thm}
-Let $S$ be a regular surface.
-Let $v,w$ be linearly independent vector fields on $S$.
+Let $v,w$ be linearly independent tangent vector fields on a regular surface $S$.
 If $\pd_v\pd_wf=\pd_w\pd_vf$ for all smooth functions $f$, then $S$ admits a parametrization $\a$ such that $\a_x|_p=v|_p$ and $\a_y|=w|_p$ for each $p\in S$.
 \end{thm}
 
-
-\begin{defn}
-Let $\a$ be a regular surface.
-The \emph{Gauss map} or \emph{normal unit vector} $\nu:U\to\R^3$ is a $T_p\R^3$-valued vector field on $\a$ defined by:
-\[\nu(x,y):=\frac{\a_x\times \a_y}{\|\a_x\times \a_y\|}(x,y).\]
-The set of vector fields $\{\a_x,\a_y,\nu\}$ form a basis of $T_p\R^3$ at each point $p$ on $\a$.
-The Gauss map is uniquely determined up to sign as $\a$ changes.
-\end{defn}
-
-
-\subsubsection{Differentiation of tangent vectors}
-\begin{defn}
-Let $\a$ be a regular surface.
-The \emph{Christoffel symbols} refer to eight scalar functions $\{\Gamma_{ij}^k\}_{i,j,k=1}^2$ on $\a$ defined by the \emph{Gauss formula}:
-\begin{align*}
-\a_{xx}&=:\Gamma_{11}^1\a_x+\Gamma_{11}^2\a_y+L\nu,\\
-\a_{xy}&=:\Gamma_{12}^1\a_x+\Gamma_{12}^2\a_y+M\nu=\\
-\a_{yx}&=:\Gamma_{21}^1\a_x+\Gamma_{21}^2\a_y+M\nu,\\
-\a_{yy}&=:\Gamma_{22}^1\a_x+\Gamma_{22}^2\a_y+N\nu.
-\end{align*}
-The functions $L,M,$ and $N$ are not Christoffel symbols, and will be defined again later.
-The Christoffel symbols \emph{do depend} on $\a$.
-\end{defn}
-
-The Christoffel symbols are deeply connected to the inner product structure of tangent spaces.
 Let $S$ be a regular surface.
 The inner product on $T_pS$ induced from the standard inner product of $\R^3$ can be represented not only as a matrix
 \[\mat{1&0&0\\0&1&0\\0&0&1}\]
@@ -712,43 +720,122 @@ in the basis $\{(1,0,0),(0,1,0),(0,0,1)\}\subset\R^3$, but also as a matrix
 in the basis $\{\a_x,\a_y\}\subset T_pS$.
 
 \begin{defn}
-Let $\a$ be a regular surface.
-\[E:=\<\a_x,\a_x\>,\qquad F:=\<\a_x,\a_y\>,\qquad G:=\<\a_y,\a_y\>.\]
-The following notations are also widely used in both geometry and physics:
-\[g_{11}:=\<\a_x,\a_x\>,\qquad g_{12}=g_{21}:=\<\a_x,\a_y\>,\qquad g_{22}:=\<\a_y,\a_y\>.\]
+\emph{Metric coefficients}
+\begin{alignat*}{2}
+\<\a_x,\a_x\>&=:g_{11}&\qquad
+\<\a_x,\a_y\>&=:g_{12}\\
+\<\a_y,\a_x\>&=:g_{21}&
+\<\a_y,\a_y\>&=:g_{22}
+\end{alignat*}
 \end{defn}
+
+\begin{thm}[Normal coordinates]
+...?
+\end{thm}
+
+
+\subsubsection{Differentiation of tangent vectors}
+
+\begin{defn}
+Let $\a$ be a regular surface.
+The \emph{Gauss map} or \emph{normal unit vector} $\nu:U\to\R^3$ is a vector field on $\a$ defined by:
+\[\nu(x,y):=\frac{\a_x\times \a_y}{\|\a_x\times \a_y\|}(x,y).\]
+The set of vector fields $\{\a_x,\a_y,\nu\}$ forms a basis of $T_p\R^3$ at each point $p$ on $\a$.
+The Gauss map is uniquely determined up to sign as $\a$ changes.
+\end{defn}
+
+\begin{defn}
+Let $\a:U\to\R^3$ be a regular surface.
+The \emph{Gauss formula} is:
+\begin{alignat*}{2}
+\a_{xx}&=:\Gamma_{11}^1\a_x+\Gamma_{11}^2\a_y+L_{11}\nu,&\qquad
+\a_{xy}&=:\Gamma_{12}^1\a_x+\Gamma_{12}^2\a_y+L_{12}\nu,\\
+\a_{yx}&=:\Gamma_{21}^1\a_x+\Gamma_{21}^2\a_y+L_{21}\nu,&
+\a_{yy}&=:\Gamma_{22}^1\a_x+\Gamma_{22}^2\a_y+L_{22}\nu.
+\end{alignat*}
+The \emph{Christoffel symbols} refer to eight functions $\{\Gamma_{ij}^k\}_{i,j,k=1}^2$.
+The Christoffel symbols and $L_{ij}$ \emph{do depend} on $\a$.
+\end{defn}
+
+% symmetry of christoffel symbols and L's
+% partial derivative of arbitrary tangent vector
+
+% Examples
 
 
 \subsubsection{Differentiation of normal vector}
+The partial derivative $\pd_v\nu$ is a tangent vector field since
+\[\<\pd_v\nu,\nu\>=\frac12\pd_v\<\nu,\nu\>=0.\]
 
+\begin{defn}
+Let $\a:U\to\R^3$ be a regular surface with $\im\a=S$.
+The \emph{shape operator} is $\cS:\fX(M)\to\fX(M)$ defined as
+\[\cS(v):=-\pd_v\nu.\]
+\end{defn}
 
-% shape operator, weingarten map
-% second fundamental form
+Self-adjoint
+\[\<v,\cS(w)\>=\<v,-\pd_w\nu\>=\<\pd_wv,\nu\>=\<\pd_vw,\nu\>=\<\cS(v),w\>\]
+since $\pd_wv-\pd_vw$ is a tangent vector
+\[\pd_wv-\pd_vw=[(\pd_wv^i)\a_i+v^iw^j\pd_j\a_i]-[(\pd_vw^i)\a_i+w^iv^j\pd_i\a_j]=(\pd_wv^i-\pd_vw^i)\a_i.\]
+
+%The reason of minus sign in the shape operator.
+
 % principal curvature
 % mean curvature, gaussian curvature
 
+
+
 % curvature tensor?
 
-\subsubsection{Formulas for computations}
+
+\subsection{Problems}
+\subsubsection{Computational problems}
 % 제1기본형식, 크리스토펠: 
 % 모양 연산자, 제2기본형식: 바인가르텐 이퀘이션
 
 % 가우스곡률
+\begin{defn}
+Let $\a:U\to\R^3$ be a regular surface.
+\begin{gather*}
+E:=\<\a_x,\a_x\>,\qquad F:=\<\a_x,\a_y\>,\qquad G:=\<\a_y,\a_y\>,\\
+L:=\<\a_{xx},\nu\>,\qquad M:=\<\a_{xy},\nu\>,\qquad N:=\<\a_{yy},\nu\>.
+\end{gather*}
+\end{defn}
 
-\[\Gamma_{ij}^l=\frac12g^{kl}(g_{ik,j}-g_{ij,k}+g_{kj,i}).\]
 
-The Gauss formula:
-
-The Weingarten equations:
+\begin{thm}
+The shape operator has the coordinate representation
+\[S=\mat{E&F\\F&G}^{-1}\mat{L&M\\M&N}=\frac1{EG-F^2}\mat{GL-FM&GM-FN\\EM-FL&EN-FM}.\]
+\end{thm}
+\begin{cor}
+We have $GM-FN=EM-FL$, and the \emph{Weingarten equations}:
 \begin{align*}
 \nu_x&=\frac{FM-GL}{EG-F^2}\a_x+\frac{FL-EM}{EG-F^2}\a_y,\\
 \nu_y&=\frac{FN-GM}{EG-F^2}\a_x+\frac{FM-EN}{EG-F^2}\a_y.
 \end{align*}
-It is because the shape operator is
-\[S=\mat{E&F\\F&G}^{-1}\mat{L&M\\M&N}=\frac1{EG-F^2}\mat{GL-FM&EM-FL\\GM-FN&EN-FM}.\]
+\end{cor}
 
 
-\[\nu_x\x\nu_y=K\sqrt g\nu.\]
+
+
+
+
+\[\Gamma_{ij}^l=\frac12g^{kl}(g_{ik,j}-g_{ij,k}+g_{kj,i}).\]
+\[\frac12(\log g)_x=\Gamma_{11}^1.\]
+
+\[\nu_x\x\nu_y=K\sqrt{\det g}\ \nu.\]
+\[\a_x\x\a_y=\sqrt{\det g}\ \nu\]
+\[\<\nu_x\x\nu_y,\a_x\x\a_y\>=\det\mat{\<\nu_x,\a_x\>&\<\nu_x,\a_y\>\\\<\nu_y,\a_x\>&\<\nu_y,\a_y\>}=\det\mat{-L&-M\\-M&-N}=K\det g\]
+
+
+
+
+
+
+
+
+
+
 
 \begin{thm}[Gaussian curvature formula]
 $ $\\[-10pt]
@@ -757,28 +844,26 @@ $ $\\[-10pt]
 In general,
 \[K=\frac{LN-M^2}{EG-F^2}.\]
 \item
-Brioschi formula: $E,F,G$ describes $K$.
-\item
 For orthogonal coordinates such that $F\equiv0$,
-\[K=-\frac1{2\sqrt g}\left((\frac1{\sqrt g}E_y)_y+(\frac1{\sqrt g}G_x)_x\right).\]
-\item
-For Monge's patch $(x,y,f(x,y))$,
-\[K=\frac{f_{xx}f_{yy}-f_{xy}^2}{(1+f_x^2+f_y^2)^2}.\]
+\[K=-\frac1{2\sqrt{\det g}}\left((\frac1{\sqrt{\det g}}E_y)_y+(\frac1{\sqrt{\det g}}G_x)_x\right).\]
 \item
 For $f(x,y,z)=0$,
-\[K=-\frac1{|\del f|^4}\mat[v]{0&\del f\\\del f^T&\Hess(f)}\]
+\[K=-\frac1{|\del f|^4}\mat[v]{0&\del f\\\del f^T&\Hess(f)},\]
+where $\del f$ denotes the gradient $\del f=(f_x,f_y,f_z)$.
+\item(Beltrami-Enneper) If $\tau$ is the torsion of an asymptotic curve, then
+\[K=-\tau^2.\]
+\item(Brioschi) $E,F,G$ describes $K$.
 \end{cond}
 \end{thm}
 
-Computations for various parametrizations including
-\begin{itemize}
-\item the first fundamental form,
-\item the Christoffel symbols,
-\item the second fundamental form,
-\item the principal or Gaussian curvature.
-\end{itemize}
 
-\begin{ex}[Surface of revolution]
+\begin{exs}
+\item
+(Monge's patch)
+For $(x,y,f(x,y))$,
+\[K=\frac{f_{xx}f_{yy}-f_{xy}^2}{(1+f_x^2+f_y^2)^2}.\]
+\item
+(Surface of revolution).
 Let $\gamma(t)=(r(t),z(t))$ be a plane curve with $r(t)>0$.
 Let
 \[\a(\theta,t)=(r(t)\cos\theta,r(t)\sin\theta,z(t))\]
@@ -788,7 +873,7 @@ Then,
 \begin{align*}
 \a_\theta&=(-r(t)\sin\theta,r(t)\cos\theta,0)\\
 \a_t&=(r'(t)\cos\theta,r'(t)\sin\theta,z'(t))\\
-\nu&=\frac1{r'(t)^2+z'(t)^2}(z'(t)\cos\theta,z'(t)\sin\theta,-r'(t)),
+\nu&=\frac1{\sqrt{r'(t)^2+z'(t)^2}}(z'(t)\cos\theta,z'(t)\sin\theta,-r'(t)),
 \end{align*}
 and
 \begin{align*}
@@ -799,13 +884,16 @@ and
 Thus we have
 \[E=r(t)^2,\quad F=0,\quad G=r'(t)^2+z'(t)^2,\]
 and
-\[L=-\frac{r(t)z'(t)}{r'(t)^2+z'(t)^2},\quad M=0,\quad N=\frac{r''(t)z'(t)-r'(t)z''(t)}{r'(t)^2+z'(t)^2}.\]
+\[L=-\frac{r(t)z'(t)}{\sqrt{r'(t)^2+z'(t)^2}},\quad M=0,\quad N=\frac{r''(t)z'(t)-r'(t)z''(t)}{\sqrt{r'(t)^2+z'(t)^2}}.\]
 Therefore,
-\[K=\frac{LN-M^2}{EG-F^2}=\]
-\end{ex}
+\[K=\frac{LN-M^2}{EG-F^2}=\frac{z'(r'z''-r''z')}{r(r'^2+z'^2)^2}.\]
+In particular, if $t\mapsto(r(t),z(t))$ is a unit-speed curve, then
+\[K=-\frac{r''}r.\]
 
+\item
+(Models of hyperbolic planes)
+\end{exs}
 
-\subsection{Problems}
 
 % asymptotic curve -> hyperbolic
 % line of curvature -> non-umbilic
@@ -856,17 +944,19 @@ Therefore, $h$ is uniquely determined by $K$.
 
 
 
-\section{Intrinsic geometry of surfaces}
+\section{Intrinsic geometry}
+Notations: Einstein summation convention, set of vector fields.
 
+To $n$-dimensional.
 
-\subsection{Intrinsity}
-\subsubsection{Coordinates intrinsity}
+\subsection{Intrinsicness}
+\subsubsection{Coordinates intrinsicness}
 % 좌표변환에 대하여 어떻게 변하는지 - 텐서에 대하여
 
 % 크리스토펠은 좌표변환이 잘 안됨: 텐서가 아니라서
 % 공변미분: 근데 걍 3차원공간 편미분에다가 이 좌표변환 추가 텀 붙은 크리스토펠 텀을 추가하면 그 미분 결과가 텐서(접벡터)가 됨
 
-\subsubsection{Metric intrinsity}
+\subsubsection{Metric intrinsicness}
 % isometry
 % 가우스의 놀라운 정리: 크리스토펠 -> 곡률텐서 -> 가우스곡률?
 
@@ -887,10 +977,103 @@ Since $f$ is a diffeomorphism and
 the map $f$ is an isometry.
 \end{ex}
 
+
+
+
 \subsection{Covariant derivatives}
+
+\iffalse
+\begin{cond}
+\item Coordinate definition
+\item Orthogonal projection
+\item Axiomatic Koszul connection
+\item Exterior covariant derivative
+\item via parallel transport
+\item Vertical projection
+\end{cond}
+\fi
+
+
+\subsubsection{Orthogonal projection}
+We are going to think about ``intrinsic'' derivatives for tangent vectors.
+For coordinate independence, directional derivatives of a tangent vector field should be at least a tangent vector field, which is false for the obvious partial derivatives in the embedded surface setting; for example, $\rT$ is a tangent vector, but $\rN=\rT'$ is not.
+The Gauss formula reads
+\[\pd_i\a_j=\Gamma_{ij}^k\a_k+L_{ij}\nu\]
+so that we have
+\begin{align*}
+\pd_XY
+&=X^i\pd_i(Y^j\a_j)\\
+&=X^i(\pd_iY^k)\a_k+X^iY^j\pd_i\a_j\\
+&=\left(X^i\pd_iY^k+X^iY^j\Gamma_{ij}^k\right)\a_k+X^iY^jL_{ij}\nu.
+\end{align*}
+If we write $\del_XY=\left(X^i\pd_iY^k+X^iY^j\Gamma_{ij}^k\right)\a_k$, then
+\[\pd_XY=\del_XY+\II(X,Y)\nu.\]
+
+\begin{defn}
+Let $\a:U\to\R^n$ be an $m$-dimensional parametrization with $\im\a=M$.
+Let $X=X^i\a_i$ and $Y=Y^j\a_j$ be tangent vector fields on $M$.
+The \emph{covariant derivative} of $Y$ along $X$ is defined as the orthogonal projection of the partial derivative $\pd_XY$ onto the tangent space:
+\[\del_XY:=\left(X^i\pd_iY^k+X^iY^j\Gamma_{ij}^k\right)\a_k.\]
+\end{defn}
+
+\begin{prop}
+Covariant derivatives are intrinsic.
+In other words, the above definition does not depend on the choice of parametrizations.
+\end{prop}
+\begin{pf}
+Recall that the Christoffel symbols transform as follows:
+\[X^iY^j\Gamma_{ij}^k=X^aY^b\left(\Gamma_{ab}^c+\pd{x^i}{x^a}\pd{x^j}{x^b}\pd[2]{x^c}{x^i}{x^j}\right)\pd{x^k}{x^c}.\]
+Thus, we have
+\begin{align*}
+&\left(X^i\pd_iY^k+X^iY^j\Gamma_{ij}^k\right)\a_k\\
+&\quad=X^a\pd{x^a}\left(Y^c\pd{x^k}{x^c}\right)\a_k+X^aY^b\left(\pd{x^i}{x^a}\pd{x^j}{x^b}\pd[2]{x^c}{x^i}{x^j}+\Gamma_{ab}^c\right)\pd{x^k}{x^c}\a_k\\
+&\quad=X^a\pd{Y^c}{x^a}\a_c+X^aY^b\left(\pd[2]{x^k}{x^a}{x^b}\pd{x^c}{x^k}+\pd{x^i}{x^a}\pd{x^j}{x^b}\pd[2]{x^c}{x^i}{x^j}\right)\a_c+X^aX^b\Gamma_{ab}^c\a_c\\
+&\quad=\left(X^a\pd_aY^c+X^aY^b\Gamma_{ab}^c\right)\a_c
+\end{align*}
+since
+\[\pd[2]{x^j}{x^a}{x^b}\pd{x^c}{x^j}+\pd{x^i}{x^a}\pd{x^j}{x^b}\pd[2]{x^c}{x^i}{x^j}=\pd{x^a}\left(\pd{x^j}{x^b}\pd{x^c}{x^j}\right)=\pd_a\delta_b^c=0.\qedhere\]
+\end{pf}
+
+
+
+\subsubsection{Connection}
+
+We will give a coordinate-free axiomatic definition of covariant derivatives and show that they coincide.
+
+\begin{defn}[Affine connection]
+Define $\del:\fX(M)\x\fX(M)\to\fX(M)$ axiomatically such that
+\begin{cond}
+\item $\del_{(-)}Y:\fX(M)\to\fX(M):X\mapsto\del_XY$ is $C^\infty(M)$-linear;
+\item $\del_X(-):\fX(M)\to\fX(M):Y\mapsto\del_XY$ is $\R$-linear;
+\item the Leibniz rule
+\[\del_X(fY)=(\pd_Xf)Y+f\del_XY\]
+is satisfied.
+\end{cond}
+\end{defn}
+Christoffel symbols as connection coefficients.
+
+Metric connection, Levi-Civita connection.
+
+Our claim is that this definition is equivalent to the above coordinate dependent definition of the covariant derivative.
+The existence issue is resolved because a map
+\[\fX(M)\x\fX(M)\to\fX(M):(X^i\a_i,Y^j\a_j)\mapsto\left(X^i\pd_iY^k+X^iY^j\Gamma_{ij}^k\right)\a_k\]
+is easily chekced to satisfy the three axioms.
+We then proves the converse.
+
+Let $X=X^i\a_i$ and $Y=Y^j\a_j$.
+Then,
+\[\del_XY=X^i\del_i(Y^j\a_j)=X^i(\pd_iY^k)\a_k+X^iY^j\del_i\a_j=\left(X^i\pd_iY^k+X^iY^j\Gamma_{ij}^k\right)\a_k.\]
+
+
+
+
+
+
 
 \subsection{Parallel transport}
 % linearity, holonomy
+
+
 
 \subsection{Geodesics}
 % 측지선에 대한 기저(n,T,S)
@@ -901,6 +1084,7 @@ the map $f$ is an isometry.
 % 야코비장
 % 카르탕 아다마르
 
+\subsection{Curvature}
 
 
 

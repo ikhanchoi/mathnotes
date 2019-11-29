@@ -112,6 +112,9 @@
 \newenvironment{sol}[1][\unskip]{\begin{proof}[Solution #1]}{\end{proof}}
 \newenvironment{nt}[1][\unskip]{\begin{proof}[Note #1]\renewcommand{\qedsymbol}{}}{\end{proof}}
 \newenvironment{idea}[1][\unskip]{\begin{proof}[Proof idea #1]\renewcommand{\qedsymbol}{}}{\end{proof}}
+
+\newenvironment{exs}{\begin{ex}$ $\\[-12pt]\begin{cond}[leftmargin=20pt]}{\end{cond}\end{ex}}
+
 \NewDocumentCommand{\Case}{mo}{\IfNoValueTF{#2}{\emph{Case #1.}}{\emph{Case #1: #2.}}}
 \NewDocumentCommand{\Step}{mo}{\IfNoValueTF{#2}{\emph{Step #1.}}{\emph{Step #1: #2.}}}
 %r[]+g

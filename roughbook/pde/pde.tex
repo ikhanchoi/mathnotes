@@ -16,23 +16,23 @@
 
 
 
-
-\section{Kinetic theory}
-
-\subsection{Vlasov-Poisson equation}
+\section{Vlasov-Poisson equation}
 Consider a Cauchy problem of the \emph{Valsov-Poisson system}:
 \begin{pde*}
 &f_t+v\cdot\del_xf+\gamma E\cdot\del_vf=0,\:(t,x,v)\in\R_t^+\x\R_x^3\x\R_v^3,\\
-&E(t,x)=-\del_x\Delta_x^{-1}\rho,\\
+&E(t,x)=-\del_x\Phi\\
+&\Phi(t,x)=(-\Delta_x)^{-1}\rho,\\
 &\rho(t,x)=\tint f\,dv,\\
 &f(0,x,v)=f_0(x,v),
 \end{pde*}
 where $\gamma=\pm1$ denotes the charge of particles we are concerned with.
 For example, $\gamma=-1$ for electrons in plasma and $\gamma=+1$ for galaxies.
-For the boundaryless problem in which the conservative potential function vanishes at infinity, we have
-\[E=-\del_x(\tfrac1{4\pi|x|}*\rho)=\frac{x}{4\pi|x|^3}*\rho\]
+For the boundaryless problem in which the potential function vanishes at infinity, we have
+\[E=-\del_x\Phi=-\del_x(-\tfrac1{4\pi|x|}*\rho)=-\frac{x}{4\pi|x|^3}*\rho\]
 for $\gamma=-1$.
 ($\rho$ denotes mass density.)
+
+\subsection{A priori estimates}
 
 \begin{lem}
 \[\|\rho(t)\|_{L_x^{5/3}}\les1.\]
@@ -394,15 +394,15 @@ The surjectivity is equivalent to the existence of a second order inhomogeneous 
 \alpha_0u(a)+\alpha_1u'(a)=0,\quad\beta_0u(b)+\beta_1u'(b)=0.
 \end{gather*}
 Let $u_a$, $u_b$ be the unique solutions of the corresponding homogeneous equation with initial conditions
-\[\alpha_0u(a)+\alpha_1u'(a)=0,\quad\beta_0u(b)+\beta_1u'(b)=0.\]
+\[u_a(a)=-\alpha_1,\quad u'_a(a)=\alpha_0,\quad u_b(b)=-\beta_1,\quad u'_b(b)=\beta_0.\]
 Then we can define $L^{-1}:C^\infty([0,1])\to D(L)$ by
-\[L^{-1}f(x):=u_a(x)\int_x^1\frac{u_b}{W[u_a,u_b]}\frac f{(-p)}w\,+\,u_b(x)\int_0^x\frac{u_a}{W[u_a,u_b]}\frac f{(-p)}w,\]
+\[L^{-1}f(x):=u_a(x)\int_x^b\frac{u_b}{W[u_a,u_b]}\frac f{(-p)}w\,+\,u_b(x)\int_a^x\frac{u_a}{W[u_a,u_b]}\frac f{(-p)}w,\]
 where $W[u_a,u_b]:=u_au_b'-u_bu_a'$ denotes the Wronskian.
 This formula is derived from variation of parameters: we can compute $c_a$ and $c_b$ from the fact that
 \[\begin{pmatrix}0\\\frac f{(-p)}w\end{pmatrix}=\begin{pmatrix}u_a&u_b\\u_a'&u_b'\end{pmatrix}\begin{pmatrix}c_a'\\c_b'\end{pmatrix}\impl L(c_au_a+c_bu_b)=f.\]
-Then, we can easily check that
+Then, we can check that
 \[L^{-1}Lu=u\]
-for $u\in D(L)$, which implies $L$ is surjective.
+for $u\in D(L)$ by computation, which implies $L$ is surjective.
 \end{pf}
 
 
@@ -630,9 +630,9 @@ If $f$ is $C_t\Lip_x$ on $I\x\R^d$, the equation has a unique $C^1$ global solut
 \Step{1}[Construction of an approximation]
 Define a sequence of functions $\{x_n\}$ as
 \[x_{n+1}'=f(t,x_n(t)),\quad x_{n+1}(0)=a;\qquad x_0\equiv a.\]
-The explicit formula is given by
+These inductive linear equations are classically solved with the explicit formula
 \[x_{n+1}(t)=a+\int_0^tf(s,x_n(s))\,dx.\]
-The sequence belongs to $C(I)$.
+The sequence clearly belongs to $C^1(I)\subset C(I)$.
 
 \Step{2}[Convergence of the approximation]
 Let
@@ -648,8 +648,10 @@ By induction, we have
 &=MK^n\frac{t^{n+1}}{(n+1)!}.
 \end{align*}
 This proves the absolute convergence
-\[\sum_{n=0}^n\|x_{n+1}-x_n\|_{C_t}\les e^{KT}-1,\]
-hence $x_n$ converges uniformly.
+\[\sum_{n=0}^n\|x_{n+1}-x_n\|_\infty\les e^{KT}-1,\]
+hence $x_n$ uniformly converges in a local time.
+
+\[|x'_{n+1}(t)-x'_n(t)|\le|f(t,x_n(t))-f(t,x_{n-1}(t))|\le K|x_n(t)-x_{n-1}(t)|\le MK^{n+1}\frac{t^{n+1}}{(n+1)!}.\]
 
 \Step{3}[Verification of the approximation]
 Let $x^*$ be the limit of $x_n$.
@@ -661,7 +663,7 @@ Thus, $x^*$ is a solution and it is easy to check $x^*$ is $C^1$.
 \end{pf}
 
 \begin{thm}[Local existence]
-If $f$ is $C_t^0\Lip_x$ on $I\x\Omega$, then the equation has a unique $C^1$ local solution.
+If $f$ is $C_t\Lip_x$ on $I\x\Omega$, then the equation has a unique $C^1$ local solution.
 
 The interval of existence may be arbitrarily chosen such that
 \[T\le R\cdot\|f\|_{C_{t,x}(I\x\Omega)}^{-1}.\]

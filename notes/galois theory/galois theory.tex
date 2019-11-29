@@ -206,37 +206,41 @@ We can check this with the Euclidean algorithm.
 \end{pf}
 
 
-\begin{ex}
+\begin{exs}
+\item
 Consider a field extension $\C/\Q$.
-The minimal polynomial of $\sqrt2\in\C$ over $\Q$ is $x^2-2$ since it is monic irreducible and has a root $\sqrt2$.
-Similarly, the minimal polynomial of $\frac{-1+\sqrt{-3}}2\in\C$ over $\Q$ is $x^2+x+1$.
-\end{ex}
-\begin{ex}
-We can compute the degree of a field extension by finding minimal polynomial.
-Since the minimal polynomial $\sqrt2+\sqrt3$ over $\Q$ is $x^4-10x^2+1$, we have $[\Q(\sqrt2+\sqrt3):\Q]=4$.
+The minimal polynomial of $\sqrt2\in\C$ over $\Q$ is
+\[\mu_{\sqrt2,\Q}(x)=x^2-2\]
+since it is monic irreducible and has a root $\sqrt2$.
+Similarly, the minimal polynomial of $\omega=\frac{-1+\sqrt{-3}}2\in\C$ over $\Q$ is
+\[\mu_{\omega,\Q}(x)=x^2+x+1.\]
 
-On the other hand, recall that we have
-\[\left[\Q(\sqrt2,\sqrt3):\Q\right]=\left[\Q(\sqrt2,\sqrt3):\Q(\sqrt2)\right]\cdot\left[\Q(\sqrt2):\Q\right]=2\cdot2=4.\]
-Also, $\sqrt2+\sqrt3\in\Q(\sqrt2,\sqrt3)$ implies $\Q(\sqrt2+\sqrt3)\le\Q(\sqrt2,\sqrt3)$.
-Since the dimensions as vector spaces are equal, we get $\Q(\sqrt2+\sqrt3)=\Q(\sqrt2,\sqrt3)$.
+\item
+We can compute the degree of a field extension by finding minimal polynomial.
+Since the minimal polynomial $\sqrt2+\sqrt3$ over $\Q$ is
+\[\mu_{\sqrt2+\sqrt3,\Q}(x)=x^4-10x^2+1,\]
+we have
+\[[\Q(\sqrt2+\sqrt3):\Q]=\deg(x^4-10x^2+1)=4.\]
+
+On the other hand, we have
+\[[\Q(\sqrt2,\sqrt3):\Q]=[\Q(\sqrt2,\sqrt3):\Q(\sqrt2)]\cdot[\Q(\sqrt2):\Q]=2\cdot2=4.\]
+Since $\sqrt2+\sqrt3\in\Q(\sqrt2,\sqrt3)$ implies $\Q(\sqrt2+\sqrt3)\le\Q(\sqrt2,\sqrt3)$ and the dimensions as vector spaces are equal, we get $\Q(\sqrt2+\sqrt3)=\Q(\sqrt2,\sqrt3)$.
 We can also directly check
 \[\sqrt2=\frac12\left(\alpha-\frac1\alpha\right)\quad\text{and}\quad\sqrt3=\frac12\left(\alpha+\frac1\alpha\right),\]
 where $\alpha=\sqrt2+\sqrt3$.
 This kind of \emph{dimension argument} is one of powerful tools to attack field theory.
 It will be discovered later that the dimension argument has an analogy with computation of group orders in finite group theory.
-\end{ex}
 
-\begin{ex}
+\item
 The base field is important: we have
 \[\mu_{\sqrt2,\Q}(x)=x^2-2,\quad\text{but}\quad\mu_{\sqrt2,\Q(\sqrt2)}(x)=x-\sqrt2.\]
-\end{ex}
 
-\begin{ex}
+\item
 Although $\Q(\sqrt2)=\Q(1+\sqrt2)$, the minimal polynomials of $\sqrt2$ and $1+\sqrt2$ over $\Q$ are $x^2-2$ and $(x-1)^2-2$ respectively.
 Polynomials are usually used in order to be provided as a computational tool, so we frequently want to find a suitable minimal polynomial for a given field extension.
 However, note that a finite simple extension does not specify only one minimal polynomial as the above example.
-It is enough to find a suitable minimal polynomial that is easy to compute.
-\end{ex}
+It is enough to find only one minimal polynomial that is effective in computation.
+\end{exs}
 
 \subsubsection{Conjugates}
 
@@ -250,23 +254,20 @@ For the practical isomorphism map, we have the following theorem.
 It is also useful when we compute field automorphisms explicitly.
 
 \begin{thm}[Conjugation isomorphism]
-Let $E/F$ be a field extension and $\alpha,\beta\in E$.
-A map
-\[\phi:F(\alpha)\to F(\beta):\alpha\mapsto\beta\]
-fixing $F$ is a well-defined field homomorphism iff they are conjugates over $F$.
-In addition, if that is the case, $\phi$ is in fact an isomorphism.
+Let $E/F$ be a field extension.
+Two elements $\alpha,\beta\in E$ are conjugate over $F$ iff there is a field isomorphism $\phi:F(\alpha)\to F(\beta)$ such that
+\[\phi:\alpha\mapsto\beta\quad\text{and}\quad\phi|_F=\id|_F.\]
 \end{thm}
 \begin{pf}
-($\Leftarrow$)
-Notice that the two conditions $\phi(\alpha)=\beta$ and $\phi|_F=\id_F$ force $\phi$ to be unique.
-Let $\mu\in F[x]$ be the common minimal polynomial of $\alpha$ and $\beta$ over $F$ and consider a map
-\[\psi:F(\alpha)\to{\sim}F[x]/(\mu)\to{\sim}F(\beta):\alpha\mapsto x+(\mu)\mapsto\beta.\]
-The intermediate isomorphisms are given by the quotient of evaluation maps.
-Since $\psi(\alpha)=\beta$ and $\psi|_F=\id_F$, we have $\psi=\phi$.
-It shows that $\phi$ is a well-defined field isomorphism.
-
 ($\Rightarrow$)
-Suppose $\phi$ is a field homomorphism fixing $F$.
+Let $\mu\in F[x]$ be the common minimal polynomial of $\alpha$ and $\beta$ over $F$ and define a map
+\[\phi:F(\alpha)\to{\sim}F[x]/(\mu)\to{\sim}F(\beta):\alpha\mapsto x+(\mu)\mapsto\beta.\]
+Since it is clearly a field homomorphism and we can define the inverse in the same manner, so is an isomorphism.
+It is easy to check $\phi(\alpha)=\beta$ and $\phi|_F=\id_F$.
+In particular, the two conditions uniquely determine $\phi$.
+
+($\Leftarrow$)
+Suppose $\phi:F(\alpha)\to F(\beta):\alpha\mapsto\beta$ is a field homomorphism fixing $F$.
 Then, $\phi$ commutes with a polynomial function with coefficients in $F$.
 From
 \[\mu_{\alpha,F}(\beta)=\mu_{\alpha,F}(\phi(\alpha))=\phi(\mu_{\alpha,F}(\alpha))=\phi(0)=0,\]
@@ -278,25 +279,28 @@ Let $\phi:F\to F$ is a field automorphism.
 Then, $\alpha$ and $\phi(\alpha)$ are always conjugates.
 \end{cor}
 
-\begin{ex}
+\begin{exs}
+\item
 The base fields are important.
-There are two conjugates of $\sqrt2\in\C$ over $\Q$: $\pm\sqrt2$.
-However, there is only one conjugate of $\sqrt2$ over $\Q(\sqrt2)$ or $\C$: itself.
-\end{ex}
-\begin{ex}
-There are two conjugates of $\omega:=\frac{-1+\sqrt{-3}}2\in\C$ over $\Q$: $\omega$ and $\cl\omega$.
-It means that there are only two automorphisms on $\Q(\omega)$: one is identity, and the other is the complex conjugation.
-\end{ex}
-\begin{ex}
-Two different conjugates can define a same field homomomorphism.
-See Section 3.
-\end{ex}
-\begin{ex}
+There are two conjugates of $\sqrt2\in\C$ over $\Q$: $\{\pm\sqrt2\}$.
+However, there is only one conjugate of $\sqrt2$ over $\Q(\sqrt2)$ or $\C$: itself $\{\sqrt2\}$.
+
+\item
+There are two conjugates of $\omega=\frac{-1+\sqrt{-3}}2\in\C$ over $\Q$: $\{\omega,\,\cl\omega=\omega^{-1}\}$.
+It implies that there are at most two field automorphisms on $\Q(\omega)$ fixing $\Q$.
+In fact, there are exactly two; one is identity, and the other is the complex conjugation.
+
+\item
+For almost every case in applications, the number of conjugates is same as the degree of its minimal polynomial.
+However, there are counterexamples; two field isomorphisms $\phi_1:\alpha\mapsto\beta_1$ and $\phi_2:\alpha\mapsto\beta_2$ may be the same even for $\beta_1\ne\beta_2$.
+See Section 3 for the detailed discussion.
+
+\item
 The isomorphism does not have to be an automorphism.
-There are four conjugates of $\sqrt[4]2$ over $\Q$: $\pm\sqrt[4]2$ and $\pm i\sqrt[4]2$.
+There are four conjugates of $\sqrt[4]2$ over $\Q$: $\{\pm\sqrt[4]2,\,\pm i\sqrt[4]2\}$.
 However, $\Q(\sqrt[4]2)\ne\Q(i\sqrt[4]2)$ even though they are isomorphic.
 See Section 4.
-\end{ex}
+\end{exs}
 
 
 
@@ -356,18 +360,20 @@ We, however, proceed with this notation to grasp concepts of algebraic extension
 \end{rmk}
 
 \begin{lem}
-Let $E,F\le L$ be fields.
+Let $L$ be any field containing two fields $E,F$.
 Then,
 \begin{cond}
 \item $F\le E$ implies $\cl F\le \cl E$,
 \item $\cl{\cl F}=\cl F$.
 \end{cond}
-\begin{pf}
-(1)
+\end{lem}
+\begin{pf}$ $\\[-12pt]
+\begin{cond}
+\item
 Suppose $\alpha\in\cl F$ so that there is $f\in F[x]$ such that $f(\alpha)=0$.
 Since $f\in F[x]\subset E[x]$, the element $\alpha$ is also algebraic over $E$, hence $\alpha\in\cl E$.
 
-(2)
+\item
 It is enough to show $\cl{\cl F}\subset\cl F$.
 Let $\alpha\in\cl{\cl F}$ so that we can find $f\in\cl F[x]$ such that
 \[f(\alpha)=\sum_{i=0}^na_i\alpha^i=0.\]
@@ -376,37 +382,34 @@ In other words, $\alpha$ is algebraic over $E$.
 
 The field extension $E/F$ is finite since all generators $a_i$ are algebraic over $F$, and $E(\alpha)/E$ is also finite since $\alpha$ is algebraic over $E$.
 Therefore, the field extension $E(\alpha)/F$ is finite, and $F(\alpha)/F$ is also finite, hence the algebraicity of $\alpha$ over $F$.
+\end{cond}
 \end{pf}
-\end{lem}
 
-\begin{lem}
-Let $E,F\le L$ be fields.
-A field extension $E/F$ is algebraic iff $\cl E=\cl F$.
-\end{lem}
-\begin{pf}
+\begin{thm}
+Let $E/F$ be a field extension.
+\begin{cond}
+\item Fix any $L\ge E$. Then, $E/F$ is algebraic iff $\cl E=\cl F$.
+\item Let $F\le K\le E$. Then, $E/F$ is algebraic iff $E/K$ and $K/F$ are algebraic.
+\item The compositum $E_1E_2/F$ is algebriac if $E_1/F$ and $E_2/F$ are algebraic.
+\end{cond}
+\end{thm}
+\begin{pf}$ $\\[-12pt]
+\begin{cond}
+\item
 If $E/F$ is algebraic, then $F\le E\le\cl F$ implies $\cl F\le\cl E\le\cl{\cl F}=\cl F$.
 Conversely, if $\cl E=\cl F$, then $\alpha\in E$ implies $\alpha\in E\le\cl E=\cl F$, hence $E$ is algebraic over $F$.
-\end{pf}
 
-\begin{thm}
-Let $K$ be an intermediate field of a field extension $E/F$.
-Then, $E/F$ is algebraic iff $E/K$ and $K/F$ are algebraic.
-\end{thm}
-\begin{pf}[1]
+\item
 Choose a big $L$.
 Since $\cl E\ge\cl K\ge\cl F$, we have $\cl E=\cl F$ iff $\cl E=\cl K$ and $\cl K=\cl F$.
-\end{pf}
-\begin{pf}[2]
-A direct proof uses the argument in the proof of above lemma as follows: if we take $\alpha\in E$ that is algebraic over $K$, and if $a_i$ denotes the coefficients of $\mu_{\alpha,K}$, then the field extension $F(a_1,\cdots,a_n,\alpha)/F$ is finite, so $\alpha$ is algebriac over $F$.
-\end{pf}
 
-\begin{thm}
-Let $E_1/F$ and $E_2/F$ are algebraic extensions in a superfield $L$.
-Then, the compositum $E_1E_2/F$ is algebriac.
-\end{thm}
-\begin{pf}
+\item[($2\,'$)]
+A direct proof uses the argument in the proof of above lemma as follows: if we take $\alpha\in E$ that is algebraic over $K$, and if $a_i$ denotes the coefficients of $\mu_{\alpha,K}$, then the field extension $F(a_1,\cdots,a_n,\alpha)/F$ is finite, so $\alpha$ is algebriac over $F$.
+
+\item
 Choose a big $L$.
-Since $E_1,E_2\le\cl F$, we have $E_1E_2\le\cl F$, so $\cl{E_1E_2}=\cl{F}$.
+Since $E_1,E_2\le\cl F$, we have $E_1E_2\le\cl F$, so $\cl{E_1E_2}=\cl{F}$.\qedhere
+\end{cond}
 \end{pf}
 
 \begin{rmk}
@@ -417,16 +420,17 @@ We skip the proof.
 
 
 
-\begin{ex}
-For a transcendental number such as $\pi$, an extension $\Q(\alpha)/\Q$ is not algebraic since it contains an element that is not algebraif.
-To give another reason, that is because a simple extension is algebraic if and only if it is finite.
-\end{ex}
-\begin{ex}
+\begin{exs}
+\item
+For a transcendental number such as $\pi$, the extension $\Q(\pi)/\Q$ is not algebraic since it contains an element that is not algebraic.
+It is also because a simple extension is algebraic if and only if it is finite but $[\Q(\pi):\Q]=\infty$.
+
+\item
 Finite extensions are not only the algebraic extensions.
 For examples,
 \[\Q(\sqrt2,\sqrt[4]2,\sqrt[8]2,\cdots),\quad\Q(\sqrt2,\sqrt3,\sqrt5,\sqrt7,\cdots)\]
 are infinite algebraic extensions.
-\end{ex}
+\end{exs}
 
 
 
@@ -498,12 +502,12 @@ This is a relation with relative algebraic closure: the relative algebraic closu
 The proposition allows us to choose a standard algebraic closure when provided a large superfield like $\C$.
 In number theory, it is convenient for all algebraically closed fields to be considered that they are in $\C$. 
 
-\begin{ex}
+\begin{exs}
+\item
 The set of all complex numbers $\C$ is an algebraically closed field by the fundamental theorem of algebra.
-\end{ex}
-\begin{ex}
+\item
 The set of all algebraic numbers (over $\Q$) is an algebraically closed field by the proposition above and is a subfield of $\C$.
-\end{ex}
+\end{exs}
 
 
 \subsubsection{Uniqueness and existence}
@@ -771,9 +775,6 @@ multiplcation formula
 \subsection{Galois correspondence}
 
 
-\subsection{Insolvability of quintics}
-
-
 \subsection{Finite fields}
 % finite field order definition
 \begin{lem}[Frobenius endomorphism]
@@ -839,10 +840,12 @@ leads a contradiction.
 The Galois group $\Gal(\F_{p^n}/\F_p)$ is cyclic.
 \end{thm}
 
-\subsection{Cyclotomic fields}
+\subsection{Cyclotomic extensions}
 % Dummit-Foote 552p
 % abelian extension
 
+
+\subsection{Radical extensions}
 
 
 
@@ -861,7 +864,8 @@ The Galois group $\Gal(\F_{p^n}/\F_p)$ is cyclic.
 \item resolvent polynomial2: cubic resolvent
 \item double quadratic, reciprocal equation: finding symmetry
 \item number of imaginary roots=2n: composition of n transpositions
-\item $x^n-\alpha$ :  Jacobson-Velez
+\item radiacal extension : Jacobson-Velez,
+\item semidirect product
 \item reduction modulo p (over $\F_p$)
 \end{itemize}
 

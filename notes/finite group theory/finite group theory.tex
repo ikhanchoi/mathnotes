@@ -217,12 +217,10 @@ Then, $G\cong N\rtimes_\f H$, where the action $\f$ is given by conjugation
 
 
 \subsubsection{Two primes}
-\begin{ex}
-Let $|G|=p^2$.
+\begin{ex}[$|G|=p^2$]
 \end{ex}
 
-\begin{ex}
-Let $|G|=pq$.
+\begin{ex}[$|G|=pq$]
 \end{ex}
 
 
@@ -231,32 +229,60 @@ Let $|G|=pq$.
 \subsubsection{Three primes}
 \begin{lem}
 Let $N,H$ be groups.
-Let $\f,\f':H\to\Aut(N)$ be group actions.
-If $H$ is cyclic and the images of $\f$ and $\f'$ are conjugate, then
-\[N\rtimes_\f H\cong N\rtimes_{\f'}H.\]
+Let $\f_1,\f_2:H\to\Aut(N)$ be group actions.
+If there are $\nu\in\Aut(N)$ and $\eta\in\Aut(H)$ such that a diagram
+\begin{cd}
+H \ar{r}{\f_1}\ar{d}{\eta} & \Aut(N) \ar{d}{\nu\,\cdot\,\nu^{-1}}\\
+H \ar{r}{\f_2} & \Aut(N)
+\end{cd}
+commutes, then a map
+\[N\rtimes_\f H\to N\rtimes_{\f'}H:(n,h)\mapsto(\nu(n),\eta(h))\]
+is an isomorphism.
+\end{lem}
+\begin{lem}
+
 \end{lem}
 
 
-\begin{ex}
-Let $|G|=p^3$.
+\begin{ex}[$|G|=p^3$]
 \end{ex}
-\begin{ex}
-Let $|G|=p^2q$.
 
-Let $n_q=1$.
+
+\begin{ex}[$|G|=p^2q$]$ $\\[-10pt]
+
+Let $1+p<q$.
+Then, $n_q=1$.
 \begin{cond}
 \item \[\f:Z_{p^2}\to\Aut(Z_q)\cong Z_{q-1}.\]
+There are $\min\{2,v_p(q-1)\}$ nonabelian groups.
 \item \[\f:Z_p\x Z_p\to\Aut(Z_q)\cong Z_{q-1}.\]
+There are $\min\{1,v_p(q-1)\}$ nonabelian groups.
 \end{cond}
 
-Let $n_p=1$.
+Let $p>q$.
+Then, $n_p=1$.
 \begin{cond}
-\item \[\f:Z_q\to\Aut(Z_{p^2})\cong Z_{p(p-1)}.\]
-\item \[\f:Z_q\to\Aut(Z_p\x Z_p)\cong\GL_2(\F_p).\]
+\item $G\cong Z_{p^2}\rtimes Z_q$.
+Consider
+\[\f:Z_q\to\Aut(Z_{p^2})\cong Z_{p(p-1)}.\]
+There are $\min\{1,v_q(p-1)\}$ nonabelian groups.
+\item $G\cong(Z_p\x Z_p)\rtimes Z_q$.
+Consider
+\[\f:Z_q\to\Aut(Z_p\x Z_p)\cong\GL_2(\F_p).\]
+There are
+\[\begin{cases}2&,q=2\\1&,q\mid p+1\\\frac{q+3}2&,q\mid p-1\\0&,\text{otherwise}\end{cases}\]
+nonabelian groups.
+Since the number of one-dimensional linear subspaces is $q+1$ and the number of symmetric subspaces is 2 in $\F_q^2$, we have $\frac{(q+1)-2}2+2=\frac{q+3}2$ conjugacy classes of subgroups of order $q$ in $\GL_2(\F_p)$.
 \end{cond}
+
+Let $p=2$ and $q=3$.
+
 \end{ex}
-\begin{ex}
-Let $|G|=pqr$.
+
+
+
+
+\begin{ex}[$|G|=pqr$]
 \end{ex}
 
 
@@ -264,7 +290,7 @@ Let $|G|=pqr$.
 \begin{figure}[h!]
 \begin{tabular}{c|cccccccc}
 \hline
-$|G|=p^2q$&12&20&28&44&45&52&63\\
+$|G|=p^2q\ (p<q)$&12&20&28&44&45&52&63\\
 \hline
 $\#$ of groups&5&5&4&4&2&5&4\\
 \hline
@@ -273,7 +299,7 @@ $\#$ of groups&5&5&4&4&2&5&4\\
 
 \begin{tabular}{c|cccc}
 \hline
-$|G|=p^2q$&12&18&50&(75)\\
+$|G|=p^2q\ (p>q)$&12&18&50&(75)\\
 \hline
 $\#$ of groups&5&5&5&3\\
 \hline
@@ -296,16 +322,16 @@ Under 64, there are some exceptions whose orders are formed by product of more t
 \begin{figure}[h!]
 \begin{tabular}{c|c|cccc|c|c}
 \hline
-$|G|=p_1\cdots p_4$&16&24&40&54&56&36&60\\
+$|G|=\prod^4p$&16&24&40&54&56&36&60\\
 \hline
 $\#$ of groups&14&15&14&15&13&14&13\\
 \hline
 \end{tabular}
 \vspace{10pt}
 
-\begin{tabular}{c|c|c|c}
+\begin{tabular}{c|c|c||c}
 \hline
-$|G|=p_1\cdots p_5$&32&48&64\\
+$|G|=\prod^{5\text{ or }6}p$&32&48&64\\
 \hline
 $\#$ of groups&51&52&267\\
 \hline
