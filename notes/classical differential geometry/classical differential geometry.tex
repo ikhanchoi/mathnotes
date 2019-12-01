@@ -68,7 +68,7 @@ Related to the choice of parametrizations, the following issues are always impor
 \end{itemize}
 
 \begin{defn}
-Let $M\subset\R^n$ be a regular curve or a regular surface.
+Let $M$ be the image of a parametrization $\a:U\subset\R^m\to\R^n$.
 The inverse $\f:M\to U$ of a parametrization is called a \emph{coordinate map}.
 \end{defn}
 
@@ -169,7 +169,7 @@ Do not forget that all differentiations in this note will be done thanks to the 
 We introduce the notion of tangent spaces, geometrically the spaces of vectors that starts from each base point, by differentiation of parametrization.
 In this note we define tangent spaces in several equivalent ways:
 \begin{defn}
-Let $M$ be a regular curve or a regular surface with an $m$-dimensional parametrization $\a:U\to M\subset\R^n$.
+Let $M$ be the image of a parametrization $\a:U\subset\R^m\to\R^n$.
 Let $p\in M$ be a point and $x=\a^{-1}(p)\in U$ be the coordinates of $p$.
 The \emph{tangent space} of $M$ at $p$, denoted by $T_pM$, can be defined as either one of the followings:
 \begin{cond}
@@ -219,7 +219,9 @@ Let $\a:U\to\R^n$ be an $m$-dimensional parametrization with $M=\im\a$.
 \item A \emph{vector field} is a map $X:M\to\R^n$ such that $X\o\a:U\to\R^n$ is smooth.
 \item A \emph{tangent vector field} is a vector field $X:M\to\R^n$ such that $X|_p\in T_pM$.
 \end{cond}
-In general, vector fields are basically assumed to be tangent. However, we will distinguish them in this note.
+The set of tangent vector fields is often denoted by $\fX(M)$.
+In general, vector fields are basically assumed to be tangent.
+However, we will distinguish them in this note.
 \end{defn}
 
 \begin{defn}
@@ -235,21 +237,41 @@ where $X=\sum_iX^i\a_i$.
 \end{cond}
 \end{defn}
 
+% Differentiability is independent on the choice of parametrizations!!!
+
 \begin{defn}
-Let $M$ be a regular curve or surface with a parametrization $\a$.
+Let $M$ be the image of a parametrization $\a:U\subset\R^m\to\R^n$.
 Let $v=\sum_iv^i\a_i|_p\in T_pM$ be a tangent vector at $p=\a(x)$.
 For a function $f:M\to\R$, its partial derivative is defined by
 \[\pd_vf(p):=\sum_{i=1}^mv^i\pd_i(f\o\a)(x)\in\R.\]
 For a vector field $X:M\to\R^n$, its partial derivative is defined by
 \[\pd_vX|_p:=\sum_{i=1}^mv^i\pd_i(X\o\a)(x)\in\R^n.\]
 This definition is not dependent on parametrization $\a$.
-Notice that if $v$ is a tangent vector field on $M$, then
-\[\pd_vf:M\to\R,\qquad\pd_vX:M\to\R^n\]
-define a new scalar field and a new vector field respectively.
 \end{defn}
 
+\begin{prop} % Einstein convention!!!
+Let $M$ be the image of a parametrization.
+Let $X$ be a tangent vector field on $M$.
+\begin{cond}
+\item If $f$ is a function, then so is $\pd_Xf$.
+\item If $Y$ is a vector field, then so is $\pd_XY$.
+\item If $Y$ is a tangent vector field, then so is $\pd_XY-\pd_YX$.
+\end{cond}
+\end{prop}
+\begin{pf}
+(1) and (2) are clear.
+For (3), if we let $X=\sum_iX^i\a_i$ and $Y=\sum_jY^j\a_j$ for a parametrization $\a:U\subset\R^m\to\R^n$, then
+\begin{align*}
+\pd_XY-\pd_YX
+&=\pd_X(Y^j\a_j)-\pd_Y(X^i\a_i)\\
+&=[(\pd_XY^j)\a_j+Y^j\pd_X\a_j]-[(\pd_YX^i)\a_i+X^i\pd_Y\a_i]\\
+&=[(\pd_XY^j)\a_j+Y^jX^i\pd_i\a_j]-[(\pd_YX^i)\a_i+X^iY^j\pd_i\a_j]\\
+&=(\pd_XY^j)\a_j-(\pd_YX^i)\a_i.\qedhere
+\end{align*}
+\end{pf}
+
 \begin{notn*}
-Let $M$ be an either regular curve or regular surface that is embedded in $\R^3$.
+Let $M$ be the image of a parametrization $\a$.
 For derivatives of functions on $M$ by tangent vectors, we will use
 \[\pd_{\a_i}f=\pd_if,\quad\pd_{\a_t}f=\pd_tf=f',\quad\pd_{\a_x}f=\pd_xf=f_x.\]
 For derivatives of vector fields on $M$ by tangent vectors, we will use
@@ -257,7 +279,7 @@ For derivatives of vector fields on $M$ by tangent vectors, we will use
 We will \emph{not} use $f_i$ or $X_i$ for $\pd_if$ and $\pd_iX$ because it is confusig with coordinate representations, and \emph{not} use the nabula symbol $\del_v$ in this sense because it will be devoted to another kind of derivatives introduced in Section 4.
 \end{notn*}
 
-\begin{exs}
+\begin{exs} % example 많이 추가하기
 \item
 Let $\a$ be an $m$-dimensional parametrization.
 The value of $\pd_i\a=\a_i:\im\a\to\R^3$ is always a tanget vector at each point $p=\a(x)$, and $\a_i$ becomes a vector field.
@@ -704,20 +726,20 @@ Let $v,w$ be linearly independent tangent vectors in $T_pS$ for a point $p\in S$
 Then, $S$ admits a parametrization $\a$ such that $\a_x|_p=v$ and $\a_y|_p=w$.
 \end{thm}
 \begin{thm}
-Let $v,w$ be linearly independent tangent vector fields on a regular surface $S$.
-Then, $S$ admits a parametrization $\a$ such that $\a_x|_p$ and $\a_y|_p$ are parallel to $v|_p,w|_p$ respectively for each $p\in S$.
+Let $X,Y$ be linearly independent tangent vector fields on a regular surface $S$.
+Then, $S$ admits a parametrization $\a$ such that $\a_x|_p$ and $\a_y|_p$ are parallel to $X|_p,Y|_p$ respectively for each $p\in S$.
 \end{thm}
 \begin{thm}
-Let $v,w$ be linearly independent tangent vector fields on a regular surface $S$.
-If $\pd_v\pd_wf=\pd_w\pd_vf$ for all smooth functions $f$, then $S$ admits a parametrization $\a$ such that $\a_x|_p=v|_p$ and $\a_y|=w|_p$ for each $p\in S$.
+Let $X,Y$ be linearly independent tangent vector fields on a regular surface $S$.
+If $\pd_XYf=\pd_YX$, then $S$ admits a parametrization $\a$ such that $\a_x|_p=X|_p$ and $\a_y|=Y|_p$ for each $p\in S$.
 \end{thm}
 
-Let $S$ be a regular surface.
+Let $S$ be a regular surface embedded in $\R^3$.
 The inner product on $T_pS$ induced from the standard inner product of $\R^3$ can be represented not only as a matrix
 \[\mat{1&0&0\\0&1&0\\0&0&1}\]
 in the basis $\{(1,0,0),(0,1,0),(0,0,1)\}\subset\R^3$, but also as a matrix
 \[\mat{\<\a_x,\a_x\>&\<\a_x,\a_y\>\\\<\a_y,\a_x\>&\<\a_y,\a_y\>}\]
-in the basis $\{\a_x,\a_y\}\subset T_pS$.
+in the basis $\{\a_x|_p,\a_y|_p\}\subset T_pS$.
 
 \begin{defn}
 \emph{Metric coefficients}
@@ -736,17 +758,19 @@ in the basis $\{\a_x,\a_y\}\subset T_pS$.
 
 \subsubsection{Differentiation of tangent vectors}
 
-\begin{defn}
-Let $\a$ be a regular surface.
-The \emph{Gauss map} or \emph{normal unit vector} $\nu:U\to\R^3$ is a vector field on $\a$ defined by:
-\[\nu(x,y):=\frac{\a_x\times \a_y}{\|\a_x\times \a_y\|}(x,y).\]
-The set of vector fields $\{\a_x,\a_y,\nu\}$ forms a basis of $T_p\R^3$ at each point $p$ on $\a$.
-The Gauss map is uniquely determined up to sign as $\a$ changes.
-\end{defn}
+
 
 \begin{defn}
 Let $\a:U\to\R^3$ be a regular surface.
-The \emph{Gauss formula} is:
+The \emph{Gauss map} or \emph{normal unit vector} $\nu:U\to\R^3$ is a vector field on $\a$ defined by:
+\[\nu(x,y):=\frac{\a_x\times \a_y}{\|\a_x\times \a_y\|}(x,y).\]
+The set of vector fields $\{\a_x|_p,\a_y|_p,\nu|_p\}$ forms a basis of $T_p\R^3$ at each point $p$ on $\a$.
+The Gauss map is uniquely determined up to sign as $\a$ changes.
+\end{defn}
+
+\begin{defn}[Gauss formula, $\Gamma_{ij}^k$, $L_{ij}$]
+Let $\a:U\to\R^3$ be a regular surface.
+Define indexed families of smooth functions $\{\Gamma_{ij}^k\}_{i,j,k=1}^2$ and $\{L_{ij}\}_{i,j=1}^2$ by the Gauss formula
 \begin{alignat*}{2}
 \a_{xx}&=:\Gamma_{11}^1\a_x+\Gamma_{11}^2\a_y+L_{11}\nu,&\qquad
 \a_{xy}&=:\Gamma_{12}^1\a_x+\Gamma_{12}^2\a_y+L_{12}\nu,\\
@@ -756,29 +780,52 @@ The \emph{Gauss formula} is:
 The \emph{Christoffel symbols} refer to eight functions $\{\Gamma_{ij}^k\}_{i,j,k=1}^2$.
 The Christoffel symbols and $L_{ij}$ \emph{do depend} on $\a$.
 \end{defn}
-
-% symmetry of christoffel symbols and L's
-% partial derivative of arbitrary tangent vector
+We can easily check the symmetry $\Gamma_{ij}^k=\Gamma_{ji}^k$ and $L_{ij}=L_{ji}$.
+Also,
+\begin{align*}
+\pd_XY
+&=X^i\pd_i(Y^j\a_j)\\
+&=X^i(\pd_iY^k)\a_k+X^iY^j\pd_i\a_j\\
+&=\left(X^i\pd_iY^k+X^iY^j\Gamma_{ij}^k\right)\a_k+X^iY^jL_{ij}\nu.
+\end{align*}
 
 % Examples
 
 
 \subsubsection{Differentiation of normal vector}
-The partial derivative $\pd_v\nu$ is a tangent vector field since
-\[\<\pd_v\nu,\nu\>=\frac12\pd_v\<\nu,\nu\>=0.\]
 
+The partial derivative $\pd_X\nu$ is a tangent vector field since
+\[\<\pd_X\nu,\nu\>=\frac12\pd_X\<\nu,\nu\>=0.\]
+Therefore, we can define the following useful operator.
 \begin{defn}
-Let $\a:U\to\R^3$ be a regular surface with $\im\a=S$.
-The \emph{shape operator} is $\cS:\fX(M)\to\fX(M)$ defined as
-\[\cS(v):=-\pd_v\nu.\]
+Let $S$ be a regular surface embedded in $\R^3$.
+The \emph{shape operator} is $\cS:\fX(S)\to\fX(S)$ defined as
+\[\cS(X):=-\pd_X\nu.\]
 \end{defn}
+\begin{prop}
+The shape operator is self-adjoint, i.e. symmetric.
+\end{prop}
+\begin{pf}
+Recall that $\pd_XY-\pd_YX$ is a tangent vector field.
+Then,
+\[\<X,\cS(Y)\>=\<X,-\pd_Y\nu\>=\<\pd_YX,\nu\>=\<\pd_XY,\nu\>=\<\cS(X),Y\>.\qedhere\]
+\end{pf}
 
-Self-adjoint
-\[\<v,\cS(w)\>=\<v,-\pd_w\nu\>=\<\pd_wv,\nu\>=\<\pd_vw,\nu\>=\<\cS(v),w\>\]
-since $\pd_wv-\pd_vw$ is a tangent vector
-\[\pd_wv-\pd_vw=[(\pd_wv^i)\a_i+v^iw^j\pd_j\a_i]-[(\pd_vw^i)\a_i+w^iv^j\pd_i\a_j]=(\pd_wv^i-\pd_vw^i)\a_i.\]
+% The reason of minus sign in the shape operator.
 
-%The reason of minus sign in the shape operator.
+\begin{thm}
+Let $\a:U\to\R^3$ be a regular surface and $\cS$ be the shape operator.
+Then $\cS$ has the coordinate representation
+\[\cS=\mat{g_{11}&g_{12}\\g_{21}&g_{22}}^{-1}\mat{L_{11}&L_{12}\\L_{21}&L_{22}}\]
+with respect to the frame $\{\a_x,\a_y\}$ for tangent spaces.
+In other words, if we let $X=X^i\a_i$ and $\cS(X)=\cS(X)^j\a_j$, then
+\[\mat{\cS(X)^1\\\cS(Y)^2}=\mat{g_{11}&g_{12}\\g_{21}&g_{22}}^{-1}\mat{L_{11}&L_{12}\\L_{21}&L_{22}}\mat{X^1\\X^2}.\]
+\end{thm}
+\begin{pf}
+Let $\cS(X)^j=\cS_i^jX_i$.
+Then, $g_{ik}\,\cS_j^k=L_{ij}$ since
+\[g_{ik}X^i\cS_j^kY^j=\<X,\cS(Y)\>=\<\pd_XY,\nu\>=X^iY^jL_{ij}.\qedhere\]
+\end{pf}
 
 % principal curvature
 % mean curvature, gaussian curvature
@@ -797,16 +844,12 @@ since $\pd_wv-\pd_vw$ is a tangent vector
 \begin{defn}
 Let $\a:U\to\R^3$ be a regular surface.
 \begin{gather*}
-E:=\<\a_x,\a_x\>,\qquad F:=\<\a_x,\a_y\>,\qquad G:=\<\a_y,\a_y\>,\\
-L:=\<\a_{xx},\nu\>,\qquad M:=\<\a_{xy},\nu\>,\qquad N:=\<\a_{yy},\nu\>.
+E:=\<\a_x,\a_x\>=g_{11},\qquad F:=\<\a_x,\a_y\>=g_{12},\qquad G:=\<\a_y,\a_y\>=g_{22},\\
+L:=\<\a_{xx},\nu\>=L_{11},\qquad M:=\<\a_{xy},\nu\>=L_{12},\qquad N:=\<\a_{yy},\nu\>=L_{22}.
 \end{gather*}
 \end{defn}
 
 
-\begin{thm}
-The shape operator has the coordinate representation
-\[S=\mat{E&F\\F&G}^{-1}\mat{L&M\\M&N}=\frac1{EG-F^2}\mat{GL-FM&GM-FN\\EM-FL&EN-FM}.\]
-\end{thm}
 \begin{cor}
 We have $GM-FN=EM-FL$, and the \emph{Weingarten equations}:
 \begin{align*}
@@ -817,10 +860,10 @@ We have $GM-FN=EM-FL$, and the \emph{Weingarten equations}:
 
 
 
-
-
-
+\begin{thm}
 \[\Gamma_{ij}^l=\frac12g^{kl}(g_{ik,j}-g_{ij,k}+g_{kj,i}).\]
+\end{thm}
+
 \[\frac12(\log g)_x=\Gamma_{11}^1.\]
 
 \[\nu_x\x\nu_y=K\sqrt{\det g}\ \nu.\]
@@ -838,7 +881,7 @@ We have $GM-FN=EM-FL$, and the \emph{Weingarten equations}:
 
 
 \begin{thm}[Gaussian curvature formula]
-$ $\\[-10pt]
+$ $\\[-12pt]
 \begin{cond}
 \item
 In general,
@@ -855,6 +898,18 @@ where $\del f$ denotes the gradient $\del f=(f_x,f_y,f_z)$.
 \item(Brioschi) $E,F,G$ describes $K$.
 \end{cond}
 \end{thm}
+
+\begin{pf}$ $\\[-12pt]
+\begin{cond}
+\item Clear.
+\item
+We have $GM=EM$ and
+\[\nu_x=-\frac LE\a_x-\frac MG\a_y,\qquad\nu_y=-\frac ME\a_x-\frac NG\a_y.\]
+\[\nu_x\x\nu_y=\frac{LN-M^2}{EG}\a_x\x\a_y\]
+After curvature tensors...
+\end{cond}
+\end{pf}
+
 
 
 \begin{exs}
@@ -957,6 +1012,7 @@ To $n$-dimensional.
 % 공변미분: 근데 걍 3차원공간 편미분에다가 이 좌표변환 추가 텀 붙은 크리스토펠 텀을 추가하면 그 미분 결과가 텐서(접벡터)가 됨
 
 \subsubsection{Metric intrinsicness}
+% metric 정의
 % isometry
 % 가우스의 놀라운 정리: 크리스토펠 -> 곡률텐서 -> 가우스곡률?
 
@@ -982,22 +1038,11 @@ the map $f$ is an isometry.
 
 \subsection{Covariant derivatives}
 
-\iffalse
-\begin{cond}
-\item Coordinate definition
-\item Orthogonal projection
-\item Axiomatic Koszul connection
-\item Exterior covariant derivative
-\item via parallel transport
-\item Vertical projection
-\end{cond}
-\fi
-
-
 \subsubsection{Orthogonal projection}
 We are going to think about ``intrinsic'' derivatives for tangent vectors.
-For coordinate independence, directional derivatives of a tangent vector field should be at least a tangent vector field, which is false for the obvious partial derivatives in the embedded surface setting; for example, $\rT$ is a tangent vector, but $\rN=\rT'$ is not.
-The Gauss formula reads
+For coordinate independence, directional derivatives of a tangent vector field should be at least a tangent vector field, which is false for the obvious partial derivatives in the embedded surface setting; for example, $\rT$ is a tangent vector, but $\rN=\kappa\rT'$ is not tangent.
+
+Recall that the Gauss formula reads
 \[\pd_i\a_j=\Gamma_{ij}^k\a_k+L_{ij}\nu\]
 so that we have
 \begin{align*}
@@ -1006,7 +1051,7 @@ so that we have
 &=X^i(\pd_iY^k)\a_k+X^iY^j\pd_i\a_j\\
 &=\left(X^i\pd_iY^k+X^iY^j\Gamma_{ij}^k\right)\a_k+X^iY^jL_{ij}\nu.
 \end{align*}
-If we write $\del_XY=\left(X^i\pd_iY^k+X^iY^j\Gamma_{ij}^k\right)\a_k$, then
+If we write $\del_XY=\left(X^i\pd_iY^k+X^iY^j\Gamma_{ij}^k\right)\a_k$, then it embodies the orthogonal projection of $\pd_XY$ onto its tangent space, and we have
 \[\pd_XY=\del_XY+\II(X,Y)\nu.\]
 
 \begin{defn}
@@ -1036,12 +1081,14 @@ since
 
 
 
-\subsubsection{Connection}
+\subsubsection{Connections}
 
 We will give a coordinate-free axiomatic definition of covariant derivatives and show that they coincide.
+By doing this, we obtain an alternative proof for the statement that covariant derivatives are intrinsic.
 
 \begin{defn}[Affine connection]
-Define $\del:\fX(M)\x\fX(M)\to\fX(M)$ axiomatically such that
+Let $M$ be the image of a parametrization.
+An \emph{affine connection} is a map $\del:\fX(M)\x\fX(M)\to\fX(M)$ such that
 \begin{cond}
 \item $\del_{(-)}Y:\fX(M)\to\fX(M):X\mapsto\del_XY$ is $C^\infty(M)$-linear;
 \item $\del_X(-):\fX(M)\to\fX(M):Y\mapsto\del_XY$ is $\R$-linear;
@@ -1050,22 +1097,42 @@ Define $\del:\fX(M)\x\fX(M)\to\fX(M)$ axiomatically such that
 is satisfied.
 \end{cond}
 \end{defn}
-Christoffel symbols as connection coefficients.
 
-Metric connection, Levi-Civita connection.
+\begin{defn}[Metric connection]
+Let $M$ be the image of a parametrization and $\<\,,\>$ be a Riemannian metric on $M$.
+A \emph{metric connection} is an affine connection $\del:\fX(M)\x\fX(M)\to\fX(M)$ such that:
+\[\pd_Z\<X,Y\>=\<\del_ZX,Y\>+\<X,\del_ZY\>.\]
+\end{defn}
 
-Our claim is that this definition is equivalent to the above coordinate dependent definition of the covariant derivative.
-The existence issue is resolved because a map
-\[\fX(M)\x\fX(M)\to\fX(M):(X^i\a_i,Y^j\a_j)\mapsto\left(X^i\pd_iY^k+X^iY^j\Gamma_{ij}^k\right)\a_k\]
-is easily chekced to satisfy the three axioms.
-We then proves the converse.
+\begin{defn}[Levi-Civita connection]
+Let $M$ be the image of a parametrization and $\<\,,\>$ be a Riemannian metric on $M$.
+A \emph{Levi-Civita connection} is a metric connection $\del:\fX(M)\x\fX(M)\to\fX(M)$ such that:
+\[\del_XY-\del_YX=\pd_XY-\pd_YX.\]
+\end{defn}
 
-Let $X=X^i\a_i$ and $Y=Y^j\a_j$.
-Then,
-\[\del_XY=X^i\del_i(Y^j\a_j)=X^i(\pd_iY^k)\a_k+X^iY^j\del_i\a_j=\left(X^i\pd_iY^k+X^iY^j\Gamma_{ij}^k\right)\a_k.\]
+\begin{thm}
+Let $\a:U\to\R^n$ be an $m$-dimensional parametrization with $M=\im\a$.
+Then, there is a unique Levi-Civita connection on $M$.
+\end{thm}
+\begin{pf}
+(Uniqueness)
+Suppose $\del$ is a Levi-Citiva connection on $M$.
+\begin{align*}
+2\<\del_XY,Z\>&=\pd_X\<Y,Z\>+\pd_Y\<X,Z\>-\pd_Z\<X,Y\>\\
+&\qquad-\<[X,Z],Y\>-\<[Y,Z],X\>+\<[X,Y],Z\>.
+\end{align*}
 
+(Existence)
+\end{pf}
 
+Our claim is that this definition is equivalent to the above coordinate dependent definition, the Levi-Civita connection, of the covariant derivative.
 
+\begin{prop}
+Let $S$ be a regular surface embedded in $\R^3$.
+If we define Christoffel symbols as the Gauss formula, then
+\[\fX(S)\x\fX(S)\to\fX(S):(X^i\a_i,Y^j\a_j)\mapsto\left(X^i\pd_iY^k+X^iY^j\Gamma_{ij}^k\right)\a_k\]
+defines a Levi-Civita connection.
+\end{prop}
 
 
 
