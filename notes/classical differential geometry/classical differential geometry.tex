@@ -4,6 +4,7 @@
 \def\a{\alpha}
 \def\I{\mathrm{I}}
 \def\II{\mathrm{II}}
+\def\ssum{{\textstyle\sum\,}}
 
 \title{Classical differential geometry}
 \setcounter{tocdepth}{3}
@@ -42,14 +43,14 @@ This condition is vital for considering an appropriate and well-defined linear a
 If it is not staisfied, every definition including tangent spaces in differential geometry can suffer.
 
 Above the second condition, we call the image of a parametrization $\a$ a (immersed) submanifold if the third condition is satisfied.
-If $\a$ is not one-to-one, then two distinct ordered tuples of real numbers may represent the same point.
+If $\a$ is not one-to-one, then two distinct ordered tuples of real numbers -- we call the tuples coordinates -- may represent the same point.
 Namely, this condition allows to use the inverse map $\a^{-1}:\im\a\to U$.
 By this, we can recognize a parametrization as the inverse of a coordinate map.
-To describe a geometric object that cannot be covered by a single injective parametrization, such as a circle or a sphere, we can admit several parametrizations.
+To describe a geometric object that cannot be covered by a single injective parametrization, such as a circle or a sphere, we can admit several parametrizations: see (3) in Example 1.1.
 
-The forth condition is stronger than the third, so we may assume just (1), (2), and (4).
+The forth condition is stronger than the third, so we may assume just (1), (2), and (4) in Definition 1.1.
 It is sometimes called a proper patch in some references.
-This condition is introduced to exclude some exceptional examples such as lemniscates: see Example 1.4.
+This condition is introduced to exclude some exceptional examples such as lemniscates: see (4) Example 1.1.
 
 \begin{defn}
 A subset $M\subset\R^n$ is called a \emph{regular curve} (resp. \emph{regular surface}) if there exists a one-dimensional (resp. two-dimensional) parametrization whose image is exactly $M$.
@@ -72,8 +73,8 @@ Let $M$ be the image of a parametrization $\a:U\subset\R^m\to\R^n$.
 The inverse $\f:M\to U$ of a parametrization is called a \emph{coordinate map}.
 \end{defn}
 
-Coordinates and parametrizations have equivalent information except that the direction is opposite (only if parametrization satisfies the injectivity).
-A parametrization tends to be taken for explicit computations while coordinates are more usefully taken in verifications of abstract propositions.
+Coordinates and parametrizations have perfectly equivalent information except that they are inverses of each other (only if parametrization satisfies the injectivity).
+A parametrization tends to be taken in order for explicit computations in the ambient space like $\R^3$ while coordinates are more usefully taken in verifications of abstract propositions.
 We use the term \emph{reparametrization} to refer to nothing but a choice of another parametrization for the same curve or surface.
 As said, the choice of coordinate(parametrization) is important in differential geometry.
 
@@ -167,22 +168,32 @@ Do not forget that all differentiations in this note will be done thanks to the 
 
 \subsubsection{Differentiation of parametrizations}
 We introduce the notion of tangent spaces, geometrically the spaces of vectors that starts from each base point, by differentiation of parametrization.
-In this note we define tangent spaces in several equivalent ways:
+In this note we define tangent spaces by the image of the Fr\'echet derivative $d\a$ of a parametrization $\a$.
+
 \begin{defn}
 Let $M$ be the image of a parametrization $\a:U\subset\R^m\to\R^n$.
-Let $p\in M$ be a point and $x=\a^{-1}(p)\in U$ be the coordinates of $p$.
-The \emph{tangent space} of $M$ at $p$, denoted by $T_pM$, can be defined as either one of the followings:
-\begin{cond}
-\item the span of the linearly independent set of vectors $\{\pd_i\a(x)\}_{i=1}^m\subset\R^n$,
-\item the image of the Fr\'echet derivative $d\a|_x:\R^m\to\R^n$,
-\item the set of vectors $v\in\R^n$ such that there exists a curve $\gamma:I\to M$ satisfying $\gamma(0)=p$ and $\gamma'(0)=v$.
-\end{cond}
-We can check the definitions are independent on the parametrization $\a$, and that the tangent space $T_pM$ is an $m$-dimensional linear subspace of $\R^n$.
+Let $p\in M$ be a point and $x=\a^{-1}(p)\in U$ be its coordinates.
+The \emph{tangent space} of $M$ at $p$, denoted by $T_pM$, is the image of the Fr\'echet derivative $d\a|_x:\R^m\to\R^n$.
 \end{defn}
-\begin{rmk}
-We can show the three conditions are equivalent, but the proof will not be given; what is more important is to understand the role and meaning of tangent spaces because there is no agreed standard definition of tangent spaces in the level of this note.
-There exist a lot more neat but difficult characterizations for tangent spaces we will not cover.
-\end{rmk}
+
+Since $d\a_x$ is an injective linear transformation at every $x$, the tangent space $T_pM$ is an $m$-dimensional linear subspace of $\R^n$.
+For a parametrization $\a$, the tangent space $T_pM$ has a basis $\{\a_i|_p\}_{i=1}^m$, which is frequently chosen as the standard.
+Now, after a definition, we must show its consistency.
+
+\begin{prop}
+Let $M$ be the image of a parametrization $\a:U\subset\R^m\to\R^n$.
+Let $p\in M$ and $v\in\R^n$.
+Then, the two are equivalent:
+\begin{cond}
+\item $v\in T_pM$;
+\item there is a regular curve $\gamma:I\to M$ such that $\gamma(0)=p$ and $\gamma'(0)=v.$
+\end{cond}
+In particular, $T_pM$ is independent on the parametrization $\a$.
+\end{prop}
+\begin{pf}
+%%%
+\end{pf}
+
 \begin{rmk}
 We can easily check that $T_p\R^n=\R^n$ for any $p\in\R^n$.
 The notation $T_p\R^n$ will be used to emphasize that a vector in $\R^n$ is geometrically recognized to cast from the point $p$.
@@ -211,21 +222,38 @@ The set $\{\a_i\}_i$ will be used to denote a basis of tangent space $T_pM$.
 
 
 \subsubsection{Differentiation by tangent vectors}
+
 % explanation
+
 \begin{defn}
-Let $\a:U\to\R^n$ be an $m$-dimensional parametrization with $M=\im\a$.
+Let $\a:U\subset\R^m\to\R^n$ be a parametrization with $M=\im\a$.
 \begin{cond}
 \item A \emph{scalar field}, \emph{smooth function}, or just a \emph{function} is a function $f:M\to\R$ such that $f\o\a:U\to\R$ is smooth.
 \item A \emph{vector field} is a map $X:M\to\R^n$ such that $X\o\a:U\to\R^n$ is smooth.
 \item A \emph{tangent vector field} is a vector field $X:M\to\R^n$ such that $X|_p\in T_pM$.
 \end{cond}
 The set of tangent vector fields is often denoted by $\fX(M)$.
-In general, vector fields are basically assumed to be tangent.
-However, we will distinguish them in this note.
 \end{defn}
+\begin{rmk}
+In general, the word \emph{vector fields} are basically assumed to be tangent.
+However, we will distinguish them in this note.
+\end{rmk}
+
+The following proposition proves that the smoothness of functions and vector fields does not depend on parametrizations.
+
+\begin{prop}
+Let $\a:U\subset\R^m\to\R^n$ and $\beta:V\subset\R^m\to\R^n$ be parametrizations with same image $M=\im\a=\im\beta$.
+Then, the map $\beta^{-1}\o\a:U\to V$ is smooth.
+\end{prop}
+\begin{pf}
+%%%
+\end{pf}
+\begin{rmk}
+The map $\beta^{-1}\o\a$ is called the \emph{transition map}.
+\end{rmk}
 
 \begin{defn}
-Let $\a:U\to\R^n$ be an $m$-dimensional parametrization $M=\im\a$.
+Let $\a:U\subset\R^m\to\R^n$ be a parametrization $M=\im\a$.
 \begin{cond}
 \item The coordinate representation of a function $f:M\to\R$ is
 \[f\o\a:U\to\R.\]
@@ -237,7 +265,7 @@ where $X=\sum_iX^i\a_i$.
 \end{cond}
 \end{defn}
 
-% Differentiability is independent on the choice of parametrizations!!!
+
 
 \begin{defn}
 Let $M$ be the image of a parametrization $\a:U\subset\R^m\to\R^n$.
@@ -249,7 +277,7 @@ For a vector field $X:M\to\R^n$, its partial derivative is defined by
 This definition is not dependent on parametrization $\a$.
 \end{defn}
 
-\begin{prop} % Einstein convention!!!
+\begin{prop}
 Let $M$ be the image of a parametrization.
 Let $X$ be a tangent vector field on $M$.
 \begin{cond}
@@ -263,10 +291,11 @@ Let $X$ be a tangent vector field on $M$.
 For (3), if we let $X=\sum_iX^i\a_i$ and $Y=\sum_jY^j\a_j$ for a parametrization $\a:U\subset\R^m\to\R^n$, then
 \begin{align*}
 \pd_XY-\pd_YX
-&=\pd_X(Y^j\a_j)-\pd_Y(X^i\a_i)\\
-&=[(\pd_XY^j)\a_j+Y^j\pd_X\a_j]-[(\pd_YX^i)\a_i+X^i\pd_Y\a_i]\\
-&=[(\pd_XY^j)\a_j+Y^jX^i\pd_i\a_j]-[(\pd_YX^i)\a_i+X^iY^j\pd_i\a_j]\\
-&=(\pd_XY^j)\a_j-(\pd_YX^i)\a_i.\qedhere
+&=\pd_X(\ssum_jY^j\a_j)-\pd_Y(\ssum_iX^i\a_i)\\
+&=\ssum_j[(\pd_XY^j)\a_j+Y^j\pd_X\a_j]-\ssum_i[(\pd_YX^i)\a_i+X^i\pd_Y\a_i]\\
+&=\ssum_j[(\pd_XY^j)\a_j+Y^j\ssum_iX^i\pd_i\a_j]-\ssum_i[(\pd_YX^i)\a_i+X^i\ssum_jY^j\pd_i\a_j]\\
+&=\ssum_j(\pd_XY^j)\a_j-\ssum_i(\pd_YX^i)\a_i\\
+&=\ssum_i(\pd_XY^i-\pd_YX^i)\a_i.\qedhere
 \end{align*}
 \end{pf}
 
@@ -281,8 +310,8 @@ We will \emph{not} use $f_i$ or $X_i$ for $\pd_if$ and $\pd_iX$ because it is co
 
 \begin{exs} % example 많이 추가하기
 \item
-Let $\a$ be an $m$-dimensional parametrization.
-The value of $\pd_i\a=\a_i:\im\a\to\R^3$ is always a tanget vector at each point $p=\a(x)$, and $\a_i$ becomes a vector field.
+Let $\a$ be an $m$-dimensional parametrization with $M=\im\a$.
+The value of $\pd_i\a=\a_i:M\to\R^3$ is always a tanget vector at each point $p=\a(x)$, and $\a_i$ becomes a vector field.
 
 Let $s$ be either a smooth function or vector field on $\a$.
 Then, we can compute the directional derivative as
@@ -731,7 +760,7 @@ Then, $S$ admits a parametrization $\a$ such that $\a_x|_p$ and $\a_y|_p$ are pa
 \end{thm}
 \begin{thm}
 Let $X,Y$ be linearly independent tangent vector fields on a regular surface $S$.
-If $\pd_XYf=\pd_YX$, then $S$ admits a parametrization $\a$ such that $\a_x|_p=X|_p$ and $\a_y|=Y|_p$ for each $p\in S$.
+If $\pd_XY=\pd_YX$, then $S$ admits a parametrization $\a$ such that $\a_x|_p=X|_p$ and $\a_y|_p=Y|_p$ for each $p\in S$.
 \end{thm}
 
 Let $S$ be a regular surface embedded in $\R^3$.
@@ -823,8 +852,9 @@ In other words, if we let $X=X^i\a_i$ and $\cS(X)=\cS(X)^j\a_j$, then
 \end{thm}
 \begin{pf}
 Let $\cS(X)^j=\cS_i^jX_i$.
-Then, $g_{ik}\,\cS_j^k=L_{ij}$ since
-\[g_{ik}X^i\cS_j^kY^j=\<X,\cS(Y)\>=\<\pd_XY,\nu\>=X^iY^jL_{ij}.\qedhere\]
+Then,
+\[g_{ik}X^i\cS_j^kY^j=\<X,\cS(Y)\>=\<\pd_XY,\nu\>=X^iY^jL_{ij}\]
+implies $g_{ik}\,\cS_j^k=L_{ij}$.
 \end{pf}
 
 % principal curvature
@@ -965,7 +995,7 @@ In particular, if $t\mapsto(r(t),z(t))$ is a unit-speed curve, then
 
 
 
-\subsubsection{Constant curvature}
+\subsubsection{General problems}
 
 % isometric....?
 
@@ -999,6 +1029,23 @@ Therefore, $h$ is uniquely determined by $K$.
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 \section{Intrinsic geometry}
 Notations: Einstein summation convention, set of vector fields.
 
@@ -1015,6 +1062,11 @@ To $n$-dimensional.
 % metric 정의
 % isometry
 % 가우스의 놀라운 정리: 크리스토펠 -> 곡률텐서 -> 가우스곡률?
+
+\begin{itemize}
+\item Intrinsic: $g_{ij}$, $\Gamma_{ij}^k$, $K$, ${R^l}_{ijk}$;
+\item Not intrinsic: $\nu$, $L_{ij}$, $\kappa_i$, $H$.
+\end{itemize}
 
 Isometry
 \begin{ex}
