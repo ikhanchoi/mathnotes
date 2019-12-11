@@ -7,6 +7,7 @@
 
 \def\tint{{\textstyle\int}}
 \def\loc{\mathrm{loc}}
+\def\AC{\mathrm{AC}}
 
 \begin{document}
 \tableofcontents
@@ -483,11 +484,6 @@ we have
 If $f_n\to f$ in $C^1$, then $Df_n\to Df$.
 \end{cor}
 
-
-
-
-
-
 \subsection{Limit and integral}
 We want to find a criterion for 
 This question asks the convergence
@@ -501,21 +497,12 @@ If $\|Mf\|_{L^1}<\oo$ and $f_n\to f$ a.e., then $f_n\to f$ in $L^1$.
 
 continuity application
 
-
-
-
-
-
 \begin{thm}[Scheffe]
 Let $\{f_n\}_n$ be a sequence of nonnegative functions in $L^1$.
 Suppose it converges to $f$ pointwisely.
 Then,
 \[\lim_{n\to\oo}\|f_n\|_1=\|f\|_1\impl\lim_{n\to\oo}\|f_n-f\|_1=0.\]
 \end{thm}
-
-
-
-
 
 \subsection{Derivative and integral}
 
@@ -562,13 +549,27 @@ Let
 If $|k_x(x,y)|$ is monotone in $x$ and $k_x(x,y)f(y)\in L_y^1$ for all $x$, then
 \[\dd{x}Tf(x)=\int k_x(x,y)f(y)\,dy.\]
 \end{cor}
-\begin{cor}
-If $f\in C^1$ and $g\in L^1$, then
-\[\del(f*g)=(\del f)*g.\]
-\end{cor}
 
 
+Conditions:
+\begin{itemize}
+\item $\pd_tf\in L_{\loc,t}^1$.
+\item $\pd_tf\in L_x^1$ or $\pd_tf\ge0$.
+\end{itemize}
+Proof: Differentiate
+\begin{align*}
+\int^t_{t_0}\int\pd{t}f(s,x)\,dx\,ds
+&=\int\int^t_{t_0}\pd{t}f(s,x)\,ds\,dx\\
+&=\int f(t,x)\,dx-\int f(t_0,x)\,dx.
+\end{align*}
 
+Let $f$ be a regular distribution, i.e. $f\in L_\loc^1$.
+\begin{cond}
+\item $f\in\AC_\loc$ iff $f'\in L_\loc^1$.
+\item $f\in\Lip$ iff $f'\in L_\loc^\infty$.
+\end{cond}
+Here, $f'$ denotes the distributional derivative.
+For $\AC_\loc$ we often say a function is \emph{weakly differentiable}.
 
 
 

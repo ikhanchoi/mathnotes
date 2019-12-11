@@ -1,0 +1,395 @@
+\documentclass[11pt]{amsart}
+\usepackage{ikany}
+\usepackage[margin=1.5in]{geometry}
+
+\title{Vlasov-Poisson system}
+\author{Ikhan Choi}
+
+\def\tint{{\textstyle\int}}
+\def\loc{\mathrm{loc}}
+
+\begin{document}
+\maketitle
+\tableofcontents
+
+
+\section{Vlasov-Poisson system}
+Consider a Cauchy problem of the \emph{Valsov-Poisson system}:
+\begin{pde*}
+&f_t+v\cdot\del_xf+\gamma E\cdot\del_vf=0,\:(t,x,v)\in\R_t^+\x\R_x^3\x\R_v^3,\\
+&E(t,x)=-\del_x\Phi,\\
+&\Phi(t,x)=(-\Delta_x)^{-1}\rho,\\
+&\rho(t,x)=\tint f\,dv,\\
+&f(0,x,v)=f_0(x,v),
+\end{pde*}
+where $\gamma=\pm1$.
+For example, we have \emph{repulsive problem} $\gamma=+1$ for electrons in plasma and \emph{attractive problems} $\gamma=-1$ for galaxies.
+($\rho$ denotes mass density.)
+
+\subsection{Representation of electric field}
+For the boundaryless problem in which the potential function vanishes at infinity, we have
+\[\Phi=\tfrac1{4\pi|x|}*\rho,\]
+\[E=-\del_x\Phi=-\del_x(\tfrac1{4\pi|x|}*\rho)=\frac{x}{4\pi|x|^3}*\rho.\]
+\[E(t,x)=\frac1{4\pi}\int\frac{(x-y)f(t,y,v)}{|x-y|^3}\,dy.\]
+
+
+\subsection{Volume preservation}
+
+
+\subsection{Conservative laws}
+The following results cannot be used in any local existence proof because they assume the existence of solutions, but they help understand the fundamental nature of solutions of the Vlasov-Poisson system and are used in the proof of global existence.
+
+\begin{lem}
+Let $f\in C_c^1([0,T]\x\R^6)$.
+\begin{cond}
+\item(Continuity equation)
+\[\rho_t+\del_x\cdot j=0,\qquad\text{where}\quad j=\int vf\,dv.\]
+\item(Energy conservation)
+\[\iint|v|^2f\,dv\,dx+\gamma\int|E|^2\,dx=\const.\]
+\end{cond}
+\end{lem}
+\begin{pfs}
+\item
+Integrate with respect to $v$ to get
+\begin{align*}
+0&=\int f_t\,dv+\int v\cdot\del_xf\,dv\\
+&=\rho_t+\del_x\cdot\int vf\,dv\\
+&=\rho_t+\del_x\cdot j.
+\end{align*}
+\item
+Multiply $|v|^2$ and integrate with respect to $v$ and $x$ to get
+\begin{align*}
+\dd{t}\iint|v|^2f\,dv\,dx
+&=\iint|v|^2f_t\,dv\,dx=-\iint|v|^2\gamma E\cdot\del_vf\,dv\,dx\\
+&=\iint2v\cdot\gamma Ef\,dv\,dx=-2\gamma\int\del_x\Phi\cdot j\,dx\\
+&=2\gamma\int\Phi\del_x\cdot j\,dx=2\gamma\int\Phi\Delta_x\Phi_t\,dx\\
+&=-\dd{t}\gamma\int|E|^2\,dx.
+\end{align*}
+Thus
+\[\iint|v|^2f\,dv\,dx+\gamma\int|E|^2\,dx=\const.\qedhere\]
+\end{pfs}
+
+\subsection{Moment propagation}
+We have a bound of kinetic energy even for $\gamma=-1$.
+
+\begin{lem}[$L^{5/3}$ estimate of $\rho$]$ $\\[-12pt]
+\begin{cond}
+\item $\|\rho(t)\|_{L_x^{5/3}}\les\iint|v|^2f\,dv\,dx$.
+\item $\iint|v|^2f\,dv\,dx\les1$.
+\end{cond}
+\end{lem}
+\begin{pfs}
+\item
+Note
+\begin{align*}
+\rho(t,x)=\int f(t,x,v)\,dv
+&\le\int_{|v|<R}f\,dv+\frac1{R^2}\int_{|v|\ge R}|v|^2f\,dv\\
+&\les R^3+ R^{-2}\int|v|^2f\,dv.
+\end{align*}
+Set $R^3=R^{-2}\int|v|^2f\,dv$ to get
+\[\rho(t,x)^{5/3}\les\int|v|^2f\,dv.\]
+
+\item
+By the Hardy-Littlewood-Sobolev inequality,
+\[\frac1p+\frac\alpha d=\frac1q\]
+for $p=2$, $d=3$, and $\alpha=1$ implies $q=6/5$, hence the bound of $\|E(t)\|_2$
+\[\|E(t)\|_2\simeq\|\frac1{|x|^{d-\alpha}}*_x\rho(t,x)\|_{L_x^2}\les\|\rho(t)\|_{6/5}.\]
+So, interpolation with H\"older's inequality gives
+\[\|E(t)\|_2\les\|\rho\|_1^{7/12}\|\rho\|_{5/3}^{5/12}\simeq\|\rho\|_{5/3}^{5/12}.\]
+Thus (1) gives
+\[\iint|v|^2f\,dv\,dx=C+\|E(t)\|_2^2\les C+(\iint|v|^2f\,dv\,dx)^{1/2},\]
+so the kinetic energy $\iint f\,dv\,dx$ is bounded.
+As a corollary, $\|\rho\|_{5/3}$ is also bounded.\qedhere
+\end{pfs}
+
+
+\begin{lem}[$L^\infty$-estimate of $E$]
+For $0\le\frac1p<\frac\alpha d<\frac1q\le1$,
+\[\|\frac1{|x|^{d-\alpha}}*\rho(t,x)\|_{L_x^\infty}^{\frac1q-\frac1p}\les\|\rho(t)\|_p^{\frac1q-\frac\alpha d}\|\rho(t)\|_q^{\frac\alpha d-\frac1p}.\]
+\end{lem}
+\begin{pf}
+Fix time $t$.
+For $(d-\alpha)p<d<(d-\alpha)q$,
+\begin{align*}
+|\frac1{|x|^{d-\alpha}}*\rho(t,x)|
+&\le\int_{|x-y|<R}\frac{\rho(t,y)}{|x-y|^{d-\alpha}}\,dy+\int_{|x-y|\ge R}\frac{\rho(t,y)}{|x-y|^{d-\alpha}}\,dy\\
+&\le\|\rho\|_{p'}(\int_{|y|<R}\frac{dy}{|y|^{(d-\alpha)p}})^{1/p}+\|\rho\|_{q'}(\int_{|y|\ge R}\frac{dy}{|y|^{(d-\alpha)q}})^{1/q}\\
+&\simeq\|\rho\|_{p'}(\int_0^Rr^{d-1-(d-\alpha)p}\,dr)^{1/p}+\|\rho\|_{q'}(\int_R^\infty r^{d-1-(d-\alpha)q}\,dr)^{1/q}\\
+&\simeq\|\rho\|_{p'}R^{\frac dp-d+\alpha}+\|\rho\|_{q'}R^{\frac dq-d+\alpha}.
+\end{align*}
+By choosing $R$ such that $\|\rho\|_{p'}R^{\frac dp-d+\alpha}=\|\rho\|_{q'}R^{\frac dq-d+\alpha}$, we get
+\[\|E(t)\|_\infty\les\|\rho(t,x)\|_{p'}^{\frac{1-\frac\alpha d-\frac1q}{\frac1p-\frac1q}}\|\rho(t,x)\|_{q'}^{\frac{\frac1p-1+\frac\alpha d}{\frac1p-\frac1q}},\]
+hence the inequality by interchaning $p$ and $q$ with their conjugates.
+\end{pf}
+
+
+
+\section{Local existence}
+
+\subsection{Approximate solution}
+
+Suppose $f_0\in C_c^1$.
+With initial term $f_0$, inductively define $f_{n+1}$ by letting the electric field $E$ be known:
+\begin{pde*}
+&\pd_tf_{n+1}+v\cdot\del_xf_{n+1}+\gamma E_n\cdot\del_vf_{n+1}=0,\\
+&E_n(t,x)=-\del_x\Phi_n,\\
+&\Phi_n(t,x)=(-\Delta_x)^{-1}\rho_n,\\
+&\rho_n(t,x)=\tint f_n\,dv,\\
+&f_{n+1}(0,x,v)=f_0(x,v).
+\end{pde*}
+Characteristics.
+
+Then, the equation becomes a linear PDE for $f_{n+1}$.
+
+\begin{defn}
+\[Q_n(t)=\sup\{\,|v|:f(s,x,v)\ne0,\ s\in[0,t]\,\}\]
+\end{defn}
+
+
+\subsection{A priori estimates of $\rho_n$ and $E_n$}
+
+\begin{lem}$ $\\[-12pt]
+\begin{cond}
+\item
+For all $t\in[0,\infty]$, $\|\rho_n(t)\|_\infty\les Q_n^3(t)$ and $\|E_n(t)\|_\infty\les Q_n^2(t)$
+\item
+For sufficiently small $t<c(f_0)$, $Q_n(t)\les1$ indendent on $n$.
+\end{cond}
+\end{lem}
+\begin{pfs}
+\item
+Since
+\[\|\rho_n(t)\|_\infty\le Q^3(t)\|f_0\|_\infty\les Q_n^3(t),\]
+a rough estimate for $\|E\|_\infty$ gives
+\[\|E_n(t)\|_\infty\le\|\rho_n(t)\|_\infty^{2/3}\|\rho_n(t)\|_1^{1/3}\les Q_n^2(t)\]
+\item
+Let $c=c(f_0)$ be a constant such that $\|E_n(t)\|\le cQ^2(t)$.
+We claim that
+\[Q_n(t)\le\frac{Q_0}{1-cQ_0t}\]
+for all $n$.
+Easily checked for $n=0$; $Q_0(t)=Q_0\le\frac{Q_0}{1-cQ_0t}$.
+
+Assume $Q_n(t)\le\frac{Q_0}{1-cQ_0t}$.
+Then,
+\begin{align*}
+|V_{n+1}(s;0,x,v)|
+&\le|v|+\int_0^t|E_n(s;0,x,v)|\,ds\\
+&\le Q_0+c\int_0^tQ_n^2(s)\,ds
+\end{align*}
+implies
+\begin{align*}
+Q_{n+1}(t)
+&\le Q_0+c\int_0^tQ_n^2(s)\,ds\\
+&\le Q_0+c\int_0^t\left(\frac{Q_0}{1-cQ_0s}\right)^2ds
+=\frac{Q_0}{1-cQ_0t}.
+\end{align*}
+By induction, $Q_n(t)\les1$ for all $n$ and $t\in[0,T]$, where $T<(cQ_0)^{-1}$.\qedhere
+\end{pfs}
+
+\subsection{A priori estimates of $\del_x\rho_n$ and $\del_xE_n$}
+
+
+\subsection{Convergence of $f_n$}
+
+
+\begin{cond}
+\item\[\|f_{n+1}(t)-f_n(t)\|_\infty\les\int_0^t\|E_n(s)-E_{n-1}(s)\|_\infty\,ds.\]
+\item\[\|f_{n+1}(t)-f_n(t)\|_\infty\les\int_0^t\|f_n(s)-f_{n-1}(s)\|_\infty^{1/3}\,ds.\]
+Therefore, $f_n$ converges uniformly.
+\end{cond}
+
+\begin{pfs}
+\item
+Take $T$ such that
+\[T<\min\{\|\del_xE_n(t)\|_\infty^{-1},1\}\quad\text{and}\quad Q_n(t)\les1\]
+for all $n$ and $t<T$.
+This can be done thanks for the local a priori bound for $\del_xE_n$.
+
+The $C^1$ regularity of $f_0$ lets
+\begin{align*}
+|f&_{n+1}(t,x,v)-f_n(t,x,v)|\\
+&=|f_0(X_{n+1}(0;t,x,v),V_{n+1}(0;t,x,v))-f_0(X_n(0;t,x,v),V_n(0;t,x,v))|\\
+&\les|X_{n+1}(0;t,x,v)-X_n(0;t,x,v)|+|V_{n+1}(0;t,x,v)-V_n(0;t,x,v)|.
+\end{align*}
+Because
+\begin{align*}
+X_n(s;t,x,v)&=x-\int_s^tV_n(s';t,x,v)\,ds',\\
+V_n(s;t,x,v)&=v-\int_s^tE_{n-1}(s',X_n(s;t,x,v))\,ds',
+\end{align*}
+we have
+\begin{align*}
+|V&_{n+1}(s;t,x,v)-V_n(s;t,x,v)|\\
+&\le\int_0^t|E_n(s,X_{n+1}(s;t,x,v))-E_{n-1}(s,X_n(s;t,x,v))|\,ds\\
+&\le\int_0^t|E_n(s,X_{n+1})-E_n(s,X_n)|+|E_n(s,X_n)-E_{n-1}(s,X_n)|\,ds\\
+&\le T\sup_{s\in[0,t]}\|\del_xE_n(s)\|_\infty|X_{n+1}(s)-X_n(s)|+\int_0^t\|E_n(s)-E_{n-1}(s)\|_\infty\,ds
+\end{align*}
+and
+\begin{align*}
+|X_{n+1}(s;t,x,v)-X_n(s;t,x,v)|
+&\le\int_0^t|V_{n+1}(s;t,x,v)-V_n(s;t,x,v)|\,ds\\
+&\le T\sup_{s\in[0,t]}|V_{n+1}(s)-V_n(s)|.
+\end{align*}
+Since $T$ is taken such that
+\[T<\min\{\|\del E_n(t)\|_\infty^{-1},1\},\]
+we get by combining the above two inequality,
+\begin{align*}
+&\sup_{s\in[0,t]}|X_{n+1}(s;t,x,v)-X_n(s;t,x,v)|+|V_{n+1}(s;t,x,v)-V_n(s;t,x,v)|\\
+&\qquad\les\int_0^t\|E_n(s)-E_{n-1}(s)\|_\infty\,ds.
+\end{align*}
+\item
+Notice that
+\[\|E_n(t)-E_{n-1}(t)\|_\infty\les\|\rho_n(t)-\rho_{n-1}(t)\|_1^{1/3}\|\rho_n(t)-\rho_{n-1}(t)\|_\infty^{2/3}.\]
+For $L^\infty$-norm,
+\[\|\rho_n(t)-\rho_{n-1}(t)\|\les Q_n^3(t)+Q_{n-1}^3(t)\les1.\]
+For $L^1$-norm, since the support of $f_n,f_{n-1}$ is bounded in both directions $x,v$,
+\[\|\rho_n(t)-\rho_{n-1}(t)\|_1\le\|f_n(t)-f_{n-1}(t)\|_1\les\|f_n(t)-f_{n-1}(t)\|_\infty.\]
+\end{pfs}
+
+
+\subsection{Uniqueness}
+
+
+
+
+
+
+
+
+
+
+\section{Global existence}
+
+
+\subsection{Prolongation criterion}
+
+\begin{thm*}[Schaeffer, 1991]
+Let $f_0\in C_{c,x,v}^1$ and $f_0\ge0$.
+Then, the Cauchy problem for the VP system has a unique $C^1$ global solution.
+\end{thm*}
+
+\begin{defn}
+For a local solution $f$,
+\[Q(t):=1+\sup\{|v|:f(s,x,v)\ne0\text{ for some }s\in[0,t],\,x\in\R_x^3\}.\]
+\end{defn}
+
+Decompose $[t-\Delta,t]\x\R_x^3\x\R_v^3$ as
+\begin{align*}
+U&=\left\{\,(s,x,v):\ |v-\hat V(t)|\ge P,\quad|y-\hat X(s)|\ge r\,\right\},\\
+B&=\left\{\,(s,x,v):\ |v-\hat V(t)|\ge P,\quad|v|\ge P\,\right\}\setminus U,\\
+G&=\left\{\,(s,x,v):\ |v-\hat V(t)|<P\quad\text{or}\quad|v|<P\,\right\}.
+\end{align*}
+(We can let $U\mapsto U\cap\{|v|\ge P\}$ to make the decomposition disjoint.)
+Later we choose
+\[P=Q^{4/11},\quad r=R\max\{|v|^{-3},\,|v-\hat V(t)|^{-3}\},\quad R=Q^{16/33}\log^{1/2}Q.\]
+Also, later we choose $\Delta\cdot\sup_{s\le t}\|E(s)\|_\infty<\frac P4$.
+
+
+
+\subsection{Some observations}
+Our goal is to obtain a priori estimate like
+\[\|E(t)\|_\infty\les Q(t)^a\qquad\text{for some }a<1.\]
+Since the force field $E$ measures the maximal rate of changes in velocity, the estimate can be read very roughly as
+\[Q'(t)\les Q(t)^a,\]
+which lead its polynomial growth.
+
+So we need to bound the Riesz potential $E$.
+The following observation suggests a lower bound of relative velocity.
+\begin{clm}
+Fix $t,x,v$.
+If $|v-\hat V(t)|\ge P$, then
+\[|y-\hat X(s)|\ge\frac14|v-\hat V(t)||s-s_0|\]
+for some $s_0\in[t-\Delta,t]$, where $\Delta\cdot\sup_{s\le t}\|E(s)\|_\infty<\frac P4$.
+\end{clm}
+\begin{pf}
+Since $\Delta\|E(s)\|_\infty<\frac P4$, we have
+\[|v-w|<\frac P4\quad\text{and}\quad|\hat V(t)-\hat V(s)|<\frac P4.\]
+The condition $|v-\hat V(t)|\ge P$ implies
+\[\frac12|v-\hat V(t)|\le|v-\hat V(t)|-\frac P4-\frac P4<|w-\hat V(s)|.\]
+
+Let $Z(s):=y-\hat X(s)$.
+Then,
+\begin{align*}
+Z'(s)&=w-\hat V(s),\\
+Z''(s)&=\gamma[E(s,y,w)-E(s,\hat X(s),\hat V(s))].
+\end{align*}
+Let $s_0\in[t-\Delta,t]$ minimize $s\mapsto|Z(s)|$ and expand $Z$ as
+\[Z(s)=Z(s_0)+Z'(s_0)(s-s_0)+\frac{Z''(\sigma)}2(s-s_0)^2\]
+for some $\sigma$ between $s$ and $s_0$.
+Then,
+\[|Z(s_0)+Z'(s_0)(s-s_0)|\ge|Z'(s_0)(s-s_0)|\ge\frac12|v-\hat V(t)||s-s_0|\]
+and
+\begin{align*}
+|\frac{Z''(\sigma)}2(s-s_0)^2|
+&\le\|E(t)\|_\infty(s-s_0)^2
+\le\|E(t)\|_\infty\Delta|s-s_0|\\
+&\le\frac P4|s-s_0|
+\le\frac14|v-\hat V(t)||s-s_0|
+\end{align*}
+proves
+\[|y-\hat X(s)|=|Z(s)|\ge\frac14|v-\hat V(t)||s-s_0|.\qedhere\]
+\end{pf}
+
+We introduce time averaging to use the above lower bound.
+\begin{clm}
+Fix $t,x,v$.
+If $|v-\hat V(t)|\ge P$, then
+\[\int_{t-\Delta}^t\frac1{|y-\hat X(s)|^2}\chi_A(s)\,ds\les\frac{r^{-1}}{|v-\hat V(t)|},\]
+where $A=\{s:|y-\hat X(s)|\ge r\}$.
+\end{clm}
+\begin{pf}
+Since $|y-\hat X(s)|\ge\frac14|v-\hat V(t)||s-s_0|$,
+\begin{align*}
+\int_{t-\Delta}^t\frac1{|y-\hat X(s)|^2}\chi_A(s)\,ds
+&\le16\int_{t-\Delta}^t\frac1{|v-\hat V(t)|^2|s-s_0|^2}\chi_A(s)\,ds\\
+&\le32\int_r^\infty\frac1{|v-\hat V(t)|^3|s-s_0|^2}\,d(|v-\hat V(t)||s-s_0|)\\
+&=32\,\frac{r^{-1}}{|v-\hat V(t)|}.\qedhere
+\end{align*}
+\end{pf}
+
+
+\subsection{Divide and conquer}
+\subsubsection{Ugly set estimate}
+
+Therefore, if we let $r^{-1}\simeq\min\{|v|^3,|v-\hat V(t)|^3\}$, then
+\[\int_{t-\Delta}^t\frac1{|y-\hat X(s)|^2}\chi_A(s)\,ds\les|v|^2\]
+so that we have
+\[\iiint_U\frac{f(s,y,w)}{|y-\hat X(s)|^2}\,dw\,dy\,ds\les R^{-1}\int|v|^2f(t,x,v)\,dv\,dx\les R^{-1}\]
+when
+\[U\subset\{\,(s,x,v):\ |v-\hat V(t)|\ge P,\quad|y-\hat X(s)|\ge R\max\{|v|^{-3},|v-\hat V(t)|^{-3}\}\,\}.\]
+
+\subsubsection{Bad set estimate}
+Consider $U^c$.
+We need to control the union of two regions
+\[|y-\hat X(s)|<R|v|^{-3}\quad\text{and}\quad|y-\hat X(s)|<R|v-\hat V(t)|^{-3}.\]
+Without any conditions, the integration of fundamental solution with respect to $y$ gives
+\[\int_{|y-\hat X(s)|<r}\frac1{|y-\hat X(s)|^2}\,dy\simeq r.\]
+\begin{clm}
+If $|v|\ge P$ and $|v-\hat V(t)|\ge P$, then
+\[\int_{U^c}\frac1{|y-\hat X(s)|^2}\,dy\les\max\{|w|^{-3},|w-\hat V(s)|^{-3}\}\]
+for $s\in[t-\Delta,t]$.
+\end{clm}
+\begin{pf}
+It follows from
+\[|w|\simeq|v|,\quad|w-\hat V(s)|\simeq|v-\hat V(t)|\]
+for $|v|\ge P$ and $|v-\hat V(t)|\ge P$.
+\end{pf}
+
+\subsubsection{Good set estimate}
+
+\subsection{Polynomial decay}
+\begin{lem}
+Along the time of existence we have
+\[\|E(t)\|_{L_x^\infty}\les Q(t)^{4/3}.\]
+\end{lem}
+\begin{pf}
+Note that we have
+\[\|E\|_\infty\les\|\rho\|_\infty^{4/9}\|\rho\|_{5/3}^{5/9}.\]
+Since the velocity support of $f$ is bounded by finite $Q(t)$,
+\[\rho(t,x)=\int_{|v|<Q(t)}f(t,x,v)\,dv\les Q(t)^3\|f_0(x)\|_{L_v^\infty}\les Q(t)^3,\]
+so
+\[\|E(t)\|_{L_x^\infty}\les\|\rho(t)\|_{L_x^\infty}^{4/9}\les Q(t)^{4/3}.\qedhere\]
+\end{pf}
+
+
+
+\end{document}
