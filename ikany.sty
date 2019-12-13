@@ -285,14 +285,16 @@
 \RequirePackage{xparse}
 \NewDocumentEnvironment{pde}{s} % number it as a single equation
 {
+  %
   \renewcommand\:{&\qquad&}
   \[\left\{\ %
   \begin{alignedat}{2}
 }
 {
   \IfBooleanTF{#1}
-    {\end{alignedat}\right.\]}
-    {\end{alignedat}\right.\stepcounter{equation}\tag{\theequation}\]}
+    {\end{alignedat}\right.\]$ $}
+    {\end{alignedat}\right.\stepcounter{equation}\tag{\theequation}\]$ $}
+    \hspace{-1em}
 }
 \NewDocumentEnvironment{de}{s} % number it as a single equation
 {

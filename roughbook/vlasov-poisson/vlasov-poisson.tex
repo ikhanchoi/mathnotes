@@ -1,5 +1,5 @@
 \documentclass[11pt]{amsart}
-\usepackage{ikany}
+\usepackage{../../ikany}
 \usepackage[margin=1.5in]{geometry}
 
 \title{Vlasov-Poisson system}
@@ -23,24 +23,115 @@ Consider a Cauchy problem of the \emph{Valsov-Poisson system}:
 &f(0,x,v)=f_0(x,v),
 \end{pde*}
 where $\gamma=\pm1$.
-For example, we have \emph{repulsive problem} $\gamma=+1$ for electrons in plasma and \emph{attractive problems} $\gamma=-1$ for galaxies.
+For example, we have \emph{repulsive problem} $\gamma=+1$ for electrons in plasma theory and \emph{attractive problems} $\gamma=-1$ for galactic dynamics.
 ($\rho$ denotes mass density.)
 
-\subsection{Representation of electric field}
+Results in 1.1 and 1.2 provide basic ingredients that will be used in the whole article.
+On the other hand, results in 1.3 and 1.4 cannot be used in any local existence proof because they assume the existence of solutions, but they help understand the fundamental nature of solutions of the Vlasov-Poisson system and are used in the proof of global existence.
+
+We use the asymptotic notation
+\[g(t)\les h(t)\iff\exists\,c=c(f_0),\quad g(t)\le c\,h(t)\]
+and
+\[g(t)\simeq h(t)\iff\exists\,c,\quad g(t)=c\,h(t).\]
+
+
+
+
+\subsection{Poisson equation}
 For the boundaryless problem in which the potential function vanishes at infinity, we have
 \[\Phi=\tfrac1{4\pi|x|}*\rho,\]
-\[E=-\del_x\Phi=-\del_x(\tfrac1{4\pi|x|}*\rho)=\frac{x}{4\pi|x|^3}*\rho.\]
-\[E(t,x)=\frac1{4\pi}\int\frac{(x-y)f(t,y,v)}{|x-y|^3}\,dy.\]
+so
+\[E=-\del_x\Phi=-\del_x(\tfrac1{4\pi|x|}*\rho)=\frac{x}{4\pi|x|^3}*\rho,\]
+or it can be rewritten as
+\[E(t,x)=\frac1{4\pi}\int\frac{(x-y)\rho(t,y)}{|x-y|^3}\,dy.\]
 
+The nonlinearity of the system is originated from the force field $E$, so its estimates play the most important role in investigation of the nonlinear system.
+Since it is given by the solution of the Poisson equation, estimates of the Riesz potential is directly connected to estimates of the force field.
+
+
+\begin{lem}[Estimates of Riesz potential]
+Let $\rho\in C_c^1(\R^d)$.
+\begin{cond}
+\item(Field estimate)
+\[\|\tfrac1{|x|^{d-1}}*\rho\|_\infty\les\|\rho\|_\infty^{1-1/d}\|\rho\|_1^{1/d}\]
+\item(Field derivative estimate)
+For $\log^+(x):=\max\{0,\log x\}$,
+\[\|\del(\tfrac1{|x|^{d-1}}*\rho)\|_\infty\les1+\|\rho\|_\infty\log^+\|\del\rho\|_\infty+\|\rho\|_1.\]
+\end{cond}
+\end{lem}
+
+\begin{pfs}
+\item
+Let $0\le\frac1p<\frac\alpha d<\frac1q\le1$.
+Since $(d-\alpha)p<d<(d-\alpha)q$,
+\begin{align*}
+|\tfrac1{|x|^{d-\alpha}}*\rho|
+&=\int_{|x-y|<R}\frac{\rho(y)}{|x-y|^{d-\alpha}}\,dy+\int_{|x-y|\ge R}\frac{\rho(y)}{|x-y|^{d-\alpha}}\,dy\\
+&\le\|\rho\|_{p'}(\int_{|y|<R}\frac{dy}{|y|^{(d-\alpha)p}})^{1/p}+\|\rho\|_{q'}(\int_{|y|\ge R}\frac{dy}{|y|^{(d-\alpha)q}})^{1/q}\\
+&\simeq\|\rho\|_{p'}(\int_0^Rr^{d-1-(d-\alpha)p}\,dr)^{1/p}+\|\rho\|_{q'}(\int_R^\infty r^{d-1-(d-\alpha)q}\,dr)^{1/q}\\
+&\simeq\|\rho\|_{p'}R^{\frac dp-d+\alpha}+\|\rho\|_{q'}R^{\frac dq-d+\alpha}.
+\end{align*}
+By choosing $R$ such that $\|\rho\|_{p'}R^{\frac dp-d+\alpha}=\|\rho\|_{q'}R^{\frac dq-d+\alpha}$, we get
+\[\|\tfrac1{|x|^{d-\alpha}}*\rho\|_\infty\les\|\rho\|_{p'}^{\frac{1-\frac\alpha d-\frac1q}{\frac1p-\frac1q}}\|\rho\|_{q'}^{\frac{\frac1p-1+\frac\alpha d}{\frac1p-\frac1q}},\]
+so the inequality
+\[\|\tfrac1{|x|^{d-\alpha}}*\rho\|_\infty^{\frac1q-\frac1p}\les\|\rho\|_p^{\frac1q-\frac\alpha d}\|\rho\|_q^{\frac\alpha d-\frac1p}\]
+is obtained by interchaning $p$ and $q$ with their conjugates.
+The desired result gets $p=\infty$, $\alpha=1$, and $q=1$.
+
+\item
+Let $0<R_a\le R_b$ be constants which will be determined later.
+Divide the region radially
+\begin{align*}
+|\del(\tfrac1{|x|^{d-\alpha}}*\rho)|\les\del\int_{|x-y|<R_a}+\del\int_{R_a\le|x-y|<R_b}+\del\int_{R_b\le|x-y|}.
+\end{align*}
+For the first integral,
+\begin{align*}
+\int_{|y|<R_a}\frac{\del\rho(x-y)}{|y|^{d-1}}\,dy
+&\le\|\del\rho\|_\infty\int_{|y|<R_a}\frac1{|y|^{d-1}}\,dy\\
+&\simeq\|\del\rho\|_\infty\int_0^{R_a}1\,dr
+=R_a\|\del\rho\|_\infty.
+\end{align*}
+For the second integral,
+\begin{align*}
+\int_{R_a\le|x-y|<R_b}\frac{\rho(y)}{|x-y|^d}\,dy
+&\le\|\rho\|_\infty\int_{R_a\le|x-y|<R_b}\frac1{|x-y|^d}\,dy\\
+&\simeq\|\rho\|_\infty\int_{R_a}^{R_b}\frac1r\,dr
+=(\log\tfrac{R_b}{R_a})\|\rho\|_\infty.
+\end{align*}
+For the third integral,
+\[\int_{R_b\le|x-y|}\frac{\rho(y)}{|x-y|^d}\,dy\le R_b^{-d}\|\rho\|_1.\]
+Thus,
+\[|\del(\tfrac1{|x|^{d-\alpha}}*\rho)|\les R_a\|\del\rho\|_\infty+(\log\tfrac{R_b}{R_a})\|\rho\|_\infty+R_b^{-d}\|\rho\|_1.\]
+
+Assuming $\rho$ is nonzero so that $\|\del\rho\|_\infty>0$, let $R_a=\min\{1,\|\del\rho\|_\infty^{-1}\}$ and $R_b=1$.
+Since
+\[\log\tfrac1{R_a}\le\log^+\|\del\rho\|_\infty\quad\text{and}\quad R_a\les\|\del\rho\|_\infty,\]
+we have
+\[\|\del(\tfrac1{|x|^{d-1}}*\rho)\|_\infty\les1+\|\rho\|_\infty\log^+\|\del\rho\|_\infty+\|\rho\|_1.\qedhere\]
+\end{pfs}
 
 \subsection{Volume preservation}
 
+\[<\text{To be written...}>\]
+
+To sum up our weapons obtained in 1.1 and 1.2,
+\begin{cor}
+Let $\rho,E\in C^1(\R^+\x\R^3)$ be mass density and force field with relation
+\[E(t,x)=\frac1{4\pi}\int\frac{(x-y)\rho(t,y)}{|x-y|^3}\,dy.\]
+Then, for $t\in[0,\infty)$
+\begin{cond}
+\item $\|\rho(t)\|_1=\const$,
+\item $\|E(t)\|_\infty\les\|\rho(t)\|_\infty^{2/3}$,
+\item $\|\del E(t)\|_\infty\les1+\|\rho\|_\infty\log^+\|\del\rho\|_\infty$.
+\end{cond}
+\end{cor}
+
+
 
 \subsection{Conservative laws}
-The following results cannot be used in any local existence proof because they assume the existence of solutions, but they help understand the fundamental nature of solutions of the Vlasov-Poisson system and are used in the proof of global existence.
 
 \begin{lem}
-Let $f\in C_c^1([0,T]\x\R^6)$.
+Let $f\in C^1([0,T],C_c^1(\R^6))$ be a solution of the Vlasov-Poisson system.
 \begin{cond}
 \item(Continuity equation)
 \[\rho_t+\del_x\cdot j=0,\qquad\text{where}\quad j=\int vf\,dv.\]
@@ -69,10 +160,15 @@ Thus
 \[\iint|v|^2f\,dv\,dx+\gamma\int|E|^2\,dx=\const.\qedhere\]
 \end{pfs}
 
+
+
 \subsection{Moment propagation}
+
 We have a bound of kinetic energy even for $\gamma=-1$.
 
-\begin{lem}[$L^{5/3}$ estimate of $\rho$]$ $\\[-12pt]
+\begin{lem}[$L^{5/3}$ estimate of $\rho$]
+Let $f\in C^1([0,T],C_c^1(\R^6))$ be a solution of the Vlasov-Poisson system.
+For $t\in[0,T]$,
 \begin{cond}
 \item $\|\rho(t)\|_{L_x^{5/3}}\les\iint|v|^2f\,dv\,dx$.
 \item $\iint|v|^2f\,dv\,dx\les1$.
@@ -90,6 +186,8 @@ Set $R^3=R^{-2}\int|v|^2f\,dv$ to get
 \[\rho(t,x)^{5/3}\les\int|v|^2f\,dv.\]
 
 \item
+It is trivial for $\gamma=+1$.
+Suppose $\gamma=-1$.
 By the Hardy-Littlewood-Sobolev inequality,
 \[\frac1p+\frac\alpha d=\frac1q\]
 for $p=2$, $d=3$, and $\alpha=1$ implies $q=6/5$, hence the bound of $\|E(t)\|_2$
@@ -97,30 +195,11 @@ for $p=2$, $d=3$, and $\alpha=1$ implies $q=6/5$, hence the bound of $\|E(t)\|_2
 So, interpolation with H\"older's inequality gives
 \[\|E(t)\|_2\les\|\rho\|_1^{7/12}\|\rho\|_{5/3}^{5/12}\simeq\|\rho\|_{5/3}^{5/12}.\]
 Thus (1) gives
-\[\iint|v|^2f\,dv\,dx=C+\|E(t)\|_2^2\les C+(\iint|v|^2f\,dv\,dx)^{1/2},\]
+\[\iint|v|^2f\,dv\,dx=c+\|E(t)\|_2^2\les c+(\iint|v|^2f\,dv\,dx)^{1/2},\]
 so the kinetic energy $\iint f\,dv\,dx$ is bounded.
-As a corollary, $\|\rho\|_{5/3}$ is also bounded.\qedhere
+As a corollary, $\|\rho(t)\|_{5/3}$ is also bounded.\qedhere
 \end{pfs}
 
-
-\begin{lem}[$L^\infty$-estimate of $E$]
-For $0\le\frac1p<\frac\alpha d<\frac1q\le1$,
-\[\|\frac1{|x|^{d-\alpha}}*\rho(t,x)\|_{L_x^\infty}^{\frac1q-\frac1p}\les\|\rho(t)\|_p^{\frac1q-\frac\alpha d}\|\rho(t)\|_q^{\frac\alpha d-\frac1p}.\]
-\end{lem}
-\begin{pf}
-Fix time $t$.
-For $(d-\alpha)p<d<(d-\alpha)q$,
-\begin{align*}
-|\frac1{|x|^{d-\alpha}}*\rho(t,x)|
-&\le\int_{|x-y|<R}\frac{\rho(t,y)}{|x-y|^{d-\alpha}}\,dy+\int_{|x-y|\ge R}\frac{\rho(t,y)}{|x-y|^{d-\alpha}}\,dy\\
-&\le\|\rho\|_{p'}(\int_{|y|<R}\frac{dy}{|y|^{(d-\alpha)p}})^{1/p}+\|\rho\|_{q'}(\int_{|y|\ge R}\frac{dy}{|y|^{(d-\alpha)q}})^{1/q}\\
-&\simeq\|\rho\|_{p'}(\int_0^Rr^{d-1-(d-\alpha)p}\,dr)^{1/p}+\|\rho\|_{q'}(\int_R^\infty r^{d-1-(d-\alpha)q}\,dr)^{1/q}\\
-&\simeq\|\rho\|_{p'}R^{\frac dp-d+\alpha}+\|\rho\|_{q'}R^{\frac dq-d+\alpha}.
-\end{align*}
-By choosing $R$ such that $\|\rho\|_{p'}R^{\frac dp-d+\alpha}=\|\rho\|_{q'}R^{\frac dq-d+\alpha}$, we get
-\[\|E(t)\|_\infty\les\|\rho(t,x)\|_{p'}^{\frac{1-\frac\alpha d-\frac1q}{\frac1p-\frac1q}}\|\rho(t,x)\|_{q'}^{\frac{\frac1p-1+\frac\alpha d}{\frac1p-\frac1q}},\]
-hence the inequality by interchaning $p$ and $q$ with their conjugates.
-\end{pf}
 
 
 
@@ -128,8 +207,8 @@ hence the inequality by interchaning $p$ and $q$ with their conjugates.
 
 \subsection{Approximate solution}
 
-Suppose $f_0\in C_c^1$.
-With initial term $f_0$, inductively define $f_{n+1}$ by letting the electric field $E$ be known:
+Suppose $f_0\in C_c^1(\R^6)$.
+With initial term $f_0(t,x,v)=f_0(x,v)$, inductively define $f_{n+1}$ by letting the electric field $E$ be known:
 \begin{pde*}
 &\pd_tf_{n+1}+v\cdot\del_xf_{n+1}+\gamma E_n\cdot\del_vf_{n+1}=0,\\
 &E_n(t,x)=-\del_x\Phi_n,\\
@@ -137,23 +216,57 @@ With initial term $f_0$, inductively define $f_{n+1}$ by letting the electric fi
 &\rho_n(t,x)=\tint f_n\,dv,\\
 &f_{n+1}(0,x,v)=f_0(x,v).
 \end{pde*}
-Characteristics.
+\begin{prop}
+The sequence of approximate solutions $f_n$ uniquely exists globally and $C^1(\R^+;C_c^1(\R^6))$.
+\end{prop}
+\begin{pf}
+Notice that $f_0$ is clearly in $C^1(\R^+;C_c^1(\R^6))$.
+Assume $f_n\in C^1(\R^+;C_c^1(\R^6))$.
+Then, we have
+\[\rho_0\in C^1(\R^+;C_c^1(\R^6)),\quad\Phi_n\in C^1(\R^+;C^{2,\alpha}(\R^6)),\ \text{and}\ E_n\in C^1(\R^+;C^{1,\alpha}(\R^6))\]
+by the H\"older regularity of the Poisson equation.
 
-Then, the equation becomes a linear PDE for $f_{n+1}$.
+Solve
+\begin{pde*}
+\dot X_{n+1}(s;t,x,v)&=V_{n+1}(s,t,x,v)\\
+\dot V_{n+1}(s;t,x,v)&=\gamma E_n(s,X_n(s;t,x,v))
+\end{pde*}
+and define
+\[f_{n+1}(t,x,v):=f_0(X_{n+1}(0;t,x,v),V_{n+1}(0;t,x,v)).\]
+Then, we can easily check $f_{n+1}\in C^1(\R^+;C_c^1(\R^6))$ and it satisfies the approximate system by the chain rule.
 
+Since the approximate system is a semilinear with respect to $f_{n+1}$, we can get that the $C^1(\R^+\x\R^6)$ solution is unique. (This semilinearity can also prove the existence, but it is quite difficult to show its compact support of $f_{n+1}$.)
+\end{pf}
+
+Note that the estimate of $\|\del E_{n-1}\|_\infty$ guarantees the existence of characteristics, defined as follows:
+\begin{pde*}
+\dot X_n(s;t,x,v)&=V_n(s,t,x,v)\\
+\dot V_n(s;t,x,v)&=\gamma E_{n-1}(s,X_n(s;t,x,v)).
+\end{pde*}
+Then, for fixed $t,x,v$, the chain rule implies
+\[\dd{s}f_n(s,X_n(s;t,x,v),V_n(s;t,x,v))=\pd_tf_n+\dot X_n\cdot\del_xf_n+\dot V_n\cdot\del_vf_n=0\]
+so that we have
+\[f_n(s,X_n(s;t,x,v),V_n(s;t,x,v))=f_0(X_n(0;t,x,v),V_n(0;t,x,v)).\]
+
+
+
+\subsection{Local A priori estimates}
+
+Firstly, the volume preserving property still holds for our approximate system, so we have
+\[\|\rho_n(t)\|_1=\const,\quad\|f_n(t)\|_p=\const.\]
+Next, we prove local-time bounds on fields $E_n$.
+Introduce the following quantity.
 \begin{defn}
-\[Q_n(t)=\sup\{\,|v|:f(s,x,v)\ne0,\ s\in[0,t]\,\}\]
+Define the \emph{velocity support} or \emph{maximal velocity}
+\[Q_n(t)=\sup\{\,|v|:f_n(s,x,v)\ne0,\ s\in[0,t]\,\}\]
 \end{defn}
-
-
-\subsection{A priori estimates of $\rho_n$ and $E_n$}
 
 \begin{lem}$ $\\[-12pt]
 \begin{cond}
 \item
-For all $t\in[0,\infty]$, $\|\rho_n(t)\|_\infty\les Q_n^3(t)$ and $\|E_n(t)\|_\infty\les Q_n^2(t)$
-\item
-For sufficiently small $t<c(f_0)$, $Q_n(t)\les1$ indendent on $n$.
+For small $t<c(f_0)$,
+\[\rho_n(t)+E_n(t)+Q_n(t)\les1\]
+indendent on $n$.
 \end{cond}
 \end{lem}
 \begin{pfs}
@@ -161,8 +274,7 @@ For sufficiently small $t<c(f_0)$, $Q_n(t)\les1$ indendent on $n$.
 Since
 \[\|\rho_n(t)\|_\infty\le Q^3(t)\|f_0\|_\infty\les Q_n^3(t),\]
 a rough estimate for $\|E\|_\infty$ gives
-\[\|E_n(t)\|_\infty\le\|\rho_n(t)\|_\infty^{2/3}\|\rho_n(t)\|_1^{1/3}\les Q_n^2(t)\]
-\item
+\[\|E_n(t)\|_\infty\le\|\rho_n(t)\|_\infty^{2/3}\|\rho_n(t)\|_1^{1/3}\les Q_n^2(t).\]
 Let $c=c(f_0)$ be a constant such that $\|E_n(t)\|\le cQ^2(t)$.
 We claim that
 \[Q_n(t)\le\frac{Q_0}{1-cQ_0t}\]
@@ -190,14 +302,14 @@ By induction, $Q_n(t)\les1$ for all $n$ and $t\in[0,T]$, where $T<(cQ_0)^{-1}$.\
 
 
 \subsection{Convergence of $f_n$}
-
-
+\begin{lem}
+In short time,
 \begin{cond}
 \item\[\|f_{n+1}(t)-f_n(t)\|_\infty\les\int_0^t\|E_n(s)-E_{n-1}(s)\|_\infty\,ds.\]
-\item\[\|f_{n+1}(t)-f_n(t)\|_\infty\les\int_0^t\|f_n(s)-f_{n-1}(s)\|_\infty^{1/3}\,ds.\]
-Therefore, $f_n$ converges uniformly.
+\item\[\|E_n(s)-E_{n-1}(s)\|_\infty\les\|f_n(s)-f_{n-1}(s)\|_\infty^{1/3}.\]
+\item $f_n$ converges uniformly in $C([0,T]\x\R^6)$.
 \end{cond}
-
+\end{lem}
 \begin{pfs}
 \item
 Take $T$ such that
