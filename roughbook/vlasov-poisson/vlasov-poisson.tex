@@ -11,6 +11,7 @@
 \begin{document}
 \maketitle
 \tableofcontents
+\section*{Acknowledgement}
 
 
 \section{Vlasov-Poisson system}
@@ -110,15 +111,86 @@ we have
 \[\|\del(\tfrac1{|x|^{d-1}}*\rho)\|_\infty\les1+\|\rho\|_\infty\log^+\|\del\rho\|_\infty+\|\rho\|_1.\qedhere\]
 \end{pfs}
 
-\subsection{Volume preservation}
+\subsection{Characteristics and volume preservation}
 
-\[<\text{To be written...}>\]
+The Vlasov-Poisson equation is quite hyperbolic so that the method of characteristic curves are extremely useful.
+Without explicit representation formula, solutions given by the characteristics make appropriate estimates possible.
+
+\begin{lem}
+Let $f\in C^1([0,T],C_c^1(\R^6))$ be a solution of the Vlasov-Poisson system.
+\begin{cond}
+\item Fix $t,x,v$. The following ordinary equation with variable $s$ has a solution in $C^1([0,T],\R^6)$:
+\begin{gather*}
+\dot X(s;t,x,v)=V(s;t,x,v),\quad\dot V(s;t,x,v)=\gamma E(t,X(s;t,x,v)),\\
+X(t;t,x,v)=x,\qquad V(t;t,x,v)=v.
+\end{gather*}
+We call them \emph{characteristics}.
+\item Fix $t,x,v$. Then, $f(s,X(s;t,x,v),V(s;t,x,v))=\const$.
+\item Fix $t,s\in[0,T]$ and let $y=X(s;t,x,v)$ and $w=V(s;t,x,v)$. Then, the Jacobian of the coordinates transformation $(x,v)\mapsto(y,w)$ is 1.
+\end{cond}
+\end{lem}
+\begin{pfs}
+\item
+Note that we have
+\[\rho\in C^1([0,T];C_c^1(\R^6)),\quad\Phi\in C^1([0,T];C^{2,\alpha}(\R^6))\]
+so that
+\[E\in C^1([0,T];C^{1,\alpha}(\R^6))\]
+by the H\"older regularity of the Poisson equation.
+Since a map
+\[(x,v)\mapsto(v,\gamma E(t,x))\]
+is globally Lipschitz with respect to $(x,v)$ for each $t$, we can apply the Picard Lindel\"of theorem.
+
+\item
+Differentiate and use the chain rule to get
+\begin{align*}
+\dd{s}&f(s,y,w)\\
+&=\pd_tf(s,y,w)+\dot X(s;s,y,w)\cdot\del_xf(s,y,w)+\dot V(s;s,y,w)\cdot\del_vf(s,y,w)\\
+&=\pd_tf(s,y,w)+w\cdot\del_xf(s,y,w)+\gamma E(s,y)\cdot\del_vf(s,y,w)=0,
+\end{align*}
+where we denote $y=X(s;t,x,v)$ and $w=V(s;t,x,v)$.
+
+\item
+Fix $t,x,v$ and let $J(s)=\pd{(y,w)}{(x,v)}$ be the Jacobi matrix.
+We want to show
+\[\det J(s)=\const\]
+becuase when $s=t$ the Jacobian is
+\[\det J(0)=\det\pd{(x,v)}{(x,v)}=1.\]
+Since
+\[J^{-1}(s)\dd{s}J(s)=\pd{(x,v)}{(y,x)}\dd{s}\pd{(y,w)}{(x,v)}=\pd{(\dot y,\dot w)}{(y,w)}=\mat{0&1\\\gamma\pd{E}{y}(s,y)&0},\]
+the Jacobi formula deduces that
+\[\dd{s}\det J(s)=\det(s)\tr\left(J^{-1}(s)\dd{s}J(s)\right)=0.\qedhere\]
+
+\end{pfs}
+
+\begin{cor}
+Let $f\in C^1([0,T],C_c^1(\R^6))$ be a solution of the Vlasov-Poisson system.
+Then, for any measurable function $\beta:\R\to\R$ such that $\iint\beta\o f_0(x,v)\,dv\,dx<\infty$, we have
+\[\iint\beta\o f(t,x,v)\,dv\,dx=\const.\]
+In particular,
+\[\|f(t)\|_p=\const\]
+for all $1\le p\le\infty$.
+\end{cor}
+\begin{pf}
+Fix $t,s[0,T]$ and denote $y=X(s;t,x,v)$ and $w=V(s;t,x,v)$.
+Then,
+\begin{align*}
+\iint\beta\o f(t,x,v)\,dv\,dx
+&=\iint\beta\o f(s,X(s;t,x,v),V(s;t,x,v))\,dv\,dx\\
+&=\iint\beta\o f(s,y,w)\,dw\,dy
+\end{align*}
+for $s\le T$.
+\end{pf}
+\begin{rmk}
+Note that this result can be obtained in the approximation scheme, which will be suggested in the next section.
+\end{rmk}
 
 To sum up our weapons obtained in 1.1 and 1.2,
 \begin{cor}
-Let $\rho,E\in C^1(\R^+\x\R^3)$ be mass density and force field with relation
-\[E(t,x)=\frac1{4\pi}\int\frac{(x-y)\rho(t,y)}{|x-y|^3}\,dy.\]
-Then, for $t\in[0,\infty)$
+If a function $f\in C^1([0,T],C_c^1(\R^6))$ satisfies
+\[\iint f(t,x,v)\,dv\,dx=\const,\]
+and if we let
+\[\rho(t,x)=\int f(t,x,v)\,dv,\quad E(t,x)=\frac1{4\pi}\int\frac{(x-y)\rho(t,y)}{|x-y|^3}\,dy,\]
+then
 \begin{cond}
 \item $\|\rho(t)\|_1=\const$,
 \item $\|E(t)\|_\infty\les\|\rho(t)\|_\infty^{2/3}$,
@@ -203,12 +275,16 @@ As a corollary, $\|\rho(t)\|_{5/3}$ is also bounded.\qedhere
 
 
 
+
+
+
 \section{Local existence}
 
 \subsection{Approximate solution}
 
-Suppose $f_0\in C_c^1(\R^6)$.
-With initial term $f_0(t,x,v)=f_0(x,v)$, inductively define $f_{n+1}$ by letting the electric field $E$ be known:
+
+\begin{defn}
+We define an (global) \emph{approximate solution} as a sequence of functions $f_n\in C^1(\R^+,C_c^1(\R^6))$ such that
 \begin{pde*}
 &\pd_tf_{n+1}+v\cdot\del_xf_{n+1}+\gamma E_n\cdot\del_vf_{n+1}=0,\\
 &E_n(t,x)=-\del_x\Phi_n,\\
@@ -216,37 +292,48 @@ With initial term $f_0(t,x,v)=f_0(x,v)$, inductively define $f_{n+1}$ by letting
 &\rho_n(t,x)=\tint f_n\,dv,\\
 &f_{n+1}(0,x,v)=f_0(x,v).
 \end{pde*}
+This definition is made in order to let the force field $E$ constant when solving $f_{n+1}$.
+\end{defn}
+
+
 \begin{prop}
-The sequence of approximate solutions $f_n$ uniquely exists globally and $C^1(\R^+;C_c^1(\R^6))$.
+An approximate solution exists.
 \end{prop}
 \begin{pf}
+Let $f_0(t,x,v)=f_0(x,v)$.
 Notice that $f_0$ is clearly in $C^1(\R^+;C_c^1(\R^6))$.
-Assume $f_n\in C^1(\R^+;C_c^1(\R^6))$.
-Then, we have
-\[\rho_0\in C^1(\R^+;C_c^1(\R^6)),\quad\Phi_n\in C^1(\R^+;C^{2,\alpha}(\R^6)),\ \text{and}\ E_n\in C^1(\R^+;C^{1,\alpha}(\R^6))\]
-by the H\"older regularity of the Poisson equation.
+Assume $f_n\in C^1(\R^+;C_c^1(\R^6))$ satisfies the approximate system.
+We want to show that there is $f_{n+1}$ that satisfies the approximate system and $f_{n+1}\in C^1(\R^+;C_c^1(\R^6))$.
 
-Solve
+We have
+\[\rho_n\in C^1(\R^+;C_c^1(\R^6)),\quad\Phi_n\in C^1(\R^+;C^{2,\alpha}(\R^6)),\ \text{and}\ E_n\in C^1(\R^+;C^{1,\alpha}(\R^6))\]
+by the H\"older regularity of the Poisson equation.
+Since a map $(x,v)\mapsto(v,\gamma E_n(t,x))$ is globally Lipschitz with respect to $(x,v)$ for each $t$, the classical Picard iteration uniquely solves the characteristic equation
 \begin{pde*}
 \dot X_{n+1}(s;t,x,v)&=V_{n+1}(s,t,x,v)\\
-\dot V_{n+1}(s;t,x,v)&=\gamma E_n(s,X_n(s;t,x,v))
+\dot V_{n+1}(s;t,x,v)&=\gamma E_n(s,X_{n+1}(s;t,x,v))
 \end{pde*}
-and define
+with condition $(X_{n+1}(t;t,x,v),V_{n+1}(t;t,x,v))=(x,v)$ and proves the uniqueness and regularity of the solution $s\mapsto(X_{n+1},V_{n+1})(s;t,x,v)\in C^1(\R^+,\R^6)$.
+
+Define
 \[f_{n+1}(t,x,v):=f_0(X_{n+1}(0;t,x,v),V_{n+1}(0;t,x,v)).\]
-Then, we can easily check $f_{n+1}\in C^1(\R^+;C_c^1(\R^6))$ and it satisfies the approximate system by the chain rule.
-
-Since the approximate system is a semilinear with respect to $f_{n+1}$, we can get that the $C^1(\R^+\x\R^6)$ solution is unique. (This semilinearity can also prove the existence, but it is quite difficult to show its compact support of $f_{n+1}$.)
+Then, we can show that
+\begin{align*}
+f_{n+1}(s,X_{n+1}(s;t,x,v),V_{n+1}(s;t,x,v))&\\
+=f_0(X_{n+1}(0;t,x,v),V_{n+1}(0;t,x,v))&=\const
+\end{align*}
+and that $f_{n+1}$ satisfies the approximate system by the chain rule
+\begin{align*}
+0&=\left.\dd{s}f_{n+1}(s,X_{n+1}(s;t,x,v),V_{n+1}(s;t,x,v))\right|_{s=t}\\
+&=\pd_tf_{n+1}(t,x,v)+\dot X_{n+1}(t;t,x,v)\cdot\del_xf_{n+1}(t,x,v)\\
+&\hspace{7.5em}+\dot V_{n+1}(t;t,x,v)\cdot\del_vf_{n+1}(t,x,v)\\
+&=\pd_tf_{n+1}(t,x,v)+v\cdot\del_xf_{n+1}(t,x,v)+\gamma E_n(t,x)\cdot\del_vf_{n+1}(t,x,v).
+\end{align*}
+Also, $f_{n+1}$ has compact support for each $t$ since the characteristic does not blow up; finally we have $f_{n+1}\in C^1(\R^+,C_c^1(\R^6))$.
 \end{pf}
-
-Note that the estimate of $\|\del E_{n-1}\|_\infty$ guarantees the existence of characteristics, defined as follows:
-\begin{pde*}
-\dot X_n(s;t,x,v)&=V_n(s,t,x,v)\\
-\dot V_n(s;t,x,v)&=\gamma E_{n-1}(s,X_n(s;t,x,v)).
-\end{pde*}
-Then, for fixed $t,x,v$, the chain rule implies
-\[\dd{s}f_n(s,X_n(s;t,x,v),V_n(s;t,x,v))=\pd_tf_n+\dot X_n\cdot\del_xf_n+\dot V_n\cdot\del_vf_n=0\]
-so that we have
-\[f_n(s,X_n(s;t,x,v),V_n(s;t,x,v))=f_0(X_n(0;t,x,v),V_n(0;t,x,v)).\]
+\begin{rmk}
+Although the approximate solution is unique when given the initial term $f_0(t,x,v)=f_0(x,v)$, we do not care of the uniqueness, but only the existence.
+\end{rmk}
 
 
 
@@ -261,30 +348,36 @@ Define the \emph{velocity support} or \emph{maximal velocity}
 \[Q_n(t)=\sup\{\,|v|:f_n(s,x,v)\ne0,\ s\in[0,t]\,\}\]
 \end{defn}
 
-\begin{lem}$ $\\[-12pt]
+\begin{lem}
+There is a constant $T=T(f_0)$ such that
 \begin{cond}
 \item
-For small $t<c(f_0)$,
-\[\rho_n(t)+E_n(t)+Q_n(t)\les1\]
+for $t\le T$
+\[\|\rho_n(t)\|_\infty+\|E_n(t)\|_\infty+Q_n(t)\les1\]
 indendent on $n$.
+In addition, the support of $X_n$ is also uniformly bounded in $t\le T$.
+\item
+for $t\le T$
+\[\|\del_x\rho_n(t)\|_\infty+\|\del_xE_n(t)\|_\infty\les1\]
+independent on $n$.
 \end{cond}
 \end{lem}
 \begin{pfs}
 \item
 Since
-\[\|\rho_n(t)\|_\infty\le Q^3(t)\|f_0\|_\infty\les Q_n^3(t),\]
+\[\|\rho_n(t)\|_\infty\le Q_n^3(t)\|f_0\|_\infty\les Q_n^3(t),\]
 a rough estimate for $\|E\|_\infty$ gives
 \[\|E_n(t)\|_\infty\le\|\rho_n(t)\|_\infty^{2/3}\|\rho_n(t)\|_1^{1/3}\les Q_n^2(t).\]
-Let $c=c(f_0)$ be a constant such that $\|E_n(t)\|\le cQ^2(t)$.
+Let $c=c(f_0)$ be a constant such that $\|E_n(t)\|\le cQ_n^2(t)$.
 We claim that
 \[Q_n(t)\le\frac{Q_0}{1-cQ_0t}\]
 for all $n$.
-Easily checked for $n=0$; $Q_0(t)=Q_0\le\frac{Q_0}{1-cQ_0t}$.
+Easily checked for $n=0$; $Q_0(t)\equiv Q_0\le\frac{Q_0}{1-cQ_0t}$.
 
 Assume $Q_n(t)\le\frac{Q_0}{1-cQ_0t}$.
 Then,
 \begin{align*}
-|V_{n+1}(s;0,x,v)|
+|V_{n+1}(t;0,x,v)|
 &\le|v|+\int_0^t|E_n(s;0,x,v)|\,ds\\
 &\le Q_0+c\int_0^tQ_n^2(s)\,ds
 \end{align*}
@@ -295,35 +388,46 @@ Q_{n+1}(t)
 &\le Q_0+c\int_0^t\left(\frac{Q_0}{1-cQ_0s}\right)^2ds
 =\frac{Q_0}{1-cQ_0t}.
 \end{align*}
-By induction, $Q_n(t)\les1$ for all $n$ and $t\in[0,T]$, where $T<(cQ_0)^{-1}$.\qedhere
+By induction, $Q_n(t)\le\frac{Q_0}{1-cQ_0t}\les1$ for all $n$ and $t\in[0,T]$, where $T<(cQ_0)^{-1}$.
+
+For the position support, we can bound it because
+\[|X_n(t;0,x,v)|\le|x|+\int_0^t|V_n(s;0,x,v)|\,ds\le|x|+TQ_n(t)\les1.\]
+\item
+%%%%%%%%
+\qedhere
 \end{pfs}
 
-\subsection{A priori estimates of $\del_x\rho_n$ and $\del_xE_n$}
 
 
-\subsection{Convergence of $f_n$}
+\subsection{Convergence of approximate solution}
 \begin{lem}
-In short time,
+There is $T=T(f_0)$ such that
 \begin{cond}
-\item\[\|f_{n+1}(t)-f_n(t)\|_\infty\les\int_0^t\|E_n(s)-E_{n-1}(s)\|_\infty\,ds.\]
-\item\[\|E_n(s)-E_{n-1}(s)\|_\infty\les\|f_n(s)-f_{n-1}(s)\|_\infty^{1/3}.\]
-\item $f_n$ converges uniformly in $C([0,T]\x\R^6)$.
+\item
+for $t\le T$ and $n\ge1$,
+\[\|f_{n+1}(t)-f_n(t)\|_\infty\les\int_0^t\|E_n(s)-E_{n-1}(s)\|_\infty\,ds.\]
+\item
+for $t\le T$ and $n\ge1$,
+\[\|E_n(s)-E_{n-1}(s)\|_\infty\les\|f_n(s)-f_{n-1}(s)\|_\infty.\]
+\item $f_n$ converges to a function $f$ uniformly in $C([0,T]\x\R^6)$.
+\item $(X_n,V_n)$ converges uniformly in $C([0,T]\x\R^6)$, and its limit $(X,V)$ satisfies the characteristic equation
+\[\dot X=V,\quad\dot V=\gamma E,\]
+where
+\[E(t,x)=\frac1{4\pi}\iint\frac{(x-y)f(t,x,v)}{|x-y|^3}\,dv\,dx.\]
 \end{cond}
 \end{lem}
 \begin{pfs}
 \item
-Take $T$ such that
-\[T<\min\{\|\del_xE_n(t)\|_\infty^{-1},1\}\quad\text{and}\quad Q_n(t)\les1\]
-for all $n$ and $t<T$.
-This can be done thanks for the local a priori bound for $\del_xE_n$.
-
-The $C^1$ regularity of $f_0$ lets
+The $C^1$ regularity of $f_0$ gives
 \begin{align*}
 |f&_{n+1}(t,x,v)-f_n(t,x,v)|\\
 &=|f_0(X_{n+1}(0;t,x,v),V_{n+1}(0;t,x,v))-f_0(X_n(0;t,x,v),V_n(0;t,x,v))|\\
 &\les|X_{n+1}(0;t,x,v)-X_n(0;t,x,v)|+|V_{n+1}(0;t,x,v)-V_n(0;t,x,v)|.
 \end{align*}
-Because
+Take $T$ such that
+\[\|\del E_n(t)\|_\infty\les1\quad\text{and}\quad T<\min\{\|\del_xE_n(t)\|_\infty^{-1},1\}\]
+for all $n$ and $t\le T$.
+Then, because
 \begin{align*}
 X_n(s;t,x,v)&=x-\int_s^tV_n(s';t,x,v)\,ds',\\
 V_n(s;t,x,v)&=v-\int_s^tE_{n-1}(s',X_n(s;t,x,v))\,ds',
@@ -339,23 +443,56 @@ and
 \begin{align*}
 |X_{n+1}(s;t,x,v)-X_n(s;t,x,v)|
 &\le\int_0^t|V_{n+1}(s;t,x,v)-V_n(s;t,x,v)|\,ds\\
-&\le T\sup_{s\in[0,t]}|V_{n+1}(s)-V_n(s)|.
+&\le T\sup_{s\in[0,t]}|V_{n+1}(s)-V_n(s)|
 \end{align*}
-Since $T$ is taken such that
-\[T<\min\{\|\del E_n(t)\|_\infty^{-1},1\},\]
-we get by combining the above two inequality,
+for $s\in[0,t]$.
+Thus, for $t\le T$ we get
 \begin{align*}
-&\sup_{s\in[0,t]}|X_{n+1}(s;t,x,v)-X_n(s;t,x,v)|+|V_{n+1}(s;t,x,v)-V_n(s;t,x,v)|\\
-&\qquad\les\int_0^t\|E_n(s)-E_{n-1}(s)\|_\infty\,ds.
+&\sup_{s\in[0,t]}(|X_{n+1}(s;t,x,v)-X_n(s;t,x,v)|+|V_{n+1}(s;t,x,v)-V_n(s;t,x,v)|)\\
+&\qquad\les\int_0^t\|E_n(s)-E_{n-1}(s)\|_\infty\,ds.\qquad\cdots\cdots(\dagger)
 \end{align*}
+by combining the above two inequalities.
+
 \item
 Notice that
 \[\|E_n(t)-E_{n-1}(t)\|_\infty\les\|\rho_n(t)-\rho_{n-1}(t)\|_1^{1/3}\|\rho_n(t)-\rho_{n-1}(t)\|_\infty^{2/3}.\]
 For $L^\infty$-norm,
-\[\|\rho_n(t)-\rho_{n-1}(t)\|\les Q_n^3(t)+Q_{n-1}^3(t)\les1.\]
-For $L^1$-norm, since the support of $f_n,f_{n-1}$ is bounded in both directions $x,v$,
-\[\|\rho_n(t)-\rho_{n-1}(t)\|_1\le\|f_n(t)-f_{n-1}(t)\|_1\les\|f_n(t)-f_{n-1}(t)\|_\infty.\]
+\begin{align*}
+\|\rho_n(t)-\rho_{n-1}(t)\|_\infty
+&\le\max\{Q_n^3(t),Q_{n-1}^3(t)\}\|f_n(t)-f_{n-1}(t)\|_\infty\\
+&\les\|f_n(t)-f_{n-1}(t)\|_\infty.
+\end{align*}
+For $L^1$-norm, since the support of $f_n,f_{n-1}$ is bounded in both directions $x,v$ in finite time,
+\[\|\rho_n(t)-\rho_{n-1}(t)\|_1\le\|f_n(t)-f_{n-1}(t)\|_1\les\|f_n(t)-f_{n-1}(t)\|_\infty\]
+for $t\le T$, where $T<\infty$ arbitrary.
+
+\item
+Let $T$ be the constant taken in (1).
+From (1) and (2), there is a constant $c=c(f_0)$ such that for $t<T$,
+\[\|f_{n+1}(t)-f_n(t)\|_\infty\le c\int_0^t\|f_n(s)-f_{n-1}(s)\|\,ds.\]
+We can easily get with induction
+\[\|f_{n+1}(t)-f_n(t)\|\infty\le\frac{(ct)^n}{n!}\sup_{s\in[0,T]}\|f_1(s)-f_0(s)\|_\infty\les\frac{(ct)^n}{n!}.\]
+Therefore,
+\[\sum_{n=0}^\infty\|f_{n+1}(t)-f_n(t)\|_\infty\simeq e^{ct}\le e^{cT}<\infty\]
+implies $f_n$ uniformly converges.
+
+\item
+The convergence is clear by the inequality $(\dagger)$ and the results in (2), (3).\qedhere
 \end{pfs}
+
+\begin{prop}
+Let $f(t):=\lim_{n\to\infty}f_n(t)$.
+Then, $f\in C^1([0,T],C_c^1(\R^6))$ and $f$ is a solution of the Vlasov-Poisson system.
+\end{prop}
+\begin{pf}
+Let $X(s;t,x,v)$ and $V(s;t,x,v)$ be the limits of $X_n$ and $V_n$.
+Notice that
+\begin{align*}
+f(t,x,v)=\lim_{n\to\infty}f_n(t,x,v)&=\lim_{n\to\infty}f_0(X_n(0;t,x,v),V_n(0;t,x,v))\\
+&=f_0(X(0;t,x,v),V(0;t,x,v)).
+\end{align*}
+By the chain rule, we can check it solves the system.
+\end{pf}
 
 
 \subsection{Uniqueness}
@@ -374,16 +511,39 @@ For $L^1$-norm, since the support of $f_n,f_{n-1}$ is bounded in both directions
 
 \subsection{Prolongation criterion}
 
+\begin{prop}
+If $Q(t)$ is bounded, then the solution $f$ of the Vlasov-Poisson system is continued globally to the entire $\R^+$.
+\end{prop}
+\begin{pf}
+Suppose $f\in C^1([0,T_{max}),C_c^1(\R^6))$ for $T_{max}<\infty$ is the maximal solution.
+\[<\text{To be written...}>\]
+
+It means that the length of time interval for existence has in fact a lower bound $T>0$ that depends only on $Q(T_{max})$.
+Apply the local existence result by setting $t=T_{max}-\frac12T$ as a new initial point.
+Then, we can have a solution $f\in C^1([0,T_{\max}+\frac12T),C_c^1(\R^6))$, which contradicts to the maximality of $T_{\max}$.
+Therefore, the solution $f$ prolonged forever.
+\end{pf}
+
+
 \begin{thm*}[Schaeffer, 1991]
-Let $f_0\in C_{c,x,v}^1$ and $f_0\ge0$.
-Then, the Cauchy problem for the VP system has a unique $C^1$ global solution.
+Let $f_0\in C_c^1(\R^6)$ and $f_0\ge0$.
+Then, the Cauchy problem for the VP system has a unique $C_c^1$ global solution.
 \end{thm*}
 
-\begin{defn}
-For a local solution $f$,
-\[Q(t):=1+\sup\{|v|:f(s,x,v)\ne0\text{ for some }s\in[0,t],\,x\in\R_x^3\}.\]
-\end{defn}
 
+
+
+
+\subsection{Lower bound on relative position vectors}
+Our goal is to obtain a priori estimate like
+\[\|E(t)\|_\infty\les Q(t)^a\qquad\text{for some }a<1.\]
+Since the force field $E$ measures the maximal rate of changes in velocity, the estimate can be read very roughly as
+\[Q'(t)\les Q(t)^a,\]
+which leads its polynomial growth.
+So we need to bound $E$.
+
+Fix a time of existence $t$ and a point $(t,\hat x,\hat v)$ and let
+\[\hat X(s):=X(s;t,\hat x,\hat v),\qquad\hat V(s):=V(s;t,\hat x,\hat v).\]
 Decompose $[t-\Delta,t]\x\R_x^3\x\R_v^3$ as
 \begin{align*}
 U&=\left\{\,(s,x,v):\ |v-\hat V(t)|\ge P,\quad|y-\hat X(s)|\ge r\,\right\},\\
@@ -392,33 +552,27 @@ G&=\left\{\,(s,x,v):\ |v-\hat V(t)|<P\quad\text{or}\quad|v|<P\,\right\}.
 \end{align*}
 (We can let $U\mapsto U\cap\{|v|\ge P\}$ to make the decomposition disjoint.)
 Later we choose
-\[P=Q^{4/11},\quad r=R\max\{|v|^{-3},\,|v-\hat V(t)|^{-3}\},\quad R=Q^{16/33}\log^{1/2}Q.\]
+\[P=Q^{4/11},\quad r=R\max\{|v|^{-3},\,|v-\hat V(t)|^{-3}\},\quad R=Q^{16/33}(\log^+Q)^{1/2}.\]
 Also, later we choose $\Delta\cdot\sup_{s\le t}\|E(s)\|_\infty<\frac P4$.
 
-
-
-\subsection{Some observations}
-Our goal is to obtain a priori estimate like
-\[\|E(t)\|_\infty\les Q(t)^a\qquad\text{for some }a<1.\]
-Since the force field $E$ measures the maximal rate of changes in velocity, the estimate can be read very roughly as
-\[Q'(t)\les Q(t)^a,\]
-which lead its polynomial growth.
-
-So we need to bound the Riesz potential $E$.
-The following observation suggests a lower bound of relative velocity.
-\begin{clm}
-Fix $t,x,v$.
-If $|v-\hat V(t)|\ge P$, then
+Reading the proof, letting $y=X(s;t,x,v)$ and $w=V(s;t,x,v)$ be functions of time variable $s$, trace carefully the following four quantities:
+\[|x-\hat X(t)|,\ |y-\hat X(s)|,\ |v-\hat V(t)|,\ |w-\hat V(s)|.\]
+The following observation suggests a lower bound of relative position.
+\begin{prop}
+Fix $x,v$.
+Let $P>0$ and $0<\Delta<t$ be constants such that
+\[\Delta\cdot\sup_{s\le t}\|E(s)\|_\infty<\frac P4.\]
+If $v$ satisfies $|v-\hat V(t)|\ge P$, then there is $s_0\in[t-\Delta,t]$ such that
 \[|y-\hat X(s)|\ge\frac14|v-\hat V(t)||s-s_0|\]
-for some $s_0\in[t-\Delta,t]$, where $\Delta\cdot\sup_{s\le t}\|E(s)\|_\infty<\frac P4$.
-\end{clm}
+for all $s\in[t-\Delta,t]$.
+\end{prop}
 \begin{pf}
 Since $\Delta\|E(s)\|_\infty<\frac P4$, we have
 \[|v-w|<\frac P4\quad\text{and}\quad|\hat V(t)-\hat V(s)|<\frac P4.\]
 The condition $|v-\hat V(t)|\ge P$ implies
 \[\frac12|v-\hat V(t)|\le|v-\hat V(t)|-\frac P4-\frac P4<|w-\hat V(s)|.\]
 
-Let $Z(s):=y-\hat X(s)$.
+Let $Z(s):=y-\hat X(s)$ be the relative position vector.
 Then,
 \begin{align*}
 Z'(s)&=w-\hat V(s),\\
@@ -442,12 +596,14 @@ proves
 \end{pf}
 
 We introduce time averaging to use the above lower bound.
-\begin{clm}
-Fix $t,x,v$.
-If $|v-\hat V(t)|\ge P$, then
+\begin{prop}
+Fix $x,v$.
+Let $P>0$ and $0<\Delta<t$ be constants such that
+\[\Delta\cdot\sup_{s\le t}\|E(s)\|_\infty<\frac P4.\]
+If $v$ satisfies $|v-\hat V(t)|\ge P$, then
 \[\int_{t-\Delta}^t\frac1{|y-\hat X(s)|^2}\chi_A(s)\,ds\les\frac{r^{-1}}{|v-\hat V(t)|},\]
 where $A=\{s:|y-\hat X(s)|\ge r\}$.
-\end{clm}
+\end{prop}
 \begin{pf}
 Since $|y-\hat X(s)|\ge\frac14|v-\hat V(t)||s-s_0|$,
 \begin{align*}
