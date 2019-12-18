@@ -3,6 +3,8 @@
 
 \title{Finite Group Theory}
 
+\newcommand{\edv}{\mathrel\Vert}
+
 \begin{document}
 \maketitle
 \tableofcontents
@@ -129,20 +131,15 @@ Then, a Sylow $p$-subgroup of the centralizer is also a Sylow $p$-subgroup of $G
 Therefore, we are done for Step 1.
 
 \bigskip
-\Step{2}[Normality implies uniqueness]
-Let $P\in\Syl_p(G)$ and $P\normal G$.
-Since $p\nmid|G/P|$, $\ker(G\to G/P)=P$ contains all $p$-subgroups of $G$.
-Thus, the Sylow $p$-subgroup is clearly unique.
-
-\bigskip
-\Step{3}[A Sylow $p$-subgroups get action by conjugation]
+\Step{2}[A Sylow $p$-subgroups get action by conjugation]
 Let $P$ be a Sylow $p$-subgroup of $G$.
 We construct class equations via the orbit-stabilizer theorm for various actions to extract information on $n_p$.
 Note that stabilizers in any setwise conjugation action is exactly normalizers.
 \begin{cond}
 \item The action $P\acts\Syl_p(G)$ gives
 \[n_p=1+\sum_i|P:N_P(P_i)|\]
-since $P=N_P(P_i)$ implies $P\trianglelefteq N_G(P_i)$ and $P=P_i$.
+since $P=N_P(P_i)\le N_G(P_i)$ and $P_i\normal N_G(P_i)$ imply and $P=P_i$.
+(Pass $P$ though $\pi:N_G(P_i)\to N_G(P_i)/P_i$.)
 \item Suppose the action $G\acts\Syl_p(G)$ is not transitive.
 Take another Sylow $p$-subgroup $P'$ is not conjugate with $P$ in $G$.
 The two actions $P\acts\Orb_G(P)$ and $P'\acts\Orb_G(P)$ gives
@@ -240,42 +237,73 @@ commutes, then a map
 is an isomorphism.
 \end{lem}
 \begin{lem}
-
+Let $Z,G$ be finite groups.
+If $Z$ is cyclic, then $\f,\f':Z\to\Aut(G)$ induces the isomorphic semidirect product iff their images are conjugate.
 \end{lem}
+
+\begin{ex}[Conjugacy classes of $\GL_2(\F_p)$]
+$ $
+\begin{cond}
+\item $\mat{a&0\\0&b}$: ${q-1\choose 2}=\frac{(q-1)(q-2)}2$ classes of size $\frac{|G|}{(q-1)^2}=q(q+1)$.
+\item $\mat{a&0\\0&a}$: $q-1$ classes of size $1$.
+\item $\mat{a&1\\0&a}$: $q-1$ classes of size $\frac{|G|}{q(q-1)}=q^2-1$.
+\item otherwise, the eigenvalues are in $\F_{q^2}$. So, $\frac{|\F_{q^2}|-|\F_q|}2=\frac{q(q-1)}2$ classes of size $\frac{q(q-1)}2$.
+\end{cond}
+\end{ex}
+
 
 
 \begin{ex}[$|G|=p^3$]
 \end{ex}
 
 
-\begin{ex}[$|G|=p^2q$]$ $\\[-10pt]
+\begin{ex}[$|G|=p^2q$]
+We divide three cases: $p+2\le q$, $p>q$, and $p^2q=12$.
+In each case we have a normal Sylow $p$-subgroup, groups are classified by semidirect products of a Sylow $p$-subgroup and a Sylow $q$-subgroup.
 
-Let $1+p<q$.
-Then, $n_q=1$.
+\bigskip
+\Case{1}[$p+2\le q$]
+Sylow's theorem implies $n_q=1$.
 \begin{cond}
-\item \[\f:Z_{p^2}\to\Aut(Z_q)\cong Z_{q-1}.\]
-There are $\min\{2,v_p(q-1)\}$ nonabelian groups.
-\item \[\f:Z_p\x Z_p\to\Aut(Z_q)\cong Z_{q-1}.\]
-There are $\min\{1,v_p(q-1)\}$ nonabelian groups.
+\item
+Let $G\cong Z_q\rtimes Z_{p^2}$, and consider actions of the form
+\[\f:Z_{p^2}\to\Aut(Z_q)\cong Z_{q-1}.\]
+There are
+\[\min\{v_p(q-1),2\}=\begin{cases}2&,p^2\mid q-1,\\1&,p\edv q-1,\\0&,\text{otherwise}\end{cases}\]
+nonabelian groups.
+\item
+Let $G\cong Z_q\rtimes(Z_p\x Z_p)$, and consider actions of the form
+\[\f:Z_p\x Z_p\to\Aut(Z_q)\cong Z_{q-1}.\]
+There are
+\[\min\{v_p(q-1),1\}=\begin{cases}1&,p\mid q-1,\\0&,\text{otherwise}\end{cases}\]
+nonabelian groups.
 \end{cond}
 
-Let $p>q$.
-Then, $n_p=1$.
+\bigskip
+\Case{2}[$p>q$]
+Sylow's theorem implies $n_p=1$.
 \begin{cond}
-\item $G\cong Z_{p^2}\rtimes Z_q$.
-Consider
+\item
+Let $G\cong Z_{p^2}\rtimes Z_q$, and consider actions of the form
 \[\f:Z_q\to\Aut(Z_{p^2})\cong Z_{p(p-1)}.\]
-There are $\min\{1,v_q(p-1)\}$ nonabelian groups.
-\item $G\cong(Z_p\x Z_p)\rtimes Z_q$.
-Consider
-\[\f:Z_q\to\Aut(Z_p\x Z_p)\cong\GL_2(\F_p).\]
 There are
-\[\begin{cases}2&,q=2\\1&,q\mid p+1\\\frac{q+3}2&,q\mid p-1\\0&,\text{otherwise}\end{cases}\]
+\[\min\{v_q(p-1),1\}=\begin{cases}1&,q\mid p-1,\\0&,\text{otherwise}\end{cases}\]
+nonabelian groups.
+\item
+Let $G\cong(Z_p\x Z_p)\rtimes Z_q$, and consider actions of the form
+\[\f:Z_q\to\Aut(Z_p\x Z_p)\cong\GL_2(\F_p).\]
+Note that $|\GL_2(\F_p)|=(p^2-1)(p^2-p)=(p-1)^2p(p+1)$.
+The conjugacy class of subgroups are classified by the Jordan normal forms.
+
+If $q=2$, then the possible conjugacy classes are represented by
+\[\mat{1&0\\0&-1},\ \mat{-1&0\\0&-1}\]
+There are
+\[\begin{cases}2&,q=2\\1&,2\nmid q\mid p+1,\\\frac{q+3}2&,2\nmid q\mid p-1,\\0&,\text{otherwise}\end{cases}\]
 nonabelian groups.
 Since the number of one-dimensional linear subspaces is $q+1$ and the number of symmetric subspaces is 2 in $\F_q^2$, we have $\frac{(q+1)-2}2+2=\frac{q+3}2$ conjugacy classes of subgroups of order $q$ in $\GL_2(\F_p)$.
 \end{cond}
 
-Let $p=2$ and $q=3$.
+\Case{3}[$p=2$, $q=3$]
 
 \end{ex}
 
@@ -288,7 +316,7 @@ Let $p=2$ and $q=3$.
 
 
 \begin{figure}[h!]
-\begin{tabular}{c|cccccccc}
+\begin{tabular}{c|c|ccccccc}
 \hline
 $|G|=p^2q\ (p<q)$&12&20&28&44&45&52&63\\
 \hline
@@ -299,9 +327,9 @@ $\#$ of groups&5&5&4&4&2&5&4\\
 
 \begin{tabular}{c|cccc}
 \hline
-$|G|=p^2q\ (p>q)$&12&18&50&(75)\\
+$|G|=p^2q\ (p>q)$&18&50&(75)\\
 \hline
-$\#$ of groups&5&5&5&3\\
+$\#$ of groups&5&5&3\\
 \hline
 \end{tabular}
 \hspace{10pt}

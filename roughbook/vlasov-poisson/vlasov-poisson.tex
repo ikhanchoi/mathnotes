@@ -7,43 +7,51 @@
 
 \def\tint{{\textstyle\int}}
 \def\loc{\mathrm{loc}}
+\setlist[cond,1]{label=\rm{\roman*.}}
 
 \begin{document}
 \maketitle
 \tableofcontents
-\section*{Acknowledgement}
-
 
 \section{Vlasov-Poisson system}
-Consider a Cauchy problem of the \emph{Valsov-Poisson system}:
-\begin{pde*}
+Consider the following Cauchy problem for the \emph{Valsov-Poisson system}:
+\begin{pde}
 &f_t+v\cdot\del_xf+\gamma E\cdot\del_vf=0,\:(t,x,v)\in\R_t^+\x\R_x^3\x\R_v^3,\\
 &E(t,x)=-\del_x\Phi,\\
 &\Phi(t,x)=(-\Delta_x)^{-1}\rho,\\
 &\rho(t,x)=\tint f\,dv,\\
-&f(0,x,v)=f_0(x,v),
-\end{pde*}
+&f(0,x,v)=f_0(x,v)\ge0,
+\end{pde}
 where $\gamma=\pm1$.
 For example, we have \emph{repulsive problem} $\gamma=+1$ for electrons in plasma theory and \emph{attractive problems} $\gamma=-1$ for galactic dynamics.
 ($\rho$ denotes mass density.)
 
+This report mainly investigates the local and global existence problem of the Cauchy problem for the Vlasov-Poisson system.
 Results in 1.1 and 1.2 provide basic ingredients that will be used in the whole article.
-On the other hand, results in 1.3 and 1.4 cannot be used in any local existence proof because they assume the existence of solutions, but they help understand the fundamental nature of solutions of the Vlasov-Poisson system and are used in the proof of global existence.
+On the other hand, results in 1.3 cannot be used in any local existence proof because they assume the existence of solutions, but they help understand the fundamental nature of solutions of the Vlasov-Poisson system and are used in the proof of global existence.
 
+\begin{notn*}
 We use the asymptotic notation
 \[g(t)\les h(t)\iff\exists\,c=c(f_0),\quad g(t)\le c\,h(t)\]
 and
 \[g(t)\simeq h(t)\iff\exists\,c,\quad g(t)=c\,h(t).\]
 
+This report does not contain any of Sobolev norms.
+We omit marginalized variables and the $L$ character for subscript.
+For example,
+\[\|f(t)\|_p=(\iint|f(t,x,v)|^p\,dv\,dx)^{1/p},\quad\|\rho(t)\|_p=(\int|\rho(r,x)|^p\,dx)^{1/p}.\]
+\end{notn*}
 
 
 
 \subsection{Poisson equation}
-For the boundaryless problem in which the potential function vanishes at infinity, we have
+For the three-dimensional boundaryless problem of the Poisson equation
+\[-\Delta\Phi(x)=\rho(x)\]
+in which the solution $\Phi$ vanishes at infinity, we have
 \[\Phi=\tfrac1{4\pi|x|}*\rho,\]
-so
-\[E=-\del_x\Phi=-\del_x(\tfrac1{4\pi|x|}*\rho)=\frac{x}{4\pi|x|^3}*\rho,\]
-or it can be rewritten as
+so the electric field in the Vlasov-Poisson system is given by
+\[E=-\del_x\Phi=-\del_x(\tfrac1{4\pi|x|}*\rho)=\frac{x}{4\pi|x|^3}*\rho.\]
+It can be rewritten as
 \[E(t,x)=\frac1{4\pi}\int\frac{(x-y)\rho(t,y)}{|x-y|^3}\,dy.\]
 
 The nonlinearity of the system is originated from the force field $E$, so its estimates play the most important role in investigation of the nonlinear system.
@@ -60,6 +68,11 @@ For $\log^+(x):=\max\{0,\log x\}$,
 \[\|\del(\tfrac1{|x|^{d-1}}*\rho)\|_\infty\les1+\|\rho\|_\infty\log^+\|\del\rho\|_\infty+\|\rho\|_1.\]
 \end{cond}
 \end{lem}
+\iffalse
+\begin{rmk}
+Note that the constants hidden in symbol $\les$ in these estimate cannot depend on $f_0$ since the theorem is actually not about the Vlasov-Poisson system but the Poisson equation; the constant only depends on the dimension $d=3$.
+\end{rmk}
+\fi
 
 \begin{pfs}
 \item
@@ -83,7 +96,7 @@ The desired result gets $p=\infty$, $\alpha=1$, and $q=1$.
 Let $0<R_a\le R_b$ be constants which will be determined later.
 Divide the region radially
 \begin{align*}
-|\del(\tfrac1{|x|^{d-\alpha}}*\rho)|\les\del\int_{|x-y|<R_a}+\del\int_{R_a\le|x-y|<R_b}+\del\int_{R_b\le|x-y|}.
+|\del(\tfrac1{|x|^{d-1}}*\rho)|\les\del\int_{|x-y|<R_a}+\del\int_{R_a\le|x-y|<R_b}+\del\int_{R_b\le|x-y|}.
 \end{align*}
 For the first integral,
 \begin{align*}
@@ -102,7 +115,7 @@ For the second integral,
 For the third integral,
 \[\int_{R_b\le|x-y|}\frac{\rho(y)}{|x-y|^d}\,dy\le R_b^{-d}\|\rho\|_1.\]
 Thus,
-\[|\del(\tfrac1{|x|^{d-\alpha}}*\rho)|\les R_a\|\del\rho\|_\infty+(\log\tfrac{R_b}{R_a})\|\rho\|_\infty+R_b^{-d}\|\rho\|_1.\]
+\[|\del(\tfrac1{|x|^{d-1}}*\rho)|\les R_a\|\del\rho\|_\infty+(\log\tfrac{R_b}{R_a})\|\rho\|_\infty+R_b^{-d}\|\rho\|_1.\]
 
 Assuming $\rho$ is nonzero so that $\|\del\rho\|_\infty>0$, let $R_a=\min\{1,\|\del\rho\|_\infty^{-1}\}$ and $R_b=1$.
 Since
@@ -113,20 +126,26 @@ we have
 
 \subsection{Characteristics and volume preservation}
 
-The Vlasov-Poisson equation is quite hyperbolic so that the method of characteristic curves are extremely useful.
-Without explicit representation formula, solutions given by the characteristics make appropriate estimates possible.
+The Vlasov-Poisson equation is quite hyperbolic.
+What we mean here is that the method of characteristic curves is useful, and it does not regularizes the solution directly.
+Although we do not have an explicit representation formula, solutions given by characteristics make appropriate estimates possible.
+
+Moreover, since the Vlasov-Poisson system is a Hamiltonian system on the phase space $\R_x^3\x\R_v^3$ with the Hamiltonian $H(x,v)=\frac12v^2+\gamma\Phi(x,v)$, it has the volume preserving propoerty.
+We, however, will show the volume preservation by computation of the Jacobian determinant for transformations through characteristic flows.
 
 \begin{lem}
 Let $f\in C^1([0,T],C_c^1(\R^6))$ be a solution of the Vlasov-Poisson system.
 \begin{cond}
-\item Fix $t,x,v$. The following ordinary equation with variable $s$ has a solution in $C^1([0,T],\R^6)$:
+\item Fix $t,x,v$. The ordinary differential equation
 \begin{gather*}
 \dot X(s;t,x,v)=V(s;t,x,v),\quad\dot V(s;t,x,v)=\gamma E(t,X(s;t,x,v)),\\
-X(t;t,x,v)=x,\qquad V(t;t,x,v)=v.
+X(t;t,x,v)=x,\qquad V(t;t,x,v)=v
 \end{gather*}
-We call them \emph{characteristics}.
+with time variable $s$ has a solution $(X,V)$ in $C^1([0,T],\R^6)$.
 \item Fix $t,x,v$. Then, $f(s,X(s;t,x,v),V(s;t,x,v))=\const$.
-\item Fix $t,s\in[0,T]$ and let $y=X(s;t,x,v)$ and $w=V(s;t,x,v)$. Then, the Jacobian of the coordinates transformation $(x,v)\mapsto(y,w)$ is 1.
+\item Fix $t$ and let
+\[y(s,x,v):=X(s;t,x,v)\quad\text{and}\quad w(s,x,v):=V(s;t,x,v).\]
+Then, the Jacobian of coordinates transform $(x,v)\mapsto(y,w)$ is 1 for all $s$.
 \end{cond}
 \end{lem}
 \begin{pfs}
@@ -150,25 +169,24 @@ Differentiate and use the chain rule to get
 where we denote $y=X(s;t,x,v)$ and $w=V(s;t,x,v)$.
 
 \item
-Fix $t,x,v$ and let $J(s)=\pd{(y,w)}{(x,v)}$ be the Jacobi matrix.
+Let $J(s)=\pd{(y,w)}{(x,v)}$ be the Jacobi matrix.
+Because when $s=t$ the Jacobian is
+\[\det J(t)=\det\pd{(x,v)}{(x,v)}=1,\]
 We want to show
-\[\det J(s)=\const\]
-becuase when $s=t$ the Jacobian is
-\[\det J(0)=\det\pd{(x,v)}{(x,v)}=1.\]
+\[\det J(s)=\const.\]
 Since
 \[J^{-1}(s)\dd{s}J(s)=\pd{(x,v)}{(y,x)}\dd{s}\pd{(y,w)}{(x,v)}=\pd{(\dot y,\dot w)}{(y,w)}=\mat{0&1\\\gamma\pd{E}{y}(s,y)&0},\]
 the Jacobi formula deduces that
 \[\dd{s}\det J(s)=\det(s)\tr\left(J^{-1}(s)\dd{s}J(s)\right)=0.\qedhere\]
-
 \end{pfs}
 
 \begin{cor}
-Let $f\in C^1([0,T],C_c^1(\R^6))$ be a solution of the Vlasov-Poisson system.
+Let $f\in C^1([0,T],C_c^1(\R^6))$ be a solution of the Cauchy problem for the Vlasov-Poisson system.
 Then, for any measurable function $\beta:\R\to\R$ such that $\iint\beta\o f_0(x,v)\,dv\,dx<\infty$, we have
 \[\iint\beta\o f(t,x,v)\,dv\,dx=\const.\]
 In particular,
 \[\|f(t)\|_p=\const\]
-for all $1\le p\le\infty$.
+for $1\le p\le\infty$.
 \end{cor}
 \begin{pf}
 Fix $t,s[0,T]$ and denote $y=X(s;t,x,v)$ and $w=V(s;t,x,v)$.
@@ -197,10 +215,12 @@ then
 \item $\|\del E(t)\|_\infty\les1+\|\rho\|_\infty\log^+\|\del\rho\|_\infty$.
 \end{cond}
 \end{cor}
+These estimates will be applied not only to the global existence proof, which assumes the local existence, but also to approximate solutions.
 
 
 
-\subsection{Conservative laws}
+\subsection{Conservation laws and moment propagation}
+Usual algebraic computations with Stokes' theorem get several conservations laws, particularly including energy conservation.
 
 \begin{lem}
 Let $f\in C^1([0,T],C_c^1(\R^6))$ be a solution of the Vlasov-Poisson system.
@@ -233,16 +253,20 @@ Thus
 \end{pfs}
 
 
+Moments are quantities of the form
+\[\iint|v|^kf(t,x,v)\,dv\,dx\]
+for a positive real $k$.
+The energy conservation proves the bound of the 2-moment, which is also called kinetic energy,
+\[\iint|v|^2f(t,x,v)\,dv\,dx\les1\]
+if $\gamma=+1$.
+In fact, a bound of kinetic energy exists even for $\gamma=-1$.
+As a corollary, the $L^{5/3}$ norm of mass density $\|\rho\|_{5/3}$ gets bounded.
 
-\subsection{Moment propagation}
-
-We have a bound of kinetic energy even for $\gamma=-1$.
-
-\begin{lem}[$L^{5/3}$ estimate of $\rho$]
+\begin{lem}[Bound for kinetic energy]
 Let $f\in C^1([0,T],C_c^1(\R^6))$ be a solution of the Vlasov-Poisson system.
 For $t\in[0,T]$,
 \begin{cond}
-\item $\|\rho(t)\|_{L_x^{5/3}}\les\iint|v|^2f\,dv\,dx$.
+\item $\|\rho(t)\|_{5/3}\les\iint|v|^2f\,dv\,dx$.
 \item $\iint|v|^2f\,dv\,dx\les1$.
 \end{cond}
 \end{lem}
@@ -258,7 +282,7 @@ Set $R^3=R^{-2}\int|v|^2f\,dv$ to get
 \[\rho(t,x)^{5/3}\les\int|v|^2f\,dv.\]
 
 \item
-It is trivial for $\gamma=+1$.
+It is trivial for $\gamma=+1$ from the energy conservation.
 Suppose $\gamma=-1$.
 By the Hardy-Littlewood-Sobolev inequality,
 \[\frac1p+\frac\alpha d=\frac1q\]
@@ -268,11 +292,15 @@ So, interpolation with H\"older's inequality gives
 \[\|E(t)\|_2\les\|\rho\|_1^{7/12}\|\rho\|_{5/3}^{5/12}\simeq\|\rho\|_{5/3}^{5/12}.\]
 Thus (1) gives
 \[\iint|v|^2f\,dv\,dx=c+\|E(t)\|_2^2\les c+(\iint|v|^2f\,dv\,dx)^{1/2},\]
-so the kinetic energy $\iint f\,dv\,dx$ is bounded.
-As a corollary, $\|\rho(t)\|_{5/3}$ is also bounded.\qedhere
+so the kinetic energy $\iint f\,dv\,dx$ is bounded.\qedhere
 \end{pfs}
 
-
+If we justify a bound of higher moment
+\[\iint|v|^kf(t,x,v)\,dv\,dx\les1\]
+for some $k>6$ so that we have $\|\rho(t)\|_p\les1$ for some $p=\frac{k+3}3>3$, then we obtain
+\[\|E(t)\|_\infty^{1-\frac1p}\les\|\rho\|_p^{\frac23}\|\rho\|_1^{\frac13-\frac1p}\les1.\]
+We will see that this estimate proves the global existence immediately; this is the idea of the paper of Lions and Perthame\cite{}.
+We do not cover this in detail.
 
 
 
@@ -280,8 +308,17 @@ As a corollary, $\|\rho(t)\|_{5/3}$ is also bounded.\qedhere
 
 \section{Local existence}
 
-\subsection{Approximate solution}
+The proof of local existence follows the following steps:
+\begin{enumerate}
+\item construction of an approximate solution,
+\item establishment of a priori estimates,
+\item (subsequential) convergence of the approximate solution,
+\item verification of the solvability for the limit.
+\end{enumerate}
+The Vlasov-Poisson system is good enough to show cdirect convergence of approximate solutions, not in the sense of subsequences.
 
+
+\subsection{Approximate solution}
 
 \begin{defn}
 We define an (global) \emph{approximate solution} as a sequence of functions $f_n\in C^1(\R^+,C_c^1(\R^6))$ such that
@@ -337,27 +374,28 @@ Although the approximate solution is unique when given the initial term $f_0(t,x
 
 
 
-\subsection{Local A priori estimates}
-
+\subsection{Local a priori estimates}
 Firstly, the volume preserving property still holds for our approximate system, so we have
 \[\|\rho_n(t)\|_1=\const,\quad\|f_n(t)\|_p=\const.\]
 Next, we prove local-time bounds on fields $E_n$.
 Introduce the following quantity.
 \begin{defn}
 Define the \emph{velocity support} or \emph{maximal velocity}
-\[Q_n(t)=\sup\{\,|v|:f_n(s,x,v)\ne0,\ s\in[0,t]\,\}\]
+\[Q_n(t)=\sup\{\,|v|:f_n(s,x,v)\ne0,\ s\in[0,t]\,\}.\]
 \end{defn}
 
 \begin{lem}
-There is a constant $T=T(f_0)$ such that
+Let $f_n$ be the sequence of approximate solutions, and let $T>0$ be a constant such that
+\[T<(Q_0\|f_0\|_\infty^{2/3}\|f_0\|_1^{1/3})^{-1}.\]
+Then, we have the following bounds:
 \begin{cond}
 \item
-for $t\le T$
+For $t\le T$,
 \[\|\rho_n(t)\|_\infty+\|E_n(t)\|_\infty+Q_n(t)\les1\]
 indendent on $n$.
 In addition, the support of $X_n$ is also uniformly bounded in $t\le T$.
 \item
-for $t\le T$
+For $t\le T$
 \[\|\del_x\rho_n(t)\|_\infty+\|\del_xE_n(t)\|_\infty\les1\]
 independent on $n$.
 \end{cond}
@@ -365,10 +403,10 @@ independent on $n$.
 \begin{pfs}
 \item
 Since
-\[\|\rho_n(t)\|_\infty\le Q_n^3(t)\|f_0\|_\infty\les Q_n^3(t),\]
+\[\|\rho_n(t)\|_\infty\le Q_n^3(t)\|f_0\|_\infty,\]
 a rough estimate for $\|E\|_\infty$ gives
-\[\|E_n(t)\|_\infty\le\|\rho_n(t)\|_\infty^{2/3}\|\rho_n(t)\|_1^{1/3}\les Q_n^2(t).\]
-Let $c=c(f_0)$ be a constant such that $\|E_n(t)\|\le cQ_n^2(t)$.
+\[\|E_n(t)\|_\infty\le\|\rho_n(t)\|_\infty^{2/3}\|\rho_n(t)\|_1^{1/3}\le Q_n^2(t)\|f_0\|_\infty^{2/3}\|f_0\|_1^{1/3}.\]
+Let $c(f_0)=\|f_0\|_\infty^{2/3}\|f_0\|_1^{1/3}$ be a constant such that $\|E_n(t)\|\le cQ_n^2(t)$.
 We claim that
 \[Q_n(t)\le\frac{Q_0}{1-cQ_0t}\]
 for all $n$.
@@ -389,19 +427,63 @@ Q_{n+1}(t)
 =\frac{Q_0}{1-cQ_0t}.
 \end{align*}
 By induction, $Q_n(t)\le\frac{Q_0}{1-cQ_0t}\les1$ for all $n$ and $t\in[0,T]$, where $T<(cQ_0)^{-1}$.
-
+Furthermore,
+\[\|\rho_n(t)\|_\infty\les Q_n^3(t)\les1,\quad\|E_n(t)\|_\infty\les Q_n^2(t)\les1.\]
 For the position support, we can bound it because
 \[|X_n(t;0,x,v)|\le|x|+\int_0^t|V_n(s;0,x,v)|\,ds\le|x|+TQ_n(t)\les1.\]
+
 \item
-%%%%%%%%
-\qedhere
+Two inequalities
+\begin{align*}
+|\del_xX_{n+1}(s;t,x,v)|
+&=\Bigl|\underbrace{(1,\cdots,1)}_{9}-\int_s^t\del_xV_{n+1}(s';t,x,v)\,ds'\Bigr|\\
+&\le3+\int_s^t|\del_xV_{n+1}(s';t,x,v)|\,ds'
+\end{align*}
+and
+\begin{align*}
+|\del_xV_{n+1}(s;t,x,v)|
+&=|\int_s^t\del_xE_n(s',X_{n+1}(s';t,x,v))\,ds'|\\
+&\le\int_s^t|\del_xX_{n+1}(s';t,x,v)|\cdot\|\del_xE_n(s')\|_\infty\,ds'
+\end{align*}
+are combined as
+\begin{align*}
+&\qquad|\del_xX_{n+1}(s;t,x,v)|+|\del_xV_{n+1}(s;t,x,v)|\\
+&\le3+\int_s^t(1+\|\del_xE_n(s')\|_\infty)(|\del_xX_{n+1}(s';t,x,v)|+|\del_xV_{n+1}(s';t,x,v)|)\,ds'.
+\end{align*}
+By the Gronwall inequality, we get
+\[|\del_xX_{n+1}(s;t,x,v)|+|\del_xV_{n+1}(s;t,x,v)|\le e^{\int_s^t(1+\|\del_xE_n(s')\|_\infty)\,ds'}\]
+for $0\le s\le t$.
+
+Note that
+\begin{align*}
+|\del_x\rho_{n+1}&(t,x)|
+=|\int\del_xf_0(X_{n+1}(0;t,x,v),V_{n+1}(0;t,x,v))\,dv|\\
+&\le\|\del_{x,v}f_0\|_\infty\int(|\del_xX_{n+1}(0;t,x,v)|+|\del_xV_{n+1}(0;t,x,v)|)\,dv\\
+&\le\|\del_{x,v}f_0\|_\infty Q_{n+1}^3(t)\cdot e^{\int_0^t(1+\|\del_xE_n(s)\|_\infty)\,ds}.
+\end{align*}
+Recall that
+\[\|\del_xE_{n+1}(t)\|\les(1+\|\rho_{n+1}(t)\|_\infty\log^+\|\del_x\rho_{n+1}(t)\|_\infty+\|\rho_{n+1}(t)\|_1).\]
+By inserting the estimate for $|\del_x\rho_{n+1}(t,x)|$, we can find a constant $c=c(f_0)$ such that
+\begin{align*}
+1+\|\del_xE_{n+1}(t)\|_\infty\le c(1+\int_0^t(1+\|\del_xE_n(s)\|_\infty)\,ds)
+\end{align*}
+in $t\le T$, where $T<(Q_0\|f_0\|_\infty^{2/3}\|f_0\|_1^{1/3})^{-1}$.
+Without loss of generality, we may assume that $c$ satisfies
+\[c\ge\sup_{s\in[0,T]}(1+\|E_0(s)\|_\infty).\]
+Then, induction obtains the bound
+\[1+\|E_n(t)\|_\infty\le ce^{ct}\le ce^{cT}\les1\]
+for all $n$ and $t\le T$.
+The derivative of mass density is bounded since
+\[\|\del_x\rho_{n+1}(t)\|_\infty\les e^{\int_0^t(1+\|\del_xE_n(s)\|_\infty)\,ds}.\qedhere\]
 \end{pfs}
 
 
 
 \subsection{Convergence of approximate solution}
+Although most of the nonlinear systems fail to have convergent approximate solutions so that compactness methods are often applied, the constructed and investigated approximate solutions in the previous subsections uniformly converges.
 \begin{lem}
-There is $T=T(f_0)$ such that
+Let $f_n$ be the sequence of approximate solutions, and let $T>0$ be a constant such that
+\[T<(Q_0\|f_0\|_\infty^{2/3}\|f_0\|_1^{1/3})^{-1}.\]
 \begin{cond}
 \item
 for $t\le T$ and $n\ge1$,
@@ -418,40 +500,60 @@ where
 \end{lem}
 \begin{pfs}
 \item
+Denote
+\[g(s):=|X_{n+1}(s;t,x,v)-X_n(s;t,x,v)|+|V_{n+1}(s;t,x,v)-V_n(s;t,x,v)|.\]
 The $C^1$ regularity of $f_0$ gives
 \begin{align*}
 |f&_{n+1}(t,x,v)-f_n(t,x,v)|\\
 &=|f_0(X_{n+1}(0;t,x,v),V_{n+1}(0;t,x,v))-f_0(X_n(0;t,x,v),V_n(0;t,x,v))|\\
-&\les|X_{n+1}(0;t,x,v)-X_n(0;t,x,v)|+|V_{n+1}(0;t,x,v)-V_n(0;t,x,v)|.
+&\les|X_{n+1}(0;t,x,v)-X_n(0;t,x,v)|+|V_{n+1}(0;t,x,v)-V_n(0;t,x,v)|\\
+&=g(0).
 \end{align*}
-Take $T$ such that
-\[\|\del E_n(t)\|_\infty\les1\quad\text{and}\quad T<\min\{\|\del_xE_n(t)\|_\infty^{-1},1\}\]
-for all $n$ and $t\le T$.
-Then, because
+If an inequality
+\[\sup_{s\in[0,t]}g(s)\les\int_0^t\|E_n(s)-E_{n-1}(s)\|_\infty\,ds\]
+is obtained for $t\le T$, then we are done.
+
+Let $0\le s\le t\le T$.
+Because
 \begin{align*}
 X_n(s;t,x,v)&=x-\int_s^tV_n(s';t,x,v)\,ds',\\
 V_n(s;t,x,v)&=v-\int_s^tE_{n-1}(s',X_n(s;t,x,v))\,ds',
 \end{align*}
-we have
+we have two inequalities
 \begin{align*}
 |V&_{n+1}(s;t,x,v)-V_n(s;t,x,v)|\\
-&\le\int_0^t|E_n(s,X_{n+1}(s;t,x,v))-E_{n-1}(s,X_n(s;t,x,v))|\,ds\\
-&\le\int_0^t|E_n(s,X_{n+1})-E_n(s,X_n)|+|E_n(s,X_n)-E_{n-1}(s,X_n)|\,ds\\
-&\le T\sup_{s\in[0,t]}\|\del_xE_n(s)\|_\infty|X_{n+1}(s)-X_n(s)|+\int_0^t\|E_n(s)-E_{n-1}(s)\|_\infty\,ds
+&\le\int_s^t|E_n(s',X_{n+1}(s';t,x,v))-E_{n-1}(s',X_n(s';t,x,v))|\,ds'\\
+&\le\int_s^t(|E_n(s',X_{n+1})-E_n(s',X_n)|+|E_n(s',X_n)-E_{n-1}(s',X_n)|)\,ds'\\
+&\le\int_s^t(\|\del_xE_n(s')\|_\infty|X_{n+1}(s')-X_n(s')|+\|E_n(s')-E_{n-1}(s')\|_\infty)\,ds'
 \end{align*}
 and
 \begin{align*}
-|X_{n+1}(s;t,x,v)-X_n(s;t,x,v)|
-&\le\int_0^t|V_{n+1}(s;t,x,v)-V_n(s;t,x,v)|\,ds\\
-&\le T\sup_{s\in[0,t]}|V_{n+1}(s)-V_n(s)|
+|X_{n+1}(s;t,x,v)-X_n(s;t,x,v)|\le\int_s^t|V_{n+1}(s';t,x,v)-V_n(s';t,x,v)|\,ds'
 \end{align*}
 for $s\in[0,t]$.
-Thus, for $t\le T$ we get
+By combining the two inequalities above, we get
+\begin{align}\label{ggw}
+g(s)\le\int_s^ta(s')g(s')\,ds'+\int_s^t\|E_n(s')-E_{n-1}(s')\|_\infty\,ds',
+\end{align}
+where $a(s):=1+\|\del_xE_n(s)\|_\infty$.
+
+Here we use a Gronwall-type inequality.
+In more detail, multiplying
+\[a(s)e^{-\int_s^ta(s')ds'}\]
+on the both-hand-side of (\ref{ggw}), and using $a\les 1$ in $t\le T$, we have
 \begin{align*}
-&\sup_{s\in[0,t]}(|X_{n+1}(s;t,x,v)-X_n(s;t,x,v)|+|V_{n+1}(s;t,x,v)-V_n(s;t,x,v)|)\\
-&\qquad\les\int_0^t\|E_n(s)-E_{n-1}(s)\|_\infty\,ds.\qquad\cdots\cdots(\dagger)
+&-\dd{s}\left(e^{-\int_s^ta(s')\,ds'}\int_s^ta(s')g(s')\,ds'\right)\\
+&\hspace{5em}\le a(s)e^{-\int_s^ta(s')ds'}\int_s^t\|E_n(s')-E_{n-1}(s')\|_\infty\,ds'\\
+&\hspace{5em}\les\int_s^t\|E_n(s')-E_{n-1}(s')\|_\infty\,ds'
 \end{align*}
-by combining the above two inequalities.
+Integrate from $s$ to $t$ and bound $(t-s)\le T\les1$ to get
+\begin{align}\label{abd}
+e^{-\int_s^ta(s')\,ds'}\int_s^ta(s')g(s')\,ds'\les\int_s^t\|E_n(s')-E_{n-1}(s')\|_\infty\,ds'.
+\end{align}
+Since $e^{\int_s^ta(s')\,ds'}\le e^{T\sup_{s\in[0,t]}a(s)}\les1$, the inequalities (\ref{ggw}) and (\ref{abd}) implies
+\begin{align}\label{rii}
+g(s)\les\int_0^t\|E_n(s)-E_{n-1}(s)\|_\infty\,ds.
+\end{align}
 
 \item
 Notice that
@@ -467,35 +569,64 @@ For $L^1$-norm, since the support of $f_n,f_{n-1}$ is bounded in both directions
 for $t\le T$, where $T<\infty$ arbitrary.
 
 \item
-Let $T$ be the constant taken in (1).
-From (1) and (2), there is a constant $c=c(f_0)$ such that for $t<T$,
-\[\|f_{n+1}(t)-f_n(t)\|_\infty\le c\int_0^t\|f_n(s)-f_{n-1}(s)\|\,ds.\]
+From (i) and (ii), there is a constant $c=c(f_0)$ such that for $t<T$,
+\[\|f_{n+1}(t)-f_n(t)\|_\infty\le c\int_0^t\|f_n(s)-f_{n-1}(s)\|_\infty\,ds.\]
+
 We can easily get with induction
-\[\|f_{n+1}(t)-f_n(t)\|\infty\le\frac{(ct)^n}{n!}\sup_{s\in[0,T]}\|f_1(s)-f_0(s)\|_\infty\les\frac{(ct)^n}{n!}.\]
+\[\|f_{n+1}(t)-f_n(t)\|_\infty\le M\frac{(ct)^n}{n!},\]
+where $M=\sup_{s\in[0,T]}\|f_1(s)-f_0(s)\|_\infty$.
 Therefore,
-\[\sum_{n=0}^\infty\|f_{n+1}(t)-f_n(t)\|_\infty\simeq e^{ct}\le e^{cT}<\infty\]
+\[\sum_{n=0}^\infty\|f_{n+1}(t)-f_n(t)\|_\infty\le Me^{ct}\le Me^{cT}<\infty\]
 implies $f_n$ uniformly converges.
 
 \item
-The convergence is clear by the inequality $(\dagger)$ and the results in (2), (3).\qedhere
+The convergence of characteristics is clear by the inequality $(\ref{rii})$ and the convergence of $f_n$.
+%%%
+\qedhere
 \end{pfs}
 
-\begin{prop}
-Let $f(t):=\lim_{n\to\infty}f_n(t)$.
-Then, $f\in C^1([0,T],C_c^1(\R^6))$ and $f$ is a solution of the Vlasov-Poisson system.
+\begin{prop}[Local existence]
+Let $f_n$ be the sequence of approximate solutions.
+Then, there is a constant $T=T(f_0)$ be a constant such that the limit $f$ of $f_n$ is in $C^1([0,T],C_c^1(\R^6))$, and solves the Cauchy problem for the Vlasov-Poisson system.
 \end{prop}
 \begin{pf}
+Take $T$ such that $T<(Q_0\|f_0\|_\infty^{2/3}\|f_0\|_1^{1/3})^{-1}$.
 Let $X(s;t,x,v)$ and $V(s;t,x,v)$ be the limits of $X_n$ and $V_n$.
 Notice that
 \begin{align*}
 f(t,x,v)=\lim_{n\to\infty}f_n(t,x,v)&=\lim_{n\to\infty}f_0(X_n(0;t,x,v),V_n(0;t,x,v))\\
 &=f_0(X(0;t,x,v),V(0;t,x,v)).
 \end{align*}
-By the chain rule, we can check it solves the system.
+We can check it solves the system by expand the right-hand-side of
+\[0=\dd{s}f(s,X(s;t,x,v),V(s;t,x,v))|_{s=t}\]
+using the chain rule.
 \end{pf}
 
 
 \subsection{Uniqueness}
+
+
+
+\subsection{Prolongation criterion}
+
+\begin{prop}
+If $Q(t)$ does not blow up, then the solution $f$ of the Vlasov-Poisson system is continued globally to the entire $\R^+$.
+\end{prop}
+\begin{pf}
+Suppose $f\in C^1([0,T_{max}),C_c^1(\R^6))$ for $T_{max}<\infty$ is the maximal solution.
+Since $Q$ does not blow up, we may define
+\[Q(T_{max}):=\lim_{t\to T_{max}+}Q(t).\]
+We are going to apply the local existence result for the new system with initial condition $\tld f(0,x,v)=f(t_0,x,v)$ for some $t_0<T_{max}$.
+In subsection 2.3, we have shown the length of time interval for existence $T$ is given by the condition
+\[T<(Q_0\|f_0\|_\infty^{2/3}\|f_0\|_1^{1/3})^{-1}.\]
+It means that, if we arrange it for the new solution $\tld f$, the interval of existence of $\tld f$ has in fact a lower bound $\tld T>0$ that depends only on $Q(T_{max})$ for any new initial time $t_0$ since $Q$ is monotonically increasing and the volume preservation implies $\|f_0\|_\infty=\|f(t_0)\|_\infty$ and $\|f_0\|_1=\|f(t_0)\|_1$.
+
+By setting $t_0=T_{max}-\frac12\tld T$ we can show there exists a solution $f\in C^1([0,T_{\max}+\frac12\tld T),C_c^1(\R^6))$, which contradicts to the maximality of $T_{\max}$.
+Hence $T_{max}=\infty$, and the solution $f$ is prolonged forever.
+\end{pf}
+
+
+
 
 
 
@@ -509,27 +640,13 @@ By the chain rule, we can check it solves the system.
 \section{Global existence}
 
 
-\subsection{Prolongation criterion}
-
-\begin{prop}
-If $Q(t)$ is bounded, then the solution $f$ of the Vlasov-Poisson system is continued globally to the entire $\R^+$.
-\end{prop}
-\begin{pf}
-Suppose $f\in C^1([0,T_{max}),C_c^1(\R^6))$ for $T_{max}<\infty$ is the maximal solution.
-\[<\text{To be written...}>\]
-
-It means that the length of time interval for existence has in fact a lower bound $T>0$ that depends only on $Q(T_{max})$.
-Apply the local existence result by setting $t=T_{max}-\frac12T$ as a new initial point.
-Then, we can have a solution $f\in C^1([0,T_{\max}+\frac12T),C_c^1(\R^6))$, which contradicts to the maximality of $T_{\max}$.
-Therefore, the solution $f$ prolonged forever.
-\end{pf}
-
 
 \begin{thm*}[Schaeffer, 1991]
 Let $f_0\in C_c^1(\R^6)$ and $f_0\ge0$.
-Then, the Cauchy problem for the VP system has a unique $C_c^1$ global solution.
+Then, the Cauchy problem for the Vlasov-Poisson system has a unique $C_c^1$ global solution.
 \end{thm*}
 
+\subsection{Estimate on field}
 
 
 
@@ -659,5 +776,7 @@ so
 \end{pf}
 
 
+\section*{Acknowledgement}
+This report is written in Undergraduate Research Program of Postech, under the support and advice of professor Donghyun Lee.
 
 \end{document}
