@@ -13,20 +13,41 @@
 \maketitle
 \tableofcontents
 
+\section*{Acknowledgement}
+This report is written in Undergraduate Research Program of Postech, under the support and advice of professor Donghyun Lee.
+
 \section{Vlasov-Poisson system}
 Consider the following Cauchy problem for the \emph{Valsov-Poisson system}:
-\begin{pde}
-&f_t+v\cdot\del_xf+\gamma E\cdot\del_vf=0,\:(t,x,v)\in\R_t^+\x\R_x^3\x\R_v^3,\\
+\begin{align}
+\left\{\ \begin{alignedat}{2}
+&\pd_tf+v\cdot\del_xf+\gamma E\cdot\del_vf=0,&&\qquad(t,x,v)\in\R_t^+\x\R_x^3\x\R_v^3,\\
 &E(t,x)=-\del_x\Phi,\\
-&\Phi(t,x)=(-\Delta_x)^{-1}\rho,\\
+&\Phi(t,x)=(-\Delta_x)^{-1}\rho,&&\hspace{-2em}\lim_{|x|\to\infty}\Phi(t,x)=0,\\
 &\rho(t,x)=\tint f\,dv,\\
 &f(0,x,v)=f_0(x,v)\ge0,
-\end{pde}
+\end{alignedat}\right.
+\end{align}
 where $\gamma=\pm1$.
 For example, we have \emph{repulsive problem} $\gamma=+1$ for electrons in plasma theory and \emph{attractive problems} $\gamma=-1$ for galactic dynamics.
 ($\rho$ denotes mass density.)
 
-This report mainly investigates the local and global existence problem of the Cauchy problem for the Vlasov-Poisson system.
+This report is a review of Schaffer's paper [], and is written thanks to Glassey's book [].
+We mainly investigate the local and global existence problem for a classical solution of the Cauchy problem for the Vlasov-Poisson system.
+More precisely, we prove there is a unique global $C_c^1$ solution when given a $C_c^1$ initial data $f_0$.
+Let us define our solution space.
+
+\begin{defn*}
+Let $f_0:\R^6\to[0,\infty]$ be a function.
+A function $f:[0,T]\x\R^6\to\R$ is said to be a \emph{classical solution} of the Cauchy problem for the Vlasov-Poisson system with initial data $f_0$ if $f\in C^1([0,T];C_c^1(\R^6))$ and satisfies all equations in (1) on its domain.
+Further, if $f\in C^1(\R^+;C_c^1(\R^6))$, then the classical solution $f$ is said to be \emph{global}.
+\end{defn*}
+
+The precise statement of the global existence theorem is as follows:
+\begin{thm}
+Let $f_0\in C_c^1(\R^6,[0,\infty))$.
+Then, there exists a unique global classical solution of the Cauchy problem for the Vlasov-Poisson system with initial data $f_0$.
+\end{thm}
+
 Results in 1.1 and 1.2 provide basic ingredients that will be used in the whole article.
 On the other hand, results in 1.3 cannot be used in any local existence proof because they assume the existence of solutions, but they help understand the fundamental nature of solutions of the Vlasov-Poisson system and are used in the proof of global existence.
 
@@ -36,8 +57,8 @@ We use the asymptotic notation
 and
 \[g(t)\simeq h(t)\iff\exists\,c,\quad g(t)=c\,h(t).\]
 
-This report does not contain any of Sobolev norms.
-We omit marginalized variables and the $L$ character for subscript.
+This report does not contain any other norms except the $L^p$ norms so that double vertical bars always refer to the $L^p$ norms.
+We also omit marginalized variables and the subscript $L$.
 For example,
 \[\|f(t)\|_p=(\iint|f(t,x,v)|^p\,dv\,dx)^{1/p},\quad\|\rho(t)\|_p=(\int|\rho(r,x)|^p\,dx)^{1/p}.\]
 \end{notn*}
@@ -47,16 +68,15 @@ For example,
 \subsection{Poisson equation}
 For the three-dimensional boundaryless problem of the Poisson equation
 \[-\Delta\Phi(x)=\rho(x)\]
-in which the solution $\Phi$ vanishes at infinity, we have
+in which the solution $\Phi$ vanishes at infinity, it is well-known that
 \[\Phi=\tfrac1{4\pi|x|}*\rho,\]
 so the electric field in the Vlasov-Poisson system is given by
 \[E=-\del_x\Phi=-\del_x(\tfrac1{4\pi|x|}*\rho)=\frac{x}{4\pi|x|^3}*\rho.\]
 It can be rewritten as
 \[E(t,x)=\frac1{4\pi}\int\frac{(x-y)\rho(t,y)}{|x-y|^3}\,dy.\]
 
-The nonlinearity of the system is originated from the force field $E$, so its estimates play the most important role in investigation of the nonlinear system.
-Since it is given by the solution of the Poisson equation, estimates of the Riesz potential is directly connected to estimates of the force field.
-
+The nonlinearity of the system is originated from the force field $E$, so its estimates play a crucial role in study of the nonlinear system.
+Since it is given by the solution of the Poisson equation, estimates of the Riesz potential, the convolution with a kernel of the form $|x|^{-(d-\alpha)}$, are directly connected to estimates of the force field.
 
 \begin{lem}[Estimates of Riesz potential]
 Let $\rho\in C_c^1(\R^d)$.
@@ -68,11 +88,6 @@ For $\log^+(x):=\max\{0,\log x\}$,
 \[\|\del(\tfrac1{|x|^{d-1}}*\rho)\|_\infty\les1+\|\rho\|_\infty\log^+\|\del\rho\|_\infty+\|\rho\|_1.\]
 \end{cond}
 \end{lem}
-\iffalse
-\begin{rmk}
-Note that the constants hidden in symbol $\les$ in these estimate cannot depend on $f_0$ since the theorem is actually not about the Vlasov-Poisson system but the Poisson equation; the constant only depends on the dimension $d=3$.
-\end{rmk}
-\fi
 
 \begin{pfs}
 \item
@@ -128,23 +143,23 @@ we have
 
 The Vlasov-Poisson equation is quite hyperbolic.
 What we mean here is that the method of characteristic curves is useful, and it does not regularizes the solution directly.
-Although we do not have an explicit representation formula, solutions given by characteristics make appropriate estimates possible.
+Although we do not have an explicit representation formula, solutions written by characteristic curves make appropriate estimates possible.
 
 Moreover, since the Vlasov-Poisson system is a Hamiltonian system on the phase space $\R_x^3\x\R_v^3$ with the Hamiltonian $H(x,v)=\frac12v^2+\gamma\Phi(x,v)$, it has the volume preserving propoerty.
-We, however, will show the volume preservation by computation of the Jacobian determinant for transformations through characteristic flows.
+We, however, will show the volume preservation by computation of the Jacobian determinant for coordinates transformations through characteristic flows.
 
 \begin{lem}
-Let $f\in C^1([0,T],C_c^1(\R^6))$ be a solution of the Vlasov-Poisson system.
+Let $f$ be a classical solution of the Vlasov-Poisson system.
 \begin{cond}
-\item Fix $t,x,v$. The ordinary differential equation
+\item Fix $t,x,v$. The system of ordinary differential equations
 \begin{gather*}
 \dot X(s;t,x,v)=V(s;t,x,v),\quad\dot V(s;t,x,v)=\gamma E(t,X(s;t,x,v)),\\
-X(t;t,x,v)=x,\qquad V(t;t,x,v)=v
+X(t;t,x,v)=x,\qquad V(t;t,x,v)=v,
 \end{gather*}
-with time variable $s$ has a solution $(X,V)$ in $C^1([0,T],\R^6)$.
+where the dot symbol denote the time derivative $\dd{s}$, has a solution $(X,V)$ in $C^1([0,T],\R^6)$.
 \item Fix $t,x,v$. Then, $f(s,X(s;t,x,v),V(s;t,x,v))=\const$.
-\item Fix $t$ and let
-\[y(s,x,v):=X(s;t,x,v)\quad\text{and}\quad w(s,x,v):=V(s;t,x,v).\]
+\item Fix $t$, and let
+\[y(s;x,v):=X(s;t,x,v)\quad\text{and}\quad w(s;x,v):=V(s;t,x,v).\]
 Then, the Jacobian of coordinates transform $(x,v)\mapsto(y,w)$ is 1 for all $s$.
 \end{cond}
 \end{lem}
@@ -181,7 +196,7 @@ the Jacobi formula deduces that
 \end{pfs}
 
 \begin{cor}
-Let $f\in C^1([0,T],C_c^1(\R^6))$ be a solution of the Cauchy problem for the Vlasov-Poisson system.
+Let $f$ be a classical solution of the Cauchy problem for the Vlasov-Poisson system.
 Then, for any measurable function $\beta:\R\to\R$ such that $\iint\beta\o f_0(x,v)\,dv\,dx<\infty$, we have
 \[\iint\beta\o f(t,x,v)\,dv\,dx=\const.\]
 In particular,
@@ -198,11 +213,8 @@ Then,
 \end{align*}
 for $s\le T$.
 \end{pf}
-\begin{rmk}
-Note that this result can be obtained in the approximation scheme, which will be suggested in the next section.
-\end{rmk}
 
-To sum up our weapons obtained in 1.1 and 1.2,
+To sum up our weapons obtained so far, we have the following.
 \begin{cor}
 If a function $f\in C^1([0,T],C_c^1(\R^6))$ satisfies
 \[\iint f(t,x,v)\,dv\,dx=\const,\]
@@ -217,13 +229,17 @@ then
 \end{cor}
 These estimates will be applied not only to the global existence proof, which assumes the local existence, but also to approximate solutions.
 
+\begin{rmk}
+Note that the volume preservation is also yielded for a approximation scheme, which will be suggested in the next section, hence the same results in Corollary 1.4 for the approximate solutions in the same manner.
+The proof will be omitted.
+\end{rmk}
 
 
 \subsection{Conservation laws and moment propagation}
 Usual algebraic computations with Stokes' theorem get several conservations laws, particularly including energy conservation.
 
 \begin{lem}
-Let $f\in C^1([0,T],C_c^1(\R^6))$ be a solution of the Vlasov-Poisson system.
+Let $f$ be a classical solution of the Vlasov-Poisson system.
 \begin{cond}
 \item(Continuity equation)
 \[\rho_t+\del_x\cdot j=0,\qquad\text{where}\quad j=\int vf\,dv.\]
@@ -252,11 +268,11 @@ Thus
 \[\iint|v|^2f\,dv\,dx+\gamma\int|E|^2\,dx=\const.\qedhere\]
 \end{pfs}
 
-
-Moments are quantities of the form
+Kinetic energy is a type of quantities which are called moments;
+we call the quantities of the form
 \[\iint|v|^kf(t,x,v)\,dv\,dx\]
-for a positive real $k$.
-The energy conservation proves the bound of the 2-moment, which is also called kinetic energy,
+\emph{moments}, with a positive real $k$.
+The energy conservation proves the bound of the 2-moment, kinetic energy,
 \[\iint|v|^2f(t,x,v)\,dv\,dx\les1\]
 if $\gamma=+1$.
 In fact, a bound of kinetic energy exists even for $\gamma=-1$.
@@ -295,13 +311,14 @@ Thus (1) gives
 so the kinetic energy $\iint f\,dv\,dx$ is bounded.\qedhere
 \end{pfs}
 
-If we justify a bound of higher moment
+\begin{rmk}
+If we had a bound of higher moment
 \[\iint|v|^kf(t,x,v)\,dv\,dx\les1\]
-for some $k>6$ so that we have $\|\rho(t)\|_p\les1$ for some $p=\frac{k+3}3>3$, then we obtain
+for some $k>6$ so that $\|\rho(t)\|_p\les1$ for some $p=\frac{k+3}3>3$, then we would obtain
 \[\|E(t)\|_\infty^{1-\frac1p}\les\|\rho\|_p^{\frac23}\|\rho\|_1^{\frac13-\frac1p}\les1.\]
-We will see that this estimate proves the global existence immediately; this is the idea of the paper of Lions and Perthame\cite{}.
+We will see that this estimate proves the global existence immediately; this is the idea of the paper of Lions and Perthame[].
 We do not cover this in detail.
-
+\end{rmk}
 
 
 
@@ -321,20 +338,21 @@ The Vlasov-Poisson system is good enough to show cdirect convergence of approxim
 \subsection{Approximate solution}
 
 \begin{defn}
-We define an (global) \emph{approximate solution} as a sequence of functions $f_n\in C^1(\R^+,C_c^1(\R^6))$ such that
-\begin{pde*}
+We define an (global) \emph{approximate solution} as a sequence of functions $f_n\in C^1(\R^+;C_c^1(\R^6))$ such that
+\[\left\{\ \begin{alignedat}{2}
 &\pd_tf_{n+1}+v\cdot\del_xf_{n+1}+\gamma E_n\cdot\del_vf_{n+1}=0,\\
 &E_n(t,x)=-\del_x\Phi_n,\\
-&\Phi_n(t,x)=(-\Delta_x)^{-1}\rho_n,\\
+&\Phi_n(t,x)=(-\Delta_x)^{-1}\rho_n,\qquad\lim_{|x|\to\infty}\Phi(t,x)=0,\\
 &\rho_n(t,x)=\tint f_n\,dv,\\
 &f_{n+1}(0,x,v)=f_0(x,v).
-\end{pde*}
+\end{alignedat}\right.\]
 This definition is made in order to let the force field $E$ constant when solving $f_{n+1}$.
+Note that it assumes for $f_0$ to be automatically $C_c^1$ by definition.
 \end{defn}
 
 
 \begin{prop}
-An approximate solution exists.
+An approximate solution exists for given initial term $f_0\in C_c^1(\R^6)$.
 \end{prop}
 \begin{pf}
 Let $f_0(t,x,v)=f_0(x,v)$.
@@ -342,19 +360,19 @@ Notice that $f_0$ is clearly in $C^1(\R^+;C_c^1(\R^6))$.
 Assume $f_n\in C^1(\R^+;C_c^1(\R^6))$ satisfies the approximate system.
 We want to show that there is $f_{n+1}$ that satisfies the approximate system and $f_{n+1}\in C^1(\R^+;C_c^1(\R^6))$.
 
-We have
+We have for $0<\alpha<1$ that
 \[\rho_n\in C^1(\R^+;C_c^1(\R^6)),\quad\Phi_n\in C^1(\R^+;C^{2,\alpha}(\R^6)),\ \text{and}\ E_n\in C^1(\R^+;C^{1,\alpha}(\R^6))\]
 by the H\"older regularity of the Poisson equation.
 Since a map $(x,v)\mapsto(v,\gamma E_n(t,x))$ is globally Lipschitz with respect to $(x,v)$ for each $t$, the classical Picard iteration uniquely solves the characteristic equation
-\begin{pde*}
+\[\left\{\ \begin{alignedat}{2}
 \dot X_{n+1}(s;t,x,v)&=V_{n+1}(s,t,x,v)\\
 \dot V_{n+1}(s;t,x,v)&=\gamma E_n(s,X_{n+1}(s;t,x,v))
-\end{pde*}
-with condition $(X_{n+1}(t;t,x,v),V_{n+1}(t;t,x,v))=(x,v)$ and proves the uniqueness and regularity of the solution $s\mapsto(X_{n+1},V_{n+1})(s;t,x,v)\in C^1(\R^+,\R^6)$.
+\end{alignedat}\right.\]
+with condition $(X_{n+1}(t;t,x,v),V_{n+1}(t;t,x,v))=(x,v)$, and proves the uniqueness and regularity of the solution $s\mapsto(X_{n+1},V_{n+1})(s;t,x,v)\in C^1(\R^+,\R^6)$.
 
 Define
 \[f_{n+1}(t,x,v):=f_0(X_{n+1}(0;t,x,v),V_{n+1}(0;t,x,v)).\]
-Then, we can show that
+Then, $f_{n+1}$ is clearly $C^1$, and we can show that
 \begin{align*}
 f_{n+1}(s,X_{n+1}(s;t,x,v),V_{n+1}(s;t,x,v))&\\
 =f_0(X_{n+1}(0;t,x,v),V_{n+1}(0;t,x,v))&=\const
@@ -369,23 +387,36 @@ and that $f_{n+1}$ satisfies the approximate system by the chain rule
 Also, $f_{n+1}$ has compact support for each $t$ since the characteristic does not blow up; finally we have $f_{n+1}\in C^1(\R^+,C_c^1(\R^6))$.
 \end{pf}
 \begin{rmk}
-Although the approximate solution is unique when given the initial term $f_0(t,x,v)=f_0(x,v)$, we do not care of the uniqueness, but only the existence.
+Although the approximate solution is unique when given the initial term $f_0(t,x,v)=f_0(x,v)$, we do not care of its uniqueness, but only the existence.
 \end{rmk}
 
+In this section, we fix an approximate solution $f_n$.
 
 
 \subsection{Local a priori estimates}
-Firstly, the volume preserving property still holds for our approximate system, so we have
+Recall that the characteristic curves of $f_n$ are solutions of the system
+\[\left\{\ \begin{alignedat}{2}
+\dot X_{n+1}(s;t,x,v)&=V_{n+1}(s,t,x,v)\\
+\dot V_{n+1}(s;t,x,v)&=\gamma E_n(s,X_{n+1}(s;t,x,v)).
+\end{alignedat}\right.\]
+Firstly, the volume preserving property still holds for our approximate system.
+Therefore, we have
 \[\|\rho_n(t)\|_1=\const,\quad\|f_n(t)\|_p=\const.\]
-Next, we prove local-time bounds on fields $E_n$.
+
+
+Next, we prove local-time bounds on fields $E_n$ and its spatial derivative $\del_xE_n$.
+The bounds crucially act in the proof of convergence of $f_n$.
+Note that $\del_xE_n$ is a gradient of a vector field $E_n$, which is 9-dimensional.
+
 Introduce the following quantity.
 \begin{defn}
 Define the \emph{velocity support} or \emph{maximal velocity}
 \[Q_n(t)=\sup\{\,|v|:f_n(s,x,v)\ne0,\ s\in[0,t]\,\}.\]
+In particular, $Q_0$ is independent on $t$.
 \end{defn}
 
 \begin{lem}
-Let $f_n$ be the sequence of approximate solutions, and let $T>0$ be a constant such that
+Let $T>0$ be a constant such that
 \[T<(Q_0\|f_0\|_\infty^{2/3}\|f_0\|_1^{1/3})^{-1}.\]
 Then, we have the following bounds:
 \begin{cond}
@@ -395,11 +426,27 @@ For $t\le T$,
 indendent on $n$.
 In addition, the support of $X_n$ is also uniformly bounded in $t\le T$.
 \item
-For $t\le T$
+For $t\le T$,
 \[\|\del_x\rho_n(t)\|_\infty+\|\del_xE_n(t)\|_\infty\les1\]
 independent on $n$.
 \end{cond}
 \end{lem}
+The dynamics of controls among uniform norms of each quantity including $\rho$ and $E$ can be summarized as follows:
+\begin{rd}[column sep=huge]
+$\log\|E(t)\|_\infty$ \ar[symbol=\les,swap]{r}{\parbox{10em}{\centering\quad\\[10pt]Elliptic regularity of\\Poisson's eqn}}&
+$\log\|\rho(t)\|_\infty$ \ar[symbol=\les]{r}&
+$\log Q(t)$,
+\end{rd}
+and
+\begin{rd}
+$Q(t)$ \ar[symbol=\les,swap]{r}{\parbox{10em}{\centering\quad\\[10pt]By def}}&
+$|(X,V)(t)|$ \ar[symbol=\les,swap]{r}{\parbox{10em}{\centering\quad\\[10pt]Equations of\\characteristics}}&
+$\int_0^t(1+\|E(s)\|_\infty)\,ds$.
+\end{rd}
+Then, Gronwall's inequality saves the game for the bound of $Q$.
+Also, we can observe that every norms are controlled by the velocity support $Q$.
+For detail explanations, see the following proof.
+
 \begin{pfs}
 \item
 Since
@@ -412,8 +459,14 @@ We claim that
 for all $n$.
 Easily checked for $n=0$; $Q_0(t)\equiv Q_0\le\frac{Q_0}{1-cQ_0t}$.
 
-Assume $Q_n(t)\le\frac{Q_0}{1-cQ_0t}$.
-Then,
+Assume $Q_n(t)\le\frac{Q_0}{1-cQ_0t}$ for $t\in[0,T]$.
+Let $f_0(x,v)\ne0$.
+Since
+\begin{align*}
+X_{n+1}(t;0,x,v)&=x+\int_0^tV_{n+1}(s';t,x,v)\,ds',\\
+V_{n+1}(t;0,x,v)&=v+\int_0^t\gamma E_n(s',X_{n+1}(s;t,x,v))\,ds',
+\end{align*}
+an inequality
 \begin{align*}
 |V_{n+1}(t;0,x,v)|
 &\le|v|+\int_0^t|E_n(s;0,x,v)|\,ds\\
@@ -429,15 +482,23 @@ Q_{n+1}(t)
 By induction, $Q_n(t)\le\frac{Q_0}{1-cQ_0t}\les1$ for all $n$ and $t\in[0,T]$, where $T<(cQ_0)^{-1}$.
 Furthermore,
 \[\|\rho_n(t)\|_\infty\les Q_n^3(t)\les1,\quad\|E_n(t)\|_\infty\les Q_n^2(t)\les1.\]
-For the position support, we can bound it because
+The position support is bounded because
 \[|X_n(t;0,x,v)|\le|x|+\int_0^t|V_n(s;0,x,v)|\,ds\le|x|+TQ_n(t)\les1.\]
 
 \item
+Since we already have bounds for $\|\rho_n\|_\infty$ and $\|\rho_n\|_1$, what we should estimate in order to bound $\|\del_xE_n\|_\infty$ is $\del_x\rho_n$.
+To do this, we will consider $\del_xX_n$ and $\del_xV_n$.
+In particular, we have
+\begin{align*}
+\del_xX_n(t;t,x,v)&=\del_xx=(1,0,0\,;0,1,0\,;0,0,1),\\
+\del_xV_n(t;t,x,v)&=\del_xv=0.
+\end{align*}
+
 Two inequalities
 \begin{align*}
 |\del_xX_{n+1}(s;t,x,v)|
-&=\Bigl|\underbrace{(1,\cdots,1)}_{9}-\int_s^t\del_xV_{n+1}(s';t,x,v)\,ds'\Bigr|\\
-&\le3+\int_s^t|\del_xV_{n+1}(s';t,x,v)|\,ds'
+&=\Bigl|\underbrace{(1,0,\cdots,0,1)}_{9}-\int_s^t\del_xV_{n+1}(s';t,x,v)\,ds'\Bigr|\\
+&\le\sqrt3+\int_s^t|\del_xV_{n+1}(s';t,x,v)|\,ds'
 \end{align*}
 and
 \begin{align*}
@@ -448,21 +509,27 @@ and
 are combined as
 \begin{align*}
 &\qquad|\del_xX_{n+1}(s;t,x,v)|+|\del_xV_{n+1}(s;t,x,v)|\\
-&\le3+\int_s^t(1+\|\del_xE_n(s')\|_\infty)(|\del_xX_{n+1}(s';t,x,v)|+|\del_xV_{n+1}(s';t,x,v)|)\,ds'.
+&\le\sqrt3+\int_s^t(1+\|\del_xE_n(s')\|_\infty)(|\del_xX_{n+1}(s';t,x,v)|+|\del_xV_{n+1}(s';t,x,v)|)\,ds'.
 \end{align*}
-By the Gronwall inequality, we get
-\[|\del_xX_{n+1}(s;t,x,v)|+|\del_xV_{n+1}(s;t,x,v)|\le e^{\int_s^t(1+\|\del_xE_n(s')\|_\infty)\,ds'}\]
-for $0\le s\le t$.
 
-Note that
+By the Gronwall inequality, we get
+\[|\del_xX_{n+1}(s;t,x,v)|+|\del_xV_{n+1}(s;t,x,v)|\le\sqrt3\,e^{\int_s^t(1+\|\del_xE_n(s')\|_\infty)\,ds'}\]
+for $0\le s\le t$.
+Thus we have
 \begin{align*}
 |\del_x\rho_{n+1}&(t,x)|
 =|\int\del_xf_0(X_{n+1}(0;t,x,v),V_{n+1}(0;t,x,v))\,dv|\\
 &\le\|\del_{x,v}f_0\|_\infty\int(|\del_xX_{n+1}(0;t,x,v)|+|\del_xV_{n+1}(0;t,x,v)|)\,dv\\
-&\le\|\del_{x,v}f_0\|_\infty Q_{n+1}^3(t)\cdot e^{\int_0^t(1+\|\del_xE_n(s)\|_\infty)\,ds}.
+&\les\|\del_{x,v}f_0\|_\infty Q_{n+1}^3(t)\cdot e^{\int_0^t(1+\|\del_xE_n(s)\|_\infty)\,ds}.
 \end{align*}
+
 Recall that
-\[\|\del_xE_{n+1}(t)\|\les(1+\|\rho_{n+1}(t)\|_\infty\log^+\|\del_x\rho_{n+1}(t)\|_\infty+\|\rho_{n+1}(t)\|_1).\]
+\begin{align*}
+\|\del_xE_{n+1}(t)\|
+&\les(1+\|\rho_{n+1}(t)\|_\infty\log^+\|\del_x\rho_{n+1}(t)\|_\infty+\|\rho_{n+1}(t)\|_1)\\
+&\les1+\log^+\|\del_x\rho_{n+1}(t)\|_\infty
+\end{align*}
+for $t\le T$.
 By inserting the estimate for $|\del_x\rho_{n+1}(t,x)|$, we can find a constant $c=c(f_0)$ such that
 \begin{align*}
 1+\|\del_xE_{n+1}(t)\|_\infty\le c(1+\int_0^t(1+\|\del_xE_n(s)\|_\infty)\,ds)
@@ -474,34 +541,37 @@ Then, induction obtains the bound
 \[1+\|E_n(t)\|_\infty\le ce^{ct}\le ce^{cT}\les1\]
 for all $n$ and $t\le T$.
 The derivative of mass density is bounded since
-\[\|\del_x\rho_{n+1}(t)\|_\infty\les e^{\int_0^t(1+\|\del_xE_n(s)\|_\infty)\,ds}.\qedhere\]
+\[\|\del_x\rho_{n+1}(t)\|_\infty\les e^{\int_0^t(1+\|\del_xE_n(s)\|_\infty)\,ds}\les1.\qedhere\]
 \end{pfs}
 
 
 
 \subsection{Convergence of approximate solution}
-Although most of the nonlinear systems fail to have convergent approximate solutions so that compactness methods are often applied, the constructed and investigated approximate solutions in the previous subsections uniformly converges.
+Although most of the nonlinear systems fail to have convergent approximate solutions so that compactness methods are often applied, the approximate solutions constructed and investigated in the previous subsections uniformly converges.
 \begin{lem}
-Let $f_n$ be the sequence of approximate solutions, and let $T>0$ be a constant such that
+Let $T>0$ be a constant such that
 \[T<(Q_0\|f_0\|_\infty^{2/3}\|f_0\|_1^{1/3})^{-1}.\]
 \begin{cond}
 \item
-for $t\le T$ and $n\ge1$,
+For $t\le T$ and $n\ge1$,
 \[\|f_{n+1}(t)-f_n(t)\|_\infty\les\int_0^t\|E_n(s)-E_{n-1}(s)\|_\infty\,ds.\]
 \item
-for $t\le T$ and $n\ge1$,
+For $s\le T$ and $n\ge1$,
 \[\|E_n(s)-E_{n-1}(s)\|_\infty\les\|f_n(s)-f_{n-1}(s)\|_\infty.\]
 \item $f_n$ converges to a function $f$ uniformly in $C([0,T]\x\R^6)$.
-\item $(X_n,V_n)$ converges uniformly in $C([0,T]\x\R^6)$, and its limit $(X,V)$ satisfies the characteristic equation
-\[\dot X=V,\quad\dot V=\gamma E,\]
+\item For each $t,x,v$ a sequence of maps
+\[s\mapsto(X_n(s;t,x,v),V_n(s;t,x,v))\]
+converges in $C^1([0,T],\R^6)$ so that its limit $(X,V)$ satisfies the equations
+\[\dot X(s;t,x,v)=V(s;t,x,v),\quad\dot V(s;t,x,v)=\gamma E(s,X(s;t,x,v)),\]
 where
-\[E(t,x)=\frac1{4\pi}\iint\frac{(x-y)f(t,x,v)}{|x-y|^3}\,dv\,dx.\]
+\[E(t,x)=\frac1{4\pi}\iint\frac{(x-y)f(t,y,v)}{|x-y|^3}\,dv\,dy.\]
 \end{cond}
 \end{lem}
 \begin{pfs}
 \item
 Denote
-\[g(s):=|X_{n+1}(s;t,x,v)-X_n(s;t,x,v)|+|V_{n+1}(s;t,x,v)-V_n(s;t,x,v)|.\]
+\[g(s):=|X_{n+1}(s;t,x,v)-X_n(s;t,x,v)|+|V_{n+1}(s;t,x,v)-V_n(s;t,x,v)|\]
+for given $t,x,v$.
 The $C^1$ regularity of $f_0$ gives
 \begin{align*}
 |f&_{n+1}(t,x,v)-f_n(t,x,v)|\\
@@ -517,7 +587,7 @@ Let $0\le s\le t\le T$.
 Because
 \begin{align*}
 X_n(s;t,x,v)&=x-\int_s^tV_n(s';t,x,v)\,ds',\\
-V_n(s;t,x,v)&=v-\int_s^tE_{n-1}(s',X_n(s;t,x,v))\,ds',
+V_n(s;t,x,v)&=v-\int_s^t\gamma E_{n-1}(s',X_n(s;t,x,v))\,ds',
 \end{align*}
 we have two inequalities
 \begin{align*}
@@ -537,7 +607,7 @@ g(s)\le\int_s^ta(s')g(s')\,ds'+\int_s^t\|E_n(s')-E_{n-1}(s')\|_\infty\,ds',
 \end{align}
 where $a(s):=1+\|\del_xE_n(s)\|_\infty$.
 
-Here we use a Gronwall-type inequality.
+Here we use a Gronwall-type inequality to bound $g(s)$.
 In more detail, multiplying
 \[a(s)e^{-\int_s^ta(s')ds'}\]
 on the both-hand-side of (\ref{ggw}), and using $a\les 1$ in $t\le T$, we have
@@ -552,8 +622,9 @@ e^{-\int_s^ta(s')\,ds'}\int_s^ta(s')g(s')\,ds'\les\int_s^t\|E_n(s')-E_{n-1}(s')\
 \end{align}
 Since $e^{\int_s^ta(s')\,ds'}\le e^{T\sup_{s\in[0,t]}a(s)}\les1$, the inequalities (\ref{ggw}) and (\ref{abd}) implies
 \begin{align}\label{rii}
-g(s)\les\int_0^t\|E_n(s)-E_{n-1}(s)\|_\infty\,ds.
+g(s)\les\int_0^t\|E_n(s')-E_{n-1}(s')\|_\infty\,ds'
 \end{align}
+for arbitrary $s\in[0,t]$.
 
 \item
 Notice that
@@ -576,55 +647,104 @@ We can easily get with induction
 \[\|f_{n+1}(t)-f_n(t)\|_\infty\le M\frac{(ct)^n}{n!},\]
 where $M=\sup_{s\in[0,T]}\|f_1(s)-f_0(s)\|_\infty$.
 Therefore,
-\[\sum_{n=0}^\infty\|f_{n+1}(t)-f_n(t)\|_\infty\le Me^{ct}\le Me^{cT}<\infty\]
-implies $f_n$ uniformly converges.
+\[\sum_{n=0}^\infty\|f_{n+1}-f_n\|_\infty\le\sup_{t\in[0,T]}Me^{ct}<\infty\]
+implies $f_n$ uniformly converges in $C([0,T]\x\R^6)$.
 
 \item
-The convergence of characteristics is clear by the inequality $(\ref{rii})$ and the convergence of $f_n$.
-%%%
-\qedhere
+Write
+\[X(s)=X(s;t,x,v),\qquad V(s)=V(s;t,x,v)\]
+for given $t,x,v$.
+Recall that $g$ measures the difference between $(X_{n+1},V_{n+1})$ and $(X_n,V_n)$.
+By the inequality $(\ref{rii})$ and the result in (ii),
+\begin{align*}
+\sup_{s\in[0,T]}g(s)\les\int_0^T\|E_n(s)-E_{n-1}(s)\|_\infty\les T\|f_n-f_{n-1}\|_\infty.
+\end{align*}
+Then, the uniform convergence of characteristics $(X_n,V_n)$ is clear by the absolute convergence of the series $\sum\|f_{n+1}-f_n\|_\infty$.
+
+Also for the uniform convergence of $(\dot X_n,\dot V_n)$, it is proved by the absolute convergence of the series $\sum\|f_{n+1}-f_n\|_\infty$ since
+\begin{align*}
+&\|\dot X_{n+1}-\dot X_n\|_\infty=\|V_{n+1}-V_n\|_\infty,\\
+&\|\dot V_{n+1}-\dot V_n\|_\infty\le\|\del_xE_n\|_\infty\|X_{n+1}-X_n\|_\infty+\|E_n-E_{n-1}\|_\infty,
+\end{align*}
+yielding
+\[\|\dot X_{n+1}-\dot X_n\|_\infty+\|\dot V_{n+1}-\dot V_n\|_\infty\les\|f_n-f_{n-1}\|_\infty.\]
+
+Then, by limiting the both-hand-side of equations
+\[\dot X_n(s)=V_n(s),\qquad \dot V_n(s)=\gamma E_{n-1}(s,X_n(s)),\]
+we easily get
+\[\dot X(s)=V(s),\qquad \dot V(s)=\gamma E(s,X(s)).\qedhere\]
 \end{pfs}
 
-\begin{prop}[Local existence]
-Let $f_n$ be the sequence of approximate solutions.
-Then, there is a constant $T=T(f_0)$ be a constant such that the limit $f$ of $f_n$ is in $C^1([0,T],C_c^1(\R^6))$, and solves the Cauchy problem for the Vlasov-Poisson system.
-\end{prop}
+\begin{thm}[Local existence]
+Let $f_n$ be an approximate solution.
+Then, there is a constant $T=T(f_0)>0$ be a constant such that the limit $f$ of $f_n$ is a classical solution of the Cauchy problem for the Vlasov-Poisson system with time domain $[0,T]$.
+\end{thm}
 \begin{pf}
 Take $T$ such that $T<(Q_0\|f_0\|_\infty^{2/3}\|f_0\|_1^{1/3})^{-1}$.
-Let $X(s;t,x,v)$ and $V(s;t,x,v)$ be the limits of $X_n$ and $V_n$.
+Let $X(s;t,x,v)$ and $V(s;t,x,v)$ be the limits of $X_n(s;t,x,v)$ and $V_n(s;t,x,v)$ for given $t,x,v$.
 Notice that
 \begin{align*}
 f(t,x,v)=\lim_{n\to\infty}f_n(t,x,v)&=\lim_{n\to\infty}f_0(X_n(0;t,x,v),V_n(0;t,x,v))\\
-&=f_0(X(0;t,x,v),V(0;t,x,v)).
+&=f_0(X(0;t,x,v),V(0;t,x,v)),
 \end{align*}
+which shows $f$ is $C^1$ since $f_0$ and $(X,V)$ are $C^1$.
 We can check it solves the system by expand the right-hand-side of
 \[0=\dd{s}f(s,X(s;t,x,v),V(s;t,x,v))|_{s=t}\]
 using the chain rule.
+The compact support is by the fact that characteristic curves do not blow up.
 \end{pf}
 
 
 \subsection{Uniqueness}
+\begin{thm}[Uniqueness]
+Suppose $f_1,f_2\in C^1([0,T];C_c^1(\R^6))$ are classical solutions of the Cauchy problem for the Vlasov-Poisson system with a common initial data $f_0$.
+Then, $f_1=f_2$.
+\end{thm}
+\begin{pf}
+As we did in (i) and (ii) of Lemma 2.3, we can obtain
+\[\|f_1(t)-f_2(t)\|_\infty\les\int_0^t\|f_1(s)-f_2(s)\|_\infty\,ds\]
+for $t\le T$.
+By the Gronwall lemma, we get
+\[\int_0^t\|f_1(s)-f_2(s)\|_\infty\le0.\qedhere\]
+\end{pf}
 
 
 
 \subsection{Prolongation criterion}
-
+We give in this last subsection a sufficient condition for a local classical solution $f$ to be global.
+\begin{defn}
+Let $f\in C^1([0,T];C_c^1(\R^6))$.
+Define for $t\in[0,T]$
+\[Q(t):=\sup\{\,|v|:f(s,x,v)\ne0,\ s\in[0,t]\,\}.\]
+\end{defn}
 \begin{prop}
-If $Q(t)$ does not blow up, then the solution $f$ of the Vlasov-Poisson system is continued globally to the entire $\R^+$.
+Let $f$ be a classical solution of the Cauchy problem for the Vlasov-Poisson system.
+If $Q(t)$ is bounded, then $f$ is continued to a classical solution with a longer time interval.
 \end{prop}
 \begin{pf}
-Suppose $f\in C^1([0,T_{max}),C_c^1(\R^6))$ for $T_{max}<\infty$ is the maximal solution.
+Suppose $f\in C^1([0,T],C_c^1(\R^6))$.
 Since $Q$ does not blow up, we may define
-\[Q(T_{max}):=\lim_{t\to T_{max}+}Q(t).\]
-We are going to apply the local existence result for the new system with initial condition $\tld f(0,x,v)=f(t_0,x,v)$ for some $t_0<T_{max}$.
+\[Q(T):=\lim_{t\uparrow T}Q(t).\]
+We are going to apply the local existence result for a new problem, in which we write $\tld f$ for the solution, with initial condition $\tld f(0,x,v):=f(t_0,x,v)$ for some $t_0<T$.
 In subsection 2.3, we have shown the length of time interval for existence $T$ is given by the condition
 \[T<(Q_0\|f_0\|_\infty^{2/3}\|f_0\|_1^{1/3})^{-1}.\]
-It means that, if we arrange it for the new solution $\tld f$, the interval of existence of $\tld f$ has in fact a lower bound $\tld T>0$ that depends only on $Q(T_{max})$ for any new initial time $t_0$ since $Q$ is monotonically increasing and the volume preservation implies $\|f_0\|_\infty=\|f(t_0)\|_\infty$ and $\|f_0\|_1=\|f(t_0)\|_1$.
+It means that, if we arrange it for the new solution $\tld f$, the interval of existence of $\tld f$ has in fact a lower bound $\tld T>0$ that depends only on $Q(T)$ for any new initial time $t_0$; it is because the monotonicity of $Q$ says $Q(T)^{-1}<Q(t_0)^{-1}$ and the volume preservation implies $\|f_0\|_\infty=\|f(t_0)\|_\infty$ and $\|f_0\|_1=\|f(t_0)\|_1$.
+In other words, we can take any $\tld T$ such that
+\[\tld T<(Q(T)\|f_0\|_\infty^{2/3}\|f_0\|_1^{1/3})^{-1}.\]
+Note that the bound does not depend on $t_0$ but only on its upper bound $T$.
 
-By setting $t_0=T_{max}-\frac12\tld T$ we can show there exists a solution $f\in C^1([0,T_{\max}+\frac12\tld T),C_c^1(\R^6))$, which contradicts to the maximality of $T_{\max}$.
-Hence $T_{max}=\infty$, and the solution $f$ is prolonged forever.
+Set $t_0=T-\frac12\tld T$ so that $t_0<T<t_0+\tld T$.
+Then, we can construct a new solution in $C^1([0,t_0+\tld T),C_c^1(\R^6))$ by pasting solutions $f\in C^1([0,T],C_c^1(\R^6))$ and $\tld f\in C^1([t_0,t_0+\tld T],C_c^1(\R^6))$.
 \end{pf}
 
+\begin{cor}
+If the following statement holds, then Theorem 1.1 is true: every (local) classical solution $f$ with a given initial data $f_0\in C_c^1(\R^6)$ satisfies $Q(t)\le h(t)$ for a continuous function $h:[0,\infty)\to[0,\infty)$.
+\end{cor}
+\begin{pf}
+Suppose $f\in C^1([0,T_{max}),C_c^1(\R^6))$ for $T_{max}<\infty$ is the maximal solution with initial data $f_0$.
+Since $Q$ is bounded on $[0,T_{max}]$, we can apply the previous proposition, which contradicts to the maximality of $T_{\max}$.
+Hence $T_{max}=\infty$, and the solution $f$ is prolonged forever.
+\end{pf}
 
 
 
@@ -642,141 +762,320 @@ Hence $T_{max}=\infty$, and the solution $f$ is prolonged forever.
 
 
 \begin{thm*}[Schaeffer, 1991]
-Let $f_0\in C_c^1(\R^6)$ and $f_0\ge0$.
-Then, the Cauchy problem for the Vlasov-Poisson system has a unique $C_c^1$ global solution.
+Let $f_0\in C_c^1(\R^6,[0,\infty))$ and $p>\frac{33}{17}$.
+The classical solution $f$ of the Cauchy problem for the Vlasov-Poisson system with an initial data $f_0$ has a constant $c=c(f_0,p)$ such that
+\[Q(t)\le c(1+t)^p.\]
 \end{thm*}
 
-\subsection{Estimate on field}
+\subsection{Time averaging}
+Fix a (local) classical solution $f$.
+If we had an integral inequality
+\[Q(t)-Q(t-\Delta)\les\int_{t-\Delta}^tQ(s)^a\,ds\]
+for some constant $0\le a\le1$, then we would be able to prove that
+\begin{align}\label{gjg}
+Q(t)\les\begin{cases}(1+t)^{\frac1{1-a}}&,0\le a<1\\e^{ct}&,a=1\end{cases}
+\end{align}
+using a nonlinear Gronwall inequality.
+To obtain this, we may try as follows: if we got an estimate on the field
+\[\|E(t)\|_\infty\les Q(t)^a,\]
+then for any $t,\hat x,\hat v$ such that $f(t,\hat x,\hat v)\ne0$ and for any $\Delta>0$ we have
+\[|v-V(t-\Delta;t,\hat x,\hat v)|=|\int_{t-\Delta}^t\gamma E(s,X(s;t,\hat x,\hat v))\,ds|\les\int_{t-\Delta}^tQ(s)^a\,ds,\]
+so there would be a constant $c=c(f_0)$ such that
+\[|v|\le|V(t-\Delta;t,\hat x,\hat v)|+c\int_{t-\Delta}^tQ(s)^a\,ds\le Q(t-\Delta)+c\int_{t-\Delta}^tQ(s)^a\,ds,\]
+which deduces
+\[Q(t)\le Q(t-\Delta)+c\int_{t-\Delta}^tQ(s)^a\,ds.\]
+
+However, an optimized version of the estimate in (i) of Lemma 1.2 that uses $\|\rho(t)\|_{5/3}\les1$ gives only
+\[\|E(t)\|_\infty\les\|\rho(t)\|_\infty^{4/9}\|\rho(t)\|_{5/3}^{5/9}\les(Q(t)^3)^{4/9}\cdot1^{5/9}=Q(t)^{4/3},\]
+so we need another approach because $4/3>1$.
+Our strategy is to average in the time direction.
+Precisely, we estimate the averaged field
+\[\frac1\Delta\int_{t-\Delta}^t|E(s,X(s;t,\hat x,\hat v))|\,ds\les Q(t)^a\]
+for arbitrary $t,\hat x,\hat v$ and for suitably chosen $\Delta$.
+Then, we would get a weaker inequality
+\[Q(t)-Q(t-\Delta)\les \Delta\cdot Q(t)^a,\]
+which is also able to deduce (\ref{gjg}).
+The detailed proof of (\ref{gjg}) will be presented in Section 3.5.
+
+
+\begin{notn*}
+Fix $(t,\hat x,\hat v)\in\R^+\x\R^6$.
+We will write
+\[\hat X(s):=X(s;t,\hat x,\hat v)\quad\text{and}\quad\hat V(s):=V(s;t,\hat x,\hat v).\]
+Also, we will use the notations
+\[X(s):=X(s;t,x,v)\quad\text{and}\quad V(s):=V(s;t,x,v)\]
+assuming $x,v$ are given without any confusion.
+Symbols $y$ and $w$ are always used for $X(s)$ and $V(s)$ at time $s$ especially when applying volume preserving coordinates transformation $(x,v)\mapsto(X(s),V(s))=(y,w)$.
+\end{notn*}
 
 
 
 
-\subsection{Lower bound on relative position vectors}
-Our goal is to obtain a priori estimate like
-\[\|E(t)\|_\infty\les Q(t)^a\qquad\text{for some }a<1.\]
-Since the force field $E$ measures the maximal rate of changes in velocity, the estimate can be read very roughly as
-\[Q'(t)\les Q(t)^a,\]
-which leads its polynomial growth.
-So we need to bound $E$.
-
-Fix a time of existence $t$ and a point $(t,\hat x,\hat v)$ and let
-\[\hat X(s):=X(s;t,\hat x,\hat v),\qquad\hat V(s):=V(s;t,\hat x,\hat v).\]
-Decompose $[t-\Delta,t]\x\R_x^3\x\R_v^3$ as
+\subsection{Estimate on the force field}
+Our ultimate goal is to bound the integral
 \begin{align*}
-U&=\left\{\,(s,x,v):\ |v-\hat V(t)|\ge P,\quad|y-\hat X(s)|\ge r\,\right\},\\
-B&=\left\{\,(s,x,v):\ |v-\hat V(t)|\ge P,\quad|v|\ge P\,\right\}\setminus U,\\
-G&=\left\{\,(s,x,v):\ |v-\hat V(t)|<P\quad\text{or}\quad|v|<P\,\right\}.
+\int_{t-\Delta}^t|E(s,\hat X(s))|\,ds
+&\le\frac1{4\pi}\int_{t-\Delta}^t\iint\frac{f(s,y,w)}{|y-\hat X(s)|^2}\,dw\,dy\,ds\\
+&=\frac1{4\pi}\int_{t-\Delta}^t\iint\frac{f(t,x,v)}{|X(s)-\hat X(s)|^2}\,dv\,dx\,ds.
 \end{align*}
-(We can let $U\mapsto U\cap\{|v|\ge P\}$ to make the decomposition disjoint.)
-Later we choose
-\[P=Q^{4/11},\quad r=R\max\{|v|^{-3},\,|v-\hat V(t)|^{-3}\},\quad R=Q^{16/33}(\log^+Q)^{1/2}.\]
-Also, later we choose $\Delta\cdot\sup_{s\le t}\|E(s)\|_\infty<\frac P4$.
+The main difficulty of this integral is that $|y-\hat X(s)|^{-2}$ is not integrable with respect to $y$ on the region where $|y|$ is large; the inverse square has too slow decay rate to be integrable in three dimesional space $\R^3$.
 
-Reading the proof, letting $y=X(s;t,x,v)$ and $w=V(s;t,x,v)$ be functions of time variable $s$, trace carefully the following four quantities:
-\[|x-\hat X(t)|,\ |y-\hat X(s)|,\ |v-\hat V(t)|,\ |w-\hat V(s)|.\]
-The following observation suggests a lower bound of relative position.
-\begin{prop}
-Fix $x,v$.
-Let $P>0$ and $0<\Delta<t$ be constants such that
-\[\Delta\cdot\sup_{s\le t}\|E(s)\|_\infty<\frac P4.\]
-If $v$ satisfies $|v-\hat V(t)|\ge P$, then there is $s_0\in[t-\Delta,t]$ such that
-\[|y-\hat X(s)|\ge\frac14|v-\hat V(t)||s-s_0|\]
-for all $s\in[t-\Delta,t]$.
-\end{prop}
+Then, we want to find a lower bound of the relative position vector $|X(s)-\hat X(s)|$ assuming it is large.
+When the distance between $X(s)$ and $\hat X(s)$ is sufficiently large so that the interaction between particles at positions $X(s)$ and $\hat X(s)$ is sufficiently weak, the distance will change almost linearly in such a way that both velocity and time.
+Intuitively, we can write
+\[|X(s)-\hat X(s)|\gg1\impl X(s)-\hat X(s)\approx (v-\hat v)(s-c_1)+c_2,\]
+where $c_1,c_2$ are constants that depend on $(t,x,v,\hat x,\hat v)$.
+
+Then, the time function $|X(s)-\hat X(s)|^{-2}\approx|(v-\hat v)(s-c_1)+c_2|^{-2}$ is integrable in time direction, and the time integration on interval $|(v-\hat v)(s-c_1)+c_2|\ge r$ for a proper radius $r$ will be approximately $(|v-\hat v|r)^{-1}$.
+For details, see Proposition 3.3.
+It means that the singularity issue of a spatial function is changed to an estimate problem for a function of velocity.
+Finally by taking $r$ such that $(|v-\hat v|r)^{-1}\les|v|^2$, the kinetic energy bound the quantity what we want.
+
+
+\subsection{Lemmas}
+The following lemma suggests an appropriate way to choose the time averaging interval $\Delta$.
+\begin{lem}
+Let $P>0$.
+Suppose $s\le[t-\Delta,t]$, where
+\[\Delta\cdot\sup_{s\in[0,t]}\|E(s)\|_\infty\le\frac P4.\]
+\begin{cond}
+\item If $|v|<P$, then $|V(s)|<2P$.
+\item If $|v|\ge P$, then $\frac12|v|\le|V(s)|\le2|v|$. 
+\item If $|v-\hat v|<P$, then $|V(s)-\hat V(s)|<2P$.
+\item If $|v-\hat v|\ge P$, then $\frac12|v-\hat v|\le|V(s)-\hat V(s)|\le2|v-\hat v|$.
+\end{cond}
+\end{lem}
 \begin{pf}
-Since $\Delta\|E(s)\|_\infty<\frac P4$, we have
-\[|v-w|<\frac P4\quad\text{and}\quad|\hat V(t)-\hat V(s)|<\frac P4.\]
-The condition $|v-\hat V(t)|\ge P$ implies
-\[\frac12|v-\hat V(t)|\le|v-\hat V(t)|-\frac P4-\frac P4<|w-\hat V(s)|.\]
+Note that
+\[|v-V(s)|\le\int_s^t|E(s',X(s'))|\,ds'\le\Delta\cdot\sup_{s'\in[0,t]}\|E(s')\|_\infty\le\frac P4,\]
+and similarly
+\[|\hat v-\hat V(s)|\le\frac P4.\]
 
-Let $Z(s):=y-\hat X(s)$ be the relative position vector.
+For (i),
+\[|V(s)|\le|v|+|v-V(s)|<P+\frac P4<2P.\]
+For (ii),
+\[|V(s)|\ge|v|-|v-V(s)|\ge|v|-\frac P4\ge\frac12|v|\]
+and
+\[|V(s)|\le|v|+|v-V(s)|\le|v|+\frac P4\le2|v|.\]
+For (iii)
+\[|V(s)-\hat V(s)|\le|V(s)-v|+|v-\hat v|+|\hat v-\hat V(s)|<\frac P4+P+\frac P4<2P.\]
+For (iv),
+\[|V(s)-\hat V(s)|\ge-|V(s)-v|+|v-\hat v|-|\hat v-\hat V(s)|\ge-\frac P4+|v-\hat v|-\frac P4\ge\frac12|v-\hat v|\]
+and
+\[|V(s)-\hat V(s)|\le|V(s)-v|+|v-\hat v|+|\hat v-\hat V(s)|\le\frac P4+|v-\hat v|+\frac P4\le2|v-\hat v|.\]
+\end{pf}
+
+
+From now for $0\le\Delta\le t$, let it be such that
+\[\Delta\cdot\sup_{s\in[0,t]}\|E(s)\|_\infty\le\frac P4.\]
+
+\begin{lem}[Lower bound of relative position vector]
+If $v$ satisfies $|v-\hat v|\ge P$, then there is $s_0\in[t-\Delta,t]$ such that
+\[|X(s)-\hat X(s)|\ge\frac14|v-\hat v||s-s_0|\]
+for all $s\in[t-\Delta,t]$ and $x\in\R^3$.
+\end{lem}
+\begin{pf}
+Let $Z(s):=X(s)-\hat X(s)$ be the relative position vector.
 Then,
 \begin{align*}
-Z'(s)&=w-\hat V(s),\\
-Z''(s)&=\gamma[E(s,y,w)-E(s,\hat X(s),\hat V(s))].
+Z'(s)&=V(s)-\hat V(s),\\
+Z''(s)&=\gamma[E(s,X(s),V(s))-E(s,\hat X(s),\hat V(s))],
 \end{align*}
-Let $s_0\in[t-\Delta,t]$ minimize $s\mapsto|Z(s)|$ and expand $Z$ as
-\[Z(s)=Z(s_0)+Z'(s_0)(s-s_0)+\frac{Z''(\sigma)}2(s-s_0)^2\]
-for some $\sigma$ between $s$ and $s_0$.
-Then,
-\[|Z(s_0)+Z'(s_0)(s-s_0)|\ge|Z'(s_0)(s-s_0)|\ge\frac12|v-\hat V(t)||s-s_0|\]
+so the Taylor expansion at $s_0\in[t-\Delta,t]$ gives
+\[Z(s)=\left[Z(s_0)+Z'(s_0)(s-s_0)\right]+\left[\frac{Z''(\sigma)}2(s-s_0)^2\right]\]
+for some $\sigma$ between $s,s_0$.
+
+Choose
+\[s_0=\argmin_{s\in[t-\Delta,t]}|Z(s)|.\]
+If $s_0=t$ or $s_0=t-\Delta$, then $\dd{s}|Z(s_0)|^2\le0$ or $\dd{s}|Z(s_0)|^2\ge0$ respectively.
+Otherwise, $s_0\in(t-\Delta,t)$, and $\dd{s}|Z(s_0)|^2=0$.
+Hence
+\[Z(s_0)\cdot Z'(s_0)(s-s_0)=\frac12\dd{s}|Z(s_0)|^2(s-s_0)\ge0\]
+for $s\in[t-\Delta,t]$, and
+\[|Z(s_0)+Z'(s_0)(s-s_0)|^2\ge|Z'(s_0)(s-s_0)|^2.\]
+
+The condition $|v-\hat v|\ge P$ implies
+\[|Z'(s)|\ge\frac12|v-\hat v|\]
+for $s\in[t-\Delta,t]$.
+Therefore,
+\[|Z(s_0)+Z'(s_0)(s-s_0)|\ge|Z'(s_0)(s-s_0)|\ge\frac12|v-\hat v||s-s_0|,\]
 and
 \begin{align*}
 |\frac{Z''(\sigma)}2(s-s_0)^2|
 &\le\|E(t)\|_\infty(s-s_0)^2
 \le\|E(t)\|_\infty\Delta|s-s_0|\\
 &\le\frac P4|s-s_0|
-\le\frac14|v-\hat V(t)||s-s_0|
+\le\frac14|v-\hat v||s-s_0|
 \end{align*}
-proves
-\[|y-\hat X(s)|=|Z(s)|\ge\frac14|v-\hat V(t)||s-s_0|.\qedhere\]
-\end{pf}
-
-We introduce time averaging to use the above lower bound.
-\begin{prop}
-Fix $x,v$.
-Let $P>0$ and $0<\Delta<t$ be constants such that
-\[\Delta\cdot\sup_{s\le t}\|E(s)\|_\infty<\frac P4.\]
-If $v$ satisfies $|v-\hat V(t)|\ge P$, then
-\[\int_{t-\Delta}^t\frac1{|y-\hat X(s)|^2}\chi_A(s)\,ds\les\frac{r^{-1}}{|v-\hat V(t)|},\]
-where $A=\{s:|y-\hat X(s)|\ge r\}$.
-\end{prop}
-\begin{pf}
-Since $|y-\hat X(s)|\ge\frac14|v-\hat V(t)||s-s_0|$,
-\begin{align*}
-\int_{t-\Delta}^t\frac1{|y-\hat X(s)|^2}\chi_A(s)\,ds
-&\le16\int_{t-\Delta}^t\frac1{|v-\hat V(t)|^2|s-s_0|^2}\chi_A(s)\,ds\\
-&\le32\int_r^\infty\frac1{|v-\hat V(t)|^3|s-s_0|^2}\,d(|v-\hat V(t)||s-s_0|)\\
-&=32\,\frac{r^{-1}}{|v-\hat V(t)|}.\qedhere
-\end{align*}
+yields
+\[|X(s)-\hat X(s)|=|Z(s)|\ge\frac14|v-\hat v||s-s_0|.\qedhere\]
 \end{pf}
 
 
 \subsection{Divide and conquer}
-\subsubsection{Ugly set estimate}
 
-Therefore, if we let $r^{-1}\simeq\min\{|v|^3,|v-\hat V(t)|^3\}$, then
-\[\int_{t-\Delta}^t\frac1{|y-\hat X(s)|^2}\chi_A(s)\,ds\les|v|^2\]
+We estimate the integral of $|E(s,\hat X(s))|$ by dividing the integral region $[t-\Delta,t]\x\R^6$ into three regions as:
+\begin{align*}
+U:&=\{\,(s,x,v):\ s\in[t-\Delta,t],\quad|v-\hat v|\ge P,\\
+&\hspace{6em}|X(s)-\hat X(s)|\ge R\max\{|v|^{-3},|v-\hat v|^{-3}\}\,\},\\
+B:&=\{\,(s,x,v):\ s\in[t-\Delta,t],\quad|v-\hat v|\ge P,\quad|v|\ge P,\\
+&\hspace{6em}|X(s)-\hat X(s)|<R\max\{|v|^{-3},|v-\hat v|^{-3}\}\,\},\\
+G:&=\{\,(s,x,v):\ s\in[t-\Delta,t],\quad\min\{|v-\hat v|,|v|\}<P\,\}\\
+&=[t-\Delta,t]\x\R^6\setminus(U\cup B).
+\end{align*}
+The constants $P>0$ and $R>0$ will be determined later.
+
+\begin{prop}[Ugly set estimate]
+\[\iiint_U\les R^{-1}.\]
+\end{prop}
+\begin{pf}
+Write
+\[r:=R\max\{|v|^{-3},|v-\hat v|^{-3}\}.\]
+Then,
+\[U=\{\,(s,x,v):s\in[t-\Delta,t],\quad|v-\hat v|\ge P,\quad |X(s)-\hat X(s)|\ge r\,\}.\]
+Since $|X(s)-\hat X(s)|\ge r$ on $U$,
+\begin{align*}
+\int_{|s-s_0|<\frac{4r}{|v-\hat v|}}\frac{\chi_U(s,x,v)}{|X(s)-\hat X(s)|^2}\,ds
+\le\frac1{r^2}\int_{|s-s_0|<\frac{4r}{|v-\hat v|}}ds=8\frac1{|v-\hat v|r}.
+\end{align*}
+Since $|v-\hat v|\ge P$ on $U$ so that $|X(s)-\hat X(s)|\ge\frac14|v-\hat v||s-s_0|$ by the previous lemma,
+\begin{align*}
+\int_{|s-s_0|\ge\frac{4r}{|v-\hat v|}}\frac{\chi_U(s,x,v)}{|X(s)-\hat X(s)|^2}\,ds
+&\le16\int_{|s-s_0|\ge\frac{4r}{|v-\hat v|}}\frac1{|v-\hat v|^2|s-s_0|^2}\,ds\\
+&\le32\int_{4r}^\infty\frac1{|v-\hat v|^3|s-s_0|^2}d(|v-\hat v||s-s_0|)\\
+&=8\frac1{|v-\hat v|r}.
+\end{align*}
+
+Therefore,
+\[\int\frac{\chi_U(s,x,v)}{|X(s)-\hat X(s)|^2}\,ds\les\frac1{|v-\hat v|r}=R^{-1}\frac{\min\{|v|^3,|v-\hat v|^3\}}{|v-\hat v|}\le R^{-1}|v|^2\]
 so that we have
-\[\iiint_U\frac{f(s,y,w)}{|y-\hat X(s)|^2}\,dw\,dy\,ds\les R^{-1}\int|v|^2f(t,x,v)\,dv\,dx\les R^{-1}\]
-when
-\[U\subset\{\,(s,x,v):\ |v-\hat V(t)|\ge P,\quad|y-\hat X(s)|\ge R\max\{|v|^{-3},|v-\hat V(t)|^{-3}\}\,\}.\]
+\begin{align*}
+\iiint_U\frac{f(t,x,v)}{|X(s)-\hat X(s)|^2}\,dv\,dx\,ds
+&=\iint f(t,x,v)\left(\int\frac{\chi_U(s,x,v)}{|X(s)-\hat X(s)|^2}\,ds\right)\,dv\,dx\\
+&\les R^{-1}\iint|v|^2f(t,x,v)\,dv\,dx\les R^{-1}.\qedhere
+\end{align*}
+\end{pf}
 
-\subsubsection{Bad set estimate}
-Consider $U^c$.
+
+
+\begin{prop}[Bad set estimate]
+\[\iiint_B\les\Delta\cdot R\log\frac{4Q(t)}P.\]
+\end{prop}
+\begin{pf}
+Write
+\[r:=R\max\{|v|^{-3},|v-\hat v|^{-3}\}.\]
+Then,
+\[B=\{\,(s,x,v):s\in[t-\Delta,t],\quad|v|\ge P,\quad|v-\hat v|\ge P,\quad |X(s)-\hat X(s)|<r\,\}.\]
 We need to control the union of two regions
-\[|y-\hat X(s)|<R|v|^{-3}\quad\text{and}\quad|y-\hat X(s)|<R|v-\hat V(t)|^{-3}.\]
-Without any conditions, the integration of fundamental solution with respect to $y$ gives
-\[\int_{|y-\hat X(s)|<r}\frac1{|y-\hat X(s)|^2}\,dy\simeq r.\]
-\begin{clm}
-If $|v|\ge P$ and $|v-\hat V(t)|\ge P$, then
-\[\int_{U^c}\frac1{|y-\hat X(s)|^2}\,dy\les\max\{|w|^{-3},|w-\hat V(s)|^{-3}\}\]
-for $s\in[t-\Delta,t]$.
-\end{clm}
-\begin{pf}
-It follows from
-\[|w|\simeq|v|,\quad|w-\hat V(s)|\simeq|v-\hat V(t)|\]
-for $|v|\ge P$ and $|v-\hat V(t)|\ge P$.
-\end{pf}
+\[|X(s)-\hat X(s)|<R|v|^{-3}\quad\text{and}\quad|X(s)-\hat X(s)|<R|v-\hat v|^{-3}.\]
+If we integrate $|X(s)-\hat X(s)|^{-2}$ with respect to $y$ on these regions, then we get integrands $|v|^{-3}$ and $|v-\hat v|^{-3}$, which has singularities on regions at which $|v|$, $|v-\hat v|$ are respectively small and large; an inverse cubic function is both sharp and broad in three dimensional space $\R^3$.
+The integral of inverse cube on the region $|v|\sim\infty$ is bounded by $Q$, and the region $|v|\sim0$ is bounded by $P$.
 
-\subsubsection{Good set estimate}
-
-\subsection{Polynomial decay}
-\begin{lem}
-Along the time of existence we have
-\[\|E(t)\|_{L_x^\infty}\les Q(t)^{4/3}.\]
-\end{lem}
-\begin{pf}
-Note that we have
-\[\|E\|_\infty\les\|\rho\|_\infty^{4/9}\|\rho\|_{5/3}^{5/9}.\]
-Since the velocity support of $f$ is bounded by finite $Q(t)$,
-\[\rho(t,x)=\int_{|v|<Q(t)}f(t,x,v)\,dv\les Q(t)^3\|f_0(x)\|_{L_v^\infty}\les Q(t)^3,\]
-so
-\[\|E(t)\|_{L_x^\infty}\les\|\rho(t)\|_{L_x^\infty}^{4/9}\les Q(t)^{4/3}.\qedhere\]
+For each $s\in[t-\Delta,t]$, if we apply the coordinates transformation $(x,v)\mapsto(y,w)=(X(s),V(s))$, then since $|v|\ge P$ implies
+\[\frac12P\le\frac12|v|\le|w|\le Q(s)\quad\text{and}\quad|w|\le2|v|,\]
+we have
+\begin{align*}
+\int_{|v|\ge P}&\int_{|X(s)-\hat X(s)|<R|v|^{-3}}\frac{f(t,x,v)}{|X(s)-\hat X(s)|^2}\,dx\,dv\\
+&\les\int_{\frac12P\le|w|\le Q(s)}\int_{|y-\hat X(s)|<R|V(t;s,y,w)|^{-3}}\frac1{|y-\hat X(s)|^2}\,dy\,dw\\
+&\simeq R\int_{\frac12P\le|w|\le Q(t)}|V(t;s,y,w)|^{-3}\,dw\\
+&\le8R\int_{\frac12P\le|w|\le Q(t)}|w|^{-3}\,dw\\
+&\simeq R\log\frac{2Q(t)}P.
+\end{align*}
+Similarly but using the fact that $|v-\hat v|\le P$ implies
+\[\frac12P\le\frac12|v-\hat v|\le|w-\hat V(s)|\le 2Q(s)\quad\text{and}\quad|w-\hat V(s)|\le2|v-\hat v|,\]
+we have
+\[\int_{|v-\hat v|\ge P}\int_{|X(s)-\hat X(s)|<R|v-\hat v|^{-3}}\frac{f(t,x,v)}{|X(s)-\hat X(s)|^2}\,dx\,dv\les R\log\frac{4Q(t)}P.\]
+Therefore,
+\[\iiint_B\frac{f(t,x,v)}{|X(s)-\hat X(s)|^2}\,dv\,dx\,ds\les\Delta\cdot R\log\frac{4Q(t)}P.\qedhere\]
 \end{pf}
 
 
-\section*{Acknowledgement}
-This report is written in Undergraduate Research Program of Postech, under the support and advice of professor Donghyun Lee.
+\begin{prop}[Good set estimate]
+\[\iiint_G\les\Delta\cdot P^{4/3}.\]
+\end{prop}
+\begin{pf}
+Note
+\begin{align*}
+G=\ &\{\,(s,x,v):s\in[t-\Delta,t],\quad|v|<P\}\\
+\cup\ &\{\,(s,x,v):s\in[t-\Delta,t],\quad|v-\hat v|<P\}.
+\end{align*}
+Since $|v|<P$ implies $|V(s;t,x,v)|<2P$, the coordinates transformation $(x,v)\mapsto(y,w)=(X(s),V(s))$ gives
+\begin{align*}
+\iint_{|v|<P}&\frac{f(t,x,v)}{|X(s)-\hat X(s)|^2}\,dv\,dx\\
+&\le\int\frac1{|y-\hat X(s)|^2}\int_{|w|<2P}f(s,y,w)\,dw\,dy\\
+&\les\|\int_{|w|<2P}f(s,y,w)\,dw\|_{L_y^\infty}^{4/9}\cdot\|\int_{|w|<2P}f(s,y,v)\,dv\|_{L_y^{5/3}}^{5/9}\\
+&\les((2P)^3)^{4/9}\cdot1^{5/9}\simeq P^{4/3}.
+\end{align*}
+Similarly
+\[\iint_{|v-\hat v|<P}\frac{f(t,x,v)}{|X(s)-\hat X(s)|^2}\,dv\,dx\les P^{4/3},\]
+so we are done.
+\end{pf}
+
+
+\subsection{Bound on the velocity support}
+Finally, with above estimates, we prove that $Q$ does not blow up.
+
+\begin{cor}
+Let $c=c(f_0)$ be a constant such that
+\[\|E(s)\|_\infty\le cQ(s)^{4/3}\]
+for all $s\in\R^+$, and define
+\[\Delta:=\frac{Q(t)^{4/11}}4\cdot\frac1{cQ(t)^{4/3}}.\]
+If $\Delta<t$, then for any $a>16/33$
+\[Q(t)-Q(t-\Delta)\les_a\Delta\cdot Q(t)^a.\]
+\end{cor}
+\begin{pf}
+Let $(d,e)=(4/11,16/33)$ and
+\[P=Q(t)^d\quad\text{and}\quad R=Q(t)^e(\log\frac{4Q(t)}P)^{-1/2}.\]
+Then, $\Delta\cdot cQ(t)^{4/3}=\frac P4$.
+Since
+\[\Delta\cdot\sup_{s\in[0,t]}\|E(s)\|_\infty=\frac P4\cdot\frac{\sup_{s\in[0,t]}\|E(s)\|_\infty}{cQ(t)^{4/3}}\le\frac P4,\]
+we can use the estimates on $U$, $B$, and $G$ :
+\begin{align*}
+\int_{t-\Delta}^t&|E(s,\hat X(s))|\,ds
+\le\int_{t-\Delta}^t\iint\frac{f(t,x,v)}{|X(s)-\hat X(s)|^2}\,dv\,dx\,ds\\
+&\les R^{-1}+\Delta\cdot R\log\frac{4Q(t)}P+\Delta\cdot P^{4/3}\\
+&\simeq\Delta\cdot\left(Q(t)^{4/3}P^{-1}R^{-1}+R\log\frac{4Q(t)}P+P^{4/3}\right)\\
+&=\Delta\cdot\left(Q(t)^{4/3-d-e}\sqrt{\log\frac{4Q(t)}P}+Q(t)^e\sqrt{\log\frac{4Q(t)}P}+Q(t)^{4d/3}\right).
+\end{align*}
+Because $d=4/11$ and $e=16/33$ satisfy
+\[\frac43-d-e=e=\frac43d=\frac{16}{33},\]
+we get
+\[\int_{t-\Delta}^t|E(s,\hat X(s))|\,ds\les\Delta\cdot Q(t)^{16/33}\log^{1/2}Q(t)\]
+and the desired result by setting $\hat x$ and $\hat v$ to be arbitrarily but $f(t,\hat x,\hat v)\ne0$.
+\end{pf}
+\begin{rmk}
+Suppose $\Delta>0$ had no lower bound.
+If we define an increasing function
+\[j(q):=e^{\frac1{1-a}q^{1-a}},\]
+then the inequality in the above corollary
+\[Q(t)-Q(t-\Delta)\le c\Delta\cdot Q(t)^a\]
+with $c=c(f_0,a)$ would give
+\begin{align*}
+\tld Q(t)-\tld Q(t-\Delta)
+&=j(Q(t))-j(Q(t-\Delta))\\
+&\le j(Q(t))-j(Q(t)-c\Delta\cdot Q(t)^a)\\
+&\le c\Delta\cdot Q(t)^a\ j'(Q(t))\\
+&=c\Delta\cdot j(Q(t))=c\Delta\cdot\tld Q(t),
+\end{align*}
+where $\tld Q(t):=j(Q(t))$.
+It derives a Gronwall-type differential inequality including the left lower Dini's derivative
+\[D_-\tld Q(t)\les_a\tld Q(t),\]
+and this proves $\tld Q(t)\le\tld Q(0)e^{ct}$, which implies $Q(t)\les(1+t)^{\frac1{1-a}}$.
+However, since there is a lower bound for $\Delta$, we use another method to justify $Q(t)\les(1+t)^{\frac1{1-a}}$.
+\end{rmk}
+
+\begin{thm*}[Schaeffer, 1991, restatement]
+For $\frac{16}{33}<a<1$,
+\[Q(t)\les_a(1+t)^{\frac1{1-a}}.\]
+\end{thm*}
+
+\begin{pf}
+Let $c=c(f_0)$ be a constant such that $\|E(s)\|_\infty$
+We do not fix $t$ in this proof.
+
+Define a function $\Delta:[0,\infty)\to[0,\infty)$ such that
+\[\Delta(t)\]
+\end{pf}
+
 
 \end{document}
