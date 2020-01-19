@@ -2,8 +2,9 @@
 \usepackage{../../ikany}
 \usepackage[margin=1.5in]{geometry}
 
-\title{Vlasov-Poisson system}
+\title{Global existence of classical solutions to the Vlasov-Poisson system}
 \author{Ikhan Choi}
+\date{\today}
 
 \def\tint{{\textstyle\int}}
 \def\loc{\mathrm{loc}}
@@ -14,7 +15,7 @@
 \tableofcontents
 
 \section*{Acknowledgement}
-This report is written in Undergraduate Research Program of Postech, under the support and advice of professor Donghyun Lee.
+This report is written in Undergraduate Research Program of Postech during 2019 fall semester, under the support and advice of professor Donghyun Lee.
 
 \section{Vlasov-Poisson system}
 Consider the following Cauchy problem for the \emph{Valsov-Poisson system}:
@@ -31,7 +32,7 @@ where $\gamma=\pm1$.
 For example, we have \emph{repulsive problem} $\gamma=+1$ for electrons in plasma theory and \emph{attractive problems} $\gamma=-1$ for galactic dynamics.
 ($\rho$ denotes mass density.)
 
-This report is a review of Schaffer's paper [], and is written thanks to Glassey's book [].
+This report is a review of Schaeffer's paper \cite{schaeffer1991global}, and is written thanks to Glassey's book \cite{glassey1996cauchy}.
 We mainly investigate the local and global existence problem for a classical solution of the Cauchy problem for the Vlasov-Poisson system.
 More precisely, we prove there is a unique global $C_c^1$ solution when given a $C_c^1$ initial data $f_0$.
 Let us define our solution space.
@@ -316,7 +317,7 @@ If we had a bound of higher moment
 \[\iint|v|^kf(t,x,v)\,dv\,dx\les1\]
 for some $k>6$ so that $\|\rho(t)\|_p\les1$ for some $p=\frac{k+3}3>3$, then we would obtain
 \[\|E(t)\|_\infty^{1-\frac1p}\les\|\rho\|_p^{\frac23}\|\rho\|_1^{\frac13-\frac1p}\les1.\]
-We will see that this estimate proves the global existence immediately; this is the idea of the paper of Lions and Perthame[].
+We will see that this estimate proves the global existence immediately; this is the idea of the paper of Lions and Perthame \cite{lions1991propagation}.
 We do not cover this in detail.
 \end{rmk}
 
@@ -332,7 +333,7 @@ The proof of local existence follows the following steps:
 \item (subsequential) convergence of the approximate solution,
 \item verification of the solvability for the limit.
 \end{enumerate}
-The Vlasov-Poisson system is good enough to show cdirect convergence of approximate solutions, not in the sense of subsequences.
+The Vlasov-Poisson system is good enough that we can show the usual convergence of approximate solutions, not in the sense of subsequences.
 
 
 \subsection{Approximate solution}
@@ -444,7 +445,7 @@ $|(X,V)(t)|$ \ar[symbol=\les,swap]{r}{\parbox{10em}{\centering\quad\\[10pt]Equat
 $\int_0^t(1+\|E(s)\|_\infty)\,ds$.
 \end{rd}
 Then, Gronwall's inequality saves the game for the bound of $Q$.
-Also, we can observe that every norms are controlled by the velocity support $Q$.
+Also, we can observe that all functions in here are controlled by the velocity support $Q$.
 For detail explanations, see the following proof.
 
 \begin{pfs}
@@ -726,7 +727,7 @@ Suppose $f\in C^1([0,T],C_c^1(\R^6))$.
 Since $Q$ does not blow up, we may define
 \[Q(T):=\lim_{t\uparrow T}Q(t).\]
 We are going to apply the local existence result for a new problem, in which we write $\tld f$ for the solution, with initial condition $\tld f(0,x,v):=f(t_0,x,v)$ for some $t_0<T$.
-In subsection 2.3, we have shown the length of time interval for existence $T$ is given by the condition
+In Section 2.3, we have shown the length of time interval for existence $T$ is given by the condition
 \[T<(Q_0\|f_0\|_\infty^{2/3}\|f_0\|_1^{1/3})^{-1}.\]
 It means that, if we arrange it for the new solution $\tld f$, the interval of existence of $\tld f$ has in fact a lower bound $\tld T>0$ that depends only on $Q(T)$ for any new initial time $t_0$; it is because the monotonicity of $Q$ says $Q(T)^{-1}<Q(t_0)^{-1}$ and the volume preservation implies $\|f_0\|_\infty=\|f(t_0)\|_\infty$ and $\|f_0\|_1=\|f(t_0)\|_1$.
 In other words, we can take any $\tld T$ such that
@@ -775,13 +776,16 @@ for some constant $0\le a\le1$, then we would be able to prove that
 \begin{align}\label{gjg}
 Q(t)\les\begin{cases}(1+t)^{\frac1{1-a}}&,0\le a<1\\e^{ct}&,a=1\end{cases}
 \end{align}
-using a nonlinear Gronwall inequality.
-To obtain this, we may try as follows: if we got an estimate on the field
+using the nonlinear Gronwall lemma.
+To obtain this integral inequality, we may try as follows: if we got an estimate on the field
 \[\|E(t)\|_\infty\les Q(t)^a,\]
 then for any $t,\hat x,\hat v$ such that $f(t,\hat x,\hat v)\ne0$ and for any $\Delta>0$ we have
 \[|v-V(t-\Delta;t,\hat x,\hat v)|=|\int_{t-\Delta}^t\gamma E(s,X(s;t,\hat x,\hat v))\,ds|\les\int_{t-\Delta}^tQ(s)^a\,ds,\]
 so there would be a constant $c=c(f_0)$ such that
-\[|v|\le|V(t-\Delta;t,\hat x,\hat v)|+c\int_{t-\Delta}^tQ(s)^a\,ds\le Q(t-\Delta)+c\int_{t-\Delta}^tQ(s)^a\,ds,\]
+\begin{align*}
+|v|&\le|V(t-\Delta;t,\hat x,\hat v)|+c\int_{t-\Delta}^tQ(s)^a\,ds\\
+&\le Q(t-\Delta)+c\int_{t-\Delta}^tQ(s)^a\,ds,
+\end{align*}
 which deduces
 \[Q(t)\le Q(t-\Delta)+c\int_{t-\Delta}^tQ(s)^a\,ds.\]
 
@@ -795,7 +799,7 @@ for arbitrary $t,\hat x,\hat v$ and for suitably chosen $\Delta$.
 Then, we would get a weaker inequality
 \[Q(t)-Q(t-\Delta)\les \Delta\cdot Q(t)^a,\]
 which is also able to deduce (\ref{gjg}).
-The detailed proof of (\ref{gjg}) will be presented in Section 3.5.
+The detailed proof of (\ref{gjg}) will be presented in Section 3.4.
 
 
 \begin{notn*}
@@ -808,11 +812,7 @@ assuming $x,v$ are given without any confusion.
 Symbols $y$ and $w$ are always used for $X(s)$ and $V(s)$ at time $s$ especially when applying volume preserving coordinates transformation $(x,v)\mapsto(X(s),V(s))=(y,w)$.
 \end{notn*}
 
-
-
-
-\subsection{Estimate on the force field}
-Our ultimate goal is to bound the integral
+Now, our ultimate goal is to bound the integral
 \begin{align*}
 \int_{t-\Delta}^t|E(s,\hat X(s))|\,ds
 &\le\frac1{4\pi}\int_{t-\Delta}^t\iint\frac{f(s,y,w)}{|y-\hat X(s)|^2}\,dw\,dy\,ds\\
@@ -821,15 +821,17 @@ Our ultimate goal is to bound the integral
 The main difficulty of this integral is that $|y-\hat X(s)|^{-2}$ is not integrable with respect to $y$ on the region where $|y|$ is large; the inverse square has too slow decay rate to be integrable in three dimesional space $\R^3$.
 
 Then, we want to find a lower bound of the relative position vector $|X(s)-\hat X(s)|$ assuming it is large.
-When the distance between $X(s)$ and $\hat X(s)$ is sufficiently large so that the interaction between particles at positions $X(s)$ and $\hat X(s)$ is sufficiently weak, the distance will change almost linearly in such a way that both velocity and time.
+When the distance between $X(s)$ and $\hat X(s)$ is sufficiently large so that the interaction between particles at positions $X(s)$ and $\hat X(s)$ is sufficiently weak, the distance will change almost linearly in both velocity and time.
 Intuitively, we can write
 \[|X(s)-\hat X(s)|\gg1\impl X(s)-\hat X(s)\approx (v-\hat v)(s-c_1)+c_2,\]
 where $c_1,c_2$ are constants that depend on $(t,x,v,\hat x,\hat v)$.
 
-Then, the time function $|X(s)-\hat X(s)|^{-2}\approx|(v-\hat v)(s-c_1)+c_2|^{-2}$ is integrable in time direction, and the time integration on interval $|(v-\hat v)(s-c_1)+c_2|\ge r$ for a proper radius $r$ will be approximately $(|v-\hat v|r)^{-1}$.
+Then, here the time averaging plays its role: interchange the integral as follows:
+\[\int_{t-\Delta}^t\iint\frac{f(t,x,v)}{|X(s)-\hat X(s)|^2}\,dv\,dx\,ds=\iint f(t,x,v)\left(\int_{t-\Delta}^t\frac{ds}{|X(s)-\hat X(s)|^2}\right)\,dv\,dx.\]
+The time function $|X(s)-\hat X(s)|^{-2}\approx|(v-\hat v)(s-c_1)+c_2|^{-2}$ is integrable in time direction, and the time integration on a set $\{s:|(v-\hat v)(s-c_1)+c_2|\ge r\}$ for a proper radius $r$ will be approximately $(|v-\hat v|r)^{-1}$.
 For details, see Proposition 3.3.
 It means that the singularity issue of a spatial function is changed to an estimate problem for a function of velocity.
-Finally by taking $r$ such that $(|v-\hat v|r)^{-1}\les|v|^2$, the kinetic energy bound the quantity what we want.
+Finally by taking $r$ such that $(|v-\hat v|r)^{-1}\les|v|^2$, the kinetic energy bounds the quantity what we want.
 
 
 \subsection{Lemmas}
@@ -1019,12 +1021,12 @@ Finally, with above estimates, we prove that $Q$ does not blow up.
 Let $c=c(f_0)$ be a constant such that
 \[\|E(s)\|_\infty\le cQ(s)^{4/3}\]
 for all $s\in\R^+$, and define
-\[\Delta:=\frac{Q(t)^{4/11}}4\cdot\frac1{cQ(t)^{4/3}}.\]
-If $\Delta<t$, then for any $a>16/33$
+\[\Delta:=\frac{Q(t)^{4/11}}4\cdot\frac1{cQ(t)^{4/3}}=\frac1{4c}\,Q(t)^{-32/33}.\]
+If $\Delta<t$, then for any $a>\frac{16}{33}$,
 \[Q(t)-Q(t-\Delta)\les_a\Delta\cdot Q(t)^a.\]
 \end{cor}
 \begin{pf}
-Let $(d,e)=(4/11,16/33)$ and
+Let $(d,e)=(\frac4{11},\frac{16}{33})$ and
 \[P=Q(t)^d\quad\text{and}\quad R=Q(t)^e(\log\frac{4Q(t)}P)^{-1/2}.\]
 Then, $\Delta\cdot cQ(t)^{4/3}=\frac P4$.
 Since
@@ -1037,7 +1039,7 @@ we can use the estimates on $U$, $B$, and $G$ :
 &\simeq\Delta\cdot\left(Q(t)^{4/3}P^{-1}R^{-1}+R\log\frac{4Q(t)}P+P^{4/3}\right)\\
 &=\Delta\cdot\left(Q(t)^{4/3-d-e}\sqrt{\log\frac{4Q(t)}P}+Q(t)^e\sqrt{\log\frac{4Q(t)}P}+Q(t)^{4d/3}\right).
 \end{align*}
-Because $d=4/11$ and $e=16/33$ satisfy
+Because $d=\frac4{11}$ and $e=\frac{16}{33}$ satisfy
 \[\frac43-d-e=e=\frac43d=\frac{16}{33},\]
 we get
 \[\int_{t-\Delta}^t|E(s,\hat X(s))|\,ds\les\Delta\cdot Q(t)^{16/33}\log^{1/2}Q(t)\]
@@ -1046,8 +1048,8 @@ and the desired result by setting $\hat x$ and $\hat v$ to be arbitrarily but $f
 \begin{rmk}
 Suppose $\Delta>0$ had no lower bound.
 If we define an increasing function
-\[j(q):=e^{\frac1{1-a}q^{1-a}},\]
-then the inequality in the above corollary
+\[j(z):=e^{\frac1{1-a}z^{1-a}},\]
+that is, $j$ is defined as a solution of a differential equation $j'(z)=z^{-a}j(z)$, then the inequality in the above corollary
 \[Q(t)-Q(t-\Delta)\le c\Delta\cdot Q(t)^a\]
 with $c=c(f_0,a)$ would give
 \begin{align*}
@@ -1058,10 +1060,13 @@ with $c=c(f_0,a)$ would give
 &=c\Delta\cdot j(Q(t))=c\Delta\cdot\tld Q(t),
 \end{align*}
 where $\tld Q(t):=j(Q(t))$.
-It derives a Gronwall-type differential inequality including the left lower Dini's derivative
-\[D_-\tld Q(t)\les_a\tld Q(t),\]
-and this proves $\tld Q(t)\le\tld Q(0)e^{ct}$, which implies $Q(t)\les(1+t)^{\frac1{1-a}}$.
-However, since there is a lower bound for $\Delta$, we use another method to justify $Q(t)\les(1+t)^{\frac1{1-a}}$.
+It derives an inequality including the left lower Dini's derivative
+\[D_-(e^{ct}\tld Q(t))\le0,\]
+and this proves $\tld Q(t)\le\tld Q(0)e^{ct}$, which implies $Q(t)\les_a(1+t)^{\frac1{1-a}}$.
+However, unfortuately there is a lower bound for $\Delta$.
+See the proof of Corollary 3.6, and check that the lower bound is required:
+\[R^{-1}\les\Delta\cdot Q(t)^{4/3}P^{-1}R^{-1}.\]
+Thereby, we must use another method to justify $Q(t)\les_a(1+t)^{\frac1{1-a}}$.
 \end{rmk}
 
 \begin{thm*}[Schaeffer, 1991, restatement]
@@ -1070,12 +1075,38 @@ For $\frac{16}{33}<a<1$,
 \end{thm*}
 
 \begin{pf}
-Let $c=c(f_0)$ be a constant such that $\|E(s)\|_\infty$
-We do not fix $t$ in this proof.
+Let $c=c(f_0)$ be a constant such that
+$\|E(s)\|_\infty\le cQ(s)^{4/3}$
+for all $s\in\R^+$.
+Since
+\[Q(t)-Q(s)\le\int_s^t\|E(s')\|_\infty\,ds'\]
+so that $Q$ is a nondecreasing continuous function, there is a unique $T_1=T_1(f_0)$ such that $T_1=Q(T_1)^{-32/33}$.
+Define a function $\Delta:(T_1,\infty)\to(0,\infty)$ such that
+\[\Delta(s):=\frac1{4c}\,Q(s)^{-32/33}.\]
+Then, by Corollary 3.6, $t>T_1$ implies
+\[Q(t)-Q(t-\Delta)\les_a\Delta\cdot Q(t)^a.\]
 
-Define a function $\Delta:[0,\infty)\to[0,\infty)$ such that
-\[\Delta(t)\]
+Inductively define a decreasing sequence $\{t_i\}_i$ such that
+\[t_0:=t,\qquad t_{i+1}:=t_i-\Delta(t_i).\]
+The differences have a uniform bound
+\[t_i-t_{i+1}=\frac1{4c}\,Q(t_i)^{-32/33}\ge\frac1{4c}\,Q(t)^{-32/33},\]
+so there is a positive integer $n$ such that $0<t_n\le T_1<t_{n-1}$.
+Then,
+\begin{align*}
+Q(t)-Q(T_1)&\le Q(t_0)-Q(t_n)
+=\sum_{i=0}^{n-1}(Q(t_i)-Q(t_{i+1}))\\
+&\les_a\sum_{i=0}^{n-1}\Delta(t_i)\cdot Q(t_i)^a
+\le\sum_{i=0}^{n-1}\Delta(t_i)\cdot Q(t)^a
+\le tQ(t)^a
+\end{align*}
+yields
+\[Q(t)\les_a1+tQ(t)^a.\]
+Thus, $1\les Q(t)^a$ implies $Q(t)\les(1+t)^{\frac1{1-a}}$.
 \end{pf}
+
+
+\bibliographystyle{acm}
+\bibliography{bib}
 
 
 \end{document}
