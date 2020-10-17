@@ -1,6 +1,6 @@
 \documentclass[11pt]{amsart}
-\usepackage{../../ikany}
-
+\usepackage{../..thnot../..any}
+\usepackage[margin=1.5in]{geometry}
 
 \title{Wrong proof on totally bounded uniform spaces}
 \author{Ikhan Choi}
@@ -140,7 +140,7 @@ Let $\mathcal{U}$ and $\mathcal{T}$ be the uniformity and topology of $X$ respec
 Let $x:\mathfrak{A}\to X$ be a net in $X$.
 We are going to show $x$ has a Cauchy subnet.
 
-<b>Step 1. Applying Zorn's lemma.</b>
+<b>Step 1. Applying Zorn's lemma../..
 Define a subset $\mathfrak{A}'\subset\mathfrak{A}\times\mathcal{T}\times\mathcal{U}$ by
 \[(\alpha,U,E)\in\mathfrak{A}'\quad\Leftrightarrow\quad x_\alpha\in U,\ U^2\subset E,\text{ and }x^{-1}(U)\text{ is cofinal in }\mathfrak{A}.\]
 The third condition is a necessary condition for $U$ to contain a limit of a subnet of $x$.
@@ -168,7 +168,7 @@ Here are several facts about $\mathfrak{M}$:
 \item $\mathfrak{M}\subset\mathfrak{A}'$, i.e. $x^{-1}(U)$ is cofinal for $U\in\pi_\mathcal{T}(\mathfrak{M})$.
 \end{enumerate}
 
-<b>Step 2. Verification of Cauchy subnet.</b>
+<b>Step 2. Verification of Cauchy subnet../..
 
 The goal is to show $x\circ\pi_\mathfrak{A}:\mathfrak{M}\to X$ is a subnet that is Cauchy.
 So, we need to show the followings:
@@ -297,12 +297,13 @@ Trivial, by the above results.
 \end{pf}
 
 
-References.
-$[1]$ D. Frank, <i>A totally bounded, complete uniform space is compact,</i> Proc. Amer. Math. Soc, 16-3 (1965), 514.
+\section*{References}
 
-$[2]$ E. Schechter, <i>Handbook of Analysis and its Foundations,</i> Academic Press, (1996).
+$[1]$ D. Frank, <i>A totally bounded, complete uniform space is compact../.. Proc. Amer. Math. Soc, 16-3 (1965), 514.
 
-$[3]$ S. Willard, <i>General topology,</i> Courier Corporation, (2004).
+$[2]$ E. Schechter, <i>Handbook of Analysis and its Foundations../.. Academic Press, (1996).
+
+$[3]$ S. Willard, <i>General topology../.. Courier Corporation, (2004).
 
 
 \end{document}

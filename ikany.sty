@@ -110,20 +110,11 @@
 
 \newenvironment{pf}[1][\unskip]{\begin{proof}[Proof #1]}{\end{proof}}
 \newenvironment{sol}[1][\unskip]{\begin{proof}[Solution #1]}{\end{proof}}
-\newenvironment{nt}[1][\unskip]{\begin{proof}[Note #1]\renewcommand{\qedsymbol}{}}{\end{proof}}
 \newenvironment{idea}[1][\unskip]{\begin{proof}[Proof idea #1]\renewcommand{\qedsymbol}{}}{\end{proof}}
-
-\newenvironment{exs}{\begin{ex}$ $\\[-12pt]\begin{cond}[leftmargin=20pt]}{\end{cond}\end{ex}}
-\newenvironment{pfs}{\begin{pf}$ $\\[-12pt]\begin{cond}[leftmargin=18pt]}{\end{cond}\end{pf}}
 
 \NewDocumentCommand{\Case}{mo}{\IfNoValueTF{#2}{\emph{Case #1.}}{\emph{Case #1: #2.}}}
 \NewDocumentCommand{\Step}{mo}{\IfNoValueTF{#2}{\emph{Step #1.}}{\emph{Step #1: #2.}}}
 %r[]+g
-\@ifclassloaded{prb}{
-  \renewcommand{\theprb}{\arabic{section}.\arabic{prb}}
-  \renewenvironment{sol}[1][\unskip]{\noindent\begin{proof}[Solution]\ \par\begin{cond}}{\end{cond}\end{proof}} % line break
-}{}
-
 
 
 
@@ -132,21 +123,22 @@
 %/////////////////////%
 %
 % Example Code:
-%	\begin{exer}
+%	\begin{ol}
 %	\item  easy problem
 %	\item* hard problem
-%	  \begin{exer}
+%	  \begin{ol}
 %	  \item subproblem
-%	  \end{exer}
-%	\end{exer}
+%	  \end{ol}
+%	\end{ol}
 %
 \ifnotbeamer{
   \RequirePackage{enumitem}
   \newlist{cond}{enumerate}{1}
-    \setlist[cond,1]{label=\rm{(\arabic*)}}
-  \newlist{exer}{enumerate}{2}
-    \setlist[exer,1]{label=\arabic*.,before={\large Exercises}}
-    \setlist[exer,2]{label=(\alph*)}
+    \setlist[cond,1]{label=\rm{(\arabic*)},leftmargin=9mm}
+  \newlist{ol}{enumerate}{2}
+    \setlist[ol,1]{label=\rm{\arabic*.},leftmargin=9mm}
+    \setlist[ol,2]{label=\rm{(\alph*)}}
+
   \let\@@item\item
   \newcommand{\sitem}{\refstepcounter{\@enumctr}\@@item[$^*$\csname label\@enumctr\endcsname]}
   \renewcommand*{\item}{\@ifstar\sitem\@@item}
@@ -258,63 +250,7 @@
     {\frac{d^2#2}{d#3\,d#4}}
   }
 }
-\newcommand\del{\nabla} % del
-\DeclareMathOperator{\grad}{grad}
-\DeclareMathOperator{\curl}{curl}
-\let\division\div
-\let\div\relax
-\DeclareMathOperator{\div}{div}
-
-
-
-
-
-%///////////////////////%
-%  System of equations  %
-%///////////////////////%
-
-%  WARNING: The following commands are unstable.
-
-%
-% Example Code:
-%	\begin{pde*}{\label{eq:heat}}
-%	\pd_tu-\Delta u &= 0,    \: \p{in} \R_x\x\R_t,\\
-%	         u(x,0) &= f(x),
-%	\end{pde*}
-%
-\RequirePackage{xparse}
-\NewDocumentEnvironment{pde}{s} % number it as a single equation
-{
-  %
-  \renewcommand\:{&\qquad&}
-  \[\left\{\ %
-  \begin{alignedat}{2}
-}
-{
-  \IfBooleanTF{#1}
-    {\end{alignedat}\right.\]$ $}
-    {\end{alignedat}\right.\stepcounter{equation}\tag{\theequation}\]$ $}
-    \hspace{-1em}
-}
-\NewDocumentEnvironment{de}{s} % number it as a single equation
-{
-  \renewcommand\:{&\qquad&}
-  \[
-  \begin{alignedat}{2}
-}
-{
-  \IfBooleanTF{#1}
-    {\end{alignedat}\]}
-    {\end{alignedat}\stepcounter{equation}\tag{\theequation}\]}
-}
-
-% Make possible to use \begin{pde*}
-\ExplSyntaxOn
-\cs_new:cpn{pde*}{\pde*}
-\cs_new_eq:cN{endpde*}\endpde
-\cs_new:cpn{de*}{\de*}
-\cs_new_eq:cN{endde*}\endde
-\ExplSyntaxOff
+\newcommand\del{\nabla}
 
 
 
@@ -324,15 +260,14 @@
 %  Parentheses, braces, and brackets  %
 %/////////////////////////////////////%
 %
-\let\<\langle
-\let\>\rangle  % overlapped
+\newcommand\<{\langle}
+\renewcommand\>{\rangle}  % overlapped
 
-\RequirePackage{xparse}
-\DeclareDocumentCommand{\abs}{m}{\left\lvert#1\right\rvert}
-\DeclareDocumentCommand{\norm}{m}{\left\lVert#1\right\rVert}
-\DeclareDocumentCommand{\flr}{m}{\left\lfloor#1\right\rfloor}
-\DeclareDocumentCommand{\ceil}{m}{\left\lceil#1\right\rceil}
-\DeclareDocumentCommand{\inn}{mg}{\IfNoValueTF{#2}{\left\langle#1\right\rangle}{\left\langle#1,#2\right\rangle}}
+\newcommand{\abs}[1]{\left\lvert#1\right\rvert}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\flr}[1]{\left\lfloor#1\right\rfloor}
+\newcommand{\ceil}[1]{\left\lceil#1\right\rceil}
+
 
 
 
@@ -354,64 +289,35 @@
 % \mat{1&0//0&1}
 % \mat[v]{1&0//0&1}  % determinant
 %
-\RequirePackage{xparse}
 
-% Binary operators
-\let\@@dot\.
-\renewcommand\.{\ifmmode\cdot\else\@@dot\fi} % dot product dotted
-\let\@@o\o
-\renewcommand\o{\ifmmode\circ\else\@@o\fi} % function composition
-\newcommand\x{\times} % cross product
-\newcommand\dsum{\oplus} % direct sum
-\newcommand\tn{\otimes} % tensor product
-\newcommand\wdg{\wedge} % wedge
-\newcommand\smsh{\vee} % smash product
+% Relations
 \newcommand\indep{\mathrel{\perp\mspace{-10mu}\perp}}
-
-% Big operators
-\newcommand\bigdsum{\bigoplus}
-\newcommand\bigtn{\bigotimes}
+\newcommand\les{\lesssim}
+\newcommand\ges{\gtrsim}
+\newcommand\normal{\trianglelefteq}
 
 % Arrows
-\let\@@to\to
-\RenewDocumentCommand{\to}{g}{\IfNoValueTF{#1}{\@@to}{\overset{#1}{\@@to}}}
+\newcommand\acts{\curvearrowright}
 \newcommand\emb{\hookrightarrow}
 \newcommand\mn{\rightarrowtail}
 \newcommand\ep{\twoheadrightarrow}
-\newcommand\acts{\curvearrowright}
 \newcommand\impl{\mathchoice{\quad\Longrightarrow\quad}{\,\Rightarrow\,}{\,\Rightarrow\,}{\,\Rightarrow\,}}
-\renewcommand{\iff}{\mathchoice{\quad\Longleftrightarrow\quad}{\,\Leftrightarrow\,}{\,\Leftrightarrow\,}{\,\Leftrightarrow\,}}
 
-% Relations
-\newcommand\les{\lesssim}
-\newcommand\ges{\gtrsim}
-\newcommand\hmtp{\simeq}
-\newcommand\isom{\cong}
-\newcommand\normal{\trianglelefteq}
-
-% Diacritics
+% Diacrritics
+\newcommand\tld{\widetilde}
+\renewcommand\hat{\widehat}
 \newcommand\cl{\overline}
-\newcommand\conj{\overline}
-\let\tld\widetilde % tilde
-\let\hat\widehat
 
-% Matrices
+% Miscellany
 \newcommand{\mat}[2][p]{%
   \begin{#1matrix}#2\end{#1matrix}
 } % option:p,b,B,v,V
-
-% Fonts
-\let\bigmath\displaystyle
-\newcommand\cat{\mathbf}
-
-% Standalone notations
-\newcommand\bul{\bullet} % bullet
-\newcommand\oo{\infty} % infinity
-\newcommand\mt{\varnothing} % emptyset
-\newcommand\bd{\partial} % boundary
+\newcommand\x{\times}
+\renewcommand\o{\circ}
 \newcommand\1{\bold{1}} % characteristic function
-\NewDocumentCommand{\evalat}{mmg}{\left.#1\right\rvert_{#2}\IfNoValueTF{}{^{#3}}}
 
+\newcommand\tint{{\textstyle\int}}
+\newcommand\loc{\mathrm{loc}}
 
 
 
@@ -602,10 +508,14 @@
 \DeclareMathOperator*{\colim}{colim}
 \DeclareMathOperator{\const}{const}
 \DeclareMathOperator{\conv}{conv}
+\DeclareMathOperator{\curl}{curl}
 \DeclareMathOperator{\diag}{diag}
 \DeclareMathOperator{\diam}{diam}
 \DeclareMathOperator{\Diff}{Diff}
 \DeclareMathOperator{\disc}{disc}
+\let\division\div
+\let\div\relax
+\DeclareMathOperator{\div}{div}
 \DeclareMathOperator{\dom}{dom}
 \DeclareMathOperator{\End}{End}
 \DeclareMathOperator*{\esssup}{ess\,sup}
@@ -614,6 +524,7 @@
 \DeclareMathOperator{\Fix}{Fix}
 \DeclareMathOperator{\Frac}{Frac}
 \DeclareMathOperator{\Gal}{Gal}
+\DeclareMathOperator{\grad}{grad}
 \DeclareMathOperator{\Hess}{Hess}
 \DeclareMathOperator{\Hol}{Hol}
 \DeclareMathOperator{\Hom}{Hom}

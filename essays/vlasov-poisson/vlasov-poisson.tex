@@ -4,10 +4,10 @@
 
 \title{Global existence of classical solutions to the Vlasov-Poisson system}
 \author{Ikhan Choi}
-\date{\today}
+\date{2020-01-20}
 
-\def\tint{{\textstyle\int}}
-\def\loc{\mathrm{loc}}
+\newcommand\tint{{\textstyle\int}}
+\newcommand\loc{\mathrm{loc}}
 \setlist[cond,1]{label=\rm{\roman*.}}
 
 \begin{document}
@@ -21,7 +21,7 @@ This report is written in Undergraduate Research Program of Postech during 2019 
 Consider the following Cauchy problem for the \emph{Valsov-Poisson system}:
 \begin{align}
 \left\{\ \begin{alignedat}{2}
-&\pd_tf+v\cdot\del_xf+\gamma E\cdot\del_vf=0,&&\qquad(t,x,v)\in\R_t^+\x\R_x^3\x\R_v^3,\\
+&\partial_tf+v\cdot\del_xf+\gamma E\cdot\del_vf=0,&&\qquad(t,x,v)\in\R_t^+\times\R_x^3\times\R_v^3,\\
 &E(t,x)=-\del_x\Phi,\\
 &\Phi(t,x)=(-\Delta_x)^{-1}\rho,&&\hspace{-2em}\lim_{|x|\to\infty}\Phi(t,x)=0,\\
 &\rho(t,x)=\tint f\,dv,\\
@@ -39,7 +39,7 @@ Let us define our solution space.
 
 \begin{defn*}
 Let $f_0:\R^6\to[0,\infty]$ be a function.
-A function $f:[0,T]\x\R^6\to\R$ is said to be a \emph{classical solution} of the Cauchy problem for the Vlasov-Poisson system with initial data $f_0$ if $f\in C^1([0,T];C_c^1(\R^6))$ and satisfies all equations in (1) on its domain.
+A function $f:[0,T]\times\R^6\to\R$ is said to be a \emph{classical solution} of the Cauchy problem for the Vlasov-Poisson system with initial data $f_0$ if $f\in C^1([0,T];C_c^1(\R^6))$ and satisfies all equations in (1) on its domain.
 Further, if $f\in C^1(\R^+;C_c^1(\R^6))$, then the classical solution $f$ is said to be \emph{global}.
 \end{defn*}
 
@@ -146,7 +146,7 @@ The Vlasov-Poisson equation is quite hyperbolic.
 What we mean here is that the method of characteristic curves is useful, and it does not regularizes the solution directly.
 Although we do not have an explicit representation formula, solutions written by characteristic curves make appropriate estimates possible.
 
-Moreover, since the Vlasov-Poisson system is a Hamiltonian system on the phase space $\R_x^3\x\R_v^3$ with the Hamiltonian $H(x,v)=\frac12v^2+\gamma\Phi(x,v)$, it has the volume preserving propoerty.
+Moreover, since the Vlasov-Poisson system is a Hamiltonian system on the phase space $\R_x^3\times\R_v^3$ with the Hamiltonian $H(x,v)=\frac12v^2+\gamma\Phi(x,v)$, it has the volume preserving propoerty.
 We, however, will show the volume preservation by computation of the Jacobian determinant for coordinates transformations through characteristic flows.
 
 \begin{lem}
@@ -198,8 +198,8 @@ the Jacobi formula deduces that
 
 \begin{cor}
 Let $f$ be a classical solution of the Cauchy problem for the Vlasov-Poisson system.
-Then, for any measurable function $\beta:\R\to\R$ such that $\iint\beta\o f_0(x,v)\,dv\,dx<\infty$, we have
-\[\iint\beta\o f(t,x,v)\,dv\,dx=\const.\]
+Then, for any measurable function $\beta:\R\to\R$ such that $\iint\beta\circ f_0(x,v)\,dv\,dx<\infty$, we have
+\[\iint\beta\circ f(t,x,v)\,dv\,dx=\const.\]
 In particular,
 \[\|f(t)\|_p=\const\]
 for $1\le p\le\infty$.
@@ -208,9 +208,9 @@ for $1\le p\le\infty$.
 Fix $t,s[0,T]$ and denote $y=X(s;t,x,v)$ and $w=V(s;t,x,v)$.
 Then,
 \begin{align*}
-\iint\beta\o f(t,x,v)\,dv\,dx
-&=\iint\beta\o f(s,X(s;t,x,v),V(s;t,x,v))\,dv\,dx\\
-&=\iint\beta\o f(s,y,w)\,dw\,dy
+\iint\beta\circ f(t,x,v)\,dv\,dx
+&=\iint\beta\circ f(s,X(s;t,x,v),V(s;t,x,v))\,dv\,dx\\
+&=\iint\beta\circ f(s,y,w)\,dw\,dy
 \end{align*}
 for $s\le T$.
 \end{pf}
@@ -559,7 +559,7 @@ For $t\le T$ and $n\ge1$,
 \item
 For $s\le T$ and $n\ge1$,
 \[\|E_n(s)-E_{n-1}(s)\|_\infty\les\|f_n(s)-f_{n-1}(s)\|_\infty.\]
-\item $f_n$ converges to a function $f$ uniformly in $C([0,T]\x\R^6)$.
+\item $f_n$ converges to a function $f$ uniformly in $C([0,T]\times\R^6)$.
 \item For each $t,x,v$ a sequence of maps
 \[s\mapsto(X_n(s;t,x,v),V_n(s;t,x,v))\]
 converges in $C^1([0,T],\R^6)$ so that its limit $(X,V)$ satisfies the equations
@@ -649,7 +649,7 @@ We can easily get with induction
 where $M=\sup_{s\in[0,T]}\|f_1(s)-f_0(s)\|_\infty$.
 Therefore,
 \[\sum_{n=0}^\infty\|f_{n+1}-f_n\|_\infty\le\sup_{t\in[0,T]}Me^{ct}<\infty\]
-implies $f_n$ uniformly converges in $C([0,T]\x\R^6)$.
+implies $f_n$ uniformly converges in $C([0,T]\times\R^6)$.
 
 \item
 Write
@@ -803,7 +803,7 @@ The detailed proof of (\ref{gjg}) will be presented in Section 3.4.
 
 
 \begin{notn*}
-Fix $(t,\hat x,\hat v)\in\R^+\x\R^6$.
+Fix $(t,\hat x,\hat v)\in\R^+\times\R^6$.
 We will write
 \[\hat X(s):=X(s;t,\hat x,\hat v)\quad\text{and}\quad\hat V(s):=V(s;t,\hat x,\hat v).\]
 Also, we will use the notations
@@ -916,14 +916,14 @@ yields
 
 \subsection{Divide and conquer}
 
-We estimate the integral of $|E(s,\hat X(s))|$ by dividing the integral region $[t-\Delta,t]\x\R^6$ into three regions as:
+We estimate the integral of $|E(s,\hat X(s))|$ by dividing the integral region $[t-\Delta,t]\times\R^6$ into three regions as:
 \begin{align*}
 U:&=\{\,(s,x,v):\ s\in[t-\Delta,t],\quad|v-\hat v|\ge P,\\
 &\hspace{6em}|X(s)-\hat X(s)|\ge R\max\{|v|^{-3},|v-\hat v|^{-3}\}\,\},\\
 B:&=\{\,(s,x,v):\ s\in[t-\Delta,t],\quad|v-\hat v|\ge P,\quad|v|\ge P,\\
 &\hspace{6em}|X(s)-\hat X(s)|<R\max\{|v|^{-3},|v-\hat v|^{-3}\}\,\},\\
 G:&=\{\,(s,x,v):\ s\in[t-\Delta,t],\quad\min\{|v-\hat v|,|v|\}<P\,\}\\
-&=[t-\Delta,t]\x\R^6\setminus(U\cup B).
+&=[t-\Delta,t]\times\R^6\setminus(U\cup B).
 \end{align*}
 The constants $P>0$ and $R>0$ will be determined later.
 
