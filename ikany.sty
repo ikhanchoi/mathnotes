@@ -97,20 +97,21 @@
 \theoremstyle{definition}
   \newtheorem{defn}{Definition}[section]
   \newtheorem*{defn*}{Definition}
-  \newtheorem{ex}{Example}[section]
-  \newtheorem*{ex*}{Example}
+  \newtheorem{exmp}{Example}[section]
+  \newtheorem*{exmp*}{Example}
   \newtheorem{notn}{Notation}[section]
   \newtheorem*{notn*}{Notation}
-  \newtheorem{prb}{Problem}[section]
-  \newtheorem*{prb*}{Problem}
-  \newtheorem{qn}{Question}[section]
-  \newtheorem*{qn*}{Question}
 \theoremstyle{remark}
   \newtheorem*{rmk}{Remark}
+\newtheoremstyle{problem}
+  {\topsep}{\topsep}{\normalfont}{0pt}{\bfseries}{}{5pt plus 1pt minus 1pt}
+  {\thmname{#1}\thmnumber{#2}.\thmnote{\normalfont{\itshape{ #3.}}}}
+\theoremstyle{problem}
+  \newtheorem{prb}{}[section]
+  \renewcommand{\theprb}{\arabic{prb}}
 
 \newenvironment{pf}[1][\unskip]{\begin{proof}[Proof #1]}{\end{proof}}
 \newenvironment{sol}[1][\unskip]{\begin{proof}[Solution #1]}{\end{proof}}
-\newenvironment{idea}[1][\unskip]{\begin{proof}[Proof idea #1]\renewcommand{\qedsymbol}{}}{\end{proof}}
 
 \NewDocumentCommand{\Case}{mo}{\IfNoValueTF{#2}{\emph{Case #1.}}{\emph{Case #1: #2.}}}
 \NewDocumentCommand{\Step}{mo}{\IfNoValueTF{#2}{\emph{Step #1.}}{\emph{Step #1: #2.}}}
@@ -133,11 +134,7 @@
 %
 \ifnotbeamer{
   \RequirePackage{enumitem}
-  \newlist{cond}{enumerate}{1}
-    \setlist[cond,1]{label=\rm{(\arabic*)},leftmargin=9mm}
-  \newlist{ol}{enumerate}{2}
-    \setlist[ol,1]{label=\rm{\arabic*.},leftmargin=9mm}
-    \setlist[ol,2]{label=\rm{(\alph*)}}
+  \setlist[enumerate]{label=\rm{(\alph*)},leftmargin=9mm}
 
   \let\@@item\item
   \newcommand{\sitem}{\refstepcounter{\@enumctr}\@@item[$^*$\csname label\@enumctr\endcsname]}

@@ -1,4 +1,4 @@
-\documentclass{../exp}
+\documentclass{../note}
 \usepackage{../../ikany}
 
 \title{Galois Theory}
@@ -15,8 +15,9 @@
 
 
 
-
-\section{Basic field theory}
+\clearpage
+\section{Polynomial rings}
+\subsection{Fields}
 
 \begin{defn}
 A \emph{field} is a commutative division ring.
@@ -35,7 +36,6 @@ A field isomorphism is just a surjective field embedding.
 
 
 
-\subsection{Field extensions}
 \begin{defn}
 A \emph{field extension} is a pair of fields $(E,F)$ such that $E\ge F$, i.e. $F$ belongs to $E$ as a subset.
 We often denote it by $E/F$.
@@ -94,20 +94,20 @@ We will see in Section 3.
 
 \begin{prop}
 In PID $R$,
-\begin{cond}
+\begin{enumerate}
 \item every irreducible element is prime, \hfill(Euclid's lemma)
 \item every two elements has greatest common divisor, \hfill(existence of gcd)
 \item the gcd is given as a $R$-linear combination, \hfill(B\'zout's identity)
 \item factorization into primes is unique up to permutation, \hfill(UFD)
 \item every prime ideal is maximal. \hfill(Krull dimension 1)
-\end{cond}
+\end{enumerate}
 \end{prop}
 
 Notice that, since $F[x]$ is a PID, there exists a one-to-one correspondence:
 \begin{rd}
 \textbf{M}aximal \textbf{I}deals \lds{rr}{generator}&\quad& \textbf{M}onic \textbf{I}rreducibles \lds{ll}{principal ideal}
 \end{rd}
-by (1) and (5) in the previous proposition.
+by (a) and (e) in the previous proposition.
 
 
 
@@ -136,7 +136,7 @@ Frobenius endomorphism.
 
 
 
-
+\clearpage
 \section{Algebraic extensions}
 
 \subsection{Algebraic elements}
@@ -155,30 +155,30 @@ If $\alpha$ is not algebraic over $F$, we call it \emph{transcendental} over $F$
 \end{defn}
 \begin{prop}
 Let $E/F$ be a field extension and $\alpha\in E$.
-TFAE:
-\begin{cond}
+Then, the following statements are all equivalent:
+\begin{enumerate}
 \item $\alpha$ is algebraic over $F$,
 \item there is a nonzero polynomial $f\in F[x]$ such that $f(\alpha)=0$, in other words, an ideal given by the kernel of ring homomorphism
 \[\eval_\alpha:F[x]\to F[\alpha]:f(x)\mapsto f(\alpha)\]
 is nonempty,
 \item $F(\alpha)=F[\alpha]$, i.e. $F[\alpha]$ is a field.
-\end{cond}
+\end{enumerate}
 \end{prop}
 \begin{pf}
-(1)$\impl$(2).
-Since $d=[F(\alpha):F]<\oo$, we can find a linearly dependent finite subset of infinite set $\{1,\alpha,\alpha^2,\cdots\}\subset F(\alpha)$ over $F$.
+(a)$\impl$(b)
+Since $d=[F(\alpha):F]<\infty$, we can find a linearly dependent finite subset of infinite set $\{1,\alpha,\alpha^2,\cdots\}\subset F(\alpha)$ over $F$.
 The coefficients on the linear dependency relation construct the polynomial.
 
-(2)$\impl$(3).
+(b)$\impl$(c)
 The kernel of $\eval_\alpha$ is a prime ideal because the quotient $F[x]/\ker(\eval_\alpha)\cong\im(\eval_\alpha)=F[\alpha]$ is an integral domain.
 It is also maximal since $F[x]$ is a PID(Krull dimension 1).
 Therefore, the quotient $F[\alpha]$ is a field.
 
-(3)$\impl$(2).
+(c)$\impl$(b)
 There is $g\in F[x]$ such that $\alpha^{-1}=g(\alpha)$.
 Then, $f\in F[x]$ defined by $f(x)=xg(x)-1$ satisfies $f(\alpha)=0$.
 
-(2)$+$(3)$\impl$(1).
+(b),(c)$\impl$(a)
 If there is $f\in F[x]$ with $f(\alpha)=0$, then we can show every element $g(\alpha)$ of $F(\alpha)=F[\alpha]$ for some $g\in F[x]$ is represented as a linear combination of $\{1,\alpha,\cdots,\alpha^{\deg f-1}\}$ by the Euclidean algorithm; divide $g$ by $f$.
 Therefore, a finite set spans $F(\alpha)$, so the dimension $F(\alpha)$ over $F$ is finite.
 \end{pf}
@@ -206,16 +206,16 @@ We can check this with the Euclidean algorithm.
 \end{pf}
 
 
-\begin{exs}
-\item
+\begin{exmp}
 Consider a field extension $\C/\Q$.
 The minimal polynomial of $\sqrt2\in\C$ over $\Q$ is
 \[\mu_{\sqrt2,\Q}(x)=x^2-2\]
 since it is monic irreducible and has a root $\sqrt2$.
 Similarly, the minimal polynomial of $\omega=\frac{-1+\sqrt{-3}}2\in\C$ over $\Q$ is
 \[\mu_{\omega,\Q}(x)=x^2+x+1.\]
+\end{exmp}
 
-\item
+\begin{exmp}
 We can compute the degree of a field extension by finding minimal polynomial.
 Since the minimal polynomial $\sqrt2+\sqrt3$ over $\Q$ is
 \[\mu_{\sqrt2+\sqrt3,\Q}(x)=x^4-10x^2+1,\]
@@ -230,17 +230,19 @@ We can also directly check
 where $\alpha=\sqrt2+\sqrt3$.
 This kind of \emph{dimension argument} is one of powerful tools to attack field theory.
 It will be discovered later that the dimension argument has an analogy with computation of group orders in finite group theory.
+\end{exmp}
 
-\item
+\begin{exmp}
 The base field is important: we have
 \[\mu_{\sqrt2,\Q}(x)=x^2-2,\quad\text{but}\quad\mu_{\sqrt2,\Q(\sqrt2)}(x)=x-\sqrt2.\]
+\end{exmp}
 
-\item
+\begin{exmp}
 Although $\Q(\sqrt2)=\Q(1+\sqrt2)$, the minimal polynomials of $\sqrt2$ and $1+\sqrt2$ over $\Q$ are $x^2-2$ and $(x-1)^2-2$ respectively.
 Polynomials are usually used in order to be provided as a computational tool, so we frequently want to find a suitable minimal polynomial for a given field extension.
 However, note that a finite simple extension does not specify only one minimal polynomial as the above example.
 It is enough to find only one minimal polynomial that is effective in computation.
-\end{exs}
+\end{exmp}
 
 \subsubsection{Conjugates}
 
@@ -261,7 +263,7 @@ Two elements $\alpha,\beta\in E$ are conjugate over $F$ iff there is a field iso
 \begin{pf}
 ($\Rightarrow$)
 Let $\mu\in F[x]$ be the common minimal polynomial of $\alpha$ and $\beta$ over $F$ and define a map
-\[\phi:F(\alpha)\to{\sim}F[x]/(\mu)\to{\sim}F(\beta):\alpha\mapsto x+(\mu)\mapsto\beta.\]
+\[\phi:F(\alpha)\stackrel\sim\to F[x]/(\mu)\stackrel\sim\to F(\beta):\alpha\mapsto x+(\mu)\mapsto\beta.\]
 Since it is clearly a field homomorphism and we can define the inverse in the same manner, so is an isomorphism.
 It is easy to check $\phi(\alpha)=\beta$ and $\phi|_F=\id_F$.
 In particular, the two conditions uniquely determine $\phi$.
@@ -279,28 +281,30 @@ Let $\phi:F\to F$ is a field automorphism.
 Then, $\alpha$ and $\phi(\alpha)$ are always conjugates.
 \end{cor}
 
-\begin{exs}
-\item
+\begin{exmp}
 The base fields are important.
 There are two conjugates of $\sqrt2\in\C$ over $\Q$: $\{\pm\sqrt2\}$.
 However, there is only one conjugate of $\sqrt2$ over $\Q(\sqrt2)$ or $\C$: itself $\{\sqrt2\}$.
+\end{exmp}
 
-\item
+\begin{exmp}
 There are two conjugates of $\omega=\frac{-1+\sqrt{-3}}2\in\C$ over $\Q$: $\{\omega,\,\cl\omega=\omega^{-1}\}$.
 It implies that there are at most two field automorphisms on $\Q(\omega)$ fixing $\Q$.
 In fact, there are exactly two; one is identity, and the other is the complex conjugation.
+\end{exmp}
 
-\item
+\begin{exmp}
 For almost every case in applications, the number of conjugates is same as the degree of its minimal polynomial.
 However, there are counterexamples; two field isomorphisms $\phi_1:\alpha\mapsto\beta_1$ and $\phi_2:\alpha\mapsto\beta_2$ may be the same even for $\beta_1\ne\beta_2$.
 See Section 3 for the detailed discussion.
+\end{exmp}
 
-\item
+\begin{exmp}
 The isomorphism does not have to be an automorphism.
 There are four conjugates of $\sqrt[4]2$ over $\Q$: $\{\pm\sqrt[4]2,\,\pm i\sqrt[4]2\}$.
 However, $\Q(\sqrt[4]2)\ne\Q(i\sqrt[4]2)$ even though they are isomorphic.
 See Section 4.
-\end{exs}
+\end{exmp}
 
 
 
@@ -322,10 +326,10 @@ The relations between finite extensions and algebraic extension are as follows.
 
 \begin{prop}
 For finite extensions and algebraic extensions, we have:
-\begin{cond}
+\begin{enumerate}
 \item a finite extension is algebraic,
 \item a simple algebraic extension is finite.
-\end{cond}
+\end{enumerate}
 \end{prop}
 \begin{pf} Easy. \end{pf}
 
@@ -362,18 +366,17 @@ We, however, proceed with this notation to grasp concepts of algebraic extension
 \begin{lem}
 Let $L$ be any field containing two fields $E,F$.
 Then,
-\begin{cond}
+\begin{enumerate}
 \item $F\le E$ implies $\cl F\le \cl E$,
 \item $\cl{\cl F}=\cl F$.
-\end{cond}
+\end{enumerate}
 \end{lem}
-\begin{pf}$ $\\[-12pt]
-\begin{cond}
-\item
+\begin{pf}
+(a)
 Suppose $\alpha\in\cl F$ so that there is $f\in F[x]$ such that $f(\alpha)=0$.
 Since $f\in F[x]\subset E[x]$, the element $\alpha$ is also algebraic over $E$, hence $\alpha\in\cl E$.
 
-\item
+(b)
 It is enough to show $\cl{\cl F}\subset\cl F$.
 Let $\alpha\in\cl{\cl F}$ so that we can find $f\in\cl F[x]$ such that
 \[f(\alpha)=\sum_{i=0}^na_i\alpha^i=0.\]
@@ -382,34 +385,31 @@ In other words, $\alpha$ is algebraic over $E$.
 
 The field extension $E/F$ is finite since all generators $a_i$ are algebraic over $F$, and $E(\alpha)/E$ is also finite since $\alpha$ is algebraic over $E$.
 Therefore, the field extension $E(\alpha)/F$ is finite, and $F(\alpha)/F$ is also finite, hence the algebraicity of $\alpha$ over $F$.
-\end{cond}
 \end{pf}
 
 \begin{thm}
 Let $E/F$ be a field extension.
-\begin{cond}
+\begin{enumerate}
 \item Fix any $L\ge E$. Then, $E/F$ is algebraic iff $\cl E=\cl F$.
 \item Let $F\le K\le E$. Then, $E/F$ is algebraic iff $E/K$ and $K/F$ are algebraic.
 \item The compositum $E_1E_2/F$ is algebriac if $E_1/F$ and $E_2/F$ are algebraic.
-\end{cond}
+\end{enumerate}
 \end{thm}
-\begin{pf}$ $\\[-12pt]
-\begin{cond}
-\item
+\begin{pf}
+(a)
 If $E/F$ is algebraic, then $F\le E\le\cl F$ implies $\cl F\le\cl E\le\cl{\cl F}=\cl F$.
 Conversely, if $\cl E=\cl F$, then $\alpha\in E$ implies $\alpha\in E\le\cl E=\cl F$, hence $E$ is algebraic over $F$.
 
-\item
+(b)
 Choose a big $L$.
 Since $\cl E\ge\cl K\ge\cl F$, we have $\cl E=\cl F$ iff $\cl E=\cl K$ and $\cl K=\cl F$.
 
-\item[($2\,'$)]
+(b')
 A direct proof uses the argument in the proof of above lemma as follows: if we take $\alpha\in E$ that is algebraic over $K$, and if $a_i$ denotes the coefficients of $\mu_{\alpha,K}$, then the field extension $F(a_1,\cdots,a_n,\alpha)/F$ is finite, so $\alpha$ is algebriac over $F$.
 
-\item
+(c)
 Choose a big $L$.
-Since $E_1,E_2\le\cl F$, we have $E_1E_2\le\cl F$, so $\cl{E_1E_2}=\cl{F}$.\qedhere
-\end{cond}
+Since $E_1,E_2\le\cl F$, we have $E_1E_2\le\cl F$, so $\cl{E_1E_2}=\cl{F}$.
 \end{pf}
 
 \begin{rmk}
@@ -420,17 +420,17 @@ We skip the proof.
 
 
 
-\begin{exs}
-\item
+\begin{exmp}
 For a transcendental number such as $\pi$, the extension $\Q(\pi)/\Q$ is not algebraic since it contains an element that is not algebraic.
 It is also because a simple extension is algebraic if and only if it is finite but $[\Q(\pi):\Q]=\infty$.
+\end{exmp}
 
-\item
+\begin{exmp}
 Finite extensions are not only the algebraic extensions.
 For examples,
 \[\Q(\sqrt2,\sqrt[4]2,\sqrt[8]2,\cdots),\quad\Q(\sqrt2,\sqrt3,\sqrt5,\sqrt7,\cdots)\]
 are infinite algebraic extensions.
-\end{exs}
+\end{exmp}
 
 
 
@@ -451,21 +451,21 @@ A field $F$ is called \emph{algebraically closed} if it has no proper algebraic 
 \end{defn}
 
 \begin{prop}
-For a field $F$, TFAE:
-\begin{cond}
+For a field $F$, the following statements are all equivalent:
+\begin{enumerate}
 \item $F$ is algebraically closed,
 \item every polynomial in $F[x]$ has a root in $F$,
 \item every polynomial in $F[x]$ is linearly factorized in $F$; every root is in $F$.
-\end{cond}
+\end{enumerate}
 \end{prop}
 \begin{pf}
-(1)$\impl$(2)
+(a)$\impl$(b)
 If $f\in F[x]$ does not have root in $F$, then the proper finite extension $(F[x]/(f))/F$ shows that $F$ is not algebraically closed.
 
-(2)$\impl$(3)
+(b)$\impl$(c)
 If $f$ has a root $\alpha$, then we can inductively apply this theorem for a new polynomial $f(x)/(x-\alpha)$ of a lower degree to make the complete linear factorization.
 
-(3)$\impl$(1)
+(c)$\impl$(a)
 If $F$ is not algebraically closed so that there is a proper algebraic extension $E/F$, then the minimal polynomial $\alpha\in E\setminus F$ should be irreducible with degree bigger than 1.
 \end{pf}
 \begin{rmk}
@@ -502,12 +502,13 @@ This is a relation with relative algebraic closure: the relative algebraic closu
 The proposition allows us to choose a standard algebraic closure when provided a large superfield like $\C$.
 In number theory, it is convenient for all algebraically closed fields to be considered that they are in $\C$. 
 
-\begin{exs}
-\item
+\begin{exmp}
 The set of all complex numbers $\C$ is an algebraically closed field by the fundamental theorem of algebra.
-\item
+\end{exmp}
+
+\begin{exmp}
 The set of all algebraic numbers (over $\Q$) is an algebraically closed field by the proposition above and is a subfield of $\C$.
-\end{exs}
+\end{exmp}
 
 
 \subsubsection{Uniqueness and existence}
@@ -579,6 +580,18 @@ In fact, this $K_1$ is already algebraically closed, but it is hard to prove dir
 
 
 
+\section*{Problems}
+\begin{prb}[Minimal polynomials in a simple extension]
+Let $F(\alpha)/F$ be a finite simple extension of a field $F$.
+\begin{enumerate}
+\item small problem
+\item small problem
+\end{enumerate}
+\end{prb}
+
+\begin{prb}[Title]
+Problem
+\end{prb}
 
 
 
@@ -587,6 +600,7 @@ In fact, this $K_1$ is already algebraically closed, but it is hard to prove dir
 
 
 
+\clearpage
 \section{Separable extensions}
 
 \subsection{Separable polynomials}
@@ -637,10 +651,10 @@ Hence $(x-\alpha)^2\mid f$, so $f$ is not separable.
 This is a powerful checking tool because the proposition do not requires that $f$ and $f'$ are coprime in $\cl F$, but in just $F$.
 \end{rmk}
 
-\begin{ex}
+\begin{exmp}
 Let $f(x)=x^{p^n}-x$ be a polynomial over a field of characteristic $p>0$.
 Since $f'(x)=-1$, $f$ is separable.
-\end{ex}
+\end{exmp}
 
 \subsubsection{Relation to irreducibles}
 
@@ -682,13 +696,13 @@ Let $F$ be a field of characteristic $p>0$.
 For an irreducible $f\in F[x]$, there is a unique separable irreducible $f_\sep\in F[x]$ such that $f(x)=f_\sep(x^{p^k})$ for some $k$.
 \end{prop}
 
-\begin{ex}
+\begin{exmp}
 The Frobenius endomorphism is not surjective in the field of rational functions $\F_p(t)$, where $t$ is not algebraic over $\F_p$.
 For example, $t$ is not in the image of $\F_p(t)\to\F_p(t):x\mapsto x^p$.
 Then, the polynomial $x^p-t\in\F_p(t)[x]$ is inseparable irreducible since it is factorized as
 \[x^p-t=(x-t^{\frac1p})^p\]
 in $\cl{\F_p(t)}[x]$.
-\end{ex}
+\end{exmp}
 
 \subsection{Separable extensions}
 \begin{defn}
@@ -757,7 +771,7 @@ multiplcation formula
 
 
 
-
+\clearpage
 \section{Normal extensions}
 \subsection{Automorphism group}
 
@@ -771,9 +785,13 @@ multiplcation formula
 
 
 
-\section{Galois theory}
 \subsection{Galois correspondence}
 
+
+
+
+\clearpage
+\section{Insolvability of quintics}
 
 \subsection{Finite fields}
 % finite field order definition
@@ -854,10 +872,7 @@ The Galois group $\Gal(\F_{p^n}/\F_p)$ is cyclic.
 
 
 
-
-\section{Computational techniques}
-
-\subsection{General strategies}
+\subsection{Computational strategies}
 \begin{itemize}
 \item reducible case, irreducible<=>transitivity
 \item resolvent polynomial1: discriminant
@@ -901,13 +916,13 @@ A \emph{resolvent cubic} is a cubic $R_3$ that has $K$ as the splitting field ov
 
 \begin{thm}
 We have
-\begin{cond}
+\begin{enumerate}
 \item $G\cong S_4$ if $R_3$ is irreducible and ,
 \item $G\cong A_4$ if $R_3$ is irreducible and ,
 \item $G\cong D_4$ if $R_3$ has only one root in $K$ and $f$ is irreducible over $K$,
 \item $G\cong C_4$ if $R_3$ has only one root in $K$ and $f$ is reducible over $K$,
 \item $G\cong V_4$ if $R_3$ splits in $K$.
-\end{cond}
+\end{enumerate}
 \end{thm}
 \begin{pf}
 There are five possible cases:
