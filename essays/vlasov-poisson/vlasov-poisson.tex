@@ -4,7 +4,7 @@
 
 \title{Global existence of classical solutions to the Vlasov-Poisson system}
 \author{Ikhan Choi}
-\date{\today}
+\date{October 16, 2020.}
 
 
 \begin{document}
@@ -14,11 +14,13 @@
 \section*{Acknowledgement}
 This report is written in Undergraduate Research Program of Postech during 2019 fall semester, under the support and advice of professor Donghyun Lee.
 
+
+\clearpage
 \section{Vlasov-Poisson system}
 Consider the following Cauchy problem for the \emph{Valsov-Poisson system}:
 \begin{align}
 \left\{\ \begin{alignedat}{2}
-&\pd_tf+v\cdot\del_xf+\gamma E\cdot\del_vf=0,&&\qquad(t,x,v)\in\R_t^+\x\R_x^3\x\R_v^3,\\
+&\pd_tf+v\cdot\del_xf+\gamma E\cdot\del_vf=0,&&\qquad(t,x,v)\in\R_t^+\times\R_x^3\times\R_v^3,\\
 &E(t,x)=-\del_x\Phi,\\
 &\Phi(t,x)=(-\Delta_x)^{-1}\rho,&&\hspace{-2em}\lim_{|x|\to\infty}\Phi(t,x)=0,\\
 &\rho(t,x)=\tint f\,dv,\\
@@ -78,18 +80,18 @@ Since it is given by the solution of the Poisson equation, estimates of the Ries
 
 \begin{lem}[Estimates of Riesz potential]
 Let $\rho\in C_c^1(\R^d)$.
-\begin{ol}
+\begin{enumerate}
 \item
 There is a field estimate
 \[\|\tfrac1{|x|^{d-1}}*\rho\|_\infty\les\|\rho\|_\infty^{1-1/d}\|\rho\|_1^{1/d}.\]
 \item
 For $\log^+(x):=\max\{0,\log x\}$, we have an estimate of derivative of the field
 \[\|\del(\tfrac1{|x|^{d-1}}*\rho)\|_\infty\les1+\|\rho\|_\infty\log^+\|\del\rho\|_\infty+\|\rho\|_1.\]
-\end{ol}
+\end{enumerate}
 \end{lem}
 
 \begin{pf}
-1.
+(a)
 Let $0\le\frac1p<\frac\alpha d<\frac1q\le1$.
 Since $(d-\alpha)p<d<(d-\alpha)q$,
 \begin{align*}
@@ -106,7 +108,7 @@ so the inequality
 is obtained by interchaning $p$ and $q$ with their conjugates.
 The desired result gets $p=\infty$, $\alpha=1$, and $q=1$.
 
-2.
+(b)
 Let $0<R_a\le R_b$ be constants which will be determined later.
 Divide the region radially
 \begin{align*}
@@ -149,7 +151,7 @@ We, however, will show the volume preservation by computation of the Jacobian de
 
 \begin{lem}
 Let $f$ be a classical solution of the Vlasov-Poisson system.
-\begin{ol}
+\begin{enumerate}
 \item Fix $t,x,v$. The system of ordinary differential equations
 \begin{gather*}
 \dot X(s;t,x,v)=V(s;t,x,v),\quad\dot V(s;t,x,v)=\gamma E(t,X(s;t,x,v)),\\
@@ -160,10 +162,10 @@ where the dot symbol denote the time derivative $\dd{s}$, has a solution $(X,V)$
 \item Fix $t$, and let
 \[y(s;x,v):=X(s;t,x,v)\quad\text{and}\quad w(s;x,v):=V(s;t,x,v).\]
 Then, the Jacobian of coordinates transform $(x,v)\mapsto(y,w)$ is 1 for all $s$.
-\end{ol}
+\end{enumerate}
 \end{lem}
 \begin{pf}
-1.
+(a)
 Note that we have
 \[\rho\in C^1([0,T];C_c^1(\R^6)),\quad\Phi\in C^1([0,T];C^{2,\alpha}(\R^6))\]
 so that
@@ -173,7 +175,7 @@ Since a map
 \[(x,v)\mapsto(v,\gamma E(t,x))\]
 is globally Lipschitz with respect to $(x,v)$ for each $t$, we can apply the Picard Lindel\"of theorem.
 
-2.
+(b)
 Differentiate and use the chain rule to get
 \begin{align*}
 \dd{s}&f(s,y,w)\\
@@ -182,7 +184,7 @@ Differentiate and use the chain rule to get
 \end{align*}
 where we denote $y=X(s;t,x,v)$ and $w=V(s;t,x,v)$.
 
-3.
+(c)
 Let $J(s)=\pd{(y,w)}{(x,v)}$ be the Jacobi matrix.
 Because when $s=t$ the Jacobian is
 \[\det J(t)=\det\pd{(x,v)}{(x,v)}=1,\]
@@ -220,11 +222,11 @@ If a function $f\in C^1([0,T],C_c^1(\R^6))$ satisfies
 and if we let
 \[\rho(t,x)=\int f(t,x,v)\,dv,\quad E(t,x)=\frac1{4\pi}\int\frac{(x-y)\rho(t,y)}{|x-y|^3}\,dy,\]
 then
-\begin{ol}
+\begin{enumerate}
 \item $\|\rho(t)\|_1=\const$,
 \item $\|E(t)\|_\infty\les\|\rho(t)\|_\infty^{2/3}$,
 \item $\|\del E(t)\|_\infty\les1+\|\rho\|_\infty\log^+\|\del\rho\|_\infty$.
-\end{ol}
+\end{enumerate}
 \end{cor}
 These estimates will be applied not only to the global existence proof, which assumes the local existence, but also to approximate solutions.
 
@@ -239,15 +241,15 @@ Usual algebraic computations with Stokes' theorem get several conservations laws
 
 \begin{lem}
 Let $f$ be a classical solution of the Vlasov-Poisson system.
-\begin{ol}
+\begin{enumerate}
 \item(Continuity equation)
-\[\rho_t+\del_x\cdot j=0,\qquad\text{where}\quad j=\int vf\,dv.\]
+\[\rho_t+\del_x\cdot j=0,\quad\text{where}\quad j=\int vf\,dv.\]
 \item(Energy conservation)
 \[\iint|v|^2f\,dv\,dx+\gamma\int|E|^2\,dx=\const.\]
-\end{ol}
+\end{enumerate}
 \end{lem}
 \begin{pf}
-1.
+(a)
 Integrate with respect to $v$ to get
 \begin{align*}
 0&=\int f_t\,dv+\int v\cdot\del_xf\,dv\\
@@ -255,7 +257,7 @@ Integrate with respect to $v$ to get
 &=\rho_t+\del_x\cdot j.
 \end{align*}
 
-2.
+(b)
 Multiply $|v|^2$ and integrate with respect to $v$ and $x$ to get
 \begin{align*}
 \dd{t}\iint|v|^2f\,dv\,dx
@@ -281,13 +283,13 @@ As a corollary, the $L^{5/3}$ norm of mass density $\|\rho\|_{5/3}$ gets bounded
 \begin{lem}[Bound for kinetic energy]
 Let $f\in C^1([0,T],C_c^1(\R^6))$ be a solution of the Vlasov-Poisson system.
 For $t\in[0,T]$,
-\begin{ol}
-\item $\|\rho(t)\|_{5/3}\les\iint|v|^2f\,dv\,dx$.
+\begin{enumerate}
+\item $\|\rho(t)\|_{5/3}^{5/3}\les\iint|v|^2f\,dv\,dx$.
 \item $\iint|v|^2f\,dv\,dx\les1$.
-\end{ol}
+\end{enumerate}
 \end{lem}
 \begin{pf}
-1.
+(a)
 Note
 \begin{align*}
 \rho(t,x)=\int f(t,x,v)\,dv
@@ -297,7 +299,7 @@ Note
 Set $R^3=R^{-2}\int|v|^2f\,dv$ to get
 \[\rho(t,x)^{5/3}\les\int|v|^2f\,dv.\]
 
-2.
+(b)
 It is trivial for $\gamma=+1$ from the energy conservation.
 Suppose $\gamma=-1$.
 By the Hardy-Littlewood-Sobolev inequality,
@@ -326,12 +328,12 @@ We do not cover this in detail.
 \section{Local existence}
 
 The proof of local existence follows the following steps:
-\begin{ol}
+\begin{enumerate}
 \item construction of an approximate solution,
 \item establishment of a priori estimates,
 \item (subsequential) convergence of the approximate solution,
 \item verification of the solvability for the limit.
-\end{ol}
+\end{enumerate}
 The Vlasov-Poisson system is good enough that we can show the usual convergence of approximate solutions, not in the sense of subsequences.
 
 
@@ -419,7 +421,7 @@ In particular, $Q_0$ is independent on $t$.
 Let $T>0$ be a constant such that
 \[T<(Q_0\|f_0\|_\infty^{2/3}\|f_0\|_1^{1/3})^{-1}.\]
 Then, we have the following bounds:
-\begin{ol}
+\begin{enumerate}
 \item
 For $t\le T$,
 \[\|\rho_n(t)\|_\infty+\|E_n(t)\|_\infty+Q_n(t)\les1\]
@@ -429,9 +431,9 @@ In addition, the support of $X_n$ is also uniformly bounded in $t\le T$.
 For $t\le T$,
 \[\|\del_x\rho_n(t)\|_\infty+\|\del_xE_n(t)\|_\infty\les1\]
 independent on $n$.
-\end{ol}
+\end{enumerate}
 \end{lem}
-The dynamics of controls among uniform norms of each quantity including $\rho$ and $E$ can be summarized as follows:
+The control mechanism among uniform norms of each quantity including $\rho$ and $E$ can be summarized as follows:
 \begin{rd}[column sep=huge]
 $\log\|E(t)\|_\infty$ \ar[symbol=\les,swap]{r}{\parbox{10em}{\centering\quad\\[10pt]Elliptic regularity of\\Poisson's eqn}}&
 $\log\|\rho(t)\|_\infty$ \ar[symbol=\les]{r}&
@@ -448,7 +450,7 @@ Also, we can observe that all functions in here are controlled by the velocity s
 For detail explanations, see the following proof.
 
 \begin{pf}
-1.
+(a)
 Since
 \[\|\rho_n(t)\|_\infty\le Q_n^3(t)\|f_0\|_\infty,\]
 a rough estimate for $\|E\|_\infty$ gives
@@ -485,7 +487,7 @@ Furthermore,
 The position support is bounded because
 \[|X_n(t;0,x,v)|\le|x|+\int_0^t|V_n(s;0,x,v)|\,ds\le|x|+TQ_n(t)\les1.\]
 
-2.
+(b)
 Since we already have bounds for $\|\rho_n\|_\infty$ and $\|\rho_n\|_1$, what we should estimate in order to bound $\|\del_xE_n\|_\infty$ is $\del_x\rho_n$.
 To do this, we will consider $\del_xX_n$ and $\del_xV_n$.
 In particular, we have
@@ -551,7 +553,7 @@ Although most of the nonlinear systems fail to have convergent approximate solut
 \begin{lem}
 Let $T>0$ be a constant such that
 \[T<(Q_0\|f_0\|_\infty^{2/3}\|f_0\|_1^{1/3})^{-1}.\]
-\begin{ol}
+\begin{enumerate}
 \item
 For $t\le T$ and $n\ge1$,
 \[\|f_{n+1}(t)-f_n(t)\|_\infty\les\int_0^t\|E_n(s)-E_{n-1}(s)\|_\infty\,ds.\]
@@ -565,10 +567,10 @@ converges in $C^1([0,T],\R^6)$ so that its limit $(X,V)$ satisfies the equations
 \[\dot X(s;t,x,v)=V(s;t,x,v),\quad\dot V(s;t,x,v)=\gamma E(s,X(s;t,x,v)),\]
 where
 \[E(t,x)=\frac1{4\pi}\iint\frac{(x-y)f(t,y,v)}{|x-y|^3}\,dv\,dy.\]
-\end{ol}
+\end{enumerate}
 \end{lem}
 \begin{pf}
-1.
+(a)
 Denote
 \[g(s):=|X_{n+1}(s;t,x,v)-X_n(s;t,x,v)|+|V_{n+1}(s;t,x,v)-V_n(s;t,x,v)|\]
 for given $t,x,v$.
@@ -626,7 +628,7 @@ g(s)\les\int_0^t\|E_n(s')-E_{n-1}(s')\|_\infty\,ds'
 \end{align}
 for arbitrary $s\in[0,t]$.
 
-2.
+(b)
 Notice that
 \[\|E_n(t)-E_{n-1}(t)\|_\infty\les\|\rho_n(t)-\rho_{n-1}(t)\|_1^{1/3}\|\rho_n(t)-\rho_{n-1}(t)\|_\infty^{2/3}.\]
 For $L^\infty$-norm,
@@ -639,7 +641,7 @@ For $L^1$-norm, since the support of $f_n,f_{n-1}$ is bounded in both directions
 \[\|\rho_n(t)-\rho_{n-1}(t)\|_1\le\|f_n(t)-f_{n-1}(t)\|_1\les\|f_n(t)-f_{n-1}(t)\|_\infty\]
 for $t\le T$, where $T<\infty$ arbitrary.
 
-3.
+(c)
 From (i) and (ii), there is a constant $c=c(f_0)$ such that for $t<T$,
 \[\|f_{n+1}(t)-f_n(t)\|_\infty\le c\int_0^t\|f_n(s)-f_{n-1}(s)\|_\infty\,ds.\]
 
@@ -650,7 +652,7 @@ Therefore,
 \[\sum_{n=0}^\infty\|f_{n+1}-f_n\|_\infty\le\sup_{t\in[0,T]}Me^{ct}<\infty\]
 implies $f_n$ uniformly converges in $C([0,T]\x\R^6)$.
 
-4.
+(d)
 Write
 \[X(s)=X(s;t,x,v),\qquad V(s)=V(s;t,x,v)\]
 for given $t,x,v$.
@@ -839,12 +841,12 @@ The following lemma suggests an appropriate way to choose the time averaging int
 Let $P>0$.
 Suppose $s\le[t-\Delta,t]$, where
 \[\Delta\cdot\sup_{s\in[0,t]}\|E(s)\|_\infty\le\frac P4.\]
-\begin{ol}
+\begin{enumerate}
 \item If $|v|<P$, then $|V(s)|<2P$.
 \item If $|v|\ge P$, then $\frac12|v|\le|V(s)|\le2|v|$. 
 \item If $|v-\hat v|<P$, then $|V(s)-\hat V(s)|<2P$.
 \item If $|v-\hat v|\ge P$, then $\frac12|v-\hat v|\le|V(s)-\hat V(s)|\le2|v-\hat v|$.
-\end{ol}
+\end{enumerate}
 \end{lem}
 \begin{pf}
 Note that
@@ -852,15 +854,15 @@ Note that
 and similarly
 \[|\hat v-\hat V(s)|\le\frac P4.\]
 
-For (i),
+For (a),
 \[|V(s)|\le|v|+|v-V(s)|<P+\frac P4<2P.\]
-For (ii),
+For (b),
 \[|V(s)|\ge|v|-|v-V(s)|\ge|v|-\frac P4\ge\frac12|v|\]
 and
 \[|V(s)|\le|v|+|v-V(s)|\le|v|+\frac P4\le2|v|.\]
-For (iii)
+For (c)
 \[|V(s)-\hat V(s)|\le|V(s)-v|+|v-\hat v|+|\hat v-\hat V(s)|<\frac P4+P+\frac P4<2P.\]
-For (iv),
+For (d),
 \[|V(s)-\hat V(s)|\ge-|V(s)-v|+|v-\hat v|-|\hat v-\hat V(s)|\ge-\frac P4+|v-\hat v|-\frac P4\ge\frac12|v-\hat v|\]
 and
 \[|V(s)-\hat V(s)|\le|V(s)-v|+|v-\hat v|+|\hat v-\hat V(s)|\le\frac P4+|v-\hat v|+\frac P4\le2|v-\hat v|.\]
@@ -1039,7 +1041,7 @@ we can use the estimates on $U$, $B$, and $G$ :
 &=\Delta\cdot\left(Q(t)^{4/3-d-e}\sqrt{\log\frac{4Q(t)}P}+Q(t)^e\sqrt{\log\frac{4Q(t)}P}+Q(t)^{4d/3}\right).
 \end{align*}
 Because $d=\frac4{11}$ and $e=\frac{16}{33}$ satisfy
-\[\frac43-d-e=e=\frac43d=\frac{16}{33},\]
+\[\tfrac43-d-e=e=\tfrac43d,\]
 we get
 \[\int_{t-\Delta}^t|E(s,\hat X(s))|\,ds\les\Delta\cdot Q(t)^{16/33}\log^{1/2}Q(t)\]
 and the desired result by setting $\hat x$ and $\hat v$ to be arbitrarily but $f(t,\hat x,\hat v)\ne0$.

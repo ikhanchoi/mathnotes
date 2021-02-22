@@ -1,14 +1,15 @@
 \documentclass[11pt]{amsart}
-\usepackage{../..thnot../..any}
+\usepackage{../../ikany}
 \usepackage[margin=1.5in]{geometry}
 
 \title{Wrong proof on totally bounded uniform spaces}
 \author{Ikhan Choi}
-\date{2019-09-22}
+\date{September 22, 2019.}
 
 
 \begin{document}
 \maketitle
+\tableofcontents
 
 \begin{abstract}
 Totally boundedness is a way of descibing compactness in metric spaces.
@@ -17,10 +18,10 @@ Related to this, I found a proof mistake on the celebrated book on general topol
 The purpose of this post is to fix the proof and practice the usage of subnets by generalizing the theorem.
 \end{abstract}
 
-
+\clearpage
 \section{Introduction}
 
-In this post, we will discuss the following theorem:
+In this article, we will discuss the following theorem:
 
 \begin{thm}
 Every net in a totally bounded uniform space has a Cauchy subnet.
@@ -56,15 +57,14 @@ So we are done.
 There are three well-known different definitions on subnets: Willard subnet, Kelly subnet, and Aarnes-Andenæs subnet.
 However, since the existence of each subnet associated to a common eventuality filter is equivalent, there will be no conflicts among them.
 In this post, we define a subnet as the monotone cofinal function between the index sets.
-See Eric Schechter's book $[2]$.
+See Eric Schechter's book \cite{schechter1996handbook}.
 \end{rmk}
 
 \section{The wrong proof}
-The following is the copied half of proof of Lemma 39.8, written in page 262, on the book General topology of Stephen Willard $[3]$:
+The following is the copied half of proof of Lemma 39.8, written in page 262, on the book General topology of Stephen Willard \cite{willard2012general}:
 
-\bigskip
-
-\textbf{Lemma 39.8.}
+\begin{quote}
+\textbf{39.8 Lemma.}
 $X$ is totally bounded iff each net in $X$ has a Cauchy subnet.
 
 \textit{Proof.}
@@ -81,11 +81,10 @@ Then,
 so that $(x_{(\lambda,D)})$ is a Cauchy subnet of $(x_\lambda)$.
 
 On the other hand, ($\cdots$)
-
-\bigskip
+\end{quote}
 
 This proof has an error because the set $\Gamma$ is not directed.
-If we choose $(\lambda_1,D_1),(\lambda_2,D_2)\in\Gamma$ and if $(\lambda_0,D_0)$ is an upper bound of them, then $U_{D_0}$ must be contained in both $U_{D_1}$ and $U_{D_2}$.
+If we choose two elements $(\lambda_1,D_1)$ and $(\lambda_2,D_2)$ in $\Gamma$ and if $(\lambda_0,D_0)$ is an upper bound of them, then $U_{D_0}$ must be contained in both $U_{D_1}$ and $U_{D_2}$.
 The thing is, however, $U_{D_1}$ and $U_{D_2}$ can be taken to be disjoint.
 
 Let us give an example.
@@ -134,13 +133,13 @@ Exactly in this step, Zorn's lemma will be used.
 We give a proof that takes a Cauchy subnet by constructing a monotone cofinal map with Zorn's lemma.
 It generalizes the proof for the metric space and may complement the gap in the Willard's proof.
 
-\begin{pf}[Proof 1 of Theorem 1.1]
+\begin{pf}[1 of Theorem 1.1]
 Let $X$ be a totally bounded uniform space.
 Let $\mathcal{U}$ and $\mathcal{T}$ be the uniformity and topology of $X$ respectively.
 Let $x:\mathfrak{A}\to X$ be a net in $X$.
 We are going to show $x$ has a Cauchy subnet.
 
-<b>Step 1. Applying Zorn's lemma../..
+\Step{1}[Applying Zorn's lemma]
 Define a subset $\mathfrak{A}'\subset\mathfrak{A}\times\mathcal{T}\times\mathcal{U}$ by
 \[(\alpha,U,E)\in\mathfrak{A}'\quad\Leftrightarrow\quad x_\alpha\in U,\ U^2\subset E,\text{ and }x^{-1}(U)\text{ is cofinal in }\mathfrak{A}.\]
 The third condition is a necessary condition for $U$ to contain a limit of a subnet of $x$.
@@ -168,7 +167,7 @@ Here are several facts about $\mathfrak{M}$:
 \item $\mathfrak{M}\subset\mathfrak{A}'$, i.e. $x^{-1}(U)$ is cofinal for $U\in\pi_\mathcal{T}(\mathfrak{M})$.
 \end{enumerate}
 
-<b>Step 2. Verification of Cauchy subnet../..
+\Step{2}[Verification of Cauchy subnet]
 
 The goal is to show $x\circ\pi_\mathfrak{A}:\mathfrak{M}\to X$ is a subnet that is Cauchy.
 So, we need to show the followings:
@@ -219,7 +218,7 @@ This proof is quite long.
 \section{Another proof using Tychonoff's theorem}
 
 This proof is by D. L. Frank, Columbia university, in 1965.
-See $[1]$.
+See \cite{frank1965totally}.
 The proof used Tychonoff's theorem to avoid the complicated application of Zorn's lemma.
 
 \begin{pf}[2 of Theorem 1.1.]
@@ -269,7 +268,8 @@ Every net has a universal subnet.
 \begin{pf}
 Let $x:\mathfrak{A}\to X$ be a net on a topological space $X$.
 Let $\mathcal{F}$ be the ultrafilter containing an eventuality filter of the net $x$.
-Define a directed set $\mathfrak{B}\subset\mathfrak{A}\times\mathcal{F}$ such that $(\alpha,U)\in\mathfrak{B}$ if and only if $\alpha\in U$, and let $xh:\mathfrak{B}\to\mathfrak{A}\to X$ be a subnet of $x$ such that $h(\alpha,U)=\alpha$ ($U$ is not open!).
+Define a directed set $\mathfrak{B}\subset\mathfrak{A}\times\mathcal{F}$ such that $(\alpha,U)\in\mathfrak{B}$ if and only if $\alpha\in U$, and let $xh:\mathfrak{B}\to\mathfrak{A}\to X$ be a subnet of $x$ such that $h(\alpha,U)=\alpha$.
+Notice here that $U$ is not open.
 
 We claim $xh$ is universal.
 Take any subset $A\subset X$.
@@ -297,13 +297,9 @@ Trivial, by the above results.
 \end{pf}
 
 
-\section*{References}
+\bibliographystyle{acm}
+\bibliography{bib}
 
-$[1]$ D. Frank, <i>A totally bounded, complete uniform space is compact../.. Proc. Amer. Math. Soc, 16-3 (1965), 514.
-
-$[2]$ E. Schechter, <i>Handbook of Analysis and its Foundations../.. Academic Press, (1996).
-
-$[3]$ S. Willard, <i>General topology../.. Courier Corporation, (2004).
 
 
 \end{document}
