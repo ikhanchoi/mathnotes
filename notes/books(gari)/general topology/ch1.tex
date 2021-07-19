@@ -42,7 +42,7 @@ A metric space is just a set endowed with a metric.
 
 \begin{defn}
 Let $X$ be a set.
-A \emph{metric} is a function $d:X\x X\to\R_{\ge0}$ such that
+A \emph{metric} is a function $d:X\times X\to\R_{\ge0}$ such that
 \begin{cond}
 \item $d(x,y)=0$ iff $x=y$, \hfill(nondegeneracy)
 \item $d(x,y)=d(y,x)$ for all $x,y\in X$, \hfill(symmetry)
@@ -61,7 +61,7 @@ Moreover, every subset of normed space is also an example of metric space becaus
 
 \begin{ex}
 A normed space $X$ is a metric space.
-Precisely, the norm structure naturally defines a real-valued function $d$ on $X\x X$ defined by $d(x,y):=\|x-y\|$ and it satisfies the axioms of metric.
+Precisely, the norm structure naturally defines a real-valued function $d$ on $X\times X$ defined by $d(x,y):=\|x-y\|$ and it satisfies the axioms of metric.
 \end{ex}
 \begin{pf}
 It is quite easy.
@@ -106,8 +106,8 @@ Then,
 This proves $\phi$ is a isometry.
 \end{pf}
 \begin{rmk}
-The space $Y$ is somtimes denoted by $\ell^\oo(X)$, and it is in fact a Banach space.
-In addition, the image of the isometry $\phi$ is in a closed subspace $C_b(X)\subset\ell^\oo(X)$, the space of bounded real-valued continuous functions.
+The space $Y$ is somtimes denoted by $\ell^\infty(X)$, and it is in fact a Banach space.
+In addition, the image of the isometry $\phi$ is in a closed subspace $C_b(X)\subset\ell^\infty(X)$, the space of bounded real-valued continuous functions.
 \end{rmk}
 
 We have seen metrics can be seen as the generalization of norms.
@@ -117,14 +117,14 @@ The examples below are given without proofs.
 
 \begin{ex}\label{ex:discrete metric is a metric}
 Let $X$ be a set.
-Then, a function $d:X\x X\to\R_{\ge0}$ defined by
+Then, a function $d:X\times X\to\R_{\ge0}$ defined by
 \[d(x,y):=\begin{cases}0&,x=y\\1&,x\ne y\end{cases}\]
 is a metric on $X$.
 This metric is sometimes called \emph{discrete metric} because balls can separate all single points out.
 \end{ex}
 \begin{ex}\label{ex:composition with mis function is still metric}
 Let $d$ be a metric on a set $X$.
-Let $f:[0,\oo)\to[0,\oo)$ be a function such that $f^{-1}(0)=\{0\}$.
+Let $f:[0,\infty)\to[0,\infty)$ be a function such that $f^{-1}(0)=\{0\}$.
 If $f$ is monotonically increasing and subadditive, then $f\o d$ satisfies the triangle inequality, hence is another metric on $X$.
 Note that a function $f$ is called subadditive if
 \[f(x+y)\le f(x)+f(y)\]
@@ -132,18 +132,18 @@ for all $x,y$ in the domain.
 \end{ex}
 \begin{ex}
 Let $G=(V,E)$ be a connected graph.
-Define $d:V\x V\to\Z_{\ge0}\subset\R_{\ge0}$ as the distance of two vertices; the length of shortest path connecting two vertices.
+Define $d:V\times V\to\Z_{\ge0}\subset\R_{\ge0}$ as the distance of two vertices; the length of shortest path connecting two vertices.
 Then, $(V,d)$ is a metric space.
 \end{ex}
 \begin{ex}
 Let $\cP(X)$ be the power set of a finite set $X$.
-Define $d:\cP(X)\x\cP(X)\to\Z_{\ge0}\subset\R_{\ge0}$ as the cardinality of the symmetric difference; $d(A,B):=|(A-B)\cup(B-A)|$.
+Define $d:\cP(X)\times\cP(X)\to\Z_{\ge0}\subset\R_{\ge0}$ as the cardinality of the symmetric difference; $d(A,B):=|(A-B)\cup(B-A)|$.
 Then $(\cP(X),d)$ is a metric space.
 \end{ex}
 \begin{ex}
 Let $C$ be the set of all compact subsets of $\R^d$.
 Recall that a subset of $\R^d$ is compact if and only if it is closed and bounded.
-Then, $d:C\x C\to\R_{\ge0}$ defined by
+Then, $d:C\times C\to\R_{\ge0}$ defined by
 \[d(A,B):=\max\{\,\sup_{a\in A}\inf_{b\in B}\|a-b\|,\ \sup_{b\in B}\inf_{a\in A}\|a-b\|\,\}\]
 is a metric on $C$.
 It is a little special case of \emph{Hausdorff metric}.
@@ -182,7 +182,7 @@ Compare the following definitions to what we know.
 Let $\{x_n\}_n$ be a sequence of points on a metric space $(X,d)$.
 We say that a point $x$ is a \emph{limit} of the sequence or the sequence \emph{converges to $x$} if for arbitrarily small ball $B(x,\e)$, we can find $n_0$ such that $x_n\in B(x,\e)$ for all $n>n_0$.
 If it is satisfied, then we write
-\[\lim_{n\to\oo}x_n=x,\]
+\[\lim_{n\to\infty}x_n=x,\]
 or simply
 \[x_n\to x\qquad\text{as}\qquad n\to\infty.\]
 
@@ -475,7 +475,7 @@ Normalize $x_n$ with respect to $\|\cdot\|_2$ to define a new sequence $y_n:=\fr
 Then, we have
 \[\|y_n\|_2=1\quad\text{and}\quad\|y_n\|<\tfrac1n.\]
 Since the set $\{x:\|x\|_2=1\}$ is bounded in the standard norm, the Bolzano-Weierstrass theorem implies the existence of a convergent subsequence $\{y_{n_k}\}_k$ of $\{y_n\}$ in the standard norm $\|\cdot\|_2$.
-For the limit point $y$ of $\{y_{n_k}\}_k$, take limits $k\to\oo$ on the inequalities
+For the limit point $y$ of $\{y_{n_k}\}_k$, take limits $k\to\infty$ on the inequalities
 \[\bigl|\|y_{n_k}\|_2-\|y\|_2\bigr|\le\|y_{n_k}-y\|_2\]
 and
 \[\bigl|\|y_{n_k}\|-\|y\|\bigr|\le\|y_{n_k}-y\|\le C_2\|y_{n_k}-y\|_2.\]
@@ -532,7 +532,7 @@ Then, $d(x,y):=\|(d_1(x,y),\cdots,d_d(x,y))\|$ is another metric on $X$.
 All of the three axioms of metric can be checked without difficulty.
 \end{pf}
 \begin{rmk}
-Although it is possible to figure out conditions for $f:[0,\oo)^2\to[0,\oo)$ to have $f(d_1,d_2)$ be a metric, we just compromised it for simplicity and usefulness.
+Although it is possible to figure out conditions for $f:[0,\infty)^2\to[0,\infty)$ to have $f(d_1,d_2)$ be a metric, we just compromised it for simplicity and usefulness.
 Also, if we use norms, then the same method can be extended to the case of norms.
 \end{rmk}
 
@@ -547,7 +547,7 @@ If $d_1$, $d_2$, and $\|\cdot\|$ are equivalent to $d'_1$, $d'_2$, and $\|\cdot\
 \end{prop}
 \begin{pf}
 Let $\{y:\|(d'_1(x,y),d'_2(x,y))\|'<\e\}$ be an arbitrary ball centered at a point $x$ taken by the metric $\|(d'_1,d'_2)\|'$.
-By Theorem \ref{thm:equivalent norms on finite dimension}, there is a constant $C,C'>0$ such that $C'\|\cdot\|'\le\|\cdot\|_\oo\le C\|\cdot\|$, where we denote $\|(x,y)\|_\oo=\max\{|x|,|y|\}$.
+By Theorem \ref{thm:equivalent norms on finite dimension}, there is a constant $C,C'>0$ such that $C'\|\cdot\|'\le\|\cdot\|_\infty\le C\|\cdot\|$, where we denote $\|(x,y)\|_\infty=\max\{|x|,|y|\}$.
 
 By the equivalence of each pair of metrics, there are $\delta_1>0$ and $\delta_2>0$ such that
 \[B_1(x,\delta_1)\subset B_{1'}(x,C'\e)\quad\text{and}\quad B_2(x,\delta_2)\subset B_{2'}(x,C'\e),\]
@@ -631,7 +631,7 @@ The function is well-defined by the monotone convergence theorem.
 The only nontrivial axiom is the triangle inequality.
 Consider the triangle inequality of truncated sum of metrics
 \[\sum_{i=1}^k2^{-i}\hat d_i(x,z)\le\sum_{i=1}^k2^{-i}\hat d_i(x,y)+\sum_{i=1}^k2^{-i}\hat d_i(y,z).\]
-By taking limit $k\to\oo$, we obtain the triangle inequality for $d$, hence a metric.
+By taking limit $k\to\infty$, we obtain the triangle inequality for $d$, hence a metric.
 Let us show the rest part.
 
 ($\Rightarrow$)
@@ -649,8 +649,8 @@ With this $k$, define
 \[n_0:=\max_{1\le i\le k}n_i.\]
 If $n>n_0$, then
 \begin{align*}
-d(x_n,x)&=\sum_{i=1}^k2^{-i}\hat d_i(x_n,x)+\sum_{i=k+1}^\oo2^{-i}\hat d_i(x_n,x)\\
-&<\sum_{i=1}^k2^{-i}\frac\e2+\sum_{i=k+1}^\oo2^{-i}\\
+d(x_n,x)&=\sum_{i=1}^k2^{-i}\hat d_i(x_n,x)+\sum_{i=k+1}^\infty2^{-i}\hat d_i(x_n,x)\\
+&<\sum_{i=1}^k2^{-i}\frac\e2+\sum_{i=k+1}^\infty2^{-i}\\
 &<\frac\e2+2^{-k}\le\e,
 \end{align*}
 so $x_n$ converges to $x$ in the metric $d$.
@@ -688,8 +688,8 @@ Then, two metrics
 are equivalent.
 \end{cor}
 
-The sequences $\{2^{-i}\}_i$ and $\{i^{-1}\}_i$ in the above propositions can be replaced into any positive real sequences $\{a_i\}_{i=1}^\oo$ such that
-\[\sum_{i\in\N}a_i<\oo\quad\text{and}\quad\lim_{i\to\oo}a_i=0,\]
+The sequences $\{2^{-i}\}_i$ and $\{i^{-1}\}_i$ in the above propositions can be replaced into any positive real sequences $\{a_i\}_{i=1}^\infty$ such that
+\[\sum_{i\in\N}a_i<\infty\quad\text{and}\quad\lim_{i\to\infty}a_i=0,\]
 respectively.
 \begin{rmk}
 A metric
@@ -703,12 +703,12 @@ For example, the topology on $\R^\N$ generated by this metric defined with the p
 \subsubsection{Pseudometrics}
 It is often required to consider combining an uncountable family of generalized metrics, called pseudometrics.
 To motivate and introduce pseudometrics, we give an example problem.
-Let $X\x Y$ be a cartesian product of two metric spaces $(X,d_X)$ and $(Y,d_Y)$.
+Let $X\times Y$ be a cartesian product of two metric spaces $(X,d_X)$ and $(Y,d_Y)$.
 We can ask which metric should be chosen in the most natural way, and a possible answer is as follows:
 \[(x_n,y_n)\to(x,y)\iff x_n\to x\quad\text{and}\quad y_n\to y\]
-as $n\to\oo$.
+as $n\to\infty$.
 We wish to recognize this as the sum of two different convergences: one is $x_n\to x$, and the other is $y_n\to y$.
-So then try to define two metric functions $\rho_X$ and $\rho_Y$ on $X\x Y$ such that
+So then try to define two metric functions $\rho_X$ and $\rho_Y$ on $X\times Y$ such that
 \[\rho_X((x,y),(x',y'))=d_X(x,x')\quad\text{and}\quad\rho_Y((x,y),(x',y'))=d_Y(y,y').\]
 We expect these functions to satisfy axioms of metrics, but they fail on the identity of indiscernibles: $\rho_X((x,y),(x',y'))=0$ does not imply $(x,y)=(x',y')$.
 However, the thing is, we can still define convergence or continuity with them; they also give rise to topologies, which lack some good features including the uniqueness of the limit point of a convergent sequence.
@@ -716,7 +716,7 @@ We define pseudometrics by missing the nondegeneracy condition from the original
 Compare it with the definition of metric.
 
 \begin{defn}
-A function $\rho:X\x X\to\R_{\ge0}$ is called a \emph{pseudometric} if
+A function $\rho:X\times X\to\R_{\ge0}$ is called a \emph{pseudometric} if
 \begin{cond}
 \item $\rho(x,x)=0$ for all $x\in X$,
 \item $\rho(x,y)=\rho(y,x)$ for all $x,y\in X$, \hfill(symmetry)

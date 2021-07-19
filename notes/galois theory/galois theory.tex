@@ -206,16 +206,16 @@ We can check this with the Euclidean algorithm.
 \end{pf}
 
 
-\begin{exmp}
+\begin{ex}
 Consider a field extension $\C/\Q$.
 The minimal polynomial of $\sqrt2\in\C$ over $\Q$ is
 \[\mu_{\sqrt2,\Q}(x)=x^2-2\]
 since it is monic irreducible and has a root $\sqrt2$.
 Similarly, the minimal polynomial of $\omega=\frac{-1+\sqrt{-3}}2\in\C$ over $\Q$ is
 \[\mu_{\omega,\Q}(x)=x^2+x+1.\]
-\end{exmp}
+\end{ex}
 
-\begin{exmp}
+\begin{ex}
 We can compute the degree of a field extension by finding minimal polynomial.
 Since the minimal polynomial $\sqrt2+\sqrt3$ over $\Q$ is
 \[\mu_{\sqrt2+\sqrt3,\Q}(x)=x^4-10x^2+1,\]
@@ -230,19 +230,19 @@ We can also directly check
 where $\alpha=\sqrt2+\sqrt3$.
 This kind of \emph{dimension argument} is one of powerful tools to attack field theory.
 It will be discovered later that the dimension argument has an analogy with computation of group orders in finite group theory.
-\end{exmp}
+\end{ex}
 
-\begin{exmp}
+\begin{ex}
 The base field is important: we have
 \[\mu_{\sqrt2,\Q}(x)=x^2-2,\quad\text{but}\quad\mu_{\sqrt2,\Q(\sqrt2)}(x)=x-\sqrt2.\]
-\end{exmp}
+\end{ex}
 
-\begin{exmp}
+\begin{ex}
 Although $\Q(\sqrt2)=\Q(1+\sqrt2)$, the minimal polynomials of $\sqrt2$ and $1+\sqrt2$ over $\Q$ are $x^2-2$ and $(x-1)^2-2$ respectively.
 Polynomials are usually used in order to be provided as a computational tool, so we frequently want to find a suitable minimal polynomial for a given field extension.
 However, note that a finite simple extension does not specify only one minimal polynomial as the above example.
 It is enough to find only one minimal polynomial that is effective in computation.
-\end{exmp}
+\end{ex}
 
 \subsubsection{Conjugates}
 
@@ -281,30 +281,30 @@ Let $\phi:F\to F$ is a field automorphism.
 Then, $\alpha$ and $\phi(\alpha)$ are always conjugates.
 \end{cor}
 
-\begin{exmp}
+\begin{ex}
 The base fields are important.
 There are two conjugates of $\sqrt2\in\C$ over $\Q$: $\{\pm\sqrt2\}$.
 However, there is only one conjugate of $\sqrt2$ over $\Q(\sqrt2)$ or $\C$: itself $\{\sqrt2\}$.
-\end{exmp}
+\end{ex}
 
-\begin{exmp}
+\begin{ex}
 There are two conjugates of $\omega=\frac{-1+\sqrt{-3}}2\in\C$ over $\Q$: $\{\omega,\,\cl\omega=\omega^{-1}\}$.
 It implies that there are at most two field automorphisms on $\Q(\omega)$ fixing $\Q$.
 In fact, there are exactly two; one is identity, and the other is the complex conjugation.
-\end{exmp}
+\end{ex}
 
-\begin{exmp}
+\begin{ex}
 For almost every case in applications, the number of conjugates is same as the degree of its minimal polynomial.
 However, there are counterexamples; two field isomorphisms $\phi_1:\alpha\mapsto\beta_1$ and $\phi_2:\alpha\mapsto\beta_2$ may be the same even for $\beta_1\ne\beta_2$.
 See Section 3 for the detailed discussion.
-\end{exmp}
+\end{ex}
 
-\begin{exmp}
+\begin{ex}
 The isomorphism does not have to be an automorphism.
 There are four conjugates of $\sqrt[4]2$ over $\Q$: $\{\pm\sqrt[4]2,\,\pm i\sqrt[4]2\}$.
 However, $\Q(\sqrt[4]2)\ne\Q(i\sqrt[4]2)$ even though they are isomorphic.
 See Section 4.
-\end{exmp}
+\end{ex}
 
 
 
@@ -420,17 +420,17 @@ We skip the proof.
 
 
 
-\begin{exmp}
+\begin{ex}
 For a transcendental number such as $\pi$, the extension $\Q(\pi)/\Q$ is not algebraic since it contains an element that is not algebraic.
 It is also because a simple extension is algebraic if and only if it is finite but $[\Q(\pi):\Q]=\infty$.
-\end{exmp}
+\end{ex}
 
-\begin{exmp}
+\begin{ex}
 Finite extensions are not only the algebraic extensions.
 For examples,
 \[\Q(\sqrt2,\sqrt[4]2,\sqrt[8]2,\cdots),\quad\Q(\sqrt2,\sqrt3,\sqrt5,\sqrt7,\cdots)\]
 are infinite algebraic extensions.
-\end{exmp}
+\end{ex}
 
 
 
@@ -502,13 +502,13 @@ This is a relation with relative algebraic closure: the relative algebraic closu
 The proposition allows us to choose a standard algebraic closure when provided a large superfield like $\C$.
 In number theory, it is convenient for all algebraically closed fields to be considered that they are in $\C$. 
 
-\begin{exmp}
+\begin{ex}
 The set of all complex numbers $\C$ is an algebraically closed field by the fundamental theorem of algebra.
-\end{exmp}
+\end{ex}
 
-\begin{exmp}
+\begin{ex}
 The set of all algebraic numbers (over $\Q$) is an algebraically closed field by the proposition above and is a subfield of $\C$.
-\end{exmp}
+\end{ex}
 
 
 \subsubsection{Uniqueness and existence}
@@ -653,10 +653,10 @@ Hence $(x-\alpha)^2\mid f$, so $f$ is not separable.
 This is a powerful checking tool because the proposition do not requires that $f$ and $f'$ are coprime in $\cl F$, but in just $F$.
 \end{rmk}
 
-\begin{exmp}
+\begin{ex}
 Let $f(x)=x^{p^n}-x$ be a polynomial over a field of characteristic $p>0$.
 Since $f'(x)=-1$, $f$ is separable.
-\end{exmp}
+\end{ex}
 
 \subsubsection{Relation to irreducibles}
 
@@ -698,13 +698,13 @@ Let $F$ be a field of characteristic $p>0$.
 For an irreducible $f\in F[x]$, there is a unique separable irreducible $f_\sep\in F[x]$ such that $f(x)=f_\sep(x^{p^k})$ for some $k$.
 \end{prop}
 
-\begin{exmp}
+\begin{ex}
 The Frobenius endomorphism is not surjective in the field of rational functions $\F_p(t)$, where $t$ is not algebraic over $\F_p$.
 For example, $t$ is not in the image of $\F_p(t)\to\F_p(t):x\mapsto x^p$.
 Then, the polynomial $x^p-t\in\F_p(t)[x]$ is inseparable irreducible since it is factorized as
 \[x^p-t=(x-t^{\frac1p})^p\]
 in $\cl{\F_p(t)}[x]$.
-\end{exmp}
+\end{ex}
 
 \subsection{Separable extensions}
 \begin{defn}

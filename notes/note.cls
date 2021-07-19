@@ -1,6 +1,6 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{note}[2019/11/29 note]
-\LoadClass[11pt]{amsart}
+\LoadClass[11pt]{amsbook}
 \makeatletter
 
 
@@ -34,10 +34,10 @@
 
 
 % toc
-\renewcommand{\tocsection}[3]{%
-  \indentlabel{\@ifnotempty{#2}{\bfseries\ignorespaces#1 #2\quad}}\bfseries#3}
-\renewcommand*\l@subsection{\@tocline{2}{0pt}{2pc}{}{}}
-\renewcommand*\l@subsubsection{\@tocline{3}{0pt}{3pc}{}{}}
+\renewcommand{\tocchapter}[3]{%
+\indentlabel{\@ifnotempty{#2}{\bfseries\ignorespaces#1 #2\quad}}\bfseries#3}
+\renewcommand*\l@section{\@tocline{2}{0pt}{2pc}{}{}}
+\renewcommand*\l@subsection{\@tocline{3}{0pt}{3pc}{}{}}
 
 
 \makeatother
