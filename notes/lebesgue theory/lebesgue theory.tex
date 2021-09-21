@@ -1,0 +1,157 @@
+\documentclass{../note}
+\usepackage{../../ikany}
+
+
+\begin{document}
+\title{Lebesgue Theory}
+\author{Ikhan Choi}
+\maketitle
+\tableofcontents
+
+\part{Measure theory}
+
+
+\chapter{Measures and $\sigma$-algebras}
+
+\section{Definition of measures}
+
+\section{The Carath\'eodory extension theorem}
+\begin{prb}[Outer measures]
+Let $X$ be a set.
+An \emph{outer measure} on $X$ is a function $\mu^*:\cP(X)\to[0,\infty]$ with $\mu^*(\varnothing)=0$ such that
+\begin{parts}[(i)]
+\item if $E\subset E'$, then $\mu^*(E)\le\mu^*(E')$,\hfill(monotonicity)
+\item $\mu^*(\bigcup_{i=1}^\infty E_i)\le\sum_{i=1}^\infty\mu^*(E_i)$.\hfill(countable subadditivity)
+\end{parts}
+
+\begin{parts}
+\item A function $\mu^*:\cP(X)\to[0,\infty]$ with $\mu^*(\varnothing)=0$ is an outer measure if and only if $E\subset\bigcup_{i=1}^\infty E_i$ implies $\mu^*(E)\le\sum_{i=1}^\infty\mu^*(E_i)$.
+\item
+Let $\cA\subset\cP(X)$ such that $\varnothing\in\cA$.
+If a function $\rho:\cA\to[0,\infty]$ satisfies $\rho(\varnothing)=0$, then we can associate an outer measure $\mu^*:\cP(X)\to[0,\infty]$ by defining as
+\[\mu^*(E):=\inf\left\{\,\sum_{i=1}^\infty\rho(A_i):E\subset\bigcup_{i=1}^\infty A_i,\ A_i\in\cA\,\right\},\]
+where we use the convention $\inf\varnothing=\infty$.
+\end{parts}
+\end{prb}
+
+
+\begin{prb}[Carath\'eodory measurability]
+Let $\mu^*$ be an outer measure on a set $X$.
+A subset $A\subset X$ is called \emph{Carath\'eodory measurable} relative to $\mu^*$ if
+\[\mu^*(E)=\mu^*(E\cap A)+\mu^*(E\cap A^c)\]e
+for every subset $E\subset X$.
+Let $\cM$ be the collection of all Carath\'eodory measurable subsets relative to $\mu^*$.
+\begin{parts}
+\item $\cM$ is an algebra and $\mu^*$ is finitely additive on $\cM$.
+\item $\cM$ is a $\sigma$-algebra and $\mu^*$ is countably additive on $\cM$, that is, the restriction $\mu:=\mu^*|_\cM:\cM\to[0,\infty]$ is a measure.
+\item The measure $\mu$ is complete.
+\end{parts}
+\end{prb}
+
+\begin{prb}[The Carath\'eodory extension theorem]
+Let $\cA\subset\cP(X)$ be a semi-ring of sets on a set $X$ and $\rho:\cA\to[0,\infty]$ a function with $\rho(\varnothing)=0$.
+If the function $\rho$ satisfies
+\begin{parts}[(i)]
+\item $\rho(A)=\sum_{i=1}^n\rho(A_i)$ for $A\in\cA$ a disjoint union of $\{A_i\}_{i=1}^n\subset\cA$,\hfill(finite additivity)
+\item $\rho(A)\le\sum_{i=1}^\infty\rho(A_i)$ for $A\in\cA$ a disjoint union of $\{A_i\}_{i=1}^\infty\subset\cA$,\\\null\hfill((disjoint) countable subadditivity)
+\end{parts}
+then it is called a \emph{premeasure}.
+
+Let $\mu^*:\cP(X)\to[0,\infty]$ be the associated outer measure of $\rho$, and $\mu:\cM\to[0,\infty]$ the measure defined from $\mu^*$ on Carath\'eodory measurable subsets.
+We call $\mu$ the \emph{Carath\'eodory measure} constructed from $\rho$.
+\begin{parts}
+\item If $\rho$ is finitely additive, then $\cA\subset\cM$.
+\item If $\rho$ is countably subadditive, then $\mu^*(A)=\rho(A)$ for every $A\in\cA$.
+\item If $\rho$ is a premeasure, then $\mu$ is an extension of $\rho$ and called \emph{Carath\'eodory extension} of $\rho$.
+\item In particular, a premeasure is a priori countably additive in the sense that $\rho(A)=\sum_{i=1}^\infty\rho(A_i)$ for $A\in\cA$ a disjoint countable union of $\{A_i\}_{i=1}^\infty\subset\cA$.
+\end{parts}
+\end{prb}
+
+
+
+
+
+
+\chapter{Measures on Euclidean spaces}
+
+\chapter{Measurable functions}
+
+\chapter{}
+
+
+
+
+
+
+\part{Integration}
+
+\chapter{Lebesgue integration}
+\section{Definition of Lebesgue integration}
+\section{Convergence theorems}
+
+\section{Modes of convergence}
+
+Since $\{f_n(x)\}_n$ diverges if and only if
+\[\exists k>0,\quad\forall n_0>0,\quad\exists n>n_0:\quad|f_n(x)-f(x)|>\tfrac1k,\]
+we have
+\begin{align*}
+\{x:\{f_n(x)\}_n\text{ diverges}\}
+&=\bigcup_{k>0}\bigcap_{n_0>0}\bigcup_{n>n_0}\{x:|f_n-f|>\tfrac1k\}\\
+&=\bigcup_{k>0}\limsup_n\{x:|f_n-f|>\tfrac1k\}.
+\end{align*}
+Since for every $k$ we have
+\begin{align*}
+\limsup_n\{x:|f_n-f|>\tfrac1k\}
+&\subset\limsup_{n>k}\{x:|f_n-f|>\tfrac1n\}\\
+&=\limsup_n\{x:|f_n-f|>\tfrac1n\},
+\end{align*}
+we have
+\[\{x:\{f_n(x)\}_n\text{ diverges}\}\subset\limsup_n\{x:|f_n-f|>\tfrac1n\}.\]
+
+
+
+
+\begin{thm}
+Let $(X,\mu)$ be a measure space.
+Let $f_n$ be a sequence of measurable functions.
+If $f_n$ converges to $f$ in measure, then $f_n$ has a subsequence that converges to $f$ $\mu$-a.e.
+\end{thm}
+\begin{pf}
+We can extract a subsequence $f_{n_k}$ such that
+\[\mu(\{x:|f_{n_k}-f|>\tfrac1k\})>\tfrac1{2^k}.\]
+Since
+\[\sum_{k=1}^\infty\mu(\{x:|f_{n_k}-f|>\tfrac1k\})<\infty,\]
+by the Borel-Canteli lemma, we get
+\[\mu(\limsup_k\{x:|f_{n_k}-f|>\tfrac1k\})=0.\]
+Therefore, $f_{n_k}$ converges $\mu$-a.e.
+\end{pf}
+
+
+
+\chapter{Product measures}
+\section{The Fubini theorem}
+\section{The Lebesgue measure on Euclidean spaces}
+
+\chapter{Lebesgue spaces}
+\section{$L^p$ spaces}
+\section{$L^2$ spaces}
+\section{The Riesz representation theorem}
+
+\chapter{Integral operators}
+\section{Bounded linear operators}
+\section{Regular integral operators}
+\section{Convolution type operators}
+\section{Weak $L^p$ spaces}
+\section{Interpolation theorems}
+
+\part{Fundamental theorem of calculus}
+
+\chapter{Absolute continuous functions}
+
+\chapter{Functions of bounded variation}
+
+\chapter{}
+
+\chapter{The Lebesgue differentiation theorem}
+
+\end{document}

@@ -1,12 +1,6 @@
-\documentclass[12pt]{article}
+\documentclass[11pt]{amsart}
 \usepackage{../../ikany}
 \usepackage[margin=1.5in]{geometry}
-
-\usepackage[bitstream-charter,cal]{mathdesign}
-\let\circledS\undefined
-\usepackage[T1]{fontenc}
-\linespread{1.1}
-
 
 \title{Global existence of classical solutions to the Vlasov-Poisson system}
 \author{Ikhan Choi}
@@ -26,10 +20,10 @@ This report is written in Undergraduate Research Program of Postech during 2019 
 Consider the following Cauchy problem for the \emph{Valsov-Poisson system}:
 \begin{align}
 \left\{\ \begin{alignedat}{2}
-&\pd_tf+v\cdot\nabla_xf+\gamma E\cdot\nabla_vf=0,&&\qquad(t,x,v)\in\R_t^+\times\R_x^3\times\R_v^3,\\
-&E(t,x)=-\nabla_x\Phi,\\
+&\pd_tf+v\cdot\del_xf+\gamma E\cdot\del_vf=0,&&\qquad(t,x,v)\in\R_t^+\times\R_x^3\times\R_v^3,\\
+&E(t,x)=-\del_x\Phi,\\
 &\Phi(t,x)=(-\Delta_x)^{-1}\rho,&&\hspace{-2em}\lim_{|x|\to\infty}\Phi(t,x)=0,\\
-&\rho(t,x)=\int f\,dv,\\
+&\rho(t,x)=\tint f\,dv,\\
 &f(0,x,v)=f_0(x,v)\ge0,
 \end{alignedat}\right.
 \end{align}
@@ -44,7 +38,7 @@ Let us define our solution space.
 
 \begin{defn*}
 Let $f_0:\R^6\to[0,\infty]$ be a function.
-A function $f:[0,T]\times\R^6\to\R$ is said to be a \emph{classical solution} of the Cauchy problem for the Vlasov-Poisson system with initial data $f_0$ if $f\in C^1([0,T];C_c^1(\R^6))$ and satisfies all equations in (1) on its domain.
+A function $f:[0,T]\x\R^6\to\R$ is said to be a \emph{classical solution} of the Cauchy problem for the Vlasov-Poisson system with initial data $f_0$ if $f\in C^1([0,T];C_c^1(\R^6))$ and satisfies all equations in (1) on its domain.
 Further, if $f\in C^1(\R^+;C_c^1(\R^6))$, then the classical solution $f$ is said to be \emph{global}.
 \end{defn*}
 
@@ -77,7 +71,7 @@ For the three-dimensional boundaryless problem of the Poisson equation
 in which the solution $\Phi$ vanishes at infinity, it is well-known that
 \[\Phi=\tfrac1{4\pi|x|}*\rho,\]
 so the electric field in the Vlasov-Poisson system is given by
-\[E=-\nabla_x\Phi=-\nabla_x(\tfrac1{4\pi|x|}*\rho)=\frac{x}{4\pi|x|^3}*\rho.\]
+\[E=-\del_x\Phi=-\del_x(\tfrac1{4\pi|x|}*\rho)=\frac{x}{4\pi|x|^3}*\rho.\]
 It can be rewritten as
 \[E(t,x)=\frac1{4\pi}\int\frac{(x-y)\rho(t,y)}{|x-y|^3}\,dy.\]
 
@@ -92,7 +86,7 @@ There is a field estimate
 \[\|\tfrac1{|x|^{d-1}}*\rho\|_\infty\les\|\rho\|_\infty^{1-1/d}\|\rho\|_1^{1/d}.\]
 \item
 For $\log^+(x):=\max\{0,\log x\}$, we have an estimate of derivative of the field
-\[\|\nabla(\tfrac1{|x|^{d-1}}*\rho)\|_\infty\les1+\|\rho\|_\infty\log^+\|\nabla\rho\|_\infty+\|\rho\|_1.\]
+\[\|\del(\tfrac1{|x|^{d-1}}*\rho)\|_\infty\les1+\|\rho\|_\infty\log^+\|\del\rho\|_\infty+\|\rho\|_1.\]
 \end{enumerate}
 \end{lem}
 
@@ -118,14 +112,14 @@ The desired result gets $p=\infty$, $\alpha=1$, and $q=1$.
 Let $0<R_a\le R_b$ be constants which will be determined later.
 Divide the region radially
 \begin{align*}
-|\nabla(\tfrac1{|x|^{d-1}}*\rho)|\les\nabla\int_{|x-y|<R_a}+\nabla\int_{R_a\le|x-y|<R_b}+\nabla\int_{R_b\le|x-y|}.
+|\del(\tfrac1{|x|^{d-1}}*\rho)|\les\del\int_{|x-y|<R_a}+\del\int_{R_a\le|x-y|<R_b}+\del\int_{R_b\le|x-y|}.
 \end{align*}
 For the first integral,
 \begin{align*}
-\int_{|y|<R_a}\frac{\nabla\rho(x-y)}{|y|^{d-1}}\,dy
-&\le\|\nabla\rho\|_\infty\int_{|y|<R_a}\frac1{|y|^{d-1}}\,dy\\
-&\simeq\|\nabla\rho\|_\infty\int_0^{R_a}1\,dr
-=R_a\|\nabla\rho\|_\infty.
+\int_{|y|<R_a}\frac{\del\rho(x-y)}{|y|^{d-1}}\,dy
+&\le\|\del\rho\|_\infty\int_{|y|<R_a}\frac1{|y|^{d-1}}\,dy\\
+&\simeq\|\del\rho\|_\infty\int_0^{R_a}1\,dr
+=R_a\|\del\rho\|_\infty.
 \end{align*}
 For the second integral,
 \begin{align*}
@@ -137,13 +131,13 @@ For the second integral,
 For the third integral,
 \[\int_{R_b\le|x-y|}\frac{\rho(y)}{|x-y|^d}\,dy\le R_b^{-d}\|\rho\|_1.\]
 Thus,
-\[|\nabla(\tfrac1{|x|^{d-1}}*\rho)|\les R_a\|\nabla\rho\|_\infty+(\log\tfrac{R_b}{R_a})\|\rho\|_\infty+R_b^{-d}\|\rho\|_1.\]
+\[|\del(\tfrac1{|x|^{d-1}}*\rho)|\les R_a\|\del\rho\|_\infty+(\log\tfrac{R_b}{R_a})\|\rho\|_\infty+R_b^{-d}\|\rho\|_1.\]
 
-Assuming $\rho$ is nonzero so that $\|\nabla\rho\|_\infty>0$, let $R_a=\min\{1,\|\nabla\rho\|_\infty^{-1}\}$ and $R_b=1$.
+Assuming $\rho$ is nonzero so that $\|\del\rho\|_\infty>0$, let $R_a=\min\{1,\|\del\rho\|_\infty^{-1}\}$ and $R_b=1$.
 Since
-\[\log\tfrac1{R_a}\le\log^+\|\nabla\rho\|_\infty\quad\text{and}\quad R_a\les\|\nabla\rho\|_\infty,\]
+\[\log\tfrac1{R_a}\le\log^+\|\del\rho\|_\infty\quad\text{and}\quad R_a\les\|\del\rho\|_\infty,\]
 we have
-\[\|\nabla(\tfrac1{|x|^{d-1}}*\rho)\|_\infty\les1+\|\rho\|_\infty\log^+\|\nabla\rho\|_\infty+\|\rho\|_1.\qedhere\]
+\[\|\del(\tfrac1{|x|^{d-1}}*\rho)\|_\infty\les1+\|\rho\|_\infty\log^+\|\del\rho\|_\infty+\|\rho\|_1.\qedhere\]
 \end{pf}
 
 \subsection{Characteristics and volume preservation}
@@ -185,8 +179,8 @@ is globally Lipschitz with respect to $(x,v)$ for each $t$, we can apply the Pic
 Differentiate and use the chain rule to get
 \begin{align*}
 \dd{s}&f(s,y,w)\\
-&=\pd_tf(s,y,w)+\dot X(s;s,y,w)\cdot\nabla_xf(s,y,w)+\dot V(s;s,y,w)\cdot\nabla_vf(s,y,w)\\
-&=\pd_tf(s,y,w)+w\cdot\nabla_xf(s,y,w)+\gamma E(s,y)\cdot\nabla_vf(s,y,w)=0,
+&=\pd_tf(s,y,w)+\dot X(s;s,y,w)\cdot\del_xf(s,y,w)+\dot V(s;s,y,w)\cdot\del_vf(s,y,w)\\
+&=\pd_tf(s,y,w)+w\cdot\del_xf(s,y,w)+\gamma E(s,y)\cdot\del_vf(s,y,w)=0,
 \end{align*}
 where we denote $y=X(s;t,x,v)$ and $w=V(s;t,x,v)$.
 
@@ -231,7 +225,7 @@ then
 \begin{enumerate}
 \item $\|\rho(t)\|_1=\const$,
 \item $\|E(t)\|_\infty\les\|\rho(t)\|_\infty^{2/3}$,
-\item $\|\nabla E(t)\|_\infty\les1+\|\rho\|_\infty\log^+\|\nabla\rho\|_\infty$.
+\item $\|\del E(t)\|_\infty\les1+\|\rho\|_\infty\log^+\|\del\rho\|_\infty$.
 \end{enumerate}
 \end{cor}
 These estimates will be applied not only to the global existence proof, which assumes the local existence, but also to approximate solutions.
@@ -249,7 +243,7 @@ Usual algebraic computations with Stokes' theorem get several conservations laws
 Let $f$ be a classical solution of the Vlasov-Poisson system.
 \begin{enumerate}
 \item(Continuity equation)
-\[\rho_t+\nabla_x\cdot j=0,\quad\text{where}\quad j=\int vf\,dv.\]
+\[\rho_t+\del_x\cdot j=0,\quad\text{where}\quad j=\int vf\,dv.\]
 \item(Energy conservation)
 \[\iint|v|^2f\,dv\,dx+\gamma\int|E|^2\,dx=\const.\]
 \end{enumerate}
@@ -258,18 +252,18 @@ Let $f$ be a classical solution of the Vlasov-Poisson system.
 (a)
 Integrate with respect to $v$ to get
 \begin{align*}
-0&=\int f_t\,dv+\int v\cdot\nabla_xf\,dv\\
-&=\rho_t+\nabla_x\cdot\int vf\,dv\\
-&=\rho_t+\nabla_x\cdot j.
+0&=\int f_t\,dv+\int v\cdot\del_xf\,dv\\
+&=\rho_t+\del_x\cdot\int vf\,dv\\
+&=\rho_t+\del_x\cdot j.
 \end{align*}
 
 (b)
 Multiply $|v|^2$ and integrate with respect to $v$ and $x$ to get
 \begin{align*}
 \dd{t}\iint|v|^2f\,dv\,dx
-&=\iint|v|^2f_t\,dv\,dx=-\iint|v|^2\gamma E\cdot\nabla_vf\,dv\,dx\\
-&=\iint2v\cdot\gamma Ef\,dv\,dx=-2\gamma\int\nabla_x\Phi\cdot j\,dx\\
-&=2\gamma\int\Phi\nabla_x\cdot j\,dx=2\gamma\int\Phi\Delta_x\Phi_t\,dx\\
+&=\iint|v|^2f_t\,dv\,dx=-\iint|v|^2\gamma E\cdot\del_vf\,dv\,dx\\
+&=\iint2v\cdot\gamma Ef\,dv\,dx=-2\gamma\int\del_x\Phi\cdot j\,dx\\
+&=2\gamma\int\Phi\del_x\cdot j\,dx=2\gamma\int\Phi\Delta_x\Phi_t\,dx\\
 &=-\dd{t}\gamma\int|E|^2\,dx.
 \end{align*}
 Thus
@@ -348,10 +342,10 @@ The Vlasov-Poisson system is good enough that we can show the usual convergence 
 \begin{defn}
 We define an (global) \emph{approximate solution} as a sequence of functions $f_n\in C^1(\R^+;C_c^1(\R^6))$ such that
 \[\left\{\ \begin{alignedat}{2}
-&\pd_tf_{n+1}+v\cdot\nabla_xf_{n+1}+\gamma E_n\cdot\nabla_vf_{n+1}=0,\\
-&E_n(t,x)=-\nabla_x\Phi_n,\\
+&\pd_tf_{n+1}+v\cdot\del_xf_{n+1}+\gamma E_n\cdot\del_vf_{n+1}=0,\\
+&E_n(t,x)=-\del_x\Phi_n,\\
 &\Phi_n(t,x)=(-\Delta_x)^{-1}\rho_n,\qquad\lim_{|x|\to\infty}\Phi(t,x)=0,\\
-&\rho_n(t,x)=\int f_n\,dv,\\
+&\rho_n(t,x)=\tint f_n\,dv,\\
 &f_{n+1}(0,x,v)=f_0(x,v).
 \end{alignedat}\right.\]
 This definition is made in order to let the force field $E$ constant when solving $f_{n+1}$.
@@ -388,9 +382,9 @@ f_{n+1}(s,X_{n+1}(s;t,x,v),V_{n+1}(s;t,x,v))&\\
 and that $f_{n+1}$ satisfies the approximate system by the chain rule
 \begin{align*}
 0&=\left.\dd{s}f_{n+1}(s,X_{n+1}(s;t,x,v),V_{n+1}(s;t,x,v))\right|_{s=t}\\
-&=\pd_tf_{n+1}(t,x,v)+\dot X_{n+1}(t;t,x,v)\cdot\nabla_xf_{n+1}(t,x,v)\\
-&\hspace{7.5em}+\dot V_{n+1}(t;t,x,v)\cdot\nabla_vf_{n+1}(t,x,v)\\
-&=\pd_tf_{n+1}(t,x,v)+v\cdot\nabla_xf_{n+1}(t,x,v)+\gamma E_n(t,x)\cdot\nabla_vf_{n+1}(t,x,v).
+&=\pd_tf_{n+1}(t,x,v)+\dot X_{n+1}(t;t,x,v)\cdot\del_xf_{n+1}(t,x,v)\\
+&\hspace{7.5em}+\dot V_{n+1}(t;t,x,v)\cdot\del_vf_{n+1}(t,x,v)\\
+&=\pd_tf_{n+1}(t,x,v)+v\cdot\del_xf_{n+1}(t,x,v)+\gamma E_n(t,x)\cdot\del_vf_{n+1}(t,x,v).
 \end{align*}
 Also, $f_{n+1}$ has compact support for each $t$ since the characteristic does not blow up; finally we have $f_{n+1}\in C^1(\R^+,C_c^1(\R^6))$.
 \end{pf}
@@ -412,9 +406,9 @@ Therefore, we have
 \[\|\rho_n(t)\|_1=\const,\quad\|f_n(t)\|_p=\const.\]
 
 
-Next, we prove local-time bounds on fields $E_n$ and its spatial derivative $\nabla_xE_n$.
+Next, we prove local-time bounds on fields $E_n$ and its spatial derivative $\del_xE_n$.
 The bounds crucially act in the proof of convergence of $f_n$.
-Note that $\nabla_xE_n$ is a gradient of a vector field $E_n$, which is 9-dimensional.
+Note that $\del_xE_n$ is a gradient of a vector field $E_n$, which is 9-dimensional.
 
 Introduce the following quantity.
 \begin{defn}
@@ -435,7 +429,7 @@ indendent on $n$.
 In addition, the support of $X_n$ is also uniformly bounded in $t\le T$.
 \item
 For $t\le T$,
-\[\|\nabla_x\rho_n(t)\|_\infty+\|\nabla_xE_n(t)\|_\infty\les1\]
+\[\|\del_x\rho_n(t)\|_\infty+\|\del_xE_n(t)\|_\infty\les1\]
 independent on $n$.
 \end{enumerate}
 \end{lem}
@@ -494,53 +488,53 @@ The position support is bounded because
 \[|X_n(t;0,x,v)|\le|x|+\int_0^t|V_n(s;0,x,v)|\,ds\le|x|+TQ_n(t)\les1.\]
 
 (b)
-Since we already have bounds for $\|\rho_n\|_\infty$ and $\|\rho_n\|_1$, what we should estimate in order to bound $\|\nabla_xE_n\|_\infty$ is $\nabla_x\rho_n$.
-To do this, we will consider $\nabla_xX_n$ and $\nabla_xV_n$.
+Since we already have bounds for $\|\rho_n\|_\infty$ and $\|\rho_n\|_1$, what we should estimate in order to bound $\|\del_xE_n\|_\infty$ is $\del_x\rho_n$.
+To do this, we will consider $\del_xX_n$ and $\del_xV_n$.
 In particular, we have
 \begin{align*}
-\nabla_xX_n(t;t,x,v)&=\nabla_xx=(1,0,0\,;0,1,0\,;0,0,1),\\
-\nabla_xV_n(t;t,x,v)&=\nabla_xv=0.
+\del_xX_n(t;t,x,v)&=\del_xx=(1,0,0\,;0,1,0\,;0,0,1),\\
+\del_xV_n(t;t,x,v)&=\del_xv=0.
 \end{align*}
 
 Two inequalities
 \begin{align*}
-|\nabla_xX_{n+1}(s;t,x,v)|
-&=\Bigl|\underbrace{(1,0,\cdots,0,1)}_{9}-\int_s^t\nabla_xV_{n+1}(s';t,x,v)\,ds'\Bigr|\\
-&\le\sqrt3+\int_s^t|\nabla_xV_{n+1}(s';t,x,v)|\,ds'
+|\del_xX_{n+1}(s;t,x,v)|
+&=\Bigl|\underbrace{(1,0,\cdots,0,1)}_{9}-\int_s^t\del_xV_{n+1}(s';t,x,v)\,ds'\Bigr|\\
+&\le\sqrt3+\int_s^t|\del_xV_{n+1}(s';t,x,v)|\,ds'
 \end{align*}
 and
 \begin{align*}
-|\nabla_xV_{n+1}(s;t,x,v)|
-&=|\int_s^t\nabla_xE_n(s',X_{n+1}(s';t,x,v))\,ds'|\\
-&\le\int_s^t|\nabla_xX_{n+1}(s';t,x,v)|\cdot\|\nabla_xE_n(s')\|_\infty\,ds'
+|\del_xV_{n+1}(s;t,x,v)|
+&=|\int_s^t\del_xE_n(s',X_{n+1}(s';t,x,v))\,ds'|\\
+&\le\int_s^t|\del_xX_{n+1}(s';t,x,v)|\cdot\|\del_xE_n(s')\|_\infty\,ds'
 \end{align*}
 are combined as
 \begin{align*}
-&\qquad|\nabla_xX_{n+1}(s;t,x,v)|+|\nabla_xV_{n+1}(s;t,x,v)|\\
-&\le\sqrt3+\int_s^t(1+\|\nabla_xE_n(s')\|_\infty)(|\nabla_xX_{n+1}(s';t,x,v)|+|\nabla_xV_{n+1}(s';t,x,v)|)\,ds'.
+&\qquad|\del_xX_{n+1}(s;t,x,v)|+|\del_xV_{n+1}(s;t,x,v)|\\
+&\le\sqrt3+\int_s^t(1+\|\del_xE_n(s')\|_\infty)(|\del_xX_{n+1}(s';t,x,v)|+|\del_xV_{n+1}(s';t,x,v)|)\,ds'.
 \end{align*}
 
 By the Gronwall inequality, we get
-\[|\nabla_xX_{n+1}(s;t,x,v)|+|\nabla_xV_{n+1}(s;t,x,v)|\le\sqrt3\,e^{\int_s^t(1+\|\nabla_xE_n(s')\|_\infty)\,ds'}\]
+\[|\del_xX_{n+1}(s;t,x,v)|+|\del_xV_{n+1}(s;t,x,v)|\le\sqrt3\,e^{\int_s^t(1+\|\del_xE_n(s')\|_\infty)\,ds'}\]
 for $0\le s\le t$.
 Thus we have
 \begin{align*}
-|\nabla_x\rho_{n+1}&(t,x)|
-=|\int\nabla_xf_0(X_{n+1}(0;t,x,v),V_{n+1}(0;t,x,v))\,dv|\\
-&\le\|\nabla_{x,v}f_0\|_\infty\int(|\nabla_xX_{n+1}(0;t,x,v)|+|\nabla_xV_{n+1}(0;t,x,v)|)\,dv\\
-&\les\|\nabla_{x,v}f_0\|_\infty Q_{n+1}^3(t)\cdot e^{\int_0^t(1+\|\nabla_xE_n(s)\|_\infty)\,ds}.
+|\del_x\rho_{n+1}&(t,x)|
+=|\int\del_xf_0(X_{n+1}(0;t,x,v),V_{n+1}(0;t,x,v))\,dv|\\
+&\le\|\del_{x,v}f_0\|_\infty\int(|\del_xX_{n+1}(0;t,x,v)|+|\del_xV_{n+1}(0;t,x,v)|)\,dv\\
+&\les\|\del_{x,v}f_0\|_\infty Q_{n+1}^3(t)\cdot e^{\int_0^t(1+\|\del_xE_n(s)\|_\infty)\,ds}.
 \end{align*}
 
 Recall that
 \begin{align*}
-\|\nabla_xE_{n+1}(t)\|
-&\les(1+\|\rho_{n+1}(t)\|_\infty\log^+\|\nabla_x\rho_{n+1}(t)\|_\infty+\|\rho_{n+1}(t)\|_1)\\
-&\les1+\log^+\|\nabla_x\rho_{n+1}(t)\|_\infty
+\|\del_xE_{n+1}(t)\|
+&\les(1+\|\rho_{n+1}(t)\|_\infty\log^+\|\del_x\rho_{n+1}(t)\|_\infty+\|\rho_{n+1}(t)\|_1)\\
+&\les1+\log^+\|\del_x\rho_{n+1}(t)\|_\infty
 \end{align*}
 for $t\le T$.
-By inserting the estimate for $|\nabla_x\rho_{n+1}(t,x)|$, we can find a constant $c=c(f_0)$ such that
+By inserting the estimate for $|\del_x\rho_{n+1}(t,x)|$, we can find a constant $c=c(f_0)$ such that
 \begin{align*}
-1+\|\nabla_xE_{n+1}(t)\|_\infty\le c(1+\int_0^t(1+\|\nabla_xE_n(s)\|_\infty)\,ds)
+1+\|\del_xE_{n+1}(t)\|_\infty\le c(1+\int_0^t(1+\|\del_xE_n(s)\|_\infty)\,ds)
 \end{align*}
 in $t\le T$, where $T<(Q_0\|f_0\|_\infty^{2/3}\|f_0\|_1^{1/3})^{-1}$.
 Without loss of generality, we may assume that $c$ satisfies
@@ -549,7 +543,7 @@ Then, induction obtains the bound
 \[1+\|E_n(t)\|_\infty\le ce^{ct}\le ce^{cT}\les1\]
 for all $n$ and $t\le T$.
 The derivative of mass density is bounded since
-\[\|\nabla_x\rho_{n+1}(t)\|_\infty\les e^{\int_0^t(1+\|\nabla_xE_n(s)\|_\infty)\,ds}\les1.\qedhere\]
+\[\|\del_x\rho_{n+1}(t)\|_\infty\les e^{\int_0^t(1+\|\del_xE_n(s)\|_\infty)\,ds}\les1.\qedhere\]
 \end{pf}
 
 
@@ -602,7 +596,7 @@ we have two inequalities
 |V&_{n+1}(s;t,x,v)-V_n(s;t,x,v)|\\
 &\le\int_s^t|E_n(s',X_{n+1}(s';t,x,v))-E_{n-1}(s',X_n(s';t,x,v))|\,ds'\\
 &\le\int_s^t(|E_n(s',X_{n+1})-E_n(s',X_n)|+|E_n(s',X_n)-E_{n-1}(s',X_n)|)\,ds'\\
-&\le\int_s^t(\|\nabla_xE_n(s')\|_\infty|X_{n+1}(s')-X_n(s')|+\|E_n(s')-E_{n-1}(s')\|_\infty)\,ds'
+&\le\int_s^t(\|\del_xE_n(s')\|_\infty|X_{n+1}(s')-X_n(s')|+\|E_n(s')-E_{n-1}(s')\|_\infty)\,ds'
 \end{align*}
 and
 \begin{align*}
@@ -613,7 +607,7 @@ By combining the two inequalities above, we get
 \begin{align}\label{ggw}
 g(s)\le\int_s^ta(s')g(s')\,ds'+\int_s^t\|E_n(s')-E_{n-1}(s')\|_\infty\,ds',
 \end{align}
-where $a(s):=1+\|\nabla_xE_n(s)\|_\infty$.
+where $a(s):=1+\|\del_xE_n(s)\|_\infty$.
 
 Here we use a Gronwall-type inequality to bound $g(s)$.
 In more detail, multiplying
@@ -672,7 +666,7 @@ Then, the uniform convergence of characteristics $(X_n,V_n)$ is clear by the abs
 Also for the uniform convergence of $(\dot X_n,\dot V_n)$, it is proved by the absolute convergence of the series $\sum\|f_{n+1}-f_n\|_\infty$ since
 \begin{align*}
 &\|\dot X_{n+1}-\dot X_n\|_\infty=\|V_{n+1}-V_n\|_\infty,\\
-&\|\dot V_{n+1}-\dot V_n\|_\infty\le\|\nabla_xE_n\|_\infty\|X_{n+1}-X_n\|_\infty+\|E_n-E_{n-1}\|_\infty,
+&\|\dot V_{n+1}-\dot V_n\|_\infty\le\|\del_xE_n\|_\infty\|X_{n+1}-X_n\|_\infty+\|E_n-E_{n-1}\|_\infty,
 \end{align*}
 yielding
 \[\|\dot X_{n+1}-\dot X_n\|_\infty+\|\dot V_{n+1}-\dot V_n\|_\infty\les\|f_n-f_{n-1}\|_\infty.\]

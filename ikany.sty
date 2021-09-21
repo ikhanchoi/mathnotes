@@ -5,12 +5,10 @@
 
 %   ** Table of Contents **
 %     - Tips on macros
-%     - Compatibility
 %     - Theorems and Proofs
 %     - List environments
 %     - Commutative diagrams
 %     - Differential operators
-%     - System of equations
 %     - Parantheses, braces, and brackets
 %     - Shorthanded notations
 %     - Shorthanded alphabets
@@ -18,8 +16,7 @@
 \NeedsTeXFormat{LaTeX2e}[1994/06/01]
 \ProvidesPackage{ikany}[2019/07/23 ikany]
 \makeatletter
-\RequirePackage{amsfonts,amsmath,amssymb}
-%\RequirePackage[many]{tcolorbox}
+\RequirePackage{amsmath}
 
 
 
@@ -60,32 +57,11 @@
 
 
 
-%/////////////////%
-%  Compatibility  %
-%/////////////////%
-%
-\newcommand\ifnotbeamer[1]{\@ifclassloaded{beamer}{}{#1}}
-
-%\let\@@temp#1\renewcommand#1{\ifmmode#2\else\@@temp\fi}\let\@@temp\relax
-%\newcommand\ifnottextmode[1]{}
-
-
-
-
 %///////////////////////%
 %  Theorems and Proofs  %
 %///////////////////////%
-%
-% Example Code:
-%	\begin{ex}
-%	This is an example.
-%	\end{ex}
-%	\begin{pf}[2]    % second proof
-%	\Case[1] Easy.
-%	\Case[2]{When $p=2$.} Not easy.
-%	\end{pf}
-%
-\RequirePackage{amsthm,xparse}
+
+\RequirePackage{amsthm,xparse,environ}
 \theoremstyle{plain}
   \newtheorem{thm}{Theorem}[section]
   \newtheorem*{thm*}{Theorem}
@@ -101,17 +77,17 @@
   \newtheorem*{ex*}{Example}
   \newtheorem{notn}{Notation}[section]
   \newtheorem*{notn*}{Notation}
+  \newtheorem{prb}{}[chapter]
 \theoremstyle{remark}
   \newtheorem*{rmk}{Remark}
-\newtheoremstyle{problem}
-  {\topsep}{\topsep}{\normalfont}{0pt}{\bfseries}{}{5pt plus 1pt minus 1pt}
-  {\thmname{#1}\thmnumber{#2}.\thmnote{\normalfont{\itshape{ #3.}}}}
-\theoremstyle{problem}
-  \newtheorem{prb}{}[section]
-  \renewcommand{\theprb}{\arabic{prb}}
 
-\newenvironment{pf}[1][\unskip]{\begin{proof}[Proof #1]}{\end{proof}}
-\newenvironment{sol}[1][\unskip]{\begin{proof}[Solution #1]}{\end{proof}}
+\newif\if@hidepf % \@hidepffalse
+\newif\if@hidesol
+\DeclareOption{hidepf}{\global\@hidepftrue}
+\DeclareOption{hidesol}{\global\@hidesoltrue}
+\ProcessOptions\relax
+\NewEnviron{pf}[1][\unskip]{\if@hidepf\else\begin{proof}[Proof #1]\BODY\end{proof}\fi}
+\NewEnviron{sol}[1][\unskip]{\if@hidesol\else\begin{proof}[Solution #1]\BODY\end{proof}\fi}
 
 \NewDocumentCommand{\Case}{mo}{\IfNoValueTF{#2}{\emph{Case #1.}}{\emph{Case #1: #2.}}}
 \NewDocumentCommand{\Step}{mo}{\IfNoValueTF{#2}{\emph{Step #1.}}{\emph{Step #1: #2.}}}
@@ -122,24 +98,14 @@
 %/////////////////////%
 %  List environments  %
 %/////////////////////%
-%
-% Example Code:
-%	\begin{ol}
-%	\item  easy problem
-%	\item* hard problem
-%	  \begin{ol}
-%	  \item subproblem
-%	  \end{ol}
-%	\end{ol}
-%
-\ifnotbeamer{
-  \RequirePackage{enumitem}
-  \setlist[enumerate]{label=\rm{(\alph*)},leftmargin=9mm}
 
-  \let\@@item\item
-  \newcommand{\sitem}{\refstepcounter{\@enumctr}\@@item[$^*$\csname label\@enumctr\endcsname]}
-  \renewcommand*{\item}{\@ifstar\sitem\@@item}
-}% It is famous that enumitem redefines beamer's itemize environment
+\RequirePackage[shortlabels]{enumitem}
+\newlist{parts}{enumerate}{1}
+\setlist[parts]{label=\rm{(\alph*)},leftmargin=9mm,itemsep=0mm}
+
+\let\@@item\item
+\newcommand{\sitem}{\refstepcounter{\@enumctr}\@@item[$^*$\csname label\@enumctr\endcsname]}
+\renewcommand*{\item}{\@ifstar\sitem\@@item}
 
 
 
@@ -150,19 +116,7 @@
 %////////////////////////%
 %  Commutative diagrams  %
 %////////////////////////%
-%
-% Example Code:
-%	\begin{es}  0  \>  A  \mn  B  \ep  C  \>  0  \end{es}
-%
-%	\begin{cd}[row sep={24pt,between origins}, column sep={between origins}]
-%	A \ds{rd}{\exists !}\lar{rrd}\rar{ddr} &                        &   \\
-%	                                       & X\times Y \ar{r}\ar{d} & X \\
-%	                                       & Y                      &
-%	\end{cd}
-% A \ar[symbol=\subset]{r} & B
-% \begin{cd}
-%
-%
+
 \RequirePackage{tikz-cd,xparse}
 \NewDocumentEnvironment{cd}{}
   {
@@ -176,14 +130,10 @@
 \NewDocumentEnvironment{es}{}
   {
     \renewcommand{\>}{\ar{r}\&}
-    \renewcommand{\mn}{\ar[tail]}
-    \renewcommand{\ep}{\ar[two heads]}
-    \renewcommand{\mp}{\ar[mapsto]}
-    \newcommand{\hk}{\ar[hook]}
     \tikzcdset{column sep=small,ampersand replacement=\&}
-    \[\begin{tikzcd}[column sep=small]
+    \begin{cd}[column sep=small]
   }
-  {\end{tikzcd}\]}
+  {\end{cd}}
 \NewDocumentEnvironment{rd}{}
   {
     \tikzcdset{math mode=false,labels={font=\scriptsize}}
@@ -195,10 +145,10 @@
 \newcommand\lar{\ar[bend left]}
 \newcommand\rar{\ar[bend right,swap]}
 %
-\newcommand\ds{\ar[dashed]}
-\newcommand\sds{\ar[dashed]}
-\newcommand\lds{\ar[dashed,bend left]}
-\newcommand\rds{\ar[dashed,bend right,swap]}
+\newcommand\da{\ar[dashed]}
+\newcommand\sda{\ar[dashed,swap]}
+\newcommand\lda{\ar[dashed,bend left]}
+\newcommand\rda{\ar[dashed,bend right,swap]}
 %
 \tikzset{
   symbol/.style={
@@ -208,26 +158,19 @@
     },
   },
 }
-
+\tikzcdset{arrow style={math font}}
 
 
 
 %//////////////////////////%
 %  Differential operators  %
 %//////////////////////////%
-%
-% Example Code:
-%	\pd
-%	\pd{x}
-%	\pd[2]{x}
-%	\pd[2]{f}{x}
-%	\pd{f}{x}{y}
-%	\frac{\pd^3 f}{\pd x^2\pd y}
-%
+
 \RequirePackage{xparse}
-\NewDocumentCommand{\pd}{oggg}{
+\NewDocumentCommand{\pd}{ogggo}{
+  \IfNoValueTF{#5}{}{\left.}
   \IfNoValueTF{#2}
-  {\partial \IfNoValueTF{#1}{}{^{#1}}}
+  {\partial\IfNoValueTF{#1}{}{^{#1}}}
   {
     \IfNoValueTF{#3}
     {\frac{\partial\IfNoValueTF{#1}{}{^{#1}}}{\partial#2\IfNoValueTF{#1}{}{^{#1}}}}
@@ -237,8 +180,10 @@
       {\frac{\partial^2#2}{\partial#3\,\partial#4}}
     }
   }
+  \IfNoValueTF{#5}{}{\right|_{#5}}
 }
-\NewDocumentCommand{\dd}{oggg}{
+\NewDocumentCommand{\dd}{ogggo}{
+  \IfNoValueTF{#5}{}{\left.}
   \IfNoValueTF{#3}
   {\frac{d\IfNoValueTF{#1}{}{^{#1}}}{d#2\IfNoValueTF{#1}{}{^{#1}}}}
   {
@@ -246,8 +191,9 @@
     {\frac{d\IfNoValueTF{#1}{}{^{#1}}#2}{d#3\IfNoValueTF{#1}{}{^{#1}}}}
     {\frac{d^2#2}{d#3\,d#4}}
   }
+  \IfNoValueTF{#5}{}{\right|_{#5}}
 }
-\newcommand\del{\nabla}
+\NewDocumentCommand{\evalat}{mr[]O{}}{\left.#1\right|_{#2}^{#3}}
 
 
 
@@ -256,13 +202,10 @@
 %/////////////////////////////////////%
 %  Parentheses, braces, and brackets  %
 %/////////////////////////////////////%
-%
+
 \newcommand\<{\langle}
 \renewcommand\>{\rangle}  % overlapped
-
-\newcommand{\abs}[1]{\left\lvert#1\right\rvert}
-\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
-\newcommand{\flr}[1]{\left\lfloor#1\right\rfloor}
+\newcommand{\floor}[1]{\left\lfloor#1\right\rfloor}
 \newcommand{\ceil}[1]{\left\lceil#1\right\rceil}
 
 
@@ -277,41 +220,27 @@
 %/////////////////////////%
 %  Shorthanded notations  %
 %/////////////////////////%
-%
-% Example Code
-%
-%	\evalat{f(x)}{x=0}
-%	\evalat{f(x)}{x=a}{x=b}
-%
-% \mat{1&0//0&1}
-% \mat[v]{1&0//0&1}  % determinant
-%
 
 % Relations
 \newcommand\indep{\mathrel{\perp\mspace{-10mu}\perp}}
-\newcommand\les{\lesssim}
-\newcommand\ges{\gtrsim}
 \newcommand\normal{\trianglelefteq}
 
 % Arrows
-\newcommand\acts{\curvearrowright}
 \newcommand\emb{\hookrightarrow}
 \newcommand\mn{\rightarrowtail}
 \newcommand\ep{\twoheadrightarrow}
 \newcommand\impl{\mathchoice{\quad\Longrightarrow\quad}{\,\Rightarrow\,}{\,\Rightarrow\,}{\,\Rightarrow\,}}
 
 % Diacrritics
-\newcommand\tld{\widetilde}
+\renewcommand\tilde{\widetilde}
 \renewcommand\hat{\widehat}
 \newcommand\cl{\overline}
 
 % Miscellany
 \newcommand{\mat}[2][p]{%
   \begin{#1matrix}#2\end{#1matrix}
-} % option:p,b,B,v,V
-\newcommand\x{\times}
-\renewcommand\o{\circ}
-\newcommand\1{\bold{1}} % characteristic function
+} % option: b,B,v,V,small
+\newcommand\1{\mathbf{1}} % characteristic function
 
 \newcommand\tint{{\textstyle\int}}
 \newcommand\loc{\mathrm{loc}}
@@ -325,20 +254,21 @@
 
 % Some greeks
 \newcommand\e{\varepsilon}
-\newcommand\f{\varphi}
+\def\f{\varphi}
 
 % Blackboard fonts
 \newcommand\A{\mathbb{A}}
 \newcommand\B{\mathbb{B}}
 \def\C{\mathbb{C}} % collision with beamer
+\newcommand\D{\mathbb{D}}
 \newcommand\E{\mathbb{E}}
 \newcommand\F{\mathbb{F}}
-\ifnotbeamer{\newcommand\G{\mathbb{G}}} % collision with beamer, hyperref
-\let\@@H\H
-\renewcommand\H{\ifmmode\mathbb{H}\else\@@H\fi} % horig
+\newcommand\G{\mathbb{G}} % collision with beamer, hyperref
+\let\Horig\H
+\renewcommand\H{\ifmmode\mathbb{H}\else\Horig\fi}
 \newcommand\N{\mathbb{N}}
-\let\@@P\P
-\renewcommand\P{\ifmmode\mathbb{P}\else\@@P\fi} %pilcrow
+\let\Pilcrow\P
+\renewcommand\P{\ifmmode\mathbb{P}\else\Pilcrow\fi} %pilcrow
 \newcommand\Q{\mathbb{Q}}
 \newcommand\R{\mathbb{R}}
 \newcommand\T{\mathbb{T}}
@@ -403,7 +333,7 @@
 % Caligraphy fonts
 \newcommand\cA{\mathcal{A}}
 \newcommand\cB{\mathcal{B}}
-\ifnotbeamer{\newcommand\cC{\mathcal{C}}} % collision with beamer
+\newcommand\cC{\mathcal{C}} % collision with beamer
 \newcommand\cD{\mathcal{D}}
 \newcommand\cE{\mathcal{E}}
 \newcommand\cF{\mathcal{F}}
@@ -474,7 +404,7 @@
 
 \newcommand\GL{\mathrm{GL}}
 \newcommand\OO{\mathrm{O}}
-\newcommand\UU{\mathrm{U}}           % \U : collision with beamer, hyperref
+\newcommand\UU{\mathrm{U}} % collision with beamer, hyperref
 \newcommand\SL{\mathrm{SL}}
 \newcommand\SO{\mathrm{SO}}
 \newcommand\SU{\mathrm{SU}}

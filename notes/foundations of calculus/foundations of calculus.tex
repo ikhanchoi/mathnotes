@@ -1,0 +1,53 @@
+\documentclass{../note}
+\usepackage{../../ikany}
+
+
+\begin{document}
+\title{Foundations of Calculus}
+\author{Ikhan Choi}
+\maketitle
+\tableofcontents
+
+\part{Sequences}
+\chapter{Convergence}
+
+\chapter{Series}
+\section{Convergence tests}
+\begin{prb}[Mertens' theorem]
+If $\sum_{k=0}^\infty a_k$ converges to $a$ absolutely and $\sum_{k=0}^\infty b_k$ converges to $b$, then their Cauchy product $\sum_{k=0}^\infty c_k$ with $c_k:=\sum_{l=0}^ka_lb_{k-l}$ converges to $ab$.
+\end{prb}
+\begin{pf}
+Let
+\[A_n:=\sum_{k=0}^na_k,\ B_n:=\sum_{k=0}^nb_k, \text{ and } C_n:=\sum_{k=0}^nc_k\]
+so that
+\[C_n=\sum_{k=0}^n\sum_{l=0}^ka_lb_{k-l}=\sum_{l=0}^n\sum_{k=l}^na_lb_{k-l}=\sum_{l=0}^na_l\sum_{k=0}^{n-l}b_k=\sum_{l=0}^na_lB_{n-l}.\]
+For $\e>0$ fix $k_0$ such that $k\ge k_0$ implies
+\[|B_k-B|(\sum_{l=0}^\infty|a_l|)<\e.\]
+Then, since we have
+\begin{align*}
+|C_n-AB|&=|\sum_{k=0}^na_{n-k}(B_k-B)+(A_n-A)B|\\
+&\le\sum_{k=0}^{k_0-1}|a_{n-k}||B_k-B|+\sum_{k=k_0}^{n}|a_{n-k}||B_k-B|+|A_n-A||B|\\
+&\le\max_{n-k_0<k\le n}|a_k|(\sum_{k=0}^{k_0-1}|B_k-B|)+(\sum_{k=k_0}^n|a_{n-k}|)\max_{k_0\le k\le n}|B_k-B|+|A_n-A||B|
+\end{align*}
+and $|a_n|$ and $|A_n-A|$ tend to zero as $n\to\infty$, we get
+\[\limsup_{n\to\infty}|C_n-AB|<0+\e+0.\]
+\end{pf}
+
+\part{Functions}
+
+\chapter{Continuity}
+
+\chapter{Differentiation}
+
+\chapter{Functional sequences}
+
+
+\part{Integration}
+
+\chapter{Riemann integration}
+
+
+
+
+
+\end{document}

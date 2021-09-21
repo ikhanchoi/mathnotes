@@ -1,0 +1,31 @@
+\documentclass{../note}
+\usepackage{../../ikany}
+
+
+\begin{document}
+\title{Complex Analysis}
+\author{Ikhan Choi}
+\maketitle
+\tableofcontents
+
+
+
+\chapter{Holomorphic functions}
+
+\section{Holomorphic functions}
+
+\begin{prb}
+Let $p\in\C[z]$ with $p(z)=\sum_{k=0}^na_kz^k$.
+There is $R>0$ such that $\frac{|a_n|}2|z|^n\le|p(z)|\le\frac{3|a_n|}2|z|^n$ for $|z|\ge R$.
+\end{prb}
+\begin{pf}
+Since $z\ne0$, let $w(z):=p(z)/z^n-a_n$.
+If we choose $R>0$ such that
+\[\max_{0\le k\le n}\frac{|a_k|}{R^{n-k}}\le\frac{|a_n|}{2n}\]
+so that we have for $|z|\ge R$
+\[|w(z)|\le\sum_{k=0}^{n-1}\frac{|a_k|}{|z|^{n-k}}\le\frac{|a_n|}2,\]
+hence we get
+\[|p(z)|=|a_n+w(z)||z|^n\ge\frac{|a_n|}2|z|^n.\]
+\end{pf}
+
+\end{document}
