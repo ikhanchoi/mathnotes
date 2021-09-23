@@ -1,0 +1,187 @@
+\documentclass{../note}
+\usepackage{../../ikany}
+
+
+\begin{document}
+\title{Functional Analysis}
+\author{Ikhan Choi}
+\maketitle
+\tableofcontents
+
+\part{Topological vector spaces}
+
+\chapter{Locally convex spaces}
+
+\chapter{Banach spaces}
+
+
+\begin{prb}
+Let $(T_n)$ be a sequence in $B(X,Y)$.
+If $T_n$ coverges then $\|T_n\|$ is bounded by the uniform boundedness principle.
+\end{prb}
+
+
+
+
+
+\begin{prb}
+We show that there is no projection from $\ell^\infty$ onto $c_0$.
+\begin{parts}
+\item
+Show that a Banach space $X$ is isometrically isomorphic to a Hilbert space if there is a bounded linear projection on every closed subspace of $X$.
+\end{parts}
+\end{prb}
+
+
+
+
+
+\begin{prb}[Bounded below maps in Banach spaces]
+Let $T:X\to Y$ be a bounded linear map between Banach spaces.
+Show that the following statements are equivalent:
+\begin{parts}
+\item It is bounded below.
+\item It is injective and has closed range.
+\item It is a isometric isomorphism onto its image.
+\end{parts}
+\end{prb}
+
+
+\begin{prb}[Bounded below maps in Hilbert spaces]
+Let $T:H\to K$ be a bounded linear operator between Hilbert spaces.
+Show that the following statements are equivalent:
+\begin{parts}
+\item It is bounded below.
+\item It has a left inverse.
+\item Its adjoint has right inverse.
+\item The product $T^*T$ is invertible.
+\end{parts}
+In particular, a normal operator in $B(H)$ is bounded below if and only if it is invertible.
+\end{prb}
+
+
+
+\begin{prb}[Injectivity and surjectivity of dual map]
+Let $T:X\to Y$ be a bounded linear operator between Banach spaces and $T^*:Y^*\to X^*$ be its dual.
+\begin{parts}
+\item
+Show that $T^*$ is injective if and only if $T$ has dense range.
+\item
+Show that $T^*$ is surjective if and only if $T$ is bounded below.
+\end{parts}
+\end{prb}
+
+\begin{prb}
+For $T\in B(H)$, we have an obvious fact $(\im T)^\perp=\ker T^*$.
+If $T$ is normal, then the kernel of $T$ and $T^*$ are equal.
+\begin{parts}
+\item
+Show that if $T$ is surjective bounded operator, then $T$ is invertible.
+\end{parts}
+\end{prb}
+
+
+\begin{prb}[Schur's property of $\ell^1$]
+.
+\end{prb}
+
+
+\begin{prb}
+Let $\f:L^\infty([0,1])\to\ell^\infty(\N)$ be an isometric isomorphism.
+Suppose $\f$ is realised as a sequence of bounded linear functionals on $L^\infty$.
+\begin{parts}
+\item
+Show that $\f^*(\ell^1)\subset L^1$ where $\ell^1$ and $L^1$ are considered as closed linear subspaces of $(\ell^\infty)^*$ and $(L^\infty)^*$ respectively.
+\item Show that $\f^*$ is indeed an isometric isomorphism, and deduce $\f$ cannot be realised as bounded linear functionals on $L^\infty$.
+\end{parts}
+\end{prb}
+
+
+\part{Weak topologies}
+\chapter{Weak* topologies}
+
+\begin{prb}[Predual correspondence]
+Let $X$ be a Banach space and $Z$ be a linear subspace of $X^*$.
+Define $\f:X\to Z^*$ as the restriction of the dual map of inclusion $Z\subset X^*$.
+\begin{parts}
+\item
+Show that if $\f$ is an isometric isomorphism, then closed ball of $X$ is compact Hausdorff in $\sigma(X,Z)$.
+\item Show that the converse holds by using Goldstine's theorem.
+\end{parts}
+\end{prb}
+
+\begin{prb}
+Let $X$ be a closed subspace of a Banach space $Y$ and \[i:X\to Y\] the inclusion.
+Suppose $X$ and $Y$ have preduals $X_*$ and $Y_*$ respectively.
+Let \[j:=i^*|_{Y_*}:Y_*\to Z\subset X^*,\]
+where $Z:=i^*(Y_*)^-$.
+Then we can show
+\[j^*:Z^*\subset X^{**}\to Y\]
+coincides with $i$ on $X\cap Z^*$.
+From the existence of $X_*$ we have $X^{**}\to X$, which is restricted to define a map $k:Z^*\to X$.
+\begin{cd}
+&X\ar{r}{i}&Y\\
+X^{**}\ar{ur}\ar{r}&Z^*\ar{u}{k}\ar{ur}{j}&
+\end{cd}
+We can show $k$ is an isomorphism so that we have
+\[X_*\cong Y_*/Y_*\cap\ker(i^*).\]
+\end{prb}
+
+
+
+
+
+
+
+
+
+\chapter{The Krein-Milman theorem}
+
+
+\part{Spectral theory}
+\chapter{Compact operators}
+\chapter{Nuclear operators}
+\chapter{Unbounded operators}
+
+\part{Operator algebras}
+\chapter{Banach algebras}
+\chapter{C* algebras}
+
+\begin{prb}[Operator monotonicity of square and commitativity]
+Let $\cA$ be a $C^*$-algebra in which the square function is operator monotone, that is, $0\le a\le b$ implies $a^2\le b^2$ for any positive elements $a$ and $b$ in $\cA$.
+We are going to show that $\cA$ is necessarily commutative.
+Let $a$ and $b$ denote arbitrary positive elements of $\cA$.
+\begin{parts}
+\item
+Show that $ab+ba\ge0$.
+\item
+Let $ab=c+id$ where $c$ and $d$ are self adjoints.
+Show that $d^2\le c^2$.
+\item
+Suppose $\lambda>0$ satisfies $\lambda d^2\le c^2$.
+Show that $c^2d^2+d^2c^2-2\lambda d^4\ge0$.
+\item
+Show that $\lambda(cd+dc)^2\le(c^2-d^2)^2$.
+\item
+Show that $\sqrt{\lambda^2+2\lambda-1}\cdot d^2\le c^2$ and deduce $d=0$.
+\item
+Extend the result for general exponent: $\cA$ is commitative if $f(x)=x^\beta$ is operator monotone for $\beta>1$.
+\end{parts}
+\end{prb}
+
+\begin{prb}[Compact left multiplications and SOT]
+Let $T_n$ be a sequence of bounded linear operators on a Hilbert space that converges in SOT.
+For compact $K$, $T_n K$ converges in norm, but $KT_n$ generally does not unless $T$ is self-adjoint.
+\end{prb}
+
+\begin{prb}[Injective *-homomorphism is an isometry]
+%https://math.stackexchange.com/questions/434706/sufficient-condition-for-a-homomorphism-between-c-algebras-being-isometric/435105#435105
+\end{prb}
+
+
+
+\chapter{Von Neumann algebras}
+
+
+
+\end{document}

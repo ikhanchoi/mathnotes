@@ -77,7 +77,7 @@
   \newtheorem*{ex*}{Example}
   \newtheorem{notn}{Notation}[section]
   \newtheorem*{notn*}{Notation}
-  \newtheorem{prb}{}[chapter]
+  \@ifclassloaded{report}{\newtheorem{prb}{}[chapter]}{\newtheorem{prb}{}[section]}
 \theoremstyle{remark}
   \newtheorem*{rmk}{Remark}
 
