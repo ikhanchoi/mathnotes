@@ -1,9 +1,9 @@
-\documentclass[11pt]{article}
+\documentclass[12pt]{article}
 \usepackage{../../ikany}
-\usepackage[margin=1.5in]{geometry}
-
-\let\realsection\section
-\renewcommand\section{\newpage\realsection}
+\usepackage[margin=100pt]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage[bitstream-charter,cal]{mathdesign}
+\linespread{1.1}
 
 \begin{document}
 \tableofcontents
@@ -17,21 +17,21 @@
 \begin{lem}
 Suppose we have a flat resolution
 \begin{es}
-0 \>  P_1  \>  P_0  \>  A  \> 0.
+0\>P_1\>P_0\>A\> 0.
 \end{es}
 Then, we have a exact sequence
 \begin{es}
-\cdots  \>  0  \>  \Tor_1^R(A,B)  \>  P_1\tn B  \>  P_0\tn B  \>  A\tn B  \> 0.
+\cdots\>0\>\Tor_1^R(A,B)\>P_1\otimes B\>P_0\otimes B\>A\otimes B\>0.
 \end{es}
 \end{lem}
 
 
 \begin{thm}
 Let $R$ be a PID.
-Let $C_\bul$ be a chain complex of flat $R$-modules and $G$ be a $R$-module.
+Let $C_\bullet$ be a chain complex of flat $R$-modules and $G$ be a $R$-module.
 Then, we have a short exact sequence
 \begin{es}
-0\>H_n(C)\tn G\>H_n(C;G)\>\Tor(H_{n-1}(C),G)\>0,
+0\>H_n(C)\otimes G\>H_n(C;G)\>\Tor(H_{n-1}(C),G)\>0,
 \end{es}
 which splits, but not naturally.
 \end{thm}
@@ -39,29 +39,29 @@ which splits, but not naturally.
 \begin{pf}[1]
 We have a short exact sequence of chain complexes
 \begin{es}
-0\>Z_\bul\>C_\bul\>B_{\bul-1}\>0
+0\>Z_\bullet\>C_\bullet\>B_{\bullet-1}\>0
 \end{es}
-where every morphism in $Z_\bul$ and $B_\bul$ are zero.
-Since modules in $B_{\bul-1}$ are flat, we have a short exact sequence
+where every morphism in $Z_\bullet$ and $B_\bullet$ are zero.
+Since modules in $B_{\bullet-1}$ are flat, we have a short exact sequence
 \begin{es}
-0\>Z_\bul\tn G\>C_\bul\tn G\>B_{\bul-1}\tn G\>0
+0\>Z_\bullet\otimes G\>C_\bullet\otimes G\>B_{\bullet-1}\otimes G\>0
 \end{es}
 and the associated long exact sequence
 \begin{es}
 \,\>H_n(B;G)\>H_n(Z;G)\>H_n(C;G)\>H_{n-1}(B;G)\>H_{n-1}(Z;G)\>\,
 \end{es}
-where the connecting homomomorphisms are of the form $(i_n\colon B_n\to Z_n)\tn1_G$ (It is better to think diagram chasing than a natural construction).
+where the connecting homomomorphisms are of the form $(i_n\colon B_n\to Z_n)\otimes1_G$ (It is better to think diagram chasing than a natural construction).
 Since morhpisms in $B$ and $Z$ are zero (if it is not, then the short exact sequence of chain complexes are not exact, we have
 \begin{es}
-\,\>B_n\tn G\>Z_n\tn G\>H_n(C;G)\>B_{n-1}\tn G\>Z_{n-1}\tn G\>\,.
+\,\>B_n\otimes G\>Z_n\otimes G\>H_n(C;G)\>B_{n-1}\otimes G\>Z_{n-1}\otimes G\>\,.
 \end{es}
 Since
 \begin{es}
-0\>\Tor_1^R(H_n,G)\>B_n\tn G\>Z_n\tn G\>H_n\tn G\>0
+0\>\Tor_1^R(H_n,G)\>B_n\otimes G\>Z_n\otimes G\>H_n\otimes G\>0
 \end{es}
 for all $n$, the exact sequence splits into short exact sequence by images
 \begin{es}
-0\>H_n\tn G\>H_n(C;G)\>\Tor_1^R(H_{n-1},G)\>0.
+0\>H_n\otimes G\>H_n(C;G)\>\Tor_1^R(H_{n-1},G)\>0.
 \end{es}
 
 For splitting,
@@ -72,9 +72,9 @@ Since $R$ is PID, we can construct a flat resolution of $G$
 \begin{es}
 0\>P_1\>P_0\>G\>0.
 \end{es}
-Since modules in $C_\bul$ are flat so that the tensor product functors are exact and $P_1\to P_0$ and $P_0\to G$ induce the chain maps, we have a short exact sequence of chain complexes
+Since modules in $C_\bullet$ are flat so that the tensor product functors are exact and $P_1\to P_0$ and $P_0\to G$ induce the chain maps, we have a short exact sequence of chain complexes
 \begin{es}
-0\>C_\bul\tn P_1\>C_\bul\tn P_0\>C_\bul\tn G\>0.
+0\>C_\bullet\otimes P_1\>C_\bullet\otimes P_0\>C_\bullet\otimes G\>0.
 \end{es}
 Then, we have the associated long exact sequence
 \begin{es}
@@ -82,49 +82,48 @@ Then, we have the associated long exact sequence
 \end{es}
 Since flat tensor product functor commutes with homology funtor from chain complexes, we have
 \begin{es}
-\,\>H_n\tn P_1\>H_n\tn P_0\>H_n(C;G)\>H_{n-1}\tn P_1\>H_{n-1}\tn P_0\>\,.
+\,\>H_n\otimes P_1\>H_n\otimes P_0\>H_n(C;G)\>H_{n-1}\otimes P_1\>H_{n-1}\otimes P_0\>\,.
 \end{es}
 Since
 \begin{es}
-0\>\Tor_1^R(G,H_n)\>H_n\tn P_1\>H_n\tn P_0\>H_n\tn G\>0
+0\>\Tor_1^R(G,H_n)\>H_n\otimes P_1\>H_n\otimes P_0\>H_n\otimes G\>0
 \end{es}
 for all $n$, the exact sequence splits into short exact sequence by images
 \begin{es}
-0\>H_n\tn G\>H_n(C;G)\>\Tor_1^R(G,H_{n-1})\>0.
+0\>H_n\otimes G\>H_n(C;G)\>\Tor_1^R(G,H_{n-1})\>0.
 \end{es}
 \end{pf}
 
-\begin{pf}[3](??)
+Proof 3.
 By tensoring $G$, we get the following diagram.
 \begin{cd}[row sep={24pt,between origins}, column sep={36pt,between origins}]
-H_n\tn G  \ar{ddr}  &&&& H_{n-1}\tn G \\
+H_n\otimes G  \ar{ddr}  &&&& H_{n-1}\otimes G \\
 &&&& \\
-& \coker\pd_{n+1}\tn G  \ep{ddr} && \ker\pd_{n-1}\tn G  \ep{uur}\ar{dr} & \\
-C_n\tn G  \ep{ur}\ep{drr} &&&& C_{n-1}\tn G \\
-&& \im\pd_n\tn G  \ar{uur}\ar{urr} && \\
+& \coker\pd_{n+1}\otimes G  \ar[->>]{ddr} && \ker\pd_{n-1}\otimes G  \ar[->>]{uur}\ar{dr} & \\
+C_n\otimes G  \ar[->>]{ur}\ar[->>]{drr} &&&& C_{n-1}\otimes G \\
+&& \im\pd_n\otimes G  \ar{uur}\ar{urr} && \\
 &&&& \\
-&\Tor_1(H_{n-1},G)\mn{uur}&&&
+&\Tor_1(H_{n-1},G)\ar[>->]{uur}&&&
 \end{cd}
 Every aligned set of consecutive arrows indicates an exact sequence.
 Notice that epimorphisms and cokernals are preserved, but monomorphisms and kernels are not.
-Especially, $\coker\pd_{n+1}\tn G=\coker(\pd_{n+1}\tn1_G)$ is important.
+Especially, $\coker\pd_{n+1}\otimes G=\coker(\pd_{n+1}\otimes1_G)$ is important.
 
 Consider the following diagram.
 \begin{cd}[row sep={30pt,between origins}, column sep={60pt,between origins}]
-H_n(C;G) \mn{dr} & H_n\tn G \ar{d}&&&\\
-& \coker\pd_{n+1}\tn G \ep{dd}\ep{ddrr} && \ker\pd_{n-1}\tn G \ar{dr}{\text{monic!}} & \\
-&&&& C_{n-1}\tn G \\
-& \im\pd_n\tn G \ar{uurr} && \im(\pd_n\tn1_G) \mn{ur}\ar[dashed,tail]{uu} & \\
-\Tor_1(H_{n-1},G) \mn{ur} &&&&
+H_n(C;G) \ar[>->]{dr} & H_n\otimes G \ar{d}&&&\\
+& \coker\pd_{n+1}\otimes G \ar[->>]{dd}\ar[->>]{ddrr} && \ker\pd_{n-1}\otimes G \ar{dr}{\text{monic!}} & \\
+&&&& C_{n-1}\otimes G \\
+& \im\pd_n\otimes G \ar{uurr} && \im(\pd_n\otimes1_G) \ar[>->]{ur}\ar[dashed,>->]{uu} & \\
+\Tor_1(H_{n-1},G) \ar[>->]{ur} &&&&
 \end{cd}
 Since $\ker\pd_{n-1}$ is free, 
 
-If we show $\im(\pd_n\tn1_G)\to\ker\pd_{n-1}\tn G$ is monic, then we can get
+If we show $\im(\pd_n\otimes1_G)\to\ker\pd_{n-1}\otimes G$ is monic, then we can get
 \begin{align*}
-H_n(C;G)&=\ker(\coker\pd_{n+1}\tn G\to\im(\pd_n\tn1_G))\\
-&=\ker(\coker\pd_{n+1}\tn G\to\ker\pd_{n-1}\tn G).
+H_n(C;G)&=\ker(\coker\pd_{n+1}\otimes G\to\im(\pd_n\otimes1_G))\\
+&=\ker(\coker\pd_{n+1}\otimes G\to\ker\pd_{n-1}\otimes G).
 \end{align*}
-\end{pf}
 
 
 
@@ -279,41 +278,42 @@ for each $\mu$.
 
 
 \section{Vector calculus on spherical coordinates}
-
+\[
 \begin{tikzcd}[row sep=5pt, column sep=3pt]
 V&=&(V_r,V_\theta,V_\phi)&&&&&&&&\\
 &=&V_r&\hat{r}&+&V_\theta&\hat{\theta}&+&V_\phi&\hat{\phi}&(\text{normalized coords})\\
 &=&V_r&\pd{r}&+&\frac1r\ V_\theta&\pd{\theta}&+&\frac1{r\sin\theta}\ V_\phi&\pd{\phi}&(\Gamma(TM))\\
 &=&V_r&dr&+&r\ V_\theta&d\theta&+&r\sin\theta\ V_\phi&d\phi&(\Omega^1(M))\\
-&=&r^2\sin\theta\ V_r&d\theta\wdg d\phi&+&r\sin\theta\ V_\theta&d\phi\wdg dr&+&r\ V_\phi&dr\wdg d\theta&(\Omega^2(M)).
+&=&r^2\sin\theta\ V_r&d\theta\wedge d\phi&+&r\sin\theta\ V_\theta&d\phi\wedge dr&+&r\ V_\phi&dr\wedge d\theta&(\Omega^2(M)).
 \end{tikzcd}
+\]
 
 \[
-\del\cdot V=\frac1{r^2\sin\theta}\left[  \pd{r}\left(r^2\sin\theta\ V_r\right) + \pd{\theta}\left(r\sin\theta\ V_\theta\right) + \pd{\phi}\left(r\ V_\phi\right)  \right]
+\nabla\cdot V=\frac1{r^2\sin\theta}\left[  \pd{r}\left(r^2\sin\theta\ V_r\right) + \pd{\theta}\left(r\sin\theta\ V_\theta\right) + \pd{\phi}\left(r\ V_\phi\right)  \right]
 \]
 \[\Delta u=\frac1{r^2\sin\theta}\left[\pd{r}\left(r^2\sin\theta\pd{r}u\right)+\pd{\theta}\left(\sin\theta\pd{\theta}u\right)+\pd{\phi}\left(\frac1{\sin\theta}\pd{\phi}u\right)\right]\]
 
 Let $(\xi,\eta,\zeta)$ be an orthogonal coordinate that is \emph{not} normalized.
 Then,
 \[\sharp=g=\diag(\|\pd_\xi\|^2,\|\pd_\eta\|^2,\|\pd_\zeta\|^2)\]
-\[\hat x=\|\pd_x\|^{-1}\ \pd_x=\|\pd_x\|\ dx=\|\pd_y\|\|\pd_z\|\ dy\wdg dz\]
+\[\hat x=\|\pd_x\|^{-1}\ \pd_x=\|\pd_x\|\ dx=\|\pd_y\|\|\pd_z\|\ dy\wedge dz\]
 In other words, we get the normalized differential forms in sphereical coordinates as follows:
-\[dr,\quad r\,d\theta,\quad r\sin\theta\,d\phi,\quad(r\,d\theta)\wdg(r\sin\theta\,d\phi),\quad(r\sin\theta\,d\phi)\wdg(dr),\quad(dr)\wdg(r\,d\theta).\]
+\[dr,\quad r\,d\theta,\quad r\sin\theta\,d\phi,\quad(r\,d\theta)\wedge(r\sin\theta\,d\phi),\quad(r\sin\theta\,d\phi)\wedge(dr),\quad(dr)\wedge(r\,d\theta).\]
 
 \begin{align*}
-\grad:\del&=\left[\ \frac1{\|\pd_x\|}\pd{x}\cdot-\ ,\ \frac1{\|\pd_y\|}\pd{y}\cdot-\ ,\ \frac1{\|\pd_z\|}\pd{z}\cdot-\ \right]\\
-\curl:\del&=\left[\ \frac1{\|\pd_y\|\|\pd_z\|}\left(\pd{y}(\|\pd_z\|\cdot-)-\pd{z}(\|\pd_y\|\cdot-)\right)\ ,\right.\\
+\grad:\nabla&=\left[\ \frac1{\|\pd_x\|}\pd{x}\cdot-\ ,\ \frac1{\|\pd_y\|}\pd{y}\cdot-\ ,\ \frac1{\|\pd_z\|}\pd{z}\cdot-\ \right]\\
+\curl:\nabla&=\left[\ \frac1{\|\pd_y\|\|\pd_z\|}\left(\pd{y}(\|\pd_z\|\cdot-)-\pd{z}(\|\pd_y\|\cdot-)\right)\ ,\right.\\
 &\qquad\left.\frac1{\|\pd_z\|\|\pd_x\|}\left(\pd{z}(\|\pd_x\|\cdot-)-\pd{x}(\|\pd_z\|\cdot-)\right)\ ,\right.\\
 &\qquad\left.\frac1{\|\pd_x\|\|\pd_y\|}\left(\pd{x}(\|\pd_y\|\cdot-)-\pd{y}(\|\pd_x\|\cdot-)\right)\ \right]\\
-\div:\del&=\frac1{\|\pd_x\|\|\pd_y\|\|\pd_z\|}\left[\ \pd{x}\bigl(\|\pd_y\|\|\pd_z\|\cdot-\bigr)\ ,\ \pd{y}\bigl(\|\pd_z\|\|\pd_x\|\cdot-\bigr)\ ,\ \pd{z}\bigl(\|\pd_x\|\|\pd_y\|\cdot-\bigr)\ \right]\\
+\div:\nabla&=\frac1{\|\pd_x\|\|\pd_y\|\|\pd_z\|}\left[\ \pd{x}\bigl(\|\pd_y\|\|\pd_z\|\cdot-\bigr)\ ,\ \pd{y}\bigl(\|\pd_z\|\|\pd_x\|\cdot-\bigr)\ ,\ \pd{z}\bigl(\|\pd_x\|\|\pd_y\|\cdot-\bigr)\ \right]\\
 \Delta&=\frac1{\|\pd_x\|\|\pd_y\|\|\pd_z\|}\left[\ \pd{x}\left(\frac{\|\pd_y\|\|\pd_z\|}{\|\pd_x\|}\pd{x}\right)+\pd{y}\left(\frac{\|\pd_z\|\|\pd_x\|}{\|\pd_y\|}\pd{y}\right)+\pd{z}\left(\frac{\|\pd_x\|\|\pd_y\|}{\|\pd_z\|}\pd{z}\right)\ \right]
 \end{align*}
 
 \bigskip
 
-\[\grad=\frac1{\|\cdot\|^1}\,(\del)\,\|\cdot\|^0\]
-\[\curl=\frac1{\|\cdot\|^2}\,(\del\x)\,\|\cdot\|^1\]
-\[\div=\frac1{\|\cdot\|^3}\,(\del\cdot)\,\|\cdot\|^2\]
+\[\grad=\frac1{\|\cdot\|^1}\,(\nabla)\,\|\cdot\|^0\]
+\[\curl=\frac1{\|\cdot\|^2}\,(\nabla\times)\,\|\cdot\|^1\]
+\[\div=\frac1{\|\cdot\|^3}\,(\nabla\cdot)\,\|\cdot\|^2\]
 
 
 
@@ -330,7 +330,7 @@ which is nonvanishing.
 
 Conversely, suppose we have a nonvanishing vector field $X$.
 Consider a map
-\[\phi:S^n\to{X}TS^n\to S^n\x\R^{n+1}\to{\phi}\R^{n+1}\to S^n.\]
+\[\phi:S^n\xrightarrow{X}TS^n\to S^n\times\R^{n+1}\to{\phi}\R^{n+1}\to S^n.\]
 
 The last map can be defined since $X$ is nowhere zero. Since this map satisfies $\<x,\phi(x)\>=0$ for all $x\in S^n$, we can define homotopies from $\phi$ to the identity map and the antipodal map respectively. Therefore, the antipodal map must have positive degree, $+1$, so $n$ is odd.
 \end{sol}
@@ -382,8 +382,8 @@ Let $\gamma:I\to M$ be a curve connecting the given two points, say $p,q$.
 For $t\in I$, take a convex chart $U_t$ at $\gamma(t)$.
 Since $I$ is compact, we can choose a finite $\{t_i\}_i$ such that $\bigcup_i\gamma^{-1}(U_{t_i})=I$.
 This implies $\im\gamma\subset\bigcup_iU_{t_i}$.
-Reorganize indices such that $\gamma(t_1)=p$, $\gamma(t_n)=q$, and $U_{t_i}\cap U_{t_{i+1}}\ne\mt$ for all $1\le i\le n-1$.
-It is possible since the graph with $V=\{i\}_i$ and $E=\{(i,j):U_{t_i}\cap U_{t_j}\ne\mt$ is connected.
+Reorganize indices such that $\gamma(t_1)=p$, $\gamma(t_n)=q$, and $U_{t_i}\cap U_{t_{i+1}}\ne\varnothing$ for all $1\le i\le n-1$.
+It is possible since the graph with $V=\{i\}_i$ and $E=\{(i,j):U_{t_i}\cap U_{t_j}\ne\varnothing$ is connected.
 Choose $p_i\in U_{t_i}\cap U_{t_{i+1}}$ such that they are all dis for $1\le i\le n-1$ and let $p_0=p$, $p_n=q$.
 
 How can we treat intersections?
@@ -399,14 +399,14 @@ Any kind of sections on $M$ can be extended on $N$.
 \end{prop}
 
 \begin{prop}
-Every ring homomorphism $C^\oo(M)\to\R$ is obtained by an evaluation at a point of $M$.
+Every ring homomorphism $C^\infty(M)\to\R$ is obtained by an evaluation at a point of $M$.
 \end{prop}
 \begin{pf}
-Suppose $\phi:C^\oo(M)\to\R$ is not an evaluation.
+Suppose $\phi:C^\infty(M)\to\R$ is not an evaluation.
 Let $h$ be a positive exhaustion function.
 Take a compact set $K:=h^{-1}([0,\phi(h)])$.
-For every $p\in K$, we can find $f_p\in C^\oo(M)$ such that $\phi(f_p)\ne f_p(p)$ by the assumption.
-Summing $(f_p-\phi(f_p))^2$ finitely on $K$ and applying the extreme value theorem, we obtain a function $f\in C^\oo(M)$ such that $f\ge0$, $f|_K>1$, and $\phi(f)=0$.
+For every $p\in K$, we can find $f_p\in C^\infty(M)$ such that $\phi(f_p)\ne f_p(p)$ by the assumption.
+Summing $(f_p-\phi(f_p))^2$ finitely on $K$ and applying the extreme value theorem, we obtain a function $f\in C^\infty(M)$ such that $f\ge0$, $f|_K>1$, and $\phi(f)=0$.
 Then, the function $h+\phi(h)f-\phi(h)$ is in kernel of $\phi$ although it is strictly positive and thereby a unit.
 It is a contradiction.
 \end{pf}

@@ -1,12 +1,10 @@
-\documentclass[11pt]{article}
+\documentclass[12pt]{article}
 \usepackage{../../ikany}
-\usepackage[margin=1.5in]{geometry}
+\usepackage[margin=100pt]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage[bitstream-charter,cal]{mathdesign}
+\linespread{1.1}
 
-\let\realsection\section
-\renewcommand\section{\newpage\realsection}
-
-\def\tint{{\textstyle\int}}
-\def\loc{\mathrm{loc}}
 \def\AC{\mathrm{AC}}
 
 \begin{document}
@@ -21,9 +19,9 @@
 \subsection{Velocity averaging lemmas}
 The velocity averaging lemma is used to get regularity of averaged quantity when boundary condition is not given.
 \begin{thm}[Velocity averaging]
-Let $L$ be a free transport operator $\pd_t+v\cdot\del_x$ on $\R_t\x\R_x^n\x\R_v^n$.
+Let $L$ be a free transport operator $\pd_t+v\cdot\nabla_x$ on $\R_t\times\R_x^n\times\R_v^n$.
 Then,
-\[\|\int u\f\,dv\|_{H_{t,x}^{1/2}}\les_\f\|u\|_{L_{t,x,v}^2}^{1/2}\|Lu\|_{L_{t,x,v}^2}^{1/2}\]
+\[\|\int u\f\,dv\|_{H_{t,x}^{1/2}}\lesssim_\f\|u\|_{L_{t,x,v}^2}^{1/2}\|Lu\|_{L_{t,x,v}^2}^{1/2}\]
 for $\f\in C_c^\infty(\R_v^n)$,
 \end{thm}
 \begin{pf}
@@ -43,8 +41,8 @@ Let
 \[I_s(\tau,\xi,\alpha):=\int_{|\tau+v\cdot\xi|<\alpha}|\f|^2\,dv,\qquad
 I_n(\tau,\xi,\alpha):=\int_{|\tau+v\cdot\xi|\ge\alpha}\frac{|\f|^2}{|\tau+v\cdot\xi|}\,dv.\]
 We are going to estimate the integrals as
-\[I_s\les\frac{\alpha}{\sqrt{\tau^2+|\xi|^2}},\qquad
-I_n\les\frac1{\alpha\sqrt{\tau^2+|\xi|^2}}.\]
+\[I_s\lesssim\frac{\alpha}{\sqrt{\tau^2+|\xi|^2}},\qquad
+I_n\lesssim\frac1{\alpha\sqrt{\tau^2+|\xi|^2}}.\]
 
 Define coordinates $(v_1,v_2)$ on $\R_v$ as follows:
 \[v_1:=\frac{\tau+v\cdot\xi}{|\xi|}\ \in\R\ ,\qquad v_2:=v-\frac{v\cdot\xi}{|\xi|^2}\xi\ \in\ker(\xi^T)\cong\R^{n-1}.\]
@@ -55,41 +53,41 @@ For the first integral, suppose that $\f$ is supported on a ball $|v|\le R$.
 If $\frac{|\tau|-\alpha}{|\xi|}>R$, then the region of integration vanishes so that $I_s=0$.
 If $|\tau|\le\alpha+R|\xi|$, then
 \begin{align*}
-I_s&\les\int_{|v_1|<\frac\alpha{|\xi|}}\int_{|v_2|^2\le R^2-(v_1-\frac\tau{|\xi|})^2}\,dv_2\,dv_1\\
-&\les\int_{|v_1|<\frac\alpha{|\xi|},\ |v_1|\le R}\int_{|v_2|\le R}\,dv_2\,dv_1\\
-&\les\min\{\frac{2\alpha}{|\xi|},R\}\cdot R^{n-1}\\
+I_s&\lesssim\int_{|v_1|<\frac\alpha{|\xi|}}\int_{|v_2|^2\le R^2-(v_1-\frac\tau{|\xi|})^2}\,dv_2\,dv_1\\
+&\lesssim\int_{|v_1|<\frac\alpha{|\xi|},\ |v_1|\le R}\int_{|v_2|\le R}\,dv_2\,dv_1\\
+&\lesssim\min\{\frac{2\alpha}{|\xi|},R\}\cdot R^{n-1}\\
 &\simeq\frac1{\sqrt{1+(\frac{|\xi|}\alpha)^2}}\\
-&\les\frac\alpha{\sqrt{\tau^2+|\xi|^2}}.
+&\lesssim\frac\alpha{\sqrt{\tau^2+|\xi|^2}}.
 \end{align*}
 
 For the second integral, suppose that $\f$ is supported on $|v|<R$ so that $|v_1-\frac\tau{|\xi|}|,|v_2|<R$.
 Then,
 \begin{align*}
-I_n&\les\int_{|v_1|\ge\frac\alpha{|\xi|},\ |v_1-\frac\tau{|\xi|}|<R}\int_{|v_2|<R}\frac1{v_1^2|\xi|^2}\,dv_2\,dv_1\\
+I_n&\lesssim\int_{|v_1|\ge\frac\alpha{|\xi|},\ |v_1-\frac\tau{|\xi|}|<R}\int_{|v_2|<R}\frac1{v_1^2|\xi|^2}\,dv_2\,dv_1\\
 &\simeq\int_{\max\{\frac\alpha{|\xi|},\frac{|\tau|}{|\xi|}-R\}\le v_1<\frac{|\tau|}{|\xi|}+R}\frac1{v_1^2|\xi|^2}\,dv_1\\
 &\simeq\frac1{|\xi|^2}(\frac1{\max\{\frac\alpha{|\xi|},\frac{|\tau|}{|\xi|}-R\}}-\frac1{\frac{|\tau|}{|\xi|}+R}).
 \end{align*}
 If $\frac{|\tau|}{|\xi|}-R>\frac\alpha{|\xi|}$, then
-\[I_n\les\frac{2R}{\tau^2-(R|\xi|)^2}<\frac{2R}{\alpha(|\tau|+R|\xi|)}\simeq\frac1{\alpha\sqrt{\tau^2+|\xi|^2}}.\]
+\[I_n\lesssim\frac{2R}{\tau^2-(R|\xi|)^2}<\frac{2R}{\alpha(|\tau|+R|\xi|)}\simeq\frac1{\alpha\sqrt{\tau^2+|\xi|^2}}.\]
 If $|\tau|\le\alpha+R|\xi|$, then
-\[I_n\les\frac1{|\xi|}\frac{(|\tau|+R|\xi|)-\alpha}{\alpha(|\tau|+R|\xi|)}\le\frac{2R}{\alpha(|\tau|+R|\xi|)}\simeq\frac1{\alpha\sqrt{\tau^2+|\xi|^2}}.\]
+\[I_n\lesssim\frac1{|\xi|}\frac{(|\tau|+R|\xi|)-\alpha}{\alpha(|\tau|+R|\xi|)}\le\frac{2R}{\alpha(|\tau|+R|\xi|)}\simeq\frac1{\alpha\sqrt{\tau^2+|\xi|^2}}.\]
 
 To sum up, we have
-\[|\hat m(\tau,\xi)|\les\frac1{(\tau^2+|\xi|^2)^{1/4}}(\sqrt\alpha\cdot\|\hat u\|_{L_v^2}^{1/2}+\frac1{\sqrt\alpha}\cdot\|\hat{Lu}\|_{L_v^2}^{1/2}).\]
+\[|\hat m(\tau,\xi)|\lesssim\frac1{(\tau^2+|\xi|^2)^{1/4}}(\sqrt\alpha\cdot\|\hat u\|_{L_v^2}^{1/2}+\frac1{\sqrt\alpha}\cdot\|\hat{Lu}\|_{L_v^2}^{1/2}).\]
 Letting $\alpha=\sqrt{\|\hat{Lu}\|_{L_v^2}/\|\hat u\|_{L_v^2}}$ and squaring,
-\[(\tau^2+|\xi|^2)^{1/2}|\hat m(\tau,\xi)|^2\les\|\hat u\|_{L_v^2}^{1/2}\|\hat{Lu}\|_{L_v^2}^{1/2}.\]
-Therefore, the integration on $\R_\tau\x\R_\xi^n$ and Plancheral's theorem gives
-\[\|m\|_{H_{t,x}^{1/2}}\les_\f\|u\|_{L_{t,x,v}^2}^{1/2}\|Lu\|_{L_{t,x,v}^2}^{1/2}.\]
+\[(\tau^2+|\xi|^2)^{1/2}|\hat m(\tau,\xi)|^2\lesssim\|\hat u\|_{L_v^2}^{1/2}\|\hat{Lu}\|_{L_v^2}^{1/2}.\]
+Therefore, the integration on $\R_\tau\times\R_\xi^n$ and Plancheral's theorem gives
+\[\|m\|_{H_{t,x}^{1/2}}\lesssim_\f\|u\|_{L_{t,x,v}^2}^{1/2}\|Lu\|_{L_{t,x,v}^2}^{1/2}.\]
 \end{pf}
 
 
 \begin{cor}
-Let $\cF$ be a family of functions on $\R_t\x\R_x^n\x\R_v^n$.
+Let $\cF$ be a family of functions on $\R_t\times\R_x^n\times\R_v^n$.
 If $\cF$ and $L\cF$ are bounded in $L_{t,x,v}^2$, then $\int\cF\f\,dv$ is bounded in $H_{t,x}^{1/2}$.
 \end{cor}
 
 \begin{thm}
-Let $\cF$ be a family of functions on $I_t\x\R_x^n\x\R_v^n$.
+Let $\cF$ be a family of functions on $I_t\times\R_x^n\times\R_v^n$.
 If $\cF$ is weakly relatively compact and $L\cF$ is bounded in $L_{t,x,v}^1$, then $\int\cF\f\,dv$ is relatively compact in $L_{t,x}^1$.
 \end{thm}
 
@@ -134,17 +132,17 @@ Divide and apply Stokes' theorem twice to get
 \begin{align*}
 \int\Phi\Delta\f
 &=\int_{|x|<\e}\Phi\Delta\f+\int_{|x|\ge\e}\Phi\Delta\f\\
-&=\int_{|x|<\e}\Phi\Delta\f-\int_{|x|\ge\e}\del\Phi\cdot\del\f+\int_{|x|=\e}\Phi\del\f\cdot d\sigma.\\
-&=\int_{|x|<\e}\Phi\Delta\f+\int_{|x|\ge\e}\f\Delta\Phi-\int_{|x|=\e}\f\del\Phi\cdot d\sigma+\int_{|x|=\e}\Phi\del\f\cdot d\sigma\\
-&=\int_{|x|<\e}\Phi\Delta\f-\int_{|x|=\e}\f\del\Phi\cdot d\sigma+\int_{|x|=\e}\Phi\del\f\cdot d\sigma.
+&=\int_{|x|<\e}\Phi\Delta\f-\int_{|x|\ge\e}\nabla\Phi\cdot\nabla\f+\int_{|x|=\e}\Phi\nabla\f\cdot d\sigma.\\
+&=\int_{|x|<\e}\Phi\Delta\f+\int_{|x|\ge\e}\f\Delta\Phi-\int_{|x|=\e}\f\nabla\Phi\cdot d\sigma+\int_{|x|=\e}\Phi\nabla\f\cdot d\sigma\\
+&=\int_{|x|<\e}\Phi\Delta\f-\int_{|x|=\e}\f\nabla\Phi\cdot d\sigma+\int_{|x|=\e}\Phi\nabla\f\cdot d\sigma.
 \end{align*}
 The first integral is bounded as
-\[|\int_{|x|<\e}\Phi\Delta\f|\les_\f|\int_{|x|<\e}\Phi|\les\begin{cases}\ \e^2|\log\e|&,\ d=2,\\\ \e^2&,\ d\ge3.\end{cases}\]
+\[|\int_{|x|<\e}\Phi\Delta\f|\lesssim_\f|\int_{|x|<\e}\Phi|\lesssim\begin{cases}\ \e^2|\log\e|&,\ d=2,\\\ \e^2&,\ d\ge3.\end{cases}\]
 The third integral is bounded as
-\[|\int_{|x|=\e}\Phi\del\f\cdot d\sigma|\les_\f|\int_{|x|=\e}\Phi\,d\sigma|\les\begin{cases}\ \e|\log\e|&,\ d=2,\\\ \e&,\ d\ge3.\end{cases}\]
+\[|\int_{|x|=\e}\Phi\nabla\f\cdot d\sigma|\lesssim_\f|\int_{|x|=\e}\Phi\,d\sigma|\lesssim\begin{cases}\ \e|\log\e|&,\ d=2,\\\ \e&,\ d\ge3.\end{cases}\]
 
 For the second integral, since
-\[\del\Phi=-\frac1{d\,\alpha(d)}\frac x{|x|^d},\]
+\[\nabla\Phi=-\frac1{d\,\alpha(d)}\frac x{|x|^d},\]
 we have
 \end{enumerate}
 \end{pf}
@@ -295,7 +293,7 @@ The Sturm-Liouville operator is
 Suppose a linear operator $L:C_c^\infty(M)\to C_c^\infty(M)$ satisfies
 \[\supp(Lu)\subset\supp(u)\quad\text{for}\quad u\in C_c^\infty(X).\]
 For each point $x\in M$, there is a bounded neighborhood $U$ together with a nonnegative integer $m$ such that 
-\[\|Lu\|_{C^0}\les\|u\|_{C^m}\]
+\[\|Lu\|_{C^0}\lesssim\|u\|_{C^m}\]
 for $u\in C_c^\infty(U\setminus\{x\})$.
 \end{lem}
 \begin{pf}
@@ -344,18 +342,19 @@ which leads a contradiction.
 
 \section{Characteristic curve}
 Algorithm:
-\begin{cond}
+\begin{parts}
 \item Establish the associated vector field by substituting $u\mapsto y$.
 \item Find the integral curve.
 \item Eliminate the auxiliary variables to get an algebraic equation.
 \item Verify the computed solution is in fact the real solution.
-\end{cond}
+\end{parts}
 \begin{prop}
 Suppose that there exists a smooth solution $u:\Omega\to\R_y$ of an initial value problem
-\begin{pde*}
-u_t+u^2u_x&=0, \: (t,x)\in\Omega\subset\R_{t\ge0}\x\R_x,\\
-u(0,x)&=x, \: \text{at}\ x\in\R,
-\end{pde*}
+
+\[\left\{\begin{alignedat}{2}
+u_t+u^2u_x&=0, && (t,x)\in\Omega\subset\R_{t\ge0}\times\R_x,\\
+u(0,x)&=x, && \text{at}\ x\in\R,
+\end{alignedat}\right.\]
 and let $M$ be the embedded surface defined by $y=u(t,x)$.
 
 Let $\gamma:I\to\Omega\times\R_y$ be an integral curve of the vector field
@@ -403,23 +402,23 @@ From this formula, we would be able to determine the suitable domain $\Omega$ as
 
 Define $v:=u_t-cu_x$.
 Then we have
-\begin{pde*}
-v_t+cv_x &= 0 \: t,x>0,\\
-v(0,x) &= h(x)-cg'(x). \:
-\end{pde*}
+\[\left\{\begin{alignedat}{2}
+v_t+cv_x &= 0 && t,x>0,\\
+v(0,x) &= h(x)-cg'(x). &&
+\end{alignedat}\right.\]
 By method of characteristic,
 \[v(t,x)=h(x-ct)-cg'(x-ct).\]
 
 Then, we can solve two system
-\begin{pde*}
-u_t-cu_x &= v, \: x>ct>0,\\
-u(0,x) &= g(x), \:
-\end{pde*}
+\[\left\{\begin{alignedat}{2}
+u_t-cu_x &= v, && x>ct>0,\\
+u(0,x) &= g(x), &&
+\end{alignedat}\right.\]
 and
-\begin{pde*}
-u_t-cu_x &= v, \: ct>x>0,\\
-u_x(t,0) &= \alpha(t), \:
-\end{pde*}
+\[\left\{\begin{alignedat}{2}
+u_t-cu_x &= v, && ct>x>0,\\
+u_x(t,0) &= \alpha(t), &&
+\end{alignedat}\right.\]
 
 For the first system, introducing parameter $\xi>0$,
 \begin{gather*}
@@ -443,13 +442,13 @@ u(t,x)&=g(\xi)-\int_0^\theta v(s,\xi-cs)\,ds\\
 
 Consider the inviscid Burgers' equation
 \[u_t+uu_x=0.\]
-\begin{cond}
+\begin{parts}
 \item Suppose $u(0,x)=\tanh(x)$. For what values of $t>0$ does the solution of the quasi-linear PDE remain smooth and single valued? Given an approximation sketch of the characteristics in the $tx$-plane.
 \item Suppose $u(0,x)=-\tanh(x)$. For what values of $t>0$ does the solution of the quasilinear PDE remain smooth and single valued? Given an approximation sketch of the characteristics in the $tx$-plane.
 \item Suppose
-\[u(0,x)=\begin{cases}0,&x<0\\x,&0\le x<1,\\1,&1\le x\end{cases}.\]
+\[u(0,x)=\begin{cases}0,&x<0\\times,&0\le x<1,\\1,&1\le x\end{cases}.\]
 Sketch the characteristics. Solve the Cauchy problem. Hint: solve the problem in each region separately and ``paste'' the solution together.
-\end{cond}
+\end{parts}
 
 
 
@@ -492,7 +491,7 @@ This question asks the convergence
 For a sequence of measurable functions $f_n:(X,\mu)\to\R$, define the maximal function
 \[Mf(x):=\sup_n|f_n(x)|.\]
 \begin{thm}[LDCT]
-If $\|Mf\|_{L^1}<\oo$ and $f_n\to f$ a.e., then $f_n\to f$ in $L^1$.
+If $\|Mf\|_{L^1}<\infty$ and $f_n\to f$ a.e., then $f_n\to f$ in $L^1$.
 \end{thm}
 
 continuity application
@@ -501,7 +500,7 @@ continuity application
 Let $\{f_n\}_n$ be a sequence of nonnegative functions in $L^1$.
 Suppose it converges to $f$ pointwisely.
 Then,
-\[\lim_{n\to\oo}\|f_n\|_1=\|f\|_1\impl\lim_{n\to\oo}\|f_n-f\|_1=0.\]
+\[\lim_{n\to\infty}\|f_n\|_1=\|f\|_1\impl\lim_{n\to\infty}\|f_n-f\|_1=0.\]
 \end{thm}
 
 \subsection{Derivative and integral}
@@ -564,10 +563,10 @@ Proof: Differentiate
 \end{align*}
 
 Let $f$ be a regular distribution, i.e. $f\in L_\loc^1$.
-\begin{cond}
+\begin{parts}
 \item $f\in\AC_\loc$ iff $f'\in L_\loc^1$.
 \item $f\in\Lip$ iff $f'\in L_\loc^\infty$.
-\end{cond}
+\end{parts}
 Here, $f'$ denotes the distributional derivative.
 For $\AC_\loc$ we often say a function is \emph{weakly differentiable}.
 
@@ -587,7 +586,7 @@ Let $I=[0,T]\subset\R_t$ and $\Omega=\cl{B_r(a)}\subset\R_x^d$.
 Consider the following initial value problem:
 \[x'=f(t,x),\qquad x(0)=a.\]
 \begin{thm}[Global existence, $\Omega=\R^d$]
-If $f$ is $C_t\Lip_x$ on $I\x\R^d$, the equation has a unique $C^1$ global solution on $I$.
+If $f$ is $C_t\Lip_x$ on $I\times\R^d$, the equation has a unique $C^1$ global solution on $I$.
 \end{thm}
 \begin{pf}
 \Step{1}[Construction of an approximation]
@@ -611,7 +610,7 @@ By induction, we have
 &=MK^n\frac{t^{n+1}}{(n+1)!}.
 \end{align*}
 This proves the absolute convergence
-\[\sum_{n=0}^n\|x_{n+1}-x_n\|_\infty\les e^{KT}-1,\]
+\[\sum_{n=0}^n\|x_{n+1}-x_n\|_\infty\lesssim e^{KT}-1,\]
 hence $x_n$ uniformly converges in a local time.
 
 \[|x'_{n+1}(t)-x'_n(t)|\le|f(t,x_n(t))-f(t,x_{n-1}(t))|\le K|x_n(t)-x_{n-1}(t)|\le MK^{n+1}\frac{t^{n+1}}{(n+1)!}.\]
@@ -626,10 +625,10 @@ Thus, $x^*$ is a solution and it is easy to check $x^*$ is $C^1$.
 \end{pf}
 
 \begin{thm}[Local existence]
-If $f$ is $C_t\Lip_x$ on $I\x\Omega$, then the equation has a unique $C^1$ local solution.
+If $f$ is $C_t\Lip_x$ on $I\times\Omega$, then the equation has a unique $C^1$ local solution.
 
 The interval of existence may be arbitrarily chosen such that
-\[T\le R\cdot\|f\|_{C_{t,x}(I\x\Omega)}^{-1}.\]
+\[T\le R\cdot\|f\|_{C_{t,x}(I\times\Omega)}^{-1}.\]
 \end{thm}
 
 
@@ -707,7 +706,7 @@ Compactness and net compactness are equivalent.
 \begin{pf}[2]
 It is a proof without Tychonoff.
 Let $\cU$ be a ultrafilter on a set $\cD$ contatining all $\uparrow d$.
-Define a directed set $\cE=\{(d,U)\in\cD\x\cU:d\in U\}$ as $(d,U)\succ(d',U')$ for $U\subset U'$.
+Define a directed set $\cE=\{(d,U)\in\cD\times\cU:d\in U\}$ as $(d,U)\succ(d',U')$ for $U\subset U'$.
 Let $f:\cE\to X$ be a subnet of $f:\cD\to X$ defined by $f_{(d,U)}=f_d$.
 
 By the previous theorem, $\cU$-$\lim\pi_\alpha f_d\in X_\alpha$ exsits for each $\alpha$.
@@ -760,7 +759,7 @@ If $|xf'(x)|\le M$ and $\frac1x\int_0^xf(y)\,dy\to L$, then $f(x)\to L$ as $x\to
 \begin{sol}
 Since
 \begin{align*}
-\abs{f(x)-\frac{F(x)-F(a)}{x-a}}
+|f(x)-\frac{F(x)-F(a)}{x-a}|
 &\le\frac1{x-a}\int_a^x|f(x)-f(y)|\,dy\\
 &=\frac1{x-a}\int_a^x(x-y)|f'(c)|\,dy\\
 &\le\frac M{x-a}\int_a^x\frac{x-y}c\,dy\\
@@ -835,9 +834,9 @@ Then, by (2) and (5), given $n>N\ge4$, we have an inequality
 &<\frac\e3+|f_n(r)-f(r)|+\frac23\e
 \end{align*}
 for any $x\in I$.
-By limiting $n\to\oo$, we obtain
-\[\lim_{n\to\oo}|f_n(x)-f(x)|<\e.\]
-Since $\e$ and $x$ are arbitrary, we can deduce the uniform convergence of $f_n$ as $n\to\oo$.
+By limiting $n\to\infty$, we obtain
+\[\lim_{n\to\infty}|f_n(x)-f(x)|<\e.\]
+Since $\e$ and $x$ are arbitrary, we can deduce the uniform convergence of $f_n$ as $n\to\infty$.
 \end{sol}
 
 
@@ -852,7 +851,7 @@ Let $n$ be a positive integer arbitrarily taken. Then, we can find $N$ such that
 Assume that every point $x$ in $E$ is contained in at most $n-1$ sets among
 \[E,\ \frac12E,\ \frac13E,\ \cdots,\ \frac1NE.\]
 In other words, it is equivalent to:
-\[\bigcap_{k\in A}\frac1kE=\mt\]
+\[\bigcap_{k\in A}\frac1kE=\varnothing\]
 for any subset $A\subset\{1,\cdots,N\}$ with $|A|\ge n$.
 Define
 \[E_A:=\bigcap_{k\in A}\frac1kE\cap\bigcap_{k'\in A}\left(\frac1{k'}E\right)^c\]
@@ -881,7 +880,7 @@ Let $m,b,k,A,\omega_d$ be positive real constants.
 Consider an underdamped oscillator with sinusoidal diving force described as
 \[mx''+bx'+kx=A\sin\omega_dt,\quad x(0)=x_0,\ x'(0)=0.\]
 There are some observations:
-\begin{cond}
+\begin{parts}
 \item The underdamping condition means $b^2-4mk<0$ so that the roots of characteristic equation are imaginary.
 \item The positivity of $m,b$ implies the real part of solution that will be denoted by $-\beta=-\frac b{2m}$ is negative; it shows exponential decay of solutions.
 \item Introducing the natural frequency $\omega_n=\sqrt{k/m}$, we can rewrite the equation as
@@ -893,7 +892,7 @@ and it can be verified that this solution is asymptotically stable, i.e.
 \item The condition $\beta>\omega_n$ is equivalent to that the oscillator is underdamped.
 \item Let $m,k$ be fixed. Then, the solution $x_c$ decays most fastly when $b$ satisfied $b^2=4mk$, equivalently, $\beta=\omega_n$.
 \item When $\omega_d=\omega_n$ such that the amplitude of particular solution diverges.
-\end{cond}
+\end{parts}
 
 
 

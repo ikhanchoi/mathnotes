@@ -6,10 +6,9 @@
 \usepackage[margin=100pt]{geometry}
 
 % font
-\usepackage[bitstream-charter,cal]{mathdesign}
-\let\circledS\undefined
-\usepackage[T1]{fontenc}
 \linespread{1.1}
+\usepackage[T1]{fontenc}
+\usepackage[bitstream-charter,cal]{mathdesign}
 
 
 \makeatother

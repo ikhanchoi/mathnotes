@@ -11,6 +11,7 @@
 \part{Measure theory}
 
 
+
 \chapter{Measures and $\sigma$-algebras}
 
 \section{Definition of measures}
@@ -67,16 +68,11 @@ We call $\mu$ the \emph{Carath\'eodory measure} constructed from $\rho$.
 \end{parts}
 \end{prb}
 
+\chapter{Measures on the real line}
 
 
-
-
-
-\chapter{Measures on Euclidean spaces}
 
 \chapter{Measurable functions}
-
-\chapter{}
 
 
 
@@ -88,6 +84,10 @@ We call $\mu$ the \emph{Carath\'eodory measure} constructed from $\rho$.
 \chapter{Lebesgue integration}
 \section{Definition of Lebesgue integration}
 \section{Convergence theorems}
+
+Stein: Egorov -> BCT -> Fatou -> MCT -> L1 is a measure : BCT + L1 is a measure -> DCT
+
+Folland: MCT -> Fatou -> DCT -> BCT
 
 \section{Modes of convergence}
 
@@ -129,13 +129,23 @@ Therefore, $f_{n_k}$ converges $\mu$-a.e.
 
 
 \chapter{Product measures}
-\section{The Fubini theorem}
+\section{The Fubini-Tonelli theorem}
 \section{The Lebesgue measure on Euclidean spaces}
 
 \chapter{Lebesgue spaces}
 \section{$L^p$ spaces}
 \section{$L^2$ spaces}
 \section{The Riesz representation theorem}
+
+
+
+\part{}
+
+\chapter{}
+
+\chapter{}
+
+
 
 \chapter{Integral operators}
 \section{Bounded linear operators}
@@ -146,12 +156,59 @@ Therefore, $f_{n_k}$ converges $\mu$-a.e.
 
 \part{Fundamental theorem of calculus}
 
-\chapter{Absolute continuous functions}
+\chapter{Weak derivatives}
 
-\chapter{Functions of bounded variation}
+The space of weakly differentiable functions with respect to all variables $=W_\loc^{1,1}$.
 
-\chapter{}
+\begin{prb}[Product rule for weakly differentiable functions]
+We want to show that if $u$, $v$, and $uv$ are weakly differentiable with respect to $x_i$, then $\pd_{x_i}(uv)=\pd_{x_i}uv+u\pd_{x_i}v$.
+\begin{parts}
+\item If $u$ is weakly differentiable with respect to $x_i$ and $v\in C^1$, then $\pd_{x_i}(uv)=\pd_{x_i}uv+u\pd_{x_i}v$.
+\end{parts}
+\end{prb}
+
+
+\begin{prb}[Interchange of differentiation and integration]
+Let $f:\Omega\to\R$
+such that $f(x,y)$ and $\pd_{x_i}f(x,y)$ are both locally integrable in $x$ and integrable $y$.
+Then,
+\[\pd_{x_i}\int f(x,y)\,dy=\int\pd_{x_i}f(x,y)\,dy\]
+where $\pd_{x_i}$ denotes the weak partial derivative.
+\end{prb}
+
+
+
+
+
+\chapter{Absolutely continuity}
+
+\begin{parts}
+\item $f$ is $\Lip_\loc$ iff $f'$ is $L_\loc^\infty$
+\item $f$ is $\textrm{AC}_\loc$ iff $f'$ is $L_\loc^1$
+\end{parts}
+\begin{parts}
+\item $f$ is $\Lip$ iff $f'$ is $L^\infty$
+\item $f$ is $\textrm{AC}$ iff $f'$ is $L^1$
+\item $f$ is $\textrm{BV}$ iff $f'$ is a finite regular Borel measure
+\end{parts}
+
+
 
 \chapter{The Lebesgue differentiation theorem}
 
 \end{document}
+
+
+
+
+\pd{f}{x}{y}가 원점에서 연속이 아니면 못바꾼다?
+라고 생각하지 말고 계산된 편미분계수가 편도함수를 잘 표현하지 못할 수 있다고 이해하자.
+즉, 편미분계수는 C2임을 보일 때 말고는 C2가 아닌 경우에 쓸모가 없다
+
+
+
+해석학에서 test function에 대해서는 쉽게 풀리는 결과들이 많다
+여기서 부등식이 중요한 이유: 조밀집합에서의 결과를 전체로 확장시킬 때 필요하다
+그 부등식 자체가 조밀 집합에서만 성립한다면 a.e. 수렴하는 부분수열의 존재성을 통해
+1. 항등사상이 닫힌 작용소이거나 2. 수반작용소로 확장한 작용소와 well-definedness check
+가 가능하다

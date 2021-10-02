@@ -1,9 +1,10 @@
-\documentclass[11pt]{article}
+\documentclass[12pt]{article}
 \usepackage{../../ikany}
-\usepackage[margin=1.5in]{geometry}
+\usepackage[margin=100pt]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage[bitstream-charter,cal]{mathdesign}
+\linespread{1.1}
 
-\let\realsection\section
-\renewcommand\section{\newpage\realsection}
 
 \begin{document}
 \tableofcontents
@@ -85,11 +86,11 @@ Thus, we get the famous third form of Weierstrass equation:
 Let
 \[E:y^2=x^3-Ax-B.\]
 TFAE:
-\begin{cond}
+\begin{parts}
 \item A point $(x,y)$ is a singular point of $E$.
 \item $y=0$ and $x$ is a double root of $x^3-Ax-B$.
 \item $\Delta=0$.
-\end{cond}
+\end{parts}
 \end{thm}
 \begin{pf}
 (1)$\Rightarrow$(2)
@@ -124,8 +125,8 @@ where $\gamma:=\frac{1+\sqrt5}2$ and $\omega=\zeta_3$.
 \end{ex}
 \begin{thm}
 Let $\theta^3=hk^2$ for $h,k$ square-free's.
-\[\cO_{\Q(\theta)}=\begin{cases}\bigmath\Z+\theta\Z+\frac{\theta^2}k\Z&,m\not\equiv\pm1\pmod9\\
-\bigmath\Z+\theta\Z+\frac{\theta^2\pm\theta k+k^2}{3k}\Z&,m\equiv\pm1\pmod9\end{cases}\]
+\[\cO_{\Q(\theta)}=\begin{cases}\Z+\theta\Z+\frac{\theta^2}k\Z&,m\not\equiv\pm1\pmod9\\
+\Z+\theta\Z+\frac{\theta^2\pm\theta k+k^2}{3k}\Z&,m\equiv\pm1\pmod9\end{cases}\]
 \end{thm}
 \begin{cor}
 If $\theta^3$ is a square free integer, then
@@ -193,8 +194,9 @@ which means $\phi_{\fP|\fp}$ fixes the field $\cO_K/\fp$ so that $\phi_{\fP|\fp}
 Let $D$ be a quadratic discriminant.
 For $\zeta_D=e^{\frac{2\pi i}D}$, it is known that the cyclotomic field $\Q(\zeta_D)$ is the smallest cyclotomic extension of the quadratic field $\Q(\sqrt D)$.
 Let $K=\Q(\sqrt{D})$ and $L=\Q(\zeta_D)$.
+
 \begin{cd}[column sep = 0pt]
-\sigma_p \mp{d}{\cdot|_K} &\in& D_{\fq|p} &\le& \Gal(L/\Q) \ep{d}{\cdot|_K} &\cong& (\Z/|D|\Z)^\x \ep{d}{\chi_K=\left(\frac D\cdot\right)} & \\
+\sigma_p \dar[|->]{\cdot|_K} &\in& D_{\fq|p} &\le& \Gal(L/\Q) \dar[->>]{\cdot|_K} &\cong& (\Z/|D|\Z)^\times \dar[->>]{\chi_K=\left(\frac D\cdot\right)} & \\
 \sigma_p|_K&\in& D_{\fp|p} &\le& \Gal(K/\Q) &\cong& \<\pm1\>.
 \end{cd}
 
@@ -205,12 +207,12 @@ In other words, which is true: $\sigma_p(\sqrt D)=\pm\sqrt D$?
 Notice that $\sigma$ satisfies the condition to be the Frobenius element: $\sigma_pI_{\fq|p}=\phi_{\fq|p}$.
 Therefore, $\phi_{\fp|p}=\sigma_p|_K$ is also a Frobenius element.
 There are only two cases:
-\begin{cond}
+\begin{parts}
 \item If $f=|D(\fp/p)|=1$, then $\sigma_p|_K$ is the identity, so $\chi_K(p)=1$
 \item If $f=|D(\fp/p)|=2$, then $\sigma_p|_K$ is not trivial, so $\chi_K(p)=-1$
-\end{cond}
+\end{parts}
 
-Artin reciprocity: $(\Z/D\Z)^\x$ is extended to $I_K^S$.
+Artin reciprocity: $(\Z/D\Z)^\times$ is extended to $I_K^S$.
 
 
 
@@ -225,12 +227,12 @@ Ellipse is reduced by finitely many computations.
 
 
 Especially for hyperbola, here is a strategy to use infinite descent.
-\begin{cond}
+\begin{parts}
 \item Let midpoint to be origin.
 \item Find the subgroup of $\SL_2(\Z)$ preserving the image of hyperbola(which would be isomorphic to $\Z$).
 \item Find an impossible region.
 \item Assume a solution and reduce it to the either impossible region or the ground solution.
-\end{cond}
+\end{parts}
 \begin{ex}[Pell's equation]
 Consider\[x^2-2y^2=1.\]
 A generator of hyperbola generating group is $g=\begin{pmatrix}3&4\\2&3\end{pmatrix}$.
@@ -251,17 +253,17 @@ In ohter words, the equation has a solution iff $k$ is a perfect square.
 Consider a family of diophantine equations:
 \[x^2+y^2-kxy-k=0\]
 for $k\in\Z$.
-\begin{cond}
+\begin{parts}
 \item Find the smallest three solutions such that $x>y\ge0$ when $k=4$.
 \item Show that if $(x,y)$ is a solution, then $(y,ky-x)$ is also a solution.
 \item Show that if it has a solution, then at least one solution satisfies $x>0\ge y$.
 \item Show that the equation does not have a solution in the region $xy<0$.
 \item Show that the equation has a solution if and only if $k$ is a perfect square.
 \item Let $a$ and $b$ be integers. Deduce that if $ab+1$ divides $a^2+b^2$, then \[\frac{a^2+b^2}{ab+1}\]is a perfect square.
-\end{cond}
+\end{parts}
 \end{prb}
 \begin{sol}
-\begin{cond}
+\begin{parts}
 \item
 Try for $y=0,1,\cdots,8$.
 Then we get $(2,0)$, $(8,2)$, and $(30,8)$.
@@ -284,7 +286,7 @@ Since $x+y>y+(ky-x)$, we obtain a contradiction for the minimality.
 Suppose $x,y\in\Z$ satisfy $xy<0$.
 Since $xy\le-1$, \[x^2+y^2-kxy-k\ge x^2+y^2+k-k>0.\]
 \item
-\end{cond}
+\end{parts}
 \end{sol}
 \begin{rmk}
 In general, the transformation $(x,y)\mapsto(y,ky-x)$ preserving the image of hyperbola is not easy to find.
@@ -354,7 +356,7 @@ In the first place, here is the algebraic definition.
 Let $p\in\Z$ be a prime.
 The ring of the $p$-adic integers $\Z_p$ is defined by the inverse limit:
 \begin{es}
-\Z_p:={\bigmath\lim_{\substack{\longleftarrow\\n\in\N}}}\F_{p^n}  \>  \cdots  \>  \Z/(p^3)  \>  \Z/(p^2)  \>  \F_p.
+\Z_p:={\lim\limits_{\substack{\longleftarrow\\n\in\N}}}\F_{p^n}  \>  \cdots  \>  \Z/(p^3)  \>  \Z/(p^2)  \>  \F_p.
 \end{es}
 \end{defn}
 \begin{defn}
@@ -485,6 +487,84 @@ Then, $A$ is a PID if and only if Euclid's lemma holds.
 If $R$ satisfies the \emph{ascending chain condition for principal ideals}, then $R$ is a PID iff $R$ is a B\'ezout domain, and $R$ is a UFD iff Euclid's lemma holds in $R$.
 
 Every valuation ring is a B\'ezout domain.
+
+
+
+
+
+
+
+
+
+\section{Category Theory for Homological Algerba}
+
+
+\subsection{Additive category}
+
+There are three main concepts that we are going to grasp in this note:
+\begin{parts}
+\item zero morphisms and zero object;
+\item biproduct;
+\item additive functors and enriched functors.
+\end{parts}
+
+\subsubsection{Zeros}
+
+Let us get started from the definitions of zero morphisms and zero objects.
+\begin{defn}
+A \emph{zero object} is an object which is initial and terminal.
+\end{defn}
+\begin{defn}
+A category is said to have \emph{zero morphisms} if every hom-set contains a specified morphism denoted by 0 that satisfies $0f=0$ and $f0=0$ for all morphisms $f$.
+\end{defn}
+
+
+In other words, we can say that the existence of zero morphisms is equivalent to $\mathbf{Set_*}$-enrichment.
+
+
+Here are definitions of categories in which we are interested.
+\begin{defn}
+A \emph{pointed category} is a cateogry with a zero object.
+A \emph{semiadditive category} is a $\mathbf{CMon}$-enriched category with a zero object.
+A \emph{additive category} is a $\mathbf{Ab}$-enriched category with a zero object.
+A \emph{preadditive category} is another name of $\mathbf{Ab}$-enriched category.
+\end{defn}
+Note that we have of course several possible ways to give some equivalent definitions.
+For example, the following proposition is well-admitted as the definition of semiadditive category.
+
+
+
+\begin{rd}
+Additive category \dar\rar & Semiadditive category \dar\rar & Pointed category \dar \\
+$\mathbf{Ab}$-enriched category \rar\uar[dashed, bend left]{zero object} & $\mathbf{CMon}$-enriched category \rar\uar[dashed, bend left]{zero object} & $\mathbf{Set_*}$-enriched category \uar[dashed, bend left]{zero object}\\
+\end{rd}
+
+
+\subsubsection{Biproducts}
+Simply saying, biproducts is something that is both product and coproduct.
+To define biproduct, we need zero morphisms, so the $\mathbf{Set_*}$-enrichment will be assumed in all statements in this subsection.
+\begin{defn}
+A \emph{canonical morphism from coproduct to product} is a morphism blabla
+\end{defn}
+\begin{defn}[Biproduct]
+If the canonical morphism from coproduct to product is an isomorphism, then we call it by the \emph{biproduct}.
+\end{defn}
+There is a counterexample that coproduct and product are isomorphic but it is not the biproduct.
+
+
+
+
+The following two theorems must be highlightened.
+The first theorem captures the familiar isomorphisms between direct sum and direct product of finitely many modules.
+\begin{thm}
+In a $\mathbf{CMon}$-enriched cateogry, finitary product is also the coproduct so that it forms the biproduct, and vice versa.
+\end{thm}
+
+\begin{thm}
+A category is semiadditive if and only if it has all finite biproducts.
+\end{thm}
+
+
 
 \end{document}
 

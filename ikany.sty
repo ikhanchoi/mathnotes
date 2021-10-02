@@ -68,7 +68,9 @@
   \newtheorem{prop}[thm]{Proposition}
   \newtheorem*{prop*}{Proposition}
   \newtheorem{cor}[thm]{Corollary}
+  \newtheorem*{cor*}{Corollary}
   \newtheorem{lem}[thm]{Lemma}
+  \newtheorem*{lem*}{Lemma}
   \newtheorem*{clm}{Claim}
 \theoremstyle{definition}
   \newtheorem{defn}{Definition}[section]
@@ -119,19 +121,13 @@
 
 \RequirePackage{tikz-cd,xparse}
 \NewDocumentEnvironment{cd}{}
-  {
-    \renewcommand{\mn}{\ar[tail]}
-    \renewcommand{\ep}{\ar[two heads]}
-    \renewcommand{\mp}{\ar[mapsto]}
-    \newcommand{\hk}{\ar[hook]}
-    \[\begin{tikzcd}
-  }
+  {\[\begin{tikzcd}}
   {\end{tikzcd}\]}
 \NewDocumentEnvironment{es}{}
   {
-    \renewcommand{\>}{\ar{r}\&}
-    \tikzcdset{column sep=small,ampersand replacement=\&}
-    \begin{cd}[column sep=small]
+    \renewcommand{\>}{\rar\&}
+    \tikzcdset{ampersand replacement=\&}
+    \begin{cd}[column sep=tiny]
   }
   {\end{cd}}
 \NewDocumentEnvironment{rd}{}
@@ -140,25 +136,17 @@
     \[\begin{tikzcd}
   }
   {\end{tikzcd}\]}
-% `\parbox{7em}{\centering ~~ }` is useful
-\newcommand\sar{\ar[swap]}
-\newcommand\lar{\ar[bend left]}
-\newcommand\rar{\ar[bend right,swap]}
-%
-\newcommand\da{\ar[dashed]}
-\newcommand\sda{\ar[dashed,swap]}
-\newcommand\lda{\ar[dashed,bend left]}
-\newcommand\rda{\ar[dashed,bend right,swap]}
-%
+\tikzcdset{arrow style=tikz}
+\tikzset{>={Straight Barb[scale=0.8]}}
+
+% for codes like: \rar[symbol=\subset]
 \tikzset{
   symbol/.style={
     draw=none,
     every to/.append style={
-      edge node={node [sloped, allow upside down, auto=false]{$#1$}}
-    },
-  },
+      edge node={node [sloped, allow upside down, auto=false]{$#1$}}}
+  }
 }
-\tikzcdset{arrow style={math font}}
 
 
 
