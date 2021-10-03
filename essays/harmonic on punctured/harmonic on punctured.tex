@@ -6,13 +6,17 @@
 \linespread{1.1}
 
 
-\title{Characterizations of Harmonic Functions Vanishing at Infinity on the Punctured Domain}
+\title{Harmonic Functions Vanishing at Infinity on the Punctured Domain}
 \author{Ikhan Choi}
 \date{September 25, 2021.}
 
 
 \begin{document}
 \maketitle
+\section{Kelvin transform and decay rates}
+
+\section{Potential field from a source}
+
 
 \begin{thm*}
 Let $d\ge3$.
@@ -33,7 +37,7 @@ Be cautious that the argument
 \[\<\Phi*\rho,\f\>=\<\rho,\Phi*\f\>=-\<u,\Delta(\Phi*\f)\>=\<u,\f\>\]
 fails to provide a proof because the function $\Phi*\rho$ is not compactly supported so that we cannot deduce $\<\rho,\Phi*\f\>=-\<u,\Delta(\Phi*\f)\>$, and here we use the condition that $u$ vanishes at infinity to justify the equality.
 Define a cutoff function $\chi\in C_c^\infty(\R^d)$ such that
-\[\chi(x)=\begin{cases}1&\text{ if }|x|\le\frac54\\0&\text{ if }|x|>\frac74\end{cases}.\]
+\[\chi(x)=\begin{cases}1&\text{ if }|x|\le\frac54\\0&\text{ if }|x|\ge\frac74\end{cases}.\]
 If we denote $\chi_r(x):=\chi(\frac xr)$, then we have
 \[\<\rho,(\Phi\chi_r)*\f\>=-\<u,\Delta((\Phi\chi_r)*\f)\>\]
 by the definition of $\rho$.
@@ -87,8 +91,10 @@ the distribution $\Phi*\rho$ on $\R^d\setminus\{0\}$ is weakly harmonic, and by 
 Since $\rho$ is supported at zero, we have a positive integer $k$ and constants $a_\alpha$ such that
 \[|\<\rho,\f\>|\le\sum_{|a|\le k}|a_\alpha D^\alpha\f(0)|\]
 for $\f\in C^\infty(\R^d)$.
-Then, for $x\in\R^d$ with $|x|=r>0$, by taking $\chi\in C_c^\infty(\R^d)$ such that $\chi=1$ on $B(0,2r)$, we have
-\[|\Phi*\rho(x)|=|(\Phi\chi)*\rho(x)|=|\<\rho(y),\Phi(x-y)\chi(x-y)\>_y|\le\sum_{|a|\le k}|a_\alpha D^\alpha\Phi(x)|=O(r^{2-d})\]
+Then, for non-zero $x\in\R^d$, by taking a cutoff function $\chi\in C_c^\infty(\R^d)$ such that
+\[\chi(y)=\begin{cases}1&\text{ if }|y-x|\le\frac13|x|\\0&\text{ if }|y|\le\frac13|x|\end{cases},\]
+we have
+\[|\Phi*\rho(x)|=|(\Phi\chi)*\rho(x)|=|\<\rho(x-y),\Phi(y)\chi(y)\>_y|\le\sum_{|a|\le k}|a_\alpha D^\alpha\Phi(x)|=O(r^{2-d})\]
 as $r\to\infty$.
 Therefore, $\Phi*\rho$ vanishes at infinity.
 \end{pf}
@@ -97,6 +103,7 @@ Therefore, $\Phi*\rho$ vanishes at infinity.
 Let $\rho$ be a distribution on $\R^d$ such that $\supp(\rho)\subset\{0\}$.
 Then, there is a constant coefficient partial differential operator $P(D)$ such that $\rho=P(D)\delta$.
 \end{lem*}
+
 \begin{cor*}
 Let $d\ge3$.
 If a distribution $u\in\cD'(\R^d)$ is a harmonic function on $\R^d\setminus\{0\}$ and vanishes at infinity, then there are an integer $k\ge0$ and constants $a_\alpha$ such that

@@ -743,7 +743,7 @@ Then, we can construct a new solution in $C^1([0,t_0+\tilde T],C_c^1(\R^6))$ by 
 If the following statement holds, then Theorem 1.1 is true: the classical solution $f\in C^1([0,T];C_c^1(\R^6))$ with a given initial data $f_0\in C_c^1(\R^6)$ satisfies $Q(t)\le h(t)$ in $t\le T$ for a continuous function $h:[0,\infty)\to[0,\infty)$.
 \end{cor}
 \begin{pf}
-Suppose $f\in C^1([0,T_{max}),C_c^1(\R^6))$ for $T_{max}<\infty$ is the maximal solution with initial data $f_0$.
+Suppose $f\in C^1([0,T_{max});C_c^1(\R^6))$ for $T_{max}<\infty$ is the maximal solution with initial data $f_0$.
 Since $Q$ is bounded on $[0,T_{max}]$, we can apply the previous proposition, which contradicts to the maximality of $T_{\max}$.
 Hence $T_{max}=\infty$, and the solution $f$ is prolonged forever.
 \end{pf}
@@ -765,13 +765,14 @@ Hence $T_{max}=\infty$, and the solution $f$ is prolonged forever.
 
 \begin{thm*}[Schaeffer, 1991]
 Let $f_0\in C_c^1(\R^6,[0,\infty))$ and $p>\frac{33}{17}$.
-The classical solution $f$ of the Cauchy problem for the Vlasov-Poisson system with an initial data $f_0$ has a constant $c=c(f_0,p)$ such that
-\[Q(t)\le c(1+t)^p.\]
+The classical solution $f\in C^1([0,T];C_c^1(\R^6))$ of the Cauchy problem for the Vlasov-Poisson system with an initial data $f_0$ has a constant $c=c(f_0,p)$ such that
+\[Q(t)\le c(1+t)^p\]
+for all $t\le T$.
 \end{thm*}
 
 \subsection{Time averaging}
 Fix a (local) classical solution $f$.
-If we had an integral inequality
+If we had an integral inequality of the form
 \[Q(t)-Q(t-\Delta)\lesssim\int_{t-\Delta}^tQ(s)^a\,ds\]
 for some constant $0\le a\le1$, then we would be able to prove that
 \begin{align}\label{gjg}
@@ -780,19 +781,19 @@ Q(t)\lesssim\begin{cases}(1+t)^{\frac1{1-a}}&,0\le a<1\\e^{ct}&,a=1\end{cases}
 using the nonlinear Gronwall lemma.
 To obtain this integral inequality, we may try as follows: if we got an estimate on the field
 \[\|E(t)\|_\infty\lesssim Q(t)^a,\]
-then for any $t,\hat x,\hat v$ such that $f(t,\hat x,\hat v)\ne0$ and for any $\Delta>0$ we have
-\[|v-V(t-\Delta;t,\hat x,\hat v)|=|\int_{t-\Delta}^t\gamma E(s,X(s;t,\hat x,\hat v))\,ds|\lesssim\int_{t-\Delta}^tQ(s)^a\,ds,\]
+then for any fixed $t,\hat x,\hat v$ such that $f(t,\hat x,\hat v)\ne0$ and for any $\Delta>0$ we have
+\[|\hat v-V(t-\Delta;t,\hat x,\hat v)|=|\int_{t-\Delta}^t\gamma E(s,X(s;t,\hat x,\hat v))\,ds|\lesssim\int_{t-\Delta}^tQ(s)^a\,ds,\]
 so there would be a constant $c=c(f_0)$ such that
 \begin{align*}
-|v|&\le|V(t-\Delta;t,\hat x,\hat v)|+c\int_{t-\Delta}^tQ(s)^a\,ds\\
+|\hat v|&\le|V(t-\Delta;t,\hat x,\hat v)|+c\int_{t-\Delta}^tQ(s)^a\,ds\\
 &\le Q(t-\Delta)+c\int_{t-\Delta}^tQ(s)^a\,ds,
 \end{align*}
 which deduces
 \[Q(t)\le Q(t-\Delta)+c\int_{t-\Delta}^tQ(s)^a\,ds.\]
 
-However, an optimized version of the estimate in (i) of Lemma 1.2 that uses $\|\rho(t)\|_{5/3}\lesssim1$ gives only
+However, an optimized modification of the estimate in (a) of Lemma 1.2 that uses $\|\rho(t)\|_{5/3}\lesssim1$ only gives the large exponent
 \[\|E(t)\|_\infty\lesssim\|\rho(t)\|_\infty^{4/9}\|\rho(t)\|_{5/3}^{5/9}\lesssim(Q(t)^3)^{4/9}\cdot1^{5/9}=Q(t)^{4/3},\]
-so we need another approach because $4/3>1$.
+so we need another approach for suppression of the exponent $4/3$ down to $1$.
 Our strategy is to average in the time direction.
 Precisely, we estimate the averaged field
 \[\frac1\Delta\int_{t-\Delta}^t|E(s,X(s;t,\hat x,\hat v))|\,ds\lesssim Q(t)^a\]
@@ -808,8 +809,8 @@ Fix $(t,\hat x,\hat v)\in\R^+\times\R^6$.
 We will write
 \[\hat X(s):=X(s;t,\hat x,\hat v)\quad\text{and}\quad\hat V(s):=V(s;t,\hat x,\hat v).\]
 Also, we will use the notations
-\[X(s):=X(s;t,x,v)\quad\text{and}\quad V(s):=V(s;t,x,v)\]
-assuming $x,v$ are given without any confusion.
+\[X(s):=X(s;t,x,v)\quad\text{and}\quad V(s):=V(s;t,x,v),\]
+where $x,v$ are usually used in integration variable.
 Symbols $y$ and $w$ are always used for $X(s)$ and $V(s)$ at time $s$ especially when applying volume preserving coordinates transformation $(x,v)\mapsto(X(s),V(s))=(y,w)$.
 \end{notn*}
 
@@ -817,25 +818,26 @@ Now, our ultimate goal is to bound the integral
 \begin{align*}
 \int_{t-\Delta}^t|E(s,\hat X(s))|\,ds
 &\le\frac1{4\pi}\int_{t-\Delta}^t\iint\frac{f(s,y,w)}{|y-\hat X(s)|^2}\,dw\,dy\,ds\\
-&=\frac1{4\pi}\int_{t-\Delta}^t\iint\frac{f(t,x,v)}{|X(s)-\hat X(s)|^2}\,dv\,dx\,ds.
+&=\frac1{4\pi}\int_{t-\Delta}^t\iint\frac{f(t,x,v)}{|X(s)-\hat X(s)|^2}\,dv\,dx\,ds
 \end{align*}
-The main difficulty of this integral is that $|y-\hat X(s)|^{-2}$ is not integrable with respect to $y$ on the region where $|y|$ is large; the inverse square has too slow decay rate to be integrable in three dimesional space $\R^3$.
+by velocity.
+The main difficulty of this integral is that $|y-\hat X(s)|^{-2}$ is not integrable with respect to $y$ on the region where $|y|$ is large; the inverse square has too slow decay rate to be integrable in three-dimesional space $\R^3$.
 
-Then, we want to find a lower bound of the relative position vector $|X(s)-\hat X(s)|$ assuming it is large.
-When the distance between $X(s)$ and $\hat X(s)$ is sufficiently large so that the interaction between particles at positions $X(s)$ and $\hat X(s)$ is sufficiently weak, the distance will change almost linearly in both velocity and time.
+We want to find a lower bound of the relative position vector $|X(s)-\hat X(s)|$ assuming it is large.
+When the distance between $X(s)$ and $\hat X(s)$ is sufficiently large so that the interaction between particles at positions $X(s)$ and $\hat X(s)$ is sufficiently weak, the distance will change almost linearly in both velocity and time by their inertia.
 Intuitively, we can write
 \[|X(s)-\hat X(s)|\gg1\impl X(s)-\hat X(s)\approx (v-\hat v)(s-c_1)+c_2,\]
 where $c_1,c_2$ are constants that depend on $(t,x,v,\hat x,\hat v)$.
 
-Then, here the time averaging plays its role: interchange the integral as follows:
+Then, here the time averaging plays its role: interchange the integral as follows using the Tonelli theorem:
 \[\int_{t-\Delta}^t\iint\frac{f(t,x,v)}{|X(s)-\hat X(s)|^2}\,dv\,dx\,ds=\iint f(t,x,v)\left(\int_{t-\Delta}^t\frac{ds}{|X(s)-\hat X(s)|^2}\right)\,dv\,dx.\]
-The time function $|X(s)-\hat X(s)|^{-2}\approx|(v-\hat v)(s-c_1)+c_2|^{-2}$ is integrable in time direction, and the time integration on a set $\{s:|(v-\hat v)(s-c_1)+c_2|\ge r\}$ for a proper radius $r$ will be approximately $(|v-\hat v|r)^{-1}$.
-For details, see Proposition 3.3.
+The time integration of $|X(s)-\hat X(s)|^{-2}\approx|(v-\hat v)(s-c_1)+c_2|^{-2}$ on a set $\{s:|(v-\hat v)(s-c_1)+c_2|\ge r\}$ for a proper spatial radius $r$ approximately cannot exceed $(|v-\hat v|r)^{-1}$.
 It means that the singularity issue of a spatial function is changed to an estimate problem for a function of velocity.
-Finally by taking $r$ such that $(|v-\hat v|r)^{-1}\lesssim|v|^2$, the kinetic energy bounds the quantity what we want.
+Finally by taking $r$ such that $(|v-\hat v|r)^{-1}\lesssim|v|^2$, it allows that the kinetic energy directly bound the quantity that we want to control.
+This idea is embodied in the ``ugly set estimate'' in Proposition 3.3.
 
 
-\subsection{Lemmas}
+\subsection{Lemmas on relative velocity}
 The following lemma suggests an appropriate way to choose the time averaging interval $\Delta$.
 \begin{lem}
 Let $P>0$.
@@ -869,7 +871,7 @@ and
 \end{pf}
 
 
-From now for $0\le\Delta\le t$, let it be such that
+From now for $0\le\Delta\le t$, we always assume that it is sufficiently small such that
 \[\Delta\cdot\sup_{s\in[0,t]}\|E(s)\|_\infty\le\frac P4.\]
 
 \begin{lem}[Lower bound of relative position vector]
@@ -918,39 +920,40 @@ yields
 \subsection{Divide and conquer}
 
 We estimate the integral of $|E(s,\hat X(s))|$ by dividing the integral region $[t-\Delta,t]\times\R^6$ into three regions as:
+for $P\ge4\Delta\cdot\sup_{s\in[0,t]}\|E(s)\|_\infty$ and $R>0$, define
 \begin{align*}
-U:&=\{\,(s,x,v):\ s\in[t-\Delta,t],\quad|v-\hat v|\ge P,\\
-&\hspace{6em}|X(s)-\hat X(s)|\ge R\max\{|v|^{-3},|v-\hat v|^{-3}\}\,\},\\
-B:&=\{\,(s,x,v):\ s\in[t-\Delta,t],\quad|v-\hat v|\ge P,\quad|v|\ge P,\\
-&\hspace{6em}|X(s)-\hat X(s)|<R\max\{|v|^{-3},|v-\hat v|^{-3}\}\,\},\\
-G:&=\{\,(s,x,v):\ s\in[t-\Delta,t],\quad\min\{|v-\hat v|,|v|\}<P\,\}\\
-&=[t-\Delta,t]\times\R^6\setminus(U\cup B).
+U:&=\{\,(s,x,v):|X(s)-\hat X(s)|\ge r,\,|v-\hat v|\ge P\,\},\\
+B:&=\{\,(s,x,v):|X(s)-\hat X(s)|<r,\,|v-\hat v|\ge P,\,|v|\ge P\,\},\\
+G:&=\{\,(s,x,v):\,\min\{|v-\hat v|,|v|\}<P\,\}\\
+&=[t-\Delta,t]\times\R^6\setminus(U\cup B),
 \end{align*}
-The constants $P>0$ and $R>0$ will be determined later.
+where $r:=R\max\{|v|^{-3},|v-\hat v|^{-3}\}$.
+The constants $P$ and $R$ will be determined later.
+The conditions $|v-\hat v|\ge P$ on $U$ and $\min\{|v-\hat v|,|v|\}\ge P$ on $B$ are introduced in order for application of Lemma 3.2 and (b), (d) of Lemma 3.1 respectively.
 
 \begin{prop}[Ugly set estimate]
 \[\iiint_U\lesssim R^{-1}.\]
 \end{prop}
 \begin{pf}
 Write
-\[r:=R\max\{|v|^{-3},|v-\hat v|^{-3}\}.\]
 Then,
 \[U=\{\,(s,x,v):s\in[t-\Delta,t],\quad|v-\hat v|\ge P,\quad |X(s)-\hat X(s)|\ge r\,\}.\]
 Since $|X(s)-\hat X(s)|\ge r$ on $U$,
 \begin{align*}
-\int_{|s-s_0|<\frac{4r}{|v-\hat v|}}\frac{\chi_U(s,x,v)}{|X(s)-\hat X(s)|^2}\,ds
-\le\frac1{r^2}\int_{|s-s_0|<\frac{4r}{|v-\hat v|}}ds=8\frac1{|v-\hat v|r}.
+\int_{|s-s_0|<S}\frac{\chi_U(s,x,v)}{|X(s)-\hat X(s)|^2}\,ds
+\le\frac1{r^2}\int_{|s-s_0|<S}ds=\frac{2S}{r^2},
 \end{align*}
-Since $|v-\hat v|\ge P$ on $U$ so that $|X(s)-\hat X(s)|\ge\frac14|v-\hat v||s-s_0|$ by the previous lemma,
+and since $|v-\hat v|\ge P$ on $U$ so that $|X(s)-\hat X(s)|\ge\frac14|v-\hat v||s-s_0|$ by Lemma 3.2,
 \begin{align*}
-\int_{|s-s_0|\ge\frac{4r}{|v-\hat v|}}\frac{\chi_U(s,x,v)}{|X(s)-\hat X(s)|^2}\,ds
-&\le16\int_{|s-s_0|\ge\frac{4r}{|v-\hat v|}}\frac1{|v-\hat v|^2|s-s_0|^2}\,ds\\
-&\le32\int_{4r}^\infty\frac1{|v-\hat v|^3|s-s_0|^2}d(|v-\hat v||s-s_0|)\\
-&=8\frac1{|v-\hat v|r}.
+\int_{|s-s_0|\ge S}\frac{\chi_U(s,x,v)}{|X(s)-\hat X(s)|^2}\,ds
+&\le16\int_{|s-s_0|\ge S}\frac1{|v-\hat v|^2|s-s_0|^2}\,ds\\
+&=32\frac1{|v-\hat v|^2S}.
 \end{align*}
+If we choose $S$ such that $2S/r^2=32/|v-\hat v|^2S$, then we obtain the estimate
+\[\int\frac{\chi_U(s,x,v)}{|X(s)-\hat X(s)|^2}\,ds\lesssim\frac1{|v-\hat v|r}.\]
 
-Therefore,
-\[\int\frac{\chi_U(s,x,v)}{|X(s)-\hat X(s)|^2}\,ds\lesssim\frac1{|v-\hat v|r}=R^{-1}\frac{\min\{|v|^3,|v-\hat v|^3\}}{|v-\hat v|}\le R^{-1}|v|^2\]
+Then, by the definition of $r$, 
+\[\frac1{|v-\hat v|r}=R^{-1}\frac{\min\{|v|^3,|v-\hat v|^3\}}{|v-\hat v|}\le R^{-1}|v|^2\]
 so that we have
 \begin{align*}
 \iiint_U\frac{f(t,x,v)}{|X(s)-\hat X(s)|^2}\,dv\,dx\,ds
@@ -965,28 +968,25 @@ so that we have
 \[\iiint_B\lesssim\Delta\cdot R\log\frac{4Q(t)}P.\]
 \end{prop}
 \begin{pf}
-Write
-\[r:=R\max\{|v|^{-3},|v-\hat v|^{-3}\}.\]
-Then,
-\[B=\{\,(s,x,v):s\in[t-\Delta,t],\quad|v|\ge P,\quad|v-\hat v|\ge P,\quad |X(s)-\hat X(s)|<r\,\}.\]
-We need to control the union of two regions
+Because $|X(s)-\hat X(s)|<r$ in $B$, we need to find estimates for the union of two regions
 \[|X(s)-\hat X(s)|<R|v|^{-3}\quad\text{and}\quad|X(s)-\hat X(s)|<R|v-\hat v|^{-3}.\]
 If we integrate $|X(s)-\hat X(s)|^{-2}$ with respect to $y$ on these regions, then we get integrands $|v|^{-3}$ and $|v-\hat v|^{-3}$, which has singularities on regions at which $|v|$, $|v-\hat v|$ are respectively small and large; an inverse cubic function is both sharp and broad in three dimensional space $\R^3$.
-The integral of inverse cube on the region $|v|\sim\infty$ is bounded by $Q$, and the region $|v|\sim0$ is bounded by $P$.
+Fortunately, the integral of inverse cube on the region $|v|\sim\infty$ is bounded by $Q$, and the region $|v|\sim0$ is bounded by $P$.
 
-For each $s\in[t-\Delta,t]$, if we apply the coordinates transformation $(x,v)\mapsto(y,w)=(X(s),V(s))$, then since $|v|\ge P$ implies
-\[\frac12P\le\frac12|v|\le|w|\le Q(s)\quad\text{and}\quad|w|\le2|v|,\]
-we have
+For each $s\in[t-\Delta,t]$, we apply the transformation $(x,v)\mapsto(y,w)=(X(s),V(s))$.
+Since $|v|\ge P$ implies
+\[\frac12P\le|w|\le Q(s)\quad\text{and}\quad|w|\le2|v|\]
+by Lemma 3.1, we have
 \begin{align*}
 \int_{|v|\ge P}&\int_{|X(s)-\hat X(s)|<R|v|^{-3}}\frac{f(t,x,v)}{|X(s)-\hat X(s)|^2}\,dx\,dv\\
 &\lesssim\int_{\frac12P\le|w|\le Q(s)}\int_{|y-\hat X(s)|<R|V(t;s,y,w)|^{-3}}\frac1{|y-\hat X(s)|^2}\,dy\,dw\\
-&\simeq R\int_{\frac12P\le|w|\le Q(t)}|V(t;s,y,w)|^{-3}\,dw\\
+&\simeq\int_{\frac12P\le|w|\le Q(t)}R|V(t;s,y,w)|^{-3}\,dw\\
 &\le8R\int_{\frac12P\le|w|\le Q(t)}|w|^{-3}\,dw\\
 &\simeq R\log\frac{2Q(t)}P.
 \end{align*}
-Similarly but using the fact that $|v-\hat v|\le P$ implies
-\[\frac12P\le\frac12|v-\hat v|\le|w-\hat V(s)|\le 2Q(s)\quad\text{and}\quad|w-\hat V(s)|\le2|v-\hat v|,\]
-we have
+Similarly but using $|v-\hat v|\ge P$, we have
+\[\frac12P\le|w-\hat V(s)|\le 2Q(s)\quad\text{and}\quad|w-\hat V(s)|\le2|v-\hat v|,\]
+and
 \[\int_{|v-\hat v|\ge P}\int_{|X(s)-\hat X(s)|<R|v-\hat v|^{-3}}\frac{f(t,x,v)}{|X(s)-\hat X(s)|^2}\,dx\,dv\lesssim R\log\frac{4Q(t)}P.\]
 Therefore,
 \[\iiint_B\frac{f(t,x,v)}{|X(s)-\hat X(s)|^2}\,dv\,dx\,ds\lesssim\Delta\cdot R\log\frac{4Q(t)}P.\qedhere\]
@@ -997,19 +997,17 @@ Therefore,
 \[\iiint_G\lesssim\Delta\cdot P^{4/3}.\]
 \end{prop}
 \begin{pf}
-Note
-\begin{align*}
-G=\ &\{\,(s,x,v):s\in[t-\Delta,t],\quad|v|<P\}\\
-\cup\ &\{\,(s,x,v):s\in[t-\Delta,t],\quad|v-\hat v|<P\}.
-\end{align*}
-Since $|v|<P$ implies $|V(s;t,x,v)|<2P$, the coordinates transformation $(x,v)\mapsto(y,w)=(X(s),V(s))$ gives
-\begin{align*}
-\iint_{|v|<P}&\frac{f(t,x,v)}{|X(s)-\hat X(s)|^2}\,dv\,dx\\
-&\le\int\frac1{|y-\hat X(s)|^2}\int_{|w|<2P}f(s,y,w)\,dw\,dy\\
-&\lesssim\|\int_{|w|<2P}f(s,y,w)\,dw\|_{L_y^\infty}^{4/9}\cdot\|\int_{|w|<2P}f(s,y,v)\,dv\|_{L_y^{5/3}}^{5/9}\\
-&\lesssim((2P)^3)^{4/9}\cdot1^{5/9}\simeq P^{4/3}.
-\end{align*}
-Similarly
+As we have done in the bad set estimate, we need to control the integral on the union of two regions
+\[|v|<P\quad\text{and}\quad|v-\hat v|<P.\]
+We can use (a) and (c) of Lemma 3.1.
+The coordinates transformation $(x,v)\mapsto(y,w)=(X(s),V(s))$ gives, since $|v|<P$ implies $|w|<2P$,
+\[\iint_{|v|<P}\frac{f(t,x,v)}{|X(s)-\hat X(s)|^2}\,dv\,dx
+\le\int\frac1{|y-\hat X(s)|^2}\int_{|w|<2P}f(s,y,w)\,dw\,dy.\]
+If we write $\rho_P(s,y):=\int_{|w|<2P}f(s,y,w)\,dw$, then since its $L_y^{5/3}$ norm is bounded,
+\[\int\frac{\rho_P(s,y)}{|y-\hat X(s)|^2}\,dy
+\lesssim\|\rho_P(s,y)\|_{L_y^\infty}^{4/9}\cdot\|\rho_P(s,y)\|_{L_y^{5/3}}^{5/9}\\
+\lesssim((2P)^3)^{4/9}\cdot1^{5/9}\simeq P^{4/3}.\]
+Similarly on the region $|v-\hat v|<P$,
 \[\iint_{|v-\hat v|<P}\frac{f(t,x,v)}{|X(s)-\hat X(s)|^2}\,dv\,dx\lesssim P^{4/3},\]
 so we are done.
 \end{pf}
@@ -1017,36 +1015,41 @@ so we are done.
 
 \subsection{Bound on the velocity support}
 Finally, with above estimates, we prove that $Q$ does not blow up.
-
+We assume that the classical solution $f\in C^1([0,T);C_c^1(\R^6))$ is the maximally prolonged solution.
+\begin{defn}
+Define a function $\Delta:[0,T)\to[0,\infty)$ by
+\[\Delta(t):=\frac1{cQ(t)^{4/3}}\frac{Q(t)^{4/11}}4=\frac1{4c}\,Q(t)^{-32/33}.\]
+\end{defn}
 \begin{cor}
-Let $c=c(f_0)$ be a constant such that
+Let $c=c(f_0)>0$ be a constant such that
 \[\|E(s)\|_\infty\le cQ(s)^{4/3}\]
-for all $s\in\R^+$, and define
-\[\Delta:=\frac{Q(t)^{4/11}}4\cdot\frac1{cQ(t)^{4/3}}=\frac1{4c}\,Q(t)^{-32/33}.\]
-If $\Delta<t$, then for any $a>\frac{16}{33}$,
-\[Q(t)-Q(t-\Delta)\lesssim_a\Delta\cdot Q(t)^a.\]
+for all $s\in[0,T]$.
+For $t<T$ such that $t-\Delta(t)>0$, and for any $a>\frac{16}{33}$, we have
+\[Q(t)-Q(t-\Delta)\lesssim_a\Delta(t)\cdot Q(t)^a.\]
 \end{cor}
 \begin{pf}
 Let $(d,e)=(\frac4{11},\frac{16}{33})$ and
 \[P=Q(t)^d\quad\text{and}\quad R=Q(t)^e(\log\frac{4Q(t)}P)^{-1/2}.\]
-Then, $\Delta\cdot cQ(t)^{4/3}=\frac P4$.
+Then, $\Delta(t)\cdot cQ(t)^{4/3}=\frac P4$.
 Since
-\[\Delta\cdot\sup_{s\in[0,t]}\|E(s)\|_\infty=\frac P4\cdot\frac{\sup_{s\in[0,t]}\|E(s)\|_\infty}{cQ(t)^{4/3}}\le\frac P4,\]
+\[\Delta(t)\sup_{s\in[0,t]}\|E(s)\|_\infty=\frac P4\cdot\frac{\sup_{s\in[0,t]}\|E(s)\|_\infty}{cQ(t)^{4/3}}\le\frac P4,\]
 we can use the estimates on $U$, $B$, and $G$ :
 \begin{align*}
-\int_{t-\Delta}^t&|E(s,\hat X(s))|\,ds
-\le\int_{t-\Delta}^t\iint\frac{f(t,x,v)}{|X(s)-\hat X(s)|^2}\,dv\,dx\,ds\\
-&\lesssim R^{-1}+\Delta\cdot R\log\frac{4Q(t)}P+\Delta\cdot P^{4/3}\\
-&\simeq\Delta\cdot\left(Q(t)^{4/3}P^{-1}R^{-1}+R\log\frac{4Q(t)}P+P^{4/3}\right)\\
-&=\Delta\cdot\left(Q(t)^{4/3-d-e}\sqrt{\log\frac{4Q(t)}P}+Q(t)^e\sqrt{\log\frac{4Q(t)}P}+Q(t)^{4d/3}\right).
+\int_{t-\Delta(t)}^t&|E(s,\hat X(s))|\,ds
+\le\int_{t-\Delta(t)}^t\iint\frac{f(t,x,v)}{|X(s)-\hat X(s)|^2}\,dv\,dx\,ds\\
+&\lesssim R^{-1}+\Delta(t)R\log\frac{4Q(t)}P+\Delta(t)P^{4/3}\\
+&\simeq\Delta(t)\left(Q(t)^{4/3}P^{-1}R^{-1}+R\log\frac{4Q(t)}P+P^{4/3}\right)\\
+&=\Delta(t)\left(Q(t)^{4/3-d-e}\sqrt{\log\frac{4Q(t)}P}+Q(t)^e\sqrt{\log\frac{4Q(t)}P}+Q(t)^{4d/3}\right).
 \end{align*}
 Because $d=\frac4{11}$ and $e=\frac{16}{33}$ satisfy
 \[\tfrac43-d-e=e=\tfrac43d,\]
 we get
-\[\int_{t-\Delta}^t|E(s,\hat X(s))|\,ds\lesssim\Delta\cdot Q(t)^{16/33}\log^{1/2}Q(t)\]
+\[\int_{t-\Delta}^t|E(s,\hat X(s))|\,ds\lesssim\Delta(t)Q(t)^{16/33}\log^{1/2}Q(t)\]
 and the desired result by setting $\hat x$ and $\hat v$ to be arbitrarily but $f(t,\hat x,\hat v)\ne0$.
 \end{pf}
+
 \begin{rmk}
+We must notice that the lower bound of $\Delta$ is given in this corollary.
 Suppose $\Delta>0$ had no lower bound.
 If we define an increasing function
 \[j(z):=e^{\frac1{1-a}z^{1-a}},\]
@@ -1064,34 +1067,31 @@ where $\tilde Q(t):=j(Q(t))$.
 It derives an inequality including the left lower Dini's derivative
 \[D_-(e^{ct}\tilde Q(t))\le0,\]
 and this proves $\tilde Q(t)\le\tilde Q(0)e^{ct}$, which implies $Q(t)\lesssim_a(1+t)^{\frac1{1-a}}$.
+
 However, unfortuately there is a lower bound for $\Delta$.
 See the proof of Corollary 3.6, and check that the lower bound is required:
 \[R^{-1}\lesssim\Delta\cdot Q(t)^{4/3}P^{-1}R^{-1}.\]
-Thereby, we must use another method to justify $Q(t)\lesssim_a(1+t)^{\frac1{1-a}}$.
+Thereby, we must use another discrete method to justify $Q(t)\lesssim_a(1+t)^{\frac1{1-a}}$.
 \end{rmk}
 
 \begin{thm*}[Schaeffer, 1991, restatement]
 For $\frac{16}{33}<a<1$,
 \[Q(t)\lesssim_a(1+t)^{\frac1{1-a}}.\]
 \end{thm*}
-
 \begin{pf}
-Let $c=c(f_0)$ be a constant such that
-$\|E(s)\|_\infty\le cQ(s)^{4/3}$
-for all $s\in\R^+$.
 Since
 \[Q(t)-Q(s)\le\int_s^t\|E(s')\|_\infty\,ds'\]
-so that $Q$ is a nondecreasing continuous function, there is a unique $T_1=T_1(f_0)$ such that $T_1=Q(T_1)^{-32/33}$.
-Define a function $\Delta:(T_1,\infty)\to(0,\infty)$ such that
-\[\Delta(s):=\frac1{4c}\,Q(s)^{-32/33}.\]
-Then, by Corollary 3.6, $t>T_1$ implies
-\[Q(t)-Q(t-\Delta)\lesssim_a\Delta\cdot Q(t)^a.\]
+so that $Q$ is a nondecreasing continuous function that diverges at time $T$, there is a unique $T_1=T_1(f_0)\in(0,T)$ such that $T_1=Q(T_1)^{-32/33}$.
+We have $Q(t)\le Q(T_1)\lesssim1$ for $t\le T_1$, so assume $t\in(T_1,T)$.
 
 Inductively define a decreasing sequence $\{t_i\}_i$ such that
 \[t_0:=t,\qquad t_{i+1}:=t_i-\Delta(t_i).\]
-The differences have a uniform bound
-\[t_i-t_{i+1}=\frac1{4c}\,Q(t_i)^{-32/33}\ge\frac1{4c}\,Q(t)^{-32/33},\]
-so there is a positive integer $n$ such that $0<t_n\le T_1<t_{n-1}$.
+The differences have a uniform lower bound
+\[t_i-t_{i+1}=\Delta(t_i)=\frac1{4c}\,Q(t_i)^{-32/33}\ge\frac1{4c}\,Q(t)^{-32/33},\]
+so there exists a positive integer $n$ such that $0<t_n\le T_1<t_{n-1}$.
+By Corollary 3.6, $t_i-\Delta(t_i)>0$ implies
+\[Q(t_i)-Q(t_{i+1})\lesssim_a\Delta(t_i)Q(t_i)^a\]
+for $i<n$.
 Then,
 \begin{align*}
 Q(t)-Q(T_1)&\le Q(t_0)-Q(t_n)
@@ -1101,8 +1101,8 @@ Q(t)-Q(T_1)&\le Q(t_0)-Q(t_n)
 \le tQ(t)^a
 \end{align*}
 yields
-\[Q(t)\lesssim_a1+tQ(t)^a.\]
-Thus, $1\lesssim Q(t)^a$ implies $Q(t)\lesssim(1+t)^{\frac1{1-a}}$.
+\[Q(t)\lesssim_a1+tQ(t)^a\lesssim(1+t)Q(t)^a.\]
+Therefore, $Q(t)\lesssim(1+t)^{\frac1{1-a}}$.
 \end{pf}
 
 

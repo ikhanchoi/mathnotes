@@ -1,8 +1,12 @@
-\documentclass[11pt]{amsart}
+\documentclass[12pt]{article}
 \usepackage{../../ikany}
-\usepackage[margin=1.5in]{geometry}
+\usepackage[margin=100pt]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage[bitstream-charter,cal]{mathdesign}
+\linespread{1.1}
 
-\title{Wrong proof on totally bounded uniform spaces}
+
+\title{Totally Bounded Uniform Spaces}
 \author{Ikhan Choi}
 \date{September 22, 2019.}
 
@@ -14,8 +18,8 @@
 \begin{abstract}
 Totally boundedness is a way of descibing compactness in metric spaces.
 It can be generalized to uniform spaces in general, which do not allow the use of sequences.
-Related to this, I found a proof mistake on the celebrated book on general topology written by Stephen Willard.
-The purpose of this post is to fix the proof and practice the usage of subnets by generalizing the theorem.
+Related to this, I have found a proof mistake on the celebrated book on general topology written by Stephen Willard.
+The purpose of this note is to fix the proof and practice the usage of subnets by generalizing the theorem.
 \end{abstract}
 
 \clearpage
@@ -39,8 +43,8 @@ Then, it is a corollary of Theorme 1.1.
 
 ($\Rightarrow$)
 Totally boundedness follows from the definition of compactness.
-To prove completeness, let $x:\mathcal{A}\to X$ be a Cauchy net on a compact uniform space $X$.
-Since $X$ is compact, $x$ has a convergent subnet $xh:\mathcal{B}\to\mathcal{A}\to X$.
+To prove completeness, let $x:\fA\to X$ be a Cauchy net on a compact uniform space $X$.
+Since $X$ is compact, $x$ has a convergent subnet $xh:\fB\to\fA\to X$.
 Let $x_0$ be the limit of the net $xh$.
 
 Let $E$ be an arbitrary entourage.
@@ -55,8 +59,9 @@ So we are done.
 
 \begin{rmk}
 There are three well-known different definitions on subnets: Willard subnet, Kelly subnet, and Aarnes-Andenæs subnet.
-However, since the existence of each subnet associated to a common eventuality filter is equivalent, there will be no conflicts among them.
-In this post, we define a subnet as the monotone cofinal function between the index sets.
+However, for a given point and a net, the existences of each subnet that is convergent to the given point are equivalent.
+Thus, there will be no conflicts among them.
+In this note, we follow the Willard subnet: define a subnet as the \emph{monotone} and \emph{cofinal} function between the index sets.
 See Eric Schechter's book \cite{schechter1996handbook}.
 \end{rmk}
 
@@ -119,7 +124,7 @@ Then it is clearly a subsequence of $x_k$ and is Cauchy.
 
 
 
-\section{Our proof using Zorn's lemma}
+\section{Elementary direct proof using Zorn's lemma}
 
 Then, the problem is: how can we deal with the diagonal arguement in non-countable situation?
 Concretely, which strategy for existence proof can replace the diagonal subsequence?
@@ -208,7 +213,7 @@ It is a contradiction to the maximality of $\mathfrak{M}$, therefore, $\pi_\math
 Then, the Cauchyness follows easily: for an arbitrary entourage $E_0$, there is $(\alpha_0,U_0,E_0)\in\mathfrak{M}$ so that $(\alpha,U,E),(\alpha',U',E')\succ(\alpha_0,U_0,E_0)$ implies $(x_\alpha,x_{\alpha'})\in U\times U'\subset U_0^2\subset E_0$.
 \end{pf}
 
-This proof is quite long.
+This proof is quite long, and we have other choices that shorten the construction of a Cauchy subnet
 
 
 
@@ -252,8 +257,8 @@ Therefore, for any $\beta,\beta'\succ\beta_0$ we have
 
 \section{Another proof using universal nets}
 
-Universal net is the counterpart of ultrafilter in nets, so it is also called ultranet.
-Provided the following theorems, proof of Theorem 1.1 becomes a piece of cake.
+Universal nets are the counterpart of ultrafilters, so they are also called ultranets.
+Provided the following theorems, a proof of Theorem 1.1 follows quite directly.
 
 \begin{thm}
 Every filter is contained in an ultrafilter.
