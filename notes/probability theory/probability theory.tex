@@ -1,6 +1,14 @@
 \documentclass{../note}
 \usepackage{../../ikany}
 
+\def\Unif{\mathrm{Unif}}
+\def\Bern{\mathrm{Bern}}
+\def\Binom{\mathrm{Binom}}
+\def\Geo{\mathrm{Geo}}
+\def\Exp{\mathrm{Exp}}
+\def\Pois{\mathrm{Pois}}
+
+
 
 \begin{document}
 \title{Probability Theory}
@@ -9,10 +17,68 @@
 \tableofcontents
 
 
-\part{Random variables}
+\part{Probability distributions}
+\chapter{Random variables}
+
+\section{Sample spaces and distributions}
+
+
+sample space of an "experiment"
+random variables
+distributions
+expectation, moments, inequalities
+
+equally likely outcomes
+	coin toss
+	dice roll
+	ball drawing
+	number permutation
+	life time of a light bulb
+
+
+\section{Conditional and joint probablity}
+
+\begin{prb}[Monty Hall problem]
+Suppose you're on a game show, and you're given the choice of three doors $A$, $B$, and $C$.
+Behind one door is a car; behind the others, goats.
+You pick a door, say $A$, and the host, who knows what's behind the doors, opens another door, say $B$, which has a goat.
+He then says to you, ``Do you want to pick door $C$?''
+Is it to your advantage to switch your choice?
+\end{prb}
+\begin{pf}
+Let $A$, $B$, and $C$ be the events that a car is behind the doors $A$, $B$, and $C$, respectively.
+Let $X$ be the event that the challenger picked $A$, and $Y$ the event that the game host opened $B$.
+Note $\{A,B,C\}$ is a partition of the sample space $\Omega$, and $X$ is independent to $A$, $B$, and $C$.
+Then, $P(A)=P(B)=P(C)=P(X)=1/3$, and
+\[P(Y|X,A)=\frac12,\quad P(Y|X,B)=0,\quad P(Y|X,C)=1.\]
+Therefore,
+\begin{align*}
+P(C|X,Y)&=\frac{P(X\cap Y\cap C)}{P(X\cap Y)}\\
+&=\frac{P(Y|X,C)P(X\cap C)}{P(Y|X,A)P(X\cap A)+P(Y|X,B)P(X\cap B)+P(Y|X,C)P(X\cap C)}\\
+&=\frac{1\cdot \frac19}{\frac12\cdot\frac19+0\cdot\frac19+1\cdot\frac19}=\frac23.
+\end{align*}
+Similarly, $P(A|X,Y)=\frac13$ and $P(B|X,Y)=0$.
+\end{pf}
+
+
+\section{Discrete probability distributions}
+
+\section{Continuous probability distributions}
+
+
+
+
+
+
+
+
+
+
 \chapter{Measure theory for probability}
 
-\section{Uniqueness of measures}
+
+\section{Bounded measurable functions}
+
 \begin{prb}[Dynkin's $\pi$-$\lambda$ theorem]
 Let $\cP$ be a $\pi$-system and $\cL$ a $\lambda$-system respectively.
 Denote by $\ell(\cP)$ the smallest $\lambda$-system containing $\cP$.
@@ -24,11 +90,46 @@ Denote by $\ell(\cP)$ the smallest $\lambda$-system containing $\cP$.
 \end{parts}
 \end{prb}
 
-\begin{prb}
-\end{prb}
+monotone class
+
+
+
+\section{Polish spaces}
+
+
 
 \section{Kolmogorov extension theorem}
 
+\begin{prb}[Kolmogorov extension theorem]
+A \emph{rectangle} is a finite product $\prod_{i=1}^nA_i\subset\R^n$ of measurable $A_i\subset\R$, and \emph{cylinder} is a product $A^*\times\R^\N$ where $A^*$ is a rectangle.
+Let $\cA$ be the semi-algebra containing $\varnothing$ and all cylinders in $\R^\N$.
+Let $(\mu_n)_n$ be a sequence of probability measures on $\R^n$ that satisfies \emph{consistency condition}
+\[\mu_{n+1}(A^*\times\R)=\mu_n(A^*)\]
+for any rectangles $A^*\subset\R^n$, and define a set function $\mu_0:\cA\to[0,\infty]$ by $\mu_0(A)=\mu_n(A^*)$ and $\mu_0(\varnothing)=0$.
+\begin{parts}
+\item $\mu_0$ is well-defined.
+\item $\mu_0$ is finitely additive.
+\item $\mu_0$ is countably additive if $\mu_0(B_n)\to0$ for cylinders $B_n\downarrow\varnothing$ as $n\to\infty$.
+\item If $\mu_0(B_n)\ge\delta$, then we can find decreasing $D_n\subset B_n$ such that $\mu_0(D_n)\ge\frac\delta2$ and $D_n=D_n^*\times\R^\N$ for a compact rectangle $D_n^*$.
+\item If $\mu_0(B_n)\ge\delta$, then $\bigcap_{i=1}^\infty B_i$ is non-empty.
+\end{parts}
+\end{prb}
+\begin{pf}
+(d)
+Let $B_n=B_n^*\times\R^\N$ for a rectangle $B_n^*\subset\R^{r(n)}$.
+By the inner regularity of $\mu_{r(n)}$, there is a compact rectangle $C_n^*\subset B_n^*$ such that
+\[\mu_0(B_n\setminus C_n)=\mu_{r(n)}(B_n^*\setminus C_n^*)<\frac\delta{2^{n+1}}.\]
+Let $C_n:=C_n^*\times\R^\N$ and define $D_n:=\bigcap_{i=1}^nC_i=D_n^*\times\R^\N$.
+Then,
+\[\mu_0(B_n\setminus D_n)\le\mu_0(\bigcup_{i=1}^nB_n\setminus C_i)\le\mu_0(\bigcup_{i=1}^nB_i\setminus C_i)<\frac\delta2,\]
+which implies $\mu_0(D_n)\ge\frac\delta2$.
+
+(e)
+Take any sequence $(\omega_n)_n$ in $\R^\N$ such that $\omega_n\in D_n$.
+Since each $D_n^*\subset\R^{r(n)}$ is compact and non-empty, by diagonal argument, we have a subsequence $(\omega_k)_k$ such that $\omega_k$ is pointwise convergent, and its limit is contained in $\bigcap_{i=1}^\infty D_i\subset\bigcap_{i=1}^\infty B_n=\varnothing$, which is a contradiction that leads $\mu_0(B_n)\to0$.
+\end{pf}
+
+\section{Weak convergence}
 
 
 
@@ -38,29 +139,25 @@ Denote by $\ell(\cP)$ the smallest $\lambda$-system containing $\cP$.
 
 
 
-\chapter{Probability distributions}
 
-sample space, events
-random variable, distributions, expectation
-
-
-sample space of an "experiment"
-
-equally likely outcomes
-	coin toss
-	dice roll
-	ball drawing
-	number permutation
-	life time of a light bulb
-
-
-discrete vs continuous
-joint, conditional, expectation
 
 \chapter{Independence}
 
+\section{Independent $\sigma$-algebras}
+
+\section{Zero-one laws}
+
+\begin{prb}[The Kolmogorov zero-one law]
+Let $X_n:\Omega\to S$ be independent random variables.
+Let $\cT$ be the $\sigma$-algebra defined by $\cT:=\limsup_n\cF_n$.
+\end{prb}
 
 
+
+\begin{prb}[The Hewitt-Savage zero-one law]
+Let $X_n:\Omega\to S$ be i.i.d. random variables.
+
+\end{prb}
 
 
 
@@ -81,13 +178,77 @@ joint, conditional, expectation
 
 \part{Limit theorems}
 \chapter{Laws of large numbers}
+
+\section{Weak laws of large numbers}
+\begin{prb}
+Let $X_n:\Omega\to\R$ be uncorrelated random variables.
+\begin{parts}
+\item If $E(X_n)=\mu$ and $E(X_n^2)\lesssim1$, then $S_n/n\to\mu$ in probability.
+\item If $nP(|X_n|>b_n)\to0$, $\frac n{b_n^2}E(|X|^2\1_{|X|\le b_n})\to0$, and $b_n\sim nE(X\1_{|X|\le b_n})$, then $S_n/b_n\to1$ in probability.
+\end{parts}
+
+\end{prb}
+
+\begin{prb}[Bernstein polynomial]
+Let $X_n\sim\Bern(x)$ be i.i.d. random variables.
+Since $S_n\sim\Binom(n,x)$, $E(S_n/n)=x$, $V(S_n/n)=x(1-x)/n$.
+The $L^2$ law of large numbers implies $E(|S_n/n-x|^2)\to0$.
+Define $f_n(x):=E(f(S_n/n))$.
+Then, by the uniform continuity $|x-y|<\delta$ implies $|f(x)-f(y)|<\e$,
+\[|f_n(x)-f(x)|\le E(|f(S_n/n)-f(x)|)\le\e+2\|f\|P(|S_n/n-x|\ge\delta)\to\e.\]
+\end{prb}
+
+
+
+\begin{prb}[High-dimensional cube is almost a sphere]
+Let $X_n\sim\Unif(-1,1)$ be i.i.d. random variables and $Y_n:=X_n^2$.
+Then, $E(Y_n)=\frac13$ and $V(Y_n)\le1$.
+
+\end{prb}
+
+large deviation technique: Lp?
+
+\begin{prb}[Coupon collector's problem]
+$T_n:=\inf\{\,t:|\{X_i\}_i|=n\,\}$
+Since $X_{n,k}\sim\Geo(1-\frac{k-1}n)$, $E(X_{n,k})=(1-\frac{k-1}n)^{-1}$, $V(X_{n,k})\le(1-\frac{k-1}n)^{-2}$.
+$E(T_n)\sim n\log n$
+\end{prb}
+\begin{prb}[An occupancy problem]
+\end{prb}
+\begin{prb}[The St. Petersburg paradox]
+\end{prb}
+
+Kolmogorov-Feller
+
+\section{Strong laws of large numbers}
+
+$P(A_n\ i.o.)=0\quad iff \quad X_n\to X\ a.s.$ 2.3.14. ?
+$X_n\to X\ in\ prob\quad iff \quad$ for every subseq, there is further subsequence converging a.s. Thm 2.3.2
+
+infinite monkey
+
+
+
+
+
+
+\section*{Exercises}
+
+
+
+
 \chapter{Central limit theorems}
-\chapter{}
+\chapter{Other limit theorems}
+
+large deviation
+classical summation
+local limit
+extreme values
 
 \part{Stochastic processes}
 \chapter{Martingales}
 \chapter{Markov chains}
-\chapter{Wiener process}
+\chapter{Brownian motion}
 
 \part{Stochastic calculus}
 

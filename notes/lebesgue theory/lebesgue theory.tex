@@ -44,8 +44,8 @@ for every subset $E\subset X$.
 Let $\cM$ be the collection of all Carath\'eodory measurable subsets relative to $\mu^*$.
 \begin{parts}
 \item $\cM$ is an algebra and $\mu^*$ is finitely additive on $\cM$.
-\item $\cM$ is a $\sigma$-algebra and $\mu^*$ is countably additive on $\cM$, that is, the restriction $\mu:=\mu^*|_\cM:\cM\to[0,\infty]$ is a measure.
-\item The measure $\mu$ is complete.
+\item $\cM$ is a $\sigma$-algebra and $\mu^*$ is countably additive on $\cM$.
+\item The measure $\mu:=\mu^*|_\cM:\cM\to[0,\infty]$ is complete.
 \end{parts}
 \end{prb}
 
@@ -57,16 +57,25 @@ If the function $\rho$ satisfies
 \item $\rho(A)\le\sum_{i=1}^\infty\rho(A_i)$ for $A\in\cA$ a disjoint union of $\{A_i\}_{i=1}^\infty\subset\cA$,\\\null\hfill((disjoint) countable subadditivity)
 \end{parts}
 then it is called a \emph{premeasure}.
-
 Let $\mu^*:\cP(X)\to[0,\infty]$ be the associated outer measure of $\rho$, and $\mu:\cM\to[0,\infty]$ the measure defined from $\mu^*$ on Carath\'eodory measurable subsets.
 We call $\mu$ the \emph{Carath\'eodory measure} constructed from $\rho$.
 \begin{parts}
 \item If $\rho$ is finitely additive, then $\cA\subset\cM$.
 \item If $\rho$ is countably subadditive, then $\mu^*(A)=\rho(A)$ for every $A\in\cA$.
 \item If $\rho$ is a premeasure, then $\mu$ is an extension of $\rho$ and called \emph{Carath\'eodory extension} of $\rho$.
-\item In particular, a premeasure is a priori countably additive in the sense that $\rho(A)=\sum_{i=1}^\infty\rho(A_i)$ for $A\in\cA$ a disjoint countable union of $\{A_i\}_{i=1}^\infty\subset\cA$.
+\item In particular, a premeasure is a priori countably additive in the sense that $\rho(A)=\sum_{i=1}^\infty\rho(A_i)$ for $A\in\cA$ a disjoint union of $\{A_i\}_{i=1}^\infty\subset\cA$.
 \end{parts}
 \end{prb}
+
+
+\begin{prb}[Uniqueness of extensions]
+The Carath\'eodory extension theorem provides with a uniqueness theorem for measures.
+\end{prb}
+
+
+
+Monotone class lemma: alternative direct proof method without using Carath\'eodory extension.
+
 
 \chapter{Measures on the real line}
 
@@ -85,9 +94,34 @@ We call $\mu$ the \emph{Carath\'eodory measure} constructed from $\rho$.
 \section{Definition of Lebesgue integration}
 \section{Convergence theorems}
 
-Stein: Egorov -> BCT -> Fatou -> MCT -> L1 is a measure : BCT + L1 is a measure -> DCT
+Stein: Egorov $\to$ BCT $\to$ Fatou $\to$ MCT $\to$ L1 is a measure\\
+Stein: BCT + L1 is a measure $\to$ DCT\\
+Folland: MCT $\to$ Fatou $\to$ DCT $\to$ BCT
 
-Folland: MCT -> Fatou -> DCT -> BCT
+
+\begin{prb}[Egorov's theorem]
+Let $\Omega$ be a finite measure space.
+Let $(f_n:\Omega\to\R)_n$ be a sequence of a.e. convergent measurable functions.
+For $\e>0$, there exists a measurable $E_\e\subset\Omega$ such that $\mu(\Omega\setminus E_\e)<\e$ and $f_n$ uniformly convergent on $E_\e$.
+\end{prb}
+\begin{pf}
+Assume $f_n\to0$.
+The set of convergence is
+\[\bigcap_{k>0}\ \bigcup_{n_0>0}\ \bigcap_{n\ge n_0}\{\,x:|f_n(x)|<\tfrac1k\,\},\]
+which is a full set.
+We want to get rid of the dependence on the point $x$ of $n_0$ in the union $\bigcup_{n_0>0}$.
+Since
+\[\bigcap_{n\ge n_0}\{\,x:|f_n(x)|<\frac1k\,\}\]
+is increasing as $n_0\to\infty$ to a full set for each $k>0$, we can find $n_0(k,\e)$ such that
+\[\mu(\bigcap_{n\ge n_0}\{\,x:|f_n(x)|<\tfrac1k\,\})>\mu(\Omega)-\frac\e{2^k}.\]
+Then,
+\[\mu(\bigcap_{k>0}\ \bigcap_{n\ge n_0}\{\,x:|f_n(x)|<\tfrac1k\,\})>\mu(\Omega)-\e.\]
+If we define
+\[E_\e:=\bigcap_{k>0}\ \bigcap_{n\ge n_0}\{\,x:|f_n(x)|<\tfrac1k\,\},\]
+then for any $k>0$ and $x\in E_\e$, and with the $n_0(k,\e)$ we have chosen,
+we have
+\[n\ge n_0\quad\Rightarrow\quad |f_n(x)|<\frac1k.\]
+\end{pf}
 
 \section{Modes of convergence}
 
@@ -111,11 +145,11 @@ we have
 
 
 
-\begin{thm}
+\begin{prb}
 Let $(X,\mu)$ be a measure space.
 Let $f_n$ be a sequence of measurable functions.
 If $f_n$ converges to $f$ in measure, then $f_n$ has a subsequence that converges to $f$ $\mu$-a.e.
-\end{thm}
+\end{prb}
 \begin{pf}
 We can extract a subsequence $f_{n_k}$ such that
 \[\mu(\{x:|f_{n_k}-f|>\tfrac1k\})>\tfrac1{2^k}.\]

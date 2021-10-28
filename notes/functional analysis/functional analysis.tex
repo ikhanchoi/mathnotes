@@ -11,17 +11,74 @@
 \part{Topological vector spaces}
 
 \chapter{Locally convex spaces}
+\section{The Hahn-Banach theorem}
+
 
 \chapter{Banach spaces}
+\section{Barreled spaces}
+\begin{prb}[The Baire category theorem]
+
+\begin{parts}
+\end{parts}
+\end{prb}
+\begin{prb}[Barreled spaces]
+A barrel.
+\end{prb}
+
+If a closed convex cone contains a dense subset of absorbing at a point, then it is entire?
+
+\begin{prb}[Uniform boundedness principle]
+Let $f:S\subset X\to\R_{\ge0}$.
+Suppose $\|T_\alpha x\|\le f(x)$ on $S$.
+\begin{parts}
+\item $S\subset\bigcup_{n=1}^\infty\bigcap_\alpha T_\alpha^{-1}B_n$.
+\item If $X$ is the closed linear span of $S$, then $\bigcap_\alpha T_\alpha^{-1}B_1$ is a barrel of $X$.
+\end{parts}
+\end{prb}
+
+
+\begin{prb}[Open mapping theorem]
+Let $T:X\to Y$ be a bounded linear operator between Banach spaces.
+Suppose $T$ is surjective.
+\begin{parts}
+\item There is $r>0$ such that $B_r\subset\bar{TB_1}$.
+\item There is $r>0$ such that $B_r\subset TB_1$.
+\item $T$ is open.
+\item $T$ is open even for complete locally convex $X$ and barreled $Y$.
+\end{parts}
+\end{prb}
+
+\begin{pf}
+(a)
+The set $\bar{TB_1}$ is clearly closed and absolutely convex.
+The surjectivity of $T$ implies $\bar{TB_1}$ is absorbing.
+Since $Y$ is barreled, $\bar{TB_1}$ contains an open ball $B_r$.
+
+(b)
+Let $r>0$ such that $B_r\subset\bar{TB_{1/2}}$.
+For $y\in B_r$, we are going to construct $x\in B_1\subset X$ such that $y=Tx$.
+We claim for $n$ that
+\[(y+TB_{1-1/2^n})\cap B_{r/2^n}\ne\varnothing.\]
+
+We have
+\[(y+B_{r/2})\cap TB_{1/2}\ne\varnothing,\]
+and
+\[(y+TB_{1/2})\cap B_{r/2}\ne\varnothing,\]
+and
+\[(y+TB_{1/2})\cap\bar{TB_{1/4}}\ne\varnothing,\]
+and
+\[(y+TB_{1/2}+B_{r/4})\cap TB_{1/4}\ne\varnothing,\]
+and
+\[(y+TB_{3/4})\cap B_{r/4}\ne\varnothing.\]
+
+
+\end{pf}
 
 
 \begin{prb}
 Let $(T_n)$ be a sequence in $B(X,Y)$.
 If $T_n$ coverges then $\|T_n\|$ is bounded by the uniform boundedness principle.
 \end{prb}
-
-
-
 
 
 \begin{prb}
@@ -95,6 +152,18 @@ Show that $\f^*(\ell^1)\subset L^1$ where $\ell^1$ and $L^1$ are considered as c
 \item Show that $\f^*$ is indeed an isometric isomorphism, and deduce $\f$ cannot be realised as bounded linear functionals on $L^\infty$.
 \end{parts}
 \end{prb}
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 \part{Weak topologies}
