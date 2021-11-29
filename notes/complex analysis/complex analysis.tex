@@ -16,21 +16,87 @@
 
 \begin{prb}
 Let $p\in\C[z]$ with $p(z)=\sum_{k=0}^na_kz^k$.
-There is $R>0$ such that $\frac{|a_n|}2|z|^n\le|p(z)|\le\frac{3|a_n|}2|z|^n$ for $|z|\ge R$.
+\begin{parts}
+\item $|p(z)|\lesssim|z|^n$.
+\item There is $R>0$ such that $|p(z)|\gtrsim|z|^n$ for $|z|\ge R$.
+\end{parts}
 \end{prb}
 \begin{pf}
-Since $z\ne0$, let $w(z):=p(z)/z^n-a_n$.
-If we choose $R>0$ such that
-\[\max_{0\le k\le n}\frac{|a_k|}{R^{n-k}}\le\frac{|a_n|}{2n}\]
-so that we have for $|z|\ge R$
-\[|w(z)|\le\sum_{k=0}^{n-1}\frac{|a_k|}{|z|^{n-k}}\le\frac{|a_n|}2,\]
-hence we get
-\[|p(z)|=|a_n+w(z)||z|^n\ge\frac{|a_n|}2|z|^n.\]
+If we take $R>0$ such that
+\[\sum_{k=0}^{n-1}\frac{|a_k|}{R^{n-k}}\le\frac{|a_n|}2,\]
+then $|z|\ge R$ implies
+\begin{align*}
+|p(z)|&\ge|a_n||z|^n-\sum_{k=0}^{n-1}|a_k||z|^k\\
+&\ge|a_n||z|^n-\sum_{k=0}^{n-1}\frac{|a_k|}{R^{n-k}}|z|^n\\
+&\ge\frac{|a_n|}2|z|^n.
+\end{align*}
 \end{pf}
 
 \begin{prb}
 Let $f:\Omega\to\C$ be a holomorphic function on a domain.
 Then, $\bar{f(z)}=f(\bar z)$ if and only if $f(z)\in\R$ for $z\in\Omega\cap\R$.
+\end{prb}
+
+
+
+
+\section{The residue theorem}
+
+
+\[\int_0^{2\pi}\frac{dx}{1+a\cos x}=\frac{2\pi}{\sqrt{1-a^2}},\quad-1<a<1\]
+
+
+\begin{prb}[Semicircles]
+\begin{parts}
+\item \[\int_0^\infty\frac1{1+x^2}\,dx=\]
+\item \[\int_0^\infty\frac{\sin x}x\,dx=\frac\pi2\]
+\item \[\int_0^\infty\frac{\log x}{1+x^2}\,dx=\]
+\item \[\int_0^\infty\frac{x^{a-1}}{1+x}=\frac\pi{\sin\pi a},\quad0<a<1\]
+\end{parts}
+\end{prb}
+
+
+\begin{prb}[Computation of Fourier transforms]
+
+\end{prb}
+
+\begin{prb}[Laplace transforms]
+
+\end{prb}
+
+\begin{prb}[Gamma function]
+
+\end{prb}
+
+
+
+\section{Argument principle}
+
+\begin{prb}
+\begin{parts}
+\item
+\[\int_\gamma\frac{f'(z)}{f(z)}\,dz=i\text{winding number}.\]
+\item
+\[\int_\gamma\frac{f'(z)}{f(z)}\,dz=2\pi i(\text{number of zeros}-\text{number of poles}).\]
+\end{parts}
+\end{prb}
+
+\begin{prb}
+Let $f$ be a meromorphic function on $\Omega$.
+Let $\gamma$ be a curve...
+\begin{parts}
+\item
+If $h:[0,1]\times\Omega\to\C$ is continuous and 
+\[\int_\gamma\frac{f'(z)}{f(z)}\,dz=\int_\gamma\frac{g'(z)}{g(z)}\,dz.\]
+\item
+In particular, if $|g(z)|<|f(z)|$ on $z\in\gamma$, then
+\[\int_\gamma\frac{f'(z)}{f(z)}\,dz=\int_\gamma\frac{f'(z)+g'(z)}{f(z)+g(z)}\,dz.\]
+\end{parts}
+\end{prb}
+
+
+\begin{prb}
+Fundamental theorem of algebra, proof by the Liouville theorem, and proof by the Rouch\'e theorem.
 \end{prb}
 
 \end{document}

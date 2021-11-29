@@ -17,8 +17,10 @@
 \tableofcontents
 
 
-\part{Probability distributions}
-\chapter{Random variables}
+\part{Random variables}
+
+
+\chapter{Probability distributions}
 
 \section{Sample spaces and distributions}
 
@@ -36,7 +38,12 @@ equally likely outcomes
 	life time of a light bulb
 
 
-\section{Conditional and joint probablity}
+\section{Joint probability}
+functions of random variables
+independent random variables
+
+
+\section{Conditional probablity}
 
 \begin{prb}[Monty Hall problem]
 Suppose you're on a game show, and you're given the choice of three doors $A$, $B$, and $C$.
@@ -73,11 +80,10 @@ Similarly, $P(A|X,Y)=\frac13$ and $P(B|X,Y)=0$.
 
 
 
+\chapter{Independence}
 
-\chapter{Measure theory for probability}
 
-
-\section{Bounded measurable functions}
+\section{Monotone class lemma}
 
 \begin{prb}[Dynkin's $\pi$-$\lambda$ theorem]
 Let $\cP$ be a $\pi$-system and $\cL$ a $\lambda$-system respectively.
@@ -93,63 +99,16 @@ Denote by $\ell(\cP)$ the smallest $\lambda$-system containing $\cP$.
 monotone class
 
 
-
-\section{Polish spaces}
-
-
-
-\section{Kolmogorov extension theorem}
-
-\begin{prb}[Kolmogorov extension theorem]
-A \emph{rectangle} is a finite product $\prod_{i=1}^nA_i\subset\R^n$ of measurable $A_i\subset\R$, and \emph{cylinder} is a product $A^*\times\R^\N$ where $A^*$ is a rectangle.
-Let $\cA$ be the semi-algebra containing $\varnothing$ and all cylinders in $\R^\N$.
-Let $(\mu_n)_n$ be a sequence of probability measures on $\R^n$ that satisfies \emph{consistency condition}
-\[\mu_{n+1}(A^*\times\R)=\mu_n(A^*)\]
-for any rectangles $A^*\subset\R^n$, and define a set function $\mu_0:\cA\to[0,\infty]$ by $\mu_0(A)=\mu_n(A^*)$ and $\mu_0(\varnothing)=0$.
-\begin{parts}
-\item $\mu_0$ is well-defined.
-\item $\mu_0$ is finitely additive.
-\item $\mu_0$ is countably additive if $\mu_0(B_n)\to0$ for cylinders $B_n\downarrow\varnothing$ as $n\to\infty$.
-\item If $\mu_0(B_n)\ge\delta$, then we can find decreasing $D_n\subset B_n$ such that $\mu_0(D_n)\ge\frac\delta2$ and $D_n=D_n^*\times\R^\N$ for a compact rectangle $D_n^*$.
-\item If $\mu_0(B_n)\ge\delta$, then $\bigcap_{i=1}^\infty B_i$ is non-empty.
-\end{parts}
-\end{prb}
-\begin{pf}
-(d)
-Let $B_n=B_n^*\times\R^\N$ for a rectangle $B_n^*\subset\R^{r(n)}$.
-By the inner regularity of $\mu_{r(n)}$, there is a compact rectangle $C_n^*\subset B_n^*$ such that
-\[\mu_0(B_n\setminus C_n)=\mu_{r(n)}(B_n^*\setminus C_n^*)<\frac\delta{2^{n+1}}.\]
-Let $C_n:=C_n^*\times\R^\N$ and define $D_n:=\bigcap_{i=1}^nC_i=D_n^*\times\R^\N$.
-Then,
-\[\mu_0(B_n\setminus D_n)\le\mu_0(\bigcup_{i=1}^nB_n\setminus C_i)\le\mu_0(\bigcup_{i=1}^nB_i\setminus C_i)<\frac\delta2,\]
-which implies $\mu_0(D_n)\ge\frac\delta2$.
-
-(e)
-Take any sequence $(\omega_n)_n$ in $\R^\N$ such that $\omega_n\in D_n$.
-Since each $D_n^*\subset\R^{r(n)}$ is compact and non-empty, by diagonal argument, we have a subsequence $(\omega_k)_k$ such that $\omega_k$ is pointwise convergent, and its limit is contained in $\bigcap_{i=1}^\infty D_i\subset\bigcap_{i=1}^\infty B_n=\varnothing$, which is a contradiction that leads $\mu_0(B_n)\to0$.
-\end{pf}
-
-\section{Weak convergence}
-
-
-
-
-
-
-
-
-
-
-
-\chapter{Independence}
-
 \section{Independent $\sigma$-algebras}
+
+
+
 
 \section{Zero-one laws}
 
 \begin{prb}[The Kolmogorov zero-one law]
 Let $X_n:\Omega\to S$ be independent random variables.
-Let $\cT$ be the $\sigma$-algebra defined by $\cT:=\limsup_n\cF_n$.
+The \emph{tail $\sigma$-algebra} is the $\sigma$-algebra $\cT$ defined by $\cT:=\limsup_n\cF_n$.
 \end{prb}
 
 
@@ -161,6 +120,9 @@ Let $X_n:\Omega\to S$ be i.i.d. random variables.
 
 
 
+
+
+\chapter{Statistical inference}
 
 
 
@@ -177,7 +139,12 @@ Let $X_n:\Omega\to S$ be i.i.d. random variables.
 
 
 \part{Limit theorems}
+
+
+
 \chapter{Laws of large numbers}
+
+
 
 \section{Weak laws of large numbers}
 \begin{prb}
@@ -218,12 +185,24 @@ $E(T_n)\sim n\log n$
 \begin{prb}[The St. Petersburg paradox]
 \end{prb}
 
-Kolmogorov-Feller
+\begin{prb}[Kolmogorov-Feller theorem]
+Suppose $X_i$ satisfies the Feller condition
+\[xP(|X_i|>x)\to0\]
+as $x\to\infty$.
+\begin{parts}
+\item
+\end{parts}
+\end{prb}
+
+
+
+\section{Almost sure convergence}
+
+
 
 \section{Strong laws of large numbers}
 
-$P(A_n\ i.o.)=0\quad iff \quad X_n\to X\ a.s.$ 2.3.14. ?
-$X_n\to X\ in\ prob\quad iff \quad$ for every subseq, there is further subsequence converging a.s. Thm 2.3.2
+Proof by Etemadi and proof by random series.
 
 infinite monkey
 
@@ -232,23 +211,235 @@ infinite monkey
 
 
 
-\section*{Exercises}
+
+
+
+
+
+
+\chapter{Weak convergence}
+
+
+\section{Weak convergence in $\R$}
+\begin{prb}
+Suppose $f_n$ and $f$ are density functions on $\R$.
+\begin{parts}
+\item If $f_n\to f$ almost surely, then $f_n\to f$ in $L^1$.\hfill(Scheff\'e's theorem)
+\item If $f_n\to f$ in $L^1$, then $f_n\to f$ in total variation.
+\item If $f_n\to f$ in total variation, then $f_n\to f$ weakly.
+\end{parts}
+\end{prb}
+
+\begin{prb}
+\begin{parts}
+\item If $F_n\to F$ weakly, then there are random variables $X_n$ and $X$ with distributions $F_n$ and $F$ such that $X_n\to X$ almost surely.
+\end{parts}
+\end{prb}
+
+\begin{prb}[Portemanteau theorem]
+\begin{parts}
+\item
+\end{parts}
+\end{prb}
+
+\begin{prb}[Helly's selection theorem]
+\begin{parts}
+\item 
+\item $F_n$ has a weekly convergent subsequence $F_{n_k}$.
+\item If $\{F_n\}$ is tight, then
+\end{parts}
+\end{prb}
+
+
+\section{The space of probability measures}
+\begin{prb}
+Let $S$ be a locally compact Hausdorff space.
+\begin{parts}
+\item $\mu_n\to\mu$ vaguely if and only if $\int f\,d\mu_n\to\int f\,d\mu$ for all $f\in C_c(S)$.
+\item $\mu_n\to\mu$ weakly if and only if vaguely, if $\{\mu_n\}$ is tight.
+\item $\delta_n\to0$ vaguely but not weakly.
+\end{parts}
+\end{prb}
+\begin{pf}
+(a) The bounded total variations of $\|\mu_n\|=1$ is crucial.
+\end{pf}
+
+\begin{prb}[L\'evy-Prokhorov metric]
+\begin{parts}
+\item If $S$ is a separable metrizable space, $\pi$ generates the topology of weak convergence.
+\item $(S,d)$ is separable if and only if $(\Prob(S),\pi)$ is separable.
+\item $(S,d)$ is complete if and only if $(\Prob(S),\pi)$ is complete.
+\end{parts}
+\end{prb}
+
+\begin{prb}[Prokhorov's theorem]
+Let $S$ be a separable metrizable space.
+Let $\Prob(S)$ be the space of probability measures on $S$.
+Let $\cF\subset\Prob(S)$.
+\begin{parts}
+\item $\cF$ is weakly precompact if and only if it is tight.
+\end{parts}
+\end{prb}
+
+Cb* weak topology is stronger than  C0* vague topology
+
+probability measures P subset Cb* subset C0*
+
+positive linear functional on Cc infty is in Cc*,
+finite positive linear functional on Cc is in C0*, and also in Cb*
+
+
+unitization C(X0)
+multiplier  C(bX)=Cb(X)
+
+Since X is not compact, C0(X) is not unital so that Prob(X)=S(C0(X)) is not compact.
+
+
+
+
+
+
+\section{Characteristic functions}
+
+\begin{prb}[Characteristic functions]
+Let $\mu$ be a probability measure on $\R$.
+Then, the \emph{characteristic function} of $\mu$ is defined by
+\[\f(t):=Ee^{itX}=\int e^{itx}\,d\mu(x).\]
+Note that $\f(t)=\hat\mu(-t)$ where $\hat\mu$ is the Fourier transform of $\mu$.
+\begin{parts}
+\item $\f\in C_b(\R)$.
+\item If $\f\in L^1(\R)$, then $\mu$ has density $f\in C_0(\R)\cap L^1(\R)$.
+\end{parts}
+\end{prb}
+
+\begin{prb}[Inversion formula]
+For $a<b$,
+\[\lim_{T\to\infty}\frac1{2\pi}\int_{-T}^T\frac{e^{-ita}-e^{-itb}}{it}\f(t)\,dt=\mu((a,b))+\frac12\mu(\{a,b\}).\]
+\end{prb}
+
+\begin{prb}[L\'evy's continuity theorem]
+\begin{parts}
+\item If $\mu_n\to\mu$ weakly, then $\f_n\to\f$ pointwise.
+\item If $\f_n\to\f$ pointwise and $\f$ is continuous at zero, then $\mu_n\to\mu$ weakly.
+\end{parts}
+\end{prb}
+
+\begin{prb}[Criteria for characteristic functions]
+Bochner's theorem and Polya's criterion
+\end{prb}
+
+
+There are two ways to represent a measure:
+A measure $\mu$ is absolutely continuous iff its distribution $F$ is absolutely continuous iff its density $f$ is integrable.
+So, the fourier transform of an absolutely continuous measure is just the fourier transform of $L^1$ functions.
+
+
+
+\section{Moments}
+
+moment problem
+
+moment generating function defined on $|t|<\delta$
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
 
 \chapter{Central limit theorems}
-\chapter{Other limit theorems}
 
-large deviation
-classical summation
-local limit
-extreme values
+
+
+
+
+\section{Central limit theorems}
+
+\begin{prb}[Lindeberg-L\'evy central limit theorem]
+Let $X_n:\Omega\to\R$ be i.i.d. random variables with $EX_i=\mu$ and $VX_i=\sigma^2$ for $0<\sigma<\infty$.
+Then,
+\[\frac{S_n-n\mu}{\sigma\sqrt n}\to N(0,1)\]
+weakly, where $S_n:=\sum_{i=1}^nX_i$.
+\end{prb}
+
+\begin{prb}[Lyapunov central limit theorem]
+Let $X_n:\Omega\to\R$ be independent random variables with $EX_i=\mu_i$ and $VX_i=\sigma_i^2$.
+If there is $\delta>0$ such that the \emph{Lyapunov condition}
+\[\lim_{n\to\infty}\frac1{s_n^{2+\delta}}\sum_{i=1}^nE|X_i-\mu_i|^{2+\delta}=0\]
+is satisfied, then
+\[\frac{S_n-ES_n}{s_n}\to N(0,1)\]
+weakly, where $S_n:=\sum_{i=1}^nX_i$ and $s_n^2:=VS_n$.
+\end{prb}
+
+\begin{prb}[Lindeberg-Feller central limit theorem]
+Let $X_{i,n}:\Omega\to\R$ be independent random variables with $EX_{i,n}=\mu_{i,n}$ and $VX_{i,n}=\sigma_{i,n}^2$.
+If for every $\e>0$ the \emph{Lindeberg condition}
+\[\lim_{n\to\infty}\frac1{s_n^2}\sum_{i=1}^nE|X_{i,n}-\mu_{i,n}|^2\1_{|X_{i,n}-\mu_{i,n}|>\e s_n}=0\]
+is satisfied, then
+\[\frac{S_n-ES_n}{s_n}\to N(0,1)\]
+weakly, where $S_n:=\sum_{i=1}^nX_{i,n}$ and $s_n^2:=VS_n$.
+
+\end{prb}
+
+
+\section{Berry-Esseen ineaulity}
+
+\section{Poisson convergence}
+
+
+Law of rare events, or weak law of small numbers (a single sample makes a significant attibution)
+
+\section{Stable laws}
+
 
 \part{Stochastic processes}
 \chapter{Martingales}
 \chapter{Markov chains}
 \chapter{Brownian motion}
+\section{Kolomogorov extension}
+
+\begin{prb}[Kolmogorov extension theorem]
+A \emph{rectangle} is a finite product $\prod_{i=1}^nA_i\subset\R^n$ of measurable $A_i\subset\R$, and \emph{cylinder} is a product $A^*\times\R^\N$ where $A^*$ is a rectangle.
+Let $\cA$ be the semi-algebra containing $\varnothing$ and all cylinders in $\R^\N$.
+Let $(\mu_n)_n$ be a sequence of probability measures on $\R^n$ that satisfies \emph{consistency condition}
+\[\mu_{n+1}(A^*\times\R)=\mu_n(A^*)\]
+for any rectangles $A^*\subset\R^n$, and define a set function $\mu_0:\cA\to[0,\infty]$ by $\mu_0(A)=\mu_n(A^*)$ and $\mu_0(\varnothing)=0$.
+\begin{parts}
+\item $\mu_0$ is well-defined.
+\item $\mu_0$ is finitely additive.
+\item $\mu_0$ is countably additive if $\mu_0(B_n)\to0$ for cylinders $B_n\downarrow\varnothing$ as $n\to\infty$.
+\item If $\mu_0(B_n)\ge\delta$, then we can find decreasing $D_n\subset B_n$ such that $\mu_0(D_n)\ge\frac\delta2$ and $D_n=D_n^*\times\R^\N$ for a compact rectangle $D_n^*$.
+\item If $\mu_0(B_n)\ge\delta$, then $\bigcap_{i=1}^\infty B_i$ is non-empty.
+\end{parts}
+\end{prb}
+\begin{pf}
+(d)
+Let $B_n=B_n^*\times\R^\N$ for a rectangle $B_n^*\subset\R^{r(n)}$.
+By the inner regularity of $\mu_{r(n)}$, there is a compact rectangle $C_n^*\subset B_n^*$ such that
+\[\mu_0(B_n\setminus C_n)=\mu_{r(n)}(B_n^*\setminus C_n^*)<\frac\delta{2^{n+1}}.\]
+Let $C_n:=C_n^*\times\R^\N$ and define $D_n:=\bigcap_{i=1}^nC_i=D_n^*\times\R^\N$.
+Then,
+\[\mu_0(B_n\setminus D_n)\le\mu_0(\bigcup_{i=1}^nB_n\setminus C_i)\le\mu_0(\bigcup_{i=1}^nB_i\setminus C_i)<\frac\delta2,\]
+which implies $\mu_0(D_n)\ge\frac\delta2$.
+
+(e)
+Take any sequence $(\omega_n)_n$ in $\R^\N$ such that $\omega_n\in D_n$.
+Since each $D_n^*\subset\R^{r(n)}$ is compact and non-empty, by diagonal argument, we have a subsequence $(\omega_k)_k$ such that $\omega_k$ is pointwise convergent, and its limit is contained in $\bigcap_{i=1}^\infty D_i\subset\bigcap_{i=1}^\infty B_n=\varnothing$, which is a contradiction that leads $\mu_0(B_n)\to0$.
+\end{pf}
+
+
+
 
 \part{Stochastic calculus}
 

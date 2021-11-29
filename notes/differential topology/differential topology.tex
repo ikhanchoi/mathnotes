@@ -10,34 +10,10 @@
 
 
 
-
-\chapter{Manifolds}
-\section{Smooth structure}
-
-
-\section{Partition of unity}
-We prove the existence of partition of unity and exhaustion function.
-
-
-
-
-
-
+\part{Category of smooth manifolds}
 
 
 \chapter{Tangent bundle}
-
-\section{Definition of tangent space}
-We will provide four different definitions of tangent spaces:
-\begin{parts}
-\item the space of equivalence classes of smooth curves,
-\item the space of tangent vectors embedded in an ambient space,
-\item the space of derivations on the ring of smooth functions,
-\item the dual space of algebraically defined cotangent spaces.
-\end{parts}
-
-
-\section{Definition of tangent bundle}
 Consider the disjoint union of tangent spaces where the base points run through the whole manifold.
 This subsection discusses two ways of giving topology on the disjoint union to make it a vector bundle: one uses the local trivializations and coefficients to make a map to a Euclidean space, and the other inherits the topology of the ambient space.
 Both topologies are so sufficiently smooth that we can settle a smooth structure, which are identical.
@@ -47,15 +23,20 @@ We need to show it does not depend on the choice of the index set $A$.
 (We have checked that there is a natural choice of $A=C^\infty(M)$ with embedding $i:M\to\R^{C^\infty(M)}$ such that $\pi_f(i(x))=f(x)$.)
 
 
+\begin{thm}
+The tangent bundle functor $T$ preserves finitary products
+\end{thm}
+
+
+\section{Pullbacks}
+When is the pullback possible?
 
 
 
 
 
 
-
-
-\chapter{Categorical aspects}
+\chapter{Embeddings}
 
 \section{Immersion and submersion}
 % On a subset
@@ -114,6 +95,7 @@ A \emph{smooth embedding} is a regular monomorphism in the category of smooth ma
 A smooth map $i:M\to N$ is a smooth embedding iff it is a topological embedding.
 \end{prop}
 
+whitney embedding
 
 
 
@@ -123,186 +105,13 @@ A smooth map $i:M\to N$ is a smooth embedding iff it is a topological embedding.
 
 
 
-\section{Basic differential topology}
-We are going to summary the basic tools to investigate the nature of smooth manifolds.
-These includes the inverse function theorem, the implicit function theorem, the slice lemma, the constant rank theorem.
-
-
-\subsection{Contant rank theorem}
-
-
-\begin{thm}[Constant rank theorem]
-Let $f:M\to N$ be a smooth map such that its differential has a locally constant rank at a point $p$.
-Then, there is a pair of local charts $(U,\f)$ at $p$ and $(V,\psi)$ at $f(p)$ such that
-\begin{parts}
-\item $\f(p)=(0,0)\in\R^k\times\R^{m-k},\ \psi(f(p))=(0,0)\in\R^k\times\R^{n-k}$,
-\item $\psi\circ f\circ\f^{-1}(x,y)=(x,0)$,
-\item $f(U)=f(M)\cap V$.
-\end{parts}
-\end{thm}
-\begin{cd}[column sep=120pt]
-\,&[-100pt]
-	M \ar[symbol=\supset]{d} \ar{r}{f} & N \ar[symbol=\supset]{d}
-&[-100pt]\,\\
-&
-	U \sar{d}{\f} & V \ar{d}{\psi}
-&\\
-\R^m\supset&
-	\f(U) \ar[symbol=\supset]{d} \ar{r}{f_{(0)}\ =\ \psi\,\circ\,f\,\circ\,\f^{-1}}& \psi(V) \ar[symbol=\supset]{d}
-&\subset \R^n\\
-&
-	U_1 \sar{d}{\f_1} & V_1 \ar{d}{\psi_1}
-&\\
-&
-	\f_1(U_1) \ar[symbol=\supset]{d} \ar{r}{f_{(1)}\ =\ \psi_1\,\circ\,f_{(0)}\,\circ\,\f_1^{-1}} & \psi_1(V_1) \ar[symbol=\supset]{d}
-&\\
-&
-	U_2 \sar{d}{\f_2} & V_2 \ar{d}{\psi_2}
-&\\
-&
-	\f_2(U_2) \ar{r}{f_{(2)}\ =\ \psi_2\,\circ\,f_{(1)}\,\circ\,\f_2^{-1}}\ar{ruu}{f_{(1)}\,\circ\,\f_2^{-1}} & \psi_2(V_2)
-&
-\end{cd} % 아래 pf 안에 넣으면 에러 난다 왜지?
-\begin{pf}
-The follwoing diagram would be helpful.
-
-Let $\f:U\to\R^m$ and $\psi:V\to\R^n$ be coordinate maps such that $p\in U$ and $df:TU\to TV$ has a constant rank $k$.
-
-\Step{1}[First reparametrization]
-Consider the coordinate representation
-\[f_{(0)}:=\psi\circ f\circ\f^{-1}:\f(U)\to\psi(V).\]
-It is smooth becuase of definition of smooth maps.
-Since $Df_{(0)}|_{\f(p)}:\R^m\to\R^n$ is a matrix of rank $k$, there is an invertible $k\times k$ minor submatrix.
-Let $A:\R^m\to\R^m$ and $B:\R^n\to\R^n$ be permutation matrices that reorder the coordinates in such a way that the invertible $k\times k$ minor submatrix becomes the leading principal minor submatrix.
-
-Define reparametrizations $\f_1:U_1\to\f_1(U_1)$ and $\psi_1:V_1\to\psi_1(V_1)$ as
-\[\f_1(v):=A(v-\f(p)),\quad\psi_1(v):=B(v-\psi(f(p))),\]
-where $U_1$ and $V_1$ are arbitrarily taken open subsets in $\f(U)$ and $\psi(V)$ respectively.
-We can check that they are invertible linear maps, hence diffeomorphisms.
-
-\Step{2}[Second reparametrization (1)]
-Let $f_{(1)}$ be the new coordinate representation
-\[f_{(1)}:=\psi_1\circ f_{(0)}\circ\f_1^{-1}:\f_1(U_1)\to\psi_1(V_1).\]
-It can be written as
-\[f_{(1)}(x,y)=(a(x,y),b(x,y))\]
-for $(x,y)\in\f_1(U_1)\subset\R^k\times\R^{m-k}$ and for some $a:\f_1(U_1)\subset\R^m\to\R^k$.
-Then, we have
-\[f_{(1)}(0,0)=(0,0)\quad\text{and}\quad\left.\pd{a}{x}\right|_{\f_1(\f(p))}\quad\text{is invertible.}\]
-
-Define a reparamterization $\f_2:\f_1(U)\to\R^k\times\R^{m-k}$ as
-\[\f_2(x,y):=(a(x,y),y).\]
-Then,
-\[D\f_2=\begin{pmatrix}\pd{a}{x}&\pd{a}{y}\\0&\id_{m-k}\end{pmatrix}.\]
-Since $D\f_2$ is smooth and $D\f_2|_{\f_1(\f(p))}$ is invertible, there exists an open set $U_2\subset\f_1(U_1)$ such that the restriction $\f_2:U_2\to\f_2(U_2)$ on an open subset $U_2\subset\f_1(U_1)$ is a diffeomorphism.
-
-\Step{3}[Second reparametrization (2)]
-Consider
-\[f_{(1)}\circ\f_2^{-1}:\f_2(U_2)\to\psi_1(V_1).\]
-Then,
-\begin{align*}
-D(f_{(1)}\circ\f_2^{-1})
-&=Df_{(1)}\circ D\f_2^{-1}\\
-&=\begin{pmatrix}\pd{a}{x}&\pd{a}{y}\\\pd{b}{x}&\pd{b}{y}\end{pmatrix}\cdot\begin{pmatrix}\left(\pd{a}{x}\right)^{-1}&-\left(\pd{a}{x}\right)^{-1}\pd{a}{y}\\0&\id_{m-k}\end{pmatrix}
-=\begin{pmatrix}\id_k&0\\ * & * \end{pmatrix}
-=\begin{pmatrix}\id_k&0\\ * &0\end{pmatrix}.
-\end{align*}
-The last equality is because it should have rank $k$.
-Thus we have
-\[f_{(1)}\circ\f_2^{-1}(x,y)=(x,c(x))\]
-for all $(x,y)\in\f_2(U_2)$ and for some $c:\pi(\f_2(U_2))\subset\R^k\to\R^{n-k}$, where $\pi:\R^m\to\R^k$ is the canonical projection $(x,y)\mapsto x$.
-
-Define a reparametrization $\psi_2:V_2\to\psi_2(V_2)$ by
-\[\psi_2(x,z):=(x,z-c(x)),\]
-where $V_2$ is arbitrary taken open subset of $\psi_1(V_1)$ such that $f_{(1)}(U_2)\subset V_2$.
-We can check $\psi_2$ is a diffeomorphism by computing the differential
-\[D\psi_2=\begin{pmatrix}\id_k&0\\-\pd{c}{x}&\id_{n-k}\end{pmatrix}.\]
-
-\Step{4}[Final verification]
-If we let
-\[f_{(2)}:=\psi_2\circ f_{(1)}\circ\f_2^{-1}:\f_2(U_2)\to\psi_2(V_2),\]
-then it satisfies
-\[f_{(2)}(x,y)=(x,0).\]
-
-Define coordinate charts $(\tilde U,\tilde\f)$ and $(\tilde V,\tilde\psi)$ around $p$ and $f(p)$ such that
-\[\tilde\f:=\f_2\circ\f_1\circ\f,\quad\tilde\psi:=\psi_2\circ\psi_1\circ\psi,\]
-with domains
-\[\tilde U:=\tilde\f^{-1}(\f_2(U_2)),\quad\tilde V:=\tilde\psi^{-1}\left((\pi(\im f_{(2)})\times\R^{n-k})\cap\psi_2(V_2)\right).\]
-The new charts are compatible with old charts since the transitions $\f_2\circ\f_1:\f(\tilde U)\to\tilde\f(\tilde U)$ and $\psi_2\circ\psi_1:\psi(\tilde V)\to\tilde\psi(\tilde V)$ are diffeomorphisms.
-Then, the map $f$ has the coordinate representation $f_{(2)}:(x,y)\mapsto(x,0)$ on $(\tilde U,\tilde\f)$ and $(\tilde V,\tilde\psi)$.
-
-We can check the last proposition as follows.
-Suppose $f(p)\in\tilde V$.
-Then,
-\[f_{(2)}(\tilde\f(p))=\tilde\psi(f(p))\in\pi(\im f_{(2)})\times\R^{n-k}=\pi(\f_2(U_2))\times\R^{n-k}.\]
-Since $f_{(2)}=(\pi,0)$, we have $f_{(2)}(\tilde\f(p))\in f_{(2)}(\f_2(U_2))$, so
-\[f(p)=\tilde\psi^{-1}(f_{(2)}(\tilde\f(p)))\in\tilde\psi^{-1}(f_{(2)}(\f_2(U_2)))=f(\tilde U).\qedhere\]
-\end{pf}
-For the case that $f$ is an either immersion or submersion, the constant rank theorem is sometimes refered as the local immersion theorem and the local submersion theorem respectively.
-
-\begin{cor}[Immersion is a local embedding]
-Let $f:M\to N$ be an immersion at $p\in M$.
-Then, there is a local chart $(V,\psi)$ at $f(p)$ such that
-\begin{parts}
-\item $W=f(M)\cap V$ is an embedded submanifold of $V$,
-\item there is a retract $V\to W$.
-\end{parts}
-\end{cor}
-\begin{pf}
-Since the set of full rank matrices is open, the rank of $df$ is locally contant at $p$.
-By the constant rank theorem, we have
-\[\f(p)=0\in\R^m,\quad\psi(f(p))=(0,0)\in\R^m\times\R^{n-m},\quad\text{and}\quad\psi\circ f\circ\f^{-1}(x)=(x,0).\]
-Let $W:=f(M)\cap V$.
-Then, the injectivity of $\f$ shows that
-\[\psi(W)=\psi(f(U))=\psi\circ f\circ\f^{-1}(\f(U))=\{(x,0)\in\R^m\times\R^{n-m}:x\in\f(U)\}\]
-is an open subset of $\R^m$, so $(W,\psi|_W)$ is a chart at $f(p)$.
-\end{pf}
-
-\begin{cor}[Preimage theorem]
-Let $f:M\to N$ be a submersion at $p\in M$.
-Then, there is a local chart $(U,\f)$ at $p$ such that
-\begin{parts}
-\item $W=f^{-1}(f(p))\cap U$ is an embedded submanifold of $M$,
-\item there is a retract $U\to W$.
-\end{parts}
-\end{cor}
-\begin{pf}
-Since the set of full rank matrices is open, the rank of $df$ is locally contant at $p$.
-By the constant rank theorem, we have
-\[\f(p)=(0,0)\in\R^n\times\R^{m-n},\quad\psi(f(p))=0\in\R^n,\quad\text{and}\quad\psi\circ f\circ\f^{-1}(x,y)=x.\]
-Let $W:=f^{-1}(f(p))\cap U$.
-Then, the injectivity of $\f$ shows that
-\begin{align*}
-\f(W)&=\f(f^{-1}(f(p)))\cap\f(U)=(\psi\circ f\circ\f^{-1})^{-1}(\psi(f(p)))\cap\f(U)\\
-&=\{(0,y)\in\R^n\times\R^{m-n}:y\in\R^{m-n}\}\cap\f(U)
-\end{align*}
-is an open subset of $\R^{m-n}$, so $(W,\f|_W)$ is a chart at $p$.
-\end{pf}
-\begin{cor}
-Let $f:M\to N$ be a smooth map and let $q\in N$.
-If $f$ is a submersion at all points on $f^{-1}(q)$, then $f^{-1}(q)$ is an embedded submanifold of $M$.
-\end{cor}
-
-\section{Category of smooth manifolds}
-
-
-\section{Tangent bundle functor}
-
-\begin{thm}
-The tangent bundle functor $T$ preserves finitary products
-\end{thm}
-
-
-\section{Pullbacks}
-When is the pullback possible?
 
 
 
 
 
 
-
-
-\chapter{Sheaf theoretical aspects}
+\section{Sheaf theoretical aspects}
 Consider a (commutative unital) ring $A$ such that every residue field is isomorphic to a field $k$.
 Familiar examples include any Banach algebras by the Gelfand-Mazur theorem.
 The unital condition is attached because we want to treat maximal ideals.
@@ -311,7 +120,7 @@ Therefore, the set of maximal ideals can be identified with the set of all nonze
 
 
 \begin{rd}
-Point \ar{r} & Multiplicative functional to $k$ \ar{r}\lda{l}{case by case} & Maximal ideal \lda{l}{every residue field is isomorphic}
+Point \ar{r} & Multiplicative functional to $k$ \ar{r}\lar[dashed, bend left]{case by case} & Maximal ideal \lar[dashed, bend left]{every residue field is isomorphic}
 \end{rd}
 
 \section{The ring $C^\infty(M)$}
@@ -334,6 +143,15 @@ It is a contradiction.
 
 
 
+
+\part{De Rham Theory}
+\chapter{De Rham theorem}
+\chapter{\v Cech-de Rham complexes}
+
+
+\part{Morse Theory}
+
+\part{Cobordism}
 
 
 

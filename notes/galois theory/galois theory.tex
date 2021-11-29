@@ -70,7 +70,9 @@ p군: 비자명센터, 개수 겁나많음
 \fi
 
 
-\chapter{Semidirect product}
+\chapter{Extension theory}
+
+\section{Semidirect product}
 \begin{defn}[External semidirect product]
 Suppose we have three data: groups $(N,+),(H,\cdot)$ and a group homomorphism $\f:H\to\Aut(N)$.
 The \emph{semidirect product} $N\rtimes_\f H$ is a group defined on the set $N\times H$ by
@@ -83,6 +85,63 @@ Let $N,H$ be subgroups of $G$ such that
 Then, $G\cong N\rtimes_\f H$, where the action $\f$ is given by conjugation
 \[\f(h):N\to N:n\mapsto hnh^{-1}.\]
 \end{thm}
+
+
+
+
+\section{Extensions}
+
+\begin{prop}
+Let $N$ and $H$ be groups.
+Then, the following objects have one-to-one correspondences among each other.
+\begin{parts}
+\item isomorphic types of groups $G$ such that a sequence \begin{es}0\>N\>G\>H\>0\end{es} is exact and right split,
+\item isomorphic types of groups $G$ such that $N\normal G\ge H$ with $G=NH$ and $N\cap H=1$,
+\item group actions $H\to\Aut(N)$ preserving the group structure of $N$.
+\end{parts}
+\end{prop}
+\begin{defn}
+The group $G$ in the previous proposition is called the \emph{semidirect product} of $N$ and $H$.
+\end{defn}
+
+
+\begin{es}
+0\>F\>E\>G\>0.
+\end{es}
+Four data $G,F,\f:G\to\Aut(F),c:G\times G\to F$ completely determine the extension $E$.
+
+Suppose we have an extension $F\to E\to G$.
+There is a \emph{set-theoretic section} $s:G\to E$.
+The number of $s$ is $|G||F|$.
+
+Definition of \emph{action} $\f$:
+For two sections $s$ and $s'$, $s(g)$ and $s'(g)$ acts on $F$ equivalently.
+Thus, we can define a \emph{group homomorphism} $\f:G\to\Aut(F)$ independently on sections.
+
+Definition of \emph{2-cocycle} $c$:
+It is a \emph{set-theoretic function} $c:G\times G\to F$ defined by $c(g,g')=s(g)s(g')s(gg')^{-1}$ for a section $s$.
+Actually, $c$ depends on the section $s$, and $c$ measures how much $s$ fails to be a group homomorphism.
+It requires the cocycle condition for the associativity of group operation, i.e.
+\[c(g,h)c(gh,k)=\f_g(c(h,k))c(g,hk)\]
+should be satisfied.
+Conversely, a map $G\times G\to F$ satisfying the condition the cocycle condition gives a associative group operation on $G$.
+
+If $F$ is abelian, then the set of cocycles forms an abelian group, and is denoted by $Z^2(G,F)$.
+The boundaries are also defined in abelian $F$ case.
+
+
+\begin{parts}
+\item $\f$, $c$ is trivial $\iff$ direct product,
+\item $c$ is trivial $\iff$ $s$ is a homomorphism $\iff$ semidirect product,
+\item $\f$ is trivial $\iff$ central extension.
+\end{parts}
+
+Group cohomology is defined for a group $G$ and $G$-module $A$ (three data: $G,A,\f$.
+What is important is that the cohomology depends on the action of $G$ on $A$.
+
+If $\f$ is trivial so that $A$ is just an abelian group, then the universal coefficient theorem can be applied.
+
+
 
 
 \chapter{The Sylow theorems}
@@ -179,10 +238,6 @@ In order to find the size of conjugacy classes:
 \item count elements,
 \end{parts}
 
-
-\chapter{Subnormal series}
-
-\chapter{Classification of small groups}
 
 
 \section{Two primes}
@@ -343,61 +398,6 @@ $\#$ of groups&51&52&267\\
 
 
 
-\section{Extension theory}
-
-\begin{prop}
-Let $N$ and $H$ be groups.
-Then, the following objects have one-to-one correspondences among each other.
-\begin{parts}
-\item isomorphic types of groups $G$ such that a sequence \begin{es}0\>N\>G\>H\>0\end{es} is exact and right split,
-\item isomorphic types of groups $G$ such that $N\normal G\ge H$ with $G=NH$ and $N\cap H=1$,
-\item group actions $H\to\Aut(N)$ preserving the group structure of $N$.
-\end{parts}
-\end{prop}
-\begin{defn}
-The group $G$ in the previous proposition is called the \emph{semidirect product} of $N$ and $H$.
-\end{defn}
-
-
-\begin{es}
-0\>F\>E\>G\>0.
-\end{es}
-Four data $G,F,\f:G\to\Aut(F),c:G\times G\to F$ completely determine the extension $E$.
-
-Suppose we have an extension $F\to E\to G$.
-There is a \emph{set-theoretic section} $s:G\to E$.
-The number of $s$ is $|G||F|$.
-
-Definition of \emph{action} $\f$:
-For two sections $s$ and $s'$, $s(g)$ and $s'(g)$ acts on $F$ equivalently.
-Thus, we can define a \emph{group homomorphism} $\f:G\to\Aut(F)$ independently on sections.
-
-Definition of \emph{2-cocycle} $c$:
-It is a \emph{set-theoretic function} $c:G\times G\to F$ defined by $c(g,g')=s(g)s(g')s(gg')^{-1}$ for a section $s$.
-Actually, $c$ depends on the section $s$, and $c$ measures how much $s$ fails to be a group homomorphism.
-It requires the cocycle condition for the associativity of group operation, i.e.
-\[c(g,h)c(gh,k)=\f_g(c(h,k))c(g,hk)\]
-should be satisfied.
-Conversely, a map $G\times G\to F$ satisfying the condition the cocycle condition gives a associative group operation on $G$.
-
-If $F$ is abelian, then the set of cocycles forms an abelian group, and is denoted by $Z^2(G,F)$.
-The boundaries are also defined in abelian $F$ case.
-
-
-\begin{parts}
-\item $\f$, $c$ is trivial $\iff$ direct product,
-\item $c$ is trivial $\iff$ $s$ is a homomorphism $\iff$ semidirect product,
-\item $\f$ is trivial $\iff$ central extension.
-\end{parts}
-
-Group cohomology is defined for a group $G$ and $G$-module $A$ (three data: $G,A,\f$.
-What is important is that the cohomology depends on the action of $G$ on $A$.
-
-If $\f$ is trivial so that $A$ is just an abelian group, then the universal coefficient theorem can be applied.
-
-
-
-
 \section{Special groups}
 
 \subsection{Cyclic groups}
@@ -428,6 +428,9 @@ If $x\mapsto x^3$ is a surjective endomorhpism, then $G$ is abelian.
 
 
 
+
+
+\chapter{Subnormal series}
 
 
 
@@ -818,8 +821,8 @@ Let $\phi:F\cong F'$ be a field isomorphism.
 Let $\cl F'$ be an algebraic closure of $F'$.
 Then, there is an embedding $\tilde\phi:E\to\cl F'$ which extends $\phi$.
 \begin{cd}
-&\cl F' \da{dd}\\
-E\ar{r}{\tilde\phi}\da{d}&\quad\\
+&\cl F' \ar{dd}\\
+E\ar{r}{\tilde\phi}\dar[dashed]&\quad\\
 F\ar{r}{\phi}&F'
 \end{cd}
 \end{thm}
@@ -1081,7 +1084,7 @@ multiplcation formula
 
 
 
-
+\part{Abelian extensions}
 
 \chapter{Abelian extensions}
 \section{Finite fields}
@@ -1229,10 +1232,10 @@ We have
 If $f$ is reducible over $K$, then $\Gal(E/K)$ is no more a transitive subgroup of $S_4$ so that $H\ne V_4$ and $G\cong C_4$.
 \end{pf}
 \begin{cd}
-E \ar{rrrr} & & & & 1 \da{d}{2} &\\
-&&&& C_2 \da{dl}[swap]{2}\da{dr}{2}&\\
-K=F_{V_4\cap G}\da{uu}&&& V_4 \da{dl}[swap]{3}\da{dr}{2} && C_4 \da{dl}{2}\\
-F \da{u}\ar{r}& ? & A_4 \da{dr}[swap]{2} && D_4 \da{dl}{3} &\\
+E \ar[rrrr,dashed] &&&& 1 \dar{2} &\\
+&&&& C_2 \dlar{2}\drar{2}&\\
+K=F_{V_4\cap G}\ar[uu] &&& V_4 \dlar[swap]{3}\drar{2} && C_4 \dlar{2}\\
+F \uar\rar[dashed]& ? & A_4 \drar[swap]{2} && D_4 \dlar{3} &\\
 &&&S_4&&
 \end{cd}
 
