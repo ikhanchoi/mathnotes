@@ -17,14 +17,12 @@
 \tableofcontents
 
 
-\part{Random variables}
+\part{Probability distributions}
 
 
-\chapter{Probability distributions}
+\chapter{Random variables}
 
 \section{Sample spaces and distributions}
-
-
 sample space of an "experiment"
 random variables
 distributions
@@ -37,13 +35,40 @@ equally likely outcomes
 	number permutation
 	life time of a light bulb
 
+joint distribution
+transformation of distributions
+distribution computations
 
-\section{Joint probability}
-functions of random variables
-independent random variables
+\section{Discrete probability distributions}
+
+\section{Continuous probability distributions}
+
+\section{Independence}
+
+\begin{prb}[Dynkin's $\pi$-$\lambda$ lemma]
+Let $\cP$ be a $\pi$-system and $\cL$ a $\lambda$-system respectively.
+Denote by $\ell(\cP)$ the smallest $\lambda$-system containing $\cP$.
+\begin{parts}
+\item If $A\in\ell(\cP)$, then $\cG_A:=\{B:A\cap B\in\ell(\cP)\}$ is a $\lambda$-system.
+\item $\ell(\cP)$ is a $\pi$-system.
+\item If a $\lambda$-system is a $\pi$-system, then it is a $\sigma$-algebra.
+\item If $\cP\subset\cL$, then $\sigma(\cP)\subset\cL$.
+\end{parts}
+\end{prb}
+
+\begin{prb}[Monotone class lemma]
+
+\end{prb}
 
 
-\section{Conditional probablity}
+
+
+
+
+
+
+
+\chapter{Conditional probablity}
 
 \begin{prb}[Monty Hall problem]
 Suppose you're on a game show, and you're given the choice of three doors $A$, $B$, and $C$.
@@ -68,9 +93,7 @@ Similarly, $P(A|X,Y)=\frac13$ and $P(B|X,Y)=0$.
 \end{pf}
 
 
-\section{Discrete probability distributions}
 
-\section{Continuous probability distributions}
 
 
 
@@ -80,188 +103,55 @@ Similarly, $P(A|X,Y)=\frac13$ and $P(B|X,Y)=0$.
 
 
 
-\chapter{Independence}
+\chapter{Convergence of probability measures}
 
 
-\section{Monotone class lemma}
+\section{Polish spaces}
 
-\begin{prb}[Dynkin's $\pi$-$\lambda$ theorem]
-Let $\cP$ be a $\pi$-system and $\cL$ a $\lambda$-system respectively.
-Denote by $\ell(\cP)$ the smallest $\lambda$-system containing $\cP$.
-\begin{parts}
-\item If $A\in\ell(\cP)$, then $\cG_A:=\{B:A\cap B\in\ell(\cP)\}$ is a $\lambda$-system.
-\item $\ell(\cP)$ is a $\pi$-system.
-\item If a $\lambda$-system is a $\pi$-system, then it is a $\sigma$-algebra.
-\item If $\cP\subset\cL$, then $\sigma(\cP)\subset\cL$.
-\end{parts}
-\end{prb}
 
-monotone class
-
-
-\section{Independent $\sigma$-algebras}
-
-
-
-
-\section{Zero-one laws}
-
-\begin{prb}[The Kolmogorov zero-one law]
-Let $X_n:\Omega\to S$ be independent random variables.
-The \emph{tail $\sigma$-algebra} is the $\sigma$-algebra $\cT$ defined by $\cT:=\limsup_n\cF_n$.
-\end{prb}
-
-
-
-\begin{prb}[The Hewitt-Savage zero-one law]
-Let $X_n:\Omega\to S$ be i.i.d. random variables.
-
-\end{prb}
-
-
-
-
-
-\chapter{Statistical inference}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-\part{Limit theorems}
-
-
-
-\chapter{Laws of large numbers}
-
-
-
-\section{Weak laws of large numbers}
-\begin{prb}
-Let $X_n:\Omega\to\R$ be uncorrelated random variables.
-\begin{parts}
-\item If $E(X_n)=\mu$ and $E(X_n^2)\lesssim1$, then $S_n/n\to\mu$ in probability.
-\item If $nP(|X_n|>b_n)\to0$, $\frac n{b_n^2}E(|X|^2\1_{|X|\le b_n})\to0$, and $b_n\sim nE(X\1_{|X|\le b_n})$, then $S_n/b_n\to1$ in probability.
-\end{parts}
-
-\end{prb}
-
-\begin{prb}[Bernstein polynomial]
-Let $X_n\sim\Bern(x)$ be i.i.d. random variables.
-Since $S_n\sim\Binom(n,x)$, $E(S_n/n)=x$, $V(S_n/n)=x(1-x)/n$.
-The $L^2$ law of large numbers implies $E(|S_n/n-x|^2)\to0$.
-Define $f_n(x):=E(f(S_n/n))$.
-Then, by the uniform continuity $|x-y|<\delta$ implies $|f(x)-f(y)|<\e$,
-\[|f_n(x)-f(x)|\le E(|f(S_n/n)-f(x)|)\le\e+2\|f\|P(|S_n/n-x|\ge\delta)\to\e.\]
-\end{prb}
-
-
-
-\begin{prb}[High-dimensional cube is almost a sphere]
-Let $X_n\sim\Unif(-1,1)$ be i.i.d. random variables and $Y_n:=X_n^2$.
-Then, $E(Y_n)=\frac13$ and $V(Y_n)\le1$.
-
-\end{prb}
-
-large deviation technique: Lp?
-
-\begin{prb}[Coupon collector's problem]
-$T_n:=\inf\{\,t:|\{X_i\}_i|=n\,\}$
-Since $X_{n,k}\sim\Geo(1-\frac{k-1}n)$, $E(X_{n,k})=(1-\frac{k-1}n)^{-1}$, $V(X_{n,k})\le(1-\frac{k-1}n)^{-2}$.
-$E(T_n)\sim n\log n$
-\end{prb}
-\begin{prb}[An occupancy problem]
-\end{prb}
-\begin{prb}[The St. Petersburg paradox]
-\end{prb}
-
-\begin{prb}[Kolmogorov-Feller theorem]
-Suppose $X_i$ satisfies the Feller condition
-\[xP(|X_i|>x)\to0\]
-as $x\to\infty$.
-\begin{parts}
-\item
-\end{parts}
-\end{prb}
-
-
-
-\section{Almost sure convergence}
-
-
-
-\section{Strong laws of large numbers}
-
-Proof by Etemadi and proof by random series.
-
-infinite monkey
-
-
-
-
-
-
-
-
-
-
-
-
-\chapter{Weak convergence}
-
-
-\section{Weak convergence in $\R$}
-\begin{prb}
-Suppose $f_n$ and $f$ are density functions on $\R$.
-\begin{parts}
-\item If $f_n\to f$ almost surely, then $f_n\to f$ in $L^1$.\hfill(Scheff\'e's theorem)
-\item If $f_n\to f$ in $L^1$, then $f_n\to f$ in total variation.
-\item If $f_n\to f$ in total variation, then $f_n\to f$ weakly.
-\end{parts}
-\end{prb}
-
-\begin{prb}
-\begin{parts}
-\item If $F_n\to F$ weakly, then there are random variables $X_n$ and $X$ with distributions $F_n$ and $F$ such that $X_n\to X$ almost surely.
-\end{parts}
-\end{prb}
-
+\section{Weak convergence on Polish spaces}
 \begin{prb}[Portemanteau theorem]
+Let $F_n:\R\to[0,1]$ be distribution functions.
 \begin{parts}
-\item
+\item $F_n(x)\to F(x)$ for all continuity points $x$ of $F$.
 \end{parts}
 \end{prb}
+\begin{prb}[Skorokhod representation theorem]
+\end{prb}
+\begin{prb}[Continuous mapping theorem]
+\end{prb}
+\begin{prb}[Slutsky's theorem]
+\end{prb}
+
+
 
 \begin{prb}[Helly's selection theorem]
 \begin{parts}
-\item 
-\item $F_n$ has a weekly convergent subsequence $F_{n_k}$.
-\item If $\{F_n\}$ is tight, then
+\item Monotonically increasing functions $F_n:\R\to[0,1]$ has a pointwise convergent subsequence.
+\item If $(F_n)_n$ is tight, then
 \end{parts}
 \end{prb}
 
 
 \section{The space of probability measures}
 \begin{prb}
+Suppose $f_n$ and $f$ are density functions on $\R$.
+\begin{parts}
+\item If $f_n\to f$ a.s., then $f_n\to f$ in $L^1$.\hfill(Scheff\'e's theorem)
+\item $f_n\to f$ in $L^1$ if and only if in total variation.
+\item If $f_n\to f$ in total variation, then $f_n\to f$ weakly.
+\end{parts}
+\end{prb}
+
+\begin{prb}[Vauge convergence]
 Let $S$ be a locally compact Hausdorff space.
 \begin{parts}
 \item $\mu_n\to\mu$ vaguely if and only if $\int f\,d\mu_n\to\int f\,d\mu$ for all $f\in C_c(S)$.
-\item $\mu_n\to\mu$ weakly if and only if vaguely, if $\{\mu_n\}$ is tight.
+\item $\mu_n\to\mu$ weakly if and only if vaguely.
 \item $\delta_n\to0$ vaguely but not weakly.
 \end{parts}
 \end{prb}
 \begin{pf}
-(a) The bounded total variations of $\|\mu_n\|=1$ is crucial.
 \end{pf}
 
 \begin{prb}[L\'evy-Prokhorov metric]
@@ -277,24 +167,10 @@ Let $S$ be a separable metrizable space.
 Let $\Prob(S)$ be the space of probability measures on $S$.
 Let $\cF\subset\Prob(S)$.
 \begin{parts}
+\item 
 \item $\cF$ is weakly precompact if and only if it is tight.
 \end{parts}
 \end{prb}
-
-Cb* weak topology is stronger than  C0* vague topology
-
-probability measures P subset Cb* subset C0*
-
-positive linear functional on Cc infty is in Cc*,
-finite positive linear functional on Cc is in C0*, and also in Cb*
-
-
-unitization C(X0)
-multiplier  C(bX)=Cb(X)
-
-Since X is not compact, C0(X) is not unital so that Prob(X)=S(C0(X)) is not compact.
-
-
 
 
 
@@ -305,24 +181,40 @@ Since X is not compact, C0(X) is not unital so that Prob(X)=S(C0(X)) is not comp
 Let $\mu$ be a probability measure on $\R$.
 Then, the \emph{characteristic function} of $\mu$ is defined by
 \[\f(t):=Ee^{itX}=\int e^{itx}\,d\mu(x).\]
-Note that $\f(t)=\hat\mu(-t)$ where $\hat\mu$ is the Fourier transform of $\mu$.
+Note that $\f(t)=\hat\mu(-t)$ where $\hat\mu$ is the Fourier transform of $\mu\in\cS'(\R)$.
 \begin{parts}
 \item $\f\in C_b(\R)$.
-\item If $\f\in L^1(\R)$, then $\mu$ has density $f\in C_0(\R)\cap L^1(\R)$.
 \end{parts}
 \end{prb}
 
 \begin{prb}[Inversion formula]
-For $a<b$,
+\begin{parts}
+\item For $a<b$,
 \[\lim_{T\to\infty}\frac1{2\pi}\int_{-T}^T\frac{e^{-ita}-e^{-itb}}{it}\f(t)\,dt=\mu((a,b))+\frac12\mu(\{a,b\}).\]
+\item If $\f\in L^1(\R)$, then $\mu$ has density
+\[f(x)=\frac1{2\pi}\int e^{-itx}\f(t)\,dt\]
+in $C_0(\R)\cap L^1(\R)$.
+\end{parts}
 \end{prb}
 
 \begin{prb}[L\'evy's continuity theorem]
+The continuity theorem provides with a tool to verify the weak convergence in terms of characteristic functions.
+Let $\mu_n$ and $\mu$ be probability distributions on $\R$ with characteristic functions $\f_n$ and $\f$.
 \begin{parts}
 \item If $\mu_n\to\mu$ weakly, then $\f_n\to\f$ pointwise.
-\item If $\f_n\to\f$ pointwise and $\f$ is continuous at zero, then $\mu_n\to\mu$ weakly.
+\item If $\f_n\to\f$ pointwise and $\f$ is continuous at zero, then $(\mu_n)_n$ is tight and $\mu_n\to\mu$ weakly.
 \end{parts}
 \end{prb}
+\begin{pf}
+(a)
+For each $t$,
+\[\f_n(t)=\int e^{itx}\,d\mu_n(x)\to\int e^{itx}\,d\mu(x)=\f(t)\]
+because $e^{itx}\in C_b(\R)$.
+
+(b)
+
+
+\end{pf}
 
 \begin{prb}[Criteria for characteristic functions]
 Bochner's theorem and Polya's criterion
@@ -358,20 +250,120 @@ moment generating function defined on $|t|<\delta$
 
 
 
+
+\part{Limit theorems}
+
+
+
+\chapter{Laws of large numbers}
+
+\section{Weak and strong laws of large numbers}
+
+
+
+\begin{prb}[Truncation method]
+Let $X_n:\Omega\to\R$ be uncorrelated random variables and $S_n:=X_1+\cdots+X_n$.
+For a positive sequence $(b_n)_{n=1}^\infty$, let $Y_n:=X_n\1_{|X_n|\le b_n}$ be truncated random variables and $T_n:=Y_1+\cdots+Y_n$.
+Suppose that the truncation level $b_n$ satisfies the approximation condition
+\[\lim_{n\to\infty}\sum_{i=1}^nP(|X_i|>b_i)=0.\]
+\begin{parts}
+\item If $(T_n-ET_n)/b_n\to0$ in probability, then $(S_n-ET_n)/b_n\to0$ in probability.
+\item If $(T_n-ET_n)/b_n\to Z$ in distribution, then $(S_n-ET_n)/b_n\to Z$ in distribution.
+\end{parts}
+\end{prb}
+\begin{pf}
+(a)
+Write
+\[P\left(\left|\frac{S_n-ET_n}{b_n}\right|>\e\right)
+\le P(S_n\ne T_n)+P\left(\left|\frac{T_n-ET_n}{b_n}\right|>\e\right)\to0.\]
+
+(b)
+By the Slutsky theorem.
+\end{pf}
+
+
+\begin{prb}[Weak laws of large numbers]
+Let $X_n:\Omega\to\R$ be uncorrelated random variables and $S_n:=X_1+\cdots+X_n$.
+For a positive sequence $(b_n)_{n=1}^\infty$, let $Y_n:=X_n\1_{|X_n|\le b_n}$ be truncated random variables and $T_n:=Y_1+\cdots+Y_n$.
+\begin{parts}
+\item If
+\[\lim_{n\to\infty}\frac1{c_n^2}\sum_{i=1}^nE|X_i|^2=0,\]
+then $(S_n-ES_n)/c_n\to0$ in probability.
+\item If
+\[\lim_{x\to\infty}\sup_ixP(|X_i|>x)=0,\]
+then $(S_n-ET_n)/b_n\to0$ in probability for $b_n=n$.
+This is called the \emph{Kolmogorov-Feller condition}.
+\end{parts}
+\end{prb}
+\begin{pf}
+(a)
+Since $X_n$ are uncorrelated, we have
+\[P\left(\left|\frac{S_n-ES_n}{b_n}\right|>\e\right)\le\frac1{\e^2b_n^2}VS_n\le\frac1{\e^2b_n^2}\sum_{i=1}^nE|X_i|^2\lesssim\frac1n\to0\]
+as $n\to\infty$.
+
+(b)
+Write $g(x):=\sup_ixP(|X_i|>x)$.
+Then,
+\[\sum_{i=1}^nP(|X_i|>n)\le\sum_{i=1}^n\frac1ng(n)=g(n)\to0\]
+as $n\to\infty$.
+On the other hand,
+\begin{align*}
+\frac1{n^2}\sum_{i=1}^nE|Y_i|^2
+&=\frac1{n^2}\sum_{i=1}^n\int_0^\infty2xP(|Y_i|>x)\,dx
+=\frac1{n^2}\sum_{i=1}^n\int_0^n2xP(|X_i|>x)\,dx\\
+&\le\frac2n\int_0^ng(x)\,dx
+=2\int_0^1g(nx)\,dx.
+\end{align*}
+Since $g(x)\le x$ and $g(x)\to0$ as $x\to\infty$, $g$ is bounded so that the bounded convergence theorem implies $\int_0^1g(nx)\,dx\to0$ as $n\to\infty$.
+\end{pf}
+
+
+
+\begin{prb}[Borel-Cantelli lemmas]
+\end{prb}
+
+\begin{prb}[Strong laws of large numbers]
+Proof by Etemadi
+\end{prb}
+
+\section{Random series}
+
+\section{Renewal theory}
+
+\section*{Exercises}
+\begin{prb}[Bernstein polynomial]
+Let $X_n\sim\Bern(x)$ be i.i.d. random variables.
+Since $S_n\sim\Binom(n,x)$, $E(S_n/n)=x$, $V(S_n/n)=x(1-x)/n$.
+The $L^2$ law of large numbers implies $E(|S_n/n-x|^2)\to0$.
+Define $f_n(x):=E(f(S_n/n))$.
+Then, by the uniform continuity $|x-y|<\delta$ implies $|f(x)-f(y)|<\e$,
+\[|f_n(x)-f(x)|\le E(|f(S_n/n)-f(x)|)\le\e+2\|f\|P(|S_n/n-x|\ge\delta)\to\e.\]
+\end{prb}
+\begin{prb}[High-dimensional cube is almost a sphere]
+Let $X_n\sim\Unif(-1,1)$ be i.i.d. random variables and $Y_n:=X_n^2$.
+Then, $E(Y_n)=\frac13$ and $V(Y_n)\le1$.
+\end{prb}
+\begin{prb}[Coupon collector's problem]
+$T_n:=\inf\{\,t:|\{X_i\}_i|=n\,\}$
+Since $X_{n,k}\sim\Geo(1-\frac{k-1}n)$, $E(X_{n,k})=(1-\frac{k-1}n)^{-1}$, $V(X_{n,k})\le(1-\frac{k-1}n)^{-2}$.
+$E(T_n)\sim n\log n$
+\end{prb}
+\begin{prb}[An occupancy problem]
+\end{prb}
+\begin{prb}[The St. Petersburg paradox]
+\end{prb}
+
+
+
+
+
+
 \chapter{Central limit theorems}
-
-
 
 
 
 \section{Central limit theorems}
 
-\begin{prb}[Lindeberg-L\'evy central limit theorem]
-Let $X_n:\Omega\to\R$ be i.i.d. random variables with $EX_i=\mu$ and $VX_i=\sigma^2$ for $0<\sigma<\infty$.
-Then,
-\[\frac{S_n-n\mu}{\sigma\sqrt n}\to N(0,1)\]
-weakly, where $S_n:=\sum_{i=1}^nX_i$.
-\end{prb}
 
 \begin{prb}[Lyapunov central limit theorem]
 Let $X_n:\Omega\to\R$ be independent random variables with $EX_i=\mu_i$ and $VX_i=\sigma_i^2$.
@@ -383,13 +375,16 @@ weakly, where $S_n:=\sum_{i=1}^nX_i$ and $s_n^2:=VS_n$.
 \end{prb}
 
 \begin{prb}[Lindeberg-Feller central limit theorem]
-Let $X_{i,n}:\Omega\to\R$ be independent random variables with $EX_{i,n}=\mu_{i,n}$ and $VX_{i,n}=\sigma_{i,n}^2$.
-If for every $\e>0$ the \emph{Lindeberg condition}
-\[\lim_{n\to\infty}\frac1{s_n^2}\sum_{i=1}^nE|X_{i,n}-\mu_{i,n}|^2\1_{|X_{i,n}-\mu_{i,n}|>\e s_n}=0\]
-is satisfied, then
-\[\frac{S_n-ES_n}{s_n}\to N(0,1)\]
-weakly, where $S_n:=\sum_{i=1}^nX_{i,n}$ and $s_n^2:=VS_n$.
-
+Let $X_{i,n}:\Omega\to\R$ be independent random variables and $S_n:=X_1+\cdots+X_n$.
+\begin{parts}
+\item
+If
+\[\lim_{n\to\infty}\frac1{s_n^2}\sum_{i=1}^nE|X_i-EX_i|^2=1,\]
+and if for every $\e>0$ we have
+\[\lim_{n\to\infty}\frac1{s_n^2}\sum_{i=1}^nE|X_i-EX_i|^2\1_{|X_i-EX_i|>\e s_n}=0,\]
+then $(S_n-ES_n)/s_n\to N(0,1)$ in distribution.
+This is called the \emph{Lindeberg condition}.
+\end{parts}
 \end{prb}
 
 
@@ -401,6 +396,20 @@ weakly, where $S_n:=\sum_{i=1}^nX_{i,n}$ and $s_n^2:=VS_n$.
 Law of rare events, or weak law of small numbers (a single sample makes a significant attibution)
 
 \section{Stable laws}
+
+
+
+\chapter{}
+
+
+
+
+
+
+
+
+
+
 
 
 \part{Stochastic processes}

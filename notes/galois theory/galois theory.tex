@@ -89,6 +89,24 @@ Then, $G\cong N\rtimes_\f H$, where the action $\f$ is given by conjugation
 
 
 
+\begin{lem}
+Let $N,H$ be groups.
+Let $\f_1,\f_2:H\to\Aut(N)$ be group actions.
+If there are $\nu\in\Aut(N)$ and $\eta\in\Aut(H)$ such that a diagram
+\begin{cd}
+H \ar{r}{\f_1}\ar{d}{\eta} & \Aut(N) \ar{d}{\nu\,\cdot\,\nu^{-1}}\\
+H \ar{r}{\f_2} & \Aut(N)
+\end{cd}
+commutes, then a map
+\[N\rtimes_\f H\to N\rtimes_{\f'}H:(n,h)\mapsto(\nu(n),\eta(h))\]
+is an isomorphism.
+\end{lem}
+\begin{lem}
+Let $Z,G$ be finite groups.
+If $Z$ is cyclic, then two group actions $\f,\f':Z\to\Aut(G)$ induces the isomorphic semidirect products if and only if their images are conjugate.
+\end{lem}
+
+
 \section{Extensions}
 
 \begin{prop}
@@ -144,83 +162,64 @@ If $\f$ is trivial so that $A$ is just an abelian group, then the universal coef
 
 
 
+
+
+
+
+
+
+
+
 \chapter{The Sylow theorems}
-\begin{defn}[Sylow $p$-subgroup]
+
+\section{The Sylow theorems}
+\begin{prb}[The Sylow theorems]
 Let $G$ be a finite group of order $n=p^am$ for a prime $p\nmid m$.
 A \emph{Sylow $p$-subgroup} is a subgroup of order $p^a$.
-We are going to denote the set of Sylow $p$-subgroups by $\Syl_p(G)$ and the number of Sylow $p$-subgroups by $n_p(G)$.
-\end{defn}
-
-\begin{thm}[Sylow]
-Let $G$ be a finite group of order $n=p^am$ for a prime $p\nmid m$.
-Then,
-\[p\mid n_p-1,\qquad n_p\mid m\]
-for some $k\in\N$.
-\end{thm}
-\begin{pf}
-\Step{1}[A Sylow $p$-subgroup exists]
-We apply mathematical induction on orders.
-The base step is trivial.
-Suppose every finite group of order less than $n$ possesses a Sylow $p$-subgroup.
-
-By applying the orbit-stabilizer theorem for the action $G\to\Aut(G)$ by conjugation, build the class equation
-\[n=|Z(G)|+\sum_i|G:C_G(g_i)|.\]
-There are two cases: $p\mid|Z(G)|$ or $p\nmid|Z(G)|$.
-
-\Case{1}[$p\mid|Z(G)|$]
-The group $G$ has a normal subgroup of order $p$ by applying Cauchy's theorem for abelian groups on the center.
-Then, the inverse image of a Sylow $p$-subgroup of the quotient group is also a Sylow $p$-subgroup of $G$.
-
-\Case{2}[$p\nmid|Z(G)|$]
-Since $p\mid n$, we have $p\nmid|G:C_G(g)|$ for some $g\in G$.
-Then, a Sylow $p$-subgroup of the centralizer is also a Sylow $p$-subgroup of $G$.
-
-Therefore, we are done for Step 1.
-
-\bigskip
-\Step{2}[A Sylow $p$-subgroups get action by conjugation]
-Let $P$ be a Sylow $p$-subgroup of $G$.
-We construct class equations via the orbit-stabilizer theorm for various actions to extract information on $n_p$.
-Note that stabilizers in any setwise conjugation action is exactly normalizers.
+Denote $\Syl_p(G)$ the set of Sylow $p$-subgroups and $n_p(G)$ its cardinality.
 \begin{parts}
-\item The action $P\to\Sym(\Syl_p(G))$ gives
-\[n_p=1+\sum_i|P:N_P(P_i)|\]
-since $P=N_P(P_i)\le N_G(P_i)$ and $P_i\normal N_G(P_i)$ imply and $P=P_i$.
-(Pass $P$ though $\pi:N_G(P_i)\to N_G(P_i)/P_i$.)
-\item Suppose the action $G\to\Sym(\Syl_p(G))$ is not transitive.
-Take another Sylow $p$-subgroup $P'$ is not conjugate with $P$ in $G$.
-The two actions $P\to\Sym(\Orb_G(P))$ and $P'\to\Sym(\Orb_G(P))$ gives
-\[|\Orb_G(P)|=1+\sum_i|P:N_P(P_i)|=\sum_i|P':N_{P'}(P_i)|.\]
-It deduces $|\Orb_G(P)|\equiv0,1\pmod{p}$ simultaneously, which leas a contradiction.
-\item The action $G\to\Sym(\Syl_p(G))$ gives
-\[n_p=|G:N_G(P_i)|\]
-for all $P_i\in\Syl_p(G)$ because the action is transitive.
+\item $n_p\ge1$.
+\item $n_p\equiv1\pmod p$.
+\item $n_p\mid m$.
 \end{parts}
-Then, (1) proves $p\mid n_p-1$, and (3) proves $n_p\mid m$.
+\end{prb}
+\begin{pf}
+(a)
+Suppose $\Syl_p(G)\ne\varnothing$ for all finite groups $G$ such that $|G|<n$.
+The class equation for the action of $G$ on $G$ by conjugation is
+\[n=|Z(G)|+\sum_{i=1}^r|G:C_G(g_i)|,\]
+where $r$ is the number of non-trivial orbits.
+
+If $p\mid|Z(G)|$, then, by the Cauchy theorem for abelian groups, $Z(G)$ has a normal subgroup $P_p$ of order $p$, and so is a normal subgroup of $G$.
+For $Q\in\Syl_p(G/P_p)$, the inverse image of $Q$ under the projection $G\to G/P_p$ is a Sylow $p$-subgroup of $G$.
+If $p\nmid|Z(G)|$, then we have $p\nmid|G:C_G(g)|$ for some $g\in G$, and with this $g$, we have $\Syl_p(C_G(g))\subset\Syl_p(G)$.
+Then, we are done by induction.
+
+(b)
+For $P\in\Syl_p(G)$, the class equation for the action of $P$ on $\Syl_p(G)$ by conjugation is
+\[n_p=f+\sum_{i=1}^r|P:N_P(P_i)|,\]
+where $f$ is the number of fixed points and $r$ the number of non-trivial orbits.
+
+If $P_i\in\Syl_p(G)$ is fixed, then $P$ normalizes $P_i$ so that $P<N_G(P_i)$, and by passing $P$ though the projection $N_G(P_i)\to N_G(P_i)/P_i$ we can show $P=P_i$.
+Therefore, $P$ is the only fixed point, so it follows that $n_p\equiv1\pmod p$ from
+\[n_p=1+\sum_{i=1}^r|P:N_P(P_i)|.\]
+
+(c)
+Suppose there are $P,P'\in\Syl_p(G)$ that are not conjugate.
+The class equations for actions of $P$ and $P'$ on $\Orb_G(P)\subset\Syl_p(G)$ are
+\[|\Orb_G(P)|=1+\sum_{i=1}^r|P:N_P(P_i)|=\sum_{i=1}^{r'}|P':N_{P'}(P_i)|,\]
+because only $P$ can fix $P$ as shown in the part (b).
+It deduces $|\Orb_G(P)|\equiv0,1\pmod{p}$ simultaneously, which is a contradiction.
+Therefore, the action of $G$ on $\Syl_p(G)$ by conjugation is transitive and its class equation is
+\[n_p=|G:N_G(P)|\]
+for all $P\in\Syl_p(G)$.
 \end{pf}
 
-\begin{cor}
-Let $G$ be a finite group.
-Then,
 \begin{parts}
 \item every pair of two Sylow $p$-subgroup is conjugate.
 \item every $p$-subgroup is contained in a Sylow $p$-subgroup.
 \item a Sylow $p$-subgroup is normal if and only if $n_p=1$.
 \end{parts}
-\end{cor}
-
-\begin{thm}
-Alternative proof for existence of $p$-groups.
-\end{thm}
-\begin{pf}
-Let $|G|=p^{a+b}m$.
-Let $\cP_{p^a}$ be the set of all $p^a$-sets in $G$.
-Give $G\to\Sym(\cP_{p^a})$ by left multiplication.
-Since $v_p(|\cP_{p^a}|)=v_p(\binom{p^a(p^bm)}{p^a})=b$, there is an orbit $\cO$ such that $v_p(|\cO|)\le b$.
-We have transitive action $G\to\Sym(\cO)$ and the stabilizer $H$ satisfies $p^a\mid|G|/|\cO|=|H|$.
-Since $H\to\Sym(\cO)$ trivially, $H\to\Sym(A)$ for $A\in\cO\subset\cP_{p^a}$.
-It is only possible when $H\subset A$, hence $|H|=p^a$.
-\end{pf}
 
 Investigation of a group of a given order is divided into two main parts: the existence of a subgroup of particular orders and the measurement of the size of conjugate subgroups.
 
@@ -240,74 +239,63 @@ In order to find the size of conjugacy classes:
 
 
 
-\section{Two primes}
-\begin{ex}[$|G|=p^2$]
-\end{ex}
+\section{Classification of small groups}
 
-\begin{ex}[$|G|=pq$]
-\end{ex}
+\begin{prb}[Classification of groups of order $pq$]
+\end{prb}
+
+\begin{prb}[Classification of groups of order $p^2$]
+\end{prb}
+
+\begin{prb}[Classification of groups of order $pqr$]
+\end{prb}
 
 
-
-
-\section{Three primes}
-\begin{lem}
-Let $N,H$ be groups.
-Let $\f_1,\f_2:H\to\Aut(N)$ be group actions.
-If there are $\nu\in\Aut(N)$ and $\eta\in\Aut(H)$ such that a diagram
-\begin{cd}
-H \ar{r}{\f_1}\ar{d}{\eta} & \Aut(N) \ar{d}{\nu\,\cdot\,\nu^{-1}}\\
-H \ar{r}{\f_2} & \Aut(N)
-\end{cd}
-commutes, then a map
-\[N\rtimes_\f H\to N\rtimes_{\f'}H:(n,h)\mapsto(\nu(n),\eta(h))\]
-is an isomorphism.
-\end{lem}
-\begin{lem}
-Let $Z,G$ be finite groups.
-If $Z$ is cyclic, then $\f,\f':Z\to\Aut(G)$ induces the isomorphic semidirect product iff their images are conjugate.
-\end{lem}
-
-\begin{ex}[Conjugacy classes of $\GL_2(\F_p)$]
-$ $
+\begin{prb}[Conjugacy classes of $\GL_2(\F_p)$]
 \begin{parts}
 \item $\mat{a&0\\0&b}$: $\binom{q-1}2=\frac{(q-1)(q-2)}2$ classes of size $\frac{|G|}{(q-1)^2}=q(q+1)$.
 \item $\mat{a&0\\0&a}$: $q-1$ classes of size $1$.
 \item $\mat{a&1\\0&a}$: $q-1$ classes of size $\frac{|G|}{q(q-1)}=q^2-1$.
 \item otherwise, the eigenvalues are in $\F_{q^2}$. So, $\frac{|\F_{q^2}|-|\F_q|}2=\frac{q(q-1)}2$ classes of size $\frac{q(q-1)}2$.
 \end{parts}
-\end{ex}
-
-
-
-\begin{ex}[$|G|=p^3$]
-\end{ex}
-
-
-\begin{ex}[$|G|=p^2q$]
-We divide three cases: $p+2\le q$, $p>q$, and $p^2q=12$.
-In each case we have a normal Sylow $p$-subgroup, groups are classified by semidirect products of a Sylow $p$-subgroup and a Sylow $q$-subgroup.
-
-\bigskip
-\Case{1}[$p+2\le q$]
-Sylow's theorem implies $n_q=1$.
+\end{prb}
+\begin{prb}[Classification of groups of order $p^2q$]
+Let $G$ be a finite group of order $p^2q$ for distinct primes $p,q$.
 \begin{parts}
-\item
+\item If $p+2\le q$, there are
+\[\begin{cases}
+2&\text{ if }v_p(q-1)=0,\\
+4&\text{ if }v_p(q-1)=1,\\
+5&\text{ if }v_p(q-1)\ge2
+\end{cases}\]
+non-isomorphic groups of order $p^2q$.
+\item If $p>q$, there are
+\[\begin{cases}
+5&\text{ if }q=2,\\
+\frac{q+9}2&\text{ if }q\ne2,\ q\mid p-1,\\
+3&\text{ if }q\ne2,\ q\mid p+1\\
+2&\text{ otherwise }
+\end{cases}\]
+non-isomorphic groups of order $p^2q$.
+\item There are five non-isomorphic groups of order 12.
+\end{parts}
+\end{prb}
+\begin{pf}
+(a)
+Sylow's theorem implies $n_q=1$.
+For $P\in\Syl_p(G)$ and $Q\in\Syl_q(G)$,
+\[P\cong Z_{p^2}\text{ or }Z_p^2,\quad\text{ and }\quad Q\cong Z_q.\]
+
 Let $G\cong Z_q\rtimes Z_{p^2}$, and consider actions of the form
 \[\f:Z_{p^2}\to\Aut(Z_q)\cong Z_{q-1}.\]
-There are
-\[\min\{v_p(q-1),2\}=\begin{cases}2&,p^2\mid q-1,\\1&,p\|q-1,\\0&,\text{otherwise}\end{cases}\]
-nonabelian groups.
-\item
+We count the number of conjugacy classes that can be the image of $\f$.
+There are $\min\{v_p(q-1),3\}$ distinct groups.
+
 Let $G\cong Z_q\rtimes(Z_p\times Z_p)$, and consider actions of the form
 \[\f:Z_p\times Z_p\to\Aut(Z_q)\cong Z_{q-1}.\]
-There are
-\[\min\{v_p(q-1),1\}=\begin{cases}1&,p\mid q-1,\\0&,\text{otherwise}\end{cases}\]
-nonabelian groups.
-\end{parts}
+There are $\min\{v_p(q-1),2\}$ distinct groups.
 
-\bigskip
-\Case{2}[$p>q$]
+(b)
 Sylow's theorem implies $n_p=1$.
 \begin{parts}
 \item
@@ -330,19 +318,21 @@ nonabelian groups.
 Since the number of one-dimensional linear subspaces is $q+1$ and the number of symmetric subspaces is 2 in $\F_q^2$, we have $\frac{(q+1)-2}2+2=\frac{q+3}2$ conjugacy classes of subgroups of order $q$ in $\GL_2(\F_p)$.
 \end{parts}
 
-\Case{3}[$p=2$, $q=3$]
+(c)
 
-\end{ex}
-
-
-
-
-\begin{ex}[$|G|=pqr$]
-\end{ex}
+\end{pf}
 
 
 
-\begin{figure}[h!]
+\begin{prb}[Classification of groups of order $p^3$]
+\end{prb}
+
+
+
+
+
+\begin{table}[h!]
+\centering
 \begin{tabular}{c|c|ccccccc}
 \hline
 $|G|=p^2q\ (p<q)$&12&20&28&44&45&52&63\\
@@ -350,11 +340,10 @@ $|G|=p^2q\ (p<q)$&12&20&28&44&45&52&63\\
 $\#$ of groups&5&5&4&4&2&5&4\\
 \hline
 \end{tabular}
-\vspace{10pt}
-
+\vspace{10pt}\\
 \begin{tabular}{c|cccc}
 \hline
-$|G|=p^2q\ (p>q)$&18&50&(75)\\
+$|G|=p^2q\ (p>q)$&18&50&75\\
 \hline
 $\#$ of groups&5&5&3\\
 \hline
@@ -367,14 +356,7 @@ $|G|=pqr$&30&42\\
 $\#$ of groups&4&6\\
 \hline
 \end{tabular}
-\end{figure}
-
-
-
-
-\section{More than three primes}
-Under 64, there are some exceptions whose orders are formed by product of more than three primes.
-\begin{figure}[h!]
+\vspace{10pt}\\
 \begin{tabular}{c|c|cccc|c|c}
 \hline
 $|G|=\prod^4p$&16&24&40&54&56&36&60\\
@@ -382,8 +364,7 @@ $|G|=\prod^4p$&16&24&40&54&56&36&60\\
 $\#$ of groups&14&15&14&15&13&14&13\\
 \hline
 \end{tabular}
-\vspace{10pt}
-
+\vspace{10pt}\\
 \begin{tabular}{c|c|c||c}
 \hline
 $|G|=\prod^{5\text{ or }6}p$&32&48&64\\
@@ -391,7 +372,7 @@ $|G|=\prod^{5\text{ or }6}p$&32&48&64\\
 $\#$ of groups&51&52&267\\
 \hline
 \end{tabular}
-\end{figure}
+\end{table}
 
 
 
@@ -430,7 +411,30 @@ If $x\mapsto x^3$ is a surjective endomorhpism, then $G$ is abelian.
 
 
 
+
+\section*{Exercises}
+\begin{prb}
+Alternative proof for existence of $p$-groups.
+\end{prb}
+\begin{pf}
+Let $|G|=p^{a+b}m$.
+Let $\cP_{p^a}$ be the set of all $p^a$-sets in $G$.
+Give $G\to\Sym(\cP_{p^a})$ by left multiplication.
+Since $v_p(|\cP_{p^a}|)=v_p(\binom{p^a(p^bm)}{p^a})=b$, there is an orbit $\cO$ such that $v_p(|\cO|)\le b$.
+We have transitive action $G\to\Sym(\cO)$ and the stabilizer $H$ satisfies $p^a\mid|G|/|\cO|=|H|$.
+Since $H\to\Sym(\cO)$ trivially, $H\to\Sym(A)$ for $A\in\cO\subset\cP_{p^a}$.
+It is only possible when $H\subset A$, hence $|H|=p^a$.
+\end{pf}
+
+
+
+
 \chapter{Subnormal series}
+
+
+
+
+
 
 
 
