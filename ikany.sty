@@ -61,7 +61,7 @@
 %  Theorems and Proofs  %
 %///////////////////////%
 
-\RequirePackage{amsthm,xparse,environ}
+\RequirePackage{amsthm,xparse}
 \theoremstyle{plain}
   \newtheorem{thm}{Theorem}[section]
   \newtheorem*{thm*}{Theorem}
@@ -83,13 +83,21 @@
 \theoremstyle{remark}
   \newtheorem*{rmk}{Remark}
 
-\newif\if@hidepf % \@hidepffalse
-\newif\if@hidesol
-\DeclareOption{hidepf}{\global\@hidepftrue}
-\DeclareOption{hidesol}{\global\@hidesoltrue}
-\ProcessOptions\relax
-\NewEnviron{pf}[1][\unskip]{\if@hidepf\else\begin{proof}[Proof #1]\BODY\end{proof}\fi}
-\NewEnviron{sol}[1][\unskip]{\if@hidesol\else\begin{proof}[Solution #1]\BODY\end{proof}\fi}
+\NewDocumentEnvironment{pf}{}
+  {\begin{proof}}
+  {\end{proof}}
+\NewDocumentEnvironment{sol}{}
+  {\begin{proof}[Solution]}
+  {\end{proof}}
+
+%\Requirepackage{environ}
+%\newif\if@hidepf % \@hidepffalse
+%\newif\if@hidesol
+%\DeclareOption{hidepf}{\global\@hidepftrue}
+%\DeclareOption{hidesol}{\global\@hidesoltrue}
+%\ProcessOptions\relax
+%\NewEnviron{pf}[1][\unskip]{\if@hidepf\else\begin{proof}[Proof #1]\BODY\end{proof}\fi}
+%\NewEnviron{sol}[1][\unskip]{\if@hidesol\else\begin{proof}[Solution #1]\BODY\end{proof}\fi}
 
 \NewDocumentCommand{\Case}{mo}{\IfNoValueTF{#2}{\emph{Case #1.}}{\emph{Case #1: #2.}}}
 \NewDocumentCommand{\Step}{mo}{\IfNoValueTF{#2}{\emph{Step #1.}}{\emph{Step #1: #2.}}}
@@ -122,7 +130,7 @@
 \RequirePackage{tikz-cd,xparse}
 \NewDocumentEnvironment{cd}{}
   {\[\begin{tikzcd}}
-  {\end{tikzcd}\]}
+  {\end{tikzcd}\]\ignorespacesafterend}
 \NewDocumentEnvironment{es}{}
   {
     \renewcommand{\>}{\rar\&}

@@ -1,9 +1,9 @@
-PWD /Users/ikhanchoi/Dropbox/Git/mathnotes/notes/differential equations
+PWD /Users/ikhanchoi/Dropbox/Git/mathnotes/notes/functional analysis
 INPUT /usr/local/texlive/2021/texmf.cnf
 INPUT /usr/local/texlive/2021/texmf-dist/web2c/texmf.cnf
 INPUT /usr/local/texlive/2021/texmf-var/web2c/xetex/xelatex.fmt
-INPUT differential equations.tex
-OUTPUT differential equations.log
+INPUT functional analysis.tex
+OUTPUT functional analysis.log
 INPUT ../note.cls
 INPUT ../note.cls
 INPUT ../note.cls
@@ -590,10 +590,10 @@ INPUT /usr/local/texlive/2021/texmf-dist/tex/generic/pgf/libraries/pgflibraryarr
 INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/l3packages/xparse/xparse.sty
 INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/l3packages/xparse/xparse.sty
 INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/l3packages/xparse/xparse.sty
-INPUT ./differential equations.aux
-INPUT differential equations.aux
-INPUT differential equations.aux
-OUTPUT differential equations.aux
+INPUT ./functional analysis.aux
+INPUT functional analysis.aux
+INPUT functional analysis.aux
+OUTPUT functional analysis.aux
 INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/base/ts1cmr.fd
 INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/base/ts1cmr.fd
 INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/base/ts1cmr.fd
@@ -656,12 +656,12 @@ INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/mathdesign/mdbch/mdbmdbch.fd
 INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/public/mathdesign/mdbch/mdbchrmb.tfm
 INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/public/mathdesign/mdbch/mdbchrmb.tfm
 INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/public/mathdesign/mdbch/mdbchrmb.tfm
-OUTPUT differential equations.xdv
+OUTPUT functional analysis.xdv
 INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/public/mathdesign/mdbch/mdbchr8t.tfm
 INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/public/mathdesign/mdbch/mdbchb8t.tfm
-INPUT ./differential equations.toc
-INPUT differential equations.toc
-INPUT differential equations.toc
+INPUT ./functional analysis.toc
+INPUT functional analysis.toc
+INPUT functional analysis.toc
 INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/public/mathdesign/mdbch/mdbchb8t.tfm
 INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/public/mathdesign/mdbch/mdbchb8t.tfm
 INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/public/mathdesign/mdbch/mdbchr7t.tfm
@@ -688,10 +688,32 @@ INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/public/mathdesign/mdbch/mdbch
 INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/public/mathdesign/mdbch/mdbchrmb.tfm
 INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/public/mathdesign/mdbch/mdbchrmb.tfm
 INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/public/mathdesign/mdbch/mdbchrmb.tfm
-OUTPUT differential equations.toc
+OUTPUT functional analysis.toc
 INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/public/mathdesign/mdbch/mdbchr8t.tfm
 INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/public/mathdesign/mdbch/mdbchb8t.tfm
 INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/public/mathdesign/mdbch/mdbchri8t.tfm
-INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/public/mathdesign/mdbch/mdbchr8t.tfm
-INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/public/mathdesign/mdbch/mdbchr8t.tfm
-INPUT differential equations.aux
+INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/public/mathdesign/mdbch/mdbchr7t.tfm
+INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/public/mathdesign/mdbch/mdbchr7t.tfm
+INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/public/mathdesign/mdbch/mdbchr7t.tfm
+INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/public/mathdesign/mdbch/mdbchri7m.tfm
+INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/public/mathdesign/mdbch/mdbchri7m.tfm
+INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/public/mathdesign/mdbch/mdbchri7m.tfm
+INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/public/mathdesign/mdbch/mdbchr7y.tfm
+INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/public/mathdesign/mdbch/mdbchr7y.tfm
+INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/public/mathdesign/mdbch/mdbchr7y.tfm
+INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/public/mathdesign/mdbch/mdbchr7v.tfm
+INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/public/mathdesign/mdbch/mdbchr7v.tfm
+INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/public/mathdesign/mdbch/mdbchr7v.tfm
+INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/public/cm/cmsy10.tfm
+INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/public/cm/cmsy10.tfm
+INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/public/cm/cmsy10.tfm
+INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/public/mathdesign/mdbch/mdbchr7m.tfm
+INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/public/mathdesign/mdbch/mdbchr7m.tfm
+INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/public/mathdesign/mdbch/mdbchr7m.tfm
+INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/public/mathdesign/mdbch/mdbchrma.tfm
+INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/public/mathdesign/mdbch/mdbchrma.tfm
+INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/public/mathdesign/mdbch/mdbchrma.tfm
+INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/public/mathdesign/mdbch/mdbchrmb.tfm
+INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/public/mathdesign/mdbch/mdbchrmb.tfm
+INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/public/mathdesign/mdbch/mdbchrmb.tfm
+INPUT functional analysis.aux

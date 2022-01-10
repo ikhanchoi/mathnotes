@@ -29,19 +29,60 @@ Main resources I refered are books by Manfredo P. do Carmo \cite{}, and Richard 
 
 \section{Inverse function theorem}
 
-We are going to summary the basic tools to investigate the nature of smooth manifolds.
-These includes the inverse function theorem, the implicit function theorem, the slice lemma, the constant rank theorem.
+slice lemma
+
+\begin{prb}[Constant rank theorem]
+Let $f:M\to N$ be a smooth map whose differential has a locally constant rank $k$ at a point $p\in M$.
+For each pair of local charts $(U,\f)$ at $p$ and $(V,\psi)$ at $q:=f(p)$, we introduce functions $a:\f(U)\to\R^k$ and $b:\psi(V)\to\R^{n-k}$ to write
+\[\psi\circ f\circ\f^{-1}(x,y)=(a(x,y),b(x,y))\]
+for $x\in\R^k$, $y\in\R^{m-k}$.
+\begin{parts}
+\item $a(0,0)=b(0,0)=0$ and $\pd{a}{x}$ is invertible everywhere.
+\item $a(x,y)=x$.
+\item $a(x,y)=x$ and $b(x,y)=0$.
+\end{parts}
+\end{prb}
+\begin{pf}
+(b)
 
 
-\begin{thm}[Constant rank theorem]
-Let $f:M\to N$ be a smooth map such that its differential has a locally constant rank at a point $p$.
+
+\end{pf}
+
+\begin{prb}[Preimage theorem]
+Let $q\in N$ be a regular value of $f$.
+\end{prb}
+\begin{pf}
+Let $p\in f^{-1}(q)$ be any point.
+\begin{cd}
+f^{-1}(q)\cap U \dar{\f|_{f^{-1}(q)\cap U}} & U \rar{f}\dar{\f} & V \dar{\psi} \\
+\ker\tilde f\cap\f(U) & \f(U) \rar{\tilde f} & \psi(V)
+\end{cd}
+By the constant rank theorem, there are charts $(U,\f)$ at $p$ and $(V,\psi)$ at $q$ such that $\tilde f:=\psi\circ f\circ\f^{-1}$ is linear and the restriction
+\[\f|_{f^{-1}(q)\cap U}:f^{-1}(q)\cap U\to\ker\tilde f\cap\f(U)\]
+is bijective.
+A restriction of a homeomorphism is a homeomorphism if and only if it is bijective, so it is a homeomorphism.
+
+Since the transition maps for this atlas on $f^{-1}(q)$ are restrictions of transition maps for $M$ onto linear subsapces, they are smooth.
+\end{pf}
+
+
+Let $f:M\to N$ be an injective immersion.
+There exists unique smooth structure on $f(M)$ such that $f$ and $i$ are smooth.
+
+Let $f:M\to N$ be an embedding.
+There exists unique smooth structure on $f(M)$ such that $i$ are smooth.
+
+
+\begin{prb}[Constant rank theorem]
+Let $f:M\to N$ be a smooth map such that its differential has a locally constant rank $k$ at a point $p\in M$.
 Then, there is a pair of local charts $(U,\f)$ at $p$ and $(V,\psi)$ at $f(p)$ such that
 \begin{parts}
-\item $\f(p)=(0,0)\in\R^k\times\R^{m-k},\ \psi(f(p))=(0,0)\in\R^k\times\R^{n-k}$,
+\item $\f(p)=(0,0)\in\R^k\times\R^{m-k},\ \psi\circ f(p)=(0,0)\in\R^k\times\R^{n-k}$,
 \item $\psi\circ f\circ\f^{-1}(x,y)=(x,0)$,
 \item $f(U)=f(M)\cap V$.
 \end{parts}
-\end{thm}
+\end{prb}
 
 The follwoing diagram would be helpful.
 \begin{cd}[column sep=120pt]

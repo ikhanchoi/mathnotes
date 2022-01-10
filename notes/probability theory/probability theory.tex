@@ -135,7 +135,7 @@ Let $F_n:\R\to[0,1]$ be distribution functions.
 
 \section{The space of probability measures}
 \begin{prb}
-Suppose $f_n$ and $f$ are density functions on $\R$.
+Suppose $f_n$ and $f$ are density functions.
 \begin{parts}
 \item If $f_n\to f$ a.s., then $f_n\to f$ in $L^1$.\hfill(Scheff\'e's theorem)
 \item $f_n\to f$ in $L^1$ if and only if in total variation.
@@ -190,7 +190,9 @@ Note that $\f(t)=\hat\mu(-t)$ where $\hat\mu$ is the Fourier transform of $\mu\i
 \begin{prb}[Inversion formula]
 \begin{parts}
 \item For $a<b$,
-\[\lim_{T\to\infty}\frac1{2\pi}\int_{-T}^T\frac{e^{-ita}-e^{-itb}}{it}\f(t)\,dt=\mu((a,b))+\frac12\mu(\{a,b\}).\]
+\[\mu((a,b))+\frac12\mu(\{a,b\})=\lim_{T\to\infty}\frac1{2\pi}\int_{-T}^T\frac{e^{-ita}-e^{-itb}}{it}\f(t)\,dt.\]
+\item For $a\in\R$,
+\[\mu(\{a\})=\lim_{T\to\infty}\frac1{2T}\int_{-T}^Te^{-ita}\f(t)\,dt\]
 \item If $\f\in L^1(\R)$, then $\mu$ has density
 \[f(x)=\frac1{2\pi}\int e^{-itx}\f(t)\,dt\]
 in $C_0(\R)\cap L^1(\R)$.
@@ -390,12 +392,14 @@ This is called the \emph{Lindeberg condition}.
 
 \section{Berry-Esseen ineaulity}
 
-\section{Poisson convergence}
 
-
-Law of rare events, or weak law of small numbers (a single sample makes a significant attibution)
 
 \section{Stable laws}
+
+
+\section*{Exercises}
+
+Poisson convergence, law of rare events, or weak law of small numbers (a single sample makes a significant attibution)
 
 
 
@@ -414,6 +418,34 @@ Law of rare events, or weak law of small numbers (a single sample makes a signif
 
 \part{Stochastic processes}
 \chapter{Martingales}
+\section{Submartingales}
+\section{Martingale convergence theorem}
+\begin{prb}[Doob's upcrossing inequality]
+\begin{parts}
+\item
+\end{parts}
+\end{prb}
+
+\begin{prb}[Martingale convergence theorems]
+\begin{parts}
+\item
+\end{parts}
+\end{prb}
+
+\begin{prb}
+\begin{parts}
+\item
+\end{parts}
+\end{prb}
+
+\section{Convergence in $L^p$ and uniform integrability}
+
+\section{Optional stopping theorem}
+
+
+
+
+
 \chapter{Markov chains}
 \chapter{Brownian motion}
 \section{Kolomogorov extension}
