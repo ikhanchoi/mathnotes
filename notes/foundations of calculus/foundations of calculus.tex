@@ -10,64 +10,226 @@
 
 \part{Sequences}
 \chapter{Convergence}
+% 입실론 델타의 직접적 이용보다 절댓갑을 0으로 보내는 것의 편리함을 배운다
+% 중간근사 방법으로 각 항을 입실론으로 바운드하거나 0으로 수렴시키는 메커니즘을 익힌다
+
+
+
+
+% 단조수렴정리
+% 수렴하는 수열은 유계
+
+
+\section*{Exercises}
+\begin{prb}
+Every real sequence $(a_n)_{n=1}^\infty$ has a monotonic subsequence $(a_{n_k})_{k=1}^\infty$ such that $\lim_{k\to\infty}a_{n_k}=\limsup_{n\to\infty}a_n$.
+\end{prb}
+
+
 
 \chapter{Series}
+% 영역을 분할하여 극한을 구하는 메커니즘을 배운다
+% 각 수열의 점근적 성질(단조성, 진동, 레이트)이 급수의 수렴발산에 미치는 영향을 배운다
+
 \section{Convergence tests}
+
+\begin{prb}[Abel transform]
+\[A_k(B_k-B_{k-1})+(A_k-A_{k-1})B_{k-1}=A_kB_k-A_{k-1}B_{k-1}\]
+\[\sum_{m<k\le n}A_kb_k=A_nB_n-A_mB_m-\sum_{m<k\le n}a_kB_{k-1}.\]
+\end{prb}
+
+\begin{prb}[Dirichlet test]
+\end{prb}
+
 \begin{prb}[Mertens' theorem]
-If $\sum_{k=0}^\infty a_k$ converges to $a$ absolutely and $\sum_{k=0}^\infty b_k$ converges to $b$, then their Cauchy product $\sum_{k=0}^\infty c_k$ with $c_k:=\sum_{l=0}^ka_lb_{k-l}$ converges to $ab$.
+If $\sum_{k=0}^\infty a_k$ converges to $A$ absolutely and $\sum_{k=0}^\infty b_k$ converges to $B$, then their Cauchy product $\sum_{k=0}^\infty c_k$ with $c_k:=\sum_{l=0}^ka_lb_{k-l}$ converges to $AB$.
 \end{prb}
 \begin{pf}
 Let
-\[A_n:=\sum_{k=0}^na_k,\ B_n:=\sum_{k=0}^nb_k, \text{ and } C_n:=\sum_{k=0}^nc_k\]
-so that
-\[C_n=\sum_{k=0}^n\sum_{l=0}^ka_lb_{k-l}=\sum_{l=0}^n\sum_{k=l}^na_lb_{k-l}=\sum_{l=0}^na_l\sum_{k=0}^{n-l}b_k=\sum_{l=0}^na_lB_{n-l}.\]
-For $\e>0$ fix $k_0$ such that $k\ge k_0$ implies
-\[|B_k-B|(\sum_{l=0}^\infty|a_l|)<\e.\]
-Then, since we have
+\[A_n:=\sum_{k=0}^na_k,\ B_n:=\sum_{k=0}^nb_k, \text{ and } C_n:=\sum_{k=0}^nc_k.\]
+Consider the regions
+\[T_n:=\{(k,l)\in\Z_{\ge0}^2:k+l\le n\},\qquad R_m:\{(k,l)\in\Z_{\ge0}^2:k\le m\}.\]
+Write
 \begin{align*}
-|C_n-AB|&=|\sum_{k=0}^na_{n-k}(B_k-B)+(A_n-A)B|\\
-&\le\sum_{k=0}^{k_0-1}|a_{n-k}||B_k-B|+\sum_{k=k_0}^{n}|a_{n-k}||B_k-B|+|A_n-A||B|\\
-&\le\max_{n-k_0<k\le n}|a_k|(\sum_{k=0}^{k_0-1}|B_k-B|)+(\sum_{k=k_0}^n|a_{n-k}|)\max_{k_0\le k\le n}|B_k-B|+|A_n-A||B|
+AB-C_n&=\sum_{k\le m}\sum_{l>n-k}a_kb_l+\sum_{k>m}\sum_{l\ge0}a_kb_l-\sum_{m<k\le n}\sum_{l\le n-k}a_kb_l\\
+&=\sum_{k\le m}a_k(B-B_{n-k})+\sum_{k>m}a_kB-\sum_{m<k\le n}a_kB_{n-k}.
 \end{align*}
-and $|a_n|$ and $|A_n-A|$ tend to zero as $n\to\infty$, we get
-\[\limsup_{n\to\infty}|C_n-AB|<0+\e+0.\]
+
+The first term
+\[|\sum_{k\le m}a_k(B-B_{n-k})|\le(\max_k|a_k|)(\sum_{l\ge n-m}|B-B_l|)\]
+converges to zero as $n\to\infty$ for fixed $m$, the second term
+\[|\sum_{k>m}a_kB|\le|A-A_m||B|\]
+converges to zero as $m\to\infty$ for any $n$, and finally the third term
+\[|\sum_{m<k\le n}a_kB_{n-k}|\le(\sum_{k>m}|a_k|)(\max_l|B_l|)\]
+converges to zero as $m\to\infty$ for any $n$.
+
+Fix $m$ such that the second and third terms are bounded by arbitrary $\frac\e2>0$ so that
+\[|C_n-AB|\le|\sum_{k\le m}a_k(B-B_{n-k})|+\frac\e2+\frac\e2.\]
+Then, by taking $n\to\infty$, we obtain
+\[\limsup_{n\to\infty}|C_n-AB|\le\e.\] 
+Since $\e$ is arbitrary, we have
+\[\lim_{n\to\infty}C_n=AB.\qedhere\]
 \end{pf}
 
+
+
+\section*{Exercises}
+
 \begin{prb}
-\begin{parts}
-\item If $a_n\to0$, then $\frac1n\sum_{k=1}^na_k\to0$.
-\end{parts}
+If $a_n\to0$, then $\frac1n\sum_{k=1}^na_k\to0$.
 \end{prb}
 
 \begin{prb}
-\begin{parts}
-\item If $a_n\downarrow0$, then $\sum_{k=1}^n(-1)^ka_n\to0$.
-\end{parts}
+If $a_n\ge0$ and $\sum a_n$ diverges, then $\sum\frac{a_n}{1+a_n}$ also diverges.
 \end{prb}
 
-\chapter{Basic topology}
+\begin{prb}
+If $a_n\downarrow0$ and $S_n\le1+na_n$, then $S_n\le1$.
+\end{prb}
 
-\part{Functions}
+
+
+
+
+
+\chapter{Open sets and closed sets}
+% 컴팩트성에서 오픈 커버를 잡는 일반적인 방법에 대해 배운다
+
+
+
+\section*{Exercises}
+
+
+
+\part{Real functions}
 
 \chapter{Continuous functions}
+% 열린 집합, 컴팩트 집합, 연결 집합과의 관계를 배운다
+% 균등 연속과 그냥 연속의 차이점을 배운다
+% 균등수렴을 새로운 노름으로서 배운다
+
+\section*{Exercises}
+
+\begin{prb}
+The set of local minima of a convex real function is connected.
+\end{prb}
+
+\begin{prb}
+Let $f:\R\to\R$ be continuous.
+The equation $f(x)=c$ cannot have exactly two solutions for every constant $c\in\R$.
+\end{prb}
+
+\begin{prb}
+A continuous function that takes on no value more than twice takes on some value exactly once.
+\end{prb}
+
+\begin{prb}
+Let $f$ be a function that has the intermediate value property.
+If the preimage of every singleton is closed, then $f$ is continuous.
+\end{prb}
+
+\begin{prb}*
+If a sequence of real functions $f_n\colon[0,1]\to[0,1]$ satisfies $|f(x)-f(y)|\le|x-y|$ whenever $|x-y|\ge\frac1n$, then the sequence has a uniformly convergent subsequence.
+\end{prb}
 
 \chapter{Differentiable functions}
+% 여러 미분가능공간들의 개념을 배운다
+% 테일러 정리를 통한 근사에 대한 큰 그림을 배운다
+% 미분으로 함수의 개략적 성질 파악하는 건 대체로 다들 알겠지?
+% 로피탈..
+
+\section*{Exercises}
+
+\begin{prb}
+If $\lim_{x\to\infty}f(x)=a$ and $\lim_{x\to\infty}f'(x)=b$, then $a=0$.
+\end{prb}
+
+\begin{prb}
+Let $f$ be a real $C^2$ function with $f(0)=0$ and $f''(0)\ne0$.
+Defined a function $\xi$ such that $f(x)=xf'(\xi(x))$ with $|\xi|\le|x|$, we have $\xi'(0)=1/2$.
+\end{prb}
+
+\begin{prb}
+Let $f$ be a $C^2$ function such that $f(0)=f(1)=0$.
+We have $\|f\|\le\frac18\|f''\|$.
+\end{prb}
+
+\begin{prb}
+A smooth function such that for each $x$ there is $n$ having the $n$th derivative vanish is a polynomial.
+\end{prb}
+
+\begin{prb}
+If a real $C^1$ function $f$ satisfies $f(x)\ne0$ for $x$ such that $f'(x)=0$, then in a bounded set there are only finite points at which $f$ vanishes.
+\end{prb}
+
+\begin{prb}
+Let a real function $f$ be differentiable.
+For $a<a'<b<b'$ there exist $a<c<b$ and $a'<c'<b'$ such that $f(b)-f(a)=f'(c)(b-a)$ and $f(b')-f(a')=f'(c')(b'-a')$.
+\end{prb}
+
+\begin{prb}
+Let $f$ be a differentiable function on the unit closed interval.
+If $f(0)=0$ there is $c$ such that $cf'(c)=f(c)$. (Flett)
+\end{prb}
+
+\begin{prb}
+Let $f$ be a differentiable function on the unit closed interval.
+If $f(0)=0$ there is $c$ such that $cf(c)=(1-c)f'(c)$.
+\end{prb}
+
 
 \chapter{Analytic functions}
+% 열린 집합과 세트되는 개념이라는 걸 배운다
+% 복소수랑 같이 배워서 수렴반경까지 배운다
+
+
+\section*{Exercises}
+
 
 
 \part{Integration}
 
 \chapter{Riemann integration}
+% 급수의 극한으로서의 적분을 배운다
+% 조각연속 개념이 대체 왜 나왔는지 배운다
+% 미적분학의 기본정리를 좀 강조해서 잘 배운다
+
+\section*{Exercises}
+\begin{prb}
+Find the value of $\lim_{n\to\infty}\frac1n\left(\sum_{k=1}^n\frac1nf\left(\frac kn\right)-\int_0^1f(x)\,dx\right)$.
+\end{prb}
+
+\begin{prb}
+If $xf'(x)$ is bounded and $x^{-1}\int_0^xf\to L$ then $f(x)\to L$ as $x\to\infty$.
+\end{prb}
 
 \chapter{Henstock-Kurzweil intergation}
+% 이상적분의 수학적 정의나 표기가 그냥 특수한 약속 정도인 것을 배운다
 
-\chapter{??}
+
+\chapter{}
+% 적분이 함수의 크기를 재는 수단임을 배운다
+% 각 함수들의 적분가능성을 배운다
+% 급수와 마찬가지로 적분이 수렴하거나 발산하게 되는 메커니즘을 배운다(영역, 함수가 얼마나 특이한지)
 
 
 \part{Multivariable Calculus}
 \chapter{Fre\'chet derivatives}
-\chapter{Inverse function theorem}
+% 편미분이 그냥 계산도구라는 것을 배운다
+% 편미분의 교환도 사실은 항상 다 되는 걸 배운다
+% 접공간 개념을 배운다
+
+
+\section{Inverse function theorem}
+% 고정점정리로 함수의 역을 찾아내는 기본 전략을 배운다
+% 선형근사의 파워를 배운다
+
+
 \chapter{Differential forms}
+% 텐서곱과 테일러 근사를 배운다
+% 웨지곱과 다중적분을 배운다
+
+\chapter{Stokes' theorem}
+
 
 \end{document}

@@ -7,15 +7,10 @@
 \def\ssum{{\textstyle\sum\,}}
 
 \begin{document}
-\title{Smooth Surfaces}
+\title{Smooth Manifolds}
 \author{Ikhan Choi}
 \maketitle
 \tableofcontents
-
-
-\section*{Acknowledgement}
-This note is written for teaching during the undergraduate tutoring program in 2019 fall semester.
-Main resources I refered are books by Manfredo P. do Carmo \cite{}, and Richard S. Millman and George D. Parker \cite{}.
 
 
 
@@ -540,6 +535,162 @@ Note that $\pd_xf\ne\pd_{(1,0,0)}z=0$.
 
 
 
+\part{Riemannian manifolds}
+
+
+\chapter{Intrinsic geometry}
+
+We say a quantity on a surface is \emph{intrinsic} if it is independent of how the surface is embedded in space.
+
+Notations: Einstein summation convention, set of vector fields.
+
+To $n$-dimensional.
+
+\section{Covariance and contravariance}
+% 좌표변환에 대하여 어떻게 변하는지 - 텐서에 대하여
+
+% 크리스토펠은 좌표변환이 잘 안됨: 텐서가 아니라서
+% 공변미분: 근데 걍 3차원공간 편미분에다가 이 좌표변환 추가 텀 붙은 크리스토펠 텀을 추가하면 그 미분 결과가 텐서(접벡터)가 됨
+
+\section{Theorema Egregium}
+% metric 정의
+% isometry
+% 가우스의 놀라운 정리: 크리스토펠 -> 곡률텐서 -> 가우스곡률?
+
+\begin{itemize}
+\item Intrinsic: $g_{ij}$, $\Gamma_{ij}^k$, $K$, ${R^l}_{ijk}$;
+\item Not intrinsic: $\nu$, $L_{ij}$, $\kappa_i$, $H$.
+\end{itemize}
+
+Isometry
+\begin{ex}
+Let $\a:(-\log2,\log2)\times(0,2\pi)\to\R^3$ and $\beta:(-\frac34,\frac34)\times(0,2\pi)\to\R^3$ be regular surfaces given by
+\[\a(x,\theta)=(\cosh x\cos\theta,\,\cosh x\sin\theta,\,x),\qquad
+\beta(r,z)=(r\cos z,\,r\sin z,\,z).\]
+Their Riemannian metrics are
+\[\mat{\cosh^2x&0\\0&\cosh^2x}_{(\a_x,\a_\theta)},\qquad\mat{1&0\\0&1+r^2}_{(\beta_r,\beta_z)}.\]
+
+Define a map $f:\im\a\to\im\beta$ by
+\[f:\a(x,\theta)\mapsto\beta(\sinh x,\theta)=(r(x,\theta),z(x,\theta)).\]
+The Jacobi matrix of $f$ is computed
+\[df|_{\a(x,\theta)}=\mat{\cosh x&0\\0&1}_{(\a_x,\a_\theta)\to(\beta_r,\beta_z)}.\]
+Since $f$ is a diffeomorphism and
+\[\mat{\cosh^2x&0\\0&\cosh^2x}=\mat{\cosh x&0\\0&1}^T\mat{1&0\\0&1+r^2}\mat{\cosh x&0\\0&1},\]
+the map $f$ is an isometry.
+\end{ex}
+
+
+
+
+\chapter{Covariant derivatives}
+
+\section{Orthogonal projection}
+We are going to think about ``intrinsic'' derivatives for tangent vectors.
+For coordinate independence, directional derivatives of a tangent vector field should be at least a tangent vector field, which is false for the obvious partial derivatives in the embedded surface setting; for example, $\rT$ is a tangent vector, but $\rN=\kappa\rT'$ is not tangent.
+
+Recall that the Gauss formula reads
+\[\pd_i\a_j=\Gamma_{ij}^k\a_k+L_{ij}\nu\]
+so that we have
+\begin{align*}
+\pd_XY
+&=X^i\pd_i(Y^j\a_j)\\
+&=X^i(\pd_iY^k)\a_k+X^iY^j\pd_i\a_j\\
+&=\left(X^i\pd_iY^k+X^iY^j\Gamma_{ij}^k\right)\a_k+X^iY^jL_{ij}\nu.
+\end{align*}
+If we write $\nabla_XY=\left(X^i\pd_iY^k+X^iY^j\Gamma_{ij}^k\right)\a_k$, then it embodies the orthogonal projection of $\pd_XY$ onto its tangent space, and we have
+\[\pd_XY=\nabla_XY+\II(X,Y)\nu.\]
+
+\begin{defn}
+Let $\a:U\to\R^n$ be an $m$-dimensional parametrization with $\im\a=M$.
+Let $X=X^i\a_i$ and $Y=Y^j\a_j$ be tangent vector fields on $M$.
+The \emph{covariant derivative} of $Y$ along $X$ is defined as the orthogonal projection of the partial derivative $\pd_XY$ onto the tangent space:
+\[\nabla_XY:=\left(X^i\pd_iY^k+X^iY^j\Gamma_{ij}^k\right)\a_k.\]
+\end{defn}
+
+\begin{prop}
+Covariant derivatives are intrinsic.
+In other words, the above definition does not depend on the choice of parametrizations.
+\end{prop}
+\begin{pf}
+Recall that the Christoffel symbols transform as follows:
+\[X^iY^j\Gamma_{ij}^k=X^aY^b\left(\Gamma_{ab}^c+\pd{x^i}{x^a}\pd{x^j}{x^b}\pd[2]{x^c}{x^i}{x^j}\right)\pd{x^k}{x^c}.\]
+Thus, we have
+\begin{align*}
+&\left(X^i\pd_iY^k+X^iY^j\Gamma_{ij}^k\right)\a_k\\
+&\quad=X^a\pd{x^a}\left(Y^c\pd{x^k}{x^c}\right)\a_k+X^aY^b\left(\pd{x^i}{x^a}\pd{x^j}{x^b}\pd[2]{x^c}{x^i}{x^j}+\Gamma_{ab}^c\right)\pd{x^k}{x^c}\a_k\\
+&\quad=X^a\pd{Y^c}{x^a}\a_c+X^aY^b\left(\pd[2]{x^k}{x^a}{x^b}\pd{x^c}{x^k}+\pd{x^i}{x^a}\pd{x^j}{x^b}\pd[2]{x^c}{x^i}{x^j}\right)\a_c+X^aX^b\Gamma_{ab}^c\a_c\\
+&\quad=\left(X^a\pd_aY^c+X^aY^b\Gamma_{ab}^c\right)\a_c
+\end{align*}
+since
+\[\pd[2]{x^j}{x^a}{x^b}\pd{x^c}{x^j}+\pd{x^i}{x^a}\pd{x^j}{x^b}\pd[2]{x^c}{x^i}{x^j}=\pd{x^a}\left(\pd{x^j}{x^b}\pd{x^c}{x^j}\right)=\pd_a\delta_b^c=0.\qedhere\]
+\end{pf}
+
+
+
+\section{Connections}
+
+We will give a coordinate-free axiomatic definition of covariant derivatives and show that they coincide.
+By doing this, we obtain an alternative proof for the statement that covariant derivatives are intrinsic.
+
+\begin{defn}[Affine connection]
+Let $M$ be the image of a parametrization.
+An \emph{affine connection} is a map $\nabla:\fX(M)\times\fX(M)\to\fX(M)$ such that
+\begin{parts}
+\item $\nabla_{(-)}Y:\fX(M)\to\fX(M):X\mapsto\nabla_XY$ is $C^\infty(M)$-linear;
+\item $\nabla_X(-):\fX(M)\to\fX(M):Y\mapsto\nabla_XY$ is $\R$-linear;
+\item the Leibniz rule
+\[\nabla_X(fY)=(\pd_Xf)Y+f\nabla_XY\]
+is satisfied.
+\end{parts}
+\end{defn}
+
+\begin{defn}[Metric connection]
+Let $M$ be the image of a parametrization and $\<\,,\>$ be a Riemannian metric on $M$.
+A \emph{metric connection} is an affine connection $\nabla:\fX(M)\times\fX(M)\to\fX(M)$ such that:
+\[\pd_Z\<X,Y\>=\<\nabla_ZX,Y\>+\<X,\nabla_ZY\>.\]
+\end{defn}
+
+\begin{defn}[Levi-Civita connection]
+Let $M$ be the image of a parametrization and $\<\,,\>$ be a Riemannian metric on $M$.
+A \emph{Levi-Civita connection} is a metric connection $\nabla:\fX(M)\times\fX(M)\to\fX(M)$ such that:
+\[\nabla_XY-\nabla_YX=\pd_XY-\pd_YX.\]
+\end{defn}
+
+\begin{thm}
+Let $\a:U\to\R^n$ be an $m$-dimensional parametrization with $M=\im\a$.
+Then, there is a unique Levi-Civita connection on $M$.
+\end{thm}
+\begin{pf}
+(Uniqueness)
+Suppose $\nabla$ is a Levi-Citiva connection on $M$.
+\begin{align*}
+2\<\nabla_XY,Z\>&=\pd_X\<Y,Z\>+\pd_Y\<X,Z\>-\pd_Z\<X,Y\>\\
+&\qquad-\<[X,Z],Y\>-\<[Y,Z],X\>+\<[X,Y],Z\>.
+\end{align*}
+
+(Existence)
+\end{pf}
+
+Our claim is that this definition is equivalent to the above coordinate dependent definition, the Levi-Civita connection, of the covariant derivative.
+
+\begin{prop}
+Let $S$ be a regular surface embedded in $\R^3$.
+If we define Christoffel symbols as the Gauss formula, then
+\[\fX(S)\times\fX(S)\to\fX(S):(X^i\a_i,Y^j\a_j)\mapsto\left(X^i\pd_iY^k+X^iY^j\Gamma_{ij}^k\right)\a_k\]
+defines a Levi-Civita connection.
+\end{prop}
+
+\section{Curvature tensor}
+
+
+
+\chapter{Parallel transport}
+% linearity, holonomy
+
+
+
+
+
 
 
 
@@ -557,7 +708,7 @@ Note that $\pd_xf\ne\pd_{(1,0,0)}z=0$.
 
 \part{Local theory of curves and surfaces}
 
-\chapter{Curves}
+\chapter{Local theory of curves}
 
 \section{Parametrization}
 
@@ -924,7 +1075,7 @@ TFAE:
 
 
 
-\chapter{Surfaces}
+\chapter{Local theory of surfaces}
 
 \section{Reparametrization}
 
@@ -1240,162 +1391,6 @@ Therefore, $h$ is uniquely determined by $K$.
 
 
 
-
-
-
-
-
-\part{Riemannian manifolds}
-
-
-\chapter{Intrinsic geometry}
-
-We say a quantity on a surface is \emph{intrinsic} if it is independent of how the surface is embedded in space.
-
-Notations: Einstein summation convention, set of vector fields.
-
-To $n$-dimensional.
-
-\section{Covariance and contravariance}
-% 좌표변환에 대하여 어떻게 변하는지 - 텐서에 대하여
-
-% 크리스토펠은 좌표변환이 잘 안됨: 텐서가 아니라서
-% 공변미분: 근데 걍 3차원공간 편미분에다가 이 좌표변환 추가 텀 붙은 크리스토펠 텀을 추가하면 그 미분 결과가 텐서(접벡터)가 됨
-
-\section{Theorema Egregium}
-% metric 정의
-% isometry
-% 가우스의 놀라운 정리: 크리스토펠 -> 곡률텐서 -> 가우스곡률?
-
-\begin{itemize}
-\item Intrinsic: $g_{ij}$, $\Gamma_{ij}^k$, $K$, ${R^l}_{ijk}$;
-\item Not intrinsic: $\nu$, $L_{ij}$, $\kappa_i$, $H$.
-\end{itemize}
-
-Isometry
-\begin{ex}
-Let $\a:(-\log2,\log2)\times(0,2\pi)\to\R^3$ and $\beta:(-\frac34,\frac34)\times(0,2\pi)\to\R^3$ be regular surfaces given by
-\[\a(x,\theta)=(\cosh x\cos\theta,\,\cosh x\sin\theta,\,x),\qquad
-\beta(r,z)=(r\cos z,\,r\sin z,\,z).\]
-Their Riemannian metrics are
-\[\mat{\cosh^2x&0\\0&\cosh^2x}_{(\a_x,\a_\theta)},\qquad\mat{1&0\\0&1+r^2}_{(\beta_r,\beta_z)}.\]
-
-Define a map $f:\im\a\to\im\beta$ by
-\[f:\a(x,\theta)\mapsto\beta(\sinh x,\theta)=(r(x,\theta),z(x,\theta)).\]
-The Jacobi matrix of $f$ is computed
-\[df|_{\a(x,\theta)}=\mat{\cosh x&0\\0&1}_{(\a_x,\a_\theta)\to(\beta_r,\beta_z)}.\]
-Since $f$ is a diffeomorphism and
-\[\mat{\cosh^2x&0\\0&\cosh^2x}=\mat{\cosh x&0\\0&1}^T\mat{1&0\\0&1+r^2}\mat{\cosh x&0\\0&1},\]
-the map $f$ is an isometry.
-\end{ex}
-
-
-
-
-\chapter{Covariant derivatives}
-
-\section{Orthogonal projection}
-We are going to think about ``intrinsic'' derivatives for tangent vectors.
-For coordinate independence, directional derivatives of a tangent vector field should be at least a tangent vector field, which is false for the obvious partial derivatives in the embedded surface setting; for example, $\rT$ is a tangent vector, but $\rN=\kappa\rT'$ is not tangent.
-
-Recall that the Gauss formula reads
-\[\pd_i\a_j=\Gamma_{ij}^k\a_k+L_{ij}\nu\]
-so that we have
-\begin{align*}
-\pd_XY
-&=X^i\pd_i(Y^j\a_j)\\
-&=X^i(\pd_iY^k)\a_k+X^iY^j\pd_i\a_j\\
-&=\left(X^i\pd_iY^k+X^iY^j\Gamma_{ij}^k\right)\a_k+X^iY^jL_{ij}\nu.
-\end{align*}
-If we write $\nabla_XY=\left(X^i\pd_iY^k+X^iY^j\Gamma_{ij}^k\right)\a_k$, then it embodies the orthogonal projection of $\pd_XY$ onto its tangent space, and we have
-\[\pd_XY=\nabla_XY+\II(X,Y)\nu.\]
-
-\begin{defn}
-Let $\a:U\to\R^n$ be an $m$-dimensional parametrization with $\im\a=M$.
-Let $X=X^i\a_i$ and $Y=Y^j\a_j$ be tangent vector fields on $M$.
-The \emph{covariant derivative} of $Y$ along $X$ is defined as the orthogonal projection of the partial derivative $\pd_XY$ onto the tangent space:
-\[\nabla_XY:=\left(X^i\pd_iY^k+X^iY^j\Gamma_{ij}^k\right)\a_k.\]
-\end{defn}
-
-\begin{prop}
-Covariant derivatives are intrinsic.
-In other words, the above definition does not depend on the choice of parametrizations.
-\end{prop}
-\begin{pf}
-Recall that the Christoffel symbols transform as follows:
-\[X^iY^j\Gamma_{ij}^k=X^aY^b\left(\Gamma_{ab}^c+\pd{x^i}{x^a}\pd{x^j}{x^b}\pd[2]{x^c}{x^i}{x^j}\right)\pd{x^k}{x^c}.\]
-Thus, we have
-\begin{align*}
-&\left(X^i\pd_iY^k+X^iY^j\Gamma_{ij}^k\right)\a_k\\
-&\quad=X^a\pd{x^a}\left(Y^c\pd{x^k}{x^c}\right)\a_k+X^aY^b\left(\pd{x^i}{x^a}\pd{x^j}{x^b}\pd[2]{x^c}{x^i}{x^j}+\Gamma_{ab}^c\right)\pd{x^k}{x^c}\a_k\\
-&\quad=X^a\pd{Y^c}{x^a}\a_c+X^aY^b\left(\pd[2]{x^k}{x^a}{x^b}\pd{x^c}{x^k}+\pd{x^i}{x^a}\pd{x^j}{x^b}\pd[2]{x^c}{x^i}{x^j}\right)\a_c+X^aX^b\Gamma_{ab}^c\a_c\\
-&\quad=\left(X^a\pd_aY^c+X^aY^b\Gamma_{ab}^c\right)\a_c
-\end{align*}
-since
-\[\pd[2]{x^j}{x^a}{x^b}\pd{x^c}{x^j}+\pd{x^i}{x^a}\pd{x^j}{x^b}\pd[2]{x^c}{x^i}{x^j}=\pd{x^a}\left(\pd{x^j}{x^b}\pd{x^c}{x^j}\right)=\pd_a\delta_b^c=0.\qedhere\]
-\end{pf}
-
-
-
-\section{Connections}
-
-We will give a coordinate-free axiomatic definition of covariant derivatives and show that they coincide.
-By doing this, we obtain an alternative proof for the statement that covariant derivatives are intrinsic.
-
-\begin{defn}[Affine connection]
-Let $M$ be the image of a parametrization.
-An \emph{affine connection} is a map $\nabla:\fX(M)\times\fX(M)\to\fX(M)$ such that
-\begin{parts}
-\item $\nabla_{(-)}Y:\fX(M)\to\fX(M):X\mapsto\nabla_XY$ is $C^\infty(M)$-linear;
-\item $\nabla_X(-):\fX(M)\to\fX(M):Y\mapsto\nabla_XY$ is $\R$-linear;
-\item the Leibniz rule
-\[\nabla_X(fY)=(\pd_Xf)Y+f\nabla_XY\]
-is satisfied.
-\end{parts}
-\end{defn}
-
-\begin{defn}[Metric connection]
-Let $M$ be the image of a parametrization and $\<\,,\>$ be a Riemannian metric on $M$.
-A \emph{metric connection} is an affine connection $\nabla:\fX(M)\times\fX(M)\to\fX(M)$ such that:
-\[\pd_Z\<X,Y\>=\<\nabla_ZX,Y\>+\<X,\nabla_ZY\>.\]
-\end{defn}
-
-\begin{defn}[Levi-Civita connection]
-Let $M$ be the image of a parametrization and $\<\,,\>$ be a Riemannian metric on $M$.
-A \emph{Levi-Civita connection} is a metric connection $\nabla:\fX(M)\times\fX(M)\to\fX(M)$ such that:
-\[\nabla_XY-\nabla_YX=\pd_XY-\pd_YX.\]
-\end{defn}
-
-\begin{thm}
-Let $\a:U\to\R^n$ be an $m$-dimensional parametrization with $M=\im\a$.
-Then, there is a unique Levi-Civita connection on $M$.
-\end{thm}
-\begin{pf}
-(Uniqueness)
-Suppose $\nabla$ is a Levi-Citiva connection on $M$.
-\begin{align*}
-2\<\nabla_XY,Z\>&=\pd_X\<Y,Z\>+\pd_Y\<X,Z\>-\pd_Z\<X,Y\>\\
-&\qquad-\<[X,Z],Y\>-\<[Y,Z],X\>+\<[X,Y],Z\>.
-\end{align*}
-
-(Existence)
-\end{pf}
-
-Our claim is that this definition is equivalent to the above coordinate dependent definition, the Levi-Civita connection, of the covariant derivative.
-
-\begin{prop}
-Let $S$ be a regular surface embedded in $\R^3$.
-If we define Christoffel symbols as the Gauss formula, then
-\[\fX(S)\times\fX(S)\to\fX(S):(X^i\a_i,Y^j\a_j)\mapsto\left(X^i\pd_iY^k+X^iY^j\Gamma_{ij}^k\right)\a_k\]
-defines a Levi-Civita connection.
-\end{prop}
-
-\section{Curvature tensor}
-
-
-
-\chapter{Parallel transport}
-% linearity, holonomy
 
 
 

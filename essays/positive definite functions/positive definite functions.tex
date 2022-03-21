@@ -1,0 +1,387 @@
+\documentclass[12pt]{article}
+\usepackage{../../ikany}
+\usepackage[margin=100pt]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage[bitstream-charter,cal]{mathdesign}
+\linespread{1.1}
+
+
+\title{Positive Definite Functions\\on Locally Compact Groups}
+\author{Ikhan Choi}
+
+
+\begin{document}
+\maketitle
+\tableofcontents
+
+\begin{abstract}
+
+\end{abstract}
+
+\section{Introduction}
+
+Let $G$ be a locally compact group.
+We always assume that $G$ is Hausdorff.
+
+\begin{defn}
+A function $f:G\to\C$ is called \emph{positive definite} if for each positive integer $n$ a non-negativity condition
+\[\sum_{k,l=1}^nf(x_l^{-1}x_k)\xi_k\bar\xi_l\ge0\]
+is satisfied for every $n$-tuple $(x_1,\cdots,x_n)\in G^n$ and every vector $(\xi_1,\cdots,\xi_n)\in\C^n$.
+\end{defn}
+A function $f$ is positive definite if and only if bilinear forms defined by matrices $(f(x_ix_j^{-1}))_{i,j=1}^n$ for each positive integer $n$ are hermitian, and even more, positive \emph{semi}-definite, regardless of any choices of $(x_1,\cdots,x_n)\in G^n$.
+Positive definite functions have several remarkable properties as follows:
+\begin{prop}[Algebraic properties]$ $
+\begin{parts}
+\item $\cP(G)$ is closed under complex conjugation. Furthermore, $\bar{f(x)}=f(x^{-1})$.
+\item $\cP(G)$ is closed under positive scalar multiplication.
+\item $\cP(G)$ is closed under summation.
+\item $\cP(G)$ is closed under product.
+\end{parts}
+\end{prop}
+\begin{pf}
+To be written
+\end{pf}
+
+\begin{prop}[Analytic properties]$ $
+\begin{parts}
+\item If $f\in\cP(G)$, then $\sup_{x\in G}|f(x)|\le f(e)$.
+\item If $f_n\in\cP(G)$, then the pointwise limit $\lim_{n\to\infty}f_n$ is also in $\cP(G)$.
+\item $f\in\cP(G)$ is both-sided uniformly continuous if it is continuous at the identity. (uncertain)
+\item $f_n\in\cP(G)$ converges to $f$ compactly if it converges to $f$ pointwisely and $f_n(e)=1$.
+\end{parts}
+\end{prop}
+\begin{pf}
+To be written
+\end{pf}
+
+\bigskip
+
+This thesis follows the historical flows to extract mathematical ideas behind the positive definite functions.
+In particular, we are concerned with the results like the following \emph{Bochner-type theorems}:
+\begin{thm}
+A function $c:\Z\to\C$ is positive definite if and only if there is a unique finite regular Borel measure $\mu$ on $\T=\R/2\pi\Z$ such that
+\[c(k)=\frac1{2\pi}\int_0^{2\pi}e^{-ik\theta}\,d\mu(\theta)\]
+for all $k\in\Z$.
+\end{thm}
+\begin{thm}
+A continuous function $\f:\R\to\C$ is positive definite if and only if there is a unique finite regular Borel measure $\mu$ on $\R$ such that
+\[\f(t)=\int e^{itx}\,d\mu(x)\]
+for all $t\in\R$.
+\end{thm}
+They have similar forms in that they describe the necessary and sufficient conditions for a function to have a Fourier-Stieltjes integral representation of a finite regular Borel measure.
+One of our primary goals is to investigate the nature of positive definite functions and their harmonic-analytic relation to Borel measures within more familiar cases of $G=\Z$ or $\R$.
+Now then, we finally extend the Bochner-type results in the more general setting, where $G$ is a locally compact group, and assign a new perspective of measures in terms of the representation theory of groups.
+
+Each theorem has its own taste in different subfields of mathematics.
+Theorem 1.1, which is a corollary of the celebrated Herglotz-Riesz representation theorem, is related to a classical problem in complex analysis that asks to give a characterization of a special class of analytic functions on the open unit disk $\D$ called the Carath\'eodory class.
+The positive definiteness arises as a property of coefficients of functions in the Caracth\'eodory class, and their connection to Fourier coefficients leads the complex analysis problem into harmonic analysis.
+In Section 2, with the methods of elementary complex variable function theory, our first Bochner-type theorem will be proved, giving a geometric description of the space of positive definite functions in addition.
+
+In Section 3, we review the well-known results of the positive definite functions on the real line and their ``weak convergence''.
+They have been well-studied by probabilists, to attack the weak convergence of probaility measures.
+Recall that a probaility distribution of a real-valued random variable is defined by a probability measure on $\R$.
+The extended Fourier transform, but reversing the sign convention on the phase term, with respect to not only integrable functions but also finte measures, called Fourier-Stieltjes transform, of a probability measure $\mu$ is called a characteristic function of the distribution $\mu$.
+In terms of probability theory, it is nothing but the function defined by the expectation $\f(t):=Ee^{itX}$, where $X$ is a random variable of law $\mu$.
+The Bochner theorem states that the necessary and sufficient condition for being a characteristic function is the positive definiteness.
+
+Summaries for Section 4 and Section 5... will be here.
+
+
+
+
+
+
+\section{On the group $\Z$: complex analysis}
+
+Before the discussion of big theorems including the Carath\'eodory-Toeplitz theorem and the Herglotz-Riesz representation theorem, we develop a lemma as a preparation for the interplay between complex analysis and Fourier analysis.
+
+\begin{lem}[Fourier series of analytic functions]
+Let $f$ be an analytic function on the open unit disk $\D$ with $f(0)\in\R$ with
+\[f(z)=c_0+\sum_{k=1}^\infty2c_kz^k,\]
+the power series expansion of $f$ at $z=0$.
+Use the notation $c_{-k}:=\bar c_k$.
+\begin{parts}
+\item For $0\le r<1$ and $0\le \theta<2\pi$, we have
+\[\Re f(re^{i\theta})=\sum_{k=-\infty}^\infty c_kr^{|k|}e^{ik\theta}.\]
+\item For $0\le r<1$, we have
+\[c_kr^{|k|}=\frac1{2\pi}\int_0^{2\pi}\Re f(re^{i\theta})e^{-ik\theta}\,d\theta.\]
+\end{parts}
+\end{lem}
+\begin{pf}
+(a)
+Easy computation shows the identity
+\begin{align*}
+\Re f(re^{i\theta})
+&=\frac12[f(re^{i\theta})+\bar{f(re^{i\theta})}]\\
+&=\frac12\left[\left(1+\sum_{k=1}^\infty2c_k(re^{i\theta})^k\right)+\bar{\left(1+\sum_{k=1}^\infty2c_k(re^{i\theta})^k\right)}\right]\\
+&=\frac12\left[\left(1+\sum_{k=1}^\infty2c_kr^ke^{ik\theta}\right)+\left(1+\sum_{k=1}^\infty2\bar{c_k}r^ke^{-ik\theta}\right)\right]\\
+&=\sum_{k=-\infty}^\infty c_kr^{|k|}e^{ik\theta}.
+\end{align*}
+
+(b)
+It is clear from the uniform convergence of the series in the part (a) and the orthogonality
+\[\frac1{2\pi i}\int_0^{2\pi}e^{-ik\theta}e^{il\theta}\,d\theta=\begin{cases}1&\text{ if }k=l\\0&\text{ if }k\ne l\end{cases}.\]
+\end{pf}
+
+\subsection{The Carath\'eodory coefficient problem}
+
+The positive definiteness of functions were originally inspired by ``Carath\'eodory coefficient problem'' in complex analysis.
+The problem asks the condition on the power series coefficients for an analytic function defined on the open unit disk to have values of positive real part.
+The original paper deals with the functions analytic on a neighborhood of the closed unit disk, but the idea is extended well to the functions that has harsh behavior on the boundary.
+
+\begin{defn}
+The \emph{Carath\'eodory class} is the set of all analytic functions $f$ that map the open unit disk into the region of positive real part, with normalization condition $f(0)=1$.
+\end{defn}
+
+
+Typical examples of functions in the Carath\'eodory class are given by the family of functions
+\[f_\theta(z)=\frac{e^{i\theta}+z}{e^{i\theta}-z}=1+\sum_{k=1}^\infty2e^{-ik\theta}z^k\]
+parametrized by $\theta\in[0,2\pi)$.
+We can check they are eactly the M\"obius transformations that map the unit circle to the imaginary axis satisfying $f(0)=1$.
+Note the Carath\'eodory class is convex; if $f_0$ and $f_1$ are in the Carath\'eodory class, then the real part of the image of the function $f_t(z)=(1-t)f_0(z)+tf_1(z)$ is also positive for $0<t<1$ and $f_t(0)=(1-t)+t=1$, so $f_t$ also belongs to the Carath\'eodory class.
+It clearly implies that the convex combination of $f_\theta$ is also in the Carath\'eodory class.
+Carath\'eodory's result tells us that the converse statement also holds in a modified sense, so that $f_\theta$ can be viewed as ``extreme points'' in the Carath\'eodory class.
+We discuss about the extreme points later.
+Precisely, it is stated as follows:
+
+\begin{thm}[Carath\'eodory]
+Let $f$ be an analytic function on the open unit disk with the power series expansion
+\[f(z)=1+\sum_{k=1}^\infty2c_kz^k.\]
+Then, $f$ belongs to the Carath\'eodory class if and only if the point $(c_1,\cdots,c_n)\in\C^n$ belongs to the convex hull of the curve $(e^{-i\theta},\cdots,e^{-in\theta})\in\C^n$ parametrized by $\theta\in[0,2\pi)$ for each $n$.
+\end{thm}
+\begin{pf}
+($\Leftarrow$)
+Denote by $K_n$ the convex hull of the curve $\theta\mapsto(e^{-i\theta},\cdots,e^{-in\theta})\in\C^n$.
+Suppose first that $(c_1,\cdots,c_n)\in K_n$.
+For each $n$, there exists a finite sequence of pairs $(\lambda_{n,j},\theta_{n,j})_j$ having the following convex combination
+\[(c_1,\cdots,c_n)=\sum_j\lambda_{n,j}(e^{-i\theta_{n,j}},\cdots,e^{-in\theta_{n,j}})\]
+with coefficients $\lambda_{n,j}\ge0$ such that $\sum_j\lambda_{n,j}=1$.
+Define
+\[f_n(z):=\sum_j\lambda_{n,j}\frac{e^{i\theta_{n,j}}+z}{e^{i\theta_{n,j}}-z},\]
+which has positive real part on $|z|<1$ because $\Re(e^{i\theta_{n,j}}+z)/(e^{i\theta_{n,j}}-z)>0$ for $|z|<1$.
+Then,
+\begin{align*}
+f_n(z)
+&=\sum_j\lambda_{n,j}(1+\sum_{k=1}^\infty2e^{-ik\theta_{n,j}}z^k)\\
+&=1+\sum_{k=1}^n2c_kz^k+\sum_{k=n+1}^\infty\left(\sum_j2\lambda_{n,j}e^{-ik\theta_{n,j}}\right)z^k
+\end{align*}
+implies
+\begin{align*}
+|f_n(z)-f(z)|
+&=\left|\sum_{k=n+1}^\infty\left(\sum_j2\lambda_{n,j}e^{-ik\theta_{n,j}}\right)z^k-\sum_{k=n+1}^\infty2c_kz^k\right|\\
+&\le\sum_{k=n+1}^\infty\left|\left(\sum_j2\lambda_{n,j}e^{-ik\theta_{n,j}}\right)-2c_k\right||z|^k\\
+&\le\sum_{k=n+1}^\infty4|z|^k
+\end{align*}
+converges to zero for $|z|<1$.
+Therefore, $f$ has non-negative real part on the open unit disk.
+The non-negativity is strengthen to the positivity by the open mapping theorem so that $f$ belongs to the Carath\'eodory class.
+
+($\Rightarrow$)
+Conversely, suppose that $f$ is in the Carath\'eodory class.
+Let $(\gamma_1,\cdots,\gamma_n)$ be any point on the surface $\partial K_n$ of $K_n$ and $S$ any supporting hyperplane of $K_n$ tangent at $(\gamma_1,\cdots,\gamma_n)$.
+Let $(u_1,\cdots,u_n)$ be the outward unit normal vector of the supporting hyperplane $S$.
+Note that this unit normal vector is uniquely determined with respect to the induced real inner product structure on $2n$-dimensional space $\C^n$ described by
+\[\<(z_1,\cdots,z_n),(w_1,\cdots,w_n)\>=\sum_{k=1}^n(\Re z_k\Re w_k+\Im z_k\Im w_k)=\Re\sum_{k=1}^nz_k\bar w_k.\]
+Then, $\sum_{k=1}^n|u_k|^2=1$ and further that the maximum
+\[M:=\max_{(x_1,\cdots,x_n)\in K_n}\ \Re\sum_{k=1}^nx_k\bar u_k>0\]
+is attained at $(\gamma_1,\cdots,\gamma_n)$.
+Our goal is to verify the bound
+\[\Re\sum_{k=1}^nc_k\bar u_k\le M,\]
+which implies that $(c_1,\cdots,c_n)$ is contained in every half space tangent to $K_n$ so that we finally obtain $(c_1,\cdots,c_n)\in K_n$.
+
+Since for any $\theta\in[0,2\pi)$ the point $(e^{-i\theta},\cdots,e^{-in\theta})$ is in $K_n$ so that
+\[\Re\sum_{k=1}^ne^{-ik\theta}\bar u_k\le M,\]
+we have for arbitrarily small $\e>0$ that
+\[\Re\sum_{k=1}^n\frac1{r^k}e^{-ik\theta}\bar u_k\le M+\e\]
+for any $0<r<1$ sufficiently close to $1$, thus we can write
+\begin{align*}
+\Re\sum_{k=1}^nc_k\bar u_k
+&=\Re\sum_{k=1}^n\frac1{2\pi r^k}\int_0^{2\pi}\Re f(re^{i\theta})e^{-ik\theta}\bar u_k\,d\theta\\
+&=\frac1{2\pi}\int_0^{2\pi}\Re f(re^{i\theta})\Re\sum_{k=1}^n\frac1{r^k}e^{-ik\theta}\bar u_k\,d\theta\\
+&\le\frac1{2\pi}\int_0^{2\pi}\Re f(re^{i\theta})\,d\theta\cdot(M+\e)\\
+&=M+\e
+\end{align*}
+thanks to the positivity of $\Re f$, and by limiting $r\to1$ from left we get the bound
+\[\Re\sum_{k=1}^nc_k\bar u_k\le M.\qedhere\]
+\end{pf}
+
+
+Here we introduce an infinite-dimentional description of this theorem, combining with the Herglotz representation theorem, suggests a rough but intuitional description of the space of probability measures on the unit circle $\T$.
+
+
+\begin{prop}
+Consider a sequence space $\C^\N$, endowed with the standard product topology.
+Then, the condition addressed in Caracth\'eodory's theorem is equivalent to the following: the point $(c_1,c_2,\cdots)\in\C^\N$ belongs to the closed convex hull of the curve $(e^{-i\theta},e^{-i2\theta},\cdots)\in\C^\N$ parametrized by $\theta\in[0,2\pi)$.
+
+Furthermore, the curve $(e^{-i\theta},e^{-i2\theta},\cdots)\in\C^\N$ is the set of extreme points of its closed convex hull.
+\end{prop}
+\begin{pf}
+Denote by $K_n$ the convex hull of the curve $\theta\mapsto(e^{-i\theta},\cdots,e^{-in\theta})\in\C^n$, and by $K$ the closed convex hull of the curve $\theta\mapsto(e^{-i\theta},e^{-i2\theta},\cdots)\in\C^\N$.
+If we assume the Carath\'eodory coefficient condition is true, then since for each $n$ we have a convex combination
+\[(c_1,\cdots,c_n)=\sum_j\lambda_{n,j}(e^{-i\theta_{n,j}},\cdots,e^{-in\theta_{n,j}})\]
+with coefficients such that $\lambda_{n,j}\ge0$ and $\sum_j\lambda_{n,j}=1$, the sequence
+\begin{align*}
+&(c_1,\cdots,c_n,\sum_j\lambda_{n,j}e^{-i(n+1)\theta_{n,j}},\sum_j\lambda_{n,j}e^{-i(n+2)\theta_{n,j}}\cdots)\\
+&\qquad\qquad=\sum_j\lambda_{n,j}(e^{-i\theta_{n,j}},\cdots,e^{-in\theta_{n,j}},e^{-i(n+1)\theta_{n,j}},e^{-i(n+2)\theta_{n,j}},\cdots)
+\end{align*}
+is contained in  and converges to the point $(c_1,c_2,\cdots)$ in the product topology as $n\to\infty$, so we are done with the desired result.
+For the opposite direction, let $(c_1,c_2,\cdots)\in K$.
+By definition of $K$ we have an expression
+\[c_k=\lim_{m\to\infty}\sum_{j=1}^m\lambda_{m,j}e^{-ik\theta_{m,j}}\]
+with $\lambda_{m,j}\ge0$ and $\sum_{j=1}^m\lambda_{m,j}=1$, for each $k$.
+Then,
+\[(c_1,\cdots,c_n)=\lim_{m\to\infty}\sum_{j=1}^m\lambda_{m,j}(e^{-i\theta_{m,j}},\cdots,e^{-in\theta_{m,j}})\]
+belongs to $K_n$ because $K_n$ is closed.
+
+
+Fix $\theta\in[0,2\pi)$ and suppose two complex sequences $(c_1,c_2,\cdots)$ and $(d_1,d_2,\cdots)$ in $\C^\N$ are contained in $K$ and satisfy
+\[\frac{c_k+d_k}2=e^{-ik\theta}\]
+for all $k\in\N$.
+For each $k$, since all components of $K$ are bounded by one so that $|c_k|\le1$ and $|d_k|\le1$, and since $e^{-ik\theta}$ is an extreme point of the closed unit disk $\bar\D\subset\C$, we have $c_k=d_k=e^{-ik\theta}$, we deduce that $(e^{-i\theta},e^{-i2\theta},\cdots)$ is an extreme point of $K$.
+Conversely, every extreme point of $K$ is contained in the curve $(e^{-i\theta},e^{-i2\theta},\cdots)$ by Milman's ``converse'' theorem of the Krein-Milman theorem[citation: Phelps].
+\end{pf}
+
+
+
+\subsection{Toeplitz's algebraic condition}
+
+Toeplitz discovered the coefficient condition addressed in the Carath\'eodory's paper which regards convex bodies enveloped by a curve can be equivalently described in terms of an algebraic condition that the hermitian matrices
+\[H_n:=(c_{k-l})_{k,l=1}^n=\mat{c_0&c_1&c_2&\cdots&c_{n-1}\\c_{-1}&c_0&c_1&\cdots&c_{n-2}\\c_{-2}&c_{-1}&c_0&\cdots&c_{n-3}\\\vdots&\vdots&\vdots&\ddots&\vdots\\c_{-n+1}&c_{-n+2}&c_{-n+3}&\cdots&c_0}\]
+of size $n\times n$ always have non-negative determinant for any $n$.
+This algebraic condition is equivalent to that $H_n$ are all positive semi-definite matrices.
+Since the principal minors of a positive semi-definite matrix is positive semi-definite, and since a hermitian matrix such that every leading principal minor has non-negative determinant is positive semi-definite, the bilateral sequence $(c_k)_{k=-\infty}^\infty$ is positive definite function when we consider it as a complex-valued function on $\Z$ that maps an integer $k$ to $c_k$ if and only if it is a positive definite \emph{sequence} in the following sense:
+
+\begin{defn}
+A bilateral complex sequence $(c_k)_{k=-\infty}^\infty$ is said to be \emph{positive definite} if
+\[\sum_{k,l=1}^nc_{k-l}\xi_k\bar\xi_l\ge0\]
+for each $n$ and $(\xi_1,\cdots,\xi_n)\in\C^n$.
+\end{defn}
+
+\begin{thm}[Carath\'eodory-Toeplitz]
+Let $f$ be an analytic function on the open unit disk with the power series expansion
+\[f(z)=1+\sum_{k=1}^\infty2c_kz^k.\]
+Then, $f$ belongs to the Carath\'eodory class if and only if the sequence $(c_k)_{k=-\infty}^\infty$ is positive definite, where we use the notations $c_0=1$ and $c_{-k}=\bar{c_k}$.
+\end{thm}
+\begin{pf}
+($\Rightarrow$)
+If $f$ is in the Carath\'eodory class, then because
+\[c_{k-l}r^{|k-l|}=\frac1{2\pi}\int_0^{2\pi}\Re f(re^{i\theta})e^{-i(k-l)\theta}\,d\theta,\]
+we have
+\[\sum_{k,l=1}^nc_{k-l}\xi_k\bar\xi_l
+=\lim_{r\uparrow1}\frac1{2\pi}\int_0^{2\pi}\Re f(re^{i\theta})\left|\sum_{k=1}^ne^{-ik\theta}\xi_k\right|^2\,d\theta\ge0\]
+for each $n$.
+
+($\Leftarrow$)
+Conversely, assume that the coefficient sequence $(c_k)_{k=-\infty}^\infty$ is positive definite.
+Put $\xi_k=z^{k-1}$ and $z=re^{i\theta}$ to write
+\begin{align*}
+0&\le\sum_{k,l=1}^{n+1}c_{k-l}z^{k-1}(\bar z)^{l-1}\\
+&=\sum_{k,l=0}^nc_{k-l}r^{k+l}e^{i(k-l)\theta}\\
+&=\sum_{k,l=0}^nc_{k-l}r^{|k-l|}r^{2\min\{k,l\}}e^{i(k-l)\theta}\\
+&=\sum_{k=-n}^nc_kr^{|k|}e^{ik\theta}\sum_{l=0}^{n-|k|}r^{2l}\\
+&=\sum_{k=-n}^nc_kr^{|k|}e^{ik\theta}\frac{1-r^{2(n-|k|+1)}}{1-r^2}\\
+&=\frac1{1-r^2}\sum_{k=-n}^nc_kr^{|k|}e^{ik\theta}
+-\frac{r^{n+2}}{1-r^2}\sum_{k=-n}^nc_kr^{n-|k|}e^{ik\theta}.
+\end{align*}
+For $r=|z|<1$ the first term tends to
+\[\lim_{n\to\infty}\frac1{1-r^2}\sum_{k=-n}^nc_kr^{|k|}e^{ik\theta}=\frac1{1-|z|^2}\Re f(z),\]
+and $|c_k|\le c_0=1$ implies the second term vanishes as
+\[\left|\frac{r^{n+2}}{1-r^2}\sum_{k=-n}^nc_kr^{n-|k|}e^{ik\theta}\right|\le\frac{r^{n+2}}{1-r^2}(2n+1)\to0\]
+as $n\to\infty$.
+It proves $\Re f(z)\ge0$ for $|z|<1$, and we obtain $\Re f(z)>0$ by the open mapping theorem.
+\end{pf}
+
+
+\subsection{The Herglotz-Riesz representation theorem}
+
+Herglotz proved another equivalent condition in 1911, considered as the first Bochner-type theorem, in terms of regular Borel measures on the unit circle.
+\begin{thm}[The Herglotz-Riesz representation theorem]
+Let $f$ be a complex-valued function defined on the open unit disk.
+Then, $f$ belongs to the Carath\'eodory class if and only if $f$ is represented as the following Stieltjes integral
+\[f(z)=\frac1{2\pi}\int_0^{2\pi}\frac{e^{it}+z}{e^{it}-z}\,d\mu(t),\]
+where $\mu:[0,2\pi]\to\R$ is a non-decreasing function with $\mu(2\pi)-\mu(0)=1$.
+\end{thm}
+\begin{pf}
+To be written.
+It uses Helly's selesction theorem.
+\end{pf}
+
+
+\begin{cor}[The Bochner theorem on $\Z$]
+A function $c:\Z\to\C$ is positive-definite if and only if there is a finite regular Borel measure $\mu$ on $\T=\R/2\pi\Z$ such that $\hat\mu=c$.
+\end{cor}
+\begin{pf}
+Let $\mu$ be a finite Borel measure on $\T$.
+Then, $\hat\mu$ is positive definite because
+\begin{align*}
+\sum_{k,l=1}^n\hat\mu(k-l)\xi_k\bar\xi_l
+&=\sum_{k,l=1}^n\frac1{2\pi}\int_0^{2\pi}e^{-i(k-l)\theta}\,d\mu(\theta)\ \xi_k\bar\xi_l\\
+&=\frac1{2\pi}\int_0^{2\pi}\left|\sum_{k=1}^ne^{-ik\theta}\xi_k\right|^2d\mu(\theta)\ge0
+\end{align*}
+for any $(\xi_1,\cdots,\xi_n)\in\C^n$.
+
+On the other hand, if the sequence $(c_k)_{k=-\infty}^\infty$ is positive definite, then, with the assumption $c_0=1$, the function $z\mapsto1+\sum_{k=1}^\infty2c_kz^k$ is in the Carath\'eodory class.
+By the Herglotz-Riesz representation theorem, there is a probability regular Borel measure $\mu$ on $\cT$ such that
+\begin{align*}
+1+\sum_{k=1}^\infty2c_kz^k
+&=\frac1{2\pi}\int_0^{2\pi}\frac{e^{it}+z}{e^{it}-z}\,d\mu(t)\\
+&=\frac1{2\pi}\int_0^{2\pi}\left(1+\sum_{k=1}^\infty2e^{-ik\theta}z^k\right)\,d\mu(t)\\
+&=1+\sum_{k=1}^\infty2\left(\frac1{2\pi}\int_0^{2\pi}e^{-ik\theta}\,d\mu(\theta)\right)z^k
+\end{align*}
+in $z\in\D$, hence that
+\[c_k=\frac1{2\pi}\int_0^{2\pi}e^{-ik\theta}\,d\mu(\theta)=\hat\mu(k).\qedhere\]
+\end{pf}
+
+So far, we have proved the following one-to-one correspondences:
+\begin{figure}
+\begin{tikzcd}
+&\begin{tabular}{c}Closed convex hull of\\the curve $(e^{-i\theta},e^{-i2\theta},\cdots)$\end{tabular}&\\
+\begin{tabular}{c}Positive definite\\sequences $(c_k)_k$\\with $c_0=1$\end{tabular}
+&\text{Carath\'eodory class}\lar[<->]\uar[<->]\rar[<->]
+&\begin{tabular}{c}Probability Borel\\measures on $\T$\end{tabular}
+\end{tikzcd}
+\end{figure}
+
+\section{On the group $\R$: probability theory}
+We have seen the relation of positive definite sequences and measures on the unit circle $\T$.
+Studying measures with positive definite functions virtually starts in probability theory, especially from the theory of weak convergence of probability distributions.
+
+\subsection{Weak convergence of probability measures}
+
+\begin{defn}[Weak convergence and vague convergence]
+Let $\mu_n$ be a sequence of probability measures on a 
+\end{defn}
+
+
+\begin{thm}[L\'evy's continuity theorem]
+
+\end{thm}
+
+\subsection{Examples of positive definite functions}
+
+Mathias' examples
+
+Polya's criterion
+
+\subsection{A proof of Bochner's theorem}
+
+Riesz-Markov-Kakutani representation theorem
+
+\subsection{Application: Stone-von Neumann theorem}
+
+
+
+
+
+
+\section{On locally compact abelian groups}
+
+\section{On locally compact non-abelian groups}
+
+
+
+\bibliographystyle{acm}
+\bibliography{bib}
+
+
+\end{document}

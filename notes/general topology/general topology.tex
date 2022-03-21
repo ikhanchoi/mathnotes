@@ -10,6 +10,35 @@
 
 \part{Topological spaces}
 
+
+\chapter{Topology}
+
+\section{Filters and topologies}
+\section{Open sets and closed sets}
+\section{Interior, closure, and boundary}
+
+
+\section*{Exercises}
+
+\begin{prb}
+If $A^\circ\subset B$ and $B$ is closed, then $(A\cup B)^\circ\subset B$.
+\end{prb}
+
+
+
+
+\chapter{Fundamental constructions}
+
+
+\chapter{Nets and sequences}
+
+
+
+
+
+
+\part{Topological structures}
+
 \chapter{Metric spaces}
 \section{Metrics}
 
@@ -25,118 +54,28 @@ A pair $(X,d)$ of a set $X$ and a metric on $X$ is called a \emph{metric space}.
 We often write it simply $X$.
 \begin{parts}
 \item
-Show that a normed space $X$ is a metric space with $d(x,y)=\|x-y\|$.
+A normed space $X$ is a metric space with a metric defined by $d(x,y):=\|x-y\|$.
 \item
-Show that a subset of a metric space is a metric space with a metric given by restriction.
+A subset of a metric space is a metric space with a metric given by restriction.
 \end{parts}
 \end{prb}
 
-\begin{prb}[Discrete metrics]
-Let $X$ be a set, and define a metric as
-\[d(x,y):=\begin{cases}0&,x=y\\1&,x\ne y\end{cases}.\]
-This metric is called \emph{discrete}.
-\begin{parts}
-\item
-Show that the discrete metric is a strongest metric on $X$.
-\item
-Investiagte all convergent sequences in a discrete metric space.
-\end{parts}
-\end{prb}
-
-\begin{prb}[Comparison of metrics]
-For metrics $d_1$ and $d_2$ on a set $X$, it is said that $d_1$ is \emph{stronger than} $d_2$ (equivalently, $d_2$ is \emph{weaker than} $d_1$) or $d_1$ \emph{refines} $d_2$ if for any $x\in X$ arbitrary $\e>0$ has $\delta>0$ such that
-\[B_1(x,\delta)\subset B_2(x,\e),\]
-where $B_1$ and $B_2$ refer to balls within the metrics $d_1$ and $d_2$ respectively.
-\begin{parts}
-\item
-Show that this refinement relation is a preorder.
-\item
-Show that $d_1$ is stronger than $d_2$ if and only if every sequence that converges to $x\in X$ in $d_1$ converges to $x$ in $d_2$.
-\item
-Show that $d_1$ is stronger than $d_2$ if and only if the identity map $\id:(X,d_1)\to(X,d_2)$ is continuous.
-\end{parts}
-\end{prb}
-
-\begin{prb}[Equivalence of metrics]
-Two metrics $d_1$ and $d_2$ on a set $X$ are equivalent if one of the followings are satisfied:
-\begin{parts}
-\item
-Show that $d_1$ and $d_2$ are equivalent if for each point $x$ in $X$ there exist two constants $C_1$ and $C_2$ such that
-\[d_2(x,y)\le C_1d_1(x,y)\quad\text{and}\quad d_1(x,y)\le C_2d_2(x,y)\]
-for all $y$ in $X$.
-\item
-Show that $d_1$ and $d_2$ are equivlane tif $d_2=f\circ d_1$ for a monotonically increasing function $f:\R_{\ge0}\to\R_{\ge0}$ that is continuous at $0$.
-\end{parts}
-\end{prb}
-
-
-\begin{defn}
-Let $X$ be a set.
-A \emph{metric} is a function $d:X\times X\to\R_{\ge0}$ such that
-\begin{parts}
-\item $d(x,y)=0$ if and only if $x=y$, \hfill(nondegeneracy)
-\item $d(x,y)=d(y,x)$ for all $x,y\in X$, \hfill(symmetry)
-\item $d(x,z)\le d(x,y)+d(y,z)$ for all $x,y,z\in X$. \hfill(triangle inequality)
-\end{parts}
-A pair $(X,d)$ of a set $X$ and a metric on $X$ is called a \emph{metric space}.
-We often write it simply $X$.
-\end{defn}
-
-\begin{ex}
-\leavevmode
-\begin{parts}
-\item
-A normed space $X$ is a metric space.
-Precisely, the norm structure naturally defines a real-valued function $d$ on $X\times X$ defined by $d(x,y):=\|x-y\|$ and it satisfies the axioms of metric.
-\item
-Let $(X,d)$ be a metric space.
-Every subset of $X$ has a natural induced metric, just the restriction of original metric $d$.
-\item
-Let $X$ be a set.
-Then, a function $d:X\times X\to\R_{\ge0}$ defined by
-\[d(x,y):=\begin{cases}0&,x=y\\1&,x\ne y\end{cases}\]
-is a metric on $X$.
-This metric is sometimes called \emph{discrete metric} because balls can separate all single points out.
-\item
-Let $d$ be a metric on a set $X$.
-Let $f:\R_{\ge0}\to\R_{\ge0}$ be a function such that $f^{-1}(0)=\{0\}$.
-If $f$ is monotonically increasing and subadditive, then $f\circ d$ satisfies the triangle inequality, hence is another metric on $X$.
-Note that a function $f$ is called \emph{subadditive} if $f(x+y)\le f(x)+f(y)$ for all $x,y$ in the domain.
-\item
-Let $G=(V,E)$ be a connected graph.
-Define $d:V\times V\to\Z_{\ge0}\subset\R_{\ge0}$ as the distance of two vertices; the length of shortest path connecting two vertices.
-Then, $(V,d)$ is a metric space.
-\item
-Let $\cP(X)$ be the power set of a finite set $X$.
-Define $d:\cP(X)\times\cP(X)\to\Z_{\ge0}\subset\R_{\ge0}$ as the cardinality of the symmetric difference; $d(A,B):=|(A-B)\cup(B-A)|$.
-Then $(\cP(X),d)$ is a metric space.
-\item
-Let $C$ be the set of all compact subsets of $\R^d$.
-Recall that a subset of $\R^d$ is compact if and only if it is closed and bounded.
-Then, $d:C\times C\to\R_{\ge0}$ defined by
-\[d(A,B):=\max\{\,\sup_{a\in A}\inf_{b\in B}\|a-b\|,\ \sup_{b\in B}\inf_{a\in A}\|a-b\|\,\}\]
-is a metric on $C$.
-It is a little special case of \emph{Hausdorff metric}.
-\end{parts}
-\end{ex}
-
+\begin{prb}[System of open balls]
 A metric is often misunderstood as something that measures a distance between two points and belongs to the study of geoemtry.
 The main function of a metric is to make a system of small balls, sets of points whose distance from specified center points is less than fixed numbers.
 The balls centered at each point provide a concrete images of ``system of neighborhoods at a point'' in a more intuitive sense.
 In this viewpoint, a metric can be considered as a structure that lets someone accept the notion of neighborhoods more friendly.
 
-\begin{defn}
+Note that taking either $\e$ or $\delta$ in analysis really means taking a ball of the very radius.
+Investigation of the distribution of open balls centered at a point is now an important problem.
+
 Let $X$ be a metric space.
 A set of the form 
 \[\{y\in X:d(x,y)<\e\}\]
 for $x\in X$ and $\e>0$ is called an \emph{open ball centered at $x$ with radius $\e$} and denoted by $B(x,\e)$ or $B_\e(x)$.
-\end{defn}
+\end{prb}
 
-The adjective ``open'' is in order to distinguish from closed balls $\cl{B(x,\e)}=\{y\in X:d(x,y)\le\e\}$.
-The terms ``open'' and ``closed'' will be discussed later.
-Now let us reformulate the definitions of limits and continuity with open balls.
-
-\begin{defn}
+\begin{prb}[Convergence and continuity in metric spaces]
 Let $\{x_n\}_n$ be a sequence of points on a metric space $(X,d)$.
 We say that a point $x$ is a \emph{limit} of the sequence or the sequence \emph{converges to $x$} if for arbitrarily small ball $B(x,\e)$, we can find $n_0$ such that $x_n\in B(x,\e)$ for all $n>n_0$.
 If it is satisfied, then we write
@@ -147,52 +86,33 @@ If it does not converge to any points, then we say the sequence \emph{diverges}.
 
 A function $f:X\to Y$ between metric spaces is called \emph{continuous at $x\in X$} if for any ball $B(f(x),\e)\subset Y$, there is a ball $B(x,\delta)\subset X$ such that $f(B(x,\delta))\subset B(f(x),\e)$.
 The function $f$ is called \emph{continuous} if it is continuous at every point on $X$.
-\end{defn}
-
-The convergence can be also characterized by limits in $\R$: a sequence $\{x_n\}$ in a metric space $X$ converges to $x\in X$ if and only if
-\[\lim_{n\to\infty}d(x_n,x)=0.\]
-Note that taking either $\e$ or $\delta$ in analysis really means taking a ball of the very radius.
-For continuity of a function, we can describe it intuitively that no matter how small ball is taken in the codomain, we can take much smaller ball in the domain.
-Investigation of the distribution of open balls centered at a point is now an important problem.
-
-\begin{ex}
-\leavevmode
 \begin{parts}
-\item
-Let $X$ be the discrete metric space.
-Every ball centered at a point $x$ with respect to the discrete metric is either a singleton $B(x,\e)=\{x\}$ when $\e\le1$, or the entire space $B(x,\e)=X$ when $\e>1$.
-In particular, a sequence $\{x_n\}_n$ converges to $x$ if and only if it is eventually $x$; there is a positive integer $n_0$ such that $x_n=x$ for all $n>n_0$.
-\item
-Let $X$ and $Y$ be metric spaces.
-If $X$ is equipped with the discrete metric, then every function $f:X\to Y$ is continuous on the discrete metric.
-\item
+\item A sequence $x_n$ in a metric space $X$ converges to $x\in X$ if and only if $d(x_n,x)$ converges to zero.
+\item 
 Let $f:X\to Y$ be a function between two metric spaces.
 If there is a constant $C$ such that $d(x,y)\le Cd(f(x),f(y))$ for all $x$ and $y$ in $X$, then $f$ is continuous.
 In this case, $f$ is particularly called \emph{Lipschitz continuous} with the \emph{Lipschitz constant} $C$.
 \end{parts}
-\end{ex}
+\end{prb}
 
 
-\section{Topological equivalence}
-A metric can be viewed as a function that takes a sequence as input and returns whether the sequence converges or diverges.
-That is, a metric acts like a criterion which decides convergence of sequences.
-Take note on the fact that the sequence of real numbers defined by $x_n=\frac1n$ converges in standard metric but diverges in discrete metric.
-Like this example, even for the same sequence on a same set, the convergence depends on the attached metrics.
-What we are interested in is comparison of metrics and to find a proper relation structure.
-If a sequence converges in a metric $d_2$ but diverges in another metric $d_1$, we would say $d_1$ has stronger rules to decide the convergence.
-Refinement relation formalizes the idea.
-
-\begin{defn}
-Let $d_1$ and $d_2$ are metrics on a set $X$.
-We say $d_1$ is \emph{stronger than} $d_2$ (equivalently, $d_2$ is \emph{weaker than} $d_1$) or $d_1$ \emph{refines} $d_2$, if for any $x\in X$ and for arbitrary $\e>0$ we can find $\delta>0$ such that
-\[B_1(x,\delta)\subset B_2(x,\e).\]
-The notations $B_1$ and $B_2$ refer to balls defined with the metrics $d_1$ and $d_2$ respectively.
-\end{defn}
-
-\begin{prop}
-The refinement relation is a preorder.
-\end{prop}
+\section{Topologcial equivalence of metrics}
+\begin{prb}[Comparison of metrics]
+Let $d_1$ and $d_2$ be metrics on a set $X$.
+We say that $d_1$ is \emph{stronger than} $d_2$ (equivalently, $d_2$ is \emph{weaker than} $d_1$) or $d_1$ \emph{refines} $d_2$ if for any $x\in X$ and $\e>0$, there is $\delta>0$ such that
+\[B_1(x,\delta)\subset B_2(x,\e),\]
+where $B_1$ and $B_2$ refer to balls within the metrics $d_1$ and $d_2$ respectively.
+\begin{parts}
+\item
+This refinement relation is a preorder.
+\item
+$d_1$ is stronger than $d_2$ if and only if every sequence that converges to $x\in X$ in $d_1$ converges to $x$ in $d_2$.
+\item
+$d_1$ is stronger than $d_2$ if and only if the identity map $\id:(X,d_1)\to(X,d_2)$ is continuous.
+\end{parts}
+\end{prb}
 \begin{pf}
+(a)
 It is enough to show the transitivity.
 Suppose there are three metric $d_1$, $d_2$, and $d_3$ on a set $X$ such that $d_1$ is stronger than $d_2$ and $d_2$ is stronger than $d_3$.
 For $i=1,2,3$, let $B_i$ be a notation for the balls defined with the metric $d_i$.
@@ -203,13 +123,8 @@ Then, we can find $\e'>0$ such that
 Also, we can find $\delta>0$ such that
 \[B_1(x,\delta)\subset B_2(x,\e').\]
 Therefore, we have $B_1(x,\delta)\subset B_3(x,\e)$ which implies that $d_1$ refines $d_3$.
-\end{pf}
 
-\begin{prop}
-Let $d_1$ and $d_2$ be metrics on a set $X$.
-Then, $d_1$ is stronger than $d_2$ if and only if every sequence that converges to $x\in X$ in $d_1$ converges to $x$ in $d_2$.
-\end{prop}
-\begin{pf}
+(b)
 ($\Rightarrow$)
 Let $\{x_n\}_n$ be a sequence in $X$ that converges to $x$ in $d_1$.
 By the assumption, for an arbitrary ball $B_2(x,\e)=\{y:d_2(x,y)<\e\}$, there is $\delta>0$ such that
@@ -239,41 +154,21 @@ for every $n$.
 Therefore, $\{x_n\}$ does not converges to $x$ in $d_2$.
 \end{pf}
 
-\begin{ex}
+\begin{prb}[Equivalence of metrics]
 Let $d_1$ and $d_2$ be metrics on a set $X$.
-Suppose for each point $x$ there exists a constant $C$ which may depend on $x$ such that
-\[d_2(x,y)\le Cd_1(x,y)\]
-for all $Y$.
-Then, $d_1$ is stronger than $d_2$.
-\end{ex}
-\begin{ex}
-There is always no stronger metric than the discrete metric.
-In other words, discrete metric is the strongest metric.
-\end{ex}
-
-Now we define the equivalence relation.
-
-\begin{defn}
-Two metrics on a set are called \emph{topologically equivalent} if the sets of open balls centered at each point are mutually nested; in other words, they refines each other.
-\end{defn}
-
-When two metrics are topologically equivalent, they are also said to induce exactly the same topology.
-The word ``topologically'' is frequently omitted.
-We can easily check that two metrics are equivalent if and only if they share the same sequential convergence data: a sequence converges to $x\in X$ in $d_1$ if and only if it converges to $x$ in $d_2$.
-The following theorem give sufficient conditions for equivalence.
-
-\begin{thm}
-Two metrics $d_1$ and $d_2$ on a set $X$ are equivalent if one of the followings are satisfied:
+They are said to be \emph{(topologically) equivalent} if they refines each other.
 \begin{parts}
-\item for each point $x$ there exist two constants $C_1$ and $C_2$ which may depend on $x$ such that
-\[d_2(x,y)\le C_1d_1(x,y)\quad\text{and}\quad d_1(x,y)\le C_2d_2(x,y)\]
-for all $y$ in $X$,
-\item $d_2=f\circ d_1$ for a monotonically increasing function $f:\R_{\ge0}\to\R_{\ge0}$ that is continuous at $0$.
+\item
+$d_1$ and $d_2$ are equivalent if for each $x$ in $X$ there exist two constants $C_1$ and $C_2$ such that $d_2(x,y)\le C_1d_1(x,y)$ and $d_1(x,y)\le C_2d_2(x,y)$ for all $y$ in $X$.
+\item
+$d_1$ and $d_2$ are equivalent if $d_2=f\circ d_1$ for a monotonically increasing $f:\R_{\ge0}\to\R_{\ge0}$ that is continuous at $0$.
 \end{parts}
-\end{thm}
+\end{prb}
 \begin{pf}
 (a)
-It is a corollary of Example 1.10.
+Let $d_1$ and $d_2$ be metrics on a set $X$.
+Suppose for each point $x$ there exists a constant $C$ which may depend on $x$ such that $d_2(x,y)\le Cd_1(x,y)$ for all $y\in Y$.
+We will show $d_1$ is stronger than $d_2$.
 
 (b)
 For any ball $B_1(x,\e)$, we have a smaller ball
@@ -285,8 +180,19 @@ Since $f$ is continuous at 0, we can find $\delta>0$ such that
 which implies $B_1(x,\delta)\subset B_2(x,\e)$.
 \end{pf}
 
-\iffalse
-\begin{rmk}
+
+
+
+
+
+A metric can be viewed as a function that takes a sequence as input and returns whether the sequence converges or diverges.
+That is, a metric acts like a criterion which decides convergence of sequences.
+Take note on the fact that the sequence of real numbers defined by $x_n=\frac1n$ converges in standard metric but diverges in discrete metric.
+Like this example, even for the same sequence on a same set, the convergence depends on the attached metrics.
+What we are interested in is comparison of metrics and to find a proper relation structure.
+If a sequence converges in a metric $d_2$ but diverges in another metric $d_1$, we would say $d_1$ has stronger rules to decide the convergence.
+Refinement relation formalizes the idea.
+
 Unlike metrics, there exist two different topologies that have same sequential convergence data.
 For example, a sequence in an uncountable set with cocountable topology converges to a point if and only if it is eventually at the point, which is same with discrete topology.
 This means the informations of sequence convergence are not sufficient to uniquely characterize a topology.
@@ -294,12 +200,9 @@ Instead, convergence data of generalized sequences also called nets, recover the
 For topologies having a property called the first countability, it is enough to consider only usual sequences in spite of nets.
 What we did in this subsection is not useless because topology induced from metric is a typical example of first countable topologies.
 These kinds of problems will be profoundly treated in Chapter 3.
-\end{rmk}
-\begin{rmk}
+
 One can ask some results for the equivalence of metrics characterized by a same set of continuous functions.
 However, they are generally difficult problems: is it possible to recover the base space from a continuous function space or a path space?
-\end{rmk}
-\fi
 
 \section{Sum of metrics}
 Topologies are occasionally described by not a single but several metrics.
@@ -464,43 +367,48 @@ where $\tilde\rho_i$ is either $\min\{\rho_i,1\}$ or $\rho_i/(\rho_i+1)$, is a m
 \end{parts}
 \end{prop}
 
+\section*{Exercises}
+
+\begin{prb}[Discrete metrics]
+Let $X$ be a set, and define a metric as
+\[d(x,y):=\begin{cases}0&,x=y\\1&,x\ne y\end{cases}.\]
+This metric is called \emph{discrete}.
+\begin{parts}
+\item
+The discrete metric is a strongest metric on $X$.
+\item 
+\item
+A sequence $x_n$ converges to a point $x$ in a discrete metric space if and only if there is $n_0$ such that $n\ge n_0$ implies $x_n=x$.
+\end{parts}
+\end{prb}
+
+\begin{prb}
+\begin{parts}
+\item
+Let $d$ be a metric on a set $X$.
+Let $f:\R_{\ge0}\to\R_{\ge0}$ be a function such that $f^{-1}(0)=\{0\}$.
+If $f$ is monotonically increasing and subadditive, then $f\circ d$ satisfies the triangle inequality, hence is another metric on $X$.
+Note that a function $f$ is called \emph{subadditive} if $f(x+y)\le f(x)+f(y)$ for all $x,y$ in the domain.
+\item
+Let $G=(V,E)$ be a connected graph.
+Define $d:V\times V\to\Z_{\ge0}\subset\R_{\ge0}$ as the distance of two vertices; the length of shortest path connecting two vertices.
+Then, $(V,d)$ is a metric space.
+\item
+Let $\cP(X)$ be the power set of a finite set $X$.
+Define $d:\cP(X)\times\cP(X)\to\Z_{\ge0}\subset\R_{\ge0}$ as the cardinality of the symmetric difference; $d(A,B):=|(A-B)\cup(B-A)|$.
+Then $(\cP(X),d)$ is a metric space.
+\item
+Let $C$ be the set of all compact subsets of $\R^d$.
+Recall that a subset of $\R^d$ is compact if and only if it is closed and bounded.
+Then, $d:C\times C\to\R_{\ge0}$ defined by
+\[d(A,B):=\max\{\,\sup_{a\in A}\inf_{b\in B}\|a-b\|,\ \sup_{b\in B}\inf_{a\in A}\|a-b\|\,\}\]
+is a metric on $C$.
+It is a little special case of \emph{Hausdorff metric}.
+\end{parts}
+\end{prb}
 
 
 
-\chapter{Topological spaces}
-
-\section{Filters and topologies}
-
-\section{Open sets and closed sets}
-
-\section{Interior, closure, and boundary}
-
-\section{Fundamental constructions}
-
-
-\chapter{Fundamental constructions}
-
-
-
-
-
-
-\part{Topological Structures}
-
-\chapter{Nets and sequences}
-
-\chapter{Completeness}
-
-\chapter{Uniform spaces}
-
-\section{Definitions of uniformity}
-
-
-
-
-
-
-\chapter*{Problems}
 
 \begin{prb}[Kuratowski embedding]
 While every subset of a normed space is a metric space, we have a converse statement that every metric space is in fact realized as a subset of a normed space.
@@ -531,12 +439,48 @@ Take a norm $\|\cdot\|$ on $V$ which may differ to $\|\cdot\|_2$.
 
 
 
+
+
+
+\chapter{Uniform spaces}
+
+\section{Definitions of uniformity}
+
+
+
+
+
+
+\chapter*{Exercises}
+
+
+
+
+
+
+
+\chapter{Cauchy spaces}
+\section{Completeness}
+\section{Completion}
+
+
+
+
+
+
 \part{Topological properties}
 \chapter{Compactness}
+
+
+
 \chapter{Connectedness}
-\chapter{Separability Axioms}
+
+
+
+\chapter{Separation Axioms}
 \section{Regular spaces}
 \section{Normal spaces}
+Dieudonne's theorem: paracompact Hausdorff is normal.
 
 
 
@@ -553,19 +497,17 @@ Take a norm $\|\cdot\|$ on $V$ which may differ to $\|\cdot\|_2$.
 
 Topologies on $C_c(X)$ for LCH $X$: weaker to stronger
 \begin{parts}
-\item Topology of compact convergence: $\cl{C_c(X)}=\cl{C_{\mathrm{loc}}(X)}=C_{\mathrm{loc}}(X)$.
-\item Topology of uniform convergence: $\cl{C_c(X)}=C_0(X)$, $C_c(X)^*=M(X)$.
-\item Inductive topology: $\cl{C_c(X)}:=\cl{\colim_{U\Subset X}C_c(U)}=C_c(X)$.
+\item Topology of compact convergence: $\bar{C_c(X)}=\bar{C_{\mathrm{loc}}(X)}=C_{\mathrm{loc}}(X)$.
+\item Topology of uniform convergence: $\bar{C_c(X)}=C_0(X)$, $C_c(X)^*=M(X)$.
+\item Inductive topology: $\bar{C_c(X)}:=\bar{\colim_{U\Subset X}C_c(U)}=C_c(X)$.
 \end{parts}
 The space $C_{\mathrm{loc}}(X)$ is defined to be $C(X)$ as a set endowed with the topology of compact convergence.
 
 
 
-\chapter{Properties of continuous function spaces}
+\chapter{Approximation of continuous functions}
 
-\section{The Arzela-Ascoli theorem}
-
-
+\section{Arzela-Ascoli theorem}
 
 
 
@@ -583,36 +525,43 @@ The space $C_{\mathrm{loc}}(X)$ is defined to be $C(X)$ as a set endowed with th
 
 
 
-\section{The Stone-Weierstrass theorem}
 
-\subsection{The classical Weierstrass approximation theorem}
+
+\section{Stone-Weierstrass theorem}
+
 \begin{prb}[Bernstein polynomial]
-Let $f\in C([0,1],\R)$.
-Define
-\[B_n(f):=\sum_{k=0}^nf\left(\frac kn\right)\binom nkx^k(1-x)^{n-k}.\]
+We want to show $\R[x]$ is dense in $C([0,1],\R)$.
+Let $f\in C([0,1],\R)$ and define \emph{Berstein polynomials} $B_n(f)\in\R[x]$ for each $n$ such that
+\[B_n(f)(x):=\sum_{k=0}^nf\left(\frac kn\right)\binom nkx^k(1-x)^{n-k}.\]
 \begin{parts}
-\item $B_n(f)$ uniformly converges to $f$ on $[0,1]$. In particular $\R[x]$ is 
-\item For any $\e>0$, there is a polynomial $p\in\R[x]$ such that $p(0)=0$ and $\sup_{x\in[-1,1]}\bigl||x|-p(x)\bigr|<\e$.
+\item $B_n(f)$ uniformly converges to $f$ on $[0,1]$.
+\item There is a sequence $p_n\in\R[x]$ with $p_n(0)=0$ uniformly convergent to $x\mapsto|x|$ on $[-1,1]$.
 \end{parts}
 \end{prb}
+\begin{pf}
+(b)
+Let
+\[B_n(x):=\sum_{k=0}^n\left|1-\frac{2k}n\right|\binom nk(1-2x)^k(2x-1)^{n-k}.\]
+Since $B_n(x)\to|x|$ uniformly on $[-1,1]$ and $B_n(0)\to0$, we have $B_n(x)-B_n(0)\to|x|$ uniformly on $[-1,1]$.
+\end{pf}
 
 \begin{prb}[Taylor series of square root]
+We want to show the absolute value is approximated by polynomials in $C([-1,1],\R)$ in another way.
 Let
 \[f_n(x):=\sum_{k=0}^n a_k(x-1)^k\]
 be the partial sum of the Taylor series of the square root function $\sqrt x$ at $x=1$.
 \begin{parts}
 \item By Abel's theorem, $f_n$ uniformly converges to $\sqrt x$ on $[0,1]$
-\item For any $\e>0$, there is a polynomial $p\in\R[x]$ such that $p(0)=0$ and $\sup_{x\in[-1,1]}\bigl||x|-p(x)\bigr|<\e$.
+\item There is a sequence $p_n\in\R[x]$ with $p_n(0)=0$ uniformly convergent to $x\mapsto|x|$ on $[-1,1]$.
 \end{parts}
 \end{prb}
 
 
-\subsection{Proof of the Stone-Weierstrass theorem}
-\begin{prb}
+\begin{prb}[Proof of Stone-Weierstrass theorem]
 Let $X$ be a compact Hausdorff space and $S\subset C(X,\R)$.
 We say that $S$ \emph{separates points} if for every distinct $x$ and $y$ in $X$ there is $f\in S$ such that $f(x)\ne f(y)$, and that $S$ \emph{vanishes nowhere} if for every $x$ in $X$ there is $f\in S$ such that $f(x)\ne0$.
 
-Let $\cA=\cl{S\R[S]}$ be the real Banach subalgebra of $C(X,\R)$ generated by $S$.
+Let $\cA=\bar{S\R[S]}$ be the real Banach subalgebra of $C(X,\R)$ generated by $S$.
 \begin{parts}
 \item $\cA$ is a lattice.
 \item $\cA$ is equal to $C(X,\R)$
@@ -622,10 +571,8 @@ Let $\cA=\cl{S\R[S]}$ be the real Banach subalgebra of $C(X,\R)$ generated by $S
 
 
 
-
-\subsection{Generalizations of the Stone-Weierstrass theorem}
-
-Locally compact version and complex version
+Locally compact version,
+complex version
 
 
 
@@ -648,29 +595,133 @@ Some examples
 
 
 
-\chapter{The Riesz-Markov-Kakutani representation theorem}
-\section{Baire measures}
+
+
+
+
+
+
+\chapter{Topological measures}
+\section{Baire and Borel measures}
+locally finite Baire measures can define a linear functional on $C_c$.
+
+
 
 \section{Regular Borel measures}
 
-\begin{thm}
-Let $\mu$ be a Borel measure.
-Then, the followings are equivalent:
+On which spaces are all Borel measures regular or Radon or etc?
+
+Radon measures vs regular Borel measures.
+
+Lusin theorem for normal spaces.
+
+Lusin theorem for locally compact Hausdorff spaces.
+
+Difference between tightness and inner regularity.
+
+
+\section{Riesz-Markov-Kakutani representation theorem}
+
+Consider
+\begin{es}
+\text{regBorel} \> \text{Borel} \> \text{Baire} \> C_c^{*+}.
+\end{es}
+
+Note that the surjectivity of Borel$\to C_c^{*+}$ is valid for EVERY topological space!
+Regularity of the constructed measure comes from the results of section 12.2.
+
+\begin{prb}[Existence of Borel measures]
+Let $(\Omega,\cT)$ be a topological space and $I$ a positive linear functional on $C_c(\Omega)$.
+Define a set function $\rho:\cT\to[0,\infty]$ such that
+\[\rho(U):=\sup\,\{\,I(f):f\in C_c(U),\ 0\le f\le1\,\}\]
+for $U\in\cT$.
+Define the associated outer measure $\mu^*:\cP(\Omega)\to[0,\infty]$ such that
+\[\mu^*(E):=\inf\left\{\,\sum_{i=1}^\infty\rho(U_i):E\subset\bigcup_{i=1}^\infty U_i,\ U_i\in\cT\,\right\}\]
+for $E\in\cP(\Omega)$.
+Let $\cM$ be the $\sigma$-algebra of Carath\'eodory measurable subsets relative to $\mu^*$, and $\cB$ the Borel $\sigma$-algebra.
 \begin{parts}
-\item$\mu$ is inner regular on $\sigma$-bounded sets
-\item $\mu$ is outer regular on $\sigma$-bounded sets.
+\item $\mu^*|_\cT=\rho$.
+\item $\cT\subset\cM$.
+\item $I(f)=\int f\,d\mu$ for $f\in C_c(\Omega)$.
 \end{parts}
-\end{thm}
+\end{prb}
+\begin{pf}
+(a)
+If we show the countable subadditivity of $\rho$, then we have
+\[\mu^*(E)=\inf\,\{\,\rho(U):E\subset U\in\cT\,\},\]
+so we are done.
+
+Let $\{U_i\}_{i=1}^\infty$ is a countable open cover of an open set $U$.
+Take any $f\in C_c(U)$ with $0\le f\le1$.
+There is a finite subcover $\{U_j\}_{j=1}^n$ of $\supp f$.
+Let $\chi_j$ a partition of unity subordinate to $\{U_j\}_j$.
+Then,
+\[I(f)=I\left(\sum_{j=1}^n f\chi_j\right)=\sum_{j=1}^n I(f\chi_j)\le\sum_{j=1}^n\rho(U_j)\le\sum_{i=1}^\infty\rho(U_i).\]
+(If this sum is infinite, then the second equality may fail, so the compactness of the support is necessary. In particular, the existence of measure in the $C_b$ theory is not guaranteed.)
+
+(b)
+Clearly $\mu^*(E)\le\mu^*(E\cap U)+\mu^*(E\setminus U)$.
+It is enough to show only for $\mu^*(E)<\infty$.
+Let $\e>0$.
+There are $U_i\in\cT$ such that $E\subset V:=\bigcup_{i=1}^\infty U_i$ and
+\[\mu^*(E)+\frac\e3>\sum_{i=1}^\infty\rho(U_i)\ge\rho(V).\]
+(We used the countable subadditivity of $\rho$ here, but it is in fact not required.)
+Take $f\in C_c(V\cap U)$ such that $0\le f\le1$ and
+\[\rho(V\cap U)-\frac\e3<I(f).\]
+Take $g\in C_c(V\setminus\supp f)$ such that $0\le g\le1$ and
+\[\rho(V\setminus\supp f)-\frac\e3<I(g).\]
+Then, since $f+g\in C_c(V)$ and $0\le f+g\le1$,
+\[\rho(V)\ge I(f+g)>\rho(V\cap U)+\rho(V\setminus\supp f)-\frac23\e.\]
+Therefore,
+\[\mu^*(E)+\e>\rho(V\cap U)+\rho(V\setminus\supp f)\ge\mu^*(V\cap U)+\mu^*(V\setminus U)\]
+
+(c)
+Want to show $f|_C=1$ and $f\ge0$ imply $\mu(C)\le I(f)$.
+Let $U=f^{-1}((1-\e,\infty))$.
+Then, $C\subset U$.
+
+For any $g\in C_b(\Omega)$ with $0\le g\le1$ and $g|_{U^c}=0$, $(1-\e)g\le f$ implies $I(g)\le(1-\e)^{-1}I(f)$, so $\mu(U)\le(1-\e)^{-1}I(f)$.
+Done.
+\end{pf}
+
+\begin{prb}[Uniqueness of regular Borel measures]
+On $C_c(\Omega)$ is the most general case, then $C_b$ case are covered.
+Injectivity heavily relies on the regularity of measures and the Lusin theorem.
+\begin{parts}
+\item Injective if $\Omega$ is locally compact Hausdorff.
+\item Injective if $\Omega$ is normal.
+\end{parts}
+\end{prb}
 
 
-A regular measure of an open set $U$ can be realized by the norm of integration functional on $C_c(U)$.
+
+\begin{prb}[Dual of continuous function spaces]
+\end{prb}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\section{}
+
+
 \begin{lem}
 Let $\mu$ be a Borel measure on a LCH $X$.
 Then, $\mu$ is inner regular on open sets iff
-\[\mu(U)=\|\mu\|_{C_c^*(U)}\]
+\[\mu(U)=\|\mu\|_{C_c(U)^*}\]
 for every open $U$ in $X$.
 \end{lem}
 \begin{pf}
+($\Leftarrow$)
 ($\ge$)
 For $f\in C_c(U)$, we have
 \[|\int f\,d\mu|=|\int_Uf\,d\mu|\le\mu(U)\,\|f\|.\]
@@ -679,7 +730,7 @@ For $f\in C_c(U)$, we have
 Since $\mu$ is inner regular on $U$, there is a compact set $K\subset U$ such that $\mu(U)-\mu(K)<\e$ (for the case $\mu(U)=\infty$, we can deal with separately).
 We can find a nonnegative function $f\in C_c(U)$ with $f|_K \equiv 1$ and $f\le1$ by the construction of Urysohn.
 Then, for all $\e>0$ we have
-\[\mu(U)<\mu(K)+\e\le\int f\,d\mu+\e\le\|\mu\|_{C_c^*(U)}+\e.\qedhere\]
+\[\mu(U)<\mu(K)+\e\le\int f\,d\mu+\e\le\|\mu\|_{C_c^*(U)}+\e.\]
 
 ($\Rightarrow$)
 Let $f\in C_c(U)$ be a function such that $\|f\|=1$ and
@@ -690,40 +741,6 @@ Then
 \end{pf}
 % 이런 거 쓸 때 메져가 유한인지 무한인지 케이스 나누고 증명쓰는 게 좋겠다
 
-
-Positivity of linear functional itself implies a rather strong continuity property.
-\begin{thm}
-Let $X$ be LCH.
-A positive linear functional on $C_c(X)$ is continuous with respect to the inductive topology.
-\end{thm}
-\begin{pf}
-Let $I$ be a positive linear functional on $C_c(X)$.
-We want to show every restriction of $I$ on $C_c(U)\emb C_c(X)$ for $U\Subset X$ is continuous for uniform norm.
-
-Choose a nonnegative $\f\in C_c(X)$ such that $\f|_{\cl{U}}\equiv1$ using the Urysohn lemma.
-Then,
-\[|I(f)|\le I(|f|)=I(\f|f|)\le I(\f\|f\|)=I(\f)\|f\|\lesssim_U\|f\|\]
-for $f\in C_c(U)$.
-\end{pf}
-
-
-Locally compact Hausdorff spaces have at least two important applications in abstract analysis related to measure theory: one is locally compact groups and the associated Harr measures in abstract harmonic analysis, the other is the Gelfand-Naimark theorem which states every commutative $C^*$-algebra can be represented as a function space on a locally compact Hausdorff space.
-In the set of this section, we assume every base space $X$ is locally compact Hausdorff.
-
-Note that locally finite measures are compact finite but the converser holds only if in locally compact Hausdorff spaces.
-We want to consider locally finite Borel measures as the minimally compatible measures with a given topology on $X$.
-For locally finite Borel measures, a set is finite-measured if and only if it is contained in a compact set.
-\begin{defn}
-A \emph{Radon measure} is a Borel measure on $X$ which satisfies the following three conditions:
-\begin{parts}
-\item locally finite,
-\item outer regular on all Borel sets,
-\item inner regular on all open sets.
-\end{parts}
-\end{defn}
-
-Radon measures are rather simply characterized when the base space $X$ is $\sigma$-compact.
-The following proposition proves the equivalence between regularity and Radonness of locally finite Borel measure on a $\sigma$-compact space.
 \begin{prop}
 A Radon measure is inner regular on all $\sigma$-finite Borel sets.(Folland's)
 \end{prop}
@@ -751,10 +768,6 @@ Then,
 \[\mu(K)=\sum_{n=1}^\infty\mu(K_n)>\sum_{n=1}^\infty\left(\mu(E_n)-\frac\e{2^n}\right)=\mu(E)-\e.\]
 Therefore, a Radon measure is inner regular on all $\sigma$-finite Borel sets.
 \end{pf}
-We get a corollary:
-\begin{cor}
-If $X$ is $\sigma$-compact, then a locally finite Borel measure is Radon if and only if it is regular.
-\end{cor}
 
 \begin{thm}
 If every open set in $X$ is $\sigma$-compact(i.e. Borel sets and Baire sets coincide), then every locally finite Borel measure is regular.
@@ -772,90 +785,8 @@ Two corollaries are presented as follows:
 \end{rd}
 
 
-Many applications assume $X$ is an open subset of a Euclidean space, so $X$ is usually second countable.
-In this case, the followings will be synonym: A measure is
-\begin{parts}
-\item 
-\end{parts}
 
 
-
-\[L_{\text{loc}}^1=\text{a.c. measures}\subset\text{LfB measures}\subset\text{Radon measures}\subset\cD'.\]
-
-
-\begin{thm}
-Every finite Radon measure is regular.
-\end{thm}
-
-
-
-
-
-
-
-\section{Continuous dual of $C_0$}
-In this section, we always assume $X$ is a locally compact Hausdorff space.
-Hence we can use the Urysohn lemma in the following way: If a compact subset $K$ and a closed subset $F$ are disjoint, then by applying the Urysohn lemma on a compact neighborhood of $K$, we can find a continuous function $\f:X\to[0,1]$ such that $\f|_K=1$ and $\f|_F=0$.
-In particular, there always exists a ``continuous characteristic function'' $\f\in C_c(X)$ with $\f|_K=1$.
-
-There are two Riesz-Markov-Kakutani theorems: the first theorem describes the positive elements in $C_c(X)^*$ as Radon measures when the natural colimit topology is assumed, and the second theorem describes $C_c(X)^*$ as the space of finite Radon measures when uniform topology is assumed.
-
-
-
-
-\begin{thm}[The Riesz-Markov-Kakutani representation theorem]
-Let $X$ be LCH.
-Let $I$ be a positive linear functional on $C_c(X)$.
-Then, there is a unique Radon measure $\mu$ on $X$ such that
-\[I(f)=\int f\,d\mu.\]
-\end{thm}
-\begin{pf}
-\Step{0}[Uniqueness]
-Let $\mu$ be a Radon measure on $X$.
-By the local finiteness, $\int f\,d\mu$ is finite for all $f\in C_c(X)$.
-Suppose we know the value of $\int f\,d\mu$ for all $f\in C_c(X)$.
-By the inner regularity,
-\[\mu(U)=\|\mu\|_{C_c^*(U)}\]
-is determined for all open $U$.
-By the outer regularity,
-\[\mu(E)=\inf\{\,\mu(U):E\subset U,\ U\text{ is open}\,\}\]
-is determined for all Borel $E$.
-So we are done.
-
-\Step{1}[Carath\'eodory construction]
-Define a set function $\mu$ on the topology by
-\[\mu(U):=\|I\|_{C_c^*(U)}.\]
-If $\mu$ is a premeasure, then
-\[\mu(E):=\inf\{\,\mu(U):E\subset U,\ U\text{ is open}\,\}\]
-defines a Borel measure by the Carath\'eodory extension.
-We only need countable additivity of $\mu$ for open sets to show $\mu$ is a premeasure.
-
-\Step{2}[A lemma]
-Let $f|_K\equiv1$.
-For $U=\{x:f(x)>1-\e\}$, there is $g\in C_c(U)$ such that $g\le1$ and $I(g)>\mu(U)-\e$.
-Then,
-\[\mu(K)\subset\mu(U)<I(g)+\e<\tfrac1{1-\e}I(f)+\e\]
-implies $\mu(K)\le I(f)$.
-
-Let $f\le1$.
-There is an open set $U\supset\supp(f)$ such that $\mu(U)<\mu(\supp(f))+\e$ since $\supp(f)$ is Borel.
-For $U\supset\supp(f)$, there is $g\in C_c(U)$ such that $g\le1$ and $g|_{\supp(f)}\equiv1$ by the Urysohn lemma.
-Then,
-\[I(f)\le I(g)\le\mu(U)<\mu(\supp(f))+\e\]
-implies $I(f)\le\mu(\supp(f))$.
-
-\Step{3}[Realization as integration]
-Suppose $f\in C_c(X)$ and $0\le f\le1$.
-\[\mu(f^{-1}(1))\le I(f)\le\mu(f^{-1}(0)).\]
-
-
-\Step{4}[Radonness]
-Trivial.
-
-
-\end{pf}
-
-\section{Topological measures}
 \begin{prb}
 Let $X$ be compact.
 A positive linear functional $\rho$ on $C(X)$ is bounded with norm $\rho(1)$.
@@ -949,6 +880,21 @@ Enough to show the regularity of Baire measures.
 
 semiring
 $\sigma$-finiteness implies the uniqueness
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

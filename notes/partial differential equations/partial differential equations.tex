@@ -9,11 +9,26 @@
 \tableofcontents
 
 
-\part{Distributions and Sobolev Spaces}
-\chapter{Distributions}
+\part{Sobolev spaces}
 
+\chapter{Distribution theory}
+\section{Space of test functions}
+\begin{prb}
+\begin{parts}
+\item If a test function $\f$ satisfies $\<1,\f\>=0$, then there is $v\in\R^d$ and a test function $\psi$ such that $\f=v\cdot\nabla\psi$.
+\item If a distribution has zero derivative, then it is a constant.
+\end{parts}
+\end{prb}
+\begin{prb}[Weak$^*$ convergence]
+\end{prb}
+
+\section{Extension of function space}
+\begin{prb}[Rigged Hilbert space]
+
+\end{prb}
 
 \section{Extension of linear operators}
+
 Let $T:\cD\to\cD'$ be a contiuous linear operator.
 We can always define the adjoint $T^*:\cD\subset\cD''\to\cD'$.
 The most reasonable extension of $T$ is $T:(T^*(\cD))'\to\cD'$.
@@ -25,27 +40,27 @@ If $(\cD,\cT)\to(T^*(\cD))'$ and $(T(\cD),\cS)\to\cD'$ are embeddings, then the 
 \section{Convolutions}
 For example, if $\Phi$ is locally integrable, then since $(T_\Phi)^*=T_{\tilde\Phi}$ and $\Phi*\f\in\cE=C^\infty$ for $\f\in\cD$, the convolution operator $T_\Phi:\cE'\to\cD'$ can be defined on the space of compactly supported distributions.
 
-\textbf{Problem:}
 If $g*f$ is well-defined, is $f*g$ also well-defined?
 In other words, if $f\in(T_{\tilde g}(\cD))'$ so that $g*f\in\cD'$, then $g\in(T_{\tilde f}(\cD))'$? Are they same?
 \[\<g,\tilde f*\f\>=\]
 
 
-\begin{prb}
-\begin{parts}
-\item If a test function $\f$ satisfies $\<1,\f\>=0$, then there is $v\in\R^d$ and a test function $\psi$ such that $\f=v\cdot\nabla\psi$.
-\item If a distribution has zero derivative, then it is a constant.
-\end{parts}
+
+\begin{prb}*
+Describe the range of the operator $T:\cE'(\R^d)\to\cD'(\R^d)$ defined by $Tf=\Phi*f$ for $d\ge3$, where $\Phi$ is the fundamental solution of Laplace's equation.
 \end{prb}
 
 
 
 
 
-\chapter{Sobolev spaces}
 
-\section{Definition and examples}
-\begin{prb}[Sobolev space is a Banach space]
+
+
+\chapter{Sobolev inequalities}
+
+\section{Approximations}
+\begin{prb}[Completeness of Sobolev norms]
 \end{prb}
 \begin{prb}[Difference quotient]
 \end{prb}
@@ -131,7 +146,7 @@ and by the diagonal argument reducing $\delta$ to zero, we can construct the des
 
 
 
-\chapter{More on Sobolev spaces}
+\chapter{Generalizations of Sobolev spaces}
 \section{Fractional Sobolev spaces}
 \section{Fourier transform methods}
 \section{Almost everywhere differentiability}
@@ -150,6 +165,7 @@ Lipschitz, Rademacher
 \chapter{Existence}
 \section{Lax-Milgram theorem}
 \section{Fredholm alternative}
+\section{Eigenvalue problems}
 \section{Perron's method}
 
 \chapter{Regularity}
@@ -239,9 +255,7 @@ Taking small $\e>0$, we are done.
 \section{Schauder theory}
 \section{Weyl's lemma}
 
-\chapter{}
-\section{Maximum principle}
-\section{Eigenvalue problems}
+\chapter{Maximum principle}
 
 
 
@@ -264,7 +278,19 @@ Taking small $\e>0$, we are done.
 
 
 
+\part{Nonlinear equations}
 
+\chapter{Existence techniques}
+\section{Calculus of variations}
+\section{Non-variational techniques}
+\section{Weak convergence}
 
+\chapter{Hamilton-Jacobi equations}
+optimal control
+viscosity solution
+
+\chapter{Conservation laws}
+shocks
+NS
 
 \end{document}

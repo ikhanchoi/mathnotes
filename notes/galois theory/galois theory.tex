@@ -15,7 +15,7 @@
 
 
 
-\part{Finite group theory}
+\part{Group theory}
 \iffalse
 presentation
 	quotient of a free group
@@ -35,16 +35,11 @@ stabilizer
 
 ----------
 #
-아벨군: 순환군, n-abelian 등 여러 조건, 기본정리
-대칭군: 생성원, 트랜지티브, 교대군과 부호
-콕세터: 이면군, 프레젠테이션
-선형군: 
-
-#
 액션, 실로우: existence, congruence condition
 부분군격자: 1. 특정위수 부분군의 존재성, 2. 각 부분군의 컨쥬게이트 개수
-	노멀라이저의 크기를 잰다는 것 = 실로우군의 conjugate 개수 세는 것
-	- 카운팅: 너무 많은 conjugate 배제하는 법
+	센트럴라이저의 크기를 잰다는 것 = conjugacy class of elemets 개수 세는 것
+	노멀라이저의 크기를 잰다는 것 = conjugacy class of subgroups 개수 세는 것
+	- 오더별 카운팅: 너무 많은 conjugate 배제하는 법
 	- 인덱스: 푸앵카레 정리, least prime ind
 	- 노말라이즈되는 부분군 잡아 노말라이저 띄우기
 	케이스 나누기에 매우 좋은 조건을 제공
@@ -239,6 +234,7 @@ In order to find the size of conjugacy classes:
 
 
 
+
 \section{Classification of small groups}
 
 \begin{prb}[Classification of groups of order $pq$]
@@ -252,15 +248,19 @@ In order to find the size of conjugacy classes:
 
 
 \begin{prb}[Conjugacy classes of $\GL_2(\F_p)$]
+The conjugacy classes are classified by the Jordan normal forms.
+There are four cases: for some $a$ and $b$ in $\F_p$,
 \begin{parts}
-\item $\mat{a&0\\0&b}$: $\binom{q-1}2=\frac{(q-1)(q-2)}2$ classes of size $\frac{|G|}{(q-1)^2}=q(q+1)$.
+\item $\mat{a&0\\0&b}$: $\binom{p-1}2=\frac{(q-1)(q-2)}2$ classes of size $\frac{|G|}{(q-1)^2}=q(q+1)$.
 \item $\mat{a&0\\0&a}$: $q-1$ classes of size $1$.
 \item $\mat{a&1\\0&a}$: $q-1$ classes of size $\frac{|G|}{q(q-1)}=q^2-1$.
-\item otherwise, the eigenvalues are in $\F_{q^2}$. So, $\frac{|\F_{q^2}|-|\F_q|}2=\frac{q(q-1)}2$ classes of size $\frac{q(q-1)}2$.
+\item otherwise, the eigenvalues are in $\F_{p^2}\setminus\F_p$.
+In this case, the number of conjugacy classes is same as the number of monic irreducible qudratic polynomials over $\F_p$; $\frac{|\F_{p^2}|-|\F_p|}2=\frac{p(p-1)}2$ classes.
+Their size is $\frac{p(p-1)}2$.
 \end{parts}
 \end{prb}
 \begin{prb}[Classification of groups of order $p^2q$]
-Let $G$ be a finite group of order $p^2q$ for distinct primes $p,q$.
+Let $p$ and $q$ be distinct primes.
 \begin{parts}
 \item If $p+2\le q$, there are
 \[\begin{cases}
@@ -276,47 +276,57 @@ non-isomorphic groups of order $p^2q$.
 3&\text{ if }q\ne2,\ q\mid p+1\\
 2&\text{ otherwise }
 \end{cases}\]
-non-isomorphic groups of order $p^2q$.
+non-isomorphic groups of order $p^2q$
 \item There are five non-isomorphic groups of order 12.
 \end{parts}
 \end{prb}
 \begin{pf}
 (a)
+Let $G$ be a finite group of order $p^2q$.
 Sylow's theorem implies $n_q=1$.
-For $P\in\Syl_p(G)$ and $Q\in\Syl_q(G)$,
+For $P\in\Syl_p(G)$ and $Q\in\Syl_q(G)$, we have
 \[P\cong Z_{p^2}\text{ or }Z_p^2,\quad\text{ and }\quad Q\cong Z_q.\]
 
-Let $G\cong Z_q\rtimes Z_{p^2}$, and consider actions of the form
+Consider actions of the form
 \[\f:Z_{p^2}\to\Aut(Z_q)\cong Z_{q-1}.\]
-We count the number of conjugacy classes that can be the image of $\f$.
-There are $\min\{v_p(q-1),3\}$ distinct groups.
+There are $1+\min\{v_p(q-1),2\}$ subgroups of $Z_{q-1}$ that can be the image of $\f$, up to conjugation, that is, there are $1+\min\{v_p(q-1),2\}$ distinct groups of the form $Z_q\rtimes Z_{p^2}$.
 
-Let $G\cong Z_q\rtimes(Z_p\times Z_p)$, and consider actions of the form
+Consider actions of the form
 \[\f:Z_p\times Z_p\to\Aut(Z_q)\cong Z_{q-1}.\]
-There are $\min\{v_p(q-1),2\}$ distinct groups.
+Similarly, there are $1+\min\{v_p(q-1),1\}$ distinct groups of the form $Z_q\rtimes Z_p^2$.
 
 (b)
 Sylow's theorem implies $n_p=1$.
-\begin{parts}
-\item
-Let $G\cong Z_{p^2}\rtimes Z_q$, and consider actions of the form
-\[\f:Z_q\to\Aut(Z_{p^2})\cong Z_{p(p-1)}.\]
-There are
-\[\min\{v_q(p-1),1\}=\begin{cases}1&,q\mid p-1,\\0&,\text{otherwise}\end{cases}\]
-nonabelian groups.
-\item
-Let $G\cong(Z_p\times Z_p)\rtimes Z_q$, and consider actions of the form
-\[\f:Z_q\to\Aut(Z_p\times Z_p)\cong\GL_2(\F_p).\]
-Note that $|\GL_2(\F_p)|=(p^2-1)(p^2-p)=(p-1)^2p(p+1)$.
-The conjugacy class of subgroups are classified by the Jordan normal forms.
 
-If $q=2$, then the possible conjugacy classes are represented by
+Consider actions of the form
+\[\f:Z_q\to\Aut(Z_{p^2})\cong Z_{p(p-1)}.\]
+There are $1+\min\{v_q(p-1),1\}$ distinct groups of the form $Z_{p^2}\rtimes Z_q$.
+
+Let $Z_p^2\rtimes Z_q$, and consider actions of the form
+\[\f:Z_q\to\Aut(Z_p\times Z_p)\cong\GL_2(\F_p).\]
+Note that $|\GL_2(\F_p)|=(p^2-1)(p^2-p)=(p-1)^2p(p+1)$ so that $q\mid p-1$ or $q\mid p+1$.
+Denote 1 a generator of $Z_q$, and let $\f(1)\ne1_{2\times2}$ so that the action is not trivial.
+
+If $q=2$, then $\f(1)$ is one of the followings
 \[\mat{1&0\\0&-1},\ \mat{-1&0\\0&-1}\]
-There are
-\[\begin{cases}2&,q=2\\1&,2\nmid q\mid p+1,\\\frac{q+3}2&,2\nmid q\mid p-1,\\0&,\text{otherwise}\end{cases}\]
-nonabelian groups.
-Since the number of one-dimensional linear subspaces is $q+1$ and the number of symmetric subspaces is 2 in $\F_q^2$, we have $\frac{(q+1)-2}2+2=\frac{q+3}2$ conjugacy classes of subgroups of order $q$ in $\GL_2(\F_p)$.
-\end{parts}
+up to conjugation, and they generate distinct subgroups of $\GL_2(\F_p)$ up to conjugation.
+
+If $q\ne2$ and $q\mid p+1$, then there is an element $A\in\GL_2(\F_p)$ of order $q$ exists.
+Let $\lambda^{\pm1}\in\bar\F_p$ be eigenvalues of $A$.
+Then, $\lambda^i$ is a root of $x^q-1=0$ for each integer $i$, and the polynomial $x^q-1$ has $q$ distinct roots $\lambda^i$ for $0\le i<q$.
+It means that the eigenvalues of $\f(1)$ must be $\lambda^{\pm i}$ for some integer $i$, the image of $\f$ is always conjugate to the subgroup generated by $A$.
+Therefore, there is a unique subgroup of order $q$ in $\GL_2(\F_p)$ up to conjugation.
+
+If $q\ne2$ and $q\mid p-1$, then since the number of one-dimensional linear subspaces of $\F_p^2$ is $q+1$ and the number of symmetric subspaces is 2 in $\F_q^2$, we have $\frac{(q+1)-2}2+2=\frac{q+3}2$ conjugacy classes of subgroups of order $q$ in $\GL_2(\F_p)$. (Need more detail!)
+
+To sum up, there are
+\[\begin{cases}
+2&\text{ if }q=2\\
+1&\text{ if }q\ne2,\ q\mid p+1,\\
+\frac{q+3}2&\text{ if }q\ne2,\ q\mid p-1,\\
+0&\text{ otherwise }\end{cases}\]
+non-abelian groups of the form $Z_p^2\rtimes Z_q$.
+
 
 (c)
 
@@ -379,37 +389,6 @@ $\#$ of groups&51&52&267\\
 
 
 
-\section{Special groups}
-
-\subsection{Cyclic groups}
-\begin{enumerate}
-\item A subgroup is also cyclic.
-\item The number of subgroups $=$ the number of divisors of its order.
-\item Endomorphism ring is given by $\Z/n\Z$.
-\item Automorphism group is given by $(\Z/n\Z)^\times$.
-\item The number elements of order $d$ is $\phi(d)$.
-\item
-\end{enumerate}
-
-\subsection{Abelian groups}
-Fundamental theorem of finitely generated abelian groups
-
-\begin{thm}
-Let $G$ be a finite group.
-If $G/Z(G)$ is cylic, then $G$ is abelian.
-\end{thm}
-\begin{thm}
-Let $G$ be a finite group.
-If $x\mapsto x^3$ is a surjective endomorhpism, then $G$ is abelian.
-\end{thm}
-
-\subsection{Symmetric groups}
-\subsection{Coxeter groups}
-\subsection{Linear groups}
-
-
-
-
 
 
 \section*{Exercises}
@@ -418,7 +397,7 @@ Alternative proof for existence of $p$-groups.
 \end{prb}
 \begin{pf}
 Let $|G|=p^{a+b}m$.
-Let $\cP_{p^a}$ be the set of all $p^a$-sets in $G$.
+Let $\cP_{p^a}$ be the set of all subsets of $G$ with size $p^a$.
 Give $G\to\Sym(\cP_{p^a})$ by left multiplication.
 Since $v_p(|\cP_{p^a}|)=v_p(\binom{p^a(p^bm)}{p^a})=b$, there is an orbit $\cO$ such that $v_p(|\cO|)\le b$.
 We have transitive action $G\to\Sym(\cO)$ and the stabilizer $H$ satisfies $p^a\mid|G|/|\cO|=|H|$.
@@ -444,9 +423,21 @@ It is only possible when $H\subset A$, hence $|H|=p^a$.
 
 \chapter{Algebraic extensions}
 
+\section{Fields}
+\begin{prb}[Field homomorphisms]
+\end{prb}
+\begin{prb}[Vector space structures and degree]
+\end{prb}
+\begin{prb}[Finite extensions]
+\end{prb}
+\begin{prb}[Simple extensions]
+\end{prb}
+straightedge and compass construction
+
+
 
 \section{Algebraic elements}
-\begin{prb}\textit{Algebraic elements.}
+\begin{prb}[Algebraic elements]
 Let $E/F$ be a field extension.
 An element $\alpha\in E$ is called \emph{algebraic over $F$} if there is a non-zero polynomial $f\in F[x]$ such that $f(\alpha)=0$.
 If $\alpha$ is not algebraic over $F$, we call it \emph{transcendental} over $F$.
@@ -593,7 +584,7 @@ However, there is only one conjugate of $\sqrt2$ over $\Q(\sqrt2)$ or $\C$: itse
 \end{ex}
 
 \begin{ex}
-There are two conjugates of $\omega=\frac{-1+\sqrt{-3}}2\in\C$ over $\Q$: $\{\omega,\,\cl\omega=\omega^{-1}\}$.
+There are two conjugates of $\omega=\frac{-1+\sqrt{-3}}2\in\C$ over $\Q$: $\{\omega,\,\bar\omega=\omega^{-1}\}$.
 It implies that there are at most two field automorphisms on $\Q(\omega)$ fixing $\Q$.
 In fact, there are exactly two; one is identity, and the other is the complex conjugation.
 \end{ex}
@@ -649,10 +640,10 @@ Moreover, we cannot think about the number of field extensions satisfying partic
 
 Note that the following definition \emph{depends on the choice of $L$}, and we will use it \emph{only in this subsection}.
 \begin{defn}
-Let $\cl F$ denote the set of all algebraic elements in $L$ over $F$.
+Let $\bar F$ denote the set of all algebraic elements in $L$ over $F$.
 \end{defn}
 \begin{prop}
-The set $\cl F$ of $F$ in $L$ is always a field.
+The set $\bar F$ of $F$ in $L$ is always a field.
 \end{prop}
 \begin{pf}
 An element is algebraic over $F$ if and only if it is contained in a finite extension $E/F$ because $\alpha\in E$ is equivalent to $F(\alpha)\le E$.
@@ -661,10 +652,10 @@ Let $\alpha,\beta\in L$ be nonzero algebraic elements over a field $F$.
 Since $\alpha+\beta$, $\alpha\beta$, and $\alpha^{-1}$ are all in $F(\alpha,\beta)$, which is a finite extension of $F$ with degree $\deg_F(\alpha)\deg_F(\beta)$, the set of algebraic elements over $F$ in $L$ is a field.
 \end{pf}
 \begin{rmk}
-The field $\cl F$ is called the \emph{relative algebraic closure of $F$ in $L$}.
+The field $\bar F$ is called the \emph{relative algebraic closure of $F$ in $L$}.
 Since we have not defined algebraic closures yet, we will only adopt the notation.
 The reason of the word ``relative'' is explained later.
-Also, honestly, the notation $\cl F$ is not so good that it is often used to represent an algebraic closure, not a relative one.
+Also, honestly, the notation $\bar F$ is not so good that it is often used to represent an algebraic closure, not a relative one.
 We, however, proceed with this notation to grasp concepts of algebraic extensions.
 \end{rmk}
 
@@ -672,18 +663,18 @@ We, however, proceed with this notation to grasp concepts of algebraic extension
 Let $L$ be any field containing two fields $E,F$.
 Then,
 \begin{parts}
-\item $F\le E$ implies $\cl F\le \cl E$,
-\item $\cl{\cl F}=\cl F$.
+\item $F\le E$ implies $\bar F\le \bar E$,
+\item $\bar{\bar F}=\bar F$.
 \end{parts}
 \end{lem}
 \begin{pf}
 (a)
-Suppose $\alpha\in\cl F$ so that there is $f\in F[x]$ such that $f(\alpha)=0$.
-Since $f\in F[x]\subset E[x]$, the element $\alpha$ is also algebraic over $E$, hence $\alpha\in\cl E$.
+Suppose $\alpha\in\bar F$ so that there is $f\in F[x]$ such that $f(\alpha)=0$.
+Since $f\in F[x]\subset E[x]$, the element $\alpha$ is also algebraic over $E$, hence $\alpha\in\bar E$.
 
 (b)
-It is enough to show $\cl{\cl F}\subset\cl F$.
-Let $\alpha\in\cl{\cl F}$ so that we can find $f\in\cl F[x]$ such that
+It is enough to show $\bar{\bar F}\subset\bar F$.
+Let $\alpha\in\bar{\bar F}$ so that we can find $f\in\bar F[x]$ such that
 \[f(\alpha)=\sum_{i=0}^na_i\alpha^i=0.\]
 If we consider the field $E=F(a_0,\cdots,a_n)$ of coefficients, then $f\in E[x]$.
 In other words, $\alpha$ is algebraic over $E$.
@@ -695,26 +686,26 @@ Therefore, the field extension $E(\alpha)/F$ is finite, and $F(\alpha)/F$ is als
 \begin{thm}
 Let $E/F$ be a field extension.
 \begin{parts}
-\item Fix any $L\ge E$. Then, $E/F$ is algebraic iff $\cl E=\cl F$.
+\item Fix any $L\ge E$. Then, $E/F$ is algebraic iff $\bar E=\bar F$.
 \item Let $F\le K\le E$. Then, $E/F$ is algebraic iff $E/K$ and $K/F$ are algebraic.
 \item The compositum $E_1E_2/F$ is algebriac if $E_1/F$ and $E_2/F$ are algebraic.
 \end{parts}
 \end{thm}
 \begin{pf}
 (a)
-If $E/F$ is algebraic, then $F\le E\le\cl F$ implies $\cl F\le\cl E\le\cl{\cl F}=\cl F$.
-Conversely, if $\cl E=\cl F$, then $\alpha\in E$ implies $\alpha\in E\le\cl E=\cl F$, hence $E$ is algebraic over $F$.
+If $E/F$ is algebraic, then $F\le E\le\bar F$ implies $\bar F\le\bar E\le\bar{\bar F}=\bar F$.
+Conversely, if $\bar E=\bar F$, then $\alpha\in E$ implies $\alpha\in E\le\bar E=\bar F$, hence $E$ is algebraic over $F$.
 
 (b)
 Choose a big $L$.
-Since $\cl E\ge\cl K\ge\cl F$, we have $\cl E=\cl F$ iff $\cl E=\cl K$ and $\cl K=\cl F$.
+Since $\bar E\ge\bar K\ge\bar F$, we have $\bar E=\bar F$ iff $\bar E=\bar K$ and $\bar K=\bar F$.
 
 (b')
 A direct proof uses the argument in the proof of above lemma as follows: if we take $\alpha\in E$ that is algebraic over $K$, and if $a_i$ denotes the coefficients of $\mu_{\alpha,K}$, then the field extension $F(a_1,\cdots,a_n,\alpha)/F$ is finite, so $\alpha$ is algebriac over $F$.
 
 (c)
 Choose a big $L$.
-Since $E_1,E_2\le\cl F$, we have $E_1E_2\le\cl F$, so $\cl{E_1E_2}=\cl{F}$.
+Since $E_1,E_2\le\bar F$, we have $E_1E_2\le\bar F$, so $\bar{E_1E_2}=\bar{F}$.
 \end{pf}
 
 \begin{rmk}
@@ -780,7 +771,7 @@ Namely, it is an internal property; it is preserved under isomorphisms.
 
 
 \begin{defn}
-A field $\cl F$ is called an \emph{algebraic closure} of a field $F$ if $\cl F$ is algebraically closed field and $\cl F/F$ is algebraic.
+A field $\bar F$ is called an \emph{algebraic closure} of a field $F$ if $\bar F$ is algebraically closed field and $\bar F/F$ is algebraic.
 \end{defn}
 
 \begin{prop}
@@ -788,19 +779,19 @@ Let $E/F$ be a field extension with $E$ algebraically closed.
 Then the set of all algebraic elements in $E$ over $F$ is the only algebraic closure of $F$ contained in $E$.
 \end{prop}
 \begin{pf}
-For a while in this proof, let $\cl F$ denote the set of all algebraic elements of $F$ in $E$.
+For a while in this proof, let $\bar F$ denote the set of all algebraic elements of $F$ in $E$.
 
 \Step{1}[Algebraic closure]
-We will show that $\cl F$ is algebraically closed because the extension $\cl F/F$ is clearly algebraic.
-Let $f\in\cl F[x]$ and take a root $\alpha\in E$.
-Since both $\cl F(\alpha)/\cl F$ and $\cl F/F$ are algebraic, $\alpha$ is algebraic over $F$.
-Thus we have $\alpha\in\cl F$, and by the previous proposition, $\cl F$ is algebraically closed.
+We will show that $\bar F$ is algebraically closed because the extension $\bar F/F$ is clearly algebraic.
+Let $f\in\bar F[x]$ and take a root $\alpha\in E$.
+Since both $\bar F(\alpha)/\bar F$ and $\bar F/F$ are algebraic, $\alpha$ is algebraic over $F$.
+Thus we have $\alpha\in\bar F$, and by the previous proposition, $\bar F$ is algebraically closed.
 
 \Step{2}[Uniqueness]
 Suppose $K$ is an algebraic closure of $F$ in $E$.
-We have $\cl F\le K$ since every algebraic element $\alpha$ with $f(\alpha)=0$ for $f\in F[x]\subset K[x]$ should be contained in $K$.
-Also, $K/\cl F$ is algebraic because $K/F$ is algebraic.
-Since $\cl F$ is algebraically closed, $K=\cl F$.
+We have $\bar F\le K$ since every algebraic element $\alpha$ with $f(\alpha)=0$ for $f\in F[x]\subset K[x]$ should be contained in $K$.
+Also, $K/\bar F$ is algebraic because $K/F$ is algebraic.
+Since $\bar F$ is algebraically closed, $K=\bar F$.
 \end{pf}
 
 This is a relation with relative algebraic closure: the relative algebraic closure in a algebraically closed field is really an algebraically closure.
@@ -819,44 +810,45 @@ The set of all algebraic numbers (over $\Q$) is an algebraically closed field by
 \subsection{Uniqueness and existence}
 Here is a useful lemma that allows to apply the axiom of choice to field theory.
 
-\begin{thm}[Isomorphism extension theorem]
+\begin{prb}[Isomorphism extension theorem]
 Let $E/F$ be an algebraic extension.
 Let $\phi:F\cong F'$ be a field isomorphism.
-Let $\cl F'$ be an algebraic closure of $F'$.
-Then, there is an embedding $\tilde\phi:E\to\cl F'$ which extends $\phi$.
+Let $\bar F'$ be an algebraic closure of $F'$.
+Then, there is an embedding $\tilde\phi:E\to\bar F'$ which extends $\phi$.
 \begin{cd}
-&\cl F' \ar{dd}\\
+&\bar F' \ar{dd}\\
 E\ar{r}{\tilde\phi}\dar[dashed]&\quad\\
 F\ar{r}{\phi}&F'
 \end{cd}
-\end{thm}
+\end{prb}
 \begin{pf}
-Let $S$ be the set of all field homomorphisms $K\to\cl F'$ which extends $\phi$ and satisfies $K\le E$.
-The set $S$ is nonempty since $\phi\in S$ and satisfies the chain condition since the increasing union defines the upper bound of chain.
-Use the Zorn lemma on $S$ to obtain a maximal element $\tilde\phi:K\to\cl F'$.
-We want to show $K=E$.
+Let $S$ be the set of all pairs $(K,\psi)$ of a subfield $K\le E$ and a field homomorphism $\psi:K\to\bar F'$ which extends $\phi$.
+The set $S$ is nonempty since $\phi\in S$.
+It also satisfies the chain condition since the increasing union defines the upper bound of chain.
+Use the Zorn lemma on $S$ to obtain a maximal element $\tilde\phi:K\to\bar F'$.
+We now claim $K=E$.
 
 Suppose $K$ is a proper subfield of $E$ and let $\alpha\in E\setminus K$.
-Let $\alpha'\in\cl F'$ be a root of the pushforward polynomial $\phi_*(\mu_{\alpha,F})\in F'[x]$.
-Then, we can construct a field homomorphism $K(\alpha)\to\cl F':\alpha\mapsto\alpha'$.
+Let $\alpha'\in\bar F'$ be a root of the pushforward polynomial $\phi_*(\mu_{\alpha,F})\in F'[x]$.
+Then, we can construct a field homomorphism $K(\alpha)\to\bar F':\alpha\mapsto\alpha'$.
 It leads a contradiction to the maximality of $\tilde\phi$.
 Therefore, $K=E$.
 \end{pf}
 
 
-\begin{thm}[Uniqueness of algebraic closure]
+\begin{prb}[Uniqueness of algebraic closure]
 Algebraic closure is unique up to isomorphism.
-\end{thm}
+\end{prb}
 \begin{pf}
-Suppose there are two algebraic closures $\cl F_1, \cl F_2$ of a field $F$.
-By the isomorphism extension theorem, we have a field homomorphism $\phi:\cl F_1\to\cl F_2$ which extends the identitiy map on $F$.
+Suppose there are two algebraic closures $\bar F_1, \bar F_2$ of a field $F$.
+By the isomorphism extension theorem, we have a field homomorphism $\phi:\bar F_1\to\bar F_2$ which extends the identitiy map on $F$.
 Since the image $\phi(F_1)$ is also algebraically closed and the field extension $F_2/\phi(F_1)$ is algebraic, we must have $\phi(F_1)=F_2$ by the definition of algebraically closedness.
 Thus, $\phi$ is surjective so that it is an isomorphism.
 \end{pf}
 
-\begin{thm}[Existence of algebraic closure]
+\begin{prb}[Existence of algebraic closure]
 Every field has an algebraic closure.
-\end{thm}
+\end{prb}
 \begin{pf}
 Let $F$ be a field.
 
@@ -875,7 +867,7 @@ It is in other word just the directed union of $K_n$ through all $n\in\N$.
 Then, $K$ is easily checked to be algebraically closed.
 
 \Step{2}[Construct the algebraic closure of $F$]
-Let $\cl F$ be the set of all algebraic elements of $K$ over $F$.
+Let $\bar F$ be the set of all algebraic elements of $K$ over $F$.
 Then, this is an algebraic closure.
 \end{pf}
 \begin{rmk}
@@ -885,22 +877,11 @@ In fact, this $K_1$ is already algebraically closed, but it is hard to prove dir
 
 
 
-\section*{Problems}
+\section*{Exercises}
 \begin{prb}[Minimal polynomials in a simple extension]
 Let $F(\alpha)/F$ be a finite simple extension of a field $F$ and let $\beta\in F(\alpha)$.
-In light of elementary linear algebra, we 
-Let
-\begin{parts}
-\item 
-\item small problem
-\end{parts}
+In light of elementary linear algebra,
 \end{prb}
-
-\begin{prb}[Title]
-Problem
-\end{prb}
-
-
 
 
 
@@ -912,81 +893,59 @@ Problem
 \section{Separable polynomials}
 \begin{defn}
 Let $F$ be a field.
-A polynomial $f\in F[x]$ is called \emph{separable} if it is square-free in $\cl F[x]$.
-An element $\alpha\in\cl F'$ is called \emph{separable} over $F$ if $\mu_{\alpha,F}$ is separable.
+A polynomial $f\in F[x]$ is called \emph{separable} if it is square-free in $\bar F[x]$.
+An element $\alpha\in\bar F$ is called \emph{separable} over $F$ if its minimal polynomial $\mu_{\alpha,F}$ is separable.
 \end{defn}
 
 The separability of a polynomial does not depend on coefficient fields, but their characteristic.
 We can consider the algebraic closure of the smallest field containing coefficients of the polynomial and its characteristic when we check separability of a polynomial.
 
-
-\subsection{Formal derivatives}
-\begin{defn}
+\begin{prb}[Formal derivatives]
 Let $f\in F[x]$ for a field $F$ such that
 \[f(x)=\sum_{i=0}^na_ix^i\]
 The \emph{formal derivative} of $f$ is defined as a polynomial $f'\in F[x]$ such that
 \[f'(x):=\sum_{i=1}^nia_ix^{i-1}.\]
-We can easily check that this definition satisfies the Leibniz rule.
-\end{defn}
-
-\begin{prop}
-Let $f\in F[x]$ for a field $F$.
-Then, $f$ is separable iff $f$ and $f'$ are coprime in $F$.
-\end{prop}
+\begin{parts}
+\item Formal derivatives satisfies the Leibniz rule.
+\item If $f$ is separable, then $f$ and $f'$ are coprime in $F$.
+\item If $f$ and $f'$ are coprime in $F$, then $f$ is separable.
+\end{parts}
+\end{prb}
 \begin{pf}
-The polynomials $f,f'$ is linearly factorized in $\cl F$.
+(a)
 
-($\Leftarrow$)
-Suppose $f$ is not separable so that it has a multiple root $\alpha\in\cl F$ and
-\[f(x)=(x-\alpha)^mg(x)\]
-for an integer $m\ge2$ and a polynomial $g\in F[x]$.
-Its derivative is
-\[f'(x)=m(x-\alpha)^{m-1}g(x)-(x-\alpha)^mg'(x).\]
-Since $f(\alpha)=f'(\alpha)=0$, we have $\mu_{\alpha,F}\mid\gcd(f,f')$.
-They are not coprime in $F$.
-
-($\Rightarrow$)
-Suppose $f$ and $f'$ are not coprime in $F$ so that they has a common factor.
-Let $\alpha\in\cl F$ be a root of the common factor.
+(b)
+Suppose $f$ and $f'$ are not coprime in $F$ so that they has a common factor, and let $\alpha\in\bar F$ be a root of the common factor.
 If we write
-\[f(x)=(x-\alpha)g(x),\qquad f'(x)=g(x)+(x-a)g'(x),\]
-then we can see $g(\alpha)=0$ and $(x-\alpha)\mid g$ in $\cl F[x]$.
-Hence $(x-\alpha)^2\mid f$, so $f$ is not separable.
+\[f(x)=(x-\alpha)g(x),\qquad f'(x)=g(x)+(x-\alpha)g'(x)\]
+for $g\in\bar F[x]$, then $g(\alpha)=0$ implies $(x-\alpha)\mid g(x)$ in $\bar F[x]$.
+Hence $(x-\alpha)^2\mid f(x)$ in $\bar F[x]$, so $f$ is not separable.
+
+(c)
+Suppose $f$ is not separable.
+Then, there is $\alpha\in\bar F$ such that
+\[f(x)=(x-\alpha)^mg(x),\qquad f'(x)=m(x-\alpha)^{m-1}g(x)-(x-\alpha)^mg'(x)\]
+for an integer $m\ge2$ and $g\in\bar F[x]$.
+Since $f(\alpha)=f'(\alpha)=0$, we get $\mu_{\alpha,F}(x)\mid\gcd(f(x),f'(x))$ in $F[x]$.
 \end{pf}
-\begin{rmk}
-This is a powerful checking tool because the proposition do not requires that $f$ and $f'$ are coprime in $\cl F$, but in just $F$.
-\end{rmk}
 
-\begin{ex}
-Let $f(x)=x^{p^n}-x$ be a polynomial over a field of characteristic $p>0$.
-Since $f'(x)=-1$, $f$ is separable.
-\end{ex}
 
-\subsection{Relation to irreducibles}
-
-\begin{defn}
+\begin{prb}[Perfect fields]
 A \emph{perfect field} is a field over which every irreducible is separable.
-\end{defn}
-\begin{cor}
-A polynomial over a perfect field is separable iff it is a product of distinct irreducibles.
-\end{cor}
-
-\begin{prop}
-Let $F$ be a field of characteristic $0$.
-Then, $F$ is perfect.
-\end{prop}
+Let $F$ be a field of characteristic $p$.
+\begin{parts}
+\item If $p=0$, then $F$ is perfect.
+\item If $p>0$, then $F$ is perfect if and only if the Frobenius homomorphism is an automorphism.
+\end{parts}
+\end{prb}
 \begin{pf}
+(a)
 Let $f\in F[x]$ be an irreducible of degree $n$.
 Notice that $f$ and $g$ are not coprime iff $f\mid g$.
 Since $F$ has characteristic 0, $f'$ has degree $n-1$ and is nonzero, so we have $f\nmid f'$.
 Hence $f$ is separable.
-\end{pf}
 
-\begin{prop}
-Let $F$ be a field of characteristic $p>0$.
-Then, $F$ is perfect iff $F$ has the Frobenius automorphism.
-\end{prop}
-\begin{pf}
+(b)
 ($\Leftarrow$)
 Let $f\in F[x]$ be an inseparable irreducible.
 Since we must have $f'=0$ by the irreducibility of $f$, we can find $g\in F[x]$ such that $f(x)=g(x^p)$.
@@ -994,9 +953,6 @@ The coefficients of $g$ are $p$-powers of elements of $F$, so there is $h\in F[x
 It is a contradiction to the irreducibility of $f$.
 \end{pf}
 
-\begin{cor}
-The rational field $\Q$ and every finite fields are perfect.
-\end{cor}
 \begin{prop}
 Let $F$ be a field of characteristic $p>0$.
 For an irreducible $f\in F[x]$, there is a unique separable irreducible $f_\sep\in F[x]$ such that $f(x)=f_\sep(x^{p^k})$ for some $k$.
@@ -1007,7 +963,7 @@ The Frobenius endomorphism is not surjective in the field of rational functions 
 For example, $t$ is not in the image of $\F_p(t)\to\F_p(t):x\mapsto x^p$.
 Then, the polynomial $x^p-t\in\F_p(t)[x]$ is inseparable irreducible since it is factorized as
 \[x^p-t=(x-t^{\frac1p})^p\]
-in $\cl{\F_p(t)}[x]$.
+in $\bar{\F_p(t)}[x]$.
 \end{ex}
 
 \section{Separable extensions}
@@ -1029,15 +985,13 @@ A finite separable extension is simple.
 
 \begin{defn}
 Let $E/F$ be a field extension.
-The \emph{separable degree} of $E/F$ is the number $[\cl F^{\sep}:F]$.
+The \emph{separable degree} of $E/F$ is the number $[\bar F^{\sep}:F]$.
 \end{defn}
 
 
 
-\subsection{Field embeddings}
-
 \begin{thm}
-The separable degree of a field extension $E/F$ is the number of field embeddings $E\emb\cl F$ fixing $F$.
+The separable degree of a field extension $E/F$ is the number of field embeddings $E\emb\bar F$ fixing $F$.
 \end{thm}
 
 \begin{lem}
@@ -1080,127 +1034,88 @@ multiplcation formula
 
 
 \chapter{Normal extensions}
-\section{Automorphism group}
 \section{Normal extensions}
 \section{Galois correspondence}
 
+\begin{prb}[Automorphism groups]
+
+\begin{parts}
+\item $|\Aut(E/F)|\le[E:F]$.
+\end{parts}
+\end{prb}
+
+\begin{prb}[Fixed fields]
+Galois descent..?
+\begin{parts}
+\item $[E:\Fix_E(H)]\le|H|$.
+\end{parts}
+\end{prb}
+
+\begin{prb}[Galois correspondence]
+Let $E/F$ be an algebraic extension and $G:=\Aut(E/F)$.
+Define a map
+\begin{alignat*}{2}
+\Aut(E/-)
+:&\,\{\,\text{subextensions of $E/F$}\,\}\,&\to&\,\{\,\text{subgroups of $G$}\,\}\,\\
+:&\omit\hfil$K$\hfil&\mapsto&\omit\hfil$\Aut(E/K)$\hfil.
+\end{alignat*}
+\begin{parts}
+\item $K\le \Fix_E(\Aut(E/K))$ and $H\le\Aut(E/\Fix_E(H))$.
+\item The map $\Aut(E/-)$ is surjective onto finite subgroups of $G$.
+\item The map $\Aut(E/-)$ is injective if $E/F$ is normal and separable.
+\item If $E/F$ is finite and Galois, then the map $\Aut(E/-)$ is bijective.
+\end{parts}
+\end{prb}
 
 
 
 
-\part{Abelian extensions}
-
-\chapter{Abelian extensions}
-\section{Finite fields}
-% finite field order definition
-\begin{lem}[Frobenius endomorphism]
-Let $F$ be a field of characteristic $p$.
-Then, the map $\sigma:x\mapsto x^p$ is a field endomorphism on $F$.
-\end{lem}
+\part{Galois groups}
 
 
-\begin{thm}
-Let $L$ denote an algebraically closed field of characteristic $p>0$.
-In $L$, the set of all finite subfields is described as a totally ordered set
-\[\{\,\F_p,\F_{p^2},\F_{p^3},\cdots\,\},\]
-where $\F_q$ denotes a field of order $q$.
-\end{thm}
-\begin{pf}
-\Step{1}[Non-existence]
-The identity 1 is contained in every finite subfield of $L$, so is the field $\F_p$, hence the finite dimensional vector space over $\F_p$.
-Thus, the order of a finite field of characteristic $p$ is a power of $p$.
+\chapter{Generators of Galois groups}
 
-\Step{2}[Existence]
-Let $q=p^n$ for $n\in\Z_{>0}$.
-Consider the set $F$ of roots of the polynomial
-\[f(x)=x^q-x\]
-in $L$.
-We claim that $F$ forms a field, the splitting field of $f$.
 
-Clearly $F$ is nonempty: $0\in F$.
-Let $\alpha,\beta\in F$.
-Since $\sigma^n:x\mapsto x^q$ gives a field homomorphism, we have
-\[(\alpha-\beta)^q=\alpha^q-\beta^q=(\alpha-\beta)\]
-and
-\[(\alpha\beta)^q=(\alpha\beta).\]
-Also, we have $\alpha\alpha^{-1}=\alpha^{-1}\alpha=1$ if we define $\alpha^{-1}:=\alpha^{q-2}$ for nonzero $\alpha\in F$.
-Therefore, $F$ is a field.
+reducible polynomials
+semidirect product
 
-\Step{3}[Uniqueness]
-Let $F$ be a finite subfield of $L$ of order $q$.
-Then, every nonzero element $\alpha\in F$ satisfies $\alpha^{q-1}=1$ since $q$ is contained in a group $\F^\times$ of order $q-1$, and it implies $\alpha$ satisfies $x^q-x=0$ for all $\alpha\in F$.
-Since the number of roots of $x^q-x=0$ is less or equal than $q$, we can conclude every finite subfield of $L$ is characterized as the splitting field of a polynomial of the form $x^q-x$.
-\end{pf}
-
-\begin{thm}
-The multiplicative group of $\F_{p^n}^\times$ is cyclic.
-\end{thm}
-\begin{pf}
-The group $\F_{p^n}^\times$ is characterized by
-\[\F_{p^n}^\times=\{\,x\in\cl\F_p:x^{p^n-1}=1\,\}.\]
-
-We will count the number of elements of each order.
-Let $y$ be any element of $\F_{p^n}^\times$ of order $d$.
-Then,
-\[d=|\<y\>|\le|\{x:x^d=1\}|\le d\]
-implies the subgroup $\{x:x^d=1\}$ is cyclic with a generator $y$.
-Thus, the number of elements of order $d$ is given by either 0 or the Euler totient $\phi(d)$.
-
-Suppose there is no elements of order $p^n-1$.
-Then,
-\[p^n-1=|\F_{p^n}^\times|\le\sum_{\substack{d\,\mid\,p^n-1\\d\ne p^n-1}}\phi(d)<\sum_{d\,\mid\,p^n-1}\phi(d)=p^n-1\]
-leads a contradiction.
-\end{pf}
-
-\begin{thm}
-The Galois group $\Gal(\F_{p^n}/\F_p)$ is cyclic.
-\end{thm}
-\section{Cyclic extensions}
-\section{Cyclotomic extensions}
-\section{Kummer theory}
+\begin{prb}[Transitive subgroups of symmetric groups]
+\end{prb}
+\begin{prb}[Double quadratic equations]
+\end{prb}
+\begin{prb}[Reciprocal equations]
+palindromic
+\end{prb}
+\begin{prb}[Imaginary roots]
+number of imaginary roots=2n: composition of n transpositions
+\end{prb}
 
 
 
 
+\chapter{Invariants of Galois groups}
 
 
+\section{Resultants}
+
+\section{Resolvent polynomials}
+\begin{prb}[Discriminant of a polynomial]
+\end{prb}
+\begin{prb}[Irreducible cubic]
+\end{prb}
+\begin{prb}[Irreducible quartic]
+\end{prb}
+\begin{prb}[Irreducible quintic]
+\end{prb}
 
 
+Let $E$ be the splitting of a separable irreducible $f$ over a field $F$ and $G:=\Gal(E/F)$.
 
-
-
-
-\part{Insolvability of quintics}
-\chapter{Galois groups of polynomials}
-
-\chapter{Radical extensions}
-
-\chapter{Computational strategies}
-\begin{itemize}
-\item reducible case, irreducible<=>transitivity
-\item resolvent polynomial1: discriminant
-\item resolvent polynomial2: cubic resolvent
-\item double quadratic, reciprocal equation: finding symmetry
-\item number of imaginary roots=2n: composition of n transpositions
-\item radiacal extension : Jacobson-Velez,
-\item semidirect product
-\item reduction modulo p (over $\F_p$)
-\end{itemize}
-
-\section{Quartic}
-In this section, we assume the following setting:
-\begin{itemize}
-\item $F$ is a perfect field, %유한체는 사실 잘 모르겠음
-\item $f$ is an irreducible quartic over $F$,
-\item $E$ is the splitting of $f$ over $F$,
-\item $G=\Gal(E/F)$,
-\item $H=G\cap V_4$. 
-\end{itemize}
 \begin{thm}
 There are only five isomorphic types of transitive subgroups of the symmetric group $S_4$.
 \end{thm}
 \begin{cor}
-$G\cong S_4,\ A_4,\ D_4,\ V_4,\ or\ C_4$.
+$G\cong S_4,\ A_4,\ D_4,\ V_4,\text{ or }C_4$.
 \end{cor}
 \begin{prop}
 Two groups $A_4$ and $V_4$ are only transitive normal subgroups of $S_4$.
@@ -1208,7 +1123,7 @@ Two groups $A_4$ and $V_4$ are only transitive normal subgroups of $S_4$.
 
 Now we define our resolvent polynomial.
 \begin{prop}
-Let $K$ be the fixed field of $H$.
+Let $H:=G\cap V_4$ and $K:=\Fix_E(H)$.
 Then,
 \[K=F(\alpha_1\alpha_2+\alpha_3\alpha_4,\ \alpha_1\alpha_3+\alpha_2\alpha_4,\ \alpha_1\alpha_4+\alpha_2\alpha_3).\]
 \end{prop}
@@ -1237,8 +1152,8 @@ If $f$ is reducible over $K$, then $\Gal(E/K)$ is no more a transitive subgroup 
 \end{pf}
 \begin{cd}
 E \ar[rrrr,dashed] &&&& 1 \dar{2} &\\
-&&&& C_2 \dlar{2}\drar{2}&\\
-K=F_{V_4\cap G}\ar[uu] &&& V_4 \dlar[swap]{3}\drar{2} && C_4 \dlar{2}\\
+&&&& C_2 \dlar[swap]{2}\drar{2}&\\
+K\ar[uu] &&& V_4 \dlar[swap]{3}\drar{2} && C_4 \dlar{2}\\
 F \uar\rar[dashed]& ? & A_4 \drar[swap]{2} && D_4 \dlar{3} &\\
 &&&S_4&&
 \end{cd}
@@ -1246,82 +1161,130 @@ F \uar\rar[dashed]& ? & A_4 \drar[swap]{2} && D_4 \dlar{3} &\\
 
 
 
+
+
+
+
+
+
+
+\chapter{Reduction of Galois groups}
+
+\section{Finite fields}
+
+\begin{prb}[Finite field as a splitting field]
+Let $E$ be a finite field of characteristic $p$.
+Clearly $p>0$ so that $E$ has a subfield $F$ of size $p$ generated by $1\in E$.
+Since $E/F$ is finite, $E$ is isomorphic to a subfield of $\bar{\F_p}$ by the isomorphism extension theorem.
+There we assume $E$ is a subfield of a fixed algebraic closure $\bar{\F_p}$.
+Let $\alpha\in\bar{\F_p}$ and $n$ the degree of $E/F$.
+\begin{parts}
+\item If $\alpha\in E$, then $\alpha^{p^n}-\alpha=0$.
+\item If $\alpha^{p^n}-\alpha=0$, then $\alpha\in E$.
+\item For each $m\in\N$, in $\bar{\F_p}$ is a unique field $E$ of size $p^m$.
+\end{parts}
+\end{prb}
+
+\begin{prb}[Irreducibles over $\F_p$]
+the number of irreducibles, finite extension over a finite field is simple.
+\end{prb}
+
+\begin{prb}[Degree of an element in finite fields]
+Let $\alpha\in\bar{\F_p}$.
+The degree of $\alpha$ is computed by the order of $p$ in $(\Z/\ord(\alpha)\Z)^\times$
+\end{prb}
+
+\begin{prb}[Cyclic groups in finite fields]
+
+\begin{parts}
+\item The number of elements of order $d$ in a cyclic group of order $n$ is $\phi(d)$ when $d\mid n$.
+\item The group of units $(\F_{p^n})^\times$ is cyclic.
+\item The Galois group $\Gal(\F_{p^n}/\F_p)$ is cyclic.
+\end{parts}
+\end{prb}
+\begin{pf}
+(b)
+We partition the elements of $G:=(\F_{p^n})^\times$ by their orders.
+Let
+\[A_d:=\{\,\alpha\in G:\ord(\alpha)=d\,\}\]
+for $d\mid p^n-1$.
+It is contained in the subgroup $H:=\{x\in\F_{p^n}:x^d=1\}$, of which the order is $|H|=d$ because $x^d-1$ is separable.
+
+If $|A_d|\ne0$, then any element of $A_d$ is a generator of $H$, so $H$ is cyclic.
+Since the number of elements of order $d$ in a cyclic group is given by the Euler totient function $\phi(d)$, as a result we have $|A_d|\in\{0,\phi(d)\}$.
+Then,
+\[|G|=\sum_{d\mid p^n-1}|A_d|\le\sum_{d\mid p^n-1}\phi(d)=p^n-1\]
+implies $|A_{p^n-1}|\ne0$, $G$ is hence cyclic.
+\end{pf}
+
+\section{Ramification theory}
+
+\section{The Dedekind theorem}
+
+
+
+
+
+
+\part{Insolvability of the quintic}
+
+
+\chapter{Cyclic extensions}
+
+
+
+
+
+\chapter{Cyclotomic extensions}
+\section{Cyclotomic polynomials}
+
+\begin{prb}[Cyclotomic polynomials]
+Let $\zeta$ be a primitive $n$th root of unity.
+The $n$th \emph{cyclotomic polynomial} is defined by
+\[\Phi_n(x)=\prod_{\substack{1\le i\le n\\(i,n)=1}}(x-\zeta^i).\]
+\begin{parts}
+\item $x^n=\prod_{d\mid n}\Phi_d(x)$.
+\item $\Phi_n(x)\in\Z[x]$.
+\item $\Phi_n(x)$ is irreducible over $\Q$.
+\end{parts}
+\end{prb}
+\begin{pf}
+
+(b)
+Induction, division algorithm implies $\Phi_n(x)\in\Q[x]$.
+Gauss' lemma implies $\Phi_n(x)\in\Z[x]$.
+
+(c)
+We first prove $\zeta^p$ are all conjugates for any prime $p$ not dividing $n$.
+\end{pf}
+
+
+
+\begin{prb}[Computation of cyclotomic polynomials]
+
+\end{prb}
+
+
+
+\section{Kummer theory}
+
+
+
+
+
+
+
+
+\chapter{Radical extensions}
+
+
+
+
+
+
+
+
 \end{document}
-
-
-
-
-%%  Ring 관련
-
-\chapter*{Polynomial rings}
-\section{Fields}
-
-\begin{defn}
-A \emph{field} is a commutative division ring.
-\end{defn}
-
-\begin{prop}
-A field homomorphism is either a zero morhpism or injective.
-\end{prop}
-\begin{pf}
-The kernel is an ideal in a field so that it should be either entire or zero.
-\end{pf}
-
-A nontrivial field homomorphism is often called an \emph{embedding} or an \emph{isomorphism onto a subfield}.
-A field isomorphism is just a surjective field embedding.
-
-
-
-
-\begin{defn}
-A \emph{field extension} is a pair of fields $(E,F)$ such that $E\ge F$, i.e. $F$ belongs to $E$ as a subset.
-We often denote it by $E/F$.
-\end{defn}
-A field $E$ is also called a \emph{field extension} or a\emph{superfield} of another field $F$ if $E\ge F$.
-Our goal is to understand field extensions.
-
-\begin{prop}
-Let $E/F$ be a field extension.
-Then, $E$ is a vector space over $F$.
-\end{prop}
-\begin{pf}
-Obvious.
-\end{pf}
-
-\begin{defn}
-A \emph{degree} of a field extension $E/F$ is the dimension of the vector space $E$ over $F$ and denoted by $[E:F]$.
-A field extension is called \emph{finite} if its degree is finite.
-\end{defn}
-
-\begin{thm}
-If $K$ is an intermediate field in a field extension $E/F$, then
-\[[E:F]=[E:K][K:F].\]
-\end{thm}
-\begin{pf}
-Boring basis counting.
-\end{pf}
-
-\begin{cor}
-Finite extension of finite extension is finite.
-\end{cor}
-
-Simple extension is a field extension by an element.
-It is very useful when we consider where specific element goes to through a given field homomorphism.
-
-\begin{defn}
-A field extension $E/F$ is called \emph{simple} if there is an element $\alpha\in E$ such that $E$ is the smallest field containing both $\alpha$ and $F$.
-In this case, we write $E=F(\alpha)$.
-\end{defn}
-
-\begin{lem}
-Let $E/F$ be a finite extension.
-There is a finite tower of finite simple extensions.
-\end{lem}
-
-Although it is hard to find a counterexample, there is a finite extension which is not simple.
-We will see in Section 3.
-
-
 
 
 

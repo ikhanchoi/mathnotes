@@ -16,59 +16,99 @@
 
 \section{Definition of measures}
 
-\section{The Carath\'eodory extension theorem}
-\begin{prb}[Outer measures]
-Let $X$ be a set.
-An \emph{outer measure} on $X$ is a function $\mu^*:\cP(X)\to[0,\infty]$ with $\mu^*(\varnothing)=0$ such that
-\begin{parts}[(i)]
-\item if $E\subset E'$, then $\mu^*(E)\le\mu^*(E')$,\hfill(monotonicity)
-\item $\mu^*(\bigcup_{i=1}^\infty E_i)\le\sum_{i=1}^\infty\mu^*(E_i)$.\hfill(countable subadditivity)
-\end{parts}
+\section{Carath\'eodory extension theorem}
 
+\begin{prb}[Outer measures]
+Let $\Omega$ be a set.
+An \emph{outer measure} on $\Omega$ is a function $\mu^*:\cP(\Omega)\to[0,\infty]$ with $\mu^*(\varnothing)=0$ such that
+\begin{enumerate}[(i)]
+\item if $E_1\subset E_2$, then $\mu^*(E_1)\le\mu^*(E_2)$,
+\hfill(monotonicity)
+\item $\mu^*(\bigcup_{i=1}^\infty E_i)\le\sum_{i=1}^\infty\mu^*(E_i)$,
+\hfill(countable subadditivity)
+\end{enumerate}
+for any $\{E_i\}_{i=1}^\infty\subset\cP(\Omega)$.
 \begin{parts}
-\item A function $\mu^*:\cP(X)\to[0,\infty]$ with $\mu^*(\varnothing)=0$ is an outer measure if and only if $E\subset\bigcup_{i=1}^\infty E_i$ implies $\mu^*(E)\le\sum_{i=1}^\infty\mu^*(E_i)$.
+\item A function $\mu^*:\cP(\Omega)\to[0,\infty]$ with $\mu^*(\varnothing)=0$ is an outer measure if and only if $\mu^*(E)\le\sum_{i=1}^\infty\mu^*(E_i)$ whenever $E\subset\bigcup_{i=1}^\infty E_i$.
 \item
-Let $\cA\subset\cP(X)$ such that $\varnothing\in\cA$.
-If a function $\rho:\cA\to[0,\infty]$ satisfies $\rho(\varnothing)=0$, then we can associate an outer measure $\mu^*:\cP(X)\to[0,\infty]$ by defining as
+Let $\cA\subset\cP(\Omega)$ with $\varnothing\in\cA$.
+If a function $\rho:\cA\to[0,\infty]$ satisfies $\rho(\varnothing)=0$, then we can associate an outer measure $\mu^*:\cP(\Omega)\to[0,\infty]$ by defining as
 \[\mu^*(E):=\inf\left\{\,\sum_{i=1}^\infty\rho(A_i):E\subset\bigcup_{i=1}^\infty A_i,\ A_i\in\cA\,\right\},\]
 where we use the convention $\inf\varnothing=\infty$.
 \end{parts}
 \end{prb}
 
 
-\begin{prb}[Carath\'eodory measurability]
-Let $\mu^*$ be an outer measure on a set $X$.
-A subset $A\subset X$ is called \emph{Carath\'eodory measurable} relative to $\mu^*$ if
-\[\mu^*(E)=\mu^*(E\cap A)+\mu^*(E\cap A^c)\]e
-for every subset $E\subset X$.
+\begin{prb}[Carath\'eodory measure]
+Let $\mu^*$ be an outer measure on a set $\Omega$.
+A subset $A\subset \Omega$ is called \emph{Carath\'eodory measurable} relative to $\mu^*$ if
+\[\mu^*(E)=\mu^*(E\cap A)+\mu^*(E\setminus A)\]
+for every subset $E\subset\Omega$.
 Let $\cM$ be the collection of all Carath\'eodory measurable subsets relative to $\mu^*$.
 \begin{parts}
 \item $\cM$ is an algebra and $\mu^*$ is finitely additive on $\cM$.
 \item $\cM$ is a $\sigma$-algebra and $\mu^*$ is countably additive on $\cM$.
 \item The measure $\mu:=\mu^*|_\cM:\cM\to[0,\infty]$ is complete.
-\end{parts}
-\end{prb}
-
-\begin{prb}[The Carath\'eodory extension theorem]
-Let $\cA\subset\cP(X)$ be a semi-ring of sets on a set $X$ and $\rho:\cA\to[0,\infty]$ a function with $\rho(\varnothing)=0$.
-If the function $\rho$ satisfies
-\begin{parts}[(i)]
-\item $\rho(A)=\sum_{i=1}^n\rho(A_i)$ for $A\in\cA$ a disjoint union of $\{A_i\}_{i=1}^n\subset\cA$,\hfill(finite additivity)
-\item $\rho(A)\le\sum_{i=1}^\infty\rho(A_i)$ for $A\in\cA$ a disjoint union of $\{A_i\}_{i=1}^\infty\subset\cA$,\\\null\hfill((disjoint) countable subadditivity)
-\end{parts}
-then it is called a \emph{premeasure}.
-Let $\mu^*:\cP(X)\to[0,\infty]$ be the associated outer measure of $\rho$, and $\mu:\cM\to[0,\infty]$ the measure defined from $\mu^*$ on Carath\'eodory measurable subsets.
 We call $\mu$ the \emph{Carath\'eodory measure} constructed from $\rho$.
-\begin{parts}
-\item If $\rho$ is finitely additive, then $\cA\subset\cM$.
-\item If $\rho$ is countably subadditive, then $\mu^*(A)=\rho(A)$ for every $A\in\cA$.
-\item If $\rho$ is a premeasure, then $\mu$ is an extension of $\rho$ and called \emph{Carath\'eodory extension} of $\rho$.
-\item In particular, a premeasure is a priori countably additive in the sense that $\rho(A)=\sum_{i=1}^\infty\rho(A_i)$ for $A\in\cA$ a disjoint union of $\{A_i\}_{i=1}^\infty\subset\cA$.
 \end{parts}
 \end{prb}
 
 
-\begin{prb}[Uniqueness of extensions]
+\begin{prb}[Carath\'eodory extension theorem]
+Let $\cA\subset\cP(\Omega)$ with $\varnothing\in\cA$.
+Let $\rho:\cA\to[0,\infty]$ with $\rho(\varnothing)=0$.
+Consider two conditions
+\begin{enumerate}[(i)]
+\item $A\subset\bigcup_{i=1}^\infty A_i$ implies $\rho(A)\le\sum_{i=1}^\infty\rho(A_i)$,
+\item for any $\e>0$ and $B,A$ there are $A_1,A_2$ such that $B\cap A\subset A_1$, $B\setminus A\subset A_2$ and $\rho(B)+\e>\rho(A_1)+\rho(A_2)$.
+\end{enumerate}
+Let $\mu^*:\cP(\Omega)\to[0,\infty]$ be the associated outer measure of $\rho$, and $\mu:\cM\to[0,\infty]$ the measure defined by the restriction of $\mu^*$ on Carath\'eodory measurable subsets.
+\begin{parts}
+\item $\mu^*|_\cA=\rho$ if (i) is satisfied.
+\item $\cA\subset\cM$ if (ii) is satisfied.
+\end{parts}
+\end{prb}
+\begin{pf}
+(a)
+Clearly $\mu^*(A)\le\rho(A)$ for $A\in\cA$.
+
+We may assume $\mu^*(A)<\infty$.
+For arbitrary $\e>0$ there is $\{A_i\}_{i=1}^\infty$ such that $A\subset\bigcup_{i=1}^\infty A_i$ and
+\[\mu^*(A)+\e>\sum_{i=1}^\infty\rho(A_i)\ge\rho(A).\]
+
+(b)
+Let $E\in\cP(\Omega)$ and $A\in\cA$.
+Then,
+$E\subset \bigcup_{i=1}^\infty A_i$ and $A_i\cap A\subset A_{i,1}$ and $A_i\setminus A\subset A_{i,2}$ such that
+\begin{align*}
+\mu^*(E)+\e>\sum_{i=1}^\infty(\rho(A_i)+\frac\e{2^{i+1}})
+&>\sum_{i=1}^\infty\rho(A_{i,1})+\sum_{i=1}^\infty\rho(A_{i,2})\\
+&\ge\mu^*(E\cap A)+\mu^*(E\setminus A).
+\end{align*}
+\end{pf}
+
+
+
+\begin{prb}[Carath\'eodory extension from semi-ring]
+Let $\cA\subset\cP(\Omega)$ be a semi-ring of sets on a set $X$.
+A function $\rho:\cA\to[0,\infty]$ with $\rho(\varnothing)=0$ is called a \emph{pre-measure} if
+\begin{enumerate}[(i)]
+\item $\rho(\bigsqcup_{i=1}^\infty A_i)\le\sum_{i=1}^\infty\rho(A_i)$,
+\hfill(disjoint countable subadditivity)
+\item $\rho(\bigsqcup_{i=1}^nA_i)=\sum_{i=1}^n\rho(A_i)$,
+\hfill(finite additivity)
+\end{enumerate}
+for any $\{A_i\}_{i=1}^\infty\subset\cA$ with $\bigsqcup_{i=1}^\infty A_i\in\cA$ and $n\in\N$.
+
+Let $\mu^*:\cP(\Omega)\to[0,\infty]$ be the associated outer measure of $\rho$, and $\mu:\cM\to[0,\infty]$ the measure defined by the restriction of $\mu^*$ on Carath\'eodory measurable subsets.
+\begin{parts}
+\item A pre-measure is a priori countably additive.
+\end{parts}
+\end{prb}
+
+
+
+\begin{prb}[Uniqueness of Carath\'eodory extensions]
 The Carath\'eodory extension theorem provides with a uniqueness theorem for measures.
 \end{prb}
 
@@ -79,12 +119,28 @@ Monotone class lemma: alternative direct proof method without using Carath\'eodo
 
 \chapter{Measures on the real line}
 
+distribution functions
+
+
+\section*{Exercises}
+\begin{prb}*
+A Lebesgue measurable set in $\R$ with positive measure contains an arbitrarily long subsequence of an arithmetic progression.
+\end{prb}
 
 
 \chapter{Measurable functions}
 
+\section{Extended real numbers}
 
 
+\section{Simple functions}
+Pointwise limit of simple functions is measurable.
+\begin{pf}
+Let $f(x)=\lim_{n\to\infty}s_n(x)$.
+
+\end{pf}
+
+Every measurable extended real-valued function is a pointwise limit of simple functions.
 
 
 
@@ -97,6 +153,8 @@ Monotone class lemma: alternative direct proof method without using Carath\'eodo
 Stein: Egorov $\to$ BCT $\to$ Fatou $\to$ MCT $\to$ L1 is a measure\\
 Stein: BCT + L1 is a measure $\to$ DCT\\
 Folland: MCT $\to$ Fatou $\to$ DCT $\to$ BCT
+
+
 
 
 \begin{prb}[Egorov's theorem]
@@ -123,7 +181,7 @@ we have
 \[n\ge n_0\quad\Rightarrow\quad |f_n(x)|<\frac1k.\]
 \end{pf}
 
-\section{Modes of convergence}
+
 
 Since $\{f_n(x)\}_n$ diverges if and only if
 \[\exists k>0,\quad\forall n_0>0,\quad\exists n>n_0:\quad|f_n(x)-f(x)|>\tfrac1k,\]
@@ -144,8 +202,12 @@ we have
 
 
 
+\section{Radon-Nikodym theorem}
 
-\begin{prb}
+
+\section{Modes of convergence}
+
+\begin{prb}[Convergence in measure]
 Let $(X,\mu)$ be a measure space.
 Let $f_n$ be a sequence of measurable functions.
 If $f_n$ converges to $f$ in measure, then $f_n$ has a subsequence that converges to $f$ $\mu$-a.e.
@@ -162,50 +224,52 @@ Therefore, $f_{n_k}$ converges $\mu$-a.e.
 
 
 
+
 \chapter{Product measures}
-\section{The Fubini-Tonelli theorem}
-\section{The Lebesgue measure on Euclidean spaces}
+\section{Fubini-Tonelli theorem}
+\section{Lebesgue measure on Euclidean spaces}
 
 \chapter{Lebesgue spaces}
 \section{$L^p$ spaces}
 \section{$L^2$ spaces}
-\section{The Riesz representation theorem}
+\section{Dual spaces}
+riesz representations
 
 
+\part{Linear operators}
 
-\part{}
 
 \chapter{}
 
 
 
 
-
 \chapter{Bounded linear operators}
+\section{Continuity}
+Schur test
+
+\section{Density arguments}
+extension of operators
+
+\section{Interpolation}
+weak Lp, marcinkiewicz
 
 
-\begin{prb}[Extension of linear operator]
-double dual
 
-\end{prb}
 
-\begin{prb}
-Let $T:X\to Y$ be a linear operator.
-Suppose
-\[\|Tx\|\lesssim\|x\|\]
-for all $x\in\cD$.
-\begin{parts}
-\item If 
-\end{parts}
-\end{prb}
+\chapter{Convergence of linear operators}
+\section{Translation and multiplication operators}
 
-\section{Weak $L^p$ spaces}
-\section{Interpolation theorems}
-
-\chapter{Integral operators}
-\section{Bounded linear operators}
-\section{Regular integral operators}
 \section{Convolution type operators}
+approximation of identity
+
+\section{Computation of integral transforms}
+
+
+
+
+
+
 
 
 
@@ -251,7 +315,7 @@ where $\pd_{x_i}$ denotes the weak partial derivative.
 
 
 
-\chapter{The Lebesgue differentiation theorem}
+\chapter{Lebesgue differentiation theorem}
 
 \end{document}
 
