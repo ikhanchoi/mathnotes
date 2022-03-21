@@ -15,43 +15,74 @@
 \tableofcontents
 
 \begin{abstract}
-
+Hi, I'm abstract.
 \end{abstract}
 
 \section{Introduction}
 
-Let $G$ be a locally compact group.
-We always assume that $G$ is Hausdorff.
 
 \begin{defn}
+Let $G$ be a group.
 A function $f:G\to\C$ is called \emph{positive definite} if for each positive integer $n$ a non-negativity condition
 \[\sum_{k,l=1}^nf(x_l^{-1}x_k)\xi_k\bar\xi_l\ge0\]
 is satisfied for every $n$-tuple $(x_1,\cdots,x_n)\in G^n$ and every vector $(\xi_1,\cdots,\xi_n)\in\C^n$.
 \end{defn}
 A function $f$ is positive definite if and only if bilinear forms defined by matrices $(f(x_ix_j^{-1}))_{i,j=1}^n$ for each positive integer $n$ are hermitian, and even more, positive \emph{semi}-definite, regardless of any choices of $(x_1,\cdots,x_n)\in G^n$.
 Positive definite functions have several remarkable properties as follows:
-\begin{prop}[Algebraic properties]$ $
+\begin{prop}[Algebraic properties]
+Let $G$ be a group.
+For the set of all positive definite functions, the following properties hold:
 \begin{parts}
-\item $\cP(G)$ is closed under complex conjugation. Furthermore, $\bar{f(x)}=f(x^{-1})$.
-\item $\cP(G)$ is closed under positive scalar multiplication.
-\item $\cP(G)$ is closed under summation.
-\item $\cP(G)$ is closed under product.
+\item It is closed under complex conjugation. Furthermore, $\bar{f(x)}=f(x^{-1})$.
+\item It is closed under positive scalar multiplication.
+\item It is closed under summation.
+\item It is closed under product.
 \end{parts}
 \end{prop}
 \begin{pf}
-To be written
+(a)
+Let $n=1$ and $\xi_1\ne0$.
+Then, $0\le f(e)|\xi_1|^2$ implies $f(e)\in\R$.
+
+Let $n=2$ with $x_1=e$ and $x_2=x$, and let $\xi_2=1$.
+Then,
+\begin{align*}
+0&\le f(e)|\xi_1|^2+f(x^{-1})\xi_1\bar\xi_2+f(x)\xi_2\bar\xi_1+f(e)|\xi_2|^2\\
+&=f(e)(1+|\xi_1|^2)+f(x^{-1})\xi_1+f(x)\bar\xi_1,
+\end{align*}
+so
+\begin{align*}
+0&=\Im(f(x^{-1})\xi_1+f(x)\bar\xi_1)\\
+&=(\Re f(x^{-1})-\Re f(x))\Im\xi_1+(\Im f(x^{-1})+\Im f(x))\Re\xi_1
+\end{align*}
+for all $\xi_1\in\C$.
+Therefore, $\bar f(x)=f(x^{-1})$.
+
+(b) and (c) are clearly true by definition.
+
+(d) It follows from the Schur product theorem, which states that the Hadamard product(componentwise product) of two positive semi-definite matrices is also positive semi-definite.
 \end{pf}
 
-\begin{prop}[Analytic properties]$ $
+\begin{prop}[Analytic properties]
+Let $G$ be a group.
 \begin{parts}
-\item If $f\in\cP(G)$, then $\sup_{x\in G}|f(x)|\le f(e)$.
-\item If $f_n\in\cP(G)$, then the pointwise limit $\lim_{n\to\infty}f_n$ is also in $\cP(G)$.
-\item $f\in\cP(G)$ is both-sided uniformly continuous if it is continuous at the identity. (uncertain)
-\item $f_n\in\cP(G)$ converges to $f$ compactly if it converges to $f$ pointwisely and $f_n(e)=1$.
+\item If $f$ is positive definite, then $\sup_{x\in G}|f(x)|\le f(e)$.
+\item If $f_n$ is a sequence of positive definite functions, then the pointwise limit $\lim_{n\to\infty}f_n$ is also positive definite.
+\item Let $G$ be a locally compact group. If $f_n$ is a sequence of positive definite functions that converges to $f$ pointwisely and $f_n(e)=1$, then $f_n$ converges to $f$ compactly.
+\item Let $G$ be a locally compact group. If $f$ is positive definite and continuous at the $e$, then it is both-sided uniformly continuous. (It holds for $G=\R$, but I have not checked for arbitrary $G$. I suspect it holds.)
 \end{parts}
 \end{prop}
 \begin{pf}
-To be written
+(a)
+Let $n=2$ with $x_1=e$ and $x_2=x$, and let $|\xi_1|=|\xi_2|=1$.
+Then,
+\[0\le f(e)|\xi_1|^2+f(x^{-1})\xi_1\bar\xi_2+f(x)\xi_2\bar\xi_1+f(e)|\xi_2|^2=2f(e)+2f(x)\xi_2\bar\xi_1.\]
+Taking $\xi_1$ and $\xi_2$ such that $\xi_2\bar\xi_1$ has the same argument with $\bar f(x)$, we obtain $|f(x)|\le f(e)$.
+
+(b)
+The defining property of positive definite functions is purely algebriac, so that it is preserved by pointwise limit.
+
+(c) and (d) are too difficult to prove at this point, we will be proved later.
 \end{pf}
 
 \bigskip
@@ -60,7 +91,7 @@ This thesis follows the historical flows to extract mathematical ideas behind th
 In particular, we are concerned with the results like the following \emph{Bochner-type theorems}:
 \begin{thm}
 A function $c:\Z\to\C$ is positive definite if and only if there is a unique finite regular Borel measure $\mu$ on $\T=\R/2\pi\Z$ such that
-\[c(k)=\frac1{2\pi}\int_0^{2\pi}e^{-ik\theta}\,d\mu(\theta)\]
+\[c(k)=\int_0^{2\pi}e^{-ik\theta}\,d\mu(\theta)\]
 for all $k\in\Z$.
 \end{thm}
 \begin{thm}
@@ -72,17 +103,17 @@ They have similar forms in that they describe the necessary and sufficient condi
 One of our primary goals is to investigate the nature of positive definite functions and their harmonic-analytic relation to Borel measures within more familiar cases of $G=\Z$ or $\R$.
 Now then, we finally extend the Bochner-type results in the more general setting, where $G$ is a locally compact group, and assign a new perspective of measures in terms of the representation theory of groups.
 
-Each theorem has its own taste in different subfields of mathematics.
+Each theorem above has its own taste in different subfields of mathematics.
 Theorem 1.1, which is a corollary of the celebrated Herglotz-Riesz representation theorem, is related to a classical problem in complex analysis that asks to give a characterization of a special class of analytic functions on the open unit disk $\D$ called the Carath\'eodory class.
 The positive definiteness arises as a property of coefficients of functions in the Caracth\'eodory class, and their connection to Fourier coefficients leads the complex analysis problem into harmonic analysis.
 In Section 2, with the methods of elementary complex variable function theory, our first Bochner-type theorem will be proved, giving a geometric description of the space of positive definite functions in addition.
 
 In Section 3, we review the well-known results of the positive definite functions on the real line and their ``weak convergence''.
-They have been well-studied by probabilists, to attack the weak convergence of probaility measures.
+They have been studied by probabilists, to attack the weak convergence of probaility measures.
 Recall that a probaility distribution of a real-valued random variable is defined by a probability measure on $\R$.
 The extended Fourier transform, but reversing the sign convention on the phase term, with respect to not only integrable functions but also finte measures, called Fourier-Stieltjes transform, of a probability measure $\mu$ is called a characteristic function of the distribution $\mu$.
 In terms of probability theory, it is nothing but the function defined by the expectation $\f(t):=Ee^{itX}$, where $X$ is a random variable of law $\mu$.
-The Bochner theorem states that the necessary and sufficient condition for being a characteristic function is the positive definiteness.
+The Bochner theorem states that the necessary and sufficient condition for being a characteristic function is the positive definiteness and continuity.
 
 Summaries for Section 4 and Section 5... will be here.
 
@@ -294,21 +325,80 @@ It proves $\Re f(z)\ge0$ for $|z|<1$, and we obtain $\Re f(z)>0$ by the open map
 
 \subsection{The Herglotz-Riesz representation theorem}
 
-Herglotz proved another equivalent condition in 1911, considered as the first Bochner-type theorem, in terms of regular Borel measures on the unit circle.
+Herglotz proved another equivalent condition in 1911, considered as the first Bochner-type theorem, which states the correspondence between the Carath\'eodory class and probability Borel measure on the unit circle.
+The essential difficulty comes from the construction of a measure, and here we resolve this in the aid of either Helly's selection theorem or the Riesz-Markov-Kakutani representation theorem.
+Suppose a function $f$ in the Carath\'eodory class is analytic on a neighborhood of the closed unit disk $\bar\D$.
+In this case, by appropriately manipulate the identities for $r=1$ in Lemma 2.1, or by using the Cauchy integral formula along the unit circle, we can get
+\[f(z)=\frac1{2\pi}\int_0^{2\pi}\frac{e^{i\theta}+z}{e^{i\theta}-z}\Re f(e^{i\theta})\,d\theta.\]
+Based on this representation of $f$, we will approximate the measure $d\mu$ with the absolutely continuous measures $(2\pi)^{-1}\Re f(re^{i\theta})\,d\theta$ by limiting $r\uparrow1$.
+More precisely, we will use the following equation, which is justified by the uniform convergence of power series: for each $|z|<1$,
+\begin{align*}
+\lim_{r\uparrow1}\frac1{2\pi}\int_0^{2\pi}\frac{e^{i\theta}+z}{e^{i\theta}-z}\Re f(re^{i\theta})\,d\theta
+&=\lim_{r\uparrow1}\frac1{2\pi}\int_0^{2\pi}\left(1+\sum_{k=1}^\infty2e^{-ik\theta}z^k\right)\Re f(re^{i\theta})\,d\theta\\
+&=1+\lim_{r\uparrow1}\sum_{k=1}^\infty2\left(\frac1{2\pi}\int_0^{2\pi}e^{-ik\theta}\Re f(re^{-i\theta})\,d\theta\right)z^k\\
+&=1+\lim_{r\uparrow1}\sum_{k=1}^\infty2c_kr^kz^k\\
+&=f(z).
+\end{align*}
+
 \begin{thm}[The Herglotz-Riesz representation theorem]
 Let $f$ be a complex-valued function defined on the open unit disk.
 Then, $f$ belongs to the Carath\'eodory class if and only if $f$ is represented as the following Stieltjes integral
-\[f(z)=\frac1{2\pi}\int_0^{2\pi}\frac{e^{it}+z}{e^{it}-z}\,d\mu(t),\]
-where $\mu:[0,2\pi]\to\R$ is a non-decreasing function with $\mu(2\pi)-\mu(0)=1$.
+\[f(z)=\int_0^{2\pi}\frac{e^{i\theta}+z}{e^{i\theta}-z}\,d\mu(\theta),\]
+where $\mu$ is a probability Borel measure on $\T=\R/2\pi\Z$.
 \end{thm}
-\begin{pf}
-To be written.
-It uses Helly's selesction theorem.
+\begin{pf}[First proof: using Helly's selection theorem]
+($\Leftarrow$)
+Take a probability Borel measure $\mu$ on $\T$.
+Then, we can check the function defined by
+\[f(z):=\int_0^{2\pi}\frac{e^{i\theta}+z}{e^{i\theta}-z}\,d\mu(\theta)\]
+is analytic on the open unit disk easily by using Morera's theorem and Fubini's theorem.
+Recall that $z\mapsto(e^{i\theta}+z)/(e^{i\theta}-z)$ has positive real part since it is a conformal mapping that maps open unit disk onto the right half plane.
+The function $f$ belongs to the Carath\'eodory class by the open mapping theorem since
+\[\Re f(z)=\int_0^{2\pi}\Re\frac{e^{i\theta}+z}{e^{i\theta}-z}\,d\mu(\theta)\ge0.\]
+
+($\Rightarrow$)
+Fix $z$ in the open unit disk $\D$.
+Define $f_n(\theta):=(2\pi)^{-1}\Re f((1-n^{-1})e^{i\theta})$ and
+\[F_n(\theta):=\int_0^\theta\Re f_n(\psi)\,d\psi\]
+for $\theta\in[0,2\pi]$.
+Note $F_n(0)=0$ and $F_n(2\pi)=1$ for all $n$.
+Since $\Re f\ge0$, $F_n$ is also monotonically increasing.
+Therefore, the sequence $(F_n)_n$ has a pointwise convergent subsequence $(F_j)_j$ on $[0,2\pi]$ by the Helly's selection theorem.
+Let
+\[F(\theta):=\lim_{\psi\downarrow\theta}\lim_{j\to\infty}F_j(\psi).\]
+Then, we have $F(0)=0$ and $F(2\pi)=1$, and $F_j$ converges to $F$ at every continuity point $\theta$ of $F$.
+It means $F_j$ converges to $F$ weakly, so by the Portemanteau theorem, we get
+\[\int_0^{2\pi}\frac{e^{i\theta}+z}{e^{i\theta}-z}dF_j(\theta)\to\int_0^{2\pi}\frac{e^{i\theta}+z}{e^{i\theta}-z}dF(\theta)\]
+as $j\to\infty$ since $\theta\mapsto(e^{i\theta}+z)/(e^{i\theta}-z)$ is continuous and bounded on $\T$.
+On the other hand,
+\[\int_0^{2\pi}\frac{e^{i\theta}+z}{e^{i\theta}-z}dF_j(\theta)
+=\frac1{2\pi}\int_0^{2\pi}\frac{e^{i\theta}+z}{e^{i\theta}-z}\Re f((1-j^{-1})e^{i\theta})\,d\theta\to f(z)\]
+as $j\to\infty$.
+Therefore, by the uniqueness of limit, we have
+\[f(z)=\int_0^{2\pi}\frac{e^{i\theta}+z}{e^{i\theta}-z}dF(\theta)=\int_0^{2\pi}\frac{e^{i\theta}+z}{e^{i\theta}-z}d\mu(\theta),\]
+where $\mu$ is the probability measure on $\T$ defined by the distribution function $F$ as $\mu([0,\theta])=F(\theta)$.
 \end{pf}
 
+\begin{pf}[Second proof: using the Riesz representation theorem]
+As we have seen in the first proof using Helly's selection theorem, one direction is trivial.
+Suppose $f$ is in the Carath\'eodory class.
+Let $g\in C(\T)$ be a complex-valued test function.
+Define a complex linear functional $l$ on $C(\T)$ as
+\[l[g]:=\lim_{r\uparrow1}\frac1{2\pi}\int_0^{2\pi}g(\theta)\Re f(re^{i\theta})\,d\theta.\]
+It is positive and bounded since $\Re f\ge0$ and $l[1]=1$.
+By the Riesz-Markov-Kakutani representation theorem, there is a measure $\mu$ on $\T$ such that
+\[l[g]=\frac1{2\pi}\int_0^{2\pi}g(\theta)\,d\mu(\theta)\]
+for all $g\in C(\T)$.
+If we expand $f$ as
+\[f(z)=1+\sum_{k=1}^\infty2c_kz^k,\]
+then for each fixed $z$ in the open unit disk we have
+\[\frac1{2\pi}\int_0^{2\pi}\frac{e^{i\theta}+z}{e^{i\theta}-z}d\mu(\theta)
+=\lim_{r\uparrow1}\frac1{2\pi}\int_0^{2\pi}\frac{e^{i\theta}+z}{e^{i\theta}-z}\Re f(re^{i\theta})\,d\theta=f(z).\qedhere\]
+\end{pf}
 
+As a corollary of the Herglotz' theorem, we finally arrive at:
 \begin{cor}[The Bochner theorem on $\Z$]
-A function $c:\Z\to\C$ is positive-definite if and only if there is a finite regular Borel measure $\mu$ on $\T=\R/2\pi\Z$ such that $\hat\mu=c$.
+A function $c:\Z\to\C$ is positive-definite if and only if there is a finite regular Borel measure $\mu$ on $\T=\R/2\pi\Z$ such that $2\pi\hat\mu=c$.
 \end{cor}
 \begin{pf}
 Let $\mu$ be a finite Borel measure on $\T$.
@@ -321,51 +411,112 @@ Then, $\hat\mu$ is positive definite because
 for any $(\xi_1,\cdots,\xi_n)\in\C^n$.
 
 On the other hand, if the sequence $(c_k)_{k=-\infty}^\infty$ is positive definite, then, with the assumption $c_0=1$, the function $z\mapsto1+\sum_{k=1}^\infty2c_kz^k$ is in the Carath\'eodory class.
-By the Herglotz-Riesz representation theorem, there is a probability regular Borel measure $\mu$ on $\cT$ such that
+By the Herglotz-Riesz representation theorem, there is a probability regular Borel measure $\mu$ on $\T$ such that
 \begin{align*}
 1+\sum_{k=1}^\infty2c_kz^k
-&=\frac1{2\pi}\int_0^{2\pi}\frac{e^{it}+z}{e^{it}-z}\,d\mu(t)\\
-&=\frac1{2\pi}\int_0^{2\pi}\left(1+\sum_{k=1}^\infty2e^{-ik\theta}z^k\right)\,d\mu(t)\\
-&=1+\sum_{k=1}^\infty2\left(\frac1{2\pi}\int_0^{2\pi}e^{-ik\theta}\,d\mu(\theta)\right)z^k
+&=\int_0^{2\pi}\frac{e^{it}+z}{e^{it}-z}\,d\mu(t)\\
+&=\int_0^{2\pi}\left(1+\sum_{k=1}^\infty2e^{-ik\theta}z^k\right)\,d\mu(t)\\
+&=1+\sum_{k=1}^\infty2\left(\int_0^{2\pi}e^{-ik\theta}\,d\mu(\theta)\right)z^k
 \end{align*}
 in $z\in\D$, hence that
-\[c_k=\frac1{2\pi}\int_0^{2\pi}e^{-ik\theta}\,d\mu(\theta)=\hat\mu(k).\qedhere\]
+\[c_k=\int_0^{2\pi}e^{-ik\theta}\,d\mu(\theta)=2\pi\hat\mu(k).\qedhere\]
 \end{pf}
 
 So far, we have proved the following one-to-one correspondences:
-\begin{figure}
+\begin{figure}[h]
 \begin{tikzcd}
 &\begin{tabular}{c}Closed convex hull of\\the curve $(e^{-i\theta},e^{-i2\theta},\cdots)$\end{tabular}&\\
 \begin{tabular}{c}Positive definite\\sequences $(c_k)_k$\\with $c_0=1$\end{tabular}
 &\text{Carath\'eodory class}\lar[<->]\uar[<->]\rar[<->]
-&\begin{tabular}{c}Probability Borel\\measures on $\T$\end{tabular}
+&\begin{tabular}{c}Probability Borel\\measures on $\T$\end{tabular}.
 \end{tikzcd}
 \end{figure}
 
+
+
+
+
+
+
+
+
+
+\newpage
 \section{On the group $\R$: probability theory}
-We have seen the relation of positive definite sequences and measures on the unit circle $\T$.
-Studying measures with positive definite functions virtually starts in probability theory, especially from the theory of weak convergence of probability distributions.
 
 \subsection{Weak convergence of probability measures}
 
-\begin{defn}[Weak convergence and vague convergence]
-Let $\mu_n$ be a sequence of probability measures on a 
+We have seen the relation of positive definite sequences and measures on the unit circle $\T$.
+On the real line $\R$, predictably, we can also prove that there exists a correspondence between measures and positive definite functions.
+Herglotz' representation theorem used measures to characterize certain complex functions, but on $\R$, and more generally on a locally compact group $G$, we will see how the positive functions play an important role in studying measures.
+The use of positive definite functions to study measures virtually starts in probability theory; a probability distribution is defined as a measure on a state space, which is $\R$ for usual random variables.
+Especially to see several probability distributions and their limit behaviors, the theory and tools to deal with weak convergence of probability distributions have occured, and positive definite functions were the most successful.
+The direct connection between convergences in two different realms, measures and positive definite functions, is encoded in the L\'evy continuity theorem.
+For example, several limit theorems in probability theory such as Lindeberg's central limit theorem are described and proved in terms of positive definite functions.
+
+\begin{defn}[Weak convergence]
+Let $(\mu_n)_n$ and $\mu$ be probability Borel measures on a metric space.
+We say $\mu_n$ \emph{weakly converges to} $\mu$ if
+\[\int g\,d\mu_n\to\int g\,d\mu\]
+as $n\to\infty$ for any $g$ continuous bounded functions.
 \end{defn}
+
+A characteristic function is defined as the Fourier transform, but reversed the sign convention on the phase term, of a probability measure, and is the place where the positive definiteness comes.
+
+\begin{defn}[Characteristic functions]
+Let $\mu$ be a probability measure on $\R$ and $X$ a random variable of distributioin $\mu$.
+Note that such random variable always exists.
+The \emph{characteristic function} of $X$ is a function $\f:\R\to\C$ defined by $\f(t):=Ee^{itX}$.
+Equilvalently, $\f$ is given by
+\[\f(t):=\int e^{itx}\,d\mu(x).\]
+\end{defn}
+\begin{prop}
+Let $\f$ be a characteristic function of a probability Borel measure $\mu$ on $\R$.
+\begin{parts}
+\item $\f$ is positive definite.
+\item $\f$ is uniformly continuous.
+\end{parts}
+\end{prop}
+\begin{pf}
+\end{pf}
+
+Characteristic functions take an advantage that we can learn the information about probability measures by investigating the continuous functions instead of studying measures directly.
+
 
 
 \begin{thm}[L\'evy's continuity theorem]
-
+Let $(\mu_n)_n$ be a sequence of probability Borel measures and $\f_n$ their characteristic functions.
+Then, $\mu_n$ converges weakly to a probability Borel measure $\mu$ if and only if $\f_n$ converges pointwise to a function $\f$ that is continuous at zero.
 \end{thm}
+\begin{pf}
+\end{pf}
+
+
+
+\subsection{Vague convergence of probability measures}
+
+We now have a question: why is the weak convergence defined like that?
+In subsequent sections 4 and 5, we will extend the domain $\R$ to some general spaces like locally compact groups $G$.
+The topology of weak convergence is expected to be generalized on $G$.
+In this regard, we suggests a possible answer to the above question in view of functional analysis.
+We are also now going to see here a small hint of why we extend the theory only to \emph{locally compact groups}, but not to the more general topological groups.
+
+Vauge convergence of probability measures, which is equivalent to the weak convergence in nice domains such as $\R$, has an entirely suitable functional-analytic interpretation: the weak$^*$ topology.
+When probability measures are recognized as positive linear functionals on a function space via integration, they are embeded into the dual of the function space, and the weak$^*$ topology can be inherited onto the space of probability measures.
+Furthermore, the Riesz-Markov-Kakutani representation theorem allows to describe the exact geometry of the space of probability measures as a \emph{compact} convex subset of the locally convex space $C_0(\R)^*$.
+
+We will see that why 
+
+
+
+
 
 \subsection{Examples of positive definite functions}
-
 Mathias' examples
-
 Polya's criterion
 
 \subsection{A proof of Bochner's theorem}
 
-Riesz-Markov-Kakutani representation theorem
 
 \subsection{Application: Stone-von Neumann theorem}
 
@@ -375,6 +526,11 @@ Riesz-Markov-Kakutani representation theorem
 
 
 \section{On locally compact abelian groups}
+
+\subsection{Fourier transform and character group}
+\subsection{Proofs of Bochner's theorem}
+\subsection{Application: Pontryagin duality}
+
 
 \section{On locally compact non-abelian groups}
 
