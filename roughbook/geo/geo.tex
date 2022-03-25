@@ -8,9 +8,61 @@
 \begin{document}
 \tableofcontents
 
+\section{Topological group action}
 
 
+\begin{prb}
+Let $G$ be a topological group acting on a topological space $X$.
+Let $p:X\to X/G$ be the quotient map.
 
+\begin{parts}
+\item $p^{-1}(p(A))=\bigcup_{g\in G}gA$ for any $A\subset X$.
+\item $p$ is open.
+\item If $x\ne gx$, then there is an open neighborhood $U$ of $x$ such that $gU$ is disjoint to $U$.
+\end{parts}
+\end{prb}
+\begin{pf}
+(c)
+Since $X$ is Hausdorff, there is disjoint open neighborhoods $U_0$ and $U_1$ respectively of $x$ and $gx$.
+Then, $U:=g^{-1}(gU_0\cap U_1)\subset U_0$ and $gU=gU_0\cap U_1\subset U_1$ are disjoint.
+\end{pf}
+
+\begin{prb}
+Let $f:X\to Y$ be continuous.
+We say $f$ is \emph{proper} if $f^{-1}(K)$ is compact for compact $K$.
+We say $f$ is \emph{Bourbaki-proper} if it is closed and proper.
+If $X$ is Hausdorff and $Y$ is locally compact, then two notions are equivalent.
+\end{prb}
+
+\begin{prb}[Properly discontinuous actions]
+Let $G$ be a topological group acting on a topological space $X$.
+Let $p:X\to X/G$ be the quotient map.
+This action is called \emph{properly discontinuous} if for every compact $K\subset X$ only finite $gK$ intersect $K$.
+\begin{parts}
+\item A free and proper action is properly
+\end{parts}
+\end{prb}
+
+\begin{prb}[Covering space actions]
+Let $G$ be a topological group acting on a topological space $X$.
+Let $p:X\to X/G$ be the quotient map.
+This action is called a \emph{covering space action} if every $x\in X$ has a neighborhood $U$ such that $gU$ are all disjoint for $g\in G$.
+\begin{parts}
+\item A properly discontinuous and free action is a covering space action, if $X$ is locally compact and Hausdorff.
+\item A covering space action is properly discontinuous.
+\item A covering space action is free.
+\end{parts}
+\end{prb}
+\begin{pf}
+(a)
+Fix $x\in X$ and let $K$ be a compact neighborhood of $x$.
+By the proper discontinuity, there is a finite subset $F\subset G$ such that $gK$ intersects $K$ only for $g\in F$.
+Because the action is free, for every $g\in F\setminus\{1\}$ there is an open neighborhood $U_g$ of $x$ such that $gU_g\cap U_g=\varnothing$.
+Then, $U:=K^\circ\cap\bigcap_{g\in F\setminus\{1\}}U_g$ satisfies $gU\cap U=\varnothing$.
+
+(b)
+
+\end{pf}
 
 
 \section{Universal coefficient theorem}
