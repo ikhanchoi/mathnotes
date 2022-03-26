@@ -8,18 +8,19 @@
 \maketitle
 \tableofcontents
 
-\part{Sequences}
-\chapter{Convergence}
-% 입실론 델타의 직접적 이용보다 절댓갑을 0으로 보내는 것의 편리함을 배운다
-% 중간근사 방법으로 각 항을 입실론으로 바운드하거나 0으로 수렴시키는 메커니즘을 익힌다
+\part{Convergence}
+\chapter{Sequences}
+% 문제의식: 입실론 델타의 직접적 이용하지 않는 수렴성 증명
 
-
-
-
-% 단조수렴정리
-% 수렴하는 수열은 유계
-
-
+\section{Control of the error}
+preserving inequalities
+limsup and liminf
+\section{Approximate sequences}
+\section{Bounded sequences}
+monotone convergence
+Bolzano-Weierstrass
+\section{Recursive sequences}
+?
 \section*{Exercises}
 \begin{prb}
 Every real sequence $(a_n)_{n=1}^\infty$ has a monotonic subsequence $(a_{n_k})_{k=1}^\infty$ such that $\lim_{k\to\infty}a_{n_k}=\limsup_{n\to\infty}a_n$.
@@ -28,18 +29,39 @@ Every real sequence $(a_n)_{n=1}^\infty$ has a monotonic subsequence $(a_{n_k})_
 
 
 \chapter{Series}
-% 영역을 분할하여 극한을 구하는 메커니즘을 배운다
-% 각 수열의 점근적 성질(단조성, 진동, 레이트)이 급수의 수렴발산에 미치는 영향을 배운다
+% 문제의식: 시리즈의 수렴 및 발산 여부 판정
+% 점근적 성질(단조성, 진동, 레이트)을 배운다 (판정법)
+% 영역 분할 메커니즘을 배운다
+% 멱급수는 해석함수에서 따로 다룬다
+
+\section{Absolute convergence}
+\begin{prb}[Unconditional convergence]
+\end{prb}
+
 
 \section{Convergence tests}
+
+comparison
+limit comparison
+cauchy condensation
+integral....
+
+ratio
+root
+
+
 
 \begin{prb}[Abel transform]
 \[A_k(B_k-B_{k-1})+(A_k-A_{k-1})B_{k-1}=A_kB_k-A_{k-1}B_{k-1}\]
 \[\sum_{m<k\le n}A_kb_k=A_nB_n-A_mB_m-\sum_{m<k\le n}a_kB_{k-1}.\]
 \end{prb}
 
+abel test
 \begin{prb}[Dirichlet test]
 \end{prb}
+
+
+
 
 \begin{prb}[Mertens' theorem]
 If $\sum_{k=0}^\infty a_k$ converges to $A$ absolutely and $\sum_{k=0}^\infty b_k$ converges to $B$, then their Cauchy product $\sum_{k=0}^\infty c_k$ with $c_k:=\sum_{l=0}^ka_lb_{k-l}$ converges to $AB$.
@@ -92,8 +114,70 @@ If $a_n\downarrow0$ and $S_n\le1+na_n$, then $S_n\le1$.
 
 
 
-\chapter{Open sets and closed sets}
-% 컴팩트성에서 오픈 커버를 잡는 일반적인 방법에 대해 배운다
+\chapter{Metrics and norms}
+% 문제의식: 노름과 메트릭 추상화, 동치는 다루지 않음
+\section{Metric spaces}
+\begin{prb}[Definition of metric spaces]
+Let $X$ be a set.
+A \emph{metric} is a function $d:X\times X\to\R_{\ge0}$ such that
+\begin{parts}[(i)]
+\item $d(x,y)=0$ if and only if $x=y$, \hfill(nondegeneracy)
+\item $d(x,y)=d(y,x)$ for all $x,y\in X$, \hfill(symmetry)
+\item $d(x,z)\le d(x,y)+d(y,z)$ for all $x,y,z\in X$. \hfill(triangle inequality)
+\end{parts}
+A pair $(X,d)$ of a set $X$ and a metric on $X$ is called a \emph{metric space}.
+We often write it simply $X$.
+\begin{parts}
+\item
+A normed space $X$ is a metric space with a metric defined by $d(x,y):=\|x-y\|$.
+\item
+A subset of a metric space is a metric space with a metric given by restriction.
+\end{parts}
+\end{prb}
+
+\begin{prb}[System of open balls]
+A metric is often misunderstood as something that measures a distance between two points and belongs to the study of geoemtry.
+The main function of a metric is to make a system of small balls, sets of points whose distance from specified center points is less than fixed numbers.
+The balls centered at each point provide a concrete images of ``system of neighborhoods at a point'' in a more intuitive sense.
+In this viewpoint, a metric can be considered as a structure that lets someone accept the notion of neighborhoods more friendly.
+
+Note that taking either $\e$ or $\delta$ in analysis really means taking a ball of the very radius.
+Investigation of the distribution of open balls centered at a point is now an important problem.
+
+Let $X$ be a metric space.
+A set of the form 
+\[\{y\in X:d(x,y)<\e\}\]
+for $x\in X$ and $\e>0$ is called an \emph{open ball centered at $x$ with radius $\e$} and denoted by $B(x,\e)$ or $B_\e(x)$.
+\end{prb}
+
+\begin{prb}[Convergence and continuity in metric spaces]
+Let $\{x_n\}_n$ be a sequence of points on a metric space $(X,d)$.
+We say that a point $x$ is a \emph{limit} of the sequence or the sequence \emph{converges to $x$} if for arbitrarily small ball $B(x,\e)$, we can find $n_0$ such that $x_n\in B(x,\e)$ for all $n>n_0$.
+If it is satisfied, then we write
+\[\lim_{n\to\infty}x_n=x,\]
+or simply $x_n\to x$ as $n\to\infty$.
+We say a sequence is \emph{convergent} if it converges to a point.
+If it does not converge to any points, then we say the sequence \emph{diverges}.
+
+A function $f:X\to Y$ between metric spaces is called \emph{continuous at $x\in X$} if for any ball $B(f(x),\e)\subset Y$, there is a ball $B(x,\delta)\subset X$ such that $f(B(x,\delta))\subset B(f(x),\e)$.
+The function $f$ is called \emph{continuous} if it is continuous at every point on $X$.
+\begin{parts}
+\item A sequence $x_n$ in a metric space $X$ converges to $x\in X$ if and only if $d(x_n,x)$ converges to zero.
+\item 
+Let $f:X\to Y$ be a function between two metric spaces.
+If there is a constant $C$ such that $d(x,y)\le Cd(f(x),f(y))$ for all $x$ and $y$ in $X$, then $f$ is continuous.
+In this case, $f$ is particularly called \emph{Lipschitz continuous} with the \emph{Lipschitz constant} $C$.
+\end{parts}
+\end{prb}
+
+
+\section{Normed spaces}
+banach space
+
+\section{Open sets and closed sets}
+convergence, limit point
+\section{Compact sets}
+\section{Connected sets}
 
 
 
@@ -101,12 +185,18 @@ If $a_n\downarrow0$ and $S_n\le1+na_n$, then $S_n\le1$.
 
 
 
+
+
+
+
+
 \part{Real functions}
 
 \chapter{Continuous functions}
-% 열린 집합, 컴팩트 집합, 연결 집합과의 관계를 배운다
-% 균등 연속과 그냥 연속의 차이점을 배운다
-% 균등수렴을 새로운 노름으로서 배운다
+% 문제의식: 연속함수의 성질을 엄밀하게 기술할 수 있는 보조정리 증명, 연속함수 공간 개요
+\section{Intermediate and extreme value theorems}
+\section{Uniform continuity}
+\section{Uniform convergence}
 
 \section*{Exercises}
 
@@ -133,10 +223,13 @@ If a sequence of real functions $f_n\colon[0,1]\to[0,1]$ satisfies $|f(x)-f(y)|\
 \end{prb}
 
 \chapter{Differentiable functions}
-% 여러 미분가능공간들의 개념을 배운다
-% 테일러 정리를 통한 근사에 대한 큰 그림을 배운다
-% 미분으로 함수의 개략적 성질 파악하는 건 대체로 다들 알겠지?
 % 로피탈..
+\section{Monotonicty and convexity}
+\section{Mean value theorem}
+Darboux
+\section{Taylor's theorem}
+\section{Differentiable class}
+completeness
 
 \section*{Exercises}
 
@@ -179,9 +272,19 @@ If $f(0)=0$ there is $c$ such that $cf(c)=(1-c)f'(c)$.
 
 
 \chapter{Analytic functions}
-% 열린 집합과 세트되는 개념이라는 걸 배운다
-% 복소수랑 같이 배워서 수렴반경까지 배운다
-
+\section{Convergence of power series}
+uniform convergence and absolute convergence, abel theorem?
+differentiation
+convergence of radius
+sum, product, composition, reciprocal?
+closed under uniform convergence
+\section{Complex analytic functions}
+complex domain
+(real analytic iff its domain contains real line)
+convergence of radius, revisited
+identity theorem
+\section{Special functions}
+hypergeometric, bessel, gamma, zeta
 
 \section*{Exercises}
 
@@ -190,9 +293,13 @@ If $f(0)=0$ there is $c$ such that $cf(c)=(1-c)f'(c)$.
 \part{Integration}
 
 \chapter{Riemann integration}
-% 급수의 극한으로서의 적분을 배운다
-% 조각연속 개념이 대체 왜 나왔는지 배운다
-% 미적분학의 기본정리를 좀 강조해서 잘 배운다
+
+\section{Riemann integral}
+tagged partition
+\section{Henstock-Kurzweil intergral}
+bounded compact support <-> lebesgue
+\section{Improper integral}
+\section{Fundamental theorem of calculus for continuous functions}
 
 \section*{Exercises}
 \begin{prb}
@@ -203,33 +310,41 @@ Find the value of $\lim_{n\to\infty}\frac1n\left(\sum_{k=1}^n\frac1nf\left(\frac
 If $xf'(x)$ is bounded and $x^{-1}\int_0^xf\to L$ then $f(x)\to L$ as $x\to\infty$.
 \end{prb}
 
-\chapter{Henstock-Kurzweil intergation}
-% 이상적분의 수학적 정의나 표기가 그냥 특수한 약속 정도인 것을 배운다
 
-
-\chapter{}
+\chapter{Integrable functions}
+\section{}
 % 적분이 함수의 크기를 재는 수단임을 배운다
 % 각 함수들의 적분가능성을 배운다
 % 급수와 마찬가지로 적분이 수렴하거나 발산하게 되는 메커니즘을 배운다(영역, 함수가 얼마나 특이한지)
 
 
+\chapter{}
+
+
+
+
+
 \part{Multivariable Calculus}
 \chapter{Fre\'chet derivatives}
 % 편미분이 그냥 계산도구라는 것을 배운다
-% 편미분의 교환도 사실은 항상 다 되는 걸 배운다
+% 편미분의 교환도 사실은 항상 다 되는 걸... 배울 수 있나
 % 접공간 개념을 배운다
+\section{}
 
 
-\section{Inverse function theorem}
+\chapter{Inverse function theorem}
 % 고정점정리로 함수의 역을 찾아내는 기본 전략을 배운다
 % 선형근사의 파워를 배운다
+\section{Banach fixed point theorem}
+\section{Variations of the inverse function theorem}
+
+
 
 
 \chapter{Differential forms}
 % 텐서곱과 테일러 근사를 배운다
 % 웨지곱과 다중적분을 배운다
 
-\chapter{Stokes' theorem}
 
 
 \end{document}

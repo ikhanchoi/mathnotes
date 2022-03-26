@@ -28,10 +28,16 @@ If $A^\circ\subset B$ and $B$ is closed, then $(A\cup B)^\circ\subset B$.
 
 
 \chapter{Fundamental constructions}
+\section{Subspace topology}
+\section{Quotient topology}
+\section{Product topology}
+\section{}
+
 
 
 \chapter{Nets and sequences}
-
+\section{Eventuality filters}
+\section{Sequential spaces}
 
 
 
@@ -40,60 +46,8 @@ If $A^\circ\subset B$ and $B$ is closed, then $(A\cup B)^\circ\subset B$.
 \part{Topological structures}
 
 \chapter{Metric spaces}
-\section{Metrics}
+\section{Metric topology}
 
-\begin{prb}[Definition of metric spaces]
-Let $X$ be a set.
-A \emph{metric} is a function $d:X\times X\to\R_{\ge0}$ such that
-\begin{parts}[(i)]
-\item $d(x,y)=0$ if and only if $x=y$, \hfill(nondegeneracy)
-\item $d(x,y)=d(y,x)$ for all $x,y\in X$, \hfill(symmetry)
-\item $d(x,z)\le d(x,y)+d(y,z)$ for all $x,y,z\in X$. \hfill(triangle inequality)
-\end{parts}
-A pair $(X,d)$ of a set $X$ and a metric on $X$ is called a \emph{metric space}.
-We often write it simply $X$.
-\begin{parts}
-\item
-A normed space $X$ is a metric space with a metric defined by $d(x,y):=\|x-y\|$.
-\item
-A subset of a metric space is a metric space with a metric given by restriction.
-\end{parts}
-\end{prb}
-
-\begin{prb}[System of open balls]
-A metric is often misunderstood as something that measures a distance between two points and belongs to the study of geoemtry.
-The main function of a metric is to make a system of small balls, sets of points whose distance from specified center points is less than fixed numbers.
-The balls centered at each point provide a concrete images of ``system of neighborhoods at a point'' in a more intuitive sense.
-In this viewpoint, a metric can be considered as a structure that lets someone accept the notion of neighborhoods more friendly.
-
-Note that taking either $\e$ or $\delta$ in analysis really means taking a ball of the very radius.
-Investigation of the distribution of open balls centered at a point is now an important problem.
-
-Let $X$ be a metric space.
-A set of the form 
-\[\{y\in X:d(x,y)<\e\}\]
-for $x\in X$ and $\e>0$ is called an \emph{open ball centered at $x$ with radius $\e$} and denoted by $B(x,\e)$ or $B_\e(x)$.
-\end{prb}
-
-\begin{prb}[Convergence and continuity in metric spaces]
-Let $\{x_n\}_n$ be a sequence of points on a metric space $(X,d)$.
-We say that a point $x$ is a \emph{limit} of the sequence or the sequence \emph{converges to $x$} if for arbitrarily small ball $B(x,\e)$, we can find $n_0$ such that $x_n\in B(x,\e)$ for all $n>n_0$.
-If it is satisfied, then we write
-\[\lim_{n\to\infty}x_n=x,\]
-or simply $x_n\to x$ as $n\to\infty$.
-We say a sequence is \emph{convergent} if it converges to a point.
-If it does not converge to any points, then we say the sequence \emph{diverges}.
-
-A function $f:X\to Y$ between metric spaces is called \emph{continuous at $x\in X$} if for any ball $B(f(x),\e)\subset Y$, there is a ball $B(x,\delta)\subset X$ such that $f(B(x,\delta))\subset B(f(x),\e)$.
-The function $f$ is called \emph{continuous} if it is continuous at every point on $X$.
-\begin{parts}
-\item A sequence $x_n$ in a metric space $X$ converges to $x\in X$ if and only if $d(x_n,x)$ converges to zero.
-\item 
-Let $f:X\to Y$ be a function between two metric spaces.
-If there is a constant $C$ such that $d(x,y)\le Cd(f(x),f(y))$ for all $x$ and $y$ in $X$, then $f$ is continuous.
-In this case, $f$ is particularly called \emph{Lipschitz continuous} with the \emph{Lipschitz constant} $C$.
-\end{parts}
-\end{prb}
 
 
 \section{Topologcial equivalence of metrics}
@@ -444,14 +398,13 @@ Take a norm $\|\cdot\|$ on $V$ which may differ to $\|\cdot\|_2$.
 
 \chapter{Uniform spaces}
 
-\section{Definitions of uniformity}
+\section{Defintions of uniformity}
+
+order, metric,
 
 
 
-
-
-
-\chapter*{Exercises}
+\section*{Exercises}
 
 
 
@@ -465,6 +418,10 @@ Take a norm $\|\cdot\|$ on $V$ which may differ to $\|\cdot\|_2$.
 
 
 
+\section*{Exercises}
+\begin{prb}
+Even for a first countable uniform space, completeness and sequential completeness are not equivalent.
+\end{prb}
 
 
 
