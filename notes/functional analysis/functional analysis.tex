@@ -146,12 +146,14 @@ Riesz representation theorem.
 
 \begin{prb}[Riesz representation theorem]
 Let $H$ be a Hilbert space over a field $\F$, which is either $\R$ of $\C$.
-We will always use the notation $\<-,-\>$ for the inner product of real Hilbert spaces and the bilinear form $X^*\times X\to\F$ of canonical duality, and use the \emph{Dirac} notation $\<-|-\>$ for the inner product of real or complex Hilbert spaces.
+
+
+We use the bilinear form $\<-,-\>:X\times X^*\to\F$ of canonical duality.
+\emph{Dirac} notation $\<-|-\>$ for the inner product of a complex Hilbert spaces such that $\<x,y\>=\<y|x\>$.
 The Riesz representation theorem states that a continuous linear functional on a Hilbert space is represented by the inner product with a vector.
 \begin{parts}
-\item For each $x^*\in H^*$, there is a unique $x\in H$ such that $\<x^*,y\>=\<x|y\>$ for every $y\in H$.
-\item If $\F=\R$, $H\to H^*:x\mapsto\<x,-\>$ is a natural linear isomorphism.
-\item If $\F=\C$, $H\to H^*:x\mapsto\<x|-\>$ is a natural anti-linear isomorphism.
+\item For each $x^*\in H^*$, there is a unique $x\in H$ such that $\<y,x^*\>=\<y,x\>$ for every $y\in H$.
+\item $H\to H^*:x\mapsto\<-,x\>$ is a natural linear and anti-linear isomorphism if $\F=\R$ and $\C$, respectively.
 \end{parts}
 \end{prb}
 
@@ -240,9 +242,29 @@ Show that $\f^*(\ell^1)\subset L^1$ where $\ell^1$ and $L^1$ are considered as c
 
 
 \part{Weak topologies}
-\chapter{Dual space topologies}
+\chapter{Dual space of Banach spaces}
 \section{Weak and weak$^*$ topologies}
 boundedness, incompleteness
+
+
+\begin{prb}[Weak convergence by dense set]
+Let $X$ be a Banach space, $D$ a subset of $X^*$, and $\bar D$ the norm closure of $D$.
+For example, if $X$ has a predual $X_*\subset X^*$ and $D$ is dense in $X_*$, then $\sigma(X,\bar D)$ is the weak$^*$ topology.
+\begin{parts}
+\item There is a squence $x_n\in X$ converges to zero in $\sigma(X,D)$ but not in $\sigma(X,\bar D)$.
+\item A sequence $x_n\in X$ converges to zero in $\sigma(X,\bar D)$ if in $\sigma(X,D)$, if $\|x_n\|\le1$.
+\end{parts}
+\end{prb}
+\begin{pf}
+(b)
+Let $x^*\in\bar D$ and choose $y^*\in D$ such that $\|x^*-y^*\|<\e$
+Then,
+\[|\<x_n,x^*\>|\le\|x_n\|\|x^*-y^*\|+|\<x_n,y^*\>|.\]
+\end{pf}
+
+
+
+
 
 \section{Weak compactness}
 \begin{prb}[Banach-Alaoglu theorem]
@@ -258,30 +280,30 @@ Bishop-Phelps theorem
 Let $X$ be a Banach space and $J:X\to X^{**}$ the canonical embedding.
 Let $\{x_i^*\}_{i=1}^m\subset X^*$ and $x^{**}\in X^{**}$.
 \begin{parts}
-\item There is $x\in X$ such that $\<J(x),x_i^*\>=\<x^{**},x_i^*\>$ for all $i$.
-\item If $\|x^{**}\|\le1$, then there is $x\in X$ such that $\|x\|\le1+\e$ and $\<J(x),x_i^*\>=\<x^{**},x_i^*\>$ for all $i$, for any $\e>0$ .
+\item There is $x\in X$ such that $\<x_i^*,J(x)\>=\<x_i^*,x^{**}\>$ for all $i$.
+\item If $\|x^{**}\|\le1$, then there is $x\in X$ such that $\|x\|\le1+\e$ and $\<x_i^*,J(x)\>=\<x_i^*,x^{**}\>$ for all $i$, for any $\e>0$ .
 \item $J(\bar B_X)$ is weak$^*$-dense in $\bar B_{X^{**}}$
 \end{parts}
 \end{prb}
 \begin{pf}
 (b)
-Let $z\in X$ such that $\<J(z),x_i^*\>=\<x^{**},x_i^*\>$ for all $i$.
-Let $Y$ be the set of all $y\in X$ such that $\<J(y),x_i^*\>=0$ for all $i$.
-Then, $z+Y$ is the closed affine subsapce of $X$ containing all $y\in X$ such that $\<J(y),x_i^*\>=\<x^{**},x_i^*\>$ for all $i$.
+Let $z\in X$ such that $\<x_i^*,J(x)\>=\<x_i^*,x^{**}\>$ for all $i$.
+Let $Y$ be the set of all $y\in X$ such that $\<x_i^*,J(y)\>=0$ for all $i$.
+Then, $z+Y$ is the closed affine subsapce of $X$ containing all $y\in X$ such that $\<x_i^*,J(y)\>=\<x_i^*,x^{**}\>$ for all $i$.
 If we assume $z+Y$ does not contain any $x\in X$ such that $\|x\|\le1+\e$, then $\dist(z,Y)=\dist(0,z+Y)>1+\e$.
-By the Hahn-Banach theorem, there is $y^*\in X^*$ such that $\|y^*\|=1$, $y^*|_Y=0$, and $\<y^*,z\>>1+\e$.
+By the Hahn-Banach theorem, there is $y^*\in X^*$ such that $\|y^*\|=1$, $y^*|_Y=0$, and $\<z,y^*\>>1+\e$.
 Then, $y^*$ is a linear combination of $\{x_i^*\}_{i=1}^m$, so
-\[1+\e<\<y^*,z\>=\<J(z),y^*\>=\<x^{**},y^*\>\le\|x^{**}\|\|y^*\|\le1.\]
+\[1+\e<\<z,y^*\>=\<y^*,J(z)\>=\<y^*,x^{**}\>\le\|x^{**}\|\|y^*\|\le1.\]
 
 (c)
 Fix $x^{**}\in X^{**}$ such that $\|x^{**}\|\le1$ and let
-\[U=\bigcap_{i=1}^m\,\{\,y^{**}\in X^{**}:|\<y^{**}-x^{**},x_i^*\>|<1\,\}\]
+\[U=\bigcap_{i=1}^m\,\{\,y^{**}\in X^{**}:|\<x_i^*,y^{**}-x^{**}\>|<1\,\}\]
 be an open weak$^*$-neighborhood of $x^{**}$.
 Choose $\e>0$ such that
 \[\e\max_{1\le i\le m}\|x_i^*\|<1.\]
-By the part (b), there is $x\in X$ such that $\|x\|\le1+\e$ and $\<x^{**},x_i^*\>=\<J(x),x_i^*\>$.
+By the part (b), there is $x\in X$ such that $\|x\|\le1+\e$ and $\<x_i^*,x^{**}\>=\<x_i^*,J(x)\>$.
 If we let $y:=(1+\e)^{-1}x$, then $\|y\|\le 1$ so that
-\[|\<J(y)-x^{**},x_i^*\>|=|\<J(y)-J(x),x_i^*\>|=|\<\e J(y),x_i^*\>|\le\e\|x_i^*\|\|y\|<1\]
+\[|\<x_i^*,J(y)-x^{**}\>|=|\<x_i^*,J(y)-J(x)\>|=|\<x_i^*,\e J(y)\>|\le\e\|x_i^*\|\|y\|<1\]
 for all $i$ implies $J(y)\in U$, hence we get $J(\bar B_X)\cap U\ne\varnothing$.
 \end{pf}
 
@@ -337,6 +359,16 @@ We can show $k$ is an isomorphism so that we have
 \begin{prb}[Dunford-Pettis property]
 
 \end{prb}
+
+
+
+
+
+
+
+
+
+
 
 
 \chapter{Polar topologies}
@@ -420,6 +452,28 @@ composition makes the addition of indices.
 tensor products
 
 
+\section*{Exercises}
+\begin{prb}
+If $T:L^2([0,1])\to L^2([0,1])$ is a compact operator, then for any $\e>0$ there is a constant $C_\e>0$ such that
+\[\|Tf\|_{L^2}\lesssim\e\|f\|_{L^2}+C_\e\|f\|_{L^1}.\]
+\end{prb}
+\begin{pf}
+Suppose there is $\e>0$ such that we have sequence $f_n\in L^2$ satisfying $\|f_n\|_2=1$ and
+\[\|Tf_n\|_2>\e+n\|f_n\|_1.\]
+By the compactness of $T$, there is a subsequence $Tf_{n_k}$ converges to $g\ne0$ in $L^2$.
+Then, $\|f_{n_k}\|_1\to0$ implies $f_{n_k}\to0$ weakly in $L^2$, hence also for $Tf_{n_k}$.
+It means $g=0$, which contradicts to the assumption.
+\end{pf}
+
+
+
+
+
+
+
+
+
+
 
 \chapter{Normal operators}
 \section{Spectral theorem for compact normal operators}
@@ -467,7 +521,7 @@ Let $\Omega$ be an open subset of $\C$ and $X$ a Banach space.
 For a vector-valued function $f:\Omega\to X$, we say $f$ is \emph{differentiable} if the limit
 \[\lim_{\lambda\to\lambda_0}\mu^{-1}(f(\lambda)-f(\lambda_0))\]
 exists in $X$, and \emph{weakly differentiable} if the limit
-\[\lim_{\lambda\to\lambda_0}\mu^{-1}\<x^*,f(\lambda)-f(\lambda_0)\>\]
+\[\lim_{\lambda\to\lambda_0}\mu^{-1}\<f(\lambda)-f(\lambda_0),x^*\>\]
 exists in $\C$ for each $x^*\in X^*$.
 Then, the followings are all equivalent.
 \begin{parts}

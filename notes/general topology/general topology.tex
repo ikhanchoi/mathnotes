@@ -11,9 +11,9 @@
 \part{Topological spaces}
 
 
-\chapter{Topology}
+\chapter{Topologies}
 
-\section{Filters and topologies}
+\section{Filters and bases}
 \section{Open sets and closed sets}
 \section{Interior, closure, and boundary}
 
@@ -31,11 +31,11 @@ If $A^\circ\subset B$ and $B$ is closed, then $(A\cup B)^\circ\subset B$.
 \section{Subspace topology}
 \section{Quotient topology}
 \section{Product topology}
-\section{}
 
 
 
 \chapter{Nets and sequences}
+\section{Nets and subnets}
 \section{Eventuality filters}
 \section{Sequential spaces}
 
@@ -43,14 +43,52 @@ If $A^\circ\subset B$ and $B$ is closed, then $(A\cup B)^\circ\subset B$.
 
 
 
+
+\part{Topological properties}
+\chapter{Compactness}
+\section{Compact spaces}
+\section{Sequential compactness}
+\section{Local compactness}
+\section{Tychonoff theorem}
+
+
+\chapter{Connectedness}
+\section{Connected spaces}
+\section{Path connectedness}
+\section{Local connectedness}
+
+
+
+\chapter{Separation axioms}
+\section{Separation axioms}
+subspace and product
+
+
+\section{Normal spaces}
+not for product
+
+compact Hausdorff
+order topology
+metric topology?
+
+\section{Urysohn lemma and Tietze extension}
+
+
+
+\section*{Exercises}
+
+
+\begin{itemize}
+\item A second countable locally compact space is $\sigma$-compact.
+\item A locally compact Hausdorff space is completely regular.
+\end{itemize}
+
+
 \part{Topological structures}
 
 \chapter{Metric spaces}
-\section{Metric topology}
 
-
-
-\section{Topologcial equivalence of metrics}
+\section{Equivalence of metrics}
 \begin{prb}[Comparison of metrics]
 Let $d_1$ and $d_2$ be metrics on a set $X$.
 We say that $d_1$ is \emph{stronger than} $d_2$ (equivalently, $d_2$ is \emph{weaker than} $d_1$) or $d_1$ \emph{refines} $d_2$ if for any $x\in X$ and $\e>0$, there is $\delta>0$ such that
@@ -158,7 +196,7 @@ These kinds of problems will be profoundly treated in Chapter 3.
 One can ask some results for the equivalence of metrics characterized by a same set of continuous functions.
 However, they are generally difficult problems: is it possible to recover the base space from a continuous function space or a path space?
 
-\section{Sum of metrics}
+
 Topologies are occasionally described by not a single but several metrics.
 It provides a useful method to construct a metric or topology, which can be applied to a quite wide range of applications.
 Specifically, in a conventional way, metrics can be summed or taken maximum to make another metric out of olds.
@@ -321,6 +359,22 @@ where $\tilde\rho_i$ is either $\min\{\rho_i,1\}$ or $\rho_i/(\rho_i+1)$, is a m
 \end{parts}
 \end{prop}
 
+
+
+\section{Metrization theorems}
+
+Urysohn metrization theorem: regular second countable
+
+Paracompactness
+Dieudonne's theorem: paracompact Hausdorff is normal.
+
+
+\section{Polish spaces}
+
+
+
+
+
 \section*{Exercises}
 
 \begin{prb}[Discrete metrics]
@@ -362,8 +416,6 @@ It is a little special case of \emph{Hausdorff metric}.
 \end{prb}
 
 
-
-
 \begin{prb}[Kuratowski embedding]
 While every subset of a normed space is a metric space, we have a converse statement that every metric space is in fact realized as a subset of a normed space.
 Let $X$ be a metric space, and denote by $C_b(X)$ the space of continuous and bounded real-valued functions on $X$ with uniform norm given by
@@ -392,31 +444,29 @@ Take a norm $\|\cdot\|$ on $V$ which may differ to $\|\cdot\|_2$.
 \end{prb}
 
 
+A $\sigma$-compact locally compact space is paracompact.
+A second countable regular space is paracompact.
+
+
 
 
 
 
 \chapter{Uniform spaces}
 
-\section{Defintions of uniformity}
-
-order, metric,
+\section{Uniformities and pseudometrics}
 
 
+\section{Completely regular spaces}
+uniformizability
+Stone-C\v{e}ch compactification
 
-\section*{Exercises}
+\section{Cauchy structure}
+completion
 
-
-
-
-
-
-
-\chapter{Cauchy spaces}
-\section{Completeness}
-\section{Completion}
-
-
+\section{Relative compactness}
+compact uniform space is complete
+relatively compact
 
 \section*{Exercises}
 \begin{prb}
@@ -425,19 +475,25 @@ Even for a first countable uniform space, completeness and sequential completene
 
 
 
-\part{Topological properties}
-\chapter{Compactness}
 
 
 
-\chapter{Connectedness}
 
 
 
-\chapter{Separation Axioms}
-\section{Regular spaces}
-\section{Normal spaces}
-Dieudonne's theorem: paracompact Hausdorff is normal.
+
+\chapter{Topological groups}
+
+\section{Topological properties}
+uniform structures
+Birkhoff-Kakutani
+metrizability
+
+\section{Topological group actions}
+
+
+
+
 
 
 
@@ -451,6 +507,7 @@ Dieudonne's theorem: paracompact Hausdorff is normal.
 \part{Continuous Function Spaces}
 \chapter{Compact-open topology}
 
+\section{Topology by convergence}
 
 Topologies on $C_c(X)$ for LCH $X$: weaker to stronger
 \begin{parts}
@@ -462,27 +519,10 @@ The space $C_{\mathrm{loc}}(X)$ is defined to be $C(X)$ as a set endowed with th
 
 
 
+
+
 \chapter{Approximation of continuous functions}
-
 \section{Arzela-Ascoli theorem}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 \section{Stone-Weierstrass theorem}
 
@@ -563,93 +603,249 @@ Some examples
 locally finite Baire measures can define a linear functional on $C_c$.
 
 
-
 \section{Regular Borel measures}
 
+\begin{prb}[Regularity of Borel measures]
+Let $X$ be a topological space.
+We confine our discusssion of regularity only on Borel measures.
+For a Borel measure $\mu$ on $X$, we say $\mu$ is \emph{outer regular} if
+\[\mu(E)=\inf\{\,\mu(U):E\subset U,\ U\text{ open}\,\},\]
+and say $\mu$ is \emph{inner regular} if
+\[\mu(E)=\sup\{\,\mu(F):F\subset E,\ F\text{ closed}\,\}.\]
+Let $\mu$ be a regular Borel measure on $X$.
+\begin{parts}
+\item If $E$ is $\sigma$-finite, then for any $\e>0$ there are open $U$ and closed $F$ such that $F\subset E\subset U$ and $\mu(U\setminus F)<\e$.
+\end{parts}
+\end{prb}
+
+
+
+
+
+\begin{prb}[Finiteness and regularity]
 On which spaces are all Borel measures regular or Radon or etc?
 
-Radon measures vs regular Borel measures.
-
-Lusin theorem for normal spaces.
-
-Lusin theorem for locally compact Hausdorff spaces.
-
-Difference between tightness and inner regularity.
-
-
-\section{Riesz-Markov-Kakutani representation theorem}
-
-Consider
-\begin{es}
-\text{regBorel} \> \text{Borel} \> \text{Baire} \> C_c^{*+}.
-\end{es}
-
-Note that the surjectivity of Borel$\to C_c^{*+}$ is valid for EVERY topological space!
-Regularity of the constructed measure comes from the results of section 12.2.
-
-\begin{prb}[Existence of Borel measures]
-Let $(\Omega,\cT)$ be a topological space and $I$ a positive linear functional on $C_c(\Omega)$.
-Define a set function $\rho:\cT\to[0,\infty]$ such that
-\[\rho(U):=\sup\,\{\,I(f):f\in C_c(U),\ 0\le f\le1\,\}\]
-for $U\in\cT$.
-Define the associated outer measure $\mu^*:\cP(\Omega)\to[0,\infty]$ such that
-\[\mu^*(E):=\inf\left\{\,\sum_{i=1}^\infty\rho(U_i):E\subset\bigcup_{i=1}^\infty U_i,\ U_i\in\cT\,\right\}\]
-for $E\in\cP(\Omega)$.
-Let $\cM$ be the $\sigma$-algebra of Carath\'eodory measurable subsets relative to $\mu^*$, and $\cB$ the Borel $\sigma$-algebra.
 \begin{parts}
-\item $\mu^*|_\cT=\rho$.
-\item $\cT\subset\cM$.
-\item $I(f)=\int f\,d\mu$ for $f\in C_c(\Omega)$.
+\item In a topological space in which every closed set is $G_\delta$, every finite measure is regular.
+\end{parts}
+\end{prb}
+
+
+
+
+
+\begin{prb}[Approximation by continuous functions]
+Let $\mu$ be a regular Borel measure on a topological space $X$.
+\begin{parts}
+\item If $X$ is normal, then $C_b(X)\cap L^p(\mu)$ is dense in $L^p(\mu)$ for $1\le p<\infty$.
+\item If $X$ is locally compact Hausdorff, then $C_c(X)$ is dense in $L^p(\mu)$ for $1\le p<\infty$.
 \end{parts}
 \end{prb}
 \begin{pf}
 (a)
-If we show the countable subadditivity of $\rho$, then we have
-\[\mu^*(E)=\inf\,\{\,\rho(U):E\subset U\in\cT\,\},\]
-so we are done.
-
-Let $\{U_i\}_{i=1}^\infty$ is a countable open cover of an open set $U$.
-Take any $f\in C_c(U)$ with $0\le f\le1$.
-There is a finite subcover $\{U_j\}_{j=1}^n$ of $\supp f$.
-Let $\chi_j$ a partition of unity subordinate to $\{U_j\}_j$.
+Let $\e>0$ and suppose $E\subset X$ is measurable with $\mu(E)<\infty$.
+Since $E$ is $\sigma$-finite, we have open $U$ and closed $F$ such that $F\subset E\subset U$ and $\mu(U\setminus F)<\e/2$.
+By the Urysohn lemma, there is a continuous function $g:X\to[0,1]$ such that $g|_{U^c}=0$ and $g|_F=1$.
 Then,
-\[I(f)=I\left(\sum_{j=1}^n f\chi_j\right)=\sum_{j=1}^n I(f\chi_j)\le\sum_{j=1}^n\rho(U_j)\le\sum_{i=1}^\infty\rho(U_i).\]
-(If this sum is infinite, then the second equality may fail, so the compactness of the support is necessary. In particular, the existence of measure in the $C_b$ theory is not guaranteed.)
+\[\int|\1_E-g|\,d\mu=\int_{U\setminus F}|\1_E-g|\,d\mu\le2\mu(U\setminus K)<\e.\]
 
 (b)
-Clearly $\mu^*(E)\le\mu^*(E\cap U)+\mu^*(E\setminus U)$.
-It is enough to show only for $\mu^*(E)<\infty$.
-Let $\e>0$.
-There are $U_i\in\cT$ such that $E\subset V:=\bigcup_{i=1}^\infty U_i$ and
-\[\mu^*(E)+\frac\e3>\sum_{i=1}^\infty\rho(U_i)\ge\rho(V).\]
-(We used the countable subadditivity of $\rho$ here, but it is in fact not required.)
-Take $f\in C_c(V\cap U)$ such that $0\le f\le1$ and
-\[\rho(V\cap U)-\frac\e3<I(f).\]
-Take $g\in C_c(V\setminus\supp f)$ such that $0\le g\le1$ and
-\[\rho(V\setminus\supp f)-\frac\e3<I(g).\]
-Then, since $f+g\in C_c(V)$ and $0\le f+g\le1$,
-\[\rho(V)\ge I(f+g)>\rho(V\cap U)+\rho(V\setminus\supp f)-\frac23\e.\]
-Therefore,
-\[\mu^*(E)+\e>\rho(V\cap U)+\rho(V\setminus\supp f)\ge\mu^*(V\cap U)+\mu^*(V\setminus U)\]
-
-(c)
-Want to show $f|_C=1$ and $f\ge0$ imply $\mu(C)\le I(f)$.
-Let $U=f^{-1}((1-\e,\infty))$.
-Then, $C\subset U$.
-
-For any $g\in C_b(\Omega)$ with $0\le g\le1$ and $g|_{U^c}=0$, $(1-\e)g\le f$ implies $I(g)\le(1-\e)^{-1}I(f)$, so $\mu(U)\le(1-\e)^{-1}I(f)$.
-Done.
 \end{pf}
 
-\begin{prb}[Uniqueness of regular Borel measures]
-On $C_c(\Omega)$ is the most general case, then $C_b$ case are covered.
-Injectivity heavily relies on the regularity of measures and the Lusin theorem.
+
+\begin{prb}[Luzin's theorem]
+The theorem of Luzin is about the continuous extension.
+One of the frequent usages is to approximate indicator functions with continuous functions.
+
+Let $\mu$ be a regular Borel measure on a topological space $X$.
+Let $f:X\to\R$ be a Borel measurable function.
 \begin{parts}
-\item Injective if $\Omega$ is locally compact Hausdorff.
-\item Injective if $\Omega$ is normal.
+\item If $\mu$ is $\sigma$-finite, then for any $\e>0$ there is closed $F\subset X$ such that $f|_F:F\to\R$ is continuous.
+\item If $X$ is normal and $\mu$ is $\sigma$-finite, then for any $\e>0$ there is closed $F\subset X$ and continuous $g:X\to\R$ such that $f|_F=g|_F$ and $\mu(X\setminus F)<\e$.
+\item If $X$ is locally compact Hausdorff and $\mu$ is $\sigma$-finite, then for any $\e>0$ there is compact $K\subset X$ and continuous $g:X\to\R$ such that $f|_K=g|_K$ and $\mu(X\setminus K)<\e$.
+\item For the both above cases, if $f$ is bounded, then $g$ also can be taken to be bounded.
+\end{parts}
+\end{prb}
+\begin{pf}
+(a)
+First we assume $f$ is bounded so that $f\in L^1(\mu)$.
+Since $\R$ is second countable, we have a base $(V_n)_{n=1}^\infty$ of $\R$.
+Since $\mu$ is $\sigma$-finite, for each $n$ we can take open $U_n$ and closed $F_n$ such that $F_n\subset f^{-1}(V_n)\subset U_n$ and $\mu(U_n\setminus F_n)<\e/2^n$.
+Define $F:=\left(\bigcup_{n=1}^\infty U_n\setminus F_n\right)^c$ so that $\mu(X\setminus F)<\e$ and $F$ is closed.
+Then, the identity $f^{-1}(V_n)\cap F=U_n\cap F$ proves the continuity of $f|_F$.
+
+(b)
+Since $\mu$ is regular, with the density of continuous functions, construct a sequence $(f_n)$ of continuous functions $X\to\R$ such that $f_n\to f$ in $L^1$.
+By taking a subsequence, we may assume $f_n\to f$ pointwise.
+
+Since $\mu$ is finite, by the Egorov theorem, there is a measurable $A\subset X$ such that $f_n\to f$ uniformly on $A$ and $\mu(X\setminus A)<\e/2$.
+Since $\mu$ is inner regular, we have closed $F\subset A$ such that $\mu(A\setminus F)<\e/2$, so that we have $\mu(X\setminus F)<\e$.
+Then, $f$ is continuous on $A$, and of course on $F$.
+Since $X$ is normal, by the Tietz extension theorem, there is a continuous $g:X\to\R$ such that $f|_F=g|_F$.
+
+(b)
+
+\end{pf}
+
+
+
+
+
+
+\section{Locally compact Hausdorff spaces}
+
+
+compact  closed set not containing infty
+open     open not containing infty
+closed   closed set containing infty
+
+for a measure that ``vanishes at infty'' = tight
+two definitions of inner regularity is equivalent.
+
+IRK -> IRF
+IRK + sigma finite -> tight
+
+\begin{prb}[Tightness and inner regularity]
+We have a similar but confusing concept called tightness; we say a Borel measure $\mu$ on a topological space $X$ is \emph{tight} if for any $\e>0$ there is a compact $K\subset X$ such that $\mu(X\setminus K)<\e$.
+
+History of Bourbaki's text.
+\begin{parts}
+\item
 \end{parts}
 \end{prb}
 
+Thm. The measure contructed by RMK is lf and regular(cpt version).
+1. open set is approx by cpt sets (by def of rho, if X is LCH)
+2. meas set is approx by opn sets (by def of outer meas)
+3. sigma finite set is approx by cpt sets (by thm)
+
+\section{Riesz-Markov-Kakutani representation theorem}
+
+Consider
+\begin{cd}
+\text{regBorel}_{fin} \rar[hook]\dar[hook]& \text{Borel}_{fin} \rar\dar[hook]& \text{Baire}_{fin} \rar\dar[hook]& C_b^{*+} \dar[->>]&\\
+\text{regBorel}_{locfin} \rar[hook]& \text{Borel}_{locfin} \rar& \text{Baire}_{locfin} \rar& C_c^{*+}\rar[hook]& \text{pos lin on }C_c.
+\end{cd}
+for locally compact Hausdorff $X$.
+
+
+$\text{Borel}_{locfin}\to \text{pos lin on }C_c$ is surjective for all topological spaces.
+
+$\text{regBorel}_{fin}\to C_b^{*+}$ is injective for normal spaces.
+
+$\text{regBorel}_{locfin}\to C_c^{*+}$ is injective for locally compact Hausdorff spaces.(maybe)
+
+
+
+\begin{prb}[Existence of Borel measures]
+Let $(X,\cT)$ be a topological space.
+For a positive linear functional $I$ on $C_c(X)$, define a set function $\rho:\cT\to[0,\infty]$ such that
+\[\rho(U):=\sup\,\{\,I(f):f\in C_c(U,[0,1])\,\}.\]
+Define the associated outer measure $\mu^*:\cP(X)\to[0,\infty]$ such that
+\[\mu^*(E):=\inf\left\{\,\sum_{i=1}^\infty\rho(U_i):E\subset\bigcup_{i=1}^\infty U_i,\ U_i\text{ open}\,\right\}.\]
+Let $\cM$ be the $\sigma$-algebra of Carath\'eodory measurable subsets relative to $\mu^*$, $\cB$ the Borel $\sigma$-algebra, and $\mu:=\mu^*|_\cB$.
+\begin{parts}
+\item $\mu^*|_\cT=\rho$ if $X$ is Hausdorff.
+\item $\cB\subset\cM$.
+\item $I(f)=\int f\,d\mu$ for $f\in C_c(X)$ if $X$ is Hausdorff.
+\end{parts}
+\end{prb}
+\begin{pf}
+(a)
+Since $\rho$ is already monotone, if we only show $\rho$ is countably subadditive, then we can rewrite the outer measure as
+\[\mu^*(E)=\inf\,\{\,\rho(U):E\subset U,\ U\text{ open}\,\},\]
+so the identity $\mu^*(U)=\rho(U)$ for open $U$ clearly follows.
+
+Take any open $U$ and countable family $\{U_i\}_{i=1}^\infty$ of open sets whose union is $U$.
+Take any $f\in C_c(U,[0,1])$ and let $K:=\supp f$.
+Since $K$ is compact, there is a finite subcover $\{U_j\}_{j=1}^n$ of $K$, and since $K$ is paracompact Hausdorff, there is a partition of unitiy $\{\chi_j\}_j$ on $K$ subordinate to the open cover $\{U_j\cap K\}_j$.
+Note that $\supp\chi_j\subset U_j\cap K$ for each $j$.
+
+The set $\supp(f\chi_j)$ is closed in $K$ so the compactness, and we also have the inclusion $\supp(f\chi_j)\subset\supp\chi_j\subset U_j$.
+For every $0<a\le 1$, since $(f\chi_j)^{-1}((a,1])$ is open in the interior of $K$ and $(f\chi_j)^{-1}([a,1])$ is closed in $K$, $f\chi_j$ is continuous on $U_j$.
+Now we have checked $f\chi_j\in C_c(U_j,[0,1])$.
+
+Then, because $I$ is linear so that it preserves finite sum, we have
+\[I(f)=I\left(\sum_{j=1}^n f\chi_j\right)=\sum_{j=1}^n I(f\chi_j)\le\sum_{j=1}^n\rho(U_j)\le\sum_{i=1}^\infty\rho(U_i).\]
+Since $f$ is arbitrary, we get $\rho(U)\le\sum_{i=1}^\infty\rho(U_i)$.
+
+(b)
+It suffices to show $\cT\subset\cM$.
+Clearly $\mu^*(E)\le\mu^*(E\cap U)+\mu^*(E\setminus U)$ for any measurable $E$ and open $U$.
+For the opposite direction, take $\e>0$.
+Note that we may assume $\mu^*(E)<\infty$.
+There are open $U_i$ such that $E\subset\bigcup_{i=1}^\infty U_i$ and
+\[\mu^*(E)+\frac\e3>\sum_{i=1}^\infty\rho(U_i).\]
+Take $f_i\in C_c(U_i\cap U,[0,1])$ such that
+\[\rho(U_i\cap U)-\frac13\cdot\frac\e{2^i}<I(f_i),\]
+and take $g_i\in C_c(U_i\setminus\supp f_i,[0,1])$ such that
+\[\rho(U_i\setminus\supp f_i)-\frac13\cdot\frac\e{2^i}<I(g_i).\]
+Then, since $f_i+g_i\in C_c(U_i,[0,1])$, we have
+\begin{align*}
+\rho(U_i)\ge I(f_i+g_i)
+&>\rho(U_i\cap U)+\rho(U_i\setminus\supp f_i)-\frac23\cdot\frac\e{2^i}\\
+&\ge\rho(U_i\cap U)+\rho(U_i\setminus U)-\frac23\cdot\frac\e{2^i}.
+\end{align*}
+It implies
+\[\mu^*(E)+\e>\sum_{i=1}^\infty\rho(U_i\cap U)+\sum_{i=1}^\infty\rho(U_i\setminus U))\ge\mu^*(E\cap U)+\mu^*(E\setminus U)\]
+because $E\cap U\subset\bigcup_{i=1}^\infty U_i\cap U$ and $E\setminus U\subset\bigcup_{i=1}^\infty U_i\setminus U$.
+
+
+(c)
+We first claim that for $g\in C_c(X,[0,1])$ we have
+\[\mu(K)\le I(g)\le\mu(K'),\]
+where $K$ and $K'$ are compact and open sets such that $g|_K=1$ and $g|_{K'^c}=0$ respectively.
+The one inequality $I(g)\le\mu(K')$ directly follows from $I(g)\le\rho(U)$ for every open $U$ containing $K'$.
+For the other, let $0<\e<1$ and $U:=g^{-1}((1-\e,1])$, so that $K\subset U\subset\supp g$.
+For any $h\in C_c(U,[0,1])$, the inequality $(1-\e)h\le g$ implies $I(h)\le(1-\e)^{-1}I(g)$, so
+\[\mu(K)\le\mu(U)=\rho(U)\le(1-\e)^{-1}I(g).\]
+By limiting $\e\to0$, we get $\mu(K)\le I(g)$, the claim proved.
+
+Since $C_c(X)$ is the linear span of $C_c(X,[0,1])$, it is enough to show $I(f)=\int f\,d\mu$ for $f\in C_c(X,[0,1])$.
+For a fixed positive integer $n$ and for each index $1\le i\le n$, let $K_i:=f^{-1}([i/n,1])$ and define
+\[f_i(x):=\begin{cases}0&\text{ if }x\in K_{i-1}^c,\\1/n&\text{ if }x\in K_i,\\f(x)-(i-1)/n&\text{ if }x\in K_{i-1}\setminus K_i,\end{cases}\]
+where $K_0:=\supp f$.
+Note that $nf_i\in C_c(X,[0,1])$ and $f=\sum_{i=1}^nf_i$.
+For $1\le i\le n$ we have $\mu(K_i)<\infty$ because $K_i$ is compact subsets contained in a locally compact Hausdorff space $U:=f^{-1}((0,1])$, but $\mu(K_0)$ is possibly infinite.
+By the previous claim and the property of integral, we have
+\[\frac{\mu(K_i)}n\le I(f_i),\qquad\frac{\mu(K_i)}n\le\int f_i\,d\mu\]
+for $1\le i\le n$ and
+\[I(f_i)\le\frac{\mu(K_{i-1})}n,\qquad\int f_i\,d\mu\le\frac{\mu(K_{i-1})}n\]
+for $2\le i\le n$.
+Then, using the above inequalities and $\mu(K_n)\ge0$, we have
+\[I(f)\le I(f_1)+\int f\,d\mu\quad\text{and}\quad\int f\,d\mu\le\int f_1\,d\mu+I(f).\]
+Note that $f_1=\min\{f,1/n\}$ is a sequence of functions indexed by $n$.
+By the monotone convergence theorem, $\int f_1\,d\mu\to0$ as $n\to\infty$.
+We now show $I(f_1)$ converges to zero.
+
+For $g\in C_0(U,[0,1])$, it clearly has compact support, and and it is also continuous because $g^{-1}((a,1])$ is open in $U$ and $g^{-1}([a,1])$ is closed in $K$ for any $0<a\le1$, so that we have $C_0(U)\subset C_c(X)$.
+We also have $f_1\in C_0(U)$ since $f_1^{-1}([\e,1])$ is a compact set in $U$ for every $\e>0$.
+Therefore, $I$ is a positive linear functional on $C_0(U)$.
+Assume that $I$ is not bounded; there is no constant $C$ such that $g\in C_0(U,[0,1])$ implies $I(g)\le C$.
+Construct a sequence $(h_k)_{k=1}^\infty$ in $C_0(U,[0,1])$ such that $I(h_k)\ge2^k$, and define $h:=\sum_{k=1}^\infty h_k/2^k$ so that $h\in C_0(U,[0,1])$.
+Then, $I(h)\ge \sum_{k=1}^mI(h_k)/2^k\ge m$ for every $m>0$, it contradicts to the assumption, which means that there is a constant $C$ such that $I(g)\le C$ for all $g\in C_0(U,[0,1])$, and it proves $I(f_1)\le C/n\to0$ as $n\to\infty$.
+Therefore, $I(f)=\int f\,d\mu$.
+\end{pf}
+
+\begin{prb}[Uniqueness of regular Borel measures]
+a
+\begin{parts}
+\item If $X$ is normal, then $\text{regBorel}_{fin}\to C_b^{*+}$ is injective.
+\item If $X$ locally compact Hausdorff, then $\text{regBorel}_{locfin}\to C_c^{*+}$ is injective.
+\end{parts}
+\end{prb}
+\begin{pf}
+(a)
+Let $E$ be any measurable set.
+Since $X$ is normal and $\mu+\nu$ is a finite regular Borel measure, by the Luzin theorem, there are closed $F\subset X$ and $g\in C_b(X)$ with $0\le g\le1$ such that $\1_E|_F=g|_F$ and $(\mu+\nu)(X\setminus F)<\e/2$.
+Then,
+\begin{align*}
+|\mu(E)-\nu(E)|&=|\int\1_E\,d\mu-\int\1_E\,d\nu|\\
+&\le\int_{X\setminus F}|\1_E-g|\,d\mu+\int_{X\setminus F}|\1_E-g|\,d\nu\\
+&<2(\mu+\nu)(X\setminus F)=\e.
+\end{align*}
+
+\end{pf}
 
 
 \begin{prb}[Dual of continuous function spaces]
@@ -657,6 +853,20 @@ Injectivity heavily relies on the regularity of measures and the Lusin theorem.
 
 
 
+\section*{Exercises}
+
+\begin{prb}
+Let $X$ be a topological space, and $Y$ a second countable space.
+Let $\mu$ be a regular Borel measure on $X$.
+Let $f:X\to Y$ be a Borel measurable function.
+For any $\e>0$, there is a closed $F\subset X$ such that $\mu(X\setminus F)<\e$ and $f|_F:F\to Y$ is continuous.
+\end{prb}
+\begin{pf}
+Let $(V_n)_{n=1}^\infty$ be a base of $Y$.
+For each $n$, take open $U_n$ and closed $F_n$ such that $F_n\subset f^{-1}(V_n)\subset U_n$ and $\mu(U_n\setminus F_n)<\e/2^n$.
+Define $F:=\left(\bigcup_{n=1}^\infty U_n\setminus F_n\right)^c$ so that $\mu(X\setminus F)<\e$ and $F$ is closed.
+Then, the identity $f^{-1}(V_n)\cap F=U_n\cap F$ proves the continuity of $f|_F$.
+\end{pf}
 
 
 
@@ -665,10 +875,9 @@ Injectivity heavily relies on the regularity of measures and the Lusin theorem.
 
 
 
+%%%%%%%%%%%
 
-
-
-\section{}
+\section*{asdf}
 
 
 \begin{lem}
@@ -768,7 +977,9 @@ Since $X$ is $\sigma$-compact and Hausdorff, every closed set is a countable uni
 Since locally compact Hausdorff space is regular, the Urysohn metrization implies $X$ is metrizable, and every closed sets in metrizable space is $G_\delta$ set.
 \end{sol}
 
-\subsection{The Riesz-Kakutani theorem for positive linear functionals}
+
+
+%%%%%%%%%%%%%%%
 \begin{prb}
 Let $X$ be compact.
 There is a map from the set of finite Baire measures to the set of positive linear functionals on $C(X)$.
@@ -785,7 +996,6 @@ There is a map from the set of positive linear functionals on $C(X)$ to the set 
 \begin{sol}
 i. and ii. and iii. of Theorem 7.2.
 \end{sol}
-
 
 \begin{prb}
 Let $X$ be compact.
@@ -825,18 +1035,6 @@ Enough to show the regularity of Baire measures.
 
 
 
-
-
-
-\begin{itemize}
-\item A second countable locally compact space is $\sigma$-compact.
-\item A $\sigma$-compact locally compact space is paracompact.
-\item A second countable regular space is paracompact.
-\item A locally compact Hausdorff space is regular.
-\end{itemize}
-
-semiring
-$\sigma$-finiteness implies the uniqueness
 
 
 
