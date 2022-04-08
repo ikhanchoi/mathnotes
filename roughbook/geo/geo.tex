@@ -10,6 +10,7 @@
 \newpage
 \section{Topological group action}
 
+mit 18.786 2018 number theory II
 
 \begin{prb}
 Let $G$ be a topological group acting on a topological space $X$.
@@ -34,14 +35,21 @@ We say $f$ is \emph{Bourbaki-proper} if it is closed and proper.
 If $X$ is Hausdorff and $Y$ is locally compact, then two notions are equivalent.
 \end{prb}
 
+
+
 \begin{prb}[Properly discontinuous actions]
 Let $G$ be a topological group acting on a topological space $X$.
 Let $p:X\to X/G$ be the quotient map.
 This action is called \emph{properly discontinuous} if for every compact $K\subset X$ only finite $gK$ intersect $K$.
 \begin{parts}
-\item A free and proper action is properly
+\item If $\Gamma$ is discrete, then orbits are locally finite.
+\item If orbits are locally finite, then $\Gamma$ acts properly discontinuously.
+%\item A free and proper action is properly
+\item Suppose the stabilizer is always finite. If $\Gamma$ act properly discontinuously then $\Gamma$ is discrete.
 \end{parts}
 \end{prb}
+
+
 
 \begin{prb}[Covering space actions]
 Let $G$ be a topological group acting on a topological space $X$.
@@ -66,34 +74,159 @@ Then, $U:=K^\circ\cap\bigcap_{g\in F\setminus\{1\}}U_g$ satisfies $gU\cap U=\var
 
 
 
-\section{Hyperbolic geometry}
+\section{Hyperbolic plane geometry}
+\subsection{Fuchsian groups}
+Classification of elements
 
 
-\begin{prb}
-Consider a convex polygon $P$ in $\H^2$.
-The vertices are denoted by $v_0,v_1,\cdots,v_n=v_0$, indexed along the boundary counterclockwise.
-Denote by $s_i$ the side connecting $v_i$ and $v_{i+1}$.
+
+\subsection{Fundamental domain}
+
+\begin{prb}[Fundamental domain]
+Let $\Gamma$ be a Fuchsian group.
+An open set $D\subset\H^2$ is called a \emph{fundamental domain} of $\Gamma$ if
+\begin{enumerate}[(i)]
+\item $\{g(D):g\in\Gamma\}$ are pairwise disjoint,
+\item $\{g(\bar D):g\in\Gamma\}$ covers $\H^2$.
+\end{enumerate}
 \end{prb}
 
 \begin{prb}[Dirichlet domain]
-
-A point $v\in\partial D$ is called a \emph{vertex} if
-\end{prb}
-
-\begin{ex}
-Let $\Gamma=\PSL(2,\Z)$ be the modular group and choose the origin $2i$.
-
-\end{ex}
-
-\begin{prb}[Side pairing condition]
-Let $\Gamma$ be a discrete group of $\Isom^+(\H^2)$ and suppose $D$ is a Dirichlet domain of $\Gamma$.
-Let $V$ be 
+Let $\Gamma$ be a Fuchsian group.
+Let $z_0\in\H^2$ be a point that is not fixed by any isometry in $\Gamma\setminus\{e\}$, i.e. a non-elliptic point.
+The \emph{Dirichlet domain} of $\Gamma$ with \emph{center} $z_0$ is defined as the set
+\[D:=\bigcap_{g\in\Gamma\setminus\{e\}}\{\,z\in\H^2:d(z,z_0)<d(z,gz_0)\,\}.\]
+We denote by $\bar D$ and $\partial D$ the closure and the boundary of $D$ in $\bar\H^2$.
 \begin{parts}
-\item For each side $s_i$ of $D$, there is $g_i\in\Gamma$ such that $g_i(\bar D)\cap\bar D=s_i$. The isometry $g_i$ is called the \emph{side pairing isometry} of the side $s_i$.
-\item The side pairing isometry $g_i$ is unique if $v_i$ is 
-\item Define  $v_{j+1}$, where $g_i^{-1}(s_i)=s_j$,
+\item There exists a non-elliptic point in $\H^2$.
+\item $\{g(\bar D):g\in\Gamma\}$ is a locally finite. It is called the \emph{Dirichlet tesselation}.
+\item $D$ is a convex fundamental domain of $\Gamma$.
 \end{parts}
 \end{prb}
+\begin{pf}
+(a)
+Elliptic points are countably many.
+
+(b)
+There are finitely many $g\in\Gamma$ satisfying $B(z_0,r)\cap g(\bar D)\ne\varnothing$, since this condition implies $gz_0\in B(z_0,2r)$.
+\end{pf}
+
+\begin{prb}[Boundary and edges of Dirichlet domain]
+Let $\Gamma$ be a Fuchsian group, and let $D$ be a Dirichlet domain of $\Gamma$ with center $z_0$.
+A subset $l\subset\bar\H^2$ is called an \emph{edge} of $D$ if $l=g(\bar D)\cap\bar D$ for some $g\in\Gamma\setminus\{e\}$ and $|l|>1$.
+\begin{parts}
+\item For $g\in\Gamma\setminus\{e\}$, the set $g(\bar D)\cap\bar D$ has the three cases: the null set, one point, or a geodesic segment.
+\item If $l$ is an edge, then there is unique $g\in\Gamma\setminus\{e\}$ such that $l=g(\bar D)\cap\bar D$.
+\item The intersection of two distinct edges is one point or the null set.
+\item We have
+\[\partial D\cap\H^2\subset\bigcup_{g\in\Gamma\setminus\{e\}}g(\bar D)\cap\bar D.\]
+\item We have
+\[\partial D\cap\H^2\subset\bigcup_{l:\text{ edge}}l.\]
+\end{parts}
+\end{prb}
+\begin{pf}
+(d)
+Let $z\in\partial D\cap\H^2$.
+Since $d(z,z_0)\le d(z,gz_0)$ for all $g\in\Gamma\setminus\{e\}$ but $d(z,z_0)\ge d(z,gz_0)$ for some $g\in\Gamma\setminus\{e\}$, there is $g\in\Gamma\setminus\{e\}$ such that $d(z,z_0)=d(z,gz_0)$.
+By sending $z_0$ and $gz_0$ to $\pm1+i$ with an isometry so that $z$ is sended to a point on a imaginary axis, we can check for each $n$ that we have $B(z,1/n)\cap(\H^2\setminus\bar D)\ne\varnothing$.
+Since $B(z,1/n)\setminus\bar D$ is a non-empty open set in $\H^2\setminus\bar D$, and since
+\[\H^2\setminus\bar D\subset\H^2\setminus D=\bar{\bigcup_{g\in\Gamma\setminus\{e\}}g(D)},\]
+we can deduce that $B(z,1/n)$ intersects with $g(D)$ for some $g\in\Gamma\setminus\{e\}$.
+
+Combining this result with the local finiteness of $\{g(D):g\in\Gamma\}$, the sequence of sets
+\[\{\,g\in\Gamma\setminus\{e\}:B(z,1/n)\cap g(D)\ne\varnothing\,\}\]
+indexed by $n$ consists of non-empty finite subsets of $\Gamma\setminus\{e\}$ that are non-increasing.
+By the pigeonhole principle, there exists $g\in\Gamma\setminus\{e\}$ such that $B(z,1/n)\cap g(D)\ne\varnothing$ for all $n$, which allows to extract a sequence $z_n\in g(D)$ that converges to $z$, which implies $z\in g(\bar D)$.
+
+(e)
+Suppose $z\in\partial D\cap\H^2$ is not contained in any edges.
+Let $Z$ be the set of all $g\in\Gamma\setminus\{e\}$ such that $\{z\}=g(\bar D)\cap\bar D$.
+For $g\in\Gamma\setminus(Z\cup\{e\})$, $g(\bar D)\cap\bar D$ is the null set, one point, or an edge, and any of possibility does not contain $z$.
+Therefore,
+\[(\partial D\setminus\{z\})\cap\H^2=\bigcup_{g\in\Gamma\setminus(Z\cup\{e\})}(g(\bar D)\cap\bar D)\cap\H^2\]
+by the part (d).
+Change the restriction $\H^2$ to a compact ball as
+\[(\partial D\setminus\{z\})\cap\bar{B(z,1)}=\bigcup_{g\in\Gamma\setminus(Z\cup\{e\})}(g(\bar D)\cap\bar D)\cap\bar{B(z,1)}.\]
+Then, the left-handed side is homeomorphic to $[-1,0)\cup(0,1]$ or $(-1,1)$ since $\partial D$ is homeomorphic to $S^1$, but the right-handed side is compact because the union becomes finite due to the local finiteness.
+This is a contradiction, so $z$ is contained in an edge.
+\end{pf}
+
+\begin{prb}[Finitely generated Fuchsian group]
+Let $\Gamma$ be a Fuchsian group, and let $D$ be a Dirichlet domain of $\Gamma$ with center $z_0$.
+Let $W$ be the set of all $g\in\Gamma\setminus\{e\}$ such that $g(\bar D)\cap\bar D$ is an edge.
+\begin{parts}
+\item $W$ generates $\Gamma$.
+\item If $\Gamma$ is finitely generated, then $W$ is finite.
+\item If $W$ is finite, then $\Gamma$ is finitely generated.
+\end{parts}
+\end{prb}
+
+\begin{prb}[Siegel's theorem]
+Finite area iff finitely generated.
+\begin{parts}
+\item If $\Gamma$ is finitely generated, then
+\[\partial D=\bigcup_{l:\text{ edge}}l.\]
+\end{parts}
+\end{prb}
+
+\subsection{Side paring and cycle conditions}
+
+\begin{prb}[Side pairing condition]
+Let $\Gamma$ be a finitely generated Fuchsian group, and let $D$ be a Dirichlet domain of $\Gamma$ with center $z_0$.
+We have seen that $\partial D$ consists of finitely many edges.
+A point $v\in\partial D$ is called a \emph{vertex} if it either 
+\begin{enumerate}[(i)]
+\item the intersection of two edges, or
+\item the fixed point of elliptic isometry $g\in\Gamma$ of order two.
+\end{enumerate}
+Let $v_0,v_1,\cdots,v_n=v_0$ be vertices, indexed along the boundary counterclockwise.
+A \emph{side} is geodesic segments $s_i$ connecting $v_i$ and $v_{i+1}$.
+\begin{parts}
+\item For each side $s$ of $D$, there is unique $g_s\in\Gamma$ such that $g_s^{-1}(s)$ is another side of $D$. The isometry $g_s$ is called the \emph{side pairing isometry} of the side $s$.
+\item The side parining isometry of $g_s^{-1}(s)$ is $g_s^{-1}$.
+\item The number of sides $n$ is always even.
+\end{parts}
+\end{prb}
+\begin{pf}
+\end{pf}
+
+\begin{prb}[Cycle condition]
+Let $\Gamma$ be a finitely generated Fuchsian group, and let $D$ be a Dirichlet domain of $\Gamma$ with center $z_0$.
+Let $V$ and $S$ be the set of all vertices and sides of $D$, respectively.
+Define $\sigma:V\to V$ and $\sigma:S\to S$ which use same notation such that $\sigma(v_i)=v_{j+1}$ and $\sigma(s_i):=s_{j+1}$ where $s_j=g_s^{-1}(s_i)$.
+The map $\sigma$ can be seen as an element of the symmetric group $S_n$.
+\begin{parts}
+\item Suppose $v_0\in\H^2$ and $s=s_0$. Let $m$ be the minimal positive integer such that $\sigma^m(s)=s$. Then, $g_{\sigma^{m-1}(s)}\cdots g_{\sigma(s)}g_s$ is either the identity or elliptic.
+\item Suppose $v_0\in\partial\H^2$.
+\end{parts}
+\end{prb}
+
+
+
+\begin{prb}[Genus two surface]
+
+\end{prb}
+
+\begin{prb}[Modular group]
+Let $\Gamma=\PSL(2,\Z)$ be the modular group and choose the origin $2i$.
+$v_0=i$, $v_1=e^{\pi i/3}$, $v_2=\infty$, $v_3=e^{2\pi i/3}$.
+$g_{s_0}=S$, $g_{s_1}=T$, $g_{s_2}=T^{-1}$, $g_{s_3}=S^{-1}$.
+$\sigma=(13)$.
+The elliptic cycle condition: $(0)$ defines $SS=1$, $(13)$ defines $(S^{-1}T)^3=1$
+
+\end{prb}
+
+\subsection{The Poincar\'e polygon theorem}
+\begin{parts}
+\item If $v_i\in\H^2$, the side pairing isometry $g_i$ is unique.
+\item If $v_i\in\partial\H^2$, the parabolic side pairing isometry $g_i$ is unique .
+\end{parts}
+
+
+
+
+
+
 
 
 
