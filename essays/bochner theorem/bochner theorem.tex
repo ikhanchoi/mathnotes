@@ -6,18 +6,40 @@
 \linespread{1.1}
 
 
-\title{Positive Definite Functions\\on Locally Compact Groups}
+\title{Three perspectives on Bochner's theorem:\\from Herglotz representation\\to Pontryagin duality}
 \author{Ikhan Choi}
 
 
 \begin{document}
 \maketitle
+\begin{abstract}
+The Bochner theorem states that the image of finite Borel measures on an abelian topological group under the Fourier-Stieltjes transform is the set of continuous positive definite functions.
+This thesis will describe, prove, and investigate several examples of the Bochner theorem in its historical contexts within three different fields of mathematics, complex analysis, probability theory, and representation theory.
+\end{abstract}
+\newpage
 \tableofcontents
 
-\begin{abstract}
-Hi, I'm abstract.
-\end{abstract}
+\subsection*{Acknowledgement}
 
+
+
+
+
+% 투두리스트
+
+% 1장
+%  그냥 다 고쳐야
+
+% 2장
+%  헬리 정리 사용할 때 포트망토를 풀어 써줄 수 없나
+%  디랙이랑 연속제한 예시 추가
+
+% 3장
+%. 
+%
+
+
+\newpage
 \section{Introduction}
 
 
@@ -27,7 +49,7 @@ A function $f:G\to\C$ is called \emph{positive definite} if for each positive in
 \[\sum_{k,l=1}^nf(x_l^{-1}x_k)\xi_k\bar\xi_l\ge0\]
 is satisfied for every $n$-tuple $(x_1,\cdots,x_n)\in G^n$ and every vector $(\xi_1,\cdots,\xi_n)\in\C^n$.
 \end{defn}
-A function $f$ is positive definite if and only if bilinear forms defined by matrices $(f(x_ix_j^{-1}))_{i,j=1}^n$ for each positive integer $n$ are hermitian, and even more, positive \emph{semi}-definite, regardless of any choices of $(x_1,\cdots,x_n)\in G^n$.
+A function $f$ is positive definite if and only if bilinear forms defined by matrices $(f(x_l^{-1}x_k))_{k,l=1}^n$ for each positive integer $n$ are hermitian, and even more, positive \emph{semi}-definite, regardless of any choices of $(x_1,\cdots,x_n)\in G^n$.
 
 We give some several remarkable properties and examples of positive definite functions as follows:
 
@@ -37,8 +59,8 @@ For the set of all positive definite functions, the following properties hold:
 \begin{parts}
 \item It is closed under complex conjugation. Furthermore, $\bar{f(x)}=f(x^{-1})$.
 \item It is closed under positive scalar multiplication.
-\item It is closed under summation.
-\item It is closed under product.
+\item It is closed under pointwise summation.
+\item It is closed under pointwise product.
 \end{parts}
 \end{prop}
 \begin{pf}
@@ -66,7 +88,7 @@ Therefore, $\bar f(x)=f(x^{-1})$.
 \end{pf}
 
 \begin{prop}[Analytic properties]
-Let $G$ be a group.
+Let $G$ be a group with identity $e$.
 \begin{parts}
 \item If $f$ is positive definite, then $\sup_{x\in G}|f(x)|\le f(e)$.
 \item If $f_n$ is a sequence of positive definite functions, then the pointwise limit $\lim_{n\to\infty}f_n$ is also positive definite.
@@ -121,31 +143,92 @@ The extended Fourier transform, but reversing the sign convention on the phase t
 In terms of probability theory, it is nothing but the function defined by the expectation $\f(t):=Ee^{itX}$, where $X$ is a random variable of law $\mu$.
 The Bochner theorem states that the necessary and sufficient condition for being a characteristic function is the positive definiteness and continuity.
 
-Summaries for Section 4 and Section 5... will be here.
 
 
 
 
-
-
+\newpage
 \section{On the group $\Z$: complex analysis}
 
-Before the discussion of big theorems including the Carath\'eodory-Toeplitz theorem and the Herglotz-Riesz representation theorem, we develop a lemma as a preparation for the interplay between complex analysis and Fourier analysis.
 
-\begin{lem}[Fourier series of analytic functions]
+
+In this section, we are going to investigate the origin of positive definiteness that occurs in the context of complex analysis via establishing the following one-to-one correspondences:
+\begin{figure}[h]
+\begin{tikzcd}[column sep = 0]
+&\begin{tabular}{c}Points in the closed convex hull of\\the curve $(e^{-i\theta},e^{-i2\theta},\cdots)$ in $\C^\N$\end{tabular}&\\
+\begin{tabular}{c}Positive definite\\sequences $(c_k)_{k\in\Z}$\\with $c_0=1$\end{tabular}
+&\text{Carath\'eodory functions}\lar[<->]\uar[<->]\rar[<->]
+&\begin{tabular}{c}Probability Borel\\measures on $\T$\end{tabular}.
+\end{tikzcd}
+\end{figure}
+
+The vertical, left, and right arrows are discussed in Section 2.1, 2.2, and 2.3 respectively.
+The definition of each term will be given throughout this section, and Bochner's theorem on the additivie group $\Z$ will be finally deduced as a corollary of the above correspondences.
+
+\subsection{The Carath\'eodory coefficient problem}
+
+The concept of positive definiteness of functions were originally inspired by the ``Carath\'eodory coefficient problem'' in early complex analysis.
+The problem asks the condition on the power series coefficients for an analytic function defined on the open unit disk to have values of positive real part.
+In other words, the Carath\'eodory coefficient problem describes the power series coefficients of some special functions precisely defined as follows:
+
+\begin{defn}
+The \emph{Carath\'eodory class} is the set of all analytic functions $f$ that map the open unit disk into the region of positive real part, with normalization condition $f(0)=1$.
+A function in the Carath\'eodory class will be often called a \emph{Carath\'eodory function}.
+\end{defn}
+
+\begin{ex}[M\"obius transforms]
+Typical examples of functions in the Carath\'eodory class are given by the family of functions
+\[f_\theta(z)=\frac{e^{i\theta}+z}{e^{i\theta}-z}=1+\sum_{k=1}^\infty2e^{-ik\theta}z^k\]
+parametrized by $\theta\in[0,2\pi)$.
+We can check they are eactly the M\"obius transformations that map the unit disk to the right half space having normalization $f(0)=1$.
+This family of examples play a crucial role in the representation problem of functions in the Carath\'eodory class.
+\end{ex}
+
+\begin{ex}[Convex combinations]
+Note the Carath\'eodory class is convex; if $f_0$ and $f_1$ belong to the Carath\'eodory class, then the real part of the image of the function
+\[f_t(z)=(1-t)f_0(z)+tf_1(z)\]
+is also positive for $0<t<1$ and $f_t(0)=(1-t)+t=1$, so $f_t$ also belongs to the Carath\'eodory class.
+\end{ex}
+
+\begin{ex}[Positive harmonic functions]
+Let $f$ be in the Carath\'eodory class.
+By definition, the real part $\Re f:\D\to\R$ is a positive harmonic function such that $f(0)=1$.
+Conversely, since there is a unique harmonic conjugate up to constant, we can recover $f$ from its real part by letting $\Im f(0)=0$.
+In other words, there is a one-to-one correspondence between the Carath\'odory class and the positive harmonic functions on the open uni disk that has the value one at zero.
+\end{ex}
+
+Carath\'eodory's result intuitively tells us that every function in the Carath\'eodory class can be constructed by convex combinations the M\"obius transforms $f_\theta$.
+As a result, they can be viewed as ``extreme points'' in the Carath\'eodory class.
+We discuss about the extreme points after the proof of the Carath\'eodory theorem.
+
+Before the discussion, we develop a lemma as a preparation for the interplay between complex analysis and Fourier analysis.
+
+\begin{lem}[Fourier coefficient of analytic functions]
 Let $f$ be an analytic function on the open unit disk $\D$ with $f(0)\in\R$ with
 \[f(z)=c_0+\sum_{k=1}^\infty2c_kz^k,\]
 the power series expansion of $f$ at $z=0$.
-Use the notation $c_{-k}:=\bar c_k$.
-\begin{parts}
-\item For $0\le r<1$ and $0\le \theta<2\pi$, we have
-\[\Re f(re^{i\theta})=\sum_{k=-\infty}^\infty c_kr^{|k|}e^{ik\theta}.\]
-\item For $0\le r<1$, we have
-\[c_kr^{|k|}=\frac1{2\pi}\int_0^{2\pi}\Re f(re^{i\theta})e^{-ik\theta}\,d\theta.\]
-\end{parts}
+Then, for $0\le r<1$ and $k\in\Z$ we have
+\[c_kr^{|k|}=\frac1{2\pi}\int_0^{2\pi}\Re f(re^{i\theta})e^{-ik\theta}\,d\theta,\]
+where we use the notation $c_{-k}:=\bar c_k$.
 \end{lem}
 \begin{pf}
-(a)
+Suppose $k>0$ first.
+The Cauchy integral formula writes
+\begin{align*}
+2c_kk!=\pd[k]{f}{z}(0)=\frac{k!}{2\pi i}\int_{|z|=r}\frac{f(z)}{z^{k+1}}\,dz=\frac{k!}{2\pi i}\int_0^{2\pi}\frac{f(re^{i\theta})}{(re^{i\theta})^{k+1}}\,ire^{i\theta}\,d\theta,
+\end{align*}
+and it implies
+\[2c_kr^k=\frac1{2\pi}\int_0^{2\pi}f(re^{i\theta})e^{-ik\theta}\,d\theta.\]
+Since $f(z)\,z^k$ is analytic, the Cauchy theorem is applied to have
+\[0=\frac1{2\pi i}\int_{|z|=r}f(z)\,z^k\,dz=\frac1{2\pi}\int_0^{2\pi}f(re^{i\theta})r^ke^{ik\theta}\,d\theta,\]
+and it implies
+\[0=\frac1{2\pi}\int_0^{2\pi}\bar{f(re^{i\theta})}e^{-ik\theta}\,d\theta.\]
+By combining the above equations, we obtain the formula.
+For $k=0$, applying the Cauchy theorem for $f$, we have
+\[c_0=f(0)=\frac1{2\pi i}\int_{|z|=r}\frac{f(z)}z\,dz=\frac1{2\pi}\int_0^{2\pi}\Re f(re^{i\theta})\,d\theta.\]
+For $k<0$, we can obtain the same formula by taking complex conjugation on the case $k>0$.
+
+Alternaively, we can show the same result using the orthogonal relation of complex exponential functions.
 Easy computation shows the identity
 \begin{align*}
 \Re f(re^{i\theta})
@@ -154,37 +237,20 @@ Easy computation shows the identity
 &=\frac12\left[\left(1+\sum_{k=1}^\infty2c_kr^ke^{ik\theta}\right)+\left(1+\sum_{k=1}^\infty2\bar{c_k}r^ke^{-ik\theta}\right)\right]\\
 &=\sum_{k=-\infty}^\infty c_kr^{|k|}e^{ik\theta}.
 \end{align*}
-
-(b)
-It is clear from the uniform convergence of the series in the part (a) and the orthogonality
-\[\frac1{2\pi i}\int_0^{2\pi}e^{-ik\theta}e^{il\theta}\,d\theta=\begin{cases}1&\text{ if }k=l\\0&\text{ if }k\ne l\end{cases}.\]
+From the uniform convergence of the power series on the compact set $\{z:|z|\le(r+1)/2\}$ and the orthogonality
+\[\frac1{2\pi}\int_0^{2\pi}e^{-ik\theta}e^{il\theta}\,d\theta=\begin{cases}1&\text{ if }k=l\\0&\text{ if }k\ne l\end{cases},\]
+it follows that
+\[\frac1{2\pi}\int_0^{2\pi}\Re f(re^{i\theta})e^{-ik\theta}\,d\theta=\sum_{l=-\infty}^{\infty}c_lr^{|l|}\frac1{2\pi}\int_0^{2\pi}e^{il\theta}e^{-ik\theta}\,d\theta=c_kr^{|k|}.\qedhere\]
 \end{pf}
 
-\subsection{The Carath\'eodory coefficient problem}
-
-The positive definiteness of functions were originally inspired by ``Carath\'eodory coefficient problem'' in complex analysis.
-The problem asks the condition on the power series coefficients for an analytic function defined on the open unit disk to have values of positive real part.
-The original paper deals with the functions analytic on a neighborhood of the closed unit disk, but the idea is extended well to the functions that has harsh behavior on the boundary.
-
-\begin{defn}
-The \emph{Carath\'eodory class} is the set of all analytic functions $f$ that map the open unit disk into the region of positive real part, with normalization condition $f(0)=1$.
-\end{defn}
-
-
-Typical examples of functions in the Carath\'eodory class are given by the family of functions
-\[f_\theta(z)=\frac{e^{i\theta}+z}{e^{i\theta}-z}=1+\sum_{k=1}^\infty2e^{-ik\theta}z^k\]
-parametrized by $\theta\in[0,2\pi)$.
-We can check they are eactly the M\"obius transformations that map the unit circle to the imaginary axis satisfying $f(0)=1$.
-Note the Carath\'eodory class is convex; if $f_0$ and $f_1$ are in the Carath\'eodory class, then the real part of the image of the function $f_t(z)=(1-t)f_0(z)+tf_1(z)$ is also positive for $0<t<1$ and $f_t(0)=(1-t)+t=1$, so $f_t$ also belongs to the Carath\'eodory class.
-It clearly implies that the convex combination of $f_\theta$ is also in the Carath\'eodory class.
-Carath\'eodory's result tells us that the converse statement also holds in a modified sense, so that $f_\theta$ can be viewed as ``extreme points'' in the Carath\'eodory class.
-We discuss about the extreme points later.
-Precisely, it is stated as follows:
+Now, we prove the theorem.
+The original paper of Carath\'eodory deals with the functions analytic on a neighborhood of the closed unit disk, but the same idea is extended well to the functions that may have harsh behavior on the boundary.
+Furthermore, by loosening the regularity requirement at boundary, we can establish the exact description of Carath\'eodory functions in terms of their coefficients.
 
 \begin{thm}[Carath\'eodory]
 Let $f$ be an analytic function on the open unit disk with the power series expansion
 \[f(z)=1+\sum_{k=1}^\infty2c_kz^k.\]
-Then, $f$ belongs to the Carath\'eodory class if and only if the point $(c_1,\cdots,c_n)\in\C^n$ belongs to the convex hull of the curve $(e^{-i\theta},\cdots,e^{-in\theta})\in\C^n$ parametrized by $\theta\in[0,2\pi)$ for each $n$.
+Then, $f$ belongs to the Carath\'eodory class if and only if for each $n$ the point $(c_1,\cdots,c_n)\in\C^n$ belongs to the convex hull of the curve $(e^{-i\theta},\cdots,e^{-in\theta})\in\C^n$ parametrized by $\theta\in[0,2\pi)$.
 \end{thm}
 \begin{pf}
 ($\Leftarrow$)
@@ -242,9 +308,7 @@ thanks to the positivity of $\Re f$, and by limiting $r\to1$ from left we get th
 \[\Re\sum_{k=1}^nc_k\bar u_k\le M.\qedhere\]
 \end{pf}
 
-
-Here we introduce an infinite-dimentional description of this theorem, combining with the Herglotz representation theorem, suggests a rough but intuitional description of the space of probability measures on the unit circle $\T$.
-
+Here we introduce an infinite-dimentional version of this theorem.
 
 \begin{prop}
 Consider a sequence space $\C^\N$, endowed with the standard product topology.
@@ -331,20 +395,32 @@ It proves $\Re f(z)\ge0$ for $|z|<1$, and we obtain $\Re f(z)>0$ by the open map
 
 \subsection{The Herglotz-Riesz representation theorem}
 
-Herglotz proved another equivalent condition in 1911, considered as the first Bochner-type theorem, which states the correspondence between the Carath\'eodory class and probability Borel measure on the unit circle.
+Herglotz proved another equivalent condition for the Carath\'eodory class in 1911, considered as the first Bochner-type theorem, which states the correspondence between the Carath\'eodory class and probability Borel measure on the unit circle.
+The Carath\'eodory theorem states that the function $f$ in the Carath\'eodory class is a limit of convex combinations of M\"obius transforms $z\mapsto(e^{i\theta}+z)/(e^{i\theta}-z)$.
+Herglotz's theorem, which we now also often call as the Herglotz-Riesz representation theorem, states that in fact $f$ is directly represented by the integral of the M\"obius transforms with respect to a newly constructed probability measure, instead of limiting process of convex sums.
+
 The essential difficulty comes from the construction of a measure, and here we resolve this in the aid of either Helly's selection theorem or the Riesz-Markov-Kakutani representation theorem.
-Suppose a function $f$ in the Carath\'eodory class is analytic on a neighborhood of the closed unit disk $\bar\D$.
+Suppose the function $f$ is analytic on a neighborhood of the closed unit disk $\bar\D$.
 In this case, by appropriately manipulate the identities for $r=1$ in Lemma 2.1, or by using the Cauchy integral formula along the unit circle, we can get
 \[f(z)=\frac1{2\pi}\int_0^{2\pi}\frac{e^{i\theta}+z}{e^{i\theta}-z}\Re f(e^{i\theta})\,d\theta.\]
-Based on this representation of $f$, we will approximate the measure $d\mu$ with the absolutely continuous measures $(2\pi)^{-1}\Re f(re^{i\theta})\,d\theta$ by limiting $r\uparrow1$.
-More precisely, we will use the following equation, which is justified by the uniform convergence of power series: for each $|z|<1$,
+Based on this representation of $f$, we will try to approximate the measure $d\mu$ with the absolutely continuous measures $(2\pi)^{-1}\Re f(re^{i\theta})\,d\theta$ by limiting $r\uparrow1$.
+More precisely, we will use the following lemma:
+\begin{lem}
+Let $f$ be an analytic function on the open unit disk.
+For $|z|<1$,
+\[f(z)=\lim_{r\uparrow1}\frac1{2\pi}\int_0^{2\pi}\frac{e^{i\theta}+z}{e^{i\theta}-z}\Re f(re^{i\theta})\,d\theta.\qedhere\]
+\end{lem}
+\begin{pf}
+By 
 \begin{align*}
 \lim_{r\uparrow1}\frac1{2\pi}\int_0^{2\pi}\frac{e^{i\theta}+z}{e^{i\theta}-z}\Re f(re^{i\theta})\,d\theta
 &=\lim_{r\uparrow1}\frac1{2\pi}\int_0^{2\pi}\left(1+\sum_{k=1}^\infty2e^{-ik\theta}z^k\right)\Re f(re^{i\theta})\,d\theta\\
 &=1+\lim_{r\uparrow1}\sum_{k=1}^\infty2\left(\frac1{2\pi}\int_0^{2\pi}e^{-ik\theta}\Re f(re^{-i\theta})\,d\theta\right)z^k\\
 &=1+\lim_{r\uparrow1}\sum_{k=1}^\infty2c_kr^kz^k\\
-&=f(z).
+&=f(z).\qedhere
 \end{align*}
+\end{pf}
+
 
 \begin{thm}[The Herglotz-Riesz representation theorem]
 Let $f$ be a complex-valued function defined on the open unit disk.
@@ -369,16 +445,16 @@ Define $f_n(\theta):=(2\pi)^{-1}\Re f((1-n^{-1})e^{i\theta})$ and
 for $\theta\in[0,2\pi]$.
 Note $F_n(0)=0$ and $F_n(2\pi)=1$ for all $n$.
 Since $\Re f\ge0$, $F_n$ is also monotonically increasing.
-Therefore, the sequence $(F_n)_n$ has a pointwise convergent subsequence $(F_j)_j$ on $[0,2\pi]$ by the Helly's selection theorem.
+Therefore, the sequence $(F_n)_n$ has a pointwise convergent subsequence $(F_{n_j})_j$ on $[0,2\pi]$ by the Helly's selection theorem.
 Let
-\[F(\theta):=\lim_{\psi\downarrow\theta}\lim_{j\to\infty}F_j(\psi).\]
-Then, we have $F(0)=0$ and $F(2\pi)=1$, and $F_j$ converges to $F$ at every continuity point $\theta$ of $F$.
-It means $F_j$ converges to $F$ weakly, so by the Portemanteau theorem, we get
-\[\int_0^{2\pi}\frac{e^{i\theta}+z}{e^{i\theta}-z}dF_j(\theta)\to\int_0^{2\pi}\frac{e^{i\theta}+z}{e^{i\theta}-z}dF(\theta)\]
+\[F(\theta):=\lim_{\psi\downarrow\theta}\lim_{j\to\infty}F_{n_j}(\psi).\]
+Then, we have $F(0)=0$ and $F(2\pi)=1$, and $F_{n_j}$ converges to $F$ at every continuity point $\theta$ of $F$.
+It means $F_{n_j}$ converges to $F$ weakly as $j\to\infty$, so by the Portemanteau theorem, we get
+\[\int_0^{2\pi}\frac{e^{i\theta}+z}{e^{i\theta}-z}dF_{n_j}(\theta)\to\int_0^{2\pi}\frac{e^{i\theta}+z}{e^{i\theta}-z}dF(\theta)\]
 as $j\to\infty$ since $\theta\mapsto(e^{i\theta}+z)/(e^{i\theta}-z)$ is continuous and bounded on $\T$.
 On the other hand,
-\[\int_0^{2\pi}\frac{e^{i\theta}+z}{e^{i\theta}-z}dF_j(\theta)
-=\frac1{2\pi}\int_0^{2\pi}\frac{e^{i\theta}+z}{e^{i\theta}-z}\Re f((1-j^{-1})e^{i\theta})\,d\theta\to f(z)\]
+\[\int_0^{2\pi}\frac{e^{i\theta}+z}{e^{i\theta}-z}dF_{n_j}(\theta)
+=\frac1{2\pi}\int_0^{2\pi}\frac{e^{i\theta}+z}{e^{i\theta}-z}\Re f((1-n_j^{-1})e^{i\theta})\,d\theta\to f(z)\]
 as $j\to\infty$.
 Therefore, by the uniqueness of limit, we have
 \[f(z)=\int_0^{2\pi}\frac{e^{i\theta}+z}{e^{i\theta}-z}dF(\theta)=\int_0^{2\pi}\frac{e^{i\theta}+z}{e^{i\theta}-z}d\mu(\theta),\]
@@ -386,37 +462,41 @@ where $\mu$ is the probability measure on $\T$ defined by the distribution funct
 \end{pf}
 
 \begin{pf}[Second proof: using the Riesz representation theorem]
-As we have seen in the first proof using Helly's selection theorem, one direction is trivial.
-Suppose $f$ is in the Carath\'eodory class.
+As we have seen in the first proof that uses Helly's selection theorem, one direction is trivial.
+Suppose $f$ is a Carath\'eodory function.
 Let $g\in C(\T)$ be a complex-valued test function.
-Define a complex linear functional $l$ on $C(\T)$ as
-\[l[g]:=\lim_{r\uparrow1}\frac1{2\pi}\int_0^{2\pi}g(\theta)\Re f(re^{i\theta})\,d\theta.\]
-It is positive and bounded since $\Re f\ge0$ and $l[1]=1$.
-By the Riesz-Markov-Kakutani representation theorem, there is a measure $\mu$ on $\T$ such that
+Define a sequence of complex linear functionals $l_n$ on $C(\T)$ as
+\[l_n[g]:=\frac1{2\pi}\int_0^{2\pi}g(\theta)\Re f((1-n^{-1})e^{i\theta})\,d\theta.\]
+It is positive and bounded since $\Re f\ge0$ and $\|l_r\|=l_r[1]=1$.
+By the Alaoglu theorem, the sequence has $(l_n)_n$ a subsequence $(l_{n_j})_j$ that converges in the weak$^*$ topology of $C(\T)^*$.
+If we let $l$ be the limit, then $l[1]=\lim_{j\to\infty}l_{n_j}[1]=1$ because $1\in C(\T)$.
+(Notice that it does not valid if the domain space, $\T$ here, is not compact, and we will see this problem more carefully in the next chapter.)
+
+By the Riesz-Markov-Kakutani representation theorem, there is a probability Borel measure $\mu$ on $\T$ such that
 \[l[g]=\frac1{2\pi}\int_0^{2\pi}g(\theta)\,d\mu(\theta)\]
 for all $g\in C(\T)$.
-If we expand $f$ as
-\[f(z)=1+\sum_{k=1}^\infty2c_kz^k,\]
-then for each fixed $z$ in the open unit disk we have
-\[\frac1{2\pi}\int_0^{2\pi}\frac{e^{i\theta}+z}{e^{i\theta}-z}d\mu(\theta)
-=\lim_{r\uparrow1}\frac1{2\pi}\int_0^{2\pi}\frac{e^{i\theta}+z}{e^{i\theta}-z}\Re f(re^{i\theta})\,d\theta=f(z).\qedhere\]
+Then, for each fixed $z$ in the open unit disk it follows from Lemma 2.5 that
+\[\frac1{2\pi}\int_0^{2\pi}\frac{e^{i\theta}+z}{e^{i\theta}-z}d\mu(\theta)=l[g_z]=\lim_{j\to\infty}l_{n_j}[g_z]=f(z)\]
+since $g_z(\theta):=(e^{i\theta}+z)/(e^{i\theta}-z)$ belongs to $C(\T)$.
 \end{pf}
 
-As a corollary of the Herglotz' theorem, we finally arrive at:
-\begin{cor}[The Bochner theorem on $\Z$]
-A function $c:\Z\to\C$ is positive-definite if and only if there is a finite regular Borel measure $\mu$ on $\T=\R/2\pi\Z$ such that $2\pi\hat\mu=c$.
+As a corollary of Herglotz' theorem, we finally arrive at:
+
+\begin{cor}[Bochner's theorem on $\Z$]
+A function $c:\Z\to\C$ is positive-definite and $c_0=1$ if and only if there is a probability Borel measure $\mu$ on $\T=\R/2\pi\Z$ such that
+\[c_k=\int_0^{2\pi}e^{-ik\theta}\,d\mu(\theta).\]
 \end{cor}
 \begin{pf}
-Let $\mu$ be a finite Borel measure on $\T$.
-Then, $\hat\mu$ is positive definite because
+Let $\mu$ be a probability Borel measure on $\T$.
+Then, the sequence defined in the statement is positive definite because
 \begin{align*}
-\sum_{k,l=1}^n\hat\mu(k-l)\xi_k\bar\xi_l
-&=\sum_{k,l=1}^n\frac1{2\pi}\int_0^{2\pi}e^{-i(k-l)\theta}\,d\mu(\theta)\ \xi_k\bar\xi_l\\
-&=\frac1{2\pi}\int_0^{2\pi}\left|\sum_{k=1}^ne^{-ik\theta}\xi_k\right|^2d\mu(\theta)\ge0
+\sum_{k,l=1}^nc_{k-l}\xi_k\bar\xi_l
+&=\sum_{k,l=1}^n\int_0^{2\pi}e^{-i(k-l)\theta}\,d\mu(\theta)\ \xi_k\bar\xi_l\\
+&=\int_0^{2\pi}\left|\sum_{k=1}^ne^{-ik\theta}\xi_k\right|^2d\mu(\theta)\ge0
 \end{align*}
-for any $(\xi_1,\cdots,\xi_n)\in\C^n$.
+for any $(\xi_1,\cdots,\xi_n)\in\C^n$, and $c_0=1$ is clear.
 
-On the other hand, if the sequence $(c_k)_{k=-\infty}^\infty$ is positive definite, then, with the assumption $c_0=1$, the function $z\mapsto1+\sum_{k=1}^\infty2c_kz^k$ is in the Carath\'eodory class.
+On the other hand, if the sequence $(c_k)_{k=-\infty}^\infty$ is positive definite and $c_0=1$, then the function $z\mapsto1+\sum_{k=1}^\infty2c_kz^k$ is in the Carath\'eodory class.
 By the Herglotz-Riesz representation theorem, there is a probability regular Borel measure $\mu$ on $\T$ such that
 \begin{align*}
 1+\sum_{k=1}^\infty2c_kz^k
@@ -424,25 +504,16 @@ By the Herglotz-Riesz representation theorem, there is a probability regular Bor
 &=\int_0^{2\pi}\left(1+\sum_{k=1}^\infty2e^{-ik\theta}z^k\right)\,d\mu(t)\\
 &=1+\sum_{k=1}^\infty2\left(\int_0^{2\pi}e^{-ik\theta}\,d\mu(\theta)\right)z^k
 \end{align*}
-in $z\in\D$, hence that
-\[c_k=\int_0^{2\pi}e^{-ik\theta}\,d\mu(\theta)=2\pi\hat\mu(k).\qedhere\]
+in $z\in\D$, hence the desired result follows.
 \end{pf}
 
-So far, we have proved the following one-to-one correspondences:
-\begin{figure}[h]
-\begin{tikzcd}
-&\begin{tabular}{c}Closed convex hull of\\the curve $(e^{-i\theta},e^{-i2\theta},\cdots)$\end{tabular}&\\
-\begin{tabular}{c}Positive definite\\sequences $(c_k)_k$\\with $c_0=1$\end{tabular}
-&\text{Carath\'eodory class}\lar[<->]\uar[<->]\rar[<->]
-&\begin{tabular}{c}Probability Borel\\measures on $\T$\end{tabular}.
-\end{tikzcd}
-\end{figure}
 
+\begin{ex}[Dirac measures]
 
+\end{ex}
+\begin{ex}[Continuous restrictions]
 
-
-\section{Examples: }
-
+\end{ex}
 
 
 
@@ -451,24 +522,41 @@ So far, we have proved the following one-to-one correspondences:
 \newpage
 \section{On the group $\R$: probability theory}
 
-\subsection{Weak convergence of probability measures}
-
 We have seen the relation of positive definite sequences and measures on the unit circle $\T$.
 On the real line $\R$, predictably, we can also prove that there exists a correspondence between measures and positive definite functions.
-Herglotz' representation theorem used measures to characterize certain complex functions, but on $\R$, and more generally on a locally compact group $G$, we will see how the positive functions play an important role in studying measures.
-The use of positive definite functions to study measures virtually starts in probability theory; a probability distribution is defined as a measure on a state space, which is $\R$ for usual random variables.
-Especially to see several probability distributions and their limit behaviors, the theory and tools to deal with weak convergence of probability distributions have occured, and positive definite functions were the most successful.
-The direct connection between convergences in two different realms, measures and positive definite functions, is encoded in the L\'evy continuity theorem.
-For example, several limit theorems in probability theory such as Lindeberg's central limit theorem are described and proved in terms of positive definite functions.
+The previous chapter used measures to characterize certain complex functions and positive definite sequences, but from this section, we will see how the positive functions are used in studying measures.
+
+The systematic study of positive definite functions to study measures virtually starts in probability theory by Paul L\'evy.
+Recall that a probability distribution is defined as a measure of norm one on a ``state space'', which is $\R$ for usual random variables.
+Some classical problems including central limit problems and laws of large numbers arisen in probability theory want to describe limit behaviors of probability distributions.
+L\'evy's discovery was that it is easier to verify the convergence of probability distributions via the \emph{Fourier transforms} of probability measures, instead of the measures themselves.
+
+The Fourier transform(often called as \emph{Fourier-Stieltjes} transform when we emphasize the \emph{measures}, the objects transformed) of a probability measure is called a \emph{characteristic function}.
+One of possible statement of Bochner's theorem is that a complex function on a real line is a characteristic function of a probability measure if and only if it is continuous and positive definite, i.e. the theorem gives the one-to-one correspondence of probability measures on $\R$ and the continuous positive definite functions on $\R$, under the Fourier-Stieltjes transform.
+
+
+
+\subsection{Topologies on the space of probability measures}
+
 
 \begin{defn}[Weak convergence]
-Let $(\mu_n)_n$ and $\mu$ be probability Borel measures on a metric space.
+Let $(\mu_n)_n$ and $\mu$ be probability Borel measures on a metric space $S$.
 We say $\mu_n$ \emph{weakly converges to} $\mu$ if
 \[\int g\,d\mu_n\to\int g\,d\mu\]
-as $n\to\infty$ for any $g$ continuous bounded functions.
+as $n\to\infty$ for any $g\in C_b(S)$, where $C_b(S)$ denotes the space of continuous and bounded functions.
 \end{defn}
 
-A characteristic function is defined as the Fourier transform, but reversed the sign convention on the phase term, of a probability measure, and is the place where the positive definiteness comes.
+
+
+
+
+
+\subsection{The Le\'vy continuity theorem}
+
+The direct connection between convergences in two different realms, measures and positive definite functions, is encoded in the L\'evy continuity theorem.
+In this section, we will prove Bochner's theorem on $\R$ with the aid of the L\'evy continuity theorem.
+This theorem connects the weak convergence of probability measures and pointwise convergence of \emph{characteristic functions}.
+A characteristic function is defined as the Fourier transform, but conventionally reversed the sign on the phase term, of a probability measure, and is the place where the positive definiteness comes.
 
 \begin{defn}[Characteristic functions]
 Let $\mu$ be a probability measure on $\R$ and $X$ a random variable of distributioin $\mu$.
@@ -477,7 +565,7 @@ The \emph{characteristic function} of $X$ is a function $\f:\R\to\C$ defined by 
 Equilvalently, $\f$ is given by
 \[\f(t):=\int e^{itx}\,d\mu(x).\]
 \end{defn}
-\begin{prop}
+\begin{prop}[Basic properties of characteristic functions]
 Let $\f$ be a characteristic function of a probability Borel measure $\mu$ on $\R$.
 \begin{parts}
 \item $\f$ is positive definite.
@@ -486,62 +574,172 @@ Let $\f$ be a characteristic function of a probability Borel measure $\mu$ on $\
 \end{prop}
 \begin{pf}
 \end{pf}
+\begin{ex}[Mathias' examples]
+
+\end{ex}
+\begin{ex}[Polya]
+\end{ex}
 
 Characteristic functions take an advantage that we can learn the information about probability measures by investigating the continuous functions instead of studying measures directly.
 
 
 
-\begin{thm}[L\'evy's continuity theorem]
-Let $(\mu_n)_n$ be a sequence of probability Borel measures and $\f_n$ their characteristic functions.
-Then, $\mu_n$ converges weakly to a probability Borel measure $\mu$ if and only if $\f_n$ converges pointwise to a function $\f$ that is continuous at zero.
-\end{thm}
+\begin{defn}[Tight measures]
+
+\end{defn}
+
+In order for a family of probability measures to be tight, their tail probabilities ought to be uniformly controlled.
+The following lemma is useful in bounding tail probabilities in terms of characteristic functions; the averaging of $1-\f$ near zero provides with a reasonable estimate of the tail probability.
+
+\begin{lem}
+Let $\mu$ be a probability Borel measure on $\R$ and $\f$ be its characteristic function.
+Then,
+\[\mu([-\tfrac2\delta,\tfrac2\delta]^c)\le2\cdot\frac1{2\delta}\int_{-\delta}^\delta(1-\f(t))\,dt\]
+for any $\delta>0$.
+In particular, a single measure is tight.
+\end{lem}
 \begin{pf}
+Write the average with the sinc function as
+\begin{align*}
+\frac1{2\delta}\int_{-\delta}^\delta\f(t)\,dt
+&=\int\frac1{2\delta}\int_{-\delta}^\delta e^{itx}\,dt\,d\mu(x)\\
+&=\int\frac1{2\delta}\cdot\frac{e^{i\delta x}-e^{-i\delta x}}{ix}\,d\mu(x)\\
+&=\int\frac{\sin\delta x}{\delta x}\,d\mu(x).
+\end{align*}
+Then, for appropriate constant $R>0$ we have the following estimate of the sinc function term
+\begin{align*}
+\int\frac{\sin\delta x}{\delta x}\,d\mu(x)
+\le\int_{|x|\le R}1d\mu(x)+\int_{|x|>R}\frac1{|\delta x|}\,d\mu(x)\\
+=1-\int_{|x|>R}\left(1-\frac1{|\delta x|}\right)\,d\mu(x).
+\end{align*}
+If we take $R=\frac2\delta$, then the Chebyshev inequality has
+\[\frac12\mu([-\tfrac2\delta,\tfrac2\delta]^c)\le\int_{|x|>\frac2\delta}\left(1-\frac1{|\delta x|}\right)\,d\mu(x)\le1-\frac1{2\delta}\int_{-\delta}^\delta\f(t)\,dt,\]
+so we are done.
 \end{pf}
 
 
+\begin{thm}[The L\'evy continuity theorem]
+Let $(\mu_n)_{n=1}^\infty$ be a sequence of probability Borel measures on $\R$ and $\f_n$ their characteristic functions.
+Then, $\mu_n$ converges weakly to a probability Borel measure $\mu$ if and only if $\f_n$ converges pointwise to a function $\f$ that is continuous at zero.
+\end{thm}
+\begin{pf}
+($\Rightarrow$)
 
-\subsection{Weak$^*$ topology on probability measures}
+($\Leftarrow$)
+For $\e>0$, take $\delta>0$ using the continuity of $\f$ such that
+\[\frac1{2\delta}\int_{-\delta}^\delta(1-\f(t))\,dt<\frac\e4.\]
+By the bounded convergence theorem, there is $N>0$ such that
+\[\frac1{2\delta}\int_{-\delta}^\delta|\f_n(t)-\f(t)|\,dt<\frac\e4\]
+so that we have
+\[\mu_n([-\tfrac2\delta,\tfrac2\delta]^c)\le2\cdot\frac1{2\delta}\int_{-\delta}^\delta(1-\f_n(t))\,dt<\e\]
+for all $n>N$.
+For each $n\le N$, since every single measure is tight, there is compact $K_n\subset\R$ such that $\mu(K_n^c)<\e$.
+If we define a compact set $K:=[-\frac2\delta,\frac2\delta]\cup\bigcup_{n=1}^NK_n$, then $\mu_n(K^c)<\e$ for all $n$, so the sequence $\mu_n$ is tight.
 
-We now have a question: why is the weak convergence defined like that?
-In subsequent sections 4 and 5, we will extend the domain $\R$ to some general spaces like locally compact groups $G$.
-The topology of weak convergence is expected to be generalized on $G$.
-In this regard, we suggests a possible answer to the above question in view of functional analysis.
-We are also now going to see here a small hint of why we extend the theory only to \emph{locally compact groups}, but not to the more general topological groups.
-
-Vauge convergence of probability measures, which is equivalent to the weak convergence in nice domains such as $\R$, has an entirely suitable functional-analytic interpretation: the weak$^*$ topology.
-When probability measures are recognized as positive linear functionals on a function space via integration, they are embeded into the dual of the function space, and the weak$^*$ topology can be inherited onto the space of probability measures.
-Furthermore, the Riesz-Markov-Kakutani representation theorem allows to describe the exact geometry of the space of probability measures as a \emph{compact} convex subset of the locally convex space $C_0(\R)^*$.
-
-We will see that why 
+Let $(\mu_{n_j})_j$ be any subsequence that converges weakly to a probability measure.
+The limit of this subsequence is independent on the choice of the subsequence since its characteristic function is given by the pointwise limit $\lim_{j\to\infty}\f_{n_j}=\f$, by the first half of this theorem.
+Let $\mu$ be this unique limit.
+Then, $\mu_n$ converges weakly to $\mu$ since the tightness guarantees that every subsequence of $\mu_n$ has a further subsequence, which converges to $\mu$ weakly.
+\end{pf}
 
 
+There are various ways to prove Bochner's theorem on $\R$.
+For example, we can prove it using either Helly's selection theorem or the Riesz-Markov-Kakutani representation theorem in the same manner as we did in the previous chapter.
+We introduce a new proof that follows from the Herglotz representation theorem, in order to see the relation of two Bochner's theorem on $\Z$ and $\R$.
+In this proof, the L\'evy continuity theorem is used as a key lemma.
 
-\subsection{A proof of Bochner's theorem}
+\begin{cor}[Bochner's theorem on $\R$]
+A function $\f:\R\to\C$ is continuous and positive-definite such that $\f(0)=1$ if and only if there is a probability Borel measure $\mu$ on $\R$ such that
+\[\f(t)=\int e^{itx}\,d\mu(x).\]
+\end{cor}
+\begin{pf}
+Let $\mu$ be a probability Borel measure on $\R$.
+Then, the function $\f$ defined in the statement is positive definite because
+\begin{align*}
+\sum_{k,l=1}^n\f(t_k-t_l)\xi_k\bar\xi_l
+&=\sum_{k,l=1}^n\int e^{i(t_k-t_l)x}\,d\mu(x)\xi_k\bar\xi_l\\
+&=\int\left|\sum_{k=1}e^{it_kx}\xi_k\right|^2\,d\mu(x)\ge0.
+\end{align*}
+It is continuous because a single probability measure $\mu$ is tight so that for every $\e>0$ there is $M>0$ such that
+\begin{align*}
+|\f(t)-\f(s)|&\le\int|e^{itx}-e^{isx}|\,d\mu(x)
+=\int|2\sin(\frac{t-s}2x)|\,d\mu(x)\\
+&\le\int_{|x|\le M}|(t-s)x|\,d\mu(x)+\int_{|x|>M}\,d\mu(x)\\
+&\le M|t-s|+\frac\e2<\e
+\end{align*}
+whenever $|t-s|<\e/2M$.
+The normalization condition $f(0)=1$ is clear.
+
+Conversely, suppose $\f$ is continuous and positive definite.
+For each small $u>0$, since the sequence $(\f(uk))_{k\in\Z}$ is positive definite, by the Herglotz-Riesz representation theorem, there is a finite regular Borel measure $\nu_u$ on $[-\pi,\pi)$ such that
+\[\f(uk)=\int_{-\pi}^\pi e^{-ik\theta}\,d\nu_u(\theta)\]
+for every $k\in\Z$.
+If we define a measure $\mu_u$ on $\R$ such that the support is contained in $[-\pi/u,\pi/u]$ and $\mu_u(E):=\nu_u(-uE)$ for Borel sets $E\subset[-\pi/u,\pi/u)$, then
+\[\f(uk)=\int_{-\pi/u}^{\pi/u}e^{iukx}\,d\mu_u(x)=\f_u(uk)\]
+for every $k\in\Z$, where $\f_u$ is the characteristic function of $\mu_n$.
+
+Note that $\nu_u$ converges to the Dirac measure $\delta_0$ as $u\to0$ in weak$^*$ topology of $C(\T)^*$ where $\T$ is identified with the interval $[-\pi,\pi)$.
+This is because trigonometric polynomials are uniformly dense in $C(\T)$ and $\nu_u$ are uniformly bounded in norm; for any $\e>0$ and $g\in C(\T)$, there is a trigonometric polynomial $h=\sum_kc_ke^{-ik\theta}$ such that $\|g-h\|_{C(\T)}<\e/2$, which implies
+\begin{align*}
+|\<g,\nu_u\>-g(0)|
+&\le|\<g-h,\nu_u\>|+|\<h,\nu_u\>-h(0)|+|h(0)-g(0)|\\
+&\le\e+|\sum_kc_k\f(uk)-h(0)|
+\end{align*}
+and
+\[\sum_kc_k\f(uk)\to\sum_kc_k=h(0)\]
+as $u\to0$.
+
+For each $t\in\R$ and $u>0$, take $t_u$ such that $|t-t_u|<u/2$ and $t_u\in u\Z$.
+Then, we get
+\begin{align*}
+|\f_u(t)-\f_u(t_u)|
+&=|\int(e^{itx}-e^{it_ux})\,d\mu_u(x)|\\
+&=|\int_{-\pi}^\pi(e^{i\frac tu\theta}-e^{i\frac{t_u}u\theta})\,d\nu_u(\theta)|\\
+&\le\int_{-\pi}^\pi\left|\left(\frac tu-\frac{t_u}u\right)\theta\right|\,d\nu_u(\theta)\\
+&\le\frac12\int_{-\pi}^\pi|\theta|\,d\nu_u(\theta)\to0
+\end{align*}
+as $u\to0$ since the function $\theta\mapsto|\theta|$ is continuous function on $\T$ if we view it as $[-\pi,\pi)$.
+Therefore, the pointwise convergence is verfied as
+\begin{align*}
+|\f_u(t)-\f(t)|&\le|\f_u(t)-\f_u(t_u)|+0+|\f(t_u)-\f(t)|\to0
+\end{align*}
+as $u\to0$, and since $\f$ is continuous at zero, we can conclude that $\f$ is a characteristic function by the L\'evy continuity theorem.
+\end{pf}
+
+
+\subsection{Bochner's theorem in infinite dimensions}
+
+bochner
+measure <=> pos def continuous
+
+schwarts bochner (finite condition removed)
+tempered measure <=> pos def tempered dist
+
+
+on hilbert space
+measure <=> pos def continuous + trace class
+
 
 
 \subsection{Examples: Polya's criterion}
 Mathias' examples
 
-\subsection{Application: Stone-von Neumann theorem}
 
 
 
 
 
 
-\section{On locally compact abelian groups}
+\section{On locally compact groups: representation theory}
 
 \subsection{Dual group and Fourier transform}
-\subsection{Proofs of Bochner's theorem}
-\subsection{Application: Pontryagin duality}
-\subsection{Examples: groups in number theory}
+\subsection{The Pontryagin duality}
+\subsection{Examples: topological groups in number theory}
 $p$-adic integer $\Z_p$ and the Pr\"ufer $p$-subgroup.
 Profinite integers and $\Q/\Z$.
 Tate thesis: locally compact group of adeles.
 
-
-
-\section{On locally compact non-abelian groups}
+\subsection{Why not non-abelian?}
 
 
 
