@@ -27,22 +27,26 @@ This thesis will describe, prove, and investigate several examples of the Bochne
 
 % 투두리스트
 
-% 1장
-%  그냥 다 고쳐야
+% 1.1 도입 깔끔하게
+% 1.1 예시 몇개만 넣기
+% 1.2 서베이 참고해서 좀 정리하기
 
-% 2장
-%  헬리 정리 사용할 때 포트망토를 풀어 써줄 수 없나
-%  디랙이랑 연속제한 예시 추가
+% 2.3 헬리 정리 사용할 때 포트망토를 풀어 써주기 - 6월에 해도 돼
+% 2.3 연속제한 예시 추가, z^m으로 메져 복붙하는 예시 추가
 
-% 3장
-%. 
-%
+% 3.1 씨스타 대수 얘기 자아아알 넣어보자
+% 3.2 보흐너 정리 증명 하나 더 추가
+%   https://www.jstor.org/stable/25049427?seq=4
+% 3.3 폴리야 증명 좀 빨리 읽어라, 사실 그냥 레비 쓰는 것뿐
+% 3.4 힐베르트 공간? 연속함수 공간?
+
 
 
 \newpage
 \section{Introduction}
 
 
+\subsection{Positive definite functions}
 \begin{defn}
 Let $G$ be a group.
 A function $f:G\to\C$ is called \emph{positive definite} if for each positive integer $n$ a non-negativity condition
@@ -53,67 +57,74 @@ A function $f$ is positive definite if and only if bilinear forms defined by mat
 
 We give some several remarkable properties and examples of positive definite functions as follows:
 
-\begin{prop}[Algebraic properties]
-Let $G$ be a group.
-For the set of all positive definite functions, the following properties hold:
+\begin{prop}
+Let $G$ be a group with identity $e$, and let $(f_m)_{m=1}^\infty$ be a sequence of positive functions on $G$.
+Then,
 \begin{parts}
-\item It is closed under complex conjugation. Furthermore, $\bar{f(x)}=f(x^{-1})$.
-\item It is closed under positive scalar multiplication.
-\item It is closed under pointwise summation.
-\item It is closed under pointwise product.
+\item $\bar f_1$ is positive definite. Indeed, $\bar{f_1(x)}=f_1(x^{-1})$.
+\item $af_1$ is positive definite for $a\ge0$.
+\item $f_1+f_2$ is positive definite.
+\item $f_1f_2$ is positive definite.
+\item $|f_1(x)|\le f_1(e)$ for all $x\in G$.
+\item If the pointwise limit $f=\lim_{m\to\infty}f_m$ exists, then $f$ is positive definite.
+\item Let $G$ be a topological group. If $f_1$ is continuous at the $e$, then it is both-sided uniformly continuous.
 \end{parts}
 \end{prop}
 \begin{pf}
 (a)
-Let $n=1$ and $\xi_1\ne0$.
-Then, $0\le f(e)|\xi_1|^2$ implies $f(e)\in\R$.
-
-Let $n=2$ with $x_1=e$ and $x_2=x$, and let $\xi_2=1$.
-Then,
+Note $0\le\bar\xi f(e)\xi$ implies $f(e)\in\R$.
+Since
 \begin{align*}
-0&\le f(e)|\xi_1|^2+f(x^{-1})\xi_1\bar\xi_2+f(x)\xi_2\bar\xi_1+f(e)|\xi_2|^2\\
-&=f(e)(1+|\xi_1|^2)+f(x^{-1})\xi_1+f(x)\bar\xi_1,
+0&\le\mat{1&\bar\xi}\mat{f(e)&f(x^{-1})\\f(x)&f(e)}\mat{1\\\xi}\\
+&=f(x^{-1})\xi+f(e)(1+|\xi|^2)+f(x)\bar\xi,
 \end{align*}
-so
+we have
 \begin{align*}
-0&=\Im(f(x^{-1})\xi_1+f(x)\bar\xi_1)\\
-&=(\Re f(x^{-1})-\Re f(x))\Im\xi_1+(\Im f(x^{-1})+\Im f(x))\Re\xi_1
+0&=\Im(f(x^{-1})\xi+f(x)\bar\xi)\\
+&=(\Re f(x^{-1})-\Re f(x))\Im\xi+(\Im f(x^{-1})+\Im f(x))\Re\xi
 \end{align*}
-for all $\xi_1\in\C$.
-Therefore, $\bar f(x)=f(x^{-1})$.
+for all $\xi\in\C$, so $\bar f(x)=f(x^{-1})$.
 
-(b) and (c) are clearly true by definition.
+(b) and (c) are clear from definition.
 
 (d) It follows from the Schur product theorem, which states that the Hadamard product(componentwise product) of two positive semi-definite matrices is also positive semi-definite.
-\end{pf}
 
-\begin{prop}[Analytic properties]
-Let $G$ be a group with identity $e$.
-\begin{parts}
-\item If $f$ is positive definite, then $\sup_{x\in G}|f(x)|\le f(e)$.
-\item If $f_n$ is a sequence of positive definite functions, then the pointwise limit $\lim_{n\to\infty}f_n$ is also positive definite.
-\item Let $G$ be a locally compact group. If $f_n$ is a sequence of positive definite functions that converges to $f$ pointwisely and $f_n(e)=1$, then $f_n$ converges to $f$ compactly.
-\item Let $G$ be a locally compact group. If $f$ is positive definite and continuous at the $e$, then it is both-sided uniformly continuous. (It holds for $G=\R$, but I have not checked for arbitrary $G$. I suspect it holds.)
-\end{parts}
-\end{prop}
-\begin{pf}
-(a)
-Let $n=2$ with $x_1=e$ and $x_2=x$, and let $|\xi_1|=|\xi_2|=1$.
-Then,
-\[0\le f(e)|\xi_1|^2+f(x^{-1})\xi_1\bar\xi_2+f(x)\xi_2\bar\xi_1+f(e)|\xi_2|^2=2f(e)+2f(x)\xi_2\bar\xi_1.\]
-Taking $\xi_1$ and $\xi_2$ such that $\xi_2\bar\xi_1$ has the same argument with $\bar f(x)$, we obtain $|f(x)|\le f(e)$.
+(e)
+Let $f_1=f$ and write
+\begin{align*}
+0&\le\mat{1&\bar\xi}\mat{f(e)&f(x^{-1})\\f(x)&f(e)}\mat{1\\\xi}\\
+&=f(e)(1+|\xi|^2)+2\Re(f(x)\bar\xi).
+\end{align*}
+Taking $\xi=f(x)/|f(x)|$ if $f(x)\ne0$, we obtain $|f(x)|\le f(e)$.
 
-(b)
+(f)
 The defining property of positive definite functions is purely algebriac, so that it is preserved by pointwise limit.
 
-(c) and (d) are too difficult to prove at this point, we will be proved later.
+(g)
+Let $f=f_1$ and write
+\begin{align*}
+0&\le\mat{1&\bar\xi&\bar\eta}\mat{f(e)&f(x^{-1})&f(h^{-1}x^{-1})\\f(x)&f(e)&f(h^{-1})\\f(xh)&f(h)&f(e)}\mat{1\\\xi\\\eta}\\
+&=f(e)(1+|\xi|^2+|\eta|^2)+2\Re(f(x)\bar\xi+f(xh)\bar\eta+f(h)\xi\bar\eta).
+\end{align*}
+If $\eta=-\xi$, then
+\[0\le f(e)+2(f(e)-\Re f(h))|\xi|^2+2\Re((f(x)-f(xh))\bar\xi).\]
+Taking
+\[\xi=\frac1{\e}\cdot\frac{f(xh)-f(x)}{|f(xh)-f(x)|}\]
+for $\e>0$ if $f(x)\ne f(xh)$, we obtain an inequality
+\[|f(xh)-f(x)|\le\frac\e2f(e)+\frac1\e(f(e)-\Re f(h)),\]
+so that we have
+\[\limsup_{h\to e}\sup_{x\in G}|f(xh)-f(x)|\le\frac\e2f(e).\]
+Since $\e$ can be taken aribtrarily, $f$ is right uniformly continuous.
+The left uniform continuity is shown in the same manner.
 \end{pf}
+
 
 \begin{ex}
 
 \end{ex}
 
-\bigskip
+
+\subsection{Brief history of Bochner's theorem}
 
 This thesis follows the historical flows to extract mathematical ideas behind the positive definite functions.
 In particular, we are concerned with the results like the following \emph{Bochner-type theorems}:
@@ -147,6 +158,9 @@ The Bochner theorem states that the necessary and sufficient condition for being
 
 
 
+
+
+
 \newpage
 \section{On the group $\Z$: complex analysis}
 
@@ -162,7 +176,7 @@ In this section, we are going to investigate the origin of positive definiteness
 \end{tikzcd}
 \end{figure}
 
-The vertical, left, and right arrows are discussed in Section 2.1, 2.2, and 2.3 respectively.
+The vertical, left, and right arrows in the above diagram are discussed in Section 2.1, 2.2, and 2.3 respectively.
 The definition of each term will be given throughout this section, and Bochner's theorem on the additivie group $\Z$ will be finally deduced as a corollary of the above correspondences.
 
 \subsection{The Carath\'eodory coefficient problem}
@@ -347,7 +361,7 @@ Conversely, every extreme point of $K$ is contained in the curve $(e^{-i\theta},
 \subsection{Toeplitz's algebraic condition}
 
 Toeplitz discovered the coefficient condition addressed in the Carath\'eodory's paper which regards convex bodies enveloped by a curve can be equivalently described in terms of an algebraic condition that the hermitian matrices
-\[H_n:=(c_{k-l})_{k,l=1}^n=\mat{c_0&c_1&c_2&\cdots&c_{n-1}\\c_{-1}&c_0&c_1&\cdots&c_{n-2}\\c_{-2}&c_{-1}&c_0&\cdots&c_{n-3}\\\vdots&\vdots&\vdots&\ddots&\vdots\\c_{-n+1}&c_{-n+2}&c_{-n+3}&\cdots&c_0}\]
+\[H_n:=(c_{k-l})_{k,l=1}^n=\mat{c_0&c_{-1}&c_{-2}&\cdots&c_{-n+1}\\c_1&c_0&c_{-1}&\cdots&c_{-n+2}\\c_2&c_1&c_0&\cdots&c_{-n+3}\\\vdots&\vdots&\vdots&\ddots&\vdots\\c_{n-1}&c_{n-2}&c_{n-3}&\cdots&c_0}\]
 of size $n\times n$ always have non-negative determinant for any $n$.
 This algebraic condition is equivalent to that $H_n$ are all positive semi-definite matrices.
 Since the principal minors of a positive semi-definite matrix is positive semi-definite, and since a hermitian matrix such that every leading principal minor has non-negative determinant is positive semi-definite, the bilateral sequence $(c_k)_{k=-\infty}^\infty$ is positive definite function when we consider it as a complex-valued function on $\Z$ that maps an integer $k$ to $c_k$ if and only if it is a positive definite \emph{sequence} in the following sense:
@@ -411,13 +425,13 @@ For $|z|<1$,
 \[f(z)=\lim_{r\uparrow1}\frac1{2\pi}\int_0^{2\pi}\frac{e^{i\theta}+z}{e^{i\theta}-z}\Re f(re^{i\theta})\,d\theta.\qedhere\]
 \end{lem}
 \begin{pf}
-By 
+By the uniform convergence of the power series on the closed disk $\{z:|z|\le(r+1)/2\}$ for each fixed $r<1$, we have
 \begin{align*}
 \lim_{r\uparrow1}\frac1{2\pi}\int_0^{2\pi}\frac{e^{i\theta}+z}{e^{i\theta}-z}\Re f(re^{i\theta})\,d\theta
 &=\lim_{r\uparrow1}\frac1{2\pi}\int_0^{2\pi}\left(1+\sum_{k=1}^\infty2e^{-ik\theta}z^k\right)\Re f(re^{i\theta})\,d\theta\\
 &=1+\lim_{r\uparrow1}\sum_{k=1}^\infty2\left(\frac1{2\pi}\int_0^{2\pi}e^{-ik\theta}\Re f(re^{-i\theta})\,d\theta\right)z^k\\
 &=1+\lim_{r\uparrow1}\sum_{k=1}^\infty2c_kr^kz^k\\
-&=f(z).\qedhere
+&=\lim_{r\uparrow}f(rz)=f(z).\qedhere
 \end{align*}
 \end{pf}
 
@@ -509,11 +523,42 @@ in $z\in\D$, hence the desired result follows.
 
 
 \begin{ex}[Dirac measures]
-
+Identify $\T=\R/2\pi\Z$ with the interval $[0,2\pi)$.
+For each $\psi\in[0,2\pi)$, the M\"obius transform $f_\psi(z)=(e^{i\psi}+z)/(e^{i\psi}-z)$ corresponds to the Dirac measure $\delta_\psi$, defined as
+\[\delta_\psi(E):=\begin{cases}1&,\text{ if }\psi\in E,\\0&,\text{ if }\psi\notin E\end{cases}\]
+for Borel measurable $E\subset[0,2\pi)$.
+This is not only a direct consequence of the Herglotz-Riesz representation theorem, but also viewed as a property of the Poisson kernel.
+Recall that the measure $\mu$ in the Hergloz theorem is constructed as the weak$^*$ limit of $(2\pi)^{-1}\Re f(re^{i\theta})\,d\theta$ with $r\uparrow1$.
+The Poisson kernel is given as the real part of the M\"obius transform
+\[P_r(\psi-\theta)=\frac{1-r^2}{1-2r\cos(\theta-\psi)+r^2}=\Re\left(\frac{1+re^{i(\theta-\psi)}}{1-re^{i(\theta-\psi)}}\right)=\Re f_\psi(re^{i\theta}).\]
+Since
+\[\lim_{r\uparrow1}\frac1{2\pi}\int g(\theta)P_r(\psi-\theta)\,d\theta=g(\psi)=\int g(\theta)\,d\delta_\psi(\theta)\]
+for all $g\in C(\T)$, we have $(2\pi)^{-1}\Re f(re^{i\theta})\,d\theta\to\delta_\psi$ in weak$^*$ topology of $C(\T)^*$.
 \end{ex}
+
+\iffalse
 \begin{ex}[Continuous restrictions]
-
+Let $f$ be a Carath\'eodory function and $\tau:\D\to\D$ be an analytic function on the open unit disk $\D$.
+Then, the composition $f\circ\tau$ is Carath\'eodory.
+The probability measure on $\T$ corresponded to this function
 \end{ex}
+
+\begin{ex}[Circle homeomorphism]
+For example, if a Carath\'eodory function $f$ and a probability measure $\mu$ on $\T=\R/2\pi\Z$ satisfies
+\[f(z)=\int\frac{e^{i\theta}+z}{e^{i\theta}-z}\,d\mu(\theta),\]
+then
+\[f(\tau(z))=\int\frac{e^{i\theta}+z}{e^{i\theta}-z}\,d\mu'(\theta),\]
+where
+\end{ex}
+\fi
+
+
+
+
+
+
+
+
 
 
 
@@ -541,54 +586,82 @@ One of possible statement of Bochner's theorem is that a complex function on a r
 
 \begin{defn}[Weak convergence]
 Let $(\mu_n)_n$ and $\mu$ be probability Borel measures on a metric space $S$.
-We say $\mu_n$ \emph{weakly converges to} $\mu$ if
+We say $\mu_n$ \emph{converges weakly to} $\mu$ if
 \[\int g\,d\mu_n\to\int g\,d\mu\]
 as $n\to\infty$ for any $g\in C_b(S)$, where $C_b(S)$ denotes the space of continuous and bounded functions.
 \end{defn}
 
+\begin{defn}[Vague convergence]
+Let $(\mu_n)_n$ and $\mu$ be probability Borel measures on a locally compact Hausdorff space $\Omega$.
+We say $\mu_n$ \emph{converges vaguely to} $\mu$ if
+\[\int g\,d\mu_n\to\int g\,d\mu\]
+as $n\to\infty$ for any $g\in C_0(\Omega)$, where $C_0(\Omega)$ denotes the space of continuous functions vanishing at infinity.
+By the Riesz-Markov-Kakutani representation theorem, the topology of vague convergence coincides with the weak$^*$ topology of the dual space $C_0(\Omega)^*$.
+\end{defn}
+
+\begin{defn}[States]
+Let $\cA$ be a C$^*$-algebra.
+A \emph{state} is a positive linear functional $\rho$ on $\cA$ such that $\|\rho\|=1$.
+Denote the space of states of $\cA$ by $S(\cA)$.
+\end{defn}
 
 
+\begin{defn}[Tight measures]
+Let $S$ be a set of probability measures on a metric space $S$.
+\end{defn}
+\begin{thm}[The Prokhorov theorem]
+
+\end{thm}
 
 
 
 \subsection{The Le\'vy continuity theorem}
 
-The direct connection between convergences in two different realms, measures and positive definite functions, is encoded in the L\'evy continuity theorem.
-In this section, we will prove Bochner's theorem on $\R$ with the aid of the L\'evy continuity theorem.
+One of the direct connection in probability theory between convergences in two different realms, measures and positive definite functions, is encoded in the L\'evy continuity theorem.
 This theorem connects the weak convergence of probability measures and pointwise convergence of \emph{characteristic functions}.
-A characteristic function is defined as the Fourier transform, but conventionally reversed the sign on the phase term, of a probability measure, and is the place where the positive definiteness comes.
+In this section, we will prove Bochner's theorem on $\R$ with the aid of the L\'evy continuity theorem.
+
+A characteristic function is defined as the Fourier transform, but conventionally reversed the sign on the phase term, of a probability measure.
+Characteristic functions take an advantage that we can learn the information about probability measures by studying the continuous functions instead of measures themselves.
 
 \begin{defn}[Characteristic functions]
-Let $\mu$ be a probability measure on $\R$ and $X$ a random variable of distributioin $\mu$.
-Note that such random variable always exists.
-The \emph{characteristic function} of $X$ is a function $\f:\R\to\C$ defined by $\f(t):=Ee^{itX}$.
-Equilvalently, $\f$ is given by
+Let $\mu$ be a probability Borel measure on $\R$.
+The \emph{characteristic function} of $\mu$ is a function $\f:\R\to\C$ defined by
 \[\f(t):=\int e^{itx}\,d\mu(x).\]
+Equivalently, if $\mu$ is the distribution of a random variable $X$, then $\f(t)=Ee^{itX}$.
 \end{defn}
-\begin{prop}[Basic properties of characteristic functions]
+
+\begin{prop}
 Let $\f$ be a characteristic function of a probability Borel measure $\mu$ on $\R$.
-\begin{parts}
-\item $\f$ is positive definite.
-\item $\f$ is uniformly continuous.
-\end{parts}
+Then, $\f$ is positive definite and uniformly continuous.
 \end{prop}
 \begin{pf}
+It follows clearly that
+\[\sum_{k,l=1}^n\f(t_k-t_l)\xi_k\bar\xi_l=\int\left|\sum_{k=1}^ne^{it_kx}\xi_k\right|^2\,d\mu(x)\ge0,\]
+and
+\[|\f(t)-\f(s)|\le\int|e^{itx}-e^{its}|\,d\mu(x)\le|t-s|.\qedhere\]
 \end{pf}
-\begin{ex}[Mathias' examples]
-
+\begin{ex}
+Many continuous positive definite functions are computed from probability distributions:
+\begin{center}\renewcommand{\arraystretch}{1.8}
+\begin{tabular}{ccc}
+Name & mass or density functions & characteristic functions\\
+\hline
+Constant & $p(x)=\1_{\{c\}}(x)$ & $\f(t)=e^{ict}$\\
+Bernoulli & $p(x)=\frac12\cdot\1_{\{\pm1\}}(x)$ & $\f(t)=\cos t$\\
+Normal & $f(x)=\frac1{\sqrt{2\pi}}e^{-x^2/2}$ & $\f(t)=e^{-t^2/2}$\\
+Uniform & $f(x)=\frac12\cdot\1_{[-1,1]}(x)$ & $\f(t)=\operatorname{sinc}t$\\
+Exponential & $f(x)=e^{-x}\cdot\1_{[0,\infty)}(x)$ & $\f(t)=(1-it)^{-1}$\\
+Cauchy & $f(x)=1/\pi(1+x^2)$ & $\f(t)=e^{-|t|}$\\
+Polya & $f(x)=(1-\cos x)/\pi x^2$ & $\f(t)=\max\{1-|t|,0\}$
+\end{tabular}
+\end{center}
 \end{ex}
-\begin{ex}[Polya]
-\end{ex}
-
-Characteristic functions take an advantage that we can learn the information about probability measures by investigating the continuous functions instead of studying measures directly.
 
 
 
-\begin{defn}[Tight measures]
-
-\end{defn}
-
-In order for a family of probability measures to be tight, their tail probabilities ought to be uniformly controlled.
+In the proof of the continuity theorem, by characteristic functions, we will show the tightness of associated probability measures to see their weak convergence.
+To verify that a family of probability measures to be tight, their tail probabilities ought to be uniformly controlled.
 The following lemma is useful in bounding tail probabilities in terms of characteristic functions; the averaging of $1-\f$ near zero provides with a reasonable estimate of the tail probability.
 
 \begin{lem}
@@ -624,8 +697,16 @@ Then, $\mu_n$ converges weakly to a probability Borel measure $\mu$ if and only 
 \end{thm}
 \begin{pf}
 ($\Rightarrow$)
+Suppose $\mu_n$ converges weakly to a probability Borel measure $\mu$ on $\R$.
+Let $\f$ be the characteristic function of $\mu$.
+Then, $\f$ is continuous at zero.
+Since $e^{itx}$ is continuous and bounded for each $t\in\R$, we have
+\[\f_n(t)=\int e^{itx}\,d\mu_n(x)\to\int e^{itx}\,d\mu(x)=\f(t)\]
+as $n\to\infty$.
 
 ($\Leftarrow$)
+Let $\f_n$ be the characteristic functions of $\mu_n$, and suppose $\f_n$ converges pointwise to a function $\f$.
+Suppose further that $\f$ is continuous at zero.
 For $\e>0$, take $\delta>0$ using the continuity of $\f$ such that
 \[\frac1{2\delta}\int_{-\delta}^\delta(1-\f(t))\,dt<\frac\e4.\]
 By the bounded convergence theorem, there is $N>0$ such that
@@ -671,41 +752,49 @@ whenever $|t-s|<\e/2M$.
 The normalization condition $f(0)=1$ is clear.
 
 Conversely, suppose $\f$ is continuous and positive definite.
-For each small $u>0$, since the sequence $(\f(uk))_{k\in\Z}$ is positive definite, by the Herglotz-Riesz representation theorem, there is a finite regular Borel measure $\nu_u$ on $[-\pi,\pi)$ such that
-\[\f(uk)=\int_{-\pi}^\pi e^{-ik\theta}\,d\nu_u(\theta)\]
+For each small $\delta>0$, since the sequence $(\f(\delta k))_{k\in\Z}$ is positive definite, by the Herglotz-Riesz representation theorem, there is a finite regular Borel measure $\nu_\delta$ on $[-\pi,\pi)$ such that
+\[\f(\delta k)=\int_{-\pi}^\pi e^{-ik\theta}\,d\nu_\delta(\theta)\]
 for every $k\in\Z$.
-If we define a measure $\mu_u$ on $\R$ such that the support is contained in $[-\pi/u,\pi/u]$ and $\mu_u(E):=\nu_u(-uE)$ for Borel sets $E\subset[-\pi/u,\pi/u)$, then
-\[\f(uk)=\int_{-\pi/u}^{\pi/u}e^{iukx}\,d\mu_u(x)=\f_u(uk)\]
-for every $k\in\Z$, where $\f_u$ is the characteristic function of $\mu_n$.
+If we define a measure $\mu_\delta$ on $\R$ such that the support is contained in $[-\pi/\delta,\pi/\delta]$ and $\mu_\delta(E):=\nu_\delta(-\delta E)$ for Borel sets $E\subset[-\pi/\delta,\pi/\delta)$, then
+\[\f(\delta k)=\int_{-\pi/\delta}^{\pi/\delta}e^{i\delta kx}\,d\mu_\delta(x)=\f_\delta(\delta k)\]
+for every $k\in\Z$, where $\f_\delta$ is the characteristic function of $\mu_\delta$.
 
-Note that $\nu_u$ converges to the Dirac measure $\delta_0$ as $u\to0$ in weak$^*$ topology of $C(\T)^*$ where $\T$ is identified with the interval $[-\pi,\pi)$.
-This is because trigonometric polynomials are uniformly dense in $C(\T)$ and $\nu_u$ are uniformly bounded in norm; for any $\e>0$ and $g\in C(\T)$, there is a trigonometric polynomial $h=\sum_kc_ke^{-ik\theta}$ such that $\|g-h\|_{C(\T)}<\e/2$, which implies
+Note that $\nu_\delta$ converges to the Dirac measure $\delta_0$ as $\delta\to0$ in weak$^*$ topology of $C(\T)^*$ where $\T$ is identified with the interval $[-\pi,\pi)$.
+This is because trigonometric polynomials are uniformly dense in $C(\T)$ and $\nu_\delta$ are uniformly bounded in norm; for any $\e>0$ and $g\in C(\T)$, there is a trigonometric polynomial $h=\sum_kc_ke^{-ik\theta}$ such that $\|g-h\|_{C(\T)}<\e/2$, which implies
 \begin{align*}
-|\<g,\nu_u\>-g(0)|
-&\le|\<g-h,\nu_u\>|+|\<h,\nu_u\>-h(0)|+|h(0)-g(0)|\\
-&\le\e+|\sum_kc_k\f(uk)-h(0)|
+|\<g,\nu_\delta\>-g(0)|
+&\le|\<g-h,\nu_\delta\>|+|\<h,\nu_\delta\>-h(0)|+|h(0)-g(0)|\\
+&\le\frac\e2+|\sum_kc_k\f(\delta k)-h(0)|+\frac\e2
 \end{align*}
 and
-\[\sum_kc_k\f(uk)\to\sum_kc_k=h(0)\]
-as $u\to0$.
+\[\sum_kc_k\f(\delta k)\to\sum_kc_k=h(0)\]
+as $\delta\to0$.
 
-For each $t\in\R$ and $u>0$, take $t_u$ such that $|t-t_u|<u/2$ and $t_u\in u\Z$.
+For each $t\in\R$ and $\delta>0$, take $t_\delta$ such that $|t-t_\delta|\le\delta/2$ and $t_\delta\in\delta\Z$.
 Then, we get
 \begin{align*}
-|\f_u(t)-\f_u(t_u)|
-&=|\int(e^{itx}-e^{it_ux})\,d\mu_u(x)|\\
-&=|\int_{-\pi}^\pi(e^{i\frac tu\theta}-e^{i\frac{t_u}u\theta})\,d\nu_u(\theta)|\\
-&\le\int_{-\pi}^\pi\left|\left(\frac tu-\frac{t_u}u\right)\theta\right|\,d\nu_u(\theta)\\
-&\le\frac12\int_{-\pi}^\pi|\theta|\,d\nu_u(\theta)\to0
+|\f_\delta(t)-\f_u(t_\delta)|
+&=|\int(e^{itx}-e^{it_\delta x})\,d\mu_\delta(x)|\\
+&=|\int_{-\pi}^\pi(e^{i\frac t\delta\theta}-e^{i\frac{t_\delta}\delta\theta})\,d\nu_\delta(\theta)|\\
+&\le\int_{-\pi}^\pi\left|\left(\frac t\delta-\frac{t_\delta}\delta\right)\theta\right|\,d\nu_\delta(\theta)\\
+&\le\frac12\int_{-\pi}^\pi|\theta|\,d\nu_\delta(\theta)\to0
 \end{align*}
-as $u\to0$ since the function $\theta\mapsto|\theta|$ is continuous function on $\T$ if we view it as $[-\pi,\pi)$.
+as $\delta\to0$ since the function $\theta\mapsto|\theta|$ is continuous function on $\T$ if we view it as $[-\pi,\pi)$.
 Therefore, the pointwise convergence is verfied as
 \begin{align*}
-|\f_u(t)-\f(t)|&\le|\f_u(t)-\f_u(t_u)|+0+|\f(t_u)-\f(t)|\to0
+|\f_\delta(t)-\f(t)|&\le|\f_\delta(t)-\f_\delta(t_\delta)|+0+|\f(t_\delta)-\f(t)|\to0
 \end{align*}
-as $u\to0$, and since $\f$ is continuous at zero, we can conclude that $\f$ is a characteristic function by the L\'evy continuity theorem.
+as $\delta\to0$, and since $\f$ is continuous at zero, we can conclude that $\f$ is a characteristic function by the L\'evy continuity theorem.
 \end{pf}
 
+
+
+
+\subsection{Examples: Polya's criterion}
+\begin{thm}
+Let $\f:\R\to[0,\infty)$ be an even function such that $\f(0)=1$.
+If $\f$ is decreasing and convex on $(0,\infty)$, then $\f$ is a characteristic function.
+\end{thm}
 
 \subsection{Bochner's theorem in infinite dimensions}
 
@@ -721,15 +810,11 @@ measure <=> pos def continuous + trace class
 
 
 
-\subsection{Examples: Polya's criterion}
-Mathias' examples
 
 
 
 
-
-
-
+\newpage
 \section{On locally compact groups: representation theory}
 
 \subsection{Dual group and Fourier transform}
