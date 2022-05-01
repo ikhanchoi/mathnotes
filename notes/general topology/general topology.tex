@@ -39,6 +39,28 @@ If $A^\circ\subset B$ and $B$ is closed, then $(A\cup B)^\circ\subset B$.
 \section{Eventuality filters}
 \section{Sequential spaces}
 
+\begin{prb}
+Let $X$ be a topological space.
+A subset $U$ is called \emph{sequentially open} in $X$ if every sequence that converges to a point in $U$ is eventually in $U$.
+A \emph{sequential space} is a topological space in which every sequentially open set is open.
+\begin{parts}
+\item Every open set is sequentially open.
+\item
+\end{parts}
+\end{prb}
+
+\begin{prb}[Sequential continuity]
+Let $f:X\to Y$ be a map between topological spaces.
+\begin{parts}
+\item If $X$ is sequential, then the sequential continuity implies the continuity of $f$.
+\end{parts}
+\end{prb}
+\begin{pf}
+Suppose $f$ is not continuous so that there is an open set $V$ in $Y$ such that $f^{-1}(V)$ is not open.
+Since $X$ is sequential, $f^{-1}(Y)$ is not sequentially open.
+Take a seuqence $x_n$ in $X\setminus f^{-1}(V)$ that converges to $x\in f^{-1}(V)$.
+Then, $f(x_n)$ dose not converges since $f(x_n)\notin V$ and $f(x)\in V$, so $f$ is not sequentially continuous.
+\end{pf}
 
 
 
@@ -603,7 +625,7 @@ Some examples
 locally finite Baire measures can define a linear functional on $C_c$.
 
 
-\section{Regular Borel measures}
+\section{Measures on metric spaces}
 
 \begin{prb}[Regularity of Borel measures]
 Let $X$ be a topological space.
@@ -692,7 +714,7 @@ Since $X$ is normal, by the Tietz extension theorem, there is a continuous $g:X\
 
 
 
-\section{Locally compact Hausdorff spaces}
+\section{Measures on locally compact Hausdorff spaces}
 
 
 compact  closed set not containing infty

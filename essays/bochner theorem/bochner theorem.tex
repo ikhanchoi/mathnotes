@@ -1,4 +1,4 @@
-\documentclass[12pt]{article}
+\documentclass[10pt]{article}
 \usepackage{../../ikany}
 \usepackage[margin=100pt]{geometry}
 \usepackage[T1]{fontenc}
@@ -17,7 +17,6 @@
 The Bochner theorem states that the image of finite Borel measures on an abelian topological group under the Fourier-Stieltjes transform is the set of continuous positive definite functions.
 This thesis will describe, prove, and investigate several examples of the Bochner theorem in its historical contexts within three different fields of mathematics, complex analysis, probability theory, and representation theory.
 \end{abstract}
-\newpage
 \tableofcontents
 
 \subsection*{Acknowledgement}
@@ -32,11 +31,11 @@ This thesis will describe, prove, and investigate several examples of the Bochne
 % 1.1 예시 몇개만 넣기
 % 1.2 서베이 참고해서 좀 정리하기
 
+% 2.1 펠프스 책 내용 안해도 되는 증명 써주기 - 6월에 해도 돼
 % 2.3 헬리 정리 사용할 때 포트망토를 풀어 써주기 - 6월에 해도 돼
 % 2.3 연속제한 예시 추가, z^m으로 메져 복붙하는 예시 추가
 
-% 3.1 씨스타 대수 얘기 자아아알 넣어보자
-% 3.2 보흐너 정리 증명 하나 더 추가
+% 3.2 보흐너 정리 증명 하나 더 추가 - 6월에 해도 돼
 %   https://www.jstor.org/stable/25049427?seq=4
 % 3.3 폴리야 증명 좀 빨리 읽어라, 사실 그냥 레비 쓰는 것뿐
 % 3.4 힐베르트 공간? 연속함수 공간?
@@ -169,6 +168,7 @@ The Bochner theorem states that the necessary and sufficient condition for being
 
 In this section, we are going to investigate the origin of positive definiteness that occurs in the context of complex analysis via establishing the following one-to-one correspondences:
 \begin{figure}[h]
+\centering
 \begin{tikzcd}[column sep = 0]
 &\begin{tabular}{c}Points in the closed convex hull of\\the curve $(e^{-i\theta},e^{-i2\theta},\cdots)$ in $\C^\N$\end{tabular}&\\
 \begin{tabular}{c}Positive definite\\sequences $(c_k)_{k\in\Z}$\\with $c_0=1$\end{tabular}
@@ -537,21 +537,27 @@ Since
 for all $g\in C(\T)$, we have $(2\pi)^{-1}\Re f(re^{i\theta})\,d\theta\to\delta_\psi$ in weak$^*$ topology of $C(\T)^*$.
 \end{ex}
 
-\iffalse
+
 \begin{ex}[Continuous restrictions]
 Let $f$ be a Carath\'eodory function and $\tau:\D\to\D$ be an analytic function on the open unit disk $\D$.
 Then, the composition $f\circ\tau$ is Carath\'eodory.
-The probability measure on $\T$ corresponded to this function
+
+Assume $\tau$ is continuously extended to $\tau:\bar\D\to\D$.
+The probability measure on $\T$ corresponded to the composition $f\circ\tau$ via the Herglotz theorem is given by the weak$^*$ limit of $(2\pi)^{-1}\Re f(\tau(re^{i\theta}))\,d\theta$ as $r\uparrow1$.
+Since $f\circ\tau$ is a continuous function on the closed disk $\bar\D$, the limit is described as the continuous density function $\T=\R/2\pi\Z\to\R:\theta\mapsto\Re f(\tau(e^{i\theta}))$.
 \end{ex}
 
-\begin{ex}[Circle homeomorphism]
-For example, if a Carath\'eodory function $f$ and a probability measure $\mu$ on $\T=\R/2\pi\Z$ satisfies
+\begin{ex}[The $n$th power map]
+As another example, if a Carath\'eodory function $f$ and a probability measure $\mu$ on $\T=\R/2\pi\Z$ satisfies
 \[f(z)=\int\frac{e^{i\theta}+z}{e^{i\theta}-z}\,d\mu(\theta),\]
-then
-\[f(\tau(z))=\int\frac{e^{i\theta}+z}{e^{i\theta}-z}\,d\mu'(\theta),\]
-where
+then we have a new family of Carath\'eodory functions
+\[f(z^n)=\int\frac{e^{i\theta}+z}{e^{i\theta}-z}\,d\mu_n(\theta)\]
+for each positive integer $n$, where
+\[\mu_n(E)=\frac1n\sum_{j=0}^{n-1}\mu((nE-2\pi j)\cap[0,2\pi)).\]
+Intuitionally, if $\mu$ is absolutely continuous with respect to the Lebesgue measure, then the density of $\mu_n$ is the pull back by the kneading transformation
+\[T_n(\theta):=n\theta-2\pi\left\lfloor\frac{n\theta}{2\pi}\right\rfloor.\]
+The corresponding positive definite sequence is
 \end{ex}
-\fi
 
 
 
@@ -577,41 +583,89 @@ Recall that a probability distribution is defined as a measure of norm one on a 
 Some classical problems including central limit problems and laws of large numbers arisen in probability theory want to describe limit behaviors of probability distributions.
 L\'evy's discovery was that it is easier to verify the convergence of probability distributions via the \emph{Fourier transforms} of probability measures, instead of the measures themselves.
 
-The Fourier transform(often called as \emph{Fourier-Stieltjes} transform when we emphasize the \emph{measures}, the objects transformed) of a probability measure is called a \emph{characteristic function}.
+The Fourier transform(often called as \emph{Fourier-Stieltjes} transform when we emphasize the \emph{measures}, the objects being transformed) of a probability measure is called a \emph{characteristic function}.
 One of possible statement of Bochner's theorem is that a complex function on a real line is a characteristic function of a probability measure if and only if it is continuous and positive definite, i.e. the theorem gives the one-to-one correspondence of probability measures on $\R$ and the continuous positive definite functions on $\R$, under the Fourier-Stieltjes transform.
-
 
 
 \subsection{Topologies on the space of probability measures}
 
+First, we will investigate topologies on the space of probability measures.
+In probability theory, the following concept of convergence is the most usual one when considering convergence of probability measures.
 
 \begin{defn}[Weak convergence]
-Let $(\mu_n)_n$ and $\mu$ be probability Borel measures on a metric space $S$.
-We say $\mu_n$ \emph{converges weakly to} $\mu$ if
-\[\int g\,d\mu_n\to\int g\,d\mu\]
-as $n\to\infty$ for any $g\in C_b(S)$, where $C_b(S)$ denotes the space of continuous and bounded functions.
+Let $(\mu_\alpha)_\alpha$ be a net of probability Borel measures on a topological space $S$.
+We say $\mu_\alpha$ \emph{converges weakly} to another probability Borel measure $\mu$ if
+\[\int g\,d\mu_\alpha\to\int g\,d\mu\]
+for any $g\in C_b(S)$, where $C_b(S)$ denotes the space of continuous and bounded functions.
 \end{defn}
 
+In fact, for its own interests in probability theory, the state space $S$ is usually taken to be $\R$, or more generally a metrizable space.
+However, we temporarily define the weak convergence in the meaningless general setting, the topological spaces, to further comparison with the other topology on the sapce of measures.
+Some reasons why we require the metrizability on $S$ will be addressed later.
+
+Vague convergence is another convergence that reveals a more functional analytic nature of measures.
+Recall that the Riesz-Markov-Kakutani representation theorem states that on a locally compact Hausdorff space the space of regular Borel finite (complex) measures has a natural idetification to the continuous dual of a continuous function space.
+
 \begin{defn}[Vague convergence]
-Let $(\mu_n)_n$ and $\mu$ be probability Borel measures on a locally compact Hausdorff space $\Omega$.
-We say $\mu_n$ \emph{converges vaguely to} $\mu$ if
-\[\int g\,d\mu_n\to\int g\,d\mu\]
-as $n\to\infty$ for any $g\in C_0(\Omega)$, where $C_0(\Omega)$ denotes the space of continuous functions vanishing at infinity.
+Let $(\mu_\alpha)_\alpha$ and $\mu$ be probability regular Borel measures on a locally compact Hausdorff space $\Omega$.
+We say $\mu_\alpha$ \emph{converges vaguely} to another probability regular Borel measures $\mu$ if
+\[\int g\,d\mu_\alpha\to\int g\,d\mu\]
+for any $g\in C_0(\Omega)$, where $C_0(\Omega)$ denotes the space of continuous functions vanishing at infinity.
 By the Riesz-Markov-Kakutani representation theorem, the topology of vague convergence coincides with the weak$^*$ topology of the dual space $C_0(\Omega)^*$.
 \end{defn}
 
-\begin{defn}[States]
-Let $\cA$ be a C$^*$-algebra.
-A \emph{state} is a positive linear functional $\rho$ on $\cA$ such that $\|\rho\|=1$.
-Denote the space of states of $\cA$ by $S(\cA)$.
-\end{defn}
+Be cautious that in locally compact Hausdorff spaces we are concerned with \emph{regular} Borel measures, which means
+\[\mu(E)=\sup\{\,\mu(K):K\text{ is compact in }E\,\}
+=\inf\{\,\mu(U):U\text{ is open containing }E\,\}.\]
+We have omitted the regularity in Chapter 2 because every finite Borel measure on a compact metric space is regular in this sense.
+The vague convergence is less important in probability theory because there are situations that we have to deal with probability measures on a nowhere locally compact spaces, for example, the separable Hilbert space or the space of continuous functions $C([0,1])$.
+This viewpoint frequently occurs and is useful when we try to analyze one stochastic process as a single random variable.
 
+Nevertheless, the vague(weak$^*$) convergence is what we will mainly consider throughout this thesis as a preparation for Chapter 4.
+Recall that we have used weak$^*$ topology as well in Chapter 2.
+In this regard, we need to connect the vauge convergence to the weak convergence to describe our subjects in probabilitic languages, and the following theorem is one result.
+
+\begin{thm}
+Let $\Omega$ be a locally compact Hausdorff space.
+The topology of weak convergence and the topology of vague convergence are same in $\Prob(\Omega)$, the space of probability regular Borel measures on $\Omega$.
+\end{thm}
+
+Note that the topology of weak and vague convergence is the topology generated by the family of subsets
+\[U_{\mu,\e,g}:=\{\,\nu:|\smallint g\,d\mu-\smallint g\,d\nu\,|<\e\,\},\]
+where $\mu\in\Prob(\Omega)$, $\e>0$, and $g$ is contained in $C_b(\Omega)$ and $C_0(\Omega)$ respectively.
+The topologies are not sequential in general, we must prove it using nets.
+
+\begin{pf}
+One direction is clear, since the topology of vauge convergence is coarser than the topology of weak convergence.
+For the opposite, let $(\mu_\alpha)_\alpha$ be a net in $\Prob(\Omega)$ that converges vaguely to $\mu\in\Prob(\Omega)$, and take $g\in C_b(\Omega)$.
+Since $\mu(\Omega)=\|\mu\|=1$, there is $\f\in C_0(\Omega)$ such that $\|\f\|=1$ and $\int\f\,d\mu>1-\e$.
+We may assume $\f\ge0$ without loss of generality by taking maximum with zero.
+Then, since $g\f$ vanishes at infinity and $\int\f\,d\mu_\alpha$ converges to $\int\f\,d\mu$, we have
+\[|\int g\,d\mu_\alpha-\int g\,d\mu|\le|\int g\f\,d\mu_\alpha-\int g\f\,d\mu|+\|g\|\int(1-\f)\,d(\mu_\alpha+\mu)\]
+so that
+\[\limsup_\alpha|\int g\,d\mu_\alpha-\int g\,d\mu|\le2\|g\|\e\]
+for arbitrary $\e>0$.
+Therefore, we have the weak convergence of $\mu_\alpha$ to $\mu$.
+\end{pf}
+\begin{ex}[Space of finite measures]
+Two topologies are different if we change the space of probability measures to the space of finite measures.
+A terse example is the shifting sequence of dirac measures $\delta_n$, which converges vaguely to the zero measure, but diverges weakly.
+\end{ex}
+
+Thanks to this theorem, under the assumption that the base space is locally compact and Hausdorff, we have no need to distinguish the topology of weak convergence and the weak$^*$ topology.
+Now we return to the probability theory.
+
+\begin{thm}[L\'evy-Prokhorov metric]
+
+\end{thm}
 
 \begin{defn}[Tight measures]
-Let $S$ be a set of probability measures on a metric space $S$.
+Let $M$ be a set of probability measures on a metric space $S$.
+We say $M$ is \emph{tight} if for every $\e>0$ there is a compact $K\subset S$ such that $\mu(K)>1-\e$ for all $\mu\in M$
 \end{defn}
 \begin{thm}[The Prokhorov theorem]
-
+Let $M$ be a set of probability measures on a metric space $S$.
+The set $M$ is relatively compact in the topology of weak convergence.
 \end{thm}
 
 

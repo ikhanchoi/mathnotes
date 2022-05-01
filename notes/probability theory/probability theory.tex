@@ -139,18 +139,23 @@ We will define the \emph{weak convergence} as follows: $F_n$ converges weakly to
 
 
 
-\section{Weak convergence in Polish spaces}
+\section{Weak convergence in metric spaces}
 
 \begin{prb}
-On Polish spaces.
+On metric spaces.
 \begin{parts}
-\item Every single measure is tight.
+\item Every single measure is regular if $X$ is perfectly normal.
+\item Every single measure is tight if $X$ is Polish.
 \end{parts}
 \end{prb}
 
 % pi system that generates sigma alg is separating
 % in \R^\infty and C(I), set of finite dimensional sets is separating
+
+
 % convergence determining class
+%  generalization of Portemanteau theorem
+%  uniformly continuous functions: They can separate two closed sets like Urysohn.
 
 \begin{prb}[Portemanteau theorem]
 Let $\mu_n$ and $\mu$ be probability measures on a metric space $S$.
@@ -200,12 +205,37 @@ Let $S$ be a locally compact Hausdorff space.
 % C_0가 convergence determining class라는 말
 
 \begin{prb}[L\'evy-Prokhorov metric]
+Let $S$ be a metric space, and $\Prob(S)$ be the set of probability Borel measures on $S$.
+Define $\pi:\Prob(S)\times\Prob(S)\to[0,\infty)$ such that
+\[\pi(\mu,\nu):=\inf\{\,\alpha>0:\mu(A)\le\nu(A^\alpha)+\alpha,\ \nu(A)\le\mu(A^\alpha)+\alpha,\ \forall A\in\cB(S)\,\},\]
+where $A^\alpha$ is the $\alpha$-neighborhood of $a$.
 \begin{parts}
-\item If $S$ is a separable metrizable space, $\pi$ generates the topology of weak convergence.
+\item $\pi$ is a metric.
+\item $\mu_n\to\mu$ in $\pi$ implies $\mu_n\Rightarrow\mu$.
+\item $\mu_\alpha\Rightarrow\mu$ implies $\mu_\alpha\to\mu$ in $\pi$, if $S$ is separable.
 \item $(S,d)$ is separable if and only if $(\Prob(S),\pi)$ is separable.
 \item $(S,d)$ is complete if and only if $(\Prob(S),\pi)$ is complete.
 \end{parts}
 \end{prb}
+\begin{pf}
+(c)
+Let $E$ be Borel and fix $\e>0$.
+If $\{x_i\}_{i=1}^\infty$ is dense in $S$, then
+\[S=\bigcup_{i=1}^\infty B(x_i,\e_i)\]
+for some $\e_i\in(\e/4,\e/2)$ such that $\mu(\partial B(x_i,\e_i))=0$.
+Take $n$ such that $\mu(B)<\e/3$, where
+\[B:=(\bigcup_{i\le n}B(x_i,\e_i))^c.\]
+Define $A$ to be the union of all $B(x_i,\e_i)$ such that $i\le n$ and $B(x_i,\e_i)\cap E\ne\varnothing$, and
+Then, $E\subset A\cup B$ and $A\subset E^\e$.
+
+Since $\mu(\partial B(x_i,\e_i))=0$ for all $i$, we have $\mu(\partial A)=0$ and $\mu(\partial B)=\mu(\partial(B^c))=0$, we can take $\alpha_0$ by the Portmanteau theorem such that $\alpha\succ\alpha_0$ implies
+\[\max\{|\mu_\alpha(A)-\mu(A)|,|\mu_\alpha(B)-\mu(B)|\}<\frac\e3.\]
+Then,
+\[\mu(E)\le\mu(A)+\frac13\e\le\mu_\alpha(A)+\frac23\e<\mu(E^\e)+\e\]
+and
+\[\mu_\alpha(E)\le\mu_\alpha(A)+\frac23\e\le\mu(A)+\e\le\mu(E^\e)+\e\]
+for all $\alpha\succ\alpha_0$.
+\end{pf}
 
 \begin{prb}[Prokhorov's theorem]
 Let $S$ be a metrizable space.
