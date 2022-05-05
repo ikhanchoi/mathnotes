@@ -219,31 +219,14 @@ where $A^\alpha$ is the $\alpha$-neighborhood of $a$.
 \end{prb}
 \begin{pf}
 (c)
-Let $E$ be Borel and fix $\e>0$.
-If $\{x_i\}_{i=1}^\infty$ is dense in $S$, then
-\[S=\bigcup_{i=1}^\infty B(x_i,\e_i)\]
-for some $\e_i\in(\e/4,\e/2)$ such that $\mu(\partial B(x_i,\e_i))=0$.
-Take $n$ such that $\mu(B)<\e/3$, where
-\[B:=(\bigcup_{i\le n}B(x_i,\e_i))^c.\]
-Define $A$ to be the union of all $B(x_i,\e_i)$ such that $i\le n$ and $B(x_i,\e_i)\cap E\ne\varnothing$, and
-Then, $E\subset A\cup B$ and $A\subset E^\e$.
-
-Since $\mu(\partial B(x_i,\e_i))=0$ for all $i$, we have $\mu(\partial A)=0$ and $\mu(\partial B)=\mu(\partial(B^c))=0$, we can take $\alpha_0$ by the Portmanteau theorem such that $\alpha\succ\alpha_0$ implies
-\[\max\{|\mu_\alpha(A)-\mu(A)|,|\mu_\alpha(B)-\mu(B)|\}<\frac\e3.\]
-Then,
-\[\mu(E)\le\mu(A)+\frac13\e\le\mu_\alpha(A)+\frac23\e<\mu(E^\e)+\e\]
-and
-\[\mu_\alpha(E)\le\mu_\alpha(A)+\frac23\e\le\mu(A)+\e\le\mu(E^\e)+\e\]
-for all $\alpha\succ\alpha_0$.
 \end{pf}
 
 \begin{prb}[Prokhorov's theorem]
 Let $S$ be a metrizable space.
 Let $\Prob(S)$ be the space of probability measures on $S$ endowed with the topology of weak convergence.
-Let $\cF\subset\Prob(S)$.
 \begin{parts}
-\item 
-\item If $\cF$ is tight, then $\cF$ is relatively compact. (direct half)
+\item If $S$ is Polish, then the relative compactness implies the tightness.
+\item The tightness implies the relative compactness.
 \end{parts}
 \end{prb}
 

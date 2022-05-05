@@ -35,10 +35,11 @@ This thesis will describe, prove, and investigate several examples of the Bochne
 % 2.3 헬리 정리 사용할 때 포트망토를 풀어 써주기 - 6월에 해도 돼
 % 2.3 연속제한 예시 추가, z^m으로 메져 복붙하는 예시 추가
 
+% 3.1 포트망토 넷에 대해 증명?
 % 3.2 보흐너 정리 증명 하나 더 추가 - 6월에 해도 돼
 %   https://www.jstor.org/stable/25049427?seq=4
-% 3.3 폴리야 증명 좀 빨리 읽어라, 사실 그냥 레비 쓰는 것뿐
-% 3.4 힐베르트 공간? 연속함수 공간?
+%     폴리야 증명 좀 빨리 읽어라, 사실 그냥 레비 쓰는 것뿐
+% 3.3 힐베르트 공간? 연속함수 공간?
 
 
 
@@ -54,7 +55,6 @@ A function $f:G\to\C$ is called \emph{positive definite} if for each positive in
 is satisfied for every $n$-tuple $(x_1,\cdots,x_n)\in G^n$ and every vector $(\xi_1,\cdots,\xi_n)\in\C^n$.
 \end{defn}
 A function $f$ is positive definite if and only if bilinear forms defined by matrices $(f(x_l^{-1}x_k))_{k,l=1}^n$ for each positive integer $n$ are hermitian, and even more, positive \emph{semi}-definite, regardless of any choices of $(x_1,\cdots,x_n)\in G^n$.
-
 We give some several remarkable properties and examples of positive definite functions as follows:
 
 \begin{prop}
@@ -74,10 +74,8 @@ Then,
 (a)
 Note $0\le\bar\xi f(e)\xi$ implies $f(e)\in\R$.
 Since
-\begin{align*}
-0&\le\mat{1&\bar\xi}\mat{f(e)&f(x^{-1})\\f(x)&f(e)}\mat{1\\\xi}\\
-&=f(x^{-1})\xi+f(e)(1+|\xi|^2)+f(x)\bar\xi,
-\end{align*}
+\[0\le\mat{1&\bar\xi}\mat{f(e)&f(x^{-1})\\f(x)&f(e)}\mat{1\\\xi}=f(x^{-1})\xi+f(e)(1+|\xi|^2)+f(x)\bar\xi,\]
+
 we have
 \begin{align*}
 0&=\Im(f(x^{-1})\xi+f(x)\bar\xi)\\
@@ -91,14 +89,11 @@ for all $\xi\in\C$, so $\bar f(x)=f(x^{-1})$.
 
 (e)
 Let $f_1=f$ and write
-\begin{align*}
-0&\le\mat{1&\bar\xi}\mat{f(e)&f(x^{-1})\\f(x)&f(e)}\mat{1\\\xi}\\
-&=f(e)(1+|\xi|^2)+2\Re(f(x)\bar\xi).
-\end{align*}
+\[0\le\mat{1&\bar\xi}\mat{f(e)&f(x^{-1})\\f(x)&f(e)}\mat{1\\\xi}=f(e)(1+|\xi|^2)+2\Re(f(x)\bar\xi).\]
 Taking $\xi=f(x)/|f(x)|$ if $f(x)\ne0$, we obtain $|f(x)|\le f(e)$.
 
 (f)
-The defining property of positive definite functions is purely algebriac, so that it is preserved by pointwise limit.
+The defining property of positive definite functions is conditioned by finitely many algebriac operations for each fixed $n$, $(x_1,\cdots,x_n)$, and $(\xi_1,\cdots,\xi_n)$, so the positive definiteness is preserved by pointwise limit.
 
 (g)
 Let $f=f_1$ and write
@@ -119,8 +114,14 @@ The left uniform continuity is shown in the same manner.
 \end{pf}
 
 
-\begin{ex}
-
+\begin{ex}[Positive definite functions not positive]
+Let $G=\R$.
+Then, $f(x):=\cos x$ is positive definite since
+\begin{align*}
+\sum_{k,l=1}^n\cos(x_k-x_l)\xi_k\bar\xi_l
+&=\sum_{k,l=1}^n(\cos x_k\cos x_l+\sin x_k\sin x_l)\xi_k\bar\xi_l\\
+&=\Bigl|\sum_{k=1}^n\xi_k\cos x_k\Bigr|^2+\Bigl|\sum_{k=1}^n\xi_k\sin x_k\Bigr|^2\ge0.
+\end{align*}
 \end{ex}
 
 
@@ -172,7 +173,7 @@ In this section, we are going to investigate the origin of positive definiteness
 \begin{tikzcd}[column sep = 0]
 &\begin{tabular}{c}Points in the closed convex hull of\\the curve $(e^{-i\theta},e^{-i2\theta},\cdots)$ in $\C^\N$\end{tabular}&\\
 \begin{tabular}{c}Positive definite\\sequences $(c_k)_{k\in\Z}$\\with $c_0=1$\end{tabular}
-&\text{Carath\'eodory functions}\lar[<->]\uar[<->]\rar[<->]
+&\text{Carath\'eodory functions}\lar[<->,swap]{2.2}\uar[<->,swap]{2.1}\rar[<->]{2.3}
 &\begin{tabular}{c}Probability Borel\\measures on $\T$\end{tabular}.
 \end{tikzcd}
 \end{figure}
@@ -464,7 +465,7 @@ Therefore, the sequence $(F_n)_n$ has a pointwise convergent subsequence $(F_{n_
 Let
 \[F(\theta):=\lim_{\psi\downarrow\theta}\lim_{j\to\infty}F_{n_j}(\psi).\]
 Then, we have $F(0)=0$ and $F(2\pi)=1$, and $F_{n_j}$ converges to $F$ at every continuity point $\theta$ of $F$.
-It means $F_{n_j}$ converges to $F$ weakly as $j\to\infty$, so by the Portemanteau theorem, we get
+It means $F_{n_j}$ converges to $F$ weakly as $j\to\infty$, so by the Portmanteau theorem, we get
 \[\int_0^{2\pi}\frac{e^{i\theta}+z}{e^{i\theta}-z}dF_{n_j}(\theta)\to\int_0^{2\pi}\frac{e^{i\theta}+z}{e^{i\theta}-z}dF(\theta)\]
 as $j\to\infty$ since $\theta\mapsto(e^{i\theta}+z)/(e^{i\theta}-z)$ is continuous and bounded on $\T$.
 On the other hand,
@@ -512,7 +513,7 @@ Then, the sequence defined in the statement is positive definite because
 for any $(\xi_1,\cdots,\xi_n)\in\C^n$, and $c_0=1$ is clear.
 
 On the other hand, if the sequence $(c_k)_{k=-\infty}^\infty$ is positive definite and $c_0=1$, then the function $z\mapsto1+\sum_{k=1}^\infty2c_kz^k$ is in the Carath\'eodory class.
-By the Herglotz-Riesz representation theorem, there is a probability regular Borel measure $\mu$ on $\T$ such that
+By the Herglotz-Riesz representation theorem, there is a probability Borel measure $\mu$ on $\T$ such that
 \begin{align*}
 1+\sum_{k=1}^\infty2c_kz^k
 &=\int_0^{2\pi}\frac{e^{it}+z}{e^{it}-z}\,d\mu(t)\\
@@ -556,8 +557,14 @@ for each positive integer $n$, where
 \[\mu_n(E)=\frac1n\sum_{j=0}^{n-1}\mu((nE-2\pi j)\cap[0,2\pi)).\]
 Intuitionally, if $\mu$ is absolutely continuous with respect to the Lebesgue measure, then the density of $\mu_n$ is the pull back by the kneading transformation
 \[T_n(\theta):=n\theta-2\pi\left\lfloor\frac{n\theta}{2\pi}\right\rfloor.\]
-The corresponding positive definite sequence is
+The corresponding positive definite sequence is transformed from $(c_k)_{k\in\Z}$ to
+\[(\cdots,0,c_{-2},0,\cdots,0,c_{-1},0,\cdots,0,c_0,0,\cdots,0,c_1,0,\cdots,0,c_2,0,\cdots),\]
+where $n-1$ zeros are between $c_k$ and $c_{k+1}$.
 \end{ex}
+
+
+
+
 
 
 
@@ -573,6 +580,11 @@ The corresponding positive definite sequence is
 
 \newpage
 \section{On the group $\R$: probability theory}
+
+% TODO
+%  18쪽
+%  폴리야 증명
+
 
 We have seen the relation of positive definite sequences and measures on the unit circle $\T$.
 On the real line $\R$, predictably, we can also prove that there exists a correspondence between measures and positive definite functions.
@@ -597,6 +609,7 @@ Let $(\mu_\alpha)_\alpha$ be a net of probability Borel measures on a topologica
 We say $\mu_\alpha$ \emph{converges weakly} to another probability Borel measure $\mu$ if
 \[\int g\,d\mu_\alpha\to\int g\,d\mu\]
 for any $g\in C_b(S)$, where $C_b(S)$ denotes the space of continuous and bounded functions.
+We often write $\mu_\alpha\Rightarrow\mu$ when $\mu_\alpha$ converges weakly to $\mu$.
 \end{defn}
 
 In fact, for its own interests in probability theory, the state space $S$ is usually taken to be $\R$, or more generally a metrizable space.
@@ -616,8 +629,9 @@ By the Riesz-Markov-Kakutani representation theorem, the topology of vague conve
 
 Be cautious that in locally compact Hausdorff spaces we are concerned with \emph{regular} Borel measures, which means
 \[\mu(E)=\sup\{\,\mu(K):K\text{ is compact in }E\,\}
-=\inf\{\,\mu(U):U\text{ is open containing }E\,\}.\]
-We have omitted the regularity in Chapter 2 because every finite Borel measure on a compact metric space is regular in this sense.
+=\inf\{\,\mu(U):U\text{ is open containing }E\,\}\]
+for all Borel measurable $E$.
+We have omitted the regularity condition on measures in Chapter 2 because every finite Borel measure on a compact metric space is regular in this sense.
 The vague convergence is less important in probability theory because there are situations that we have to deal with probability measures on a nowhere locally compact spaces, for example, the separable Hilbert space or the space of continuous functions $C([0,1])$.
 This viewpoint frequently occurs and is useful when we try to analyze one stochastic process as a single random variable.
 
@@ -647,31 +661,172 @@ so that
 for arbitrary $\e>0$.
 Therefore, we have the weak convergence of $\mu_\alpha$ to $\mu$.
 \end{pf}
-\begin{ex}[Space of finite measures]
-Two topologies are different if we change the space of probability measures to the space of finite measures.
-A terse example is the shifting sequence of dirac measures $\delta_n$, which converges vaguely to the zero measure, but diverges weakly.
+\begin{ex}[Escaping to the infinity]
+Two topologies are different if we consider the space of finite measures or measures bounded by one, instead of the space of probability measures.
+A terse example is the shifting sequence of dirac measures $\delta_n$, which converges to the zero measure in the topology generated by $C_0$, but diverges in the topology generated by $C_b$.
 \end{ex}
 
-Thanks to this theorem, under the assumption that the base space is locally compact and Hausdorff, we have no need to distinguish the topology of weak convergence and the weak$^*$ topology.
+According to this result, under the assumption that the base space is locally compact and Hausdorff, we have no need to distinguish the topology of weak convergence and the weak$^*$ topology.
 Now we return to the probability theory.
+Two classical theorems of the space of probability measures on a metric spaces, the metrizability and a compactness criteria for the space of probability measures will be introduced.
+They will be applied to see weak$^*$ convergences of probability measures on $\R$, and it is doable because $\R$ is both a metric space and a locally compact space.
+We start with two lemmas without proof.
+For the proof, see [].
+
+\begin{lem}[Regularity of finite measures]
+Let $S$ be a metrizable space.
+Then, every single finite Borel measure $\mu$ on $S$ is regular in the sense that
+\[\mu(E)=\sup\{\,\mu(F):F\text{ is closed in }E\,\}
+=\inf\{\,\mu(U):U\text{ is open containing }E\,\}\]
+for all Borel measurable $E$.
+Note that this definition differs from that of locally compact Hausdorff spaces.
+\end{lem}
+
+\begin{lem}[The Portmanteau theorem]
+Let $S$ be a metric space, and $\mu_\alpha$ be a net of probability Borel measures on $S$.
+The following statements are all equivalent:
+\begin{parts}
+\item $\int g\,d\mu_\alpha\to\int g\,d\mu$ for every $g\in C_b(S)$, i.e. weakly convergent.
+\item $\int g\,d\mu_\alpha\to\int g\,d\mu$ for every uniformly continuous $g\in C_b(S)$.
+\item $\limsup_{\alpha}\mu_\alpha(F)\le\mu(F)$ for every closed $F\subset S$.
+\item $\liminf_{\alpha}\mu_\alpha(U)\ge\mu(U)$ for every open $U\subset S$.
+\item $\lim_{\alpha}\mu_\alpha(E)=\mu(E)$ for every Borel set $E\subset S$ such that $\mu(\partial E)=0$.
+\end{parts}
+\end{lem}
 
 \begin{thm}[L\'evy-Prokhorov metric]
-
+Let $(S,d)$ be a metric space, and $\Prob(S)$ be the set of probability Borel measures on $S$.
+Denote by $\cB(S)$ the $\sigma$-algebra of all Borel sets.
+Define a function $\pi:\Prob(S)\times\Prob(S)\to[0,\infty)$ such that
+\[\pi(\mu,\nu):=\inf\{\,\e>0:\mu(E)\le\nu(E^\e)+\e,\ \nu(E)\le\mu(E^\e)+\e,\ \forall E\in\cB(S)\,\},\]
+where $E^\e$ denotes the $\e$-neighborhood of $a$, $E^\e:=\bigcup_{x\in E}B(x,\e)$.
+The set in the definition of $\pi$ contains $\e=1$ so that it is always non-empty.
+\begin{parts}
+\item The function $\pi$ is a metric.
+\item For a sequence $\mu_n\in\Prob(S)$, if $\mu_n\to\mu$ in $\pi$, then $\mu_n\Rightarrow\mu$.
+\item For a net $\mu_\alpha\in\Prob(S)$, if $\mu_\alpha\Rightarrow\mu$, then $\mu_\alpha\to\mu$ in $\pi$, given $S$ is separable.
+\item The metric space $(\Prob(S),\pi)$ is separable if and only if $(S,d)$ is separable.
+\item The metric space $(\Prob(S),\pi)$ is complete if and only if $(S,d)$ is complete.
+\end{parts}
 \end{thm}
+\begin{pf}
+(a)
+We will only prove two non-triviality: non-degeneracy and triangle inequality.
+Let $d(\mu,\nu)=0$ so that there is a sequence $\e_n\downarrow0$ such that for every Borel $E$ we have
+\[\mu(E)\le\nu(E^{\e_n})+\e_n,\quad\nu(E)\le\mu(E^{\e_n})+\e_n,\]
+Taking limit $n\to0$, we obtain
+\[\mu(E)\le\nu(\bar E),\quad\nu(E)\le\mu(\bar E)\]
+for all Borel sets $E$.
+Thus $\mu(F)=\nu(F)$ for all closed $F$, and the inner regularity proves $\mu=\nu$.
+For the triangle inequality, take $\mu,\nu,\lambda\in\Prob(S)$.
+Take sequences $a_n\downarrow d(\mu,\lambda)$ and $b_n\downarrow d(\lambda,\nu)$ such that
+\[\mu(E)\le\lambda(E^{a_n})+a_n\le\nu((E^{a_n})^{b_n})+a_n+b_n\le\nu(E^{a_n+b_n})+a_n+b_n\]
+and
+\[\nu(E)\le\lambda(E^{b_n})+b_n\le\mu((E^{b_n})^{a_n})+a_n+b_n\le\mu(E^{a_n+b_n})+a_n+b_n\]
+for all Borel sets $E$.
+Taking limit $n\to\infty$ we get $d(\mu,\nu)\le\inf_n(a_n+b_n)=d(\mu,\lambda)+d(\lambda,\nu)$.
+
+(b)
+Take $\e_n\downarrow0$ such that $\mu_n(E)\le\mu(E^{\e_n})+\e_n$ for every Borel $E$, which deduces $\limsup_{n\to\infty}\mu_n(F)\le\mu(F)$ for every closed $F$.
+Therefore, $\mu_n\Rightarrow\mu$ by the Portmanteau theorem.
+
+(c)
+Let $E$ be Borel and fix $\e>0$.
+Note that since an open interval is uncountable, there is $r$ in the interval such that $\mu(\partial B(x,r))=0$ for any point $x\in S$ because uncountable sum of positive numbers always diverges to infinity.
+If $\{x_i\}_{i=1}^\infty$ is dense in $S$, then
+\[S=\bigcup_{i=1}^\infty B(x_i,\e_i)\]
+for some $\e_i\in(\e/4,\e/2)$ such that $\mu(\partial B(x_i,\e_i))=0$.
+Define
+\[B:=\Bigl(\bigcup_{i=1}^nB(x_i,\e_i)\Bigr)^c\]
+for sufficiently large $n$ such that $\mu(B)<\e/3$.
+Define $A$ to be the union of all $B(x_i,\e_i)$ such that $1\le i\le n$ and $B(x_i,\e_i)\cap E\ne\varnothing$.
+Then, $E\subset A\cup B$ and $A\subset E^\e$ since $\e_i<\e/2$.
+
+Since $\mu(\partial B(x_i,\e_i))=0$ for all $i$, we have $\mu(\partial A)=0$ and $\mu(\partial B)=\mu(\partial(B^c))=0$, we can take $\alpha_0$ by the Portmanteau theorem such that $\alpha\succ\alpha_0$ implies
+\[\max\{\,|\mu_\alpha(A)-\mu(A)|,|\mu_\alpha(B)-\mu(B)|\,\}<\frac\e3.\]
+Then, $d(\mu_\alpha,\mu)\le\e$ for all $\alpha\succ\alpha_0$ since
+\[\mu(E)\le\mu(A)+\mu(B)\le\mu(A)+\frac13\e\le\mu_\alpha(A)+\frac23\e<\mu(E^\e)+\e\]
+and
+\[\mu_\alpha(E)\le\mu_\alpha(A)+\mu_\alpha(B)\le\mu_\alpha(A)+\frac23\e\le\mu(A)+\e\le\mu(E^\e)+\e.\]
+
+(d)
+
+(e)
+\end{pf}
+
+\begin{defn}[Polish spaces]
+A topologcial space $X$ is called \emph{Polish} if it is homeomorphic to a complete separable metric space.
+\end{defn}
+
+\emph{Polish spaces} are measure-theoretically well-behaved topological spaces that are admitted as the most fundamental assumption in probability theory.
+The above theorem about the Prokhorov metric states that if $S$ is Polish then so is $\Prob(S)$.
+The importance of Polish spaces can be found in several theorems such as the Prokhorov theorem and the Kolmogorov extension theorem.
+
+The Prokhorov theorem is a compactness theorem, and will be critically used to construct a limit of a sequence of measures.
+\emph{Tightness} is the measure-theoretic paraphrase of the compactness in the probability measure space according to the Prokhorov theorem.
 
 \begin{defn}[Tight measures]
-Let $M$ be a set of probability measures on a metric space $S$.
+Let $M$ be a set of probability Borel measures on a metric space $S$.
 We say $M$ is \emph{tight} if for every $\e>0$ there is a compact $K\subset S$ such that $\mu(K)>1-\e$ for all $\mu\in M$
 \end{defn}
 \begin{thm}[The Prokhorov theorem]
-Let $M$ be a set of probability measures on a metric space $S$.
-The set $M$ is relatively compact in the topology of weak convergence.
+Let $M$ be a set of probability Borel measures on a Polish space $S$.
+The set $M$ is relatively compact in the topology of weak convergence if and only if it is tight.
 \end{thm}
+\begin{pf}
+($\Rightarrow$)
+Suppose $M$ is relatively compact.
+We first claim that for a given countable open cover $\{U_i\}_{i=1}^\infty$ of $S$ and for each $\e>0$ we can find $n$ such that
+\[\inf_{\mu\in M}\mu\Bigl(\bigcup_{i=1}^nU_i\Bigr)\ge1-\e.\]
+Assume that it is not true so that there is a sequence $\mu_n\in M$ such that
+\[\mu_n\Bigl(\bigcup_{i=1}^nU_i\Bigr)<1-\e.\]
+If we take a subsequence $(\mu_{n_k})_k$ that converges weakly to $\mu\in\bar M$ using the compactness of $\bar M$, then by the Portmanteau theorem we have
+\[\mu\Bigl(\bigcup_{i=1}^nU_i\Bigr)\le\liminf_{k\to\infty}\mu_{n_k}\Bigl(\bigcup_{i=1}^nU_i\Bigr)\le\liminf_{k\to\infty}\mu_{n_k}\Bigl(\bigcup_{i=1}^{n_k}U_i\Bigr)\le1-\e,\]
+which leads a contradiction $\mu(S)\le1-\e$.
+
+Let $\{x_i\}_{i=1}^\infty$ be a dense set in $S$.
+Then, for each integer $m>0$ there is $n_m>0$ such that
+\[\inf_{\mu\in M}\mu\Bigl(\bigcup_{i=1}^{n_m}B(x_i,1/m)\Bigr)\ge1-\frac\e{2^m}.\]
+Define
+\[K:=\bigcap_{m=1}^\infty\bigcup_{i=1}^{n_m}\bar{B(x_i,1/m)}.\]
+It is clearly closed in a complete metric space $\Prob(S)$, and is totally bounded since for any $\e>0$ we have $K\subset\bigcup_{i=1}^{n_m}B(x_i,\e)$ if $m$ satisfies $1/m<\e$, so $K$ is compact.
+Moreover, we can verify
+\[1-\mu(K)=\mu\Bigl(\bigcup_{m=1}^\infty\bigcap_{i=1}^{n_m}\bar{B(x_i,1/m)}^c\Bigr)\le\sum_{m=1}^\infty\left(1-\mu\Bigl(\bigcup_{i=1}^{n_m}B(x_i,1/m)\Bigr)\right)\le\e\]
+for every $\mu\in M$, so $M$ is tight.
+
+($\Leftarrow$)
+Suppose $M$ is tight and let $\mu_\alpha$ be any net in $M$.
+We claim that it has a convergent subnet.
+Let $\beta S$ be the Stone-C\v ech compactification of $S$.
+The inclusion $\iota:S\to\beta S$ is a topological embedding because $S$ is completely regular.
+Pushforward the measures $\mu_\alpha$ to make them probability Borel measures $\nu_\alpha:=\iota_*\mu_\alpha$ on $\beta S$.
+Since finite Borel measures on a compact Hausdorff space is regular(in both definitions), $\nu_\alpha$ is a net in $\Prob(\beta S)$, which is compact by the Banach-Alaoglue theorem and the Riesz-Markov-Kakutani representation theorem.
+Therefore, $\nu_\alpha$ has a subnet $\nu_\beta$ that converges to $\nu\in\Prob(\beta S)$.
+
+Recall that $\mu_\beta$ is tight.
+For each $\e>0$, there is a compact $K\subset S$ such that $\nu_\beta(K)=\mu_\beta(K)\ge1-\e$ for all $\beta$.
+Then, by the Portmanteau theorem, we have
+\[\nu(S)\ge\nu(K)\ge\limsup_\beta\nu_\beta(K)\ge1-\e.\]
+Since $\e$ is arbitrary, $\nu$ is concentrated on $S$, i.e. $\nu(S)=1$.
+Now we restrict $\nu$ to $S$ in order to obtain $\mu$, which is a probability Borel measure on $S$.
+
+From the definition of weak convergence we have
+\[\int_{\beta S}f\,d\nu_\beta\to\int_{\beta S}f\,d\nu\]
+for all $f\in C(\beta S)$.
+Since $\nu_\beta(\beta S\setminus S)=\nu(\beta S\setminus S)=0$ and the restriction $C(\beta S)\to C_b(S)$ is an isomorphism due to the universal property of $\beta S$,
+\[\int_Sf\,d\mu_\beta\to\int_Sf\,d\mu\]
+for all $f\in C_b(S)$, so $\mu_\beta$ converges weakly to $\mu\in\Prob(S)$.
+\end{pf}
+
+In this proof of the theorem, we can add a new interpretation of tightness; a restriction condition of a limit point from compactification.
+The tightness keeps measures from escaping the image of $S$ in the compactification, and lets the limit point concentrated on it.
+We can also see the naturality of the topology of weak convergence by recognizing it as the induced topology from the Stone-C\v ech compactification.
 
 
 
-\subsection{The Le\'vy continuity theorem}
+\subsection{The L\'evy continuity theorem}
 
+In this section, we will only focus on probability distributions on the real line $\R$ and concrete examples on it, rather than other abstract spaces.
 One of the direct connection in probability theory between convergences in two different realms, measures and positive definite functions, is encoded in the L\'evy continuity theorem.
 This theorem connects the weak convergence of probability measures and pointwise convergence of \emph{characteristic functions}.
 In this section, we will prove Bochner's theorem on $\R$ with the aid of the L\'evy continuity theorem.
@@ -843,16 +998,20 @@ as $\delta\to0$, and since $\f$ is continuous at zero, we can conclude that $\f$
 \end{pf}
 
 
-
-
-\subsection{Examples: Polya's criterion}
-\begin{thm}
+\begin{cor}[Polya's criterion]
 Let $\f:\R\to[0,\infty)$ be an even function such that $\f(0)=1$.
 If $\f$ is decreasing and convex on $(0,\infty)$, then $\f$ is a characteristic function.
-\end{thm}
+\end{cor}
+\begin{pf}
 
-\subsection{Bochner's theorem in infinite dimensions}
+\end{pf}
 
+\begin{ex}[L\'evy's $\alpha$-stable distribution]
+
+\end{ex}
+
+\subsection{Further developments for non-locally compact groups}
+\iffalse
 bochner
 measure <=> pos def continuous
 
@@ -862,7 +1021,7 @@ tempered measure <=> pos def tempered dist
 
 on hilbert space
 measure <=> pos def continuous + trace class
-
+\fi
 
 
 
@@ -932,9 +1091,9 @@ $p$-adic integer $\Z_p$ and the Pr\"ufer $p$-subgroup.
 Profinite integers and $\Q/\Z$.
 Tate thesis: locally compact group of adeles.
 
-\subsection{Further developements for non-abelian groups}
+\subsection{Further developments for non-abelian groups}
 
-
+\iffalse
 Tannaka duality is formally stated in several ways, but the central idea is the same, the category of representations reconstructs the group.
 
 three structures $\oplus,\otimes,*$.
@@ -989,7 +1148,7 @@ we have
 By the Tannak duality, the double dual group is isomorphic to the original group.
 \end{ex}
 
-
+\fi
 
 
 

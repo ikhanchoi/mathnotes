@@ -10,7 +10,128 @@
 \begin{document}
 \tableofcontents
 
+\newpage
+\section{Unified error analysis}
 
+\subsection{Approximation of Banach spaces}
+We follow closely Temam for the abstract error analysis.
+\begin{defn}[Approximation]
+Let $X$ be a Banach space.
+An \emph{approximation} of $X$ is an indexed family $X_h$ of finite-dimensional normed spaces, with a \emph{prolongation operator} $P_h\in B(X_h,X)$ and a \emph{restriction operator} $R_h\in B(X,X_h)$ such that $R_hP_h=\id_{X_h}$.
+The operator $T_h:=P_hR_h$ is called the \emph{truncation operator}.
+\end{defn}
+
+\begin{defn}[Errors]
+Let $X_h$ be an approximation of a Banach space $X$.
+For $x\in X$ and $x_h\in X_h$, the quantities $\|P_hx_h-x\|$ and $\|x_h-R_hx\|_h$ are called the \emph{strong error} and the \emph{discrete error} of $x$ and $x_h$.
+The quantity $\|x-P_hR_hx\|$ is called the \emph{truncation error}.
+\end{defn}
+
+\begin{defn}[Stable and convergent approximations]
+An approximation is said to be \emph{convergent} if the truncation error converges to zero.
+An approximation is said to be \emph{stable} if the prolongation and restriction operators are uniformly bounded.
+\end{defn}
+\begin{lem}
+Let $X_h$ be an approximation of a Banach space $X$.
+If $X_h$ is stable and convergent, then the convergences in discrete error and strong error are equivalent:
+\[DE\le RC\cdot SE,\]
+\[SE\le PC\cdot DE+TE.\]
+\end{lem}
+
+\begin{ex}
+
+\end{ex}
+
+
+
+\subsection{Discretization scheme}
+
+An operator $L:\cX\to\cY$ is \emph{well-posed} if there is a continuous linear operator $L^{-1}:Y\to X$ such that $LL^{-1}=\id_Y$, where $X\subset\cX$ and $Y\subset\cY$ are dense embeddings.
+Say, consider the spaces $\cX$ and $\cY$ as space of distributions.
+
+We will always assume $L:X\to Y$ is a right invertible(i.e. well-posed) linear operator between Banach spaces.
+
+\begin{defn}[Discretization scheme]
+A \emph{discretization scheme} or a \emph{scheme} of $L$ is an indexed family $L_h\in L(X_h,Y_h)$ of invertible linear operators, with $X_h$ an approximation of $X$ and a surjective $\Pi_h\in B(Y,Y_h)$.
+\end{defn}
+Note that we never use the prolongation operator for $Y_h$.
+The restriction operator $\Pi_h$ is taken to be routine, but the approximation $X_h$ of $X$ is where we should take subtly.
+The art of numerical analysis begins with the choice of $X_h$.
+The following diagram does not commute, but \emph{approximately} commute.
+\begin{cd}
+X \dar[dashed,bend right,swap]{R_h}\rar{L} & Y \dar{\Pi_h} \\
+X_h \uar[dashed,bend right,swap]{P_h}\rar{L_h} & Y_h
+\end{cd}
+
+If a scheme is given, we will always write $x_h:=L_h^{-1}\Pi_hLx$ the \emph{approximate solution} for every $x\in X$.
+
+\begin{defn}[Properties of schemes]
+Let $L_h$ be a scheme of $L$.
+We say the scheme $L_h$ is \emph{stable} if $L_h^{-1}$ is uniformly bounded, \emph{convergent} if the discrete error converges to zero;
+\[DE=\|x_h-R_hx\|_h\to0,\]
+and \emph{consistent} if the consistency error converges to zero;
+\[CE=\|\Pi_hLx-L_hR_hx\|_h\to0.\]
+\end{defn}
+
+\begin{thm}[Lax equivalence]
+Let $L_h$ be a scheme of $L$.
+If $L_h$ is consistent, then it is stable if and only if it is convergent.
+\end{thm}
+\begin{pf}
+One direction is clear from
+\[DE=\|x_h-R_hx\|_h\le\|L_h^{-1}\|\|\Pi_hLx-L_hR_hx\|_h=SC\cdot CE.\]
+Conversely, suppose the scheme is convergent.
+For any $y_h\in Y_h$, since $\Pi_h$ and $L$ are surjective, there is $x$ such that $y_h=\Pi_hLx$ so that $L_h^{-1}y_h=x_h$ is convergent since
+\[DE=\|x_h-R_hx\|_h\le RC\cdot SE.\]
+By the uniform boundedness principle, $L_h^{-1}$ is uniformly bounded.
+\end{pf}
+
+\subsection{Consistency analysis}
+
+\subsection{Stability analysis}
+Von Neumann theory
+
+
+
+\subsection{Applications}
+\begin{ex}
+Consider
+\[\left\{\begin{alignedat}{2}
+u'(x)-u(x)&=f(x) &\qquad&\text{ in }x\in(0,1),\\
+u(0)&=c. &&
+\end{alignedat}\right.\]
+Let $X:=C^1([0,1])$, $Y:=C([0,1])\times\R$, and $Au(x):=(u'(x)-u(x),u(0))$.
+Then it is well-posed since there is $E:Y\to X$ defined by
+\[E(f,c)(x):=c+\int_0^xe^{-y}f(y)\,dy\]
+satisfies
+\end{ex}
+
+\begin{ex}
+Consider
+\[\left\{\begin{alignedat}{2}
+-\Delta u(x)&=f(x) &\qquad&\text{ in }x\in(0,1)^2,\\
+u(x)&=0 &&\text{ on }x\in\partial(0,1)^2.
+\end{alignedat}\right.\]
+Let $X=$, $Y=$, $Au$
+\end{ex}
+
+\begin{ex}
+Consider
+\[\left\{\begin{alignedat}{2}
+\partial u(t,x)&=\Delta u(t,x) &\qquad&\text{ in }(t,x)\in(0,\infty)\times(0,1),\\
+u(0,x)&=f(x) &&\text{ on }x\in[0,1],\\
+u(t,0)&=0 &&\text{ on }t\in[0,\infty),\\
+u(t,1)&=0 &&\text{ on }t\in[0,\infty),\\
+\end{alignedat}\right.\]
+Let $X=$, $Y=$, $Au$
+\end{ex}
+
+
+$u_j^n$, $t=t_0+nk$, $x=x_0+jh$
+
+
+
+\newpage
 \section{Banach space valued integral}
 \begin{prb}[Simple functions]
 Let $(\Omega,\mu)$ be a measure space and $X$ a topological space with the Borel measurable structure.
