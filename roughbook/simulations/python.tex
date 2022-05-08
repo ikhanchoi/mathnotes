@@ -1,22 +1,15 @@
-\documentclass[11pt]{article}
+\documentclass{report}
 \usepackage{../../ikany}
-\usepackage[margin=100pt]{geometry}
+\usepackage[margin=3cm]{geometry}
 \usepackage[T1]{fontenc}
 \usepackage[bitstream-charter,cal]{mathdesign}
-\linespread{1.1}
-
-
-\title{Monte Carlo Simulation of the Ising Model}
-\author{Ikhan Choi}
-\date{\today}
-
+\linespread{1.15}
+\renewcommand*\thesection{\arabic{section}}
 
 \begin{document}
-\maketitle
 
-
-\section{}
-
+\chapter*{Ising model}
+\section{Theory}
 Let $\Lambda=(V,E)$ be a graph, $|V|=N$ is the number of sites.
 Let $\cX=\{\pm1\}^V$ be the state space or the space of configuration .
 Hamiltonian $H:\cX\to\R$ is
@@ -47,5 +40,9 @@ Transition probability
 Peierls argument
 Ising 1D
 Onsager 2D
+
+
+
+\chapter*{Two-dimensional Euler equation}
 
 \end{document}

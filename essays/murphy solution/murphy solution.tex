@@ -1,9 +1,9 @@
-\documentclass[12pt]{article}
+\documentclass{article}
 \usepackage{../../ikany}
-\usepackage[margin=100pt]{geometry}
+\usepackage[margin=3cm]{geometry}
 \usepackage[T1]{fontenc}
 \usepackage[bitstream-charter,cal]{mathdesign}
-\linespread{1.1}
+\linespread{1.15}
 
 \DeclareMathOperator{\Inv}{Inv}
 \DeclareMathOperator{\ind}{ind}
@@ -309,7 +309,7 @@ Thus, boundary points of $\Inv(A)$ are left topological zero divisors.
 In particular, if $\lambda$ is a boundary point of the spectrum of an element $a$ of $A$, then $\lambda-a$ is a left topological zero divisor.
 \item
 Let $\Omega$ be a compact Hausdorff space and let $A=C(\Omega)$.
-Show that in this case the topological zero divisors are precisely the non-invertible elements (if $f$ is non-invertible, then 0 is a boundary point of the spectrum of $\cl ff$).
+Show that in this case the topological zero divisors are precisely the non-invertible elements (if $f$ is non-invertible, then 0 is a boundary point of the spectrum of $\bar ff$).
 \item
 Give an example of a unital Banach algebra and a non-invertible element that is not a left topological zero divisor.
 \end{parts}
@@ -462,7 +462,7 @@ is an invertible compact operator.)
 Let $\tilde u$ be the map given in the hint.
 By definition, $\tilde u$ is a bounded bijection.
 Since $u(X)$ is closed and hence a Banach space, $\tilde u$ is invertible by the open mapping theorem.
-Also, $\tilde u$ is compact beacuse $\tilde u(\cl B_{X/\ker(u)})=u(\cl B_X)$.
+Also, $\tilde u$ is compact beacuse $\tilde u(\bar B_{X/\ker(u)})=u(\bar B_X)$.
 The existence of an invertible compact operator $T:X\to Y$ implies that $\id_X=T^{-1}T$ and $\id_Y=TT^{-1}$ are compact, therefore $X$ and $Y$ are finite-dimensional.
 \end{sol}
 
@@ -601,7 +601,7 @@ Give an example of an ideal in the C*-algebra $C(\D)$ that is not self-adjoint.
 \end{prb}
 \begin{sol}
 Let $I:=\{zf(z):f\in C(\D)\}$ be the principal ideal of the inclusion $z:\D\to\C$ in $C(\D)$.
-Then, $z\in I$ but $\cl z\notin I$ since the function $z/\cl z:\D\setminus\{0\}\to\C$ cannot be continuously extended to 0; $\lim_{x\to0}x/\cl{x}=1$ but $\lim_{x\to0}ix/\cl{ix}=-1$ where $x\in\R$.
+Then, $z\in I$ but $\bar z\notin I$ since the function $z/\bar z:\D\setminus\{0\}\to\C$ cannot be continuously extended to 0; $\lim_{x\to0}x/\bar{x}=1$ but $\lim_{x\to0}ix/\bar{ix}=-1$ where $x\in\R$.
 \end{sol}
 
 
@@ -684,7 +684,7 @@ Then, by the part (b), the closed subspace $X$ has the property we want.
 \begin{prb}
 Let $a$ be a normal element of a C*-algebra $A$, and $b$ an element commuting with $a$. Show that $b^*$ also commutes with $a$ (Fuglede's theorem).
 (Hint: Define $f(\lambda)=e^{i\lambda a^*}be^{- i\lambda a^*}$ in $\tilde A$ and deduce from Exercise 2.7 that this map is differentiable and $f'(0)=i(a^*b-ba^*)$.
-Since $e^{i\cl\lambda a}$ and $b$ commute, $f(\lambda)=e^{2ic(\lambda)}be^{-2ic(\lambda)}$, where $c(\lambda)=\Re(\lambda a^*)$.
+Since $e^{i\bar\lambda a}$ and $b$ commute, $f(\lambda)=e^{2ic(\lambda)}be^{-2ic(\lambda)}$, where $c(\lambda)=\Re(\lambda a^*)$.
 Hence, $\|f(\lambda)\|=\|b\|$, so by Liouville's theorem, $f(\lambda)$ is constant.)
 \end{prb}
 \begin{sol}
@@ -843,9 +843,9 @@ If $(v_\lambda,K_\lambda)_\lambda$ is a chain in $P$, then restriction of any $v
 It is actually a \emph{minimal} normal extension in the sense of definition in this problem since if $K$ has a reducing subspace $K'\supset H$ for $v$, then $(v|_{K'},K')\prec(v,K)$ is also a normal extension of $u$, which contradicts to the minimality of $(v,K)$ in $P$.
 
 Let $(v,K)$ be a minimal normal extension and $V\subset K$ the linear span of all $v^{*n}(x)$ for $n\in\N$ and $x\in H$.
-Here, we use convention $0\in\N$ so that we have $H\subset\cl V$.
-The closed subspace $\cl V$ of $K$ is invariant for $v^*$ clearly by definition of $V$ and also for $v$ since $v(v^{*n}(x))=v^{*n}(u(x))\in \cl V$, so $\cl V$ is reducing for $v$.
-Therefore $\cl V=K$ for the definition of minimal normal extension.
+Here, we use convention $0\in\N$ so that we have $H\subset\bar V$.
+The closed subspace $\bar V$ of $K$ is invariant for $v^*$ clearly by definition of $V$ and also for $v$ since $v(v^{*n}(x))=v^{*n}(u(x))\in \bar V$, so $\bar V$ is reducing for $v$.
+Therefore $\bar V=K$ for the definition of minimal normal extension.
 
 (d)
 We have shown in the part (c) that an operator from $K$ is fully determined by the value on $V$, the linear span of $v^{*n}(x)$.
@@ -857,7 +857,7 @@ If $(x_n)_n$ be a sequence in $H$ with $x_n=0$ for all $n$ except finitely many,
 =\sum_{n,m}\<x_n,x_m\>.\]
 Let $w:K\to K'$ be satisfy $w(v^{*n}(x)):=v'^{*n}(x)$, which is clearly unitary if it is well-defined.
 For any possibilities satisfying $0=\sum_nv^{*n}x_n$, which is equivalent to $\sum_{n,m}\<x_n,x_m\>=0$, the norm of $w(0)$ also must be zero.
-Therefore, $w$ sends zero to zero and is well-defined on $V$, hence on $\cl V=K$.
+Therefore, $w$ sends zero to zero and is well-defined on $V$, hence on $\bar V=K$.
 With this $w$, we can show $v'=wvw^*$ from $wvw^*(v'^{*n}(x))=wv(v^{*n}(x))=wv^{*n}(u(x))=v'^{*n}(u(x))=v'(v'^{*n}(x))$.
 \end{sol}
 
@@ -929,10 +929,10 @@ For $a\in A$ and $b+N_\tau\in A/N_\tau$, we have
 If $\f:A\to B$ is a positive linear map between C*-algebras, show that $\f$ is necessarily bounded.
 \end{prb}
 \begin{sol}
-Let $\cl{B_A}$ denote the closed unit ball of $A$.
+Let $\bar{B_A}$ denote the closed unit ball of $A$.
 Note that Theorem 3.3.1 states that a positive linear functional on a C*-algeba is bounded.
-For any positive linear functional $\tau$ on $B$, the composition $\tau\circ\f$ is a positive linear functional on $A$, so $\tau(\f(\cl{B_A}))\subset\C$ is bounded.
-Since every bounded linear functional is the sum of four positive linear functionals, the set $\f(\cl{B_A})\subset B$ is weakly bounded, and hence bounded.
+For any positive linear functional $\tau$ on $B$, the composition $\tau\circ\f$ is a positive linear functional on $A$, so $\tau(\f(\bar{B_A}))\subset\C$ is bounded.
+Since every bounded linear functional is the sum of four positive linear functionals, the set $\f(\bar{B_A})\subset B$ is weakly bounded, and hence bounded.
 \end{sol}
 
 
@@ -1145,9 +1145,9 @@ They are motivating examples in Connes' development of "non-commutative differen
 \begin{prb}
 Let $m$ be normalised Haar measure on $\T$.
 If $\lambda\in\C$, $|\lambda|<1$, define $\tau_\lambda:H^1\to\C$ by setting
-\[\tau_\lambda(f)=\int\frac{f(w)}{1-\lambda\cl w}\,dmw\quad(f\in H^1).\]
+\[\tau_\lambda(f)=\int\frac{f(w)}{1-\lambda\bar w}\,dmw\quad(f\in H^1).\]
 (a) Show that $\tau_\lambda\in(H^1)^*$.
-By expanding $(1-\lambda\cl w)^{-1}$ in a power series, show that $\tau_\lambda(f)=\sum_{n=1}^\infty\hat f(n)\lambda^n$.
+By expanding $(1-\lambda\bar w)^{-1}$ in a power series, show that $\tau_\lambda(f)=\sum_{n=1}^\infty\hat f(n)\lambda^n$.
 (b) Deduce that the function
 \[\tilde f:\operatorname{int}\D\to\C,\quad\lambda\mapsto\tau_\lambda(f),\]
 is analytic, where $\operatorname{int}\D=\{\lambda\in\C:|\lambda|<1\}$.
@@ -1163,7 +1163,7 @@ Show that the sequence $(\f_n\psi_n)$ converges to $fg$ in the $L^1$-norm, and d
 If $f:\operatorname{int}\D\to\C$ is an analytic function and $0<r<1$, define $f_r\in C(\T)$ by setting $f_r(\lambda)=f(r\lambda)$.
 Set $\|f\|_2=\sup_{0<r<1}\|f_r\|_2$, and let $H^2(\D)$ denote the set of all analytic functi ons $f:\operatorname{int}\D\to\C$ such that $\|f\|_2<\infty$.
 (a) If $f\in H^2(\D)$, show that $\|f\|_2=\sqrt{\sum_{n=0}^\infty|\lambda_n|^2}$, where $f(\lambda)=\sum_{n=0}^\infty\lambda_n\lambda^n$ is the Taylor series expansion of $f$.
-(b) Show that $H^2(\D)$ is a Hilbert space with inner product $\<f,g\>=\sum_{n=0}^\infty\lambda_n\cl\mu_n$, where $\lambda_n=f^{(n)}(0)/n!$ and $\mu_n=g^{(n)}(0)/n!$ (the operations are pointwise-defined), and show also that the map 
+(b) Show that $H^2(\D)$ is a Hilbert space with inner product $\<f,g\>=\sum_{n=0}^\infty\lambda_n\bar\mu_n$, where $\lambda_n=f^{(n)}(0)/n!$ and $\mu_n=g^{(n)}(0)/n!$ (the operations are pointwise-defined), and show also that the map 
 \[H^2\to H^2(\D),\quad f\mapsto\tilde f,\]
 is a unitary operator.
 (Thus, the elements of $H^2$ can be interpreted as analytic functions on $\operatorname{int}\D$ satisfying a growth condition approaching the boundary.
@@ -1175,7 +1175,7 @@ A similar interpretation can be given for the other $H^p$-spaces.)
 
 \begin{prb}
 Show that if $\f$ is a function in $L^\infty(\T)$ not almost everywhere zero, then either $T_\f$ or $T_\f^*$ is injective (Coburn).
-(Hint: If $f\in\ker(T_\f)$ and $g\in\ker(T_\f^*)$, show that $\f f\cl g$ and $\cl\f\cl fg\in H^1$.
+(Hint: If $f\in\ker(T_\f)$ and $g\in\ker(T_\f^*)$, show that $\f f\bar g$ and $\bar\f\bar fg\in H^1$.
 Deduce that $\f fg=0$ a.e. and apply Theorem 3.5.4 to show that $f$ or $g=0$ a.e.)
 Deduce that $T_\f$ is invertible if and only if it is a Fredholm operator of index zero.
 \end{prb}

@@ -22,13 +22,15 @@
 \begin{prb}[Weak$^*$ convergence]
 \end{prb}
 
-\section{Extension of function space}
+\section{Space of distributions}
 \begin{prb}[Rigged Hilbert space]
 
 \end{prb}
 
-\section{Extension of linear operators}
 
+\section{Well-posedness}
+
+\begin{prb}[Extension of linear operators]
 Let $T:\cD\to\cD'$ be a contiuous linear operator.
 We can always define the adjoint $T^*:\cD\subset\cD''\to\cD'$.
 The most reasonable extension of $T$ is $T:(T^*(\cD))'\to\cD'$.
@@ -36,8 +38,11 @@ For $f\in(T^*(\cD))'$, we can define $\<T(f),\f\>:=\<f,T^*\f\>$ for $\f\in\cD$.
 
 Suppose $T:(\cD,\cT)\to(T(\cD),\cS)$ is proved to be continuous.
 If $(\cD,\cT)\to(T^*(\cD))'$ and $(T(\cD),\cS)\to\cD'$ are embeddings, then the extension of $T$ to the completion of $(\cD,\cT)$ agrees with $T:(T^*(\cD))'\to\cD'$.
+\end{prb}
 
-\section{Convolutions}
+
+
+
 For example, if $\Phi$ is locally integrable, then since $(T_\Phi)^*=T_{\tilde\Phi}$ and $\Phi*\f\in\cE=C^\infty$ for $\f\in\cD$, the convolution operator $T_\Phi:\cE'\to\cD'$ can be defined on the space of compactly supported distributions.
 
 If $g*f$ is well-defined, is $f*g$ also well-defined?
@@ -45,6 +50,8 @@ In other words, if $f\in(T_{\tilde g}(\cD))'$ so that $g*f\in\cD'$, then $g\in(T
 \[\<g,\tilde f*\f\>=\]
 
 
+
+\section*{Exercises}
 
 \begin{prb}*
 Describe the range of the operator $T:\cE'(\R^d)\to\cD'(\R^d)$ defined by $Tf=\Phi*f$ for $d\ge3$, where $\Phi$ is the fundamental solution of Laplace's equation.
@@ -164,6 +171,22 @@ Lipschitz, Rademacher
 
 \chapter{Existence}
 \section{Lax-Milgram theorem}
+\begin{prb}[Poisson equation]
+Let $\Omega$ be a bounded open subset of $\R^d$.
+Consider the problem
+\[\left\{\begin{alignedat}{2}
+-\Delta u(x)&=f(x)&\quad&,\text{ in }x\in\Omega,\\
+u(x)&=0&&,\text{ on }x\in\partial\Omega.
+\end{alignedat}\right.\]
+Define a bilinear form $B$ on $H_0^1(\Omega)$ such that
+\[B(u,v):=\int\nabla u(x)\cdot\nabla v(x)\,dx.\]
+\begin{parts}
+\item If $u\in H_0^1(\Omega)$ and $f\in\cD'(\Omega)$ satisfy $B(u,\f)=\<f,\f\>$ for all $\f\in\cD(\Omega)$, then $-\Delta u=f$.
+\item $B$ is another inner product equivalent to $\<-,-\>_{H_0^1(\Omega)}$.
+\item For $f\in H^{-1}(\Omega)$, there is $u\in H_0^{-1}(\Omega)$ such that $-\Delta u=f$.
+\end{parts}
+\end{prb}
+
 \section{Fredholm alternative}
 \section{Eigenvalue problems}
 \section{Perron's method}

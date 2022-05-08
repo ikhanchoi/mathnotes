@@ -94,17 +94,8 @@ Similarly, $P(A|X,Y)=\frac13$ and $P(B|X,Y)=0$.
 
 
 
-\chapter{}
 
 
-
-
-
-
-
-
-
-\part{Limit theorems}
 
 
 
@@ -312,15 +303,17 @@ If there is a continuous function $\f$ such that $\f_n=\f$ on $n^{-1}\Z$, then $
 
 
 
+\part{Discrete stochastic process}
+
+
+
+\chapter{Limit theorems}
 
 
 
 
+\section{Laws of large numbers}
 
-
-\chapter{Laws of large numbers}
-
-\section{Weak and strong laws of large numbers}
 
 Our purpose is to find appropriate $a_n$ and slowly growing $b_n$ such that $(S_n-a_n)/b_n\to0$ in probability or almost surely.
 
@@ -405,39 +398,12 @@ By the truncation
 Proof by Etemadi
 \end{prb}
 
-\section{Random series}
+
+Random series
 
 \section{Renewal theory}
 
-\section*{Exercises}
-\begin{prb}[Bernstein polynomial]
-Let $X_n\sim\Bern(x)$ be i.i.d. random variables.
-Since $S_n\sim\Binom(n,x)$, $E(S_n/n)=x$, $V(S_n/n)=x(1-x)/n$.
-The $L^2$ law of large numbers implies $E(|S_n/n-x|^2)\to0$.
-Define $f_n(x):=E(f(S_n/n))$.
-Then, by the uniform continuity $|x-y|<\delta$ implies $|f(x)-f(y)|<\e$,
-\[|f_n(x)-f(x)|\le E(|f(S_n/n)-f(x)|)\le\e+2\|f\|P(|S_n/n-x|\ge\delta)\to\e.\]
-\end{prb}
-\begin{prb}[High-dimensional cube is almost a sphere]
-Let $X_n\sim\Unif(-1,1)$ be i.i.d. random variables and $Y_n:=X_n^2$.
-Then, $E(Y_n)=\frac13$ and $V(Y_n)\le1$.
-\end{prb}
-\begin{prb}[Coupon collector's problem]
-$T_n:=\inf\{\,t:|\{X_i\}_i|=n\,\}$
-Since $X_{n,k}\sim\Geo(1-\frac{k-1}n)$, $E(X_{n,k})=(1-\frac{k-1}n)^{-1}$, $V(X_{n,k})\le(1-\frac{k-1}n)^{-2}$.
-$E(T_n)\sim n\log n$
-\end{prb}
-\begin{prb}[An occupancy problem]
-\end{prb}
-\begin{prb}[The St. Petersburg paradox]
-\end{prb}
 
-\begin{prb}
-Find the probability that arbitrarily chosen positive integers are coprime.
-\end{prb}
-
-
-\chapter{Central limit theorems}
 
 
 
@@ -469,14 +435,42 @@ This is called the \emph{Lindeberg condition}.
 \end{prb}
 
 
-\section{Berry-Esseen ineaulity}
+Berry-Esseen ineaulity
 
 
 
-\section{Stable laws}
+
 
 
 \section*{Exercises}
+\begin{prb}[Bernstein polynomial]
+Let $X_n\sim\Bern(x)$ be i.i.d. random variables.
+Since $S_n\sim\Binom(n,x)$, $E(S_n/n)=x$, $V(S_n/n)=x(1-x)/n$.
+The $L^2$ law of large numbers implies $E(|S_n/n-x|^2)\to0$.
+Define $f_n(x):=E(f(S_n/n))$.
+Then, by the uniform continuity $|x-y|<\delta$ implies $|f(x)-f(y)|<\e$,
+\[|f_n(x)-f(x)|\le E(|f(S_n/n)-f(x)|)\le\e+2\|f\|P(|S_n/n-x|\ge\delta)\to\e.\]
+\end{prb}
+\begin{prb}[High-dimensional cube is almost a sphere]
+Let $X_n\sim\Unif(-1,1)$ be i.i.d. random variables and $Y_n:=X_n^2$.
+Then, $E(Y_n)=\frac13$ and $V(Y_n)\le1$.
+\end{prb}
+\begin{prb}[Coupon collector's problem]
+$T_n:=\inf\{\,t:|\{X_i\}_i|=n\,\}$
+Since $X_{n,k}\sim\Geo(1-\frac{k-1}n)$, $E(X_{n,k})=(1-\frac{k-1}n)^{-1}$, $V(X_{n,k})\le(1-\frac{k-1}n)^{-2}$.
+$E(T_n)\sim n\log n$
+\end{prb}
+\begin{prb}[An occupancy problem]
+\end{prb}
+\begin{prb}[The St. Petersburg paradox]
+\end{prb}
+
+\begin{prb}
+Find the probability that arbitrarily chosen positive integers are coprime.
+\end{prb}
+
+
+
 
 Poisson convergence, law of rare events, or weak law of small numbers (a single sample makes a significant attibution)
 
@@ -488,12 +482,6 @@ Poisson convergence, law of rare events, or weak law of small numbers (a single 
 
 
 
-
-
-
-
-
-\part{Stochastic processes}
 \chapter{Martingales}
 \section{Submartingales}
 \section{Martingale convergence theorem}
@@ -521,9 +509,20 @@ Poisson convergence, law of rare events, or weak law of small numbers (a single 
 
 
 
-
-
 \chapter{Markov chains}
+
+
+
+
+
+
+
+\part{Continuous stochastic processes}
+
+
+
+
+
 \chapter{Brownian motion}
 \section{Kolomogorov extension}
 

@@ -1,14 +1,114 @@
-\documentclass[12pt]{article}
+\documentclass[a4paper]{article}
 \usepackage{../../ikany}
-\usepackage[margin=100pt]{geometry}
+\usepackage[margin=3cm]{geometry}
 \usepackage[T1]{fontenc}
 \usepackage[bitstream-charter,cal]{mathdesign}
-\linespread{1.1}
+\linespread{1.15}
 
 \def\AC{\mathrm{AC}}
 
 \begin{document}
 \tableofcontents
+
+\newpage
+
+\section{Potential from a source}
+
+\begin{thm*}
+Let $d\ge3$.
+A distribution $u\in\cD'(\R^d)$ is a harmonic function on $\R^d\setminus\{0\}$ and vanishes at infinity if and only if there is a distribution $\rho\in\cD'(\R^d)$ such that $u=\Phi*\rho$ and $\supp(\rho)\subset\{0\}$, where $\Phi$ denotes the fundamental solution of Laplace's equation.
+\end{thm*}
+\begin{pf}
+($\Rightarrow$)
+Define a distribution $\rho$ by
+\[\<\rho,\f\>:=-\<u,\Delta\f\>\]
+for $\f\in C_c^\infty(\R^d)$.
+In other words, $\rho=-\Delta u$ in distributional sense.
+Then, $\rho$ has the support contained in $\{0\}$ because if $\f\in C_c^\infty(\R^d\setminus\{0\})$ then
+\[\<\rho,\f\>=-\<u,\Delta \f\>=-\int u(x)\Delta\f(x)\,dx=-\int\Delta u(x)\f(x)\,dx=0.\]
+Therefore, we only need to verify $u=\Phi*\rho$ to complete the proof.
+
+Let $\f\in C_c^\infty(\R^d)$.
+Be cautious that the argument
+\[\<\Phi*\rho,\f\>=\<\rho,\Phi*\f\>=-\<u,\Delta(\Phi*\f)\>=\<u,\f\>\]
+fails to provide a proof because the function $\Phi*\rho$ is not compactly supported so that we cannot deduce $\<\rho,\Phi*\f\>=-\<u,\Delta(\Phi*\f)\>$, and here we use the condition that $u$ vanishes at infinity to justify the equality.
+Define a cutoff function $\chi\in C_c^\infty(\R^d)$ such that
+\[\chi(x)=\begin{cases}1&\text{ if }|x|\le\frac54\\0&\text{ if }|x|\ge\frac74\end{cases}.\]
+If we denote $\chi_r(x):=\chi(\frac xr)$, then we have
+\[\<\rho,(\Phi\chi_r)*\f\>=-\<u,\Delta((\Phi\chi_r)*\f)\>\]
+by the definition of $\rho$.
+We have the limit of the left-hand side
+\[\lim_{r\to\infty}\<\rho,(\Phi\chi_r)*\f\>=\<\rho,\Phi*\f\>\]
+because
+\begin{align*}
+\supp((\Phi(1-\chi_r)*\f)&\subset\supp(\Phi(1-\chi_r))+\supp(\f)\\
+&\subset\R^d\setminus B(0,2R)+\cl B(0,R)=\R^d\setminus B(0,R)
+\end{align*}
+for all $r>2R$ so that the supports of $\Phi(1-\chi_r)*\f$ and $\rho$ are disjoint, where we define $R:=\sup_{x\in\supp(\f)}|x|$.
+However, the right-hand limit
+\[-\lim_{r\to\infty}\<u,\Delta((\Phi\chi_r)*\f)\>=-\<u,\Delta(\Phi*\f)\>\]
+is not a trivial result.
+
+Assuming $\chi(x)=\chi(-x)$ without loss of generality, we have
+\[\<u,\Delta(\Phi(1-\chi_r)*\f)\>=\<u*\Delta(\Phi(1-\chi_r)),\f\>.\]
+Because
+\[\Delta_y\Bigl[\Phi(x-y)\bigl(1-\chi(\tfrac{x-y}r)\bigr)\Bigr]=0\]
+for $|y|<R$ and $x\in\supp(\f)$ if $r>2R$, we can write
+\[\<u*\Delta(\Phi(1-\chi_r)),\f\>
+=\int\f(x)\int u(y)\Delta_y\Bigl[\Phi(x-y)\bigl(1-\chi(\tfrac{x-y}r)\bigr)\Bigr]\,dy\,dx.\]
+We compute
+\begin{align*}
+\Delta_y\Bigl[\Phi(x-y)\bigl(1&-\chi(\tfrac{x-y}r)\bigr)\Bigr]
+=2\nabla\Phi(x-y)\cdot\frac1r\nabla\chi(\tfrac{x-y}r)-\Phi(x-y)\frac1{r^2}\Delta\chi(\tfrac{x-y}r)\\
+&=-\frac2{\omega_d}\frac{x-y}{|x-y|^d}\cdot\frac1r\nabla\chi(\tfrac{x-y}r)
+-\frac1{(d-2)\omega_d}\frac1{|x-y|^{d-2}}\frac1{r^2}\Delta\chi(\tfrac{x-y}r).
+\end{align*}
+Then, since $\frac54r\le|x-y|\le\frac74r$ if $\nabla\chi(\tfrac{x-y}r)\ne0$ and $\Delta\chi(\tfrac{x-y}r)\ne0$, we obtain
+\[\Bigl|\Delta_y\Bigl[\Phi(x-y)\bigl(1-\chi(\tfrac{x-y}r)\bigr)\Bigr]\Bigr|\le C\frac1{r^d}\psi(\frac{x-y}r)\]
+for some constant $C>0$, where
+\[\psi(y):=|\nabla\chi(y)|+|\Delta\chi(y)|.\]
+For each $x\in\supp(\f)$, since we have $\frac54r\le|x-y|\le\frac74r$ implies $r\le|y|\le2r$ if $r>4R$, it follows that
+\begin{align*}
+|\int u(y)\Delta_y\bigl[\Phi(x-y)\bigl(1-\chi(\tfrac{x-y}r)\bigr)\bigr]\,dy|
+&\le C\int|u(y)\frac1{r^d}\psi(\frac{x-y}r)|\,dy\\
+&\le C\max_{r\le|y|\le2r}u(y)
+\end{align*}
+converges to zero as $r\to\infty$.
+By the bounded convergence theorem, we can deduce
+\[\lim_{r\to\infty}\int\f(x)\int u(y)\Delta_y\Bigl[\Phi(x-y)\bigl(1-\chi(\tfrac{x-y}r)\bigr)\Bigr]\,dy\,dx=0,\]
+so we are done.
+
+($\Leftarrow$)
+Let $\f\in C_c^\infty(\R^d\setminus\{0\})$.
+Since
+\[\<\Phi*\rho,\Delta\f\>=\<\rho,\Phi*(\Delta\f)\>=\<\rho,\f\>=0,\]
+the distribution $\Phi*\rho$ on $\R^d\setminus\{0\}$ is weakly harmonic, and by Weyl's lemma for distributions, it is a smooth harmonic function on $\R^d\setminus\{0\}$.
+
+Since $\rho$ is supported at zero, we have a positive integer $k$ and constants $a_\alpha$ such that
+\[|\<\rho,\f\>|\le\sum_{|a|\le k}|a_\alpha D^\alpha\f(0)|\]
+for $\f\in C^\infty(\R^d)$.
+Then, for non-zero $x\in\R^d$, by taking a cutoff function $\chi\in C_c^\infty(\R^d)$ such that
+\[\chi(y)=\begin{cases}1&\text{ if }|y-x|\le\frac13|x|\\0&\text{ if }|y|\le\frac13|x|\end{cases},\]
+we have
+\[|\Phi*\rho(x)|=|(\Phi\chi)*\rho(x)|=|\<\rho(x-y),\Phi(y)\chi(y)\>_y|\le\sum_{|a|\le k}|a_\alpha D^\alpha\Phi(x)|=O(r^{2-d})\]
+as $r\to\infty$.
+Therefore, $\Phi*\rho$ vanishes at infinity.
+\end{pf}
+
+\begin{lem*}
+Let $\rho$ be a distribution on $\R^d$ such that $\supp(\rho)\subset\{0\}$.
+Then, there is a constant coefficient partial differential operator $P(D)$ such that $\rho=P(D)\delta$.
+\end{lem*}
+
+\begin{cor*}
+Let $d\ge3$.
+If a distribution $u\in\cD'(\R^d)$ is a harmonic function on $\R^d\setminus\{0\}$ and vanishes at infinity, then there are an integer $k\ge0$ and constants $a_\alpha$ such that
+\[u(x)=\sum_{|a|\le k}a_\alpha D^\alpha\Phi(x)\]
+for $x\ne0$, where $\Phi$ denotes the fundamental solution of Laplace's equation.
+\end{cor*}
+
+
+
 
 \newpage
 \section{Unified error analysis}

@@ -1,9 +1,9 @@
-\documentclass[12pt]{article}
+\documentclass{article}
 \usepackage{../../ikany}
-\usepackage[margin=100pt]{geometry}
+\usepackage[margin=3cm]{geometry}
 \usepackage[T1]{fontenc}
 \usepackage[bitstream-charter,cal]{mathdesign}
-\linespread{1.1}
+\linespread{1.15}
 
 
 \title{Global Existence of Classical Solutions to the Vlasov-Poisson System}
@@ -393,8 +393,7 @@ f_{n+1}(s,X_{n+1}(s;t,x,v),V_{n+1}(s;t,x,v))&\\
 and that $f_{n+1}$ satisfies the approximate system by the chain rule
 \begin{align*}
 0&=\left.\dd{s}f_{n+1}(s,X_{n+1}(s;t,x,v),V_{n+1}(s;t,x,v))\right|_{s=t}\\
-&=\pd_tf_{n+1}(t,x,v)+\dot X_{n+1}(t;t,x,v)\cdot\nabla_xf_{n+1}(t,x,v)\\
-&\hspace{7.5em}+\dot V_{n+1}(t;t,x,v)\cdot\nabla_vf_{n+1}(t,x,v)\\
+&=\pd_tf_{n+1}(t,x,v)+\dot X_{n+1}(t;t,x,v)\cdot\nabla_xf_{n+1}(t,x,v)+\dot V_{n+1}(t;t,x,v)\cdot\nabla_vf_{n+1}(t,x,v)\\
 &=\pd_tf_{n+1}(t,x,v)+v\cdot\nabla_xf_{n+1}(t,x,v)+\gamma E_n(t,x)\cdot\nabla_vf_{n+1}(t,x,v).
 \end{align*}
 Also, $f_{n+1}$ has compact support for each $t$ since the characteristic does not blow up; finally we have $f_{n+1}\in C^1(\R^+,C_c^1(\R^6))$.
@@ -482,12 +481,7 @@ Then,
 &\le Q_0+c\int_0^tQ_n^2(s)\,ds
 \end{align*}
 leads to
-\begin{align*}
-Q_{n+1}(t)
-&\le Q_0+c\int_0^tQ_n^2(s)\,ds\\
-&\le Q_0+c\int_0^t\left(\frac{Q_0}{1-cQ_0s}\right)^2ds
-=\frac{Q_0}{1-cQ_0t}.
-\end{align*}
+\[Q_{n+1}(t)\le Q_0+c\int_0^tQ_n^2(s)\,ds\le Q_0+c\int_0^t\left(\frac{Q_0}{1-cQ_0s}\right)^2ds=\frac{Q_0}{1-cQ_0t}.\]
 By induction, $Q_n(t)\le\frac{Q_0}{1-cQ_0t}\lesssim1$ for all $n$ and $t\le T$.
 Furthermore,
 \[\|\rho_n(t)\|_\infty\lesssim Q_n^3(t)\lesssim1,\quad\|E_n(t)\|_\infty\lesssim Q_n^2(t)\lesssim1.\]
@@ -516,16 +510,16 @@ and
 \end{align*}
 are combined as
 \begin{align*}
-&\qquad|\nabla_xX_{n+1}(s;t,x,v)|+|\nabla_xV_{n+1}(s;t,x,v)|\\
-&\le\sqrt3+\int_s^t(1+\|\nabla_xE_n(s')\|_\infty)(|\nabla_xX_{n+1}(s';t,x,v)|+|\nabla_xV_{n+1}(s';t,x,v)|)\,ds'.
+&|\nabla_xX_{n+1}(s;t,x,v)|+|\nabla_xV_{n+1}(s;t,x,v)|\\
+&\quad\le\sqrt3+\int_s^t(1+\|\nabla_xE_n(s')\|_\infty)(|\nabla_xX_{n+1}(s';t,x,v)|+|\nabla_xV_{n+1}(s';t,x,v)|)\,ds'.
 \end{align*}
 By the Gronwall inequality, we get
 \[|\nabla_xX_{n+1}(s;t,x,v)|+|\nabla_xV_{n+1}(s;t,x,v)|\le\sqrt3\,e^{\int_s^t(1+\|\nabla_xE_n(s')\|_\infty)\,ds'}\]
 for $0\le s\le t$.
 Thus we have
 \begin{align*}
-|\nabla_x\rho_{n+1}&(t,x)|
-=|\int\nabla_x[f_0(X_{n+1}(0;t,x,v),V_{n+1}(0;t,x,v))]\,dv|\\
+|\nabla_x\rho_{n+1}(t,x)|
+&=|\int\nabla_x[f_0(X_{n+1}(0;t,x,v),V_{n+1}(0;t,x,v))]\,dv|\\
 &\le\|\nabla_{x,v}f_0\|_\infty\int(|\nabla_xX_{n+1}(0;t,x,v)|+|\nabla_xV_{n+1}(0;t,x,v)|)\,dv\\
 &\lesssim\|\nabla_{x,v}f_0\|_\infty Q_{n+1}^3(t)\cdot e^{\int_0^t(1+\|\nabla_xE_n(s)\|_\infty)\,ds}
 \end{align*}
@@ -581,7 +575,7 @@ Denote
 for given $t,x,v$.
 The $C^1$ regularity of $f_0$ gives
 \begin{align*}
-|f&_{n+1}(t,x,v)-f_n(t,x,v)|\\
+|f_{n+1}(t,x,v)-f_n(t,x,v)|
 &=|f_0(X_{n+1}(0;t,x,v),V_{n+1}(0;t,x,v))-f_0(X_n(0;t,x,v),V_n(0;t,x,v))|\\
 &\lesssim|X_{n+1}(0;t,x,v)-X_n(0;t,x,v)|+|V_{n+1}(0;t,x,v)-V_n(0;t,x,v)|\\
 &=g(0).
@@ -598,7 +592,7 @@ V_n(s;t,x,v)&=v-\int_s^t\gamma E_{n-1}(s',X_n(s';t,x,v))\,ds',
 \end{align*}
 we have two inequalities
 \begin{align*}
-|V&_{n+1}(s;t,x,v)-V_n(s;t,x,v)|\\
+|V_{n+1}(s;t,x,v)-V_n(s;t,x,v)|
 &\le\int_s^t|E_n(s',X_{n+1}(s';t,x,v))-E_{n-1}(s',X_n(s';t,x,v))|\,ds'\\
 &\le\int_s^t(|E_n(s',X_{n+1})-E_n(s',X_n)|+|E_n(s',X_n)-E_{n-1}(s',X_n)|)\,ds'\\
 &\le\int_s^t(\|\nabla_xE_n(s')\|_\infty|X_{n+1}(s')-X_n(s')|+\|E_n(s')-E_{n-1}(s')\|_\infty)\,ds'
@@ -619,9 +613,9 @@ In more detail, multiplying
 \[a(s)e^{-\int_s^ta(s')ds'}\]
 on the both-hand-side of (\ref{ggw}), and using $a\lesssim 1$ in $t\le T$, we have
 \begin{align*}
-&-\dd{s}\left(e^{-\int_s^ta(s')\,ds'}\int_s^ta(s')g(s')\,ds'\right)\\
-&\hspace{5em}\le a(s)e^{-\int_s^ta(s')ds'}\int_s^t\|E_n(s')-E_{n-1}(s')\|_\infty\,ds'\\
-&\hspace{5em}\lesssim\int_s^t\|E_n(s')-E_{n-1}(s')\|_\infty\,ds'
+-\dd{s}\left(e^{-\int_s^ta(s')\,ds'}\int_s^ta(s')g(s')\,ds'\right)
+&\le a(s)e^{-\int_s^ta(s')ds'}\int_s^t\|E_n(s')-E_{n-1}(s')\|_\infty\,ds'\\
+&\lesssim\int_s^t\|E_n(s')-E_{n-1}(s')\|_\infty\,ds'
 \end{align*}
 Integrate from $s$ to $t$ and bound $(t-s)\le T\lesssim1$ to get
 \begin{align}\label{abd}
@@ -637,11 +631,7 @@ for arbitrary $s\in[0,t]$.
 Notice that
 \[\|E_n(t)-E_{n-1}(t)\|_\infty\lesssim\|\rho_n(t)-\rho_{n-1}(t)\|_1^{1/3}\|\rho_n(t)-\rho_{n-1}(t)\|_\infty^{2/3}.\]
 For $L^\infty$-norm,
-\begin{align*}
-\|\rho_n(t)-\rho_{n-1}(t)\|_\infty
-&\le\max\{Q_n^3(t),Q_{n-1}^3(t)\}\|f_n(t)-f_{n-1}(t)\|_\infty\\
-&\lesssim\|f_n(t)-f_{n-1}(t)\|_\infty.
-\end{align*}
+\[\|\rho_n(t)-\rho_{n-1}(t)\|_\infty\le\max\{Q_n^3(t),Q_{n-1}^3(t)\}\|f_n(t)-f_{n-1}(t)\|_\infty\lesssim\|f_n(t)-f_{n-1}(t)\|_\infty.\]
 For $L^1$-norm, since the support of $f_n,f_{n-1}$ is bounded in both directions $x,v$ in finite time,
 \[\|\rho_n(t)-\rho_{n-1}(t)\|_1\le\|f_n(t)-f_{n-1}(t)\|_1\lesssim\|f_n(t)-f_{n-1}(t)\|_\infty\]
 for $t\le T$, where $T<\infty$ arbitrary.
@@ -669,8 +659,8 @@ Then, the uniform convergence of characteristics $(X_n,V_n)$ is clear by the abs
 
 Also for the uniform convergence of $(\dot X_n,\dot V_n)$, it is proved by the absolute convergence of the series $\sum\|f_{n+1}-f_n\|_\infty$ since
 \begin{align*}
-&\|\dot X_{n+1}-\dot X_n\|_\infty=\|V_{n+1}-V_n\|_\infty,\\
-&\|\dot V_{n+1}-\dot V_n\|_\infty\le\|\nabla_xE_n\|_\infty\|X_{n+1}-X_n\|_\infty+\|E_n-E_{n-1}\|_\infty,
+\|\dot X_{n+1}-\dot X_n\|_\infty&=\|V_{n+1}-V_n\|_\infty,\\
+\|\dot V_{n+1}-\dot V_n\|_\infty&\le\|\nabla_xE_n\|_\infty\|X_{n+1}-X_n\|_\infty+\|E_n-E_{n-1}\|_\infty,
 \end{align*}
 yielding
 \[\|\dot X_{n+1}-\dot X_n\|_\infty+\|\dot V_{n+1}-\dot V_n\|_\infty\lesssim\|f_n-f_{n-1}\|_\infty.\]
@@ -688,10 +678,7 @@ Then, there is a constant $T=T(f_0)>0$ be a constant such that the limit $f$ of 
 Take $T$ such that $T<(Q_0\|f_0\|_\infty^{2/3}\|f_0\|_1^{1/3})^{-1}$.
 Let $X(s;t,x,v)$ and $V(s;t,x,v)$ be the limits of $X_n(s;t,x,v)$ and $V_n(s;t,x,v)$ for given $t,x,v$.
 Notice that
-\begin{align*}
-f(t,x,v)=\lim_{n\to\infty}f_n(t,x,v)&=\lim_{n\to\infty}f_0(X_n(0;t,x,v),V_n(0;t,x,v))\\
-&=f_0(X(0;t,x,v),V(0;t,x,v)),
-\end{align*}
+\[f(t,x,v)=\lim_{n\to\infty}f_n(t,x,v)=\lim_{n\to\infty}f_0(X_n(0;t,x,v),V_n(0;t,x,v))=f_0(X(0;t,x,v),V(0;t,x,v)),\]
 which shows $f$ is $C^1$ since $f_0$ and $(X,V)$ are $C^1$.
 We can check it solves the system by expand the right-hand-side of
 \[0=\dd{s}f(s,X(s;t,x,v),V(s;t,x,v))|_{s=t}\]
@@ -740,7 +727,7 @@ Then, we can construct a new solution in $C^1([0,t_0+\tilde T],C_c^1(\R^6))$ by 
 \end{pf}
 
 \begin{cor}
-If the following statement holds, then Theorem 1.1 is true: the classical solution $f\in C^1([0,T];C_c^1(\R^6))$ with a given initial data $f_0\in C_c^1(\R^6)$ satisfies $Q(t)\le h(t)$ in $t\le T$ for a continuous function $h:[0,\infty)\to[0,\infty)$.
+If the classical solution $f\in C^1([0,T];C_c^1(\R^6))$ with a given initial data $f_0\in C_c^1(\R^6)$ satisfies $Q(t)\le h(t)$ in $t\le T$ for a continuous function $h:[0,\infty)\to[0,\infty)$, then Theorem 1.1 is true.
 \end{cor}
 \begin{pf}
 Suppose $f\in C^1([0,T_{max});C_c^1(\R^6))$ for $T_{max}<\infty$ is the maximal solution with initial data $f_0$.
@@ -784,10 +771,7 @@ To obtain this integral inequality, we may try as follows: if we got an estimate
 then for any fixed $t,\hat x,\hat v$ such that $f(t,\hat x,\hat v)\ne0$ and for any $\Delta>0$ we have
 \[|\hat v-V(t-\Delta;t,\hat x,\hat v)|=|\int_{t-\Delta}^t\gamma E(s,X(s;t,\hat x,\hat v))\,ds|\lesssim\int_{t-\Delta}^tQ(s)^a\,ds,\]
 so there would be a constant $c=c(f_0)$ such that
-\begin{align*}
-|\hat v|&\le|V(t-\Delta;t,\hat x,\hat v)|+c\int_{t-\Delta}^tQ(s)^a\,ds\\
-&\le Q(t-\Delta)+c\int_{t-\Delta}^tQ(s)^a\,ds,
-\end{align*}
+\[|\hat v|\le|V(t-\Delta;t,\hat x,\hat v)|+c\int_{t-\Delta}^tQ(s)^a\,ds\le Q(t-\Delta)+c\int_{t-\Delta}^tQ(s)^a\,ds,\]
 which deduces
 \[Q(t)\le Q(t-\Delta)+c\int_{t-\Delta}^tQ(s)^a\,ds.\]
 
@@ -905,13 +889,9 @@ for $s\in[t-\Delta,t]$.
 Therefore,
 \[|Z(s_0)+Z'(s_0)(s-s_0)|\ge|Z'(s_0)(s-s_0)|\ge\frac12|v-\hat v||s-s_0|,\]
 and
-\begin{align*}
-|\frac{Z''(\sigma)}2(s-s_0)^2|
-&\le\|E(t)\|_\infty(s-s_0)^2
-\le\|E(t)\|_\infty\Delta|s-s_0|\\
-&\le\frac P4|s-s_0|
-\le\frac14|v-\hat v||s-s_0|
-\end{align*}
+\[|\frac{Z''(\sigma)}2(s-s_0)^2|\le\|E(t)\|_\infty(s-s_0)^2
+\le\|E(t)\|_\infty\Delta|s-s_0|\le\frac P4|s-s_0|
+\le\frac14|v-\hat v||s-s_0|\]
 yields
 \[|X(s)-\hat X(s)|=|Z(s)|\ge\frac14|v-\hat v||s-s_0|.\qedhere\]
 \end{pf}
@@ -939,16 +919,12 @@ Write
 Then,
 \[U=\{\,(s,x,v):s\in[t-\Delta,t],\quad|v-\hat v|\ge P,\quad |X(s)-\hat X(s)|\ge r\,\}.\]
 Since $|X(s)-\hat X(s)|\ge r$ on $U$,
-\begin{align*}
-\int_{|s-s_0|<S}\frac{\chi_U(s,x,v)}{|X(s)-\hat X(s)|^2}\,ds
-\le\frac1{r^2}\int_{|s-s_0|<S}ds=\frac{2S}{r^2},
-\end{align*}
+\[\int_{|s-s_0|<S}\frac{\chi_U(s,x,v)}{|X(s)-\hat X(s)|^2}\,ds
+\le\frac1{r^2}\int_{|s-s_0|<S}ds=\frac{2S}{r^2},\]
 and since $|v-\hat v|\ge P$ on $U$ so that $|X(s)-\hat X(s)|\ge\frac14|v-\hat v||s-s_0|$ by Lemma 3.2,
-\begin{align*}
-\int_{|s-s_0|\ge S}\frac{\chi_U(s,x,v)}{|X(s)-\hat X(s)|^2}\,ds
-&\le16\int_{|s-s_0|\ge S}\frac1{|v-\hat v|^2|s-s_0|^2}\,ds\\
-&=32\frac1{|v-\hat v|^2S}.
-\end{align*}
+\[\int_{|s-s_0|\ge S}\frac{\chi_U(s,x,v)}{|X(s)-\hat X(s)|^2}\,ds
+\le16\int_{|s-s_0|\ge S}\frac1{|v-\hat v|^2|s-s_0|^2}\,ds\\
+=32\frac1{|v-\hat v|^2S}.\]
 If we choose $S$ such that $2S/r^2=32/|v-\hat v|^2S$, then we obtain the estimate
 \[\int\frac{\chi_U(s,x,v)}{|X(s)-\hat X(s)|^2}\,ds\lesssim\frac1{|v-\hat v|r}.\]
 
