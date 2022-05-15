@@ -53,63 +53,73 @@ If $x^*\in X^*$ vanishes on $\bigcap_{i=1}^n\ker x_i^*$, then $x^*$ is a linear 
 
 \section{Uniform boundedness principle}
 \begin{prb}[Barreled spaces]
-A barrel.
+A \emph{barrel} is an absorbing, balanced, convex, and closed subset of $X$.
 A \emph{barreled space} is a topological space in which every barrel is a neighborhood of zero.
 \end{prb}
 
-If a closed convex cone contains a dense subset of absorbing at a point, then it is entire?
+% If a closed convex cone contains a dense subset of absorbing at a point, then it is entire?
 
 \begin{prb}[Uniform boundedness principle]
-Let $f:S\subset X\to\R_{\ge0}$.
-Suppose $\|T_\alpha x\|\le f(x)$ on $S$.
+Let $\cT$ be a set of continuous linear operators from $X$ to $Y$.
+Suppose $\bigcup_{T\in\cT}Tx$ is bounded for each $x\in D$, where $D\subset X$.
 \begin{parts}
-\item $S\subset\bigcup_{n=1}^\infty\bigcap_\alpha T_\alpha^{-1}B_n$.
-\item If $X$ is the closed linear span of $S$, then $\bigcap_\alpha T_\alpha^{-1}B_1$ is a barrel of $X$.
+\item If $D$ is dense in $X$, then $\bigcap_{T\in\cT}T^{-1}\bar U$ is absorbing.
+\item If $X$ is barreled, then $\cT$ is equicontinuous.
 \end{parts}
 \end{prb}
 
-\section{Baire spaces}
+
+
+\section{Baire category theorem}
+
+\begin{prb}[Baire spaces]
+A topological space is called a \emph{Baire space} if the intersection of countable open dense subsets is dense.
+\end{prb}
+
+
+\begin{prb}[Absorbing set]
+Let $X$ be a topological vector space that is Baire.
+\begin{parts}
+\item A closed and absorbing set has non-empty interior.
+\item A closed, convex, and absorbing set is a neighborhood of zero.
+\end{parts}
+\end{prb}
+
 
 \begin{prb}[The Baire category theorem]
-
 \begin{parts}
 \end{parts}
 \end{prb}
+
+
 
 \section{Open mapping theorem}
 
 \begin{prb}[Open mapping theorem]
-Let $X$ be a F-space and $Y$ a topological vector space.
+Let $X$ be a F-space and $Y$ a barreled space.
 Suppose $T:X\to Y$ is continuous and surjective.
 \begin{parts}
-\item There is $r>0$ such that $B_r\subset\bar{TB_1}$.
-\item There is $r>0$ such that $B_r\subset TB_1$.
-\item $T$ is open.
+\item $\bar{TB}$ is a neighborhood of zero.
+\item $TB$ is a neighborhood of zero.
 \end{parts}
 \end{prb}
 
 \begin{pf}
 (a)
-The set $\bar{TB_1}$ is clearly closed and absolutely convex.
-The surjectivity of $T$ implies $\bar{TB_1}$ is absorbing.
-Since $Y$ is barreled, $\bar{TB_1}$ contains an open ball $B_r$.
+Let $B=B_1$ be an open ball in $X$.
+There is an open neighborhood $U$ of zero such that $U-U\subset B$.
+The set $\bar{TU}$ is clearly closed, and the surjectivity of $T$ implies $\bar{TU}$ is absorbing.
+Since $Y$ is barreled, $\bar{TU}$ has a non-empty interior in $Y$.
+Thus, $\bar{TB}$ is a neighborhood of zero.
 
 (b)
-Let $r>0$ such that $B_r\subset\bar{TB_{1/2}}$.
-For $y\in B_r$, we are going to construct $x\in B_1\subset X$ such that $y=Tx$.
-We claim for $n$ that
-\[(y+TB_{1-1/2^n})\cap B_{r/2^n}\ne\varnothing.\]
-
-We have
-\[(y+B_{r/2})\cap TB_{1/2}\ne\varnothing,\]
-and
-\[(y+TB_{1/2})\cap B_{r/2}\ne\varnothing,\]
-and
-\[(y+TB_{1/2})\cap\bar{TB_{1/4}}\ne\varnothing,\]
-and
-\[(y+TB_{1/2}+B_{r/4})\cap TB_{1/4}\ne\varnothing,\]
-and
-\[(y+TB_{3/4})\cap B_{r/4}\ne\varnothing.\]
+We claim $\bar{TB_{1/2}}\subset TB$.
+Take $y_1\in\bar{TB_{1/2}}$.
+To construct $x\in B$ such that $Tx=y_1$, we use the metrizability and completeness of $X$.
+Since $\bar{TB_{1/2^{n+1}}}$ are neighborhoods of zero, we can inductively construct sequences $x_n\in B_{1/2^n}$ and $y_n\in\bar{TB_{1/2^n}}$ such that $Tx_n\in y_n+\bar{TB_{1/2^{n+1}}}$ and $y_{n+1}:=Tx_n-y_n$.
+Let $x:=\sum_{n=1}^\infty x_n\in B$.
+Then,
+\[Tx=\lim_{n\to\infty}\sum_{i=1}^nTx_i=\lim_{n\to\infty}\sum_{i=1}^ny_{i+1}-y_i=y_1.\qedhere\]
 \end{pf}
 
 
@@ -117,18 +127,21 @@ and
 
 \begin{prb}
 Let $(T_n)$ be a sequence in $B(X,Y)$.
-If $T_n$ coverges then $\|T_n\|$ is bounded by the uniform boundedness principle.
+If $T_n$ coverges strongly then $\|T_n\|$ is bounded by the uniform boundedness principle.
 \end{prb}
 
-
-
+\begin{prb}
+There is a closed absorbing set in $\ell^2(\Z_{\ge0})$ that is not a neighborhood of zero;
+\[\bar B(0,1)\setminus\bigcup_{i=2}^\infty B(i^{-1}e_i,i^{-2})\]
+is a counterexample.
+\end{prb}
 
 
 
 \chapter{Fr\'echet, Banach, and Hilbert spaces}
 
-\section{Fre\'echet spaces}
-dual is not Fre\'chet.
+\section{Fr\'echet spaces}
+dual is not Fr\'echet.
 
 \section{Banach spaces}
 dual is Banach.
@@ -199,7 +212,17 @@ Suppose $T$ is normal.
 \end{parts}
 \end{prb}
 
-
+\begin{prb}[Invariant and Reducing subsapces]
+Let $K$ be a closed subspace of $H$.
+\begin{parts}
+\item $K$ is reducing for $T$ if and only if $K$ is invariant for $T$ and $T^*$.
+\item $K$ is reducing for $T$ if and only if $TP=PT$, where $P$ is the orthogonal projection on $K$.
+\end{parts}
+\end{prb}
+% self adjoint operators
+% invariant but not reducing for unitary operators
+% eigenspaces
+% matrix representation
 
 
 
@@ -908,24 +931,21 @@ A C$^*$-algebra is commutative if and only if a function $f(x)=\frac x{1+x}$ is 
 \section{The double commutant theorem}
 
 \begin{thm}[Double commutant theorem]
-Let $\cA$ be a C$^*$-subalgebra of $B(H)$ containing $\id_H$.
+Let $\cA$ be a non-degenerate C$^*$-subalgebra of $B(H)$.
 \begin{parts}
-\item $\cA'$ is strongly closed.
-\item For $b\in\cA''$ and $\xi\in H$, there is a sequence $a_n\in\cA$ such that $a_n(\xi)\to b(\xi)$.
-\item For $b\in\cA''$ and $\xi_1,\cdots,\xi_m\in H$, there is a sequence $a_n\in\cA$ such that $a_n(\xi_i)\to b(\xi_i)$ for all $i$.
-\item $\cA$ is strongly dense in $\cA''$.
+\item $\cA'$ and $\cA''$ are weakly closed.
+\item For $a\in\cA''$ and $\xi\in H$, there is a sequence $a_n\in\cA$ such that $a_n(\xi)\to a(\xi)$.
+\item For $a\in\cA''$ and $\xi_1,\cdots,\xi_m\in H$, there is a sequence $a_n\in\cA$ such that $a_n(\xi_i)\to a(\xi_i)$ for all $i$.
 \item $\cA$ is von Neumann algebra if and only if $\cA=\cA''$.
 \end{parts}
 \end{thm}
 \begin{pf}
 (b)
-Let $K$ be the cyclic subspace $\bar{\cA\xi}$ of $\xi$ in $H$ and $p$ its orthogonal projection.
-We will show $b\xi\in K$.
-Note that $\xi\in K$ due to the assumption $\id_H\in\cA$.
-
-For every $a\in\cA$, we have $aK\subset K$ because the multiplication by $a$ is continuous on $H$, and $a^*K\subset K$ because $\cA$ is self-adjoint.
-It means that $K$ reduces all $a\in\cA$, and then $ap=pa$ implies $bp=pb$, so $K$ also reduces $b$.
-Therefore, $bK\subset K$ proves $b\xi\in K$.
+Let $K:=\bar{\cA\xi}$ be the cyclic subspace of $\xi$ in $H$ and $p$ its orthogonal projection.
+We claim $a\xi\in K$.
+For every $b\in\cA$, we have $bK\subset K$ because the multiplication by $b$ is continuous on $H$, and $b^*K\subset K$ because $\cA$ is self-adjoint.
+It means that $K$ reduces all $b\in\cA$, and then $bp=pb$ implies $ap=pa$, so $K$ also reduces $a$.
+Therefore, $aK\subset K$ proves $a\xi=\lim_\alpha e_\alpha a\xi\in K$, where $e_\alpha$ is an approximate identity of $\cA$.
 
 (e)
 Since $\bar\cA^\wot$ is closed convex, $\bar\cA^\sot=\bar\cA^\wot$.

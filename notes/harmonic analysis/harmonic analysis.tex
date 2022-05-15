@@ -130,7 +130,29 @@ Then, convolution with $K$ is a Calder\'on-Zygmund operator.
 \chapter{Multiplier theorems}
 
 \part{Pseudo-differential operators}
+% https://arxiv.org/abs/2107.12839
+\section{}
+$S_{\rho,\delta}^m$
+\[|D_x^\alpha D_\xi^\beta a(x,\xi)|\lesssim\<\xi\>^{m-\rho|\beta|+\delta|\alpha|}.\]
 
+Let $a$ be a symbol on $M=\R_x^d\times\R_\xi^d$.
+Then, the associated $\Psi$DO is
+\[T_a\psi(x):=\frac1{(2\pi)^d}\iint e^{i\<x-y,\xi\>}a(x,\xi)\psi(y)\,dy\,d\xi.\]
+For parameters $0\le\lambda\le1$ and $h>0$, let
+\[\hat a\psi(x):=\frac1{(2\pi h)^d}\iint e^{\frac ih\<x-y,\xi\>}a((1-\lambda)x+\lambda y,\xi)\psi(y)\,dy\,d\xi.\]
+For example, regardless of $h$ and $\lambda$,
+\[\hat\xi\psi(x)=\frac hi\psi'(x)\]
+and
+\[\hat H\psi(x)=-h^2\Delta\psi(x)+V(x)\psi(x),\]
+where $V:\R_x^d\times\R_\xi^d\to\R$ and $H:\R_x^d\times\R_\xi^d\to\R$ such that
+\[H(x,\xi):=|\xi|^2+V(x).\]
+
+
+\[\dd{t}a(t)=\{a(t),H\}=X_Ha(t)\]
+\[\dd{t}\hat a(t)=\dd{t}e^{\frac iht\hat H}\hat ae^{-\frac iht\hat H}=-\frac ih[\hat a(t),\hat H]\]
+\begin{prb}[Composition of Weyl quantization]
+
+\end{prb}
 
 \part{Oscillatory integral operators}
 
