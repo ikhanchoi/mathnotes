@@ -5,7 +5,16 @@
 \usepackage[bitstream-charter,cal]{mathdesign}
 \linespread{1.1}
 
-
+\makeatletter
+\newcommand{\hhat}[1]{% 
+\begingroup%
+  \let\macc@kerna\z@%
+  \let\macc@kernb\z@%
+  \let\macc@nucleus\@empty%
+  \hat{\raisebox{.35ex}{\vphantom{#1}}\smash{\hat{#1}}}%
+\endgroup%
+}
+\makeatother
 
 \title{Three perspectives on Bochner's theorem:\\from Herglotz representation\\to Pontryagin duality}
 \author{Ikhan Choi}
@@ -627,11 +636,32 @@ for any $g\in C_0(\Omega)$, where $C_0(\Omega)$ denotes the space of continuous 
 By the Riesz-Markov-Kakutani representation theorem, the topology of vague convergence coincides with the weak$^*$ topology of the dual space $C_0(\Omega)^*$.
 \end{defn}
 
-Be cautious that in locally compact Hausdorff spaces we are concerned with \emph{regular} Borel measures, which means
+Be cautious that in the Riesz-Markov-Kakutani representation theorem for locally compact Hausdorff spaces we are concerned with \emph{regular} Borel measures that differ to what we call \emph{regular} Borel measures in probability theory.
+For the convenience of further discussions, here we clarify the concept of regular measures.
+
+\begin{defn}[Regular Borel measures]
+If $\Omega$ is locally compact and Hausdorff, then we say a Borel measure $\mu$ on $\Omega$ is \emph{regular} if
 \[\mu(E)=\sup\{\,\mu(K):K\text{ is compact in }E\,\}
 =\inf\{\,\mu(U):U\text{ is open containing }E\,\}\]
 for all Borel measurable $E$.
-We have omitted the regularity condition on measures in Chapter 2 because every finite Borel measure on a compact metric space is regular in this sense.
+If $S$ is metrizable, then we say a Borel measure $\mu$ on $S$ is \emph{regular} if
+\[\mu(E)=\sup\{\,\mu(F):F\text{ is closed in }E\,\}
+=\inf\{\,\mu(U):U\text{ is open containing }E\,\}\]
+for all Borel measurable $E$.
+Note that even if a topological space is both locally compact Hausdorff and metrizable, two notions are not equivalent.
+We denote the space of all probability regular Borel measures on $\Omega$ and $S$ by $\Prob(\Omega)$ and $\Prob(S)$, respectivley.
+\end{defn}
+
+\begin{lem}[Probability measure is regular on metrizable spaces]
+Let $S$ be a metrizable space.
+Then, every single finite Borel measure $\mu$ on $S$ is regular.
+\end{lem}
+
+\begin{ex}[Dieudonn\'e measure]
+
+\end{ex}
+
+We have omitted the regularity condition on measures in Chapter 2 because every finite Borel measure on a compact metric space is regular in both senses.
 The vague convergence is less important in probability theory because there are situations that we have to deal with probability measures on a nowhere locally compact spaces, for example, the separable Hilbert space or the space of continuous functions $C([0,1])$.
 This viewpoint frequently occurs and is useful when we try to analyze one stochastic process as a single random variable.
 
@@ -670,17 +700,7 @@ According to this result, under the assumption that the base space is locally co
 Now we return to the probability theory.
 Two classical theorems of the space of probability measures on a metric spaces, the metrizability and a compactness criteria for the space of probability measures will be introduced.
 They will be applied to see weak$^*$ convergences of probability measures on $\R$, and it is doable because $\R$ is both a metric space and a locally compact space.
-We start with two lemmas without proof.
-For the proof, see [].
 
-\begin{lem}[Regularity of finite measures]
-Let $S$ be a metrizable space.
-Then, every single finite Borel measure $\mu$ on $S$ is regular in the sense that
-\[\mu(E)=\sup\{\,\mu(F):F\text{ is closed in }E\,\}
-=\inf\{\,\mu(U):U\text{ is open containing }E\,\}\]
-for all Borel measurable $E$.
-Note that this definition differs from that of locally compact Hausdorff spaces.
-\end{lem}
 
 \begin{lem}[The Portmanteau theorem]
 Let $S$ be a metric space, and $\mu_\alpha$ be a net of probability Borel measures on $S$.
@@ -800,7 +820,13 @@ We claim that it has a convergent subnet.
 Let $\beta S$ be the Stone-C\v ech compactification of $S$.
 The inclusion $\iota:S\to\beta S$ is a topological embedding because $S$ is completely regular.
 Pushforward the measures $\mu_\alpha$ to make them probability Borel measures $\nu_\alpha:=\iota_*\mu_\alpha$ on $\beta S$.
-Since finite Borel measures on a compact Hausdorff space is regular(in both definitions), $\nu_\alpha$ is a net in $\Prob(\beta S)$, which is compact by the Banach-Alaoglue theorem and the Riesz-Markov-Kakutani representation theorem.
+Our first claim is that the measure $\nu_\alpha$ is regular for each $\alpha$, that is, $\nu_\alpha\in\Prob(\beta S)$.
+For any Borel $E\subset\beta S$ and any $\e>0$ we have $F\subset E\cap S$ that is closed in $S$ and $K$ compact in $S$ such that $\mu_\alpha(E\cap S)<\mu_\alpha(F)+\e/2$ and $\mu_\alpha(S\setminus K)<\e/2$.
+Then, the inequality
+\[\nu_\alpha(E)=\mu_\alpha(E\cap S)<\mu_\alpha(F)+\frac\e2<\mu_\alpha(F\cap K)+\e=\nu_\alpha(F\cap K)+\e\]
+proves the regularity of $\nu_\alpha$ since $F\cap K$ is compact in both $S$ and $\beta S$ with $F\cap K\subset E$.
+Note that $\beta S$ is quite far from metrizable spaces, so the regularity of measures is required for $\Prob(\beta S)$.
+The space $\Prob(\beta S)$ is compact by the Banach-Alaoglue theorem and the Riesz-Markov-Kakutani representation theorem.
 Therefore, $\nu_\alpha$ has a subnet $\nu_\beta$ that converges to $\nu\in\Prob(\beta S)$.
 
 Recall that $\mu_\beta$ is tight.
@@ -1028,62 +1054,238 @@ measure <=> pos def continuous + trace class
 
 
 
+
+
+
 \newpage
 \section{On locally compact abelian groups: representation theory}
+
+In this chapter, we extend the domain of Fourier transforms on locally compact abelian groups.
+Recall that the Fourier transform on $R$ is given by the integral
+\[\cF f(\xi)=\int_\R e^{-ix\chi}f(x)\,dx\]
+with an exponential term.
+This rotating exponential term can be recognized as continuous group homomorphism from $G$ to circle group $\T$ in general, so we will introduce the notion of space of these homomorphisms and define Fourier transform on $G$ by using this.
+
+Remark that the homomorphisms $G\to\T$ are called character in algebra context.
+At the same time, when $G$ is abelian, they form another abelian group, and they are just another form of irreducible representations over $\C$.
+In representation theory of groups, the group algebra $\C[G]$ has a fundamental position for investigation of the structure of representations of $G$.
+
+In locally compact abelian groups, the convolution algebra $L^1(G)$ replaces the algebra $\C[G]$.
+
+%When we see a function $L^1(G)$ as a density function on $G$, then the Fourier transform is nothing but a infinitesimal linear combination of characters.
+
+
 
 
 
 \subsection{The Fourier transform}
 
-We mean locally compact \emph{Hausdorff} abelian groups by locally compact abelian groups.
-We always denote the identity of a group by $e$.
-We always denote the Haar measure of a group by $dg$.
+We will always mean locally compact \emph{Hausdorff} abelian groups by locally compact abelian groups.
+For a locally compact abelian group $G$, we also always denote the identity of $G$ by $e$ and a fixed Haar measure of $G$ by $dx$.
+For clarity, we do not use the hat notation to indicate Fourier transform, for which the curly alphabet $\cF$ will be used.
 
 
 \begin{defn}[Dual group]
 Let $G$ be a locally compact abelian group, and let $\T=\{z\in\C:|z|=1\}$ be the circle group.
-The \emph{dual group} $\hat G$ of $G$ is the group of all continuous group homomorphisms $G\to\T$, endowed with the topology of compact convergence.
+The \emph{dual group} $\hat G$ of $G$ is the group of all continuous group homomorphisms $\chi:G\to\T$, endowed with the topology of compact convergence.
 \end{defn}
 
+As in vector spaces, there is a natural homomorphism from a group to its double dual group.
+
+\begin{defn}[Canonical homomorphism]
+Let $G$ be a locally compact abelian group, and $\hhat G$ be its double dual group.
+We call the map $\alpha:G\to\hhat G$ defined such that $\alpha(x)(\chi):=\chi(x)$ as the \emph{canonical homomorphism} of $G$.
+\end{defn}
+
+Consider the a Banach space $L^1(G)$.
+Then, $L^1(G)$ is an abelian Banach algebra with multiplication
+\[f*g(x):=\int f(y)g(y^{-1}x)\,dy,\]
+which is called convolution.
+Here we shortly introduce spectral theory of abelian Banach algebras.
+The spectrum of an abelian Banach algebra $\cA$ is the set of all non-zero algebra homomorphisms $\cA\to\C$, and denoted by $\hat\cA$ or $\sigma(\cA)$.
+If we endow on it the weak$^*$-topology induced from the dual space $\cA^*$ as a Banach space, then the spectrum becomes locally compact and Hausdorff in light of the Banach-Alaloglu theorem.
+
+
+Let $\chi\in\hat G$.
+Then, it defines a linear functional
+\[L^1(G)\to\C:f\mapsto\int_G\bar{\chi(x)}f(x)\,dx\]
+on $L^1(G)$, which is a non-zero algebra homomorphism, so induces a map $\hat G\to(L^1(G))\hat\ $.
+In fact this map is a homeomorphism and considered as a canonical identification of the spectra.
+This correspondence reduces to a starting point to construct a connection between the groups and algebras.
+
 \begin{prop}
-Let $G$ and $\hat G$ be a locally compact abelian group and its dual group, respectively.
-\begin{parts}
-\item The group $\hat G$ is the set of extreme points of the set of all continuous positive definite functions $\chi$ such that $\chi(e)=1$.
-\item The group $\hat G$ is a locally compact abelian group.
-\end{parts}
+The map $\hat G\to(L^1(G))\hat\ $ is a homeomorphism.
 \end{prop}
 \begin{pf}
 
 \end{pf}
+\begin{cor}
+If $G$ is a locally compact abelian group, then $\hat G$ is also a locally compact abelian group.
+\end{cor}
+
+\begin{ex}[Real line and circle]
+
+\end{ex}
+\begin{ex}[Finite groups]
+
+\end{ex}
+\begin{ex}[Infinite product]
+
+\end{ex}
 
 
+We now define Fourier transform.
 
-Recall that $L^1(G)$ is an abelian Banach algebra, and the spectrum of an abelian Banach algebra $\cA$ is the set $\hat\cA$ of all non-zero algebra homomorphisms $\cA\to\C$.
+\begin{defn}[Fourier transform]
+Let $G$ be a locally compact abelian group, and $\hat G$ be its dual group.
+Let $f\in L^1(G)$.
+The \emph{Foureir transform} is a linear operator $\cF:L^1(G)\to\C^{\hat G}$ defined by
+\[\cF f(\chi):=\int_G\bar{\chi(x)}f(x)\,dx\]
+for $\chi\in\hat G$.
+The extended Fourier transform for measures $\cF:M(G)\to\C^{\hat G}$ is called the \emph{Fourier-Stieltjes transform} and given by
+\[\cF\mu(\chi):=\int_G\bar{\chi(x)}\,d\mu(x)\]
+for $\chi\in\hat G$, where $M(G)$ denotes the space of all finite complex regular Borel measures; it is the complex linear span of $\Prob(G)$.
+We will also often use the adjoint Fourier transform $\cF^*:M(\hat G)\to\C^{\hat{\hat G}}$ defined by
+\[\cF^*\mu(x):=\int_{\hat G}x(\chi)\,d\mu(\chi)\]
+for $x\in\hhat G$.
+Note that the Fourier transform of functions in $L^1(\hat G)$ depends on the choice of Haar measure $d\chi$ on $\hat G$, up to constant.
+\end{defn}
 
-Let $\chi\in\hat G$.
-Then, since
-\[L^1(G)\to\C:a\mapsto\int_Ga(g)\chi(g)\,dg\]
-is a non-zero algebra homomorphism, we have a map $\hat G\to(L^1(G))\hat\ $.
-This map is bijective.
 
-
-\begin{thm}[Bochner's theorem]
-\end{thm}
+Note that we can embed $G$ into the algebra $M(G)$ as a dirac measures.
+One way of recognizing Fourier transform is a lifting of the canonical homomorphism $\alpha:G\to\hhat G$, as described in the following commutative diagram:
+\begin{cd}
+G\rar{\alpha}\dar[hook]&\hhat G\dar[hook]\\
+M(G)\rar{\cF^*}&\C^{\hat G}
+\end{cd}
 
 
 
 
 \subsection{The Pontryagin duality}
-\begin{thm}
+
+
+
+In the previous section, we defined Fourier transform on a locally compact abelian group $G$ that maps a function on $G$ to another function on $\hat G$.
+Then, repeated Fourier transform will map a function on $G$ to a function on the double dual $\hhat G$.
+Consider the case of $G=\R$ or $\T=\R/2\pi\Z$.
+The Fourier inversion theorem and the theorems on the convergence of Fourier series state that from a transformed function $\cF f$ on $\hat G=\R$ or $\Z$ we can reconstruct the original function $f$ by doing the almost same operation, the adjoint Fourier transform.
+In other words, although the domain of $\cF^*\cF f$ is in principle $\hhat G$, but it can be considered as the original function $f$ on the original group $G$.
+Furthermore, in a suitable setting of function spaces, the adjoint Fourier transform $\cF^*$ plays a role of inverse Fourier transform $\cF^{-1}$.
+
+We are interested in the generalization for the conditions of the group $G$ such that the recovery of the original group from the dual group $\hat G$ is successful.
+This kind of question of recovery is called \emph{duality}, and the most famous result is the Pontryagin duality.
+Pontryagin proved in 1934 the duality for compact second countable abelian groups, and van Kampen generalized in the next year for the case of locally compact abelian groups.
+In present the Pontryagin duality refers to the duality result for locally compact abelian groups.
+
+For a locally compact abelian group $G$, we can discover in Bochner's theorem an actual mechanism to pullback the doubly transformed function on $\hhat G$ to the original group $G$ without any loss of information.
+To see this, we will reformulate Bochner's theorem as a corollary after the proof of the theorem.
+
+\begin{thm}[Bochner's theorem]
+Let $G$ be a locally compact abelian group, 
+A function $f:G\to\C$ is continuous and positive definite if and only if there is a unique non-negative $\mu\in M(\hat G)$ such that 
+\[f(x)=\int_{\hat G}\chi(x)\,d\mu(\chi)\]
+for all $x\in G$.
+\end{thm}
+\begin{pf}
+
+\end{pf}
+
+\begin{defn}[Fourier-Stieltjes algebra]
+Let $G$ be a locally compact abelian group.
+The \emph{Fourier-Stieltjes algebra} $B(G)$ is the linear span of the continuous positive definite functions on $G$.
+Note that $B(G)\cap M(G)=B(G)\cap L^1(G)$.
+\end{defn}
+
+\begin{cor}
+Let $G$ be a locally compact abelian group, and $\alpha:G\to\hhat G$ be the canonical homomorphism.
+Then, $\alpha^*\circ\cF^*:M(\hat G)\to B(G)$ is a well-defined algebra isomorphism.
+\end{cor}
+
+
+Classical Fourier inversion theorems go further than Bochner's theorem; not only is the Fourier transform bijective, but the inverse is given by its adjoint.
+We rigorouslt state them as follows.
+
+\begin{thm}[Fourier inversion]
 Let $G$ be a locally compact abelian group, and $\hat G$ be its dual group.
-Then, $G\to\hat{\hat G}:g\mapsto(\chi\mapsto\chi(g))$ is a topological isomorphism.
+By adjusting the constant of Haar measure on $\hat G$, we have the following statements:
+\begin{parts}
+\item For $f\in B(G)\cap L^1(G)$, we have $\cF f\in L^1(\hat G)$ and $\alpha^*\circ\cF^*\circ\cF f=f$.
+\item For all $\f\in B(\hat G)\cap L^1(\hat G)$, we have $\cF^*\circ\alpha^*\circ\cF\f=\f$
+\end{parts}
+\end{thm}
+% Explain why $\alpha^*$ is well defined: the continuity of functions
+\begin{pf}
+(a)
+Without loss of generality, assume $f\in P(G)\cap L^1(G)$, where $P(G)$ denotes the space of all continuous positive definite functions on $G$.
+By the Bochner theorem, there is a non-negative measure $\mu\in M(\hat G)$ such that $\alpha^*\circ\cF^*\mu=f$.
+Our claim is that there is a Haar measure $d\chi$ on $\hat G$ such that $d\mu(\chi)=\cF f\,d\chi$.
+
+Define a linear functional $I:C_c(\hat G)\to\C$ such that for each $\f\in C_c(\hat G)$ we have
+\[I(\f):=\int\f\frac{d\mu(\chi)}{\cF f(\chi)},\]
+where $f\in P(G)\cap L^1(G)$ satisfies $\cF f>0$ on $\supp\f$.
+The existence of such $f$ is shown as follows:
+
+The linear functional $I$ is well-defined since
+
+
+(b)
+Note that we can slightly modify the Bochner theorem to state that $\alpha^*\circ\cF:M(\hhat G)\to B(\hat G)$ is also an algebra isomorphism.
+From the part (a), we have $\cF\f\in L^1(\hhat G)$ so that $\alpha^*\circ\cF\f\in B(G)\cap L^1(G)$ and
+\[\alpha^*\circ\cF\circ(\cF^*\circ\alpha^*\circ\cF)\f
+=(\alpha^*\circ\cF\circ\cF^*)\circ\alpha^*\circ\cF\f=\alpha^*\circ\cF^*\f,\]
+hence $\cF^*\circ\alpha^*\circ\cF\f=\f$ by the injectivity of $\alpha^*\circ\cF$.
+\end{pf}
+
+\begin{thm}[The Plancherel theorem]
+Let $G$ be a locally compact abelian group, and $\hat G$ be its dual group.
+Then,
+\[\|\cF f\|_{L^2(\hat G)}=\|f\|_{L^2(G)}\]
+for $f\in L^2(G)\cap L^1(G)$.
 \end{thm}
 \begin{pf}
 \end{pf}
-\begin{ex}[Fourier inversion]
 
-\end{ex}
 
+\begin{thm}[Pontryagin duality]
+Let $G$ be a locally compact abelian group, and $\hat G$ be its dual group.
+Then, the canonical homomorphism $\alpha:G\to\hhat G$ is a topological isomorphism.
+\end{thm}
+\begin{pf}
+(Embedding)
+
+(Injectivity)
+
+
+(Closedness)
+We will show $\alpha(G)$ is closed in $\hhat G$.
+
+(Density)
+Suppose $\alpha(G)$ is not dense in $\hhat G$.
+We claim that there is a non-zero function $f\in\cF^*(M(\hat G))$ on $\hhat G$ that vanishes on $\alpha(G)$.
+If the claim is true, then for $\mu\in M(\hat G)$ such that $f=\cF^*\mu$ we have
+\[\alpha^*\circ\cF^*\mu=0,\]
+so $\mu=0$ by the Bochner theorem, and it leads a contradiction to $f\ne0$.
+
+Let $z\in\hhat G\setminus\bar{\alpha(G)}$ and $U$ an open set in $\hhat G$ such that $zUU\cap\alpha(G)=\varnothing$.
+Let $g$ be any non-negative non-zero continuous functions supported on $U$, and define $f:=(L_zg)*g$, where $L_zg(x)=g(z^{-1}x)$.
+Then, $f(x)>0$ implies there are $x'$ and $x''$ in $\hhat G$ such that $x=x'x''$, $L_zg(x')>0$, and $g(x'')>0$.
+It concludes $f$ vanishes on $\alpha(G)$ because $x=x'x''\in zUU\subset\alpha(G)^c$.
+
+Let $\beta$ be the canonical homomorphism of $\hat G$.
+By the Hausdorff Young inequality we have $\beta^*\circ\cF(L_zg)$ and $\beta^*\circ\cF g$ are in $B(\hat G)\cap L^2(\hat G)$.
+Then,
+\begin{align*}
+\beta^*\circ\cF f(\chi)
+&=\int_{\hat{\hat G}}x(\chi)f(x)\,dx\\
+&=\int_{\hat{\hat G}}x(\chi)\int_{\hat{\hat G}}L_zg(y)g(y^{-1}x)\,dy\,dx\\
+&=\int_{\hat{\hat G}}L_zg(y)\int_{\hat{\hat G}}x(\chi)g(y^{-1}x)\,dx\,dy\\
+&=\int_{\hat{\hat G}}L_zg(y)\int_{\hat{\hat G}}y(\chi)x(\chi)g(x)\,dx\,dy\\
+&=\int_{\hat{\hat G}}y(\chi)L_zg(y)\,dy\int_{\hat{\hat G}}x(\chi)g(x)\,dx
+=\beta^*\circ\cF(L_zg)(\chi)\cdot\beta^*\circ\cF g(\chi)
+\end{align*}
+for all $\chi\in\hat G$, so $\beta^*\circ\cF f$ belongs to $B(\hat G)\cap L^1(\hat G)$ by the H\"older inequality, hence the inversion theorem proves $f=\cF^*\circ\beta^*\circ\cF f$ is contained in $\cF^*(L^1(\hat G))\subset\cF^*(M(\hat G))$.
+\end{pf}
 
 
 \subsection{Examples: topological groups in number theory}
@@ -1093,10 +1295,9 @@ Tate thesis: locally compact group of adeles.
 
 \subsection{Further developments for non-abelian groups}
 
-\iffalse
 Tannaka duality is formally stated in several ways, but the central idea is the same, the category of representations reconstructs the group.
 
-three structures $\oplus,\otimes,*$.
+%three structures $\oplus,\otimes,*$.
 
 Let $\mathbf{Rep}(G)$ be the category of finite-dimensional unitary representations of $G$.
 Consider a forgetful functor
@@ -1144,11 +1345,10 @@ We have a monoid homomorphism $\mathbf{Rep}(G)\to M$ which is an isomorhpism up 
 Since $\End(H_\pi)\cong\C$, by recognizing $T$ as
 \[T\subset\prod_{\pi\in\mathbf{Rep}(G)}\End(H_\pi)\cong\C^{\mathbf{Rep}(G)},\]
 we have
-\[T\cong\mathbf{Mon}(M,\C)\cong\mathbf{Grp}(\hat G,\T)=\hat{\hat G}.\]
+\[T\cong\mathbf{Mon}(M,\C)\cong\mathbf{Grp}(\hat G,\T)=\hhat G.\]
 By the Tannak duality, the double dual group is isomorphic to the original group.
 \end{ex}
 
-\fi
 
 
 
