@@ -12,36 +12,39 @@
 
 
 
+
+
 \chapter{Measures and $\sigma$-algebras}
 
-\section{Definition of measures}
 
-
-
-\chapter{Carath\'eodory extension}
-
+\section{Carath\'eodory extension}
 \begin{prb}[Outer measures]
 Let $\Omega$ be a set.
-An \emph{outer measure} on $\Omega$ is a function $\mu^*:\cP(\Omega)\to[0,\infty]$ with $\mu^*(\varnothing)=0$ such that
+An \emph{outer measure} on $\Omega$ is a set function $\mu^*:\cP(\Omega)\to[0,\infty]$ with $\mu^*(\varnothing)=0$ such that
 \begin{enumerate}[(i)]
-\item if $E_1\subset E_2$, then $\mu^*(E_1)\le\mu^*(E_2)$,
+\item $E_1\subset E_2\Rightarrow\mu^*(E_1)\le\mu^*(E_2)$ in $\cP(\Omega)$,
 \hfill(monotonicity)
-\item $\mu^*(\bigcup_{i=1}^\infty E_i)\le\sum_{i=1}^\infty\mu^*(E_i)$,
+\item $\mu^*(\bigcup_{i=1}^\infty E_i)\le\sum_{i=1}^\infty\mu^*(E_i)$ in $\cP(\Omega)$.
 \hfill(countable subadditivity)
 \end{enumerate}
-for any $\{E_i\}_{i=1}^\infty\subset\cP(\Omega)$.
 \begin{parts}
-\item A function $\mu^*:\cP(\Omega)\to[0,\infty]$ with $\mu^*(\varnothing)=0$ is an outer measure if and only if $\mu^*(E)\le\sum_{i=1}^\infty\mu^*(E_i)$ whenever $E\subset\bigcup_{i=1}^\infty E_i$.
+\item A set function $\mu^*:\cP(\Omega)\to[0,\infty]$ with $\mu^*(\varnothing)=0$ is an outer measure if and only if $\mu^*$ is \emph{monotonically countably subadditive}, that is, $E\subset\bigcup_{i=1}^\infty E_i\Rightarrow\mu^*(E)\le\sum_{i=1}^\infty\mu^*(E_i)$ in $\cP(\Omega)$.
 \item
-Let $\cA\subset\cP(\Omega)$ with $\varnothing\in\cA$.
-If a function $\rho:\cA\to[0,\infty]$ satisfies $\rho(\varnothing)=0$, then we can associate an outer measure $\mu^*:\cP(\Omega)\to[0,\infty]$ by defining as
+For a set function $\rho:\cA\to[0,\infty]$ with $\rho(\varnothing)=0$, where $\varnothing\in\cA\subset\cP(\Omega)$, we can associate an outer measure $\mu^*:\cP(\Omega)\to[0,\infty]$ by defining as
 \[\mu^*(E):=\inf\left\{\,\sum_{i=1}^\infty\rho(A_i):E\subset\bigcup_{i=1}^\infty A_i,\ A_i\in\cA\,\right\},\]
 where we use the convention $\inf\varnothing=\infty$.
 \end{parts}
 \end{prb}
+\begin{pf}
+(a)
 
 
-\begin{prb}[Carath\'eodory measure]
+(b)
+
+
+\end{pf}
+
+\begin{prb}[Carath\'eodory measurable sets]
 Let $\mu^*$ be an outer measure on a set $\Omega$.
 A subset $A\subset \Omega$ is called \emph{Carath\'eodory measurable} relative to $\mu^*$ if
 \[\mu^*(E)=\mu^*(E\cap A)+\mu^*(E\setminus A)\]
@@ -51,18 +54,19 @@ Let $\cM$ be the collection of all Carath\'eodory measurable subsets relative to
 \item $\cM$ is an algebra and $\mu^*$ is finitely additive on $\cM$.
 \item $\cM$ is a $\sigma$-algebra and $\mu^*$ is countably additive on $\cM$.
 \item The measure $\mu:=\mu^*|_\cM:\cM\to[0,\infty]$ is complete.
-We call $\mu$ the \emph{Carath\'eodory measure} constructed from $\rho$.
 \end{parts}
 \end{prb}
 
 
 \begin{prb}[Carath\'eodory extension theorem]
-Let $\cA\subset\cP(\Omega)$ with $\varnothing\in\cA$.
-Let $\rho:\cA\to[0,\infty]$ with $\rho(\varnothing)=0$.
+Let $\rho:\cA\to[0,\infty]$ with $\rho(\varnothing)=0$, where $\varnothing\in\cA\subset\cP(\Omega)$.
 Consider two conditions
 \begin{enumerate}[(i)]
-\item $A\subset\bigcup_{i=1}^\infty A_i$ implies $\rho(A)\le\sum_{i=1}^\infty\rho(A_i)$,
-\item for any $\e>0$ and $B,A$ there are $A_1,A_2$ such that $B\cap A\subset A_1$, $B\setminus A\subset A_2$ and $\rho(B)+\e>\rho(A_1)+\rho(A_2)$.
+\item $A\subset\bigcup_{i=1}^\infty A_i\Rightarrow\rho(A)\le\sum_{i=1}^\infty\rho(A_i)$ in $\cA$,
+\hfill{(monotonically countably subadditive)}
+\item Every $A\in\cA$ satisfies that for each $B\in\cA$ and $\e>0$ there are $\{B'_j\}_{j=1}^\infty$ and $\{B''_j\}_{j=1}^\infty\subset\cA$ such that
+\[\rho(B)+\e>\sum_{j=1}^\infty\rho(B'_j)+\sum_{j=1}^\infty\rho(B''_j)\]
+with $B\cap A\subset\bigcup_{j=1}^\infty B'_j$ and $B\setminus A\subset\bigcup_{j=1}^\infty B''_j$.
 \end{enumerate}
 Let $\mu^*:\cP(\Omega)\to[0,\infty]$ be the associated outer measure of $\rho$, and $\mu:\cM\to[0,\infty]$ the measure defined by the restriction of $\mu^*$ on Carath\'eodory measurable subsets.
 \begin{parts}
@@ -73,20 +77,16 @@ Let $\mu^*:\cP(\Omega)\to[0,\infty]$ be the associated outer measure of $\rho$, 
 \begin{pf}
 (a)
 Clearly $\mu^*(A)\le\rho(A)$ for $A\in\cA$.
-
 We may assume $\mu^*(A)<\infty$.
 For arbitrary $\e>0$ there is $\{A_i\}_{i=1}^\infty$ such that $A\subset\bigcup_{i=1}^\infty A_i$ and
 \[\mu^*(A)+\e>\sum_{i=1}^\infty\rho(A_i)\ge\rho(A).\]
 
 (b)
 Let $E\in\cP(\Omega)$ and $A\in\cA$.
-Then,
-$E\subset \bigcup_{i=1}^\infty A_i$ and $A_i\cap A\subset A_{i,1}$ and $A_i\setminus A\subset A_{i,2}$ such that
-\begin{align*}
-\mu^*(E)+\e>\sum_{i=1}^\infty(\rho(A_i)+\frac\e{2^{i+1}})
-&>\sum_{i=1}^\infty\rho(A_{i,1})+\sum_{i=1}^\infty\rho(A_{i,2})\\
-&\ge\mu^*(E\cap A)+\mu^*(E\setminus A).
-\end{align*}
+Since it is enough to check the inequality $\mu^*(E)\ge\mu^*(E\cap A)+\mu^*(E\setminus A)$ for $E$ with finite $\mu^*(E)$, we may assume there is a countable family $\{B_i\}_{i=1}^\infty\subset\cA$ such that $E\subset\bigcup_{i=1}^\infty B_i$.
+Then, we have $B_i\cap A\subset\bigcup_{j=1}^\infty B'_{i,j}$ and $B_i\setminus A\subset\bigcup_{j=1}^\infty B''_{i,j}$ satisfying
+\[\mu^*(E)+\e>\sum_{i=1}^\infty(\rho(B_i)+\frac\e{2^{i+1}})
+>\sum_{i,j=1}^\infty\rho(B'_{i,j})+\sum_{i,j=1}^\infty\rho(B''_{i,j})\ge\mu^*(E\cap A)+\mu^*(E\setminus A).\]
 \end{pf}
 
 
@@ -95,16 +95,13 @@ $E\subset \bigcup_{i=1}^\infty A_i$ and $A_i\cap A\subset A_{i,1}$ and $A_i\setm
 Let $\cA\subset\cP(\Omega)$ be a semi-ring of sets on a set $X$.
 A function $\rho:\cA\to[0,\infty]$ with $\rho(\varnothing)=0$ is called a \emph{pre-measure} if
 \begin{enumerate}[(i)]
-\item $\rho(\bigsqcup_{i=1}^\infty A_i)\le\sum_{i=1}^\infty\rho(A_i)$,
+\item $\rho(\bigsqcup_{i=1}^\infty A_i)\le\sum_{i=1}^\infty\rho(A_i)$ in $\cA$,
 \hfill(disjoint countable subadditivity)
-\item $\rho(\bigsqcup_{i=1}^nA_i)=\sum_{i=1}^n\rho(A_i)$,
+\item $\rho(A_1\sqcup A_2)=\rho(A_1)+\rho(A_2)$ in $\cA$.
 \hfill(finite additivity)
 \end{enumerate}
-for any $\{A_i\}_{i=1}^\infty\subset\cA$ with $\bigsqcup_{i=1}^\infty A_i\in\cA$ and $n\in\N$.
-
-Let $\mu^*:\cP(\Omega)\to[0,\infty]$ be the associated outer measure of $\rho$, and $\mu:\cM\to[0,\infty]$ the measure defined by the restriction of $\mu^*$ on Carath\'eodory measurable subsets.
 \begin{parts}
-\item A pre-measure is a priori countably additive.
+\item 
 \end{parts}
 \end{prb}
 
@@ -145,7 +142,6 @@ A Lebesgue measurable set in $\R$ with positive measure contains an arbitrarily 
 
 
 
-\part{Lebesgue integral}
 
 
 \chapter{Measurable functions}
@@ -214,9 +210,7 @@ we have
 
 
 
-
-
-
+\part{Lebesgue integral}
 
 
 \chapter{Convergence theorems}
@@ -252,11 +246,17 @@ Therefore, $f_{n_k}$ converges $\mu$-a.e.
 \end{pf}
 
 
-
-
 \chapter{Product measures}
 \section{Fubini-Tonelli theorem}
 \section{Lebesgue measure on Euclidean spaces}
+
+
+\chapter{Measures on metric spaces}
+
+
+\section{Compact metric spaces}
+
+
 
 
 
@@ -270,9 +270,9 @@ Therefore, $f_{n_k}$ converges $\mu$-a.e.
 
 \chapter{Lebesgue spaces}
 \section{$L^p$ spaces}
+\section{$L^1$ spaces}
 \section{$L^2$ spaces}
-\section{Dual spaces}
-riesz representations
+\section{$L^\infty$ spaces}
 
 
 

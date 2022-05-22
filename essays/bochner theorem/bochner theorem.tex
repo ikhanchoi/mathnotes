@@ -8,10 +8,10 @@
 \makeatletter
 \newcommand{\hhat}[1]{% 
 \begingroup%
-  \let\macc@kerna\z@%
-  \let\macc@kernb\z@%
-  \let\macc@nucleus\@empty%
-  \hat{\raisebox{.35ex}{\vphantom{#1}}\smash{\hat{#1}}}%
+	\let\macc@kerna\z@%
+	\let\macc@kernb\z@%
+	\let\macc@nucleus\@empty%
+	\hat{\raisebox{.33ex}{\vphantom{#1}}\smash{\hat{#1}}}%
 \endgroup%
 }
 \makeatother
@@ -881,8 +881,7 @@ and
 Many continuous positive definite functions are computed from probability distributions:
 \begin{center}\renewcommand{\arraystretch}{1.8}
 \begin{tabular}{ccc}
-Name & mass or density functions & characteristic functions\\
-\hline
+Name & mass or density functions & characteristic functions\\\hline
 Constant & $p(x)=\1_{\{c\}}(x)$ & $\f(t)=e^{ict}$\\
 Bernoulli & $p(x)=\frac12\cdot\1_{\{\pm1\}}(x)$ & $\f(t)=\cos t$\\
 Normal & $f(x)=\frac1{\sqrt{2\pi}}e^{-x^2/2}$ & $\f(t)=e^{-t^2/2}$\\
@@ -1064,15 +1063,17 @@ In this chapter, we extend the domain of Fourier transforms on locally compact a
 Recall that the Fourier transform on $R$ is given by the integral
 \[\cF f(\xi)=\int_\R e^{-ix\chi}f(x)\,dx\]
 with an exponential term.
-This rotating exponential term can be recognized as continuous group homomorphism from $G$ to circle group $\T$ in general, so we will introduce the notion of space of these homomorphisms and define Fourier transform on $G$ by using this.
+
+	% Two problems: what is the dual object? how can we generalize the exponential term?
+
+This exponential term can be recognized as continuous group homomorphism from $G$ to circle group $\T$ in general, so we will introduce the notion of space of these homomorphisms and define Fourier transform on $G$ by using this.
 
 Remark that the homomorphisms $G\to\T$ are called character in algebra context.
 At the same time, when $G$ is abelian, they form another abelian group, and they are just another form of irreducible representations over $\C$.
 In representation theory of groups, the group algebra $\C[G]$ has a fundamental position for investigation of the structure of representations of $G$.
 
 In locally compact abelian groups, the convolution algebra $L^1(G)$ replaces the algebra $\C[G]$.
-
-%When we see a function $L^1(G)$ as a density function on $G$, then the Fourier transform is nothing but a infinitesimal linear combination of characters.
+% To see representations of $G$, we see the representations of $L^1(G)$
 
 
 
@@ -1090,12 +1091,6 @@ Let $G$ be a locally compact abelian group, and let $\T=\{z\in\C:|z|=1\}$ be the
 The \emph{dual group} $\hat G$ of $G$ is the group of all continuous group homomorphisms $\chi:G\to\T$, endowed with the topology of compact convergence.
 \end{defn}
 
-As in vector spaces, there is a natural homomorphism from a group to its double dual group.
-
-\begin{defn}[Canonical homomorphism]
-Let $G$ be a locally compact abelian group, and $\hhat G$ be its double dual group.
-We call the map $\alpha:G\to\hhat G$ defined such that $\alpha(x)(\chi):=\chi(x)$ as the \emph{canonical homomorphism} of $G$.
-\end{defn}
 
 Consider the a Banach space $L^1(G)$.
 Then, $L^1(G)$ is an abelian Banach algebra with multiplication
@@ -1111,6 +1106,7 @@ Then, it defines a linear functional
 \[L^1(G)\to\C:f\mapsto\int_G\bar{\chi(x)}f(x)\,dx\]
 on $L^1(G)$, which is a non-zero algebra homomorphism, so induces a map $\hat G\to(L^1(G))\hat\ $.
 In fact this map is a homeomorphism and considered as a canonical identification of the spectra.
+It has an analogy with a locally compact version of the theorem that complex representations of a finite group $G$ has a one-to-one correspondence to $\C[G]$-modules.
 This correspondence reduces to a starting point to construct a connection between the groups and algebras.
 
 \begin{prop}
@@ -1126,7 +1122,7 @@ If $G$ is a locally compact abelian group, then $\hat G$ is also a locally compa
 \begin{ex}[Real line and circle]
 
 \end{ex}
-\begin{ex}[Finite groups]
+\begin{ex}[Finite abelian groups]
 
 \end{ex}
 \begin{ex}[Infinite product]
@@ -1151,20 +1147,57 @@ for $x\in\hhat G$.
 Note that the Fourier transform of functions in $L^1(\hat G)$ depends on the choice of Haar measure $d\chi$ on $\hat G$, up to constant.
 \end{defn}
 
+\begin{prop}
+Property
+\begin{parts}
+\item $\cF:L^1(G)\to C_0(\hat G)$ is an embedding with dense image.
+\item $\cF:M(G)\to C_b(\hat G)$ is an embedding.
+\end{parts}
+\end{prop}
 
-Note that we can embed $G$ into the algebra $M(G)$ as a dirac measures.
-One way of recognizing Fourier transform is a lifting of the canonical homomorphism $\alpha:G\to\hhat G$, as described in the following commutative diagram:
+
+
+We give representation-theoretic interpretations of Fourier transform and adjoint Fourier transform.
+\begin{itemize}
+\item The Fourier transform is itself a unitary representation.
+\item Each element of $M(\hat G)$ corresponds
+\end{itemize}
+
+First, the Fourier transform $\cF:L^1(G)\to C_0(\hat G)\subset B(L^2(\hat G))$ can be considered as an extension of a special unitary representation of $G$ itself; Gelfand representation.
+It acts on the Hilbert space $L^2(\hat G)$ by multiplication.
+This representation is
+Note that as in vector spaces, there is a natural homomorphism from a group to its double dual group.
+\begin{defn}[Canonical homomorphism]
+Let $G$ be a locally compact abelian group, and $\hhat G$ be its double dual group.
+We call the map $\Phi:G\to\hhat G$ defined such that $\Phi(x)(\chi):=\chi(x)$ as the \emph{canonical homomorphism} of $G$.
+\end{defn}
+Since 
+We can embed $G$ into the algebra $M(G)$ as a dirac measures.
+One way of recognizing Fourier transform is a lifting of the canonical homomorphism $\Phi:G\to\hhat G$, as described in the following commutative diagram:
 \begin{cd}
-G\rar{\alpha}\dar[hook]&\hhat G\dar[hook]\\
-M(G)\rar{\cF^*}&\C^{\hat G}
+G\rar{\Phi}\dar[hook]&\hhat G\dar[hook]\\
+M(G)\rar{\cF^*}&C_b(\hat G).
+\end{cd}
+In particular, $\Phi$ is injective.
+
+
+
+
+Second, each element of the measure space $M(\hat G)$ is considered as a representation of $G$.
+
+
+
+\begin{cd}
+G\rar{\Phi}\dar[hook]&\hhat G\dar[hook]\\
+M(G)\rar{\cF^*}&\prod\limits_{[\pi]\in\hat G}\End H_\pi.
 \end{cd}
 
 
 
 
+
+
 \subsection{The Pontryagin duality}
-
-
 
 In the previous section, we defined Fourier transform on a locally compact abelian group $G$ that maps a function on $G$ to another function on $\hat G$.
 Then, repeated Fourier transform will map a function on $G$ to a function on the double dual $\hhat G$.
@@ -1198,27 +1231,26 @@ Note that $B(G)\cap M(G)=B(G)\cap L^1(G)$.
 \end{defn}
 
 \begin{cor}
-Let $G$ be a locally compact abelian group, and $\alpha:G\to\hhat G$ be the canonical homomorphism.
-Then, $\alpha^*\circ\cF^*:M(\hat G)\to B(G)$ is a well-defined algebra isomorphism.
+Let $G$ be a locally compact abelian group, and $\Phi:G\to\hhat G$ be the canonical homomorphism.
+Then, $\Phi^*\circ\cF^*:M(\hat G)\to B(G)$ is a well-defined algebra isomorphism, where $\Phi^*f=f\circ\Phi$.
 \end{cor}
 
 
 Classical Fourier inversion theorems go further than Bochner's theorem; not only is the Fourier transform bijective, but the inverse is given by its adjoint.
-We rigorouslt state them as follows.
+We rigorously state them as follows.
 
 \begin{thm}[Fourier inversion]
 Let $G$ be a locally compact abelian group, and $\hat G$ be its dual group.
 By adjusting the constant of Haar measure on $\hat G$, we have the following statements:
 \begin{parts}
-\item For $f\in B(G)\cap L^1(G)$, we have $\cF f\in L^1(\hat G)$ and $\alpha^*\circ\cF^*\circ\cF f=f$.
-\item For all $\f\in B(\hat G)\cap L^1(\hat G)$, we have $\cF^*\circ\alpha^*\circ\cF\f=\f$
+\item For $f\in B(G)\cap L^1(G)$, we have $\cF f\in B(\hat G)\cap L^1(\hat G)$ and $\Phi^*\circ\cF^*\circ\cF f=f$.
+\item For $\f\in B(\hat G)\cap L^1(\hat G)$, we have $\cF^*\circ\Phi^*\circ\cF\f=\f$
 \end{parts}
 \end{thm}
-% Explain why $\alpha^*$ is well defined: the continuity of functions
 \begin{pf}
 (a)
 Without loss of generality, assume $f\in P(G)\cap L^1(G)$, where $P(G)$ denotes the space of all continuous positive definite functions on $G$.
-By the Bochner theorem, there is a non-negative measure $\mu\in M(\hat G)$ such that $\alpha^*\circ\cF^*\mu=f$.
+By the Bochner theorem, there is a non-negative measure $\mu\in M(\hat G)$ such that $\Phi^*\circ\cF^*\mu=f$.
 Our claim is that there is a Haar measure $d\chi$ on $\hat G$ such that $d\mu(\chi)=\cF f\,d\chi$.
 
 Define a linear functional $I:C_c(\hat G)\to\C$ such that for each $\f\in C_c(\hat G)$ we have
@@ -1230,11 +1262,11 @@ The linear functional $I$ is well-defined since
 
 
 (b)
-Note that we can slightly modify the Bochner theorem to state that $\alpha^*\circ\cF:M(\hhat G)\to B(\hat G)$ is also an algebra isomorphism.
-From the part (a), we have $\cF\f\in L^1(\hhat G)$ so that $\alpha^*\circ\cF\f\in B(G)\cap L^1(G)$ and
-\[\alpha^*\circ\cF\circ(\cF^*\circ\alpha^*\circ\cF)\f
-=(\alpha^*\circ\cF\circ\cF^*)\circ\alpha^*\circ\cF\f=\alpha^*\circ\cF^*\f,\]
-hence $\cF^*\circ\alpha^*\circ\cF\f=\f$ by the injectivity of $\alpha^*\circ\cF$.
+Note that we can slightly modify the Bochner theorem to state that $\Phi^*\circ\cF:M(\hhat G)\to B(\hat G)$ is also an algebra isomorphism.
+From the part (a), we have $\cF\f\in L^1(\hhat G)$ so that $\Phi^*\circ\cF\f\in B(G)\cap L^1(G)$ and
+\[\Phi^*\circ\cF\circ(\cF^*\circ\Phi^*\circ\cF)\f
+=(\Phi^*\circ\cF\circ\cF^*)\circ\Phi^*\circ\cF\f=\Phi^*\circ\cF^*\f,\]
+hence $\cF^*\circ\Phi^*\circ\cF\f=\f$ by the injectivity of $\Phi^*\circ\cF$.
 \end{pf}
 
 \begin{thm}[The Plancherel theorem]
@@ -1247,44 +1279,49 @@ for $f\in L^2(G)\cap L^1(G)$.
 \end{pf}
 
 
+
+
 \begin{thm}[Pontryagin duality]
 Let $G$ be a locally compact abelian group, and $\hat G$ be its dual group.
-Then, the canonical homomorphism $\alpha:G\to\hhat G$ is a topological isomorphism.
+Then, the canonical homomorphism $\Phi:G\to\hhat G$ is a topological isomorphism.
 \end{thm}
+\begin{lem*}[A lemma for Pontryagin duality]
+For an open subset $U$ of $\hhat G$, there is non-zero $f\in\cF^*(L^1(\hat G))$ supported on $U$.
+\end{lem*}
 \begin{pf}
+Let $V$ be an open set such that $VV\subset U$, and take $g\in C_c(\hhat G)$ any non-negative non-zero continuous functions with $\supp g\subset V$ using the Urysohn lemma.
+If we define $f:=g*g$, then $f\ne0$ and $\supp f\subset(\supp g)(\supp g)\subset VV\subset U$.
+
+By the Plancherel theorem, we have $\Phi^*\circ\cF g\in B(\hat G)\cap L^2(\hat G)$.
+Since
+\begin{align*}
+\Phi^*\circ\cF f(\chi)
+&=\int_{\hat{\hat G}}x(\chi)f(x)\,dx\\
+&=\int_{\hat{\hat G}}x(\chi)\int_{\hat{\hat G}}g(y)g(y^{-1}x)\,dy\,dx\\
+&=\int_{\hat{\hat G}}g(y)\int_{\hat{\hat G}}x(\chi)g(y^{-1}x)\,dx\,dy\\
+&=\int_{\hat{\hat G}}g(y)\int_{\hat{\hat G}}y(\chi)x(\chi)g(x)\,dx\,dy\\
+&=\int_{\hat{\hat G}}y(\chi)g(y)\,dy\int_{\hat{\hat G}}x(\chi)g(x)\,dx
+=(\Phi^*\circ\cF g(\chi))^2
+\end{align*}
+for all $\chi\in\hat G$, we have $\Phi^*\circ\cF f$ belongs to $B(\hat G)\cap L^1(\hat G)$ by the H\"older inequality.
+Therefore, by the inversion theorem, $f=\cF^*\circ\Phi^*\circ\cF f$ is contained in $\cF^*(L^1(\hat G))$.
+\end{pf}
+\begin{pf}[Proof of the Pontryagin duality]
 (Embedding)
-
-(Injectivity)
-
+Suppose a net $x_\alpha$ does not converge to $x$ in $G$.
+We may assume there is an open neighborhood $U$ of $x$ in $G$ such that $x_\alpha\notin U$ for all $\alpha$.
+By the previous lemma, there is $\f\in L^1(\hat G)$ such that $\supp\cF^*\f\subset U$, and we have $\cF^*\f(x_\alpha)=0$ for all $\alpha$ but $\cF^*\f(x)\ne0$.
+Then, since $\cF^*\f(y)=\int\Phi^*(y)(\chi)\f(\chi)\,d\chi$, so $\Phi^*(x_\alpha)$ does not converges to $\Phi^*(x)$ in the weak$^*$ topology of $L^\infty(\hat G)$, which is same as the topology on $\hhat G=(L^1(\hat G))\hat\ $.
 
 (Closedness)
-We will show $\alpha(G)$ is closed in $\hhat G$.
+Let $y\in\bar{\Phi(G)}$ such that there is a net $x_\alpha\in G$ satisfying $\Phi(x_\alpha)\to y$ in $\hhat G$.
+Since $\Phi(x_\alpha)$ is Cauchy and $\Phi$ is an embedding, $x_\alpha$ is also Cauchy.
+Because every locally compact group is complete, $x_\alpha\to x$ in $G$.
+Then, $\Phi(x)=\Phi(\lim_\alpha x_\alpha)=\lim_\alpha\Phi(x_\alpha)=y$ implies $y\in\Phi(G)$.
 
 (Density)
-Suppose $\alpha(G)$ is not dense in $\hhat G$.
-We claim that there is a non-zero function $f\in\cF^*(M(\hat G))$ on $\hhat G$ that vanishes on $\alpha(G)$.
-If the claim is true, then for $\mu\in M(\hat G)$ such that $f=\cF^*\mu$ we have
-\[\alpha^*\circ\cF^*\mu=0,\]
-so $\mu=0$ by the Bochner theorem, and it leads a contradiction to $f\ne0$.
-
-Let $z\in\hhat G\setminus\bar{\alpha(G)}$ and $U$ an open set in $\hhat G$ such that $zUU\cap\alpha(G)=\varnothing$.
-Let $g$ be any non-negative non-zero continuous functions supported on $U$, and define $f:=(L_zg)*g$, where $L_zg(x)=g(z^{-1}x)$.
-Then, $f(x)>0$ implies there are $x'$ and $x''$ in $\hhat G$ such that $x=x'x''$, $L_zg(x')>0$, and $g(x'')>0$.
-It concludes $f$ vanishes on $\alpha(G)$ because $x=x'x''\in zUU\subset\alpha(G)^c$.
-
-Let $\beta$ be the canonical homomorphism of $\hat G$.
-By the Hausdorff Young inequality we have $\beta^*\circ\cF(L_zg)$ and $\beta^*\circ\cF g$ are in $B(\hat G)\cap L^2(\hat G)$.
-Then,
-\begin{align*}
-\beta^*\circ\cF f(\chi)
-&=\int_{\hat{\hat G}}x(\chi)f(x)\,dx\\
-&=\int_{\hat{\hat G}}x(\chi)\int_{\hat{\hat G}}L_zg(y)g(y^{-1}x)\,dy\,dx\\
-&=\int_{\hat{\hat G}}L_zg(y)\int_{\hat{\hat G}}x(\chi)g(y^{-1}x)\,dx\,dy\\
-&=\int_{\hat{\hat G}}L_zg(y)\int_{\hat{\hat G}}y(\chi)x(\chi)g(x)\,dx\,dy\\
-&=\int_{\hat{\hat G}}y(\chi)L_zg(y)\,dy\int_{\hat{\hat G}}x(\chi)g(x)\,dx
-=\beta^*\circ\cF(L_zg)(\chi)\cdot\beta^*\circ\cF g(\chi)
-\end{align*}
-for all $\chi\in\hat G$, so $\beta^*\circ\cF f$ belongs to $B(\hat G)\cap L^1(\hat G)$ by the H\"older inequality, hence the inversion theorem proves $f=\cF^*\circ\beta^*\circ\cF f$ is contained in $\cF^*(L^1(\hat G))\subset\cF^*(M(\hat G))$.
+If $\alpha(G)$ is not dense in $\hhat G$, then a non-zero function $f\in\cF^*(M(\hat G))$ vanishes on $\alpha(G)$ by the previous lemma.
+For $\mu\in M(\hat G)$ such that $f=\cF^*\mu$, we have $\alpha^*\circ\cF^*\mu=f|_{\alpha(G)}=0$, so $\mu=0$ by the Bochner theorem, and it leads a contradiction to $f\ne0$.
 \end{pf}
 
 
@@ -1297,9 +1334,9 @@ Tate thesis: locally compact group of adeles.
 
 Tannaka duality is formally stated in several ways, but the central idea is the same, the category of representations reconstructs the group.
 
-%three structures $\oplus,\otimes,*$.
 
 Let $\mathbf{Rep}(G)$ be the category of finite-dimensional unitary representations of $G$.
+This tensor category has three structures $\oplus,\otimes,*$.
 Consider a forgetful functor
 \[F:\mathbf{Rep}(G)\to\mathbf{Vect}_\C:(\pi,H_\pi)\mapsto H_\pi.\]
 Let $\gamma$ be a natural transformation $F\to F$ so that
@@ -1349,52 +1386,6 @@ we have
 By the Tannak duality, the double dual group is isomorphic to the original group.
 \end{ex}
 
-
-
-
-\newpage
-
-\section*{Appendix A: Geometry of convex compact sets}
-
-\section*{Appendix B: Basics of locally compact groups}
-Haar measures
-topological isomorphism?
-
-
-
-\begin{defn}
-
-\end{defn}
-
-\begin{thm}[Schur's lemma]
-
-\end{thm}
-
-\begin{cor}
-On abelian groups, every irrep is one-dimensional
-\end{cor}
-
-\begin{defn}[Dual space]
-Let $G$ be a locally compact group.
-The \emph{dual space} or the \emph{spectrum} of $G$ is the set of unitary equivalence classes of irreducible unitary representations of $G$. 
-\end{defn}
-\begin{defn}[Dual group]
-Let $G$ be a locally compact abelian group.
-Note that every irreducible unitary representation is one-dimensional.
-Then, a map
-\[\hat G\to\{\text{group homomorphisms }G\to\T\subset\C^\times\}\]
-which maps $(\pi,V)$ to itself $\pi:G\to\End{V}\cong\C$ is well-defined.
-It is in fact bijective blabla
-
-Therefore, $\hat G$ has an abelian group structure given by the pointwise multiplication, so that we usually say the dual space $\hat G$ as the \emph{dual group}.
-Furthermore, we endow the topology of pointwise convergence on $\hat G$.
-\end{defn}
-\begin{prop}
-If $G$ is a locally compact abelian group, then the dual group $\hat G$ is also a locally compact abelian group.
-\end{prop}
-
-\begin{ex}[Character theory of finite groups]
-\end{ex}
 
 
 \bibliographystyle{acm}

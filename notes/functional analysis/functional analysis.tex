@@ -313,7 +313,7 @@ Let $\{x_i^*\}_{i=1}^m\subset X^*$ and $x^{**}\in X^{**}$.
 Let $z\in X$ such that $\<x_i^*,J(x)\>=\<x_i^*,x^{**}\>$ for all $i$.
 Let $Y$ be the set of all $y\in X$ such that $\<x_i^*,J(y)\>=0$ for all $i$.
 Then, $z+Y$ is the closed affine subsapce of $X$ containing all $y\in X$ such that $\<x_i^*,J(y)\>=\<x_i^*,x^{**}\>$ for all $i$.
-If we assume $z+Y$ does not contain any $x\in X$ such that $\|x\|\le1+\e$, then $\dist(z,Y)=\dist(0,z+Y)>1+\e$.
+If we assume $z+Y$ does not contain any $x\in X$ such that $\|x\|\le1+\e$, then $d(z,Y)=d(0,z+Y)>1+\e$.
 By the Hahn-Banach theorem, there is $y^*\in X^*$ such that $\|y^*\|=1$, $y^*|_Y=0$, and $\<z,y^*\>>1+\e$.
 Then, $y^*$ is a linear combination of $\{x_i^*\}_{i=1}^m$, so
 \[1+\e<\<z,y^*\>=\<y^*,J(z)\>=\<y^*,x^{**}\>\le\|x^{**}\|\|y^*\|\le1.\]
@@ -504,7 +504,22 @@ There is an orthonormal basis $E\subset H$ such that
 \[T=\sum_{e\in E}\lambda_e|e\>\<e|.\]
 
 \section{Spectral theorem for bounded normal operators}
+
+\begin{prb}[Projection valued measure]
+Let $(\Omega,\cM)$ be a measurable space and $H$ a Hilbert space.
+A \emph{projection valued measure} or a \emph{spectral measure} on $\Omega$ for $H$ is a map $E:\cM\to B(H)$ such that $E(A)$ is an orthogonal projection with $E(\varnothing)=0$ and the set function $\cM\to\C:A\mapsto\<E(A)\xi,\eta\>$ is a complex measure on $\Omega$ for each $\xi$ and $\eta\in H$.
+(regularity, it has also two definitions)
+\begin{parts}
+\item The last condition is equivalent to the countable additivity: $E(\bigsqcup_{i=1}^\infty A_i)=\sum_{i=1}^\infty E(A_i)$ in the strong operator topology of $B(H)$ for $\{A_i\}_{i=1}^\infty\subset\cM$.
+\item $E(A\cap B)=E(A)E(B)$ for $A,B\in\cM$.
+\end{parts}
+\end{prb}
+
+Let $T\in B(H)$ be a normal operator.
+Then, there exists a regular Borel spectral measure $E$ on $\sigma(T)$ for $H$ such that
 \[T=\int_{\sigma(T)}\lambda\,dE(\lambda).\]
+This spectral measure $E$
+
 
 
 
@@ -903,6 +918,18 @@ Extend the result for general exponent: $\cA$ is commitative if $f(x)=x^\beta$ i
 
 
 \section{Gelfand-Naimark-Siegel representation}
+
+\begin{prb}
+Let $\cA$ be a C$^*$-algebra, and $\rho$ be a state on $\cA$.
+
+\end{prb}
+
+\begin{prb}
+Let $\cA=C([0,1])$ and $\mu$ be a state on $\cA$, a regular Borel probability measure on $[0,1]$.
+Then, the left kernel $L_\mu=\{f\in\cA:\mu(|f|^2)=0\}$ is the set of $f\in\cA$ such that $\supp f\cap\supp\mu=\varnothing$(Not checked)
+Then, the quotient is $\cA/L_\mu\cong C(\supp\mu)$.
+Therefore, our Hilbert space is $L^2(\supp\mu,\mu)$, and the canonical cyclic vector is the unity function.
+\end{prb}
 
 
 \begin{prb}[States on unitization]
