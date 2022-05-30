@@ -115,27 +115,35 @@ for $x\ne0$, where $\Phi$ denotes the fundamental solution of Laplace's equation
 
 \subsection{Approximation of Banach spaces}
 We follow closely Temam for the abstract error analysis.
+The word ``approximation'' in here can be replaced into ``discretization''.
+
 \begin{defn}[Approximation]
 Let $X$ be a Banach space.
-An \emph{approximation} of $X$ is an indexed family $X_h$ of finite-dimensional normed spaces, with a \emph{prolongation operator} $P_h\in B(X_h,X)$ and a \emph{restriction operator} $R_h\in B(X,X_h)$ such that $R_hP_h=\id_{X_h}$.
-The operator $T_h:=P_hR_h$ is called the \emph{truncation operator}.
+An \emph{approximation} of $X$ is an indexed family $X_h$ of finite-dimensional normed spaces, with a \emph{prolongation operator} $p_h\in B(X_h,X)$ and a \emph{restriction operator} $r_h\in B(X,X_h)$ such that $r_hp_h=\id_{X_h}$.
+The operator $\tau_h:=p_hr_h$ is called the \emph{truncation operator}.
+\begin{cd}
+X\dar[->>,swap]{r_h} \\ X_h\uar[bend right,swap]{p_h}
+\end{cd}
 \end{defn}
 
 \begin{defn}[Errors]
 Let $X_h$ be an approximation of a Banach space $X$.
-For $x\in X$ and $x_h\in X_h$, the quantities $\|P_hx_h-x\|$ and $\|x_h-R_hx\|_h$ are called the \emph{strong error} and the \emph{discrete error} of $x$ and $x_h$.
-The quantity $\|x-P_hR_hx\|$ is called the \emph{truncation error}.
+For $x\in X$ and $x_h\in X_h$, the quantities $SE(x_h,x):=\|p_hx_h-x\|$ and $DE(x_h,x):=\|x_h-r_hx\|_h$ are called the \emph{strong error} and the \emph{discrete error} of $x$ and $x_h$.
+The quantity $TE(x):=\|x-\tau_hx\|$ is called the \emph{truncation error}.
 \end{defn}
 
 \begin{defn}[Stable and convergent approximations]
-An approximation is said to be \emph{convergent} if the truncation error converges to zero.
-An approximation is said to be \emph{stable} if the prolongation and restriction operators are uniformly bounded.
+We say an approximation $X_h$ is
+\begin{parts}
+\item \emph{stable} if $\|p_h\|+\|r_h\|\lesssim1$,
+\item \emph{convergent} if $TE=\|x-\tau_hx\|_h\to0$.
+\end{parts}
 \end{defn}
 \begin{lem}
 Let $X_h$ be an approximation of a Banach space $X$.
 If $X_h$ is stable and convergent, then the convergences in discrete error and strong error are equivalent:
-\[DE\le RC\cdot SE,\]
-\[SE\le PC\cdot DE+TE.\]
+\[DE\le\|r_h\|\cdot SE,\]
+\[SE\le\|p_h\|\cdot DE+TE.\]
 \end{lem}
 
 \begin{ex}
@@ -144,53 +152,66 @@ If $X_h$ is stable and convergent, then the convergences in discrete error and s
 
 
 
-\subsection{Discretization scheme}
+\subsection{Approxiamation of problems}
 
-An operator $L:\cX\to\cY$ is \emph{well-posed} if there is a continuous linear operator $L^{-1}:Y\to X$ such that $LL^{-1}=\id_Y$, where $X\subset\cX$ and $Y\subset\cY$ are dense embeddings.
+A \emph{well-posed problem} is an operator $L:\cX\to\cY$ such that there is a continuous operator $L^{-1}:Y\to X$ satisfying $LL^{-1}=\id_Y$, where $X\subset\cX$ and $Y\subset\cY$ are embeddings.
 Say, consider the spaces $\cX$ and $\cY$ as space of distributions.
-
 We will always assume $L:X\to Y$ is a right invertible(i.e. well-posed) linear operator between Banach spaces.
 
-\begin{defn}[Discretization scheme]
-A \emph{discretization scheme} or a \emph{scheme} of $L$ is an indexed family $L_h\in L(X_h,Y_h)$ of invertible linear operators, with $X_h$ an approximation of $X$ and a surjective $\Pi_h\in B(Y,Y_h)$.
+\begin{defn}[Approximation]
+Let $L$ be a well-posed linear problem.
+An \emph{approximation} of $L$ is an indexed family $L_h\in L(X_h,Y_h)$ of invertible linear operators, where $X_h$ and $Y_h$ are stable and convergent approximations of $X$ and $Y$.
 \end{defn}
-Note that we never use the prolongation operator for $Y_h$.
-The restriction operator $\Pi_h$ is taken to be routine, but the approximation $X_h$ of $X$ is where we should take subtly.
-The art of numerical analysis begins with the choice of $X_h$.
+Note that we never use the prolongation operator for $Y_h$, but the restriction operator $r_h$ for $Y_h$ is taken to be routine.
+We also do not need to assume in fact the stability of $r_h$.
+The approximation $X_h$ of $X$ is where we should take subtly, and the art of numerical analysis begins with the choice of $X_h$.
 The following diagram does not commute, but \emph{approximately} commute.
 \begin{cd}
-X \dar[dashed,bend right,swap]{R_h}\rar{L} & Y \dar{\Pi_h} \\
-X_h \uar[dashed,bend right,swap]{P_h}\rar{L_h} & Y_h
+X \dar[dashed,bend right,swap]{r_h}\rar{L} & Y \dar{r_h} \\
+X_h \uar[dashed,bend right,swap]{p_h}\rar{L_h} & Y_h
 \end{cd}
 
-If a scheme is given, we will always write $x_h:=L_h^{-1}\Pi_hLx$ the \emph{approximate solution} for every $x\in X$.
+Given an approximated problem $L_h$, we will always write $x_h:=L_h^{-1}r_hLx$ the \emph{approximate solution} for each $x\in X$.
 
-\begin{defn}[Properties of schemes]
-Let $L_h$ be a scheme of $L$.
-We say the scheme $L_h$ is \emph{stable} if $L_h^{-1}$ is uniformly bounded, \emph{convergent} if the discrete error converges to zero;
-\[DE=\|x_h-R_hx\|_h\to0,\]
-and \emph{consistent} if the consistency error converges to zero;
-\[CE=\|\Pi_hLx-L_hR_hx\|_h\to0.\]
+\begin{defn}
+Let $L_h$ be an approximation of a well-posed linear problem $L$.
+We say $L_h$ is
+\begin{parts}
+\item \emph{stable} if $\|L_h^{-1}\|\lesssim1$,
+\item \emph{consistent} if $CE=\|r_hLx-L_hr_hx\|_h\to0$,
+\item \emph{convergent} if $DE=\|x_h-r_hx\|_h\to0$.
+\end{parts}
 \end{defn}
 
 \begin{thm}[Lax equivalence]
-Let $L_h$ be a scheme of $L$.
+Let $L_h$ be an approximation of a well-posed linear problem $L$.
 If $L_h$ is consistent, then it is stable if and only if it is convergent.
 \end{thm}
 \begin{pf}
-One direction is clear from
-\[DE=\|x_h-R_hx\|_h\le\|L_h^{-1}\|\|\Pi_hLx-L_hR_hx\|_h=SC\cdot CE.\]
-Conversely, suppose the scheme is convergent.
-For any $y_h\in Y_h$, since $\Pi_h$ and $L$ are surjective, there is $x$ such that $y_h=\Pi_hLx$ so that $L_h^{-1}y_h=x_h$ is convergent since
-\[DE=\|x_h-R_hx\|_h\le RC\cdot SE.\]
+($\Rightarrow$)
+It is clear from
+\[DE=\|x_h-r_hx\|_h\le\|L_h^{-1}\|\|r_hLx-L_hr_hx\|_h=\|L_h^{-1}\|\cdot CE.\]
+Conversely, suppose $L_h$ is convergent.
+For any $y_h\in Y_h$, since $r_h:Y\to Y_h$ and $L$ are surjective, there is $x$ such that $y_h=r_hLx$ so that $L_h^{-1}y_h=x_h$ is convergent since
+\[DE=\|x_h-r_hx\|_h\le\|r_h\|_{X\to X_h}\cdot SE.\]
 By the uniform boundedness principle, $L_h^{-1}$ is uniformly bounded.
 \end{pf}
 
+
+\begin{ex}
+
+\end{ex}
+
+
 \subsection{Consistency analysis}
+The Taylor's theorem method for finite difference scheme.
 
 \subsection{Stability analysis}
-Von Neumann theory
+We must bound $\|L_h^{-1}\|$.
 
+The von Neumann stability analysis for finite difference scheme.
+% 여기서 말하는 stability, lax equivalence에서 말하는 stability와 미묘하게 다르다. 시간이 지날수록 오차가 뛰어서 수렴 안하는 건 스텝사이즈를 줄여서 수렴시키는 것과는 다른 것 같은데
+% 초기 데이터가 조금 바뀔 때 전체 솔루션이 조금 바뀌어야 한다는 건데, 이거 어차피 시간을 유한하게 잡으면 스텝사이즈 죽여서 결국 실제 해로 수렴시킬 수 있지 않나
 
 
 \subsection{Applications}
@@ -232,7 +253,7 @@ $u_j^n$, $t=t_0+nk$, $x=x_0+jh$
 
 
 \newpage
-\section{Banach space valued integral}
+\section{Vector valued integral}
 \begin{prb}[Simple functions]
 Let $(\Omega,\mu)$ be a measure space and $X$ a topological space with the Borel measurable structure.
 By a \emph{simple function} we mean a measurable function $s:\Omega\to X$ of finite image.
@@ -300,6 +321,9 @@ for $\alpha\in\cA$.
 
 
 
+
+
+\newpage
 \section{Kinetic theory}
 \subsection{Velocity averaging lemmas}
 The velocity averaging lemma is used to get regularity of averaged quantity when boundary condition is not given.
@@ -379,58 +403,6 @@ If $\cF$ is weakly relatively compact and $L\cF$ is bounded in $L_{t,x,v}^1$, th
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-\section{Representation formulas}
-
-\begin{thm}
-Define $\Phi\in L_\loc^1(\R^d)$ by
-\[\Phi(x)
-=\begin{cases}-\dfrac1{2\pi}\log|x|&,\ d=2,\\\dfrac{\Gamma(\frac d2+1)}{d(d-2)\pi^{d/2}}\dfrac1{|x|^{d-2}}&,\ d\ge3.\end{cases}
-\]
-\begin{enumerate}
-\item
-$u=\Phi$ solves
-\[-\Delta u=\delta.\]
-\item
-$u=\Phi*f$ solves
-\[-\Delta u=f.\]
-\end{enumerate}
-\end{thm}
-\begin{pf}$ $\\[-10pt]
-\begin{enumerate}
-\item
-Fix $\f\in C_c^\infty$.
-We want to show
-\[-\int\Phi\Delta\f=\f(0).\]
-Divide and apply Stokes' theorem twice to get
-\begin{align*}
-\int\Phi\Delta\f
-&=\int_{|x|<\e}\Phi\Delta\f+\int_{|x|\ge\e}\Phi\Delta\f\\
-&=\int_{|x|<\e}\Phi\Delta\f-\int_{|x|\ge\e}\nabla\Phi\cdot\nabla\f+\int_{|x|=\e}\Phi\nabla\f\cdot d\sigma.\\
-&=\int_{|x|<\e}\Phi\Delta\f+\int_{|x|\ge\e}\f\Delta\Phi-\int_{|x|=\e}\f\nabla\Phi\cdot d\sigma+\int_{|x|=\e}\Phi\nabla\f\cdot d\sigma\\
-&=\int_{|x|<\e}\Phi\Delta\f-\int_{|x|=\e}\f\nabla\Phi\cdot d\sigma+\int_{|x|=\e}\Phi\nabla\f\cdot d\sigma.
-\end{align*}
-The first integral is bounded as
-\[|\int_{|x|<\e}\Phi\Delta\f|\lesssim_\f|\int_{|x|<\e}\Phi|\lesssim\begin{cases}\ \e^2|\log\e|&,\ d=2,\\\ \e^2&,\ d\ge3.\end{cases}\]
-The third integral is bounded as
-\[|\int_{|x|=\e}\Phi\nabla\f\cdot d\sigma|\lesssim_\f|\int_{|x|=\e}\Phi\,d\sigma|\lesssim\begin{cases}\ \e|\log\e|&,\ d=2,\\\ \e&,\ d\ge3.\end{cases}\]
-
-For the second integral, since
-\[\nabla\Phi=-\frac1{d\,\alpha(d)}\frac x{|x|^d},\]
-we have
-\end{enumerate}
-\end{pf}
 
 
 
@@ -731,7 +703,7 @@ Consider the inviscid Burgers' equation
 \item Suppose $u(0,x)=\tanh(x)$. For what values of $t>0$ does the solution of the quasi-linear PDE remain smooth and single valued? Given an approximation sketch of the characteristics in the $tx$-plane.
 \item Suppose $u(0,x)=-\tanh(x)$. For what values of $t>0$ does the solution of the quasilinear PDE remain smooth and single valued? Given an approximation sketch of the characteristics in the $tx$-plane.
 \item Suppose
-\[u(0,x)=\begin{cases}0,&x<0\\times,&0\le x<1,\\1,&1\le x\end{cases}.\]
+\[u(0,x)=\begin{cases}0,&x<0\\x,&0\le x<1,\\1,&1\le x\end{cases}.\]
 Sketch the characteristics. Solve the Cauchy problem. Hint: solve the problem in each region separately and ``paste'' the solution together.
 \end{parts}
 
@@ -745,204 +717,57 @@ Sketch the characteristics. Solve the Cauchy problem. Hint: solve the problem in
 
 
 
-\section{Interchanging limits}
-
-\subsection{Limit and derivative}
-\begin{thm}
-Let $f_n$ be a sequence of absolutely continuous functions such that $f'_n$ converges in $L^1$ and $f_n(a)$ converges for a point $a$.
-Then, the limit and differentiation commutes.
-\end{thm}
-\begin{pf}
-Define $f$ such that
-\[f(a)=\lim_{n\to\infty}f_n(a)\quad\text{and}\quad f'(x)=\lim_{n\to\infty}f'_n(x).\]
-It remains to show $f_n\to f$.
-
-Since
-\[f(x)=f(a)+\int_a^xf'_n\]
-and
-\[f_n(x)=f_n(a)+\int_a^xf'_n,\]
-we have
-\[\lim_{n\to\infty}|f_n(x)-f(x)|\le\lim_{n\to\infty}|f_n(a)-f(a)|+\lim_{n\to\infty}\int|f_n'-f'|=0.\qedhere\]
-\end{pf}
-\begin{cor}
-If $f_n\to f$ in $C^1$, then $Df_n\to Df$.
-\end{cor}
-
-\subsection{Limit and integral}
-We want to find a criterion for 
-This question asks the convergence
-\[f_n\to f\quad\text{in}\quad L^1.\]
-
-For a sequence of measurable functions $f_n:(X,\mu)\to\R$, define the maximal function
-\[Mf(x):=\sup_n|f_n(x)|.\]
-\begin{thm}[LDCT]
-If $\|Mf\|_{L^1}<\infty$ and $f_n\to f$ a.e., then $f_n\to f$ in $L^1$.
-\end{thm}
-
-continuity application
-
-\begin{thm}[Scheffe]
-Let $\{f_n\}_n$ be a sequence of nonnegative functions in $L^1$.
-Suppose it converges to $f$ pointwisely.
-Then,
-\[\lim_{n\to\infty}\|f_n\|_1=\|f\|_1\impl\lim_{n\to\infty}\|f_n-f\|_1=0.\]
-\end{thm}
-
-\subsection{Derivative and integral}
-
-Define the Newton quotient as
-\[D_kf(t,x):=\frac{f(t+k,x)-f(t,x)}k\]
-for $k\ne0$.
-We mainly recognize $D_k$ as an operator that maps $f(0,x)$ to a function of $x$.
-Then, we can say that the partial derivative $\pd_tf(0,x)$ is well-defined a.e. $x$ if and only if
-\[\lim_{k\to0}D_kf(0,x)=\pd_tf(0,x)\qquad\text{a.e. }x.\]
-
-We may ask about conditions for the following to hold:
-\[\lim_{h\to0}D_kf(0,x)=\pd_tf(0,x)\qquad\text{in }L_x^1(X).\]
-This question naturally arise because it implies the commutability
-\[\dd{t}\int f(t,x)\,dx=\int\pd{t}f(t,x)\,dx\]
-at $t=0$.
-As necessary conditions to formalize the statement, we must basically assume that $f(t,x)\in L_x^1$ for $|t|<\e$, and $\pd_tf(0,x)\in L_x^1$.
-Above this, if we give a stronger condition $\esssup_{|t|<\e}|\pd_tf(t,x)|\in L_x^1$ than $\pd_tf(0,x)\in L_x^1$, then the $L_x^1$ convergence is obtained.
-
-
-\begin{thm}[Leibniz rule]
-Let $f:[0,T]\times X\to\R$ be a curve of integrable functions such that $f(t,x)$ is absolutely continuous in $t$ for a.e. $x$.
-If
-\[\int\sup_{0\le t\le T}|f_t(t,x)|\,dx<\infty,\]
-then $D_kf(0,x)\to f_t(t,x)$ in $L_x^1$.
-\end{thm}
-\begin{pf}
-Our strategy is to apply the Lebesgue dominated convergence theorem.
-In order to do this, we should control $D_kf(0,x)$ uniformly on $k$.
-
-The fundamental theorem of calculus for absolute continuous functions implies
-\[D_kf(0,x)=\frac1k\int_0^k\pd_tf(t,x)\,dt,\]
-so we have
-\[|D_kf(0,x)|\le\frac1k\int_0^k|\pd_tf(t,x)|\,dt\le\|\pd_tf(x)\|_{L_t^\infty}<\infty\]
-and
-\[\int|D_kf(0,x)|\,dx<\infty\]
-Since the right hand side does not depend on $k$, the main condition for LDCT is satisfied.
-
-The pointwise convergence (in a.e. sense) is satisfied due to the absolute continuity.
-By the Lebesgue dominated convergence theorem, we get the desired result.
-\end{pf}
-\begin{cor}
-Let
-\[Tf(x):=\int k(x,y)f(y)\,dy.\]
-If $|k_x(x,y)|$ is monotone in $x$ and $k_x(x,y)f(y)\in L_y^1$ for all $x$, then
-\[\dd{x}Tf(x)=\int k_x(x,y)f(y)\,dy.\]
-\end{cor}
-
-
-Conditions:
-\begin{itemize}
-\item $\pd_tf\in L_{\loc,t}^1$.
-\item $\pd_tf\in L_x^1$ or $\pd_tf\ge0$.
-\end{itemize}
-Proof: Differentiate
-\begin{align*}
-\int^t_{t_0}\int\pd{t}f(s,x)\,dx\,ds
-&=\int\int^t_{t_0}\pd{t}f(s,x)\,ds\,dx\\
-&=\int f(t,x)\,dx-\int f(t_0,x)\,dx.
-\end{align*}
-
-Let $f$ be a regular distribution, i.e. $f\in L_\loc^1$.
-\begin{parts}
-\item $f\in\AC_\loc$ iff $f'\in L_\loc^1$.
-\item $f\in\Lip$ iff $f'\in L_\loc^\infty$.
-\end{parts}
-Here, $f'$ denotes the distributional derivative.
-For $\AC_\loc$ we often say a function is \emph{weakly differentiable}.
-
-
-
-
-
-
-
-
 \section{Existence theorems for ODE}
 
 
 
 \subsection{Picard-Lindel\"of theorem}
-Let $I=[0,T]\subset\R_t$ and $\Omega=\bar{B_r(a)}\subset\R_x^d$.
+\begin{prb}
 Consider the following initial value problem:
-\[x'=f(t,x),\qquad x(0)=a.\]
-\begin{thm}[Global existence, $\Omega=\R^d$]
-If $f$ is $C_t\Lip_x$ on $I\times\R^d$, the equation has a unique $C^1$ global solution on $I$.
-\end{thm}
+\[x'(t)=f(t,x(t)),\qquad x(0)=x_0.\]
+Construct an approximate solution $(x_n)_{n=0}^\infty$ defined inductively such that $x_0(t)\equiv x_0$ and
+\[x_{n+1}'(t)=f(t,x_n(t)),\quad x_{n+1}(0)=x_0.\]
+Suppose $f$ satisfies
+\[|f(t,x)|\le \frac RT,\qquad|f(t,x)-f(t,y)|\lesssim|x-y|\]
+on the cylinder $[0,T]\times\bar{B(x_0,R)}$.
+\begin{parts}
+\item $x_n$ is in $C^1([0,T],\bar{B(x_0,R)})$.
+\item $x_n$ is Cauchy in $C^1([0,T],\bar{B(x_0,R)})$.
+\item The equation has a unique solution in $C^1([0,T],\bar{B(x_0,R)})$.
+\end{parts}
+\end{prb}
 \begin{pf}
-\Step{1}[Construction of an approximation]
-Define a sequence of functions $\{x_n\}$ as
-\[x_{n+1}'=f(t,x_n(t)),\quad x_{n+1}(0)=a;\qquad x_0\equiv a.\]
-These inductive linear equations are classically solved with the explicit formula
-\[x_{n+1}(t)=a+\int_0^tf(s,x_n(s))\,dx.\]
-The sequence clearly belongs to $C^1(I)\subset C(I)$.
+(a)
+It clearly follows from the explicit formula
+\[x_{n+1}(t)=x_0+\int_0^tf(s,x_n(s))\,ds.\]
 
-\Step{2}[Convergence of the approximation]
-Let
-\[\sup_{t\in I}|f(t,x)-f(t,y)|\le K|x-y|\qquad\text{and}\qquad\sup_{t\in I}|f(t,a)|\le M.\]
-First we have
-\[|x_1(t)-x_0(t)|\le\int_0^t|f(s,a)|\,ds\le Mt.\]
-By induction, we have
+(b)
+Since
+\[|x_1(t)-x_0(t)|\le\int_0^t|f(s,x_0)|\,ds\le Mt\]
+and
 \begin{align*}
 |x_{n+1}(t)-x_n(t)|
 &\le\int_0^t|f(s,x_n(s))-f(s,x_{n-1}(s))|\,ds\\
 &\le K\int_0^t|x_n(s)-x_{n-1}(s)|\,dx\\
 &\le MK^n\int_0^t\frac{s^n}{n!}\,ds\\
-&=MK^n\frac{t^{n+1}}{(n+1)!}.
+&=MK^n\frac{t^{n+1}}{(n+1)!},
 \end{align*}
-This proves the absolute convergence
-\[\sum_{n=0}^n\|x_{n+1}-x_n\|_\infty\lesssim e^{KT}-1,\]
-hence $x_n$ uniformly converges in a local time.
-
+we have the convergent series
+\[\sum_{n=0}^n\|x_{n+1}-x_n\|_\infty\le TM\frac{e^{KT}-1}{KT}.\]
+Also,
 \[|x'_{n+1}(t)-x'_n(t)|\le|f(t,x_n(t))-f(t,x_{n-1}(t))|\le K|x_n(t)-x_{n-1}(t)|\le MK^{n+1}\frac{t^{n+1}}{(n+1)!}.\]
 
-\Step{3}[Verification of the approximation]
-Let $x^*$ be the limit of $x_n$.
-Then, by limiting
-\[x_{n+1}(t)=a+\int_0^tf(s,x_n(s))\,ds,\]
-we get
-\[x^*(t)=a+\int_0^tf(s,x^*(s))\,ds.\]
-Thus, $x^*$ is a solution and it is easy to check $x^*$ is $C^1$.
+(c)
+Limiting check.
 \end{pf}
 
-\begin{thm}[Local existence]
-If $f$ is $C_t\Lip_x$ on $I\times\Omega$, then the equation has a unique $C^1$ local solution.
-
-The interval of existence may be arbitrarily chosen such that
-\[T\le R\cdot\|f\|_{C_{t,x}(I\times\Omega)}^{-1}.\]
-\end{thm}
-
-
-\begin{pf}
-Define $\f:C([0,T],\bar{B(x_0,R)})\to C([0,T],\bar{B(x_0,R)})$ as:
-\[\f(x)(t):=x_0+\int_0^tf(s,x(s))\,ds.\]
-It is well-defined since
-\begin{align*}
-|\f(x)(t)-x_0|&\le\int_0^t|f(s,x(s))|\,ds\\
-&\le TM\le R.
-\end{align*}
-It is a contraction since we have
-\begin{align*}
-|\f(x)(t)-\f(y)(t)|
-&\le\int_0^t|f(s,x(s))-f(s,y(s))|\,ds\\
-&\le\int_0^tK|x(s)-y(s)|\,ds\\
-&\le TK\|x(s)-y(s)\|
-\end{align*}
-so that
-\[\|\f(x)-\f(y)\|\le TK\|x-y\|\]
-\end{pf}
-The above one looses the Lipschitz condition to local condition.
 
 
 
 
 
 
-
+\newpage
 
 
 \section{Statements in functional analysis and general topology}
@@ -1042,86 +867,73 @@ Therefore,
 If $|xf'(x)|\le M$ and $\frac1x\int_0^xf(y)\,dy\to L$, then $f(x)\to L$ as $x\to\infty$.
 \end{prb}
 \begin{sol}
-Since
+It is a kind of Tauberian theorems.
+Since for each fixed $\e>0$ we have
 \begin{align*}
-|f(x)-\frac{F(x)-F(a)}{x-a}|
-&\le\frac1{x-a}\int_a^x|f(x)-f(y)|\,dy\\
-&=\frac1{x-a}\int_a^x(x-y)|f'(c)|\,dy\\
-&\le\frac M{x-a}\int_a^x\frac{x-y}c\,dy\\
-&\le M\frac{x-a}a
+|f(x)-\frac1{\e x}\int_{(1-\e)x}^xf(y)\,dy|
+&\le\frac1{\e x}\int_{(1-\e)x}^x|f(x)-f(y)|\,dy\\
+&\le\frac M{\e x}\int_{(1-\e)x}^x\frac{x-y}y\,dy\\
+&=M(\tfrac1\e\log\tfrac1{1-\e}-1)=O(\e)
 \end{align*}
 by the mean value theorem and 
-\[f(x)-L=\left[f(x)-\frac{F(x)-F(a)}{x-a}\right]+\frac x{x-a}\left[\frac{F(x)}x-L\right]+\frac a{x-a}\left[\frac{F(a)}a-L\right],\]
-we have for any $\e>0$
-\[\limsup_{x\to\infty}|f(x)-L|\le\e\]
-where $a$ is defined by $\frac{x-a}a=\frac\e M$.
+\[\frac1{\e x}\int_{(1-\e)x}^xf(y)\,dy
+=\frac1{\e x}\int_0^xf(y)\,dy-\frac1{\e x}\int_0^{(1-\e)x}f(y)\,dy\to\frac1\e L-\frac{1-\e}\e L=L\]
+as $x\to\infty$, we get
+\[\limsup_{x\to\infty}|f(x)-L|=O(\e),\]
+so we are done.
 \end{sol}
 
 \clearpage
 \begin{prb}
-Let $f_n:I\to I$ be a sequence of real functions that satisfies $|f_n(x)-f_n(y)|\le|x-y|$ whenever $|x-y|\ge\frac1n$, where $I=[0,1]$.
+Let $f_n:[0,1]\to[0,1]$ be a sequence of functions such that $|f_n(x)-f_n(y)|\le|x-y|$ whenever $|x-y|\ge\frac1n$ for each $n\ge1$.
 Then, it has a uniformly convergent subsequence.
 \end{prb}
 \begin{sol}
-By the Bolzano-Weierstrass theorem and the diagonal argument for subsequence extraction, we may assume that $f_n$ converges to a function $f:\Q\cap I\to I$ pointwisely.
+By the Bolzano-Weierstrass theorem and the diagonal argument for subsequence extraction, we may assume that $f_n$ converges to a function $f:\Q\cap[0,1]\to[0,1]$ pointwisely.
 
-\Step[1]
-For $n\ge4$, we claim
-\begin{align}|x-y|\le\frac1n\impl|f_n(x)-f_n(y)|\le\frac5n.\end{align}
-Fix $x\in I$ and take $z\in I$ such that $|x-z|=\frac2n$ so that
+Let $n\ge4$.
+Then, for $x\in[0,1]$ there is $z\in[0,1]$ such that $|x-z|=\frac2n$ so that
 \[|f_n(x)-f_n(z)|\le|x-z|=\frac2n.\]
-If $y$ satisfies $|x-y|\le\frac1n$, then we have $|y-z|\ge|x-z|-|x-y|\ge\frac1n$, so we get
+Whenever $y\in[0,1]$ satisfies $|x-y|\le\frac1n$, then we have $|y-z|\ge|x-z|-|x-y|\ge\frac1n$, so we get
 \[|f_n(y)-f_n(z)|\le|y-z|\le|y-x|+|x-z|\le\frac3n.\]
-Combining these two inequalities proves what we want.
+Combining the two inequalities, we obtain
+\begin{align}|x-y|\le\frac1n\impl|f_n(x)-f_n(y)|\le\frac5n\end{align}
+for $n\ge4$.
 
-\Step[2]
-For $\e>0$ and $N:=\ceil{\frac{15}\e}$ we claim
-\begin{align}|x-y|\le\frac1N\quad\text{and}\quad n>N\impl|f_n(x)-f_n(y)|\le\frac\e3\end{align}
-when $N\ge4$.
-It is allowed for $|x-y|$ to have the following two cases:
-\[|x-y|\le\frac1n\quad\text{or}\quad\frac1n<|x-y|\le\frac1N.\]
-For the former case, by the inequality (1) we have
-\[|f_n(x)-f_n(y)|\le\frac5n<\frac5N\le\frac\e3.\]
-For the latter case, by the assumption at the beginning of the problem, we have
-\[|f_n(x)-f_n(y)|\le|x-y|\le\frac1N\le\frac\e{15}.\]
-Hence the claim is proved.
+Let $\e>0$ and suppose $|x-y|\le\frac\e5$.
+For every $n\ge\max\{\frac{10}\e,4\}$, since $|x-y|\le\frac1n$ implies by the inequality (1) that
+\[|f_n(x)-f_n(y)|\le\frac5n\le\frac\e2,\]
+and since $|x-y|>\frac1n$ implies by the condition in the problem that
+\[|f_n(x)-f_n(y)|\le|x-y|\le\frac\e5<\frac\e2,\]
+we have
+\begin{align}|x-y|\le\frac\e5\impl|f_n(x)-f_n(y)|\le\frac\e2\end{align}
+for all $n\ge\max\{\frac{10}\e,4\}$.
 
-\Step[3]
-We will prove $f$ is uniformly continuous.
-For $\e>0$, take $\delta:=\frac1N$, where $N:=\ceil{\frac{15}\e}$.
-We will show
-\[|x-y|<\delta\impl|f(x)-f(y)|<\e\]
-for $x,y\in\Q\cap I$ and $N\ge4$.
-Fix rational numbers $x$ and $y$ in $I$ which satisfy $|x-y|<\delta$.
-Since $f_n(x)$ and $f_n(y)$ converges to $f(x)$ and $f(y)$ respectively, we may take an integer $n_x$ and $n_y$, such that
-\begin{align}n>n_x\impl |f_n(x)-f(x)|<\frac\e3\end{align}
-and
-\begin{align}n>n_y\impl |f_n(y)-f(y)|<\frac\e3.\end{align}
-Choose an integer $n$ such that $n>\max\{n_x,n_y,N\}$.
-Then, combining (3), (2), and (4), we obtain
+For $\e>0$, take $\delta:=\e/5$ and fix $x$ and $y$ in $\Q\cap[0,1]$ satisfying $|x-y|<\delta$.
+Then, we have
 \begin{align*}
-|f(x)-f(y)|&\le|f(x)-f_n(x)|+|f_n(x)-f_n(y)|+|f_n(y)-f(y)|\\
-&<\frac\e3+\frac\e3+\frac\e3=\e.
+|f(x)-f(y)|
+&\le|f(x)-f_n(x)|+|f_n(x)-f_n(y)|+|f_n(y)-f(y)|\\
+&\le|f(x)-f_n(x)|+\frac\e2+|f_n(y)-f(y)|
 \end{align*}
-
-Since $f$ is continuous on a dense subset $\Q\cap I$, it has a unique continuous extension on the whole $I$.
+for all $n\ge\max\{\frac{10}\e,4\}$, and by limiting $n\to\infty$,
+\[|f(x)-f(y)|\le0+\frac\e2+0<\e.\]
+Therefore, $f$ is uniformly continuous on $\Q\cap[0,1]$ so that it has a unique continuous extension on the whole $[0,1]$.
 Let it denoted by the same notation $f$.
 
-\Step[4]
-Finally, we are going to show $f_n\to f$ uniformly.
-For $\e>0$, let $N:=\ceil{\frac{15}\e}$.
-The uniform continuity of $f$ allows to have $\delta>0$ such that
-\begin{align}|x-y|<\delta\impl|f(x)-f(y)|<\frac23\e.\end{align}
-Take a rational $r\in I$, depending on $x\in I$, such that $|x-r|<\min\{\frac1N,\delta\}$.
-Then, by (2) and (5), given $n>N\ge4$, we have an inequality
+Finally, we are going to show $f_n\to f$ uniformly on $[0,1]$.
+By the uniform continuity of $f$, for each $\e>0$ we have $\delta>0$ such that
+\begin{align}|x-y|<\delta\impl|f(x)-f(y)|<\frac\e2.\end{align}
+Take a finite subset $F\in\Q\cap[0,1]$, such that for every $x$ there is $y$ satisfying $|x-y|<\min\{\frac\e5,\delta\}$.
+Then, by (2) and (3), we have an inequality
 \begin{align*}
-|f_n(x)-f(x)|&\le|f_n(x)-f_n(r)|+|f_n(r)-f(r)|+|f(r)-f(x)|\\
-&<\frac\e3+|f_n(r)-f(r)|+\frac23\e
+|f_n(x)-f(x)|&\le|f_n(x)-f_n(y)|+|f_n(y)-f(y)|+|f(y)-f(x)|\\
+&<\frac\e2+\max_{z\in F}|f_n(z)-f(z)|+\frac\e2
 \end{align*}
-for any $x\in I$.
-By limiting $n\to\infty$, we obtain
-\[\lim_{n\to\infty}|f_n(x)-f(x)|<\e.\]
-Since $\e$ and $x$ are arbitrary, we can deduce the uniform convergence of $f_n$ as $n\to\infty$.
+for all $n\ge\max\{\frac{10}\e,4\}$.
+Therefore, by taking supremum for $x$ and limiting $n\to\infty$ on it we have
+\[\limsup_{n\to\infty}\|f_n-f\|\le\e,\]
+so we are done because $\e$ is arbitrary.
 \end{sol}
 
 

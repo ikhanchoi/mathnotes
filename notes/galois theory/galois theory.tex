@@ -69,38 +69,45 @@ p군: 비자명센터, 개수 겁나많음
 
 
 \section{Semidirect product}
-\begin{defn}[External semidirect product]
-Suppose we have three data: groups $(N,+),(H,\cdot)$ and a group homomorphism $\f:H\to\Aut(N)$.
+
+\begin{prb}[Action by group automorphisms]
+
+An \emph{intertwining homomorphism} is a group homomorphism such that blabla.
+\begin{parts}
+\item
+\end{parts}
+\end{prb}
+
+\begin{prb}[Semidirect product]
+Let $\f:H\to\Aut(N)$ be a group action.
 The \emph{semidirect product} $N\rtimes_\f H$ is a group defined on the set $N\times H$ by
 \[(n,h)(n',h')=(n+\f(h)n',hh').\]
-\end{defn}
-The motivation of the group structure of semidirect product is shown in the following theorem.
-\begin{thm}[Internal semidirect product]
+\end{prb}
+\begin{prb}[Internal semidirect product]
 Let $N,H$ be subgroups of $G$ such that
 \[N\normal G,\quad N\cap H=1,\quad NH=G.\]
-Then, $G\cong N\rtimes_\f H$, where the action $\f$ is given by conjugation
-\[\f(h):N\to N:n\mapsto hnh^{-1}.\]
-\end{thm}
+Then, $G\cong N\rtimes_\f H$, where $\f$ is the action by conjugation $\f(h):N\to N:n\mapsto hnh^{-1}$.
+\end{prb}
 
 
 
 
-\begin{lem}
-Let $N,H$ be groups.
-Let $\f_1,\f_2:H\to\Aut(N)$ be group actions.
-If there are $\nu\in\Aut(N)$ and $\eta\in\Aut(H)$ such that a diagram
-\begin{cd}
-H \ar{r}{\f_1}\ar{d}{\eta} & \Aut(N) \ar{d}{\nu\,\cdot\,\nu^{-1}}\\
-H \ar{r}{\f_2} & \Aut(N)
-\end{cd}
-commutes, then a map
-\[N\rtimes_\f H\to N\rtimes_{\f'}H:(n,h)\mapsto(\nu(n),\eta(h))\]
-is an isomorphism.
-\end{lem}
-\begin{lem}
-Let $Z,G$ be finite groups.
-If $Z$ is cyclic, then two group actions $\f,\f':Z\to\Aut(G)$ induces the isomorphic semidirect products if and only if their images are conjugate.
-\end{lem}
+\begin{prb}
+Let $N_1$, $N_2$, and $H$ be groups.
+Let $\f_1:H\to\Aut(N_1)$ and $\f_2:H\to\Aut(N_2)$ be actions
+\begin{parts}
+\item If $\f_1$ and $\f_2$ are equivalent up to intertwining isomorphism, then $N_1\rtimes H\cong N_2\rtimes H$ as groups.
+\item If $\f_1$ and $\f_2$ are equivalent up to twist, then $N_1\rtimes H\cong N_2\rtimes H$ as groups.
+\end{parts}
+\end{prb}
+
+\begin{prb}
+Let $H$ and $N$ be finite groups.
+\begin{parts}
+\item If $|H|$ and $|N|$ are coprime, then the interwining isomorphism and twist relation give a necessary condition for semidirect products to be isomorphic.
+\item If $H$ is cyclic, then the interwining isomorphism and twist relation is equivalent to the conjugacy of the images in $\Aut(N)$.
+\end{parts}
+\end{prb}
 
 
 \section{Extensions}
@@ -251,20 +258,15 @@ In order to find the size of conjugacy classes:
 \end{prb}
 
 
-\begin{prb}[Conjugacy classes of $\GL_2(\F_p)$]
-The conjugacy classes are classified by the Jordan normal forms.
-There are four cases: for some $a$ and $b$ in $\F_p$,
-\begin{parts}
-\item $\mat{a&0\\0&b}$: $\binom{p-1}2=\frac{(q-1)(q-2)}2$ classes of size $\frac{|G|}{(q-1)^2}=q(q+1)$.
-\item $\mat{a&0\\0&a}$: $q-1$ classes of size $1$.
-\item $\mat{a&1\\0&a}$: $q-1$ classes of size $\frac{|G|}{q(q-1)}=q^2-1$.
-\item otherwise, the eigenvalues are in $\F_{p^2}\setminus\F_p$.
-In this case, the number of conjugacy classes is same as the number of monic irreducible qudratic polynomials over $\F_p$; $\frac{|\F_{p^2}|-|\F_p|}2=\frac{p(p-1)}2$ classes.
-Their size is $\frac{p(p-1)}2$.
-\end{parts}
-\end{prb}
 \begin{prb}[Classification of groups of order $p^2q$]
-Let $p$ and $q$ be distinct primes.
+Let $G$ be a finite group of order $p^2q$, where $p$ and $q$ are distinct primes.
+If we let $P$ and $Q$ be Sylow $p$ and $q$-subgroup of $G$, then $P\cong Z_{p^2}\text{ or }Z_p^2$, and $Q\cong Z_q$.
+By the Sylow theorem, we consider three cases:
+\begin{enumerate}[(i)]
+\item $p+2\le q$, and in this case we have $G\cong Q\rtimes P$.
+\item $p>q$, and in this case we have $G\cong P\rtimes Q$.
+\item $p^2q=12$.
+\end{enumerate}
 \begin{parts}
 \item If $p+2\le q$, there are
 \[\begin{cases}
@@ -286,27 +288,22 @@ non-isomorphic groups of order $p^2q$
 \end{prb}
 \begin{pf}
 (a)
-Let $G$ be a finite group of order $p^2q$.
-Sylow's theorem implies $n_q=1$.
-For $P\in\Syl_p(G)$ and $Q\in\Syl_q(G)$, we have
-\[P\cong Z_{p^2}\text{ or }Z_p^2,\quad\text{ and }\quad Q\cong Z_q.\]
-
-Consider actions of the form
+Suppose $P\cong Z_{p^2}$ and consider the actions
 \[\f:Z_{p^2}\to\Aut(Z_q)\cong Z_{q-1}.\]
-There are $1+\min\{v_p(q-1),2\}$ subgroups of $Z_{q-1}$ that can be the image of $\f$, up to conjugation, that is, there are $1+\min\{v_p(q-1),2\}$ distinct groups of the form $Z_q\rtimes Z_{p^2}$.
+There are $1+\min\{v_p(q-1),2\}$ choices for $\f(1)$
 
-Consider actions of the form
+subgroups of $Z_{q-1}$ that can be the image of $\f$, up to conjugation, that is, there are $1+\min\{v_p(q-1),2\}$ distinct groups of the form $Z_q\rtimes Z_{p^2}$.
+
+Suppose $P\cong Z_p^2$ and consider actions
 \[\f:Z_p\times Z_p\to\Aut(Z_q)\cong Z_{q-1}.\]
 Similarly, there are $1+\min\{v_p(q-1),1\}$ distinct groups of the form $Z_q\rtimes Z_p^2$.
 
 (b)
-Sylow's theorem implies $n_p=1$.
-
-Consider actions of the form
+Suppose $P\cong Z_{p^2}$ and consider actions
 \[\f:Z_q\to\Aut(Z_{p^2})\cong Z_{p(p-1)}.\]
 There are $1+\min\{v_q(p-1),1\}$ distinct groups of the form $Z_{p^2}\rtimes Z_q$.
 
-Let $Z_p^2\rtimes Z_q$, and consider actions of the form
+Suppose $P\cong Z_p^2$ and consider actions
 \[\f:Z_q\to\Aut(Z_p\times Z_p)\cong\GL_2(\F_p).\]
 Note that $|\GL_2(\F_p)|=(p^2-1)(p^2-p)=(p-1)^2p(p+1)$ so that $q\mid p-1$ or $q\mid p+1$.
 Denote 1 a generator of $Z_q$, and let $\f(1)\ne1_{2\times2}$ so that the action is not trivial.
@@ -408,6 +405,15 @@ We have transitive action $G\to\Sym(\cO)$ and the stabilizer $H$ satisfies $p^a\
 Since $H\to\Sym(\cO)$ trivially, $H\to\Sym(A)$ for $A\in\cO\subset\cP_{p^a}$.
 It is only possible when $H\subset A$, hence $|H|=p^a$.
 \end{pf}
+
+
+\begin{prb}
+Show that in a group of order 105 is a single Sylow $p$-subgroup for $p=5,7$.
+\end{prb}
+
+\begin{prb}
+Show that the number of Sylow $p$-subgroups of $\SL_3(\F_p)$ is $(p^2+p+1)(p+1)$.
+\end{prb}
 
 
 
@@ -1039,67 +1045,6 @@ multiplcation formula
 
 
 
-\chapter{Finite fields}
-
-\section{Splitting fields}
-\begin{prb}[Finite field as a splitting field]
-Let $E$ be a finite field of characteristic $p$.
-Clearly $p>0$ so that $E$ has a subfield $F$ of size $p$ generated by $1\in E$.
-Since $E/F$ is finite, $E$ is isomorphic to a subfield of $\bar{\F_p}$ by the isomorphism extension theorem.
-There we assume $E$ is a subfield of a fixed algebraic closure $\bar{\F_p}$.
-Let $\alpha\in\bar{\F_p}$ and $n$ the degree of $E/F$.
-\begin{parts}
-\item If $\alpha\in E$, then $\alpha^{p^n}-\alpha=0$.
-\item If $\alpha^{p^n}-\alpha=0$, then $\alpha\in E$.
-\item For each $m\in\N$, in $\bar{\F_p}$ is a unique field $E$ of size $p^m$.
-\end{parts}
-\end{prb}
-
-
-\begin{prb}[Cyclic groups in finite fields]
-\begin{parts}
-\item The number of elements of order $d$ in a cyclic group of order $n$ is $\phi(d)$ when $d\mid n$.
-\item The group of units $(\F_{p^n})^\times$ is cyclic.
-\item The Galois group $\Gal(\F_{p^n}/\F_p)$ is cyclic.*
-\end{parts}
-\end{prb}
-\begin{pf}
-(b)
-We partition the elements of $G:=(\F_{p^n})^\times$ by their orders.
-Let
-\[A_d:=\{\,\alpha\in G:\ord(\alpha)=d\,\}\]
-for $d\mid p^n-1$.
-It is contained in the subgroup $H:=\{x\in\F_{p^n}:x^d=1\}$, of which the order is $|H|=d$ because $x^d-1$ is separable.
-
-If $|A_d|\ne0$, then any element of $A_d$ is a generator of $H$, so $H$ is cyclic.
-Since the number of elements of order $d$ in a cyclic group is given by the Euler totient function $\phi(d)$, as a result we have $|A_d|\in\{0,\phi(d)\}$.
-Then,
-\[|G|=\sum_{d\mid p^n-1}|A_d|\le\sum_{d\mid p^n-1}\phi(d)=p^n-1\]
-implies $|A_{p^n-1}|\ne0$, $G$ is hence cyclic.
-\end{pf}
-
-
-\section{Irreducible polynomials}
-\begin{prb}[Irreducibles over $\F_p$]
-the number of irreducibles, finite extension over a finite field is simple.
-\end{prb}
-\begin{prb}[Degree of an element in finite fields]
-Let $\alpha\in\bar{\F_p}$.
-The degree of $\alpha$ is computed by the order of $p$ in $(\Z/\ord(\alpha)\Z)^\times$
-\end{prb}
-
-
-\begin{prb}[Degree of an element in finite fields]
-Let $\alpha\in\bar{\F_p}$.
-The degree of $\alpha$ is computed by the order of $p$ in $(\Z/\ord(\alpha)\Z)^\times$
-\end{prb}
-
-
-
-\begin{prb}
-Find the number of $a\in\SL(2,\F_p)$ such that $a^{p-1}=1$.
-(It needs the cyclicity of $\F_{p^2}^\times$.)
-\end{prb}
 
 
 
@@ -1108,14 +1053,7 @@ Find the number of $a\in\SL(2,\F_p)$ such that $a^{p-1}=1$.
 
 
 
-
-
-
-\part{Galois theory}
-
-
-\chapter{Galois correspondence}
-\section{Normal extensions}
+\chapter{Normal extensions}
 \section{Galois correspondence}
 
 \begin{prb}[Automorphism groups]
@@ -1177,8 +1115,20 @@ number of imaginary roots=2n: composition of n transpositions
 
 
 
-\chapter{Invariants of Galois groups}
 
+
+
+
+
+\part{Galois groups}
+
+
+\chapter{Galois descent}
+
+
+
+
+\chapter{Invariants of Galois groups}
 
 \section{Resultants}
 
@@ -1254,10 +1204,74 @@ F \uar\rar[dashed]& ? & A_4 \drar[swap]{2} && D_4 \dlar{3} &\\
 
 \chapter{Reduction of Galois groups}
 
+\section{Finite fields}
+\begin{prb}[Finite field as a splitting field]
+Let $E$ be a finite field of characteristic $p$.
+Clearly $p>0$ so that $E$ has a subfield $F$ of size $p$ generated by $1\in E$.
+Since $E/F$ is finite, $E$ is isomorphic to a subfield of $\bar{\F_p}$ by the isomorphism extension theorem.
+There we assume $E$ is a subfield of a fixed algebraic closure $\bar{\F_p}$.
+Let $\alpha\in\bar{\F_p}$ and $n$ the degree of $E/F$.
+\begin{parts}
+\item If $\alpha\in E$, then $\alpha^{p^n}-\alpha=0$.
+\item If $\alpha^{p^n}-\alpha=0$, then $\alpha\in E$.
+\item For each $m\in\N$, in $\bar{\F_p}$ is a unique field $E$ of size $p^m$.
+\end{parts}
+\end{prb}
+
+
+\begin{prb}[Cyclic groups in finite fields]
+\begin{parts}
+\item The number of elements of order $d$ in a cyclic group of order $n$ is $\phi(d)$ when $d\mid n$.
+\item The group of units $(\F_{p^n})^\times$ is cyclic.
+\item The Galois group $\Gal(\F_{p^n}/\F_p)$ is cyclic.*
+\end{parts}
+\end{prb}
+\begin{pf}
+(b)
+We partition the elements of $G:=(\F_{p^n})^\times$ by their orders.
+Let
+\[A_d:=\{\,\alpha\in G:\ord(\alpha)=d\,\}\]
+for $d\mid p^n-1$.
+It is contained in the subgroup $H:=\{x\in\F_{p^n}:x^d=1\}$, of which the order is $|H|=d$ because $x^d-1$ is separable.
+
+If $|A_d|\ne0$, then any element of $A_d$ is a generator of $H$, so $H$ is cyclic.
+Since the number of elements of order $d$ in a cyclic group is given by the Euler totient function $\phi(d)$, as a result we have $|A_d|\in\{0,\phi(d)\}$.
+Then,
+\[|G|=\sum_{d\mid p^n-1}|A_d|\le\sum_{d\mid p^n-1}\phi(d)=p^n-1\]
+implies $|A_{p^n-1}|\ne0$, $G$ is hence cyclic.
+\end{pf}
+
+\begin{prb}[Irreducibles over $\F_p$]
+the number of irreducibles, finite extension over a finite field is simple.
+\end{prb}
+\begin{prb}[Degree of an element in finite fields]
+Let $\alpha\in\bar{\F_p}$.
+The degree of $\alpha$ is computed by the order of $p$ in $(\Z/\ord(\alpha)\Z)^\times$
+\end{prb}
+
+
+\begin{prb}[Degree of an element in finite fields]
+Let $\alpha\in\bar{\F_p}$.
+The degree of $\alpha$ is computed by the order of $p$ in $(\Z/\ord(\alpha)\Z)^\times$
+\end{prb}
+
+
+
+\begin{prb}
+Find the number of $a\in\SL(2,\F_p)$ such that $a^{p-1}=1$.
+(It needs the cyclicity of $\F_{p^2}^\times$.)
+\end{prb}
+
+
+
+
 
 \section{Ramification theory}
 
 \section{The Dedekind theorem}
+
+
+
 
 
 

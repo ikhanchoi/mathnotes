@@ -232,6 +232,15 @@
 \renewcommand\tilde{\widetilde}
 \renewcommand\bar{\overline}
 
+\newcommand{\hhat}[1]{
+\begingroup
+  \let\macc@kerna\z@
+  \let\macc@kernb\z@
+  \let\macc@nucleus\@empty
+  \hat{\raisebox{.33ex}{\vphantom{#1}}\smash{\hat{#1}}}
+\endgroup
+}
+
 \DeclareFontFamily{U}{mathx}{}
 \DeclareFontShape{U}{mathx}{m}{n}{ <-> mathx10 }{}
 \DeclareSymbolFont{mathx}{U}{mathx}{m}{n}

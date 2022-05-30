@@ -35,6 +35,13 @@ every orbit has 1-1 correspondence to group
 \section{Action by left multiplication}
 
 
+\section{Automorphism groups}
+\begin{prb}[Outer automorphism group]
+duality for center
+\end{prb}
+
+
+
 \chapter{Symmetry groups}
 
 elements by order
@@ -48,7 +55,6 @@ subgroups by conjugacy class
 dihedral groups
 
 
-
 \section*{Exercises}
 
 \begin{prb}
@@ -58,10 +64,49 @@ If $G/Z(G)$ is cylic, then $G$ is abelian.
 
 \begin{prb}
 Let $G$ be a finite group.
-If $x\mapsto x^3$ is a surjective endomorhpism, then $G$ is abelian.
+If the cube map $x\mapsto x^3$ is a surjective endomorhpism, then $G$ is abelian.
 \end{prb}
 
+\begin{prb}
+Show that a finite symmetric group has two generators.
+\end{prb}
 
+\begin{prb}
+Show that a group of order $2p$ for a prime $p$ has exactly two isomorphic types.
+\end{prb}
+
+\begin{prb}
+Show that a group $G$ is abelian if $|G|=p^2$ for a prime $p$.
+\end{prb}
+
+\begin{prb}
+Let $G$ be a finite group of order $n$ and $p$ the smallest prime divisor of $n$.
+Show that a subgroup of $G$ of index $p$ is normal in $G$.
+\end{prb}
+
+\begin{prb}
+Find all $n$ such that $(\Z/n\Z)^\times$ is cyclic.
+\end{prb}
+
+\begin{prb}
+Show that a nontrivial normalizer of a $p$-group meets its center out of identity.
+\end{prb}
+
+\begin{prb}
+Show that a proper subgroup of a finite $p$-group is a proper subgroup of its normalizer. In particular, every finite $p$-group is nilpotent.
+\end{prb}
+
+\begin{prb}
+Show that a finite group $G$ satisfying $\sum_{g\in G}\ord(g)\le2n$ is abelian.
+\end{prb}
+
+\begin{prb}
+Show that the order of a group with trivial automorphism group is at most two.
+\end{prb}
+
+\begin{prb}
+Find all homomorphic images of $A_4$ up to isomorphism.
+\end{prb}
 
 
 
@@ -73,7 +118,26 @@ If $x\mapsto x^3$ is a surjective endomorhpism, then $G$ is abelian.
 
 \part{Rings}
 \chapter{Ideals}
+
+
 \chapter{Integral domains}
+
+\section*{Exercises}
+\begin{prb}
+Show that a finite integral domain is a field.
+\end{prb}
+
+\begin{prb}
+Show that every ring of order $p^2$ for a prime $p$ is commutative.
+\end{prb}
+
+\begin{prb}
+Show that a semiring with multiplicative identity and cancellative addtion has commutative addition.
+\end{prb}
+
+\begin{prb}
+Show that the complement of a saturated monoid in a commutative ring is a union of prime ideals.
+\end{prb}
 
 
 \chapter{Polynomial rings}
@@ -138,9 +202,21 @@ Inner product
 \section{Finitely generated $\F[x]$-modules}
 cyclic subspaces
 
-\section{Similarity}
+\section{Conjugacy in matrix groups}
 GL, SL, PSL? % Galois cohomology.......
 
+\begin{prb}[Conjugacy classes of $\GL_2(\F_p)$]
+The conjugacy classes are classified by the Jordan normal forms.
+There are four cases: for some $a$ and $b$ in $\F_p$,
+\begin{parts}
+\item $\mat{a&0\\0&b}$: $\binom{p-1}2=\frac{(q-1)(q-2)}2$ classes of size $\frac{|G|}{(q-1)^2}=q(q+1)$.
+\item $\mat{a&0\\0&a}$: $q-1$ classes of size $1$.
+\item $\mat{a&1\\0&a}$: $q-1$ classes of size $\frac{|G|}{q(q-1)}=q^2-1$.
+\item otherwise, the eigenvalues are in $\F_{p^2}\setminus\F_p$.
+In this case, the number of conjugacy classes is same as the number of monic irreducible qudratic polynomials over $\F_p$; $\frac{|\F_{p^2}|-|\F_p|}2=\frac{p(p-1)}2$ classes.
+Their size is $\frac{p(p-1)}2$.
+\end{parts}
+\end{prb}
 
 \section{Spectral theorems}
 

@@ -507,7 +507,7 @@ There is an orthonormal basis $E\subset H$ such that
 
 \begin{prb}[Projection valued measure]
 Let $(\Omega,\cM)$ be a measurable space and $H$ a Hilbert space.
-A \emph{projection valued measure} or a \emph{spectral measure} on $\Omega$ for $H$ is a map $E:\cM\to B(H)$ such that $E(A)$ is an orthogonal projection with $E(\varnothing)=0$ and the set function $\cM\to\C:A\mapsto\<E(A)\xi,\eta\>$ is a complex measure on $\Omega$ for each $\xi$ and $\eta\in H$.
+A \emph{projection valued measure} on $\Omega$ for $H$ is a map $E:\cM\to B(H)$ such that $E(A)$ is an orthogonal projection with $E(\varnothing)=0$ and the set function $\cM\to\C:A\mapsto\<E(A)\xi,\eta\>$ is a complex measure on $\Omega$ for each $\xi$ and $\eta\in H$.
 (regularity, it has also two definitions)
 \begin{parts}
 \item The last condition is equivalent to the countable additivity: $E(\bigsqcup_{i=1}^\infty A_i)=\sum_{i=1}^\infty E(A_i)$ in the strong operator topology of $B(H)$ for $\{A_i\}_{i=1}^\infty\subset\cM$.
@@ -515,10 +515,11 @@ A \emph{projection valued measure} or a \emph{spectral measure} on $\Omega$ for 
 \end{parts}
 \end{prb}
 
+
 Let $T\in B(H)$ be a normal operator.
-Then, there exists a regular Borel spectral measure $E$ on $\sigma(T)$ for $H$ such that
+Then, there exists a spectral measure $E$ on $\sigma(T)$ for $H$ such that
 \[T=\int_{\sigma(T)}\lambda\,dE(\lambda).\]
-This spectral measure $E$
+This spectral measure $E$ is also called the \emph{resolution of the identity}.
 
 
 
@@ -681,13 +682,13 @@ also important spectrum for non-unital banach algebras
 Banach algebra of single generator
 semisimplicity and symmetricity
 
-\begin{prb}[Character space]
+\begin{prb}[Spectrum of a Banach algebra]
 Let $\cA$ be a commutative Banach algbera.
-A \emph{character} of $\cA$ is a non-zero homomorphism $\f:\cA\to\C$.
+A \emph{character} of $\cA$ is a non-zero algebra homomorphism $\f:\cA\to\C$.
 Denote by $\sigma(\cA)$ the set of all characters of $\cA$.
 We will show that all characters are bounded.
 Then, endow with the weak$^*$ topology on $\sigma(\cA)$ from the inclusion $\sigma(\cA)\subset\cA^*$.
-We call this space as the \emph{character space} or the \emph{spectrum} of $\cA$.
+We call this space as the \emph{spectrum} of $\cA$.
 Let $\f\in\sigma(\cA)$.
 \begin{parts}
 \item $\|\f\|=1$.
@@ -769,8 +770,8 @@ spectral radius is upper semi-continuous
 
 \section{C$^*$ identity}
 % normal elements, real/imaginary part
-% *-homomorphism
 
+Banach $*$-algebra: $\|a^*\|=\|a\|$.
 
 \begin{prb}[C$^*$ identity]
 % history
@@ -798,25 +799,42 @@ The C$^*$-identity easily follows from the following inequality:
 
 
 \begin{prb}[Spectra of normal elements]
-Let $\cA$ be a C$^*$-algebra.
+Let $\cA$ be a C$^*$-algebra, and $\tilde\cA$ be its unitization.
+We say an element $a\in\tilde\cA$ is \emph{unitary} if $a^*a=aa^*=e$, and say an element $a\in\cA$ is \emph{self-adjoint} if $a^*=a$.
 \begin{parts}
-\item If $a\in\cA$ is unitary, then $\sigma(a)\subset\T$.
+\item If $a\in\tilde\cA$ is unitary, then $\sigma(a)\subset\T$.
 \item If $a\in\cA$ is self-adjoint, then $\sigma(a)\subset\R$.
+\item The converses of the parts (a) and (b) are not generally true.
 \end{parts}
 \end{prb}
 \begin{pf}
-(a) (b)
-By the holomorphic functional calculus,
-\[e^{itx}=\sum_{n=1}^\infty\frac{(itx)^n}{n!}.\]
-Since the involution is continuous,
-\[(e^{itx})^*=\sum_{n=1}^\infty\frac{(-itx)^n}{n!}=e^{-itx},\]
-so we have $\|e^{itx}\|^2=\|e^{itx}e^{-itx}\|=1$.
-Then, the inequality
-\[1=\|e^{itx}\|\ge|h(e^{itx})|=|e^{ith(x)}|=e^{-t\Im h(x)}\]
-proves $h(x)\in\R$.
+(a)
 
+(b)
+We may assume $\cA$ is unital.
+By the holomorphic functional calculus, we have
+\[e^{ia}=\sum_{n=1}^\infty\frac{(ia)^n}{n!}\in\cA,\]
+and the inverse of $e^{ia}$ is $e^{-ia}$.
+Since the involution $^*:\cA\to\cA$ is continuous, we can check $e^{ia}$ is unitary by
+\[(e^{ia})^*=\sum_{n=1}^\infty\frac{(-ia)^n}{n!}=e^{-ia}.\]
+For every $\f\in\sigma(\cA)$, then by the part (a) the equality
+\[e^{-\Im\f(a)}=|e^{i\f(a)}|=|\f(e^{ia})|=1\]
+proves $\f(a)\in\R$, hence $\sigma(a)\subset\R$.
+
+(c)
+Let $\cA=M_2(\C)$ and $a=(\mat[small]{1&1\\0&1})$.
+Then, $\sigma(a)=\{1\}$ but $a$ is neither unitary nor self-adjoint.
+We will show in the next section that the converses hold if we assume $a$ is normal.
 \end{pf}
 
+
+\begin{prb}[$*$-homomorphisms]
+\begin{parts}
+\item determined by self-adjoint elements
+\item norm-decreasing
+\item
+\end{parts}
+\end{prb}
 
 
 \section{Continuous functional calculus}
@@ -834,17 +852,16 @@ For a commutative unital C$^*$-algebra $\cA$, consider the Gelfand transform $\G
 
 (b)
 Note that we have
-\[\|\hat x\|=\sup_{h\in\sigma(\cA)}|\hat x(h)|=\sup_{h\in\sigma(\cA)}|h(x)|=r(x).\]
-For self adjoint $x\in\cA$, since we have $\|x\|^2=\|x^*x\|=\|x^2\|$, the spectral radius coincides with the norm by the Gelfand formula for spectral radius in Banach algebras:
-\[r(x)=\lim_{n\to\infty}\|x^{2^n}\|^{1/2^n}=\|x\|.\]
-Hence
-\[\|x\|^2=\|x^*x\|=\|\hat{x^*x}\|=\|\hat{x}^*\hat{x}\|=\|\hat{x}\|\]
-for arbitrary $x\in\cA$.
+\[\|\Gamma a\|=\sup_{\f\in\sigma(\cA)}|\Gamma a(\f)|=\sup_{\f\in\sigma(\cA)}|\f(a)|=r(a)\]
+for all $a\in\cA$.
+If we assume $a$ is self-adjoint, then since $\|a\|^2=\|a^*a\|=\|a^2\|$, the spectral radius coincides with the norm by the Beurling formula for spectral radius in Banach algebras:
+\[\|\Gamma a\|=r(a)=\lim_{n\to\infty}\|a^{2^n}\|^{1/2^n}=\|a\|.\]
+Hence we have for all $a\in\cA$ that
+\[\|a\|^2=\|a^*a\|=\|\Gamma(a^*a)\|=\|(\Gamma a)^*\Gamma a\|=\|\Gamma a\|^2.\]
 
-
-$\Gamma(\cA)$ is a unital $*$-subalgebra of $C(\sigma(\cA))$, and it separates points by definition.
-By the Stone-Weierstrass theorem, $\Gamma(\cA)$ is dense in $C(\sigma(\cA))$.
-The step 2 shows that $\Gamma(\cA)$ is complete and hence closed so that $\Gamma(\cA)=C(\sigma(\cA)$.
+(c)
+By the part (a) and (b), the image $\Gamma(\cA)$ is a closed unital $*$-subalgebra of $C(\sigma(\cA))$, and it separates points by definition.
+Then, $\Gamma(\cA)$ is dense in $C(\sigma(\cA))$ by the Stone-Weierstrass theorem, which implies $\Gamma(\cA)=C(\sigma(\cA)$.
 \end{pf}
 
 
@@ -855,11 +872,18 @@ joint spectrum.
 
 
 \begin{prb}[Continuous functional calculus]
-1. $\id\mapsto a$, 2. $(f+g)(a)=f(a)+g(a)$, $(fg)(a)$, 3. $(f\circ g)(a)=f(g(a))$.
+Let $\cA$ be a C$^*$-algebra, and $a\in\cA$ a normal element.
+Then, we have an isometric $*$-homomorphism
+\[C(\sigma(a))\to\cA\]
+defined by the inverse of the Gelfand transform, which we call the \emph{continuous functional calculus}.
+\begin{parts}
+\item $\id\mapsto a$.
+\item $(f+g)(a)=f(a)+g(a)$ and $(fg)(a)$.
+\item $(f\circ g)(a)=f(g(a))$.
+\end{parts}
 \end{prb}
 
 
-We have shown unitary element has spectrum in the circle, and self-adjoint element has spectrum in real line. The converses of these two statements also hold if we assume $a$ is normal.
 
 
 
@@ -909,31 +933,14 @@ Extend the result for general exponent: $\cA$ is commitative if $f(x)=x^\beta$ i
 \end{prb}
 
 
-\begin{prb}[Injective *-homomorphism is an isometry]ß
+\begin{prb}[Injective $*$-homomorphism is an isometry]
 % https://math.stackexchange.com/questions/434706/sufficient-condition-for-a-homomorphism-between-c-algebras-being-isometric/435105#435105
 \end{prb}
 
 
-\section{Representation theory}
-
-
-\section{Gelfand-Naimark-Siegel representation}
-
-\begin{prb}
-Let $\cA$ be a C$^*$-algebra, and $\rho$ be a state on $\cA$.
-
-\end{prb}
-
-\begin{prb}
-Let $\cA=C([0,1])$ and $\mu$ be a state on $\cA$, a regular Borel probability measure on $[0,1]$.
-Then, the left kernel $L_\mu=\{f\in\cA:\mu(|f|^2)=0\}$ is the set of $f\in\cA$ such that $\supp f\cap\supp\mu=\varnothing$(Not checked)
-Then, the quotient is $\cA/L_\mu\cong C(\supp\mu)$.
-Therefore, our Hilbert space is $L^2(\supp\mu,\mu)$, and the canonical cyclic vector is the unity function.
-\end{prb}
-
 
 \begin{prb}[States on unitization]
-Let $\cA$ and $\tilde\cA\cong\cA\oplus\C$ be a C$^*$-algebra and its unitization respectively.
+Let $\cA$ and $\tilde\cA=\cA\oplus\C$ be a C$^*$-algebra and its unitization respectively.
 Let $\tilde\rho=\rho\oplus\lambda$ be a bounded linear functional on $\tilde\cA$, where $\rho\in\cA^*$ and $\lambda\in\C^*=\C$.
 \begin{parts}
 \item $\tilde\rho$ is positive if and only if $\lambda\ge0$ and $0\le\rho\le\lambda$.
@@ -941,6 +948,9 @@ Let $\tilde\rho=\rho\oplus\lambda$ be a bounded linear functional on $\tilde\cA$
 \item $\tilde\rho$ is a pure state if and only if $\lambda=1$ and $\rho$ is either a pure state or zero.
 \end{parts}
 \end{prb}
+
+
+
 
 
 \section*{Exercises}
@@ -955,9 +965,13 @@ A C$^*$-algebra is commutative if and only if a function $f(x)=\frac x{1+x}$ is 
 
 
 \chapter{Von Neumann algebras}
-\section{The double commutant theorem}
+\section{Von Neumann algebras}
 
-\begin{thm}[Double commutant theorem]
+\begin{prb}[Von Neumann algebras]
+A C$^*$-algebra $\cA$ is called a \emph{von Neumann algebra} if there is a isometric $*$-homomorphism $\cA\to B(H)$ for a Hilbert space $H$ whose image is closed in the weak operator topology.
+\end{prb}
+
+\begin{prb}[Double commutant theorem]
 Let $\cA$ be a non-degenerate C$^*$-subalgebra of $B(H)$.
 \begin{parts}
 \item $\cA'$ and $\cA''$ are weakly closed.
@@ -965,7 +979,7 @@ Let $\cA$ be a non-degenerate C$^*$-subalgebra of $B(H)$.
 \item For $a\in\cA''$ and $\xi_1,\cdots,\xi_m\in H$, there is a sequence $a_n\in\cA$ such that $a_n(\xi_i)\to a(\xi_i)$ for all $i$.
 \item $\cA$ is von Neumann algebra if and only if $\cA=\cA''$.
 \end{parts}
-\end{thm}
+\end{prb}
 \begin{pf}
 (b)
 Let $K:=\bar{\cA\xi}$ be the cyclic subspace of $\xi$ in $H$ and $p$ its orthogonal projection.
@@ -980,20 +994,117 @@ Also, $\cA''$ is weakly closed, $\bar\cA^\wot\subset\cA''$.
 \end{pf}
 
 
-\section{The Kaplansky density theorem}
+\begin{prb}[Kaplansky density theorem]
+\end{prb}
+
+
+
 
 \section{Borel functional calculus}
 resolution of identity
-
 normal operator theories: multiplicity, invariant subspaces
+$L^\infty$ representation
 
-\section{Traces}
+\begin{prb}[Borel functional calculus]
+Let $\cA$ be a von Neumann algebra.
+\[B^\infty(\sigma(a))\to\cA.\]
+\begin{parts}
+\item The Borel functional calculus is in general not injective.
+\item If we endow the topology of pointwise convergence on $B^\infty(\sigma(a))$ and the strong operator topology on $\cA$, then the Borel functional calculus is continuous.
+\item not isometric, even if it is injective.
+\item Every von Neumann algebra is the closed span of projections.
+\end{parts}
+\end{prb}
+\begin{prb}
+
+(b)
+By the bounded convergence theorem.
+
+(d)
+This is because $\sigma(a)\subset\C$ is compact so that it is separable and metrizable; every bounded measurable function is a pointwise limit of simple functions.
+
+\end{prb}
+
+
+
+
+
+\section{Representations of C$^*$-algebras}
+\begin{prb}[Representation of C$^*$-algebras]
+A \emph{representation} of a C$^*$-algebra is a $*$-homomorphism $\pi:\cA\to B(H)$ for a Hilbert space $H$.
+\end{prb}
+
+\begin{prb}[Non-degenerate representation]
+Let $\pi:\cA\to B(H)$ be a representation of a C$^*$-algebra $\cA$.
+We say $\pi$ is \emph{non-degenerate} if $\pi(\cA)H$ is dense in $H$.
+\begin{parts}
+\item $\pi$ is non-degenerate.
+\item For each $\xi\in H$ there is $a\in\cA$ such that $\pi(a)\xi\ne0$.
+\item $\pi(e_\alpha)\to\id_H$ strongly for every approximate identity $e_\alpha$ of $\cA$.
+\end{parts}
+\end{prb}
+
+\begin{prb}[Cyclic representation]
+Let $\pi:\cA\to B(H)$ be a representation of a C$^*$-algebra $\cA$.
+\begin{parts}
+\item
+\end{parts}
+\end{prb}
+
+\begin{prb}[Irreducible representation]
+Let $\pi:\cA\to B(H)$ be a representation of a C$^*$-algebra $\cA$.
+We say $\pi$ is irreducible if there is no proper closed subspace $K\subset H$ such that $\pi(a)K\subset K$.
+\begin{parts}
+\item $\pi$ is irreducible.
+\item $\pi(\cA)'=\C\id_H$.
+\item $\pi(\cA)$ is strongly dense in $B(H)$.
+\item Every non-zero vector is cyclic.
+\end{parts}
+\end{prb}
+
+\begin{prb}[Gelfand-Naimark-Segal representation]
+Let $\cA$ be a C$^*$-algebra, and $\rho$ be a state on $\cA$.
+\begin{parts}
+\item The left kernel $L_\rho:=\{a\in\cA:\rho(a^*a)=0\}$ is a left ideal of $\cA$.
+\item $\<a+L,b+L\>:=\rho(b^*a)$ is an inner product on $\cA/L_\rho$.
+\item There is a unique representation $\pi_\rho:\cA\to B(H_\rho)$ such that $\pi_\rho(a)(b+L):=ab+L$ for $a,b\in\cA$.
+\item $\pi_\rho:\cA\to B(H_\rho)$ is a cyclic representation.
+\end{parts}
+\end{prb}
+
+\begin{prb}[Representations of $C_0(\Omega)$]
+Let $\cA=C_0(\Omega)$ and $\mu$ be a state on $\cA$, a regular Borel probability measure on $\Omega$.
+\begin{parts}
+\item The left kernel of $\mu$ is $L_\mu=\{\,f\in\cA:f|_{\supp\mu}=0\,\}$.
+\item The quotient is $\cA/L_\mu\cong C(\supp\mu)$ so that $H_\mu=L^2(\supp\mu,\mu)$.
+\item The canonical cyclic vector is the unity function.
+\end{parts}
+\end{prb}
+
+\begin{prb}[Representations of $K(H)$]
+\end{prb}
+
+
+
+\begin{prb}[Kadison transitivity theorem]
+\end{prb}
+
+\begin{prb}[Left ideals]
+\end{prb}
+
+\begin{prb}[Primitive ideals]
+\end{prb}
+
+\begin{prb}[Hull-kernel topology]
+\end{prb}
+
+\section{Factors and traces}
 Every trace of factor is faithful
 
 
 \begin{prb}
 Normal states is a state in which the monotone convergence theorem holds.
-Precisely, a state $\rho$ is \emph{normal} if a monotone net $a_\alpha$ strongly converges to $a$ then $\rho(a_\alpha)\to\rho(\alpha)$.
+Precisely, a state $\rho$ is \emph{normal} if a monotone net $a_\alpha$ strongly converges to $a$ then $\rho(a_\alpha)\to\rho(a)$.
 \end{prb}
 
 
