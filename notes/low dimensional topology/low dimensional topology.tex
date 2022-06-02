@@ -1,0 +1,155 @@
+\documentclass{../note}
+\usepackage{../../ikany}
+
+
+\begin{document}
+\title{Low Dimensional Topology}
+\author{Ikhan Choi}
+\maketitle
+\tableofcontents
+
+\part{Topology of 3-manifolds}
+\chapter{}
+\chapter{}
+\chapter{}
+
+
+\part{Geometry of 3-manifolds}
+\chapter{Hyperbolization}
+\section{Geometric structures}
+
+I need to check more carefully the followings...
+All statements in here may not be true, anyway.
+
+\begin{prb}[Geometric structure]
+Let $M$ be a connected smooth manifold.
+We are concerned with geometric structures on $M$.
+We restrict our interests on geometries that having length, area, volume, and angle measurements.
+For example, affine, projective, or conformal geometries are not considered to be candidates of geometric structures.
+Precisely, we suggest to define a \emph{geometric structure} as a metric $d$ on $M$ such that
+\begin{enumerate}[(i)]
+\item $(M,d)$ is geodesically connected,
+\item $(M,d)$ is geodesically complete,
+\item $(M,d)$ is a Riemannian manifold,
+\item $(M,d)$ is locally homogeneous.
+\end{enumerate}
+In other words, a geometric structure on $M$ is a Riemannian metric satisfying (i), (ii), and (iv).
+Each condition has been obtained by modifying the first four postulates of Euclid's Elements.
+\begin{parts}
+\item $M$ is a geometric manifold if and only if $M$ is isometric to $X/\Gamma$, where $X$ is a simply connected geometric manifold and $\Gamma$ is a torsion-free discrete subgroup of $\Isom(X)$. In this case, we say $M$ is a \emph{space form} of $X$.
+\item If $M$ is simply connected, then a geometric structure is the same thing as a homogeneous Riemannian metric.
+\end{parts}
+\end{prb}
+\begin{pf}
+(a) % 지금 실력으로 손 못 대겠다..
+($\Rightarrow$)
+
+($\Leftarrow$)
+
+(b)
+($\Rightarrow$)
+Ambrose-Singer theorem.
+
+($\Leftarrow$)
+Let $g$ be a homogeneous Riemannian metric on $M$.
+We will prove $g$ satisfies (ii) and (i).
+\end{pf}
+
+
+\begin{prb}[Homogeneous Riemannian metrics]
+Let $M$ be a connected smooth manifold.
+We want to establish the following correspondence.
+\[\left\{\begin{tabular}{c}Homogeneous\\Riemannian metrics\end{tabular}\right\}\leftrightarrow\left\{\begin{tabular}{c}Homogeneous\\maximal smooth group actions\\with compact stabilizers\end{tabular}\right\}.\]
+\begin{parts}
+\item If $g$ is a homogeneous Riemannian metric on $M$, the group action on $M$ by $\Isom(M,g)$ is maximal among smooth group actions with compact stabilizers.
+\item If a smooth group action on $M$ by $G$ is maximal among smooth group actions with compact stabilizers, then there is a homogeneous Riemannian metric on $M$ such that $G\cong\Isom(M,g)$.
+\end{parts}
+\end{prb}
+\begin{pf}
+\end{pf}
+
+\begin{prb}[Pseudogroup structure]
+Let $(X,\cT)$ be a topological space.
+A \emph{pseudogroup} on $X$ is a wide subgroupoid $\Gamma$ of $\Homeo(X)$ such that $\cT\to\mathbf{Set}:U\mapsto\{\,g\in\Gamma:\dom g=U\,\}$ is a separated presheaf; it satisfies the locality, but not the gluing axiom.
+Let $\Gamma$ be a pseudogroup on $X$, and $M$ be a topological space.
+A \emph{$\Gamma$-atlas} on $M$ is an atlas whose charts have $X$ as the codomain and transition maps belong to $\Gamma$.
+A \emph{$\Gamma$-structure} on $M$ is defined as an equivalence class of $\Gamma$-atlases on $M$.
+\begin{parts}
+\item For $G\le\Homeo(X)$, $\{\,g|_U:g\in G,\ U\in\cT\,\}$ is a pseudogroup on $X$. We write this pseudogroup as $(G,X)$.
+\item...
+Note that $G$ does not act on $(G,X)$-manifold $M$.
+\end{parts}
+\end{prb}
+
+\begin{prb}[Complete $(G,X)$-structure]
+Let $(G,X)$ be a model geometry, and $M$ be a connected smooth manifold.
+
+Developing map and holonomy.
+
+We will show the equivalence of the following statements.
+\begin{enumerate}[(i)]
+\item $M$ admits a geometric structure such that the universal covering is $X$.
+\item $M$ admits a complete $(G,X)$-structure.
+\end{enumerate}
+Therefore, for a model geometry $(G,X)$, a complete $(G,X)$-structure on $M$ be called a \emph{geometric structure} on $M$.
+\begin{parts}
+\item (i) implies (ii).
+\item (ii) implies (i).
+\end{parts}
+\end{prb}
+
+analyticity of isometries of homogeneous Riemannian manifolds?
+
+examples.
+
+\begin{prb}[Thurston's eight geometries]
+We define a \emph{model geometry} or a \emph{Thurston geometry} as a simply connected geometric manifold $X$ such that there exists at least one space form of finite volume.
+\end{prb}
+
+
+\section{Mostow rigidity}
+Kleinian groups
+Several topological invariants: volume, trace fields, etc.
+
+
+\section{Hyperbolization Dehn surgery}
+
+\begin{prb}[Ideal triangulation of knot complement]
+Cusped hyperbolic 3-manifolds
+\end{prb}
+
+\begin{prb}[Cusp and horoball]
+\end{prb}
+
+\begin{prb}[Thick-thin decomposition]
+Margulis constant.
+\end{prb}
+
+\begin{prb}[Thurston's Hyperbolic Dehn surgery]
+\end{prb}
+
+
+\section{Orbifolds}
+
+
+
+
+\chapter{Teichm\"uller theory}
+\section{}
+
+\chapter{Geometric group theory}
+\section{}
+
+
+\part{Topology of 4-manifolds}
+\chapter{Surgery theory}
+\chapter{Intersection forms}
+\chapter{Kirby calculus}
+
+
+\part{Geometry of 4-manifolds}
+\chapter{}
+\chapter{}
+\chapter{}
+
+\end{document}

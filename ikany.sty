@@ -111,7 +111,8 @@
 
 \RequirePackage[shortlabels]{enumitem}
 \newlist{parts}{enumerate}{1}
-\setlist[parts]{label=\rm{(\alph*)},leftmargin=9mm,itemsep=0mm}
+\setlist[parts]{label=\rm{(\alph*)},leftmargin=9mm,itemsep=0pt}
+\setlist[enumerate]{itemsep=0pt}
 
 \let\@@item\item
 \newcommand{\sitem}{\refstepcounter{\@enumctr}\@@item[$^*$\csname label\@enumctr\endcsname]}

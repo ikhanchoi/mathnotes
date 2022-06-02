@@ -717,49 +717,6 @@ Sketch the characteristics. Solve the Cauchy problem. Hint: solve the problem in
 
 
 
-\section{Existence theorems for ODE}
-
-
-
-\subsection{Picard-Lindel\"of theorem}
-\begin{prb}
-Consider the following initial value problem:
-\[x'(t)=f(t,x(t)),\qquad x(0)=x_0.\]
-Construct an approximate solution $(x_n)_{n=0}^\infty$ defined inductively such that $x_0(t)\equiv x_0$ and
-\[x_{n+1}'(t)=f(t,x_n(t)),\quad x_{n+1}(0)=x_0.\]
-Suppose $f$ satisfies
-\[|f(t,x)|\le \frac RT,\qquad|f(t,x)-f(t,y)|\lesssim|x-y|\]
-on the cylinder $[0,T]\times\bar{B(x_0,R)}$.
-\begin{parts}
-\item $x_n$ is in $C^1([0,T],\bar{B(x_0,R)})$.
-\item $x_n$ is Cauchy in $C^1([0,T],\bar{B(x_0,R)})$.
-\item The equation has a unique solution in $C^1([0,T],\bar{B(x_0,R)})$.
-\end{parts}
-\end{prb}
-\begin{pf}
-(a)
-It clearly follows from the explicit formula
-\[x_{n+1}(t)=x_0+\int_0^tf(s,x_n(s))\,ds.\]
-
-(b)
-Since
-\[|x_1(t)-x_0(t)|\le\int_0^t|f(s,x_0)|\,ds\le Mt\]
-and
-\begin{align*}
-|x_{n+1}(t)-x_n(t)|
-&\le\int_0^t|f(s,x_n(s))-f(s,x_{n-1}(s))|\,ds\\
-&\le K\int_0^t|x_n(s)-x_{n-1}(s)|\,dx\\
-&\le MK^n\int_0^t\frac{s^n}{n!}\,ds\\
-&=MK^n\frac{t^{n+1}}{(n+1)!},
-\end{align*}
-we have the convergent series
-\[\sum_{n=0}^n\|x_{n+1}-x_n\|_\infty\le TM\frac{e^{KT}-1}{KT}.\]
-Also,
-\[|x'_{n+1}(t)-x'_n(t)|\le|f(t,x_n(t))-f(t,x_{n-1}(t))|\le K|x_n(t)-x_{n-1}(t)|\le MK^{n+1}\frac{t^{n+1}}{(n+1)!}.\]
-
-(c)
-Limiting check.
-\end{pf}
 
 
 

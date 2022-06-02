@@ -635,39 +635,31 @@ since
 
 
 
-\section{Connections}
+\section{Connection}
 
-We will give a coordinate-free axiomatic definition of covariant derivatives and show that they coincide.
-By doing this, we obtain an alternative proof for the statement that covariant derivatives are intrinsic.
+\begin{prb}[Affine connection]
+Let $M$ be a smooth manifold
+An \emph{affine connection} on $M$ is a map
+\[\nabla:\fX(M)\times\fX(M)\to\fX(M):(X,Y)\mapsto\nabla_XY\]
+such that
+\begin{enumerate}[(i)]
+\item $C^\infty(M)$-linear in the first argument $X$,
+\item the \emph{Leibniz rule}
+\[\nabla_X(fY)=XfY+f\nabla_XY\]
+for $f\in C^\infty(M)$ in the second argument $Y$ is satisfied.
+\end{enumerate}
+\end{prb}
 
-\begin{defn}[Affine connection]
-Let $M$ be the image of a parametrization.
-An \emph{affine connection} is a map $\nabla:\fX(M)\times\fX(M)\to\fX(M)$ such that
+\begin{prb}[Levi-Civita connection]
+Let $M$ be a Riemannian manifold.
+A \emph{metric connection} is an affine connection $\nabla$ such that $\nabla g=0$.
+A \emph{Levi-Civita connection} is a metric connection $\nabla$ such that $\nabla T=0$.
 \begin{parts}
-\item $\nabla_{(-)}Y:\fX(M)\to\fX(M):X\mapsto\nabla_XY$ is $C^\infty(M)$-linear;
-\item $\nabla_X(-):\fX(M)\to\fX(M):Y\mapsto\nabla_XY$ is $\R$-linear;
-\item the Leibniz rule
-\[\nabla_X(fY)=(\pd_Xf)Y+f\nabla_XY\]
-is satisfied.
+\item $\nabla$ is a metric connection if and only if $Z\<X,Y\>=\<\nabla_ZX,Y\>+\<X,\nabla_ZY\>$.
+\item $\nabla$ is a Levi-Civita connection if and only if $\nabla_XY-\nabla_YX=[X,Y]$.
+\item There exists a unique Levi-Civita connection on $M$.
 \end{parts}
 \end{defn}
-
-\begin{defn}[Metric connection]
-Let $M$ be the image of a parametrization and $\<\,,\>$ be a Riemannian metric on $M$.
-A \emph{metric connection} is an affine connection $\nabla:\fX(M)\times\fX(M)\to\fX(M)$ such that:
-\[\pd_Z\<X,Y\>=\<\nabla_ZX,Y\>+\<X,\nabla_ZY\>.\]
-\end{defn}
-
-\begin{defn}[Levi-Civita connection]
-Let $M$ be the image of a parametrization and $\<\,,\>$ be a Riemannian metric on $M$.
-A \emph{Levi-Civita connection} is a metric connection $\nabla:\fX(M)\times\fX(M)\to\fX(M)$ such that:
-\[\nabla_XY-\nabla_YX=\pd_XY-\pd_YX.\]
-\end{defn}
-
-\begin{thm}
-Let $\a:U\to\R^n$ be an $m$-dimensional parametrization with $M=\im\a$.
-Then, there is a unique Levi-Civita connection on $M$.
-\end{thm}
 \begin{pf}
 (Uniqueness)
 Suppose $\nabla$ is a Levi-Citiva connection on $M$.
@@ -679,14 +671,18 @@ Suppose $\nabla$ is a Levi-Citiva connection on $M$.
 (Existence)
 \end{pf}
 
-Our claim is that this definition is equivalent to the above coordinate dependent definition, the Levi-Civita connection, of the covariant derivative.
-
-\begin{prop}
+\begin{prb}
 Let $S$ be a regular surface embedded in $\R^3$.
 If we define Christoffel symbols as the Gauss formula, then
 \[\fX(S)\times\fX(S)\to\fX(S):(X^i\a_i,Y^j\a_j)\mapsto\left(X^i\pd_iY^k+X^iY^j\Gamma_{ij}^k\right)\a_k\]
 defines a Levi-Civita connection.
-\end{prop}
+\end{prb}
+
+
+\begin{prb}[Connection form]
+
+\end{prb}
+
 
 \section{Curvature tensor}
 

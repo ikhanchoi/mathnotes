@@ -8,28 +8,61 @@
 \maketitle
 \tableofcontents
 
-\part{Linear ordinary differential equations}
-\chapter{Constant coefficient equations}
-\section{Characteristic equations}
-\section{Complex roots}
-\section{Repeated roots}
+% notes by Igor Yanovsky
+% Oxford physics lecture
 
-\chapter{Variable coefficient equations}
-\section{Series solution}
-\section{Fuch's theorem}
-\section{Orthogonal polynomials}
-\section{Sturm-Liouville theory}
-\section{The Frobenius method}
+\part{Linear ordinary differential equations}
+
+
+\chapter{Initial value problems}
+\section{Constant coefficient equations}
+existence uniqueness system of equations
+characteristic equations
+complex roots
+repeated roots
+
+
+\section{Variable coefficient equations}
+existence uniqueness
+series solution
+Frobenius method
 Fuch's theorem
 
-\chapter{Inhomogeneous equations}
+
+
+
+\chapter{Boundary value problems}
+\section{Second order linear equations}
+Helmholtz
+Bessel
+Legendre
+Hermite
+Laguerre
+
+\section{Orthogonal polynomials}
+$L^2$ space
+
+\section{Sturm-Liouville theory}
+Eigenvalue problems
+boundary conditions
+
+\section*{Exercises}
+\begin{prb}[Rayleigh-Ritz principle]
+\end{prb}
+
+
+\chapter{Inhomogeneous problems}
 \section{Method of undetermined coefficients}
 \section{Variation of parameters}
-\section{Damped oscillation}
-\section{The Laplace transform}
+\section{Laplace transform}
+
 discontinuous data gluing
 
 
+\section*{Exercises}
+
+\begin{prb}[Damped oscillation]
+\end{prb}
 
 
 
@@ -37,20 +70,102 @@ discontinuous data gluing
 
 
 \part{Nonlinear ordinary differential equations}
+\chapter{First order nonlinear equations}
+\section{Local existence theorems}
 
-\chapter{Nonlinear ordinary differential equations}
-\section{The Picard-Lindel\"of theorem}
-\section{Integrating factors}
+\begin{prb}[Picard-Lindel\"of theorem]
+Consider the following initial value problem:
+\[x'(t)=f(t,x(t)),\qquad x(0)=x_0.\]
+Construct an approximate solution $(x_n)_{n=0}^\infty$ defined inductively such that $x_0(t)\equiv x_0$ and
+\[x_{n+1}'(t)=f(t,x_n(t)),\quad x_{n+1}(0)=x_0.\]
+Suppose $f$ satisfies
+\[|f(t,x)|\le \frac RT,\qquad|f(t,x)-f(t,y)|\lesssim|x-y|\]
+on the cylinder $[0,T]\times\bar{B(x_0,R)}$.
+\begin{parts}
+\item $x_n$ is in $C^1([0,T],\bar{B(x_0,R)})$.
+\item $x_n$ is Cauchy in $C^1([0,T],\bar{B(x_0,R)})$.
+\item The equation has a unique solution in $C^1([0,T],\bar{B(x_0,R)})$.
+\end{parts}
+\end{prb}
+\begin{pf}
+(a)
+It clearly follows from the explicit formula
+\[x_{n+1}(t)=x_0+\int_0^tf(s,x_n(s))\,ds.\]
+
+(b)
+Since
+\[|x_1(t)-x_0(t)|\le\int_0^t|f(s,x_0)|\,ds\le Mt\]
+and
+\begin{align*}
+|x_{n+1}(t)-x_n(t)|
+&\le\int_0^t|f(s,x_n(s))-f(s,x_{n-1}(s))|\,ds\\
+&\le K\int_0^t|x_n(s)-x_{n-1}(s)|\,dx\\
+&\le MK^n\int_0^t\frac{s^n}{n!}\,ds\\
+&=MK^n\frac{t^{n+1}}{(n+1)!},
+\end{align*}
+we have the convergent series
+\[\sum_{n=0}^\infty\|x_{n+1}-x_n\|_\infty\le TM\frac{e^{KT}-1}{KT}.\]
+Also,
+\[|x'_{n+1}(t)-x'_n(t)|\le|f(t,x_n(t))-f(t,x_{n-1}(t))|\le K|x_n(t)-x_{n-1}(t)|\le MK^{n+1}\frac{t^{n+1}}{(n+1)!}.\]
+
+(c)
+Limiting check.
+\end{pf}
+
+\begin{prb}[Cauchy-Peano theorem]
+\end{prb}
+
+\begin{prb}[Carath\'eodory existence theorem]
+\end{prb}
+
+
+\section{Implicit equations}
+integrating factor, separable equations, exact equations
+
+
+\section{Global existence}
+\begin{prb}[Gronwall's inequality]
+
+\end{prb}
+\begin{prb}[A priori estimate]
+
+\end{prb}
+
+
 
 \chapter{Dynamical systems}
-\section{Equillibria}
+\section{Equillibrium and stability}
 Bifurcations\\
-Stability theory\\
-Hamiltonian systems
+Stability theory
+Lyapunov, invariant set
 
-\section{Planar dynamical systems}
-Examples from ecology, electrical engineerings\\
-Poincar\'e-Bendixon
+\section{Autonomous systems}
+
+
+\section{Hamiltonian systems}
+
+\section{Planar systems}
+periodic orbit
+
+
+\begin{prb}[Poincar\'e-Bendixon]
+\end{prb}
+
+\section*{Exercises}
+\begin{prb}[Undamped pendulum]
+\[x''(t)+\sin x(t)=0\]
+\end{prb}
+\begin{prb}[Approximated pendulum]
+\[x''(t)+x(t)-\frac16x(t)^3=\alpha\]
+\end{prb}
+
+\begin{prb}[Van der Pol oscillator]
+\[x''(t)-\mu(1-x(t)^2)x'(t)+x(t)=0\]
+\end{prb}
+
+\begin{prb}[Lotka-Volterra model]
+Also known as predator-prey equations.
+\end{prb}
 
 
 \chapter{Chaos}
@@ -156,7 +271,7 @@ representation formulas describe the solution assuming
 
 \end{prb}
 
-\section{Helmholtz equation}
+\section{Eigenvalue problems}
 
 
 
@@ -191,9 +306,10 @@ odd reflection
 \part{Nonlinear partial differential equations}
 
 \chapter{Fluid dynamics}
-\section{Burger's equation}
-\section{Euler's equation}
+\section{Conservation laws}
 \section{Navier-Stokes equation}
+\section{Euler's equation}
+\section{Burger's equation}
 
 \chapter{Integrable field equations}
 \section{Korteweg-de Vries equation}

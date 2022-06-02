@@ -36,7 +36,6 @@ This thesis will describe, prove, and investigate several examples of the Bochne
 % 3.1 포트망토 넷에 대해 증명?
 % 3.2 보흐너 정리 증명 하나 더 추가 - 6월에 해도 돼
 %   https://www.jstor.org/stable/25049427?seq=4
-%     폴리야 증명 좀 빨리 읽어라, 사실 그냥 레비 쓰는 것뿐
 % 3.3 힐베르트 공간? 연속함수 공간?
 
 
@@ -759,8 +758,26 @@ and
 \[\mu_\alpha(E)\le\mu_\alpha(A)+\mu_\alpha(B)\le\mu_\alpha(A)+\frac23\e\le\mu(A)+\e\le\mu(E^\e)+\e.\]
 
 (d)
+Let $\{x_i\}_{i=1}^\infty$ is dense in $S$.
+We want to show
+\[\cM:=\left\{\begin{tabular}{c}rational coefficient convex combination of\\Dirac measures $\delta_{x_i}$\end{tabular}\right\}\]
+is dense in $\Prob(S)$.
+Let $\mu\in\Prob(S)$ and suppose $g\in C_b(S)$ is uniformly continuous so that for fixed $\e>0$ we can take $\delta>0$ such that $|x-y|<\delta$ implies $|g(x)-g(y)|<\e/4$.
+Since $S=\bigcup_{i=1}^\infty B(x_i,\delta)$, we can have a partition $\{A_1,\cdots,A_n,B\}$ of $S$ such that $A:=B(x_i,\delta)\setminus A_{i-1}$ and $\mu(B)<\e/8\|g\|$.
+Take any $y\in B$.
 
-(e)
+Define $\nu\in\cM$ such that
+\[\nu:=\sum_{i=1}^n(\mu(A_i)+\e_i)\delta_{x_i}+(\mu(B)-\sum_{i=1}^n\e_i)\delta_y,\]
+with perturbations $\e_i$ such that $\mu(A_i)+\e_i\in\Q$ and $\sum_{i=1}^n|\e_i|<\e/4$.
+The measure $\nu\in\cM$ depends on $\e$.
+Then,
+\begin{align*}
+|\int g\,d\nu-\int g\,d\mu|
+&\le\sum_{i=1}^n|\int_{A_i}g\,d\nu-\int_{A_i}g\,d\mu|+|\int_Bg\,d\nu-\int_Bg\,d\mu|\\
+&\le\sum_{i=1}^n\int_{A_i}|g(x_i)-g(x)|d\mu(x)+\int_B|g(y)-g(x)|\,d\mu(x)+\frac\e2\\
+&\le\sum_{i=1}^n\int_{A_i}\frac\e4\,d\mu+\frac\e{8M}2M+\frac\e2<\e.
+\end{align*}
+Therefore, $\cM$ is dense in $\Prob(S)$.
 \end{pf}
 
 \begin{defn}[Polish spaces]
@@ -1012,19 +1029,8 @@ as $\delta\to0$, and since $\f$ is continuous at zero, we can conclude that $\f$
 \end{pf}
 
 
-\begin{cor}[Polya's criterion]
-Let $\f:\R\to[0,\infty)$ be an even function such that $\f(0)=1$.
-If $\f$ is decreasing and convex on $(0,\infty)$, then $\f$ is a characteristic function.
-\end{cor}
-\begin{pf}
 
-\end{pf}
-
-\begin{ex}[L\'evy's $\alpha$-stable distribution]
-
-\end{ex}
-
-\subsection{Further developments for non-locally compact groups}
+\subsection{Notes on non-locally compact groups}
 \iffalse
 bochner
 measure <=> pos def continuous
@@ -1092,7 +1098,7 @@ If we endow on it the weak$^*$-topology induced from the dual space $\cA^*$ as a
 
 Let $\chi\in\hat G$.
 Then, it defines a linear functional
-\[L^1(G)\to\C:f\mapsto\int_G\bar{\chi(x)}f(x)\,dx\]
+\[L^1(G)\to\C:f\mapsto\int_G\chi(x)f(x)\,dx\]
 on $L^1(G)$, which is a non-zero algebra homomorphism, so induces a map $\hat G\to(L^1(G))\hat\enspace$.
 In fact this map is a homeomorphism and considered as a canonical identification of the spectra.
 It has an analogy with a locally compact version of the theorem that complex representations of a finite group $G$ has a one-to-one correspondence to $\C[G]$-modules.
@@ -1154,32 +1160,54 @@ M(G)\rar{\cF^*}&C_b(\hat G).
 In particular, $\Phi$ is injective.
 
 \begin{prop}
-Property
+Let $G$ be a locally compact abelian group.
 \begin{parts}
-\item $\cF:L^1(G)\to C_0(\hat G)$ is an embedding with dense image.
-\item $\cF:M(G)\to C_b(\hat G)$ is an embedding.
+\item For $\mu,\nu\in M(G)$, $\cF(\mu*\nu)=\cF\mu\cF\nu$.
+\item For $\mu\in M(\hat G)$ and $\nu\in M(G)$, $\int_{\hat G}\cF \nu(\chi)\,d\mu(\chi)=\int_G\cF\mu(\Phi(x))\,d\nu(x)$.
+\item If $f^*(x):=\bar{f(x^{-1})}$ for $f\in L^1(G)$, then $\cF f^*(\chi)=\bar{\cF f(\chi)}$.
 \end{parts}
 \end{prop}
+\begin{pf}
+(a)
+We have
+\[\cF(\mu*\nu)(\chi)=\iint_{G^2}\chi(xy)\,d\mu(x)\,d\nu(y)=\cF\mu(\chi)\cF\nu(\chi).\]
+
+(b)
+We have
+\begin{align*}
+\int_{\hat G}\cF \nu(\chi)\,d\mu(\chi)
+&=\int_{\hat G}\int_G\bar{\chi(x)}\,d\nu(x)\,d\mu(\chi)\\
+&=\int_G\int_{\hat G}\bar{\chi(x)}\,d\mu(\chi)\,d\nu(x)\\
+&=\int_G\cF\mu(\Phi(x))\,d\nu(x).
+\end{align*}
+
+(c)
+We have
+\[\cF f^*(\chi)=\int_G\bar{\chi(x)}\bar{f(x^{-1})}\,dx=\Bigl(\int_G\chi(x^{-1})f(x)\,dx\Bigr)^-=\bar{\cF f(\chi)}.\qedhere\]
+\end{pf}
 
 
+\begin{prop}
+Let $G$ be a locally compact abelian group.
+\begin{parts}
+\item The Fourier transform $\cF:L^1(G)\to C_0(\hat G)$ is an embedding with dense image.
+\item The Fourier transform $\cF:M(G)\to C_b(\hat G)$ is an embedding.
+\end{parts}
+\end{prop}
+\begin{pf}
+Note here that the embedding means a bounded injective linear operator, not a topological embedding.
 
+(a)
+The vanishing at infinity and the continuity of $\cF f$ is due to the Gelfand representation of commutative Banach algebras.
+The boundedness easily follows from the inequality $\|\cF f\|_{C_0(\hat G)}\le\|f\|_{L^1(G)}$.
+Since $L^1(G)$ is closed under convolution and the involution defined as $f^*(x):=\bar{f(x^{-1})}$, the image $\cF(L^1(G))$ is a $*$-subalgebra of $C_0(\hat G)$.
+It separates points and vanishes nowhere since for $\chi_1\ne\chi_2\in\hat G$ we have $f\in L^1(G)$ such that
+\[\int\bar{(\chi_1-\chi_2)(x)}f(x)\,dx\ne0,\]
+so $\cF(L^1(G))$ is dense in $C_0(\hat G)$ by the Stone-Weierstrass theorem.
 
-\subsection{The Pontryagin duality}
-
-In the previous section, we defined Fourier transform on a locally compact abelian group $G$ that maps a function on $G$ to another function on $\hat G$.
-Then, repeated Fourier transform will map a function on $G$ to a function on the double dual $\hhat G$.
-Consider the case of $G=\R$ or $\T=\R/2\pi\Z$.
-The Fourier inversion theorem and the theorems on the convergence of Fourier series state that from a transformed function $\cF f$ on $\hat G=\R$ or $\Z$ we can reconstruct the original function $f$ by doing the almost same operation, the adjoint Fourier transform.
-In other words, although the domain of $\cF^*\cF f$ is in principle $\hhat G$, but it can be considered as the original function $f$ on the original group $G$.
-Furthermore, in a suitable setting of function spaces, the adjoint Fourier transform $\cF^*$ plays a role of inverse Fourier transform $\cF^{-1}$.
-
-We are interested in the generalization for the conditions of the group $G$ such that the recovery of the original group from the dual group $\hat G$ is successful.
-This kind of question of recovery is called \emph{duality}, and the most famous result is the Pontryagin duality.
-Pontryagin proved in 1934 the duality for compact second countable abelian groups, and van Kampen generalized in the next year for the case of locally compact abelian groups.
-In present the Pontryagin duality refers to the duality result for locally compact abelian groups.
-
-For a locally compact abelian group $G$, we can discover in Bochner's theorem an actual mechanism to pullback the doubly transformed function on $\hhat G$ to the original group $G$ without any loss of information.
-To see this, we will reformulate Bochner's theorem as a corollary after the proof of the theorem.
+(b)
+It easily follows from $\|\cF \mu\|_{C_b(\hat G)}\le\|\mu\|_{M(G)}$.
+\end{pf}
 
 \begin{thm}[Bochner's theorem]
 Let $G$ be a locally compact abelian group, 
@@ -1187,9 +1215,26 @@ A function $f:G\to\C$ is continuous and positive definite if and only if there i
 \[f(x)=\int_{\hat G}\chi(x)\,d\mu(\chi)\]
 for all $x\in G$.
 \end{thm}
-\begin{pf}
 
-\end{pf}
+\subsection{Pontryagin duality and Bochner's theorem}
+
+One of the most well-known application of the Bochner theorem is the Pontryagin duality, which states the canonical homomorhpism $\Phi:G\to\hhat G$ for a locally compact abelian group $G$ is always in fact an isomorhpism.
+In the previous section, we defined the Fourier transform on $G$ as an operator that maps a function on $G$ to another function on $\hat G$.
+Then, the twice repeated Fourier transform would map a function on $G$ to a function on the double dual $\hhat G$.
+However, Bochner's theorem tells us that if a function $f$ on $G$ satisfies a special condition --- continuity and positive definiteness --- then $f$ can be realized as the Fourier transform of a function on $\hat G$(a measure is a function in a generalized sense), instead of another hypothetical group $H$ such that $\hat H=G$!
+
+Consider the case of $G=\R$ or $\T=\R/2\pi\Z$.
+The Fourier inversion theorem and the theorems on the convergence of Fourier series state that from a transformed function $\cF f$ on $\hat G=\R$ or $\Z$ we can reconstruct the original function $f$ by doing the almost same operation, the adjoint Fourier transform.
+In other words, although the domain of $\cF^*\cF f$ is in principle $\hhat G$, but it can be identified with the original function $f$ on the original group $G$.
+Furthermore, in a suitable setting of function spaces such as the $L^2$ space or the Schwartz space, the adjoint Fourier transform $\cF^*$ plays a role of the inverse Fourier transform $\cF^{-1}$.
+
+We are interested in the generalization of the recovery of the original group from the dual group $\hat G$.
+This kind of question of recovery is called \emph{duality}, and one of the most classical result is the Pontryagin duality.
+Pontryagin proved in 1934 the duality for compact second countable abelian groups, and van Kampen generalized in the next year for the case of locally compact abelian groups.
+In present the Pontryagin duality refers to the duality result for locally compact abelian groups.
+
+For a locally compact abelian group $G$, we can find out in Bochner's theorem a mechanism to pullback the doubly-Fourier-transformed function on $\hhat G$ to the original group $G$ without any loss of information.
+To see this, we reformulate Bochner's theorem in terms of a newly defined algebra of functions as follows:
 
 \begin{defn}[Fourier-Stieltjes algebra]
 Let $G$ be a locally compact abelian group.
@@ -1197,18 +1242,20 @@ The \emph{Fourier-Stieltjes algebra} $B(G)$ is the linear span of the continuous
 Note that $B(G)\cap M(G)=B(G)\cap L^1(G)$.
 \end{defn}
 
-\begin{cor}
+\begin{cor}[A reformulation of Bochner's theorem]
 Let $G$ be a locally compact abelian group, and $\Phi:G\to\hhat G$ be the canonical homomorphism.
-Then, $\Phi^*\circ\cF^*:M(\hat G)\to B(G)$ is a well-defined algebra isomorphism, where $\Phi^*f=f\circ\Phi$.
+Then, $\Phi^*\circ\cF^*:M(\hat G)\to B(G)$ is a well-defined algebra isomorphism, where $\Phi^*f=f\circ\Phi$ denotes the pullback, which intuitively means the restriction onto $\Phi(G)$.
 \end{cor}
 
 
-Classical Fourier inversion theorems go further than Bochner's theorem; not only is the Fourier transform bijective, but the inverse is given by its adjoint.
-We rigorously state them as follows.
+Classical Fourier inversion theorems on $\R$ and $\Z$ go further than Bochner's theorem; not only is the Fourier transform bijective, but the inverse is given by its adjoint.
+Standard proofs of the Fourier inversion theorem on $\R$ use the scaling of $\R$ by scalar multiplication, and standard results on the convergence theorem of Fourier series use several approximate identities such as Dirichlet kernel and Fej\'er kernel.
+They lack in general $G$, so we should find a new proof method.
+The inversion theorem is rigorously stated and proved as follows:
 
 \begin{thm}[Fourier inversion]
 Let $G$ be a locally compact abelian group, and $\hat G$ be its dual group.
-By adjusting the constant of Haar measure on $\hat G$, we have the following statements:
+By adjusting the constant of a Haar measure on $\hat G$, called the \emph{dual measure} of the Haar measure $dx$ of $G$, the following statements hold:
 \begin{parts}
 \item For $f\in B(G)\cap L^1(G)$, we have $\cF f\in B(\hat G)\cap L^1(\hat G)$ and $\Phi^*\circ\cF^*\circ\cF f=f$.
 \item For $\f\in B(\hat G)\cap L^1(\hat G)$, we have $\cF^*\circ\Phi^*\circ\cF\f=\f$
@@ -1216,37 +1263,77 @@ By adjusting the constant of Haar measure on $\hat G$, we have the following sta
 \end{thm}
 \begin{pf}
 (a)
-Without loss of generality, assume $f\in P(G)\cap L^1(G)$, where $P(G)$ denotes the space of all continuous positive definite functions on $G$.
-By the Bochner theorem, there is a non-negative measure $\mu\in M(\hat G)$ such that $\Phi^*\circ\cF^*\mu=f$.
-Our claim is that there is a Haar measure $d\chi$ on $\hat G$ such that $d\mu(\chi)=\cF f\,d\chi$.
+Without loss of generality, assume $f\in B(G)^+\cap L^1(G)$, where $B(G)^+$ denotes the space of all continuous positive definite functions on $G$.
+By the Bochner theorem, there is a non-negative measure $\mu\in M(\hat G)$ such that
+\[f(x)=\Phi^*\circ\cF^*\mu(x)=\int_{\hat G}\chi(x)\,d\mu(\chi).\]
+Our claim is that there is a Haar measure $d\chi$ on $\hat G$ such that $d\mu(\chi)=\cF f(\chi)\,d\chi$.
+If we show this, then both conclusions follow immediately.
 
 Define a linear functional $I:C_c(\hat G)\to\C$ such that for each $\f\in C_c(\hat G)$ we have
-\[I(\f):=\int\f\frac{d\mu(\chi)}{\cF f(\chi)},\]
-where $f\in P(G)\cap L^1(G)$ satisfies $\cF f>0$ on $\supp\f$.
-The existence of such $f$ is shown as follows:
+\[I(\f):=\int_{\hat G}\f(\chi)\frac{d\mu(\chi)}{\cF f(\chi)},\]
+where $f\in B(G)^+\cap L^1(G)$ such that $\cF f>0$ on $\supp\f$.
+We claim that such $f$ always exists for any choice of $\supp\f$ and $I$ is independent on $f$.
 
-The linear functional $I$ is well-defined since
+Let $h\in C_c(G)$ such that $\cF h(e)=\int_Gh(x)\,dx\ne0$.
+Then, the convolution $h^**h$ is contained in $C_c(G)$ and $\cF(h^**h)=|\cF h|^2$, where $h^*(x):=\bar{h(x^{-1})}$.
+Using the continuity of $\cF h$, take $V$ be an open neighborhood of $e\in\hat G$ such that $\cF h(\chi)\ne0$ for all $\chi\in V$.
+For a finite sequence $\{\chi_i\}_{i=1}^n$ such that $\supp\f\subset\bigcup_iV\chi_i$, define $f_i(x):=\chi_i(x)(h^**h)(x)$ and $f=\sum_if_i$.
+Then, $f$ can be verified to be in $C_c(G)$ and
+\[\cF f_i(\chi)=\cF(h^**h)(\chi_i^{-1}\chi)=|\cF h(\chi_i^{-1}\chi)|^2>0\]
+for $\chi\in V\chi_i$ implies $\cF f>0$ on $\supp\f$.
+The function $f$ is also positive definite because $\cF f$ is the sum of non-negative functions(We can show directly without Bochner's theorem).
 
+Let $f,g\in B(G)^+\cap L^1(G)$ such that $\cF f,\cF g>0$ on $\supp\f$.
+Let $\mu,\nu\in M(\hat G)$ be such that $\Phi^*\circ\cF^*\mu=f$ and $\Phi^*\circ\cF^*\nu=g$, taken by the Bochner theorem.
+For any $h\in L^1(G)$, we have
+\begin{align*}
+\int_{\hat G}\cF h(\chi)\cF g(\chi)\,d\mu(\chi)
+&=\int_{\hat G}\cF(h*g)(\chi)\,d\mu(\chi)\\
+&=\int_{G}h*g(x)\cF\mu(\Phi(x))\,dx\\
+&=\int_{G}h*g(x)f(x^{-1})\,dx\\
+&=h*g*f(e),
+\end{align*}
+and it implies by the symmetry of convolution that
+\[\int_{\hat G}\cF h(\chi)\cF g(\chi)\,d\mu(\chi)
+=\int_{\hat G}\cF h(\chi)\cF f(\chi)\,d\nu(\chi).\]
+Since the set of $\cF h$ for $h\in L^1(G)$ is dense in $C_0(\hat G)$, we get $\cF g(\chi)\,d\mu(\chi)=\cF f(\chi)\,d\nu(\chi)$, which proves the well-definedness of $I$.
+
+The next step is to show $I$ is translation-invariant: for $\f\in C_c(\hat G)$ and $\eta\in\hat G$, and for $f\in B(G)^+\cap L^1(G)$ such that $\cF f>0$ on $\supp\f\cup\supp L_\eta\f$, where $L_\eta\f(\chi):=\f(\eta^{-1}\chi)$, we have
+\[I(L_\eta\f)=\int_{\hat G}\f(\eta^{-1}\chi)\frac{d\mu(\chi)}{\cF f(\chi)}=\int_{\hat G}\f(\chi)\frac{d\mu(\eta\chi)}{\cF f(\eta\chi)}=I(\f)\]
+since the last equality is due to
+\[\Phi^*\circ\cF^*(d\mu(\eta\chi))(x)=\int_{\hat G}\chi(x)\,d\mu(\eta\chi)=\int_{\hat G}(\eta^{-1}\chi)(x)\,d\mu(\chi)=\eta^{-1}(x)f(x)\]
+and
+\[\cF(\eta^{-1}f)(\chi)=\int_G\bar{\chi(x)}\eta^{-1}(x)f(x)\,dx=\int_G\bar{(\eta\chi)(x)}f(x)\,dx=\cF f(\eta\chi).\]
+Therefore, $d\mu/\cF f$ is equal to a Haar measure $d\chi$ of $\hat G$ on $\supp\cF f$, hence $\mu(\chi)=\cF f(\chi)\,d\chi$.
 
 (b)
-Note that we can slightly modify the Bochner theorem to state that $\Phi^*\circ\cF:M(\hhat G)\to B(\hat G)$ is also an algebra isomorphism.
+Note that we can slightly modify the Bochner theorem to have an algebra isomorphism $\Phi^*\circ\cF:M(\hhat G)\to B(\hat G)$.
 From the part (a), we have $\cF\f\in L^1(\hhat G)$ so that $\Phi^*\circ\cF\f\in B(G)\cap L^1(G)$ and
 \[\Phi^*\circ\cF\circ(\cF^*\circ\Phi^*\circ\cF)\f
 =(\Phi^*\circ\cF\circ\cF^*)\circ\Phi^*\circ\cF\f=\Phi^*\circ\cF^*\f,\]
-hence $\cF^*\circ\Phi^*\circ\cF\f=\f$ by the injectivity of $\Phi^*\circ\cF$.
+hence we get $\cF^*\circ\Phi^*\circ\cF\f=\f$ by the injectivity of $\Phi^*\circ\cF$.
 \end{pf}
 
 \begin{thm}[The Plancherel theorem]
-Let $G$ be a locally compact abelian group, and $\hat G$ be its dual group.
+Let $G$ be a locally compact abelian group, and $\hat G$ be its dual group with the dual measure.
 Then,
 \[\|\cF f\|_{L^2(\hat G)}=\|f\|_{L^2(G)}\]
 for $f\in L^2(G)\cap L^1(G)$.
 \end{thm}
 \begin{pf}
+The convolution $f^**f$ is in $L^1(G)$ since $f$ and $f^*$ are in $L^1(G)$ and satisfies $\cF(f^**f)=|\cF f|^2$, where $f^*(x):=\bar{f(x^{-1})}$ for $x\in G$.
+It is also continuous because the translation is continuous in $L^1(G)$, and is positive definite because
+\begin{align*}
+\sum_{k,l=1}^nf^**f(x_l^{-1}x_k)\xi_k\bar\xi_l
+&=\sum_{k,l=1}^n\int_G\bar{f(y^{-1})}f(y^{-1}x_l^{-1}x_k)\xi_k\bar\xi_l\,dy\\
+&=\sum_{k,l=1}^n\int_G\bar{\xi_lf(y^{-1}x_l)}\xi_kf(y^{-1}x_k)\,dy\\
+&=\int_G\Bigl|\sum_{k=1}^n\xi_kf(y^{-1}x_k)\Bigr|^2\,dy\ge0.
+\end{align*}
+By the Fourier inversion theorem, we have
+\[\int_G|f(y^{-1})|^2\,dy=f^**f(e)=\cF^*\cF(f^**f)(e)=\int_{\hat G}\cF(f^**f)(\chi)\,d\xi=\int_{\hat G}|\cF f(\chi)|^2\,d\xi.\qedhere\]
 \end{pf}
 
-
-
+Then, we can prove the Pontryagin duality theorem.
 
 \begin{thm}[Pontryagin duality]
 Let $G$ be a locally compact abelian group, and $\hat G$ be its dual group.
@@ -1306,7 +1393,7 @@ For $\mu\in M(\hat G)$ such that $f=\cF^*\mu$, we have $\alpha^*\circ\cF^*\mu=f|
 \subsection{Cyclic representations and Bochner's theorem}
 
 We give in this section a representation-theoretic interpretation of Bochner's theorem: each element of $M(\hat G)$ can be considered as a cyclic representation of $G$ with a canonical cyclic vector.
-The following theorem will be defined and proved.
+More precisely, the following theorem will be defined and proved.
 
 \begin{thm}
 Let $G$ be a locally compact abelian group.
@@ -1314,19 +1401,21 @@ Then, Bochner's theorem allows to have the following one-to-one correspondence:
 \[\left\{\begin{tabular}{c}regular Borel\\probability measures on $\hat G$\end{tabular}\right\}\xrightarrow{\sim}\left\{\begin{tabular}{c}unitary equivalence class of\\pointed cyclic representations of $G$\end{tabular}\right\}.\]
 \end{thm}
 
-The importance of Bochner's theorem in this correspondence relies on its surjectivity, that is, one can construct a desired measure on $\hat G$ via a continuous positive definite function on $G$.
-In the viewpoint of Chapter 2, Theorem 4.9 can also be recognized as a ``convex combination'' version of the following correspondence, which is obvious by definition of $\hat G$:
+We will prove this at the last of this section.
+One can guess that Bochner's theorem can construct a desired measure on $\hat G$ via a continuous positive definite function on $G$.
+Moreover, the injectivity part of Bochner's theorem is applied to prove the cyclicity of properly defined representations from measures.
+In the viewpoint of Chapter 2, Theorem 4.9 can also be recognized as a ``convex combination'' version of the following correspondence, which is obvious by definition of $\hat G$ and the fact that irreducible representations of an abelian group are one-dimensional:
 \[\left\{\begin{tabular}{c}Dirac measures on $\hat G$\end{tabular}\right\}\xrightarrow{\sim}\left\{\begin{tabular}{c}unitary equivalence class of\\irreducible representations of $G$\end{tabular}\right\}.\]
+Now, as the first step for the precise formulation of the above correspondence, we give a definition of representations of locally compact abelian group.
 
-
-\begin{defn}[Unitary representation]
+\begin{defn}[Strongly continuous unitary representation]
 Let $G$ be a locally compact abelian group.
-A \emph{unitary representation} of $G$ is a group homomorphism $\rho:G\to U(H_\rho)$, where $U(H_\rho)$ denotes the set of unitary operators on a Hilbert space $H_\rho$.
+A \emph{strongly continuous unitary representation} or just a \emph{representation} of $G$ is a group homomorphism $\rho:G\to U(H_\rho)$, where $U(H_\rho)$ denotes the set of unitary operators on a Hilbert space $H_\rho$ with strong operator topology.
 \end{defn}
 
 \begin{defn}[Cyclic representation]
 Let $G$ be a locally compact abelian group.
-A \emph{cyclic representation} of $G$ is a unitary representation $\rho:G\to U(H_\rho)$ such that there is a vector $\psi\in H_\rho$ called a \emph{cyclic vector} that satisfies the closed linear span of $\rho(G)\psi$ is equal to $H_\rho$.
+A \emph{cyclic representation} of $G$ is a representation $\rho:G\to U(H_\rho)$ such that there is a vector $\psi\in H_\rho$ called a \emph{cyclic vector} that satisfies the closed linear span of $\rho(G)\psi$ is equal to $H_\rho$.
 A \emph{pointed cyclic representation} of $G$ is a pair $(\rho,\psi)$ of a cyclic representation $\rho$ of $G$ and a unit cyclic vector $\psi\in H_\rho$.
 \end{defn}
 
@@ -1335,11 +1424,10 @@ Let $(\rho_1,\psi_1)$ and $(\rho_2,\psi_2)$ are pointed cyclic representations o
 We say they are \emph{unitarily equivalent} if there is a unitary operator $u:H_{\rho_1}\to H_{\rho_2}$ such that $\rho_2(x)=u\rho_1(x)u^*$ for all $x\in G$ and $\psi_2=u\psi_1$.
 \end{defn}
 
-
-
-% explanationsssss
-
-
+For the second step to understand our goal, we need to figure out which map connects the measures and cyclic representations.
+The hint can be discovered in a famous result of C$^*$-algebra theory called the \emph{Gelfand-Naimark-Segal representation}, or shortly GNS representation.
+The GNS representation is a construction method of cyclic representation of a C$^*$-algerba from a normalized positive linear functional, which is called a state in C$^*$-algebra theory.
+In the abelian context the positive linear functional is nothing but the finite regular Borel measure, so the GNS construction can be paraphrased into a mapping that maps a probability measure to a cyclic representation.
 
 \begin{defn}[State]
 A \emph{state} on a C$^*$-algebra $\cA$ is a positive linear functional on $\cA$ of norm one.
@@ -1357,22 +1445,23 @@ Define the \emph{left kernel}
 \[L_\omega:=\{a\in\cA:\omega(a^*a)=0\}=\{a\in\cA:\omega(b^*a)=0\text{ for all }b\in\cA\}\]
 of $\omega$, which is a closed left ideal of $\cA$.
 Then, we can define an inner product on a left $\cA$-module $\cA/L_\omega$ by $\<a+L_\omega,b+L_\omega\>:=\omega(b^*a)$, and complete it with the norm induced by this inner product to obtain a Hilbert space, denoted by $H_\omega$.
-For each $a\in\cA$ since $\pi(a):\cA/L_\omega$ defined by \[\pi(a)(b+L):=ab+L\]
-is bounded by the previous lemma, we can define a map $\pi_\omega:\cA\to B(H_\omega)$.
-It is a cyclic representation with a \emph{canonical cyclic vector} $\psi$ defined such that $\omega(a)=\<a+L_\omega,\psi\>$ for all $a\in\cA$, which we call \emph{Gelfand-Naimark-Segal} represntation.
-
+For each $a\in\cA$ if we define $\pi(a):\cA/L_\omega\to\cA/L_\omega$ by
+\[\pi(a):b+L\mapsto ab+L,\]
+then $\pi(a)$ is $\C$-linear and bounded by the previous lemma, we can define a map $\pi_\omega:\cA\to B(H_\omega)$.
+It is a cyclic representation with a \emph{canonical cyclic vector} $\psi$ defined such that $\omega(a)=\<a+L_\omega,\psi\>$ for all $a\in\cA$, which we call the \emph{Gelfand-Naimark-Segal} represntation.
 \end{defn}
 
 \begin{ex}[GNS representation for abelian C$^*$-algerbas]
 Let $\cA$ be an abelian C$^*$-algerba, and let $\Omega=\sigma(\cA)$ be the spectrum of $\cA$.
 By the Gelfand-Naimark representation theorem, we can identify $\cA=C_0(\Omega)$ with the canonical $*$-isomorphism.
+For the Gelfand-Naimark representation theorem, see [].
 Then, the states on $\cA$ are exactly the regular Borel probability measures on $\Omega$, by the Riesz-Kakutani representation theorem.
 
 Consider a state on $\cA$ that corresponds to a regular Borel probability measure $\mu$ on $\Omega$.
 Then, the left kernel of $\mu$ is the kernel of the restriction operator onto the support of $\mu$;
 \[L_\mu=\{\,f\in\cA:\int|f|^2\,d\mu=0\,\}=\{\,f\in\cA:f|_{\supp\mu}=0\,\}.\]
-Recall here that the complement of the support of a non-negative measure $\mu$ can described as the union of all open null sets.
-Therefore, we obtain the isomorphism $\cA/L_\mu\cong C(\supp\mu)$ and the Hilbert space $H_\mu=L^2(\supp\mu,\mu)$ by the completion with the inner product $\<f,g\>:=\int\bar gf\,d\mu$ on $C(\supp\mu)$.
+Recall here that one way to describe the support of a non-negative measure $\mu$ is the complement of the union of open null sets.
+Therefore, since the restriction $C_0(\Omega)\to C_0(\supp\mu)$ is surjective, we obtain the isomorphism $\cA/L_\mu\cong C_0(\supp\mu)$ and the Hilbert space $H_\mu=L^2(\supp\mu,\mu)$ by the completion with the inner product $\<f,g\>:=\int\bar gf\,d\mu$ on $C_0(\supp\mu)$.
 The Gelfand-Naimark-Segal representation of $\cA$ with respect to $\mu$ is now
 \[\pi_\mu:\cA\to B(H_\mu):f\mapsto M_f,\]
 where $M_f$ denotes the multiplication operator such that $M_f(g)=fg$, and the canonical cyclic vector is the unity function on $\supp\mu$.
@@ -1383,21 +1472,46 @@ There is also a way to use the Gelfand-Naimark-Segal representation directly wit
 However, we will not introduce the group C$^*$-algebras.
 
 \begin{pf}[Proof of Theorem 4.9]
-(Well-definedness)
 We first define the map.
 Let $\mu$ be a regular Borel probability measure on $\hat G$.
-If we let $H_\mu:=L^2(\supp\mu,\mu)$ and define a representation $\rho_\mu:G\to U(H_\mu)$ by the multiplication operators $\rho_\mu(x):=M_{\Phi(x)}$, then it has the unity function $\psi_\mu:=\1_{\supp\mu}$ as the a cyclic vector of this representation because $\Phi(G)$ separates points in $C(\supp\mu)$ so that the linear span of the functions of the form
-\[[\rho_\mu(x)\1_{\supp\mu}](\chi)=\Phi(x)(\chi),\]
-which is a unital $*$-subalgebra of $C(\supp\mu)$, is dense in $C(\supp\mu)$ and $L^2(\supp\mu,\mu)$ by the Stone-Weierstrass theorem.
+Let $H_\mu:=L^2(\supp\mu,\mu)$ and define a representation $\rho_\mu:G\to U(H_\mu)$ by the multiplication operators $\rho_\mu(x):=M_{\Phi(x)}$.
+We can check easily that $\rho$ is strongly continuous and unitary.
+Then, we have the unity function $\psi_\mu:=\1_{\supp\mu}$ as a cyclic vector of this representation because if $f\in H_\mu\subset L^1(\supp\mu,\mu)$ satisfies $\<f,\rho_\mu(x^{-1})\psi_\mu\>_{H_\mu}=0$ for all $x\in G$, then
+\[\<f,\rho_\mu(x^{-1})\psi_\mu\>_{H_\mu}=\<f,\Phi(x^{-1})\>_{H_\mu}=\int_{\hat G}\chi(x)f(\chi)\,d\mu(\chi)=\Phi^*\circ\cF^*f(x)\]
+implies $f=0$ by Bochner's theorem.
+Our claim is that the map assigning to each $\mu\in\Prob(\hat G)$ the unitary equivalence class of this pointed cyclic representation $(\rho_\mu,\psi_\mu)$ is bijective.
 
 (Injectivity)
 Suppose we have two regular Borel probability measures $\mu_1$ and $\mu_2$ on $\hat G$ such that the pointed cyclic representations $(\rho_{\mu_1},\psi_{\mu_1})$ and $(\rho_{\mu_2},\psi_{\mu_2})$ defined as above are unitarily equivalent.
 Let $u:H_{\rho_{\mu_1}}\to H_{\rho_{\mu_2}}$ be a unitary operator such that $\rho_{\mu_2}(x)=u\rho_{\mu_1}(x)u^*$ for all $x\in G$ and $\psi_{\mu_2}=u\psi_{\mu_1}$.
-Then,
-\[\mu_2(|f|^2)=\<f,f\>_{H_{\mu_2}}==\int_{\hat G}f(\chi)\,d\mu_2(\chi)\]
+Since
+\[u\rho_{\mu_1}(x)\psi_{\mu_1}=\rho_{\mu_2}(x)u\psi_{\mu_1}=\rho_{\mu_2}(x)\psi_{\mu_2}\]
+implies $\<\rho_{\mu_1}(x)\psi_{\mu_1},\psi_{\mu_1}\>_{H_{\mu_1}}=\<\rho_{\mu_2}(x)\psi_{\mu_2},\psi_{\mu_2}\>_{H_{\mu_2}}$, and since
+\[\<\rho_{\mu_i}(x)\psi_{\mu_i},\psi_{\mu_i}\>_{H_{\mu_i}}=\mu_i(\bar{\psi_{\mu_i}}\rho_{\mu_i}(x)\psi_{\mu_i})=\int_{\hat G}\Phi(x)(\chi)\,d\mu_i(\chi)=\Phi^*\circ\cF^*\mu_i(x)\]
+for all $x\in G$ and $i\in\{1,2\}$, we can conclude $\mu_1=\mu_2$ by Bochner's theorem.
 
 (Surjectivity)
+Let $\rho:G\to B(H)$ be a cyclic representation with a unit cyclic vector $\psi\in H$.
+Then, the function
+\[G\to\C:x\mapsto\<\rho(x)\psi,\psi\>\]
+is continuous and positive definite since $\rho$ is continuous with respect to the strong operator topology of $B(H)$ and
+\[\sum_{k,l=1}^n\<\rho(x_l^{-1}x_k)\psi,\psi\>\xi_k\bar\xi_l=\sum_{k=1}^n\|\xi_k\rho(x_k)\psi\|^2\ge0\]
+for all $(x_1,\cdots,x_n)\in G^n$ and $(\xi_1,\cdots,\xi_n)\in\C^n$.
+By the Bochner theorem, there is a regular Borel probability measure $\mu$ on $\hat G$ such that
+\[\<\rho(x)\psi,\psi\>=\int_{\hat G}\chi(x)\,d\mu(\chi)\]
+for all $x\in G$.
+Let $(\rho_\mu,\psi_\mu)$ be a pointed cyclic representation acting on $H_\mu:=L^2(\supp\mu,\mu)$ as above.
 
+Define a bounded operator such that
+\[u:H\to H_\mu:\rho(x)\psi\mapsto\Phi(x)\]
+using cyclicity.
+Then, it is an isometry since
+\[\|\Phi(x)\|_{H_\mu}^2=\int_{\hat G}|\chi(x)|^2\,d\mu(\chi)=\|\rho(x)\psi\|_H^2,\]
+and onto since the range of $u$ contains the linear span of $u\rho(x)\psi=\Phi(x)$ for all $x\in G$, which is dense in $H_\mu$.
+Thus the operator $u$ is a unitary operator.
+Because $\psi_\mu=\1_{\supp\mu}=u\psi$ and
+\[[u^*\rho_\mu(x)u](\rho(y)\psi)=u^*\rho_\mu(x)\Phi(y)=u^*\Phi(x^{-1}y)=\rho(x^{-1})(\rho(y)\psi)\]
+for each $x$ and $y$ in $G$, we finally conclude that $u$ is a unitary equivalence between the pointed cyclic representations $\rho$ and $\rho_\mu$.
 \end{pf}
 
 
@@ -1410,7 +1524,7 @@ Then,
 
 
 
-\subsection{Further developments for non-abelian groups}
+\subsection{Notes on non-abelian groups}
 
 Tannaka duality is formally stated in several ways, but the central idea is the same, the category of representations reconstructs the group.
 
