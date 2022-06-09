@@ -7,13 +7,16 @@
 
 \title{Three perspectives on Bochner's theorem:\\from Herglotz representation\\to Pontryagin duality}
 \author{Ikhan Choi}
+\date{}
 
 
 \begin{document}
 \maketitle
 \begin{abstract}
-The Bochner theorem states that the image of finite Borel measures on an abelian topological group under the Fourier-Stieltjes transform is the set of continuous positive definite functions.
-This thesis will describe, prove, and investigate several examples of the Bochner theorem in its historical contexts within three different fields of mathematics, complex analysis, probability theory, and representation theory.
+Bochner's theorem states that the image of finite Borel measures on a locally compact abelian group under the Fourier-Stieltjes transform is the set of continuous positive definite functions.
+This thesis exposits Bochner's theorem from three different viewpoints; complex analysis, probability theory, and representation theory.
+The reasons Bochner's theorem holds will be discussed in the first two chapters via the Herglotz representation theorem and the L\'evy continuity theorem.
+In the rest of the thesis, we prove the Pontryagin duality and an analog of the Gelfand-Naimark-Segal construction as applications in the representation theory of locally compact abelian groups.
 \end{abstract}
 \tableofcontents
 
@@ -141,7 +144,7 @@ One of our primary goals is to investigate the nature of positive definite funct
 Now then, we finally extend the Bochner-type results in the more general setting, where $G$ is a locally compact group, and assign a new perspective of measures in terms of the representation theory of groups.
 
 Each theorem above has its own taste in different subfields of mathematics.
-Theorem 1.1, which is a corollary of the celebrated Herglotz-Riesz representation theorem, is related to a classical problem in complex analysis that asks to give a characterization of a special class of analytic functions on the open unit disk $\D$ called the Carath\'eodory class.
+Theorem 1.1, which is a corollary of the celebrated Herglotz representation theorem, is related to a classical problem in complex analysis that asks to give a characterization of a special class of analytic functions on the open unit disk $\D$ called the Carath\'eodory class.
 The positive definiteness arises as a property of coefficients of functions in the Caracth\'eodory class, and their connection to Fourier coefficients leads the complex analysis problem into harmonic analysis.
 In Section 2, with the methods of elementary complex variable function theory, our first Bochner-type theorem will be proved, giving a geometric description of the space of positive definite functions in addition.
 
@@ -406,11 +409,11 @@ It proves $\Re f(z)\ge0$ for $|z|<1$, and we obtain $\Re f(z)>0$ by the open map
 \end{pf}
 
 
-\subsection{The Herglotz-Riesz representation theorem}
+\subsection{The Herglotz representation theorem}
 
 Herglotz proved another equivalent condition for the Carath\'eodory class in 1911, considered as the first Bochner-type theorem, which states the correspondence between the Carath\'eodory class and probability Borel measure on the unit circle.
 The Carath\'eodory theorem states that the function $f$ in the Carath\'eodory class is a limit of convex combinations of M\"obius transforms $z\mapsto(e^{i\theta}+z)/(e^{i\theta}-z)$.
-Herglotz's theorem, which we now also often call as the Herglotz-Riesz representation theorem, states that in fact $f$ is directly represented by the integral of the M\"obius transforms with respect to a newly constructed probability measure, instead of limiting process of convex sums.
+Herglotz's theorem, which we now also often call as the Herglotz representation theorem, states that in fact $f$ is directly represented by the integral of the M\"obius transforms with respect to a newly constructed probability measure, instead of limiting process of convex sums.
 
 The essential difficulty comes from the construction of a measure, and here we resolve this in the aid of either Helly's selection theorem or the Riesz-Markov-Kakutani representation theorem.
 Suppose the function $f$ is analytic on a neighborhood of the closed unit disk $\bar\D$.
@@ -435,7 +438,7 @@ By the uniform convergence of the power series on the closed disk $\{z:|z|\le(r+
 \end{pf}
 
 
-\begin{thm}[The Herglotz-Riesz representation theorem]
+\begin{thm}[The Herglotz representation theorem]
 Let $f$ be a complex-valued function defined on the open unit disk.
 Then, $f$ belongs to the Carath\'eodory class if and only if $f$ is represented as the following Stieltjes integral
 \[f(z)=\int_0^{2\pi}\frac{e^{i\theta}+z}{e^{i\theta}-z}\,d\mu(\theta),\]
@@ -510,7 +513,7 @@ Then, the sequence defined in the statement is positive definite because
 for any $(\xi_1,\cdots,\xi_n)\in\C^n$, and $c_0=1$ is clear.
 
 On the other hand, if the sequence $(c_k)_{k=-\infty}^\infty$ is positive definite and $c_0=1$, then the function $z\mapsto1+\sum_{k=1}^\infty2c_kz^k$ is in the Carath\'eodory class.
-By the Herglotz-Riesz representation theorem, there is a probability Borel measure $\mu$ on $\T$ such that
+By the Herglotz representation theorem, there is a probability Borel measure $\mu$ on $\T$ such that
 \begin{align*}
 1+\sum_{k=1}^\infty2c_kz^k
 &=\int_0^{2\pi}\frac{e^{it}+z}{e^{it}-z}\,d\mu(t)\\
@@ -526,7 +529,7 @@ Identify $\T=\R/2\pi\Z$ with the interval $[0,2\pi)$.
 For each $\psi\in[0,2\pi)$, the M\"obius transform $f_\psi(z)=(e^{i\psi}+z)/(e^{i\psi}-z)$ corresponds to the Dirac measure $\delta_\psi$, defined as
 \[\delta_\psi(E):=\begin{cases}1&,\text{ if }\psi\in E,\\0&,\text{ if }\psi\notin E\end{cases}\]
 for Borel measurable $E\subset[0,2\pi)$.
-This is not only a direct consequence of the Herglotz-Riesz representation theorem, but also viewed as a property of the Poisson kernel.
+This is not only a direct consequence of the Herglotz representation theorem, but also viewed as a property of the Poisson kernel.
 Recall that the measure $\mu$ in the Hergloz theorem is constructed as the weak$^*$ limit of $(2\pi)^{-1}\Re f(re^{i\theta})\,d\theta$ with $r\uparrow1$.
 The Poisson kernel is given as the real part of the M\"obius transform
 \[P_r(\psi-\theta)=\frac{1-r^2}{1-2r\cos(\theta-\psi)+r^2}=\Re\left(\frac{1+re^{i(\theta-\psi)}}{1-re^{i(\theta-\psi)}}\right)=\Re f_\psi(re^{i\theta}).\]
@@ -993,7 +996,7 @@ whenever $|t-s|<\e/2M$.
 The normalization condition $f(0)=1$ is clear.
 
 Conversely, suppose $\f$ is continuous and positive definite.
-For each small $\delta>0$, since the sequence $(\f(\delta k))_{k\in\Z}$ is positive definite, by the Herglotz-Riesz representation theorem, there is a finite regular Borel measure $\nu_\delta$ on $[-\pi,\pi)$ such that
+For each small $\delta>0$, since the sequence $(\f(\delta k))_{k\in\Z}$ is positive definite, by the Herglotz representation theorem, there is a finite regular Borel measure $\nu_\delta$ on $[-\pi,\pi)$ such that
 \[\f(\delta k)=\int_{-\pi}^\pi e^{-ik\theta}\,d\nu_\delta(\theta)\]
 for every $k\in\Z$.
 If we define a measure $\mu_\delta$ on $\R$ such that the support is contained in $[-\pi/\delta,\pi/\delta]$ and $\mu_\delta(E):=\nu_\delta(-\delta E)$ for Borel sets $E\subset[-\pi/\delta,\pi/\delta)$, then
