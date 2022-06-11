@@ -19,10 +19,283 @@
 
 \part{Smooth manifolds}
 
-\chapter{Calculus on Euclidean spaces}
+
+\chapter{Smooth structures}
+
+\section{Definition of smooth structures}
 
 
-\section{Inverse function theorem}
+\begin{prb}[Locally Euclidean spaces]
+continuous atlas
+\begin{parts}
+\item For a regular manifold, a coordinate map is a chart.
+\end{parts}
+\end{prb}
+
+
+\begin{prb}[Smooth structures]
+\begin{parts}
+\item Every continuous atlas is equivalent.
+\item 
+\end{parts}
+\end{prb}
+
+
+
+\begin{prb}[Smooth manifolds]
+A \emph{topological manifold} is a second-countable Hausdorff locally Euclidean space.
+A \emph{smooth manifold} is a second-countable Hausdorff space with a smooth structure.
+The term \emph{manifold} may refer to any of either a topological or a smooth manifold, which depends on the context of each reference.
+\begin{parts}
+\item Long line
+\item Line with two origins
+\end{parts}
+\end{prb}
+
+\begin{prb}[Smooth maps]
+\end{prb}
+
+\begin{prb}[Diffeomorphisms]
+\end{prb}
+
+
+
+
+
+
+
+
+\section{Tangent bundle}
+
+% Tangent spaces:
+%  equiv classes of curves
+%  derivatives
+%  germs
+
+We will provide four different definitions of tangent spaces:
+\begin{parts}
+\item the space of equivalence classes of smooth curves,
+\item the space of tangent vectors embedded in an ambient space,
+\item the space of derivations on the ring of smooth functions,
+\item the dual space of algebraically defined cotangent spaces.
+\end{parts}
+
+
+
+\begin{prb}[Tangent spaces]
+Let $p$ be a point on an $m$-dimensional regular manifold $M$ in $\R^n$.
+Take a regular parameterization $\a$ for $M$ at $p$, and let $x:=\a^{-1}(p)$ be the coordinates of $p$.
+The \emph{tangent space} $T_pM$ of $M$ at $p$ is defined as the image of $d\a|_x:\R^m\to\R^n$.
+\begin{parts}
+\item $T_pM$ is a $m$-dimensional vector subspace of $\R^n$.
+\item If $v\in T_pM$, then $\gamma(0)=p$ and $\gamma'(0)=v$ for a regular curve $\gamma:I\to M$.
+\item If $\gamma(0)=p$ and $\gamma'(0)=v$ for a regular curve $\gamma:I\to M$, then $v\in T_pM$. (Use the constant rank theorem.)
+\item The definition of $T_pM$ is independent on the parameterization $\a$.
+\end{parts}
+\end{prb}
+
+
+
+
+
+
+\begin{notn*}
+Let $\a$ be a parametrization for a regular curve or surface $M$.
+For derivatives of $\a$, we will use the following notations:
+\[\pd_t\a=\a',\quad\pd_x\a=\a_x,\quad\pd_i\a=\a_i.\]
+The set $\{\a_i\}_i$ will be used to denote a basis of tangent space $T_pM$.
+\end{notn*}
+
+
+
+
+
+\begin{prb}[Scalar fields and vector fields]
+Let $\a:U\subset\R^m\to\R^n$ be a parametrization with $M=\im\a$.
+\begin{parts}
+\item A \emph{scalar field}, \emph{smooth function}, or just a \emph{function} is a function $f:M\to\R$ such that $f\circ\a:U\to\R$ is smooth.
+\item A \emph{vector field} is a map $X:M\to\R^n$ such that $X\circ\a:U\to\R^n$ is smooth.
+\item A \emph{tangent vector field} is a vector field $X:M\to\R^n$ such that $X|_p\in T_pM$.
+\end{parts}
+The set of tangent vector fields is often denoted by $\fX(M)$.
+\end{prb}
+
+The following proposition proves that the smoothness of functions and vector fields does not depend on parametrizations.
+
+\begin{prop}
+Let $\a:U\subset\R^m\to\R^n$ and $\beta:V\subset\R^m\to\R^n$ be parametrizations with same image $M=\im\a=\im\beta$.
+Then, the map $\beta^{-1}\circ\a:U\to V$ is smooth.
+\end{prop}
+\begin{pf}
+%%%
+\end{pf}
+\begin{rmk}
+The map $\beta^{-1}\circ\a$ is called the \emph{transition map}.
+\end{rmk}
+
+\begin{defn}
+Let $\a:U\subset\R^m\to\R^n$ be a parametrization $M=\im\a$.
+\begin{parts}
+\item The coordinate representation of a function $f:M\to\R$ is
+\[f\circ\a:U\to\R.\]
+\item The (external) coordinate representation of a vector field $X:M\to\R^n$ is
+\[X\circ\a:U\to\R^n.\]
+\item The coordinate representation of a tangent vector field $X:M\to\R^n$ is
+\[(X^1\circ\a,\,\cdots,\,X^m\circ\a):U\to\R^m\]
+where $X=\sum_iX^i\a_i$.
+\end{parts}
+\end{defn}
+
+
+
+\begin{defn}
+Let $M$ be the image of a parametrization $\a:U\subset\R^m\to\R^n$.
+Let $v=\sum_iv^i\a_i|_p\in T_pM$ be a tangent vector at $p=\a(x)$.
+For a function $f:M\to\R$, its partial derivative is defined by
+\[\pd_vf(p):=\sum_{i=1}^mv^i\pd_i(f\circ\a)(x)\in\R.\]
+For a vector field $X:M\to\R^n$, its partial derivative is defined by
+\[\pd_vX|_p:=\sum_{i=1}^mv^i\pd_i(X\circ\a)(x)\in\R^n.\]
+This definition is not dependent on parametrization $\a$.
+\end{defn}
+
+\begin{prop}
+Let $M$ be the image of a parametrization.
+Let $X$ be a tangent vector field on $M$.
+\begin{parts}
+\item If $f$ is a function, then so is $\pd_Xf$.
+\item If $Y$ is a vector field, then so is $\pd_XY$.
+\item If $Y$ is a tangent vector field, then so is $\pd_XY-\pd_YX$.
+\end{parts}
+\end{prop}
+\begin{pf}
+(1) and (2) are clear.
+For (3), if we let $X=\sum_iX^i\a_i$ and $Y=\sum_jY^j\a_j$ for a parametrization $\a:U\subset\R^m\to\R^n$, then
+\begin{align*}
+\pd_XY-\pd_YX
+&=\pd_X(\ssum_jY^j\a_j)-\pd_Y(\ssum_iX^i\a_i)\\
+&=\ssum_j[(\pd_XY^j)\a_j+Y^j\pd_X\a_j]-\ssum_i[(\pd_YX^i)\a_i+X^i\pd_Y\a_i]\\
+&=\ssum_j[(\pd_XY^j)\a_j+Y^j\ssum_iX^i\pd_i\a_j]-\ssum_i[(\pd_YX^i)\a_i+X^i\ssum_jY^j\pd_i\a_j]\\
+&=\ssum_j(\pd_XY^j)\a_j-\ssum_i(\pd_YX^i)\a_i\\
+&=\ssum_i(\pd_XY^i-\pd_YX^i)\a_i.\qedhere
+\end{align*}
+\end{pf}
+
+\begin{notn*}
+Let $M$ be the image of a parametrization $\a$.
+For derivatives of functions on $M$ by tangent vectors, we will use
+\[\pd_{\a_i}f=\pd_if,\quad\pd_{\a_t}f=\pd_tf=f',\quad\pd_{\a_x}f=\pd_xf=f_x.\]
+For derivatives of vector fields on $M$ by tangent vectors, we will use
+\[\pd_{\a_i}X=\pd_iX,\quad\pd_{\a_t}X=\pd_tX=X',\quad\pd_{\a_x}X=\pd_xX=X_x.\]
+We will \emph{not} use $f_i$ or $X_i$ for $\pd_if$ and $\pd_iX$ because it is confusig with coordinate representations, and \emph{not} use the nabula symbol $\nabla_v$ in this sense because it will be devoted to another kind of derivatives introduced in Section 4.
+\end{notn*}
+
+\begin{ex} % example 많이 추가하기
+\begin{parts}
+\item
+Let $\a$ be an $m$-dimensional parametrization with $M=\im\a$.
+The value of $\pd_i\a=\a_i:M\to\R^3$ is always a tanget vector at each point $p=\a(x)$, and $\a_i$ becomes a vector field.
+
+Let $s$ be either a smooth function or vector field on $\a$.
+Then, we can compute the directional derivative as
+\[\pd_is:=\pd_i(s\circ\a)=\pd_t(s\circ\gamma)\]
+by taking $\gamma(t)=\a(x+te_i)$, where $e_i$ is the $i$-th standard basis vector for $\R^m$.
+
+\item
+Let $\a:\R^2\to\R^3$ be a regular surface given by
+\[\a(x,y)=\left(\frac{2x}{1+x^2+y^2},\,\frac{2y}{1+x^2+y^2},\,1-\frac2{1+x^2+y^2}\right).\]
+This map gives a parametrization for the sphere $S^2$ without the north pole $(0,0,1)$, and is called the \emph{stereographic projection}.
+Let $f:S^2\setminus\{(0,0,1)\}\to\R$ be the height function of $\a$ defined by
+\[f(p):=z\]
+for $p=(x,y,z)\in S^2\setminus\{(0,0,1)\}$.
+Its coordinate representation is
+\[f\circ\a(x,y)=1-\frac2{1+x^2+y^2}.\]
+Then, the directional derivative is
+\[\pd_xf=\pd{(f\circ\a)}{x}=\pd{x}\left(1-\frac2{1+x^2+y^2}\right)=\frac{4x}{(1+x^2+y^2)^2}.\]
+Note that $\pd_xf\ne\pd_{(1,0,0)}z=0$.
+\end{parts}
+\end{ex}
+
+
+% 내적 외적 삼중곱
+% 벡터의 좌표표현 안쪽 기저와 바깥 기저
+
+% 좌표는 접공간의 기저를 준다
+% frame은 R^3 풀백번들에 정의하자
+
+
+
+
+
+
+\section*{Exercises}
+
+\begin{prb}[Parallelization of spheres]
+\end{prb}
+\begin{prb}[Tagent space of matrix group]
+Jacobi formula
+\end{prb}
+
+
+
+\begin{prb}[Integral curves]
+\end{prb}
+\begin{prb}[Foliation]
+\end{prb}
+
+
+\begin{prb}
+Every ring homomorphism $C^\infty(M)\to\R$ is obtained by an evaluation at a point of $M$.
+\end{prb}
+\begin{pf}
+Suppose $\phi:C^\infty(M)\to\R$ is not an evaluation.
+Let $h$ be a positive exhaustion function.
+Take a compact set $K:=h^{-1}([0,\phi(h)])$.
+For every $p\in K$, we can find $f_p\in C^\infty(M)$ such that $\phi(f_p)\ne f_p(p)$ by the assumption.
+Summing $(f_p-\phi(f_p))^2$ finitely on $K$ and applying the extreme value theorem, we obtain a function $f\in C^\infty(M)$ such that $f\ge0$, $f|_K>1$, and $\phi(f)=0$.
+Then, the function $h+\phi(h)f-\phi(h)$ is in kernel of $\phi$ although it is strictly positive and thereby a unit.
+It is a contradiction.
+\end{pf}
+
+
+
+
+
+
+
+
+
+\chapter{Tensor fields}
+
+\section{Tensor fields}
+tensor bundle
+vector fields, tensor fields,
+
+\section{Differential forms}
+forms, exterior structures, pullback, interior product
+
+\section{Lie derivatives}
+
+\section*{Exercises}
+\begin{prb}[Orientation]
+\end{prb}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\chapter{Submanifolds}
+
+
+\section{Constant rank theorem}
 
 slice lemma
 
@@ -223,7 +496,7 @@ If $f$ is a submersion at all points on $f^{-1}(q)$, then $f^{-1}(q)$ is an embe
 
 
 
-\chapter{Regular manifolds}
+\chapter*{Regular manifolds}
 \section{Parameterizations and coordinates}
 
 \begin{prb}\emph{Regular parameterizations.}
@@ -286,91 +559,9 @@ Let $\a:\Omega_\a\to\R^n$ and $\beta:\Omega_\beta\to\R^n$ be $m$-dimensional reg
 \end{prb}
 
 
-\section{Differentiations on regular manifolds}
+\section{Whitney embedding}
 
-
-\begin{prb}\emph{Tangent spaces.}
-Let $p$ be a point on an $m$-dimensional regular manifold $M$ in $\R^n$.
-Take a regular parameterization $\a$ for $M$ at $p$, and let $x:=\a^{-1}(p)$ be the coordinates of $p$.
-The \emph{tangent space} $T_pM$ of $M$ at $p$ is defined as the image of $d\a|_x:\R^m\to\R^n$.
-\begin{parts}
-\item $T_pM$ is a $m$-dimensional vector subspace of $\R^n$.
-\item If $v\in T_pM$, then $\gamma(0)=p$ and $\gamma'(0)=v$ for a regular curve $\gamma:I\to M$.
-\item If $\gamma(0)=p$ and $\gamma'(0)=v$ for a regular curve $\gamma:I\to M$, then $v\in T_pM$. (Use the constant rank theorem.)
-\item The definition of $T_pM$ is independent on the parameterization $\a$.
-\end{parts}
-\end{prb}
-
-\begin{prb}
-Let $M$ be a regular manifold.
-A \emph{scalar field}, \emph{smooth function}, or just a \emph{function} is a function $f:M\to\R$ such that $f\circ\a:\Omega\to\R$ is smooth for any regular parameterization $\a$ for $M$.
-\begin{parts}
-\item 
-\end{parts}
-\end{prb}
-
-A \emph{vector field} is a map $X:M\to\R^n$ such that $X\circ\a:\Omega\to\R^n$ is smooth.
-A \emph{tangent vector field} is a vector field $X:M\to\R^n$ such that $X|_p\in T_pM$.
-The set of tangent vector fields is often denoted by $\fX(M)$.
-\section{Linear algebra on tangent spaces}
-
-
-
-
-
-
-\chapter{Smooth manifolds}
-\section{Smooth structures}
-
-
-\begin{prb}\emph{Locally Euclidean spaces.}
-continuous atlas
-\begin{parts}
-\item For a regular manifold, a coordinate map is a chart.
-\end{parts}
-\end{prb}
-
-
-\begin{prb}\emph{Smooth atlases.}
-\begin{parts}
-\item Every continuous atlas is equivalent.
-\item 
-\end{parts}
-\end{prb}
-
-
-\begin{prb}\emph{Smooth structures.}
-\begin{parts}
-\item 
-\end{parts}
-\end{prb}
-
-\begin{prb}\emph{Manifolds.}
-A \emph{topological manifold} is a second-countable Hausdorff locally Euclidean space.
-A \emph{smooth manifold} is a second-countable Hausdorff space with a smooth structure.
-The term \emph{manifold} may refer to any of either a topological or a smooth manifold, which depends on the context of each reference.
-This note only concerns with smooth manifolds but will not omit the modifier ``smooth''.
-\begin{parts}
-\item
-\end{parts}
-\end{prb}
-
-% Smooth maps, Diffeomorphism, Embedding
-
-% Tangent spaces:
-%  equiv classes of curves
-%  derivatives
-%  germs
-
-
-
-We will provide four different definitions of tangent spaces:
-\begin{parts}
-\item the space of equivalence classes of smooth curves,
-\item the space of tangent vectors embedded in an ambient space,
-\item the space of derivations on the ring of smooth functions,
-\item the dual space of algebraically defined cotangent spaces.
-\end{parts}
+\section{Whitney approximation}
 
 
 
@@ -378,166 +569,10 @@ We will provide four different definitions of tangent spaces:
 
 
 
-\newpage
-\section*{Differentiation by tangent vectors}
-
-\begin{rmk}
-We can easily check that $T_p\R^n=\R^n$ for any $p\in\R^n$.
-The notation $T_p\R^n$ will be used to emphasize that a vector in $\R^n$ is geometrically recognized to cast from the point $p$.
-Since $T_p\R^n=\R^n=T_q\R^n$ for every pair of points $p,q\in\R^n$, summation and inner product of a vector in $T_p\R^n$ and a vector in $T_q\R^n$ make sense.
-This identification of tangent spaces are allowed \emph{only for the case of linear spaces} such as $\R^n$.
-(In fact, the identification $T_p\R^n=\R^n$ is \emph{natural} in categorical language.)
-\end{rmk}
-\begin{rmk}
-One way to view tangent spaces is to see them as domains and codomains of Fr\'echet derivatives.
-For open sets $U\subset\R^m$ and $V\subset\R^n$, the Fr\'echet derivative of a smooth map $F:U\to V$ at $x\in U$ is a linear transformation $dF|_x:T_xU\to T_{F(x)}V$.
-Since $T_xU=\R^m$ and $T_{F(x)}V=\R^n$, the original definition on Euclidean spaces agrees with it.
-In this reason, the Fr\'echet derivative $dF$ is also called a \emph{tangent map}, \emph{pushforward}, or \emph{differential} in differential geoemtry.
-\end{rmk}
-
-
-\begin{notn*}
-Let $\a$ be a parametrization for a regular curve or surface $M$.
-For derivatives of $\a$, we will use the following notations:
-\[\pd_t\a=\a',\quad\pd_x\a=\a_x,\quad\pd_i\a=\a_i.\]
-The set $\{\a_i\}_i$ will be used to denote a basis of tangent space $T_pM$.
-\end{notn*}
-
-% Examples
 
 
 
 
-% explanation
-
-\begin{defn}
-Let $\a:U\subset\R^m\to\R^n$ be a parametrization with $M=\im\a$.
-\begin{parts}
-\item A \emph{scalar field}, \emph{smooth function}, or just a \emph{function} is a function $f:M\to\R$ such that $f\circ\a:U\to\R$ is smooth.
-\item A \emph{vector field} is a map $X:M\to\R^n$ such that $X\circ\a:U\to\R^n$ is smooth.
-\item A \emph{tangent vector field} is a vector field $X:M\to\R^n$ such that $X|_p\in T_pM$.
-\end{parts}
-The set of tangent vector fields is often denoted by $\fX(M)$.
-\end{defn}
-\begin{rmk}
-In general, the word \emph{vector fields} are basically assumed to be tangent.
-However, we will distinguish them in this note.
-\end{rmk}
-
-The following proposition proves that the smoothness of functions and vector fields does not depend on parametrizations.
-
-\begin{prop}
-Let $\a:U\subset\R^m\to\R^n$ and $\beta:V\subset\R^m\to\R^n$ be parametrizations with same image $M=\im\a=\im\beta$.
-Then, the map $\beta^{-1}\circ\a:U\to V$ is smooth.
-\end{prop}
-\begin{pf}
-%%%
-\end{pf}
-\begin{rmk}
-The map $\beta^{-1}\circ\a$ is called the \emph{transition map}.
-\end{rmk}
-
-\begin{defn}
-Let $\a:U\subset\R^m\to\R^n$ be a parametrization $M=\im\a$.
-\begin{parts}
-\item The coordinate representation of a function $f:M\to\R$ is
-\[f\circ\a:U\to\R.\]
-\item The (external) coordinate representation of a vector field $X:M\to\R^n$ is
-\[X\circ\a:U\to\R^n.\]
-\item The coordinate representation of a tangent vector field $X:M\to\R^n$ is
-\[(X^1\circ\a,\,\cdots,\,X^m\circ\a):U\to\R^m\]
-where $X=\sum_iX^i\a_i$.
-\end{parts}
-\end{defn}
-
-
-
-\begin{defn}
-Let $M$ be the image of a parametrization $\a:U\subset\R^m\to\R^n$.
-Let $v=\sum_iv^i\a_i|_p\in T_pM$ be a tangent vector at $p=\a(x)$.
-For a function $f:M\to\R$, its partial derivative is defined by
-\[\pd_vf(p):=\sum_{i=1}^mv^i\pd_i(f\circ\a)(x)\in\R.\]
-For a vector field $X:M\to\R^n$, its partial derivative is defined by
-\[\pd_vX|_p:=\sum_{i=1}^mv^i\pd_i(X\circ\a)(x)\in\R^n.\]
-This definition is not dependent on parametrization $\a$.
-\end{defn}
-
-\begin{prop}
-Let $M$ be the image of a parametrization.
-Let $X$ be a tangent vector field on $M$.
-\begin{parts}
-\item If $f$ is a function, then so is $\pd_Xf$.
-\item If $Y$ is a vector field, then so is $\pd_XY$.
-\item If $Y$ is a tangent vector field, then so is $\pd_XY-\pd_YX$.
-\end{parts}
-\end{prop}
-\begin{pf}
-(1) and (2) are clear.
-For (3), if we let $X=\sum_iX^i\a_i$ and $Y=\sum_jY^j\a_j$ for a parametrization $\a:U\subset\R^m\to\R^n$, then
-\begin{align*}
-\pd_XY-\pd_YX
-&=\pd_X(\ssum_jY^j\a_j)-\pd_Y(\ssum_iX^i\a_i)\\
-&=\ssum_j[(\pd_XY^j)\a_j+Y^j\pd_X\a_j]-\ssum_i[(\pd_YX^i)\a_i+X^i\pd_Y\a_i]\\
-&=\ssum_j[(\pd_XY^j)\a_j+Y^j\ssum_iX^i\pd_i\a_j]-\ssum_i[(\pd_YX^i)\a_i+X^i\ssum_jY^j\pd_i\a_j]\\
-&=\ssum_j(\pd_XY^j)\a_j-\ssum_i(\pd_YX^i)\a_i\\
-&=\ssum_i(\pd_XY^i-\pd_YX^i)\a_i.\qedhere
-\end{align*}
-\end{pf}
-
-\begin{notn*}
-Let $M$ be the image of a parametrization $\a$.
-For derivatives of functions on $M$ by tangent vectors, we will use
-\[\pd_{\a_i}f=\pd_if,\quad\pd_{\a_t}f=\pd_tf=f',\quad\pd_{\a_x}f=\pd_xf=f_x.\]
-For derivatives of vector fields on $M$ by tangent vectors, we will use
-\[\pd_{\a_i}X=\pd_iX,\quad\pd_{\a_t}X=\pd_tX=X',\quad\pd_{\a_x}X=\pd_xX=X_x.\]
-We will \emph{not} use $f_i$ or $X_i$ for $\pd_if$ and $\pd_iX$ because it is confusig with coordinate representations, and \emph{not} use the nabula symbol $\nabla_v$ in this sense because it will be devoted to another kind of derivatives introduced in Section 4.
-\end{notn*}
-
-\begin{ex} % example 많이 추가하기
-\begin{parts}
-\item
-Let $\a$ be an $m$-dimensional parametrization with $M=\im\a$.
-The value of $\pd_i\a=\a_i:M\to\R^3$ is always a tanget vector at each point $p=\a(x)$, and $\a_i$ becomes a vector field.
-
-Let $s$ be either a smooth function or vector field on $\a$.
-Then, we can compute the directional derivative as
-\[\pd_is:=\pd_i(s\circ\a)=\pd_t(s\circ\gamma)\]
-by taking $\gamma(t)=\a(x+te_i)$, where $e_i$ is the $i$-th standard basis vector for $\R^m$.
-
-\item
-Let $\a:\R^2\to\R^3$ be a regular surface given by
-\[\a(x,y)=\left(\frac{2x}{1+x^2+y^2},\,\frac{2y}{1+x^2+y^2},\,1-\frac2{1+x^2+y^2}\right).\]
-This map gives a parametrization for the sphere $S^2$ without the north pole $(0,0,1)$, and is called the \emph{stereographic projection}.
-Let $f:S^2\setminus\{(0,0,1)\}\to\R$ be the height function of $\a$ defined by
-\[f(p):=z\]
-for $p=(x,y,z)\in S^2\setminus\{(0,0,1)\}$.
-Its coordinate representation is
-\[f\circ\a(x,y)=1-\frac2{1+x^2+y^2}.\]
-Then, the directional derivative is
-\[\pd_xf=\pd{(f\circ\a)}{x}=\pd{x}\left(1-\frac2{1+x^2+y^2}\right)=\frac{4x}{(1+x^2+y^2)^2}.\]
-Note that $\pd_xf\ne\pd_{(1,0,0)}z=0$.
-\end{parts}
-\end{ex}
-
-
-% 내적 외적 삼중곱
-% 벡터의 좌표표현 안쪽 기저와 바깥 기저
-
-% 좌표는 접공간의 기저를 준다
-% frame은 R^3 풀백번들에 정의하자
-
-
-
-
-
-
-\section*{Exercises}
-
-\begin{prb}[Parallelization of spheres]
-\end{prb}
-\begin{prb}[Tagent space of matrix group]
-Jacobi formula
-\end{prb}
 
 
 
@@ -545,6 +580,18 @@ Jacobi formula
 
 \part{Riemannian manifolds}
 
+% metric tensor
+% connections
+% geodesics, completeness
+% parallel transport
+% covariant derivative
+% curvature
+% sectional curvature, Ricci, Riem
+% submanifolds, covering
+% homogeneous
+% Jacobi field
+% variational formula
+% Comparison theory
 
 \chapter{Intrinsic geometry}
 
@@ -659,7 +706,7 @@ A \emph{Levi-Civita connection} is a metric connection $\nabla$ such that $\nabl
 \item $\nabla$ is a Levi-Civita connection if and only if $\nabla_XY-\nabla_YX=[X,Y]$.
 \item There exists a unique Levi-Civita connection on $M$.
 \end{parts}
-\end{defn}
+\end{prb}
 \begin{pf}
 (Uniqueness)
 Suppose $\nabla$ is a Levi-Citiva connection on $M$.

@@ -17,7 +17,22 @@
 \chapter{Measures and $\sigma$-algebras}
 
 
+\section{Measures}
+
+\begin{prb}[Definition of measures]
+Let $(\Omega,\cM)$ be a measurable space.
+A \emph{measure} on $\cM$ is a set function $\mu:\cM\to[0,\infty]$ with $\mu(\varnothing)=0$ that is \emph{countably additive}:
+\[\mu\Bigl(\bigsqcup_{i=1}^\infty E_i\Bigr)=\sum_{i=1}^\infty\mu(E_i)\quad\text{ in }\cM.\]
+Here the squared cup notation reads the disjoint union.
+\end{prb}
+
+\begin{prb}[Continuity of measures]
+
+\end{prb}
+
 \section{Carath\'eodory extension}
+
+
 \begin{prb}[Outer measures]
 Let $\Omega$ be a set.
 An \emph{outer measure} on $\Omega$ is a set function $\mu^*:\cP(\Omega)\to[0,\infty]$ with $\mu^*(\varnothing)=0$ such that
@@ -27,6 +42,7 @@ An \emph{outer measure} on $\Omega$ is a set function $\mu^*:\cP(\Omega)\to[0,\i
 \item $\mu^*(\bigcup_{i=1}^\infty E_i)\le\sum_{i=1}^\infty\mu^*(E_i)$ in $\cP(\Omega)$.
 \hfill(countable subadditivity)
 \end{enumerate}
+Compairing the definition of measures, we can see the outer measures extend the domain to the power set, but loosen the countable additivity to monotone countable subadditivity.
 \begin{parts}
 \item A set function $\mu^*:\cP(\Omega)\to[0,\infty]$ with $\mu^*(\varnothing)=0$ is an outer measure if and only if $\mu^*$ is \emph{monotonically countably subadditive}, that is, $E\subset\bigcup_{i=1}^\infty E_i\Rightarrow\mu^*(E)\le\sum_{i=1}^\infty\mu^*(E_i)$ in $\cP(\Omega)$.
 \item
@@ -46,6 +62,7 @@ where we use the convention $\inf\varnothing=\infty$.
 
 \begin{prb}[Carath\'eodory measurable sets]
 Let $\mu^*$ be an outer measure on a set $\Omega$.
+We want to construct a measure by restriction of $\mu^*$ on a properly defined $\sigma$-algebra.
 A subset $A\subset \Omega$ is called \emph{Carath\'eodory measurable} relative to $\mu^*$ if
 \[\mu^*(E)=\mu^*(E\cap A)+\mu^*(E\setminus A)\]
 for every subset $E\subset\Omega$.
@@ -56,6 +73,9 @@ Let $\cM$ be the collection of all Carath\'eodory measurable subsets relative to
 \item The measure $\mu:=\mu^*|_\cM:\cM\to[0,\infty]$ is complete.
 \end{parts}
 \end{prb}
+\begin{pf}
+
+\end{pf}
 
 
 \begin{prb}[Carath\'eodory extension theorem]
@@ -64,11 +84,13 @@ Consider two conditions
 \begin{enumerate}[(i)]
 \item $A\subset\bigcup_{i=1}^\infty A_i\Rightarrow\rho(A)\le\sum_{i=1}^\infty\rho(A_i)$ in $\cA$,
 \hfill{(monotonically countably subadditive)}
-\item Every $A\in\cA$ satisfies that for each $B\in\cA$ and $\e>0$ there are $\{B'_j\}_{j=1}^\infty$ and $\{B''_j\}_{j=1}^\infty\subset\cA$ such that
-\[\rho(B)+\e>\sum_{j=1}^\infty\rho(B'_j)+\sum_{j=1}^\infty\rho(B''_j)\]
-with $B\cap A\subset\bigcup_{j=1}^\infty B'_j$ and $B\setminus A\subset\bigcup_{j=1}^\infty B''_j$.
+\item For every $B,A\in\cA$, and for any $\e>0$, there are $\{B'_j\}_{j=1}^\infty$ and $\{B''_j\}_{j=1}^\infty\subset\cA$ such that
+\[B\cap A\subset\bigcup_{j=1}^\infty B'_j\quad\text{ and }\quad B\setminus A\subset\bigcup_{j=1}^\infty B''_j,\]
+and
+\[\rho(B)+\e>\sum_{j=1}^\infty\rho(B'_j)+\sum_{j=1}^\infty\rho(B''_j).\]
 \end{enumerate}
 Let $\mu^*:\cP(\Omega)\to[0,\infty]$ be the associated outer measure of $\rho$, and $\mu:\cM\to[0,\infty]$ the measure defined by the restriction of $\mu^*$ on Carath\'eodory measurable subsets.
+The above two conditions give a sufficient condition for $\mu$ to be a measure on a $\sigma$-algebra containing $\cA$.
 \begin{parts}
 \item $\mu^*|_\cA=\rho$ if (i) is satisfied.
 \item $\cA\subset\cM$ if (ii) is satisfied.
@@ -86,34 +108,51 @@ Let $E\in\cP(\Omega)$ and $A\in\cA$.
 Since it is enough to check the inequality $\mu^*(E)\ge\mu^*(E\cap A)+\mu^*(E\setminus A)$ for $E$ with finite $\mu^*(E)$, we may assume there is a countable family $\{B_i\}_{i=1}^\infty\subset\cA$ such that $E\subset\bigcup_{i=1}^\infty B_i$.
 Then, we have $B_i\cap A\subset\bigcup_{j=1}^\infty B'_{i,j}$ and $B_i\setminus A\subset\bigcup_{j=1}^\infty B''_{i,j}$ satisfying
 \[\mu^*(E)+\e>\sum_{i=1}^\infty(\rho(B_i)+\frac\e{2^{i+1}})
->\sum_{i,j=1}^\infty\rho(B'_{i,j})+\sum_{i,j=1}^\infty\rho(B''_{i,j})\ge\mu^*(E\cap A)+\mu^*(E\setminus A).\]
+>\sum_{i,j=1}^\infty\rho(B'_{i,j})+\sum_{i,j=1}^\infty\rho(B''_{i,j})\ge\mu^*(E\cap A)+\mu^*(E\setminus A).\qedhere\]
 \end{pf}
 
 
 
-\begin{prb}[Carath\'eodory extension from semi-ring]
-Let $\cA\subset\cP(\Omega)$ be a semi-ring of sets on a set $X$.
-A function $\rho:\cA\to[0,\infty]$ with $\rho(\varnothing)=0$ is called a \emph{pre-measure} if
-\begin{enumerate}[(i)]
-\item $\rho(\bigsqcup_{i=1}^\infty A_i)\le\sum_{i=1}^\infty\rho(A_i)$ in $\cA$,
-\hfill(disjoint countable subadditivity)
-\item $\rho(A_1\sqcup A_2)=\rho(A_1)+\rho(A_2)$ in $\cA$.
-\hfill(finite additivity)
-\end{enumerate}
-\begin{parts}
-\item 
-\end{parts}
-\end{prb}
 
 
 
 \begin{prb}[Uniqueness of Carath\'eodory extensions]
 The Carath\'eodory extension theorem provides with a uniqueness theorem for measures.
 \end{prb}
+\begin{pf}
+\end{pf}
+
+
+\section*{Exercises}
+
+\begin{prb}[Semi-rings and semi-algebras]
+We will prove a simplified Carath\'eodory extension with respect to \emph{semi-rings} and \emph{semi-algebras}.
+Let $\cA$ be a collection of subsets of a set $\Omega$ such that $\varnothing\in\cA$.
+We say $\cA$ is a semi-ring if it is closed under finite intersection, and the complement is a finite union of elements of $\cA$.
+We say $\cA$ is a semi-algebra
+
+Let $\cA$ be a semi-ring of sets over $\Omega$.
+Suppose a set function $\rho:\cA\to[0,\infty]$ with $\rho(\varnothing)=0$ satisfies
+\begin{enumerate}[(i)]
+\item $\rho(\bigsqcup_{i=1}^\infty A_i)\le\sum_{i=1}^\infty\rho(A_i)$ in $\cA$,
+\hfill(disjoint countable subadditivity)
+\item $\rho(A_1\sqcup A_2)=\rho(A_1)+\rho(A_2)$ in $\cA$.
+\hfill(finite additivity)
+\end{enumerate}
+A set function satisfying the above conditions are occasionally called a pre-measure.
+\begin{parts}
+\item
+\item 
+\end{parts}
+\end{prb}
+
+\begin{prb}[Monotone class lemma]
+alternative direct proof method without using Carath\'eodory extension.
+\end{prb}
 
 
 
-Monotone class lemma: alternative direct proof method without using Carath\'eodory extension.
+
 
 
 \chapter{Measures on the real line}
@@ -124,6 +163,7 @@ non-measurable set
 
 
 \section*{Exercises}
+
 \begin{prb}[Steinhaus theorem]
 \end{prb}
 \begin{prb}*
@@ -208,10 +248,21 @@ we have
 \[\{x:\{f_n(x)\}_n\text{ diverges}\}\subset\limsup_n\{x:|f_n-f|>\tfrac1n\}.\]
 
 \section*{Exercises}
-\begin{prb}
-Let $f:\R\to\R$ be a Lebesgue measurable function such that $f(x+y)=f(x)+f(y)$ for all $x,y\in\R$.
-Then, $f(x)=f(1)x$.
+\begin{prb}[Cauchy's functional equation]
+Let $f:\R\to\R$ be a function.
+Cauchy's functional equation refers to the equation $f(x+y)=f(x)+f(y)$, satisfied for all $x,y\in\R$.
+Suppose $f$ satisfies the Cauchy functional equation.
+We ask if $f$ is linear, that is $f(x)=ax$ for all $x\in\R$, where $a:=f(1)$.
+\begin{parts}
+\item $f(x)=ax$ for all $x\in\Q$, but there is a nonlinear solution of Cauchy's functional equation.
+\item If $f$ is conitnuous at a point, then $f$ is linear.
+\item If $f$ is Lebesgue measurable, then $f$ is linear.
+\end{parts}
 \end{prb}
+
+
+
+
 
 
 

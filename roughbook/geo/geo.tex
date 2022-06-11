@@ -658,44 +658,6 @@ for each $\mu$.
 \end{pf}
 
 
-\section{Vector calculus on spherical coordinates}
-\[
-\begin{tikzcd}[row sep=5pt, column sep=3pt]
-V&=&(V_r,V_\theta,V_\phi)&&&&&&&&\\
-&=&V_r&\hat{r}&+&V_\theta&\hat{\theta}&+&V_\phi&\hat{\phi}&(\text{normalized coords})\\
-&=&V_r&\pd{r}&+&\frac1r\ V_\theta&\pd{\theta}&+&\frac1{r\sin\theta}\ V_\phi&\pd{\phi}&(\Gamma(TM))\\
-&=&V_r&dr&+&r\ V_\theta&d\theta&+&r\sin\theta\ V_\phi&d\phi&(\Omega^1(M))\\
-&=&r^2\sin\theta\ V_r&d\theta\wedge d\phi&+&r\sin\theta\ V_\theta&d\phi\wedge dr&+&r\ V_\phi&dr\wedge d\theta&(\Omega^2(M)).
-\end{tikzcd}
-\]
-
-\[
-\nabla\cdot V=\frac1{r^2\sin\theta}\left[  \pd{r}\left(r^2\sin\theta\ V_r\right) + \pd{\theta}\left(r\sin\theta\ V_\theta\right) + \pd{\phi}\left(r\ V_\phi\right)  \right]
-\]
-\[\Delta u=\frac1{r^2\sin\theta}\left[\pd{r}\left(r^2\sin\theta\pd{r}u\right)+\pd{\theta}\left(\sin\theta\pd{\theta}u\right)+\pd{\phi}\left(\frac1{\sin\theta}\pd{\phi}u\right)\right]\]
-
-Let $(\xi,\eta,\zeta)$ be an orthogonal coordinate that is \emph{not} normalized.
-Then,
-\[\sharp=g=\diag(\|\pd_\xi\|^2,\|\pd_\eta\|^2,\|\pd_\zeta\|^2)\]
-\[\hat x=\|\pd_x\|^{-1}\ \pd_x=\|\pd_x\|\ dx=\|\pd_y\|\|\pd_z\|\ dy\wedge dz\]
-In other words, we get the normalized differential forms in sphereical coordinates as follows:
-\[dr,\quad r\,d\theta,\quad r\sin\theta\,d\phi,\quad(r\,d\theta)\wedge(r\sin\theta\,d\phi),\quad(r\sin\theta\,d\phi)\wedge(dr),\quad(dr)\wedge(r\,d\theta).\]
-
-\begin{align*}
-\grad:\nabla&=\left[\ \frac1{\|\pd_x\|}\pd{x}\cdot-\ ,\ \frac1{\|\pd_y\|}\pd{y}\cdot-\ ,\ \frac1{\|\pd_z\|}\pd{z}\cdot-\ \right]\\
-\curl:\nabla&=\left[\ \frac1{\|\pd_y\|\|\pd_z\|}\left(\pd{y}(\|\pd_z\|\cdot-)-\pd{z}(\|\pd_y\|\cdot-)\right)\ ,\right.\\
-&\qquad\left.\frac1{\|\pd_z\|\|\pd_x\|}\left(\pd{z}(\|\pd_x\|\cdot-)-\pd{x}(\|\pd_z\|\cdot-)\right)\ ,\right.\\
-&\qquad\left.\frac1{\|\pd_x\|\|\pd_y\|}\left(\pd{x}(\|\pd_y\|\cdot-)-\pd{y}(\|\pd_x\|\cdot-)\right)\ \right]\\
-\div:\nabla&=\frac1{\|\pd_x\|\|\pd_y\|\|\pd_z\|}\left[\ \pd{x}\bigl(\|\pd_y\|\|\pd_z\|\cdot-\bigr)\ ,\ \pd{y}\bigl(\|\pd_z\|\|\pd_x\|\cdot-\bigr)\ ,\ \pd{z}\bigl(\|\pd_x\|\|\pd_y\|\cdot-\bigr)\ \right]\\
-\Delta&=\frac1{\|\pd_x\|\|\pd_y\|\|\pd_z\|}\left[\ \pd{x}\left(\frac{\|\pd_y\|\|\pd_z\|}{\|\pd_x\|}\pd{x}\right)+\pd{y}\left(\frac{\|\pd_z\|\|\pd_x\|}{\|\pd_y\|}\pd{y}\right)+\pd{z}\left(\frac{\|\pd_x\|\|\pd_y\|}{\|\pd_z\|}\pd{z}\right)\ \right]
-\end{align*}
-
-\bigskip
-
-\[\grad=\frac1{\|\cdot\|^1}\,(\nabla)\,\|\cdot\|^0\]
-\[\curl=\frac1{\|\cdot\|^2}\,(\nabla\times)\,\|\cdot\|^1\]
-\[\div=\frac1{\|\cdot\|^3}\,(\nabla\cdot)\,\|\cdot\|^2\]
-
 
 
 

@@ -10,7 +10,10 @@
 
 \part{Convergence}
 \chapter{Sequences}
-% 문제의식: 입실론 델타의 직접적 이용하지 않는 수렴성 증명
+% 입실론 델타는 이미 알고 있다고 가정하고 들어가는 노트
+% 정의 정도는 한 번 더 할 수 있겠지만 자명한 예시는 안 할 것
+% 수열에 대한 이론과 문제들에 집중
+% 특히 입실론 델타의 직접적 이용하지 않는 수렴성 증명
 
 \section{Control of the error}
 preserving inequalities
@@ -29,7 +32,7 @@ Every real sequence $(a_n)_{n=1}^\infty$ has a monotonic subsequence $(a_{n_k})_
 
 
 \chapter{Series}
-% 문제의식: 시리즈의 수렴 및 발산 여부 판정
+% 시리즈의 수렴 및 발산 여부 판정
 % 점근적 성질(단조성, 진동, 레이트)을 배운다 (판정법)
 % 영역 분할 메커니즘을 배운다
 % 멱급수는 해석함수에서 따로 다룬다
@@ -50,7 +53,6 @@ ratio
 root
 
 
-
 \begin{prb}[Abel transform]
 \[A_k(B_k-B_{k-1})+(A_k-A_{k-1})B_{k-1}=A_kB_k-A_{k-1}B_{k-1}\]
 \[\sum_{m<k\le n}A_kb_k=A_nB_n-A_mB_m-\sum_{m<k\le n}a_kB_{k-1}.\]
@@ -61,37 +63,23 @@ abel test
 \end{prb}
 
 
-
-
 \begin{prb}[Mertens' theorem]
 If $\sum_{k=0}^\infty a_k$ converges to $A$ absolutely and $\sum_{k=0}^\infty b_k$ converges to $B$, then their Cauchy product $\sum_{k=0}^\infty c_k$ with $c_k:=\sum_{l=0}^ka_lb_{k-l}$ converges to $AB$.
 \end{prb}
 \begin{pf}
 Let
-\[A_n:=\sum_{k=0}^na_k,\ B_n:=\sum_{k=0}^nb_k, \text{ and } C_n:=\sum_{k=0}^nc_k.\]
-Consider the regions
-\[T_n:=\{(k,l)\in\Z_{\ge0}^2:k+l\le n\},\qquad R_m:\{(k,l)\in\Z_{\ge0}^2:k\le m\}.\]
-Write
-\begin{align*}
-AB-C_n&=\sum_{k\le m}\sum_{l>n-k}a_kb_l+\sum_{k>m}\sum_{l\ge0}a_kb_l-\sum_{m<k\le n}\sum_{l\le n-k}a_kb_l\\
-&=\sum_{k\le m}a_k(B-B_{n-k})+\sum_{k>m}a_kB-\sum_{m<k\le n}a_kB_{n-k}.
-\end{align*}
+\[A_n:=\sum_{k=0}^na_k,\ B_n:=\sum_{k=0}^nb_k,\quad\text{ and }\quad C_n:=\sum_{k=0}^nc_k.\]
 
-The first term
-\[|\sum_{k\le m}a_k(B-B_{n-k})|\le(\max_k|a_k|)(\sum_{l\ge n-m}|B-B_l|)\]
-converges to zero as $n\to\infty$ for fixed $m$, the second term
-\[|\sum_{k>m}a_kB|\le|A-A_m||B|\]
-converges to zero as $m\to\infty$ for any $n$, and finally the third term
-\[|\sum_{m<k\le n}a_kB_{n-k}|\le(\sum_{k>m}|a_k|)(\max_l|B_l|)\]
-converges to zero as $m\to\infty$ for any $n$.
+We will prove
+\[A_nB_n-C_n=\sum_{k=0}^n\sum_{l=n-k+1}^na_kb_l\to0\]
+as $n\to\infty$.
 
-Fix $m$ such that the second and third terms are bounded by arbitrary $\frac\e2>0$ so that
-\[|C_n-AB|\le|\sum_{k\le m}a_k(B-B_{n-k})|+\frac\e2+\frac\e2.\]
-Then, by taking $n\to\infty$, we obtain
-\[\limsup_{n\to\infty}|C_n-AB|\le\e.\] 
-Since $\e$ is arbitrary, we have
-\[\lim_{n\to\infty}C_n=AB.\qedhere\]
+As $m\to\infty$.
+\[\Bigl|\sum_{k=m+1}^n\sum_{l=n-k+1}^na_kb_l\Bigr|\le\sum_{k=m+1}^n|a_k|\Bigl|\sum_{l=n-k+1}^nb_l\Bigr|=\sum_{k=m+1}^n|a_k||B_n-B_{n-k}|\lesssim\sum_{k=m+1}^\infty|a_k|\to0.\]
+For fixed $m$, as $n\to\infty$,
+\[\Bigl|\sum_{k=0}^m\sum_{l=n-k+1}^na_kb_l\Bigr|\le\sum_{k=0}^m|a_k|\Bigl|\sum_{l=n-k+1}^nb_l\Bigr|=\sum_{k=0}^m|a_k||B_n-B_{n-k}|\to0.\]
 \end{pf}
+
 
 
 
@@ -109,6 +97,9 @@ If $a_n\ge0$ and $\sum a_n$ diverges, then $\sum\frac{a_n}{1+a_n}$ also diverges
 If $a_n\downarrow0$ and $S_n\le1+na_n$, then $S_n\le1$.
 \end{prb}
 
+\begin{prb}[Ces\`aro mean]
+
+\end{prb}
 
 
 
@@ -196,7 +187,8 @@ convergence, limit point
 % 문제의식: 연속함수의 성질을 엄밀하게 기술할 수 있는 보조정리 증명, 연속함수 공간 개요
 \section{Intermediate and extreme value theorems}
 \section{Uniform convergence}
-\section{}
+\section{Arzela-Ascoli theorem}
+\section{Stone-Weierstrass theorem}
 
 \section*{Exercises}
 
@@ -328,25 +320,149 @@ If $xf'(x)$ is bounded and $x^{-1}\int_0^xf\to L$ then $f(x)\to L$ as $x\to\inft
 % 편미분이 그냥 계산도구라는 것을 배운다
 % 편미분의 교환도 사실은 항상 다 되는 걸... 배울 수 있나
 % 접공간 개념을 배운다
-\section{Tangent space}
+\section{Tangent spaces}
+\begin{prb}[Vector fields]
 
+\end{prb}
 
+\section{Inverse function theorem}
 
-\chapter{Inverse function theorem}
-% 고정점정리로 함수의 역을 찾아내는 기본 전략을 배운다
-% 선형근사의 파워를 배운다
-\section{Banach fixed point theorem}
-\section{Variations of the inverse function theorem}
 
 
 
 
 
 \chapter{Differential forms}
-% 텐서곱과 외미분(?)과 테일러 근사를 배운다
-% 웨지곱과 외미분과 다중적분을 배운다
-% 벡터해석의 여러 항등식들을 배운다
+% 다음 두 단원 동안: 좌표 변환, 미분 형식, 적분 정의
+\section{Multilinear algebra}
 
+\begin{prb}[Tensor product]
+\end{prb}
+
+\begin{prb}[Wedge product]
+\end{prb}
+
+
+
+\begin{prb}[One-forms]
+\end{prb}
+
+
+\begin{prb}[Multiple integral]
+volume forms,
+stone weierstrass and fubini
+\end{prb}
+
+
+
+\section{Vector calculus}
+
+\begin{prb}[Exterior derivative]
+\end{prb}
+
+\begin{prb}[Musical isomorphisms]
+\end{prb}
+
+\begin{prb}[Inner product of differential forms]
+ONB
+\end{prb}
+
+\begin{prb}[Hodge star operator]
+Identification of 2-forms and vector fields
+\end{prb}
+
+\begin{prb}[Gradient, curl, and divergence]
+\end{prb}
+
+\begin{prb}[Potentials]
+\end{prb}
+
+\begin{prb}[Vector calculus identities]
+\end{prb}
+
+
+\section*{Exercises}
+
+\begin{prb}[Multivariable Taylor's theorem]
+Symmetric product
+\end{prb}
+
+\begin{prb}[Vector analysis in two dimension]
+\end{prb}
+
+\begin{prb}[Geometric algebra]
+\end{prb}
+
+
+
+
+
+
+\chapter{Stokes theorems}
+
+\section{Local coordinates}
+
+\begin{prb}[Spherical coordinates]
+Let $U=\R^3\setminus\{\,(x,y,z):x=0,\ y\ge0\,\}$.
+\[(x,y,z)=(r\sin\theta\cos\f,r\sin\theta\sin\f,r\cos\theta)\]
+for $(r,\theta,\f)\in(0,\infty)\times(0,\pi)\times(0,2\pi)$.
+Orthonormal bases are
+\[\left(\pd_r,\ \frac1r\pd_\theta,\ \frac1{r\sin\theta}\pd_\f\right),\]
+\[(dr,\ r\,d\theta,\ r\sin\theta\,d\f),\]
+\[(r^2\sin\theta\,d\theta\wedge d\f,\ r\sin\theta\,d\f\wedge dr,\ r\,dr\wedge d\theta).\]
+\begin{parts}
+\item
+\item The Laplacian is given by
+\[\Delta f=\frac1{r^2}\pd{r}\left(r^2\pd{f}{r}\right)+\frac1{r^2\sin\theta}\pd{\theta}\left(\sin\theta\pd{f}{\theta}\right)+\frac1{r^2\sin^2\theta}\pd[2]{f}{\f}.\]
+\end{parts}
+\end{prb}
+\begin{pf}
+Write $df$ in the orthonormal basis
+\begin{align*}
+df&=\pd{f}{r}\,dr+\pd{f}{\theta}\,d\theta+\pd{f}{\f}\,d\f\\
+&=\left(\pd{f}{r}\right)\,dr+\left(\frac1r\pd{f}{\theta}\right)\,r\,d\theta+\left(\frac1{r\sin\theta}\pd{f}{\f}\right)\,r\sin\theta\,d\f.
+\end{align*}
+After taking the Hodge star operator
+\begin{align*}
+{}*df&=\left(\pd{f}{r}\right)\,r^2\sin\theta\,d\theta\wedge d\f+\left(\frac1r\pd{f}{\theta}\right)\,r\sin\theta\,d\f\wedge dr+\left(\frac1{r\sin\theta}\pd{f}{\f}\right)\,r\,dr\wedge d\theta\\
+&=r^2\sin\theta\pd{f}{r}\,d\theta\wedge d\f+\sin\theta\pd{f}{\theta}\,d\f\wedge dr+\frac1{\sin\theta}\pd{f}{\f}\,dr\wedge\theta,
+\end{align*}
+the differential is computed as
+\begin{align*}
+d*df&=d\left(r^2\sin\theta\pd{f}{r}\right)\,d\theta\wedge d\f+d\left(\sin\theta\pd{f}{\theta}\right)\,d\f\wedge dr+d\left(\frac1{\sin\theta}\pd{f}{\f}\right)\,dr\wedge\theta\\
+&=\left[\sin\theta\pd{r}\left(r^2\pd{f}{r}\right)+\pd{\theta}\left(\sin\theta\pd{f}{\theta}\right)+\frac1{\sin\theta}\pd[2]{f}{\f}\right]\,dr\wedge d\theta\wedge d\f,
+\end{align*}
+so that we have
+\begin{align*}
+\Delta f={}*d*df&=\frac1{r^2\sin\theta}\left[\sin\theta\pd{r}\left(r^2\pd{f}{r}\right)+\pd{\theta}\left(\sin\theta\pd{f}{\theta}\right)+\frac1{\sin\theta}\pd[2]{f}{\f}\right]\\
+&=\frac1{r^2}\pd{r}\left(r^2\pd{f}{r}\right)+\frac1{r^2\sin\theta}\pd{\theta}\left(\sin\theta\pd{f}{\theta}\right)+\frac1{r^2\sin^2\theta}\pd[2]{f}{\f}
+\end{align*}
+
+\end{pf}
+
+
+
+
+
+\section{Integration on curves and surfaces}
+
+\begin{prb}[Line integral]
+\end{prb}
+
+\begin{prb}[Surface integral]
+\end{prb}
+
+
+\section{Stokes theorems}
+% 미분기하보다 피디이스럽게
+\begin{prb}[Bump functions]
+\end{prb}
+
+\begin{prb}[Partition of unity]
+\end{prb}
+
+\begin{prb}
+\end{prb}
 
 
 \end{document}
