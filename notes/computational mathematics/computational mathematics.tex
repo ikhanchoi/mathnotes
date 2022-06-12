@@ -1,0 +1,72 @@
+\documentclass{../note}
+\usepackage{../../ikany}
+
+
+\begin{document}
+\title{Number Theory}
+\author{Ikhan Choi}
+\maketitle
+\tableofcontents
+\part{Algorithms}
+\chapter{Data structures}
+\section{Linear data structures}
+\section{Sorting and search}
+\section{Trees}
+\section{Graphs}
+\chapter{Computational geometry}
+
+
+
+
+\part{}
+\chapter{Information theory}
+\chapter{Coding theory}
+\chapter{Cryptography}
+
+
+
+
+\part{Numerical analysis}
+%Leonidas Mindrinos Otmar Scherzer
+\chapter{Finite difference methods}
+\section{Ordinary differential equations}
+interpolation, differentiation and integration
+runge-kutta, multi-step
+\section{Elliptic equations}
+\begin{prb}[1D Poisson equation]
+Consider the following boundary value problem:
+\[\left\{\begin{alignedat}{2}
+-u''(x)&=f(x),&\quad&\text{ in }(0,1),\\
+u(0)=u(1)&=0.&&
+\end{alignedat}\right.\]
+We discretize it by $(u_j)_{j=0}^N$ such that $hN=1$ and
+\[\left\{\begin{alignedat}{2}
+-\frac{u_{j+1}-2u_j+u_{j-1}}{h^2}&=f_j,&\quad&\text{ for }j=1,\cdots,N-1,\\
+u_0=u_N&=0.&&
+\end{alignedat}\right.\]
+\[\frac1{h^2}\mat{2&-1&&0\\-1&2&\ddots&\\&\ddots&\ddots&-1\\0&&-1&2}\mat{u_1\\u_2\\\vdots\\u_{N-1}}=\mat{f_1\\f_2\\\vdots\\f_{N-1}}\]
+\end{prb}
+
+\section{Parabolic equations}
+\section{Hyperbolic equations}
+\section{Computational fluid dynamics}
+
+\chapter{Finite element methods}
+
+\chapter{Optimization}
+\section{Convex optimization}
+\section{Dynamic programming}
+optimal control
+
+
+
+
+\part{Mathematical statistics}
+% regression, discrete data, experiment design, bayes, multivariate, survival
+% non-parametric, time series
+\chapter{Statistical models}
+\chapter{Statistical inference}
+estimation, testing hypothesis, ranking, selection
+\chapter{}
+
+\end{document}

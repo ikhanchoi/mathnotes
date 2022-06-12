@@ -119,7 +119,7 @@ The word ``approximation'' in here can be replaced into ``discretization''.
 
 \begin{defn}[Approximation]
 Let $X$ be a Banach space.
-An \emph{approximation} of $X$ is an indexed family $X_h$ of finite-dimensional normed spaces, with a \emph{prolongation operator} $p_h\in B(X_h,X)$ and a \emph{restriction operator} $r_h\in B(X,X_h)$ such that $r_hp_h=\id_{X_h}$.
+An \emph{approximation} of $X$ is an indexed family $X_h$ of finite-dimensional normed spaces, with a \emph{prolongation operator} $p_h\in B(X_h,X)$ and a \emph{restriction operator} $r_h:X\to X_h)$.
 The operator $\tau_h:=p_hr_h$ is called the \emph{truncation operator}.
 \begin{cd}
 X\dar[->>,swap]{r_h} \\ X_h\uar[bend right,swap]{p_h}
@@ -128,7 +128,7 @@ X\dar[->>,swap]{r_h} \\ X_h\uar[bend right,swap]{p_h}
 
 \begin{defn}[Errors]
 Let $X_h$ be an approximation of a Banach space $X$.
-For $x\in X$ and $x_h\in X_h$, the quantities $SE(x_h,x):=\|p_hx_h-x\|$ and $DE(x_h,x):=\|x_h-r_hx\|_h$ are called the \emph{strong error} and the \emph{discrete error} of $x$ and $x_h$.
+For $x\in X$ and $x_h\in X_h$, the quantities $E(x_h,x):=\|p_hx_h-x\|$ and $DE(x_h,x):=\|x_h-r_hx\|_h$ are called the \emph{error} and the \emph{discrete error} between $x$ and $x_h$.
 The quantity $TE(x):=\|x-\tau_hx\|$ is called the \emph{truncation error}.
 \end{defn}
 
@@ -136,19 +136,16 @@ The quantity $TE(x):=\|x-\tau_hx\|$ is called the \emph{truncation error}.
 We say an approximation $X_h$ is
 \begin{parts}
 \item \emph{stable} if $\|p_h\|+\|r_h\|\lesssim1$,
-\item \emph{convergent} if $TE=\|x-\tau_hx\|_h\to0$.
+\item \emph{convergent} if $\|x-\tau_hx\|\to0$.
 \end{parts}
 \end{defn}
 \begin{lem}
 Let $X_h$ be an approximation of a Banach space $X$.
-If $X_h$ is stable and convergent, then the convergences in discrete error and strong error are equivalent:
-\[DE\le\|r_h\|\cdot SE,\]
-\[SE\le\|p_h\|\cdot DE+TE.\]
+If $X_h$ is stable and convergent, then the discrete convergence implies the strong convergence.
 \end{lem}
-
-\begin{ex}
-
-\end{ex}
+\begin{pf}
+\[\|p_hx_h-x\|\le\|p_hx_h-p_hr_hx\|+\|p_hr_hx-x\|\le\|p_h\|\|x_h-r_hx\|+\|\tau_hx-x\|.\qedhere\]
+\end{pf}
 
 
 
