@@ -13,14 +13,12 @@
 \begin{document}
 \maketitle
 \begin{abstract}
-Bochner's theorem states that the image of finite Borel measures on a locally compact abelian group under the Fourier-Stieltjes transform is the set of continuous positive definite functions.
+Bochner's theorem states that the image of finite Borel measures on a locally compact abelian group under the Fourier-Stieltjes transform is described as the set of continuous positive definite functions.
 This thesis exposits Bochner's theorem from three different viewpoints; complex analysis, probability theory, and representation theory.
-The reasons Bochner's theorem holds will be discussed in the first two chapters via the Herglotz representation theorem and the L\'evy continuity theorem.
-In the rest of the thesis, we prove the Pontryagin duality and an analog of the Gelfand-Naimark-Segal construction as applications in the representation theory of locally compact abelian groups.
+The special cases of Bochner's theorem will be discussed in the first two chapters via the Herglotz representation theorem and the L\'evy continuity theorem.
+In the rest of the thesis, we prove Bochner's theorem in two ways and the Pontryagin duality theorem as an application in the representation theory of locally compact abelian groups.
 \end{abstract}
 \tableofcontents
-
-\subsection*{Acknowledgement}
 
 
 
@@ -28,26 +26,69 @@ In the rest of the thesis, we prove the Pontryagin duality and an analog of the 
 
 % 투두리스트
 
-% 1.1 도입 깔끔하게
-% 1.1 예시 몇개만 넣기
-% 1.2 서베이 참고해서 좀 정리하기
 
-% 2.1 펠프스 책 내용 안해도 되는 증명 써주기 - 6월에 해도 돼
-% 2.3 헬리 정리 사용할 때 포트망토를 풀어 써주기 - 6월에 해도 돼
-% 2.3 연속제한 예시 추가, z^m으로 메져 복붙하는 예시 추가
 
-% 3.1 포트망토 넷에 대해 증명?
-% 3.2 보흐너 정리 증명 하나 더 추가 - 6월에 해도 돼
+% 2.3 헬리 정리 사용할 때 포트망토를 풀어 써주기 - 7월에 해도 돼
+% 3.2 보흐너 정리 증명 하나 더 추가 - 7월에 해도 돼
 %   https://www.jstor.org/stable/25049427?seq=4
-% 3.3 힐베르트 공간? 연속함수 공간?
-
 
 
 \newpage
 \section{Introduction}
 
 
+
+\subsection{Brief history of Bochner's theorem}
+
+Bochner's theorem originates from the questions about Fourier coefficients and the Fourier transforms of measures.
+It describes a neccessary and sufficient condition for a sequence or a function to be Fourier coefficients or a Fourier transform of a measure.
+More precisely, the results like the following theorems are examples of \emph{Bochner-type theorems}:
+\begin{thm}
+A function $c:\Z\to\C$ is positive definite if and only if there is a unique finite regular Borel measure $\mu$ on $\T=\R/2\pi\Z$ such that
+\[c(k)=\int_0^{2\pi}e^{-ik\theta}\,d\mu(\theta)\]
+for all $k\in\Z$.
+\end{thm}
+\begin{thm}
+A continuous function $\f:\R\to\C$ is positive definite if and only if there is a unique finite regular Borel measure $\mu$ on $\R$ such that
+\[\f(t)=\int e^{itx}\,d\mu(x)\]
+for all $t\in\R$.
+\end{thm}
+
+The concept of the positive definite functions firstly appeared in a problem in the complex function theory, called the Carath\'eodory coefficient problem.
+It asks the condition for the power series coefficients to form an analytic function that maps the open unit disk into the right half plane.
+Carath\'eodory \cite{caratheodory1907variabilitatsbereich} showed in 1907 that the points whose coordinates are given by the power series coefficient of such functions lie in the convex hull of a particular curve.
+Toeplitz reformulate in 1911 the geometric condition of Carath\'eodory into algebraic terms, the positive definiteness of a sequence in his short article \cite{toeplitz1911fourier}.
+The Herglotz representation theorem is the most comprehensive result that contains the above two theorems, and relates the probability measure on the circle group $\T$ to the positive definite sequences.
+This result by Herglotz \cite{herglotz1911uber} is considered as the first prototype of Bochner's theorem.
+
+Mathias \cite{mathias1923positive} defined and studied the basic properties of the positive definite functions on $\R$ in 1923.
+Around 1925, the Fourier transform of a measure on $\R$ began to be studied actively by probabilists such as L\'evy in order to study the weak convergence of probaility measures.
+Recall that a probaility distribution of a real-valued random variable is defined as a probability measure on $\R$.
+The Fourier transform of a probability measure with reversed sign on the phase term is called the characteristic function of the probability measure.
+According to the L\'evy continuity theorem, the pointwise convergence of characteristic functions implies the weak convergnece of a sequence probability measures.
+In the celebrated paper \cite{bochner1932vorlesungen} published in 1932, Bochner proved that a function on $\R$ is a Fourier transform of a finite measure if and only if it is positive definite and continuous, which gives the theorem his name.
+See \cite{stewart1976positive} for the further survey about history of positive definite functions.
+
+Fourier analysis is then extended to abstract groups, and Banach algebra approaches to it has emerged in 1940s.
+For the locally compact abelian groups, Weil, Povzner, and Raikov almost simultaneously generalized Bochner's theorem. 
+As an application of Bochner's theorem, the Pontryagin duality theorem, which states the bidual group is isomorphic to the original group, and which is originally proved by Pontryagin and van Kampen in \cite{pontrjagin1934theory} and \cite{van1935locally}, will be proved in another method.
+
+In Chapter 2, the Carath\'eodory coefficient problem and the Toeplitz theorem will be stated and proved.
+Then, we prove the Herglotz representation theorem, and Theorem 1.1, the Bochner theorem on the additive group $\Z$, will be proved as its corollary.
+We also provide a geometric description of the space of positive definite sequences.
+In Chapter 3, we review the theory of weak convergence of probability measures on $\R$, including the L\'evy-Prokhorov metric and the Prokhorov theorem, and prove Bochner's theorem using the L\'evy continuity theorem.
+Then, we move to general locally compact abelian groups in Chapter 4, and suggest two different methods to prove Bochner's theorem.
+One is the direct proof by Fourier transform, and the other uses the Gelfand-Naimark-Segal construction.
+Finally, we prove the Pontryagin duality theorem, one of the most famous applications of Bochner's theorem.
+
+
+
+
+
 \subsection{Positive definite functions}
+This section discusses the basic properties and examples of positive definite functions.
+They will be used frequently thoughout the whole thesis.
+
 \begin{defn}
 Let $G$ be a group.
 A function $f:G\to\C$ is called \emph{positive definite} if for each positive integer $n$ a non-negativity condition
@@ -113,8 +154,7 @@ Since $\e$ can be taken aribtrarily, $f$ is right uniformly continuous.
 The left uniform continuity is shown in the same manner.
 \end{pf}
 
-
-\begin{ex}[Positive definite functions not positive]
+\begin{ex}
 Let $G=\R$.
 Then, $f(x):=\cos x$ is positive definite since
 \begin{align*}
@@ -125,69 +165,36 @@ Then, $f(x):=\cos x$ is positive definite since
 \end{ex}
 
 
-\subsection{Brief history of Bochner's theorem}
-
-This thesis follows the historical flows to extract mathematical ideas behind the positive definite functions.
-In particular, we are concerned with the results like the following \emph{Bochner-type theorems}:
-\begin{thm}
-A function $c:\Z\to\C$ is positive definite if and only if there is a unique finite regular Borel measure $\mu$ on $\T=\R/2\pi\Z$ such that
-\[c(k)=\int_0^{2\pi}e^{-ik\theta}\,d\mu(\theta)\]
-for all $k\in\Z$.
-\end{thm}
-\begin{thm}
-A continuous function $\f:\R\to\C$ is positive definite if and only if there is a unique finite regular Borel measure $\mu$ on $\R$ such that
-\[\f(t)=\int e^{itx}\,d\mu(x)\]
-for all $t\in\R$.
-\end{thm}
-They have similar forms in that they describe the necessary and sufficient conditions for a function to have a Fourier-Stieltjes integral representation of a finite regular Borel measure.
-One of our primary goals is to investigate the nature of positive definite functions and their harmonic-analytic relation to Borel measures within more familiar cases of $G=\Z$ or $\R$.
-Now then, we finally extend the Bochner-type results in the more general setting, where $G$ is a locally compact group, and assign a new perspective of measures in terms of the representation theory of groups.
-
-Each theorem above has its own taste in different subfields of mathematics.
-Theorem 1.1, which is a corollary of the celebrated Herglotz representation theorem, is related to a classical problem in complex analysis that asks to give a characterization of a special class of analytic functions on the open unit disk $\D$ called the Carath\'eodory class.
-The positive definiteness arises as a property of coefficients of functions in the Caracth\'eodory class, and their connection to Fourier coefficients leads the complex analysis problem into harmonic analysis.
-In Section 2, with the methods of elementary complex variable function theory, our first Bochner-type theorem will be proved, giving a geometric description of the space of positive definite functions in addition.
-
-In Section 3, we review the well-known results of the positive definite functions on the real line and their ``weak convergence''.
-They have been studied by probabilists, to attack the weak convergence of probaility measures.
-Recall that a probaility distribution of a real-valued random variable is defined by a probability measure on $\R$.
-The extended Fourier transform, but reversing the sign convention on the phase term, with respect to not only integrable functions but also finte measures, called Fourier-Stieltjes transform, of a probability measure $\mu$ is called a characteristic function of the distribution $\mu$.
-In terms of probability theory, it is nothing but the function defined by the expectation $\f(t):=Ee^{itX}$, where $X$ is a random variable of law $\mu$.
-The Bochner theorem states that the necessary and sufficient condition for being a characteristic function is the positive definiteness and continuity.
-
-
-
-
-
-
 
 
 \newpage
-\section{On the group $\Z$: complex analysis}
+\section{Bochner's theorem on $\Z$: complex analysis}
 
+Bochner's theorem is about the correpondence between positive definite functions and probaility Borel measures.
+On the additive group $\Z$, the positive definite functions become sequences, and the domain of the probability measures is the one-dimensional torus $\T:=\R/2\pi\Z$.
 
-
-In this section, we are going to investigate the origin of positive definiteness that occurs in the context of complex analysis via establishing the following one-to-one correspondences:
+In this chapter, we will establish the following one-to-one correspondences:
 \begin{figure}[h]
 \centering
 \begin{tikzcd}[column sep = 0]
-&\begin{tabular}{c}Points in the closed convex hull of\\the curve $(e^{-i\theta},e^{-i2\theta},\cdots)$ in $\C^\N$\end{tabular}&\\
-\begin{tabular}{c}Positive definite\\sequences $(c_k)_{k\in\Z}$\\with $c_0=1$\end{tabular}
-&\text{Carath\'eodory functions}\lar[<->,swap]{2.2}\uar[<->,swap]{2.1}\rar[<->]{2.3}
-&\begin{tabular}{c}Probability Borel\\measures on $\T$\end{tabular}.
+&\left\{\begin{tabular}{c}Points in the closed convex hull of\\the curve $(e^{-i\theta},e^{-i2\theta},\cdots)$ in $\C^\N$\end{tabular}\right\}&\\
+\left\{\begin{tabular}{c}Positive definite\\sequences $(c_k)_{k\in\Z}$\\with $c_0=1$\end{tabular}\right\}
+&\bigl\{\,\text{Carath\'eodory functions}\,\bigr\}\lar[<->,swap]{2.2}\uar[<->,swap]{2.1}\rar[<->]{2.3}
+&\left\{\begin{tabular}{c}Probability Borel\\measures on $\T$\end{tabular}\right\}.
 \end{tikzcd}
-\end{figure}
+\end{figure}\\
+The vertical, left, and right arrows in the above diagram are discussed in Section 2.1, 2.2, and 2.3 respectively, and the definition of each term will be given throughout this chapter.
+Bochner's theorem on the additivie group $\Z$ will be finally deduced as a corollary of the two horizontal correspondences in the above diagram.
 
-The vertical, left, and right arrows in the above diagram are discussed in Section 2.1, 2.2, and 2.3 respectively.
-The definition of each term will be given throughout this section, and Bochner's theorem on the additivie group $\Z$ will be finally deduced as a corollary of the above correspondences.
 
 \subsection{The Carath\'eodory coefficient problem}
 
+We are going to investigate the origin of positive definiteness that occurs in the context of complex analysis.
 The concept of positive definiteness of functions were originally inspired by the ``Carath\'eodory coefficient problem'' in early complex analysis.
 The problem asks the condition on the power series coefficients for an analytic function defined on the open unit disk to have values of positive real part.
 In other words, the Carath\'eodory coefficient problem describes the power series coefficients of some special functions precisely defined as follows:
 
-\begin{defn}
+\begin{defn}[Carath\'eodory functions]
 The \emph{Carath\'eodory class} is the set of all analytic functions $f$ that map the open unit disk into the region of positive real part, with normalization condition $f(0)=1$.
 A function in the Carath\'eodory class will be often called a \emph{Carath\'eodory function}.
 \end{defn}
@@ -341,7 +348,7 @@ with coefficients such that $\lambda_{n,j}\ge0$ and $\sum_j\lambda_{n,j}=1$, the
 &(c_1,\cdots,c_n,\sum_j\lambda_{n,j}e^{-i(n+1)\theta_{n,j}},\sum_j\lambda_{n,j}e^{-i(n+2)\theta_{n,j}}\cdots)\\
 &\qquad\qquad=\sum_j\lambda_{n,j}(e^{-i\theta_{n,j}},\cdots,e^{-in\theta_{n,j}},e^{-i(n+1)\theta_{n,j}},e^{-i(n+2)\theta_{n,j}},\cdots)
 \end{align*}
-is contained in  and converges to the point $(c_1,c_2,\cdots)$ in the product topology as $n\to\infty$, so we are done with the desired result.
+indexed by $n$ is contained in $K$ and converges to the point $(c_1,c_2,\cdots)$ in the product topology as $n\to\infty$, so we are done with the desired result.
 For the opposite direction, let $(c_1,c_2,\cdots)\in K$.
 By definition of $K$ we have an expression
 \[c_k=\lim_{m\to\infty}\sum_{j=1}^m\lambda_{m,j}e^{-ik\theta_{m,j}}\]
@@ -350,14 +357,10 @@ Then,
 \[(c_1,\cdots,c_n)=\lim_{m\to\infty}\sum_{j=1}^m\lambda_{m,j}(e^{-i\theta_{m,j}},\cdots,e^{-in\theta_{m,j}})\]
 belongs to $K_n$ because $K_n$ is closed.
 
-
-Fix $\theta\in[0,2\pi)$ and suppose two complex sequences $(c_1,c_2,\cdots)$ and $(d_1,d_2,\cdots)$ in $\C^\N$ are contained in $K$ and satisfy
-\[\frac{c_k+d_k}2=e^{-ik\theta}\]
-for all $k\in\N$.
-For each $k$, since all components of $K$ are bounded by one so that $|c_k|\le1$ and $|d_k|\le1$, and since $e^{-ik\theta}$ is an extreme point of the closed unit disk $\bar\D\subset\C$, we have $c_k=d_k=e^{-ik\theta}$, we deduce that $(e^{-i\theta},e^{-i2\theta},\cdots)$ is an extreme point of $K$.
-Conversely, every extreme point of $K$ is contained in the curve $(e^{-i\theta},e^{-i2\theta},\cdots)$ by Milman's ``converse'' theorem of the Krein-Milman theorem[citation: Phelps].
+For the proposition about extreme points, we can easily prove it using the Krein-Milman theorem and its converse.
+See Proposition 1.5 in \cite{phelps2001lectures} for the proof of the converse theorem of the Krein-Milman theorem.
+We will give an alternative proof without functional analysis in Section 2.3.
 \end{pf}
-
 
 
 \subsection{Toeplitz's algebraic condition}
@@ -409,9 +412,9 @@ It proves $\Re f(z)\ge0$ for $|z|<1$, and we obtain $\Re f(z)>0$ by the open map
 \end{pf}
 
 
-\subsection{The Herglotz representation theorem}
+\subsection{Proof by the Herglotz representation theorem}
 
-Herglotz proved another equivalent condition for the Carath\'eodory class in 1911, considered as the first Bochner-type theorem, which states the correspondence between the Carath\'eodory class and probability Borel measure on the unit circle.
+Herglotz \cite{herglotz1911uber} proved another equivalent condition for the Carath\'eodory class in 1911, considered as the first Bochner-type theorem, which states the correspondence between the Carath\'eodory class and probability Borel measure on the unit circle.
 The Carath\'eodory theorem states that the function $f$ in the Carath\'eodory class is a limit of convex combinations of M\"obius transforms $z\mapsto(e^{i\theta}+z)/(e^{i\theta}-z)$.
 Herglotz's theorem, which we now also often call as the Herglotz representation theorem, states that in fact $f$ is directly represented by the integral of the M\"obius transforms with respect to a newly constructed probability measure, instead of limiting process of convex sums.
 
@@ -464,7 +467,7 @@ Since $\Re f\ge0$, $F_n$ is also monotonically increasing.
 Therefore, the sequence $(F_n)_n$ has a pointwise convergent subsequence $(F_{n_j})_j$ on $[0,2\pi]$ by the Helly's selection theorem.
 Let
 \[F(\theta):=\lim_{\psi\downarrow\theta}\lim_{j\to\infty}F_{n_j}(\psi).\]
-Then, we have $F(0)=0$ and $F(2\pi)=1$, and $F_{n_j}$ converges to $F$ at every continuity point $\theta$ of $F$.
+Then, $F$ is a distribution function such that $F(0)=0$ and $F(2\pi)=1$, and $F_{n_j}$ converges to $F$ at every continuity point $\theta$ of $F$.
 It means $F_{n_j}$ converges to $F$ weakly as $j\to\infty$, so by the Portmanteau theorem, we get
 \[\int_0^{2\pi}\frac{e^{i\theta}+z}{e^{i\theta}-z}dF_{n_j}(\theta)\to\int_0^{2\pi}\frac{e^{i\theta}+z}{e^{i\theta}-z}dF(\theta)\]
 as $j\to\infty$ since $\theta\mapsto(e^{i\theta}+z)/(e^{i\theta}-z)$ is continuous and bounded on $\T$.
@@ -523,6 +526,10 @@ By the Herglotz representation theorem, there is a probability Borel measure $\m
 in $z\in\D$, hence the desired result follows.
 \end{pf}
 
+Herglotz' theroem assigns a probability measure $\mu$ to a Carath\'eodory function $f$ by a weak$^*$ limit
+\[\lim_{r\uparrow1}\frac1{2\pi}\Re f(re^{i\theta})\,d\theta=d\mu.\]
+This method allows to construct measures using complex analytic funcions.
+We introduce several examples of it.
 
 \begin{ex}[Dirac measures]
 Identify $\T=\R/2\pi\Z$ with the interval $[0,2\pi)$.
@@ -543,19 +550,25 @@ for all $g\in C(\T)$, we have $(2\pi)^{-1}\Re f(re^{i\theta})\,d\theta\to\delta_
 Let $f$ be a Carath\'eodory function and $\tau:\D\to\D$ be an analytic function on the open unit disk $\D$.
 Then, the composition $f\circ\tau$ is Carath\'eodory.
 
-Assume $\tau$ is continuously extended to $\tau:\bar\D\to\D$.
-The probability measure on $\T$ corresponded to the composition $f\circ\tau$ via the Herglotz theorem is given by the weak$^*$ limit of $(2\pi)^{-1}\Re f(\tau(re^{i\theta}))\,d\theta$ as $r\uparrow1$.
+Suppose we have an additional condition that $\tau$ is continuously extended to $\tau:\bar\D\to\D$.
+The probability measure on $\T$ corresponded to the composition $f\circ\tau$ via the Herglotz theorem can be given by the weak$^*$ limit of $(2\pi)^{-1}\Re f(\tau(re^{i\theta}))\,d\theta$ as $r\uparrow1$.
 Since $f\circ\tau$ is a continuous function on the closed disk $\bar\D$, the limit is described as the continuous density function $\T=\R/2\pi\Z\to\R:\theta\mapsto\Re f(\tau(e^{i\theta}))$.
 \end{ex}
 
 \begin{ex}[The $n$th power map]
-As another example, if a Carath\'eodory function $f$ and a probability measure $\mu$ on $\T=\R/2\pi\Z$ satisfies
+For a Carath\'eodory function $f$, we have a new family of functions in the Carath\'eodory class, the composition with $n$th power map $z\mapsto f(z^n)$.
+If $\mu$ is a probability measure on $\T=\R/2\pi\Z$ that satisfies
 \[f(z)=\int\frac{e^{i\theta}+z}{e^{i\theta}-z}\,d\mu(\theta),\]
-then we have a new family of Carath\'eodory functions
+then we have 
 \[f(z^n)=\int\frac{e^{i\theta}+z}{e^{i\theta}-z}\,d\mu_n(\theta)\]
 for each positive integer $n$, where
-\[\mu_n(E)=\frac1n\sum_{j=0}^{n-1}\mu((nE-2\pi j)\cap[0,2\pi)).\]
-Intuitionally, if $\mu$ is absolutely continuous with respect to the Lebesgue measure, then the density of $\mu_n$ is the pull back by the kneading transformation
+\begin{align*}
+\mu_n(E)&=\lim_{r\uparrow1}\frac1{2\pi}\int_E\Re f(r^ne^{in\theta})\,d\theta\\
+&=\lim_{r\uparrow1}\sum_{j=0}^{n-1}\int_{(E-2\pi j/n)\cap[0,2\pi/n)}\Re f(r^ne^{in\theta})\,d\theta\\
+&=\lim_{r\uparrow1}\frac1n\sum_{j=0}^{n-1}\int_{(nE-2\pi j)\cap[0,2\pi)}\Re f(r^ne^{i\theta})\,d\theta\\
+&=\frac1n\sum_{j=0}^{n-1}\mu((nE-2\pi j)\cap[0,2\pi)).
+\end{align*}
+If $\mu$ is absolutely continuous with respect to the Lebesgue measure, then the density of $\mu_n$ is the pull back by the kneading transformation
 \[T_n(\theta):=n\theta-2\pi\left\lfloor\frac{n\theta}{2\pi}\right\rfloor.\]
 The corresponding positive definite sequence is transformed from $(c_k)_{k\in\Z}$ to
 \[(\cdots,0,c_{-2},0,\cdots,0,c_{-1},0,\cdots,0,c_0,0,\cdots,0,c_1,0,\cdots,0,c_2,0,\cdots),\]
@@ -563,6 +576,22 @@ where $n-1$ zeros are between $c_k$ and $c_{k+1}$.
 \end{ex}
 
 
+
+\begin{pf}[The rest of the proof of Proposition 2.3.]
+Recall that $K$ denotes the closed convex hull of the curve $\theta\mapsto(e^{-i\theta},e^{-i2\theta},\cdots)\in\C^\N$.
+We first claim that a point on this curve is an extreme point of $K$.
+Fix $\theta\in[0,2\pi)$ and suppose two complex sequences $(c_1,c_2,\cdots)$ and $(d_1,d_2,\cdots)$ in $\C^\N$ are contained in $K$ and satisfy
+\[\frac{c_k+d_k}2=e^{-ik\theta}\]
+for all $k\in\N$.
+For each $k$, since all components of $K$ are bounded by one so that $|c_k|\le1$ and $|d_k|\le1$, and since $e^{-ik\theta}$ is an extreme point of the closed unit disk $\bar\D\subset\C$, we have $c_k=d_k=e^{-ik\theta}$, we deduce the desired claim.
+
+For the converse, take a point $(c_1,c_2,\cdots)$ in $K$ such that no $\theta$ satisfies $c_k=e^{-ik\theta}$ for all $k\in\N$.
+As we have seen, there is a probability Borel measure $\mu$ on $\T$ corresponded to $(c_1,c_2,\cdots)$.
+Since $\mu$ is not a Dirac measure, the support of $\mu$ contains at least two points.
+Partition the support of $\mu$ into two non-trivial subsets $A$ and $B$.
+Then, for two measures $\mu_A$ and $\mu_B$ given by $\mu_A(E):=\mu(E\cap A)/\mu(A)$ and $\mu_B(E):=\mu(E\cap B)/\mu(B)$ for Borel sets $E\subset\T$, the measure $\mu$ is a non-trivial convex combination of $\mu_A$ and $\mu_B$.
+By paraphrasing this fact in terms of the positive definite sequences, we can see it is nothing but that $(c_1,c_2,\cdots)$ is not an extreme point.
+\end{pf}
 
 
 
@@ -579,30 +608,22 @@ where $n-1$ zeros are between $c_k$ and $c_{k+1}$.
 
 
 \newpage
-\section{On the group $\R$: probability theory}
+\section{Bochner's theorem on $\R$: probability theory}
 
-% TODO
-%  18쪽
-%  폴리야 증명
+In this chapter, we prove the Bochner theorem on the additive group $\R$ using the L\'evy continuity theorem.
+The L\'evy continuity theorem concerns about the \emph{weak convergence} of probability measures and the pointwise convergence of positive definite functions.
+Before the statements of the theorems, several fundamental theorems on the topology of weak convergence, such as the Portmanteau theorem, theorems on the L\'evy Prokhorov metric, and the Prokhorov theorem on the compactness in the space of probability measures.
 
-
-We have seen the relation of positive definite sequences and measures on the unit circle $\T$.
-On the real line $\R$, predictably, we can also prove that there exists a correspondence between measures and positive definite functions.
-The previous chapter used measures to characterize certain complex functions and positive definite sequences, but from this section, we will see how the positive functions are used in studying measures.
-
-The systematic study of positive definite functions to study measures virtually starts in probability theory by Paul L\'evy.
+It is known to be that the systematic study of positive definite functions to investigate the convergence of measures virtually starts in probability theory in the book \cite{levy1925calcul} by Paul L\'evy.
 Recall that a probability distribution is defined as a measure of norm one on a ``state space'', which is $\R$ for usual random variables.
-Some classical problems including central limit problems and laws of large numbers arisen in probability theory want to describe limit behaviors of probability distributions.
-L\'evy's discovery was that it is easier to verify the convergence of probability distributions via the \emph{Fourier transforms} of probability measures, instead of the measures themselves.
-
-The Fourier transform(often called as \emph{Fourier-Stieltjes} transform when we emphasize the \emph{measures}, the objects being transformed) of a probability measure is called a \emph{characteristic function}.
-One of possible statement of Bochner's theorem is that a complex function on a real line is a characteristic function of a probability measure if and only if it is continuous and positive definite, i.e. the theorem gives the one-to-one correspondence of probability measures on $\R$ and the continuous positive definite functions on $\R$, under the Fourier-Stieltjes transform.
+Some classical problems including central limit theorems and laws of large numbers arisen in probability theory want to describe limit behaviors of a sequence of probability distributions.
+The L\'evy continuity theorem tells us that it is easier to see the limits via the \emph{Fourier transforms} of probability measures, than to see the measures themselves directly.
 
 
 \subsection{Topologies on the space of probability measures}
 
 First, we will investigate topologies on the space of probability measures.
-In probability theory, the following concept of convergence is the most usual one when considering convergence of probability measures.
+In probability theory, the weak convergence is the most usual one when considering convergence of probability measures.
 
 \begin{defn}[Weak convergence]
 Let $(\mu_\alpha)_\alpha$ be a net of probability Borel measures on a topological space $S$.
@@ -613,11 +634,11 @@ We often write $\mu_\alpha\Rightarrow\mu$ when $\mu_\alpha$ converges weakly to 
 \end{defn}
 
 In fact, for its own interests in probability theory, the state space $S$ is usually taken to be $\R$, or more generally a metrizable space.
-However, we temporarily define the weak convergence in the meaningless general setting, the topological spaces, to further comparison with the other topology on the sapce of measures.
+However, we temporarily define the weak convergence in the meaningless general setting, the topological spaces, to further comparison with another topology on the sapce of measures.
 Some reasons why we require the metrizability on $S$ will be addressed later.
 
-Vague convergence is another convergence that reveals a more functional analytic nature of measures.
-Recall that the Riesz-Markov-Kakutani representation theorem states that on a locally compact Hausdorff space the space of regular Borel finite (complex) measures has a natural idetification to the continuous dual of a continuous function space.
+The vague convergence is another convergence that reveals a more functional analytic nature of measures.
+Recall that the Riesz-Markov-Kakutani representation theorem states that on a locally compact Hausdorff space the space of regular Borel finite (complex) measures has a natural idetification to the continuous dual of the space of continuous functions vanishing at infinity.
 
 \begin{defn}[Vague convergence]
 Let $(\mu_\alpha)_\alpha$ and $\mu$ be probability regular Borel measures on a locally compact Hausdorff space $\Omega$.
@@ -639,7 +660,7 @@ If $S$ is metrizable, then we say a Borel measure $\mu$ on $S$ is \emph{regular}
 \[\mu(E)=\sup\{\,\mu(F):F\text{ is closed in }E\,\}
 =\inf\{\,\mu(U):U\text{ is open containing }E\,\}\]
 for all Borel measurable $E$.
-Note that even if a topological space is both locally compact Hausdorff and metrizable, two notions are not equivalent.
+Note that even if a topological space is both locally compact Hausdorff and metrizable, two notions are not equivalent, and they will be carefully used without confusion by mentioning which type the underlying space is.
 We denote the space of all probability regular Borel measures on $\Omega$ and $S$ by $\Prob(\Omega)$ and $\Prob(S)$, respectivley.
 \end{defn}
 
@@ -648,16 +669,13 @@ Let $S$ be a metrizable space.
 Then, every single finite Borel measure $\mu$ on $S$ is regular.
 \end{lem}
 
-\begin{ex}[Dieudonn\'e measure]
-
-\end{ex}
-
 We have omitted the regularity condition on measures in Chapter 2 because every finite Borel measure on a compact metric space is regular in both senses.
+
 The vague convergence is less important in probability theory because there are situations that we have to deal with probability measures on a nowhere locally compact spaces, for example, the separable Hilbert space or the space of continuous functions $C([0,1])$.
 This viewpoint frequently occurs and is useful when we try to analyze one stochastic process as a single random variable.
 
-Nevertheless, the vague(weak$^*$) convergence is what we will mainly consider throughout this thesis as a preparation for Chapter 4.
-Recall that we have used weak$^*$ topology as well in Chapter 2.
+Nevertheless, the vague convergence is what we will mainly consider throughout Chapter 4.
+Recall that we also have used weak$^*$ topology as well in Chapter 2.
 In this regard, we need to connect the vauge convergence to the weak convergence to describe our subjects in probabilitic languages, and the following theorem is one result.
 
 \begin{thm}
@@ -687,11 +705,13 @@ Two topologies are different if we consider the space of finite measures or meas
 A terse example is the shifting sequence of dirac measures $\delta_n$, which converges to the zero measure in the topology generated by $C_0$, but diverges in the topology generated by $C_b$.
 \end{ex}
 
-According to this result, under the assumption that the base space is locally compact and Hausdorff, we have no need to distinguish the topology of weak convergence and the weak$^*$ topology.
+According to this result, under the assumption that the base space is locally compact and Hausdorff, we have no need to distinguish the topology of weak and vague convergence.
 Now we return to the probability theory.
 Two classical theorems of the space of probability measures on a metric spaces, the metrizability and a compactness criteria for the space of probability measures will be introduced.
 They will be applied to see weak$^*$ convergences of probability measures on $\R$, and it is doable because $\R$ is both a metric space and a locally compact space.
 
+We are now going to see the useful theorems on weak convergence of probability measures.
+For a deeper discussion on the topology of weak convergence, see the textbook of Parthasarathy \cite{parthasarathy2005probability}.
 
 \begin{lem}[The Portmanteau theorem]
 Let $S$ be a metric space, and $\mu_\alpha$ be a net of probability Borel measures on $S$.
@@ -701,9 +721,41 @@ The following statements are all equivalent:
 \item $\int g\,d\mu_\alpha\to\int g\,d\mu$ for every uniformly continuous $g\in C_b(S)$.
 \item $\limsup_{\alpha}\mu_\alpha(F)\le\mu(F)$ for every closed $F\subset S$.
 \item $\liminf_{\alpha}\mu_\alpha(U)\ge\mu(U)$ for every open $U\subset S$.
-\item $\lim_{\alpha}\mu_\alpha(E)=\mu(E)$ for every Borel set $E\subset S$ such that $\mu(\partial E)=0$.
+\item $\lim_{\alpha}\mu_\alpha(A)=\mu(A)$ for every Borel set $A\subset S$ such that $\mu(\partial A)=0$.
 \end{parts}
 \end{lem}
+\begin{pf}
+(a)$\Rightarrow$(b)
+Clear.
+
+(b)$\Rightarrow$(c)
+Let $U$ be an open set such that $F\subset U$.
+There is uniformly continuous $g\in C_b(S)$ such that $\1_F\le g\le\1_U$.
+Therefore,
+\[\limsup_\alpha\mu_\alpha(F)\le\limsup_\alpha\mu_\alpha(g)=\mu(g)\le\mu(U).\]
+By the outer regularity of $\mu$, we obtain $\limsup_\alpha\mu_\alpha(F)\le\mu(F)$.
+
+(c)$\Leftrightarrow$(d)
+Clear by taking complements.
+
+(c)$+$(d)$\Rightarrow$(e)
+It easily follows from
+\[\limsup_\alpha\mu_\alpha(\bar A)\le\mu(\bar A)=\mu(A)=\mu(A^\circ)\le\liminf_\alpha\mu_\alpha(A^\circ).\]
+
+(e)$\Rightarrow$(a)
+Let $g\in C_b(S)$ and $\e>0$.
+Since the pushforward measrue $g_*\mu$ has at most countably many mass points, there is a partition $(t_i)_{i=0}^n$ of an interval containing $[-\|g\|,\|g\|]$ such that $|t_{i+1}-t_i|<\e$ and $\mu(\{x:g(x)=t_i\})=0$ for each $i$.
+Let $(A_i)_{i=0}^{n-1}$ be a Borel decomposition of $S$ given by $A_i:=g^{-1}([t_i,t_{i+1}))$, and define $f_\e:=\sum_{i=0}^{n-1}t_i\1_{A_i}$ so that we have $\sup_{x\in S}|g_\e(x)-g(x)|\le\e$.
+From
+\begin{align*}
+|\mu_\alpha(g)-\mu(g)|&\le|\mu_\alpha(g-g_\e)|+|\mu_\alpha(g_\e)-\mu(g_\e)|+|\mu(g_\e-g)|\\
+&\le\e+\sum_{i=0}^{n-1}|t_i||\mu_\alpha(A_i)-\mu(A_i)|+\e,
+\end{align*}
+we get
+\[\limsup_\alpha|\mu_\alpha(g)-\mu(g)|<2\e.\]
+Since $\e$ is arbitrary, we are done.
+\end{pf}
+
 
 \begin{thm}[L\'evy-Prokhorov metric]
 Let $(S,d)$ be a metric space, and $\Prob(S)$ be the set of probability Borel measures on $S$.
@@ -717,7 +769,6 @@ The set in the definition of $\pi$ contains $\e=1$ so that it is always non-empt
 \item For a sequence $\mu_n\in\Prob(S)$, if $\mu_n\to\mu$ in $\pi$, then $\mu_n\Rightarrow\mu$.
 \item For a net $\mu_\alpha\in\Prob(S)$, if $\mu_\alpha\Rightarrow\mu$, then $\mu_\alpha\to\mu$ in $\pi$, given $S$ is separable.
 \item The metric space $(\Prob(S),\pi)$ is separable if and only if $(S,d)$ is separable.
-\item The metric space $(\Prob(S),\pi)$ is complete if and only if $(S,d)$ is complete.
 \end{parts}
 \end{thm}
 \begin{pf}
@@ -799,7 +850,7 @@ Let $M$ be a set of probability Borel measures on a metric space $S$.
 We say $M$ is \emph{tight} if for every $\e>0$ there is a compact $K\subset S$ such that $\mu(K)>1-\e$ for all $\mu\in M$
 \end{defn}
 \begin{thm}[The Prokhorov theorem]
-Let $M$ be a set of probability Borel measures on a Polish space $S$.
+Let $M$ be a subset of $\Prob(S)$ for a Polish space $S$.
 The set $M$ is relatively compact in the topology of weak convergence if and only if it is tight.
 \end{thm}
 \begin{pf}
@@ -814,7 +865,7 @@ If we take a subsequence $(\mu_{n_k})_k$ that converges weakly to $\mu\in\bar M$
 which leads a contradiction $\mu(S)\le1-\e$.
 
 Let $\{x_i\}_{i=1}^\infty$ be a dense set in $S$.
-Then, for each integer $m>0$ there is $n_m>0$ such that
+Then, since $\{B(x_i,1/m)\}_{i=1}^n$ is a countable open cover of $S$ for each integer $m>0$, there is $n_m>0$ such that
 \[\inf_{\mu\in M}\mu\Bigl(\bigcup_{i=1}^{n_m}B(x_i,1/m)\Bigr)\ge1-\frac\e{2^m}.\]
 Define
 \[K:=\bigcap_{m=1}^\infty\bigcup_{i=1}^{n_m}\bar{B(x_i,1/m)}.\]
@@ -825,16 +876,17 @@ for every $\mu\in M$, so $M$ is tight.
 
 ($\Leftarrow$)
 Suppose $M$ is tight and let $\mu_\alpha$ be any net in $M$.
-We claim that it has a convergent subnet.
+We claim that it has a convergent subnet in $\Prob(S)$.
 Let $\beta S$ be the Stone-\v Cech compactification of $S$.
 The inclusion $\iota:S\to\beta S$ is a topological embedding because $S$ is completely regular.
 Pushforward the measures $\mu_\alpha$ to make them probability Borel measures $\nu_\alpha:=\iota_*\mu_\alpha$ on $\beta S$.
+We want to take a convergent subnet of $\nu_\alpha\in\Prob(\beta S)$, and to show the limit is in fact contained in $\Prob(S)$.
+
 Our first claim is that the measure $\nu_\alpha$ is regular for each $\alpha$, that is, $\nu_\alpha\in\Prob(\beta S)$.
-For any Borel $E\subset\beta S$ and any $\e>0$ we have $F\subset E\cap S$ that is closed in $S$ and $K$ compact in $S$ such that $\mu_\alpha(E\cap S)<\mu_\alpha(F)+\e/2$ and $\mu_\alpha(S\setminus K)<\e/2$.
+For any Borel $E\subset\beta S$ and any $\e>0$, there is $F\subset E\cap S$ that is closed in $S$ such that $\mu_\alpha(E\cap S)<\mu_\alpha(F)+\e/2$ by the inner regularity, and there is $K$ that is compact in $S$ such that $\mu_\alpha(S\setminus K)<\e/2$ by the tightness.
 Then, the inequality
 \[\nu_\alpha(E)=\mu_\alpha(E\cap S)<\mu_\alpha(F)+\frac\e2<\mu_\alpha(F\cap K)+\e=\nu_\alpha(F\cap K)+\e\]
 proves the regularity of $\nu_\alpha$ since $F\cap K$ is compact in both $S$ and $\beta S$ with $F\cap K\subset E$.
-Note that $\beta S$ is quite far from metrizable spaces, so the regularity of measures is required for $\Prob(\beta S)$.
 The space $\Prob(\beta S)$ is compact by the Banach-Alaoglue theorem and the Riesz-Markov-Kakutani representation theorem.
 Therefore, $\nu_\alpha$ has a subnet $\nu_\beta$ that converges to $\nu\in\Prob(\beta S)$.
 
@@ -853,15 +905,15 @@ Since $\nu_\beta(\beta S\setminus S)=\nu(\beta S\setminus S)=0$ and the restrict
 for all $f\in C_b(S)$, so $\mu_\beta$ converges weakly to $\mu\in\Prob(S)$.
 \end{pf}
 
-In this proof of the theorem, we can add a new interpretation of tightness; a restriction condition of a limit point from compactification.
+In this proof of the theorem, we can add a new interpretation of tightness; any limit measures defined on $\beta S$ must be concentrated on the original state space $S$.
 The tightness keeps measures from escaping the image of $S$ in the compactification, and lets the limit point concentrated on it.
-We can also see the naturality of the topology of weak convergence by recognizing it as the induced topology from the Stone-\v Cech compactification.
+We can also recognize the topology of weak convergence as the induced topology from the Stone-\v Cech compactification.
 
 
 
-\subsection{The L\'evy continuity theorem}
+\subsection{Proof by the L\'evy continuity theorem}
 
-In this section, we will only focus on probability distributions on the real line $\R$ and concrete examples on it, rather than other abstract spaces.
+In this section, we will only focus on probability distributions on the real line $\R$ and concrete examples on it, rather than other abstract spaces $S$.
 One of the direct connection in probability theory between convergences in two different realms, measures and positive definite functions, is encoded in the L\'evy continuity theorem.
 This theorem connects the weak convergence of probability measures and pointwise convergence of \emph{characteristic functions}.
 In this section, we will prove Bochner's theorem on $\R$ with the aid of the L\'evy continuity theorem.
@@ -964,7 +1016,7 @@ If we define a compact set $K:=[-\frac2\delta,\frac2\delta]\cup\bigcup_{n=1}^NK_
 Let $(\mu_{n_j})_j$ be any subsequence that converges weakly to a probability measure.
 The limit of this subsequence is independent on the choice of the subsequence since its characteristic function is given by the pointwise limit $\lim_{j\to\infty}\f_{n_j}=\f$, by the first half of this theorem.
 Let $\mu$ be this unique limit.
-Then, $\mu_n$ converges weakly to $\mu$ since the tightness guarantees that every subsequence of $\mu_n$ has a further subsequence, which converges to $\mu$ weakly.
+Then, $\mu_n$ converges weakly to $\mu$ since the tightness guarantees that every subsequence of $\mu_n$ has a further subsequence by the Prokhorov theorem, which converges to $\mu$ weakly.
 \end{pf}
 
 
@@ -1033,8 +1085,8 @@ as $\delta\to0$, and since $\f$ is continuous at zero, we can conclude that $\f$
 
 
 
-\subsection{Notes on non-locally compact groups}
 \iffalse
+\subsection{Notes on non-locally compact groups}
 bochner
 measure <=> pos def continuous
 
@@ -1055,80 +1107,159 @@ measure <=> pos def continuous + trace class
 
 
 \newpage
-\section{On locally compact abelian groups: representation theory}
+\section{Bochner's theorem on locally compact abelian groups: representation theory}
 
-In this chapter, we extend the domain of Fourier transforms on locally compact abelian groups.
-Recall that the Fourier transform on $R$ is given by the integral
-\[\cF f(\xi)=\int_\R e^{-ix\chi}f(x)\,dx\]
-with an exponential term.
+In this chapter, we extend Bochner's theorem to a locally compact Hausdorff abelian group $G$.
+We will prove it by two different approaches in Section 4.1 and 4.2, respectively; one is by generalized Fourier transform on $G$, and the other uses representation theory of $G$.
+In Section 4.3, we will prove the Pontryagin duality, one of the most famous application of the Bochner theorem.
 
-	% Two problems: what is the dual object? how can we generalize the exponential term?
-
-This exponential term can be recognized as continuous group homomorphism from $G$ to circle group $\T$ in general, so we will introduce the notion of space of these homomorphisms and define Fourier transform on $G$ by using this.
-
-Remark that the homomorphisms $G\to\T$ are called character in algebra context.
-At the same time, when $G$ is abelian, they form another abelian group, and they are just another form of irreducible representations over $\C$.
-In representation theory of groups, the group algebra $\C[G]$ has a fundamental position for investigation of the structure of representations of $G$.
-
-In locally compact abelian groups, the convolution algebra $L^1(G)$ replaces the algebra $\C[G]$.
-% To see representations of $G$, we see the representations of $L^1(G)$
-
-
-
-
-
-\subsection{The Fourier transform}
-
-We will always mean locally compact \emph{Hausdorff} abelian groups by locally compact abelian groups.
+We always mean locally compact \emph{Hausdorff} abelian groups by locally compact abelian groups.
 For a locally compact abelian group $G$, we also always denote the identity of $G$ by $e$ and a fixed Haar measure of $G$ by $dx$.
-For clarity, we do not use the hat notation to indicate Fourier transform, for which the curly alphabet $\cF$ will be used.
+Note that the Haar measure is neither in general $\sigma$-finite nor inner regular, unless the group $G$ is $\sigma$-compact.
+However, Fubini's theorem and the Riesz representation $L^1(G)^*\cong L^\infty(G)$ can be used without crucial issues (For example, we need to modify its definition of $L^\infty(G)$ since it is smaller than the dual space $L^1(G)^*$, but the proofs in this thesis only consider the inclusion $C_b(G)\subset L^\infty(G)$ to endow the weak$^*$ topology on $C_b(G)$ or $C_0(G)$, so it does not make any problems).
+We will not discuss them carefully, but for details, we can refer to Section 2.3 of Folland's book \cite{folland2016course}.
+We also note that the substantial parts of expositions in this chapter are written following the same book \cite{folland2016course}.
 
+\subsection{Proof by Fourier transforms}
+
+Recall that the Fourier transform on $\R$ is given by the integral operator
+\[\cF f(\xi)=\int_\R e^{-ix\xi}f(x)\,dx\]
+with an exponential term $e^{-ix\xi}$.
+The exponential terms parametrized by $\xi\in\R$ can be recognized as continuous group homomorphisms from $G=\R$ to circle group $\T$, so we will introduce the notion of space of these group homomorphisms to define Fourier transform on $G$.
 
 \begin{defn}[Dual group]
 Let $G$ be a locally compact abelian group, and let $\T=\{z\in\C:|z|=1\}$ be the circle group.
 The \emph{dual group} $\hat G$ of $G$ is the group of all continuous group homomorphisms $\chi:G\to\T$, endowed with the topology of compact convergence.
+The elements of the dual group is called \emph{characters}.
 \end{defn}
 
-
-Consider the a Banach space $L^1(G)$.
-Then, $L^1(G)$ is an abelian Banach algebra with multiplication
+First, we want to show $\hat G$ is again a locally compact abelian group.
+To see this, consider the Banach space $L^1(G)$.
+The function space $L^1(G)$ is an commutative Banach algebra with multiplication structure
 \[f*g(x):=\int f(y)g(y^{-1}x)\,dy,\]
-which is called convolution.
-Here we shortly introduce spectral theory of abelian Banach algebras.
-The spectrum of an abelian Banach algebra $\cA$ is the set of all non-zero algebra homomorphisms $\cA\to\C$, and denoted by $\hat\cA$ or $\sigma(\cA)$.
+called the \emph{convolution}.
+Here we shortly introduce spectral theory of commutative Banach algebras.
+The \emph{spectrum} of an commutative Banach algebra $\cA$ is the set of all non-zero algebra homomorphisms $\cA\to\C$, and denoted by $\hat\cA$ or $\sigma(\cA)$.
 If we endow on it the weak$^*$-topology induced from the dual space $\cA^*$ as a Banach space, then the spectrum becomes locally compact and Hausdorff in light of the Banach-Alaloglu theorem.
+The proofs and details can be found in \cite{murphy2014c} or \cite{conway2019course}.
+The convolution algebra $L^1(G)$ has more properties:
+
+\begin{lem}
+Let $G$ be a locally compact abelian group, and $L^1(G)$ be the convolution algebra.
+\begin{parts}
+\item The algebra $L^1(G)$ admits an approximate identity $(e_\alpha)_\alpha$ such that $e_\alpha(x)=e_\alpha(x^{-1})=\bar{e_\alpha(x)}$.
+\item For $g\in L^1(G)$, we have the limit $L_xg\to g$ in $L^1(G)$ as $x\to e$.
+\end{parts}
+\end{lem}
+\begin{pf}
+(a)
+Let $\cN$ be a local base of symmetric open neighborhoods at the identity $e\in G$, and assign $\psi_U\in C_c(G)$ to each $U\in\cN$ that satisfies $\supp\psi_U\subset U$ and $\int_G\psi_U(x)\,dx=1$.
+Then,
+\[\|\psi_U*g-g\|_{L^1(G)}\le\iint_{G^2}|\psi_U(y)(g(y^{-1}x)-g(x))|\,dx\,dy\le\sup_{y\in U}\|L_yg-g\|_{L^1(G)}\to0\]
+as $U\to\{e\}$, so the net $(\psi_U)_{U\in\cN}$ is an approximate identity for $L^1(G)$.
+The additional properties are trivially satisfied.
+
+(b)
+We approximate $g$ by a function $h\in C_c(G)$.
+Since each $h$ is uniformly continuous, if we let $K$ be a compact neighborhood of $\supp h$, then
+\[\|L_xh-h\|_{L^1(G)}=|K|\|L_xh-h\|_{L^\infty(G)}\to0\]
+as $x\to e\in G$, because $\supp(L_xh-h)\subset K$ if $x$ is sufficiently near to $e\in G$.
+If we take $h\in C_c(G)$ such that $\|g-h\|_{L^1(G)}<\e$ for a fixed $\e>0$, then
+\[\|L_xg-g\|_{L^1(G)}\le\|L_x(g-h)\|_{L^1(G)}+\|L_xh-h\|_{L^1(G)}+\|h-g\|_{L^1(G)}<2\e+\|L_xh-h\|_{L^1(G)}\]
+proves the desired result by taking $x\to e$ and $\e\to0$.
+\end{pf}
 
 
 Let $\chi\in\hat G$.
 Then, it defines a linear functional
 \[L^1(G)\to\C:f\mapsto\int_G\chi(x)f(x)\,dx\]
 on $L^1(G)$, which is a non-zero algebra homomorphism, so induces a map $\hat G\to(L^1(G))\hat\enspace$.
-In fact this map is a homeomorphism and considered as a canonical identification of the spectra.
-It has an analogy with a locally compact version of the theorem that complex representations of a finite group $G$ has a one-to-one correspondence to $\C[G]$-modules.
-This correspondence reduces to a starting point to construct a connection between the groups and algebras.
+In fact this map is a homeomorphism and considered as a canonical identification of the two spectra(the dual group $\hat G$ is sometimes called the spectrum of $G$).
+It has an analogy with a locally compact version of the theorem that complex representations of a finite group $G$ has a one-to-one correspondence to $\C[G]$-modules, because $\hat G$ and $L^1(G)\hat\enspace$ is in other words the space of irreducible representations of $G$ and $L^1(G)$, respectively.
+This correspondence reduces to a starting point to construct a bridge between the groups and algebras.
 
 \begin{prop}
 The map $\hat G\to(L^1(G))\hat\enspace$ is a homeomorphism.
 \end{prop}
 \begin{pf}
+(Injectivity)
+If $\chi_1,\chi_2\in\hat G$ satisfy $\int_G\chi_1(x)f(x)\,dx=\int\chi_2(x)f(x)\,dx$ for all $f\in L^1(G)$, then by the Riesz representation $L^1(G)^*\cong L^\infty(G)$, we have $\chi_1=\chi_2$.
 
+
+(Surjectivity)
+Let $\f\in(L^1(G))\hat\enspace$.
+Define $\chi\in L^\infty(G)$ such that $\f(g)=\int_G\chi(x)g(x)\,dx$ for all $g\in L^1(G)$, using the Riesz representation theorem.
+Then,
+\begin{align*}
+\int_G\f(f)\chi(x)g(x)\,dx&=\f(f)\f(g)=\f(f*g)\\
+&=\iint_{G^2}\chi(y)f(yx^{-1})g(x)\,dx\,dy=\int\f(L_xf)g(x)\,dx
+\end{align*}
+for $f,g\in L^1(G)$, so we have $\f(f)\chi(x)=\f(L_xf)$ almost everywhere, where $L_xf(y)=f(x^{-1}y)$.
+Then, we can take $f\in L^1(G)$ with $\f(f)\ne0$ so that $\chi$ has a new representation $\f(L_xf)/\f(f)$.
+
+We can check it gives a continuous version of $\chi$ by approximation of $f$ by uniformly continuous functions.
+It is also a group homomorphism since
+\[\frac{\f(L_{xy}f)}{\f(f)}=\frac{\f(L_x(L_yf))}{\f(L_yf)}\frac{\f(L_yf)}{\f(f)}.\]
+Finally, the boundedness of $\chi$ implies $|\chi(x)|=|\chi(x^n)|^{1/n}\le\|\chi\|_{L^\infty(G)}^{1/n}\to1$ for any $x\in G$ as $n\to\infty$, and by applying $x^{-1}$ once more, we have $\chi:G\to\T$.
+
+(Continuity)
+Suppose $\chi_\alpha\to\chi$ in the topology of compact convergence in $\hat G\subset C_b(G)$.
+Let $g\in L^1(G)$ and $\e>0$.
+Take a compact set $K\subset G$ such that
+\[\int_{K^c}|g(x)|\,dx<\e.\]
+Then, by taking the limit of $\alpha$ on
+\[|\int_G(\chi_\alpha-\chi)(x)g(x)|\,dx\le\sup_{x\in K}|\chi_\alpha(x)-\chi(x)|\int_K|g|+\e,\]
+we have
+\[\limsup_\alpha|\int_G(\chi_\alpha-\chi)(x)g(x)|\,dx\le\e.\]
+Since $\e$ is arbitrary, we are done.
+
+(Continuity of inverse)
+Suppose $\chi_\alpha\to\chi$ in the weak$^*$ topology of $L^1(G)^*$.
+Let $K$ be a compact subset of $G$ and take $\e>0$.
+We will bound $|\chi_\alpha(x)-\chi(x)|$ by averaging.
+Using the continuity of $\chi$, fix a small compact neighborhood $U$ of the identity $e$ in $G$ such that
+\[\frac1{|U|}\int_U|1-\chi(y)|\,dy<\e.\]
+Then,
+\begin{align*}
+|\chi_\alpha(x)-\frac{\1_U}{|U|}*\chi_\alpha(x)|
+&\le\frac1{|U|}\int_U|\chi_\alpha(x)-\chi_\alpha(y^{-1}x)|\,dy\\
+&=\frac1{|U|}\int_U\sqrt{2-2\Re \chi_\alpha(y)}\,dy\\
+&\le\Bigl(\frac1{|U|}\int_U(2-2\Re\chi_\alpha(y))\,dy\Bigr)^{1/2}\\
+&\le\Bigl(2\e+\frac2{|U|}\int_U|\chi(y)-\chi_\alpha(y)|\,dy\Bigr)^{1/2}
+\end{align*}
+implies
+\begin{align*}
+|\chi_\alpha(x)-\chi(x)|
+&\le|\chi_\alpha(x)-\frac{\1_U}{|U|}*\chi_\alpha(x)|+|\frac{\1_U}{|U|}*(\chi_\alpha-\chi)(x)|+|\frac{\1_U}{|U|}*\chi(x)-\chi(x)|\\
+&\le\Bigl(2\e+\frac2{|U|}\int_U|\chi(y)-\chi_\alpha(y)|\,dy\Bigr)^{1/2}+\frac1{|U|}\int_{xU^{-1}}|\chi_\alpha(y)-\chi(y)|\,dy+(2\e)^{1/2}.
+\end{align*}
+Since $x\in$ is contained in $KU^{-1}$, which is compact so that it has finite measure, we obtain
+\[\limsup_\alpha\sup_{x\in K}|\chi_\alpha(x)-\chi(x)|\le(2\e)^{1/2}+(2\e)^{1/2}=2\sqrt\e,\]
+and it completes the proof by limiting $\e\to0$.
 \end{pf}
 \begin{cor}
 If $G$ is a locally compact abelian group, then $\hat G$ is also a locally compact abelian group.
 \end{cor}
 
-\begin{ex}[Real line and circle]
-
+\begin{ex}[Real line]
+We have a topological group isomorphism $\R\cong\hat\R:t\mapsto e^{itx}$.
+The group $\R$ is additive, and the group $\hat\R$ is multiplicative.
+The only non-trivial argument is the surjectivity.
+If $\chi\in\hat\R$, then there is $\e>0$ such that $c:=\int_0^\e\chi(x)\,dx\ne0$, and
+\[\int_0^\e\chi(x)\,dx=\int_y^{y+\e}\chi(x-y)\,dx=\chi(y)^{-1}\int_y^{y+\e}\chi(x)\,dx.\]
+By differentiating with respect to $y$, we get a differential equation
+\[\chi'(y)=c^{-1}(\chi(y+\e)-\chi(y))=c^{-1}(\chi(\e)-1)\chi(y),\]
+therefore, $\chi(0)=1$ and $|\chi(x)|=1$ implies $\chi(x)=e^{itx}$ for some $t\in\R$.
 \end{ex}
-\begin{ex}[Finite abelian groups]
-
-\end{ex}
-\begin{ex}[Infinite product]
-
+\begin{ex}[Circle and integer]
+Using the above result, we can also show $\hat\T\cong\Z$.
+From the identification $\T=\R/2\pi\Z$, a character $\chi$ of $\T$ can be characterized as a character $e^{itx}$ of $\R$ that factors through $\T$, which means $e^{itx}=1$, and it is equivalent to $t\in2\pi\Z$.
+The characters of $\Z$ is parametrized by the value at one, so $\hat\Z\cong\T$.
 \end{ex}
 
 
 We now define Fourier transform.
+For clarity, we do not use the hat notation $\hat f$ to indicate Fourier transform, for which the curly alphabet $\cF$ will be used.
 
 \begin{defn}[Fourier transform]
 Let $G$ be a locally compact abelian group, and $\hat G$ be its dual group.
@@ -1142,25 +1273,33 @@ for $\chi\in\hat G$, where $M(G)$ denotes the space of all finite complex regula
 We will also often use the adjoint Fourier transform $\cF^*:M(\hat G)\to\C^{\smash{\hat{\hat G}}}$ defined by
 \[\cF^*\mu(x):=\int_{\hat G}x(\chi)\,d\mu(\chi)\]
 for $x\in\hhat G$.
-Note that the Fourier transform of functions in $L^1(\hat G)$ depends on the choice of Haar measure $d\chi$ on $\hat G$, up to constant.
+Note that the Fourier transform of functions in $L^1(\hat G)$ depends on the choice of Haar measure $d\chi$ on $\hat G$, up to constant, and the reasonable constant will be determined in the Fourier inversion theorem in Section 4.3.
 \end{defn}
 
-First, the Fourier transform $\cF:L^1(G)\to C_0(\hat G)\subset B(L^2(\hat G))$ can be considered as an extension of a special unitary representation of $G$ itself; Gelfand representation.
-It acts on the Hilbert space $L^2(\hat G)$ by multiplication.
-This representation is
-Note that as in vector spaces, there is a natural homomorphism from a group to its double dual group.
+The notion of the following \emph{canonical homomorphism} will be useful in the analysis of Fourier transform on a locally compact abelian group.
+
 \begin{defn}[Canonical homomorphism]
 Let $G$ be a locally compact abelian group, and $\hhat G$ be its double dual group.
 We call the map $\Phi:G\to\hhat G$ defined such that $\Phi(x)(\chi):=\chi(x)$ as the \emph{canonical homomorphism} of $G$.
 \end{defn}
-Since 
-We can embed $G$ into the algebra $M(G)$ as a dirac measures.
-One way of recognizing Fourier transform is a lifting of the canonical homomorphism $\Phi:G\to\hhat G$, as described in the following commutative diagram:
+
+Note that we can embed $G$ into the algebra $M(G)$ by Dirac measures.
+One way to recognize the Fourier transform is a lifting of the canonical homomorphism $\Phi:G\to\hhat G$, as described in the following commutative diagram:
 \begin{cd}
 G\rar{\Phi}\dar[hook]&\hhat G\dar[hook]\\
 M(G)\rar{\cF^*}&C_b(\hat G).
 \end{cd}
 In particular, $\Phi$ is injective.
+
+The idea of considering the Fourier transform as the canonical homomorphism from $G$ to its double dual group $\hhat G$ arises also in the general theory of commutative Banach algebras.
+For a commutative Banach algebra $\cA$, an element $a\in\cA$ defines a function $\hat a:\hat\cA\to\C:\f\mapsto\f(a)$ by evalution at $a$.
+This function is continuous by definition of the weak$^*$ topology and and vanishes at infinity since the set $\{\,\f\in\hat\cA:|\f(a)|\ge\e\,\}$ is weak$^*$ compact for any $a\in\cA$ and $\e>0$.
+That is, we have an algebra homomorphism
+\[\Gamma:\cA\to C_0(\hat\cA):a\mapsto\hat a,\]
+and this homomorphism is called the \emph{Gelfand transform}.
+It is not hard to see that when $\cA=L^1(G)$ the Gelfand transform $\Gamma:L^1(G)\to C_0(L^1(G)\hat\enspace)$ equals to the adjoint Fourier transform $\cF^*:L^1(G)\to C_0(\hat G)$ under the identification $C_0(L^1(G)\hat\enspace)\xrightarrow{\sim}C_0(\hat G)$.
+
+The following propositions state basic properties of Fourier transform.
 
 \begin{prop}
 Let $G$ be a locally compact abelian group.
@@ -1212,28 +1351,338 @@ so $\cF(L^1(G))$ is dense in $C_0(\hat G)$ by the Stone-Weierstrass theorem.
 It easily follows from $\|\cF \mu\|_{C_b(\hat G)}\le\|\mu\|_{M(G)}$.
 \end{pf}
 
+We finally prove Bochner's theorem.
+In Chapter 2 and Chapter 3, we constructed a measure by weak$^*$ limit, but here we will directly define a positive linear functional on a continuous function space to show the existence of a measure.
+
 \begin{thm}[Bochner's theorem]
-Let $G$ be a locally compact abelian group, 
+Let $G$ be a locally compact abelian group.
 A function $f:G\to\C$ is continuous and positive definite if and only if there is a unique non-negative $\mu\in M(\hat G)$ such that 
 \[f(x)=\int_{\hat G}\chi(x)\,d\mu(\chi)\]
 for all $x\in G$.
 \end{thm}
+\begin{pf}
+($\Leftarrow$)
+The continuity is trivially satisfied.
+The positive definiteness is also clear that
+\[\sum_{k,l=1}^nf(x_l^{-1}x_k)\xi_k\bar\xi_l=\int_{\hat G}\Bigl|\sum_{k=1}^n\chi(x_k)\xi_k\Bigr|^2\,d\mu(\chi)\ge0.\]
 
-\subsection{Pontryagin duality and Bochner's theorem}
+($\Rightarrow$)
+(Uniqueness)
+If $\cF\mu=0$, then
+\[\int_{\hat G}\cF f(\chi)\,d\mu(\chi)=\int_G\cF\mu(\Phi(x))f(x)\,dx=0\]
+for all $f\in L^1(G)$.
+Since $\cF(L^1(G))$ is dense in $C_0(\hat G)$, we have $\mu=0$.
+
+(Existence)
+We claim that a linear functional on $\cF(L^1(G))$ defined by
+\[\cF g\mapsto\int_Gg(x)\bar{f(x)}\,dx\]
+is bounded with respect to the uniform norm induced from $C_0(\hat G)$, and its norm is less than or equal to $\|f\|_{C_b(G)}=f(e)$.
+If the claim is true, then since $\cF(L^1(G))$ is dense in $C_0(\hat G)$, there is a unique bounded linear functional on $C_0(\hat G)$ that extends the above linear functional, so we have a complex measure $\mu\in M(\hat G)$ such that
+\[\int_Gg(x)\bar{f(x)}\,dx=\int_{\hat G}\cF g(\chi)\,d\mu(\chi)=\int_G g(x)\int_{\hat G}\bar{\chi(x)}\,d\mu(\chi)\,dx\]
+for all $g\in L^1(G)$, which implies the equation in the Bochner theorem.
+Finally,
+\[f(e)=\mu(\hat G)\le\|\mu\|_{M(\hat G)}\le\|f\|_{C_b(G)}=f(e)\] concludes the non-negativity of $\mu$, so we are done.
+
+Now we prove the claim.
+Since the positive definiteness of $\bar f$ implies that
+\[\<g,h\>_{\bar f}:=\int_Gh^**g(x)\bar{f(x)}\,dx=\iint_{G^2}\bar{h(y)}g(x)\bar{f(y^{-1}x)}\,dx\,dy\]
+is a positive semi-definite Hermitian form, where we denote $h^*(x):=\bar{h(x^{-1})}$, we have by the Schwarz inequality and by using the approximate identity that
+\[|\int_Gg(x)\bar{f(x)}\,dx|^2\le\|f\|_{C_b(G)}\int_G g^**g(x)\bar{f(x)}\,dx.\]
+Applying this inequality inductively, we get
+\begin{align*}
+|\int_Gg(x)\bar{f(x)}\,dx|
+&\le\|f\|_{C_b(G)}^{1-1/2^n}\Bigl(\int_G(g^**g)^{*2^{n-1}}(x)\bar{f(x)}\,dx\Bigr)^{1/2^n}\\
+&\le\|f\|_{C_b(G)}\|(g^**g)^{*2^{n-1}}\|_{L^1(G)}^{1/2^n}\\
+&\to\|f\|_{C_b(G)}\|\cF(g^**g)\|_{C_0(\hat G)}^{1/2}=\|f\|_{C_b(G)}\|\cF g\|_{C_0(\hat G)}
+\end{align*}
+as $n\to\infty$ by Gelfand's formula of the spectral radius.
+Consequently, the claim is true.
+\end{pf}
+
+
+
+
+
+
+
+
+\subsection{Proof by the Gelfand-Naimark-Segal construction}
+
+We give in this section a representation-theoretic proof of Bochner's theorem.
+As the first step for the precise formulation, we define several notions of representations of locally compact abelian groups.
+
+\begin{defn}[Strongly continuous unitary representation]
+Let $G$ be a locally compact abelian group.
+A \emph{strongly continuous unitary representation} or just a \emph{representation} of $G$ is a continuous group homomorphism $\rho:G\to U(H)$, where $U(H)$ denotes the group of unitary operators on a Hilbert space $H$ with the strong operator topology.
+\end{defn}
+
+\begin{defn}[Cyclic representation]
+Let $G$ be a locally compact abelian group.
+A \emph{cyclic representation} of $G$ is a representation $\rho:G\to U(H_\rho)$ such that there exists a vector $\psi_\rho\in H_\rho$ called a \emph{cyclic vector} that satisfies the closed linear span of $\rho(G)\psi_\rho$ is equal to $H_\rho$.
+A \emph{pointed cyclic representation} of $G$ is a pair $(\rho,\psi_\rho)$ of a cyclic representation $\rho$ of $G$ and a unit cyclic vector $\psi_\rho\in H_\rho$.
+\end{defn}
+
+\begin{defn}[Unitary equivalence]
+Let $(\rho_1,\psi_1)$ and $(\rho_2,\psi_2)$ are pointed cyclic representations of a locally compact abelian group $G$.
+We say they are \emph{unitarily equivalent} if there is a unitary operator $u:H_{\rho_1}\to H_{\rho_2}$ such that $\rho_2(x)=u\rho_1(x)u^*$ for all $x\in G$ and $\psi_2=u\psi_1$.
+\end{defn}
+
+Now, we need to figure out maps that connect the measures, positive definite functions, and representations.
+The idea is based on a famous result of C$^*$-algebra theory called the \emph{Gelfand-Naimark-Segal representation}, or shortly GNS representation.
+The GNS representation is a construction method of cyclic representations of a C$^*$-algerba from a normalized positive linear functional, which is called a \emph{state} in the C$^*$-algebra theory.
+In commutative C$^*$-algebras, the positive linear functional is nothing but the finite regular Borel measure on a locally compact Hausdorff space, so the GNS construction can be paraphrased into a mapping that maps a probability regular Borel measure to a cyclic representation.
+For details on the general non-commutative GNS representation, see Chapter 3 and 5 in \cite{murphy2014c}.
+We are not going to use the general theory of C$^*$-algebras, but follow and apply the key idea of GNS construction directly on the commutative C$^*$-algebra $C_0(\hat G)$.
+
+\begin{defn}[Representations of C$^*$-algerbas]
+Let $\cA$ be a C$^*$-algerba.
+A \emph{strongly continuous representation} or just a \emph{representation} of $\cA$ is a continuous $*$-algebra homomorphism $\pi:\cA\to B(H_\pi)$, where $B(H_\pi)$ is the algebra of bounded linear operators on a Hilbert space $H_\pi$ with the strong operator topology.
+
+We say a representation $\pi:\cA\to$ is \emph{cyclic} if there exits a vector $\psi_\pi\in H_\pi$ that satisfies the closure of $\pi(\cA)\psi_\pi$ is equal to $H_\pi$.
+A \emph{pointed cyclic representation} of $\cA$ is a pair $(\pi,\psi_\pi)$ of a cyclic representation of $\cA$ and a unit cyclic vector $\psi_\pi\in H_\pi$.
+For pointed cyclic representations $(\pi_1,\psi_1)$ and $(\pi_2,\psi_2)$, we say they are \emph{unitarily equivalent} if there is a unitary operator $u:H_{\pi_1}\to H_{\pi_2}$ such that $\pi_2(a)=u\pi_1(a)u^*$ for all $a\in\cA$ and $\psi_2=u\psi_1$.
+\end{defn}
+
+The following commutative diagram might be helpful to understand our picture.
+\begin{cd}
+\left\{\begin{tabular}{c}regular Borel\\probability measures on $\hat G$\end{tabular}\right\}\ar{r}{\text{GNS}}\ar{d}[swap]{\text{Adjoint Fourier transform}}&
+\left\{\begin{tabular}{c}unitary equivalence classes of\\pointed cyclic representations of $C_0(\hat G)$\end{tabular}\right\}\ar{d}{\text{???}}\\
+\left\{\begin{tabular}{c}normalized continuous\\positive definite functions on $G$\end{tabular}\right\}\ar{r}{\text{``GNS''}}&
+\left\{\begin{tabular}{c}unitary equivalence classes of\\pointed cyclic representations of $G$\end{tabular}\right\}
+\end{cd}
+One of our goals in the rest of this section is to verify that the two horizontal arrows in the above diagram are bijective.
+Then, we set the vertical arrow on the left side that makes the diagram commute to be the adjoint Fourier transform.
+After that, if we were to show the vertical arrow on the right side is a bijection, then the Bochner theorem would follow.
+However, the surjectivity of the vertical arrow on the right side is cannot be proved directly.
+If we try to construct a representation of $C_0(\hat G)$ from a representation of $G$, we should encounter technical issues with regard to the Fourier transformation of non-integrable functions on $\hat G$ such as $\Phi(x)$, which backs to the main difficulty in the proof of Bochner's theorem.
+
+Instead, we will prove the Bochner theorem by showing that the extreme points of the set of normalized continuous positive definite functions on $G$ is in fact the union $\hat G\cup\{0\}$ of the dual group and a singleton.
+Applying the Krein-Milman theorem, we finish the proof.
+
+The most important step is to show an extreme point is indeed a character, and here we use the vertical arrow named the ``GNS construction'' at the second row.
+It is not the authentic GNS construction because it does not provide a representation of a C$^*$-algerba, but of a group.
+Nevertheless, we can mimick the idea to construct a cyclic representation of a locally compact abelian group $G$, which will be addressed in Theorem 4.8.
+We first establish the one-to-one correpondence between regular Borel measures on $\hat G$ and the unitary equivalence classes of pointed cyclic representations of $C_0(\hat G)$ in order to see the idea of GNS construction.
+
+\begin{thm}[GNS representation for regular Borel measures]
+Let $G$ be a locally compact abelian group.
+Then, there is a one-to-one correspondence
+\[\left\{\begin{tabular}{c}regular Borel\\probability measures on $\hat G$\end{tabular}\right\}\xrightarrow{\sim}\left\{\begin{tabular}{c}unitary equivalence classes of\\pointed cyclic representations of $C_0(\hat G)$\end{tabular}\right\}.\]
+\end{thm}
+\begin{pf}
+(Well-definedness)
+We will define a map in the statement of the theorem, which is exactly what we call the GNS representation of the C$^*$-algebra $C_0(\hat G)$.
+Let $\mu$ be a regular Borel probability measure on $\hat G$ (it is a \emph{state} of $C_0(\hat G)$, by the Riesz-Markov-Kakutani representation theorem).
+Then, $\mu$ defines a positive semi-definite Hermitian form on $C_0(\hat G)$ by
+\[\<\gamma,\eta\>_\mu:=\int_{\hat G}\bar{\eta(\chi)}\gamma(\chi)\,d\mu(\chi).\]
+The \emph{left kernel} of $\mu$ is defined as the set $L_\mu$ of elements of $C_0(\hat G)$ that have zero as the value of the Hermitian form defined by $\mu$, and it is equal to the kernel of the restriction operator onto the support of $\mu$;
+\[L_\mu:=\{\,f\in C_0(\hat G):\int|f|^2\,d\mu=0\,\}=\{\,f\in C_0(\hat G):f|_{\supp\mu}=0\,\}.\]
+Recall that one way to describe the support of a non-negative measure $\mu$ is the complement of the union of all open null sets.
+Therefore, since the restriction $C_0(\hat G)\to C_0(\supp\mu)$ is surjective by the Urysohn lemma, we obtain the isomorphism $C_0(\hat G)/L_\mu\cong C_0(\supp\mu)$.
+If we induce the Hermition for $\<-,-\>_\mu$ on $C_0(\supp\mu)$, then it becomes positive definite; an inner product.
+We can complete the inner product space $C_0(\supp\mu)$ to obtain the Hilbert space $H_\mu=L^2(\supp\mu,\mu)$.
+
+The Gelfand-Naimark-Segal representation of $C_0(\hat G)$ with respect to $\mu$ is now the $*$-algebra homomorphism
+\[\pi_\mu:C_0(\hat G)\to B(H_\mu):\f\mapsto M_\f,\]
+where $M_\f$ denotes the multiplication operator such that $M_\f(\gamma)=\f\gamma$.
+This $*$-homomorphism is a representation, that is, strongly continuous because if $\f_n\to\f\in C_0(\hat G)$, then
+\[\|M_{\f_n}\gamma-M_\f\gamma\|_{H_\mu}^2=\int_{\supp\mu}|(\f_n-\f)(\chi)\gamma(\chi)|^2\,d\mu(\chi)\le\|\f_n-\f\|_{C(\supp\mu)}^2\cdot\|\gamma\|_{H_\mu}^2\to0.\]
+If we let $\psi_\mu:=\1_{\supp\mu}\in H_\mu$, then it is a unit cyclic vector because $\pi_\mu(C_0(\hat G))\psi_\mu=C(\supp\mu)$ is dense in $H_\mu$, so the pair $(\pi_\mu,\psi_\mu)$ is a pointed cyclic representation of $C_0(\hat G)$.
+We call this cyclic vector $\psi_\mu$ the canonical cyclic vector, and we assign the unitary equivalence class of $(\pi_\mu,\psi_\mu)$ to the measure $\mu$.
+
+(Injectivity)
+Suppose we have two regular Borel probability measures $\mu_1$ and $\mu_2$ on $\hat G$ such that the pointed cyclic representations $(\pi_{\mu_1},\psi_{\mu_1})$ and $(\pi_{\mu_2},\psi_{\mu_2})$ of $C_0(\hat G)$ defined as above are unitarily equivalent.
+Let $u:H_{\mu_1}\to H_{\mu_2}$ be a unitary operator such that $\pi_{\mu_2}(\f)=u\pi_{\mu_1}(\f)u^*$ for all $\f\in C_0(\hat G)$ and $\psi_{\mu_2}=u\psi_{\mu_1}$.
+Then,
+\[u\pi_{f_1}(\f)\psi_{f_1}=\pi_{f_2}(\f)u\psi_{f_1}=\pi_{f_2}(\f)\psi_{f_2}\]
+implies
+\begin{align*}
+\int_{\hat G}\f(\chi)\,d\mu_1(\chi)&=\<\pi_{\mu_1}(\f)\psi_{\mu_1},\psi_{\mu_1}\>_{H_{\mu_1}}=\<u\pi_{\mu_1}(\f)\psi_{\mu_1},u\psi_{\mu_1}\>_{H_{\mu_1}}\\
+&=\<\pi_{\mu_2}(\f)\psi_{\mu_2},\psi_{\mu_2}\>_{H_{\mu_2}}=\int_{\hat G}\f(\chi)\,d\mu_2(\chi)
+\end{align*}
+for $\f\in C_0(\hat G)$, and it proves $\mu_1=\mu_2$ as bounded linear functionals on $C_0(\hat G)$.
+
+(Surjectivity)
+Let $(\pi,\psi)$ be a pointed cyclic representation of $C_0(\hat G)$ with the underlying Hilbert space $H$.
+Then, since $C_0(\hat G)\to\C:\f\mapsto\<\pi(\f)\psi,\psi\>_H$ is a linear functional and has norm one since it satisfies that $|\<\pi(\f)\psi,\psi\>_H|\le\|\pi\|\|\f\|_{C_0(\hat G)}\|\psi\|_H^2\le\|\f\|_{C_0(\hat G)}$ and $\lim_\alpha\<\pi(e_\alpha)\psi,\psi\>_H=\<\psi,\psi\>_H=1$ where $e_\alpha$ denotes an approximate identity of $C_0(\hat G)$.
+The bound $\|\pi\|\le1$ is due to the fact that every $*$-homomorphism between C$^*$-homomorphism has at most norm one.
+Therefore, by the Riesz-Markov-Kakutani representation theorem, there is a regular Borel probability measure $\mu$ on $\hat G$ such that
+\[\<\pi(\f)\psi,\psi\>_H=\int_{\hat G}\f(\chi)\,d\mu(\chi)\]
+for all $\f\in C_0(\hat G)$.
+
+With this measure $\mu$, construct a pointed cyclic representation $(\pi_\mu,\psi_\mu)$ of $C_0(\hat G)$ as we did above.
+Define a bounded linear operator
+\[u:H\to H_\mu:\pi(\f)\psi\mapsto\pi_\mu(\f)\psi_\mu\]
+using cyclicity of $\pi$.
+Then, $u$ is a unitary operator since it is an isometry by
+\[\|\pi_\mu(\f)\psi_\mu\|_{H_\mu}^2=\int_{\hat G}|\f(\chi)|^2\,d\mu(\chi)=\<\pi(|\f|^2)\psi,\psi\>_H=\|\pi(\f)\psi\|_H^2,\]
+and since it is surjective by the cyclicity of $\pi_\mu$.
+Because $\psi_\mu=u\psi$ and
+\[[u^*\pi_\mu(\f)u](\pi(\gamma)\psi)=u^*\pi_\mu(\f)\pi_\mu(\gamma)\psi_\mu=u^*\pi_\mu(\f\gamma)\psi_\mu=\pi(\f\gamma)\psi=\pi(\f)(\pi(\gamma)\psi)\]
+for $\f,\gamma\in C_0(\hat G)$, $u$ is a unitary equivalence between the pointed cyclic representations $\pi$ and $\pi_\mu$.
+\end{pf}
+
+The next step is to apply the same idea to positive definite functions.
+The statement and the proof of the ``GNS representation theorem'' for positive definite functions is as follows:
+
+\begin{thm}[``GNS representation'' for positive definite functions]
+Let $G$ be a locally compact abelian group.
+Then, there is a one-to-one correspondence
+\[\left\{\begin{tabular}{c}normalized continuous\\positive definite functions on $G$\end{tabular}\right\}\xrightarrow{\sim}\left\{\begin{tabular}{c}unitary equivalence class of\\pointed cyclic representations of $G$\end{tabular}\right\}.\]
+\end{thm}
+\begin{pf}
+(Well-definedness)
+We first define the map that sends a normalized continuous positive definite function on $G$ to a pointed cyclic representation of $G$.
+Let $f$ be a continuous positive definite function on $G$ such that $\|f\|_{C_b(G)}=f(e)=1$.
+The function $f$ defines a positive semi-definite Hermition form on $L^1(G)$ given by
+\[\<g,h\>_f:=\int_Gh^**g(y)f(y)\,dy=\iint_{G^2}\bar{h(z^{-1})}g(y)f(zy)\,dz\,dy.\]
+Define the left kernel
+\[L_f:=\{\,g\in L^1(G):\<g,g\>_f=0\,\}.\]
+Then, by the Cauchy-Schwarz inequality, the Hermition form induces another Hermition form on $L^1(G)/L_f$ that is positive definite, in other words, an inner product.
+Complete the inner product space $L^1(G)/L_f$ to define a Hilbert space $H_f$, and denote the inner product by $\<-,-\>_{H_f}$.
+
+For each $x\in G$, we can uniquely define a bounded linear operator $\rho_f(x)\in B(H_f)$ such that
+\[\rho_f(x)(g+L_f)=L_xg+L_f\]
+for $g+L_f\in L^1(G)/L_f$, where $L_xg(y)=g(x^{-1}y)$, because the identity
+\begin{align*}
+\|\rho_f(x)(g+L_f)\|_{H_f}^2&=\|L_xg+L_f\|_{H_f}^2=\|L_xg\|_f^2\\
+&=\iint_{G^2}\bar{L_xg(z^{-1})}L_xg(y)f(zy)\,dz\,dy\\
+&=\iint_{G^2}\bar{g(x^{-1}z^{-1})}g(x^{-1}y)f(zy)\,dz\,dy\\
+&=\iint_{G^2}\bar{g(z^{-1})}g(y)f((zx^{-1})(xy))\,dz\,dy\\
+&=\|g\|_f^2=\|g+L_f\|_{H_f}^2
+\end{align*}
+proves the boundedness of $\rho_f(x)$.
+We claim that $\rho_f:G\to B(H_f)$ is a cyclic representation.
+
+It is a group homomorphism since the identity $\rho_f(xy)=\rho_f(x)\rho_f(y)$ for bounded linear operators on $L^1(G)/L_f$ is extended to $H_f$.
+It is unitary because it is an isometry by the above identity and $\rho_f(x)$ has its inverse $\rho_f(x^{-1})$.
+It is strongly continuous because if a net $x_\alpha\in G$ converges to the identity $e$, then the inequality
+\[|\<g,h\>_f|\le\iint_{G^2}|\bar{h(z^{-1})}g(y)f(zy)|\,dz\,dy\le\int_G|\bar{h(z^{-1})}|\,dz\int_G|g(y)|\,dy=\|h\|_{L^1(G)}\|g\|_{L^1(G)}\]
+implies
+\[\|(\rho_f(x_\alpha)-\id_{H_f})(g+L_f)\|_{H_f}=\|L_{x_\alpha}g-g\|_f\le\|L_{x_\alpha}g-g\|_{L^1(G)}\to0.\]
+
+Finally, it is cyclic with a cyclic vector $\psi_f\in H_f$ defined by the weak$^*$ limit of a net $e_\alpha+L_f$, where $e_\alpha$ is an approximate identity of $L^1(G)$.
+The limit uniquely exists since we have
+\[\<e_\alpha+L_f,g+L_f\>_{H_f}=\<e_\alpha,g\>_f=\int_Gg^**e_\alpha(y)f(y)\,dy\to\int_Gg^*(y)f(y)\,dy\]
+for each $g+L_f\in L^1(G)/L_f$ and $\|e_\alpha+L_f\|_{H_f}=\|e_\alpha\|_f\le\|e_\alpha\|_{L^1(G)}=1$ is uniformly bounded.
+The vector $\psi_f$ is cyclic because if $g+L_f\in L^1(G)/L_f$ satisfies $\<\rho_f(x)\psi_f,g+L_f\>_{H_f}=0$ for all $x\in G$, then
+\[0=\<\psi_f,L_{x^{-1}}g+L_f\>_{H_f}=\lim_\alpha\<e_\alpha,L_{x^{-1}}g\>_f=\int_Gg(xy)f(y)\,dy=\int_Gg(y)f(x^{-1}y)\,dy\]
+implies
+\[0=\int_G\bar{g(x)}\int_Gg(y)f(x^{-1}y)\,dy\,dx=\<g,g\>_f,\]
+and it means the set $\{\,\rho_f(x)\psi_f:x\in G\,\}$ is dense in $H_f$.
+Furthermore, since
+\begin{align*}
+\<\rho_f(x)\psi_f,\psi_f\>_{H_f}&=\lim_{\alpha,\beta}\<L_xe_\alpha,e_\beta\>\\
+&=\lim_{\alpha,\beta}\iint_{G^2}\bar{e_\beta(z^{-1})}e_\alpha(x^{-1}y)f(zy)\,dz\,dy\\
+&=\lim_{\alpha,\beta}e_\alpha*e_\beta*f(x)=f(x),\end{align*}
+we have $\|\psi_f\|_{H_f}=\sqrt{f(e)}=1$.
+Therefore, $(\rho_f,\psi_f)$ is a pointed cyclic representation of $G$.
+
+(Injectivity)
+Suppose we have two normalized continuous positive functions $f_1$ and $f_2$ on $G$ such that the pointed cyclic representations $(\rho_{f_1},\psi_{f_1})$ and $(\rho_{f_2},\psi_{f_2})$ defined as above are unitarily equivalent.
+Let $u:H_{f_1}\to H_{f_2}$ be a unitary operator such that $\rho_{f_2}(x)=u\rho_{f_1}(x)u^*$ for all $x\in G$ and $\psi_{f_2}=u\psi_{f_1}$.
+Then,
+\[u\rho_{f_1}(x)\psi_{f_1}=\rho_{f_2}(x)u\psi_{f_1}=\rho_{f_2}(x)\psi_{f_2}\]
+implies
+\[f_1(x)=\<\rho_{f_1}(x)\psi_{f_1},\psi_{f_1}\>_{H_{f_1}}=\<u\rho_{f_1}(x)\psi_{f_1},u\psi_{f_1}\>_{H_{f_1}}=\<\rho_{f_2}(x)\psi_{f_2},\psi_{f_2}\>_{H_{f_2}}=f_2(x).\]
+
+(Surjectivity)
+Let $(\rho,\psi)$ be a pointed cyclic representation of $G$ with the underlying Hilbert space $H$.
+Then, because $\rho$ is continuous with respect to the strong operator topology of $B(H)$ and
+\[\sum_{k,l=1}^n\<\rho(x_l^{-1}x_k)\psi,\psi\>_H\xi_k\bar\xi_l=\sum_{k=1}^n\|\xi_k\rho(x_k)\psi\|_H^2\ge0\]
+for all $(x_1,\cdots,x_n)\in G^n$ and $(\xi_1,\cdots,\xi_n)\in\C^n$, the function
+\[f:G\to\C:x\mapsto\<\rho(x)\psi,\psi\>\]
+is continuous and positive definite.
+
+Let $(\rho_f,\psi_f)$ be the pointed cyclic representation of $G$ defined as above.
+Define a bounded linear operator
+\[u:H\to H_f:\rho(x)\psi\mapsto\rho_f(x)\psi_f\]
+using cyclicity of $\rho$.
+Then, $u$ is an isometry since the identity
+\[\<\rho_f(x)\psi_f,\rho_f(y)\psi_f\>_{H_f}=\<\rho_f(y^{-1}x)\psi_f,\psi_f\>_{H_f}=f(y^{-1}x)=\<\rho(y^{-1}x)\psi,\psi\>_H=\<\rho(x)\psi,\rho(y)\psi\>_H\]
+for $x,y\in G$ implies
+\[\|\sum_{k=1}^na_k\rho_f(x_k)\psi_f\|_{H_f}^2=\|\sum_{k=1}^na_k\rho(x_k)\psi\|_H^2,\]
+and surjective since the range of $u$ contains the linear span of $u\rho(x)\psi=\rho_f(x)\psi_f$ for all $x\in G$, which is dense in $H_f$.
+Thus the operator $u$ is a unitary operator.
+Because $\psi_f=u\psi$ and
+\[[u^*\rho_f(x)u](\rho(y)\psi)=u^*\rho_f(x)\rho_f(y)\psi_f=u^*\rho_f(xy)\psi_f=\rho(xy)\psi=\rho(x)(\rho(y)\psi)\]
+for $x,y\in G$, $u$ is a unitary equivalence between the pointed cyclic representations $\rho$ and $\rho_f$.
+\end{pf}
+
+
+
+\begin{defn}[Irreducible representations]
+Let $G$ be a locally compact abelian group.
+We say a representation $\rho:G\to B(H)$ of $G$ is \emph{irreducible} if there is no non-trivial proper invariant closed subspace $K$ of $H$, that is, there is a representation $\rho_K:G\to B(K)$ satisfying $\rho(x)\xi=\rho_K(x)\xi$ for every $\xi\in K$.
+\end{defn}
+\begin{lem}
+Let $G$ be a locally compact abelian group.
+A representation of $G$ is irreducible if and only if it is one-dimensional.
+\end{lem}
+\begin{pf}
+It is trivially true that a one-dimensional representation is irreducible.
+The proof of the converse is based on Schur's lemma, which needs the Borel functional calculus.
+Here we only sketch the idea of the proof.
+We can find detailed formulations for the Borel functional calculus in \cite{murphy2014c} or \cite{conway2019course}.
+
+If we assume a representation is not one-dimensional, then we can construct a self-adjoint operator that is not a multiple of the identity in the range of the representation.
+By the Borel functional calculus of this self-adjoint operator, we can find a non-trivial proper projection that commutes with all elements of the range of the representation because the set of projections generate the whole von Neumann algebra generated by the range of the representation.
+It means that the range of the projection is invariant subspace, and the irreducibility of the representation fails to hold.
+\end{pf}
+
+\begin{pf}[Proof of Bochner's theorem]
+Denote the set of continuous positive definite functions $f$ on $G$ such that $f(e)\le1$ and $f(e)=1$ by $B(G)_0^+$ and $B(G)_1^+$, and the set of regular Borel measures $\mu$ on $\hat G$ such that $\mu(\hat G)\le1$ and $\mu(\hat G)=1$ by $M(\hat G)_0^+$ and $M(\hat G)_1^+$, respectively.
+Then, $B(G)_0^+$ and $M(\hat G)_0^+$ are compact convex sets in the weak$^*$ topologies of $L^1(G)^*$ and $C_0(\hat G)^*$ by the Banach-Alaoglu theorem.
+
+We will only prove the surjectivity of the adjoint Fourier transform $\Phi^*\circ\cF^*:M(\hat G)_1^+\to B(G)_1^+$.
+Since the identity
+\[\int_G\Phi^*\circ\cF^*\mu(x)g(x)\,dx=\int_{\hat G}\cF^*g(\chi)\,d\mu(\chi)\]
+for $g\in L^1(G)$ implies $\Phi^*\circ\cF^*$ is continuous so that the image of $M(\hat G)_0^+$ is again a compact convex set.
+Let $f$ be a non-zero extreme point of $B(G)_0^+$ so that $f(e)=1$.
+Let $(\rho_f,\psi_f)$ be the pointed cyclic representation defined by the ``GNS construction'' from $f$.
+
+Suppose $\rho_f$ is reducible so that the underlying Hilbert space $H_f$ is decomposed into non-trivial invariant subspaces as $H_f=K\oplus K^\perp$.
+We have a decomposition $\psi_f=a\xi+b\xi^\perp$ for $\xi\in K$ and $\xi^\perp\in K^\perp$ and it satisfies $a\ne0\ne b$ because $\psi_f$ is a cyclic vector that cannot belong to either $K$ or $K^\perp$.
+We may assume that $a,b>0$ and $\|\xi\|_{H_f}=\|\xi^\perp\|_{H_f}=1$ so that $a^2+b^2=1$.
+Define $g(x):=\<\rho_f(x)\xi,\xi\>_{H_f}$ and $g^\perp:=\<\rho_f(x)\xi^\perp,\xi^\perp\>_{H_f}$, which are continuous and positive definite.
+Then, since $\psi_f$ is a cyclic vector, we have
+\[g(x)-g^\perp(x)=\<\rho_f(x)a\xi,a^{-1}\xi\>_{H_f}-\<\rho_f(x)b\xi^\perp,b^{-1}\xi^\perp\>_{H_f}=\<\rho_f(x)\psi_f,a^{-1}\xi-b^{-1}\xi^\perp\>_{H_f}\ne0\]
+for some $x\in G$, and
+\[f(x)=\<\rho_f(x)\psi_f,\psi_f\>_{H_f}=a^2g(x)+b^2g^\perp(x)\]
+implies that $f$ is not extreme.
+Therefore, $\rho_f$ is irreducible.
+
+Since the representation $\rho_f$ is one-dimensional, there is a character $\chi\in\hat G$ such that $\rho_f(x)=\chi(x)$, which is equal to the adjoint Fourier transform $\chi(x)=\Phi^*\circ\cF^*\delta_\chi(x)$.
+It means that $\Phi^*\circ\cF^*(M(\hat G)_0^+)$ contains the extreme points of $B(G)_0^+$, and by the Krein-Milman theorem, we conclude there is $\mu\in M(\hat G)_0^+$ such that $\Phi^*\circ\cF^*\mu(x)=f(x)$.
+Putting $x=e$, we get $1=f(e)=\Phi^*\circ\cF^*\mu(e)=\mu(\hat G)$, hence the surjectivity of $\Phi^*\circ\cF^*:M(\hat G)_1^+\to B(G)_1^+$.
+\end{pf}
+
+
+
+
+
+
+
+
+
+
+\subsection{The Pontryagin duality}
 
 One of the most well-known application of the Bochner theorem is the Pontryagin duality, which states the canonical homomorhpism $\Phi:G\to\hhat G$ for a locally compact abelian group $G$ is always in fact an isomorhpism.
+
+The Pontryagin duality is deeply related to the Fourier inversion theorem.
 In the previous section, we defined the Fourier transform on $G$ as an operator that maps a function on $G$ to another function on $\hat G$.
-Then, the twice repeated Fourier transform would map a function on $G$ to a function on the double dual $\hhat G$.
-However, Bochner's theorem tells us that if a function $f$ on $G$ satisfies a special condition --- continuity and positive definiteness --- then $f$ can be realized as the Fourier transform of a function on $\hat G$(a measure is a function in a generalized sense), instead of another hypothetical group $H$ such that $\hat H=G$!
+Then, the composition of the Fourier transform and the adjoint Fourier transform maps a function on $G$ to a function on the double dual $\hhat G$.
+However, Bochner's theorem tells us that if a function $f$ on $G$ is continuous and positive definite, then $f$ can be realized as the Fourier transform of a function on $\hat G$(a measure is a function in a generalized sense), instead of another hypothetical group $H$ such that $\hat H=G$.
 
 Consider the case of $G=\R$ or $\T=\R/2\pi\Z$.
-The Fourier inversion theorem and the theorems on the convergence of Fourier series state that from a transformed function $\cF f$ on $\hat G=\R$ or $\Z$ we can reconstruct the original function $f$ by doing the almost same operation, the adjoint Fourier transform.
+The Fourier inversion theorem and the theorems on the convergence of Fourier series state that from a Fourier transformed function $\cF f$ on $\hat G\cong\R$ or $\Z$, we can reconstruct the original function $f$ by the adjoint Fourier transform.
 In other words, although the domain of $\cF^*\cF f$ is in principle $\hhat G$, but it can be identified with the original function $f$ on the original group $G$.
 Furthermore, in a suitable setting of function spaces such as the $L^2$ space or the Schwartz space, the adjoint Fourier transform $\cF^*$ plays a role of the inverse Fourier transform $\cF^{-1}$.
 
 We are interested in the generalization of the recovery of the original group from the dual group $\hat G$.
 This kind of question of recovery is called \emph{duality}, and one of the most classical result is the Pontryagin duality.
-Pontryagin proved in 1934 the duality for compact second countable abelian groups, and van Kampen generalized in the next year for the case of locally compact abelian groups.
+The duality for compact second countable abelian groups was proved by Pontryagin \cite{pontrjagin1934theory} in 1934, and van Kampen \cite{van1935locally} generalized in the next year for the case of locally compact abelian groups.
 In present the Pontryagin duality refers to the duality result for locally compact abelian groups.
 
 For a locally compact abelian group $G$, we can find out in Bochner's theorem a mechanism to pullback the doubly-Fourier-transformed function on $\hhat G$ to the original group $G$ without any loss of information.
@@ -1253,7 +1702,7 @@ Then, $\Phi^*\circ\cF^*:M(\hat G)\to B(G)$ is a well-defined algebra isomorphism
 
 Classical Fourier inversion theorems on $\R$ and $\Z$ go further than Bochner's theorem; not only is the Fourier transform bijective, but the inverse is given by its adjoint.
 Standard proofs of the Fourier inversion theorem on $\R$ use the scaling of $\R$ by scalar multiplication, and standard results on the convergence theorem of Fourier series use several approximate identities such as Dirichlet kernel and Fej\'er kernel.
-They lack in general $G$, so we should find a new proof method.
+They lack in general locally compact abelian groups $G$, so we should find a new proof method.
 The inversion theorem is rigorously stated and proved as follows:
 
 \begin{thm}[Fourier inversion]
@@ -1368,10 +1817,14 @@ Since we have shown the injectivity of $\Phi$, we claim that the image $\Phi(G)$
 
 (Closedness)
 We first show $\Phi$ is a topological embedding.
-Suppose a net $x_\alpha$ does not converge to $x$ in $G$.
-We may assume there is an open neighborhood $U$ of $x$ in $G$ such that $x_\alpha\notin U$ for all $\alpha$.
-By the previous lemma, there is $\f\in L^1(\hat G)$ such that $\supp\cF^*\f\subset U$, and we have $\cF^*\f(x_\alpha)=0$ for all $\alpha$ but $\cF^*\f(x)\ne0$.
-Then, since $\cF^*\f(y)=\int\Phi^*(y)(\chi)\f(\chi)\,d\chi$, so $\Phi^*(x_\alpha)$ does not converges to $\Phi^*(x)$ in the weak$^*$ topology of $L^\infty(\hat G)$, which is same as the topology on $\hhat G=(L^1(\hat G))\hat\enspace$.
+Suppose a net $x_\alpha$ does not converge to $e$ in $G$.
+We may assume by taking a subnet that there is a symmetric open neighborhood $U$ of $e$ in $G$ such that $x_\alpha\notin U$ for all $\alpha$.
+Take a non-zero function $f\in C_c(G)$ such that $f(e)\ne0$ and $\supp f\subset V$, where $V$ is a symmetric open neighborhood of $e\in G$ satisfying $VV\subset U$.
+Since $=f^**f$ is positive definite so that $f^**f\in B(G)\cap L^1(G)$, so $\f:=\cF g\in L^1(\hat G)$ satisfies $\supp(\Phi^*\circ\cF^*\f)=\supp(f^**f)\subset U$ by the Fourier inversion.
+
+Then, we have $\Phi^*\circ\cF^*\f(x_\alpha)=0$ for all $\alpha$ but $\Phi^*\circ\cF^*\f(e)\ne0$.
+Then, since $\Phi^*\circ\cF^*\f(x)=\int\Phi(x)(\chi)\f(\chi)\,d\chi$, the function $\Phi(x_\alpha)$ does not converges to $\Phi(x)$ in the weak$^*$ topology of $L^1(\hat G)^\infty$, which is the same topology on $\hhat G=(L^1(\hat G))\hat\enspace$.
+Therefore, $\Phi:G\to\hhat G$ is a topological embedding.
 
 Now let $y\in\bar{\Phi(G)}$ such that there is a net $x_\alpha\in G$ satisfying $\Phi(x_\alpha)\to y$ in $\hhat G$.
 Since $\Phi(x_\alpha)$ is Cauchy and $\Phi$ is an embedding, $x_\alpha$ is also Cauchy.
@@ -1393,129 +1846,6 @@ For $\mu\in M(\hat G)$ such that $f=\cF^*\mu$, we have $\alpha^*\circ\cF^*\mu=f|
 
 
 
-\subsection{Cyclic representations and Bochner's theorem}
-
-We give in this section a representation-theoretic interpretation of Bochner's theorem: each element of $M(\hat G)$ can be considered as a cyclic representation of $G$ with a canonical cyclic vector.
-More precisely, the following theorem will be defined and proved.
-
-\begin{thm}
-Let $G$ be a locally compact abelian group.
-Then, Bochner's theorem allows to have the following one-to-one correspondence:
-\[\left\{\begin{tabular}{c}regular Borel\\probability measures on $\hat G$\end{tabular}\right\}\xrightarrow{\sim}\left\{\begin{tabular}{c}unitary equivalence class of\\pointed cyclic representations of $G$\end{tabular}\right\}.\]
-\end{thm}
-
-We will prove this at the last of this section.
-One can guess that Bochner's theorem can construct a desired measure on $\hat G$ via a continuous positive definite function on $G$.
-Moreover, the injectivity part of Bochner's theorem is applied to prove the cyclicity of properly defined representations from measures.
-In the viewpoint of Chapter 2, Theorem 4.9 can also be recognized as a ``convex combination'' version of the following correspondence, which is obvious by definition of $\hat G$ and the fact that irreducible representations of an abelian group are one-dimensional:
-\[\left\{\begin{tabular}{c}Dirac measures on $\hat G$\end{tabular}\right\}\xrightarrow{\sim}\left\{\begin{tabular}{c}unitary equivalence class of\\irreducible representations of $G$\end{tabular}\right\}.\]
-Now, as the first step for the precise formulation of the above correspondence, we give a definition of representations of locally compact abelian group.
-
-\begin{defn}[Strongly continuous unitary representation]
-Let $G$ be a locally compact abelian group.
-A \emph{strongly continuous unitary representation} or just a \emph{representation} of $G$ is a group homomorphism $\rho:G\to U(H_\rho)$, where $U(H_\rho)$ denotes the set of unitary operators on a Hilbert space $H_\rho$ with strong operator topology.
-\end{defn}
-
-\begin{defn}[Cyclic representation]
-Let $G$ be a locally compact abelian group.
-A \emph{cyclic representation} of $G$ is a representation $\rho:G\to U(H_\rho)$ such that there is a vector $\psi\in H_\rho$ called a \emph{cyclic vector} that satisfies the closed linear span of $\rho(G)\psi$ is equal to $H_\rho$.
-A \emph{pointed cyclic representation} of $G$ is a pair $(\rho,\psi)$ of a cyclic representation $\rho$ of $G$ and a unit cyclic vector $\psi\in H_\rho$.
-\end{defn}
-
-\begin{defn}[Unitary equivalence]
-Let $(\rho_1,\psi_1)$ and $(\rho_2,\psi_2)$ are pointed cyclic representations of a locally compact abelian group $G$.
-We say they are \emph{unitarily equivalent} if there is a unitary operator $u:H_{\rho_1}\to H_{\rho_2}$ such that $\rho_2(x)=u\rho_1(x)u^*$ for all $x\in G$ and $\psi_2=u\psi_1$.
-\end{defn}
-
-For the second step to understand our goal, we need to figure out which map connects the measures and cyclic representations.
-The hint can be discovered in a famous result of C$^*$-algebra theory called the \emph{Gelfand-Naimark-Segal representation}, or shortly GNS representation.
-The GNS representation is a construction method of cyclic representation of a C$^*$-algerba from a normalized positive linear functional, which is called a state in C$^*$-algebra theory.
-In the abelian context the positive linear functional is nothing but the finite regular Borel measure, so the GNS construction can be paraphrased into a mapping that maps a probability measure to a cyclic representation.
-
-\begin{defn}[State]
-A \emph{state} on a C$^*$-algebra $\cA$ is a positive linear functional on $\cA$ of norm one.
-\end{defn}
-\begin{lem}
-If $\omega$ is a state on $\cA$, then $\omega(b^*a^*ab)\le\|a\|^2\omega(b^*b)$ for $a,b\in\cA$.
-\end{lem}
-\begin{pf}
-We omit the proof; it requires the existence of approximate identity in C$^*$-algebras.
-See [].
-\end{pf}
-\begin{defn}[Gelfand-Naimark-Segal representation]
-Let $\cA$ be a C$^*$-algebra, and $\omega$ be a state on $\cA$.
-Define the \emph{left kernel}
-\[L_\omega:=\{a\in\cA:\omega(a^*a)=0\}=\{a\in\cA:\omega(b^*a)=0\text{ for all }b\in\cA\}\]
-of $\omega$, which is a closed left ideal of $\cA$.
-Then, we can define an inner product on a left $\cA$-module $\cA/L_\omega$ by $\<a+L_\omega,b+L_\omega\>:=\omega(b^*a)$, and complete it with the norm induced by this inner product to obtain a Hilbert space, denoted by $H_\omega$.
-For each $a\in\cA$ if we define $\pi(a):\cA/L_\omega\to\cA/L_\omega$ by
-\[\pi(a):b+L\mapsto ab+L,\]
-then $\pi(a)$ is $\C$-linear and bounded by the previous lemma, we can define a map $\pi_\omega:\cA\to B(H_\omega)$.
-It is a cyclic representation with a \emph{canonical cyclic vector} $\psi$ defined such that $\omega(a)=\<a+L_\omega,\psi\>$ for all $a\in\cA$, which we call the \emph{Gelfand-Naimark-Segal} represntation.
-\end{defn}
-
-\begin{ex}[GNS representation for abelian C$^*$-algerbas]
-Let $\cA$ be an abelian C$^*$-algerba, and let $\Omega=\sigma(\cA)$ be the spectrum of $\cA$.
-By the Gelfand-Naimark representation theorem, we can identify $\cA=C_0(\Omega)$ with the canonical $*$-isomorphism.
-For the Gelfand-Naimark representation theorem, see [].
-Then, the states on $\cA$ are exactly the regular Borel probability measures on $\Omega$, by the Riesz-Kakutani representation theorem.
-
-Consider a state on $\cA$ that corresponds to a regular Borel probability measure $\mu$ on $\Omega$.
-Then, the left kernel of $\mu$ is the kernel of the restriction operator onto the support of $\mu$;
-\[L_\mu=\{\,f\in\cA:\int|f|^2\,d\mu=0\,\}=\{\,f\in\cA:f|_{\supp\mu}=0\,\}.\]
-Recall here that one way to describe the support of a non-negative measure $\mu$ is the complement of the union of open null sets.
-Therefore, since the restriction $C_0(\Omega)\to C_0(\supp\mu)$ is surjective, we obtain the isomorphism $\cA/L_\mu\cong C_0(\supp\mu)$ and the Hilbert space $H_\mu=L^2(\supp\mu,\mu)$ by the completion with the inner product $\<f,g\>:=\int\bar gf\,d\mu$ on $C_0(\supp\mu)$.
-The Gelfand-Naimark-Segal representation of $\cA$ with respect to $\mu$ is now
-\[\pi_\mu:\cA\to B(H_\mu):f\mapsto M_f,\]
-where $M_f$ denotes the multiplication operator such that $M_f(g)=fg$, and the canonical cyclic vector is the unity function on $\supp\mu$.
-\end{ex}
-
-Following the idea of Gelfand-Naimark-Segal representations, we will establish the one-to-one correspondence between pointed cyclic representations and regular Borel probability measures even if $L^1(G)$ is not a C$^*$-algebra.
-There is also a way to use the Gelfand-Naimark-Segal representation directly with C$^*$-algebras: we can complete $L^1(G)$ with the norm of $C_0(\hat G)$ through the Fourier transform to obtain a C$^*$-algebra, which is called the \emph{group C$^*$-algebra}, and it also shares the exactly same category of representations as $G$ and $L^1(G)$.
-However, we will not introduce the group C$^*$-algebras.
-
-\begin{pf}[Proof of Theorem 4.9]
-We first define the map.
-Let $\mu$ be a regular Borel probability measure on $\hat G$.
-Let $H_\mu:=L^2(\supp\mu,\mu)$ and define a representation $\rho_\mu:G\to U(H_\mu)$ by the multiplication operators $\rho_\mu(x):=M_{\Phi(x)}$.
-We can check easily that $\rho$ is strongly continuous and unitary.
-Then, we have the unity function $\psi_\mu:=\1_{\supp\mu}$ as a cyclic vector of this representation because if $f\in H_\mu\subset L^1(\supp\mu,\mu)$ satisfies $\<f,\rho_\mu(x^{-1})\psi_\mu\>_{H_\mu}=0$ for all $x\in G$, then
-\[\<f,\rho_\mu(x^{-1})\psi_\mu\>_{H_\mu}=\<f,\Phi(x^{-1})\>_{H_\mu}=\int_{\hat G}\chi(x)f(\chi)\,d\mu(\chi)=\Phi^*\circ\cF^*f(x)\]
-implies $f=0$ by Bochner's theorem.
-Our claim is that the map assigning to each $\mu\in\Prob(\hat G)$ the unitary equivalence class of this pointed cyclic representation $(\rho_\mu,\psi_\mu)$ is bijective.
-
-(Injectivity)
-Suppose we have two regular Borel probability measures $\mu_1$ and $\mu_2$ on $\hat G$ such that the pointed cyclic representations $(\rho_{\mu_1},\psi_{\mu_1})$ and $(\rho_{\mu_2},\psi_{\mu_2})$ defined as above are unitarily equivalent.
-Let $u:H_{\rho_{\mu_1}}\to H_{\rho_{\mu_2}}$ be a unitary operator such that $\rho_{\mu_2}(x)=u\rho_{\mu_1}(x)u^*$ for all $x\in G$ and $\psi_{\mu_2}=u\psi_{\mu_1}$.
-Since
-\[u\rho_{\mu_1}(x)\psi_{\mu_1}=\rho_{\mu_2}(x)u\psi_{\mu_1}=\rho_{\mu_2}(x)\psi_{\mu_2}\]
-implies $\<\rho_{\mu_1}(x)\psi_{\mu_1},\psi_{\mu_1}\>_{H_{\mu_1}}=\<\rho_{\mu_2}(x)\psi_{\mu_2},\psi_{\mu_2}\>_{H_{\mu_2}}$, and since
-\[\<\rho_{\mu_i}(x)\psi_{\mu_i},\psi_{\mu_i}\>_{H_{\mu_i}}=\mu_i(\bar{\psi_{\mu_i}}\rho_{\mu_i}(x)\psi_{\mu_i})=\int_{\hat G}\Phi(x)(\chi)\,d\mu_i(\chi)=\Phi^*\circ\cF^*\mu_i(x)\]
-for all $x\in G$ and $i\in\{1,2\}$, we can conclude $\mu_1=\mu_2$ by Bochner's theorem.
-
-(Surjectivity)
-Let $\rho:G\to B(H)$ be a cyclic representation with a unit cyclic vector $\psi\in H$.
-Then, the function
-\[G\to\C:x\mapsto\<\rho(x)\psi,\psi\>\]
-is continuous and positive definite since $\rho$ is continuous with respect to the strong operator topology of $B(H)$ and
-\[\sum_{k,l=1}^n\<\rho(x_l^{-1}x_k)\psi,\psi\>\xi_k\bar\xi_l=\sum_{k=1}^n\|\xi_k\rho(x_k)\psi\|^2\ge0\]
-for all $(x_1,\cdots,x_n)\in G^n$ and $(\xi_1,\cdots,\xi_n)\in\C^n$.
-By the Bochner theorem, there is a regular Borel probability measure $\mu$ on $\hat G$ such that
-\[\<\rho(x)\psi,\psi\>=\int_{\hat G}\chi(x)\,d\mu(\chi)\]
-for all $x\in G$.
-Let $(\rho_\mu,\psi_\mu)$ be a pointed cyclic representation acting on $H_\mu:=L^2(\supp\mu,\mu)$ as above.
-
-Define a bounded operator such that
-\[u:H\to H_\mu:\rho(x)\psi\mapsto\Phi(x)\]
-using cyclicity.
-Then, it is an isometry since
-\[\|\Phi(x)\|_{H_\mu}^2=\int_{\hat G}|\chi(x)|^2\,d\mu(\chi)=\|\rho(x)\psi\|_H^2,\]
-and onto since the range of $u$ contains the linear span of $u\rho(x)\psi=\Phi(x)$ for all $x\in G$, which is dense in $H_\mu$.
-Thus the operator $u$ is a unitary operator.
-Because $\psi_\mu=\1_{\supp\mu}=u\psi$ and
-\[[u^*\rho_\mu(x)u](\rho(y)\psi)=u^*\rho_\mu(x)\Phi(y)=u^*\Phi(x^{-1}y)=\rho(x^{-1})(\rho(y)\psi)\]
-for each $x$ and $y$ in $G$, we finally conclude that $u$ is a unitary equivalence between the pointed cyclic representations $\rho$ and $\rho_\mu$.
-\end{pf}
 
 
 
@@ -1523,9 +1853,7 @@ for each $x$ and $y$ in $G$, we finally conclude that $u$ is a unitary equivalen
 
 
 
-
-
-
+\iffalse
 
 \subsection{Notes on non-abelian groups}
 
@@ -1583,7 +1911,7 @@ we have
 By the Tannak duality, the double dual group is isomorphic to the original group.
 \end{ex}
 
-
+\fi
 
 \bibliographystyle{acm}
 \bibliography{bib}

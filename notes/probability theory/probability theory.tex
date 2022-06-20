@@ -130,50 +130,23 @@ We will define the \emph{weak convergence} as follows: $F_n$ converges weakly to
 
 
 
-\section{Weak convergence in metric spaces}
 
-\begin{prb}
-On metric spaces.
+
+\begin{prb}[Properties of probability Borel measures]
+Let $S$ be a topological space.
 \begin{parts}
-\item Every single measure is regular if $X$ is perfectly normal.
-\item Every single measure is tight if $X$ is Polish.
+\item Every single probability Borel measure is regular if $S$ is perfectly normal.
+\item Every single probability Borel measure is tight if $S$ is Polish.
 \end{parts}
 \end{prb}
 
-% pi system that generates sigma alg is separating
-% in \R^\infty and C(I), set of finite dimensional sets is separating
-
-
-% convergence determining class
-%  generalization of Portemanteau theorem
-%  uniformly continuous functions: They can separate two closed sets like Urysohn.
-
-\begin{prb}[Portemanteau theorem]
-Let $\mu_n$ and $\mu$ be probability measures on a metric space $S$.
-We will define the \emph{weak convergence} as follows: $\mu_n$ converges weakly to $\mu$ if
-\[\int f\,d\mu_n\to\int f\,d\mu\]
-for every $f\in C_b(S)$.
-\begin{parts}
-\item $\limsup_{n\to\infty}\mu_n(F)\le\mu(F)$ for all closed sets $F$.
-\item $\liminf_{n\to\infty}\mu_n(G)\ge\mu(G)$ for all open sets $G$.
-\end{parts}
-\end{prb}
-% 최소한 메트릭에서는 연속함수를 균등연속함수로 바꿀 수 있음
-
-
-\begin{prb}[Skorokhod representation theorem]
-\end{prb}
-
-\begin{prb}[Continuous mapping theorem]
-\end{prb}
-
-\begin{prb}[Slutsky's theorem]
-\end{prb}
 
 
 
 
-\section{The space of probability measures}
+\section{Weak topology in the space of probability measures}
+
+
 \begin{prb}[Local limit theorems]
 Suppose $f_n$ and $f$ are density functions.
 \begin{parts}
@@ -183,20 +156,80 @@ Suppose $f_n$ and $f$ are density functions.
 \end{parts}
 \end{prb}
 
-\begin{prb}[Vauge convergence]
-Let $S$ be a locally compact Hausdorff space.
+
+% pi system that generates sigma alg is separating
+% in \R^\infty and C(I), set of finite dimensional sets is separating
+
+
+
+
+\begin{prb}[Portmanteau theorem]
+Let $S$ be a normal space and, $\mu_\alpha$ be a net in $\Prob(S)$.
+We define the \emph{weak convergence} as follows: $\mu_\alpha$ converges weakly to $\mu$ if
+\[\int f\,d\mu_\alpha\to\int f\,d\mu\]
+for every $f\in C_b(S)$.
+The following statements are all equivalent.
 \begin{parts}
-\item $\mu_n\to\mu$ vaguely if and only if $\int f\,d\mu_n\to\int f\,d\mu$ for all $f\in C_c(S)$.
-\item $\mu_n\to\mu$ weakly if and only if vaguely.
-\item $\delta_n\to0$ vaguely but not weakly. (escaping to infinity)
+\item $\mu_\alpha\Rightarrow\mu$
+\item $\mu_\alpha(g)\to\mu(g)$ for every uniformly continuous $g\in C_b(S)$.
+\item $\limsup_\alpha\mu_\alpha(F)\le\mu(F)$ for every closed $F$.
+\item $\liminf_\alpha\mu_\alpha(U)\ge\mu(U)$ for every open $U$.
+\item $\lim_\alpha\mu_\alpha(A)=\mu(A)$ for every Borel $A$ such that $\mu(\partial A)=0$.
 \end{parts}
 \end{prb}
 \begin{pf}
+(a)$\Rightarrow$(b)
+Clear.
+
+(b)$\Rightarrow$(c)
+Let $U$ be an open set such that $F\subset U$.
+There is uniformly continuous $g\in C_b(S)$ such that $\1_F\le g\le\1_U$.
+Therefore,
+\[\limsup_\alpha\mu_\alpha(F)\le\limsup_\alpha\mu_\alpha(g)=\mu(g)\le\mu(U).\]
+By the outer regularity of $\mu$, we obtain $\limsup_\alpha\mu_\alpha(F)\le\mu(F)$.
+
+(c)$\Leftrightarrow$(d)
+Clear.
+
+(c)$+$(d)$\Rightarrow$(e)
+It easily follows from
+\[\limsup_\alpha\mu_\alpha(\bar A)\le\mu(\bar A)=\mu(A)=\mu(A^\circ)\le\liminf_\alpha\mu_\alpha(A^\circ).\]
+
+(e)$\Rightarrow$(a)
+Let $g\in C_b(S)$ and $\e>0$.
+Since the pushforward measrue $g_*\mu$ has at most countably many mass points, there is a partition $(t_i)_{i=0}^n$ of an interval containing $[-\|g\|,\|g\|]$ such that $|t_{i+1}-t_i|<\e$ and $\mu(\{x:g(x)=t_i\})=0$ for each $i$.
+Let $(A_i)_{i=0}^{n-1}$ be a Borel decomposition of $S$ given by $A_i:=g^{-1}([t_i,t_{i+1}))$, and define $f_\e:=\sum_{i=0}^{n-1}t_i\1_{A_i}$ so that we have $\sup_{x\in S}|g_\e(x)-g(x)|\le\e$.
+From
+\begin{align*}
+|\mu_\alpha(g)-\mu(g)|&\le|\mu_\alpha(g-g_\e)|+|\mu_\alpha(g_\e)-\mu(g_\e)|+|\mu(g_\e-g)|\\
+&\le\e+\sum_{i=0}^{n-1}|t_i||\mu_\alpha(A_i)-\mu(A_i)|+\e,
+\end{align*}
+we get
+\[\limsup_\alpha|\mu_\alpha(g)-\mu(g)|<2\e.\]
+Since $\e$ is arbitrary, we are done.
 \end{pf}
-% C_0가 convergence determining class라는 말
+
+
+
+\begin{prb}[Embedding by Dirac measures]
+Let $S$ be a normal space.
+\begin{parts}
+\item $S\to\Prob(S)$ is an embedding.
+\item $S\subset\Prob(S)$ is sequentially closed.
+\item % If a metric is given, then completeness?
+\end{parts}
+\end{prb}
+\begin{pf}
+(a)
+It uses Urysohn.
+
+(b)
+It uses (b)=>(c) of Portmanteau.
+\end{pf}
+
 
 \begin{prb}[L\'evy-Prokhorov metric]
-Let $S$ be a metric space, and $\Prob(S)$ be the set of probability Borel measures on $S$.
+Let $S$ be a metric space, and $\Prob(S)$ be the set of probability (regular) Borel measures on $S$.
 Define $\pi:\Prob(S)\times\Prob(S)\to[0,\infty)$ such that
 \[\pi(\mu,\nu):=\inf\{\,\alpha>0:\mu(A)\le\nu(A^\alpha)+\alpha,\ \nu(A)\le\mu(A^\alpha)+\alpha,\ \forall A\in\cB(S)\,\},\]
 where $A^\alpha$ is the $\alpha$-neighborhood of $a$.
@@ -205,6 +238,7 @@ where $A^\alpha$ is the $\alpha$-neighborhood of $a$.
 \item $\mu_n\to\mu$ in $\pi$ implies $\mu_n\Rightarrow\mu$.
 \item $\mu_\alpha\Rightarrow\mu$ implies $\mu_\alpha\to\mu$ in $\pi$, if $S$ is separable.
 \item $(S,d)$ is separable if and only if $(\Prob(S),\pi)$ is separable.
+\item $(S,d)$ is compact if and only if $(\Prob(S),\pi)$ is compact
 \item $(S,d)$ is complete if and only if $(\Prob(S),\pi)$ is complete.
 \end{parts}
 \end{prb}
@@ -213,13 +247,25 @@ where $A^\alpha$ is the $\alpha$-neighborhood of $a$.
 \end{pf}
 
 \begin{prb}[Prokhorov's theorem]
-Let $S$ be a metrizable space.
+Let $S$ be a normal space.
 Let $\Prob(S)$ be the space of probability measures on $S$ endowed with the topology of weak convergence.
 \begin{parts}
-\item If $S$ is Polish, then the relative compactness implies the tightness.
+\item The relative compactness implies the tightness if $S$ is Polish.
 \item The tightness implies the relative compactness.
 \end{parts}
 \end{prb}
+\begin{pf}
+(a)
+Fix a complete metric $d$ on $S$.
+For each entourage $E$, we want to find a finite union of closed $E$-neighborhood that is arbitrarily full.
+% 여기서 separability가 필요
+And we require the countable fundamental system of uniformity.
+% 이 시점에서 metrizability가 반드시 필요하게 된 것
+% completeness는 잡은 totally bounded set이 compact가 되기 위해
+
+(b)
+% Stone-\v Cech compactification
+\end{pf}
 
 
 
@@ -293,6 +339,25 @@ If there is a continuous function $\f$ such that $\f_n=\f$ on $n^{-1}\Z$, then $
 \end{prb}
 
 
+\begin{prb}[Convergence determining class]
+\end{prb}
+%  generalization of Portemanteau theorem
+%  uniformly continuous functions: They can separate two closed sets like Urysohn.
+
+
+\begin{prb}[Vauge convergence]
+Let $S$ be a locally compact Hausdorff space.
+\begin{parts}
+\item $\mu_\alpha\to\mu$ vaguely if and only if $\int g\,d\mu_\alpha\to\int g\,d\mu$ for all $g\in C_c(S)$.
+\item $\mu_\alpha\to\mu$ weakly if and only if vaguely.
+\item $\delta_n\to0$ vaguely but not weakly. (escaping to infinity)
+\end{parts}
+\end{prb}
+\begin{pf}
+\end{pf}
+% C_0가 convergence determining class라는 말
+
+
 
 
 
@@ -306,11 +371,7 @@ If there is a continuous function $\f$ such that $\f_n=\f$ on $n^{-1}\Z$, then $
 \part{Discrete stochastic process}
 
 
-
 \chapter{Limit theorems}
-
-
-
 
 \section{Laws of large numbers}
 
