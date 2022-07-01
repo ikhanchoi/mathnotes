@@ -379,75 +379,82 @@ Let $S$ be a locally compact Hausdorff space.
 Our purpose is to find appropriate $a_n$ and slowly growing $b_n$ such that $(S_n-a_n)/b_n\to0$ in probability or almost surely.
 
 
-\begin{prb}[Truncation method]
-Let $X_{n,i}:\Omega\to\R$ be uncorrelated random variables (with respect to $i$ for each $n$) and $S_n:=X_{n,1}+\cdots+X_{n,n}$.
-For a positive sequence $(c_n)_{n=1}^\infty$, let $Y_{n,i}:=X_{n,i}\1_{|X_{n,i}|\le c_n}$ be truncated random variables and $T_n:=Y_{n,1}+\cdots+Y_{n,n}$.
-Suppose that the truncation level $c_n$ satisfies the approximation condition
-\[\lim_{n\to\infty}\sum_{i=1}^nP(|X_{n,i}|>c_n)=0.\]
+\begin{prb}[Kolmogorov-Feller theorem]
+Let $X_i$ be an uncorrelated sequence of random variables such that
+\[\lim_{x\to\infty}\sup_ixP(|X_i|>x)=0.\]
+This condition is called the \emph{Kolmogorov-Feller} condition.
+Let $Y_{n,i}:=X_i\1_{|X_i|\le c_n}$.
 \begin{parts}
-\item If $(T_n-ET_n)/b_n\to0$ in probability, then $(S_n-ET_n)/b_n\to0$ in probability.
-\item If $(T_n-ET_n)/b_n\to Z$ in distribution, then $(S_n-ET_n)/b_n\to Z$ in distribution.
+\item We have
+\[\lim_{n\to\infty}P(S_n\ne T_n)=0\]
+if $n\lesssim c_n$.
+\item We have
+\[\lim_{n\to\infty}P\left(\left|\frac{T_n-ET_n}{b_n}\right|>\e\right)=0\]
+if $nc_n\lesssim b_n^2$.
+\item We have
+\[\frac{S_n-ET_n}n\to0\]
+in probability.
 \end{parts}
 \end{prb}
 \begin{pf}
+Write $g(x):=\sup_ixP(|X_i|>x)$ so that $g(x)\to0$ as $x\to\infty$.
+
 (a)
-Write
-\[P\left(\left|\frac{S_n-ET_n}{b_n}\right|>\e\right)
-\le P(S_n\ne T_n)+P\left(\left|\frac{T_n-ET_n}{b_n}\right|>\e\right)\to0\]
-since
-\[P(S_n\ne T_n)\le\sum_{i=1}^nP(X_{n,i}\ne Y_{n,i})=\sum_{i=1}^nP(|X_{n,i}|>c_n)\to0\]
-as $n\to\infty$.
+It follows from
+\[P(S_n\ne T_n)\le\sum_{i=1}^nP(|X_i|>c_n)\le\sum_{i=1}^n\frac1{c_n}g(c_n)\lesssim g(c_n).\]
 
 (b)
-By the Slutsky theorem.
+We write
+\begin{align*}
+P\left(\left|\frac{T_n-ET_n}{b_n}\right|>\e\right)
+&\le\frac1{\e^2b_n^2}E|T_n-ET_n|^2\\
+&=\frac1{\e^2b_n^2}\sum_{i=1}^nE|Y_{n,i}-EY_{n,i}|^2\\
+&\le\frac1{\e^2b_n^2}\sum_{i=1}^nE|X_i\1_{|X_i|\le c_n}|^2\\
+&=\frac1{\e^2b_n^2}\sum_{i=1}^n\int_0^{c_n}2xP(|X_i|>x)\,dx\\
+&\le\frac{2n}{\e^2b_n^2}\int_0^{c_n}g(x)\,dx\\
+&=\frac{2nc_n}{\e^2b_n^2}\int_0^1g(c_nx)\,dx\\
+&\lesssim\int_0^1g(c_nx)\,dx.
+\end{align*}
+Since $g(x)\le x$ and $g(x)\to0$ as $x\to\infty$, the function $g$ is bounded.
+By the bounded convergence theorem, we get $\int_0^1g(c_nx)\,dx\to0$ as $n\to\infty$.
 \end{pf}
 
 
-\begin{prb}[Weak laws of large numbers]
-Let $X_{n,i}:\Omega\to\R$ be uncorrelated random variables and $S_n:=X_{n,1}+\cdots+X_{n,n}$.
-For a positive sequence $(c_n)_{n=1}^\infty$, let $Y_{n,i}:=X_{n,i}\1_{|X_{n,i}|\le c_n}$ be truncated random variables and $T_n:=Y_{n,1}+\cdots+Y_{n,n}$.
-
+\begin{prb}[St. Petersburg paradox]
+We want see the asymptotic behavior of the partial sums $S_n$ of i.i.d. random variables $X_i$ such that $E|X_i|=\infty$.
+Let
+\[P(X_n=2^m)=2^{-m}\quad\text{ for }m\ge1.\]
+Let $Y_{n,i}:=X_i\1_{|X_i|\le c_n}$.
 \begin{parts}
-\item If
-\[b_n^2\gg\sum_{i=1}^nE|Y_{n,i}-EY_{n,i}|^2,\]
-then $(T_n-ET_n)/b_n\to0$ in probability.
-
-\item Take slow $c_n$ as possible such that
-\[1\gg\sum_{i=1}^nP(|X_{n,i}|>c_n).\]
-Take slow $b_n$ as possible such that
-\[b_n^2\gg\sum_{i=1}^nE|Y_{n,i}|^2.\]
-then $(S_n-ET_n)/b_n\to0$.
-
-\item If
-\[\lim_{x\to\infty}\sup_ixP(|X_i|>x)=0,\]
-then $(S_n-ET_n)/n\to0$ in probability.
-This is called the \emph{Kolmogorov-Feller condition}.
+\item We have
+\[\lim_{n\to\infty}P(S_n\ne T_n)=0\]
+if $n\ll c_n$.
+\item We have
+\[\lim_{n\to\infty}P\left(\left|\frac{T_n-ET_n}{b_n}\right|>\e\right)=0\]
+if $nc_n\ll b_n^2$.
+\item We have
+\[\frac{S_n-n\log_2n}{n^{1+\e}}\to0\]
+in probability for every $\e>0$.
 \end{parts}
 \end{prb}
 \begin{pf}
 (a)
-Since $X_n$ are uncorrelated, we have for any $\e>0$ that
-\[P\left(\left|\frac{S_n-ES_n}{c_n}\right|>\e\right)\le\frac1{\e^2c_n^2}VS_n\to0\]
-as $n\to\infty$.
+It follows from
+\[P(S_n\ne T_n)
+\le\sum_{i=1}^nP(X_i\ne Y_{n,i})
+=\sum_{i=1}^nP(|X_i|>c_n)
+\le\sum_{i=1}^n\frac2{c_n}=\frac{2n}{c_n}.\]
 
-(c)
-Write $g(x):=\sup_ixP(|X_i|>x)$.
-Then, the truncation condition for $b_n=n$ is satisfied as
-\[\sum_{i=1}^nP(|X_i|>n)\le\sum_{i=1}^n\frac1ng(n)=g(n)\to0\]
-as $n\to\infty$.
-
-On the other hand,
+(b)
+It follows from
 \begin{align*}
-\frac1{n^2}\sum_{i=1}^nE|Y_i|^2
-&=\frac1{n^2}\sum_{i=1}^n\int_0^\infty2xP(|Y_i|>x)\,dx
-=\frac1{n^2}\sum_{i=1}^n\int_0^n2xP(|X_i|>x)\,dx\\
-&\le\frac2n\int_0^ng(x)\,dx
-=2\int_0^1g(nx)\,dx.
+P\left(\left|\frac{T_n-ET_n}{b_n}\right|>\e\right)
+&\le\frac1{\e^2b_n^2}E|T_n-ET_n|^2\\
+&=\frac1{\e^2b_n^2}\sum_{i=1}^nE|Y_{n,i}-EY_{n,i}|^2\\
+&\le\frac1{\e^2b_n^2}\sum_{i=1}^nE|X_i\1_{|X_i|\le c_n}|^2\\
+&\le\frac1{\e^2b_n^2}n\cdot2c_n
 \end{align*}
-Since $g(x)\le x$ and $g(x)\to0$ as $x\to\infty$, $g$ is bounded so that the bounded convergence theorem implies $\int_0^1g(nx)\,dx\to0$ as $n\to\infty$.
 
-Therefore, $(T_n-ET_n)/n\to0$ in probability.
-By the truncation
 \end{pf}
 
 
@@ -455,12 +462,14 @@ By the truncation
 \begin{prb}[Borel-Cantelli lemmas]
 \end{prb}
 
-\begin{prb}[Strong laws of large numbers]
+\begin{prb}[Head runs]
+\end{prb}
+
+\begin{prb}[Strong laws of large numbers for $L^1$]
 Proof by Etemadi
 \end{prb}
 
-
-Random series
+Random series proof
 
 \section{Renewal theory}
 
@@ -470,31 +479,64 @@ Random series
 
 \section{Central limit theorems}
 
+\begin{prb}[Central limit theorem for $L^3$]
+Replacement method by Lindeman and Lyapunov
+\end{prb}
 
-\begin{prb}[Lyapunov central limit theorem]
-Let $X_n:\Omega\to\R$ be independent random variables with $EX_i=\mu_i$ and $VX_i=\sigma_i^2$.
+\begin{prb}[Lindeberg-Feller theorem]
+Let $X_i$ be independent random variables such that for every $\e>0$ we have
+\[\lim_{n\to\infty}\frac1{s_n^2}\sum_{i=1}^nE|X_i-EX_i|^2\1_{|X_i-EX_i|>\e s_n}=0.\]
+This condition is called the \emph{Lindeberg-Feller} condition.
+Let $Y_{n,i}:=\frac{X_i-EX_i}{s_n}$.
+\begin{parts}
+\item We have
+\[|Ee^{it(S_n-ES_n)/s_n}-e^{-\frac12t^2}|\le\sum_{i=1}^n|Ee^{itY_{n,i}}-e^{-\frac12E(tY_{n,i})^2}|.\]
+\item For any $\e>0$, we have an estimate
+\[\Bigl|Ee^{itY}-\bigl(1-\frac12E(tY)^2\bigr)\Bigr|\lesssim_t\e EY^2+EY^2\1_{|Y|>\e}\]
+for all random variables $Y$ such that $EY^2<\infty$.
+\item For any $\e>0$, we have an estimate
+\[\Bigl|e^{-\frac12E(tY)^2}-\bigl(1-\frac12E(tY)^2\bigr)\Bigr|
+\lesssim_tEY^2(\e^2+EY^2\1_{|Y|>\e}).\]
+for all random variables $Y$ such that $EY^2<\infty$.
+\item
+\end{parts}
+\end{prb}
+\begin{pf}
+(a)
+Note
+\[Ee^{it(S_n-ES_n)/s_n}=\prod_{i=1}^nEe^{itY_{n,i}}\quad\text{ and }\quad e^{-\frac12t^2}=\prod_{i=1}^ne^{-\frac12E(tY_{n,i})^2}.\]
+
+(b)
+Since
+\[\Bigl|e^{ix}-\bigl(1+ix-\frac12x^2\bigr)\Bigr|=\Bigl|\frac{i^3}2\int_0^x(x-y)^2e^{iy}\,dy\Bigr|\le\min\{\frac16|x|^3,x^2\}\]
+for $x\in\R$, we have
+\begin{align*}
+\Bigl|Ee^{itY}-\bigl(1-\frac12E(tY)^2\bigr)\Bigr|
+&\le E\Bigl|e^{itY}-\bigl(1-\frac12(tY)^2\bigr)\Bigr|\\
+&\lesssim_t E\min\{|Y|^3,Y^2\}\\
+&\le E|Y|^3\1_{|Y|\le\e}+EY^2\1_{|Y|>\e}\\
+&\le\e EY^2+EY^2\1_{|Y|>\e}.
+\end{align*}
+
+(c)
+Since
+\[|e^{-x}-(1-x)|=\Bigl|\int_0^x(x-y)e^{-y}\,dy\Bigr|\le\frac12x^2\]
+for $x\ge0$, we have
+\[\Bigl|e^{-\frac12E(tY)^2}-\bigl(1-\frac12E(tY)^2\bigr)\Bigr|
+\lesssim_t(EY^2)^2\le EY^2(\e^2+EY^2\1_{|Y|>\e}).\]
+\end{pf}
+
+\begin{prb}
+Let $X_n:\Omega\to\R$ be independent random variables.
 If there is $\delta>0$ such that the \emph{Lyapunov condition}
-\[\lim_{n\to\infty}\frac1{s_n^{2+\delta}}\sum_{i=1}^nE|X_i-\mu_i|^{2+\delta}=0\]
+\[\lim_{n\to\infty}\frac1{s_n^{2+\delta}}\sum_{i=1}^nE|X_i-EX_i|^{2+\delta}=0\]
 is satisfied, then
 \[\frac{S_n-ES_n}{s_n}\to N(0,1)\]
 weakly, where $S_n:=\sum_{i=1}^nX_i$ and $s_n^2:=VS_n$.
 \end{prb}
 
-\begin{prb}[Lindeberg-Feller central limit theorem]
-Let $X_{i,n}:\Omega\to\R$ be independent random variables and $S_n:=X_1+\cdots+X_n$.
-\begin{parts}
-\item
-If
-\[s_n^2\sim\sum_{i=1}^nE|X_i-EX_i|^2,\]
-and if for every $\e>0$ we have
-\[s_n^2\gg\sum_{i=1}^nE|X_i-EX_i|^2\1_{|X_i-EX_i|>\e s_n},\]
-then $(S_n-ES_n)/s_n\to N(0,1)$ in distribution.
-This is called the \emph{Lindeberg condition}.
-\item
-
-\end{parts}
-\end{prb}
-
+% 여기에다가 truncation 까지 얹을 수 있음
+% truncation level을 잡는 게 어려운 문제가 됨
 
 Berry-Esseen ineaulity
 
@@ -523,16 +565,10 @@ $E(T_n)\sim n\log n$
 \end{prb}
 \begin{prb}[An occupancy problem]
 \end{prb}
-\begin{prb}[The St. Petersburg paradox]
-\end{prb}
 
 \begin{prb}
 Find the probability that arbitrarily chosen positive integers are coprime.
 \end{prb}
-
-
-
-
 Poisson convergence, law of rare events, or weak law of small numbers (a single sample makes a significant attibution)
 
 

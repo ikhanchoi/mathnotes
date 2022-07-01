@@ -9,7 +9,7 @@
 \tableofcontents
 \newpage
 \section{Topological group action}
-
+\subsection{Discontinuous action}
 mit 18.786 2018 number theory II
 
 \begin{prb}
@@ -28,35 +28,81 @@ Since $X$ is Hausdorff, there is disjoint open neighborhoods $U_0$ and $U_1$ res
 Then, $U:=g^{-1}(gU_0\cap U_1)\subset U_0$ and $gU=gU_0\cap U_1\subset U_1$ are disjoint.
 \end{pf}
 
-\begin{prb}
+\begin{prb}[Proper maps]
 Let $f:X\to Y$ be continuous.
-We say $f$ is \emph{proper} if $f^{-1}(K)$ is compact for compact $K$.
+We say $f$ is \emph{proper} if $f^{-1}(K)$ is compact for every compact $K$.
 We say $f$ is \emph{Bourbaki-proper} if it is closed and proper.
 If $X$ is Hausdorff and $Y$ is locally compact, then two notions are equivalent.
+For this we only need to prove a proper map is closed.
 \end{prb}
+\begin{pf}
 
+\end{pf}
 
-
-\begin{prb}[Properly discontinuous actions]
-Let $G$ be a topological group acting on a topological space $X$.
-Let $p:X\to X/G$ be the quotient map.
-This action is called \emph{properly discontinuous} if for every compact $K\subset X$ only finite $gK$ intersect $K$.
+\begin{prb}[Proper actions]
+Let $G\times X\to X:(g,x)\mapsto gx$ be a continuous group action.
+\begin{enumerate}[(i)]
+\item The \emph{shear map} $s:G\times X\to X\times X:(g,x)\mapsto(x,gx)$ is and proper.\hfill{(Bourbaki properness)}
+\item For every compact $K\subset X$, $\{g\in G:gK\cap K\ne\varnothing\}$ is compact.\hfill{(Borel properness)}
+\item Every $x,y\in X$ have open neighborhoods $U_x,U_y$ such that $\{g\in G:gU_x\cap U_y\ne\varnothing\}$ is relatively compact.\hfill{(Wandering property)}
+\end{enumerate}
 \begin{parts}
-\item If $\Gamma$ is discrete, then orbits are locally finite.
-\item If orbits are locally finite, then $\Gamma$ acts properly discontinuously.
-%\item A free and proper action is properly
-\item Suppose the stabilizer is always finite. If $\Gamma$ act properly discontinuously then $\Gamma$ is discrete.
+\item (i) implies (ii).
+\item (ii) implies (i) if $X$ is Hausdorff.
+\item (i) implies (iii) if $X$ is locally compact and Hausdorff.
+\item (iii) implies (i) if $G$ is locally compact and Hausdorff.
 \end{parts}
 \end{prb}
+\begin{pf}
+Write $\pi_G:G\times X\to G:(g,x)\mapsto g$.
+Then, for $g\in G$ and subsets $A,B\subset X$, we can see
+\[\{g\in G:gA\cap B\ne\varnothing\}=\pi_G(s^{-1}(A\times B)).\]
+We note that (i) holds if and only if for every compact $K\subset X$ the set $s^{-1}(K\times K)$ is compact, and that (ii) holds if and only if for every compact $K\subset X$ the set $\pi_G(s^{-1}(K\times K))$ is compact.
 
-compact stabilizer condition:
-If $\Gamma$ is discrete, then for $z\in\H^2$ and a compact set $K\subset\H^2$, $\{g\in\Gamma:gz\in K\}$ is finite, so properly discontinuous.
+(a) Clear.
+
+(b) A compact set $K$ is closed in $X$.
+Then,
+\[s^{-1}(K\times K)\subset\pi_G(s^{-1}(K\times K))\times K\]
+implies that $s^{-1}(K\times K)$ is closed in a compact set, so we have (i).
+\end{pf}
+
+
+half disk in Euclidean half plane has compact completion but not compact closure
+If a subset of a topological Hausdorff group has compact completion, then it has compact closure..?
+
+
+Properties of proper actions:
+\begin{parts}
+\item The orbit space $X/G$ is Hausdorff.
+\item Every orbit is closed.
+\item Every stabilizer is compact
+\item The orbit-stabilizer bijection is a homeomorphism.
+\item If $X$ is locally compact and Hausdorff, then so are $G$ and $X/G$.
+\item If $X$ is compact and Hausdorff, then so are $G$ and $X/G$.
+\end{parts}
+
+\begin{prb}[Properly discontinuous actions]
+Let $\Gamma\times X\to X:(g,x)\mapsto gx$ be a continuous group action.
+\begin{enumerate}[(i)]
+\item $\Gamma$ is discrete.
+\item A family of singleton subsets of an orbit of the action $\Gamma\times X\to X$ is locally finite.
+\item For every compact $K\subset X$, $\{g\in\Gamma:gK\cap K\ne\varnothing\}$ is finite.
+\end{enumerate}
+\begin{parts}
+\item
+\item (iii) implies (i) if the stabilizer is finite..?
+\end{parts}
+\end{prb}
+\begin{pf}
+
+\end{pf}
 
 
 
 
 \begin{prb}[Covering space actions]
-Let $G$ be a topological group acting on a topological space $X$.
+Let $G\times X\to X:(g,x)\mapsto gx$ be a continuous group action.
 Let $p:X\to X/G$ be the quotient map.
 This action is called a \emph{covering space action} if every $x\in X$ has a neighborhood $U$ such that $gU$ are all disjoint for $g\in G$.
 \begin{parts}
@@ -78,56 +124,34 @@ Then, $U:=K^\circ\cap\bigcap_{g\in F\setminus\{1\}}U_g$ satisfies $gU\cap U=\var
 
 
 
-\section{Hyperbolic plane geometry}
-\subsection{Fuchsian groups}
-Classification of elements.
-An abelian Fuchsian group is cyclic.
-Elliptic point is discrete
-
-free action <=> no elliptic element <=> torsion free <=> manifold
-
 \subsection{Fundamental domain}
 
+
+
+
 \begin{prb}[Fundamental domain]
-Let $\Gamma$ be a Fuchsian group.
-An open set $D\subset\H^2$ is called a \emph{fundamental domain} of $\Gamma$ if
+Let $G$ be the group of isometries of a metric space $X$.
+Let $\Gamma$ be a discrete subgroup of $G$.
+An open set $D\subset X$ is called a \emph{fundamental domain} of $\Gamma$ if
 \begin{enumerate}[(i)]
 \item $\{g(D):g\in\Gamma\}$ are pairwise disjoint,
-\item $\{g(\bar D):g\in\Gamma\}$ covers $\H^2$.
+\item $\{g(\bar D):g\in\Gamma\}$ covers $X$.
 \end{enumerate}
 \end{prb}
 
-\begin{prb}[Dirichlet domain]
-Let $\Gamma$ be a Fuchsian group.
-Let $z_0\in\H^2$ be a point that is not fixed by any isometry in $\Gamma\setminus\{e\}$, i.e. a non-elliptic point.
-The \emph{Dirichlet domain} of $\Gamma$ with \emph{center} $z_0$ is defined as the set
-\[D:=\bigcap_{g\in\Gamma\setminus\{e\}}\{\,z\in\H^2:d(z,z_0)<d(z,gz_0)\,\}.\]
-We denote by $\bar D$ and $\partial D$ the closure and the boundary of $D$ in $\bar\H^2$.
-\begin{parts}
-\item There exists a non-elliptic point in $\H^2$.
-\item $\{g(\bar D):g\in\Gamma\}$ is a locally finite. It is called the \emph{Dirichlet tesselation}.
-\item $D$ is a convex fundamental domain of $\Gamma$.
-\end{parts}
-\end{prb}
-\begin{pf}
-(a)
-Elliptic points are countably many.
 
-(b)
-There are finitely many $g\in\Gamma$ satisfying $B(z_0,r)\cap g(\bar D)\ne\varnothing$, since this condition implies $gz_0\in B(z_0,2r)$.
-\end{pf}
-
-\begin{prb}[Boundary and edges of Dirichlet domain]
+\iffalse
+\begin{prb}[Sides of Dirichlet domain]
 Let $\Gamma$ be a Fuchsian group, and let $D$ be a Dirichlet domain of $\Gamma$ with center $z_0$.
-A subset $l\subset\bar\H^2$ is called an \emph{edge} of $D$ if $l=g(\bar D)\cap\bar D$ for some $g\in\Gamma\setminus\{e\}$ and $|l|>1$.
+A \emph{side} of a polytope is a non-empty maximal convex subset of its boundary.
 \begin{parts}
 \item For $g\in\Gamma\setminus\{e\}$, the set $g(\bar D)\cap\bar D$ has the three cases: the null set, one point, or a geodesic segment.
-\item If $l$ is an edge, then there is unique $g\in\Gamma\setminus\{e\}$ such that $l=g(\bar D)\cap\bar D$.
+\item If $s$ is a side of $\bar D$, then there is unique $g\in\Gamma\setminus\{e\}$ such that $s=g(\bar D)\cap\bar D$.
 \item The intersection of two distinct edges is one point or the null set.
 \item We have
 \[\partial D\cap\H^2\subset\bigcup_{g\in\Gamma\setminus\{e\}}g(\bar D)\cap\bar D.\]
 \item We have
-\[\partial D\cap\H^2\subset\bigcup_{l:\text{ edge}}l.\]
+\[\partial D\cap\H^2\subset\bigcup_{s:\text{ side}}s.\]
 \end{parts}
 \end{prb}
 \begin{pf}
@@ -156,10 +180,98 @@ Change the restriction $\H^2$ to a compact ball as
 Then, the left-handed side is homeomorphic to $[-1,0)\cup(0,1]$ or $(-1,1)$ since $\partial D$ is homeomorphic to $S^1$, but the right-handed side is compact because the union becomes finite due to the local finiteness.
 This is a contradiction, so $z$ is contained in an edge.
 \end{pf}
+\fi
+
+
+\begin{prb}[Dirichlet domain]
+Let $\Gamma$ be a discrete subgroup of $\Isom^+(\H^n)$.
+Let $z_0\in\H^n$ be a point that is not fixed by any isometry in $\Gamma\setminus\{e\}$. % i.e. a non-elliptic point.
+The \emph{Dirichlet domain} of $\Gamma$ with \emph{center} $z_0$ is defined as the set
+\[D:=\bigcap_{g\in\Gamma\setminus\{e\}}\{\,z\in\H^2:d(z,z_0)<d(z,gz_0)\,\}.\]
+We denote by $\bar D$ and $\partial D$ the closure and the boundary of $D$ in $\bar\H^2$.
+\begin{parts}
+\item There exists a non-elliptic point in $\H^2$.
+\item $\{g(\bar D):g\in\Gamma\}$ is a locally finite. It is called the \emph{Dirichlet tesselation}.
+\item $D$ is a geodesically convex locally finite fundamental domain of $\Gamma$.
+\end{parts}
+\end{prb}
+\begin{pf}
+(a)
+Elliptic points are countably many.
+
+(b)
+There are finitely many $g\in\Gamma$ satisfying $B(z_0,r)\cap g(\bar D)\ne\varnothing$, since this condition implies $gz_0\in B(z_0,2r)$.
+\end{pf}
+
+
+
+\begin{prb}[Convex polytope]
+See Ratcliffe Section 6.3.
+Convexity is not really necessary, but it is extremely useful and sufficient in developing the theory of fundamental domains.
+
+Let $P$ be a non-empty closed subset of a metric space $X$.
+A \emph{side} of $P$ is a non-empty maximal convex subset of $\partial P$.
+We say $P$ is a \emph{polytope} if the set of sides of $P$ is locally finite.
+\begin{parts}
+\item dimension..? vertices, ridges..
+\item property of sides: cover boundary, closed, polytope again etc.
+\item a point in the boundary of a side is in the boundary of another side.
+\end{parts}
+\end{prb}
+
+\begin{prb}[Convex fundamental polytope]
+\begin{parts}
+\item The closure of a convex and locally finite fundamental domain is a convex polytope.
+\item (side pairing)
+Suppose $P$ is a convex fundamental polytope of $\Gamma$ having finitely many sides.
+Let $v_0,v_1,\cdots,v_n=v_0$ be vertices, indexed along the boundary counterclockwise.
+Let $s_i$ be the side of $P$ connecting $v_i$ and $v_{i+1}$.
+
+For each side $s$ of $P$, there is unique $g_s\in\Gamma$ such that $g_s^{-1}(s)$ is another side of $D$. The isometry $g_s$ is called the \emph{side pairing isometry} of the side $s$.
+
+The side parining isometry of $g_s^{-1}(s)$ is $g_s^{-1}$.
+\item (cycles)
+Let $V$ and $S$ be the set of all vertices and sides of $P$, respectively.
+Define $\sigma:V\to V$ such that $\sigma(v_i)=v_{j+1}$, where $s_j=g_{s_i}^{-1}(s_i)$.
+The map $\sigma$ can be seen as an element of the symmetric group $S_n$.
+
+Suppose $v_0\in\H^2$ and $s=s_0$. Let $m$ be the minimal positive integer such that $\sigma^m(s)=s$. Then, $g_{\sigma^{m-1}(s)}\cdots g_{\sigma(s)}g_s$ is either the identity or elliptic.
+Suppose $v_0\in\partial\H^2$.
+\end{parts}
+\end{prb}
+
+
+\begin{prb}[Examples]
+\begin{parts}
+\item (Genus two surface)
+\item (Modular group)
+Let $\Gamma=\PSL(2,\Z)$ be the modular group and choose the origin $2i$ to consider the Dirichlet domain $D$.
+\[T=\mat{1&1\\0&1},\quad S=\mat{0&-1\\1&0}.\]
+\[v_0:=\rho=e^{\pi i/3},\quad v_1:=\infty,\quad v_2:=\rho^2=e^{2\pi i/3}.\]
+\[g_0=T,\quad g_1=T^{-1},\quad g_2=S=S^{-1}.\]
+$\sigma=(02)$.
+The elliptic cycle condition: $(02)$ defines $(g_2g_0)^3=(ST)^3=1$.
+\end{parts}
+\end{prb}
+
+
+
+
+
+\section{Hyperbolic plane geometry}
+\subsection{Fuchsian groups and Kleinian groups}
+Classification of elements.
+An abelian Fuchsian group is cyclic.
+Elliptic point is discrete
+
+free action <=> no elliptic element <=> torsion free <=> manifold
+
+
+
 
 \begin{prb}[Finitely generated Fuchsian group]
 Let $\Gamma$ be a Fuchsian group, and let $D$ be a Dirichlet domain of $\Gamma$ with center $z_0$.
-Let $W$ be the set of all $g\in\Gamma\setminus\{e\}$ such that $g(\bar D)\cap\bar D$ is an edge.
+Let $W$ be the set of all $g\in\Gamma\setminus\{e\}$ such that $g(\bar D)\cap\bar D$ is a side of $D$.
 \begin{parts}
 \item $W$ generates $\Gamma$.
 \item If $\Gamma$ is finitely generated, then $W$ is finite.
@@ -168,78 +280,25 @@ Let $W$ be the set of all $g\in\Gamma\setminus\{e\}$ such that $g(\bar D)\cap\ba
 \end{prb}
 
 \begin{prb}[Siegel's theorem]
-Finite area iff finitely generated.
+Finite area then finite sides.
 \begin{parts}
-\item If $\Gamma$ is finitely generated, then
-\[\partial D=\bigcup_{l:\text{ edge}}l.\]
+\item
 \end{parts}
 \end{prb}
-
-\subsection{Side paring and cycle conditions}
-
-\begin{prb}[Side pairing condition]
-Let $\Gamma$ be a finitely generated Fuchsian group, and let $D$ be a Dirichlet domain of $\Gamma$ with center $z_0$.
-We have seen that $\partial D$ consists of finitely many edges.
-A point $v\in\partial D$ is called a \emph{vertex} if it either 
-\begin{enumerate}[(i)]
-\item the intersection of two edges, or
-\item the fixed point of elliptic isometry $g\in\Gamma$ of order two.
-\end{enumerate}
-Let $v_0,v_1,\cdots,v_n=v_0$ be vertices, indexed along the boundary counterclockwise.
-A \emph{side} is geodesic segments $s_i$ connecting $v_i$ and $v_{i+1}$.
-\begin{parts}
-\item For each side $s$ of $D$, there is unique $g_s\in\Gamma$ such that $g_s^{-1}(s)$ is another side of $D$. The isometry $g_s$ is called the \emph{side pairing isometry} of the side $s$.
-\item The side parining isometry of $g_s^{-1}(s)$ is $g_s^{-1}$.
-\item The number of sides $n$ is always even.
-\end{parts}
-\end{prb}
-\begin{pf}
-\end{pf}
-
-\begin{prb}[Cycle condition]
-Let $\Gamma$ be a finitely generated Fuchsian group, and let $D$ be a Dirichlet domain of $\Gamma$ with center $z_0$.
-Let $V$ and $S$ be the set of all vertices and sides of $D$, respectively.
-Define $\sigma:V\to V$ and $\sigma:S\to S$ which use same notation such that $\sigma(v_i)=v_{j+1}$ and $\sigma(s_i):=s_{j+1}$ where $s_j=g_s^{-1}(s_i)$.
-The map $\sigma$ can be seen as an element of the symmetric group $S_n$.
-\begin{parts}
-\item Suppose $v_0\in\H^2$ and $s=s_0$. Let $m$ be the minimal positive integer such that $\sigma^m(s)=s$. Then, $g_{\sigma^{m-1}(s)}\cdots g_{\sigma(s)}g_s$ is either the identity or elliptic.
-\item Suppose $v_0\in\partial\H^2$.
-\end{parts}
-\end{prb}
-
-
-
-\begin{prb}[Genus two surface]
-
-\end{prb}
-
-\begin{prb}[Modular group]
-Let $\Gamma=\PSL(2,\Z)$ be the modular group and choose the origin $2i$.
-$v_0=i$, $v_1=e^{\pi i/3}$, $v_2=\infty$, $v_3=e^{2\pi i/3}$.
-$g_{s_0}=S$, $g_{s_1}=T$, $g_{s_2}=T^{-1}$, $g_{s_3}=S^{-1}$.
-$\sigma=(13)$.
-The elliptic cycle condition: $(0)$ defines $SS=1$, $(13)$ defines $(S^{-1}T)^3=1$
-
-\end{prb}
-
-
-
 
 
 
 \subsection{The Poincar\'e polygon theorem}
 
 
-\begin{prb}[Definition of polygon]
-\begin{parts}
-\item
-\end{parts}
-\end{prb}
+
+
 
 \begin{prb}[Side pairing identification]
-Let $P$ be an open polygon.
+Let $P$ be a convex polygon.
 Define cycles of each vertex.
-Let $Y:=\bar P/\sim$ and $\tilde Y:=(\Gamma\times\bar P)/\sim$.
+Let
+\[Y:=P/\sim,\quad\text{ and }\quad\tilde Y:=(\Gamma\times P)/\sim.\]
 Define $\Pi:\tilde Y\to Y$.
 \begin{parts}
 \item
@@ -248,8 +307,13 @@ Define $\Pi:\tilde Y\to Y$.
 
 
 \begin{prb}[Elliptic cycle condition]
-Let $P$ be an open polygon with a side pairing identification.
+Let $P$ be a convex polygon with a side pairing identification.
 Let $\Gamma$ be a subgroup of $\Isom^+(\H^2)$ generated by side pairing isometries of $P$.
+Consider $D$ and $\Pi$ such that
+\begin{cd}
+\tilde Y\dar{\Pi}\rar{D} & \H^2\\
+Y&.
+\end{cd}
 \begin{parts}
 \item $P$ satisfies the elliptic cycle condition.
 \item $D$ is a local homeomorphism.
@@ -276,7 +340,7 @@ Therefore, $D$ is a local homeomorphism that has the unique path lifting propert
 \end{pf}
 
 \begin{prb}[Finite cycle condition]
-Let $P$ be an open polygon with a side pairing identification.
+Let $P$ be a convex polygon with a side pairing identification.
 Let $\Gamma$ be a subgroup of $\Isom^+(\H^2)$ generated by side pairing isometries of $P$.
 Consider $D$ and $\Pi$ such that
 \begin{cd}
@@ -294,9 +358,14 @@ Y&.
 \end{pf}
 
 \begin{prb}[Parabolic cycle condition]
-Let $P$ be an open polygon with a side pairing identification such that every cycle is finite.
+Let $P$ be a convex polygon with a side pairing identification.
 Let $\Gamma$ be a subgroup of $\Isom^+(\H^2)$ generated by side pairing isometries of $P$.
-Suppose 
+Consider $D$ and $\Pi$ such that
+\begin{cd}
+\tilde Y\dar{\Pi}\rar{D} & \H^2\\
+Y&.
+\end{cd}
+Suppose every cycle is finite.
 \begin{parts}
 \item $P$ satisfies the parabolic cycle condition,
 \item $M$ is a complete metric space.
