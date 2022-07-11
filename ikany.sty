@@ -115,8 +115,8 @@
 \setlist[enumerate]{itemsep=0pt}
 
 \let\@@item\item
-\newcommand{\sitem}{\refstepcounter{\@enumctr}\@@item[$^*$\csname label\@enumctr\endcsname]}
-\renewcommand*{\item}{\@ifstar\sitem\@@item}
+\newcommand{\@@sitem}{\refstepcounter{\@enumctr}\@@item[$^*$\csname label\@enumctr\endcsname]}
+\renewcommand*{\item}{\@ifstar\@@sitem\@@item}
 
 
 

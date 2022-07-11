@@ -9,6 +9,17 @@
 
 \begin{document}
 \tableofcontents
+\newpage
+
+\section{Nets of measurable functions}
+\begin{prb}
+\begin{parts}
+\item 
+\end{parts}
+\end{prb}
+If $f_\alpha$ is continuous, then $f$ is lower semi-continuous.
+We use the inner regularity of the measure on the open set $f^{-1}(j2^{-n},\infty)$.
+% https://math.stackexchange.com/questions/3656902/a-monotone-convergence-theorem-for-nets-in-reed-and-simon-vol-i
 
 \newpage
 
@@ -888,38 +899,6 @@ for all $n\ge\max\{\frac{10}\e,4\}$.
 Therefore, by taking supremum for $x$ and limiting $n\to\infty$ on it we have
 \[\limsup_{n\to\infty}\|f_n-f\|\le\e,\]
 so we are done because $\e$ is arbitrary.
-\end{sol}
-
-
-\clearpage
-\begin{prb}
-A measurable subset of $\R$ with positive measure contains an arbitrarily long subsequence of an arithmetic progression. (made by me!)
-\end{prb}
-\begin{sol}
-Let $E\subset\R$ be measurable with $\mu(E)>0$. We may assume $E$ is bounded so that we have $E\subset I$ for a closed bounded interval since $\R$ is $\sigma$-compact.
-Let $n$ be a positive integer arbitrarily taken. Then, we can find $N$ such that $\sum_{k=1}^N\frac1k>(n-1)\frac{\mu(I)}{\mu(E)}$.
-
-Assume that every point $x$ in $E$ is contained in at most $n-1$ sets among
-\[E,\ \frac12E,\ \frac13E,\ \cdots,\ \frac1NE.\]
-In other words, it is equivalent to:
-\[\bigcap_{k\in A}\frac1kE=\varnothing\]
-for any subset $A\subset\{1,\cdots,N\}$ with $|A|\ge n$.
-Define
-\[E_A:=\bigcap_{k\in A}\frac1kE\cap\bigcap_{k'\in A}\left(\frac1{k'}E\right)^c\]
-for $A\subset\{1,\cdots,N\}$.
-Then, $\mu(E_A)=0$ for $|A|\ge n$.
-
-Note that we have
-\[\mu(\tfrac1kE)=\sum_{k\in A}\mu(E_A)=\sum_{\substack{k\in A\\|A|<n}}\mu(E_A).\]
-Summing up, we get
-\[\sum_{k=1}^N\mu(\tfrac1kE)=\sum_{k=1}^N\sum_{\substack{k\in A\\|A|<n}}\mu(E_A)=\sum_{|A|<n}|A|\mu(E_A)\]
-by double counting,
-and since $E_A$ are dijoint, we have
-\[\sum_{|A|<n}|A|\mu(E_A)=(n-1)\sum_{0<|A|<n}\mu(E_A)\le(n-1)\mu(I),\]
-hence a contradiction to
-\[\sum_{k=1}^N\mu(\tfrac1kE)>(n-1)\mu(I).\]
-Therefore, we may find an element $x$ that belongs to $\frac1kE$ for $k\in A$, where $A\subset\{1,\cdots,N\}$ with $|A|=n$.
-Then, $ax\in E$ for all $a\in A\subset\Z$.
 \end{sol}
 
 

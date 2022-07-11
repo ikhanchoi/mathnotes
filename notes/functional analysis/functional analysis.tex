@@ -234,11 +234,6 @@ Note that this problem is slightly different to the non-metrizability of the top
 \end{prb}
 
 \begin{prb}
-Let $T$ be an invertible linear operator on a normed space.
-Then, $T^{-2}+\|T\|^{-2}$ is injective if it is surjective.
-\end{prb}
-
-\begin{prb}
 We show that there is no projection from $\ell^\infty$ onto $c_0$.
 \end{prb}
 
@@ -257,9 +252,31 @@ Show that $\f^*(\ell^1)\subset L^1$ where $\ell^1$ and $L^1$ are considered as c
 
 
 
+\begin{prb}[Daugavet property]
+\begin{parts}
+\item The real Banach space $C([0,1])$ satisfies the Daugavet property.
+\end{parts}
+\end{prb}
+\begin{pf}
+Let $T$ be a finite rank operator on $C([0,1])$, and $e_i$ be a basis of $\im T$.
+Then, for some measures $\mu_i$,
+\[Tf(t)=\sum_{i=1}^n\int_0^1f\,d\mu_ie_i(t).\]
+Let $M:=\max\|e_i\|$.
+
+Take $f_0$ such that $\|f_0\|=1$ and $\|Tf_0\|>\|T\|-\frac\e2$.
+Reversing the sign of $f_0$ if necessary, take an open interval $\Delta$ such that $Tf_0(t)\ge\|T\|-\frac\e2$ and $|\mu_i|(\Delta)\le\frac\e{4nM}$ for all $i$.
+Define $f_1$ such that $f_0=f_1$ on $\Delta^c$, $f_1(t_0)=1$ for some $t_0\in\Delta$, and $\|f_1\|=1$.
+Then, $\|Tf_1-Tf_0\|\le\frac\e2$ shows $Tf_1\ge\|T\|-\e$ on $\Delta$.
+Therefore,
+\[\|1+T\|\ge\|f_1+Tf_1\|\ge f_1(t_0)+Tf_1(t_0)\le1+\|T\|-\e.\]
+\end{pf}
 
 
-
+\section*{Problems}
+\begin{prb}
+Let $T$ be an invertible linear operator on a normed space.
+Then, $T^{-2}+\|T\|^{-2}$ is injective if it is surjective.
+\end{prb}
 
 
 
@@ -284,8 +301,6 @@ Let $x^*\in\bar D$ and choose $y^*\in D$ such that $\|x^*-y^*\|<\e$
 Then,
 \[|\<x_n,x^*\>|\le\|x_n\|\|x^*-y^*\|+|\<x_n,y^*\>|.\]
 \end{pf}
-
-
 
 
 
@@ -385,19 +400,12 @@ We can show $k$ is an isomorphism so that we have
 
 
 
-
-
-
-
-
-
-
-
-
-\chapter{Polar topologies}
-\section{Dual pair}
-\section{Strong topologies}
+\section{Polar topologies}
 Mackey-Arens
+
+
+
+
 
 
 \chapter{Operator topologies}
@@ -476,18 +484,20 @@ tensor products
 
 
 \section*{Exercises}
-\begin{prb}
-If $T:L^2([0,1])\to L^2([0,1])$ is a compact operator, then for any $\e>0$ there is a constant $C_\e>0$ such that
-\[\|Tf\|_{L^2}\lesssim\e\|f\|_{L^2}+C_\e\|f\|_{L^1}.\]
-\end{prb}
+
+\section*{Problems}
+\begin{enumerate}
+\item If $T\in B(L^2([0,1]))$ is a compact operator, then for any $\e>0$ there is a constant $C_\e>0$ such that
+\[\|Tf\|_{L^2}\le\e\|f\|_{L^2}+C_\e\|f\|_{L^1}.\]
+\end{enumerate}
+
 \begin{pf}
-Suppose there is $\e>0$ such that we have sequence $f_n\in L^2$ satisfying $\|f_n\|_2=1$ and
+1. Suppose there is $\e>0$ such that we have sequence $f_n\in L^2$ satisfying $\|f_n\|_2=1$ and
 \[\|Tf_n\|_2>\e+n\|f_n\|_1.\]
 By the compactness of $T$, there is a subsequence $Tf_{n_k}$ converges to $g\ne0$ in $L^2$.
 Then, $\|f_{n_k}\|_1\to0$ implies $f_{n_k}\to0$ weakly in $L^2$, hence also for $Tf_{n_k}$.
 It means $g=0$, which contradicts to the assumption.
 \end{pf}
-
 
 
 
@@ -955,13 +965,32 @@ Let $\tilde\rho=\rho\oplus\lambda$ be a bounded linear functional on $\tilde\cA$
 
 \section*{Exercises}
 
+
 \begin{prb}
-A C$^*$-algebra is commutative if and only if a function $f(x)=\frac x{1+x}$ is operator subadditive.
-%L\"owner-Heinz inequality
+Let $\cB$ be a hereditary C$^*$-subalgebra of a C$^*$-algebra $\cA$.
+Let $a\in\cA^+$.
+If for any $\e>0$ there is $b\in\cB^+$ such that $a-\e\le b$, then $a\in B^+$.
 \end{prb}
+\begin{pf}
+To catch the idea, suppose $\cA$ is abelian.
+We want to approximate $a$ by the elements of $\cB$ in norm.
+To do this, for each $\e>0$, we want to construct $b'\in\cB^+$ such that $a-\e\le b'\le a+\e$ using $b$.
+Taking $b'=\min\{a,b\}$ is impossible in non-abelian case, but we can put $b'=\frac a{b+\e}b$.
+For a simpler proof, $b'=(\frac{\sqrt{ab}}{\sqrt b+\sqrt\e})^2$ is a better choice.
 
+Define
+\[b':=\frac{\sqrt b}{\sqrt b+\sqrt\e}a\frac{\sqrt b}{\sqrt b+\sqrt\e}.\]
+Then,
+\[\|\sqrt a-\sqrt a\frac{\sqrt b}{\sqrt b+\sqrt\e}\|^2=\|\frac{\sqrt\e}{\sqrt b+\sqrt\e}a\frac{\sqrt\e}{\sqrt b+\sqrt\e}\|\le\e\]
+implies
+\[\lim_{\e\to0}b'=\lim_{\e\to0}\frac{\sqrt b}{\sqrt b+\sqrt\e}\sqrt a\cdot\sqrt a\frac{\sqrt b}{\sqrt b+\sqrt\e}=\sqrt a\cdot\sqrt a=a.\]
+\end{pf}
 
-
+\section*{Problems}
+\begin{enumerate}
+\item* A C$^*$-algebra is commutative if and only if a function $f(x)=x(1+x)^{-1}$ is operator subadditive.
+%L\"owner-Heinz inequality
+\end{enumerate}
 
 
 \chapter{Von Neumann algebras}
@@ -971,7 +1000,12 @@ A C$^*$-algebra is commutative if and only if a function $f(x)=\frac x{1+x}$ is 
 A C$^*$-algebra $\cA$ is called a \emph{von Neumann algebra} if there is a isometric $*$-homomorphism $\cA\to B(H)$ for a Hilbert space $H$ whose image is closed in the weak operator topology.
 \end{prb}
 
-\begin{prb}[Double commutant theorem]
+\begin{prb}[Vigier theorem]
+Increasing bounded net is convergent in strong operator topology.
+The boundedness is important because we have to construct a bounded sesquilinear form using the monotone convergence in $\R$.
+\end{prb}
+
+\begin{prb}[Bicommutant theorem]
 Let $\cA$ be a non-degenerate C$^*$-subalgebra of $B(H)$.
 \begin{parts}
 \item $\cA'$ and $\cA''$ are weakly closed.

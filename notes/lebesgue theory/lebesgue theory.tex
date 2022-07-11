@@ -154,7 +154,6 @@ alternative direct proof method without using Carath\'eodory extension.
 
 
 
-
 \chapter{Measures on the real line}
 
 distribution functions
@@ -165,10 +164,25 @@ non-measurable set
 \section*{Exercises}
 
 \begin{prb}[Steinhaus theorem]
+Let $\E\subset\R$ be Lebesgue measurable with $\lambda(E)>0$.
+\begin{parts}
+\item For any $\alpha<1$, there is an interval $I=[a,b]$ such that $\lambda(E\cap I)/\lambda(I)>\alpha$.
+\item $E-E$ contains an open interval containing zero.
+\end{parts}
+\begin{pf}
+(a)
+\end{pf}
+% convolution으로 푸는 방법: continuous approximation　이 레벨에선 무리인듯
 \end{prb}
-\begin{prb}*
-A Lebesgue measurable set in $\R$ with positive measure contains an arbitrarily long subsequence of an arithmetic progression.
-\end{prb}
+
+
+
+
+\section*{Problems}
+\begin{enumerate}
+\item 
+\item* Every Lebesgue measurable set in $\R$ of positive measure contains an arbitrarily long arithmetic progression.
+\end{enumerate}
 
 
 
@@ -202,50 +216,40 @@ Every measurable extended real-valued function is a pointwise limit of simple fu
 
 
 
+\section{}
 
-
-\begin{prb}[Egorov's theorem]
-Let $(\Omega,\mu)$ be a finite measure space.
-Let $(f_n:\Omega\to\R)_n$ be a sequence of a.e. convergent measurable functions.
-For $\e>0$, there exists a measurable $E_\e\subset\Omega$ such that $\mu(\Omega\setminus E_\e)<\e$ and $f_n$ uniformly convergent on $E_\e$.
+\begin{prb}[Egorov theorem]
+Let $f_n:\Omega\to\R$ be a sequence of measurable functions on a finite measure space $(\Omega,\mu)$ that converges almost everywhere.
+\begin{parts}
+\item For each $k\in\N$,
+\[\bigcap_{n\ge n_0}\{\,x:|f_n(x)|<\frac1k\,\}\uparrow\text{ a full set }\quad\text{ as }\quad n_0\to\infty.\]
+\item For $\e>0$, there is a measurable $E_\e\subset\Omega$ such that $\mu(\Omega\setminus E_\e)<\e$ and $f_n$ is uniformly convergent on $E_\e$.
+\end{parts}
 \end{prb}
 \begin{pf}
-Assume $f_n\to0$.
-The set of convergence is
-\[\bigcap_{k>0}\ \bigcup_{n_0>0}\ \bigcap_{n\ge n_0}\{\,x:|f_n(x)|<\tfrac1k\,\},\]
+(a)
+We may assume $f_n\to0$.
+The set of convergence is given by
+\[\bigcap_{k>0}\ \bigcup_{n_0>0}\ \bigcap_{n\ge n_0}\{\,x:|f_n(x)|<\frac1k\,\},\]
 which is a full set.
 We want to get rid of the dependence on the point $x$ of $n_0$ in the union $\bigcup_{n_0>0}$.
 Since
 \[\bigcap_{n\ge n_0}\{\,x:|f_n(x)|<\frac1k\,\}\]
-is increasing as $n_0\to\infty$ to a full set for each $k>0$, we can find $n_0(k,\e)$ such that
-\[\mu(\bigcap_{n\ge n_0}\{\,x:|f_n(x)|<\tfrac1k\,\})>\mu(\Omega)-\frac\e{2^k}.\]
+is increasing as $n_0\to\infty$ to a full set.
+
+(b)
+We can find $n_0=n_0(k,\e)$ such that
+\[\mu(\bigcap_{n\ge n_0}\{\,x:|f_n(x)|<\frac1k\,\})>\mu(\Omega)-\frac\e{2^k}.\]
 Then,
-\[\mu(\bigcap_{k>0}\ \bigcap_{n\ge n_0}\{\,x:|f_n(x)|<\tfrac1k\,\})>\mu(\Omega)-\e.\]
+\[\mu(\bigcap_{k>0}\ \bigcap_{n\ge n_0}\{\,x:|f_n(x)|<\frac1k\,\})>\mu(\Omega)-\e.\]
 If we define
 \[E_\e:=\bigcap_{k>0}\ \bigcap_{n\ge n_0}\{\,x:|f_n(x)|<\tfrac1k\,\},\]
 then for any $k>0$ and $x\in E_\e$, and with the $n_0(k,\e)$ we have chosen,
 we have
-\[n\ge n_0\quad\Rightarrow\quad |f_n(x)|<\frac1k.\]
+\[n\ge n_0\quad\Rightarrow\quad |f_n(x)|<\frac1k.\qedhere\]
 \end{pf}
 
 
-
-Since $\{f_n(x)\}_n$ diverges if and only if
-\[\exists k>0,\quad\forall n_0>0,\quad\exists n>n_0:\quad|f_n(x)-f(x)|>\tfrac1k,\]
-we have
-\begin{align*}
-\{x:\{f_n(x)\}_n\text{ diverges}\}
-&=\bigcup_{k>0}\bigcap_{n_0>0}\bigcup_{n>n_0}\{x:|f_n-f|>\tfrac1k\}\\
-&=\bigcup_{k>0}\limsup_n\{x:|f_n-f|>\tfrac1k\}.
-\end{align*}
-Since for every $k$ we have
-\begin{align*}
-\limsup_n\{x:|f_n-f|>\tfrac1k\}
-&\subset\limsup_{n>k}\{x:|f_n-f|>\tfrac1n\}\\
-&=\limsup_n\{x:|f_n-f|>\tfrac1n\},
-\end{align*}
-we have
-\[\{x:\{f_n(x)\}_n\text{ diverges}\}\subset\limsup_n\{x:|f_n-f|>\tfrac1n\}.\]
 
 \section*{Exercises}
 \begin{prb}[Cauchy's functional equation]
@@ -275,10 +279,11 @@ We ask if $f$ is linear, that is $f(x)=ax$ for all $x\in\R$, where $a:=f(1)$.
 \section{Definition of Lebesgue integral}
 \section{Convergence theorems}
 
-Stein: Egorov $\to$ BCT $\to$ Fatou $\to$ MCT $\to$ L1 is a measure\\
-Stein: BCT + L1 is a measure $\to$ DCT\\
-Folland: MCT $\to$ Fatou $\to$ DCT $\to$ BCT
-
+% Stein: Egorov $\to$ BCT $\to$ Fatou $\to$ MCT $\to$ L1<M\\
+% Stein: BCT + L1<M $\to$ DCT\\
+% Folland: MCT $\to$ Fatou $\to$ DCT $\to$ BCT
+\begin{prb}[Monotone convergence theorem]
+\end{prb}
 
 
 
@@ -288,18 +293,27 @@ Folland: MCT $\to$ Fatou $\to$ DCT $\to$ BCT
 
 \section{Modes of convergence}
 
+\begin{prb}[Borel-Cantelli lemma]
+\end{prb}
+
 \begin{prb}[Convergence in measure]
 Let $(X,\mu)$ be a measure space.
-Let $f_n$ be a sequence of measurable functions.
-If $f_n$ converges to $f$ in measure, then $f_n$ has a subsequence that converges to $f$ $\mu$-a.e.
+Let $f_n$ and $f$ be measurable.
+We say $f_n$ converges to $f$ \emph{in measure} if for each $\e>0$ we have
+\[\lim_{n\to\infty}\mu(\{\,x:|f_n(x)-f(x)|>\e\,\})=0.\]
+\begin{parts}
+\item If $f_n\to f$ in $L^1$, then $f_n\to f$ in measure.
+\item If $f_n\to f$ in measure, then $f_n$ has a subsequence that converges to $f$ $\mu$-a.e.
+\end{parts}
 \end{prb}
 \begin{pf}
+(b)
 We can extract a subsequence $f_{n_k}$ such that
-\[\mu(\{x:|f_{n_k}-f|>\tfrac1k\})>\tfrac1{2^k}.\]
+\[\mu(\{\,x:|f_{n_k}-f|>\tfrac1k\,\})>\tfrac1{2^k}.\]
 Since
-\[\sum_{k=1}^\infty\mu(\{x:|f_{n_k}-f|>\tfrac1k\})<\infty,\]
-by the Borel-Canteli lemma, we get
-\[\mu(\limsup_k\{x:|f_{n_k}-f|>\tfrac1k\})=0.\]
+\[\sum_{k=1}^\infty\mu(\{\,x:|f_{n_k}-f|>\tfrac1k\,\})<\infty,\]
+by the Borel-Cantelli lemma, we get
+\[\mu(\limsup_k\{\,x:|f_{n_k}-f|>\tfrac1k\,\})=0.\]
 Therefore, $f_{n_k}$ converges $\mu$-a.e.
 \end{pf}
 
@@ -385,11 +399,10 @@ We want to show that if $u$, $v$, and $uv$ are weakly differentiable with respec
 
 
 \begin{prb}[Interchange of differentiation and integration]
-Let $f:\Omega\to\R$
-such that $f(x,y)$ and $\pd_{x_i}f(x,y)$ are both locally integrable in $x$ and integrable $y$.
+Let $f:\Omega_x\times\Omega_y\to\R$ be such that $\pd_{x_i}f$ is well-defined. Suppose $f$ and $\pd_{x_i}f$ are locally integrable in $x$ and integrable $y$.
+
 Then,
-\[\pd_{x_i}\int f(x,y)\,dy=\int\pd_{x_i}f(x,y)\,dy\]
-where $\pd_{x_i}$ denotes the weak partial derivative.
+\[\pd_{x_i}\int f(x,y)\,dy=\int\pd_{x_i}f(x,y)\,dy.\]
 \end{prb}
 
 

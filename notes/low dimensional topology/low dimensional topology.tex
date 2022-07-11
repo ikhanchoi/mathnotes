@@ -33,14 +33,15 @@ Precisely, we suggest to define a \emph{geometric structure} as a metric $d$ on 
 \item $(M,d)$ is a Riemannian manifold,
 \item $(M,d)$ is locally homogeneous.
 \end{enumerate}
-In other words, a geometric structure on $M$ is a Riemannian metric satisfying (i), (ii), and (iv).
+Since a connected complete Riemannian manifold is geodesically connected by a consequence of the Hopf-Rinow theorem, a geometric structure is equivalent to a Riemannian metric satisfying (ii) and (iv).
+A \emph{geometric manifold} is a connected Riemannian manifold $M$ whose metric is a geometric structure.
 Each condition has been obtained by modifying the first four postulates of Euclid's Elements.
 \begin{parts}
 \item A homogeneous Riemannian metric is a geometric structure.
 \item If $M$ is simply connected, then a geometric structure on $M$ is homogeneous.
 \item If $M$ is compact, then a geometric structure on $M$ is homogeneous.
-\item If $p:C\to M$ is covering map, then there is a unique geometric structure on $C$ which makes $p$ a local isometry.
-\item If $p:M\to B$ is covering map, then there is a unique geometric structure on $B$ which makes $p$ a local isometry.
+\item If $C$ is a Riemannian covering space of $M$, then $C$ is a geometric manifold.
+\item If $M$ is a Riemannian covering space of $B$, then $B$ is a geometric manifold.
 \end{parts}
 \end{prb}
 \begin{pf}
@@ -68,8 +69,8 @@ We want to establish the following correspondence.
 \end{pf}
 
 \begin{prb}[Pseudogroup structure]
-Let $(X,\cT)$ be a topological space.
-A \emph{pseudogroup} on $X$ is a wide subgroupoid $\Gamma$ of $\Homeo(X)$ such that $\cT\to\mathbf{Set}:U\mapsto\{\,g\in\Gamma:\dom g=U\,\}$ is a separated presheaf; it satisfies the locality, but not the gluing axiom.
+Let $X$ be a topological space.
+A \emph{pseudogroup} $\Gamma$ on $X$ is a wide subgroupoid of $\Homeo(X)$ such that $U\mapsto\{\,g\in\Gamma:\dom g=U\,\}$ is a sheaf on the topology of $X$.
 Let $\Gamma$ be a pseudogroup on $X$, and $M$ be a topological space.
 A \emph{$\Gamma$-atlas} on $M$ is an atlas whose charts have $X$ as the codomain and transition maps belong to $\Gamma$.
 A \emph{$\Gamma$-structure} on $M$ is defined as an equivalence class of $\Gamma$-atlases on $M$.
