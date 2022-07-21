@@ -14,8 +14,20 @@ subgroups
 homomorphisms, image, kernel, inverse images
 normality, quotient, coset counting
 direct sum, direct product
+generators, subgroup lattice
+
+
+
+
+
+
 
 \chapter{Group actions}
+% Homomorphism의 construction에만
+% group의 활용에 집중, group의 구조에는 관심을 끈다
+% lagrange, orbit-stabilizer 외에 카운팅은 하지 않는다
+% stabilizer 계산은 해야지
+% 부분군 래티스 그리는 정도까지는 한다
 \section{Orbits and stabilizers}
 Invariants on orbit space.
 The size and number of orbits.
@@ -32,84 +44,64 @@ every orbit has 1-1 correspondence to group
 \end{prb}
 
 \section{Action by conjugation}
+
+
 \section{Action by left multiplication}
 
 
-\section{Automorphism groups}
-\begin{prb}[Outer automorphism group]
-duality for center
-\end{prb}
+H has index n  : G can act on Sym(G/H) : left mul
+K normalizes H : K -> NG(H) -> NG(H)/H  with ker = KnH
+K normalizes H : K -> NG(H) -> Aut(H)  with ker = CG(H)
+
+
 
 
 
 \chapter{Symmetry groups}
 
-elements by order
-elements by conjugacy class
-subgroups by conjugacy class
+Information about:
+element counting by order,
+element counting by conjugacy class,
+subgroups by order (existence)
+subgroups by conjugacy class.
+
 
 
 \section{Cyclic groups}
+\section{Dihedral groups}
 \section{Symmetric groups}
-\section{Matrix groups}
-dihedral groups
+alternating groups
+
+\section{Automorphism groups}
+Maybe too hard
+
+cyclic groups.
+abelian groups?
+symmetric groups?
+
+
 
 
 \section*{Exercises}
-
-\begin{prb}
-Let $G$ be a finite group.
-If $G/Z(G)$ is cylic, then $G$ is abelian.
-\end{prb}
-
-\begin{prb}
-Let $G$ be a finite group.
-If the cube map $x\mapsto x^3$ is a surjective endomorhpism, then $G$ is abelian.
-\end{prb}
-
-\begin{prb}
-Show that a finite symmetric group has two generators.
-\end{prb}
-
-\begin{prb}
-Show that a group of order $2p$ for a prime $p$ has exactly two isomorphic types.
-\end{prb}
-
-\begin{prb}
-Show that a group $G$ is abelian if $|G|=p^2$ for a prime $p$.
-\end{prb}
-
-\begin{prb}
-Let $G$ be a finite group of order $n$ and $p$ the smallest prime divisor of $n$.
-Show that a subgroup of $G$ of index $p$ is normal in $G$.
-\end{prb}
 
 \begin{prb}[Primitive roots]
 We find all $n$ such that $(\Z/n\Z)^\times$ is cyclic.
 \end{prb}
 
-\begin{prb}[$p$-groups]
-\begin{parts}
-\item A nontrivial normalizer of a $p$-group meets its center out of identity.
-\item A proper subgroup of a finite $p$-group is a proper subgroup of its normalizer. In particular, every finite $p$-group is nilpotent.
-\end{parts}
-\end{prb}
 
-\begin{prb}
-Show that a finite group $G$ satisfying $\sum_{g\in G}\ord(g)\le2n$ is abelian.
-\end{prb}
 
-\begin{prb}
-Show that the order of a group with trivial automorphism group is at most two.
-\end{prb}
-
-\begin{prb}
-Find all homomorphic images of $A_4$ up to isomorphism.
-\end{prb}
 
 \section*{Problems}
+
 \begin{enumerate}
-\item 
+\item Let $G$ be a finite group. If $G/Z(G)$ is cylic, then $G$ is abelian.
+\item Let $G$ be a finite group. If the cube map $x\mapsto x^3$ is a surjective endomorhpism, then $G$ is abelian.
+\item Show that if $|G|=p^2$ for a prime $p$, then a group $G$ is abelian.
+\item Show that a group of order $2p$ for a prime $p$ has exactly two isomorphic types.
+\item Let $G$ be a finite group of order $n$ and $p$ the smallest prime divisor of $n$. Show that a subgroup of $G$ of index $p$ is normal in $G$.
+\item Show that a finite group $G$ satisfying $\sum_{g\in G}\ord(g)\le2n$ is abelian.
+\item Show that the order of a group with trivial automorphism group is at most two.
+\item Find all homomorphic images of $A_4$ up to isomorphism.
 \end{enumerate}
 
 
@@ -122,24 +114,23 @@ Find all homomorphic images of $A_4$ up to isomorphism.
 \chapter{Ideals}
 
 
+
+\section*{Exercises}
+size of units, the number of ideals
+
+
+
+
 \chapter{Integral domains}
 
 \section*{Exercises}
-\begin{prb}
-Show that a finite integral domain is a field.
-\end{prb}
-
-\begin{prb}
-Show that every ring of order $p^2$ for a prime $p$ is commutative.
-\end{prb}
-
-\begin{prb}
-Show that a semiring with multiplicative identity and cancellative addtion has commutative addition.
-\end{prb}
-
-\begin{prb}
-Show that the complement of a saturated monoid in a commutative ring is a union of prime ideals.
-\end{prb}
+\section*{Problems}
+\begin{enumerate}
+\item Show that a finite integral domain is a field.
+\item Show that every ring of order $p^2$ for a prime $p$ is commutative.
+\item Show that a semiring with multiplicative identity and cancellative addtion has commutative addition.
+\item Show that the complement of a saturated monoid in a commutative ring is a union of prime ideals.
+\end{enumerate}
 
 
 \chapter{Polynomial rings}

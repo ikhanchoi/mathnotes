@@ -11,27 +11,10 @@
 \tableofcontents
 
 
-% automorphism groups of F(x) for an indeterminate x
-
 
 
 \part{Finite group theory}
 \iffalse
-presentation
-	quotient of a free group
-	homomorphism 잡기
-		free group을 정의역으로 먼저 잡고 well-defined 보여서 quotient로 내리기
-	element들을 두 제너레이터로 표현하기
-isomorphism 보이기
-	isomorphism theorem
-	order argument
-subgroup criterion: 항등원, 역원, 닫힘 순으로 증명
-centralizer, center, normalizer
-	각 그룹의 계산 -> 기본적으로 노가다, 마지막에 라그랑지 확인
-	센트럴라이저의 대칭성
-	N(H)/C(H) 정리, G/Z(G)=Inn(G)
-stabilizer
-
 
 ----------
 #
@@ -43,17 +26,12 @@ stabilizer
 	- 인덱스: 푸앵카레 정리, least prime ind
 	- 노말라이즈되는 부분군 잡아 노말라이저 띄우기
 	케이스 나누기에 매우 좋은 조건을 제공
-		노말 실로우 -> 바로 반직접곱
-http://oeis.org/wiki/Number_of_groups_of_order_n
 
 #
 군 확장
 컴포지션 시리즈의 이해
 반직접: / 계산->아벨군의 자기동형군
 중심적: 군코호몰로지 / 계산->보편계수정리
-
-#
-단순군: 단순군 아니기 테크닉, 단순군 보이기 테크닉, 교대군과 리타입 선형군
 
 #
 p군: 비자명센터, 개수 겁나많음
@@ -70,57 +48,59 @@ p군: 비자명센터, 개수 겁나많음
 
 \section{Semidirect product}
 
-\begin{prb}[Action by group automorphisms]
-
-An \emph{intertwining homomorphism} is a group homomorphism such that blabla.
-\begin{parts}
-\item
-\end{parts}
-\end{prb}
 
 \begin{prb}[Semidirect product]
-Let $\f:H\to\Aut(N)$ be a group action.
-The \emph{semidirect product} $N\rtimes_\f H$ is a group defined on the set $N\times H$ by
-\[(n,h)(n',h')=(n+\f(h)n',hh').\]
-\end{prb}
-\begin{prb}[Internal semidirect product]
-Let $N,H$ be subgroups of $G$ such that
-\[N\normal G,\quad N\cap H=1,\quad NH=G.\]
-Then, $G\cong N\rtimes_\f H$, where $\f$ is the action by conjugation $\f(h):N\to N:n\mapsto hnh^{-1}$.
-\end{prb}
-
-
-
-
-\begin{prb}
-Let $N_1$, $N_2$, and $H$ be groups.
-Let $\f_1:H\to\Aut(N_1)$ and $\f_2:H\to\Aut(N_2)$ be actions
+Let $N,H$ be groups, and let $\f:H\to\Aut(N)$ be a group homomorphism.
+The homomorphism $\f$ can be considered as the permutation representation of a group action $H\times N\to N$ by automorphism.
+The \emph{semidirect product}, written as $N\rtimes_\f H$ or just simply $N\rtimes H$ if no confusion, is a group defined on the set $N\times H$ by
+\[(n,h)(n',h')=(n\f(h)n',hh').\]
 \begin{parts}
-\item If $\f_1$ and $\f_2$ are equivalent up to intertwining isomorphism, then $N_1\rtimes H\cong N_2\rtimes H$ as groups.
-\item If $\f_1$ and $\f_2$ are equivalent up to twist, then $N_1\rtimes H\cong N_2\rtimes H$ as groups.
-\end{parts}
-\end{prb}
-
-\begin{prb}
-Let $H$ and $N$ be finite groups.
-\begin{parts}
-\item If $|H|$ and $|N|$ are coprime, then the interwining isomorphism and twist relation give a necessary condition for semidirect products to be isomorphic.
-\item If $H$ is cyclic, then the interwining isomorphism and twist relation is equivalent to the conjugacy of the images in $\Aut(N)$.
+\item The semidirect product $N\rtimes H$ is really a group.
+\item If $N,H$ are subgroups of another group $G$ such that
+\[N\normal G,\quad N\cap H=1,\quad NH=G,\]
+then $G\cong N\rtimes_\f H$, where $\f(h):n\mapsto hnh^{-1}$.
+In this case, we sometimes call $G$ the \emph{internal semidirect product}.
 \end{parts}
 \end{prb}
 
 
-\section{Extensions}
 
-\begin{prop}
+
+\begin{prb}[Classification of semidirect products]
 Let $N$ and $H$ be groups.
-Then, the following objects have one-to-one correspondences among each other.
+Consider the following set of all semidirect products:
+\[\{\,N\rtimes_\f H\mid\f:H\to\Aut(N)\text{ is a group homomorphism}\,\}.\]
+On this set, we can establish an action of the group $\Aut(N)\times\Aut(H)$ as follows:
+The \emph{intertwining} is a group action by $\Aut(N)$ such that
+\[N\rtimes_\f H\mapsto N\rtimes_{\nu\f\nu^{-1}}H.\]
+The \emph{twisting} is a group action by $\Aut(H)$ such that
+\[N\rtimes_\f H\mapsto N\rtimes_{\f\circ\eta}H.\]
+Consider the action of $\Aut(N)\times\Aut(H)$ defined by the above two operations.
 \begin{parts}
-\item isomorphic types of groups $G$ such that a sequence \begin{es}0\>N\>G\>H\>0\end{es} is exact and right split,
-\item isomorphic types of groups $G$ such that $N\normal G\ge H$ with $G=NH$ and $N\cap H=1$,
-\item group actions $H\to\Aut(N)$ preserving the group structure of $N$.
+\item If two semidirect products are in a same orbit, then they are isomorphic.
+\item Suppose $|N|$ and $|H|$ are finite and relatively prime. If two semidirect products are isomorphic, then they are in a same orbit.
+\item Suppose $H$ is finite and cyclic. Then, two semidirects products defined by $\f_1$ and $\f_2$ are in a same orbit if and only if the images $\f_1(H)$ and $\f_2(H)$ are conjugate in $\Aut(N)$.
+\item 
 \end{parts}
-\end{prop}
+\end{prb}
+\begin{pf}
+
+\end{pf}
+
+
+
+\section{Group extensions}
+
+\begin{prb}
+Let $N$ and $H$ be groups.
+The following objects have one-to-one correspondences among each other.
+\begin{parts}
+\item Isomorphic types of groups $G$ such that a sequence \begin{es}0\>N\>G\>H\>0\end{es} is exact and right split,
+\item Isomorphic types of groups $G$ such that $N\normal G\ge H$ with $G=NH$ and $N\cap H=1$,
+\item Group homomorphisms $H\to\Aut(N)$...?
+\end{parts}
+\end{prb}
+
 \begin{defn}
 The group $G$ in the previous proposition is called the \emph{semidirect product} of $N$ and $H$.
 \end{defn}
@@ -165,29 +145,42 @@ If $\f$ is trivial so that $A$ is just an abelian group, then the universal coef
 
 
 
+\begin{prb}[Central extension]
+For an abelian normal subgroup $A$ of $G$, a homomorphism $G/C_G(A)\to\Aut(A)$ factors though $G/A$.
+If it has trivial image, then $A$ is central.
+\end{prb}
+
+
+
+
+
 \section{Subnormal series}
 
+Holder program
+solvable group
+nilpotent group
+central series
+abelianization
 
 
 
 
 
+\section*{Exercises}
+\begin{prb}[Wreath product]
+\end{prb}
 
 
 
 
-\chapter{The Sylow theorems}
+\chapter{Sylow theory}
 
-\section{The Sylow theorems}
-\begin{prb}[The Sylow theorems]
-Let $G$ be a finite group of order $n=p^am$ for a prime $p\nmid m$.
-A \emph{Sylow $p$-subgroup} is a subgroup of order $p^a$.
-Denote $\Syl_p(G)$ the set of Sylow $p$-subgroups and $n_p(G)$ its cardinality.
-\begin{parts}
-\item $n_p\ge1$.
-\item $n_p\equiv1\pmod p$.
-\item $n_p\mid m$.
-\end{parts}
+
+
+\section{Sylow subgroups}
+
+\begin{prb}[Existence of Sylow subgroups]
+Two proofs:
 \end{prb}
 \begin{pf}
 (a)
@@ -201,12 +194,40 @@ For $Q\in\Syl_p(G/P_p)$, the inverse image of $Q$ under the projection $G\to G/P
 If $p\nmid|Z(G)|$, then we have $p\nmid|G:C_G(g)|$ for some $g\in G$, and with this $g$, we have $\Syl_p(C_G(g))\subset\Syl_p(G)$.
 Then, we are done by induction.
 
+(Wielandt)
+We use the lemma $\binom{p^am}{p^a}\equiv m\pmod p$..?
+Let $|G|=p^{a+b}m$.
+Let $\cS$ be the set of all subsets of $G$ with size $p^a$.
+Give $G\to\Sym(\cS)$ by left multiplication.
+Since
+\[v_p(|S|)=v_p(\binom{p^a(p^bm)}{p^a})=b,\]
+there is an orbit $\cO\subset\cS$ such that $v_p(|\cO|)\le b$.
+We have transitive action $G\to\Sym(\cO)$ and the stabilizer $H$ satisfies $p^a\mid\frac{|G|}{|\cO|}=|H|$.
+Since $H\to\Sym(\cO)$ trivially, $H\to\Sym(A)$ for $A\in\cO\subset\cS$.
+It is only possible when $H\subset A$, hence $|H|=p^a$.
+\end{pf}
+
+
+\begin{prb}[Number of Sylow subgroups]
+Let $G$ be a finite group of order $n=p^am$ for a prime $p\nmid m$.
+A \emph{Sylow $p$-subgroup} is a subgroup of order $p^a$.
+Denote by $\Syl_p(G)$ the set of Sylow $p$-subgroups and by $n_p(G)$ its cardinality.
+\begin{parts}
+\item If $P$ normalizes $P'$, then $P=P'$.
+\item $n_p\equiv1\pmod p$.
+\item $n_p\mid m$.
+\end{parts}
+\end{prb}
+\begin{pf}
+(a)
+$P\le N_G(P')$ implies
+\[\frac P{P\cap P'}\cong\frac{PP'}{P'}\le\frac{N_G(P')}{P'}.\]
+
+
 (b)
 For $P\in\Syl_p(G)$, the class equation for the action of $P$ on $\Syl_p(G)$ by conjugation is
 \[n_p=f+\sum_{i=1}^r|P:N_P(P_i)|,\]
 where $f$ is the number of fixed points and $r$ the number of non-trivial orbits.
-
-If $P_i\in\Syl_p(G)$ is fixed, then $P$ normalizes $P_i$ so that $P<N_G(P_i)$, and by passing $P$ though the projection $N_G(P_i)\to N_G(P_i)/P_i$ we can show $P=P_i$.
 Therefore, $P$ is the only fixed point, so it follows that $n_p\equiv1\pmod p$ from
 \[n_p=1+\sum_{i=1}^r|P:N_P(P_i)|.\]
 
@@ -243,10 +264,18 @@ In order to find the size of conjugacy classes:
 \item count elements,
 \end{parts}
 
+\section{$p$-groups}
 
 
+\begin{prb}[$p$-groups]
+\begin{parts}
+\item A nontrivial normalizer of a $p$-group meets its center out of identity.
+\item A proper subgroup of a finite $p$-group is a proper subgroup of its normalizer. In particular, every finite $p$-group is nilpotent.
+\end{parts}
+\end{prb}
 
-\section{Classification of small groups}
+
+\section{Small groups}
 
 \begin{prb}[Classification of groups of order $pq$]
 \end{prb}
@@ -262,20 +291,15 @@ In order to find the size of conjugacy classes:
 Let $G$ be a finite group of order $p^2q$, where $p$ and $q$ are distinct primes.
 If we let $P$ and $Q$ be Sylow $p$ and $q$-subgroup of $G$, then $P\cong Z_{p^2}\text{ or }Z_p^2$, and $Q\cong Z_q$.
 By the Sylow theorem, we consider three cases:
-\begin{enumerate}[(i)]
-\item $p+2\le q$, and in this case we have $G\cong Q\rtimes P$.
-\item $p>q$, and in this case we have $G\cong P\rtimes Q$.
-\item $p^2q=12$.
-\end{enumerate}
 \begin{parts}
-\item If $p+2\le q$, there are
+\item If $p+2\le q$, then $G\cong Q\rtimes P$, and there are
 \[\begin{cases}
-2&\text{ if }v_p(q-1)=0,\\
-4&\text{ if }v_p(q-1)=1,\\
-5&\text{ if }v_p(q-1)\ge2
+2&\text{ if }q-1=m,\\
+4&\text{ if }q-1=pm,\\
+5&\text{ if }q-1=p^am,\ a\ge2
 \end{cases}\]
 non-isomorphic groups of order $p^2q$.
-\item If $p>q$, there are
+\item If $p>q$, then $G\cong P\rtimes Q$, and there are
 \[\begin{cases}
 5&\text{ if }q=2,\\
 \frac{q+9}2&\text{ if }q\ne2,\ q\mid p-1,\\
@@ -392,19 +416,11 @@ $\#$ of groups&51&52&267\\
 
 
 
+
 \section*{Exercises}
-\begin{prb}
-Alternative proof for existence of $p$-groups.
+\begin{prb}[Hall subgroups]
+
 \end{prb}
-\begin{pf}
-Let $|G|=p^{a+b}m$.
-Let $\cP_{p^a}$ be the set of all subsets of $G$ with size $p^a$.
-Give $G\to\Sym(\cP_{p^a})$ by left multiplication.
-Since $v_p(|\cP_{p^a}|)=v_p(\binom{p^a(p^bm)}{p^a})=b$, there is an orbit $\cO$ such that $v_p(|\cO|)\le b$.
-We have transitive action $G\to\Sym(\cO)$ and the stabilizer $H$ satisfies $p^a\mid|G|/|\cO|=|H|$.
-Since $H\to\Sym(\cO)$ trivially, $H\to\Sym(A)$ for $A\in\cO\subset\cP_{p^a}$.
-It is only possible when $H\subset A$, hence $|H|=p^a$.
-\end{pf}
 
 
 \begin{prb}
@@ -422,6 +438,7 @@ Show that the number of Sylow $p$-subgroups of $\SL_3(\F_p)$ is $(p^2+p+1)(p+1)$
 \chapter{Group presentation}
 
 \section{Free groups}
+
 
 
 
@@ -491,21 +508,19 @@ Since $[F(\alpha):F]<\infty$, we can find a linearly dependent finite subset of 
 The coefficients on the linear dependency relation construct the polynomial.
 \end{pf}
 
-Since the ideal $\ker(\eval_\alpha)\subset F[x]$ for algebraic $\alpha\in E$ is maximal, the following definition makes sense:
-
-\begin{defn}
+\begin{prb}[Minimal polynomial]
 Let $E/F$ be a field extension and $\alpha\in E$ is algebraic.
-The unique monic irreducible polynomial $\mu_{\alpha,F}\in F[x]$ satisfying 
+A monic irreducible polynomial $\mu_{\alpha,F}\in F[x]$ satisfying 
 \[\mu_{\alpha,F}(\alpha)=0\]
 is called the \emph{minimal polynomial of $\alpha$ over $F$}.
-\end{defn}
-\begin{thm}
-Let $E/F$ be a field extension and $\alpha\in E$ is algebraic.
-Then,
-\[F(\alpha)\cong F[x]/(\mu_{\alpha,F}).\]
-In particular, $[F(\alpha):F]=\deg\mu_{\alpha,F}$.
-\end{thm}
+\begin{parts}
+\item The minimal polynomial is unique.
+\item $F(\alpha)\cong F[x]/(\mu_{\alpha,F})$.
+\item $[F(\alpha):F]=\deg\mu_{\alpha,F}$.
+\end{parts}
+\end{prb}
 \begin{pf}
+(b)
 The kernel of $\eval_\alpha:F[x]\to F(\alpha)$ is characterized as the principal ideal generated by $\mu_{\alpha,F}$, so we find the isomorphism $F[x]/(\mu_{\alpha,F})\cong F(\alpha)$.
 
 Now we claim the dimension of $F[x]/(f)$ over $F$ is the degree of $f\in F[x]$.
@@ -514,61 +529,18 @@ We can check this with the Euclidean algorithm.
 \end{pf}
 
 
-\begin{ex}
-Consider a field extension $\C/\Q$.
-The minimal polynomial of $\sqrt2\in\C$ over $\Q$ is
-\[\mu_{\sqrt2,\Q}(x)=x^2-2\]
-since it is monic irreducible and has a root $\sqrt2$.
-Similarly, the minimal polynomial of $\omega=\frac{-1+\sqrt{-3}}2\in\C$ over $\Q$ is
-\[\mu_{\omega,\Q}(x)=x^2+x+1.\]
-\end{ex}
 
-\begin{ex}
-We can compute the degree of a field extension by finding minimal polynomial.
-Since the minimal polynomial $\sqrt2+\sqrt3$ over $\Q$ is
-\[\mu_{\sqrt2+\sqrt3,\Q}(x)=x^4-10x^2+1,\]
-we have
-\[[\Q(\sqrt2+\sqrt3):\Q]=\deg(x^4-10x^2+1)=4.\]
-
-On the other hand, we have
-\[[\Q(\sqrt2,\sqrt3):\Q]=[\Q(\sqrt2,\sqrt3):\Q(\sqrt2)]\cdot[\Q(\sqrt2):\Q]=2\cdot2=4.\]
-Since $\sqrt2+\sqrt3\in\Q(\sqrt2,\sqrt3)$ implies $\Q(\sqrt2+\sqrt3)\le\Q(\sqrt2,\sqrt3)$ and the dimensions as vector spaces are equal, we get $\Q(\sqrt2+\sqrt3)=\Q(\sqrt2,\sqrt3)$.
-We can also directly check
-\[\sqrt2=\frac12\left(\alpha-\frac1\alpha\right)\quad\text{and}\quad\sqrt3=\frac12\left(\alpha+\frac1\alpha\right),\]
-where $\alpha=\sqrt2+\sqrt3$.
-This kind of \emph{dimension argument} is one of powerful tools to attack field theory.
-It will be discovered later that the dimension argument has an analogy with computation of group orders in finite group theory.
-\end{ex}
-
-\begin{ex}
-The base field is important: we have
-\[\mu_{\sqrt2,\Q}(x)=x^2-2,\quad\text{but}\quad\mu_{\sqrt2,\Q(\sqrt2)}(x)=x-\sqrt2.\]
-\end{ex}
-
-\begin{ex}
-Although $\Q(\sqrt2)=\Q(1+\sqrt2)$, the minimal polynomials of $\sqrt2$ and $1+\sqrt2$ over $\Q$ are $x^2-2$ and $(x-1)^2-2$ respectively.
-Polynomials are usually used in order to be provided as a computational tool, so we frequently want to find a suitable minimal polynomial for a given field extension.
-However, note that a finite simple extension does not specify only one minimal polynomial as the above example.
-It is enough to find only one minimal polynomial that is effective in computation.
-\end{ex}
-
-\subsection{Conjugates}
-
-\begin{defn}
-Let $E/F$ be a field extension and $\alpha,\beta\in E$ be algebraic over $F$
+\begin{prb}[Conjugate elements]
+Let $E/F$ be a field extension and $\alpha,\beta\in E$ be algebraic over $F$.
 They are said to be \emph{conjugate over $F$} if they share a common minimal polynomial over $F$.
-\end{defn}
-
-In other words, conjugates share the maximal ideal $\ker(\eval)$, hence we get that $F(\alpha)$ and $F(\beta)$ are isomorphic.
-For the practical isomorphism map, we have the following theorem.
-It is also useful when we compute field automorphisms explicitly.
-
-\begin{thm}[Conjugation isomorphism]
-Let $E/F$ be a field extension.
-Two elements $\alpha,\beta\in E$ are conjugate over $F$ iff there is a field isomorphism $\phi:F(\alpha)\to F(\beta)$ such that
-\[\phi:\alpha\mapsto\beta\quad\text{and}\quad\phi|_F=\id|_F.\]
-\end{thm}
+\begin{parts}
+\item $\alpha,\beta\in E$ are conjugate over $F$ if and only if there is a field isomorphism $\phi:F(\alpha)\to F(\beta)$ such that $\phi(\alpha)=\beta$ and $\phi|_F=\id_F$.
+\item $\pm\sqrt2$ are conjugate over $\Q$, but not over $\C$.
+\item There are two, one, two field automorphisms of $\Q(\sqrt2)$, $\Q(\sqrt[3]2)$, $\Q(\sqrt[4]2)$, respectively.
+\end{parts}
+\end{prb}
 \begin{pf}
+(a)
 ($\Rightarrow$)
 Let $\mu\in F[x]$ be the common minimal polynomial of $\alpha$ and $\beta$ over $F$ and define a map
 \[\phi:F(\alpha)\stackrel\sim\to F[x]/(\mu)\stackrel\sim\to F(\beta):\alpha\mapsto x+(\mu)\mapsto\beta.\]
@@ -584,62 +556,18 @@ From
 we get $\mu_{\beta,F}\mid\mu_{\alpha,F}$.
 The irreducibility of $\mu_{\alpha,F}$ implies $\mu_{\alpha,F}=\mu_{\beta,F}$.
 \end{pf}
-\begin{cor}
-Let $\phi:F\to F$ is a field automorphism.
-Then, $\alpha$ and $\phi(\alpha)$ are always conjugates.
-\end{cor}
-
-\begin{ex}
-The base fields are important.
-There are two conjugates of $\sqrt2\in\C$ over $\Q$: $\{\pm\sqrt2\}$.
-However, there is only one conjugate of $\sqrt2$ over $\Q(\sqrt2)$ or $\C$: itself $\{\sqrt2\}$.
-\end{ex}
-
-\begin{ex}
-There are two conjugates of $\omega=\frac{-1+\sqrt{-3}}2\in\C$ over $\Q$: $\{\omega,\,\bar\omega=\omega^{-1}\}$.
-It implies that there are at most two field automorphisms on $\Q(\omega)$ fixing $\Q$.
-In fact, there are exactly two; one is identity, and the other is the complex conjugation.
-\end{ex}
-
-\begin{ex}
-For almost every case in applications, the number of conjugates is same as the degree of its minimal polynomial.
-However, there are counterexamples; two field isomorphisms $\phi_1:\alpha\mapsto\beta_1$ and $\phi_2:\alpha\mapsto\beta_2$ may be the same even for $\beta_1\ne\beta_2$.
-See Section 3 for the detailed discussion.
-\end{ex}
-
-\begin{ex}
-The isomorphism does not have to be an automorphism.
-There are four conjugates of $\sqrt[4]2$ over $\Q$: $\{\pm\sqrt[4]2,\,\pm i\sqrt[4]2\}$.
-However, $\Q(\sqrt[4]2)\ne\Q(i\sqrt[4]2)$ even though they are isomorphic.
-See Section 4.
-\end{ex}
-
 
 
 
 \section{Algebraic extensions}
 
-Algebraic extension is a generalization of finite extensions, for instance, every finite extension.
-In Galois theory, which will be studied later, we will not care elements that are not algebriac.
-Therefore, it is natural to think of a field extension that only consists of algebraic elements, which is called also algebraic.
-The main interests in Galois theory will be restricted to algebraic extensions.
-To people who know the category theory, an algebraic extension is just a direct limit of finite simple extensions.
-
-\begin{defn}
-A field extension $E/F$ is called \emph{algebraic} if all elements $\alpha\in E$ are algebraic over $F$.
-\end{defn}
-
-The easiest example of an algebraic extension is a finite extension.
-The relations between finite extensions and algebraic extension are as follows.
-
-\begin{prop}
-For finite extensions and algebraic extensions, we have:
+\begin{prb}[Algebraic extensions]
+A field extension $E/F$ is called \emph{algebraic} if every element of $E$ is algebraic over $F$.
 \begin{parts}
-\item a finite extension is algebraic,
-\item a simple algebraic extension is finite.
+\item A finite extension is algebraic.
+\item A simple algebraic extension is finite.
 \end{parts}
-\end{prop}
-\begin{pf} Easy. \end{pf}
+\end{prb}
 
 Now, we are going to get some basic criteria for determining or constructing algebraic extensions.
 If summarized, we can just say any basic operations of algebraic extensions are algebraic.
@@ -660,71 +588,7 @@ The set $\bar F$ of $F$ in $L$ is always a field.
 \begin{pf}
 An element is algebraic over $F$ if and only if it is contained in a finite extension $E/F$ because $\alpha\in E$ is equivalent to $F(\alpha)\le E$.
 
-Let $\alpha,\beta\in L$ be nonzero algebraic elements over a field $F$.
-Since $\alpha+\beta$, $\alpha\beta$, and $\alpha^{-1}$ are all in $F(\alpha,\beta)$, which is a finite extension of $F$ with degree $\deg_F(\alpha)\deg_F(\beta)$, the set of algebraic elements over $F$ in $L$ is a field.
 \end{pf}
-\begin{rmk}
-The field $\bar F$ is called the \emph{relative algebraic closure of $F$ in $L$}.
-Since we have not defined algebraic closures yet, we will only adopt the notation.
-The reason of the word ``relative'' is explained later.
-Also, honestly, the notation $\bar F$ is not so good that it is often used to represent an algebraic closure, not a relative one.
-We, however, proceed with this notation to grasp concepts of algebraic extensions.
-\end{rmk}
-
-\begin{lem}
-Let $L$ be any field containing two fields $E,F$.
-Then,
-\begin{parts}
-\item $F\le E$ implies $\bar F\le \bar E$,
-\item $\bar{\bar F}=\bar F$.
-\end{parts}
-\end{lem}
-\begin{pf}
-(a)
-Suppose $\alpha\in\bar F$ so that there is $f\in F[x]$ such that $f(\alpha)=0$.
-Since $f\in F[x]\subset E[x]$, the element $\alpha$ is also algebraic over $E$, hence $\alpha\in\bar E$.
-
-(b)
-It is enough to show $\bar{\bar F}\subset\bar F$.
-Let $\alpha\in\bar{\bar F}$ so that we can find $f\in\bar F[x]$ such that
-\[f(\alpha)=\sum_{i=0}^na_i\alpha^i=0.\]
-If we consider the field $E=F(a_0,\cdots,a_n)$ of coefficients, then $f\in E[x]$.
-In other words, $\alpha$ is algebraic over $E$.
-
-The field extension $E/F$ is finite since all generators $a_i$ are algebraic over $F$, and $E(\alpha)/E$ is also finite since $\alpha$ is algebraic over $E$.
-Therefore, the field extension $E(\alpha)/F$ is finite, and $F(\alpha)/F$ is also finite, hence the algebraicity of $\alpha$ over $F$.
-\end{pf}
-
-\begin{thm}
-Let $E/F$ be a field extension.
-\begin{parts}
-\item Fix any $L\ge E$. Then, $E/F$ is algebraic iff $\bar E=\bar F$.
-\item Let $F\le K\le E$. Then, $E/F$ is algebraic iff $E/K$ and $K/F$ are algebraic.
-\item The compositum $E_1E_2/F$ is algebriac if $E_1/F$ and $E_2/F$ are algebraic.
-\end{parts}
-\end{thm}
-\begin{pf}
-(a)
-If $E/F$ is algebraic, then $F\le E\le\bar F$ implies $\bar F\le\bar E\le\bar{\bar F}=\bar F$.
-Conversely, if $\bar E=\bar F$, then $\alpha\in E$ implies $\alpha\in E\le\bar E=\bar F$, hence $E$ is algebraic over $F$.
-
-(b)
-Choose a big $L$.
-Since $\bar E\ge\bar K\ge\bar F$, we have $\bar E=\bar F$ iff $\bar E=\bar K$ and $\bar K=\bar F$.
-
-(b')
-A direct proof uses the argument in the proof of above lemma as follows: if we take $\alpha\in E$ that is algebraic over $K$, and if $a_i$ denotes the coefficients of $\mu_{\alpha,K}$, then the field extension $F(a_1,\cdots,a_n,\alpha)/F$ is finite, so $\alpha$ is algebriac over $F$.
-
-(c)
-Choose a big $L$.
-Since $E_1,E_2\le\bar F$, we have $E_1E_2\le\bar F$, so $\bar{E_1E_2}=\bar{F}$.
-\end{pf}
-
-\begin{rmk}
-An algebraic extension is a direct limit of finite extensions.
-In other words, a field $E$ is algebraic over $F$ if and only if there is a tower of fields $\{K_\alpha\}_\alpha$ such that $K_\alpha/F$ are all finite and the ascending union is $E$.
-We skip the proof.
-\end{rmk}
 
 
 
@@ -747,25 +611,17 @@ are infinite algebraic extensions.
 
 
 
-\section{Algebraic closures}
 
-Algebraic closure is intuitively a maximal algebraic extension.
-It is well described using the notion of algebraically closed fields.
-Although the existence will be proved later, we give definitions.
 
-\subsection{Algebraically closed fields}
-\begin{defn}
-A field $F$ is called \emph{algebraically closed} if it has no proper algebraic extension.
-\end{defn}
-
-\begin{prop}
-For a field $F$, the following statements are all equivalent:
+\begin{prb}[Algebraically closed field]
+An \emph{algebraically closed} field is a field that has no proper algebraic extension.
+For a field $F$, the following statements are all equivalent, and in particular, a field isomorphic to an algebraically closed field is algebraiclly closed:
 \begin{parts}
-\item $F$ is algebraically closed,
-\item every polynomial in $F[x]$ has a root in $F$,
-\item every polynomial in $F[x]$ is linearly factorized in $F$; every root is in $F$.
+\item $F$ is algebraically closed.
+\item Every polynomial in $F[x]$ has a root in $F$.
+\item Every polynomial in $F[x]$ is linearly factorized in $F$. In other words, every root is in $F$.
 \end{parts}
-\end{prop}
+\end{prb}
 \begin{pf}
 (a)$\impl$(b)
 If $f\in F[x]$ does not have root in $F$, then the proper finite extension $(F[x]/(f))/F$ shows that $F$ is not algebraically closed.
@@ -776,51 +632,78 @@ If $f$ has a root $\alpha$, then we can inductively apply this theorem for a new
 (c)$\impl$(a)
 If $F$ is not algebraically closed so that there is a proper algebraic extension $E/F$, then the minimal polynomial $\alpha\in E\setminus F$ should be irreducible with degree bigger than 1.
 \end{pf}
-\begin{rmk}
-In particular, this proposition implies that algebraically closedness can be described in itself by factorizations.
-Namely, it is an internal property; it is preserved under isomorphisms.
-\end{rmk}
 
 
-\begin{defn}
+\begin{prb}[Algebraic closure]
 A field $\bar F$ is called an \emph{algebraic closure} of a field $F$ if $\bar F$ is algebraically closed field and $\bar F/F$ is algebraic.
-\end{defn}
-
-\begin{prop}
 Let $E/F$ be a field extension with $E$ algebraically closed.
-Then the set of all algebraic elements in $E$ over $F$ is the only algebraic closure of $F$ contained in $E$.
-\end{prop}
+Denote by $\bar F$ the set of all algebraic elements in $E$ over $F$
+\begin{parts}
+\item $\bar F$ is a field.
+\item $\bar F$ is an algebraic closure of $F$.
+\end{parts}
+\end{prb}
 \begin{pf}
-For a while in this proof, let $\bar F$ denote the set of all algebraic elements of $F$ in $E$.
+(a)
+Let $\alpha,\beta\in\bar F$.
+Since $\alpha+\beta$, $\alpha\beta$, and $\alpha^{-1}$ are all in $F(\alpha,\beta)$, which is a finite extension of $F$ with degree $\deg_F(\alpha)\deg_F(\beta)$, we are done.
 
-\Step{1}[Algebraic closure]
+(b)
 We will show that $\bar F$ is algebraically closed because the extension $\bar F/F$ is clearly algebraic.
 Let $f\in\bar F[x]$ and take a root $\alpha\in E$.
 Since both $\bar F(\alpha)/\bar F$ and $\bar F/F$ are algebraic, $\alpha$ is algebraic over $F$.
 Thus we have $\alpha\in\bar F$, and by the previous proposition, $\bar F$ is algebraically closed.
-
-\Step{2}[Uniqueness]
-Suppose $K$ is an algebraic closure of $F$ in $E$.
-We have $\bar F\le K$ since every algebraic element $\alpha$ with $f(\alpha)=0$ for $f\in F[x]\subset K[x]$ should be contained in $K$.
-Also, $K/\bar F$ is algebraic because $K/F$ is algebraic.
-Since $\bar F$ is algebraically closed, $K=\bar F$.
 \end{pf}
 
-This is a relation with relative algebraic closure: the relative algebraic closure in a algebraically closed field is really an algebraically closure.
-The proposition allows us to choose a standard algebraic closure when provided a large superfield like $\C$.
-In number theory, it is convenient for all algebraically closed fields to be considered that they are in $\C$. 
+\begin{prb}[Algebraic closure of $\Q$]
+It is well-known fact that the set of all complex numbers $\C$ is an algebraically closed field; it is the fundamental theorem of algebra.
+The set of all algebraic numbers over $\Q$ is an algebraically closed subfield of $\C$.
+\begin{parts}
+\item $\bar\Q$ is countable.
+\end{parts}
+\end{prb}
 
-\begin{ex}
-The set of all complex numbers $\C$ is an algebraically closed field by the fundamental theorem of algebra.
-\end{ex}
+\begin{prb}[Relations of algebraic extensions]
+Let $E/F$ be a field extension.
+\begin{parts}
+\item $F\le E$ implies $\bar F\le \bar E$,
+\item $\bar{\bar F}=\bar F$.
+\item Fix any $L\ge E$. Then, $E/F$ is algebraic iff $\bar E=\bar F$.
+\item Let $F\le K\le E$. Then, $E/F$ is algebraic iff $E/K$ and $K/F$ are algebraic.
+\item The compositum $E_1E_2/F$ is algebriac if $E_1/F$ and $E_2/F$ are algebraic.
+\end{parts}
+\end{prb}
+\begin{pf}
+(a)
+Suppose $\alpha\in\bar F$ so that there is $f\in F[x]$ such that $f(\alpha)=0$.
+Since $f\in F[x]\subset E[x]$, the element $\alpha$ is also algebraic over $E$, hence $\alpha\in\bar E$.
 
-\begin{ex}
-The set of all algebraic numbers (over $\Q$) is an algebraically closed field by the proposition above and is a subfield of $\C$.
-\end{ex}
+(b)
+It is enough to show $\bar{\bar F}\subset\bar F$.
+Let $\alpha\in\bar{\bar F}$ so that we can find $f\in\bar F[x]$ such that
+\[f(\alpha)=\sum_{i=0}^na_i\alpha^i=0.\]
+If we consider the field $E=F(a_0,\cdots,a_n)$ of coefficients, then $f\in E[x]$.
+In other words, $\alpha$ is algebraic over $E$.
 
+The field extension $E/F$ is finite since all generators $a_i$ are algebraic over $F$, and $E(\alpha)/E$ is also finite since $\alpha$ is algebraic over $E$.
+Therefore, the field extension $E(\alpha)/F$ is finite, and $F(\alpha)/F$ is also finite, hence the algebraicity of $\alpha$ over $F$.
 
-\subsection{Uniqueness and existence}
-Here is a useful lemma that allows to apply the axiom of choice to field theory.
+(c)
+If $E/F$ is algebraic, then $F\le E\le\bar F$ implies $\bar F\le\bar E\le\bar{\bar F}=\bar F$.
+Conversely, if $\bar E=\bar F$, then $\alpha\in E$ implies $\alpha\in E\le\bar E=\bar F$, hence $E$ is algebraic over $F$.
+
+(d)
+Choose a big $L$.
+Since $\bar E\ge\bar K\ge\bar F$, we have $\bar E=\bar F$ iff $\bar E=\bar K$ and $\bar K=\bar F$.
+
+(d')
+A direct proof uses the argument in the proof of above lemma as follows: if we take $\alpha\in E$ that is algebraic over $K$, and if $a_i$ denotes the coefficients of $\mu_{\alpha,K}$, then the field extension $F(a_1,\cdots,a_n,\alpha)/F$ is finite, so $\alpha$ is algebriac over $F$.
+
+(e)
+Choose a big $L$.
+Since $E_1,E_2\le\bar F$, we have $E_1E_2\le\bar F$, so $\bar{E_1E_2}=\bar{F}$.
+\end{pf}
+
 
 \begin{prb}[Isomorphism extension theorem]
 Let $E/F$ be an algebraic extension.
@@ -897,8 +780,26 @@ Let $F(\alpha)/F$ be a finite simple extension of a field $F$ and let $\beta\in 
 In light of elementary linear algebra,
 \end{prb}
 
+\begin{prb}
+$\Q[x]/(x^2-2)\cong\Q[x]/(x^2-2x-1)$.
+\end{prb}
 
+\begin{prb}[Dimension argument]
+We can compute the degree of a field extension by finding minimal polynomial.
+Since the minimal polynomial $\sqrt2+\sqrt3$ over $\Q$ is
+\[\mu_{\sqrt2+\sqrt3,\Q}(x)=x^4-10x^2+1,\]
+we have
+\[[\Q(\sqrt2+\sqrt3):\Q]=\deg(x^4-10x^2+1)=4.\]
 
+On the other hand, we have
+\[[\Q(\sqrt2,\sqrt3):\Q]=[\Q(\sqrt2,\sqrt3):\Q(\sqrt2)]\cdot[\Q(\sqrt2):\Q]=2\cdot2=4.\]
+Since $\sqrt2+\sqrt3\in\Q(\sqrt2,\sqrt3)$ implies $\Q(\sqrt2+\sqrt3)\le\Q(\sqrt2,\sqrt3)$ and the dimensions as vector spaces are equal, we get $\Q(\sqrt2+\sqrt3)=\Q(\sqrt2,\sqrt3)$.
+We can also directly check
+\[\sqrt2=\frac12\left(\alpha-\frac1\alpha\right)\quad\text{and}\quad\sqrt3=\frac12\left(\alpha+\frac1\alpha\right),\]
+where $\alpha=\sqrt2+\sqrt3$.
+This kind of \emph{dimension argument} is one of powerful tools to attack field theory.
+It will be discovered later that the dimension argument has an analogy with computation of group orders in finite group theory.
+\end{prb}
 
 
 

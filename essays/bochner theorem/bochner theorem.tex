@@ -1182,6 +1182,7 @@ This correspondence provides a starting point to construct a bridge between the 
 
 \begin{prop}
 The map $\hat G\to(L^1(G))\hat\enspace$ is a homeomorphism.
+In particular, on $\hat G$, the topology of compact convergence coincides with the weak$^*$ topology in $L^1(G)^*$.
 \end{prop}
 \begin{pf}
 (Injectivity)
@@ -1221,22 +1222,40 @@ Let $K$ be a compact subset of $G$ and take $\e>0$.
 We will bound $|\chi_\alpha(x)-\chi(x)|$ by averaging.
 Using the continuity of $\chi$, fix a small compact neighborhood $U$ of the identity $e$ in $G$ such that
 \[\frac1{|U|}\int_U|1-\chi(y)|\,dy<\e.\]
-Then,
+Then, for all $x\in G$,
+\begin{align*}
+|\frac{\1_U}{|U|}*\chi(x)-\chi(x)|\le(2\e)^{1/2}
+&\le\frac1{|U|}\int_U|\chi(y^{-1}x)-\chi(x)|\,dy\\
+&=\frac1{|U|}\int_U|1-\chi(y)|\,dy<\e.
+\end{align*}
+Similarly, we also have for any $x\in G$ that
 \begin{align*}
 |\chi_\alpha(x)-\frac{\1_U}{|U|}*\chi_\alpha(x)|
 &\le\frac1{|U|}\int_U|\chi_\alpha(x)-\chi_\alpha(y^{-1}x)|\,dy\\
 &=\frac1{|U|}\int_U\sqrt{2-2\Re \chi_\alpha(y)}\,dy\\
 &\le\Bigl(\frac1{|U|}\int_U(2-2\Re\chi_\alpha(y))\,dy\Bigr)^{1/2}\\
-&\le\Bigl(2\e+\frac2{|U|}\int_U|\chi(y)-\chi_\alpha(y)|\,dy\Bigr)^{1/2}
+&\le\Bigl(2\e+\frac2{|U|}|\int_U(\chi(y)-\chi_\alpha(y))\,dy|\Bigr)^{1/2},
+\end{align*}
+so we have
+\[\limsup_\alpha|\chi_\alpha(x)-\frac{\1_U}{|U|}*\chi_\alpha(x)|\le(2\e)^{1/2}.\]
+
+Since the map $K\to L^1(G):x\mapsto\1_{x^{-1}U}$ is continuous so that $\{\1_{x^{-1}U}:x\in K\}$ is compact in $L^1$, there is a finite sequence $(x_j)_{j=1}^n\subset K$ such that for every $x\in K$there is $j$ satisfying $\int|\1_{x^{-1}U}-\1_{x_j^{-1}U}|=\|\1_{x^{-1}U}-\1_{x_j^{-1}U}\|_{L^1(G)}<\e$.
+Then,
+\begin{align*}
+|\1_U*(\chi_\alpha-\chi)(x)|
+&=|\int\1_{x^{-1}U}(\chi_\alpha-\chi)|\\
+&\le|\int(\1_{x^{-1}U}-\1_{x_j^{-1}U})\chi_\alpha|+|\int\1_{x_j^{-1}U}(\chi_\alpha-\chi)|+|\int(\1_{x_j^{-1}U}-\1_{x^{-1}U})\chi|\\
+&\le\e+\max_{1\le j\le n}|\int\1_{x_j^{-1}U}(\chi_\alpha-\chi)|+\e
 \end{align*}
 implies
+\[\limsup_\alpha|\1_U*(\chi_\alpha-\chi)(x)|\le2\e.\]
+
+By summing up the above three terms, the inequality
 \begin{align*}
-|\chi_\alpha(x)-\chi(x)|
-&\le|\chi_\alpha(x)-\frac{\1_U}{|U|}*\chi_\alpha(x)|+|\frac{\1_U}{|U|}*(\chi_\alpha-\chi)(x)|+|\frac{\1_U}{|U|}*\chi(x)-\chi(x)|\\
-&\le\Bigl(2\e+\frac2{|U|}\int_U|\chi(y)-\chi_\alpha(y)|\,dy\Bigr)^{1/2}+\frac1{|U|}\int_{xU^{-1}}|\chi_\alpha(y)-\chi(y)|\,dy+(2\e)^{1/2}.
+|\chi_\alpha(x)-\chi(x)|\le|\chi_\alpha(x)-\frac{\1_U}{|U|}*\chi_\alpha(x)|+|\frac{\1_U}{|U|}*(\chi_\alpha-\chi)(x)|+|\frac{\1_U}{|U|}*\chi(x)-\chi(x)|
 \end{align*}
-Since $x\in$ is contained in $KU^{-1}$, which is compact and so has finite measure, we obtain
-\[\limsup_\alpha\sup_{x\in K}|\chi_\alpha(x)-\chi(x)|\le(2\e)^{1/2}+(2\e)^{1/2}=2\sqrt\e,\]
+implies
+\[\limsup_\alpha\sup_{x\in K}|\chi_\alpha(x)-\chi(x)|\le(2\e)^{1/2}+\frac{2\e}{|U|}+\e,\]
 and it completes the proof by limiting $\e\to0$.
 \end{pf}
 \begin{cor}
@@ -1285,14 +1304,16 @@ Let $G$ be a locally compact abelian group, and $\hhat G$ be its double dual gro
 We define the \emph{canonical homomorphism} of $G$ to be the map $\Phi:G\to\hhat G$ such that $\Phi(x)(\chi):=\chi(x)$.
 \end{defn}
 
-Note that we can embed $G$ into the algebra $M(G)$ by Dirac measures.
+Note that we do not have any additional information about the homomorphism $\Phi$ for now.
+None of injectivity, surjectivity, and continuity can be deduced by simple arguments at this stage.
+The goal of this thesis paper is to verify that $\Phi$ is a topological isomorphism.
+
+We can embed $G$ into the algebra $M(G)$ by Dirac measures.
 One way to understand the Fourier transform is a lifting of the canonical homomorphism $\Phi:G\to\hhat G$, as described in the following commutative diagram:
 \begin{cd}
 G\rar{\Phi}\dar[hook]&\hhat G\dar[hook]\\
-M(G)\rar{\cF^*}&C_b(\hat G).
+M(G)\rar{\cF^*}&\C^{\smash{\hat{\hat G}}}.
 \end{cd}
-In particular, $\Phi$ is injective.
-
 The idea of considering the Fourier transform as the extension of the canonical homomorphism from $G$ to its double dual group $\hhat G$ provides a fundamental framework for the general theory of commutative Banach algebras; the Gelfand transform.
 For a commutative Banach algebra $\cA$, an element $a\in\cA$ defines a function $\hat a:\hat\cA\to\C:\f\mapsto\f(a)$ by evaluation at $a$.
 This function is continuous by definition of the weak$^*$ topology and and vanishes at infinity since the set $\{\,\f\in\hat\cA:|\f(a)|\ge\e\,\}$ is weak$^*$ compact for any $a\in\cA$ and $\e>0$.
@@ -1333,25 +1354,55 @@ We have
 
 \begin{prop}
 Let $G$ be a locally compact abelian group.
+Let $\Phi:G\to\hhat G$ be the canonical homomorphism, and denote $(\Phi^*f)(x):=f(\Phi(x))$.
 \begin{parts}
-\item The Fourier transform $\cF:L^1(G)\to C_0(\hat G)$ is an embedding with dense image.
-\item The Fourier transform $\cF:M(G)\to C_b(\hat G)$ is an embedding.
+\item $\cF:L^1(G)\to C_0(\hat G)$ is well-defined.
+\item $\cF:L^1(G)\to C_0(\hat G)$ has dense image.
+\item $\Phi^*\circ\cF^*:M(\hat G)\to C_b(G)$ is well-defined.
+\item $\Phi^*\circ\cF^*:M(\hat G)\to C_b(G)$ is injective.
 \end{parts}
 \end{prop}
 \begin{pf}
-Note here that the embedding in this context denotes a bounded injective linear operator, not a topological embedding.
-
 (a)
-The vanishing at infinity and the continuity of $\cF f$ is due to the Gelfand representation of commutative Banach algebras.
-The boundedness easily follows from the inequality $\|\cF f\|_{C_0(\hat G)}\le\|f\|_{L^1(G)}$.
+The vanishing at infinity and the continuity of $\cF f$ for $f\in L^1(G)$ are due to the fact that the (adjoint) Fourier transform coincides with the Gelfand representation of commutative Banach algebras.
+
+(b)
 Since $L^1(G)$ is closed under convolution and the involution defined as $f^*(x):=\bar{f(x^{-1})}$, the image $\cF(L^1(G))$ is a $*$-subalgebra of $C_0(\hat G)$.
 It separates points and vanishes nowhere since for $\chi_1\ne\chi_2\in\hat G$ we have $f\in L^1(G)$ such that
 \[\int\bar{(\chi_1-\chi_2)(x)}f(x)\,dx\ne0,\]
 so $\cF(L^1(G))$ is dense in $C_0(\hat G)$ by the Stone-Weierstrass theorem.
 
-(b)
-It easily follows from $\|\cF \mu\|_{C_b(\hat G)}\le\|\mu\|_{M(G)}$.
+(c)
+Because the boundedness is clear from the inequality $|\int_{\hat G}\chi(x)\,d\mu(\chi)|\le\|\mu\|_{M(\hat G)}$, it suffices to show $\Phi^*\circ\cF^*\mu$ is continuous for $\mu\in M(G)$.
+We may suppose $\mu\ge0$ and $\mu(\hat G)=1$.
+By the inner regularity, for any $\e>0$ there is a compact set $K\subset\hat G$ such that $\mu(K)>1-\frac\e4$.
+
+We claim
+\[W:=\{x\in G:\sup_{\chi\in K}|\chi(x)-1|<\frac\e2\}\]
+is an open neighborhood of the identity $e\in G$. (In fact, we can show that $W$ is open)
+Note that $G\times\hat G\to\T:(x,\chi)\mapsto\chi(x)$ is continuous since for each $\chi\in\hat G$ there exists $f\in L^1(G)$ with $\cF f(\chi)\ne0$ and we have $\chi(x)=\cF(L_xf)(\chi)/\cF f(\chi)$.
+Thus, for each $\eta\in K$ we can find an open set $U_\eta\times V_\eta\in G\times\hat G$ such that $(e,\eta)\in U_\eta\times V_\eta$ and $|\chi(x)-1|<\frac\e2$ for all $(x,\chi)\in U_\eta\times V_\eta$.
+By the compactness of $K$, we can choose a finite sequence $(\eta_j)_{j=1}^n$ such that the union of $V_{\eta_j}$ covers $K$.
+If $x\in\bigcap_{j=1}^nU_{\eta_j}$, then for any $\chi$, since there is $j$ such that $\chi\in V_{\eta_j}$, so $(x,\chi)\in U_{\eta_j}\times V_{\eta_j}$ implies $|\chi(x)-1|<\frac\e2$.
+It means an open set $\bigcap_{j=1}^nU_{\eta_j}$ is a subset of $W$ containing $e$, so $W$ is a neighborhood of $e\in G$.
+
+If $x_\alpha\to e$ in $G$ so that $x_\alpha$ eventually in $W$, then since $x_\alpha\in W$ implies
+\[|\Phi^*\circ\cF^*\mu(x_\alpha)-1|\le\int_K|\chi(x_\alpha)-1|\,d\mu(\chi)+\int_{\hat G\setminus K}|\chi(x_\alpha)-1|\,d\mu(\chi)<\frac\e2+2\cdot\frac\e4=\e,\]
+we are done by limiting $\e\to0$ for
+\[\limsup_\alpha|\Phi^*\circ\cF^*\mu(x_\alpha)-1|\le\e.\]
+
+(d)
+If $\mu\in M(\hat G)$ satisfies $\Phi^*\circ\cF^*\mu(x)=\int_{\hat G}\chi(x)\,d\mu(\chi)=0$ for all $x\in G$, then we have
+\[\int_{\hat G}\cF f(\chi)\,d\mu(\chi)=\int_G\cF\mu(\Phi(x))f(x)\,dx=0=\int_G(\int_{\hat G}\chi(x)\,d\mu(\chi))^-\,f(x)\,dx=0\]
+for all $f\in L^1(G)$.
+Since $\cF(L^1(G))$ is dense in $C_0(\hat G)$, we have $\mu=0$.
 \end{pf}
+
+\begin{rmk}
+The injectivity of $\cF$ on $L^1(G)$ is a difficult problem.
+We can show it as a corollary of the Gelfand-Raikov theorem, which states the dual group $\hat G$ separates points $G$.
+It is one necessary condition for the Pontryagin duality theorem to hold.
+\end{rmk}
 
 We finally prove Bochner's theorem.
 In Chapter 2 and Chapter 3, we constructed a measure indirectly as a weak$^*$ limit, but here we will directly define a positive linear functional on a continuous function space to show the existence of a measure.
@@ -1369,16 +1420,15 @@ The positive definiteness is also clear from the fact that
 \[\sum_{k,l=1}^nf(x_l^{-1}x_k)\xi_k\bar\xi_l=\int_{\hat G}\Bigl|\sum_{k=1}^n\chi(x_k)\xi_k\Bigr|^2\,d\mu(\chi)\ge0.\]
 
 ($\Rightarrow$)
-(Uniqueness)
-If $\cF\mu=0$, then
-\[\int_{\hat G}\cF f(\chi)\,d\mu(\chi)=\int_G\cF\mu(\Phi(x))f(x)\,dx=0\]
-for all $f\in L^1(G)$.
-Since $\cF(L^1(G))$ is dense in $C_0(\hat G)$, we have $\mu=0$.
-
-(Existence)
-We claim that the linear functional on $\cF(L^1(G))$ defined by
+The uniqueness directly follows from the parts (d) of Proposition 4.5.
+We will show the existence of $\mu$.
+We claim the inequality
+\[|\int_Gg(x)\bar{f(x)}\,dx|\le\|\cF g\|_{C_0(\hat G)}\]
+for $g\in L^1(G)$.
+Then, although we do not know whether $\cF:L^1(G)\to C_0(\hat G)$ is injective, we can define
 \[\cF g\mapsto\int_Gg(x)\bar{f(x)}\,dx\]
-is bounded with respect to the uniform norm induced from $C_0(\hat G)$, and its norm is less than or equal to $\|f\|_{C_b(G)}=f(e)$.
+the linear functional on $\cF(L^1(G))$ that is bounded with respect to the uniform norm induced from $C_0(\hat G)$, and its norm is less than or equal to $\|f\|_{C_b(G)}=f(e)$.
+
 If the claim is true, then since $\cF(L^1(G))$ is dense in $C_0(\hat G)$, there is a unique bounded linear functional on $C_0(\hat G)$ that extends the above linear functional, so we have a complex measure $\mu\in M(\hat G)$ such that
 \[\int_Gg(x)\bar{f(x)}\,dx=\int_{\hat G}\cF g(\chi)\,d\mu(\chi)=\int_G g(x)\int_{\hat G}\bar{\chi(x)}\,d\mu(\chi)\,dx\]
 for all $g\in L^1(G)$, which implies the equation in the Bochner theorem.
@@ -1447,8 +1497,8 @@ For pointed cyclic representations $(\pi_1,\psi_1)$ and $(\pi_2,\psi_2)$, we say
 
 The following commutative diagram might be helpful to understand our picture.
 \begin{cd}
-\left\{\begin{tabular}{c}regular Borel\\probability measures on $\hat G$\end{tabular}\right\}\ar{r}{\text{GNS}}\ar{d}[swap]{\text{Adjoint Fourier transform}}&
-\left\{\begin{tabular}{c}unitary equivalence classes of\\pointed cyclic representations of $C_0(\hat G)$\end{tabular}\right\}\ar{d}{\text{???}}\\
+\left\{\begin{tabular}{c}regular Borel\\probability measures on $\hat G$\end{tabular}\right\}\ar{r}{\text{GNS}}\ar{d}[swap]{\Phi^*\circ\cF^*}&
+\left\{\begin{tabular}{c}unitary equivalence classes of\\pointed cyclic representations of $C_0(\hat G)$\end{tabular}\right\}\ar{d}{\text{surjective ?}}\\
 \left\{\begin{tabular}{c}normalized continuous\\positive definite functions on $G$\end{tabular}\right\}\ar{r}{\text{``GNS''}}&
 \left\{\begin{tabular}{c}unitary equivalence classes of\\pointed cyclic representations of $G$\end{tabular}\right\}
 \end{cd}
@@ -1633,14 +1683,14 @@ It means that the range of the projection is an invariant subspace, and the irre
 \end{pf}
 
 \begin{pf}[Proof of Bochner's theorem]
-Denote the set of continuous positive definite functions $f$ on $G$ such that $f(e)\le1$ and $f(e)=1$ by $B(G)_0^+$ and $B(G)_1^+$, and the set of regular Borel measures $\mu$ on $\hat G$ such that $\mu(\hat G)\le1$ and $\mu(\hat G)=1$ by $M(\hat G)_0^+$ and $M(\hat G)_1^+$, respectively.
-Then, $B(G)_0^+$ and $M(\hat G)_0^+$ are compact convex sets in the weak$^*$ topologies of $L^1(G)^*$ and $C_0(\hat G)^*$ by the Banach-Alaoglu theorem.
+Denote the set of continuous positive definite functions $f$ on $G$ such that $f(e)\le1$ and $f(e)=1$ by $P(G)_0$ and $P(G)_1$, and the set of regular Borel measures $\mu\ge0$ on $\hat G$ such that $\mu(\hat G)\le1$ and $\mu(\hat G)=1$ by $M(\hat G)_0^+$ and $M(\hat G)_1^+$, respectively.
+Then, $P(G)_0$ and $M(\hat G)_0^+$ are compact convex sets in the weak$^*$ topologies of $L^1(G)^*$ and $C_0(\hat G)^*$ by the Banach-Alaoglu theorem.
 
-We will only prove the surjectivity of the adjoint Fourier transform $\Phi^*\circ\cF^*:M(\hat G)_1^+\to B(G)_1^+$.
+We will only prove the surjectivity of the adjoint Fourier transform $\Phi^*\circ\cF^*:M(\hat G)_1^+\to P(G)_1$.
 Since the identity
 \[\int_G\Phi^*\circ\cF^*\mu(x)g(x)\,dx=\int_{\hat G}\cF^*g(\chi)\,d\mu(\chi)\]
 for $g\in L^1(G)$ implies $\Phi^*\circ\cF^*$ is continuous so that the image of $M(\hat G)_0^+$ is again a compact convex set.
-Let $f$ be a non-zero extreme point of $B(G)_0^+$ so that $f(e)=1$.
+Let $f$ be a non-zero extreme point of $P(G)_0$ so that $f(e)=1$.
 Let $(\rho_f,\psi_f)$ be the pointed cyclic representation defined by the ``GNS construction'' from $f$.
 
 Suppose $\rho_f$ is reducible so that the underlying Hilbert space $H_f$ is decomposed into non-trivial invariant subspaces as $H_f=K\oplus K^\perp$.
@@ -1655,8 +1705,8 @@ implies that $f$ is not extreme.
 Therefore, $\rho_f$ is irreducible.
 
 Since the representation $\rho_f$ is one-dimensional, there is a character $\chi\in\hat G$ such that $\rho_f(x)=\chi(x)$, which is equal to the adjoint Fourier transform $\chi(x)=\Phi^*\circ\cF^*\delta_\chi(x)$.
-It means that $\Phi^*\circ\cF^*(M(\hat G)_0^+)$ contains the extreme points of $B(G)_0^+$, and by the Krein-Milman theorem, we conclude there is $\mu\in M(\hat G)_0^+$ such that $\Phi^*\circ\cF^*\mu(x)=f(x)$.
-Putting $x=e$, we get $1=f(e)=\Phi^*\circ\cF^*\mu(e)=\mu(\hat G)$, hence we get the surjectivity of $\Phi^*\circ\cF^*:M(\hat G)_1^+\to B(G)_1^+$.
+It means that $\Phi^*\circ\cF^*(M(\hat G)_0^+)$ contains the extreme points of $P(G)_0$, and by the Krein-Milman theorem, we conclude there is $\mu\in M(\hat G)_0^+$ such that $\Phi^*\circ\cF^*\mu(x)=f(x)$.
+Putting $x=e$, we get $1=f(e)=\Phi^*\circ\cF^*\mu(e)=\mu(\hat G)$, hence we get the surjectivity of $\Phi^*\circ\cF^*:M(\hat G)_1^+\to P(G)_1$.
 \end{pf}
 
 
@@ -1698,7 +1748,7 @@ Note that $B(G)\cap M(G)=B(G)\cap L^1(G)$.
 
 \begin{cor}[A reformulation of Bochner's theorem]
 Let $G$ be a locally compact abelian group, and $\Phi:G\to\hhat G$ be the canonical homomorphism.
-Then, $\Phi^*\circ\cF^*:M(\hat G)\to B(G)$ is a well-defined algebra isomorphism, where $\Phi^*f=f\circ\Phi$ denotes the pullback, which intuitively means the restriction onto $\Phi(G)$.
+Then, $\Phi^*\circ\cF^*:M(\hat G)\to B(G)$ is a well-defined algebra isomorphism.
 \end{cor}
 
 
@@ -1815,28 +1865,36 @@ Since
 for all $\chi\in\hat G$, we have $\Phi^*\circ\cF f$ belongs to $B(\hat G)\cap L^1(\hat G)$ by the H\"older inequality.
 Therefore, by the inversion theorem, $f=\cF^*\circ\Phi^*\circ\cF f$ is contained in $\cF^*(L^1(\hat G))$.
 \end{pf}
-\begin{pf}[Proof of the Pontryagin duality]
-Since we have shown the injectivity of $\Phi$, we claim that the image $\Phi(G)$ is closed and dense in $\hhat G$ to show the surjectivity of $\Phi$.
+\begin{pf}[Proof of the Pontryagin duality]$ $
 
-(Closedness)
-We first show that $\Phi$ is a topological embedding.
+(Continuity)
+We consider the weak$^*$ topology on $\hhat G$ as a subspace of $L^1(\hat G)^*$.
+Note that for any $\f\in L^1(\hat G)$ we have
+\[\int_{\hat G}\Phi(x)(\chi)\f(\chi)\,d\chi=\int_{\hat G}\chi(x)\f(\chi)\,d\chi=\Phi^*\circ\cF^*\f(x).\]
+Since $\Phi^*\circ\cF^*\f$ is a continuous function on $G$ by the part (c) of Proposition 4.5, we obtain $\Phi(x_\alpha)\to\Phi(x)$ in $\hhat G$ if $x_\alpha\to x$ in $G$
+
+(Embedding)
+We will show that $\Phi$ is a topological embedding.
+The injectivity of $\Phi$ clearly follows.
 Suppose a net $x_\alpha$ does not converge to $e$ in $G$.
 We may assume by taking a subnet that there is a symmetric open neighborhood $U$ of $e$ in $G$ such that $x_\alpha\notin U$ for all $\alpha$.
 Take a non-zero function $f\in C_c(G)$ such that $f(e)\ne0$ and $\supp f\subset V$, where $V$ is a symmetric open neighborhood of $e\in G$ satisfying $VV\subset U$.
-Since $=f^**f$ is positive definite so that $f^**f\in B(G)\cap L^1(G)$, so $\f:=\cF g\in L^1(\hat G)$ satisfies $\supp(\Phi^*\circ\cF^*\f)=\supp(f^**f)\subset U$ by the Fourier inversion.
+Since $g=f^**f$ is positive definite so that $f^**f\in B(G)\cap L^1(G)$, so $\f:=\cF g\in L^1(\hat G)$ satisfies $\supp(\Phi^*\circ\cF^*\f)=\supp(f^**f)\subset U$ by the Fourier inversion.
 
 Then, we have $\Phi^*\circ\cF^*\f(x_\alpha)=0$ for all $\alpha$ but $\Phi^*\circ\cF^*\f(e)\ne0$.
 Then, since $\Phi^*\circ\cF^*\f(x)=\int\Phi(x)(\chi)\f(\chi)\,d\chi$, the function $\Phi(x_\alpha)$ does not converges to $\Phi(x)$ in the weak$^*$ topology of $L^1(\hat G)^\infty$, which is the same topology on $\hhat G=(L^1(\hat G))\hat\enspace$.
 Therefore, $\Phi:G\to\hhat G$ is a topological embedding.
 
+(Surjectivity)
 Now let $y\in\bar{\Phi(G)}$ such that there is a net $x_\alpha\in G$ satisfying $\Phi(x_\alpha)\to y$ in $\hhat G$.
 Since $\Phi(x_\alpha)$ is Cauchy and $\Phi$ is an embedding, $x_\alpha$ is also Cauchy.
 Because every locally compact group is complete, $x_\alpha\to x$ in $G$.
-Then, $\Phi(x)=\Phi(\lim_\alpha x_\alpha)=\lim_\alpha\Phi(x_\alpha)=y$ implies $y\in\Phi(G)$.
+Then, $\Phi(x)=\Phi(\lim_\alpha x_\alpha)=\lim_\alpha\Phi(x_\alpha)=y$ implies $y\in\Phi(G)$, so $\Phi(G)$ is closed in $\hhat G$.
 
-(Density)
-If $\alpha(G)$ is not dense in $\hhat G$, then a non-zero function $f\in\cF^*(M(\hat G))$ vanishes on $\alpha(G)$ by the previous lemma.
-For $\mu\in M(\hat G)$ such that $f=\cF^*\mu$, we have $\alpha^*\circ\cF^*\mu=f|_{\alpha(G)}=0$, so $\mu=0$ by the Bochner theorem, and it leads to a contradiction to $f\ne0$.
+Now suppose that $\Phi(G)$ is not dense in $\hhat G$.
+Then a non-zero function $f\in\cF^*(M(\hat G))$ vanishes on $\Phi(G)$ by the previous lemma.
+For $\mu\in M(\hat G)$ such that $f=\cF^*\mu$, we have $\Phi^*\circ\cF^*\mu=f|_{\Phi(G)}=0$, so $\mu=0$ by the Bochner theorem, and it leads to a contradiction to $f\ne0$.
+Therefore, $\Phi(G)$ is a closed dense subset of $\hhat G$, which proves that $\Phi$ is surjective.
 \end{pf}
 
 

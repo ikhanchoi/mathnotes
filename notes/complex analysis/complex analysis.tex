@@ -42,56 +42,30 @@ then $|z|\ge R$ implies
 \end{pf}
 
 \begin{prb}
-Let $f:\Omega\to\C$ be a holomorphic function on a domain.
-Then, $\bar{f(z)}=f(\bar z)$ if and only if $f(z)\in\R$ for $z\in\Omega\cap\R$.
+\end{prb}
+
+
+\begin{prb}[Open mapping theorem]
 \end{prb}
 
 
 
 
+\section*{Problems}
 
-\section*{Exercises}
-
-\begin{prb}
-If a holomorphic function has positive real parts on the open unit disk then $|f'(0)|<2\Re f(0)$.
-\end{prb}
-
-\begin{prb}
-If at least one coefficient in the power series of a holomorphic function at each point is 0 then the function is a polynomial.
-\end{prb}
-
-\begin{prb}
-If a holomorphic function on a domain containing the closed unit disk is injective on the unit circle, then so is on the disk.
-\end{prb}
-
-\begin{prb}
-For a holomorphic function $f$ and every $z_0$ in the domain, there are $z_1\ne z_2$ such that $\frac{f(z_1)-f(z_2)}{z_1-z_2}=f'(z_0)$.
-\end{prb}
-
-\begin{prb}
-For two linearly independent entire functions, one cannot dominate the other.
-\end{prb}
-
-\begin{prb}
-The uniform limit of injective holomorphic function is either constant or injective.
-\end{prb}
-
-\begin{prb}
-If the set of points in a domain $U\subset\C$ at which a sequence of bounded holomorphic functions converges has a limit point, then it compactly converges.
-\end{prb}
-
-\begin{prb}
-Find all entire functions $f$ satisfying $f(z)^2=f(z^2)$.
-\end{prb}
-
-\begin{prb}
-An entire function maps every unbounded sequence to an unbounded sequence is a polynomial.
-\end{prb}
-
-\begin{prb}
-Let $f$ be a holomorphic function on the open unit disk such that $f(0)=1$ and $f'(0)>2$.
-Then, there is $z$ such that $|z|<1$ and $f(z)$ is pure imaginary.
-\end{prb}
+\begin{enumerate}
+\item If a holomorphic function has positive real parts on the open unit disk then $|f'(0)|<2\Re f(0)$.
+\item If at least one coefficient in the power series of a holomorphic function at each point is 0 then the function is a polynomial.
+\item If a holomorphic function on a domain containing the closed unit disk is injective on the unit circle, then so is on the disk.
+\item For a holomorphic function $f$ and every $z_0$ in the domain, there are $z_1\ne z_2$ such that $\frac{f(z_1)-f(z_2)}{z_1-z_2}=f'(z_0)$.
+\item Let $f:\Omega\to\C$ be a holomorphic function on a domain. Then, $\bar{f(z)}=f(\bar z)$ if and only if $f(z)\in\R$ for $z\in\Omega\cap\R$.
+\item For two linearly independent entire functions, one cannot dominate the other.
+\item The uniform limit of injective holomorphic function is either constant or injective.
+\item If the set of points in a domain $U\subset\C$ at which a sequence of bounded holomorphic functions converges has a limit point, then it compactly converges.
+\item Find all entire functions $f$ satisfying $f(z)^2=f(z^2)$.
+\item An entire function maps every unbounded sequence to an unbounded sequence is a polynomial.
+\item Let $f$ be a holomorphic function on the open unit disk such that $f(0)=1$ and $f'(0)>2$. Then, there is $z$ such that $|z|<1$ and $f(z)$ is pure imaginary.
+\end{enumerate}
 
 
 
@@ -104,21 +78,48 @@ Picard's theorem
 
 
 \section{Residue theorem}
+\begin{prb}
+
+\end{prb}
+
+
+\begin{prb}[Unit circle substitution]
 \[\int_0^{2\pi}\frac{dx}{1+a\cos x}=\frac{2\pi}{\sqrt{1-a^2}},\quad-1<a<1\]
-\begin{prb}[Semicircles]
-\begin{parts}
-\item \[\int_0^\infty\frac1{1+x^2}\,dx=\]
-\item \[\int_0^\infty\frac{\sin x}x\,dx=\frac\pi2\]
-\item \[\int_0^\infty\frac{\log x}{1+x^2}\,dx=\]
-\item \[\int_0^\infty\frac{x^{a-1}}{1+x}=\frac\pi{\sin\pi a},\quad0<a<1\]
-\end{parts}
 \end{prb}
-\begin{prb}[Computation of Fourier transforms]
+
+\section{Contour integrals}
+
+
+\begin{prb}[Semicircular contour]
+Jordan lemma
+\[|\int_{C_R}e^{iz}f(z)\,dz|\le\pi\sup_{z\in C_R}|f(z)|\]
+\[\int_0^\infty\frac1{(1+x^2)^2}\,dx,\quad\int_0^\infty\frac1{1+x^4}\,dx,\quad\int_0^\infty\frac{\cos x}{1+x^2}\,dx,\]
 \end{prb}
-\begin{prb}[Laplace transforms]
+
+\begin{prb}[Indented contour]
+Dirichlet integral
+\[\int_0^\infty\frac{\sin x}x\,dx=\frac\pi2\]
 \end{prb}
-\begin{prb}[Gamma function]
+
+\begin{prb}[Sector contour]
+Fresnel integral
+\[\int_0^\infty\cos x^2\,dx=\sqrt{\frac\pi8}\]
 \end{prb}
+
+\begin{prb}[Hankel contour]
+\[\int_0^\infty\frac{x^{a-1}}{1+x}=\frac\pi{\sin\pi a}\quad(0<a<1),\quad\int_1^\infty\frac{dx}{x\sqrt{x^2-1}}\]
+$\log z$ trick
+\[\int_0^\infty\frac{dx}{1+x^3}\]
+\end{prb}
+
+\begin{prb}[Rectangular contour]
+Fourier integral?
+\[\int_0^\infty\frac{\sin x}{e^x-1}\,dx,\quad\int_0^\infty\frac{\cos x}{\cosh x}\,dx\]
+\end{prb}
+
+
+
+
 
 
 
@@ -146,13 +147,31 @@ In particular, if $|g(z)|<|f(z)|$ on $z\in\gamma$, then
 \end{prb}
 
 
-\begin{prb}
-Fundamental theorem of algebra, proof by the Liouville theorem, and proof by the Rouch\'e theorem.
+
+
+
+\section*{Exercises}
+\begin{prb}[Fundamental theorem of algebra]
+ proof by the Liouville theorem, and proof by the Rouch\'e theorem.
 \end{prb}
 
-open mapping theorem
+\begin{prb}[Computation of Fourier transforms]
+sector and Gaussian integral,
+rectangular integral
+\end{prb}
+\begin{prb}[Laplace transforms]
+\end{prb}
+\begin{prb}[Gamma function]
+Hankel representation
+\end{prb}
+\begin{prb}[Abel-Plana formula]
+\end{prb}
 
-
+Sokhotski-Plemelj theorem,
+Kramers-Konig relations,
+Titchmarsh theorem for Hilbert transform,
+Phragm\'en-Lindel\"of principle,
+Carlson's theorem
 
 
 
@@ -176,10 +195,18 @@ Mergelyan
 \part{Geometric function theory}
 
 \chapter{Conformal mappings}
-\section{Riemann sphere}
-\section{Open unit disk}
+\section{Riemann sphere and open unit disk}
 \section{Riemann mapping theorem}
 
+\section*{Exercises}
+\begin{prb}[Special solution of Laplace' equation]
+
+\end{prb}
+
+\section*{Problems}
+\begin{enumerate}
+\item Find a conformal mapping that maps the open unit disk onto $A:=\{\,z\in\C:\max\{|z|,|z-1|\}<1\,\}$.
+\end{enumerate}
 
 \chapter{Univalent functions}
 \section{Bierbach conjecture}
