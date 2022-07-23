@@ -10,9 +10,6 @@
 \maketitle
 \tableofcontents
 
-
-
-
 \part{Finite group theory}
 \iffalse
 
@@ -1136,8 +1133,10 @@ F \uar\rar[dashed]& ? & A_4 \drar[swap]{2} && D_4 \dlar{3} &\\
 &&&S_4&&
 \end{cd}
 
-
-
+\section*{Problems}
+\begin{enumerate}
+\item Let $f$ be a quintic irreducible polynomial over a field $F$ such that its splitting field has degree sixty over $F$. Show that if $\alpha$ is a root of $f$, then there is no proper intermediate field of $F(\alpha)/F$.
+\end{enumerate}
 
 
 
@@ -1255,7 +1254,7 @@ Computation of a generator of $\F_{p^n}^\times$.
 \begin{prb}[Cyclotomic polynomials]
 Let $\zeta$ be a primitive $n$th root of unity.
 The $n$th \emph{cyclotomic polynomial} is defined by
-\[\Phi_n(x)=\prod_{\substack{1\le i\le n\\(i,n)=1}}(x-\zeta^i).\]
+\[\Phi_n(x)=\prod_{\substack{1\le k\le n\\(k,n)=1}}(x-\zeta^k).\]
 \begin{parts}
 \item $x^n=\prod_{d\mid n}\Phi_d(x)$.
 \item $\Phi_n(x)\in\Z[x]$.

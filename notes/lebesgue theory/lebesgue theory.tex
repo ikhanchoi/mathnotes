@@ -21,8 +21,9 @@
 
 \begin{prb}[Definition of measures]
 Let $(\Omega,\cM)$ be a measurable space.
-A \emph{measure} on $\cM$ is a set function $\mu:\cM\to[0,\infty]$ with $\mu(\varnothing)=0$ that is \emph{countably additive}:
-\[\mu\Bigl(\bigsqcup_{i=1}^\infty E_i\Bigr)=\sum_{i=1}^\infty\mu(E_i)\quad\text{ in }\cM.\]
+A \emph{measure} on $\cM$ is a set function $\mu:\cM\to[0,\infty]:\varnothing\mapsto0$ that is \emph{countably additive}: we have
+\[\mu\Bigl(\bigsqcup_{i=1}^\infty E_i\Bigr)=\sum_{i=1}^\infty\mu(E_i)\]
+for $(E_i)_{i=1}^\infty\subset\cM$.
 Here the squared cup notation reads the disjoint union.
 \end{prb}
 
@@ -35,37 +36,37 @@ Here the squared cup notation reads the disjoint union.
 
 \begin{prb}[Outer measures]
 Let $\Omega$ be a set.
-An \emph{outer measure} on $\Omega$ is a set function $\mu^*:\cP(\Omega)\to[0,\infty]$ with $\mu^*(\varnothing)=0$ such that
+An \emph{outer measure} on $\Omega$ is a set function $\mu^*:\cP(\Omega)\to[0,\infty]:\varnothing\mapsto0$ such that
 \begin{enumerate}[(i)]
-\item $E_1\subset E_2\Rightarrow\mu^*(E_1)\le\mu^*(E_2)$ in $\cP(\Omega)$,
-\hfill(monotonicity)
-\item $\mu^*(\bigcup_{i=1}^\infty E_i)\le\sum_{i=1}^\infty\mu^*(E_i)$ in $\cP(\Omega)$.
-\hfill(countable subadditivity)
+\item $\mu^*$ is \emph{monotone}: we have
+\[S_1\subset S_2\Rightarrow\mu^*(S_1)\le\mu^*(S_2)\]
+for $S_1,S_2\in\cP(\Omega)$,
+\item $\mu^*$ is \emph{countably subadditive}: we have
+\[\mu^*\Bigl(\bigcup_{i=1}^\infty S_i\Bigr)\le\sum_{i=1}^\infty\mu^*(S_i)\]
+for $(S_i)_{i=1}^\infty\subset\cP(\Omega)$.
 \end{enumerate}
 Compairing the definition of measures, we can see the outer measures extend the domain to the power set, but loosen the countable additivity to monotone countable subadditivity.
 \begin{parts}
-\item A set function $\mu^*:\cP(\Omega)\to[0,\infty]$ with $\mu^*(\varnothing)=0$ is an outer measure if and only if $\mu^*$ is \emph{monotonically countably subadditive}, that is, $E\subset\bigcup_{i=1}^\infty E_i\Rightarrow\mu^*(E)\le\sum_{i=1}^\infty\mu^*(E_i)$ in $\cP(\Omega)$.
+\item A set function $\mu^*:\cP(\Omega)\to[0,\infty]:\varnothing\mapsto0$ is an outer measure if and only if $\mu^*$ is \emph{monotonically countably subadditive}:
+\[S\subset\bigcup_{i=1}^\infty S_i\Rightarrow\mu^*(S)\le\sum_{i=1}^\infty\mu^*(S_i)\]
+for $S\in\cP(\Omega)$ and $(S_i)_{i=1}^\infty\subset\cP(\Omega)$.
 \item
-For a set function $\rho:\cA\to[0,\infty]$ with $\rho(\varnothing)=0$, where $\varnothing\in\cA\subset\cP(\Omega)$, we can associate an outer measure $\mu^*:\cP(\Omega)\to[0,\infty]$ by defining as
-\[\mu^*(E):=\inf\left\{\,\sum_{i=1}^\infty\rho(A_i):E\subset\bigcup_{i=1}^\infty A_i,\ A_i\in\cA\,\right\},\]
+For $\varnothing\in\cA\subset\cP(\Omega)$, let $\rho:\cA\to[0,\infty]:\varnothing\mapsto0$ be a set function.
+We can associate an outer measure $\mu^*:\cP(\Omega)\to[0,\infty]$ by defining as
+\[\mu^*(S):=\inf\left\{\,\sum_{i=1}^\infty\rho(A_i):S\subset\bigcup_{i=1}^\infty A_i,\ A_i\in\cA\,\right\},\]
 where we use the convention $\inf\varnothing=\infty$.
 \end{parts}
 \end{prb}
 \begin{pf}
-(a)
-
-
-(b)
-
 
 \end{pf}
 
 \begin{prb}[Carath\'eodory measurable sets]
 Let $\mu^*$ be an outer measure on a set $\Omega$.
 We want to construct a measure by restriction of $\mu^*$ on a properly defined $\sigma$-algebra.
-A subset $A\subset \Omega$ is called \emph{Carath\'eodory measurable} relative to $\mu^*$ if
-\[\mu^*(E)=\mu^*(E\cap A)+\mu^*(E\setminus A)\]
-for every subset $E\subset\Omega$.
+A subset $E\subset\Omega$ is called \emph{Carath\'eodory measurable} relative to $\mu^*$ if
+\[\mu^*(S)=\mu^*(S\cap E)+\mu^*(S\setminus E)\]
+for every $S\in\cP(\Omega)$.
 Let $\cM$ be the collection of all Carath\'eodory measurable subsets relative to $\mu^*$.
 \begin{parts}
 \item $\cM$ is an algebra and $\mu^*$ is finitely additive on $\cM$.
@@ -79,11 +80,12 @@ Let $\cM$ be the collection of all Carath\'eodory measurable subsets relative to
 
 
 \begin{prb}[Carath\'eodory extension theorem]
-Let $\rho:\cA\to[0,\infty]$ with $\rho(\varnothing)=0$, where $\varnothing\in\cA\subset\cP(\Omega)$.
-Consider two conditions
+For $\varnothing\in\cA\subset\cP(\Omega)$, let $\rho:\cA\to[0,\infty]:\varnothing\mapsto0$ be a set function.
+Consider the following two conditions:
 \begin{enumerate}[(i)]
-\item $A\subset\bigcup_{i=1}^\infty A_i\Rightarrow\rho(A)\le\sum_{i=1}^\infty\rho(A_i)$ in $\cA$,
-\hfill{(monotonically countably subadditive)}
+\item We have the monotone countable subadditivity:
+\[A\subset\bigcup_{i=1}^\infty A_i\Rightarrow\rho(A)\le\sum_{i=1}^\infty\rho(A_i)\]
+for $A\in\cA$ and $(A_i)_{i=1}^\infty\subset\cA$.
 \item For every $B,A\in\cA$, and for any $\e>0$, there are $\{B'_j\}_{j=1}^\infty$ and $\{B''_j\}_{j=1}^\infty\subset\cA$ such that
 \[B\cap A\subset\bigcup_{j=1}^\infty B'_j\quad\text{ and }\quad B\setminus A\subset\bigcup_{j=1}^\infty B''_j,\]
 and
@@ -102,13 +104,15 @@ Clearly $\mu^*(A)\le\rho(A)$ for $A\in\cA$.
 We may assume $\mu^*(A)<\infty$.
 For arbitrary $\e>0$ there is $\{A_i\}_{i=1}^\infty$ such that $A\subset\bigcup_{i=1}^\infty A_i$ and
 \[\mu^*(A)+\e>\sum_{i=1}^\infty\rho(A_i)\ge\rho(A).\]
+Limiting $\e\to0$, we get $\mu^*(A)\ge\rho(A)$.
 
 (b)
-Let $E\in\cP(\Omega)$ and $A\in\cA$.
-Since it is enough to check the inequality $\mu^*(E)\ge\mu^*(E\cap A)+\mu^*(E\setminus A)$ for $E$ with finite $\mu^*(E)$, we may assume there is a countable family $\{B_i\}_{i=1}^\infty\subset\cA$ such that $E\subset\bigcup_{i=1}^\infty B_i$.
+Let $S\in\cP(\Omega)$ and $A\in\cA$.
+It is enough to check the inequality $\mu^*(S)\ge\mu^*(S\cap A)+\mu^*(S\setminus A)$ for $S$ with $\mu^*(S)<\infty$, so we may assume there is a countable family $\{B_i\}_{i=1}^\infty\subset\cA$ such that $S\subset\bigcup_{i=1}^\infty B_i$.
 Then, we have $B_i\cap A\subset\bigcup_{j=1}^\infty B'_{i,j}$ and $B_i\setminus A\subset\bigcup_{j=1}^\infty B''_{i,j}$ satisfying
-\[\mu^*(E)+\e>\sum_{i=1}^\infty(\rho(B_i)+\frac\e{2^{i+1}})
->\sum_{i,j=1}^\infty\rho(B'_{i,j})+\sum_{i,j=1}^\infty\rho(B''_{i,j})\ge\mu^*(E\cap A)+\mu^*(E\setminus A).\qedhere\]
+\[\mu^*(S)+\e>\sum_{i=1}^\infty(\rho(B_i)+\frac\e{2^{i+1}})
+>\sum_{i,j=1}^\infty\rho(B'_{i,j})+\sum_{i,j=1}^\infty\rho(B''_{i,j})\ge\mu^*(S\cap A)+\mu^*(S\setminus A).\]
+Therefore, $A$ is Carath\'eodory measurable relative to $\mu^*$.
 \end{pf}
 
 
@@ -132,14 +136,16 @@ We say $\cA$ is a semi-ring if it is closed under finite intersection, and the c
 We say $\cA$ is a semi-algebra
 
 Let $\cA$ be a semi-ring of sets over $\Omega$.
-Suppose a set function $\rho:\cA\to[0,\infty]$ with $\rho(\varnothing)=0$ satisfies
+Suppose a set function $\rho:\cA\to[0,\infty]:\varnothing\mapsto0$ satisfies
 \begin{enumerate}[(i)]
-\item $\rho(\bigsqcup_{i=1}^\infty A_i)\le\sum_{i=1}^\infty\rho(A_i)$ in $\cA$,
-\hfill(disjoint countable subadditivity)
-\item $\rho(A_1\sqcup A_2)=\rho(A_1)+\rho(A_2)$ in $\cA$.
-\hfill(finite additivity)
+\item $\rho$ is \emph{disjointly countably subadditive}: we have
+\[\rho\Bigl(\bigsqcup_{i=1}^\infty A_i\Bigr)\le\sum_{i=1}^\infty\rho(A_i)\]
+for $(A_i)_{i=1}^\infty\subset\cA$,
+\item $\rho$ is \emph{finitely additive}: we have
+\[\rho(A_1\sqcup A_2)=\rho(A_1)+\rho(A_2)\]
+for $A_1,A_2\in\cA$.
 \end{enumerate}
-A set function satisfying the above conditions are occasionally called a pre-measure.
+A set function satisfying the above conditions are occasionally called a \emph{pre-measure}.
 \begin{parts}
 \item
 \item 
@@ -156,9 +162,14 @@ alternative direct proof method without using Carath\'eodory extension.
 
 \chapter{Measures on the real line}
 
-distribution functions
-helly's selection
-non-measurable set
+\begin{prb}[Distribution functions]
+\end{prb}
+
+\begin{prb}[Helly selection theorem]
+\end{prb}
+
+\begin{prb}[Non-Lebesgue measurable set]
+\end{prb}
 
 
 \section*{Exercises}
@@ -180,7 +191,6 @@ Let $\E\subset\R$ be Lebesgue measurable with $\lambda(E)>0$.
 
 \section*{Problems}
 \begin{enumerate}
-\item 
 \item* Every Lebesgue measurable set in $\R$ of positive measure contains an arbitrarily long arithmetic progression.
 \end{enumerate}
 
@@ -206,7 +216,8 @@ Let $\E\subset\R$ be Lebesgue measurable with $\lambda(E)>0$.
 
 
 \section{Simple functions}
-Pointwise limit of simple functions is measurable.
+\begin{prb}[Measurability of pointwise limits]
+\end{prb}
 \begin{pf}
 Let $f(x)=\lim_{n\to\infty}s_n(x)$.
 
@@ -216,13 +227,12 @@ Every measurable extended real-valued function is a pointwise limit of simple fu
 
 
 
-\section{}
 
 \begin{prb}[Egorov theorem]
 Let $f_n:\Omega\to\R$ be a sequence of measurable functions on a finite measure space $(\Omega,\mu)$ that converges almost everywhere.
 \begin{parts}
-\item For each $k\in\N$,
-\[\bigcap_{n\ge n_0}\{\,x:|f_n(x)|<\frac1k\,\}\uparrow\text{ a full set }\quad\text{ as }\quad n_0\to\infty.\]
+\item For every $\e>0$,
+\[\bigcap_{n\ge n_0}\{\,x:|f_n(x)|<\e\,\}\uparrow\text{ a full set }\quad\text{ as }\quad n_0\to\infty.\]
 \item For $\e>0$, there is a measurable $E_\e\subset\Omega$ such that $\mu(\Omega\setminus E_\e)<\e$ and $f_n$ is uniformly convergent on $E_\e$.
 \end{parts}
 \end{prb}
@@ -230,18 +240,18 @@ Let $f_n:\Omega\to\R$ be a sequence of measurable functions on a finite measure 
 (a)
 We may assume $f_n\to0$.
 The set of convergence is given by
-\[\bigcap_{k>0}\ \bigcup_{n_0>0}\ \bigcap_{n\ge n_0}\{\,x:|f_n(x)|<\frac1k\,\},\]
+\[\bigcap_{k>0}\ \bigcup_{n_0>0}\ \bigcap_{n\ge n_0}\{\,x:|f_n(x)|<\e\,\},\]
 which is a full set.
 We want to get rid of the dependence on the point $x$ of $n_0$ in the union $\bigcup_{n_0>0}$.
 Since
-\[\bigcap_{n\ge n_0}\{\,x:|f_n(x)|<\frac1k\,\}\]
+\[\bigcap_{n\ge n_0}\{\,x:|f_n(x)|<\e\,\}\]
 is increasing as $n_0\to\infty$ to a full set.
 
 (b)
 We can find $n_0=n_0(k,\e)$ such that
-\[\mu(\bigcap_{n\ge n_0}\{\,x:|f_n(x)|<\frac1k\,\})>\mu(\Omega)-\frac\e{2^k}.\]
+\[\mu(\bigcap_{n\ge n_0}\{\,x:|f_n(x)|<\tfrac1k\,\})>\mu(\Omega)-\frac\e{2^k}.\]
 Then,
-\[\mu(\bigcap_{k>0}\ \bigcap_{n\ge n_0}\{\,x:|f_n(x)|<\frac1k\,\})>\mu(\Omega)-\e.\]
+\[\mu(\bigcap_{k>0}\ \bigcap_{n\ge n_0}\{\,x:|f_n(x)|<\tfrac1k\,\})>\mu(\Omega)-\e.\]
 If we define
 \[E_\e:=\bigcap_{k>0}\ \bigcap_{n\ge n_0}\{\,x:|f_n(x)|<\tfrac1k\,\},\]
 then for any $k>0$ and $x\in E_\e$, and with the $n_0(k,\e)$ we have chosen,
@@ -303,7 +313,7 @@ We say $f_n$ converges to $f$ \emph{in measure} if for each $\e>0$ we have
 \[\lim_{n\to\infty}\mu(\{\,x:|f_n(x)-f(x)|>\e\,\})=0.\]
 \begin{parts}
 \item If $f_n\to f$ in $L^1$, then $f_n\to f$ in measure.
-\item If $f_n\to f$ in measure, then $f_n$ has a subsequence that converges to $f$ $\mu$-a.e.
+\item If $f_n\to f$ in measure, then there is a subsequence $f_{n_k}$ such that $f_{n_k}\to f$ almost everywhere.
 \end{parts}
 \end{prb}
 \begin{pf}
@@ -324,9 +334,13 @@ Therefore, $f_{n_k}$ converges $\mu$-a.e.
 
 
 \chapter{Measures on metric spaces}
+\section{Borel measures}
 
+\section{Riesz-Markov-Kakutani representation theorem}
 
-\section{Compact metric spaces}
+locally compact
+
+\section{Hausdorff measures}
 
 
 
