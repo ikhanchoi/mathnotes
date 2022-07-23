@@ -170,6 +170,7 @@ abelianization
 \begin{prb}[Wreath product]
 \end{prb}
 
+\section*{Problems}
 
 
 
@@ -419,18 +420,14 @@ $\#$ of groups&51&52&267\\
 
 \section*{Exercises}
 \begin{prb}[Hall subgroups]
-
 \end{prb}
 
 
-\begin{prb}
-Show that in a group of order 105 is a single Sylow $p$-subgroup for $p=5,7$.
-\end{prb}
-
-\begin{prb}
-Show that the number of Sylow $p$-subgroups of $\SL_3(\F_p)$ is $(p^2+p+1)(p+1)$.
-\end{prb}
-
+\section*{Problems}
+\begin{enumerate}
+\item Show that if $p$ is the smallest prime factor of the order of a finite group $G$, and if $G$ has a cyclic normal Sylow $p$-subgroup $P$, then $P\le Z(G)$.
+\item Show that the number of Sylow $p$-subgroups of $\SL_3(\F_p)$ is $(p^2+p+1)(p+1)$.
+\end{enumerate}
 
 
 
@@ -468,7 +465,7 @@ straightedge and compass construction
 \section{Algebraic elements}
 \begin{prb}[Algebraic elements]
 Let $E/F$ be a field extension.
-An element $\alpha\in E$ is called \emph{algebraic over $F$} if there is a non-zero polynomial $f\in F[x]$ such that $f(\alpha)=0$.
+An element $\alpha\in E$ is called \emph{algebraic} over $F$ if there is a non-zero polynomial $f\in F[x]$ such that $f(\alpha)=0$.
 If $\alpha$ is not algebraic over $F$, we call it \emph{transcendental} over $F$.
 For $\alpha\in E$, the following statements are all equivalent:
 \begin{parts}
@@ -771,8 +768,19 @@ In fact, this $K_1$ is already algebraically closed, but it is hard to prove dir
 
 
 \section{Straightedge and compass construction}
+\begin{prb}[Regular $n$-gon]
+\begin{parts}
+\item The regular heptagon is not constructible.
+\end{parts}
+\end{prb}
+\begin{pf}
+Let $\zeta=\zeta_7$.
+Then, $\zeta+\zeta^{-1}$ has the minimal polynomial $x^3+x^2-2x-1$.
+\end{pf}
 
+\begin{prb}[Gauss-Wantzel theorem]
 
+\end{prb}
 
 \section*{Exercises}
 \begin{prb}[Minimal polynomials in a simple extension]
@@ -800,6 +808,14 @@ where $\alpha=\sqrt2+\sqrt3$.
 This kind of \emph{dimension argument} is one of powerful tools to attack field theory.
 It will be discovered later that the dimension argument has an analogy with computation of group orders in finite group theory.
 \end{prb}
+
+
+
+
+
+
+
+
 
 
 
@@ -955,6 +971,10 @@ multiplcation formula
 
 
 \chapter{Normal extensions}
+
+\section{Splitting fields}
+
+
 \section{Galois correspondence}
 
 \begin{prb}[Automorphism groups]
@@ -994,11 +1014,14 @@ Define a map
 reducible polynomials
 semidirect product
 
-\begin{prb}[Transitive subgroups of symmetric groups]
+
+\begin{prb}[Galois groups of binomials]
+\[f(x)=x^n-a\]
 \end{prb}
-\begin{prb}[Double quadratic equations]
+
+\begin{prb}[Galois groups of biquadratics]
 Let $f\in K[x]$ be
-\[f(x)=ax^4+bx^2+c\]
+\[f(x)=x^4+ax^2+b\]
 with $a\ne0$,..?
 Let
 \[\alpha:=\frac{-b+\sqrt{b^2-4ac}}{2a},\quad\beta:=\frac{-b-\sqrt{b^2-4ac}}{2a},\]
@@ -1006,13 +1029,30 @@ where $\sqrt{b^2-4ac}$ denotes a root of the polynomial $x^2-(b^2-4ac)$.
 Then, they satisfies $\alpha+\beta=-b/a\in K$ and $\alpha\beta=c/a\in K$.
 So the splitting field $L$ is $L=K(\alpha)$.
 \end{prb}
-\begin{prb}[Reciprocal equations]
+
+\begin{prb}[Galois groups of palindromics]
+If $\alpha$ is a root, then $\alpha^{\pm1}$ are conjugate.
 palindromic
 \end{prb}
+
 \begin{prb}[Imaginary roots]
 number of imaginary roots=2n: composition of n transpositions
 \end{prb}
 
+
+
+
+\section*{Exercises}
+
+$x^6+x^3+1$,
+
+
+
+\section*{Problems}
+
+\begin{enumerate}
+\item If $K/\Q$ be a Galois extension of Galois group isomorphic to $S_5$, then $K$ is the splitting field of a quintic over $\Q$.
+\end{enumerate}
 
 
 
@@ -1034,6 +1074,9 @@ number of imaginary roots=2n: composition of n transpositions
 \section{Resultants}
 
 \section{Resolvent polynomials}
+
+\begin{prb}[Transitive subgroups of symmetric groups]
+\end{prb}
 \begin{prb}[Discriminant of a polynomial]
 \end{prb}
 \begin{prb}[Irreducible cubic]
@@ -1142,34 +1185,52 @@ Then,
 implies $|A_{p^n-1}|\ne0$, $G$ is hence cyclic.
 \end{pf}
 
-\begin{prb}[Irreducibles over $\F_p$]
-the number of irreducibles, finite extension over a finite field is simple.
-\end{prb}
 \begin{prb}[Degree of an element in finite fields]
 Let $\alpha\in\bar{\F_p}$.
 The degree of $\alpha$ is computed by the order of $p$ in $(\Z/\ord(\alpha)\Z)^\times$
 \end{prb}
-
-
-\begin{prb}[Degree of an element in finite fields]
-Let $\alpha\in\bar{\F_p}$.
-The degree of $\alpha$ is computed by the order of $p$ in $(\Z/\ord(\alpha)\Z)^\times$
-\end{prb}
-
-
-
-\begin{prb}
-Find the number of $a\in\SL(2,\F_p)$ such that $a^{p-1}=1$.
-(It needs the cyclicity of $\F_{p^2}^\times$.)
-\end{prb}
-
-
-
 
 
 \section{Ramification theory}
+\begin{prb}[Algebraic integers]
+\end{prb}
+integral extension
+Dedekind domain
+
 
 \section{The Dedekind theorem}
+
+
+
+
+
+
+\section*{Exercises}
+\begin{prb}[Number of irreducibles over finite fields]
+The minimal polynomial map
+\[\F_{p^2}\setminus\F_p\to\{\text{ quadratic irreducible monic polynomials }\}\]
+is surjective and every preimage of singletons are of size two.
+\begin{parts}
+\item The number of monic irreducibles over $\F_p$ of degree 6 is $(p^6-p^3-p^2+p)/6$.
+\end{parts}
+\end{prb}
+
+\begin{prb}
+Computation of a generator of $\F_{p^n}^\times$.
+\end{prb}
+
+\begin{prb}[Berlekamp algorithm]
+\end{prb}
+
+\section*{Problems}
+
+\begin{enumerate}
+\item Find the number of $a\in\SL(2,\F_p)$ such that $a^{p-1}=1$.
+\end{enumerate}
+
+
+
+
 
 
 

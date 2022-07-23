@@ -28,23 +28,24 @@ indecomposable and irreducible
 \end{prb}
 
 \begin{prb}[Maschke's theorem]
-Let $G$ be a finite group and $k$ a field of characteristic coprime to $|G|$.
-Let $(\rho,V)$ be a finite-dimensional representation of $G$ over $k$.
-Let $W$ be an invariant subspace of $V$.
+Let $G$ be a finite group and $k$ be a field.
+Suppose the characteristic of $k$ does not divide $|G|$.
+Let $V$ be a finite-dimensional representation of $G$ over $k$.
 \begin{parts}
-\item There is an invariant subspace $W^\perp$ of $V$ that is a complement of $W$.
-\item Every finite-dimensional representation of $G$ over $k$ is isomorphic to the direct sum of irreducible representations of $G$ over $k$.
-\item If $k=\R$ or $\C$, then there is a inner product on $V$ such that $W^\perp$ is orthogonal to $W$. With this innerproduct, $\rho(g)$ is orthogonal (resp. unitary) for all $g\in G$.
+\item Every invariant subspace $W$ of $V$ has a complement $W'$ in $V$ that is also invariant.
+\item $V$ is isomorphic to the direct sum of irreducible representations of $G$ over $k$.
+\item If $k=\R$ or $\C$, then $V$ admits an inner product such that $W\perp W'$ and $\rho_V(g)$ is unitary for all $g\in G$.
 \end{parts}
 \end{prb}
 
 \begin{prb}[Schur's lemma]
-Let $G$ be a finite group and $k$ a field.
-Let $(\rho_1,V_1)$ and $(\rho_2,V_2)$ be irreducible representations of $G$ over $k$.
-Let $\psi\in\hom_G(V_1,V_2)$ be an intertwining map.
+Let $G$ be a group and $k$ be a field.
+Let $V$ and $W$ be irreducible representations of $G$ over $k$.
+Let $\psi:V\to W$ be an intertwining map.
 \begin{parts}
-\item If $V_1$ and $V_2$ are not isomorphic, then $\psi=0$.
-\item If $V_1$ and $V_2$ are isomorphic, then $\psi$ is a homothety.
+\item If $V\not\cong W$, then $\psi=0$.
+\item If $V\cong W$, then $\psi$ is an isomorphism.
+\item If $k$ is algebraically closed and $\dim V<\infty$, then every intertwining map $\psi:V\to V$ is a homothety.
 \end{parts}
 \end{prb}
 
@@ -89,7 +90,7 @@ double counting on $Z(\C[G])$.
 \begin{prb}[Space of class functions]
 Ring and inner product structure on the space of class functions.
 \begin{parts}
-\item $\dim\hom_G(V_1,V_2)=\<\chi_{V_1},\chi_{V_2}\>$.
+\item $\dim\hom_G(V,W)=\<\chi_V,\chi_W\>$.
 \item Irreducible characters form an orthonormal basis of the space of class functions.
 \end{parts}
 \end{prb}

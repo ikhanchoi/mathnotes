@@ -9,6 +9,11 @@
 \tableofcontents
 
 \part{Groups}
+% Homomorphism의 construction에만
+% group의 활용에 집중, group의 구조에는 관심을 끈다
+% orderwise, lagrange, orbit-stabilizer 외에 카운팅은 하지 않는다
+% stabilizer 계산은 해야지
+% 부분군 래티스 그리는 정도까지는 한다
 \chapter{Subgroups}
 subgroups
 homomorphisms, image, kernel, inverse images
@@ -19,15 +24,22 @@ generators, subgroup lattice
 
 
 
+\section*{Problems}
+\begin{enumerate}
+\item Let $G$ be a finite group. If the cube map $x\mapsto x^3$ is a surjective endomorhpism, then $G$ is abelian.
+\item Show that if $|G|=p^2$ for a prime $p$, then a group $G$ is abelian.
+\item Show that the order of a group with only on automorphism is at most two.
+\end{enumerate}
+
+
+
+
+
+
 
 
 
 \chapter{Group actions}
-% Homomorphism의 construction에만
-% group의 활용에 집중, group의 구조에는 관심을 끈다
-% lagrange, orbit-stabilizer 외에 카운팅은 하지 않는다
-% stabilizer 계산은 해야지
-% 부분군 래티스 그리는 정도까지는 한다
 \section{Orbits and stabilizers}
 Invariants on orbit space.
 The size and number of orbits.
@@ -54,8 +66,10 @@ K normalizes H : K -> NG(H) -> NG(H)/H  with ker = KnH
 K normalizes H : K -> NG(H) -> Aut(H)  with ker = CG(H)
 
 
-
-
+\section*{Problems}
+\begin{enumerate}
+\item Let $G$ be a finite group. If $G/Z(G)$ is cylic, then $G$ is abelian.
+\end{enumerate}
 
 \chapter{Symmetry groups}
 
@@ -94,14 +108,11 @@ We find all $n$ such that $(\Z/n\Z)^\times$ is cyclic.
 \section*{Problems}
 
 \begin{enumerate}
-\item Let $G$ be a finite group. If $G/Z(G)$ is cylic, then $G$ is abelian.
-\item Let $G$ be a finite group. If the cube map $x\mapsto x^3$ is a surjective endomorhpism, then $G$ is abelian.
-\item Show that if $|G|=p^2$ for a prime $p$, then a group $G$ is abelian.
 \item Show that a group of order $2p$ for a prime $p$ has exactly two isomorphic types.
 \item Let $G$ be a finite group of order $n$ and $p$ the smallest prime divisor of $n$. Show that a subgroup of $G$ of index $p$ is normal in $G$.
 \item Show that a finite group $G$ satisfying $\sum_{g\in G}\ord(g)\le2n$ is abelian.
-\item Show that the order of a group with trivial automorphism group is at most two.
 \item Find all homomorphic images of $A_4$ up to isomorphism.
+\item For a prime $p$, find the number of subgroups of $Z_{p^2}\times Z_{p^3}$ of order $p^2$.
 \end{enumerate}
 
 
@@ -163,13 +174,6 @@ algebras?
 
 \chapter{Modules over a principal ideal domain}
 invariant factors and elementary divisors
-
-
-
-
-
-
-
 
 
 
