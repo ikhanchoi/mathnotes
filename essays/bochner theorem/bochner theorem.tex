@@ -1400,8 +1400,10 @@ Since $\cF(L^1(G))$ is dense in $C_0(\hat G)$, we have $\mu=0$.
 
 \begin{rmk}
 The injectivity of $\cF$ on $L^1(G)$ is a difficult problem.
-We can show it as a corollary of the Gelfand-Raikov theorem, which states the dual group $\hat G$ separates points $G$.
-It is one necessary condition for the Pontryagin duality theorem to hold.
+We can show it as a corollary of the part (d) of the above theorem if $\Phi$ is injective.
+However, the injectivity of the canonical homomorphism is equivalent to either the Gelfand-Raikov theorem for abelian groups or the locally compact version of the Peter-Weyl theorem, which states the dual group $\hat G$ separates points $G$.
+It is remarkable to compare with standard texts in which we prove that the Fourier transforms $\cF:L^1(\R)\to C_0(\R)$ and $\cF:L^1(\T)\to c_0(\Z)$ are injective by using summability methods.
+This is one direction of the Pontryagin duality theorem, and we will prove it in Section 4.3 via the Fourier inversion theorem.
 \end{rmk}
 
 We finally prove Bochner's theorem.
@@ -1461,7 +1463,7 @@ Consequently, the claim is true.
 \subsection{Proof by the Gelfand-Naimark-Segal construction}
 
 We give in this section a representation-theoretic proof of Bochner's theorem.
-Before we can give a precise formulation, we define several notions of representations of locally compact abelian groups.
+Before we give a precise formulation, we define several notions of representations of locally compact abelian groups.
 
 \begin{defn}[Strongly continuous unitary representation]
 Let $G$ be a locally compact abelian group.
@@ -1488,12 +1490,18 @@ We are not going to use the general theory of C$^*$-algebras, but follow and app
 
 \begin{defn}[Representations of C$^*$-algerbas]
 Let $\cA$ be a C$^*$-algerba.
-A \emph{strongly continuous representation} or just a \emph{representation} of $\cA$ is a continuous $*$-algebra homomorphism $\pi:\cA\to B(H_\pi)$, where $B(H_\pi)$ is the algebra of bounded linear operators on a Hilbert space $H_\pi$ with the strong operator topology.
+A \emph{strongly continuous representation} or just a \emph{representation} of $\cA$ is a continuous $*$-homomorphism $\pi:\cA\to B(H_\pi)$, where $B(H_\pi)$ is the algebra of bounded linear operators on a Hilbert space $H_\pi$ with the strong operator topology.
 
 We say a representation $\pi:\cA\to$ is \emph{cyclic} if there exists a vector $\psi_\pi\in H_\pi$ such that the closure of $\pi(\cA)\psi_\pi$ is equal to $H_\pi$.
 A \emph{pointed cyclic representation} of $\cA$ is a pair $(\pi,\psi_\pi)$ of a cyclic representation of $\cA$ and a unit cyclic vector $\psi_\pi\in H_\pi$.
 For pointed cyclic representations $(\pi_1,\psi_1)$ and $(\pi_2,\psi_2)$, we say they are \emph{unitarily equivalent} if there is a unitary operator $u:H_{\pi_1}\to H_{\pi_2}$ such that $\pi_2(a)=u\pi_1(a)u^*$ for all $a\in\cA$ and $\psi_2=u\psi_1$.
 \end{defn}
+
+\begin{rmk}
+The continuity condition for a representation $\cA\to B(H)$ of a C$^*$-algebra $\cA$ is redundant.
+It is because every $*$-homomorphism between C$^*$-algebras is norm-decreasing.
+Since the strong operator topology is weaker than the norm topology, boundedness implies the continuity.
+\end{rmk}
 
 The following commutative diagram might be helpful to understand our picture.
 \begin{cd}
@@ -1503,18 +1511,21 @@ The following commutative diagram might be helpful to understand our picture.
 \left\{\begin{tabular}{c}unitary equivalence classes of\\pointed cyclic representations of $G$\end{tabular}\right\}
 \end{cd}
 One of our goals in the rest of this section is to verify that the two horizontal arrows in the above diagram are bijective.
-Then, we set the vertical arrow on the left side that makes the diagram commute to be the adjoint Fourier transform.
-After that, if we were to show the vertical arrow on the right side is a bijection, then the Bochner theorem would follow.
-However, the surjectivity of the vertical arrow on the right side cannot be proved directly.
-If we try to construct a representation of $C_0(\hat G)$ from a representation of $G$, we encounter technical issues with regard to the Fourier transformation of non-integrable functions on $\hat G$ such as $\Phi(x)$, which can be traced back to the main difficulty in the proof of Bochner's theorem.
+Then, we set the vertical arrow on the left side to be the adjoint Fourier transform.
+After that, if we were to show the vertical arrow on the right side which makes the diagram commute is a bijection, then the Bochner theorem would follow.
+However, the surjectivity of the vertical arrow on the right side is tough to be proved directly.
+If we try to construct a representation of $C_0(\hat G)$ from a representation of $G$, we encounter an approximation problem: we have to find a suitable notion of convergence in $C_b(\hat G)$ to approximate $\f\in C_0(\hat G)$ by a net $\f_\alpha\in\spn\Phi(G)$.
+These kinds of technical issues with regard to the Fourier transformation of non-integrable functions on $\hat G$ such as $\Phi(x)$, which are traced back to the main difficulties in the proof of Bochner's theorem in Section 4.1.
 
 Instead, we will prove the Bochner theorem by showing that the extreme points of the set of normalized continuous positive definite functions on $G$ is in fact the union $\hat G\cup\{0\}$ of the dual group and a singleton.
-Then, by applying the Krein-Milman theorem, we finish the proof.
+Here is the place where we use the representation theory.
+Then, by applying the Krein-Milman theorem, we finish the proof of surjectivity.
 
-The most important step is to show that an extreme point is indeed a character, for which we use the vertical arrow named the ``GNS construction'' in the second row.
-It is not the authentic GNS construction because it does not provide a representation of a C$^*$-algebra, but of a group.
+The most important step is to show that an extreme point is indeed a character, for which we use the horizontal arrow named the ``GNS construction'' in the second row.
+It is not the authentic GNS construction because it does not provide a representation of a C$^*$-algebra but of a group $G$, or its convolution algebra $L^1(G)$, which is not a C$^*$-algebra.
 Nevertheless, we can mimic the idea to construct a cyclic representation of a locally compact abelian group $G$, which will be addressed in Theorem 4.8.
-We first establish the one-to-one correspondence between regular Borel measures on $\hat G$ and the unitary equivalence classes of pointed cyclic representations of $C_0(\hat G)$ in order to see the idea of GNS construction.
+We first establish the one-to-one correspondence between regular Borel measures on $\hat G$ and the unitary equivalence classes of pointed cyclic representations of $C_0(\hat G)$.
+We will not use the general theory of C$^*$-algebra in order to see every step in the ideas of GNS construction.
 
 \begin{thm}[GNS representation for regular Borel measures]
 Let $G$ be a locally compact abelian group.
@@ -1662,6 +1673,78 @@ for $x,y\in G$, $u$ is a unitary equivalence between the pointed cyclic represen
 \end{pf}
 
 
+\iffalse
+
+\subsubsection*{Surjectivity proof of the induced map between cyclic representations}
+
+We use notations
+\[\omega_{\xi,\eta}:B(H)\to\C:a\mapsto\<a\xi,\eta\>,\quad\omega_\xi:=\omega_{\xi,\xi}.\]
+
+\begin{lem}
+Let $G$ be a locally compact abelian group.
+For $f\in L^1(G)$, there exists a net of measures $m_\alpha\in\spn\{\delta_x:x\in G\}\subset M(G)$ such that
+\begin{enumerate}[(i)]
+\item $m_\alpha$ is uniformly strongly bounded; $\|m_\alpha\|_{M(G)}\le C$ for a constant $C>0$,
+\item $m_\alpha$ is uniformly tight; for each $\e>0$ there is a compact $K\subset G$ such that $\sup_\alpha|m_\alpha|(G\setminus K)\le\e$,
+\item $m_\alpha\to f$ in the weak$^*$ topology of $C_0(G)^*$.
+\end{enumerate}
+The notation $\delta_x$ denoted the Dirac measure at $x\in G$.
+We will write $m_\alpha\leadsto f$ if the above conditions are all satisfied.
+\end{lem}
+\begin{pf}
+\[m_\alpha=\sum_jc_{\alpha,j}\delta_{x_{\alpha,j}}\]
+\[\|m_\alpha\|_{M(G)}=\sum_j|c_{\alpha,j}|\]
+\end{pf}
+
+\begin{thm}
+Let $G$ be a locally compact abelian group, and let $(\rho,\psi)$ be a pointed cyclic representation of $G$.
+Then, there is a unique pointed cyclic representation $(\pi,\psi)$ of $C_0(\hat G)$ such that for all $f\in L^1(G)$ we have
+\[\<\pi(\cF f)\xi,\eta\>=\lim_\alpha\<\sum_jc_{\alpha,j}\rho(x_{\alpha,j})\xi,\eta\>,\]
+whenever $m_\alpha=\sum_jc_{\alpha,j}\delta_{x_{\alpha,j}}\leadsto f$.
+\end{thm}
+\begin{pf}
+Let $H$ be a Hilbert space on which $G$ acts so that we have $\rho:G\to B(H)$.
+Recall by definition that $\rho$ is strongly continuous and $\rho(x)$ is unitary for all $x\in G$.
+
+(Well-definedness)
+We first prove the following function
+\[\sigma_f:H\times H\to\C:(\xi,\eta)\mapsto\lim_\alpha\<\sum_jc_{\alpha,j}\rho(x_{\alpha,j})\xi,\eta\>\]
+is well-defined for each $f\in L^1(G)$.
+We have to show the defining limit of $\sigma_f$ uniquely exists for each $f\in L^1(G)$ and $(\xi,\eta)\in H\times H$, independent of the choice of $m_\alpha$.
+Because
+\[|\<\sum_jc_{\alpha,j}\rho(x_{\alpha,j})\xi,\eta\>|\le\|m_\alpha\|_{M(G)}\|\xi\|\|\eta\|\]
+is bounded, there is a convergent subnet.
+To show the limit is unique, since if we have two nets $m_\alpha,m_\beta\leadsto f$, then $(\alpha,\beta)\mapsto m_\alpha-m_\beta$ is also a net with the product index set such that $m_\alpha-m_\beta\leadsto 0$, it is enough to show $m_\alpha=\sum_jc_{\alpha,j}\delta_{x_{\alpha,j}}\leadsto0$ implies $\lim_\alpha\<\sum_jc_{\alpha,j}\rho(x_{\alpha,j})\xi,\eta\>=0$.
+
+Let $\e>0$ and take compact $K\subset G$ such that $\sup_\alpha|m_\alpha|(G\setminus K)\le\e$.
+Use the Urysohn lemma to construct $g\in C_0(G)$ such that $\|g\|_{C_0(G)}\le\|\xi\|\|\eta\|$ and $g=\omega_{\xi,\eta}\circ\rho$ on $K$.
+Then,
+\begin{align*}
+|\<\sum_jc_{\alpha,j}\rho(x_{\alpha,j})\xi,\eta\>|
+&\le|\sum_{x_j\in K}c_{\alpha,j}\<\rho(x_{\alpha,j})\xi,\eta\>|+\sum_{x_j\notin K}|c_{\alpha,j}||\<\rho(x_{\alpha,j})\xi,\eta\>|\\
+&\le|\sum_{x_j\in K}c_{\alpha,j}g(x_{\alpha,j})|+\sum_{x_j\notin K}|c_{\alpha,j}|\|\xi\|\|\eta\|\\
+&\le|\int_K g(x)\,dm_\alpha(x)|+\e\|\xi\|\|\eta\|\\
+&\le|\int_G g(x)\,dm_\alpha(x)|+\e\|g\|_{C_0(G)}+\e\|\xi\|\|\eta\|
+\end{align*}
+implies
+\[\limsup_\alpha|\<\sum_jc_{\alpha,j}\rho(x_{\alpha,j})\xi,\eta\>|\le2\e\|\xi\|\|\eta\|,\]
+hence the limit is unique.
+So far, we have just constructed a well-defined function
+\[L^1(G)\to\C^{H\times H}.\]
+
+If $\cF f=0$,
+
+(Algebra homomorphism)
+
+
+\end{pf}
+
+
+
+
+\subsubsection*{Surjectivity proof by Krein-Milman theorem}
+\fi
+
 
 \begin{defn}[Irreducible representations]
 Let $G$ be a locally compact abelian group.
@@ -1723,7 +1806,7 @@ Putting $x=e$, we get $1=f(e)=\Phi^*\circ\cF^*\mu(e)=\mu(\hat G)$, hence we get 
 One of the most well-known applications of the Bochner theorem is the Pontryagin duality, which states that the canonical homomorphism $\Phi:G\to\hhat G$ for a locally compact abelian group $G$ is always in fact an isomorphism.
 
 The Pontryagin duality is deeply related to the Fourier inversion theorem.
-In the previous section, we defined the Fourier transform on $G$ as an operator that maps a function on $G$ to another function on $\hat G$.
+In Section 4.1, we defined the Fourier transform on $G$ as an operator that maps a function on $G$ to another function on $\hat G$.
 Then, the composition of the Fourier transform and the adjoint Fourier transform maps a function on $G$ to a function on the double dual $\hhat G$.
 However, Bochner's theorem tells us that if a function $f$ on $G$ is continuous and positive definite, then $f$ can be realized as the Fourier transform of a function on $\hat G$(a measure is a function in a generalized sense), instead of another hypothetical group $H$ such that $\hat H=G$.
 
@@ -1737,7 +1820,7 @@ This kind of question of recovery is called \emph{duality}, and one of the most 
 The duality for compact second countable abelian groups was proved by Pontryagin \cite{pontrjagin1934theory} in 1934, and van Kampen \cite{van1935locally} generalized the result in the following year for the case of locally compact abelian groups.
 Nowadays, the Pontryagin duality refers to the duality result for locally compact abelian groups.
 
-For a locally compact abelian group $G$, we can infer from Bochner's theorem a mechanism to pullback the doubly-Fourier-transformed function on $\hhat G$ to the original group $G$ without any loss of information.
+For a locally compact abelian group $G$, we can infer from Bochner's theorem a process to pullback the doubly-Fourier-transformed function on $\hhat G$ to the original group $G$ does not lose informtation of the original function.
 To see this, we reformulate Bochner's theorem in terms of a newly defined algebra of functions as follows:
 
 \begin{defn}[Fourier-Stieltjes algebra]
@@ -1751,6 +1834,9 @@ Let $G$ be a locally compact abelian group, and $\Phi:G\to\hhat G$ be the canoni
 Then, $\Phi^*\circ\cF^*:M(\hat G)\to B(G)$ is a well-defined algebra isomorphism.
 \end{cor}
 
+The space $B(G)\cap L^1(G)$ replaces the Schwartz space in the classical theory of Fourier transforms on the Euclidean spaces.
+Note that we do not have differential structure and the notion of decay growths on $G$.
+Intuitively, the inverse of $M(\hat G)\to B(G)$ is used to control the $L^1(\hat G)$-norm of the transformed function $\cF f$ for $f\in B(G)\cap L^1(G)$.
 
 Classical Fourier inversion theorems on $\R$ and $\Z$ go further than Bochner's theorem; not only is the Fourier transform bijective, but the inverse is given by its adjoint.
 Standard proofs of the Fourier inversion theorem on $\R$ use the scaling of $\R$ by scalar multiplication, and the differentiable structure.

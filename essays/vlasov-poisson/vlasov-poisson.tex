@@ -8,8 +8,9 @@
 
 \title{Global Existence of Classical Solutions\\to the Vlasov-Poisson System}
 \author{Ikhan Choi}
-\date{October 16, 2020.}
-
+\date{
+%October 16, 2020.
+}
 
 \begin{document}
 \maketitle
@@ -32,10 +33,10 @@ Consider the following Cauchy problem for the \emph{Valsov-Poisson system}:
 \end{alignedat}\right.
 \end{align}
 where $\gamma=\pm1$.
-For example, we have \emph{repulsive problem} $\gamma=+1$ for electrons in plasma theory and \emph{attractive problems} $\gamma=-1$ for galactic dynamics.
-($\rho$ denotes mass density.)
+For example, we have \emph{repulsive problem} $\gamma=+1$ for electrons in plasma theory and \emph{attractive problem} $\gamma=-1$ for galactic dynamics.
+($\rho$ denotes the mass density.)
 
-This report is a review of Schaeffer's paper \cite{schaeffer1991global}, and is written thanks to Glassey's book \cite{glassey1996cauchy}.
+This report is a review of Schaeffer's paper \cite{schaeffer1991global}, and is written following Glassey's book \cite{glassey1996cauchy}.
 We mainly investigate the local and global existence problem for a classical solution of the Cauchy problem for the Vlasov-Poisson system.
 More precisely, we prove there is a unique global $C_c^1$ solution when given a $C_c^1$ initial data $f_0$.
 Let us define our solution space.
@@ -43,7 +44,7 @@ Let us define our solution space.
 \begin{defn*}
 Let $f_0:\R^6\to[0,\infty]$ be a function.
 A function $f:[0,T]\times\R^6\to\R$ is said to be a \emph{classical solution} of the Cauchy problem for the Vlasov-Poisson system with initial data $f_0$ if $f\in C^1([0,T];C_c^1(\R^6))$ and satisfies all equations in (1) on its domain.
-Further, if $f\in C^1(\R^+;C_c^1(\R^6))$, then the classical solution $f$ is said to be \emph{global}.
+Further, if $f\in C^1(\R^+;C_c^1(\R^6))$, then the classical solution $f$ is said to be \emph{global}, where $\R^+=[0,\infty)$.
 \end{defn*}
 
 The precise statement of the global existence theorem is as follows:
@@ -82,7 +83,7 @@ It can be rewritten as
 The nonlinearity of the system is originated from the force field $E$, so its estimates play a crucial role in study of the nonlinear system.
 Since it is given by the solution of the Poisson equation, estimates of the Riesz potential, the convolution with a kernel of the form $|x|^{-(d-\alpha)}$, are directly connected to estimates of the force field.
 
-\begin{lem}[Estimates of Riesz potential]
+\begin{lem}[Uniform estimates of Riesz potential]
 Let $\rho\in C_c^1(\R^d)$.
 \begin{parts}
 \item
@@ -147,7 +148,7 @@ we have
 \subsection{Characteristics and volume preservation}
 
 The Vlasov-Poisson equation is quite hyperbolic.
-What we mean here is that the method of characteristic curves is useful, and it does not regularizes the solution directly.
+What we mean here is that the method of characteristic curves is useful, and it does not regularize the solution directly.
 Although we do not have an explicit representation formula, solutions written by characteristic curves make appropriate estimates possible.
 
 Moreover, since the Vlasov-Poisson system is a Hamiltonian system on the phase space $\R_x^3\times\R_v^3$ with the Hamiltonian $H(x,v)=\frac12v^2+\gamma\Phi(x,v)$, it has the volume preserving propoerty.
@@ -318,17 +319,17 @@ By the Hardy-Littlewood-Sobolev inequality,
 for $p=2$, $d=3$, and $\alpha=1$ implies $q=6/5$, hence the bound of $\|E(t)\|_2$
 \[\|E(t)\|_2\simeq\|\frac1{|x|^{d-\alpha}}*_x\rho(t,x)\|_{L_x^2}\lesssim\|\rho(t)\|_{6/5}.\]
 So, interpolation with H\"older's inequality gives
-\[\|E(t)\|_2\lesssim\|\rho\|_1^{7/12}\|\rho\|_{5/3}^{5/12}\simeq\|\rho\|_{5/3}^{5/12}.\]
+\[\|E(t)\|_2\lesssim\|\rho(t)\|_1^{7/12}\|\rho(t)\|_{5/3}^{5/12}\simeq\|\rho(t)\|_{5/3}^{5/12}.\]
 Thus (1) gives
 \[\iint|v|^2f\,dv\,dx=c+\|E(t)\|_2^2\lesssim c+(\iint|v|^2f\,dv\,dx)^{1/2},\]
-so the kinetic energy $\iint f\,dv\,dx$ is bounded.\qedhere
+so the kinetic energy $\iint|v|^2f\,dv\,dx$ is bounded.\qedhere
 \end{pf}
 
 \begin{rmk}
 If we had a bound of higher moment
 \[\iint|v|^kf(t,x,v)\,dv\,dx\lesssim1\]
 for some $k>6$ so that $\|\rho(t)\|_p\lesssim1$ for some $p=\frac{k+3}3>3$, then we would obtain
-\[\|E(t)\|_\infty^{1-\frac1p}\lesssim\|\rho\|_p^{\frac23}\|\rho\|_1^{\frac13-\frac1p}\lesssim1.\]
+\[\|E(t)\|_\infty^{1-\frac1p}\lesssim\|\rho(t)\|_p^{\frac23}\|\rho(t)\|_1^{\frac13-\frac1p}\lesssim1.\]
 We will see that this estimate proves the global existence immediately; this is the idea of the paper of Lions and Perthame \cite{lions1991propagation}.
 We do not cover this in detail.
 \end{rmk}

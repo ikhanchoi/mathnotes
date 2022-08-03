@@ -112,7 +112,7 @@ $A$ determines whether $x$ is either cusp of node.
 \section{Algebraic integer}
 \subsection{Quadratic integer}
 \begin{thm}
-Every quadratic field is of the form $\Q(\sqrt d)$ for a square-free $d$.
+Every quadratic field is of the form $\Q(\sqrt d)$ for a square-free $d\in\Z$.
 \end{thm}
 \begin{thm}
 Let $d$ be a square-free.
@@ -120,8 +120,28 @@ Let $d$ be a square-free.
 \[\Delta_{\Q(\sqrt d)}=\begin{cases}4d&,d\equiv2,3\pmod4\\ d&,d\equiv1\pmod4\end{cases}\]
 \end{thm}
 \begin{ex}
-\[\Delta_{\Q(i)}=-4,\quad\Delta_{\Q(\sqrt2)}=8,\quad\Delta_{\Q(\gamma)}=5,\quad\Delta_{\Q(\omega)}=-3\]
-where $\gamma:=\frac{1+\sqrt5}2$ and $\omega=\zeta_3$.
+The followings are ring of integers:
+\begin{center}\renewcommand{\arraystretch}{1.8}
+$\begin{array}{ccc|ccc}\hline
+K&\cO_K&\Delta_K&K&\cO_K&\Delta_K\\\hline
+\Q(\sqrt2)&\Z[\sqrt2]&8&
+\Q(\sqrt{-2})&\Z[\sqrt{-2}]&-8\\
+\Q(\sqrt3)&\Z[\sqrt3]&12&
+\Q(\sqrt{-3})&\Z[\tfrac{-1+\sqrt{-3}}2]&-3\\
+\Q(\sqrt5)&\Z[\tfrac{1+\sqrt5}2]&5&
+\Q(\sqrt{-5})&\Z[\sqrt{-5}]&-20\\
+\Q(\sqrt6)&\Z[\sqrt6]&24&
+\Q(\sqrt{-6})&\Z[\sqrt{-6}]&-24\\
+\Q(\sqrt7)&\Z[\sqrt7]&28&
+\Q(\sqrt{-7})&\Z[\tfrac{1+\sqrt{-7}}2]&-7\\
+\Q(\sqrt{10})&\Z[\sqrt{10}]&40&
+\Q(\sqrt{-10})&\Z[\sqrt{-10}]&-40\\
+\Q(\sqrt{11})&\Z[\sqrt{11}]&44&
+\Q(\sqrt{-11})&\Z[\tfrac{1+\sqrt{-11}}2]&-11\\
+\Q(\sqrt{13})&\Z[\tfrac{1+\sqrt{13}}2]&13&
+\Q(\sqrt{-13})&\Z[\sqrt{-13}]&-52\\\hline
+\end{array}$
+\end{center}
 \end{ex}
 \begin{thm}
 Let $\theta^3=hk^2$ for $h,k$ square-free's.
