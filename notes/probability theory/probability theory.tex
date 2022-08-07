@@ -135,8 +135,8 @@ We will define the \emph{weak convergence} as follows: $F_n$ converges weakly to
 \begin{prb}[Properties of probability Borel measures]
 Let $S$ be a topological space.
 \begin{parts}
-\item Every single probability Borel measure is regular if $S$ is perfectly normal.
-\item Every single probability Borel measure is tight if $S$ is Polish.
+\item Every single probability Borel measure is regular if $S$ is perfectly normal. (inner approximateion by closed sets)
+\item Every single probability Borel measure is tight if $S$ is Polish. (inner approximation by compact sets)
 \end{parts}
 \end{prb}
 
@@ -246,26 +246,95 @@ where $A^\alpha$ is the $\alpha$-neighborhood of $a$.
 (c)
 \end{pf}
 
-\begin{prb}[Prokhorov's theorem]
-Let $S$ be a normal space.
+
+
+
+\begin{prb}[Direct direction of Prokhorov's theorem]
+Let $S$ be a Polish space.
 Let $\Prob(S)$ be the space of probability measures on $S$ endowed with the topology of weak convergence.
+Prokhorov's theorem states that a subset of $\Prob(S)$ is relatively compact if and only if it is tight.
+We prove one direction, in which the construction of a sufficiently large compact set is a main issue.
+
+Let $\mu\in\Prob(S)$ and let $M$ be a relatively compact subset of $\Prob(S)$.
 \begin{parts}
-\item The relative compactness implies the tightness if $S$ is Polish.
-\item The tightness implies the relative compactness.
+\item Every open cover $\{B_\alpha\}_\alpha$ of $S$ has a finite subcollection $\{B_i\}_i$ for each $\e>0$ such that
+\[\mu\Bigl(\bigcup_iB_i\Bigr)>1-\e.\]
+\item Every open cover $\{B_\alpha\}_\alpha$ of $S$ has a finite subcollection $\{B_i\}_i$ for each $\e>0$ such that
+\[\inf_{\mu\in M}\mu\Bigl(\bigcup_iB_i\Bigr)>1-\e.\]
+\item $M$ is tight: there is a compact $K\subset S$ for each $\e>0$ such that
+\[\inf_{\mu\in M}\mu(K)>1-\e.\]
 \end{parts}
 \end{prb}
 \begin{pf}
 (a)
-Fix a complete metric $d$ on $S$.
-For each entourage $E$, we want to find a finite union of closed $E$-neighborhood that is arbitrarily full.
-% 여기서 separability가 필요
-And we require the countable fundamental system of uniformity.
-% 이 시점에서 metrizability가 반드시 필요하게 된 것
-% completeness는 잡은 totally bounded set이 compact가 되기 위해
+Since a separable metric space is Lindel\"of, we may assume $\{B_\alpha\}_\alpha=\{B_i\}_{i=1}^\infty$ is countable.
+Then, we can deduce the conclusion from the continuity from below and the fact $\mu_0(S)=1$.
 
 (b)
-% Stone-\v Cech compactification
+Suppose that the conclusion is not true so that there are $\e>0$ and a sequence $\mu_n\in M$ such that
+\[\mu_n\Bigl(\bigcup_{i=1}^nB_i\Bigr)\le1-\e.\]
+If we take a subsequence $(\mu_{n_k})_k$ that converges weakly to $\mu\in\bar M$ using the compactness of $\bar M$, then by the Portmanteau theorem we have for any $n$ that
+\[\mu\Bigl(\bigcup_{i=1}^nB_i\Bigr)\le\liminf_{k\to\infty}\mu_{n_k}\Bigl(\bigcup_{i=1}^nB_i\Bigr)\le\liminf_{k\to\infty}\mu_{n_k}\Bigl(\bigcup_{i=1}^{n_k}B_i\Bigr)\le1-\e.\]
+By taking $n$ sufficiently large, we lead a contradiction to the part (a).
+
+(c)
+Here we need metrizability, which leads to the exitence of countable fundamental system of uniformity for $\frac\e{2^m}$ argument.
+Also we need the completeness to change the total boundedness to compactness.
+
+Let $\{x_i\}_{i=1}^\infty$ be a dense set in $S$.
+Then, since $\{B(x_i,\frac1m)\}_{i=1}^\infty$ is a countable open cover of $S$ for each integer $m>0$, there is a finite $n_m>0$ such that
+\[\inf_{\mu\in M}\mu\Bigl(\bigcup_{i=1}^{n_m}B(x_i,\tfrac1m)\Bigr)>1-\frac\e{2^m}.\]
+Define
+\[K:=\bigcap_{m=1}^\infty\bigcup_{i=1}^{n_m}\bar{B(x_i,\tfrac1m)}.\]
+It is closed and totally bounded in a complete metric space $S$, so $K$ is compact.
+Moreover, we can verify
+\[1-\mu(K)=\mu\Bigl(\bigcup_{m=1}^\infty\bigcap_{i=1}^{n_m}\bar{B(x_i,\tfrac1m)}^c\Bigr)\le\sum_{m=1}^\infty\left(1-\mu\Bigl(\bigcup_{i=1}^{n_m}B(x_i,\tfrac1m)\Bigr)\right)<\e\]
+for every $\mu\in M$, so $M$ is tight.
 \end{pf}
+
+\begin{prb}[Converse direction of Prokhorov's theorem]
+The ``converse'' direction of Prokhorov's theorem is related to a construction of measure and considered to be more difficult.
+However, it holds in a general setting.
+
+Let $S$ be a normal space.
+Let $\Prob(S)$ be the space of probability measures on $S$ endowed with the topology of weak convergence.
+Let $M$ be a tight subset of $\Prob(S)$ and let $(\mu_\alpha)_\alpha\subset M$ be a net.
+We want to show that it has a convergent subnet in $\Prob(S)$.
+\begin{parts}
+\item $M$ is relatively compact.
+\end{parts}
+\end{prb}
+\begin{pf}
+Let $\beta S$ be the Stone-\v Cech compactification of $S$.
+The inclusion $\iota:S\to\beta S$ is a topological embedding because $S$ is completely regular.
+Pushforward the measures $\mu_\alpha$ to make them probability Borel measures $\nu_\alpha:=\iota_*\mu_\alpha$ on $\beta S$.
+We want to take a convergent subnet of $\nu_\alpha\in\Prob(\beta S)$, and to show the limit is in fact contained in $\Prob(S)$.
+
+Our first claim is that the measure $\nu_\alpha$ is regular for each $\alpha$, that is, $\nu_\alpha\in\Prob(\beta S)$.
+For any Borel $E\subset\beta S$ and any $\e>0$, there is $F\subset E\cap S$ that is closed in $S$ such that $\mu_\alpha(E\cap S)<\mu_\alpha(F)+\e/2$ by inner regularity, and there is $K$ that is compact in $S$ such that $\mu_\alpha(S\setminus K)<\e/2$ by tightness.
+Then, the inequality
+\[\nu_\alpha(E)=\mu_\alpha(E\cap S)<\mu_\alpha(F)+\frac\e2<\mu_\alpha(F\cap K)+\e=\nu_\alpha(F\cap K)+\e\]
+proves the regularity of $\nu_\alpha$ since $F\cap K$ is compact in both $S$ and $\beta S$ with $F\cap K\subset E$.
+The space $\Prob(\beta S)$ is compact by the Banach-Alaoglu theorem and the Riesz-Markov-Kakutani representation theorem.
+Therefore, $\nu_\alpha$ has a subnet $\nu_\beta$ that converges to $\nu\in\Prob(\beta S)$.
+
+Recall that $\mu_\beta$ is tight.
+For each $\e>0$, there is a compact $K\subset S$ such that $\nu_\beta(K)=\mu_\beta(K)\ge1-\e$ for all $\beta$.
+Then, by the Portmanteau theorem, we have
+\[\nu(S)\ge\nu(K)\ge\limsup_\beta\nu_\beta(K)\ge1-\e.\]
+Since $\e$ is arbitrary, $\nu$ is concentrated on $S$, i.e. $\nu(S)=1$.
+Now we restrict $\nu$ to $S$ in order to obtain $\mu$, which is a probability Borel measure on $S$.
+
+From the definition of weak convergence we have
+\[\int_{\beta S}f\,d\nu_\beta\to\int_{\beta S}f\,d\nu\]
+for all $f\in C(\beta S)$.
+Since $\nu_\beta(\beta S\setminus S)=\nu(\beta S\setminus S)=0$ and the restriction $C(\beta S)\to C_b(S)$ is an isomorphism due to the universal property of $\beta S$,
+\[\int_Sf\,d\mu_\beta\to\int_Sf\,d\mu\]
+for all $f\in C_b(S)$, so $\mu_\beta$ converges weakly to $\mu\in\Prob(S)$.
+\end{pf}
+
+
+
 
 
 
