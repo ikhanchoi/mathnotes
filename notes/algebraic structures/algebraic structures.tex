@@ -123,7 +123,22 @@ We find all $n$ such that $(\Z/n\Z)^\times$ is cyclic.
 
 \part{Rings}
 \chapter{Ideals}
+\section{Definitions of rings and ideals}
+\begin{prb}[Definition of rings]
+A \emph{ring} is an abelian group $(R,+)$ together with a binary operation $\times:R\times R\to R$, called the \emph{multiplication}, such that:
+\begin{enumerate}[(i)]
+\item $(R,\times)$ is an abelian monoid,
+\item the \emph{distributive law}: for every $r,s,t\in R$, we have
+\[r\times(s+t)=(r\times s)+(r\times t).\]
+\end{enumerate}
+The additive and multiplicative identities are usually denoted by $0$ and $1$ and called the \emph{zero} and the \emph{unity} respectively.
+We will sometimes call rings for which multiplication is not necessarily commutative or the multiplicative identity does not necessarily exist as \emph{non-commutative rings} and \emph{non-unital rings}, respectively.
+\end{prb}
 
+
+\begin{prb}[Definition of ideals]
+Let $R$ be a ring.
+\end{prb}
 
 
 \section*{Exercises}
@@ -133,6 +148,9 @@ size of units, the number of ideals
 
 
 \chapter{Integral domains}
+\section{Principal ideal domains}
+\section{Unique factorization domains}
+\section{Noetherian rings}
 
 \section*{Exercises}
 \section*{Problems}
@@ -148,8 +166,18 @@ size of units, the number of ideals
 \section{Irreducible polynomials}
 relation to maximal ideals
 Irreducibles over several fields
+\begin{prb}[Gauss lemma]
+\end{prb}
+\begin{prb}[Eisenstein criterion]
+\end{prb}
 
-
+\section{Polynomial rings over a field}
+\begin{prb}[Euclidean algorithm for polynoimals]
+\end{prb}
+\begin{prb}[Polynomial rings over UFD]
+\end{prb}
+\begin{prb}[Hilbert's basis theorem]
+\end{prb}
 
 
 
@@ -163,22 +191,99 @@ Irreducibles over several fields
 
 \part{Modules}
 
-\chapter{Exact sequences}
+
+
+\chapter{Modules}
+\section{Modules}
+
+\begin{prb}[Definition of modules]
+Let $R$ be a non-commutative ring.
+A (left) \emph{$R$-module} is an abelian group $(M,+)$ together with a function $\cdot:R\times M\to M$, called the \emph{scalar multiplication}, such that
+\begin{enumerate}[(i)]
+\item the scalar multiplication defines an \emph{left action} on $M$: for every $r,s\in R$ and $m\in M$, we have
+\[r\cdot(s\cdot m)=(rs)\cdot m\quad\text{ and }\quad1\cdot m=m,\]
+\item the \emph{distributive laws} hold: for every $r,s\in R$ and $m,n\in M$, we have
+\[r\cdot (m+n)=r\cdot m+r\cdot n\quad\text{ and }\quad(r+s)\cdot m=r\cdot m+s\cdot m.\]
+\end{enumerate}
+\begin{parts}
+\item If $R$ is commutative, then
+\end{parts}
+\end{prb}
+
+submodules
+quotient modules
+isomorphism theorems
+
+
+\section{Algebras}
+\begin{prb}[Definition of algebras]
+Let $R$ be a ring.
+An (associative) \emph{$R$-algebra} is an $R$-module $(A,+,\cdot)$ together with a binary operation $\times:A\times A\to A$, called the \emph{multiplication}, such that
+\begin{enumerate}[(i)]
+\item the multiplication is associative,
+\item the \emph{distributive laws} hold: for every $a,b,c\in A$, we have
+\[a\times(b+c)=a\times b+a\times c\quad\text{ and }\quad(a+b)\times c=a\times c+b\times c,\]
+\item the \emph{compatibility with scalars}: for every $r,s\in R$ and $a,b\in A$, we have
+\[(rs)\cdot(a\times b)=(r\cdot a)\times(s\cdot b).\]
+\end{enumerate}
+If the multiplication is commutative or admits an identity, respectively, we say the $R$-algebra is \emph{commutative} or \emph{unital}.
+Although there are examples of \emph{non-associative} algebras in which the multiplication is not associative, we will always mean \emph{associative} $R$-algebras by $R$-algebras if any modifier is not attached.
+\begin{parts}
+\item The set of matrices $M_n(R)$ over a ring $R$ is a unital $R$-algebra.
+\item The set of quaternions $\H$ is an $\R$-algebra.
+\item There is a one-to-one correspondence between rings and commutative unital $\Z$-algebras.
+\end{parts}
+\end{prb}
+
+
+\begin{prb}[Algebras as non-commutative rings]
+The term algebra is commonly used when we have to consider either non-commutative or non-unital of rings.
+Let $R$ be a ring.
+An \emph{$R$-algebra} also can be defined as a non-commutative and non-unital ring $(A,+,\times)$ together with a ring homomorphism $\eta:R\to Z(A)$, where
+\[Z(A):=\{\,a\in A:ab=ba\text{ for all }b\in A\,\},\]
+which is called the \emph{center}.
+The homomorphism $\eta$ defines a scalar multiplication via
+\[\cdot:R\times A\to A:(r,a)\mapsto\eta(r)a.\]
+\begin{parts}
+\item A non-commutative and non-unital ring $R$ is a $Z(R)$-algebra.
+\item The ``module-with-multiplication definition'' is equivalent to the ``ring-with-scalar-multiplication definition''.
+\end{parts}
+\end{prb}
+
+
+\section{Free modules}
+generators, cyclic
+direct sum
 free modules
-inj, proj
 
-\chapter{Hom set and tensor products}
-hom and duality
-tensor product
-algebras?
+\section{Tensor products}
 
-\chapter{Modules over a principal ideal domain}
+
+
+\chapter{Exact sequences}
+\section{}
+injective modules
+projective modules
+flat modules
+endomorphism algebra
+Tor and Ext
+
+
+\chapter{Modules over principal ideal domains}
+\section{Structure theorem of finitely generated modules}
 invariant factors and elementary divisors
 
+\begin{prb}[Structure theorem of finitely generated modules]
+Let $R$ be a principal ideal domain and let $M$ be a finitely generated module.
 
+\end{prb}
 
+If we know the ideal structure of a PID $R$, then we can classify all finitely generated modules over $R$.
 
-
+\begin{prb}[Fundamental theorem of abelian groups]
+\end{prb}
+\begin{prb}[Cyclic decomposition]
+\end{prb}
 
 
 
@@ -188,7 +293,7 @@ invariant factors and elementary divisors
 
 
 \chapter{}
-\section{Dual space}
+\section{Dual spaces}
 
 \begin{prb}[Double dual space]
 \end{prb}
@@ -228,7 +333,12 @@ Let $\<-,-\>$ be a non-degenerate bilinear form
 
 \chapter{Normal forms}
 \section{Rational canonical form}
-\begin{prb}[Finitely generated $\F\lbrack x\rbrack$-modules]
+\begin{prb}[Finitely generated $F\lbrack x\rbrack$-modules]
+Let $F$ be a field.
+Then, the map
+\[V\mapsto(V,x)\]
+defines a one-to-one correspondence
+\[\left\{\begin{tabular}{c}finitely generated\\$F[x]$-modules\end{tabular}\right\}\to\left\{\,(V,T)\ ;\begin{tabular}{c}$V$ is a finite-dimensional vector spaces over $F$,\\$T:V\to V$ is a linear transform\end{tabular}\right\}.\]
 \end{prb}
 \begin{prb}[Cyclic subspaces]
 \end{prb}
