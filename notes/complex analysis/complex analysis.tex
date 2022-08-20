@@ -15,8 +15,6 @@
 \chapter{Cauchy theory}
 \section{Complex differentiability}
 
-\begin{prb}
-\end{prb}
 
 \begin{prb}[Cauchy-Riemann equation]
 \begin{parts}
@@ -26,6 +24,7 @@
 
 
 \section{Contour integral}
+
 \begin{prb}[Definition of contour integral]
 Let $\Omega\subset\C$ be a domain.
 Let $f\in C(\Omega)$ and let $\gamma:[a,b]\to\Omega$ be a $C^1$ curve.
@@ -42,6 +41,7 @@ ML lemma
 We will describe the idea with the notion of homotopy.
 Stokes theorem(or Green's formula) and the proof by homotopy triangulation.
 \end{prb}
+
 \begin{prb}[Cauchy integral formula]
 Remind the proof of the mean value property for harmonic functions.
 The proof essentially have a shrinking process and boundedness of the difference quotient.
@@ -191,7 +191,7 @@ This is called the \emph{Jordan lemma}.
 \begin{pf}
 (a)
 Note that for sufficiently large $R$, the function $f$ has only one pole at $z=i$ in the interior of $C$, which is simple; define
-\[g(z)=f(z)(z-i)=\frac{e^{iz}}{z+i}.\]
+\[g(z):=f(z)(z-i)=\frac{e^{iz}}{z+i}.\]
 Then, by the residue theorem, we obtain
 \[\int_Cf(z)\,dz=\int_C\frac{g(z)}{z-i}\,dz=2\pi i\cdot g(i)=\frac\pi e\]
 for large $R$.
@@ -234,7 +234,7 @@ The indented contour is effective when $f$ has a simple pole at zero.
 \begin{parts}
 \item $\lim_{R\to\infty,r\to0}[\int_{C_1}f(z)\,dz+\int_{C_3}f(z)\,dz]=2i\int_0^\infty\frac{\sin x}x\,dx$.
 \item $\lim_{R\to\infty}\int_{C_2}f(z)\,dz=0$.
-\item $\lim_{r\to0}\int_{C_4}f(z)\,dz=\pi i$.
+\item $\lim_{r\to0}\int_{C_4}f(z)\,dz=-\pi i$.
 \end{parts}
 \end{prb}
 \begin{pf}
@@ -246,7 +246,7 @@ If $f$ has a simple pole at zero, we can conduct a partial fraction decompositio
 \[f(z)=\frac cz+h(z)\]
 such that $c$ is a constant and $h$ is holomorphic at zero.
 Then, it is easy to see
-\[\int_{C_4}f(z)\,dz=\int_{C_4}\frac{dz}z+\int_{C_4}\frac{e^{iz}-1}z\,dz\to\pi i+0\]
+\[\int_{C_4}f(z)\,dz=\int_{C_4}\frac{dz}z+\int_{C_4}\frac{e^{iz}-1}z\,dz\to-\pi i+0\]
 as $r\to\infty$.
 \end{pf}
 
@@ -347,9 +347,8 @@ Carlson's theorem
 
 \section*{Problems}
 \begin{enumerate}
-\item We have $\int_0^{2\pi}\frac{d\theta}{1+\cos^2\theta}=\sqrt2\pi$.
-\item We have
-\[\]
+\item Show that $\int_0^{2\pi}\frac{d\theta}{1+\cos^2\theta}=\sqrt2\pi$.
+\item Find the number of roots of $z^{100}+z+1=0$ in $\{x+iy\in\C:x>0,y>0\}$.
 \end{enumerate}
 
 
@@ -362,6 +361,7 @@ Carlson's theorem
 \item injectivity preservation: Hurwitz theorem
 \end{parts}
 \end{prb}
+
 \begin{prb}[Principal part]
 For a meromorphic function $f$, we say a polynomial $p$ without constant term is a \emph{principal part} of $f$ at $z_0$ if we have a partial fraction decomposition
 \[f(z)=p\left(\frac1{z-z_0}\right)+h(z),\]
@@ -403,13 +403,17 @@ fixed points
 \begin{prb}[Normal family]
 locally bounded, then compact (Montel)
 \end{prb}
+
+\begin{prb}[Schwarz lemma]
+\end{prb}
+
 \begin{prb}[Riemann mapping theorem]
 Let $\Omega\subset\C$ be a simply connected domain such that $\Omega\ne\C$.
 \[\cF=\{f:\Omega\to\D\mid f\text{ is injective and holomorphic, and }f(z_0)=0\}\]
 \begin{parts}
 \item There exists an injective holomorphic function $f:\Omega\to\D$.
 \item If $0\in\Omega_1\subsetneq\D$, then there is a conformal mapping $h:\Omega_1\to\Omega_2$ such that $h(0)=0$ and $|h'(0)|>1$, where $0\in\Omega_2\subset\D$.
-\item The supremum of $|f'(0)|$ is attained in $\cF$....
+\item The supremum of $|f'(0)|$ is attained in $\cF$.
 \item There exists a conformal mapping $f:\Omega\to\D$.
 \end{parts}
 \end{prb}
@@ -426,12 +430,19 @@ Let $\Omega\subset\C$ be a simply connected domain such that $\Omega\ne\C$.
 \item Find a conformal mapping that maps the open unit disk onto $A:=\{\,z\in\C:\max\{|z|,|z-1|\}<1\,\}$.
 \end{enumerate}
 
+
+
+
 \chapter{Univalent functions}
 \section{Bierbach conjecture}
 \section{Harmonic functions}
 harmonic conjugates
 conformal change
-
+\begin{prb}[Mean value property and Poisson kernel]
+Let $f$ be a holomorphic function on a domain $\Omega$.
+If $h$ is another holomorphic function, then
+\[f(a)=\frac1{2\pi}\int_{|z|=1}f(z)\left(\frac z{z-a}+zh(z)\right)\,\frac{dz}{iz}.\]
+\end{prb}
 
 
 
@@ -439,7 +450,7 @@ conformal change
 
 \chapter{}
 
-Maximum principle; Schwarz's lemma, Lindelöf principle,
+Maximum principle; Lindelöf principle,
 Nevanlinna theory?
 
 \section{Riemann-Hilbert problem}
@@ -472,6 +483,8 @@ Define $f:\{x+iy:y\ne0\text{ or }-1<x<1\}\to\C$ such that
 \[f(z):=\frac1{\sqrt{r_+r_-}}e^{i\frac{\theta_++\theta_-}2},\]
 where $z-1=r_+e^{i\theta_+}$ and $z+1=r_-e^{i\theta_-}$.
 Then, $f(z)$ is a branch of $1/\sqrt{z^2-1}$.
+
+
 \section{Monodromy}
 \section{Covering surfaces}
 \section{Algebraic functions}
