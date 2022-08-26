@@ -72,8 +72,8 @@ where we use the convention $\inf\varnothing=\infty$.
 \end{parts}
 \end{prb}
 \begin{pf}
-
 \end{pf}
+
 
 \begin{prb}[Carath\'eodory measurability]
 Let $\mu^*$ be an outer measure on a set $\Omega$.
@@ -89,7 +89,6 @@ Let $\cM$ be the collection of all Carath\'eodory measurable subsets relative to
 \end{parts}
 \end{prb}
 \begin{pf}
-
 \end{pf}
 
 
@@ -126,10 +125,6 @@ Then, we have $B_i\cap A\subset\bigcup_{j=1}^\infty C_{i,j}$ and $B_i\setminus A
 >\sum_{i,j=1}^\infty\rho(C_{i,j})+\sum_{i,j=1}^\infty\rho(D_{i,j})\ge\mu^*(S\cap A)+\mu^*(S\setminus A).\]
 Therefore, $A$ is Carath\'eodory measurable relative to $\mu^*$.
 \end{pf}
-
-
-
-
 
 
 \begin{prb}[Uniqueness of extension of measures]
@@ -273,7 +268,6 @@ Let $\E\subset\R$ be Lebesgue measurable with $\lambda(E)>0$.
 
 \chapter{Measurable functions}
 
-\section{Extended real numbers}
 
 
 \section{Simple functions}
@@ -463,6 +457,14 @@ locally compact
 
 \chapter{Lebesgue spaces}
 \section{$L^p$ spaces}
+\begin{pf}
+\[\int fg\le C^p\int\frac{|f|^p}p+\frac1{C^q}\int\frac{|g|^q}q\]
+Take $C$ such that
+\[C^p\int\frac{|f|^p}p=\frac1{C^q}\int\frac{|g|^q}q.\]
+Then,
+\[C^p\int\frac{|f|^p}p+\frac1{C^q}\int\frac{|g|^q}q=2p^{-\frac1p}q^{-\frac1q}\Bigl(\int|f|^p\Bigr)^{\frac1p}\Bigl(\int|g|^p\Bigr)^{\frac1q}.\]
+Note that we can show that $1\le2p^{-\frac1p}q^{-\frac1q}\le2$ and the minimum is attained only if $p=q=2$, so this method does not provide the sharpest constant.
+\end{pf}
 \section{$L^1$ spaces}
 \section{$L^2$ spaces}
 \section{$L^\infty$ spaces}
