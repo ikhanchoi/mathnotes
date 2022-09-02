@@ -22,185 +22,127 @@
 
 \chapter{Smooth structures}
 
-\section{Definition of smooth structures}
+\section{Local coordinate systems}
 
 
-\begin{prb}[Locally Euclidean spaces]
-continuous atlas
+\begin{prb}[Local coordinates]
+Let $M$ be a topological space and $p\in M$ a point.
+Consider a fixed positive integer $m$.
+An $m$-dimensional (local) \emph{coordinate system}, or (local) \emph{chart}, at $p$ is a pair $(U,\f)$ consisting of an open neighborhood $U$ of $p$ and a topological embedding $\f:U\to\R^m$.
+The embedding $\f$ is called a \emph{coordinate map}, and each component of $\f$ with respect to a basis of $\R^m$ is called a \emph{coordinate function}.
+
+An $m$-dimensional \emph{atlas} on $M$ is an indexed family $\cA=\{(U_\alpha,\f_\alpha)\}_\alpha$ of $m$-dimensional local charts such that every point is contained in some $U_\alpha$, that is, $\{U_\alpha\}_\alpha$ is a cover of $M$.
+In geography, an atlas means a book of maps of Earth.
+A term \emph{locally Euclidean space} is sometimes used to refer a topological space $M$ together with an $m$-dimensional atlas.
 \begin{parts}
-\item For a regular manifold, a coordinate map is a chart.
-\end{parts}
-\end{prb}
-
-
-\begin{prb}[Smooth structures]
-\begin{parts}
-\item Every continuous atlas is equivalent.
 \item 
+Let $U=\{(x,y)\in\R^2:x\ne0\text{ or }y>0\}$.
+For two functions $r,\theta:U\to\R$ defined by
+\[r(x,y):=\sqrt{x^2+y^2},\quad\theta(x,y):=2\tan^{-1}\frac y{x+\sqrt{x^2+y^2}},\]
+the map
+\[U\to\R^2:(x,y)\mapsto(r(x,y),\theta(x,y))\]
+is a coordinate map, where $\tan^{-1}(t):=\int_0^t(1+s^2)^{-1}\,ds$.
 \end{parts}
 \end{prb}
 
+\begin{prb}[Smooth atlases]
+Let $M$ be a topological space and $m$ a positive integer.
+A \emph{smooth atlas} on $M$ is an atlas $\cA$ on $M$ such that every \emph{transition map}
+\[\tau_{\alpha\beta}:=\f_\beta\circ\f_\alpha^{-1}:\f_\alpha(U_\alpha\cap U_\beta)\to\f_\beta(U_\alpha\cap U_\beta)\]
+is smooth for all $(U_\alpha,\f_\alpha),(U_\beta,\f_\beta)\in\cA$.
+Let $\cA$ be a smooth atlas on $M$.
+Then, we can define the \emph{smoothness} of a function $f:M\to\R$ with respect to $\cA$ as follows: we say $f$ is smooth if its \emph{coordinate representation}
+\[f\circ\f^{-1}:\f_\alpha(U)\to\R\]
+is smooth for all $(U,\f)\in\cA$.
 
-
-\begin{prb}[Smooth manifolds]
-A \emph{topological manifold} is a second-countable Hausdorff locally Euclidean space.
-A \emph{smooth manifold} is a second-countable Hausdorff space with a smooth structure.
-The term \emph{manifold} may refer to any of either a topological or a smooth manifold, which depends on the context of each reference.
+Two smooth atlas $\cA_1$ and $\cA_2$ are called \emph{equivalent} if $\cA_1\cup\cA_2$ is also a smooth atlas.
+A \emph{smooth structure} on $M$ is a maximal smooth atlas $\cA$; there is no smooth atlas $\cA'$ that contains $\cA$ properly.
 \begin{parts}
-\item Long line
-\item Line with two origins
+\item For a given smooth atlas, every transition map is a diffeomorphism.
+\item If two atlases $\cA_1$ and $\cA_2$ are equivalent, then a function $f:M\to\R$ is smooth with respect to $\cA_1$ if and only if it is smooth with respect to $\cA_2$.
+\item There is a one-to-one correspondence between smooth structures and equivalence classes of smooth atlases. Therefore, we can describe a smooth structure by giving a particular smooth atlas.
 \end{parts}
 \end{prb}
 
-\begin{prb}[Smooth maps]
-\end{prb}
-
-\begin{prb}[Diffeomorphisms]
-\end{prb}
-
-
-
-
-
-
-
-
-\section{Tangent bundle}
-
-% Tangent spaces:
-%  equiv classes of curves
-%  derivatives
-%  germs
-
-We will provide four different definitions of tangent spaces:
+\begin{prb}[Manifolds]
+A \emph{topological manifold} is defined as a second-countable and Hausdorff space together with a maximal atlas, and a \emph{smooth manifold} is defined as a second-countable and Hausdorff space together with a smooth structure.
+The term \emph{manifold} may refer to any of either a topological or a smooth manifold, which depends on contexts of each reference.
 \begin{parts}
-\item the space of equivalence classes of smooth curves,
-\item the space of tangent vectors embedded in an ambient space,
-\item the space of derivations on the ring of smooth functions,
-\item the dual space of algebraically defined cotangent spaces.
+\item The long line admits a smooth structure, and it is Hausdorff but not second countable.
+\item The line with two origins admits a smooth structure, and it is second countable but not Hausdorff.
 \end{parts}
+\end{prb}
+
+\begin{prb}[Partition of unity]
+\end{prb}
+
+\begin{prb}[Smooth maps and diffeomorphisms]
+scalar functions, scalar fields
+\end{prb}
+
+\begin{prb}[Embedded manifolds]
+a \emph{embedded manifold} or a \emph{regular manifold}.
+\emph{parametrization}
+
+If $\a:U\to\R^n$ is a topological embedding, then we can endow with a unique smooth structure on $\im\a$ such that $\a$ is smooth.(?)
+\begin{parts}
+\item The image of a regular parameterization is an embedded manifold.
+\item Every open subset of a embedded manifold is a embedded manifold.
+\item Monge patch.
+\item The sphere $S^2=\{\,(x,y,z)\in\R^3:x^2+y^2+z^2=1\,\}$ is a regular surface.
+\item The set $\{\,(x,y)\in\R^2:y^2=x^3+x^2\,\}$ is not a regular curve.
+\item The set $\{\,(x,y)\in\R^2:y=|x|\,\}$ is not a regular curve.
+\end{parts}
+\end{prb}
 
 
 
-\begin{prb}[Tangent spaces]
-Let $p$ be a point on an $m$-dimensional regular manifold $M$ in $\R^n$.
-Take a regular parameterization $\a$ for $M$ at $p$, and let $x:=\a^{-1}(p)$ be the coordinates of $p$.
+
+
+
+\section{Tangent spaces}
+
+
+\begin{prb}[Tangent spaces of embedded manifolds]
+Let $M$ be an $m$-dimensional embedded manifold in $\R^n$.
+For a point $p\in M$, take a parameterization $\a$ for $M$ at $p$, and let $x:=\a^{-1}(p)$ be the coordinates of $p$.
 The \emph{tangent space} $T_pM$ of $M$ at $p$ is defined as the image of $d\a|_x:\R^m\to\R^n$.
 \begin{parts}
-\item $T_pM$ is a $m$-dimensional vector subspace of $\R^n$.
-\item If $v\in T_pM$, then $\gamma(0)=p$ and $\gamma'(0)=v$ for a regular curve $\gamma:I\to M$.
-\item If $\gamma(0)=p$ and $\gamma'(0)=v$ for a regular curve $\gamma:I\to M$, then $v\in T_pM$. (Use the constant rank theorem.)
+\item $T_pM$ is a $m$-dimensional vector subspace of $\R^n$ with a basis $\{\pd_i\alpha(x)\}_{i=1}^m$.
+\item If $v\in T_pM$, then we have a smooth curve $\gamma:I\to M$ such that $\gamma(0)=p$ and $\gamma'(0)=v$.
+\item If we have a smooth curve $\gamma:I\to M$ such that $\gamma(0)=p$ and $\gamma'(0)=v$, then $v\in T_pM$.
 \item The definition of $T_pM$ is independent on the parameterization $\a$.
 \end{parts}
 \end{prb}
 
 
-
-
-
-
-\begin{notn*}
-Let $\a$ be a parametrization for a regular curve or surface $M$.
-For derivatives of $\a$, we will use the following notations:
-\[\pd_t\a=\a',\quad\pd_x\a=\a_x,\quad\pd_i\a=\a_i.\]
-The set $\{\a_i\}_i$ will be used to denote a basis of tangent space $T_pM$.
-\end{notn*}
-
-
-
-
-
-\begin{prb}[Scalar fields and vector fields]
-Let $\a:U\subset\R^m\to\R^n$ be a parametrization with $M=\im\a$.
-\begin{parts}
-\item A \emph{scalar field}, \emph{smooth function}, or just a \emph{function} is a function $f:M\to\R$ such that $f\circ\a:U\to\R$ is smooth.
-\item A \emph{vector field} is a map $X:M\to\R^n$ such that $X\circ\a:U\to\R^n$ is smooth.
-\item A \emph{tangent vector field} is a vector field $X:M\to\R^n$ such that $X|_p\in T_pM$.
-\end{parts}
-The set of tangent vector fields is often denoted by $\fX(M)$.
+\begin{prb}[Tangent spaces as equivalence classes of curves]
 \end{prb}
-
-The following proposition proves that the smoothness of functions and vector fields does not depend on parametrizations.
-
-\begin{prop}
-Let $\a:U\subset\R^m\to\R^n$ and $\beta:V\subset\R^m\to\R^n$ be parametrizations with same image $M=\im\a=\im\beta$.
-Then, the map $\beta^{-1}\circ\a:U\to V$ is smooth.
-\end{prop}
-\begin{pf}
-%%%
-\end{pf}
-\begin{rmk}
-The map $\beta^{-1}\circ\a$ is called the \emph{transition map}.
-\end{rmk}
-
-\begin{defn}
-Let $\a:U\subset\R^m\to\R^n$ be a parametrization $M=\im\a$.
-\begin{parts}
-\item The coordinate representation of a function $f:M\to\R$ is
-\[f\circ\a:U\to\R.\]
-\item The (external) coordinate representation of a vector field $X:M\to\R^n$ is
-\[X\circ\a:U\to\R^n.\]
-\item The coordinate representation of a tangent vector field $X:M\to\R^n$ is
-\[(X^1\circ\a,\,\cdots,\,X^m\circ\a):U\to\R^m\]
-where $X=\sum_iX^i\a_i$.
-\end{parts}
-\end{defn}
+\begin{prb}[Tangent spaces as derivations]
+\end{prb}
+the space of derivations on the ring of smooth functions,
+the dual space of algebraically defined cotangent spaces.
 
 
 
-\begin{defn}
-Let $M$ be the image of a parametrization $\a:U\subset\R^m\to\R^n$.
-Let $v=\sum_iv^i\a_i|_p\in T_pM$ be a tangent vector at $p=\a(x)$.
-For a function $f:M\to\R$, its partial derivative is defined by
-\[\pd_vf(p):=\sum_{i=1}^mv^i\pd_i(f\circ\a)(x)\in\R.\]
-For a vector field $X:M\to\R^n$, its partial derivative is defined by
-\[\pd_vX|_p:=\sum_{i=1}^mv^i\pd_i(X\circ\a)(x)\in\R^n.\]
-This definition is not dependent on parametrization $\a$.
-\end{defn}
 
-\begin{prop}
-Let $M$ be the image of a parametrization.
-Let $X$ be a tangent vector field on $M$.
-\begin{parts}
-\item If $f$ is a function, then so is $\pd_Xf$.
-\item If $Y$ is a vector field, then so is $\pd_XY$.
-\item If $Y$ is a tangent vector field, then so is $\pd_XY-\pd_YX$.
-\end{parts}
-\end{prop}
-\begin{pf}
-(1) and (2) are clear.
-For (3), if we let $X=\sum_iX^i\a_i$ and $Y=\sum_jY^j\a_j$ for a parametrization $\a:U\subset\R^m\to\R^n$, then
-\begin{align*}
-\pd_XY-\pd_YX
-&=\pd_X(\ssum_jY^j\a_j)-\pd_Y(\ssum_iX^i\a_i)\\
-&=\ssum_j[(\pd_XY^j)\a_j+Y^j\pd_X\a_j]-\ssum_i[(\pd_YX^i)\a_i+X^i\pd_Y\a_i]\\
-&=\ssum_j[(\pd_XY^j)\a_j+Y^j\ssum_iX^i\pd_i\a_j]-\ssum_i[(\pd_YX^i)\a_i+X^i\ssum_jY^j\pd_i\a_j]\\
-&=\ssum_j(\pd_XY^j)\a_j-\ssum_i(\pd_YX^i)\a_i\\
-&=\ssum_i(\pd_XY^i-\pd_YX^i)\a_i.\qedhere
-\end{align*}
-\end{pf}
 
-\begin{notn*}
-Let $M$ be the image of a parametrization $\a$.
-For derivatives of functions on $M$ by tangent vectors, we will use
-\[\pd_{\a_i}f=\pd_if,\quad\pd_{\a_t}f=\pd_tf=f',\quad\pd_{\a_x}f=\pd_xf=f_x.\]
-For derivatives of vector fields on $M$ by tangent vectors, we will use
-\[\pd_{\a_i}X=\pd_iX,\quad\pd_{\a_t}X=\pd_tX=X',\quad\pd_{\a_x}X=\pd_xX=X_x.\]
-We will \emph{not} use $f_i$ or $X_i$ for $\pd_if$ and $\pd_iX$ because it is confusig with coordinate representations, and \emph{not} use the nabula symbol $\nabla_v$ in this sense because it will be devoted to another kind of derivatives introduced in Section 4.
-\end{notn*}
 
-\begin{ex} % example 많이 추가하기
-\begin{parts}
-\item
-Let $\a$ be an $m$-dimensional parametrization with $M=\im\a$.
-The value of $\pd_i\a=\a_i:M\to\R^3$ is always a tanget vector at each point $p=\a(x)$, and $\a_i$ becomes a vector field.
 
-Let $s$ be either a smooth function or vector field on $\a$.
-Then, we can compute the directional derivative as
-\[\pd_is:=\pd_i(s\circ\a)=\pd_t(s\circ\gamma)\]
-by taking $\gamma(t)=\a(x+te_i)$, where $e_i$ is the $i$-th standard basis vector for $\R^m$.
 
-\item
+
+
+
+
+\section{Differentials}
+
+
+
+
+\section*{Exercises}
+
+
+\begin{prb}[Smooth structure on spheres]
 Let $\a:\R^2\to\R^3$ be a regular surface given by
 \[\a(x,y)=\left(\frac{2x}{1+x^2+y^2},\,\frac{2y}{1+x^2+y^2},\,1-\frac2{1+x^2+y^2}\right).\]
 This map gives a parametrization for the sphere $S^2$ without the north pole $(0,0,1)$, and is called the \emph{stereographic projection}.
@@ -212,39 +154,26 @@ Its coordinate representation is
 Then, the directional derivative is
 \[\pd_xf=\pd{(f\circ\a)}{x}=\pd{x}\left(1-\frac2{1+x^2+y^2}\right)=\frac{4x}{(1+x^2+y^2)^2}.\]
 Note that $\pd_xf\ne\pd_{(1,0,0)}z=0$.
+\begin{parts}
+\item The minimal cardinality of a smooth atlas on $S^n$ is two.
 \end{parts}
-\end{ex}
+\end{prb}
 
-
-% 내적 외적 삼중곱
-% 벡터의 좌표표현 안쪽 기저와 바깥 기저
-
-% 좌표는 접공간의 기저를 준다
-% frame은 R^3 풀백번들에 정의하자
-
-
-
-
-
-
-\section*{Exercises}
-
+\begin{prb}[Smooth structure on projective spaces]
+\end{prb}
+\begin{prb}[Stiefel and Grassmann varieties]
+\end{prb}
 \begin{prb}[Parallelization of spheres]
 \end{prb}
-\begin{prb}[Tagent space of matrix group]
+\begin{prb}[Tagent space of matrix groups]
 Jacobi formula
 \end{prb}
-
-
-
-\begin{prb}[Integral curves]
-\end{prb}
-\begin{prb}[Foliation]
-\end{prb}
-
-
-\begin{prb}
-Every ring homomorphism $C^\infty(M)\to\R$ is obtained by an evaluation at a point of $M$.
+\begin{prb}[Recovery of compact smooth manifolds]
+Let $M$ be a compact smooth manifold.
+$C^\infty$ functor is a fully faithful contravariant functor.
+\begin{parts}
+\item Every ring homomorphism $C^\infty(M)\to\R$ is obtained by an evaluation at a point of $M$.
+\end{parts}
 \end{prb}
 \begin{pf}
 Suppose $\phi:C^\infty(M)\to\R$ is not an evaluation.
@@ -266,21 +195,95 @@ It is a contradiction.
 
 \chapter{Tensor fields}
 
-\section{Tensor fields}
+\section{Vector fields}
+
+\begin{prb}[Vector fields]
+Let $\a:U\subset\R^m\to\R^n$ be a parametrization with $M=\im\a$.
+A \emph{vector field} is a map $X:M\to\R^n$ such that $X\circ\a:U\to\R^n$ is smooth.
+A \emph{tangent vector field} is a vector field $X:M\to\R^n$ such that $X|_p\in T_pM$.
+The set of tangent vector fields is often denoted by $\fX(M)$.
+\end{prb}
+
+
+\begin{prb}
+Let $\a:U\subset\R^m\to\R^n$ be a parametrization $M=\im\a$.
+\begin{parts}
+\item The coordinate representation of a function $f:M\to\R$ is
+\[f\circ\a:U\to\R.\]
+\item The (external) coordinate representation of a vector field $X:M\to\R^n$ is
+\[X\circ\a:U\to\R^n.\]
+\item The coordinate representation of a tangent vector field $X:M\to\R^n$ is
+\[(X^1\circ\a,\,\cdots,\,X^m\circ\a):U\to\R^m\]
+where $X=\sum_iX^i\a_i$.
+\end{parts}
+\end{prb}
+
+\begin{prb}
+Let $\a$ be an $m$-dimensional parametrization with $M=\im\a$.
+The value of $\pd_i\a=\a_i:M\to\R^3$ is always a tanget vector at each point $p=\a(x)$, and $\a_i$ becomes a vector field.
+
+Let $s$ be either a smooth function or vector field on $\a$.
+Then, we can compute the directional derivative as
+\[\pd_is:=\pd_i(s\circ\a)=\pd_t(s\circ\gamma)\]
+by taking $\gamma(t)=\a(x+te_i)$, where $e_i$ is the $i$-th standard basis vector for $\R^m$.
+\end{prb}
+
+\begin{prb}
+Let $M$ be the image of a parametrization $\a:U\subset\R^m\to\R^n$.
+Let $v=\sum_iv^i\a_i|_p\in T_pM$ be a tangent vector at $p=\a(x)$.
+For a function $f:M\to\R$, its partial derivative is defined by
+\[\pd_vf(p):=\sum_{i=1}^mv^i\pd_i(f\circ\a)(x)\in\R.\]
+For a vector field $X:M\to\R^n$, its partial derivative is defined by
+\[\pd_vX|_p:=\sum_{i=1}^mv^i\pd_i(X\circ\a)(x)\in\R^n.\]
+This definition is not dependent on parametrization $\a$.
+\end{prb}
+
+\begin{prb}
+Let $M$ be the image of a parametrization.
+Let $X$ be a tangent vector field on $M$.
+\begin{parts}
+\item If $f$ is a function, then so is $\pd_Xf$.
+\item If $Y$ is a vector field, then so is $\pd_XY$.
+\item If $Y$ is a tangent vector field, then so is $\pd_XY-\pd_YX$.
+\end{parts}
+\end{prb}
+\begin{pf}
+(a) and (b) are clear.
+For (c), if we let $X=\sum_iX^i\a_i$ and $Y=\sum_jY^j\a_j$ for a parametrization $\a:U\subset\R^m\to\R^n$, then
+\begin{align*}
+\pd_XY-\pd_YX
+&=\pd_X(\ssum_jY^j\a_j)-\pd_Y(\ssum_iX^i\a_i)\\
+&=\ssum_j[(\pd_XY^j)\a_j+Y^j\pd_X\a_j]-\ssum_i[(\pd_YX^i)\a_i+X^i\pd_Y\a_i]\\
+&=\ssum_j[(\pd_XY^j)\a_j+Y^j\ssum_iX^i\pd_i\a_j]-\ssum_i[(\pd_YX^i)\a_i+X^i\ssum_jY^j\pd_i\a_j]\\
+&=\ssum_j(\pd_XY^j)\a_j-\ssum_i(\pd_YX^i)\a_i\\
+&=\ssum_i(\pd_XY^i-\pd_YX^i)\a_i.\qedhere
+\end{align*}
+\end{pf}
+
+\begin{prb}
+Let $M$ be the image of a parametrization $\a$.
+For derivatives of functions on $M$ by tangent vectors, we will use
+\[\pd_{\a_i}f=\pd_if,\quad\pd_{\a_t}f=\pd_tf=f',\quad\pd_{\a_x}f=\pd_xf=f_x.\]
+For derivatives of vector fields on $M$ by tangent vectors, we will use
+\[\pd_{\a_i}X=\pd_iX,\quad\pd_{\a_t}X=\pd_tX=X',\quad\pd_{\a_x}X=\pd_xX=X_x.\]
+We will \emph{not} use $f_i$ or $X_i$ for $\pd_if$ and $\pd_iX$ because it is confusig with coordinate representations, and \emph{not} use the nabula symbol $\nabla_v$ in this sense because it will be devoted to another kind of derivatives introduced in Section 4.
+\end{prb}
+
+\section{Tensor fields of higher order}
 tensor bundle
-vector fields, tensor fields,
+tensor fields,
 
 \section{Differential forms}
 forms, exterior structures, pullback, interior product
 
+
 \section{Lie derivatives}
+\begin{prb}[Integral curves]
+\end{prb}
 
 \section*{Exercises}
 \begin{prb}[Orientation]
 \end{prb}
-
-
-
 
 
 
@@ -297,42 +300,146 @@ forms, exterior structures, pullback, interior product
 
 \section{Constant rank theorem}
 
-slice lemma
-
 \begin{prb}[Constant rank theorem]
-Let $f:M\to N$ be a smooth map whose differential has a locally constant rank $k$ at a point $p\in M$.
-For each pair of local charts $(U,\f)$ at $p$ and $(V,\psi)$ at $q:=f(p)$, we introduce functions $a:\f(U)\to\R^k$ and $b:\psi(V)\to\R^{n-k}$ to write
-\[\psi\circ f\circ\f^{-1}(x,y)=(a(x,y),b(x,y))\]
-for $x\in\R^k$, $y\in\R^{m-k}$.
+Let $M$ and $N$ be smooth manifolds of dimensions $m$ and $n$, and $f:M\to N$ a smooth map.
+Let $p\in M$ and $q\in N$ such that $f(p)=q$.
+For each pair of local charts $(U,\f)$ at $p$ and $(V,\psi)$ at $q$ such that $f(U)\subset V$, we can introduce functions $a:\f(U)\to\R^k$ and $b:\f(U)\to\R^{n-k}$ such that the coordinate representation $\tilde f:\f(U)\to\psi(V)$ of $f$ is written as
+\[\tilde f(x,y):=\psi\circ f\circ\f^{-1}(x,y)=(a(x,y),b(x,y))\]
+for $x\in\R^k$ and $y\in\R^{m-k}$ with $(x,y)\in\f(U)$.
+Then, the differential $df$ on $U$ is represented by its Jacobian matrix
+\[
+D\tilde f|_{(x,y)}=\mat{\pd{a}{x}&\pd{a}{y}\\[4pt]\pd{b}{x}&\pd{b}{y}}.\]
+Suppose the differential of $f$ has a locally constant rank $k$ at $p$.
 \begin{parts}
-\item $a(0,0)=b(0,0)=0$ and $\pd{a}{x}$ is invertible everywhere.
-\item $a(x,y)=x$.
-\item $a(x,y)=x$ and $b(x,y)=0$.
+\item There exists local charts $(U,\f)$ at $p$ and $(V,\psi)$ at $q$ such that $f(U)\subset V$ and $\partial a/\partial x$ is a $k\times k$ invertible matrix everywhere.
+\item There exists local charts $(U,\f)$ at $p$ and $(V,\psi)$ at $q$ such that $f(U)\subset V$ and
+\[D\tilde f|_{(x,y)}=\mat{\id_k&0\\\ast&0}.\]
+\item There exists local charts $(U,\f)$ at $p$ and $(V,\psi)$ at $q$ such that $f(U)\subset V$ and
+\[D\tilde f|_{(x,y)}=\mat{\id_k&0\\0&0}.\]
+\item There exists local charts $(U,\f)$ at $p$ and $(V,\psi)$ at $q$ such that $f(U)\subset V$ and $\tilde f(x,y)=(x,0)$.
 \end{parts}
 \end{prb}
 \begin{pf}
+(a)
+Let $(U,\f)$ and $(V,\psi)$ be local charts at $p$ and $q$ such that $f(U)\subset V$ and the Jacobian matrix $D\tilde f|_{(x,y)}$ is of rank $k$ for every $(x,y)\in\f(U)$.
+For each $(x,y)\in\f(U)$, the matrix $D\tilde f|_{(x,y)}$ has an invertible $k\times k$ minor submatrix.
+Let $A:\R^m\to\R^m$ and $B:\R^n\to\R^n$ be permutation matrices that reorder the coordinates in such a way that the invertible $k\times k$ minor submatrix becomes the leading principal minor submatrix.
+
+Define reparametrizations $\f':=A\circ\f:U\to A(\f(U))$ and $\psi':=B\circ\psi:V\to B(\psi(V))$.
+Then, they are clearly local charts and
+\[D(\psi'\circ f\circ\f'^{-1})=D(B\circ\psi\circ f\circ\f^{-1}\circ A^{-1})=B\circ D\tilde f\circ A^{-1}\]
+has an invertible leading principal minor submatrix of dimension $k\times k$ at every $(x,y)\in\f(U)$.
+
 (b)
+Let $(U,\f)$ and $(V,\psi)$ be local charts at $p$ and $q$ satisfying the conditions given in the part (a).
+Consider a map $F:\f(U)\to\R^m$ defined by
+\[F(x,y):=(a(x,y),y).\]
+Then, since
+\[DF|_{(x,y)}=\mat{\pd{a}{x}&\pd{a}{y}\\0&\id_{m-k}}\]
+is smooth and invertible everywhere on $\f(U)$, there exists an open neighborhood $\f(U')\subset\f(U)$ of $\f(p)$ such that the restriction $F:\f(U')\to F(\f(U'))$ is a diffeomorphism by the inverse function theorem.
 
+Define a reparamterization $\f':=F\circ\f:U'\to F(\f(U'))$.
+Then, it is clearly a local chart and
+\begin{align*}
+D(\psi\circ f\circ\f'^{-1})
+&=D(\psi\circ f\circ\f^{-1}\circ F^{-1})
+=D\tilde f\circ(DF)^{-1}\\
+&=\mat{\pd{a}{x}&\pd{a}{y}\\[4pt]\pd{b}{x}&\pd{b}{y}}\mat{\left(\pd{a}{x}\right)^{-1}&-\left(\pd{a}{x}\right)^{-1}\pd{a}{y}\\[4pt]0&\id_{m-k}}
+=\mat{\id_k&0\\\ast&\ast}=\mat{\id_k&0\\\ast&0}.
+\end{align*}
+The last equality holds because the transpose of this matrix has rank $k$, and the conditions are satisfied with the local charts $(U',\f')$ and $(V,\psi)$.
 
+(c)
+Let $(U,\f)$ and $(V,\psi)$ be local charts at $p$ and $q$ satisfying the conditions given in the part (b).
+Then, we have $\tilde f(x,y)=(x,b(x))$ for all $(x,y)\in\f(U)$.
+Consider a map $G:\psi(V)\to\R^n$ defined by
+\[G(x,z):=(x,z-b(x)).\]
+Then, since
+\[DG|_{(x,z)}=\mat{\id_k&0\\-\pd{b}{x}&\id_{n-k}}\]
+is smooth and invertible everywhere on $\psi(V)$, there exists an open neighborhood $\psi(V')\subset\psi(V)$ of $\psi(q)$ such that the restriction $G:\psi(V')\to G(\psi(V'))$ is a diffeomorphism by the inverse function theorem.
 
+Define a reparamterization $\psi':=G\circ\psi:V'\to G(\psi(V'))$.
+Then, it is clearly a local chart and
+\begin{align*}
+D(\psi'\circ f\circ\f^{-1})
+&=D(G\circ\psi\circ f\circ\f^{-1})
+=DG\circ D\tilde f\\
+&=\mat{\id_k&0\\-\pd{b}{x}&\id_{n-k}}\mat{\id_k&0\\\pd{b}{x}&0}
+=\mat{\id_k&0\\0&0}.
+\end{align*}
+Hence, the conditions are satisfied with the local charts $(U,\f)$ and $(V',\psi')$.
+
+(d)
+Let $(U,\f)$ and $(V,\psi)$ be local charts at $p$ and $q$ satisfying the conditions given in the part (c).
+Then, by translating constants for these local coordinate systems, we obtain $\tilde f(x,y)=(x,0)$.
 \end{pf}
+
+
+
+
+
 
 \begin{prb}[Preimage theorem]
-Let $q\in N$ be a regular value of $f$.
+Let $M$ and $N$ are smooth manifolds of dimensions $m$ and $n$.
+Let $f:M\to N$ be a smooth map.
+A \emph{critical point} is a point $p\in M$ such that $df|_p$ is not surjective, and a \emph{critical value} is a point $q\in N$ such that $f(p)=q$ for some critical point $p$.
+If $q\in N$ is not a critical value, then it is called a \emph{regular value}.
+
+Suppose $q\in N$ is a regular value of $f$, and $p\in M$ be any points satisfying $f(p)=q$.
+We will show that $f^{-1}(q)$ is an embedded submanifold of $M$.
+Since the set of full rank matrices is open, the rank of $df$ is locally contant at $p$.
+By the constant rank theorem, we have local charts $(U,\f)$ and $(V,\psi)$ at $p$ and $q$ such that
+\[\f(p)=(0,0)\in\R^n\times\R^{m-n},\quad\psi(q)=0\in\R^n,\quad\text{and}\quad\tilde f(x,y)=x.\]
+\begin{parts}
+\item $(U\cap f^{-1}(q),\f|_{U\cap f^{-1}(q)})$ is an $(m-n)$-dimensional chart at $p$ on $f^{-1}(q)$.
+\item The charts of the form $(U\cap f^{-1}(q),\f|_{U\cap f^{-1}(q)})$ defines a smooth atlas.
+\item The inclusion is an embedding.
+\end{parts}
 \end{prb}
 \begin{pf}
-Let $p\in f^{-1}(q)$ be any point.
-\begin{cd}
-f^{-1}(q)\cap U \dar{\f|_{f^{-1}(q)\cap U}} & U \rar{f}\dar{\f} & V \dar{\psi} \\
-\ker\tilde f\cap\f(U) & \f(U) \rar{\tilde f} & \psi(V)
-\end{cd}
-By the constant rank theorem, there are charts $(U,\f)$ at $p$ and $(V,\psi)$ at $q$ such that $\tilde f:=\psi\circ f\circ\f^{-1}$ is linear and the restriction
-\[\f|_{f^{-1}(q)\cap U}:f^{-1}(q)\cap U\to\ker\tilde f\cap\f(U)\]
-is bijective.
-A restriction of a homeomorphism is a homeomorphism if and only if it is bijective, so it is a homeomorphism.
+(a)
+Note that every open subset of $U\subset f^{-1}(q)$ is of the form $W\cap f^{-1}(q)$ for an open set $W\subset U$.
+Since $\f(W)$ is open in $\R^m$ for any open $W\subset U$,
+\begin{align*}
+\f(W\cap f^{-1}(q))
+&=\f(W)\cap\f(f^{-1}(q))\\
+&=\f(W)\cap\tilde f^{-1}(\psi(q))\\
+&=\f(W)\cap\tilde f^{-1}(0)\\
+&=\f(W)\cap(\{0\}\times\R^{m-n})
+\end{align*}
+is open in $\{0\}\times\R^{m-n}$.
+It means that the restriction of $\f$ on $U\cap f^{-1}(q)$ is an injective open map, so it is a topological embedding into the Euclidean space $\{0\}\times\R^{m-n}$.
 
-Since the transition maps for this atlas on $f^{-1}(q)$ are restrictions of transition maps for $M$ onto linear subsapces, they are smooth.
 \end{pf}
+
+
+\section{Embeddings}
+
+\begin{prb}[Immersion is a local embedding]
+Let $f:M\to N$ be an immersion at $p\in M$.
+Then, there is a local chart $(V,\psi)$ at $f(p)$ such that
+\begin{parts}
+\item $W=f(M)\cap V$ is an embedded submanifold of $V$,
+\item there is a retract $V\to W$.
+\end{parts}
+\end{prb}
+\begin{pf}
+Since the set of full rank matrices is open, the rank of $df$ is locally contant at $p$.
+By the constant rank theorem, we have
+\[\f(p)=0\in\R^m,\quad\psi(f(p))=(0,0)\in\R^m\times\R^{n-m},\quad\text{and}\quad\tilde f(x)=(x,0).\]
+Let $W:=f(M)\cap V$.
+Then, the injectivity of $\f$ shows that
+\[\psi(W)=\psi(f(U))=\psi\circ f\circ\f^{-1}(\f(U))=\{(x,0)\in\R^m\times\R^{n-m}:x\in\f(U)\}\]
+is an open subset of $\R^m$, so $(W,\psi|_W)$ is a chart at $f(p)$.
+
+Transition maps are smooth?
+
+The inclusion is a smooth embedding?
+\end{pf}
+
+\begin{prb}[Extension of smooth functions]
+from an embedded manifold.
+\end{prb}
 
 
 Let $f:M\to N$ be an injective immersion.
@@ -342,226 +449,20 @@ Let $f:M\to N$ be an embedding.
 There exists unique smooth structure on $f(M)$ such that $i$ are smooth.
 
 
-\begin{prb}[Constant rank theorem]
-Let $f:M\to N$ be a smooth map such that its differential has a locally constant rank $k$ at a point $p\in M$.
-Then, there is a pair of local charts $(U,\f)$ at $p$ and $(V,\psi)$ at $f(p)$ such that
-\begin{parts}
-\item $\f(p)=(0,0)\in\R^k\times\R^{m-k},\ \psi\circ f(p)=(0,0)\in\R^k\times\R^{n-k}$,
-\item $\psi\circ f\circ\f^{-1}(x,y)=(x,0)$,
-\item $f(U)=f(M)\cap V$.
-\end{parts}
-\end{prb}
 
-The follwoing diagram would be helpful.
-\begin{cd}[column sep=120pt]
-\,&[-100pt]
-	M \ar[symbol=\supset]{d} \ar{r}{f} & N \ar[symbol=\supset]{d}
-&[-100pt]\,\\
-&
-	U \dar{\f} & V \ar{d}{\psi}
-&\\
-\R^m\supset&
-	\f(U) \ar[symbol=\supset]{d} \ar{r}{f_{(0)}\ =\ \psi\,\circ\,f\,\circ\,\f^{-1}}& \psi(V) \ar[symbol=\supset]{d}
-&\subset \R^n\\
-&
-	U_1 \dar{\f_1} & V_1 \ar{d}{\psi_1}
-&\\
-&
-	\f_1(U_1) \ar[symbol=\supset]{d} \ar{r}{f_{(1)}\ =\ \psi_1\,\circ\,f_{(0)}\,\circ\,\f_1^{-1}} & \psi_1(V_1) \ar[symbol=\supset]{d}
-&\\
-&
-	U_2 \dar{\f_2} & V_2 \ar{d}{\psi_2}
-&\\
-&
-	\f_2(U_2) \ar{r}{f_{(2)}\ =\ \psi_2\,\circ\,f_{(1)}\,\circ\,\f_2^{-1}}\ar{ruu}{f_{(1)}\,\circ\,\f_2^{-1}} & \psi_2(V_2)
-&
-\end{cd}
-\begin{pf}
-Let $\f:U\to\R^m$ and $\psi:V\to\R^n$ be coordinate maps such that $p\in U$ and $df:TU\to TV$ has a constant rank $k$.
-
-\Step{1}[First reparametrization]
-Consider the coordinate representation
-\[f_{(0)}:=\psi\circ f\circ\f^{-1}:\f(U)\to\psi(V).\]
-It is smooth becuase of definition of smooth maps.
-Since $Df_{(0)}|_{\f(p)}:\R^m\to\R^n$ is a matrix of rank $k$, there is an invertible $k\times k$ minor submatrix.
-Let $A:\R^m\to\R^m$ and $B:\R^n\to\R^n$ be permutation matrices that reorder the coordinates in such a way that the invertible $k\times k$ minor submatrix becomes the leading principal minor submatrix.
-
-Define reparametrizations $\f_1:U_1\to\f_1(U_1)$ and $\psi_1:V_1\to\psi_1(V_1)$ as
-\[\f_1(v):=A(v-\f(p)),\quad\psi_1(v):=B(v-\psi(f(p))),\]
-where $U_1$ and $V_1$ are arbitrarily taken open subsets in $\f(U)$ and $\psi(V)$ respectively.
-We can check that they are invertible linear maps, hence diffeomorphisms.
-
-\Step{2}[Second reparametrization (1)]
-Let $f_{(1)}$ be the new coordinate representation
-\[f_{(1)}:=\psi_1\circ f_{(0)}\circ\f_1^{-1}:\f_1(U_1)\to\psi_1(V_1).\]
-It can be written as
-\[f_{(1)}(x,y)=(a(x,y),b(x,y))\]
-for $(x,y)\in\f_1(U_1)\subset\R^k\times\R^{m-k}$ and for some $a:\f_1(U_1)\subset\R^m\to\R^k$.
-Then, we have
-\[f_{(1)}(0,0)=(0,0)\quad\text{and}\quad\left.\pd{a}{x}\right|_{\f_1(\f(p))}\quad\text{is invertible.}\]
-
-Define a reparamterization $\f_2:\f_1(U)\to\R^k\times\R^{m-k}$ as
-\[\f_2(x,y):=(a(x,y),y).\]
-Then,
-\[D\f_2=\begin{pmatrix}\pd{a}{x}&\pd{a}{y}\\0&\id_{m-k}\end{pmatrix}.\]
-Since $D\f_2$ is smooth and $D\f_2|_{\f_1(\f(p))}$ is invertible, there exists an open set $U_2\subset\f_1(U_1)$ such that the restriction $\f_2:U_2\to\f_2(U_2)$ on an open subset $U_2\subset\f_1(U_1)$ is a diffeomorphism.
-
-\Step{3}[Second reparametrization (2)]
-Consider
-\[f_{(1)}\circ\f_2^{-1}:\f_2(U_2)\to\psi_1(V_1).\]
-Then,
-\begin{align*}
-D(f_{(1)}\circ\f_2^{-1})
-&=Df_{(1)}\circ D\f_2^{-1}\\
-&=\begin{pmatrix}\pd{a}{x}&\pd{a}{y}\\\pd{b}{x}&\pd{b}{y}\end{pmatrix}\cdot\begin{pmatrix}\left(\pd{a}{x}\right)^{-1}&-\left(\pd{a}{x}\right)^{-1}\pd{a}{y}\\0&\id_{m-k}\end{pmatrix}
-=\begin{pmatrix}\id_k&0\\ * & * \end{pmatrix}
-=\begin{pmatrix}\id_k&0\\ * &0\end{pmatrix}.
-\end{align*}
-The last equality is because it should have rank $k$.
-Thus we have
-\[f_{(1)}\circ\f_2^{-1}(x,y)=(x,c(x))\]
-for all $(x,y)\in\f_2(U_2)$ and for some $c:\pi(\f_2(U_2))\subset\R^k\to\R^{n-k}$, where $\pi:\R^m\to\R^k$ is the canonical projection $(x,y)\mapsto x$.
-
-Define a reparametrization $\psi_2:V_2\to\psi_2(V_2)$ by
-\[\psi_2(x,z):=(x,z-c(x)),\]
-where $V_2$ is arbitrary taken open subset of $\psi_1(V_1)$ such that $f_{(1)}(U_2)\subset V_2$.
-We can check $\psi_2$ is a diffeomorphism by computing the differential
-\[D\psi_2=\begin{pmatrix}\id_k&0\\-\pd{c}{x}&\id_{n-k}\end{pmatrix}.\]
-
-\Step{4}[Final verification]
-If we let
-\[f_{(2)}:=\psi_2\circ f_{(1)}\circ\f_2^{-1}:\f_2(U_2)\to\psi_2(V_2),\]
-then it satisfies
-\[f_{(2)}(x,y)=(x,0).\]
-
-Define coordinate charts $(\tilde U,\tilde\f)$ and $(\tilde V,\tilde\psi)$ around $p$ and $f(p)$ such that
-\[\tilde\f:=\f_2\circ\f_1\circ\f,\quad\tilde\psi:=\psi_2\circ\psi_1\circ\psi,\]
-with domains
-\[\tilde U:=\tilde\f^{-1}(\f_2(U_2)),\quad\tilde V:=\tilde\psi^{-1}\left((\pi(\im f_{(2)})\times\R^{n-k})\cap\psi_2(V_2)\right).\]
-The new charts are compatible with old charts since the transitions $\f_2\circ\f_1:\f(\tilde U)\to\tilde\f(\tilde U)$ and $\psi_2\circ\psi_1:\psi(\tilde V)\to\tilde\psi(\tilde V)$ are diffeomorphisms.
-Then, the map $f$ has the coordinate representation $f_{(2)}:(x,y)\mapsto(x,0)$ on $(\tilde U,\tilde\f)$ and $(\tilde V,\tilde\psi)$.
-
-We can check the last proposition as follows.
-Suppose $f(p)\in\tilde V$.
-Then,
-\[f_{(2)}(\tilde\f(p))=\tilde\psi(f(p))\in\pi(\im f_{(2)})\times\R^{n-k}=\pi(\f_2(U_2))\times\R^{n-k}.\]
-Since $f_{(2)}=(\pi,0)$, we have $f_{(2)}(\tilde\f(p))\in f_{(2)}(\f_2(U_2))$, so
-\[f(p)=\tilde\psi^{-1}(f_{(2)}(\tilde\f(p)))\in\tilde\psi^{-1}(f_{(2)}(\f_2(U_2)))=f(\tilde U).\qedhere\]
-\end{pf}
-For the case that $f$ is an either immersion or submersion, the constant rank theorem is sometimes refered as the local immersion theorem and the local submersion theorem respectively.
-
-\begin{cor}[Immersion is a local embedding]
-Let $f:M\to N$ be an immersion at $p\in M$.
-Then, there is a local chart $(V,\psi)$ at $f(p)$ such that
-\begin{parts}
-\item $W=f(M)\cap V$ is an embedded submanifold of $V$,
-\item there is a retract $V\to W$.
-\end{parts}
-\end{cor}
-\begin{pf}
-Since the set of full rank matrices is open, the rank of $df$ is locally contant at $p$.
-By the constant rank theorem, we have
-\[\f(p)=0\in\R^m,\quad\psi(f(p))=(0,0)\in\R^m\times\R^{n-m},\quad\text{and}\quad\psi\circ f\circ\f^{-1}(x)=(x,0).\]
-Let $W:=f(M)\cap V$.
-Then, the injectivity of $\f$ shows that
-\[\psi(W)=\psi(f(U))=\psi\circ f\circ\f^{-1}(\f(U))=\{(x,0)\in\R^m\times\R^{n-m}:x\in\f(U)\}\]
-is an open subset of $\R^m$, so $(W,\psi|_W)$ is a chart at $f(p)$.
-\end{pf}
-
-\begin{cor}[Preimage theorem]
-Let $f:M\to N$ be a submersion at $p\in M$.
-Then, there is a local chart $(U,\f)$ at $p$ such that
-\begin{parts}
-\item $W=f^{-1}(f(p))\cap U$ is an embedded submanifold of $M$,
-\item there is a retract $U\to W$.
-\end{parts}
-\end{cor}
-\begin{pf}
-Since the set of full rank matrices is open, the rank of $df$ is locally contant at $p$.
-By the constant rank theorem, we have
-\[\f(p)=(0,0)\in\R^n\times\R^{m-n},\quad\psi(f(p))=0\in\R^n,\quad\text{and}\quad\psi\circ f\circ\f^{-1}(x,y)=x.\]
-Let $W:=f^{-1}(f(p))\cap U$.
-Then, the injectivity of $\f$ shows that
-\begin{align*}
-\f(W)&=\f(f^{-1}(f(p)))\cap\f(U)=(\psi\circ f\circ\f^{-1})^{-1}(\psi(f(p)))\cap\f(U)\\
-&=\{(0,y)\in\R^n\times\R^{m-n}:y\in\R^{m-n}\}\cap\f(U)
-\end{align*}
-is an open subset of $\R^{m-n}$, so $(W,\f|_W)$ is a chart at $p$.
-\end{pf}
-\begin{cor}
-Let $f:M\to N$ be a smooth map and let $q\in N$.
-If $f$ is a submersion at all points on $f^{-1}(q)$, then $f^{-1}(q)$ is an embedded submanifold of $M$.
-\end{cor}
-
-
-
-
-\chapter*{Regular manifolds}
-\section{Parameterizations and coordinates}
-
-\begin{prb}\emph{Regular parameterizations.}
-A \emph{smooth parameterization} is a smooth map $\a:\Omega\subset\R^m\to\R^n$ on a connected open subset $\Omega$ with $m\le n$.
-The integer $m$ is called its \emph{dimension}.
-If $\a$ is a smooth parameterization such that the Fr\'echet derivative $d\a|_x:\R^m\to\R^n$ is injective for every $x\in\Omega$, then it is called an \emph{immersion}.
-If $\a$ is an immersion and a homeomorphism onto its image, then it is called a \emph{regular parameterization} or an \emph{embedding}.
-
-Let $\a:(0,2\pi)\to\R^2$ and $\beta:\R^2\to\R^3$ be smooth parameterizations given by
-\[\a(t):=(\sin t,\sin2t),\qquad\beta(x,y):=(x,y,x^2+y^2).\]
-\begin{parts}
-\item $\a$ is an immersion.
-\item $\a$ is not an embedding.
-\item $\beta$ is an immersion.
-\item $\beta$ is an embedding.
-\end{parts}
+\section{Distributions}
+\begin{prb}[Foliation]
 \end{prb}
 
 
-\begin{prb}\emph{Regular manifolds.}
-Let $M$ be a subset of $\R^n$ with the subspace topology.
-The set $M$ is called a \emph{regular manifold} of dimension $m$ if for each point $p\in M$ there is an open neighborhood $U$ of $p$ in $M$ which is the image of an $m$-dimensional regular parameterization $\a$.
-In this note we call this $\a$ a regular parameterization \emph{for $M$ at $p$}.
-Equivalently, $M$ is a regular manifold if there is a collection of $m$-dimensional regular parameterizations $\{\a_i:\Omega_i\to\R^n\}_{i\in I}$ such that $\{\a_i(\Omega_i)\}_{i\in I}$ is an open cover of $M$.
-
-The terms \emph{regular curves} and \emph{regular surfaces} refer to either the regular parameterizations or regular manifolds when their dimension is one and two, respectively. 
-\begin{parts}
-\item The image of a regular parameterization is a regular manifold.
-\item Every open subset of a regular manifold is a regular manifold.
-\item The sphere $S^2=\{\,(x,y,z)\in\R^3:x^2+y^2+z^2=1\,\}$ is a regular surface.
-\item The set $\{\,(x,y)\in\R^2:y^2=x^3+x^2\,\}$ is not a regular curve.
-\item The set $\{\,(x,y)\in\R^2:y=|x|\,\}$ is not a regular curve.
-\end{parts}
-\end{prb}
 
 
-\begin{prb}\emph{Coordinate maps.}
-Let $M$ be a regular manifold in $\R^n$.
-A \emph{coordinate map} is defined as the inverse map $\f:U=\a(\Omega)\to\f(U)=\Omega$ of a regular parameterization $\a:\Omega\to\R^n$ such that $\a(\Omega)$ is open in $M$.
-
-Let $S:=\{\,(x,y)\in\R^2:x>0\text{ or }y\ne0\,\}$.
-Then, $S$ is a regular surface in $\R^2$.
-\begin{parts}
-\item The map $(x,y):S\to S,\,(x,y)\mapsto(x,y)$ is a coordinate map.
-\item The map
-\[(r,\theta):S\to(0,\infty)\times(-\pi,\pi),\,(x,y)\mapsto\left(\sqrt{x^2+y^2},\,2\tan^{-1}\frac y{\sqrt{x^2+y^2}+x}\right)\]
-is a coordinate map, where $\tan^{-1}(t):=\int_0^t(1+s^2)^{-1}\,ds$.
-\end{parts}
-\end{prb}
 
 
-\begin{prb}\emph{Reparameterization.}
-A manifold can be analyzed with uncountably many coordiante charts, and an appropriate choice of charts allows explicit computations to be handy.
-A term \emph{reparameterization} is nothing but a choice of another regular parameterization for the same curves or surfaces.
-Let $M$ be an $m$-dimensional regular manifold in $\R^n$.
-Let $\a:\Omega_\a\to\R^n$ and $\beta:\Omega_\beta\to\R^n$ be $m$-dimensional regular parameterizations.
-\begin{parts}
-\item If $\a(\Omega)\subset M$, then $\a(\Omega)$ is open in $M$.
-\end{parts}
-\end{prb}
 
 
-\section{Whitney embedding}
 
-\section{Whitney approximation}
+
 
 
 
