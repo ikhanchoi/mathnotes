@@ -22,13 +22,12 @@
 
 \chapter{Smooth structures}
 
-\section{Local coordinate systems}
+\section{Local coordinates}
 
 
-\begin{prb}[Local coordinates]
-Let $M$ be a topological space and $p\in M$ a point.
-Consider a fixed positive integer $m$.
-An $m$-dimensional (local) \emph{coordinate system}, or (local) \emph{chart}, at $p$ is a pair $(U,\f)$ consisting of an open neighborhood $U$ of $p$ and a topological embedding $\f:U\to\R^m$.
+\begin{prb}[Atlases]
+Let $M$ be a topological space and consider a fixed positive integer $m$.
+An $m$-dimensional (local) \emph{coordinate system}, or (local) \emph{chart} is a pair $(U,\f)$ consisting of an open set $U\subset M$ and a topological embedding $\f:U\to\R^m$.
 The embedding $\f$ is called a \emph{coordinate map}, and each component of $\f$ with respect to a basis of $\R^m$ is called a \emph{coordinate function}.
 
 An $m$-dimensional \emph{atlas} on $M$ is an indexed family $\cA=\{(U_\alpha,\f_\alpha)\}_\alpha$ of $m$-dimensional local charts such that every point is contained in some $U_\alpha$, that is, $\{U_\alpha\}_\alpha$ is a cover of $M$.
@@ -36,26 +35,21 @@ In geography, an atlas means a book of maps of Earth.
 A term \emph{locally Euclidean space} is sometimes used to refer a topological space $M$ together with an $m$-dimensional atlas.
 \begin{parts}
 \item 
-Let $U=\{(x,y)\in\R^2:x\ne0\text{ or }y>0\}$.
-For two functions $r,\theta:U\to\R$ defined by
-\[r(x,y):=\sqrt{x^2+y^2},\quad\theta(x,y):=2\tan^{-1}\frac y{x+\sqrt{x^2+y^2}},\]
-the map
-\[U\to\R^2:(x,y)\mapsto(r(x,y),\theta(x,y))\]
-is a coordinate map, where $\tan^{-1}(t):=\int_0^t(1+s^2)^{-1}\,ds$.
 \end{parts}
 \end{prb}
 
 \begin{prb}[Smooth atlases]
-Let $M$ be a topological space and $m$ a positive integer.
-A \emph{smooth atlas} on $M$ is an atlas $\cA$ on $M$ such that every \emph{transition map}
+Let $M$ be a topological space and consider a fixed positive integer $m$.
+We say that two charts $(U_\alpha,\f_\alpha)$ and $(U_\beta,\f_\beta)$ on $M$ are (smoothly) \emph{compatible} if the \emph{transition map}
 \[\tau_{\alpha\beta}:=\f_\beta\circ\f_\alpha^{-1}:\f_\alpha(U_\alpha\cap U_\beta)\to\f_\beta(U_\alpha\cap U_\beta)\]
-is smooth for all $(U_\alpha,\f_\alpha),(U_\beta,\f_\beta)\in\cA$.
-Let $\cA$ be a smooth atlas on $M$.
-Then, we can define the \emph{smoothness} of a function $f:M\to\R$ with respect to $\cA$ as follows: we say $f$ is smooth if its \emph{coordinate representation}
+is smooth.
+If every pair of two charts in an atlas is compatible, then we say that the atlas is \emph{smooth}.
+
+Given a smooth atlas $\cA$, we can define the \emph{smoothness} of a function $f:M\to\R$ with respect to $\cA$ as follows: we say that $f$ is smooth if its \emph{coordinate representation}
 \[f\circ\f^{-1}:\f_\alpha(U)\to\R\]
 is smooth for all $(U,\f)\in\cA$.
 
-Two smooth atlas $\cA_1$ and $\cA_2$ are called \emph{equivalent} if $\cA_1\cup\cA_2$ is also a smooth atlas.
+Two smooth atlases $\cA_1$ and $\cA_2$ are called \emph{compatible} or \emph{equivalent} if $\cA_1\cup\cA_2$ is also a smooth atlas.
 A \emph{smooth structure} on $M$ is a maximal smooth atlas $\cA$; there is no smooth atlas $\cA'$ that contains $\cA$ properly.
 \begin{parts}
 \item For a given smooth atlas, every transition map is a diffeomorphism.
@@ -77,6 +71,7 @@ The term \emph{manifold} may refer to any of either a topological or a smooth ma
 \end{prb}
 
 \begin{prb}[Smooth maps and diffeomorphisms]
+Let
 scalar functions, scalar fields
 \end{prb}
 
@@ -139,31 +134,45 @@ the dual space of algebraically defined cotangent spaces.
 
 
 
+
+
+
 \section*{Exercises}
-
-
-\begin{prb}[Smooth structure on spheres]
-Let $\a:\R^2\to\R^3$ be a regular surface given by
-\[\a(x,y)=\left(\frac{2x}{1+x^2+y^2},\,\frac{2y}{1+x^2+y^2},\,1-\frac2{1+x^2+y^2}\right).\]
-This map gives a parametrization for the sphere $S^2$ without the north pole $(0,0,1)$, and is called the \emph{stereographic projection}.
-Let $f:S^2\setminus\{(0,0,1)\}\to\R$ be the height function of $\a$ defined by
-\[f(p):=z\]
-for $p=(x,y,z)\in S^2\setminus\{(0,0,1)\}$.
-Its coordinate representation is
-\[f\circ\a(x,y)=1-\frac2{1+x^2+y^2}.\]
-Then, the directional derivative is
-\[\pd_xf=\pd{(f\circ\a)}{x}=\pd{x}\left(1-\frac2{1+x^2+y^2}\right)=\frac{4x}{(1+x^2+y^2)^2}.\]
-Note that $\pd_xf\ne\pd_{(1,0,0)}z=0$.
+\setcounter{prb}{0}
+\begin{prb}[Polar coordinates]
+Let $M=\R^2\setminus\{0\}$.
+Define a chart $(U,\f)$ by
+\[U:=\{\,(x,y)\in M:x\ne0\text{ or }y>0\,\}\]
+and $\f=(r,\theta):U\to\R^2$ such that
+\[r(x,y):=\sqrt{x^2+y^2},\quad\theta(x,y):=\tan^{-1}\frac yx,\]
+where $\tan^{-1}(t):=\int_0^t(1+s^2)^{-1}\,ds$.
 \begin{parts}
-\item The minimal cardinality of a smooth atlas on $S^n$ is two.
+\item The chart $(U,\f)$ is compatible with the standard smooth structure inherited from $\R^2$.
+\item We have
+\[r\,\pd{r}=x\,\pd{x}+y\,\pd{y}\text{ and }\pd{\theta}=-y\,\pd{x}+x\,\pd{y}.\]
 \end{parts}
 \end{prb}
 
-\begin{prb}[Smooth structure on projective spaces]
+\begin{prb}[Spheres]
+Let $\a:\R^2\to\R^3$ be a regular surface given by
+\[\a(x,y)=\left(\frac{2x}{1+x^2+y^2},\,\frac{2y}{1+x^2+y^2},\,1-\frac2{1+x^2+y^2}\right).\]
+This map gives a parametrization for the sphere $S^2$ without the north pole $(0,0,1)$, and is called the \emph{stereographic projection}.
+
+Spherical coordinates
+\begin{parts}
+\item All charts above are compatible.
+\item There exists at least two charts in an atlas on $S^n$.
+\item For the height function $z:S^2\to\R$ given by $z(x,y,z):=z$, we have $\pd_xz(x,y)=4x/(1+x^2+y^2)^2$.
+\end{parts}
+\end{prb}
+
+\begin{prb}[Projective spaces]
+$S^n\to\R P^n$
 \end{prb}
 \begin{prb}[Stiefel and Grassmann varieties]
+$G_1^{n+1}\cong\R P^n$
 \end{prb}
-\begin{prb}[Parallelization of spheres]
+\begin{prb}[Parallelizable spheres]
 \end{prb}
 \begin{prb}[Tagent space of matrix groups]
 Jacobi formula

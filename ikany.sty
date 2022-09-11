@@ -134,7 +134,8 @@
   {\end{tikzcd}\]\ignorespacesafterend}
 \NewDocumentEnvironment{es}{}
   {
-    \renewcommand{\>}{\rar\&}
+    %\renewcommand{\>}{\rar\&}
+    \RenewDocumentCommand{\>}{g}{\IfNoValueTF{##1}{\rar\&}{\rar{##1}\&}}
     \tikzcdset{ampersand replacement=\&}
     \begin{cd}[column sep=small] % possiblly tiny
   }
@@ -145,8 +146,8 @@
     \[\begin{tikzcd}
   }
   {\end{tikzcd}\]}
-\tikzcdset{arrow style=tikz}
-\tikzset{>={Straight Barb[scale=0.8]}}
+\tikzcdset{arrow style=math font}
+%\tikzset{>={Straight Barb[scale=0.625]}}
 
 % for codes like: \rar[symbol=\subset]
 \tikzset{
@@ -472,6 +473,7 @@
 \DeclareMathOperator{\grad}{grad}
 \DeclareMathOperator{\Hess}{Hess}
 \DeclareMathOperator{\Hol}{Hol}
+\DeclareMathOperator{\Hom}{Hom}
 \DeclareMathOperator{\Homeo}{Homeo}
 \DeclareMathOperator{\id}{id}
 \DeclareMathOperator{\im}{im}

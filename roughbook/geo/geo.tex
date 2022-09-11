@@ -7,6 +7,100 @@
 
 \begin{document}
 \tableofcontents
+
+
+\newpage
+\section{Fiber bundles}
+\subsection{Structure groups}
+\begin{prb}[Pullback and restricted bundles]
+\end{prb}
+
+\begin{prb}[Product of bundles]
+the \emph{Fiber product} or the \emph{Whitney sum}
+\end{prb}
+
+
+\subsection{Vector bundles}
+\begin{prb}[Vector space structure on total spaces]
+
+\end{prb}
+
+\begin{prb}[Vector bundle maps]
+Let $p_1:E_1\to B$ and $p_2:E_2\to B$ be vector bundles.
+\begin{parts}
+\item A vector bundle map $u$ over $B$ is vector bundle isomorphism if and only if it is a fiberwise linear isomorphism.
+\end{parts}
+\end{prb}
+
+\begin{prb}[Tautological bundles]
+\end{prb}
+
+\begin{prb}[Homotopy properteis]
+Let $p:E\to B$ be a vector bundle
+
+If $p_1:E_1\to B\times[0,\frac12]$ and $p_2:E_2\to B\times[\frac12,1]$ are trivial, then 
+\begin{parts}
+\item 
+\end{parts}
+\end{prb}
+
+\begin{prb}[Principal bundle over the general linear group]
+\end{prb}
+
+
+\newpage
+
+\section{C\v ech cohomology}
+
+\begin{prb}
+Let $\{U_\alpha\}_\alpha$ be an open cover of a topological space $X$.
+We say a presheaf $\cF$ on $X$ is sheaf if the sequence
+\begin{cd}
+\cF(U)\rar&\displaystyle\prod_\alpha\cF(U_\alpha)\rar[shift left]{\alpha}\rar[shift right,swap]{\beta}&\displaystyle\prod_{\alpha,\beta}\cF(U_\alpha\cap U_\beta)
+\end{cd}
+is an equalizer.
+\end{prb}
+
+\begin{prb}
+Let $\cF$ be a preseah of groups and let $\cU=\{U_\alpha\}_\alpha$ be an ordered open cover of a toplogical space $X$.
+
+\begin{cd}
+\displaystyle\prod_\alpha\cF(U_\alpha) \rar[shift left]{\res_\alpha}\rar[shift right,swap]{\res_\beta}
+&\displaystyle\prod_{\alpha<\beta}\cF(U_\alpha\cap U_\beta) \rar["\res_\beta"description]\rar[shift left=2]{\res_\alpha}\rar[shift right=2,swap]{\res_\gamma}
+&\displaystyle\prod_{\alpha<\beta<\gamma}\cF(U_\alpha\cap U_\beta\cap U_\gamma)
+\end{cd}
+\begin{es}
+C^0(\cU,\cF) \>{\delta} C^1(\cU,\cF) \>{\delta} C^2(\cU,\cF) \>{\delta} \cdots
+\end{es}
+
+\[f=\{f_\alpha:U_\alpha\to\GL(k,\R)\}_\alpha\in\prod_\alpha\cF(U_\alpha)=C^0(\cU,\cF)\]
+
+\end{prb}
+
+\begin{prb}
+Let $G$ be a sheaf of groups.
+Then, we have a natural one-to-one correspondence
+\[\left\{\begin{tabular}{c}isomorphism classes of\\principal $G$-bundles\end{tabular}\right\}\xrightarrow{\sim}H^1(B,G).\]
+\end{prb}
+\begin{pf}
+(Injectivity)
+We show the correspondence is left invertible.
+Let $p:E\to B$ be a principal $G$-bundle.
+Define $p':E'\to B$ by
+\[E':=\left(\bigsqcup_\alpha\{\alpha\}\times U_\alpha\times\R^k\right)/\sim,\]
+where the equivalence relation $\sim$ denotes $(\alpha,b,g_{\alpha\beta}(v))\sim(\beta,b,v)$ with $b\in U_\alpha\cap U_\beta$ for some $\alpha,\beta$, and define $p':E'\to B$, which is well-defined bundle.
+
+We first check that $p'$ is a principal $G$-bundle.
+
+(Surjectivity)
+\end{pf}
+
+
+
+
+
+
+
 \newpage
 \section{Topological group action}
 \subsection{Discontinuous action}

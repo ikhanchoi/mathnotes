@@ -65,23 +65,27 @@ In this case, we sometimes call $G$ the \emph{internal semidirect product}.
 
 \begin{prb}[Classification of semidirect products]
 Let $N$ and $H$ be groups.
-Consider the following set of all semidirect products:
-\[\{\,N\rtimes_\f H\mid\f:H\to\Aut(N)\text{ is a group homomorphism}\,\}.\]
-On this set, we can establish an action of the group $\Aut(N)\times\Aut(H)$ as follows:
-The \emph{intertwining} is a group action by $\Aut(N)$ such that
-\[N\rtimes_\f H\mapsto N\rtimes_{\nu\f\nu^{-1}}H.\]
-The \emph{twisting} is a group action by $\Aut(H)$ such that
-\[N\rtimes_\f H\mapsto N\rtimes_{\f\circ\eta}H.\]
-Consider the action of $\Aut(N)\times\Aut(H)$ defined by the above two operations.
+On the set $\Hom(H,\Aut(N))$ of all group homomorphisms $H\to\Aut(N)$, we can establish an action by the group $\Aut(H)\times\Aut(N)$ with the following two operations:
+the \emph{twisting} by $\eta\in\Aut(H)$ such that $\f\mapsto\f\circ\eta$, and the \emph{intertwining} by $\nu\in\Aut(N)$ such that $\f\mapsto\nu\f\nu^{-1}$.
+Consider the following map from the orbit space, constructed by the definition of semidirect products:
+\[\Hom(H,\Aut(N))/(\Aut(H)\times\Aut(N))\to\left\{\begin{tabular}{c}isomorphism classes of\\semidirect products $N\rtimes H$\end{tabular}\right\}.\]
+Also, we can define a map which takes images:
+\[\Hom(H,\Aut(N))/(\Aut(H)\times\Aut(N))\to\left\{\begin{tabular}{c}conjugacy classes of\\subgroups of $\Aut(N)$\end{tabular}\right\}.\]
 \begin{parts}
-\item If two semidirect products are in a same orbit, then they are isomorphic.
-\item Suppose $|N|$ and $|H|$ are finite and relatively prime. If two semidirect products are isomorphic, then they are in a same orbit.
-\item Suppose $H$ is finite and cyclic. Then, two semidirects products defined by $\f_1$ and $\f_2$ are in a same orbit if and only if the images $\f_1(H)$ and $\f_2(H)$ are conjugate in $\Aut(N)$.
-\item 
+\item The first map is well-defined and surjective.
+\item The first map is injective if $|N|$ and $|H|$ are finite and relatively prime.
+\item The second map is injective if
 \end{parts}
 \end{prb}
 \begin{pf}
+(a)
 
+(b)
+
+(c)
+Assuming $\f_1(H)=\f_2(H)$, we claim $\f_2=\f_1\circ\eta$ for some $\eta\in\Aut(H)$.
+
+Since $\f_1(H)$ is cyclic, 
 \end{pf}
 
 
@@ -292,9 +296,9 @@ By the Sylow theorem, we consider three cases:
 \begin{parts}
 \item If $p+2\le q$, then $G\cong Q\rtimes P$, and there are
 \[\begin{cases}
-2&\text{ if }q-1=m,\\
-4&\text{ if }q-1=pm,\\
-5&\text{ if }q-1=p^am,\ a\ge2
+2&\text{ if }v_p(q-1)=0,\\
+4&\text{ if }v_p(q-1)=1,\\
+5&\text{ if }v_p(q-1)\ge2
 \end{cases}\]
 non-isomorphic groups of order $p^2q$.
 \item If $p>q$, then $G\cong P\rtimes Q$, and there are
@@ -309,38 +313,37 @@ non-isomorphic groups of order $p^2q$
 \end{parts}
 \end{prb}
 \begin{pf}
-(a)
-Suppose $P\cong Z_{p^2}$ and consider the actions
-\[\f:Z_{p^2}\to\Aut(Z_q)\cong Z_{q-1}.\]
-There are $1+\min\{v_p(q-1),2\}$ choices for $\f(1)$
+(a) $G\cong Z_q\rtimes Z_{p^2}$.
+\[\f:Z_{p^2}\to Z_{q-1}.\]
+There are $1+\min\{v_p(q-1),2\}$ (conjugacy classes of) subgroups of order dividing $p^2$ in $Z_{q-1}$.
 
-subgroups of $Z_{q-1}$ that can be the image of $\f$, up to conjugation, that is, there are $1+\min\{v_p(q-1),2\}$ distinct groups of the form $Z_q\rtimes Z_{p^2}$.
+(b) $G\cong Z_q\rtimes Z_p^2$.
+\[\f:Z_p^2\to Z_{q-1}.\]
+Since $\Aut(Z_p^2)\cong\GL(2,\F_p)$ transitively acts on the set of surjective homomorphisms $Z_p^2\to Z_p$ by twist, there are $1+\min\{v_p(q-1),1\}$ cases.
 
-Suppose $P\cong Z_p^2$ and consider actions
-\[\f:Z_p\times Z_p\to\Aut(Z_q)\cong Z_{q-1}.\]
-Similarly, there are $1+\min\{v_p(q-1),1\}$ distinct groups of the form $Z_q\rtimes Z_p^2$.
+(c) $G\cong Z_{p^2}\rtimes Z_q$.
+\[\f:Z_q\to Z_{p(p-1)}.\]
+There are $1+\min\{v_q(p-1),1\}$ (conjugacy classes of) subgroups of order dividing $q$ in $Z_{p(p-1)}$.
 
-(b)
-Suppose $P\cong Z_{p^2}$ and consider actions
-\[\f:Z_q\to\Aut(Z_{p^2})\cong Z_{p(p-1)}.\]
-There are $1+\min\{v_q(p-1),1\}$ distinct groups of the form $Z_{p^2}\rtimes Z_q$.
+(d) $G\cong Z_p^2\rtimes Z_q$.
+\[\f:Z_q\to\GL(2,\F_p).\]
+To compute the number of non-trivial semidirect products, we will find all the conjugacy classes of subgroups of $\GL(2,\F_p)$ with order $q$.
+Note that $|\GL(2,\F_p)|=(p^2-1)(p^2-p)=(p-1)^2p(p+1)$ so that we must have $q\mid p-1$ or $q\mid p+1$.
 
-Suppose $P\cong Z_p^2$ and consider actions
-\[\f:Z_q\to\Aut(Z_p\times Z_p)\cong\GL_2(\F_p).\]
-Note that $|\GL_2(\F_p)|=(p^2-1)(p^2-p)=(p-1)^2p(p+1)$ so that $q\mid p-1$ or $q\mid p+1$.
-Denote 1 a generator of $Z_q$, and let $\f(1)\ne1_{2\times2}$ so that the action is not trivial.
-
-If $q=2$, then $\f(1)$ is one of the followings
+Let $q=2$.
+Then
 \[\mat{1&0\\0&-1},\ \mat{-1&0\\0&-1}\]
-up to conjugation, and they generate distinct subgroups of $\GL_2(\F_p)$ up to conjugation.
+up to conjugation, and they generate distinct subgroups of $\GL(2,\F_p)$ up to conjugation.
 
-If $q\ne2$ and $q\mid p+1$, then there is an element $A\in\GL_2(\F_p)$ of order $q$ exists.
-Let $\lambda^{\pm1}\in\bar\F_p$ be eigenvalues of $A$.
+Let $q\ne2$ and $q\mid p+1$.
+We claim that there is a unique subgroup of order $q$ in $\GL_2(\F_p)$ up to conjugation.
+Let $A\in\GL(2,\F_p)$ be of order $q$, and $\lambda^{\pm1}\in\bar\F_p$ be eigenvalues of $A$.
 Then, $\lambda^i$ is a root of $x^q-1=0$ for each integer $i$, and the polynomial $x^q-1$ has $q$ distinct roots $\lambda^i$ for $0\le i<q$.
 It means that the eigenvalues of $\f(1)$ must be $\lambda^{\pm i}$ for some integer $i$, the image of $\f$ is always conjugate to the subgroup generated by $A$.
-Therefore, there is a unique subgroup of order $q$ in $\GL_2(\F_p)$ up to conjugation.
+Therefore, 
 
-If $q\ne2$ and $q\mid p-1$, then since the number of one-dimensional linear subspaces of $\F_p^2$ is $q+1$ and the number of symmetric subspaces is 2 in $\F_q^2$, we have $\frac{(q+1)-2}2+2=\frac{q+3}2$ conjugacy classes of subgroups of order $q$ in $\GL_2(\F_p)$. (Need more detail!)
+Let $q\ne2$ and $q\mid p-1$.
+Then since the number of one-dimensional linear subspaces of $\F_p^2$ is $q+1$ and the number of symmetric subspaces is 2 in $\F_q^2$, we have $\frac{(q+1)-2}2+2=\frac{q+3}2$ conjugacy classes of subgroups of order $q$ in $\GL_2(\F_p)$. (Need more detail!)
 
 To sum up, there are
 \[\begin{cases}

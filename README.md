@@ -10,8 +10,9 @@ I am mainly interested in operator algebra:
  * Functional and harmonic analytic techniques applied in other fields of mathematics.
  * Numerical and statistical simulations of some physical phenomena.
 
+Contact: dlrgks623[at]naver.com
 
-## My own map of mathematics
+## My own map toward mathematics
 
 ### Analysis
 Calculus
@@ -64,5 +65,3 @@ Algebraic Quantum Field Theory - Quantum Information Theory
 
 
 
-
-Contact: dlrgks623[at]naver.com
