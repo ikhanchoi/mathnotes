@@ -22,26 +22,57 @@
 
 \chapter{Random variables}
 
-\section{Sample spaces and distributions}
-sample space of an "experiment"
-random variables
-distributions
-expectation, moments, inequalities
+\section{Probability distributions}
 
-equally likely outcomes
-	coin toss
-	dice roll
-	ball drawing
-	number permutation
-	life time of a light bulb
+\begin{prb}[Sample space]
+Mathematically, a \emph{sample space} is defined as a measure space $(\Omega,\cF,P)$ with $P(\Omega)=1$.
+Elements and measurable subsets of a sample space are called \emph{outcomes} and \emph{events}, respectively.
+Let $\Omega$ be a fixed sample space.
+Then, a \emph{random element} is a measurable function $X:\Omega\to S$ to a measurable space $S$, called the \emph{state space}. 
+If the state space $S$ is the set of real numbers $\R$ together with the Borel $\sigma$-algebra, we call the random element $X$ as a \emph{random variable}.
 
-joint distribution
-transformation of distributions
-distribution computations
+Consider a statistical study of ages of people in the earth.
+For the study, we set the \emph{population} $\cP=\{\text{ people in the earth }\}$ and the age function $a:\cP\to\Z_{\ge0}$.
+In probability theory and statistics, we are interested in the estimation of the size of $a^{-1}(k)$ for each $k\in\Z_{\ge0}$, not in the exact description of the age function $a$.
 
-\section{Discrete probability distributions}
+Let us say that we conducted an experiment in which $n$ people are randomly chosen with replacement, to verify a hypothesis.
+If we denote by $p_i$ the $i$th person, then 
 
-\section{Continuous probability distributions}
+Then a reasonable choice for the domain of the functions $X_i$ is $\Omega=\cP^n$.
+
+Believing the fatalism, an experiment can be seen as a process of revealing a pre-determined fate $\omega$, which is what we call sample or outcome.
+
+
+\begin{parts}
+\item 
+\end{parts}
+\end{prb}
+\begin{prb}[Probability distribution]
+Let $X:\Omega\to\R$ be a random variable.
+The (probability) \emph{distribution} of $X$ is the pushforward measure $X_*P$ on $\R$.
+The right continuous increasing function $F$ corresponded to $X_*P$ is called the (cumulative) \emph{distribution function}.
+
+If the distribution has discrete support, then we say $X$ is \emph{discrete}.
+Since a probability measure of discrete support is a countable convex combination of Dirac measures, we can define the (probability) \emph{mass function} $p:\supp(X_*P)\to[0,1]$.
+If the distribution is absolutely continuous with respect to the Lebesgue measure, then we say $X$ is \emph{continuous}.
+By the Radon-Nikodym theorem, we can define the (probability) \emph{density function} $f\in L^1(\R)$.
+The mass and density functions are effective ways to describe distributions of random variables in most applications.
+\begin{parts}
+\item
+\end{parts}
+\end{prb}
+\begin{prb}[Expectation and moments]
+Chebyshev's inequality
+\end{prb}
+\begin{prb}[Joint distribution]
+\end{prb}
+\begin{prb}[Distribution of functions]
+transformation, function
+\end{prb}
+
+\section{Discrete distributions}
+
+\section{Continuous distributions}
 
 \section{Independence}
 
@@ -60,6 +91,18 @@ Denote by $\ell(\cP)$ the smallest $\lambda$-system containing $\cP$.
 
 \end{prb}
 
+
+
+
+
+\section*{Exercises}
+
+equally likely outcomes
+	coin toss
+	dice roll
+	ball drawing
+	number permutation
+	life time of a light bulb
 
 
 

@@ -22,6 +22,13 @@ metrizability(Birkhoff-Kakutani).
 boundedness and continuity
 
 \section{Seminorms and convex sets}
+\begin{prb}[Seminorms]
+\[\bigcap_{i=1}^m\{:p()<1\}\]
+Equivalent conditions on the continuity of seminorms
+\end{prb}
+\begin{pf}
+
+\end{pf}
 boundedness by seminorms, normability
 
 \section{Continuous linear functionals}
@@ -30,20 +37,55 @@ Let $\{x_i^*\}_{i=1}^n\subset X^*$.
 If $x^*\in X^*$ vanishes on $\bigcap_{i=1}^n\ker x_i^*$, then $x^*$ is a linear combination of $\{x_i^*\}$.
 \end{prb}
 
-\begin{prb}[Dual space]
-\end{prb}
-
-\begin{prb}[Adjoint operator]
-\end{prb}
 
 
 \section{Hahn-Banach theorem}
 
 \begin{prb}[Hahn-Banach theorem]
+Let $X$ be a real vector space and $Y$ a linear subspace of $X$.
+Suppose that $l:Y\to\R$ is a linear functional dominated by a sublinear functional $q:X\to\R$.
+\begin{parts}
+\item There is a linear functional $\tilde l:X\to\R$ that extends $l$.
+\item There is a linear functional $\tilde l:X\to\R$ that extends $l$.
+\end{parts}
+\end{prb}
+\begin{pf}
+(a)
+It can be done by the Hamel basis.
+
+(b)
+
+\end{pf}
+
+\begin{prb}[Complex linear functionals]
+Let $X$ be a vector space over $\F=\R$ or $\C$.
+\[\{\text{$\C$-linear functionals on $X$}\}\xrightarrow{\sim}\{\text{$\R$-linear functionals on $X$}\}.\]
+Let $p$ be a seminorm on $X$ and $l$ a linear functional on $X$.
+\begin{parts}
+\item
+\item If $\F=\C$, then $|l(x)|\le p(x)$ if and only if $|\Re l(x)|\le p(x)$.
+\item If $\F=\R$, then
+\end{parts}
+\end{prb}
+\begin{pf}
+(b)
+There is $\lambda$ such that $|\lambda|=1$ and $l(\lambda x)\ge0$.
+Then,
+\[|l(x)|=|\lambda^{-1}l(\lambda x)|=l(\lambda x)=\Re l(\lambda x)\le p(\lambda x)=p(x).\]
+\end{pf}
+
+\begin{prb}
+Let $X$ be a vector space over $\F=\R$ or $\C$ and $Y$ a linear subspace of $X$.
+Suppose that $l:Y\to\R$ is a linear functional dominated by a seminorm $p:X\to\R$.
+Then, there is a linear functional $\tilde l:X\to\R$ that is an extension of $l$ and dominated by $p$.
 \end{prb}
 
 
 
+
+\section*{Exercises}
+\begin{prb}[Topology of compact convergence]
+\end{prb}
 
 
 
@@ -138,94 +180,6 @@ is a counterexample.
 
 
 
-\chapter{Fr\'echet, Banach, and Hilbert spaces}
-
-\section{Fr\'echet spaces}
-dual is not Fr\'echet.
-
-\section{Banach spaces}
-dual is Banach.
-Basis problem, Mazur' duck.
-
-\section{Hilbert spaces}
-Projections. Reducing subspaces.
-Hilbert space classification by cardinal.
-Riesz representation theorem.
-\begin{prb}
-\begin{parts}
-\item A Banach space $X$ is isometrically isomorphic to a Hilbert space if there is a bounded linear projection on every closed subspace of $X$.
-\end{parts}
-\end{prb}
-
-\begin{prb}[Riesz representation theorem]
-Let $H$ be a Hilbert space over a field $\F$, which is either $\R$ of $\C$.
-
-
-We use the bilinear form $\<-,-\>:X\times X^*\to\F$ of canonical duality.
-\emph{Dirac} notation $\<-|-\>$ for the inner product of a complex Hilbert spaces such that $\<x,y\>=\<y|x\>$.
-The Riesz representation theorem states that a continuous linear functional on a Hilbert space is represented by the inner product with a vector.
-\begin{parts}
-\item For each $x^*\in H^*$, there is a unique $x\in H$ such that $\<y,x^*\>=\<y,x\>$ for every $y\in H$.
-\item $H\to H^*:x\mapsto\<-,x\>$ is a natural linear and anti-linear isomorphism if $\F=\R$ and $\C$, respectively.
-\end{parts}
-\end{prb}
-
-
-
-\section{Bounded linear operators}
-\begin{prb}[Bounded belowness in Banach spaces]
-Let $T\in B(X,Y)$ for Banach spaces $X$ and $Y$.
-The following statements are equivalent:
-\begin{parts}
-\item $T$ is bounded below.
-\item $T$ is injective and has closed range.
-\item $T$ is a topological isomorphism onto its image.
-\end{parts}
-\end{prb}
-
-\begin{prb}[Bounded belowness in Hilbert spaces]
-Let $T\in B(H,K)$ for Hilbert spaces $H$ and $K$.
-The following statements are equivalent:
-\begin{parts}
-\item $T$ is bounded below.
-\item $T$ is left invertible.
-\item $T^*$ is right invertible.
-\item $T^*T$ is invertible.
-\end{parts}
-\end{prb}
-
-\begin{prb}[Injectivity and surjectivity of adjoint]
-Let $T\in B(X,Y)$ for Banach spaces $X$ and $Y$.
-\begin{parts}
-\item $T^*$ is injective if and only if $T$ has dense range.
-\item $T^*$ is surjective if and only if $T$ is bounded below.
-\end{parts}
-\end{prb}
-
-\begin{prb}[Normal operators]
-For $T\in B(H)$, we have an obvious fact $(\im T)^\perp=\ker T^*$.
-Suppose $T$ is normal.
-\begin{parts}
-\item $\ker T=\ker T^*$.
-\item $T$ is bounded below if and only if $T$ is invertible.
-\item If $T$ is surjective, then $T$ is invertible.
-\end{parts}
-\end{prb}
-
-\begin{prb}[Invariant and Reducing subsapces]
-Let $K$ be a closed subspace of $H$.
-\begin{parts}
-\item $K$ is reducing for $T$ if and only if $K$ is invariant for $T$ and $T^*$.
-\item $K$ is reducing for $T$ if and only if $TP=PT$, where $P$ is the orthogonal projection on $K$.
-\end{parts}
-\end{prb}
-% self adjoint operators
-% invariant but not reducing for unitary operators
-% eigenspaces
-% matrix representation
-
-
-
 
 \section*{Exercises}
 \begin{prb}
@@ -237,7 +191,8 @@ Note that this problem is slightly different to the non-metrizability of the top
 We show that there is no projection from $\ell^\infty$ onto $c_0$.
 \end{prb}
 
-\begin{prb}[Schur's property of $\ell^1$]
+\begin{prb}[Schur property]
+$\ell^1$
 \end{prb}
 
 \begin{prb}
@@ -249,7 +204,6 @@ Show that $\f^*(\ell^1)\subset L^1$ where $\ell^1$ and $L^1$ are considered as c
 \item Show that $\f^*$ is indeed an isometric isomorphism, and deduce $\f$ cannot be realised as bounded linear functionals on $L^\infty$.
 \end{parts}
 \end{prb}
-
 
 
 \begin{prb}[Daugavet property]
@@ -281,25 +235,73 @@ Then, $T^{-2}+\|T\|^{-2}$ is injective if it is surjective.
 
 
 
-\part{Weak topologies}
-\chapter{Dual space of Banach spaces}
-\section{Weak and weak$^*$ topologies}
+
+
+
+
+
+
+
+
+
+
+
+
+\chapter{Weak topologies}
+\section{Dual spaces}
+
+\begin{prb}[Bidual]
+\end{prb}
+
+\begin{prb}
+Let $X$ be a locally convex space.
+The \emph{weak topology} is the topology $w$ on $X$ defined by the family of seminorms $\{x\mapsto|\<x,\xi\>|\}_{\xi\in X^*}$.
+The \emph{weak$^*$ topology} is the topology $w^*$ on $X^*$ defined by the family of seminorms $\{\xi\mapsto|\<x,\xi\>|\}_{x\in X}$.
+Let $J:X\to X^{**}$ be the canonical embedding.
+\begin{parts}
+\item $(X,w)$ and $(X^*,w^*)$ are locally convex.
+\item $(X,w)^*=X^*$.
+\item $(X^*,w^*)^*=X$. Every locally convex space is a dual of a locally convex space.
+\end{parts}
+\end{prb}
+\begin{pf}
+(a)
+The Hahn-Banach theorem implies the Hausdorffness.
+
+(c)
+We will only show $(X^*,w^*)^*\subset X$.
+If $u\in(X^*,w^*)^*$, then there are $x_1,\cdots,x_m\in X$ such that
+\[|\<u,\xi\>|\le\sum_{i=1}^m|\<x_i,\xi\>|\]
+for all $\xi\in X^*$.
+If we let $\ker\vec x:=\bigcap_{i=1}^m\ker x_i$, then it is a closed subspace of $X^*$ such that $\ker\vec x\subset\ker u$, so we have $u\in\spn\vec x\subset X$.
+\end{pf}
+
+\begin{prb}
+closure and weak closure of convex subsets
+\end{prb}
+\begin{pf}
+Hahn-Banach
+\end{pf}
+
+\begin{prb}[Polar]
+\end{prb}
+
+
 boundedness, incompleteness
 
-
 \begin{prb}[Weak convergence by dense set]
-Let $X$ be a Banach space, $D$ a subset of $X^*$, and $\bar D$ the norm closure of $D$.
-For example, if $X$ has a predual $X_*\subset X^*$ and $D$ is dense in $X_*$, then $\sigma(X,\bar D)$ is the weak$^*$ topology.
+Let $X$ be a Banach space, $D^*$ a subset of $X^*$, and $\bar{D^*}$ the norm closure of $D^*$.
+For example, if $X$ has a predual $X_*\subset X^*$ and $D^*$ is dense in $X_*$, then $\sigma(X,\bar{D^*})$ is the weak$^*$ topology.
 \begin{parts}
-\item There is a squence $x_n\in X$ converges to zero in $\sigma(X,D)$ but not in $\sigma(X,\bar D)$.
-\item A sequence $x_n\in X$ converges to zero in $\sigma(X,\bar D)$ if in $\sigma(X,D)$, if $\|x_n\|\le1$.
+\item There is a squence $x_n\in X$ converges to zero in $\sigma(X,D^*)$ but not in $\sigma(X,\bar{D^*})$.
+\item A bounded sequence $x_n\in X$ converges to zero in $\sigma(X,\bar{D^*})$ if in $\sigma(X,D^*)$.
 \end{parts}
 \end{prb}
 \begin{pf}
 (b)
-Let $x^*\in\bar D$ and choose $y^*\in D$ such that $\|x^*-y^*\|<\e$
+Let $\xi\in\bar{D^*}$ and choose $\eta\in D^*$ such that $\|\xi-\eta\|<\e$.
 Then,
-\[|\<x_n,x^*\>|\le\|x_n\|\|x^*-y^*\|+|\<x_n,y^*\>|.\]
+\[|\<x_n,\xi\>|\le\|x_n\|\|\xi-\eta\|+|\<x_n,\eta\>|\lesssim\e+|\<x_n,\eta\>|\to\e.\]
 \end{pf}
 
 
@@ -314,36 +316,36 @@ Then,
 
 \section{Weak density}
 Bishop-Phelps theorem
+
 \begin{prb}[Goldstine's theorem]
 Let $X$ be a Banach space and $J:X\to X^{**}$ the canonical embedding.
-Let $\{x_i^*\}_{i=1}^m\subset X^*$ and $x^{**}\in X^{**}$.
+Our claim is that $\bar B$ is weak$^*$-dense in $\bar B_{X^{**}}$.
+Let $x_0^{**}\in X^{**}$ with $\|x_0^{**}\|\le1$, and let
+\[N_{\vec x^*}(x_0^{**},\e):=\bigcap_{i=1}^m\,\{\,x^{**}\in X^{**}:|\<x^{**}-x_0^{**},x_i^*\>|<\e\,\}\]
+be an open weak$^*$-neighborhood of zero in $X^{**}$ with $\|x_i^*\|\le1$ and $\e>0$.
 \begin{parts}
-\item There is $x\in X$ such that $\<x_i^*,J(x)\>=\<x_i^*,x^{**}\>$ for all $i$.
-\item If $\|x^{**}\|\le1$, then there is $x\in X$ such that $\|x\|\le1+\e$ and $\<x_i^*,J(x)\>=\<x_i^*,x^{**}\>$ for all $i$, for any $\e>0$ .
-\item $J(\bar B_X)$ is weak$^*$-dense in $\bar B_{X^{**}}$
+\item There is $x\in X$ such that $\<x,x_i^*\>=\<x_0^{**},x_i^*\>$ for all $i$.
+\item $\bar B_X$ is weak$^*$-dense in $\bar B_{X^{**}}$
 \end{parts}
 \end{prb}
 \begin{pf}
+(a)
+
 (b)
-Let $z\in X$ such that $\<x_i^*,J(x)\>=\<x_i^*,x^{**}\>$ for all $i$.
-Let $Y$ be the set of all $y\in X$ such that $\<x_i^*,J(y)\>=0$ for all $i$.
-Then, $z+Y$ is the closed affine subsapce of $X$ containing all $y\in X$ such that $\<x_i^*,J(y)\>=\<x_i^*,x^{**}\>$ for all $i$.
-If we assume $z+Y$ does not contain any $x\in X$ such that $\|x\|\le1+\e$, then $d(z,Y)=d(0,z+Y)>1+\e$.
-By the Hahn-Banach theorem, there is $y^*\in X^*$ such that $\|y^*\|=1$, $y^*|_Y=0$, and $\<z,y^*\>>1+\e$.
-Then, $y^*$ is a linear combination of $\{x_i^*\}_{i=1}^m$, so
-\[1+\e<\<z,y^*\>=\<y^*,J(z)\>=\<y^*,x^{**}\>\le\|x^{**}\|\|y^*\|\le1.\]
+By the Hahn-Banach theorem on $\spn\{x\}\cup\ker$, there is $\eta\in X^*$ such that
+\[\eta|_{\ker\vec\xi}=0,\quad\<x,\eta\>>1+\e,\quad\text{ and }\quad\|\eta\|=1.\]
+Since $\eta$ is a linear combination of $\xi_1,\cdots,\xi_m$, we have
+\[1+\e<\<x,\eta\>=\<x_0^{**},\eta\>\le\|x_0^{**}\|\|\eta\|\le1.\]
 
 (c)
-Fix $x^{**}\in X^{**}$ such that $\|x^{**}\|\le1$ and let
-\[U=\bigcap_{i=1}^m\,\{\,y^{**}\in X^{**}:|\<x_i^*,y^{**}-x^{**}\>|<1\,\}\]
-be an open weak$^*$-neighborhood of $x^{**}$.
-Choose $\e>0$ such that
-\[\e\max_{1\le i\le m}\|x_i^*\|<1.\]
-By the part (b), there is $x\in X$ such that $\|x\|\le1+\e$ and $\<x_i^*,x^{**}\>=\<x_i^*,J(x)\>$.
-If we let $y:=(1+\e)^{-1}x$, then $\|y\|\le 1$ so that
-\[|\<x_i^*,J(y)-x^{**}\>|=|\<x_i^*,J(y)-J(x)\>|=|\<x_i^*,\e J(y)\>|\le\e\|x_i^*\|\|y\|<1\]
-for all $i$ implies $J(y)\in U$, hence we get $J(\bar B_X)\cap U\ne\varnothing$.
+Take $\e>0$ such that $\e\max_{1\le i\le m}\|x_i^*\|<1$.
+By the part (b), there is $y\in X$ such that $\|y\|\le1+\e$ and $\<y,x_i^*\>=\<x^{**},x_i^*\>$.
+If we let $x:=(1+\e)^{-1}y$, then $x\in\bar B_X$ so that
+\[|\<x-x_0^{**},x_i^*\>|=|\<x-y,x_i^*\>|=|\<\e x,x_i^*\>|\le\e\|x\|\|x_i^*\|<1\]
+for all $i$ implies $y\in x+U$, hence we get $\bar B_X\cap(u+U)\ne\varnothing$.
 \end{pf}
+
+
 
 
 \section{Krein-Milman theorem}
@@ -408,28 +410,99 @@ Mackey-Arens
 
 
 
-\chapter{Operator topologies}
-\begin{prb}[Compact left multiplications and SOT]
-Let $T_n$ be a sequence of bounded linear operators on a Hilbert space that converges in SOT.
-For compact $K$, $T_n K$ converges in norm, but $KT_n$ generally does not unless $T$ is self-adjoint.
-\end{prb}
 
+
+
+
+
+
+
+
+
+\part{Banach spaces}
+
+\chapter{Fr\'echet, Banach, Hilbert spaces}
+
+\section{Banach spaces}
+dual is Banach.
+Basis problem, Mazur' duck.
+
+\section{Hilbert spaces}
+Projections. Reducing subspaces.
+Hilbert space classification by cardinal.
+Riesz representation theorem.
 \begin{prb}
-Let $f$ be a linear functional on $B(H)$ for a Hilbert space $H$.
-Then, TFAE:
 \begin{parts}
-\item $f$ is $\wot$-continuous,
-\item $f$ is $\sot$-continuous,
-\item $f(T)=\sum_{i=1}^n\<Tx_i,y_i\>$ for some $x_i,y_i$.
+\item A Banach space $X$ is isometrically isomorphic to a Hilbert space if there is a bounded linear projection on every closed subspace of $X$.
 \end{parts}
 \end{prb}
-\begin{pf}
-(2)$\impl$(3) is the only nontrivial implication.
-By the definition of $\sot$, there exists $v\in \cH^n$ such that
-\[|f(T)|\le\|T^{\oplus n}v\|.\]
-The functional $f:\cA\to\C$ factors through $\cH^n$ such that
-\[\cA\to{v}\cH^n\to\C.\]
-\end{pf}
+
+\begin{prb}[Riesz representation theorem]
+Let $H$ be a Hilbert space over a field $\F$, which is either $\R$ of $\C$.
+
+
+We use the bilinear form $\<-,-\>:X\times X^*\to\F$ of canonical duality.
+\emph{Dirac} notation $\<-|-\>$ for the inner product of a complex Hilbert spaces such that $\<x,y\>=\<y|x\>$.
+The Riesz representation theorem states that a continuous linear functional on a Hilbert space is represented by the inner product with a vector.
+\begin{parts}
+\item For each $x^*\in H^*$, there is a unique $x\in H$ such that $\<y,x^*\>=\<y,x\>$ for every $y\in H$.
+\item $H\to H^*:x\mapsto\<-,x\>$ is a natural linear and anti-linear isomorphism if $\F=\R$ and $\C$, respectively.
+\end{parts}
+\end{prb}
+
+
+
+\chapter{Bounded linear operators}
+\begin{prb}[Bounded belowness in Banach spaces]
+Let $T\in B(X,Y)$ for Banach spaces $X$ and $Y$.
+The following statements are equivalent:
+\begin{parts}
+\item $T$ is bounded below.
+\item $T$ is injective and has closed range.
+\item $T$ is a topological isomorphism onto its image.
+\end{parts}
+\end{prb}
+
+\begin{prb}[Bounded belowness in Hilbert spaces]
+Let $T\in B(H,K)$ for Hilbert spaces $H$ and $K$.
+The following statements are equivalent:
+\begin{parts}
+\item $T$ is bounded below.
+\item $T$ is left invertible.
+\item $T^*$ is right invertible.
+\item $T^*T$ is invertible.
+\end{parts}
+\end{prb}
+
+\begin{prb}[Injectivity and surjectivity of adjoint]
+Let $T\in B(X,Y)$ for Banach spaces $X$ and $Y$.
+\begin{parts}
+\item $T^*$ is injective if and only if $T$ has dense range.
+\item $T^*$ is surjective if and only if $T$ is bounded below.
+\end{parts}
+\end{prb}
+
+\begin{prb}[Normal operators]
+For $T\in B(H)$, we have an obvious fact $(\im T)^\perp=\ker T^*$.
+Suppose $T$ is normal.
+\begin{parts}
+\item $\ker T=\ker T^*$.
+\item $T$ is bounded below if and only if $T$ is invertible.
+\item If $T$ is surjective, then $T$ is invertible.
+\end{parts}
+\end{prb}
+
+\begin{prb}[Invariant and Reducing subsapces]
+Let $K$ be a closed subspace of $H$.
+\begin{parts}
+\item $K$ is reducing for $T$ if and only if $K$ is invariant for $T$ and $T^*$.
+\item $K$ is reducing for $T$ if and only if $TP=PT$, where $P$ is the orthogonal projection on $K$.
+\end{parts}
+\end{prb}
+% self adjoint operators
+% invariant but not reducing for unitary operators
+% eigenspaces
+% matrix representation
 
 
 
@@ -438,11 +511,6 @@ The functional $f:\cA\to\C$ factors through $\cH^n$ such that
 
 
 
-
-
-
-
-\part{Spectral theory}
 
 
 \chapter{Compact operators}
@@ -505,6 +573,8 @@ It means $g=0$, which contradicts to the assumption.
 
 
 
+\part{Spectral theory}
+\chapter{}
 
 
 
@@ -530,6 +600,36 @@ Let $T\in B(H)$ be a normal operator.
 Then, there exists a spectral measure $E$ on $\sigma(T)$ for $H$ such that
 \[T=\int_{\sigma(T)}\lambda\,dE(\lambda).\]
 This spectral measure $E$ is also called the \emph{resolution of the identity}.
+
+
+
+
+\section{Operator topologies}
+
+
+\begin{prb}[Compact left multiplications and SOT]
+Let $T_n$ be a sequence of bounded linear operators on a Hilbert space that converges in SOT.
+For compact $K$, $T_n K$ converges in norm, but $KT_n$ generally does not unless $T$ is self-adjoint.
+\end{prb}
+
+\begin{prb}
+Let $f$ be a linear functional on $B(H)$ for a Hilbert space $H$.
+Then, TFAE:
+\begin{parts}
+\item $f$ is $\wot$-continuous,
+\item $f$ is $\sot$-continuous,
+\item $f(T)=\sum_{i=1}^n\<Tx_i,y_i\>$ for some $x_i,y_i$.
+\end{parts}
+\end{prb}
+\begin{pf}
+(2)$\impl$(3) is the only nontrivial implication.
+By the definition of $\sot$, there exists $v\in \cH^n$ such that
+\[|f(T)|\le\|T^{\oplus n}v\|.\]
+The functional $f:\cA\to\C$ factors through $\cH^n$ such that
+\[\cA\to{v}\cH^n\to\C.\]
+\end{pf}
+
+
 
 
 
