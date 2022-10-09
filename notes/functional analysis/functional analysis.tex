@@ -321,10 +321,13 @@ Bishop-Phelps theorem
 Let $X$ be a Banach space and $J:X\to X^{**}$ the canonical embedding.
 Our claim is that $\bar B$ is weak$^*$-dense in $\bar B_{X^{**}}$.
 Let $x_0^{**}\in X^{**}$ with $\|x_0^{**}\|\le1$, and let
-\[N_{\vec x^*}(x_0^{**},\e):=\bigcap_{i=1}^m\,\{\,x^{**}\in X^{**}:|\<x^{**}-x_0^{**},x_i^*\>|<\e\,\}\]
+\[\bigcap_{i=1}^m\,\{\,x^{**}\in X^{**}:|\<x^{**}-x_0^{**},x_i^*\>|<\e\,\}\]
 be an open weak$^*$-neighborhood of zero in $X^{**}$ with $\|x_i^*\|\le1$ and $\e>0$.
+Let
+\[S:=\bigcap_{i=1}^m\,\{\,x\in X:\<x,x_i^*\>=\<x_0^{**},x_i^*\>\,\}.\]
 \begin{parts}
-\item There is $x\in X$ such that $\<x,x_i^*\>=\<x_0^{**},x_i^*\>$ for all $i$.
+\item $S$ is not empty.
+\item $S\cap(1+\e)\bar B_X$ is not empty for all $\e>0$.
 \item $\bar B_X$ is weak$^*$-dense in $\bar B_{X^{**}}$
 \end{parts}
 \end{prb}
@@ -332,17 +335,19 @@ be an open weak$^*$-neighborhood of zero in $X^{**}$ with $\|x_i^*\|\le1$ and $\
 (a)
 
 (b)
-By the Hahn-Banach theorem on $\spn\{x\}\cup\ker$, there is $\eta\in X^*$ such that
-\[\eta|_{\ker\vec\xi}=0,\quad\<x,\eta\>>1+\e,\quad\text{ and }\quad\|\eta\|=1.\]
-Since $\eta$ is a linear combination of $\xi_1,\cdots,\xi_m$, we have
-\[1+\e<\<x,\eta\>=\<x_0^{**},\eta\>\le\|x_0^{**}\|\|\eta\|\le1.\]
+From the part (a), we have $x\in S$.
+Suppose $S$ does not intersect $(1+\e)\bar B_X$.
+By the Hahn-Banach theorem, there is $y^*\in X^*$ such that
+\[y^*|_{S-x}=0,\quad\<x,y^*\>>1+\e,\quad\text{ and }\quad\|y^*\|=1.\]
+Since $S-x=\bigcap_{i=1}^m\ker x_i^*$, the linear functional $y^*$ is a linear combination of $x_1^*,\cdots,x_m^*$, so we have
+\[1+\e<\<x,y^*\>=\<x_0^{**},y^*\>\le\|x_0^{**}\|\|y^*\|\le1.\]
 
 (c)
 Take $\e>0$ such that $\e\max_{1\le i\le m}\|x_i^*\|<1$.
 By the part (b), there is $y\in X$ such that $\|y\|\le1+\e$ and $\<y,x_i^*\>=\<x^{**},x_i^*\>$.
 If we let $x:=(1+\e)^{-1}y$, then $x\in\bar B_X$ so that
-\[|\<x-x_0^{**},x_i^*\>|=|\<x-y,x_i^*\>|=|\<\e x,x_i^*\>|\le\e\|x\|\|x_i^*\|<1\]
-for all $i$ implies $y\in x+U$, hence we get $\bar B_X\cap(u+U)\ne\varnothing$.
+\[|\<x-x_0^{**},x_i^*\>|=|\<x-y,x_i^*\>|=|\<\e x,x_i^*\>|\le\e\|x\|\|x_i^*\|<\e\]
+for all $i$.
 \end{pf}
 
 

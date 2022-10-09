@@ -231,13 +231,18 @@ If $\spn\{\1_A:A\in\cA\}\subset H$ then $B^\infty(\sigma(\cA))\subset H$.
 \section*{Exercises}
 
 \begin{prb}[Steinhaus theorem]
-Let $\E\subset\R$ be Lebesgue measurable with $\lambda(E)>0$.
+Let $\lambda$ denote the Lebesgue measure on $\R$ and let $\E\subset\R$ be a Lebesgue measurable set with $\lambda(E)>0$.
 \begin{parts}
-\item For any $\alpha<1$, there is an interval $I=[a,b]$ such that $\lambda(E\cap I)/\lambda(I)>\alpha$.
+\item For any $0<\alpha<1$, there is an interval $I=(a,b)$ such that $\lambda(E\cap I)>\alpha\lambda(I)$.
 \item $E-E$ contains an open interval containing zero.
 \end{parts}
 \begin{pf}
 (a)
+We may assum $\lambda(E)<\infty$.
+Since $\lambda$ is outer measure and $\lambda(E)\ne0$, we have an open subset $U$ of $\R$ such that $\lambda(U)<\alpha^{-1}\lambda(E)$.
+Because $U$ is a countable disjoint union of open intervals $U=\bigsqcup_{i=1}^\infty(a_i,b_i)$, we have
+\[\sum_{i=1}^\infty\lambda((a_i,b_i))=\lambda(U)<\alpha^{-1}\lambda(E)=\alpha^{-1}\sum_{i=1}^n\lambda(E\cap(a_i,b_i)).\]
+Therefore, there is $i$ such that $\alpha\lambda((a_i,b_i))<\lambda(E\cap(a_i,b_i))$.
 \end{pf}
 % convolution으로 푸는 방법: continuous approximation　이 레벨에선 무리인듯
 \end{prb}
