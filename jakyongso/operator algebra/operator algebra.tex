@@ -1,0 +1,211 @@
+\documentclass{../../large}
+\usepackage{../../ikhanchoi}
+
+
+\begin{document}
+\title{Operator Algebra}
+\author{Ikhan Choi}
+\maketitle
+\tableofcontents
+
+\part{C$^*$-algebras}
+\chapter{Basic concepts}
+
+\section{Multiplier algebra}
+
+\begin{prb}[Multiplier algebra]
+Let $\cA$ be a C$^*$-algebra.
+A \emph{double centralizer} of $\cA$ is a pair $(L,R)$ of bounded linear maps on $\cA$ such that $aL(b)=R(a)b$ for all $a,b\in\cA$.
+The \emph{multiplier algebra} $M(\cA)$ of $\cA$ is defined to be the set of all double centralizers of $\cA$.
+\end{prb}
+
+\begin{prb}[Essential ideals]
+\begin{parts}
+\item Hilbert C$^*$-module description
+\end{parts}
+\end{prb}
+
+\begin{prb}[Examples of multiplier algebras]
+\begin{parts}
+\item $M(K(H))\cong B(H)$.
+\item $M(C_0(\Omega))\cong C_b(\Omega)$.
+\end{parts}
+\end{prb}
+\begin{pf}
+(a)
+
+(b)
+First we claim $C_0(\Omega)$ is an essential ideal of $C_b(\Omega)$.
+Since $C_b(\Omega)\cong C(\beta\Omega)$, and since closed ideals of $C(\beta\Omega)$ are corresponded to open subsets of $\beta\Omega$, $C_0(\Omega)\cap J$ is not trivial for every closed ideal $J$ of $C_b(\Omega)$.
+
+Now we have an injective $^*$-homomorphism $C_b(\Omega)\to M(C_0(\Omega))$, for which we want to show the surjectivity.
+Let $g\in M(C_0(\Omega))^+$.
+\end{pf}
+
+\begin{prb}[Strict topology]
+\end{prb}
+
+
+
+\section{Hereditary C$^*$-subalgebras}
+\begin{prb}[Hereditary C$^*$-subalgebra and state embedding]
+
+\end{prb}
+
+\chapter{Representation theory}
+\section{States and pure states}
+
+
+
+\chapter{}
+
+
+
+
+
+
+
+
+
+
+
+
+
+\part{Von Neumann algebras}
+
+\chapter{Factor classifications}
+
+\section{}
+\begin{prb}[Semi-finite traces]
+Let $M$ be a von Neumann algebra and $\tau$ is a trace.
+For a trace $\tau$
+\begin{parts}
+\item $\tau$ is semi-finite if and only if $x\in M^+$ has a net $x_\alpha\in L^1(M,\tau)^+$ such that $x_\alpha\uparrow x$ strongly.
+\item Let $\tau$ be normal and faithful. Then, $\tau$ is semi-finite if and only if
+\[\tau(x)=\sup\{\,\tau(y):y\le x,\ y\in L^1(M,\tau)^+\,\}\quad\text{ for }\quad x\in M^+.\]
+\end{parts}
+\end{prb}
+
+\section{}
+
+
+Direct integral of factors.
+
+Type I factors.
+It possess a minimal projection.
+It is isomorphic to the whole $B(H)$ for some Hilbert space.
+Therefore, it is classified by the cardinality of $H$.
+
+Type II factors.
+No minimal projection, but there are non-zero finite projections so that every projection can be ``halved'' by two Murray-von Neumann equivalent projections.
+
+In type II$_1$ factors, the identity is a finite projection
+Also, Murray and von Neumann showed there is a unique finite tracial state and the set of traces of projections is $[0,1]$.
+Free probability theory attacks the free groups factors, which are type II$_1$.
+
+In type II$_\infty$ factors
+There is a unique semifinite tracial state up to rescaling and the set of traces of projections is $[0,\infty]$.
+
+In type III factors no non-zero finite projections exists.
+Classified the $\lambda\in[0,1]$ appeared in its Connes spectrum, they are denoted by III$_\lambda$.
+Tomita-Takesaki theory.
+It is represented as the crossed product of a type II$_\infty$ factor and $\R$.
+
+Amenability, equivalently hyperfiniteness is a very nice condition in von Neumann algebra theory.
+Group-measure space construction can construct them.
+There are unique hyperfinite type II$_1$ and II$_\infty$ factors, and their property is well-known.
+Fundamental groups of type II factors, discrete group theory, Kazhdan's property (T) are used.
+
+
+Tensor product facctors such as Araki-Woods factors and Powers factors.
+
+\section{Hyperfinite factors}
+
+weight, trace, state.
+
+finite trace$=$tracial state.
+
+\begin{prb}[Uniformly hyperfinite algebras]
+Let $\cA$ be a uniformly hyperfinite algebra.
+\begin{parts}
+\item Every matrix algebra admits a unique finite trace.
+\item Every UHF algebra admits a unique finite trace.
+\item Every hyperfinite 
+\end{parts}
+\end{prb}
+
+\begin{prb}[Classification of UHF algebras]
+
+\end{prb}
+
+
+
+
+\chapter{Weight theory}
+
+
+
+
+
+\chapter{}
+\section{Connes' bicentralizer problem}
+
+
+
+
+
+
+
+
+
+
+
+
+\part{Operator K-theory}
+\chapter{Brown-Douglas-Fillmore theory}
+\begin{prb}[Haagerup property]
+\end{prb}
+
+Baum-Connes conjecture
+Non-commutative geometry
+Elliott theorem
+
+
+
+
+\chapter{Approximately finite algebras}
+Elliott conjecture: amenable simple separable C$^*$-algerbas are classified by K-theory.
+
+\chapter{Crossed products and dynamical systems}
+
+
+
+
+
+
+
+
+
+
+
+\part{Subfactor theory}
+
+
+
+
+
+
+The way how quantum systems are decomposed.
+Quite combinatorial!
+And has Galois analogy.
+
+\begin{prb}[Jones index theorem]
+A \emph{subfactor} of a factor $M$ is a factor $N$ containing $1_M$.
+\end{prb}
+
+Tensor categories and topological invariants of 3-folds.
+Ergodic flows.
+
+
+
+\end{document}

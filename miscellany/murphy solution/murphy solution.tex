@@ -1,0 +1,1423 @@
+\documentclass{../../small}
+\usepackage{../../ikhanchoi}
+\newcommand{\Inv}{\operatorname{Inv}}
+\newcommand{\ind}{\operatorname{ind}}
+
+\begin{document}
+\title{Solution Manual for\\C*-algebras and Operator Theory\\by Gerard J. Murphy}
+\author{Ikhan Choi}
+\maketitle
+\tableofcontents
+
+\newpage
+\section{Elementary spectral theory}
+
+\begin{prb}
+Let $(A_\lambda)_{\lambda\in\Lambda}$ denote a family of Banach algebras.
+The \emph{direct sum} $A=\bigoplus_\lambda A_\lambda$ is the set of all $(a_\lambda)\in\prod_\lambda A_\lambda$ such that $\|(a_\lambda)\|=\sup_\lambda\|a_\lambda\|$ is finite.
+Show that this is a Banach algebra under the pointwise-defined operations
+\begin{gather*}
+(a_\lambda)+(b_\lambda)=(a_\lambda+b_\lambda)\\
+\mu(a_\lambda)=(\mu a_\lambda)\\
+(a_\lambda)(b_\lambda)=(a_\lambda b_\lambda),
+\end{gather*}
+and norm given by $(a_\lambda)\mapsto\|(a_\lambda)\|$.
+Show that $A$ is unital or abelian if this is the case for all of the algebras $A_\lambda$.
+
+The \emph{restricted sum} $B=\bigoplus_\lambda^{c_0}A_\lambda$ is the set of all elements $(a_\lambda)\in A$ such that for each $\e>0$ there exists a finite subset $F$ of $\Lambda$ for which $\|a_\lambda\|<\e$ if $\lambda\in\Lambda\setminus F$.
+Show that $B$ is a closed ideal in $A$.
+\end{prb}
+\begin{sol}
+First we show $A$ is a Banach algebra.
+Banach algebras are defined to have \emph{four} structures(the addition, scalar multiplication, vector multiplication, and norm), which indicates that we need to show the following four conditions for $A$: it is closed under the three algebraic operations, and it is complete with the norm.
+Here the only non-trivial one is completeness.
+Suppose $((a_\lambda^n))_n$ is a Cauchy sequence in $A$.
+Let $\e>0$ and find $n_0$ such that $n,n'>n_0$ implies $\|(a_\lambda^n)-(a_\lambda^{n'})\|<\e$.
+For each $\lambda\in\Lambda$, the sequence $(a_\lambda^n)_n$ is Cauchy because $\|a_\lambda^n-a_\lambda^{n'}\|\le\|(a_\lambda^n)-(a_\lambda^{n'})\|$ for all $n$ and $n'$.
+Define $a_\lambda:=\lim_{n\to\infty}a_\lambda^n$.
+Then, limiting $n'\to\infty$ on the inequality $\|a_\lambda^n-a_\lambda\|<\e+\|a_\lambda^{n'}-a_\lambda\|$, we have $\|a_\lambda^n-a_\lambda\|<\e$ for arbitrary $\lambda$ and $n>n_0$, and it means $\|(a_\lambda^n)-(a_\lambda)\|\to0$ as $n\to\infty$.
+Therefore, $A$ is complete.
+An alternative solution uses extraction of a subsequence to assume $\|(a_\lambda^n)-(a_\lambda^{n+1})\|<\frac1{2^n}\e$.
+
+The existence of multiplicative unit and the commutativity on $A$ is clear.
+
+Next we show $B$ is a closed ideal of $A$.
+Let $b\in B$ and $a\in A$.
+Find a finite $F\in\Lambda$ such that $\lambda\in\Lambda\setminus F$ implies $\|b_\lambda\|<\frac1{\|a\|}\e$.
+Then, $\max\{\|a_\lambda b_\lambda\|,\|b_\lambda a_\lambda\|\}\le\|a\|\|b_\lambda\|<\e$ implies $ab$ and $ba$ are in $B$.
+For closedness, let $(b^n)_n$ be a sequence in $B$ converges to $a\in A$.
+Let $\e>0$ and take $n$ be such that $\|b^n-a\|<\frac12\e$.
+Find a finite $F\in\Lambda$ such that $\lambda\in\Lambda\setminus F$ implies $\|b_\lambda^n-a_\lambda\|<\frac12\e$.
+Then, $\|a_\lambda\|<\|a_\lambda-b_\lambda^n\|+\|b_\lambda^n\|<\e$ proves $a\in B$.
+\end{sol}
+\begin{rmk}
+Let $(X_\lambda)_{\lambda\in\Lambda}$ be a family of Banach spaces.
+We may define their \emph{direct sum} as the completion of the algebraic direct sum of them.
+The problem in here is the completion depends on the choice of norms on the algebraic direct sum.
+Consider some function spaces on the index set $\Lambda$ such as $V=\ell^p(\Lambda)$ ($1\le p\le\infty$) or $c_0(\Lambda)$.
+We define \emph{$V$-direct sum} of $(X_\lambda)$ as
+\begin{align*}
+\bigoplus_\lambda^{\ell^p}X_\lambda&:=\{\,(x_\lambda)\in\prod_\lambda X_\lambda:\sum_\lambda\|x_\lambda\|^p<\infty\,\},\quad(1\le p<\infty)\\
+\bigoplus_\lambda^{\ell^\infty}X_\lambda&:=\{\,(x_\lambda)\in\prod_\lambda X_\lambda:\sup_\lambda\|x_\lambda\|<\infty\,\},\\
+\bigoplus_\lambda^{c_0}X_\lambda&:=\{\,(x_\lambda)\in\prod_\lambda X_\lambda:\forall\e>0\ \exists F\subset\Lambda,\ |F|<\infty,\ \lambda\in\Lambda\setminus F\Rightarrow\|x_\lambda\|<\e\,\}.
+\end{align*}
+Note that $\ell^p$-direct sum for $1\le p<\infty$ and $c_0$-direct sum are completions of the algebraic direct sum with respect to the norms $\|(x_\lambda)\|=(\sum_\lambda\|x_\lambda\|^p)^{1/p}$ or $\sup_\lambda\|x_\lambda\|$, but $\ell^\infty$ cannot be recognized as a completion in general.
+The spaces $V=\ell^p$ and $c_0$ are not properly generalized to arbitrary Banach spaces.
+There are several ways to generalize the construction method mimicking the direct sum such as direct integrals or $\psi$-direct sums of Bonsall and Duncan.
+
+For Banach algebras or C*-algebras, the case $V=\ell^\infty$ or $c_0$ is often chosen in order to make the multiplication closed.
+The \emph{direct sum} and \emph{restricted sum} in this problem refer to $\ell^\infty$-direct sum and $c_0$-direct sum respectively, and the $\ell^\infty$-direct sum is usually in fact called \emph{product} rather than direct sum because it satisfies the universal property of categorical products in the category of Banach spaces in which morphisms are set to be norm-decreasing.
+\end{rmk}
+
+\begin{prb}
+Let $A$ be a Banach algebra and $\Omega$ a non-empty set.
+Denote by $\ell^\infty(\Omega,A)$ the set of all bounded maps $f$ from $\Omega$ to $A$.
+Show that $\ell^\infty(\Omega,A)$ is a Banach algebra with the pointwise-defined operations and the sup-norm $\|f\|=\sup\{\,\|f(\omega)\|:\omega\in\Omega\,\}$.
+If $\Omega$ is a compact Hausdorff space, show that the set $C(\Omega,A)$ of all continuous functions from $\Omega$ to $A$ is a closed subalgebra of $\ell^\infty(\Omega,A)$.
+\end{prb}
+\begin{sol}
+The completeness of $\ell^\infty(\Omega,A)=\bigoplus_{\omega\in\Omega}A$ follows from the previous problem, so we will only show the closedness of $C(\Omega,A)$, and the rest is trivial.
+the compactness of $\Omega$ is required to satisfy $C(\omega,A)\subset\ell^\infty(\Omega,A)$.
+
+We follow the proof of a well-known fact: the uniform limit of continuous functions is continuous.
+Let $(f_n)_n$ be a sequence of $C(\Omega,A)$ convergent to $f\in\ell^\infty(\Omega,A)$.
+Fix $\omega\in\Omega$ and $\e>0$.
+Take $n$ such that $\|f_n-f\|<\frac13\e$.
+Let $\delta>0$ be such that $\|\omega-\omega'\|<\delta$ implies $\|f_n(\omega)-f_n(\omega')\|<\frac13\e$.
+Combining inequalities, we easily get $\|\omega-\omega'\|<\delta$ implies $\|f(\omega)-f(\omega')\|<\e$.
+\end{sol}
+
+
+\begin{prb}
+Give an example of a unital non-abelian Banach algebra $A$ in which 0 and $A$ are the only closed ideals.
+\end{prb}
+\begin{sol}
+Let $A=M_2(\C)$.
+Clearly $A$ is unital and non-abelian Banach algebra.
+Let $I\subset A$ be a non-zero ideal and take $0\ne i\in I$.
+The principal ideal
+\[(i)=\{\,\sum_{k=1}^na_kib_k:a_k,b_k\in A,\ n\in\N\,\}\]
+is also a non-zero ideal.
+Suppose $i=\mat{x&y\\z&w}$.
+Then, all of the following four matrices
+\[\mat{x&0\\0&0},\ \mat{0&y\\0&0},\ \mat{0&0\\z&0},\ \mat{0&0\\0&w}\]
+are of the form $aib$ for some $a,b\in A$ and hence belong to the ideal $(i)$, and at least one of them is non-zero.
+By repeated swapping their columns and rows, and by summing them with appropriate scaling, we obtain all elements of $A$, which proves $(i)=A$.
+Therefore, the only non-zero ideal of $A$ is $A$.
+\end{sol}
+\begin{rmk}
+When a Banach algebra has only two closed ideals, 0 and itself, we say it is \emph{simple}.
+In the same way as the solution, we can easily show $B(\C^n)=M_n(\C)$ is simple.
+If a Banach space $X$ is infinite-dimensional, then $B(X)$ is not simple because it has a closed ideal $K(X)$, the space of compact operators.
+If $X$ is further a Hilbert space, then $K(X)$ is the smallest non-zero closed ideal of $B(X)$ (Theorem 2.4.5 and 2.4.7).
+If $X$ is further separable, then $K(X)$ is the unique proper non-zero closed ideal of $B(X)$ (Theorem 4.1.15).
+\end{rmk}
+
+
+\begin{prb}
+Give an example of a non-modular maximal ideal in an abelian Banach algebra.
+(If $A$ is the disc algebra, let $A_0=\{\,f\in A:f(0)=0\,\}$.
+Then $A_0$ is a closed subalgebra of $A$ and admits an ideal of the type required.)
+\end{prb}
+\begin{sol}
+Let $A_1:=\{\,f\in A_0:f'(0)=0\,\}$.
+We will show $A_1$ is non-modular maximal ideal in $A_0$.
+Note that $A_0^2\subset A_1$ because $(fg)'(0)=f'(0)g(0)+f(0)g'(0)=0$ for $f,g\in A_0$.
+Thus, $A_1$ is a maximal ideal since $A_0A_1\subset A_0^2\subset A_1$ and $A_0/A_1\cong\C$ is simple.
+Assume $A_1$ is modular so that there is $u\in A_0$ satisfying $f-fu\in A_1$ for all $f\in A_0$.
+Then, $fu\in A_0^2\subset A_1$ implies $f\in A_1$, which is a contradiction.
+Therefore, $A_1$ is modular.
+\end{sol}
+
+
+\begin{prb}
+Let $A$ be a unital abelian Banach algebra.
+\begin{parts}
+\item
+Show that $\sigma(a+b)\subset\sigma(a)+\sigma(b)$ and $\sigma(ab)\subset\sigma(a)\sigma(b)$ for all $a,b\in A$.
+Show that this is not true for \emph{all} Banach algebras.
+\item
+Show that if $A$ contains an \emph{idempotent} $e$ (that is, $e=e^2$) other than 0 and 1, then $\Omega(A)$ is disconnected.
+\item
+Let $a_1,\cdots,a_n$ generate $A$ as a Banach algebra.
+Show that $\Omega(A)$ is homeomorphic to a compact subset of $\C^n$.
+More precisely, set
+\[\sigma(a_1,\cdots,a_n)=\{\,(\tau(a_1),\cdots,\tau(a_n)):\tau\in\Omega(A)\,\}.\]
+Show that the canonical map from $\Omega(A)$ to $\sigma(a_1,\cdots,a_n)$ is a homeomorphism.
+\end{parts}
+\end{prb}
+\begin{sol}
+(a)
+It easily follows from
+\[\sigma(a+b)=\im(\hat a+\hat b)\cup\{0\}\subset(\im\hat a\cup\{0\})+(\im\hat b\cup\{0\})=\sigma(a)+\sigma(b),\]
+and
+\[\sigma(ab)=\im(\hat a\hat b)\cup\{0\}\subset(\im\hat a\cup\{0\})(\im\hat b\cup\{0\})=\sigma(a)\sigma(b),\]
+even for non-unital case.
+If it is non-abelian such as $A=M_2(\C)$, then
+\[\sigma((\mat[small]{0&1\\1&0}))=\{\pm1\}\not\subset\{0\}=\sigma((\mat[small]{0&1\\0&0}))+\sigma((\mat[small]{0&0\\1&0}))\]
+and
+\[\sigma((\mat[small]{1&0\\0&0}))=\{0,1\}\not\subset\{0\}=\sigma((\mat[small]{0&1\\0&0}))\sigma((\mat[small]{0&0\\1&0})).\]
+
+(b)
+By the Gelfan representation we have $\im\hat e=\{0,1\}$ so that the two closed subsets $\hat e^{-1}(0)$ and $\hat e^{-1}(1)$ partition the character space $\Omega(A)$.
+Since $e$ is neither 0 nor 1, the both subsets are non-empty, so $\Omega(A)$ is disconnected.
+
+(c)
+The set $\sigma(a_1,\cdots,a_n)$ is called the \emph{joint spectrum} of $a_1,\cdots,a_n$.
+For the canonical map $\Omega(A)\to\sigma(a_1,\cdots,a_n)$, the surjectivity is obvious by definition, and the continuity follows from the fact that the topology of $\Omega(A)$ is induced from the weak* topology of the dual $A^*$.
+The injectivity is due to the assumption that $a_1,\cdots,a_n$ are generators of $A$: if $\tau(a_i)=\tau'(a_i)$ for $i=1,\cdots,n$, then it must be that $\tau(a)=\tau(a)$ for all $a\in A$, and eventually $\tau=\tau'$.
+Since a continuous bijection from a compact set to a Hausdorff space is homeomorphism, the canonical map is homeomorphism.
+\end{sol}
+
+
+\begin{prb}
+Let A be a unital Banach algebra.
+\begin{parts}
+\item
+If $a$ is invertible in $A$, show that $\sigma(a^{-1})=\{\,\lambda^{-1}:\lambda\in\sigma(a)\,\}$.
+\item
+For any element $a\in A$, show that $r(a^n)=(r(a))^n$.
+\item
+If $A$ is abelian, show that the Gelfand representation is isometric if and only if $\|a^2\|=\|a\|^2$ for all $a\in A$.
+\end{parts}
+\end{prb}
+\begin{sol}
+(a), (b)
+It easily follows from the Gelfand representation.
+
+(c)
+If the Gelfand representation is isometric, then
+\[\|a^2\|=\|(a^2)^{\hat{\ }}\|=r(a^2)=r(a)^2=\|\hat a\|^2=\|a\|^2.\]
+Conversely,
+\[\|\hat a\|=r(a)=\lim_{n\to\infty}\|a^n\|^{1/n}=\lim_{n\to\infty}\|a^{2^n}\|^{1/2^n}=\|a\|.\qedhere\]
+\end{sol}
+
+
+\begin{prb}
+Let $A$ be a Banach algebra.
+Show that the spectral radius function $r:A\to\R$ is upper semi-continuous.
+(One can show that $r$ is not in general continuous [Hal, Problem 104].)
+\end{prb}
+\begin{sol}
+We may assume $A$ is unital since the spectral radius function of non-unital Banach algebra is the restriction of spectral radius function of its unitization.
+Suppose $r$ is not upper semi-continuous so that there is a sequence $a_n$ in $A$ that converges to $a$ and satisfies $r(a_n)>r(a)+\e$ for all $n$ where $\e>0$.
+The compactness of spectrum lets some $\lambda_n\in\sigma(a_n)$ satisfy $|\lambda_n|=r(a_n)$ for each $n$.
+Since $r(a_n)$ is uniformly bounded by $\sup_n\|a_n\|$, we may assume $\lambda_n$ converges to $\lambda$ by extracting subsequence.
+The limit $\lim_{n\to\infty}(a_n-\lambda_n)=a-\lambda$ is not invertible because the set of invertible elements is open, thus we have $\lambda\in\sigma(a)$.
+Limiting $|\lambda_n|=r(a_n)>r(a)+\e$, we obtain a contradiction $|\lambda|>r(a)$.
+Therefore, $r$ is upper semi-continuous.
+\end{sol}
+
+
+\begin{prb}
+Show that if $B$ is a maximal abelian subalgebra of a unital Banach algebra $A$, then $B$ is closed and contains the unit.
+Show that $\sigma_A(b)=\sigma_B(b)$ for all $b\in B$.
+\end{prb}
+\begin{sol}
+If $A$ is abelian, $A=C([-1,1])$ for example, then $\{\,f\in A:f(0)=0\,\}$ is a proper maximal abelian subalgebra of $A$ that does not contain the unit of $A$.
+Henceforth, we might as well understand the maximality of $B$ as something may not be proper.
+Nevertheless, in the only non-trivial situation that $A$ is non-abelian, $B$ is always proper so that we are allowed not to dig deeper.
+
+Assume $A$ is non-abelian.
+Let $B'$ be the \emph{commutant} of $B$ which is defined as the set containing all $a\in A$ which commute every $b\in B$.
+Since $B$ is abelian, $B\subset B'$.
+If $b\in B'\setminus B$ exsits, then the Banach subalgebra generated by $B\cup\{b\}$ is abelian subalgebra of $A$ contradicting the maximality of $B$, thus we have $B=B'$.
+We can easily show that $B'$ is closed and contains unit of $A$.
+
+If $b\in B$ is invertible in $A$, then its inverse is also in $B'=B$, and it easily deduces $\sigma_A(b)=\sigma_B(b)$ for $b\in B$.
+\end{sol}
+
+
+\begin{prb}
+Let $(\Omega,\mu)$ be a measure space.
+Show that the linear span of the idempotents is dense in $L^\infty(\Omega,\mu)$.
+Show that the spectrum of the Banach algebra $L^\infty(\Omega,\mu)$ is totally disconnected, by showing that if $A$ is an arbitrary abelian Banach algebra in which the idempotents have dense linear span, its spectrum $\Omega(A)$ is totally disconnected.
+\end{prb}
+\begin{sol}
+Idempotents exactly coincide with measurable characteristic functions in $L^\infty(\Omega,\mu)$, that is, the linear span of idempotents means the space of simple functions.
+For $f\in L^\infty(\Omega,\mu)$ and $\e>0$, if we let $E_k:=f^{-1}([(k-\frac12)\e,(k+\frac12)\e))$, then at most finite number of them has positive measure so that a function $g:=\sum_{k=-\infty}^{\infty}\chi_{E_k}$ is equal to a simple function almost everywhere, and we have $\|f-g\|\le\frac12\e<\e$.
+This proves the linear span of idempotents is dense in $L^\infty(\Omega,\mu)$
+
+Let $A$ be an abelian Banach algebra in which the idempotents have dense linear span.
+In order to show the total disconnectedness, we will separate arbitrary pair of distinct points of the spectrum $\Omega(A)$ with clopen sets, using the Gelfand representation of idempotents.
+Let $\tau$ and $\tau'$ be distinct in $\Omega(A)$.
+For any idempotent $e$, we have $\tau(e)=\tau'(e)$, because $\hat e^{-1}(\tau(e))$ and $\hat e^{-1}(\tau'(e))$ are clopen subsets of $\Omega(A)$ that separate $\tau$ and $\tau'$ if it is not the case.
+The desity of idempotents obtains the equality $\tau(a)=\tau'(a)$ for all $a\in A$, and this contradicts to the assumption $\tau\ne\tau'$.
+Therefore, the spectrum $\Omega(A)$ is totally disconnected.
+\end{sol}
+
+
+\begin{prb}
+Let $A=C^1([0,1])$, as in Example 1.2.6.
+Let $x:[0,1]\to\C$ be the inclusion.
+Show that $x$ generates $A$ as a Banach algebra.
+If $t\in[0,1]$, show that $\tau_t$ belongs to $\Omega(A)$, where $\tau_t$ is defined by $\tau_t(f)=f(t)$, and show that the map $[0,1]\to\Omega(A),\ t\mapsto\tau_t$, is a homeomorphism.
+Deduce that $r(f)=\|f\|_\infty\ (f\in A)$.
+Show that the Gelfand representation is not surjective for this example.
+\end{prb}
+\begin{sol}
+Note that $x$ does not generate $A$, but we will show $\{1,x\}$ generates $A$.
+Let $f\in C^1([0,1])$ and $\e>0$.
+By the Stone-Weierstrass theorem, there is $h\in\C[x,\bar x]\subset A$ such that $\|f'-h\|_\infty<\frac12\e$ since $f'\in C([0,1])$.
+Because $x=\bar x$ on the real interval $[0,1]$, the function $h$ is a polynomial of $x$.
+Define a polynomial $g$ such that $g(t):=f(0)+\int_0^th(s)\,ds$.
+Then,
+\[|f(t)-g(t)|\le\int_0^t|f'(s)-h(s)|\,ds\le\|f'-h\|_\infty<\frac12\e\]
+implies $\|f-g\|=\|f-g\|_\infty+\|f'-h\|_\infty<\e$.
+Thus the set of polynomials is dense in $A$, that is, the set $\{1,x\}$ generates $A$.
+
+The functional $\tau_t$ on $A$ is clearly a character, to show this, we only need to check that it is non-zero and it preserves the three algebraic structures of Banach algebras.
+For the map $t\mapsto\tau_t$ given in the problem, the injectivity and continuity is also clear.
+We are mainly required to show its surjectivity, and suppose not.
+For some $\tau\in\Omega(A)$, there can find $f_t\in A$ such that $\tau_t(f_t)\ne\tau(f_t)$ for each $t\in[0,1]$.
+Replacing $f_t$ to $f_t-\tau(f_t)$, we may assume $\tau_t(f_t)\ne\tau(f_t)=0$.
+Consider an open cover $\{U_t\}_{t\in[0,1]}$ of $[0,1]$ defined by $U_t:=f_t^{-1}(\C\setminus\{0\})$.
+From the compactness of $[0,1]$, we have a finite subset $F\subset[0,1]$ such that $\{U_t\}_{t\in F}$ is still a cover.
+Define $f:=\sum_{t\in F}|f_t|^2=\sum_{t\in F}\bar f_tf_t\in A$, which satisfies $f(t)>0$ for all $t\in[0,1]$.
+Then, $f$ is invertible in $A$ since the inverse $1/f$ itself and its derivative $(1/f)'=-f'/f^2$ are both continuous, however, we have $\tau(f)=\sum_{t\in F}\tau(\bar f_t)\tau(f_t)=0$, which is a contradiction.
+Therefore, the map $[0,1]\to\Omega(A)$ is surjective, and thus is a continuous bijection between compact Hausdorff spaces, so we are done.
+
+For the equation $r(f)=\|f\|_\infty$, we have two ways to show it.
+First, it follows from the fact that $\lambda\in\im f$ if and only if $f-\lambda$ is invertible in $A$.
+Second, since the composition of the Gelfand representation of $A$ and the isomorphism induced by the above homeomorphism
+\[A=C^1([0,1])\to C(\Omega(A))\xrightarrow{\sim}C([0,1])\]
+is realized as the inclusion $f\mapsto f$ by the relation $f(t)=\tau_t(f)=\hat f(\tau_t)$, the spectral radius $r(f)$ eqauls to be the norm $\|f\|_\infty$ on $C([0,1])$.
+Obviously, we can check the Gelfand representation is not surjective.
+\end{sol}
+
+
+\begin{prb}
+Let $A$ be a unital Banach algebra and set
+\[\zeta(a)=\inf_{\|b\|=1}\|ab\|\qquad(a\in A).\]
+We say that an element $a$ of $A$ is a \emph{left topological zero divisor} if there is a sequence of unit vectors $(a_n)$ of $A$ such that $\lim_{n\to\infty}aa_n=0$.
+Equivalently, $\zeta(a)=0$.
+\begin{parts}
+\item
+Show that left topological zero divisors are not invertible.
+\item
+Show that $|\zeta(a)-\zeta(b)|\le\|a-b\|$ for all $a,b\in A$.
+Hence, $\zeta$ is a continuous function.
+\item
+If $a$ is a boundary point of the set $\Inv(A)$ in $A$, show that there is a sequence of invertible elements $(v_n)$ converging to a such that $\lim_{n\to\infty}\|v_n^{-1}\|^{-1}=0$.
+Using the continuity of $\zeta$, deduce that $\zeta(a)=0$.
+Thus, boundary points of $\Inv(A)$ are left topological zero divisors.
+In particular, if $\lambda$ is a boundary point of the spectrum of an element $a$ of $A$, then $\lambda-a$ is a left topological zero divisor.
+\item
+Let $\Omega$ be a compact Hausdorff space and let $A=C(\Omega)$.
+Show that in this case the topological zero divisors are precisely the non-invertible elements (if $f$ is non-invertible, then 0 is a boundary point of the spectrum of $\bar ff$).
+\item
+Give an example of a unital Banach algebra and a non-invertible element that is not a left topological zero divisor.
+\end{parts}
+\end{prb}
+\begin{sol}
+(a)
+Let $a$ is a left topological zero divisor and $a_n$ be a sequence with $aa_n\to0$ as $n\to\infty$.
+If $a^{-1}$ exists, then $\|a_n\|\le\|a^{-1}\|\|aa_n\|\to0$ implies $a=0$, a contradiction.
+
+(b)
+We have
+\begin{align*}
+\zeta(a)=\inf_{\|c\|=1}\|ac\|
+&\le\inf_{\|c\|=1}(\|ac-bc\|+\|bc\|)\\
+&\le\inf_{\|c\|=1}(\|a-b\|+\|bc\|)=\|a-b\|+\zeta(b).
+\end{align*}
+Exchanging $a$ and $b$, we get the desired inequality.
+
+(c)
+We show a little bit stronger result that any sequences $(v_n)_n$ in $\Inv(A)$ that converge to $a$ satisfy $\lim_{n\to\infty}\|v_n^{-1}\|^{-1}=0$.
+Suppose not and find a bound $\|v_n^{-1}\|\le M$ by taking a subsequence of $v_n$, if necessary.
+Then, since
+\[\|v_n^{-1}-v_{n'}^{-1}\|\le\|v_n^{-1}\|\|v_n-v_{n'}\|\|v_{n'}^{-1}\|\le M^2\|v_n-v_{n'}\|,\]
+the sequence $v_n^{-1}$ is Cauchy.
+It limit must be the inverse of $a$ because
+\[\max\{\|av_n^{-1}-1\|,\|v_n^{-1}a-1\|\}\le\|v_n^{-1}\|\|a-v_n\|\to0\]
+as $n\to\infty$.
+It contradicts to the fact $\Inv(A)$ is open.
+The boundary point $a$ is a left topological zero divisor becasue $\zeta(a)\le\|av_n^{-1}\|\|v_n^{-1}\|^{-1}\to0$ when $n\to\infty$.
+
+(d)
+Let $f$ be a non-invertible element of $A=C(\Omega)$ and take $\omega_0\in\Omega$ such that $f(\omega_0)=0$.
+We suggest two solutions.
+For the first, construct a sequence $(f_n)_n$ in $A$ as
+\[f_n(\omega):=\begin{cases}1-\frac{\|\omega-\omega_0\|}n&,\|\omega-\omega_0\|\le\frac1n\\0&,\|\omega-\omega_0\|>\frac1n\end{cases}.\]
+They have $\|f_n\|=1$.
+For $\e>0$, find $\delta>0$ such that $|f(\omega)|<\e$ for $\|\omega-\omega_0\|<\delta$ and take $n>\delta^{-1}$.
+Then, $|f(\omega)f_n(\omega)|<\e$ for all $\omega\in\Omega$, so $f$ is a topological zero divisor.
+
+Second, since $\bar ff$ is not invertible and has a spectrum on the positive real line, $\sigma(\bar ff)$ has 0 as a boundary point and we can use the part (c) of this problem to deduce $\bar ff$ is a topological zero divisor.
+If a sequence $(g_n)_n$ of unit vectors in $A$ such that $\bar ffg_n$ converges to 0, then
+so does $|fg_n|^2=\bar g_n\bar ffg_n$, so we can find out that $f$ is a topological zero divisor.
+
+(e)
+Let $A$ be the disc algebra, the algebra of continuous functions on the closed unit disc $\D$ and holomorphic on the interior.
+If $\|f\|=1$, then by the maximum modulus principle we have $|z|=1$ such that $|f(z)|=1$, thus $|zf(z)|=1$ and $\|if\|=1$, where $i:\D\to\C$ refers to the inclusion, which is non-invertible.
+This argues that $i\in A$ is never a topological divisor.
+\end{sol}
+
+
+\begin{prb}
+A derivation on an algebra $A$ is a linear map $d:A\to A$ such that $d(ab)=adb+d(a)b$.
+Show that the Leibnitz formula,
+\[d^n(ab)=\sum_{r=0}^n\binom nrd^r(a)d^{n-r}(b)\qquad(n=1,2,\cdots),\]
+holds.
+\end{prb}
+\begin{sol}
+Use the induction argument.
+Clear for $n=1$.
+If the formula holds for $n$, then
+\begin{align*}
+d^{n+1}(ab)
+&=\sum_{r=0}^n\binom nrd^r(a)d^{n-r+1}(b)+\sum_{r=0}^n\binom nrd^{r+1}(a)d^{n-r}(b)\\
+&=\sum_{r=0}^n\binom nrd^r(a)d^{n-r+1}(b)+\sum_{r=1}^{n+1}\binom n{r-1}d^r(a)d^{n-r+1}(b)\\
+&=\sum_{r=0}^{n+1}\binom{n+1}rd^r(a)d^{n-r+1}(b)
+\end{align*}
+since $\binom nr+\binom n{r-1}=\binom{n+1}r$.
+\end{sol}
+
+
+\begin{prb}
+Suppose that $d$ is a bounded derivation on a unital Banach algebra $A$ and $\lambda\in\C\setminus\{0\}$ such that $da=\lambda a$.
+Show that $a$ is nilpotent, that is, that $a^n=0$ for some positive integer $n$ (use the boundedness of $\sigma(d)$).
+\end{prb}
+\begin{sol}
+The derivation is a bounded linear operator on a Banach space $A$, so we can consider the spectrum $\sigma(d)$ in a unital Banach algebra $B(A)$.
+If $a^n\ne0$ for all positive integer $n$, then $d(a^n)=na^{n-1}d(a)=\lambda na^n$ implies $\lambda n\in\sigma(d)$, which is a contradiction to the boundedness of $\sigma(d)$.
+\end{sol}
+
+
+\begin{prb}
+Suppose that $d$ is a bounded derivation on a unital Banach algebra $A$, and that $a\in A$ and $d^2a=0$.
+Show that $da$ is quasinilpotent.
+(Hint: Show that $d^{n+1}(a^n)=0$ and hence, $d^n(a^n)=n!(da)^n$.)
+For $a\in A$, the map $b\mapsto[a,b]=ab-ba$ is a bounded derivation on $A$.
+Therefore, the Kleinecke-Shirokov theorem holds: If $[a,[a,b]]=0$, then $[a,b]$ is quasinilpotent.
+\end{prb}
+\begin{sol}
+We have $d^n(a^n)=d^{n-1}(na^{n-1}da)=d^{n-2}(n(n-1)a^{n-2}(da)^2)=\cdots=n!(da)^n$.
+Then,
+\[\|(da)^n\|=\frac1{n!}\|d^n(a^n)\|\le\frac1{n!}(\|d\|\|a\|)^n\to0\]
+as $n\to\infty$, so $da$ is quasi-nilpotent.
+\end{sol}
+
+
+\begin{prb}
+Let $H$ be a Hilbert space with an orthonormal basis $(e_n)_{n=1}^\infty$ and let $u$ be an operator in $B(H)$ diagonal with respect to $(e_n)$ with diagonal the sequence $(\lambda_n)$.
+Show that $u$ is compact if and only if $\lim_{n\to\infty}\lambda_n=0$.
+\end{prb}
+\begin{sol}
+($\Rightarrow$)
+Suppose the sequence $(\lambda_n)_n$ does not converge to 0.
+We may assume, taking a subsequence, there is $M>0$ such that $|\lambda_n|\ge M$ for all $n$.
+Then, the sequence $u(e_n)=\lambda_ne_n$ has no convergent subsequences since $\|\lambda_ne_n-\lambda_{n'}e_{n'}\|^2=\|\lambda_ne_n\|^2+\|\lambda_{n'}e_{n'}\|^2\ge 2M^2$ for all pairs $n$ and $n'$, hence $u$ is not compact.
+
+($\Leftarrow$)
+Let $(x^k)_k$ be an arbitrary sequence of $H$ with $\|x^k\|\le1$.
+Using the diagonal argument, take a subsequence $(u(x^j))_j$ of $(u(x^k))_k$ such that for each $n$ we have $\<u(x^j),e_n\>=\lambda_n\<x^j,e_n\>\to y_n$ for some $y_n$ as $j\to\infty$.
+Note that for any finite $F\subset\N$ we have
+\[\sum_{n\in F}|y_n|^2=\lim_{j\to\infty}\sum_{n\in F}|\lambda_n\<x^j,e_n\>|^2\le\max_{n\in F}|\lambda_n|^2\]
+since $\|x^j\|\le1$.
+Limiting $F\uparrow\N$, the sum $y:=\sum_{n=1}^\infty y_ne_n$ can be shown to be in $H$.
+We will show the sequence $(u(x^j))_j$ converges to $y$.
+
+For $\e>0$, let $n_0$ be such that $|\lambda_n|<\frac1{2\sqrt2}\e$ for $n>n_0$.
+With this $n_0$, define $j_0$ such that $j>j_0$ implies $|\<u(x^j),e_n\>-y_n|<\frac1{\sqrt{2n_0}}\e$ for each $1\le n\le n_0$.
+Then we have
+\begin{align*}
+\|u(x^j)-y\|^2
+&=\sum_{n\le n_0}|\<u(x^j),e_n\>-y_n|^2+\sum_{n>n_0}|\<u(x^j),e_n\>-y_n|^2\\
+&\le\frac12\e^2+\sum_{n>n_0}2(|\<u(x^j),e_n\>|^2+|y_n|^2)\\
+&\le\frac12\e^2+\sup_{n>n_0}2(|\lambda_n|^2+|\lambda_n|^2)<\e^2
+\end{align*}
+for all $j>j_0$.
+The second inequality is due to limiting $F\uparrow\N_{>n_0}$.
+Therefore, $u(x^j)$ converges to $y$, and hence $u$ is compact.
+\end{sol}
+
+
+\begin{prb}
+Let $X$ be a Banach space.
+If $p\in B(X)$ is a compact idempotent, show that its rank is finite.
+\end{prb}
+\begin{sol}
+For arbitrary $x\in X$, we have $x=p(x)+(1-p(x))$.
+Moreover, if $x=p(y)=z-p(z)$ for some $y$ and $z\in X$, then $x=p(y)=p^2(y)=p(z-p(z))=p(z)-p^2(z)=0$.
+Thus we have that $X=\im p\oplus\im(1-p)$.
+Since $1-p$ is Fredholm of index zero, the image of $1-p$ has finite condimension, which means $\im p$ has finite dimension.
+\end{sol}
+
+
+\begin{prb}
+Let $u:X\to Y$ be a compact operator between Banach spaces.
+Show that if the range of $u$ is closed, then it is finite-dimensional.
+(Hint: Show that the well-defined operator
+\[X/\ker(u)\to u(X),\quad x+\ker(u)\mapsto u(x),\]
+is an invertible compact operator.)
+\end{prb}
+\begin{sol}
+Let $\tilde u$ be the map given in the hint.
+By definition, $\tilde u$ is a bounded bijection.
+Since $u(X)$ is closed and hence a Banach space, $\tilde u$ is invertible by the open mapping theorem.
+Also, $\tilde u$ is compact beacuse $\tilde u(\bar B_{X/\ker(u)})=u(\bar B_X)$.
+The existence of an invertible compact operator $T:X\to Y$ implies that $\id_X=T^{-1}T$ and $\id_Y=TT^{-1}$ are compact, therefore $X$ and $Y$ are finite-dimensional.
+\end{sol}
+
+
+\begin{prb}
+Let $X,Y$ be Banach spaces and suppose that $u\in B(X,Y)$ has compact transpose $u^*$.
+Show that $u$ is compact using the fact that $u^{**}$ is compact.
+\end{prb}
+\begin{sol}
+If we think of as $X\subset X^{**}$ with the natural isometric embedding, $u=u^{**}|_X$.
+Since the transpose and restriction of compact operators are compact, $u$ is compact.
+\end{sol}
+
+
+\begin{prb}
+Let $u:X\to Y$ and $u':X'\to Y'$ be bounded operators between Banach spaces.
+Show that the linear map
+\[u\oplus u':X\oplus X'\to Y\oplus Y',\quad(x,x')\mapsto(u(x), u'(x')),\]
+is bounded with norm $\max\{\|u\|,\|u'\|\}$.
+Show that if $u$ and $u'$ are Fredholm operators, so is $u\oplus u'$, and $\ind(u\oplus u')=\ind(u)+\ind(u')$.
+\end{prb}
+\begin{sol}
+Assume $\|u\|\ge\|u'\|$.
+For $\|(x,x')\|=\|x\|+\|x'\|=1$, we have $\|(u\oplus u')(x,x')\|=\|u(x)\|+\|u'(x')\|\le\|u\|\|x\|+\|u'\|\|x'\|\le\|u\|$.
+Also, for $\e>0$, if we choose a unit vector $x$ such that $\|u(x)\|>\|u\|+\e$, then we have $\|(x,0)\|=1$ and $\|u\|+\e<\|u(x)\|=\|(u\oplus u')(x,0)\|\le\|u\oplus u'\|$.
+Thus, $\|u\oplus u'\|=\|u\|$.
+
+Since $\ker(u\oplus u')=\ker u\oplus\ker u'$ and $\im(u\oplus u')=\im u\oplus\im u'$, it follows that nullity, defect, and index are all additive.
+\end{sol}
+
+
+\begin{prb}
+If $X$ is an infinite-dimensional Banach space and $u\in B(X)$, show that
+\[\bigcap_{v\in K(X)}\sigma(u+v)=\sigma(u)\setminus\{\,\lambda\in\C:u-\lambda\text{ is Fredholm of index zero}\,\}.\]
+\end{prb}
+\begin{sol}
+($\subset$)
+Let $\lambda\in\sigma(u+v)$ for all $v\in K(X)$.
+Letting $v=0$, $\lambda\in\sigma(u)$.
+If $u-\lambda$ is Fredholm of index zero, then there is an invertible $w$ such that $v:=1-w(u-\lambda)$ is finite-rank so that $u+w^{-1}v-\lambda=w^{-1}$ is invertible, hence $\lambda\notin\sigma(u+w^{-1}v)$ for compact $w^{-1}v$.
+
+($\supset$)
+Let $\lambda$ belong to the right-hand side.
+Then, $u-\lambda$ is Fredholm with non-zero index, thus the element $u+v-\lambda$ cannot be invertible for any compact $v$.
+\end{sol}
+
+
+
+
+\newpage
+\section{C*-algebras and Hilbert space operators}
+
+\begin{prb}
+Let $A$ be a Banach algebra such that for all $a\in A$ the implication
+\[Aa=0\quad\text{or}\quad aA=0\quad\Rightarrow\quad a=0\]
+holds.
+Let $L,R$ be linear mappings from $A$ to itself such that for all $a,b\in A$,
+\[L(ab)=L(a)b,\quad R(ab)=aR(b),\quad\text{and}\quad R(a)b=aL(b).\]
+Show that $L$ and $R$ are necessarily continuous.
+\end{prb}
+\begin{sol}
+The continuity of $L$ and $R$, in fact, only requires the condition $R(a)b=aL(b)$.
+Let $(b_n)_n$ be a sequence of $A$ converging to 0.
+Since for every $a\in A$ we have $aL(b_n)=R(a)b_n\to0$, we get $L(b_n)\to0$ as $n\to\infty$ and the continuity of $L$.
+The continuity of $R$ is shown in the same manner.
+\end{sol}
+
+
+\begin{prb}
+Let $A$ be a unital C*-algebra.
+\begin{parts}
+\item
+If $a,b$ are positive elements of $A$, show that $\sigma(ab)\subset\R^+$.
+\item
+If $a$ is an invertible element of $A$, show that $a=u|a|$ for a unique unitary $u$ of $A$.
+Give an example of an element of $B(H)$ for some Hilbert space $H$ that cannot be written as a product of a unitary times a positive operator.
+\item
+Show that if $a\in\Inv(A)$, then $\|a\|=\|a^{-1}\|=1$ if and only if a is a uni tary.
+\end{parts}
+\end{prb}
+\begin{sol}
+(a)
+Using $\sigma(ab)\cup\{0\}=\sigma(ba)\cup\{0\}$, we have $\sigma(ab)=\sigma(a^{1/2}(a^{1/2}b))\subset\sigma(a^{1/2}ba^{1/2})\cup\{0\}\subset\R^+$.
+
+(b)
+Note that the absolute value for non-normal element $a$ is defined to be $|a|:=(a^*a)^{1/2}$.
+Uniqueness follows from the invertibility of $a$ (or $|a|$).
+It is enough to show $a|a|^{-1}$ is unitary, and it is true:
+\[(a|a|^{-1})^*(a|a|^{-1})=|a|^{-1}a^*a|a|^{-1}=1,\]
+and
+\[(a|a|^{-1})(a|a|^{-1})^*=a|a|^{-2}a^*=a(a^*a)^{-1}a^*=1.\]
+
+We claim that all non-invertible isometries cannot be written as a product of a unitary and a positive.
+Let $b\in B(H)$ be a positive isometry.
+Then, $b^*=b$ and $b^*b=1$ imply $b^2=1$, and since $a$ is positive, we get $b=(b^2)^{1/2}=1$.
+Therefore, if we take a non-invertible isometry $a\in A$, then the assumption that $a=up$ for unitary $u$ and positive $p$ leads to a contradiction that $u^{-1}a$ is a positive isometry so that $a$ have to be $u$ and invertible.
+One of the typical examples of non-invertible isometries is the unilateral shift on $\ell^2(\N)$.
+
+(c)
+The backward implication is trivial, so let $\|a\|=\|a^{-1}\|=1$.
+The condition in the problem is equivalent to $\|a^*a\|=\|(a^*a)^{-1}\|=1$ by the C*-identity.
+Since $a^*a$ is normal, we can apply the spectral radius formla $\|a^*a\|=r(a^*a)$, which proves that $\sigma(a^*a)$ is a subset of the unit circle.
+Furthermore, we get $\sigma(a^*a)=\{1\}$ because $a^*a$ is positive, so $\sigma(a^*a-1)=\{0\}$ implies $\|a^*a-1\|=r(a^*a-1)=0$ and $a$ is finally a unitary.
+\end{sol}
+\begin{rmk}
+We should be careful on the use of polar decomposition theorem becasue it may not hold in general C*-algebra if it is not of the form $B(H)$ for Hilbert space $H$.
+Note the lack of normality implies $u$ and $v$ such that $a=u|a|^{-1}$ and $a=|a|^{-1}v$ may differ.
+\end{rmk}
+
+
+\begin{prb}
+Let $\Omega$ be a locally compact Hausdorff space, and suppose that the C*-algebra $C_0(\Omega)$ is generated by a sequence of projections $(p_n)_{n=1}^\infty$.
+Show that the hermitian element $h=\sum_{n=1}^\infty p_n/3^n$ generates $C_0(\Omega)$.
+\end{prb}
+\begin{sol}
+If we show $h$ is injective and vanishes nowhere, then the single function $h=h^*$ generates the whole $C_0(\Omega)$ by the Stone-Weierstrass theorem for locally compact spaces.
+
+Suppose $x$ and $y$ be distinct points of $\Omega$ such that $h(x)=h(y)$.
+We claim that $p_n(x)=p_n(y)$ for all $n$.
+Let $h_n:=\sum_{k=n}^\infty p_k/3^{k-n+1}$ and check that we have $h_1=h$, $3h_n=p_n+h_{n+1}$, and $0\le h_n\le\frac12$.
+It is clear that $h_1(x)=h_1(y)$.
+If $h_n(x)=h_n(y)$, then the following inequality
+\[|p_n(x)-p_n(y)|\le3|h_n(x)-h_n(y)|+|h_{n+1}(x)-h_{n+1}(y)|\le3\cdot0+\frac12\]
+proves $p_n(x)=p_n(y)$ since $p_n$ can only have either 0 or 1 as its value, and we also obtain $h_{n+1}(x)=h_{n+1}(y)$, which hence gets the claim by the induction.
+Take any function $f\in C_0(\Omega)$ satisfying $f(x)\ne f(y)$ so that it cannot belong to the generated *-subalgebra by $(p_n)_n$, so there must be $n$ such that $p_n(x)\ne p_n(y)$, which is a contradiction.
+Therefore, $h$ is injective.
+
+If $h(x)=0$, then $p_n(x)=0$ for all $n$.
+For a function $f\in C_0(\Omega)$ that does not vanish at $x$, it also cannot belong to the generated *-subalgebra by $(p_n)_n$, we have $h(x)>0$ for all $x\in\Omega$.
+\end{sol}
+
+
+\begin{prb}
+We shall see in the next chapter that all closed ideals in C*-algebras are necessarily self-adjoint.
+Give an example of an ideal in the C*-algebra $C(\D)$ that is not self-adjoint.
+\end{prb}
+\begin{sol}
+Let $I:=\{zf(z):f\in C(\D)\}$ be the principal ideal of the inclusion $z:\D\to\C$ in $C(\D)$.
+Then, $z\in I$ but $\bar z\notin I$ since the function $z/\bar z:\D\setminus\{0\}\to\C$ cannot be continuously extended to 0; $\lim_{x\to0}x/\bar{x}=1$ but $\lim_{x\to0}ix/\bar{ix}=-1$ where $x\in\R$.
+\end{sol}
+
+
+\begin{prb}
+Let $\f:A\to B$ be an isometric linear map between unital C*-algebras $A$ and $B$ such that $\f(a^*)=\f(a)^*$ ($a\in A$) and $\f(1)=1$.
+Show that $\f(A^+)\subset B^+$.
+\end{prb}
+\begin{sol}
+Let $a\in A$ be a positive element and assume $0\le a\le2$ without loss of generality.
+Then, $\f(a)$ is also hermitian and $\|1-\f(a)\|=\|\f(1-a)\|=\|1-a\|\le1$ implies $\f(a)\ge0$
+\end{sol}
+\begin{rmk}
+Also for a $^*$-homomorphism $\f:A\to B$, we have $\f(A^+)\subset B^+$ since $\sigma(\f(a))\subset\sigma(a)\cup\{0\}$.
+\end{rmk}
+
+\begin{prb}
+Let $A$ be a unital C*-algebra.
+\begin{parts}
+\item
+If $r(a)<1$ and $b=(\sum_{n=0}^\infty a^{*n}a^n)^{1/2}$, show that $b\ge1$ and $\|bab^{-1}\|<1$.
+\item
+For all $a\in A$, show that
+\[r(a)=\inf_{b\in\Inv(A)}\|bab^{-1}\|=\inf_{b\in A_{sa}}\|e^bae^{-b}\|.\]
+\end{parts}
+\end{prb}
+\begin{sol}
+(a)
+The convergence of the series defining $b$ follows from the condition $r(a)<1$.
+Since $a^{*n}a^n=(a^n)^*(a^n)\ge0$, we have $b=(1+\sum_{n=1}^\infty a^{*n}a^n)^{1/2}\ge1^{1/2}=1$, and the invertibility of $b$ is obtained.
+Then, because $b^{-2}>0$,
+\[\|bab^{-1}\|^2=\|(b^{-1}a^*b)(bab^{-1})\|=\|b^{-1}(b^2-1)b^{-1}\|=\|1-b^{-2}\|<1.\]
+
+(b)
+An element $a\in A$ has the form $e^b$ for a self-adjoint $b\in A$ if and only if $a$ is invertible and positive.
+Since $r(a)=r(b^{-1}(ba))=r(bab^{-1})\le\|bab^{-1}\|$ for invertible $b$, we clearly have
+\[r(a)\le\inf_{b\in\Inv(A)}\|bab^{-1}\|\le\inf_{b\in A_{sa}}\|e^bae^{-b}\|=\inf_{b\in\Inv(A)\cap A^+}\|bab^{-1}\|.\]
+Let $\e>0$.
+Since $r(\frac a{r(a)+\e})<1$, there is an invertible positive $b$ such that $\|b\frac a{r(a)+\e}b^{-1}\|<1$ by the part (a) of this problem.
+Therefore, limiting $\e\to0$ on $\inf_{b\in\Inv(A)\cap A^+}\|bab^{-1}\|<r(a)+\e$, we get the desired statement.
+\end{sol}
+
+
+\begin{prb}
+Let $A$ be a unital C*-algebra.
+\begin{parts}
+\item
+If $a,b\in A$, show that the map $f:\C\to A,\ \lambda\mapsto e^{i\lambda b}ae^{-i\lambda b}$, is differentible and that $f'(0)=i(ba-ab)$.
+\item
+Let $X$ be a closed vector subspace of $A$ which is unitarily invariant in the sense that $uXu^*\subset X$ for all unitaries $u$ of $A$.
+Show that $ba-ab\in X$ if $a\in X$ and $b\in A$.
+\item
+Deduce that the closed linear span $X$ of the projections in $A$ has the property that $a\in X$ and $b\in A$ implies that $ba-ab\in X$.
+\end{parts}
+\end{prb}
+\begin{sol}
+(a)
+Define $g:\C\to A$ by $g(\lambda):=e^{i\lambda b}i(ba-ab)e^{-i\lambda b}$.
+Then,
+\begin{align*}
+&\|f(\lambda+\mu)-f(\lambda)-\mu g(\lambda)\|\\
+&\qquad=\|e^{i(\lambda+\mu)b}a(1-e^{i\mu b}+i\mu b)e^{-i(\lambda+\mu)b}
++e^{i\lambda b}(e^{i\mu b}-1-i\mu b)ae^{-i\lambda b}\\
+&\qquad\qquad-\mu(e^{i(\lambda+\mu)b}iabe^{-i(\lambda+\mu)b}-e^{i\lambda b}iabe^{-i\lambda b})\|\\
+&\qquad\le2\|a\|\|e^{i\mu b}-1-i\mu b\|+2|\mu|\|ab\|\to0
+\end{align*}
+as $\mu\to0$, hence $f$ is differentiable with $f'=g$ and $f'(0)=i(ba-ab)$.
+
+(b)
+For $a\in X$, $b\in A$, and $\lambda\in\C$, since $e^{i\lambda b}$ is unitary, we have $f(\lambda)\in X$.
+Then limiting $(i\lambda)^{-1}(f(\lambda)-a)$, which is in $X$, we get $ba-ab\in X$ from the part (a).
+
+(c)
+We prove $X$ is unitarily invariant.
+Let $u\in A$ be a unitary.
+For every projection $p$ in $A$, the element $upu^*$ is also a projection so that we have $upu^*\in X$, which implies $uXu^*\subset X$ by the closedness of $X$.
+Then, by the part (b), the closed subspace $X$ has the property we want.
+\end{sol}
+
+
+\begin{prb}
+Let $a$ be a normal element of a C*-algebra $A$, and $b$ an element commuting with $a$. Show that $b^*$ also commutes with $a$ (Fuglede's theorem).
+(Hint: Define $f(\lambda)=e^{i\lambda a^*}be^{- i\lambda a^*}$ in $\tilde A$ and deduce from Exercise 2.7 that this map is differentiable and $f'(0)=i(a^*b-ba^*)$.
+Since $e^{i\bar\lambda a}$ and $b$ commute, $f(\lambda)=e^{2ic(\lambda)}be^{-2ic(\lambda)}$, where $c(\lambda)=\Re(\lambda a^*)$.
+Hence, $\|f(\lambda)\|=\|b\|$, so by Liouville's theorem, $f(\lambda)$ is constant.)
+\end{prb}
+\begin{sol}
+The hint is in detail enough.
+\end{sol}
+
+
+\bigskip
+In the following exercises $H$ is a Hilbert space:
+
+\begin{prb}
+If $I$ is an ideal of $B(H)$, show that it is self-adjoint.
+\end{prb}
+\begin{sol}
+Let $a\in I$.
+The polar decomposition gives a partial isometry $u$ such that $a=u|a|$ and $u^*a=|a|$.
+Taking adjoint on $a=u|a|$, we get $a^*=|a|u^*=u^*au^*\in I$.
+\end{sol}
+
+
+\begin{prb}
+Let $u\in B(H)$.
+\begin{parts}
+\item
+Show that $u$ is a left topological zero divisor in $B(H)$ if and only if it is not bounded below (\emph{cf.} Exercise 1.11).
+\item
+Define
+\[\sigma_{ap}(u)=\{\,\lambda\in\C:u-\lambda\text{ is not bounded below}\,\}.\]
+This set is called the \emph{approximate point spectrum} of $u$ because $\lambda\in\sigma_{ap}(u)$ if and only if there is a sequence $(x_n)$ of unit vectors of $H$ such that $\lim_{n\to\infty}\|(u-\lambda)(x_n)\|=0$.
+Show that $\sigma_{ap}(u)$ is a closed subset of $\sigma(u)$ containing $\pd\sigma(u)$.
+\item
+Show that $u$ is bounded below if and only if it is left-invertible in $B(H)$.
+\item
+Show that $\sigma(u)=\sigma_{ap}(u)$ if $u$ is normal.
+\end{parts}
+\end{prb}
+\begin{sol}
+(a)
+($\Rightarrow$)
+By definition of the left topological zero divisors, there is a sequence $(u_n)_n$ in $B(H)$ such that $\|u_n\|=1$ and $uu_n\to0$ as $n\to\infty$.
+Since $\|u_n\|=1$, we can construct a sequence $(x_n)_n$ in $H$ such that $\|x_n\|=1$ but $\|u_n(x_n)\|>\frac12$.
+Then, since $\|u\frac{u_n(x_n)}{\|u_n(x_n)\|}\|<2\|uu_n\|\to0$ as $n\to\infty$, $u$ is not bounded below.
+
+($\Leftarrow$)
+Suppose $u$ is not bounded below so that there is a sequence $(x_n)_n$ of unit vectors in $H$ such that $u(x_n)\to0$ as $n\to\infty$.
+Then, the rank-one projections $x_n\otimes x_n$ have norm one and satisfy $\|u(x_n\otimes x_n)\|=\|(ux_n)\otimes x_n\|\le\|ux_n\|\to0$ as $n\to\infty$, hence $u$ is a left topological zero divisor.
+
+(b)
+If $u-\lambda$ is bounded below with lower bound $M$, then $u-\lambda-\mu$ is also bounded below for $|\mu|<\frac M2$ because $\|u(x)-\lambda x-\mu x\|\ge\|u(x)-\lambda x\|-|\mu|\|x\|>\frac M2\|x\|$, so the set $\sigma_{ap}(u)$ is closed.
+
+Let $\lambda\in\pd\sigma(u)$ so that there is a sequence $(\lambda_n)_n$ of $\C$ such that $u-\lambda_n$ is invertible.
+By the part (c) of Exercise 1.11, $\|(u-\lambda_n)^{-1}\|^{-1}\to0$ as $n\to\infty$.
+Then, we can find a sequence $(x_n)_n$ of unit vectors in $H$ such that $\|(u-\lambda_n)^{-1}x_n\|^{-1}\to0$ when $n\to\infty$.
+\begin{align*}
+\|(u-\lambda)\frac{(u-\lambda_n)^{-1}x_n}{\|(u-\lambda_n)^{-1}x_n\|}\|
+&=\|(1+(\lambda-\lambda_n)(u-\lambda_n)^{-1})x_n\|\|(u-\lambda_n)^{-1}x_n\|^{-1}\\
+&\le\|(u-\lambda_n)^{-1}x_n\|^{-1}+|\lambda-\lambda_n|\to0
+\end{align*}
+where $n$ tends to $\infty$.
+Therefore, $u-\lambda$ is not bounded below for every $\lambda\in\pd\sigma(u)$.
+
+(c)
+($\Rightarrow$)
+Note that a bounded below operator is injective and has closed range.
+Let $p$ be the projection to the range of $u$.
+For arbitrary $x\in H$, there is a unique $y\in H$ such that $u(y)=p(x)$ since $u$ is injective.
+Define $v\in B(H)$ such that $v(x):=y$.
+The boundedness of $v$ is immediately shown from the assumption that $u$ is bounded below.
+Then, $uvu(x)=pu(x)=u(x)$ implies $vu(x)=x$ for all $x\in H$; $u$ has a left inverse $v$.
+
+($\Leftarrow$)
+Let $v$ be a left inverse of $u$.
+Then, $u$ is bounded below since $\|x\|=\|vu(x)\|\le\|v\|\|u(x)\|$.
+
+(d)
+It suffices to show that a bounded below normal operator is always invertible.
+For normal $u\in B(H)$, the equality $\|u(x)\|=\|u^*(x)\|$ holds for all $x\in H$, so $u^*$ is also bounded below if $u$ is bounded below.
+Since the adjoint of bounded below operator is surjective, $u=(u^*)^*$ is surjective.
+By the open mapping theorem, $u$ is invertible.
+\end{sol}
+
+
+\begin{prb}
+Let $u\in B(H)$ be a normal operator with spectral resolution of the identity $E$.
+\begin{parts}
+\item
+Show that $u$ admits an invariant closed vector subspace other than 0 and $H$ if $\dim(H)>1$.
+\item
+If $\lambda$ is an isolated point of $\sigma(u)$, show that $E(\lambda)=\ker(u-\lambda)$ and that $\lambda$ is an eigenvalue of $u$.
+\end{parts}
+\end{prb}
+\begin{sol}
+(a)
+More strongly, we will show every normal operator $u\in B(H)$ admits a \emph{reducing} subspace that is non-trivial and proper if $\dim(H)>1$.
+If $u=\lambda\id_H$ for some scalar $\lambda\in\C$, then every closed subspace of $H$ is invariant, we are done.
+Otherwise, the spectrum $\sigma(u)$ has at least two distinct points, say $x$ and $y$, because $\sigma(u)=\{\lambda\}$ implies $\sigma(u-\lambda)=\{0\}$ and $\|u-\lambda\|=r(u-\lambda)=0$.
+Since $\sigma(u)$ is compact Hausdorff and hence is normal, there exist disjoint open subsets of $\sigma(u)$ separating $x$ and $y$, and positive functions $f$ and $g$ in $C(\sigma(u))$ such that $f(x)=1$, $g(y)=1$, and $fg=0$ by the Urysohn lemma.
+Construct $p=\chi_{g^{-1}(0)}(u)\in B(H)$ by the Borel functional calculus.
+Then, $p$ is a projection such that $0\ne f(u)\le p$ and $0\ne g(u)\le 1-p$, so the image of $p$ is non-trivial and proper, and it is reducing for $u$ since $pu=up$.
+
+
+
+(b)
+The characteristic function $\chi_{\{\lambda\}}$ is a non-zero continuous function on $\sigma(u)$.
+By the continuous functional calculus, a non-zero element $\chi_{\{\lambda\}}(u)$ exists in $B(H)$.
+Let $f(z)=z-\lambda$ and $x\in H$ a vector in the image of $\chi_{\{\lambda\}}(u)$.
+Then $f(z)\chi_{\{\lambda\}}(z)=0$ implies $(u-\lambda)\chi_{\{\lambda\}}(u)=0$ and $(u-\lambda)x=0$.
+\end{sol}
+\begin{rmk}
+The part (a) can be seen as a corollary of the fact that an irreducible representation of an abelian C*-algebra is necessarily of dimension one.
+Conversely, we can prove an abelian C*-algebra $A$ only has one-dimensional irreducible representations by the construction of a non-zero and proper projection not in $C(\sigma(u))$ but $C_0(\Omega(A))$, using a version of the Urysohn lemma for locally compact Hausdorff spaces and the continuous functional calculus.
+\end{rmk}
+\begin{rmk}
+I could not understand what the notation $E(\lambda)$ in the part (b) of this exercise means.
+The notation $E(\lambda)$ is seemed to be commonly used to refer to the projection $E((-\infty,\lambda])$, where $E$ is the resolution of the identity of a self-adjoint operator so that $E$ is defined on a subset of $\R$.
+\end{rmk}
+
+
+\begin{prb}
+An operator $u$ on $H$ is \emph{subnormal} if there is a Hilbert space $K$ containing $H$ as a closed vector subspace and there exists a normal operator $v$ on $K$ such that $H$ is invariant for $v$, and $u$ is the restriction of $v$.
+We call $v$ a \emph{normal extension} of $u$.
+\begin{parts}
+\item
+Show that the unilateral shift is a non-normal subnormal operator.
+\item
+Show that if $u$ is subnormal, then $u^*u\ge uu^*$.
+\item
+A normal extension $v\in B(K)$ of a subnormal operator $u\in B(H)$ is a minimal normal extension if the only closed vector subspace of $K$ reducing $v$ and containing $H$ is $K$ itself.
+Show that $u$ admits a minimal normal extension.
+In the case that $v$ is a minimal normal extension, show that $K$ is the closed linear span of all $v^{*n}(x)$ ($n\in\N,\ x\in H$).
+\item
+Show that if $v\in B(K)$ and $v'\in B(K')$ are minimal normal extensions of $u$, then there exists a unitary operator $w:K\to K'$ such that $v'=wvw^*$ (so there is only one minimal normal extension).
+\end{parts}
+\end{prb}
+\begin{sol}
+(a)
+Let $u\in B(\ell^2(\N))$ be the unilateral shift and $v\in B(\ell^2(\Z))$ the bilateral shift.
+Then, $u$ is the restriction of $v$ onto $\ell^2(\N)$, and $u$ is not normal since $uu^*\ne1=u^*u$ but $v$ is normal.
+
+(b)
+Let $v\in B(K)$ be a normal extension of $u\in B(H)$.
+Fix $x\in H$.
+Define $w:=v^*-u^*$ so that we have $u^*(x)=v^*(x)-w(x)$ and $w(H)\subset H^\perp$.
+Then,
+\begin{gather*}
+u^*u(x)=v^*u(x)-wu(x)=v^*v(x)-wu(x),\\
+uu^*(x)=vu^*(x)=vv^*(x)-vw(x),
+\end{gather*}
+imply $u^*u-uu^*=vw-wu$ by the normality of $v$.
+Since $\<wu(x),x\>=0$ and $\<w(x),u^*(x)\>=0$, we have $\<(u^*u-uu^*)(x),x\>=\<vw(x),x\>=\<w(x),v^*(x)\>=\|w(x)\|^2\ge0$.
+
+(c)
+Write $(v,K)$ to denotes a normal extension $v\in B(K)$ of $u$.
+Let $(P,\prec)$ be the preordered set of all normal extensions $u$ with the preorder defined as $(v,K)\prec(v',K')$ if and only if $K\subset K'$, $v=v'|_K$, and $v'$ reduces $K$.
+If $(v_\lambda,K_\lambda)_\lambda$ is a chain in $P$, then restriction of any $v_\lambda$ onto $\bigcap_\lambda K_\lambda$ gives lower bound in $P$, there is a minimal element $(v,K)$ of $P$ by the Zorn lemma.
+It is actually a \emph{minimal} normal extension in the sense of definition in this problem since if $K$ has a reducing subspace $K'\supset H$ for $v$, then $(v|_{K'},K')\prec(v,K)$ is also a normal extension of $u$, which contradicts to the minimality of $(v,K)$ in $P$.
+
+Let $(v,K)$ be a minimal normal extension and $V\subset K$ the linear span of all $v^{*n}(x)$ for $n\in\N$ and $x\in H$.
+Here, we use convention $0\in\N$ so that we have $H\subset\bar V$.
+The closed subspace $\bar V$ of $K$ is invariant for $v^*$ clearly by definition of $V$ and also for $v$ since $v(v^{*n}(x))=v^{*n}(u(x))\in \bar V$, so $\bar V$ is reducing for $v$.
+Therefore $\bar V=K$ for the definition of minimal normal extension.
+
+(d)
+We have shown in the part (c) that an operator from $K$ is fully determined by the value on $V$, the linear span of $v^{*n}(x)$.
+Note that the norm of elements in $V$ does not depend on the operator $v$ but only on the vectors $x\in H$:
+If $(x_n)_n$ be a sequence in $H$ with $x_n=0$ for all $n$ except finitely many, then
+\[\|\sum_n v^{*n}x_n\|^2
+=\sum_{n,m}\<v^{*n}x_n,v^{*m}x_m\>
+=\sum_{n,m}\<v^mx_n,v^nx_m\>
+=\sum_{n,m}\<x_n,x_m\>.\]
+Let $w:K\to K'$ be satisfy $w(v^{*n}(x)):=v'^{*n}(x)$, which is clearly unitary if it is well-defined.
+For any possibilities satisfying $0=\sum_nv^{*n}x_n$, which is equivalent to $\sum_{n,m}\<x_n,x_m\>=0$, the norm of $w(0)$ also must be zero.
+Therefore, $w$ sends zero to zero and is well-defined on $V$, hence on $\bar V=K$.
+With this $w$, we can show $v'=wvw^*$ from $wvw^*(v'^{*n}(x))=wv(v^{*n}(x))=wv^{*n}(u(x))=v'^{*n}(u(x))=v'(v'^{*n}(x))$.
+\end{sol}
+
+\newpage
+\section{Ideals and positive functionals}
+
+In Exercises 1 to 7, $A$ denotes an arbitrary C*-algebra.
+
+\begin{prb}
+Let $a,b$ be normal elements of a C*-algebra $A$, and $c$ an element of $A$ such that $ac=cb$.
+Show that $a^*c=cb^*$, using Fuglede's theorem (Exercise 2.8) and the fact that the element
+\[d=\mat{a&0\\0&b}\]
+is normal in $M_2(A)$ and commutes with 
+\[d'=\mat{0&c\\0&0}.\]
+This more general result is called the Putnam-Fuglede theorem.
+\end{prb}
+\begin{sol}
+Since
+\[dd'=\mat{0&ac\\0&0}=\mat{0&cb\\0&0}=d'd,\]
+we have
+\[\mat{0&a^*c\\0&0}=d^*d'=d'd^*=\mat{0&cb^*\\0&0}\]
+by the Fuglede theorem.
+\end{sol}
+
+
+\begin{prb}
+Let $\tau$ be a positive linear functional on $A$.
+\begin{parts}
+\item
+If $I$ is a closed ideal in $A$, show that $I\subset\ker(\tau)$ if and only if $I\subset\ker(\f_\tau)$.
+\item
+We say $\tau$ is \emph{faithful} if $\tau(a)=0\Rightarrow a=0$ for all $a\in A^+$.
+Show that if $\tau$ is faithful, then the GNS representation $(H_\tau,\f_\tau)$ is faithful.
+\item
+Suppose that $\alpha$ is an automorphism of $A$ such that $\tau(\alpha(a))=\tau(a)$ for all $a\in A$.
+Define a unitary on $H_\tau$ by setting $u(a+N_\tau)=\alpha(a)+N_\tau$ ($a\in A$).
+Show that $\f_\tau(\alpha(a))=u\f(a)u^*$ ($a\in A$).
+\end{parts}
+\end{prb}
+\begin{sol}
+(a)
+($\Rightarrow$)
+For $i\in I$, since $b^*i^*ib\in I$, we have
+\[\|\f_\tau(i)(b+N_\tau)\|^2=\|ib+N_\tau\|^2=\tau(b^*i^*ib)=0\]
+for all $b+N_\tau\in A/N_\tau$.
+Becasue $A/N_\tau$ is dense in $H_\tau$, we get $\f_\tau(i)=0$ and $I\subset\ker(\f_\tau)$.
+
+($\Leftarrow$)
+For $i\in I$, we have $\tau(ib)=0$ for all $b\in A$ since
+\[|\tau(ib)|^2\le\|\tau\|\tau(b^*i^*ib)=\|\tau\|\|ib+N_\tau\|^2=\|\tau\|\|\f_\tau(i)(b+N_\tau)\|^2=0.\]
+Let $(u_\lambda)_\lambda$ be an approximate unit for $I$.
+Then, $\tau(i)=\tau(i-iu_\lambda)\le\|\tau\|\|i-iu_\lambda\|\to0$ implies $i\in\ker(\tau)$.
+
+(b)
+The representation $(H_\tau,\f_\tau)$ is faithful if and only if $\ker(\f_\tau)=0$.
+If $\tau$ is faithful, then since every element of $A$ is a linear combination of four positive elements, we have $a=0$ for any $a\in A$ satisfying $\tau(a)=0$.
+Thus, $\tau$ is faithful if and only if $\ker(\tau)=0$.
+By the part (a), we have $\ker(\tau)=0$ if and only if $\ker(\f_\tau)=0$, which is the desired result.
+
+(c)
+The operator $u$ on $H_\tau$ is unitary because
+\[\|u(a+N_\tau)\|^2=\tau(\alpha(a)^*\alpha(a))=\tau(\alpha(a^*a))=\tau(a^*a)=\|a+N_\tau\|^2.\]
+For $a\in A$ and $b+N_\tau\in A/N_\tau$, we have
+\[\f_\tau(\alpha(a))(b+N_\tau)=\alpha(a)b+N_\tau=\alpha(a\alpha^{-1}(b))+N_\tau=u\f_\tau(a)u^{-1}(b+N_\tau).\qedhere\]
+\end{sol}
+
+
+\begin{prb}
+If $\f:A\to B$ is a positive linear map between C*-algebras, show that $\f$ is necessarily bounded.
+\end{prb}
+\begin{sol}
+Let $\bar{B_A}$ denote the closed unit ball of $A$.
+Note that Theorem 3.3.1 states that a positive linear functional on a C*-algeba is bounded.
+For any positive linear functional $\tau$ on $B$, the composition $\tau\circ\f$ is a positive linear functional on $A$, so $\tau(\f(\bar{B_A}))\subset\C$ is bounded.
+Since every bounded linear functional is the sum of four positive linear functionals, the set $\f(\bar{B_A})\subset B$ is weakly bounded, and hence bounded.
+\end{sol}
+
+
+\begin{prb}
+Suppose that $A$ is unital.
+Let $\alpha$ be an automorphism of $A$ such that $\alpha^2=\id_A$.
+Define $B$ to be the set of all matrices
+\[c=\mat{a&b\\\alpha(b)&\alpha(a)},\]
+where $a,b\in A$.
+Show that $B$ is a C*-subalgebra of $M_2(A)$.
+Define a map $\f:A\to B$ by setting
+\[\f(a)=\mat{a&0\\0&\alpha(a)}.\]
+Show that $\f$ is an injective *-homomorphism.
+We can thus identify $A$ as a C*-subalgebra of $B$.
+If we set $u=\bigl(\mat[small]{0&1\\1&0}\bigr)$, then $u$ is a self-adjoint unitary and $B=A+Au$.
+If $C$ is any unital C*-algebra with a self-adjoint unitary element $v$, and $\psi:A\to C$ is a *-homomorphism such that
+\[\psi(\alpha(a))=v\psi(a)v^*\quad(a\in A),\]
+show that there is a unique *-homomorphism $\psi':B\to C$ extending $\psi$ (that is, $\psi'\circ\f=\psi$) such that $\psi'(u)=v$.
+
+(This establishes that $B$ is a (very easy) example of a crossed product, namely $B=A\times_\alpha Z_2$, the crossed product of $A$ by the two-element group $Z_2$ under the action $\alpha$.
+The theory of crossed products is a vast area of the modern theory of C*-algebras.
+One of its primary uses is to generate new examples of simple C*-algebras.
+For an account of this theory, see [Ped].)
+\end{prb}
+\begin{sol}
+For the map $\f$, it is trivial to check that it is an injective $^*$-homomorphism.
+
+We first check $B$ is a C*-subalgebra of $M_2(A)$.
+The set $B$ is clearly closed under summation and scalar multiplication.
+For product and adjoint, we have
+\[\mat{a&b\\\alpha(b)&\alpha(a)}\mat{a'&b'\\\alpha(b')&\alpha(a')}
+=\mat{aa'+b\alpha(b')&ab'+b\alpha(a')\\\alpha(b\alpha(a')+ab')&\alpha(b\alpha(b')+aa')}\in B\]
+and
+\[\mat{a&b\\\alpha(b)&\alpha(a)}^*=\mat{a^*&\alpha(b)^*\\\alpha(\alpha(b)^*)&\alpha(a^*)}\in B.\]
+For closedness with respect to the norm of $M_2(\C)$, by the inequality
+\[\max\{\|a\|,\|b\|,\|c\|,\|d\|\}\le\left\lVert\mat{a&b\\c&d}\right\rVert\le\|a\|+\|b\|+\|c\|+\|d\|,\]
+if a sequence $\mat{a_n&b_n\\\alpha(b_n)&\alpha(a_n)}$ in $B$ is Cauchy so that $a_n$ and $b_n$ converge to some element $a$ and $b$ respectively, then it converges to $\mat{a&b\\\alpha(b)&\alpha(a)}$ which is in $B$.
+
+Next, let us show the unique existence of $\psi':B\to C$.
+For the uniqueness, suppose $\psi'$ is a $^*$-homomorphism satisfying all requirements given in the problem.
+Since $\psi'\circ\f=\psi$ and $\psi'(u)=v$, we have
+\[\psi'\mat{a&b\\\alpha(b)&\alpha(a)}=\psi'(\f(a)+\f(b)u)=\psi(a)+\psi(b)v,\]
+then it suffices to show the map $\psi'$ defined by $\psi'(\f(a)+\f(b)u):=\psi(a)+\psi(b)v$ is $^*$-homomorphism
+The only non-trivial point is the preservation of multiplication, which is shown as
+\begin{align*}
+\psi'\Biggr(&\mat{a&b\\\alpha(b)&\alpha(a)}\mat{a'&b'\\\alpha(b')&\alpha(a')}\Biggr)
+=\psi'\mat{aa'+b\alpha(b')&ab'+b\alpha(a')\\\alpha(ab'+b\alpha(a'))&\alpha(aa'+b\alpha(b'))}\\
+&=\psi(aa'+b\alpha(b'))+\psi(ab'+b\alpha(a'))v\\
+&=\psi(a)\psi(a')+\psi(b)\psi(\alpha(b'))+\psi(a)\psi(b')v+\psi(b)\psi(\alpha(a'))v\\
+&=\psi(a)\psi(a')+\psi(b)v\psi(b')v+\psi(a)\psi(b')v+\psi(b)v\psi(a')\\
+&=(\psi(a)+\psi(b)v)(\psi(a')+\psi(b')v)\\
+&=\psi'\mat{a&b\\\alpha(b)&\alpha(a)}\psi'\mat{a'&b'\\\alpha(b')&\alpha(a')}.\qedhere
+\end{align*}
+\end{sol}
+
+
+\begin{prb}
+An element $a$ of $A^+$ is \emph{strictly positive} if the hereditary C*-subalgebra of $A$ generated by $a$ is $A$ itself, that is, if $(aAa)^-=A$.
+\begin{parts}
+\item
+Show that if $A$ is unital, then $a\in A^+$ is strictly positive if and only if $a$ is invertible.
+\item
+If $H$ is a Hilbert space, show that a positive compact operator on $H$ is strictly positive in $K(H)$ if and only if it has dense range.
+\item
+Show that if $a$ is strictly positive in $A$, then $\tau(a)>0$ for all non-zero positive linear functionals $\tau$ on $A$.
+\end{parts}
+\end{prb}
+\begin{sol}
+(a)
+($\Rightarrow$)
+Suppose $a\in A^+$ is not invertible.
+If an element $aba$ of $aAa$ were invertible, then $a$ is both left and right invertible because $((aba)^{-1}ab)a=1=a(ba(aba)^{-1})$, thus there is no invertibles in $aAa$.
+Since the set of non-invertible elements is closed, our hereditary subalgebra $(aAa)^-$ also only contains non-invertibles, but $A$ is unital so that $(aAa)^-$ is proper in $A$.
+
+($\Leftarrow$)
+If $a\in A^+$ is invertible, then for any $b\in A$ we have $b=a(a^{-1}ba^{-1})a\in aAa$.
+
+(b)
+($\Rightarrow$)
+If the range of $a\in K(H)^+$ is not dense, then every element of $(aK(H)a)^-$ has range contained in $\im(a)^-$.
+If we choose $x\notin\im(a)^-$, then $x\otimes x\in K(H)$ but not in $(aK(H)a)^-$.
+
+($\Leftarrow$)
+Suppose $a\in K(H)^+$ has dense range.
+We have $a=(a^3)^{1/3}\in(aK(H)a)^-$ by the functional calculus, there is a sequence $(b_n)_n$ in $A$ such that $\|ab_na-a\|\to0$ as $n\to\infty$.
+Because $ab_n^*a$ and $a((b_n+b_n^*)/2)a$ also converges to $a$, we may assume for $b_n$ to be self-adjoint.
+For every $x\in\im(a)$, we have $\|ab_nx-x\|\to0$ for $n\to\infty$, and the left-hand side of
+\begin{align*}
+\|ab_n(x\otimes x)b_na-x\otimes x\|
+&\le\|(ab_nx-x)\otimes(ab_nx)\|+\|x\otimes(ab_nx-x)\|\\
+&=(\|ab_nx\|+\|x\|)\|ab_nx-x\|
+\end{align*}
+also converges to zero.
+Therefore, $x\otimes x\in(aK(H)a)^-$.
+Since $\im(a)$ is dense in $H$, and since $\|x\otimes x-y\otimes y\|\le(\|x\|+\|y\|)\|x-y\|$, every rank-one projection belongs to $(aK(H)a)^-$, and hence $K(H)=(aK(H)a)^-$.
+
+(c)
+Suppose $a\in A^+$ is strictly positive and a positive linear functional $\tau$ satisfies $\tau(a)>0$.
+Then, every $b\in A^+$ satisfies
+\begin{align*}
+|\tau(aba)|^2
+&=|\tau(a^{\frac12*}(b^\frac12a^\frac12)^*(b^\frac12a^\frac12)a^\frac12)|^2\\
+&\le\tau(a^{\frac12*}a^\frac12)\tau((b^\frac12a^\frac12)^*(b^\frac12a^\frac12))
+=\tau(a)\tau(a^\frac12ba^\frac12)=0,
+\end{align*}
+so $\tau(aba)=0$ for all $b\in A$ because $b$ can be decomposed four positive elements of $A$.
+The continuity of $\tau$ implies $\tau=0$, therefore for non-zero positive linear functionals the value at $a$ is positive.
+\end{sol}
+\begin{rmk}
+The converse result of the part (c) holds.
+Let $S$ be the set of all positive linear functionals $\tau$ on $A$ with $\|\tau\|\le1$.
+Then, $S$ is weak* compact by the Banach-Alaoglu theorem.
+(Unlike unital C*-algebras, neither the space of states nor pure states is not weak* compact for general non-unital algebras.)
+Then, every element of $A$ gives rise to a positive weak* continuous function on a compact Hausdorff space $S$.
+Since $\tau(a)>0$ for $\tau\in S$, there is a lower bound $M>0$ of $a$ in the sense that $\tau(a)\ge M$.
+If we take arbitrary non-zero $b\in A^+$, then since $\tau(M\|b\|^{-1}b)\le M\le\tau(a)$ for $\tau\in S$, we have $M\|b\|^{-1}b\le a$ by Theorem 3.4.3 so that $b$ belongs to the hereditary C*-subalgebra $(aAa)^-$.
+It implies that $A=(aAa)^-$ because element of $A$ is decomposed into four elements of $A^+$.
+See Theorem 5.3.1 and Remark 5.3.1 in the textbook.
+In fact, Theorem 5.3.1 does not require Theorem 3.2.6.
+\end{rmk}% damn?
+
+
+\begin{prb}
+We say that $A$ is \emph{$\sigma$-unital} if it admits a sequence $(u_n)_{n=1}^\infty$ which is an approximate unit for $A$.
+It follows from Remark 3.1.1 that every separable C* -algebra is $\sigma$-unital.
+\begin{parts}
+\item
+Let $a$ be a strictly positive element of $A$, and set $u_n=a(a+1/n)^{-1}$ for each positive integer $n$.
+Show that $(u_n)$ is an approximate unit for $A$.
+(Hint: Define $g_n:\sigma(a)\to\R$ by $g_n(t)=t^2/(t+1/n)$.
+Show that the sequence $(g_n)$ is pointwise-increasing and pointwise-convergent to the inclusion $z:\sigma(a)\to\R$, and use Dini's theorem to deduce that $(g_n)$ converges uniformly to $z$.
+Hence, $a=\lim_{n\to\infty}au_n$.)
+\item
+If $(u_n)_{n=1}^\infty$ is an approximate unit for $A$, show that $a=\sum_{n=1}^\infty u_n/2^n$ is a strictly positive element of $A$.
+Thus, $A$ is $\sigma$-unital if and only if it admits a strictly positive element.
+\end{parts}
+\end{prb}
+\begin{sol}
+Note that $u_n$ belongs to non-unital $A$ because it is defined by the functional calculus for $f_n:\sigma(a)\to\R$ with $f_n(t)=t(t+\frac1n)^{-1}$, not by the product of $a$ and $(a+\frac1n)^{-1}$.
+Since $\|f_n\|_\infty<1$, we have $\|u_n\|<1$ for each $n$.
+
+(a)
+Let $b\in A$ and take $c\in aAa$ such that $\|b-c\|<\frac12\e$ for arbitrary $\e>0$.
+Since $\|u_n\|\le1$ and $\lim_{n\to\infty}cu_n=c$, we have $\lim_{n\to\infty}bu_n=b$ from the inequality
+\[\|bu_n-b\|\le\|(b-c)u_n\|+\|cu_n-c\|+\|c-b\|\le\e+\|cu_n-c\|.\]
+In the same manner, we get $\lim_{n\to\infty}u_nb=b$, so $u_n$ is an approximate unit for $A$.
+
+(b)
+Since $(aAa)^-$ is hereditary and $u_n/2^n\le a$, we have $u_n\in(aAa)^-$.
+Therefore, for any $b\in A$, we get $b=\lim_{n\to\infty}u_nbu_n\in(aAa)^-$.
+\end{sol}
+
+
+\begin{prb}
+Let $\Omega$ be a locally compact Hausdorff space.
+(a) Show that $C_0(\Omega)$ admits an approximate unit $(p_n)_{n=1}^\infty$ where all the $p_n$ are projections, if and only if $\Omega$ is the union of a sequence of compact open sets.
+(b) Deduce that if a C*-algebra $A$ admits a strictly positive element $a$ such that $\sigma(a)\setminus\{0\}$ is discrete, then $A$ admits an approximate unit $(p_n)_{n=1}^\infty$ consisting of projections.
+(Show that $C^*(a)$ is *-isomorphic to $C_0(\sigma(a)\setminus\{0\})$.)
+\end{prb}
+\begin{sol}
+(a)
+($\Rightarrow$)
+Note that the set $p_n^{-1}(1)$ is open since $p_n^{-1}(1)=p_n^{-1}((1-\e,1+\e))$, and is compact since $p_n^{-1}(1)=\{\,x\in\Omega:p_n(x)\ge\e\,\}$, for some $0<\e<1$.
+For any $x\in\Omega$, taking any $f\in C_0(\Omega)$ with $f(x)\ne0$, we can find $n$ such that $|f(x)p_n(x)-f(x)|\le\|fp_n-f\|<\e$ for $\e=\frac12|f(x)|$, and the inequality implies $p_n(x)=1$.
+This proves $\Omega=\bigcup_{n=1}^\infty p_n^{-1}(1)$.
+
+($\Leftarrow$)
+Suppose $(\Omega_n)_{n=1}^\infty$ is a sequence of compact open subsets of $\Omega$ such that $\Omega=\bigcup_{n=1}^\infty\Omega_n$.
+We may assume it to be increasing; $\Omega_n\subset\Omega_{n+1}$ for all $n$.
+Define $p_n$ to be the characteristic function $\chi_{\Omega_n}$ of a compact open set, which satisfies $p_n\in C_0(\Omega)$.
+Take any $f\in C_0(\Omega)$.
+For arbitrary $\e>0$, the set $\{\,x\in\Omega:|f(x)|\ge\e\,\}$ is compact and has an open cover $\{\Omega_n\}_n$, so there is $n_0$ such that $|f(x)|\ge\e$ on $x\in\Omega_n$ for all $n>n_0$.
+Then, finally we have $|f(x)p_n(x)-f(x)|=0<\e$ for $x\in\Omega_n$ and $|f(x)p_n(x)-f(x)|=|f(x)|<\e$ for $x\notin\Omega_n$, proving $\|fp_n-f\|<\e$ for $n>n_0$.
+Therefore, $p_n$ is an approximate unit for $C_0(\Omega)$.
+
+(b)
+If $C^*(a)$ is unital so that $a$ is invertible, then since $a$ is self-adjoint so that $C^*(a)$ is the generated Banach subalgebra by $a$, we have a homeomorphism
+\[\hat a:\Omega(C^*(a))\cong\sigma(a)=\sigma(a)\setminus\{0\}\]
+by Theorem 1.3.7.
+If $C^*(a)$ is not unital so that $a$ is not invertible, then since $C^*(1,a)$ is the unitization of $C^*(a)$, we have
+\[\Omega(C^*(a))\cup\{\tau_\infty\}=\Omega(C^*(1,a))\cong\sigma_{C^*(1,a)}(a)=:\sigma(a),\] where $\tau_\infty(a)=0$, so $\tau_\infty\notin\Omega(C^*(a))$ and $\hat a(\tau_\infty)=0$ implies the homeomorphism $\Omega(C^*(a))\cong\sigma(a)\setminus\{0\}$.
+Therefore, we have the result in the hint: $C^*(a)$ is *-isomorphic to $C_0(\sigma(a)\setminus\{0\}$) by the Gelfand representation.
+
+We first note the facts that a discrete subset in a second countable space is countable, and compactness is equivalent to finiteness in a discrete space.
+Hence we have a sequence $(x_n)_{n=1}^\infty$ that numerates $\sigma(a)\setminus\{0\}=\{x_n\}_n$.
+Define projections $q_n:\sigma(a)\setminus\{0\}\to\C$ such that $q_n(x_k)=1$ if $k\le n$ and 0 otherwise, and it follows that $q_n\in C_0(\sigma(a)\setminus\{0\})$ from $q_n^{-1}(1)$ is compact and open.
+For arbitrary $f\in C_0(\sigma(a)\setminus\{0\})$ and $\e>0$, there is a finite subset $F\subset\sigma(a)\setminus\{0\}$ such that $|f(x)|<\e$ for $x\notin F$, so $\|fq_n-f\|<\e$ for every $n>|F|$, which proves $(q_n)_n$ is an approximate unit on $C_0(\sigma(a)\setminus\{0\})$.
+If we let $p_n:=q_n(a)$ by the functional calculus, then $(p_n)_n$ is an approximate unit for $C^*(a)$ consisting of projections.
+\end{sol}
+
+
+\begin{prb}
+Let $z:\T\to\C$ be the inclusion map.
+Let $\theta\in[0,1]$.
+(a) Show that there is a unique automorphism $\alpha$ of $C(\T)$ such that $\alpha(z)=e^{i2\pi\theta}z$.
+Define the faithful positive linear functional $\tau:C(\T)\to\C$ by setting $\tau(f)=\int f\,dm$ where $m$ is normalised arc length on $\T$.
+(b) Show that $\tau(\alpha(f))=\tau(f)$ for all $f\in C(\T)$.
+(c) Deduce from Exercise 3.2 that there is a unitary $v$ on the Hilbert space $H_\tau$ such that $\f_\tau(\alpha(f))=v\f_\tau(f)v^*$ for all $f\in C(\T)$.
+Let $u$ be the unitary $\f_\tau(z)$.
+(d) Show that $vu=e^{i2\pi\theta}uv$.
+If $\theta$ is irrational, the C*-algebra $A_\theta$ generated by $u$ and $v$ is called an \emph{irrational rotation algebra}, and $A_\theta$ can be shown to be simple.
+See [Rie] for more details concerning $A_\theta$.
+These algebras form a very important class of examples in C*-algebra theory.
+They are motivating examples in Connes' development of "non-commutative differential geometry," a subject of great future promise [Con 2].
+\end{prb}
+\begin{sol}
+\end{sol}
+
+
+\begin{prb}
+Let $m$ be normalised Haar measure on $\T$.
+If $\lambda\in\C$, $|\lambda|<1$, define $\tau_\lambda:H^1\to\C$ by setting
+\[\tau_\lambda(f)=\int\frac{f(w)}{1-\lambda\bar w}\,dmw\quad(f\in H^1).\]
+(a) Show that $\tau_\lambda\in(H^1)^*$.
+By expanding $(1-\lambda\bar w)^{-1}$ in a power series, show that $\tau_\lambda(f)=\sum_{n=1}^\infty\hat f(n)\lambda^n$.
+(b) Deduce that the function
+\[\tilde f:\operatorname{int}\D\to\C,\quad\lambda\mapsto\tau_\lambda(f),\]
+is analytic, where $\operatorname{int}\D=\{\lambda\in\C:|\lambda|<1\}$.
+(c) If $f,g\in H^2$, show that $fg\in H^1$ and $\tau_\lambda(fg)=\tau_\lambda(f)\tau_\lambda(g)$.
+(Hint: There exist sequences $(\f_n)$ and $(\psi_n)$ in $\Gamma^+$ converging to $f$ and $g$, respectively, in the $L^2$-norm.
+Show that the sequence $(\f_n\psi_n)$ converges to $fg$ in the $L^1$-norm, and deduce the result by first showing it for functions in $\Gamma^+$. )
+\end{prb}
+\begin{sol}
+\end{sol}
+
+
+\begin{prb}
+If $f:\operatorname{int}\D\to\C$ is an analytic function and $0<r<1$, define $f_r\in C(\T)$ by setting $f_r(\lambda)=f(r\lambda)$.
+Set $\|f\|_2=\sup_{0<r<1}\|f_r\|_2$, and let $H^2(\D)$ denote the set of all analytic functi ons $f:\operatorname{int}\D\to\C$ such that $\|f\|_2<\infty$.
+(a) If $f\in H^2(\D)$, show that $\|f\|_2=\sqrt{\sum_{n=0}^\infty|\lambda_n|^2}$, where $f(\lambda)=\sum_{n=0}^\infty\lambda_n\lambda^n$ is the Taylor series expansion of $f$.
+(b) Show that $H^2(\D)$ is a Hilbert space with inner product $\<f,g\>=\sum_{n=0}^\infty\lambda_n\bar\mu_n$, where $\lambda_n=f^{(n)}(0)/n!$ and $\mu_n=g^{(n)}(0)/n!$ (the operations are pointwise-defined), and show also that the map 
+\[H^2\to H^2(\D),\quad f\mapsto\tilde f,\]
+is a unitary operator.
+(Thus, the elements of $H^2$ can be interpreted as analytic functions on $\operatorname{int}\D$ satisfying a growth condition approaching the boundary.
+A similar interpretation can be given for the other $H^p$-spaces.)
+\end{prb}
+\begin{sol}
+\end{sol}
+
+
+\begin{prb}
+Show that if $\f$ is a function in $L^\infty(\T)$ not almost everywhere zero, then either $T_\f$ or $T_\f^*$ is injective (Coburn).
+(Hint: If $f\in\ker(T_\f)$ and $g\in\ker(T_\f^*)$, show that $\f f\bar g$ and $\bar\f\bar fg\in H^1$.
+Deduce that $\f fg=0$ a.e. and apply Theorem 3.5.4 to show that $f$ or $g=0$ a.e.)
+Deduce that $T_\f$ is invertible if and only if it is a Fredholm operator of index zero.
+\end{prb}
+\begin{sol}
+\end{sol}
+
+
+\newpage
+\section{Von Neumann algebras}
+
+\begin{prb}
+Let $H$ be a separable Hilbert space with an orthonormal basis $(e_n)_{n=1}^\infty$.
+Prove that the relative weak topology on the closed unit ball $S$ of $B(H)$ is metrisable by showing that the equation
+\[d(u,v)=\sum_{n,m=1}^\infty\frac{|\<(u-v)(e_n), e_m\>|}{2^{n+m}}\]
+defines a metric on $S$ inducing the weak topology.
+\end{prb}
+\begin{sol}
+\end{sol}
+
+
+\begin{prb}
+Let $H$ be a Hilbert space.
+\begin{parts}
+\item
+Show that a weakly convergent sequence of operators on $H$ is necessarily norm-bounded. \item
+Show that if $(u_n)$ and $(v_n)$ are sequences of operators on $H$ converging strongly to the operators $u$ and $v$, respectively, then $(u_nv_n)$ converges strongly to $uv$.
+\item
+Show that if $(u_n)$ is a sequence of operators on $H$ converging strongly to $u$, and if $v\in K(H)$, then $(u_nv)$ converges in norm to $uv$.
+Show that $(vu_n)$ may not converge to $vu$ in norm.
+\end{parts}
+\end{prb}
+\begin{sol}
+\end{sol}
+
+
+\begin{prb}
+Let $H$ be a Hilbert space with an orthonormal basis $(e_n)_{n=1}^\infty$.
+\begin{parts}
+\item
+Denote by $\Lambda$ the set of all pairs $(n,U)$ where $n$ is a positive integer, and $U$ is a neighbourhood of 0 in the strong topology of $B(H)$.
+For $(n,U)$ and $(n',U')$ in $A$, write $(n,U)\le(n',U')$ if $n\le n'$ and $U'\subset U$.
+Show that $A$ is a poset under the relation $\le$, and that it is upwards-directed.
+\item
+Let $u$ denote the unilateral shift on $(e_n)$, and note that $(u^{n*})$ is strongly convergent to zero.
+If $\lambda=(n_\lambda,U_\lambda)\in \Lambda$, then $\lim_{n\to\infty}(n_\lambda u^{n*})=0$ in the strong topology, so for some $n$ we have $n_\lambda u^{n*}\in U_\lambda$.
+Set $u_\lambda=n_\lambda u^{n*}$ and $v_\lambda=\frac1{n_\lambda}u^n$.
+Show that $\lim_\lambda u_\lambda=0$ in the strong topology and $\lim_\lambda v_\lambda=0$ in the norm topology.
+(Since $u_\lambda v_\lambda=1$, this shows that the operation of multiplication
+\[B(H)\times B(H)\to B(H),\quad(u,v)\mapsto uv,\]
+is not jointly continuous in either the weak or the strong topologies.)
+\item
+Show that neither the weak nor the strong topologies on $B(H)$ are metrisable, using Exercise 4.2 and the nets $(u_\lambda)$ and $(v_\lambda)$ from part (b) of this exercise.
+\end{parts}
+\end{prb}
+\begin{sol}
+\end{sol}
+
+
+\begin{prb}
+Let $A$ be a von Neumann algebra on a Hilbert space $H$, and suppose that $\tau$ is a bounded linear functional on $A$.
+We say that $\tau$ is \emph{normal} if, whenever an increasing net $(u_\lambda)_{\lambda\in\Lambda}$ in $A_{sa}$ converges strongly to an operator $u\in A_{sa}$, we have $\lim_\lambda\tau(u_\lambda)=\tau(u)$.
+Show that every $\sigma$-weakly continuous functional $\tau\in A^*$ is normal
+(use Theorem 4.2.10 and show that if $(u_\lambda)_\lambda$ is a bounded net strongly convergent to $u$, and if $v\in L^1(H)$, then $\lim_\lambda\|u_\lambda v-uv\|=0$.)
+\end{prb}
+\begin{sol}
+Theorem 4.2.10 is about a necessary and sufficient condition for a linear functional $\tau$ on $A$ to be $\sigma$-weakly continuous: there is $v\in L^1(H)$ such that $\tau(u)=\tr(vu)$ for all $u\in A$.
+Suppose an increasing net $u_\lambda\in A_{sa}$ strongly converges to $u$.
+Then we are done if we prove $\|u_\lambda v-uv\|_1\to0$.
+
+We may assume $u_\lambda\in L^1(H)^+$ and $u_\lambda\downarrow0$ in the strong operator topology by letting $(u-u_\lambda)|v|\mapsto u_\lambda$.
+Here the polar decomposition of $v$ is used.
+Our goal is then to show $\|u_\lambda\|_1\to0$.
+Let $\e>0$.
+Let $E$ be an orthonormal basis of $H$ and 
+\[E_\lambda:=\{\,e\in E:\|u_\lambda^{1/2}(e)\|\le\e\|u_1^{1/2}(e)\|\,\}\]
+for $\lambda\in\Lambda$.
+Since
+\[\|u_\lambda^{1/2}(x)\|^2=\<u_\lambda^{1/2}(x),u_\lambda^{1/2}(x)\>=\<u_\lambda(x),x\>\le\|u_\lambda(x)\|\|x\|\]
+and $u_\lambda$ converges to 0 in strongly, we have $E_\lambda\uparrow E$.
+Therefore, limiting
+\begin{align*}
+\|u_\lambda\|_1
+&=\sum_{e\in E}\<u_\lambda(e),e\>\\
+&=\sum_{e\in E_\lambda}\|u_\lambda^{1/2}(e)\|^2+\sum_{e\in E\setminus E_\lambda}\|u_\lambda^{1/2}(e)\|^2\\
+&\le\e^2\sum_{e\in E_\lambda}\|u_1^{1/2}(e)\|^2+\sum_{e\in E\setminus E_\lambda}\|u_1^{1/2}(e)\|^2\\
+&=\e^2\sum_{e\in E_\lambda}\<u_1(e),e\>+\sum_{e\in E\setminus E_\lambda}\<u_1(e),e\>,
+\end{align*}
+we obtain
+\[\lim_\lambda\|u_\lambda\|_1\le\e^2\|u_1\|_1,\]
+which solves the problem.
+\end{sol}
+\begin{rmk}
+Theorem 4.2.10, in fact, is superfluous because the $\sigma$-weak continuity implies the existence of $\{v_k\}_{k=1}^n$ in $L^1(H)$ such that
+\[\tau(u)\le\sum_{k=1}^n|\tr(uv_k)|\]
+for all $u\in A$.
+\end{rmk}
+\begin{rmk}
+If we add the monotonicity condition, then the hint in the problem can be interpreted as a noncommutative version of the monotone convergence theorem of Beppo Levi in measure theory: we may think the strong operator topology and trace-class norm have an analogy with the topology of almost everywhere convergence and $L^1$ norm respectively.
+\end{rmk}
+
+
+\begin{prb}
+The existence and characterisation of extreme points is very important in many contexts (for example, we shall be concerned with this in the next chapter in connection with pure states).
+See the Appendix for the definition of extreme points.
+Let $H$ be a non-zero Hilbert space.
+\begin{parts}
+\item
+Show that the extreme points of the closed unit ball of $H$ are precisely the unit vectors.
+\item
+Deduce that the isometries and co-isometries of $B(H)$ are extreme points of the closed unit ball of $B(H)$.
+(It can be shown that these are all of the extreme points.
+This follows from [Tak, Theorem 1.10.2].)
+\item
+Show that if $H$ is an infinite-dimensional Hilbert space, then the closed unit ball of $B(H)^+$ is not the convex hull of the projections of $B(H)$.
+\end{parts}
+\end{prb}
+\begin{sol}
+\end{sol}
+
+
+\begin{prb}
+Let $A$ be a C*-algebra.
+\begin{parts}
+\item
+Show that if $A$ is unital, then its unit is an extreme point of its closed unit ball.
+\item
+If $p$ is a projection of $A$, show that it is an extreme point of the closed unit ball of $A^+$ (use the unital algebra $pAp$ and part (a)).
+The converse of this result is also true, but more difficult.
+It follows from [Tak, Lemma 1.10.1].
+\end{parts}
+\end{prb}
+\begin{sol}
+\end{sol}
+
+
+\begin{prb}
+Let $A$ be a C*-algebra.
+Show that if $p,q$ are equivalent projections in $A$, and $r$ is a projection orthogonal to both (that is, $rp=rq=0$), then the projections $r+p$ and $r+q$ are equivalent.
+
+If $H$ is a separable Hilbert space and $p$ is a projection not of finite rank, set $\operatorname{rank}(p)=\infty$.
+If $p$ has finite rank, set $\operatorname{rank}(p)=\dim p(H)$.
+Show that $p\sim q$ in $B(H)$ if and only if $\operatorname{rank}(p)=\operatorname{rank}(q)$.
+
+Thus, the equivalence class of a projection in a C*-algebra can be thought of as its ``generalised rank''.
+
+We say a projection $p$ in a C*-algebra $A$ is \emph{finite} if for any projection $q$ such that $q\sim p$ and $q\le p$ we necessarily have $q=p$.
+Otherwise, the projection is said to be \emph{infinite}.
+Show that if $p,q$ are projections such that $q\le p$ and $p$ is finite, then $q$ is finite.
+
+A projection $p$ in a von Neumann algebra $A$ is \emph{abelian} if the algebra $pAp$ is abelian.
+Show that abelian projections are finite.
+
+A von Neumann algebra is said to be \emph{finite} or \emph{infinite} according as its unit is a finite or infinite projection.
+If $H$ is a Hilbert space, show that the von Neumann algebra $B(H)$ is finite or infinite according as $H$ is finite- or infinite- dimensional.
+\end{prb}
+\begin{sol}
+\end{sol}
+
+
+
+\newpage
+\section{Representations of C*-algebras}
+
+
+\begin{prb}
+Let $\tau$ be a pure state on a C*-algebra $A$, and $y$ a unit vector in $H_\tau$ such that $\tau(a)=\<\f_\tau(a)(y),y\>$ for all $a\in A$.
+Show that there is a scalar $\lambda$ of modulus one such that $y=\lambda x_\tau$. 
+\end{prb}
+\begin{sol}
+\end{sol}
+
+
+\begin{prb}
+Let $H$ be a Hilbert space and $x$ a unit vector of $H$.
+Show that the functional
+\[\omega_x:B(H)\to\C,\quad u\mapsto\<u(x),x\>,\] is a pure state of $B(H)$.
+Show that not all pure states of $B(H)$ are of this form if $H$ is separable and infinite-dimensional.
+\end{prb}
+\begin{sol}
+\end{sol}
+
+
+\begin{prb}
+Give an example to show that a quotient C*-algebra of a primitive C*-algebra need not be primitive.
+\end{prb}
+\begin{sol}
+\end{sol}
+
+
+\begin{prb}
+If $I$ is a primitive ideal of a C*-algebra $A$, show that $M_n(I)$ is a primitive ideal of $M_n(A)$.
+(Thus, if $A$ is primitive, so is $M_n(A)$.) 
+\end{prb}
+\begin{sol}
+\end{sol}
+
+
+\begin{prb}
+Let $A$ be a C*-algebra.
+Show the following conditions are equivalent:
+\begin{parts}
+\item $A$ is prime.
+\item If $aAb=0$, then $a$ or $b=0$ ($a,b\in A$).
+\end{parts} 
+\end{prb}
+\begin{sol}
+\end{sol}
+
+
+\begin{prb}
+Let $S$ be a set of C*-subalgebras of a C*-algebra $A$ that is \emph{upwards-directed}, that is, if $B,C\in S$, then there exists $D\in S$ such that $B,C\subset D$.
+Show that $(\cup S)^-$ is a C*-subalgebra of $A$.
+
+Suppose that all the algebras in $S$ are prime and that $A=(\cup S)^-$.
+Show that $A$ is prime.
+\end{prb}
+\begin{sol}
+\end{sol}
+
+
+\begin{prb}
+If $A$ is a C*-algebra, its \emph{center} $C$ is the set of elements of $A$ commuting with every element of $A$.
+Show that $C$ is a C*-subalgebra of $A$.
+Show that if $A$ is simple, then $C=0$ if $A$ is non-unital and $C=\C1$ if $A$ is unital.
+\end{prb}
+\begin{sol}
+\end{sol}
+
+
+\begin{prb}
+Let $S$ be an upwards-directed set of closed ideals in a C*-algebra $A$ (\emph{cf.} Exercise 5.6 for the term \emph{upwards-directed}).
+Suppose that $A=(\cup S)^-$, and that all of the algebras in $S$ are postliminal.
+Show that $A$ is postliminal.
+\end{prb}
+\begin{sol}
+\end{sol}
+
+
+\begin{prb}
+Let $A$ be a C*-algebra.
+If $I,J$ are postliminal ideals in $A$ (that is, closed ideals that are postliminal C*-algebras), show that $I+J$ is postliminal also.
+Deduce from this and Exercise 5.8 that there is a largest postliminal ideal $I$ in $A$ (which may, of course, be the zero ideal).
+Show that $A/I$ has no non-zero postliminal ideals.
+\end{prb}
+\begin{sol}
+\end{sol}
+
+\end{document}
+
+

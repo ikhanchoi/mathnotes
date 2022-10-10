@@ -1,53 +1,38 @@
 # Ikhan Choi's mathematics notes
 
 
-## My own map towards mathematics
-
-Calculus,
-Linear Algebra,
-Sets and Numbers
-
-### Analysis
-
-| Foundations of Calculus |||
-|---|---|---|
-| Measure Theory | Differential Equations | General Topology |
-| Harmonic Analysis | Complex Analysis | Functional Analysis |
-| Partial Differential Equations | Probability Theory ||
 
 
-### Algebra
 
-| Algebraic Structures |||
-|---|---|---|
-| Galois Theory | Number Theory | Category Theory |
-| Commutative Algebra | Representation Theory | Homological Algebra |
-| Analytic Number Theory | Combinatorics ||
+## 읽을 논문
 
 
-### Geometry and Topology
-
-| Classical Geometry |||
-|---|---|---|
-| Differential Geometry | Algebraic Geometry | Algebraic Topology |
-| Differential Topology | Complex Geometry | Homotopy Theory |
-| Symplectic Geometry | Low-dimensional Topology ||
 
 
-### Applied Mathematics
 
-- Classical Physics
-- Modern Physics
-- Mathematical Logic
-- Computational Mathematics
+## 읽은 논문
 
 
-### Research Areas in Functional Analysis
+논문 파일은 분류하여 아이클라우드 카이북에 둘 것
+	내용별로? 읽은 시기별로?
+
+
+### 논문 코드
+연도 저자 제목 저널
+비브텍 코드
+주의할 정의/기호
+논문 주요 내용 요약
+
+
+## 분야
 
 - Spectral Theory
 - Geometry of Banach Spaces
+
 - Operator Algebra
 - Abstract Harmonic Analysis
 - Noncommutative Geometry
+
 - Algebraic Quantum Field Theory
 - Quantum Information Theory
+- Categorical Representation Theory

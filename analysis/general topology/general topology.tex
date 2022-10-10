@@ -1,0 +1,1122 @@
+\documentclass{../../large}
+\usepackage{../../ikhanchoi}
+
+
+\begin{document}
+\title{General Topology}
+\author{Ikhan Choi}
+\maketitle
+\tableofcontents
+
+\part{Topological spaces}
+
+
+\chapter{Topologies}
+
+\section{Filters and bases}
+\section{Open sets and closed sets}
+\section{Interior, closure, and boundary}
+
+
+\section*{Exercises}
+
+\begin{prb}
+If $A^\circ\subset B$ and $B$ is closed, then $(A\cup B)^\circ\subset B$.
+\end{prb}
+
+
+
+
+\chapter{Fundamental constructions}
+\section{Subspace topology}
+\section{Quotient topology}
+\section{Product topology}
+
+
+
+\chapter{Nets and sequences}
+\section{Nets and subnets}
+\section{Eventuality filters}
+\section{Sequential spaces}
+
+
+
+\begin{prb}[Sequential spaces]
+Let $X$ be a topological space.
+A subset $U$ is called \emph{sequentially open} in $X$ if every sequence that converges to a point in $U$ is eventually in $U$.
+A \emph{sequential space} is a topological space in which every sequentially open set is open.
+\begin{parts}
+\item Every open set is sequentially open.
+\item
+\end{parts}
+\end{prb}
+
+\begin{prb}[Sequential continuity]
+Let $f:X\to Y$ be a map between topological spaces.
+\begin{parts}
+\item If $X$ is sequential, then the sequential continuity implies the continuity of $f$.
+\end{parts}
+\end{prb}
+\begin{pf}
+Suppose $f$ is not continuous so that there is an open set $V$ in $Y$ such that $f^{-1}(V)$ is not open.
+Since $X$ is sequential, $f^{-1}(Y)$ is not sequentially open.
+Take a seuqence $x_n$ in $X\setminus f^{-1}(V)$ that converges to $x\in f^{-1}(V)$.
+Then, $f(x_n)$ dose not converges since $f(x_n)\notin V$ and $f(x)\in V$, so $f$ is not sequentially continuous.
+\end{pf}
+
+\begin{prb}
+\end{prb}
+
+
+important: existence of convergent subnet
+
+no convergent subsequence implies the discreteness(closedness) of the sequence
+convergent sequence is relatively compact
+there is a convergent subnet relatively compact if $X$ is locally compact
+every infinite set is cofinal
+
+
+if every subnet is a sequence, then the net is a sequence?
+% 의미 있는 문젠가?
+
+
+\part{Topological properties}
+\chapter{Compactness}
+\section{Compact spaces}
+\section{Sequential compactness}
+\section{Local compactness}
+\section{Tychonoff theorem}
+\section*{Exercises}
+\begin{prb}
+$\Q$ is $\sigma$-compact but not hemicompact.
+\end{prb}
+\chapter{Connectedness}
+\section{Connected spaces}
+\section{Path connectedness}
+\section{Local connectedness}
+
+
+
+\chapter{Separation axioms}
+\section{Separation axioms}
+subspace and product
+
+
+\section{Normal spaces}
+not for product
+
+compact Hausdorff
+order topology
+metric topology?
+
+\section{Urysohn lemma and Tietze extension}
+
+
+
+\section*{Exercises}
+\begin{prb}[Sorgenfrey's plane]
+\end{prb}
+\begin{prb}[Tychonoff plank]
+\end{prb}
+\begin{prb}[Moore plane]
+\end{prb}
+\begin{prb}[Rational sequence topology]
+\end{prb}
+\begin{prb}[Mr\'owka space]
+\end{prb}
+
+
+\begin{enumerate}
+\item A second countable locally compact space is $\sigma$-compact.
+\item A locally compact Hausdorff space is completely regular.
+\end{enumerate}
+
+
+\part{Topological structures}
+
+\chapter{Metric spaces}
+
+\section{Equivalence of metrics}
+\begin{prb}[Comparison of metrics]
+Let $d_1$ and $d_2$ be metrics on a set $X$.
+We say that $d_1$ is \emph{stronger than} $d_2$ (equivalently, $d_2$ is \emph{weaker than} $d_1$) or $d_1$ \emph{refines} $d_2$ if for any $x\in X$ and $\e>0$, there is $\delta>0$ such that
+\[B_1(x,\delta)\subset B_2(x,\e),\]
+where $B_1$ and $B_2$ refer to balls within the metrics $d_1$ and $d_2$ respectively.
+\begin{parts}
+\item
+This refinement relation is a preorder.
+\item
+$d_1$ is stronger than $d_2$ if and only if every sequence that converges to $x\in X$ in $d_1$ converges to $x$ in $d_2$.
+\item
+$d_1$ is stronger than $d_2$ if and only if the identity map $\id:(X,d_1)\to(X,d_2)$ is continuous.
+\end{parts}
+\end{prb}
+\begin{pf}
+(a)
+It is enough to show the transitivity.
+Suppose there are three metric $d_1$, $d_2$, and $d_3$ on a set $X$ such that $d_1$ is stronger than $d_2$ and $d_2$ is stronger than $d_3$.
+For $i=1,2,3$, let $B_i$ be a notation for the balls defined with the metric $d_i$.
+
+Take $x\in X$ and $\e>0$ arbitrarily.
+Then, we can find $\e'>0$ such that
+\[B_2(x,\e')\subset B_3(x,\e).\]
+Also, we can find $\delta>0$ such that
+\[B_1(x,\delta)\subset B_2(x,\e').\]
+Therefore, we have $B_1(x,\delta)\subset B_3(x,\e)$ which implies that $d_1$ refines $d_3$.
+
+(b)
+($\Rightarrow$)
+Let $\{x_n\}_n$ be a sequence in $X$ that converges to $x$ in $d_1$.
+By the assumption, for an arbitrary ball $B_2(x,\e)=\{y:d_2(x,y)<\e\}$, there is $\delta>0$ such that
+\[B_1(x,\delta)\subset B_2(x,\e),\]
+where $B_1(x,\delta)=\{y:d_1(x,y)<\delta\}$.
+Since $\{x_n\}_n$ converges to $x$ in $d_1$, there is an integer $n_0$ such that
+\[n>n_0\impl x_n\in B_1(x,\delta).\]
+Combining them, we obtain an integer $n_0$ such that
+\[n>n_0\impl x_n\in B_2(x,\e).\]
+It means $\{x_n\}$ converges to $x$ in the metric $d_2$.
+
+($\Leftarrow$)
+We prove it by contradiction.
+Assume that for some point $x\in X$ we can find $\e_0>0$ such that there is no $\delta>0$ satisfying $B_1(x,\delta)\subset B_2(x,\e_0)$.
+In other words, at the point $x$, the difference set $B_1(x,\delta)\setminus B_2(x,\e_0)$ is not empty for every $\delta>0$.
+Thus, we can choose $x_n$ to be a point such that
+\[x_n\in B_1\left(x,\tfrac1n\right)\setminus B_2(x,\e_0)\]
+for each positive integer $n$ by putting $\delta=\frac1n$.
+
+We claim $\{x_n\}_n$ converges to $x$ in $d_1$ but not in $d_2$.
+For $\e>0$, if we let $n_0=\ceil{\frac1\e}$ so that we have $\frac1{n_0}\le\e$, then
+\[n>n_0\impl x_n\in B_1\left(x,\tfrac1n\right)\subset B_1(x,\e).\]
+So $\{x_n\}_n$ converges to $x$ in $d_1$.
+However in $d_2$, for $\e=\e_0$, we can find such $n_0$ like $d_1$ since
+\[x_n\notin B_2(x,\e_0)\]
+for every $n$.
+Therefore, $\{x_n\}$ does not converges to $x$ in $d_2$.
+\end{pf}
+
+\begin{prb}[Equivalence of metrics]
+Let $d_1$ and $d_2$ be metrics on a set $X$.
+They are said to be \emph{(topologically) equivalent} if they refines each other.
+\begin{parts}
+\item
+$d_1$ and $d_2$ are equivalent if for each $x$ in $X$ there exist two constants $C_1$ and $C_2$ such that $d_2(x,y)\le C_1d_1(x,y)$ and $d_1(x,y)\le C_2d_2(x,y)$ for all $y$ in $X$.
+\item
+$d_1$ and $d_2$ are equivalent if $d_2=f\circ d_1$ for a monotonically increasing $f:\R_{\ge0}\to\R_{\ge0}$ that is continuous at $0$.
+\end{parts}
+\end{prb}
+\begin{pf}
+(a)
+Let $d_1$ and $d_2$ be metrics on a set $X$.
+Suppose for each point $x$ there exists a constant $C$ which may depend on $x$ such that $d_2(x,y)\le Cd_1(x,y)$ for all $y\in Y$.
+We will show $d_1$ is stronger than $d_2$.
+
+(b)
+For any ball $B_1(x,\e)$, we have a smaller ball
+\[B_2(x,f(\e))\subset B_1(x,\e)\]
+since $f(d(x,y))<f(\e)$ implies $d(x,y)<\e$.
+Conversely, take an arbitrary ball $B_2(x,\e)$.
+Since $f$ is continuous at 0, we can find $\delta>0$ such that
+\[d(x,y)<\delta\impl f(d(x,y))<\e,\]
+which implies $B_1(x,\delta)\subset B_2(x,\e)$.
+\end{pf}
+
+
+
+
+
+
+A metric can be viewed as a function that takes a sequence as input and returns whether the sequence converges or diverges.
+That is, a metric acts like a criterion which decides convergence of sequences.
+Take note on the fact that the sequence of real numbers defined by $x_n=\frac1n$ converges in standard metric but diverges in discrete metric.
+Like this example, even for the same sequence on a same set, the convergence depends on the attached metrics.
+What we are interested in is comparison of metrics and to find a proper relation structure.
+If a sequence converges in a metric $d_2$ but diverges in another metric $d_1$, we would say $d_1$ has stronger rules to decide the convergence.
+Refinement relation formalizes the idea.
+
+Unlike metrics, there exist two different topologies that have same sequential convergence data.
+For example, a sequence in an uncountable set with cocountable topology converges to a point if and only if it is eventually at the point, which is same with discrete topology.
+This means the informations of sequence convergence are not sufficient to uniquely characterize a topology.
+Instead, convergence data of generalized sequences also called nets, recover the whole topology.
+For topologies having a property called the first countability, it is enough to consider only usual sequences in spite of nets.
+What we did in this subsection is not useless because topology induced from metric is a typical example of first countable topologies.
+These kinds of problems will be profoundly treated in Chapter 3.
+
+One can ask some results for the equivalence of metrics characterized by a same set of continuous functions.
+However, they are generally difficult problems: is it possible to recover the base space from a continuous function space or a path space?
+
+
+Topologies are occasionally described by not a single but several metrics.
+It provides a useful method to construct a metric or topology, which can be applied to a quite wide range of applications.
+Specifically, in a conventional way, metrics can be summed or taken maximum to make another metric out of olds.
+The following proposition can be easily generalized to an arbitrary finite number of metrics by mathematical induction.
+
+\begin{prop}
+Let $d_1$ and $d_2$ be metrics on a set $X$.
+For a sequecne $\{x_n\}_n$ in $X$, the following statements are all equivalent:
+\begin{parts}
+\item it converges to $x$ in both $d_1$ and $d_2$,
+\item it converges to $x$ in $d_1+d_2$,
+\item it converges to $x$ in $\max\{d_1,d_2\}$.
+\end{parts}
+In particular, the metrics $d_1+d_2$ and $\max\{d_1,d_2\}$ are equivalent.
+\end{prop}
+\begin{pf}
+We skip to prove $d_1+d_2$ and $\max\{d_1,d_2\}$ are metrics.
+
+(b) or (c)$\Rightarrow$(a)
+The inequalities $d_i\le d_1+d_2$ and $d_i\le\max\{d_1,d_2\}$ imply the desired results.
+
+(a)$\Rightarrow$(b)
+For $\e>0$, we may find positive integers $n_1$ and $n_2$ such that $n>n_1$ and $n>n_2$ imply $d_1(x_n,x)<\frac\e2$ and $d_2(x_n,x)<\frac\e2$ respectively.
+If we define $n_0:=\max\{n_1,n_2\}$, then
+\[n>n_0\impl d_1(x_n,x)+d_2(x_n,x)<\e.\]
+
+(a)$\Rightarrow$(c)
+Take $n_0$ as we did previously.
+Then,
+\[n>n_0\impl\max\{d_1(x_n,x),d_2(x_n,x)\}<\frac\e2<\e.\qedhere\]
+\end{pf}
+
+\begin{rmk}
+In general, for any norm $\|\cdot\|$ on $\R^2$, the function $\|(d_1,d_2)\|$ defines another equivalent metric.
+\end{rmk}
+
+There is also a method for combining not only finite family of metrics, but also infinite family of metrics.
+Since the sum of infinitely many positive numbers may diverges to infinity, we cannot sum the metrics directly.
+The strategy is to ``bound'' the metrics.
+We call a metric bounded when the range of metric function is bounded.
+
+\begin{prop}
+Every metric possesses an equivalent bounded metric.
+\end{prop}
+\begin{pf}
+Let $d$ be a metric on a set.
+Let $f$ be a bounded, monotonically increasing, and subadditive function on $\R_{\ge0}$ that is continuous at 0 and satisfies $f^{-1}(0)=\{0\}$.
+The mostly used examples are
+\[f(x)=\frac x{1+x}\quad\text{and}\quad f(x)=\min\{x,1\}.\]
+Then, $f\circ d$ is a bounded metric equivalent to $d$ by Example 1.4.
+\end{pf}
+
+\begin{defn}
+Let $d$ be a metric on a set $X$.
+A \emph{standard bounded metric} means either metric
+\[\min\{d,1\}\quad\text{or}\quad\frac d{d+1},\]
+and we will denote it by $\hat d$.
+\end{defn}
+
+\begin{prop}
+Let $\{d_i\}_{i\in\N}$ be a countable family of metrics on a set $X$.
+For a sequence $\{x_n\}_n$ in $X$, the following statements are all equivalent:
+\begin{parts}
+\item it converges in $d_i$ for every $i$,
+\item it converges in a metric
+\[d(x,y):=\sum_{i\in\N}\,2^{-i}\hat d_i(x,y),\]
+\item it converges in a metric
+\[d'(x,y):=\sup_{i\in\N}\,i^{-1}\hat d_i(x,y).\]
+\end{parts}
+In particular, the metrics $d$ and $d'$ are equivalent.
+\end{prop}
+\begin{pf}
+The functions $d$ and $d'$ in (b) and (c) are well-defined by the monotone convergence theorem and the least upper bound property.
+We skip checking for them to satisfy the triangle inequality and be metrics.
+
+(b) or (c)$\Rightarrow$(a)
+We have ineuqalities $\hat d_i\le2^id$ and $\hat d_i\le id'$ for each $i$, so convergence in $d$ or $d'$ implies the convergence in each $\hat d_i$.
+The equivalence of $\hat d_i$ and $d_i$ implies the desired result.
+
+(a)$\Rightarrow$(b)
+Suppose a sequence $\{x_n\}_n$ converges to a point $x$ in $d_i$ for every index $i$.
+Take an arbitrary small ball $B(x,\e)=\{y:d(x,y)<\e\}$ with metric $d$.
+By the assumption, we can find $n_i$ for each $i$ satisfying
+\[n>n_i\impl\hat d_i(x_n,x)<\frac\e2.\]
+Define $k:=\lceil1-\log_2\e\rceil$ so that we have $2^{-k}\le\frac\e2$.
+With this $k$, define
+\[n_0:=\max_{1\le i\le k}n_i.\]
+If $n>n_0$, then
+\begin{align*}
+d(x_n,x)&=\sum_{i=1}^k2^{-i}\hat d_i(x_n,x)+\sum_{i=k+1}^\infty2^{-i}\hat d_i(x_n,x)\\
+&<\sum_{i=1}^k2^{-i}\frac\e2+\sum_{i=k+1}^\infty2^{-i}\\
+&<\frac\e2+2^{-k}\le\e,
+\end{align*}
+so $x_n$ converges to $x$ in the metric $d$.
+
+(a)$\Rightarrow$(c)
+Suppose a sequence $\{x_n\}_n$ converges to a point $x$ in each $d_i$, and take an arbitrary small ball $B(x,\e)=\{y:d(x,y)<\e\}$ with metric $d$.
+By the assumption, we can find $n_i$ for each $i$ satisfying
+\[n>n_i\impl\hat d_i(x_n,x)<\e.\]
+Define $k:=\lceil\frac1\e\rceil$ so that we have $k^{-1}\le\e$.
+With this $k$, define
+\[n_0:=\max_{1\le i\le k}n_i.\]
+If $n>n_0$, then
+\[i^{-1}\hat d_i(x,y)\le\hat d_i(x,y)<\e\quad\text{for}\quad i\le k\]
+and
+\[i^{-1}\hat d_i(x,y)\le i^{-1}<k^{-1}\le\e\quad\text{for}\quad i>k\]
+imply $d(x_n,x)<\e$, which means that $x_n$ converges to $x$ in the metric $d$.
+\end{pf}
+
+Combination of uncountably many metrics does not result in a single metric, but a topology which cannot be induced from a metric in general.
+It will be discussed in the rest of the note.
+
+\begin{rmk}
+A metric
+\[d''(x,y)=\sup_{i\in\N}\,d_i(x,y)\]
+is not used because the convergence in this metric is a stronger condition than the convergence with respect to each metric $d_i$.
+In other words, this metric generates a finer(stronger) topology than the topology generated by subbase of balls.
+For example, the topology on $\R^\N$ generated by this metric defined with the projection pseudometrics is exactly what we often call the box topology.
+\end{rmk}
+
+
+We can also form a metric by summation of generalized metrics, called pseudometrics, which is defined by missing the nondegeneracy condition from the original definition of metric.
+
+\begin{defn}
+A function $\rho:X\times X\to\R_{\ge0}$ is called a \emph{pseudometric} if
+\begin{parts}
+\item $\rho(x,x)=0$ for all $x\in X$,
+\item $\rho(x,y)=\rho(y,x)$ for all $x,y\in X$, \hfill(symmetry)
+\item $\rho(x,z)\le \rho(x,y)+\rho(y,z)$ for all $x,y,z\in X$. \hfill(triangle inequality)
+\end{parts}
+\end{defn}
+
+For pseudometrics, it is possible to duplicate every definition we studied in metric spaces: convergence of a sequence, continuity between a set endowed with a pseudometric, refinement and equivalence relations, and countable sum of bounded pseudometrics to make a new pseudometric.
+Furthermore, every statement for metrics can be generalized to pseudometrics since we have not actually used the condition that $d(x,y)=0$ implies $x=y$.
+In fact, we have a flaw that the limit of a convergent sequence may not be unique within a pseudometric.
+
+\begin{ex}
+Let $\rho(x,y)=\rho((x_1,x_2),(y_1,y_2))=|x_1-y_1|$ be a pseudometric on $\R^2$.
+Consider a sequence $\{(\frac1n,0)\}_n$.
+Since $(0,c)$ satisfies 
+\[\rho((\tfrac1n,0),(0,c))=\tfrac1n\to0\quad\text{as}\quad n\to\infty\]
+for any real number $c$, the sequence converges to $(x_1,x_2)$ if and only if $x_1=0$.
+\end{ex}
+
+Although sequences may have several limits in each pseudometric, the sum of a family of pseudometrics can allow the sequences to have at most one limit, only if the sum satisfies the axioms of a metric.
+
+\begin{defn}
+A family of pseudometrics $\{\rho_\alpha\}_\alpha$ on a set $X$ is said to \emph{separate points} if the condition 
+\[\rho_\alpha(x,y)=0\quad\text{for all $\alpha$}\]
+implies $x=y$.
+\end{defn}
+\begin{prop}
+\begin{parts}
+\item
+A finite family of pseudometrics $\{\rho_i\}_{i=1}^N$ separates points if and only if the pseudometric $\rho:=\sum_{i=1}^N\rho_i$ is a metric.
+\item
+A countable family of pseudometrics $\{\rho_i\}_{i\in\N}$ separates points if and only if the pseudometric defined by
+\[\rho:=\sum_{i\in\N}2^{-i}\tilde\rho_i\quad\text{or}\quad\sup_{i\in\N}i^{-1}\tilde\rho_i,\]
+where $\tilde\rho_i$ is either $\min\{\rho_i,1\}$ or $\rho_i/(\rho_i+1)$, is a metric.
+\end{parts}
+\end{prop}
+
+
+
+\section{Metrization theorems}
+
+Urysohn metrization theorem: regular second countable
+
+Paracompactness
+Dieudonne's theorem: paracompact Hausdorff is normal.
+
+
+\section{Polish spaces}
+\begin{prb}[Embedding of separable metric spaces]
+Urysohn's embedding
+Hilbert cube
+\end{prb}
+
+
+
+
+
+\section*{Exercises}
+
+\begin{prb}[Discrete metrics]
+Let $X$ be a set, and define a metric as
+\[d(x,y):=\begin{cases}0&,x=y\\1&,x\ne y\end{cases}.\]
+This metric is called \emph{discrete}.
+\begin{parts}
+\item
+The discrete metric is a strongest metric on $X$.
+\item 
+\item
+A sequence $x_n$ converges to a point $x$ in a discrete metric space if and only if there is $n_0$ such that $n\ge n_0$ implies $x_n=x$.
+\end{parts}
+\end{prb}
+
+\begin{prb}
+\begin{parts}
+\item
+Let $d$ be a metric on a set $X$.
+Let $f:\R_{\ge0}\to\R_{\ge0}$ be a function such that $f^{-1}(0)=\{0\}$.
+If $f$ is monotonically increasing and subadditive, then $f\circ d$ satisfies the triangle inequality, hence is another metric on $X$.
+Note that a function $f$ is called \emph{subadditive} if $f(x+y)\le f(x)+f(y)$ for all $x,y$ in the domain.
+\item
+Let $G=(V,E)$ be a connected graph.
+Define $d:V\times V\to\Z_{\ge0}\subset\R_{\ge0}$ as the distance of two vertices; the length of shortest path connecting two vertices.
+Then, $(V,d)$ is a metric space.
+\item
+Let $\cP(X)$ be the power set of a finite set $X$.
+Define $d:\cP(X)\times\cP(X)\to\Z_{\ge0}\subset\R_{\ge0}$ as the cardinality of the symmetric difference; $d(A,B):=|(A-B)\cup(B-A)|$.
+Then $(\cP(X),d)$ is a metric space.
+\item
+Let $C$ be the set of all compact subsets of $\R^d$.
+Recall that a subset of $\R^d$ is compact if and only if it is closed and bounded.
+Then, $d:C\times C\to\R_{\ge0}$ defined by
+\[d(A,B):=\max\{\,\sup_{a\in A}\inf_{b\in B}\|a-b\|,\ \sup_{b\in B}\inf_{a\in A}\|a-b\|\,\}\]
+is a metric on $C$.
+It is a little special case of \emph{Hausdorff metric}.
+\end{parts}
+\end{prb}
+
+
+\begin{prb}[Kuratowski embedding]
+While every subset of a normed space is a metric space, we have a converse statement that every metric space is in fact realized as a subset of a normed space.
+Let $X$ be a metric space, and denote by $C_b(X)$ the space of continuous and bounded real-valued functions on $X$ with uniform norm given by
+\[\|f\|=\sup_{x\in X}|f(x)|.\]
+Fix a point $p\in X$, which will serve as the origin.
+\begin{parts}
+\item Show that a map $\phi:X\to C_b(X)$ such that
+\[[\phi(x)](t)=d(x,t)-d(p,t)\]
+is well-defined.
+\item Show that the map $\phi$ is an isometry; $d(x,y)=\|\phi(x)-\phi(y)\|$.
+\end{parts}
+\end{prb}
+
+\begin{prb}[Equivalence of norms in finite dimension]
+Let $V$ be a vector space of dimension $d$ over $\F=\R$ or $\C$.
+Fix a basis $\{e_i\}_{i=1}^d$ on $V$ and let $x=\sum_{i=1}^dx_ie_i$ denote an arbitrary element of $V$.
+We will prove all norms are equivalent to the standard Euclidean norm defined for this fixed basis:
+\[\|x\|_2:=(\sum_{i=1}^d|x_i|^2)^{\frac12}.\]
+With this standard norm any theorems studied in elementary analysis including the Bolzano-Weierstrass theorem are allowed to be applied.
+Take a norm $\|\cdot\|$ on $V$ which may differ to $\|\cdot\|_2$.
+\begin{parts}
+\item Find a constant $C_2$ such that $\|x\|\le C_2\|x\|_2$ for all $x\in V$.
+\item Show that if no constant $C$ satisfies $\|x\|_2\le C\|x\|$, then there exists a sequence $\{x_n\}_n$ such that $\|x_n\|_2=1$ and $\|x_n\|<\tfrac1n$.
+\item Show that there exists a constant $C$ satisfies $\|x\|_2\le C\|x\|$.
+\end{parts}
+\end{prb}
+
+
+\begin{prb}
+\begin{parts}
+\item A $\sigma$-compact locally compact space is paracompact.
+\item A second countable regular space is paracompact.
+\end{parts}
+\end{prb}
+
+\begin{enumerate}
+\item A compact Hausdorff space is metrizable if and only if it is second countable.
+\item For a metrizable space, separable iff second countable iff Lindel\"of.
+\end{enumerate}
+
+
+
+
+\chapter{Uniform spaces}
+
+\section{Uniformities and pseudometrics}
+
+
+
+
+\section{Completely regular spaces}
+uniformizability
+Stone-\v Cech compactification
+
+\section{Cauchy structure}
+completion
+
+\section{Relative compactness}
+compact uniform space is complete
+relatively compact
+
+\section*{Exercises}
+\begin{prb}
+Even for a first countable uniform space, completeness and sequential completeness are not equivalent.
+\end{prb}
+\begin{prb}
+A uniformity is pseudometrizable if and only if it admits a countable fundamental system of entourages.
+\end{prb}
+
+
+
+
+
+
+
+
+
+
+\chapter{Topological groups}
+
+\section{Topological properties}
+uniform structures
+Birkhoff-Kakutani
+metrizability
+
+\section{Topological group actions}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\part{Continuous Function Spaces}
+\chapter{Compact-open topology}
+
+\section{Topology by convergence}
+
+Topologies on $C_c(X)$ for LCH $X$: weaker to stronger
+\begin{parts}
+\item Topology of compact convergence: $\bar{C_c(X)}=\bar{C_{\mathrm{loc}}(X)}=C_{\mathrm{loc}}(X)$.
+\item Topology of uniform convergence: $\bar{C_c(X)}=C_0(X)$, $C_c(X)^*=M(X)$.
+\item Inductive topology: $\bar{C_c(X)}:=\bar{\colim_{U\Subset X}C_c(U)}=C_c(X)$.
+\end{parts}
+The space $C_{\mathrm{loc}}(X)$ is defined to be $C(X)$ as a set endowed with the topology of compact convergence.
+
+
+
+
+
+\chapter{Approximation of continuous functions}
+\section{Arzela-Ascoli theorem}
+
+\section{Stone-Weierstrass theorem}
+
+\begin{prb}[Bernstein polynomial]
+We want to show $\R[x]$ is dense in $C([0,1],\R)$.
+Let $f\in C([0,1],\R)$ and define \emph{Berstein polynomials} $B_n(f)\in\R[x]$ for each $n$ such that
+\[B_n(f)(x):=\sum_{k=0}^nf\left(\frac kn\right)\binom nkx^k(1-x)^{n-k}.\]
+\begin{parts}
+\item $B_n(f)$ uniformly converges to $f$ on $[0,1]$.
+\item There is a sequence $p_n\in\R[x]$ with $p_n(0)=0$ uniformly convergent to $x\mapsto|x|$ on $[-1,1]$.
+\end{parts}
+\end{prb}
+\begin{pf}
+(b)
+Let
+\[B_n(x):=\sum_{k=0}^n\left|1-\frac{2k}n\right|\binom nk(1-2x)^k(2x-1)^{n-k}.\]
+Since $B_n(x)\to|x|$ uniformly on $[-1,1]$ and $B_n(0)\to0$, we have $B_n(x)-B_n(0)\to|x|$ uniformly on $[-1,1]$.
+\end{pf}
+
+\begin{prb}[Taylor series of square root]
+We want to show the absolute value is approximated by polynomials in $C([-1,1],\R)$ in another way.
+Let
+\[f_n(x):=\sum_{k=0}^n a_k(x-1)^k\]
+be the partial sum of the Taylor series of the square root function $\sqrt x$ at $x=1$.
+\begin{parts}
+\item By Abel's theorem, $f_n$ uniformly converges to $\sqrt x$ on $[0,1]$
+\item There is a sequence $p_n\in\R[x]$ with $p_n(0)=0$ uniformly convergent to $x\mapsto|x|$ on $[-1,1]$.
+\end{parts}
+\end{prb}
+
+
+\begin{prb}[Proof of Stone-Weierstrass theorem]
+Let $X$ be a compact Hausdorff space and $S\subset C(X,\R)$.
+We say that $S$ \emph{separates points} if for every distinct $x$ and $y$ in $X$ there is $f\in S$ such that $f(x)\ne f(y)$, and that $S$ \emph{vanishes nowhere} if for every $x$ in $X$ there is $f\in S$ such that $f(x)\ne0$.
+
+Let $\cA=\bar{S\R[S]}$ be the real Banach subalgebra of $C(X,\R)$ generated by $S$.
+\begin{parts}
+\item $\cA$ is a lattice.
+\item $\cA$ is dense in $C(X,\R)$.
+\end{parts}
+\end{prb}
+
+
+
+
+Locally compact version,
+complex version
+
+
+
+
+
+
+
+
+\begin{prb}
+Some examples
+\begin{parts}
+\item $z\R[z]$ is dense in $C([1,2],\R)$.
+\item $\C[z]$ is dense in $C([0,1],\C)$.
+\item $z\C[z,\bar z]$ is dense in $C(\T,\C)$.
+\end{parts}
+\end{prb}
+
+
+
+
+
+
+
+
+
+
+
+
+\chapter{Topological measures}
+\section{Baire and Borel measures}
+locally finite Baire measures can define a linear functional on $C_c$.
+
+
+\section{Measures on metric spaces}
+
+\begin{prb}[Regularity of Borel measures]
+Let $X$ be a topological space.
+We confine our discusssion of regularity only on Borel measures.
+For a Borel measure $\mu$ on $X$, we say $\mu$ is \emph{outer regular} if
+\[\mu(E)=\inf\{\,\mu(U):E\subset U,\ U\text{ open}\,\},\]
+and say $\mu$ is \emph{inner regular} if
+\[\mu(E)=\sup\{\,\mu(F):F\subset E,\ F\text{ closed}\,\}.\]
+Let $\mu$ be a regular Borel measure on $X$.
+\begin{parts}
+\item If $E$ is $\sigma$-finite, then for any $\e>0$ there are open $U$ and closed $F$ such that $F\subset E\subset U$ and $\mu(U\setminus F)<\e$.
+\end{parts}
+\end{prb}
+
+
+
+
+
+\begin{prb}[Finiteness and regularity]
+On which spaces are all Borel measures regular or Radon or etc?
+
+\begin{parts}
+\item In a topological space in which every closed set is $G_\delta$, every finite measure is regular.
+\end{parts}
+\end{prb}
+
+
+
+
+
+\begin{prb}[Approximation by continuous functions]
+Let $\mu$ be a regular Borel measure on a topological space $X$.
+\begin{parts}
+\item If $X$ is normal, then $C_b(X)\cap L^p(\mu)$ is dense in $L^p(\mu)$ for $1\le p<\infty$.
+\item If $X$ is locally compact Hausdorff, then $C_c(X)$ is dense in $L^p(\mu)$ for $1\le p<\infty$.
+\end{parts}
+\end{prb}
+\begin{pf}
+(a)
+Let $\e>0$ and suppose $E\subset X$ is measurable with $\mu(E)<\infty$.
+Since $E$ is $\sigma$-finite, we have open $U$ and closed $F$ such that $F\subset E\subset U$ and $\mu(U\setminus F)<\e/2$.
+By the Urysohn lemma, there is a continuous function $g:X\to[0,1]$ such that $g|_{U^c}=0$ and $g|_F=1$.
+Then,
+\[\int|\1_E-g|\,d\mu=\int_{U\setminus F}|\1_E-g|\,d\mu\le2\mu(U\setminus K)<\e.\]
+
+(b)
+\end{pf}
+
+
+\begin{prb}[Luzin's theorem]
+The theorem of Luzin is about the continuous extension.
+One of the frequent usages is to approximate indicator functions with continuous functions.
+
+Let $\mu$ be a regular Borel measure on a topological space $X$.
+Let $f:X\to\R$ be a Borel measurable function.
+\begin{parts}
+\item If $\mu$ is $\sigma$-finite, then for any $\e>0$ there is closed $F\subset X$ such that $f|_F:F\to\R$ is continuous.
+\item If $X$ is normal and $\mu$ is $\sigma$-finite, then for any $\e>0$ there is closed $F\subset X$ and continuous $g:X\to\R$ such that $f|_F=g|_F$ and $\mu(X\setminus F)<\e$.
+\item If $X$ is locally compact Hausdorff and $\mu$ is $\sigma$-finite, then for any $\e>0$ there is compact $K\subset X$ and continuous $g:X\to\R$ such that $f|_K=g|_K$ and $\mu(X\setminus K)<\e$.
+\item For the both above cases, if $f$ is bounded, then $g$ also can be taken to be bounded.
+\end{parts}
+\end{prb}
+\begin{pf}
+(a)
+First we assume $f$ is bounded so that $f\in L^1(\mu)$.
+Since $\R$ is second countable, we have a base $(V_n)_{n=1}^\infty$ of $\R$.
+Since $\mu$ is $\sigma$-finite, for each $n$ we can take open $U_n$ and closed $F_n$ such that $F_n\subset f^{-1}(V_n)\subset U_n$ and $\mu(U_n\setminus F_n)<\e/2^n$.
+Define $F:=\left(\bigcup_{n=1}^\infty U_n\setminus F_n\right)^c$ so that $\mu(X\setminus F)<\e$ and $F$ is closed.
+Then, the identity $f^{-1}(V_n)\cap F=U_n\cap F$ proves the continuity of $f|_F$.
+
+(b)
+Since $\mu$ is regular, with the density of continuous functions, construct a sequence $(f_n)$ of continuous functions $X\to\R$ such that $f_n\to f$ in $L^1$.
+By taking a subsequence, we may assume $f_n\to f$ pointwise.
+
+Since $\mu$ is finite, by the Egorov theorem, there is a measurable $A\subset X$ such that $f_n\to f$ uniformly on $A$ and $\mu(X\setminus A)<\e/2$.
+Since $\mu$ is inner regular, we have closed $F\subset A$ such that $\mu(A\setminus F)<\e/2$, so that we have $\mu(X\setminus F)<\e$.
+Then, $f$ is continuous on $A$, and of course on $F$.
+Since $X$ is normal, by the Tietz extension theorem, there is a continuous $g:X\to\R$ such that $f|_F=g|_F$.
+
+(b)
+
+\end{pf}
+
+
+
+
+
+
+\section{Measures on locally compact Hausdorff spaces}
+
+
+compact  closed set not containing infty
+open     open not containing infty
+closed   closed set containing infty
+
+for a measure that ``vanishes at infty'' = tight
+two definitions of inner regularity is equivalent.
+
+IRK -> IRF
+IRK + sigma finite -> tight
+
+\begin{prb}[Tightness and inner regularity]
+We have a similar but confusing concept called tightness; we say a Borel measure $\mu$ on a topological space $X$ is \emph{tight} if for any $\e>0$ there is a compact $K\subset X$ such that $\mu(X\setminus K)<\e$.
+
+History of Bourbaki's text.
+\begin{parts}
+\item
+\end{parts}
+\end{prb}
+
+Thm. The measure contructed by RMK is lf and regular(cpt version).
+1. open set is approx by cpt sets (by def of rho, if X is LCH)
+2. meas set is approx by opn sets (by def of outer meas)
+3. sigma finite set is approx by cpt sets (by thm)
+
+\section{Riesz-Markov-Kakutani representation theorem}
+
+Consider
+\begin{cd}
+\text{regBorel}_{fin} \rar[hook]\dar[hook]& \text{Borel}_{fin} \rar\dar[hook]& \text{Baire}_{fin} \rar\dar[hook]& C_b^{*+} \dar[->>]&\\
+\text{regBorel}_{locfin} \rar[hook]& \text{Borel}_{locfin} \rar& \text{Baire}_{locfin} \rar& C_c^{*+}\rar[hook]& \text{pos lin on }C_c.
+\end{cd}
+for locally compact Hausdorff $X$.
+
+
+$\text{Borel}_{locfin}\to \text{pos lin on }C_c$ is surjective for all topological spaces.
+
+$\text{regBorel}_{fin}\to C_b^{*+}$ is injective for normal spaces.
+
+$\text{regBorel}_{locfin}\to C_c^{*+}$ is injective for locally compact Hausdorff spaces.(maybe)
+
+
+
+\begin{prb}[Existence of Borel measures]
+Let $(X,\cT)$ be a topological space.
+For a positive linear functional $I$ on $C_c(X)$, define a set function $\rho:\cT\to[0,\infty]$ such that
+\[\rho(U):=\sup\,\{\,I(f):f\in C_c(U,[0,1])\,\}.\]
+Define the associated outer measure $\mu^*:\cP(X)\to[0,\infty]$ such that
+\[\mu^*(E):=\inf\left\{\,\sum_{i=1}^\infty\rho(U_i):E\subset\bigcup_{i=1}^\infty U_i,\ U_i\text{ open}\,\right\}.\]
+Let $\cM$ be the $\sigma$-algebra of Carath\'eodory measurable subsets relative to $\mu^*$, $\cB$ the Borel $\sigma$-algebra, and $\mu:=\mu^*|_\cB$.
+\begin{parts}
+\item $\mu^*|_\cT=\rho$ if $X$ is Hausdorff.
+\item $\cB\subset\cM$.
+\item $I(f)=\int f\,d\mu$ for $f\in C_c(X)$ if $X$ is Hausdorff.
+\end{parts}
+\end{prb}
+\begin{pf}
+(a)
+Since $\rho$ is already monotone, if we only show $\rho$ is countably subadditive, then we can rewrite the outer measure as
+\[\mu^*(E)=\inf\,\{\,\rho(U):E\subset U,\ U\text{ open}\,\},\]
+so the identity $\mu^*(U)=\rho(U)$ for open $U$ clearly follows.
+
+Take any open $U$ and countable family $\{U_i\}_{i=1}^\infty$ of open sets whose union is $U$.
+Take any $f\in C_c(U,[0,1])$ and let $K:=\supp f$.
+Since $K$ is compact, there is a finite subcover $\{U_j\}_{j=1}^n$ of $K$, and since $K$ is paracompact Hausdorff, there is a partition of unitiy $\{\chi_j\}_j$ on $K$ subordinate to the open cover $\{U_j\cap K\}_j$.
+Note that $\supp\chi_j\subset U_j\cap K$ for each $j$.
+
+The set $\supp(f\chi_j)$ is closed in $K$ so the compactness, and we also have the inclusion $\supp(f\chi_j)\subset\supp\chi_j\subset U_j$.
+For every $0<a\le 1$, since $(f\chi_j)^{-1}((a,1])$ is open in the interior of $K$ and $(f\chi_j)^{-1}([a,1])$ is closed in $K$, $f\chi_j$ is continuous on $U_j$.
+Now we have checked $f\chi_j\in C_c(U_j,[0,1])$.
+
+Then, because $I$ is linear so that it preserves finite sum, we have
+\[I(f)=I\left(\sum_{j=1}^n f\chi_j\right)=\sum_{j=1}^n I(f\chi_j)\le\sum_{j=1}^n\rho(U_j)\le\sum_{i=1}^\infty\rho(U_i).\]
+Since $f$ is arbitrary, we get $\rho(U)\le\sum_{i=1}^\infty\rho(U_i)$.
+
+(b)
+It suffices to show $\cT\subset\cM$.
+Clearly $\mu^*(E)\le\mu^*(E\cap U)+\mu^*(E\setminus U)$ for any measurable $E$ and open $U$.
+For the opposite direction, take $\e>0$.
+Note that we may assume $\mu^*(E)<\infty$.
+There are open $U_i$ such that $E\subset\bigcup_{i=1}^\infty U_i$ and
+\[\mu^*(E)+\frac\e3>\sum_{i=1}^\infty\rho(U_i).\]
+Take $f_i\in C_c(U_i\cap U,[0,1])$ such that
+\[\rho(U_i\cap U)-\frac13\cdot\frac\e{2^i}<I(f_i),\]
+and take $g_i\in C_c(U_i\setminus\supp f_i,[0,1])$ such that
+\[\rho(U_i\setminus\supp f_i)-\frac13\cdot\frac\e{2^i}<I(g_i).\]
+Then, since $f_i+g_i\in C_c(U_i,[0,1])$, we have
+\begin{align*}
+\rho(U_i)\ge I(f_i+g_i)
+&>\rho(U_i\cap U)+\rho(U_i\setminus\supp f_i)-\frac23\cdot\frac\e{2^i}\\
+&\ge\rho(U_i\cap U)+\rho(U_i\setminus U)-\frac23\cdot\frac\e{2^i}.
+\end{align*}
+It implies
+\[\mu^*(E)+\e>\sum_{i=1}^\infty\rho(U_i\cap U)+\sum_{i=1}^\infty\rho(U_i\setminus U))\ge\mu^*(E\cap U)+\mu^*(E\setminus U)\]
+because $E\cap U\subset\bigcup_{i=1}^\infty U_i\cap U$ and $E\setminus U\subset\bigcup_{i=1}^\infty U_i\setminus U$.
+
+
+(c)
+We first claim that for $g\in C_c(X,[0,1])$ we have
+\[\mu(K)\le I(g)\le\mu(K'),\]
+where $K$ and $K'$ are compact and open sets such that $g|_K=1$ and $g|_{K'^c}=0$ respectively.
+The one inequality $I(g)\le\mu(K')$ directly follows from $I(g)\le\rho(U)$ for every open $U$ containing $K'$.
+For the other, let $0<\e<1$ and $U:=g^{-1}((1-\e,1])$, so that $K\subset U\subset\supp g$.
+For any $h\in C_c(U,[0,1])$, the inequality $(1-\e)h\le g$ implies $I(h)\le(1-\e)^{-1}I(g)$, so
+\[\mu(K)\le\mu(U)=\rho(U)\le(1-\e)^{-1}I(g).\]
+By limiting $\e\to0$, we get $\mu(K)\le I(g)$, the claim proved.
+
+Since $C_c(X)$ is the linear span of $C_c(X,[0,1])$, it is enough to show $I(f)=\int f\,d\mu$ for $f\in C_c(X,[0,1])$.
+For a fixed positive integer $n$ and for each index $1\le i\le n$, let $K_i:=f^{-1}([i/n,1])$ and define
+\[f_i(x):=\begin{cases}0&\text{ if }x\in K_{i-1}^c,\\1/n&\text{ if }x\in K_i,\\f(x)-(i-1)/n&\text{ if }x\in K_{i-1}\setminus K_i,\end{cases}\]
+where $K_0:=\supp f$.
+Note that $nf_i\in C_c(X,[0,1])$ and $f=\sum_{i=1}^nf_i$.
+For $1\le i\le n$ we have $\mu(K_i)<\infty$ because $K_i$ is compact subsets contained in a locally compact Hausdorff space $U:=f^{-1}((0,1])$, but $\mu(K_0)$ is possibly infinite.
+By the previous claim and the property of integral, we have
+\[\frac{\mu(K_i)}n\le I(f_i),\qquad\frac{\mu(K_i)}n\le\int f_i\,d\mu\]
+for $1\le i\le n$ and
+\[I(f_i)\le\frac{\mu(K_{i-1})}n,\qquad\int f_i\,d\mu\le\frac{\mu(K_{i-1})}n\]
+for $2\le i\le n$.
+Then, using the above inequalities and $\mu(K_n)\ge0$, we have
+\[I(f)\le I(f_1)+\int f\,d\mu\quad\text{and}\quad\int f\,d\mu\le\int f_1\,d\mu+I(f).\]
+Note that $f_1=\min\{f,1/n\}$ is a sequence of functions indexed by $n$.
+By the monotone convergence theorem, $\int f_1\,d\mu\to0$ as $n\to\infty$.
+We now show $I(f_1)$ converges to zero.
+
+For $g\in C_0(U,[0,1])$, it clearly has compact support, and and it is also continuous because $g^{-1}((a,1])$ is open in $U$ and $g^{-1}([a,1])$ is closed in $K$ for any $0<a\le1$, so that we have $C_0(U)\subset C_c(X)$.
+We also have $f_1\in C_0(U)$ since $f_1^{-1}([\e,1])$ is a compact set in $U$ for every $\e>0$.
+Therefore, $I$ is a positive linear functional on $C_0(U)$.
+Assume that $I$ is not bounded; there is no constant $C$ such that $g\in C_0(U,[0,1])$ implies $I(g)\le C$.
+Construct a sequence $(h_k)_{k=1}^\infty$ in $C_0(U,[0,1])$ such that $I(h_k)\ge2^k$, and define $h:=\sum_{k=1}^\infty h_k/2^k$ so that $h\in C_0(U,[0,1])$.
+Then, $I(h)\ge \sum_{k=1}^mI(h_k)/2^k\ge m$ for every $m>0$, it contradicts to the assumption, which means that there is a constant $C$ such that $I(g)\le C$ for all $g\in C_0(U,[0,1])$, and it proves $I(f_1)\le C/n\to0$ as $n\to\infty$.
+Therefore, $I(f)=\int f\,d\mu$.
+\end{pf}
+
+\begin{prb}[Uniqueness of regular Borel measures]
+a
+\begin{parts}
+\item If $X$ is normal, then $\text{regBorel}_{fin}\to C_b^{*+}$ is injective.
+\item If $X$ locally compact Hausdorff, then $\text{regBorel}_{locfin}\to C_c^{*+}$ is injective.
+\end{parts}
+\end{prb}
+\begin{pf}
+(a)
+Let $E$ be any measurable set.
+Since $X$ is normal and $\mu+\nu$ is a finite regular Borel measure, by the Luzin theorem, there are closed $F\subset X$ and $g\in C_b(X)$ with $0\le g\le1$ such that $\1_E|_F=g|_F$ and $(\mu+\nu)(X\setminus F)<\e/2$.
+Then,
+\begin{align*}
+|\mu(E)-\nu(E)|&=|\int\1_E\,d\mu-\int\1_E\,d\nu|\\
+&\le\int_{X\setminus F}|\1_E-g|\,d\mu+\int_{X\setminus F}|\1_E-g|\,d\nu\\
+&<2(\mu+\nu)(X\setminus F)=\e.
+\end{align*}
+
+\end{pf}
+
+
+\begin{prb}[Dual of continuous function spaces]
+\end{prb}
+
+
+
+\section*{Exercises}
+
+\begin{prb}
+Let $X$ be a topological space, and $Y$ a second countable space.
+Let $\mu$ be a regular Borel measure on $X$.
+Let $f:X\to Y$ be a Borel measurable function.
+For any $\e>0$, there is a closed $F\subset X$ such that $\mu(X\setminus F)<\e$ and $f|_F:F\to Y$ is continuous.
+\end{prb}
+\begin{pf}
+Let $(V_n)_{n=1}^\infty$ be a base of $Y$.
+For each $n$, take open $U_n$ and closed $F_n$ such that $F_n\subset f^{-1}(V_n)\subset U_n$ and $\mu(U_n\setminus F_n)<\e/2^n$.
+Define $F:=\left(\bigcup_{n=1}^\infty U_n\setminus F_n\right)^c$ so that $\mu(X\setminus F)<\e$ and $F$ is closed.
+Then, the identity $f^{-1}(V_n)\cap F=U_n\cap F$ proves the continuity of $f|_F$.
+\end{pf}
+
+
+
+
+
+
+
+
+%%%%%%%%%%%
+
+\section*{asdf}
+
+
+\begin{lem}
+Let $\mu$ be a Borel measure on a LCH $X$.
+Then, $\mu$ is inner regular on open sets iff
+\[\mu(U)=\|\mu\|_{C_c(U)^*}\]
+for every open $U$ in $X$.
+\end{lem}
+\begin{pf}
+($\Leftarrow$)
+($\ge$)
+For $f\in C_c(U)$, we have
+\[|\int f\,d\mu|=|\int_Uf\,d\mu|\le\mu(U)\,\|f\|.\]
+
+($\le$)
+Since $\mu$ is inner regular on $U$, there is a compact set $K\subset U$ such that $\mu(U)-\mu(K)<\e$ (for the case $\mu(U)=\infty$, we can deal with separately).
+We can find a nonnegative function $f\in C_c(U)$ with $f|_K \equiv 1$ and $f\le1$ by the construction of Urysohn.
+Then, for all $\e>0$ we have
+\[\mu(U)<\mu(K)+\e\le\int f\,d\mu+\e\le\|\mu\|_{C_c^*(U)}+\e.\]
+
+($\Rightarrow$)
+Let $f\in C_c(U)$ be a function such that $\|f\|=1$ and
+\[\mu(U)-\e<\int f\,d\mu.\]
+Let $K=\supp(f)$.
+Then
+\[\mu(K)\ge\int f>\mu(U)-\e.\]
+\end{pf}
+% 이런 거 쓸 때 메져가 유한인지 무한인지 케이스 나누고 증명쓰는 게 좋겠다
+
+\begin{prop}
+A Radon measure is inner regular on all $\sigma$-finite Borel sets.(Folland's)
+\end{prop}
+\begin{pf}
+First we approximate Borel sets of finite measure, with compact sets.
+Let $E$ be a Borel set with $\mu(E)<\infty$ and $U$ be an open set containing $E$.
+By outer regularity, there is an open set $V\supset U-E$ such that
+\[\mu(V)<\mu(U-E)+\frac\e2.\]
+By inner regularity, there is a compact set $K\subset U$ such that
+\[\mu(K)>\mu(U)-\frac\e2.\]
+Then, we have a compact set $K-V\subset K-(U-E)\subset E$ such that
+\begin{align*}
+\mu(K-V)&\ge\mu(K)-\mu(V)\\
+&>\left(\mu(U)-\frac\e2\right)-\left(\mu(U-E)+\frac\e2\right)\\
+&\ge\mu(E)-\e.
+\end{align*}
+It implies that a Radon measure is inner regular on Borel sets of finite measures.
+
+Suppose $E$ is a $\sigma$-finite Borel set so that $E=\bigcup_{n=1}^\infty E_n$ with $\mu(E_n)<\infty$.
+We may assume $E_n$ are pairwise disjoint.
+Let $K_n$ be a compact subset of $E_n$ such that
+\[\mu(K_n)>\mu(E_n)-\frac\e{2^n},\]
+and define $K=\bigcup_{n=1}^\infty K_n\subset E$.
+Then,
+\[\mu(K)=\sum_{n=1}^\infty\mu(K_n)>\sum_{n=1}^\infty\left(\mu(E_n)-\frac\e{2^n}\right)=\mu(E)-\e.\]
+Therefore, a Radon measure is inner regular on all $\sigma$-finite Borel sets.
+\end{pf}
+
+\begin{thm}
+If every open set in $X$ is $\sigma$-compact(i.e. Borel sets and Baire sets coincide), then every locally finite Borel measure is regular.
+\end{thm}
+\begin{prop}
+In a second countable space, every open set is $\sigma$-compact(i.e. Borel sets and Baire sets coincide).
+\end{prop}
+
+
+Two corollaries are presented as follows:
+\begin{rd}[column sep={120pt,between origins}]
+\parbox{7em}{\centering locally finite \\ Borel regular} \rar &
+\parbox{5em}{\centering Radon} \rar \lar[dashed, bend right, swap]{$X$ is $\sigma$-compact} &
+\parbox{7em}{\centering locally finite \\ Borel} \ar[dashed, bend left]{ll}{$X$ is second countable}
+\end{rd}
+
+
+
+
+\begin{prb}
+Let $X$ be compact.
+A positive linear functional $\rho$ on $C(X)$ is bounded with norm $\rho(1)$.
+\end{prb}
+\begin{pf}
+Since $0\le\rho(\|f\|\pm f)=\|f\|\rho(1)\pm\rho(f)$, we have $|\rho(f)|\le\rho(1)\|f\|$.
+\end{pf}
+
+\begin{prb}
+Let $X$ be a locally compact Hausdorff space.
+\begin{parts}
+\item The Baire $\sigma$-algebra is generated by compact $G_\delta$ sets.
+\item If $X$ is second countable, then every Baire set is Borel.
+\end{parts}
+\end{prb}
+\begin{sol}
+(b)
+(A second countable locally compact space is $\sigma$-compact.
+
+Since $X$ is $\sigma$-compact and Hausdorff, every closed set is a countable union of compact sets, so the Borel $\sigma$-algebra on $X$ is generated by compact sets.)
+
+Since locally compact Hausdorff space is regular, the Urysohn metrization implies $X$ is metrizable, and every closed sets in metrizable space is $G_\delta$ set.
+\end{sol}
+
+
+
+%%%%%%%%%%%%%%%
+\begin{prb}
+Let $X$ be compact.
+There is a map from the set of finite Baire measures to the set of positive linear functionals on $C(X)$.
+\end{prb}
+\begin{sol}
+A function in $C(X)$ is Baire measurable and bounded.
+Thus the integration is well-defined.
+\end{sol}
+
+\begin{prb}
+Let $X$ be compact.
+There is a map from the set of positive linear functionals on $C(X)$ to the set of finite regular Borel measures.
+\end{prb}
+\begin{sol}
+i. and ii. and iii. of Theorem 7.2.
+\end{sol}
+
+\begin{prb}
+Let $X$ be compact.
+Let $\rho$ be a positive linear functional on $C(X)$.
+Let $\nu$ be the regular Borel measure associated to $\rho$.
+Then, $\rho(f)=\int f\,d\nu$.
+\end{prb}
+\begin{sol}
+iv. of Theorem 7.2.
+\end{sol}
+
+\begin{prb}
+Let $X$ be compact.
+Let $\nu$ be a finite regular Borel measure.
+Let $\nu'$ be the regular Borel measure associated to the positive linear functional $f\mapsto\int f\,d\nu$.
+Then, $\nu=\nu'$ on Borel sets.
+\end{prb}
+\begin{sol}
+Theorem 7.8.
+\end{sol}
+
+The two results above establish the correspondence between positive linear functionals and regular Borel measures.
+The following is an additional topic: Borel extension of Baire measures.
+\begin{prb}
+Let $X$ be compact.
+Let $\mu$ be a finite Baire measure.
+Let $\nu$ be the regular Borel measure associated to the positive linear functional $f\mapsto\int f\,d\mu$.
+Then, $\mu=\nu$ on Baire sets.
+\end{prb}
+\begin{sol}
+Let $\mu,\nu$ be finite Baire measures.
+Enough to show if $\int f\,d\mu=\int f\,d\nu$ then $\mu=\nu$ according to the preceding two results.
+
+Enough to show the regularity of Baire measures.
+\end{sol}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}

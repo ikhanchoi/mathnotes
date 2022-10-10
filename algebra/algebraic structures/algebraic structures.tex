@@ -1,0 +1,381 @@
+\documentclass{../../large}
+\usepackage{../../ikhanchoi}
+
+
+\begin{document}
+\title{Algebraic Structures}
+\author{Ikhan Choi}
+\maketitle
+\tableofcontents
+
+\part{Groups}
+% Homomorphism의 construction에만
+% group의 활용에 집중, group의 구조에는 관심을 끈다
+% orderwise, lagrange, orbit-stabilizer 외에 카운팅은 하지 않는다
+% stabilizer 계산은 해야지
+% 부분군 래티스 그리는 정도까지는 한다
+\chapter{Subgroups}
+subgroups
+homomorphisms, image, kernel, inverse images
+normality, quotient, coset counting
+direct sum, direct product
+generators, subgroup lattice
+
+
+
+\section*{Exercises}
+
+\section*{Problems}
+\begin{enumerate}
+\item Let $G$ be a finite group. If the cube map $x\mapsto x^3$ is a surjective endomorhpism, then $G$ is abelian.
+\item Show that if $|G|=p^2$ for a prime $p$, then a group $G$ is abelian.
+\item Show that the order of a group with only on automorphism is at most two.
+\end{enumerate}
+
+
+
+
+
+
+
+
+
+\chapter{Group actions}
+\section{Orbits and stabilizers}
+Invariants on orbit space.
+The size and number of orbits.
+
+\begin{prb}[Transitive actions]
+stabilizer of an action is well defined
+
+\end{prb}
+
+\begin{prb}[Free actions]
+no fixed point,
+trivial stabilizer for any point,
+every orbit has 1-1 correspondence to group
+\end{prb}
+
+\section{Action by conjugation}
+
+
+\section{Action by left multiplication}
+
+
+H has index n  : G can act on Sym(G/H) : left mul
+K normalizes H : K -> NG(H) -> NG(H)/H  with ker = KnH
+K normalizes H : K -> NG(H) -> Aut(H)  with ker = CG(H)
+
+
+\section*{Problems}
+\begin{enumerate}
+\item Let $G$ be a finite group. If $G/Z(G)$ is cylic, then $G$ is abelian.
+\end{enumerate}
+
+\chapter{Symmetry groups}
+
+Information about:
+element counting by order,
+element counting by conjugacy class,
+subgroups by order (existence)
+subgroups by conjugacy class.
+
+
+
+\section{Cyclic groups}
+\section{Dihedral groups}
+\section{Symmetric groups}
+alternating groups
+
+\section{Automorphism groups}
+Maybe too hard
+
+cyclic groups.
+abelian groups?
+symmetric groups?
+
+
+
+
+\section*{Exercises}
+
+\begin{prb}[Primitive roots]
+We find all $n$ such that $(\Z/n\Z)^\times$ is cyclic.
+\end{prb}
+
+
+
+
+\section*{Problems}
+
+\begin{enumerate}
+\item Show that a group of order $2p$ for a prime $p$ has exactly two isomorphic types.
+\item Let $G$ be a finite group of order $n$ and $p$ the smallest prime divisor of $n$. Show that a subgroup of $G$ of index $p$ is normal in $G$.
+\item Show that a finite group $G$ satisfying $\sum_{g\in G}\ord(g)\le2n$ is abelian.
+\item Find all homomorphic images of $A_4$ up to isomorphism.
+\item For a prime $p$, find the number of subgroups of $Z_{p^2}\times Z_{p^3}$ of order $p^2$.
+\end{enumerate}
+
+
+
+
+
+
+
+\part{Rings}
+\chapter{Ideals}
+\section{Definitions of rings and ideals}
+\begin{prb}[Definition of rings]
+A \emph{ring} is an abelian group $(R,+)$ together with a binary operation $\times:R\times R\to R$, called the \emph{multiplication}, such that:
+\begin{enumerate}[(i)]
+\item $(R,\times)$ is an abelian monoid,
+\item the \emph{distributive law}: for every $r,s,t\in R$, we have
+\[r\times(s+t)=(r\times s)+(r\times t).\]
+\end{enumerate}
+The additive and multiplicative identities are usually denoted by $0$ and $1$ and called the \emph{zero} and the \emph{unity} respectively.
+We will sometimes call rings for which multiplication is not necessarily commutative or the multiplicative identity does not necessarily exist as \emph{non-commutative rings} and \emph{non-unital rings}, respectively.
+\end{prb}
+
+
+\begin{prb}[Definition of ideals]
+Let $R$ be a ring.
+\end{prb}
+
+
+\section*{Exercises}
+size of units, the number of ideals
+
+
+
+
+\chapter{Integral domains}
+\section{Principal ideal domains}
+\section{Unique factorization domains}
+\section{Noetherian rings}
+
+\section*{Exercises}
+\section*{Problems}
+\begin{enumerate}
+\item Show that a finite integral domain is a field.
+\item Show that every ring of order $p^2$ for a prime $p$ is commutative.
+\item Show that a semiring with multiplicative identity and cancellative addtion has commutative addition.
+\item Show that the complement of a saturated monoid in a commutative ring is a union of prime ideals.
+\end{enumerate}
+
+
+\chapter{Polynomial rings}
+\section{Irreducible polynomials}
+relation to maximal ideals
+Irreducibles over several fields
+\begin{prb}[Gauss lemma]
+\end{prb}
+\begin{prb}[Eisenstein criterion]
+\end{prb}
+
+\section{Polynomial rings over a field}
+\begin{prb}[Euclidean algorithm for polynoimals]
+\end{prb}
+\begin{prb}[Polynomial rings over UFD]
+\end{prb}
+\begin{prb}[Hilbert's basis theorem]
+\end{prb}
+
+
+
+
+
+
+
+
+
+
+
+\part{Modules}
+
+
+
+\chapter{Modules}
+\section{Modules}
+
+\begin{prb}[Definition of modules]
+Let $R$ be a non-commutative ring.
+A (left) \emph{$R$-module} is an abelian group $(M,+)$ together with a function $\cdot:R\times M\to M$, called the \emph{scalar multiplication}, such that
+\begin{enumerate}[(i)]
+\item the scalar multiplication defines an \emph{left action} on $M$: for every $r,s\in R$ and $m\in M$, we have
+\[r\cdot(s\cdot m)=(rs)\cdot m\quad\text{ and }\quad1\cdot m=m,\]
+\item the \emph{distributive laws} hold: for every $r,s\in R$ and $m,n\in M$, we have
+\[r\cdot (m+n)=r\cdot m+r\cdot n\quad\text{ and }\quad(r+s)\cdot m=r\cdot m+s\cdot m.\]
+\end{enumerate}
+\begin{parts}
+\item If $R$ is commutative, then
+\end{parts}
+\end{prb}
+
+submodules
+quotient modules
+isomorphism theorems
+
+
+\section{Algebras}
+\begin{prb}[Definition of algebras]
+Let $R$ be a ring.
+An (associative) \emph{$R$-algebra} is an $R$-module $(A,+,\cdot)$ together with a binary operation $\times:A\times A\to A$, called the \emph{multiplication}, such that
+\begin{enumerate}[(i)]
+\item the multiplication is associative,
+\item the \emph{distributive laws} hold: for every $a,b,c\in A$, we have
+\[a\times(b+c)=a\times b+a\times c\quad\text{ and }\quad(a+b)\times c=a\times c+b\times c,\]
+\item the \emph{compatibility with scalars}: for every $r,s\in R$ and $a,b\in A$, we have
+\[(rs)\cdot(a\times b)=(r\cdot a)\times(s\cdot b).\]
+\end{enumerate}
+If the multiplication is commutative or admits an identity, respectively, we say the $R$-algebra is \emph{commutative} or \emph{unital}.
+Although there are examples of \emph{non-associative} algebras in which the multiplication is not associative, we will always mean \emph{associative} $R$-algebras by $R$-algebras if any modifier is not attached.
+\begin{parts}
+\item The set of matrices $M_n(R)$ over a ring $R$ is a unital $R$-algebra.
+\item The set of quaternions $\H$ is an $\R$-algebra.
+\item There is a one-to-one correspondence between rings and commutative unital $\Z$-algebras.
+\end{parts}
+\end{prb}
+
+
+\begin{prb}[Algebras as non-commutative rings]
+The term algebra is commonly used when we have to consider either non-commutative or non-unital of rings.
+Let $R$ be a ring.
+An \emph{$R$-algebra} also can be defined as a non-commutative and non-unital ring $(A,+,\times)$ together with a ring homomorphism $\eta:R\to Z(A)$, where
+\[Z(A):=\{\,a\in A:ab=ba\text{ for all }b\in A\,\},\]
+which is called the \emph{center}.
+The homomorphism $\eta$ defines a scalar multiplication via
+\[\cdot:R\times A\to A:(r,a)\mapsto\eta(r)a.\]
+\begin{parts}
+\item A non-commutative and non-unital ring $R$ is a $Z(R)$-algebra.
+\item The ``module-with-multiplication definition'' is equivalent to the ``ring-with-scalar-multiplication definition''.
+\end{parts}
+\end{prb}
+
+
+\section{Free modules}
+generators, cyclic
+direct sum
+free modules
+
+\section{Tensor products}
+
+
+
+\chapter{Exact sequences}
+\section{}
+injective modules
+projective modules
+flat modules
+endomorphism algebra
+Tor and Ext
+
+
+\chapter{Modules over principal ideal domains}
+\section{Structure theorem of finitely generated modules}
+invariant factors and elementary divisors
+
+\begin{prb}[Structure theorem of finitely generated modules]
+Let $R$ be a principal ideal domain and let $M$ be a finitely generated module.
+
+\end{prb}
+
+If we know the ideal structure of a PID $R$, then we can classify all finitely generated modules over $R$.
+
+\begin{prb}[Fundamental theorem of abelian groups]
+\end{prb}
+\begin{prb}[Cyclic decomposition]
+\end{prb}
+
+
+
+
+
+\part{Vector spaces}
+
+
+\chapter{}
+\section{Dual spaces}
+
+\begin{prb}[Double dual space]
+\end{prb}
+
+\section{Bilinear and sesquilinear forms}
+
+\begin{prb}[Polarization identity]
+\begin{parts}
+\item Let $F$ be a field of characteristic not $2$. If $\<-,-\>$ is a symmetric bilinear form, then
+\[\<x,y\>=\frac12(\|x+y\|^2-\|x\|^2-\|y\|^2).\]
+\item Let $F=\C$. If $\<-,-\>$ is a sesquilinear form, then
+\[\<x,y\>=\frac14\sum_{k=0}^3i^k\|x+i^ky\|^2.\]
+\item isometry check
+\end{parts}
+\end{prb}
+
+\begin{prb}[Cauchy-Schwarz inequality]
+\begin{parts}
+\item Let $F=\R$. If $\<-,-\>$ is a positive semi-definite symmetric bilinear form, then
+\item Let $F=\C$. If $\<-,-\>$ is a positive semi-definite Hermitian form, then
+\end{parts}
+\end{prb}
+
+\begin{prb}[Dual space identification]
+Let $\<-,-\>$ be a non-degenerate bilinear form
+\end{prb}
+
+\section{Adjoint}
+\begin{prb}[Adjoint linear transforms]
+\end{prb}
+
+
+
+
+
+
+
+\chapter{Normal forms}
+\section{Rational canonical form}
+\begin{prb}[Finitely generated $F\lbrack x\rbrack$-modules]
+Let $F$ be a field.
+Then, the map
+\[V\mapsto(V,x)\]
+defines a one-to-one correspondence
+\[\left\{\begin{tabular}{c}finitely generated\\$F[x]$-modules\end{tabular}\right\}\to\left\{\,(V,T)\ ;\begin{tabular}{c}$V$ is a finite-dimensional vector spaces over $F$,\\$T:V\to V$ is a linear transform\end{tabular}\right\}.\]
+\end{prb}
+\begin{prb}[Cyclic subspaces]
+\end{prb}
+\section{Jordan normal form}
+
+
+\section{Conjugacy classes in matrix groups}
+
+\begin{prb}[Conjugacy classes of $\GL_2(\F_p)$]
+The conjugacy classes are classified by the Jordan normal forms.
+There are four cases: for some $a$ and $b$ in $\F_p$,
+\begin{parts}
+\item $\mat{a&0\\0&b}$: $\binom{p-1}2=\frac{(q-1)(q-2)}2$ classes of size $\frac{|G|}{(q-1)^2}=q(q+1)$.
+\item $\mat{a&0\\0&a}$: $q-1$ classes of size $1$.
+\item $\mat{a&1\\0&a}$: $q-1$ classes of size $\frac{|G|}{q(q-1)}=q^2-1$.
+\item otherwise, the eigenvalues are in $\F_{p^2}\setminus\F_p$.
+In this case, the number of conjugacy classes is same as the number of monic irreducible qudratic polynomials over $\F_p$; $\frac{|\F_{p^2}|-|\F_p|}2=\frac{p(p-1)}2$ classes.
+Their size is $\frac{p(p-1)}2$.
+\end{parts}
+\end{prb}
+
+\section{Spectral theorems}
+
+
+
+\section*{Exercises}
+
+
+
+
+\chapter{Tensor algebras}
+Exterior algebras
+Symmetric algebras
+
+
+
+
+
+\end{document}
