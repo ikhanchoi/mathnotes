@@ -234,7 +234,7 @@ If $\spn\{\1_A:A\in\cA\}\subset H$ then $B^\infty(\sigma(\cA))\subset H$.
 Let $\lambda$ denote the Lebesgue measure on $\R$ and let $\E\subset\R$ be a Lebesgue measurable set with $\lambda(E)>0$.
 \begin{parts}
 \item For any $0<\alpha<1$, there is an interval $I=(a,b)$ such that $\lambda(E\cap I)>\alpha\lambda(I)$.
-\item $E-E$ contains an open interval containing zero.
+\item $E-E=\{x-y:x,y\in E\}$ contains an open interval containing zero.
 \end{parts}
 \begin{pf}
 (a)
@@ -292,7 +292,7 @@ Let $f(x)=\lim_{n\to\infty}s_n(x)$.
 \begin{prb}[Almost everywhere convergence]
 Let $(\Omega,\mu)$ be a measure space and let $f_n:\Omega\to\bar\R$ and $f:\Omega\to\bar\R$ be measurable functions.
 The set of convergence of the sequence $f_n$ is defined as the set
-\[\{\,x\in\Omega:\lim_{n\to\infty}f_n(x)=f(x)\,\},\]
+\[\{x\in\Omega:\lim_{n\to\infty}f_n(x)=f(x)\},\]
 and the set of divergence is defined as its complement.
 We say $f_n$ converges to $f$ \emph{alomst everywhere} with respect to $\mu$ if the set of divergence is a null set in $\mu$.
 We simply write
@@ -303,28 +303,44 @@ if $f_n$ converges to $f$ almost everywhere, and we frequently omit the measure 
 \end{parts}
 \end{prb}
 
-\begin{prb}[Tail events]
+\begin{prb}[Borel-Cantelli lemma]
 Let $(\Omega,\mu)$ be a measure space and let $f_n:\Omega\to\bar\R$ and $f:\Omega\to\bar\R$ be a sequence of measurable functions.
 Note that the set of divergence is given by
-\[\bigcup_{\e>0}\bigcap_{n>0}\bigcup_{i\ge n}T_i^\e,\]
-where
-\[T_n^\e:=\{\,x:|f_n(x)-f(x)|\ge\e\,\},\]
-which is called the \emph{tail event}.
-The term is originated from probability theory.
+\[\bigcup_{\e>0}\bigcap_{n=1}^\infty\bigcup_{i=n}^\infty\{x:|f_n(x)-f(x)|\ge\e\}.\]
+Each measurable set of the form
+\[\{x:|f_n(x)-f(x)|\ge\e\}\]
+is sometimes called the \emph{tail event}, coined in probability theory.
 \begin{parts}
 \item $f_n\to f$ a.e. if and only if for each $\e>0$ we have
-\[\mu(\limsup_{n\to\infty}T_n^\e)=0.\]
+\[\mu(\{x:\limsup_{n\to\infty}|f_n(x)-f(x)|\ge\e\})=0.\]
+\item $f_n\to f$ a.e. if and only if for each $\e>0$ we have
+\[\mu(\limsup_{n\to\infty}\{x:|f_n(x)-f(x)|\ge\e\})=0.\]
+\item $f_n\to f$ a.e. if for each $\e>0$ we have
+\[\sum_{n=1}^\infty\mu(\{x:|f_n(x)-f(x)|\ge\e\})<\infty.\]
 \end{parts}
 \end{prb}
+\begin{pf}
+(b)
+The set of divergence of the sequence $f_n$ is given by
+\[\bigcup_{m=1}^\infty\bigcap_{n=1}^\infty\bigcup_{i=n}^\infty\{x:|f_i(x)-f(x)|\ge\tfrac1m\}=\bigcup_{m=1}^\infty\,\bigcap_{n=1}^\infty(\Omega\setminus E_n^m).\]
 
-\begin{prb}[Borel-Cantelli lemma]
-
-\end{prb}
+(c)
+Since
+\[\mu\Bigl(\bigcup_{i=1}^\infty\{x:|f_i(x)-f(x)|\ge\e\}\Bigr)\le\sum_{i=1}^\infty\mu(\{x:|f_i(x)-f(x)|\ge\e\})<\infty,\]
+we have by the continuity from above that
+\begin{align*}
+\mu(\limsup_{n\to\infty}\{x:|f_n(x)-f(x)|\ge\e\})
+&=\mu\Bigl(\bigcap_{n=1}^\infty\bigcup_{i=n}^\infty\{x:|f_i(x)-f(x)|\ge\e\}\Bigr)\\
+&=\lim_{n\to\infty}\mu\Bigl(\bigcup_{i=n}^\infty\{x:|f_i(x)-f(x)|\ge\e\}\Bigr)\\
+&\le\lim_{n\to\infty}\sum_{i=n}^\infty\mu(\{x:|f_i(x)-f(x)|\ge\e\})
+=0.\qedhere
+\end{align*}
+\end{pf}
 
 \begin{prb}[Convergence in measure]
 Let $(\Omega,\mu)$ be a measure space and let $f_n:\Omega\to\bar\R$ be a sequence of measurable functions.
 We say $f_n$ converges to a measurable function $f:\Omega\to\bar\R$ \emph{in measure} if for each $\e>0$ we have
-\[\lim_{n\to\infty}\mu(\{\,x:|f_n(x)-f(x)|>\e\,\})=\lim_{n\to\infty}\mu(T_n^\e)=0.\]
+\[\lim_{n\to\infty}\mu(\{x:|f_n(x)-f(x)|\ge\e\})=0.\]
 \begin{parts}
 \item If $f_n\to f$ in measure, then there is a subsequence $f_{n_k}$ such that $f_{n_k}\to f$ a.e.
 \item If every subsequence $f_{n_k}$ of $f_n$ has a further subsequence $f_{n_{k_j}}$ such that $f_{n_{k_j}}\to f$ a.e., then $f_n\to f$ in measure.
@@ -332,16 +348,18 @@ We say $f_n$ converges to a measurable function $f:\Omega\to\bar\R$ \emph{in mea
 \end{prb}
 \begin{pf}
 (a)
-Since $\mu(T_n^{1/k})\to0$ for each $k$ as $n\to\infty$, there is $n_k$ such that
-\[\mu(T_{n_k}^{1/k})<\frac1{2^k}.\]
-We claim that $f_{n_k}\to f$ a.e.
-Since
-\[\sum_{k=1}^\infty\mu(T_{n_k}^{1/k})<\infty,\]
-by the Borel-Cantelli lemma, we get
-\[\mu(\limsup_{k\to\infty}T_{n_k}^{1/k})=0.\]
-For each $\e>0$,
-\[\limsup_{k\to\infty}T_{n_k}^\e=\bigcap_{k>\e^{-1}}\bigcup_{j\ge k}T_{n_j}^\e\subset\bigcap_{k>\e^{-1}}\bigcup_{j\ge k}T_{n_j}^{1/k}=\limsup_{k\to\infty}T_{n_k}^{1/k}\]
-implies $f_{n_k}\to f$ a.e.
+Since for each positive integer $k$ we have $\mu(\{x:|f_n(x)-f(x)|\ge\frac1k\})\to0$ as $n\to\infty$, there exists $n_k$ such that
+\[\mu(\{x:|f_{n_k}(x)-f(x)|\ge\tfrac1k\})<\frac1{2^k}.\]
+By the Borel-Cantelli lemma, we get
+\[\mu(\limsup_{k\to\infty}\{x:|f_{n_k}(x)-f(x)|\ge\tfrac1k\})=0.\]
+Then, for each $\e>0$,
+\begin{align*}
+\limsup_{k\to\infty}\{x:|f_{n_k}(x)-f(x)|\ge\e\}
+&=\bigcap_{k=\lceil\e^{-1}\rceil}^\infty\bigcup_{j=k}^\infty\{x:|f_{n_j}(x)-f(x)|\ge\e\}\\
+&\subset\bigcap_{k=\lceil\e^{-1}\rceil}^\infty\bigcup_{j=k}^\infty\{x:|f_{n_j}(x)-f(x)|\ge\tfrac1k\}\\
+&=\limsup_{k\to\infty}\{x:|f_{n_k}(x)-f(x)|\ge\tfrac1k\}
+\end{align*}
+implies the limit superior of the tail events is a null set, hence $f_{n_k}\to f$ a.e.
 
 (b)
 \end{pf}
@@ -350,19 +368,23 @@ implies $f_{n_k}\to f$ a.e.
 Egorov's theorem informally states that an almost everywhere convergent functional sequence is ``almost'' uniformly convergent.
 Through this famous theorem, we introduce a convenient ``$\e/2^m$ argument'', occasionally used throughout measure theory to construct a measurable set having a special property.
 
-Let $(\Omega,\mu)$ be a measure space and let $f_n:\Omega\to\bar\R$ be a sequence of measurable functions.
-Our idea is to consider a family of sequences of increasing measurable subsets which converge to full sets.
-Let
-\[E_n^m:=\bigcap_{i\ge n}\{\,x:|f_i(x)-f(x)|<\tfrac1m\,\}.\]
-Note that $\Omega\setminus E_n^m=\bigcup_{i\ge n}T_n^{1/m}$.
+Let $(\Omega,\mu)$ be a finite measure space and let $f_n:\Omega\to\bar\R$ be a sequence of measurable functions such that $f_n\to f$ a.e.
+For each positive integer $m$, which indexes the tolerance $1/m$, consider an increasing sequence of measurable subsets
+\[E_n^m:=\bigcap_{i=n}^\infty\{x:|f_i(x)-f(x)|<\tfrac1m\}.\]
 \begin{parts}
-\item Suppose $\mu(\Omega\setminus E_n^m)\to0$ as $n\to\infty$ for each $m$. Then, for every $\e>0$ there is a measurable $K\subset\Omega$ such that $\mu(\Omega\setminus K)<\e$ and for each $m$ there is $n$ satisfying $K\subset E_n^m$.
-\item Let $\mu(\Omega)<\infty$. Then, $f_n\to f$ a.e. if and only if $\mu(\Omega\setminus E_n^m)\to0$ as $n\to\infty$ for each $m$.
-\item Let $\mu(\Omega)<\infty$. If $f_n\to f$ a.e., then for every $\e>0$ there is a measurable $K\subset\Omega$ such that $\mu(\Omega\setminus K)<\e$ and $f_n\to f$ uniformly on $K$.
+\item $E_n^m$ converges to a full set for each $m$.
+\item For every $\e>0$ there is a measurable $K\subset\Omega$ such that $\mu(\Omega\setminus K)<\e$ and for each $m$ there is finite $n$ satisfying $K\subset E_n^m$.
+\item For every $\e>0$ there is a measurable $K\subset\Omega$ such that $\mu(\Omega\setminus K)<\e$ and $f_n\to f$ uniformly on $K$.
 \end{parts}
 \end{prb}
 \begin{pf}
 (a)
+Recall that the a.e. convergence $f_n\to f$ means that for every fixed $m$ the intersection
+\[\bigcap_{n=1}^\infty(\Omega\setminus E_n^m)=\limsup_n\{x:|f_n(x)-f(x)|\ge\tfrac1m\}\]
+is a null set.
+Since $\mu(\Omega)<\infty$, it is equivalent to $E_n^m$ converges to a full set for each $m$ by the continuity from above.
+
+(b)
 For each $m$, we can find $n_m$ such that
 \[\mu(\Omega\setminus E_{n_m}^m)<\frac\e{2^m}.\]
 If we define
@@ -370,13 +392,6 @@ If we define
 then it satisfies the second conclusion, and also have
 \[\mu(\Omega\setminus K)=\mu\Bigl(\bigcup_{m=1}^\infty(\Omega\setminus E_{n_m}^m)\Bigr)\le\sum_{m=1}^\infty\mu(\Omega\setminus E_{n_m}^m)<\sum_{m=1}^\infty\frac\e{2^m}=\e.\]
 
-(b)
-The set of divergence of the sequence $f_n$ is given by
-\[\bigcup_{m>0}\ \bigcap_{n>0}\ \bigcup_{i\ge n}\{\,x:|f_i(x)-f(x)|\ge\tfrac1m\,\}=\bigcup_{m>0}\ \bigcap_{n>0}(\Omega\setminus E_n^m).\]
-Then, the convergence $f_n\to f$ a.e. means that for every fixed $m$ the intersection
-\[\bigcap_{n>0}(\Omega\setminus E_n^m)=\limsup_nT_n^m\]
-is a null set.
-Since $\mu(\Omega)<\infty$ and we have $\Omega\setminus E_n^m\supset\Omega\setminus E_{n+1}^m$ clearly by definition, we are done by the continuity from above.
 
 (c)
 Fix $m>0$.
@@ -462,6 +477,9 @@ locally compact
 
 \chapter{Lebesgue spaces}
 \section{$L^p$ spaces}
+
+\begin{prb}[H\"older inequality]
+\end{prb}
 \begin{pf}
 \[\int fg\le C^p\int\frac{|f|^p}p+\frac1{C^q}\int\frac{|g|^q}q\]
 Take $C$ such that
@@ -470,8 +488,19 @@ Then,
 \[C^p\int\frac{|f|^p}p+\frac1{C^q}\int\frac{|g|^q}q=2p^{-\frac1p}q^{-\frac1q}\Bigl(\int|f|^p\Bigr)^{\frac1p}\Bigl(\int|g|^p\Bigr)^{\frac1q}.\]
 Note that we can show that $1\le2p^{-\frac1p}q^{-\frac1q}\le2$ and the minimum is attained only if $p=q=2$, so this method does not provide the sharpest constant.
 \end{pf}
+
+
 \section{$L^1$ spaces}
+
+\begin{prb}[Convolution?]
+\end{prb}
+\begin{prb}[Approximate identity?]
+\end{prb}
+\begin{prb}[Continuity of translation?]
+\end{prb}
+
 \section{$L^2$ spaces}
+
 \section{$L^\infty$ spaces}
 
 
@@ -493,12 +522,121 @@ weak Lp, marcinkiewicz
 
 
 
+\begin{defn}
+Let $f$ be a measurable function on a measure space $(X,\mu)$.
+The \emph{distribution function} $\lambda_f:[0,\infty)\to [0,\infty)$ is defined as:
+\[\lambda_f(\alpha):=\mu(\{x:|f(x)|>\alpha\}).\]
+\end{defn}
+
+
+Do not use $\mu(\{x:|f(x)|\ge\alpha\})$.
+The strict inequality implies the \emph{lower semi-continuity} of $\lambda_f$.
+
+\begin{parts}
+\item For $p>0$, we have
+\[\|f\|_{L^p}^p=p\int_0^\infty\left[\alpha\cdot\mu(|f|>\alpha)^\frac1p\right]^p\,\frac{d\alpha}\alpha.\]
+\end{parts}
+\begin{defn}
+\[\|f\|_{L^{p,q}}^q:=p\int_0^\infty\left[\alpha\cdot\mu(|f|>\alpha)^\frac1p\right]^q\,\frac{d\alpha}\alpha.\]
+Also,
+\[\|f\|_{L^{p,\infty}}:=\sup_{0<\alpha<\infty}\left[\alpha\cdot\mu(|f|>\alpha)^\frac1p\right].\]
+\end{defn}
+\begin{thm}
+For $p\ge1$ we have $\|f\|_{p,\infty}\le\|f\|_p$.
+\end{thm}
+\begin{pf}
+By the Chebyshev inequality,
+\[\sup_{0<\alpha<\infty}\left[\alpha^p\cdot\mu(|f|>\alpha)\right]\le\int_0^\infty p\alpha^{p-1}\cdot\mu(|f|>\alpha)\,d\alpha=\|f\|_{L^p}^p.\]
+
+\end{pf}
+
+
+
+
+
+\begin{prb}[Marcinkiewicz interpolation]
+Let $X$ be a $\sigma$-finite measure space and $Y$ be a measure space.
+Let
+\[1<p_0<p<p_1<\infty.\]
+If a sublinear operator $T\colon L^{p_0}(X)+L^{p_1}(X)\to M(Y)$ has two weak-type estimates
+\[\|T\|_{L^{p_0}(X)\to L^{p_0,\infty}(Y)}<\infty\quad\text{and}\quad\|T\|_{L^{p_1}(X)\to L^{p_1,\infty}(Y)}<\infty,\]
+then it has a strong-type estimate
+\[\|T\|_{L^p(X)\to L^p(X)}<\infty.\]
+\end{prb}
+\begin{pf}
+Let $f\in L^p(X)$ and denote $f_h=\chi_{|f|>\alpha}f$ and $f_l=\chi_{|f|\le\alpha}f$.
+It is easy to show $f_h\in L^{p_0}$ and $f_l\in L^{p_1}$.
+Then,
+\begin{align*} % 고치던 중
+\|Tf\|_{L^p(Y)}^p&\sim\int\alpha^p\cdot\mu(|Tf|>\alpha)\,\frac{d\alpha}\alpha\\
+&\lesssim\int\alpha^p\cdot\mu(|T(f\cdot\1_{|f|>\alpha})|>\alpha)\,\frac{d\alpha}\alpha+\int\alpha^p\cdot\mu(|Tf_l|>\alpha)\,\frac{d\alpha}\alpha\\
+&\le\int\alpha^p\cdot\frac1{\alpha^{p_0}}\|Tf_h\|_{L^{p_0,\infty}}^{p_0}\,\frac{d\alpha}\alpha+\int\alpha^p\cdot\frac1{\alpha^{q_1}}\|Tf_l\|_{L^{p_1,\infty}}^{p_1}\,\frac{d\alpha}\alpha\\
+&\lesssim\int\alpha^{p-p_0}\|f_h\|_{p_0}^{p_0}\,\frac{d\alpha}\alpha+\int\alpha^{p-p_1}\|f_l\|_{p_1}^{p_1}\,\frac{d\alpha}\alpha\\
+&\sim\|f\|_p^p.
+\end{align*}
+by (1) Fubini, (2) Sublinearlity, (3) Chebyshev, (4) Boundedness, (5) Fubini.
+\end{pf}
+
+\begin{prb}[Hadamard's three line lemma]
+Let $f$ be a bounded holomorphic function on the vertical unit stripe $\{z:0<\Re z<1\}$.
+Then, for $0<\theta<1$,
+\[\|f\|_{L^\infty(\Re=\theta)}\le\|f\|_{L^\infty(\Re=0)}^{1-\theta}\|f\|_{L^\infty(\Re=1)}^\theta.\]
+\end{prb}
+\begin{pf}
+Define
+\[g(z):=\frac{f(z)}{\|f\|_{L^\infty(\Re=0)}^{1-z}\|f\|_{L^\infty(\Re=1)}^z},\qquad g_n(z)=g(z)e^\frac{z^2-1}n.\]
+Then we have
+\begin{enumerate}
+\item $g_n\to g$ pointwisely as $n\to\infty$,
+\item $g_n(z)\to0$ uniformly as $\Im z\to\infty$.
+\end{enumerate}
+The second one is because $g$ is bounded and for $z=x+yi$ we have
+\[|g_n(z)|\lesssim|e^\frac{z^2-1}n|=e^{\Re\frac{z^2-1}n}=e^\frac{x^2-y^2-1}n\le e^\frac{-y^2}n.\]
+
+By (1), it is enough to bound $g_n$ for each $n$.
+Truncating the stripe, the outer region is controlled by (2) and the interior region is controlled by the maximum modulus principle.
+\end{pf}
+
+
+
+\begin{prb}[Riesz-Thorin interpolation]
+Let $X,Y$ be $\sigma$-finite measure spaces.
+Let
+\[\frac1{p_\theta}=(1-\theta)\frac1{p_0}+\theta\frac1{p_1},\qquad\frac1{q_\theta}=(1-\theta)\frac1{q_0}+\theta\frac1{q_1}.\]
+Then,
+\[\|T\|_{p_\theta\to q_\theta}\le\|T\|_{p_0\to q_0}^{1-\theta}\|T\|_{p_1\to q_1}^\theta.\]
+\end{prb}
+\begin{pf}
+Note that
+\[\|T\|_{p_\theta\to q_\theta}=\sup_f\frac{\|Tf\|_{q_\theta}}{\|f\|_{p_\theta}}=\sup_{f,g}\frac{|\<Tf,g\>|}{\|f\|_{p_\theta}\|g\|_{q'_\theta}}.\]
+Consider a holomorphic function
+\[z\mapsto\<Tf_z,g_z\>=\int\bar{g_z(y)}Tf_z(y)\,dy,\]
+where $f_z$ and $g_z$ are defined as
+\[f_z=|f|^{\frac{p_\theta}{p_0}(1-z)+\frac{p_\theta}{p_1}z}\frac f{|f|}\]
+so that we have $f_\theta=f$ and
+\[\|f\|_{p_\theta}^{p_\theta}=\|f_z\|_{p_x}^{p_x}\]
+for $\Re z=x$.
+
+Then,
+\[|\<Tf_z,g_z\>|\le\|T\|_{p_0\to q_0}\|f_z\|_{p_0}\|g_z\|_{q'_0}=\|T\|_{p_0\to q_0}\|f\|_{p_\theta}^{p_\theta/p_0}\|g\|_{q'_\theta}^{q'_\theta/q'_0}\]
+for $\Re z=0$, and
+\[|\<Tf_z,g_z\>|\le\|T\|_{p_1\to q_1}\|f_z\|_{p_1}\|g_z\|_{q'_1}=\|T\|_{p_1\to q_1}\|f\|_{p_\theta}^{p_\theta/p_1}\|g\|_{q'_\theta}^{q'_\theta/q'_1}\]
+for $\Re z=1$.
+By Hadamard's three line lemma, we have
+\[|\<Tf_z,g_z\>|\le\|T\|_{p_0\to q_0}^{1-\theta}\|T\|_{p_1\to q_1}^\theta\|f\|_{p_\theta}\|g\|_{q'_\theta}\]
+for $\Re z=\theta$.
+Putting $z=\theta$ in the last inequality, we get the desired result.
+\end{pf}
+
+
+
 
 \chapter{Convergence of linear operators}
 \section{Translation and multiplication operators}
 
 \section{Convolution type operators}
 approximation of identity
+Fej\'er, Poisson, box?
 
 \section{Computation of integral transforms}
 
@@ -534,6 +672,8 @@ Then,
 \end{prb}
 
 
+Do not think the Schwarz theorem as the condition for partial differentiation to commute.
+We should understand like this: if $F$ is $C^2$ then the \emph{classical} partial differentiation commute, and if $F$ is not $C^2$ then the \emph{classical} partial derivatives of order two or more are \emph{meaningless} because it is not compatible with the generalized concept of differentiation.
 
 
 
@@ -549,15 +689,104 @@ Then,
 \item $f$ is $\textrm{BV}$ iff $f'$ is a finite regular Borel measure
 \end{parts}
 
+\section{Absolute continuous measures}
+
+\section{Absolute continuous functions}
+
+\section{Functions of bounded variation}
+
+
 
 
 \chapter{Lebesgue differentiation theorem}
 
+\section{Hardy-Littlewood maximal function}
+
+Let $T_m$ be a net of linear operators.
+It seems to have two possible definitions of maximal functions:
+\[T^*f:=\sup_m|T_mf|\]
+and
+\[T^*f:=\sup_{m,\ \e:|\e(x)|=1}|T_m(\e f)|.\]
+
+\begin{prb}[Hardy-Littlewood maximal function]
+The Hardy-Littlewood maximal function is just the maximal function defined with the approximate identity by the box kernel.
+\end{prb}
+
+\begin{prb}[Weak type estimate]
+\[\|Mf\|_{1,\infty}\le 3^d\|f\|_{L^1(\Omega)}.\]
+\begin{parts}
+\item Proof by covering lemma.
+\end{parts}
+\end{prb}
+\begin{pf}
+(a)
+By the inner regularity of $\mu$, there is a compact subset $K$ of $\{|Mf|>\lambda\}$ such that
+\[\mu(K)>\mu(\{|Mf|>\lambda\})-\e.\]
+For every $x\in K$, since $|Mf(x)|>\lambda$, we can choose an open ball $B_x$ such that
+\[\frac1{\mu(B_x)}\int_{B_x}|f|>\lambda\]
+if and only if
+\[\mu(B_x)<\frac1\lambda\int_{B_x}|f|.\]
+With these balls, extract a finite open cover $\{B_i\}_i$ of $K$.
+Since the diameter of elements in this cover is clearly bounded, so the Vitali covering lemma can be applied to obtain a disjoint subcollection $\{B_k\}_k$ such that
+\[K\subset\bigcup_iBi\subset\bigcup_k3B_k.\]
+Therefore,
+\[\mu(K)
+\le\sum_k3^d\mu(B_k)
+\le\frac{3^d}\lambda\sum_k\int_{B_k}|f|
+\le\frac{3^d}\lambda\|f\|_1.\]
+The disjointness is important in the last inequality which shows the constant does not depend on the number of $B_k$'s.
+\end{pf}
+
+
+
+\begin{prb}[Radially bounded approximate identity]
+If an approximate identity $K_n$ is radially bounded, then its maximal function is dominated by the Hardy-Littlewood maximal function:
+\[\sup_n|K_n*f(x)|\lesssim Mf(x)\]
+for every $n$ and $x$, hence has a weak type estimate.
+\end{prb}
+
+
+\begin{prb}[Almost everywhere convergence of operators]
+Suppose is $T_m$ is a sequence of linear operators such that the maximal function $T^*f$ is dominated by $Mf$.
+If $f\in L^1(\Omega)$ and $T_mg\to g$ pointwise for $g\in C(\Omega)$, then $T_mf\to f$ a.e.
+\end{prb}
+\begin{pf}
+Take $\e>0$ and $g\in C(\Omega)$ such that $\|f-g\|_{L^1(\Omega)}<\e$.
+Since $T_mg(x)\to g(x)$ pointwise, we have
+\begin{align*}
+&\mu(\{x:\limsup_m|T_mf(x)-f(x)|>\lambda\})\\
+&\qquad\le\mu(\{x:\limsup_m|T_mf(x)-T_mg(x)|>\tfrac\lambda2\})
++\mu(\{x:|g(x)-f(x)|>\tfrac\lambda2\})\\
+&\qquad\le\mu(\{x:M(f-g)(x)>\tfrac\lambda2\})+\frac2\lambda\|f-g\|_{L^1(\Omega)}\\
+&\qquad\lesssim\frac1\lambda\e
+\end{align*}
+for every $\lambda>0$.
+Limiting $\e\to0$, we get
+\[\mu(\{x:\limsup_m|T_mf(x)-f(x)|>\lambda\})=0\]
+for every $\lambda>0$, hence the continuity from below implies
+\[\mu(\{x:\limsup_m|T_mf(x)-f(x)|>0\})=0.\]
+\end{pf}
+
+
+\begin{defn}
+\[f^*(x):=\lim_{r\to0+}\frac1{\mu(B)}\int_B|f(y)-f(x)|\,dy.\]
+\end{defn}
+\begin{thm}[Lebesgue differentiation]
+$f^*=0$ a.e.
+\end{thm}
+\begin{pf}
+Note that $f^*\le Mf+|f|$ implies
+\[\|f^*\|_{1,\infty}\le\|Mf\|_{1,\infty}+\|f\|_{1,\infty}\lesssim\|f\|_1.\]
+Note that $g^*=0$ for $g\in C_c$.
+Approximate using $f^*=(f-g)^*$.
+\end{pf}
+
+\section*{Exercises}
+\begin{prb}[Doubling measure]
+
+\end{prb}
+
+
 \end{document}
 
 
-
-
-\pd{f}{x}{y}가 원점에서 연속이 아니면 못바꾼다?
-라고 생각하지 말고 계산된 편미분계수가 편도함수를 잘 표현하지 못할 수 있다고 이해하자.
-즉, 편미분계수는 C2임을 보일 때 말고는 C2가 아닌 경우에 쓸모가 없다

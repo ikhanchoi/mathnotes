@@ -24,7 +24,7 @@
 논문 주요 내용 요약
 
 
-## 분야
+## Functional analysis
 
 - Spectral Theory
 - Geometry of Banach Spaces
