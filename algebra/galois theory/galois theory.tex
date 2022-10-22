@@ -1193,12 +1193,67 @@ The degree of $\alpha$ is computed by the order of $p$ in $(\Z/\ord(\alpha)\Z)^\
 \end{prb}
 
 
-\section{Ramification theory}
-\begin{prb}[Algebraic integers]
-\end{prb}
-integral extension
-Dedekind domain
+\section{Integral extensions}
 
+\begin{prb}[Algebraic integers]
+A (algebraic) \emph{number field} is a finite extension $K$ of $\Q$.
+We say an element $\alpha\in K$ is \emph{integral} if there is a monic polynomial $f\in\Z[x]$ such that $f(\alpha)=0$.
+\end{prb}
+
+\begin{prb}[Integral extensions]
+Let $A$ be a subring of a ring $B$.
+An element $b\in B$ is called \emph{integral} over $A$ if there is a monic polynomial $f\in A[x]$ such that $f(b)=0$.
+The ring $B$ is called an \emph{integral} extension over $A$ if every element is integral over $A$.
+The \emph{integral closure} of $A$ in $B$ is the set of all integral elements over $A$ in $B$.
+\begin{parts}
+\item $b\in B$ is integral over $A$ if and only if $A[b]$ is a finitely generated module.
+\item The integral closure of $A$ in $B$ is a subring of $B$.
+\item An integral extension over an integral extension is integral.
+\end{parts}
+\end{prb}
+\begin{pf}
+(a)
+($\Rightarrow$)
+Let $g\in A[x]$ be a monic polynomial such that $g(b)=0$.
+For every element $f(b)\in A[b]$, since $g$ is monic, we have
+\[f(x)=g(x)q(x)+r(x)\]
+for $q,r\in A[x]$.
+\end{pf}
+
+
+\begin{prb}[Traces and norms]
+Let $L/K$ be a field extension.
+The \emph{trace} is a $K$-linear functional $\Tr_{L/K}:L\to K$ defined by
+\[\Tr_{L/K}(\alpha):=\Tr(M_\alpha),\]
+and the \emph{norm} is a multiplicative group homomorphism $N_{L/K}:L^\times\to K^\times$ defined by
+\[N_{L/K}(\alpha):=\det(M_\alpha)\]
+for $\alpha\in L$, where $M_\alpha:L\to L$ is a $K$-linear endomorphism such that
+\[M_\alpha(\beta):=\alpha\beta.\]
+\begin{parts}
+\item If $L/K$ is separable, then the characteristic polynomial $\chi_\alpha\in K[x]$ of $M_\alpha$ is given by
+\[\chi_\alpha(x)=\prod_{\sigma\in\Hom_K(L,\bar K)}(x-\sigma(\alpha)).\]
+\item Let $M/L$ be another field extension. Then,
+\[\Tr_{L/K}\circ\Tr_{M/L}=\Tr_{M/K},\qquad N_{L/K}\circ N_{M/L}=N_{M/K}.\]
+\item A $K$-bilinear form $L\times L\to K:(\alpha,\beta)\mapsto\Tr_{L/K}(\alpha\beta)$ is nondegenerate.
+\end{parts}
+\end{prb}
+
+\begin{prb}[Integral bases]
+An \emph{integral basis} of a number field $K$ is a basis of $\cO_K$ over $\Z$.
+\end{prb}
+
+\begin{prb}[Dedekind domains]
+\end{prb}
+
+
+
+
+Consider a $AKLB$-setting and let $\alpha\in L$.
+\begin{parts}
+\item $\alpha\in B$ if and only if $\mu_\alpha\in A[x]$.
+\item $\alpha\in B^\times$ if and only if $N_{L/K}(\alpha)\in A^\times$, if $L/K$ is separable and $A$ integrally closed.
+\end{parts}
+\section{Ramification theory}
 
 \section{The Dedekind theorem}
 

@@ -9,9 +9,14 @@
 \tableofcontents
 
 \part{Quadratic reciprocity}
+
+\chapter{Congruence}
+
+
 \chapter{Quadratic residue}
+
 \section{Legendre symbol}
-\begin{prb}
+\begin{prb}[Supplenetal cases of Legendre symbol for odd primes]
 \[\left(\frac{-1}p\right)=(-1)^{\frac{p-1}2}\quad(p\ne2).\]
 \[\left(\frac2p\right)=1\text{ if and only if }p\equiv\pm1\pmod8\quad(p\ne2).\]
 \[\left(\frac3p\right)=1\text{ if and only if }p\equiv\pm1\pmod{12}\quad(p\ne2).\]
@@ -27,15 +32,27 @@
 \end{prb}
 
 
+
 \section{Gauss sum}
 
+\begin{prb}[Quadratic Gauss sum]
+Let $p$ be an odd prime and $a$ an integer.
+The \emph{quadratic Gauss} is
+\[g(a;p):=\sum_{n=0}^{p-1}\zeta_p^{an^2},\]
+where $\zeta:=e^{2\pi i/p}$ is a primitive $p$th root of unity.
+\end{prb}
+\begin{pf}
+
+
+\end{pf}
 
 
 
 
-Higher order sides: At least a prime divisor of $f$ with a congruence (e.g. $4k+3$)
-Quantratic sides: Every prime divisor of $f$ must satisfy a congruence (e.g. $4k+1$)
+\section{Proofs of quadratic reciprocity}
+\begin{prb}[Eisenstein's proof]
 
+\end{prb}
 
 \section*{Exercises}
 \begin{prb}[Dirichlet theorems by quadratic reciprocity]
@@ -44,6 +61,21 @@ Quantratic sides: Every prime divisor of $f$ must satisfy a congruence (e.g. $4k
 \item There are infinitely many primes $p$ such that $p\equiv1\pmod4$.
 \end{parts}
 \end{prb}
+
+\begin{prb}
+$y^2=f(x)$
+
+Higher order sides: At least a prime divisor of $f$ with a congruence (e.g. $4k+3$)
+Quantratic sides: Every prime divisor of $f$ must satisfy a congruence (e.g. $4k+1$)
+\end{prb}
+
+
+\begin{prb}[Primes of the form $x^2-ny^2$]
+(It is a very important problem in listing primes in $\cO_K$)
+(Want to describe the surjective homomorphism $\Spec\Z[i]\to\Spec\Z$)
+\end{prb}
+
+
 
 \section*{Problems}
 
@@ -56,10 +88,10 @@ Quantratic sides: Every prime divisor of $f$ must satisfy a congruence (e.g. $4k
 
 
 \chapter{Binary quadratic forms}
-\section{Representation problems}
+\section{Reduced forms}
+\section{Indefinite forms}
 
-
-\chapter{Class groups}
+\section{Ideal class group}
 
 \begin{prb}[Heegner number]
 There are only nine numbers
@@ -99,8 +131,10 @@ There are only nine numbers
 \chapter{Pell's equation}
 \section{Continued fraction}
 Diophantine approximation, Thue theorem
+
 \chapter{$p$-adic numbers}
 \section{Hensel lemma}
+
 \chapter{Local-global principle}
 \section{Hasse-Minkowski theorem}
 

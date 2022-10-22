@@ -15,6 +15,28 @@
 % stabilizer 계산은 해야지
 % 부분군 래티스 그리는 정도까지는 한다
 \chapter{Subgroups}
+\section{Definition of groups}
+
+\begin{prb}[Definition of groups]
+Let $A$ be a set.
+A binary operation $\cdot:A\times A\to A$ is called to satisfy
+\begin{enumerate}[(i)]
+\item the \emph{associativity} if for every $a,b,c\in A$ we have
+\[(a\cdot b)\cdot c=a\cdot(b\cdot c),\]
+\item the \emph{existence of identity} if there exists $e\in A$ such that for every $a\in A$ we have
+\[a\cdot e=e\cdot a=a,\]
+\item the \emph{existence of inverses} if satisfies (ii) and for every $a\in A$ there is $x\in A$ such that
+\[a\cdot x=x\cdot a=e,\]
+\item the \emph{commutativity} if for every $a,b\in A$ we have
+\[a\cdot b= b\cdot a.\]
+\end{enumerate}
+A \emph{monoid}, \emph{group}, and \emph{abelian group} is a set $G$ together with a binary operation $\cdot:G\times G\to G$ satisfying the first two, three, and four of the above conditions, respectively.
+
+An accompanying binary operation is called a \emph{group structure} if it defines a group, that is, it satisfies (i), (ii), and (iii).
+We say a group is \emph{additive} if we use the symbol $+$ for the group structure, and \emph{multiplicative} if we use the symbol $\cdot$ or omit the symbol for the group structure.
+\end{prb}
+
+
 subgroups
 homomorphisms, image, kernel, inverse images
 normality, quotient, coset counting
@@ -126,14 +148,21 @@ We find all $n$ such that $(\Z/n\Z)^\times$ is cyclic.
 \chapter{Ideals}
 \section{Definitions of rings and ideals}
 \begin{prb}[Definition of rings]
-A \emph{ring} is an abelian group $(R,+)$ together with a binary operation $\times:R\times R\to R$, called the \emph{multiplication}, such that:
+A \emph{ring} is a set $R$ together with
 \begin{enumerate}[(i)]
-\item $(R,\times)$ is an abelian monoid,
+\item an \emph{addition} $+:R\times R\to R$ which defines an abelian group structure,
+\item a \emph{multiplication} $\times:R\times R\to R$ which defines an \emph{abelian monoid} structure,
+\end{enumerate}
+such that the following compatibility condition holds:
+\begin{enumerate}[(i)]\setcounter{enumi}{2}
 \item the \emph{distributive law}: for every $r,s,t\in R$, we have
 \[r\times(s+t)=(r\times s)+(r\times t).\]
 \end{enumerate}
 The additive and multiplicative identities are usually denoted by $0$ and $1$ and called the \emph{zero} and the \emph{unity} respectively.
-We will sometimes call rings for which multiplication is not necessarily commutative or the multiplicative identity does not necessarily exist as \emph{non-commutative rings} and \emph{non-unital rings}, respectively.
+
+We are only concerned with \emph{commutative} rings with \emph{unity} when mentioning rings, so we specified the multiplication to be an abelian monoid.
+In particular, rings for which the multiplication is not necessarily commutative or the multiplicative identity does not necessarily exist will be called as \emph{non-commutative rings} or \emph{non-unital rings}, respectively.
+The theory of such non-commutative or non-unital rings, however, is usually covered in the theory of \emph{algebras}.
 \end{prb}
 
 
@@ -199,10 +228,14 @@ Irreducibles over several fields
 
 \begin{prb}[Definition of modules]
 Let $R$ be a non-commutative ring.
-A (left) \emph{$R$-module} is an abelian group $(M,+)$ together with a function $\cdot:R\times M\to M$, called the \emph{scalar multiplication}, such that
+An (left) \emph{$R$-module} is a set $M$ together with 
 \begin{enumerate}[(i)]
-\item the scalar multiplication defines an \emph{left action} on $M$: for every $r,s\in R$ and $m\in M$, we have
+\item an \emph{addition} $+:M\times M\to M$ which defines an abelian group structure on $M$,
+\item a \emph{scalar multiplication} $\cdot:R\times M\to M$ which defines an \emph{left action} on $M$: for every $r,s\in R$ and $m\in M$, we have
 \[r\cdot(s\cdot m)=(rs)\cdot m\quad\text{ and }\quad1\cdot m=m,\]
+\end{enumerate}
+such that the following compatibility condition holds:
+\begin{enumerate}[(i)]\setcounter{enumi}{2}
 \item the \emph{distributive laws} hold: for every $r,s\in R$ and $m,n\in M$, we have
 \[r\cdot (m+n)=r\cdot m+r\cdot n\quad\text{ and }\quad(r+s)\cdot m=r\cdot m+s\cdot m.\]
 \end{enumerate}
@@ -219,15 +252,21 @@ isomorphism theorems
 \section{Algebras}
 \begin{prb}[Definition of algebras]
 Let $R$ be a ring.
-An (associative) \emph{$R$-algebra} is an $R$-module $(A,+,\cdot)$ together with a binary operation $\times:A\times A\to A$, called the \emph{multiplication}, such that
+An (associative) \emph{$R$-algebra} is a set $A$ together with
 \begin{enumerate}[(i)]
-\item the multiplication is associative,
+\item an \emph{addition} $+:A\times A\to A$ which defines an abelian group structure,
+\item a \emph{scalar multiplication} $\cdot:R\times A\to A$ which defines a left action,
+\item a \emph{multiplication} $\times:A\times A\to A$ which is associative,
+\end{enumerate}
+such that the following compatibility conditions hold:
+\begin{enumerate}[(i)]\setcounter{enumi}{3}
+\item $(A,+,\cdot)$ is an $R$-module,
 \item the \emph{distributive laws} hold: for every $a,b,c\in A$, we have
 \[a\times(b+c)=a\times b+a\times c\quad\text{ and }\quad(a+b)\times c=a\times c+b\times c,\]
 \item the \emph{compatibility with scalars}: for every $r,s\in R$ and $a,b\in A$, we have
 \[(rs)\cdot(a\times b)=(r\cdot a)\times(s\cdot b).\]
 \end{enumerate}
-If the multiplication is commutative or admits an identity, respectively, we say the $R$-algebra is \emph{commutative} or \emph{unital}.
+If the multiplication is commutative or admits an identity, then we say the $R$-algebra is \emph{commutative} or \emph{unital} respectively.
 Although there are examples of \emph{non-associative} algebras in which the multiplication is not associative, we will always mean \emph{associative} $R$-algebras by $R$-algebras if any modifier is not attached.
 \begin{parts}
 \item The set of matrices $M_n(R)$ over a ring $R$ is a unital $R$-algebra.
