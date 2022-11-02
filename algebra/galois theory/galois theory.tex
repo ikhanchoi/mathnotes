@@ -37,6 +37,13 @@ p군: 비자명센터, 개수 겁나많음
 센트럴 시리즈?
 
 
+
+In general, we want to obtain the following information of a group:
+element counting by order,
+element counting by conjugacy class,
+subgroups by order (existence)
+subgroups by conjugacy class.
+
 \fi
 
 
@@ -151,10 +158,6 @@ For an abelian normal subgroup $A$ of $G$, a homomorphism $G/C_G(A)\to\Aut(A)$ f
 If it has trivial image, then $A$ is central.
 \end{prb}
 
-
-
-
-
 \section{Subnormal series}
 
 Holder program
@@ -162,10 +165,6 @@ solvable group
 nilpotent group
 central series
 abelianization
-
-
-
-
 
 \section*{Exercises}
 \begin{prb}[Wreath product]
@@ -175,9 +174,11 @@ abelianization
 
 
 
+
+
+
+
 \chapter{Sylow theory}
-
-
 
 \section{Sylow subgroups}
 
@@ -432,10 +433,26 @@ $\#$ of groups&51&52&267\\
 
 
 
-\chapter{Group presentation}
+
+
+
+
+
+
+
+\chapter{Group presentations}
 
 \section{Free groups}
 
+\section{Coset enumeration}
+\begin{prb}[Todd-Coxeter algorithm]
+\end{prb}
+\begin{prb}[Knuth-Bendixon algorithm]
+\end{prb}
+\begin{prb}[Computing order from its group presentation]
+\end{prb}
+
+\section{Coxeter groups}
 
 
 
@@ -974,7 +991,6 @@ multiplcation formula
 
 \section{Splitting fields}
 
-
 \section{Galois correspondence}
 
 \begin{prb}[Automorphism groups]
@@ -1303,10 +1319,7 @@ Computation of a generator of $\F_{p^n}^\times$.
 \chapter{Cyclic extensions}
 
 
-
-
 \section{Kummer theory}
-
 
 \begin{prb}
 A field extension $L/K$ is called a \emph{Kummer extension} if $\zeta_n\in K$ and $\Gal(L/K)$ is abelian group of exponent $n$..??
@@ -1345,8 +1358,6 @@ Gauss' lemma implies $\Phi_n(x)\in\Z[x]$.
 We first prove $\zeta^p$ are all conjugates for any prime $p$ not dividing $n$.
 \end{pf}
 
-
-
 \begin{prb}[Computation of cyclotomic polynomials]
 
 \end{prb}
@@ -1366,49 +1377,6 @@ We first prove $\zeta^p$ are all conjugates for any prime $p$ not dividing $n$.
 
 
 \end{document}
-
-
-
-\section{Polynomial rings}
-
-\subsection{Review on integral domains}
-
-\begin{prop}
-In PID $R$,
-\begin{parts}
-\item every irreducible element is prime, \hfill(Euclid's lemma)
-\item every two elements has greatest common divisor, \hfill(existence of gcd)
-\item the gcd is given as a $R$-linear combination, \hfill(B\'zout's identity)
-\item factorization into primes is unique up to permutation, \hfill(UFD)
-\item every prime ideal is maximal. \hfill(Krull dimension 1)
-\end{parts}
-\end{prop}
-
-Notice that, since $F[x]$ is a PID, there exists a one-to-one correspondence:
-\begin{cd}
-\textbf{M}aximal \textbf{I}deals \lda{rr}{generator}&\quad& \textbf{M}onic \textbf{I}rreducibles \lda{ll}{principal ideal}
-\end{cd}
-by (a) and (e) in the previous proposition.
-
-
-
-\subsection{Polynomial ring over a field}
-\begin{prop}
-If $F$ is a field, then $F[x]$ is a ED.
-\end{prop}
-\begin{prop}
-If $R$ is a UFD, then $R[x]$ is also a UFD.
-\end{prop}
-
-We can summarize as:
-\begin{rd}
-$F$ \ar{d} & $F[x]$ \ar{d} & $F[x,y]$ \ar{d} & $F[x,y,z]$ \ar{d} & $\cdots$ \\
-Field & ED (hence PID) & UFD & UFD & $\cdots$
-\end{rd}
-
-
-\section{Characteristic}
-Frobenius endomorphism.
 
 
 
