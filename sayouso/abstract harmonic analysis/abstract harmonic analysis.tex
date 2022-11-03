@@ -15,32 +15,260 @@
 \section{Topological groups}
 \section{Haar measures}
 
+\begin{itemize}
+\item In $C_0(\Omega)$ theory for metrizable $\Omega$, it was enough to consider \textbf{finite measures}: most applications including PDE, probability theory, spectral theory of single operators.
+\item In $C_0(\Omega)$ theory for non-metrizable $\Omega$, it is enough to consider \textbf{regular finite measures} since a $\sigma$-finite Radon measure is regular: Choquet theory, spectral theory of general C$^*$-algebras.
+\item In $C_c(\Omega)$ theory for non-metrizable $\Omega$, we need general \textbf{Radon measures}, which may not be $\sigma$-finite: Haar measures on general locally compact groups.
+\end{itemize}
+
+
+
 \begin{prb}[Non-$\sigma$-finite measures]
-Four technical issues
+Following technical issues are important
 \begin{parts}
-\item The Riesz-Markov-Kakutani representation theorem
+\item Positive linear functionals on $C_c$
 \item The Fubini theorem
 \item The Radon-Nikodym theorem
 \item The dual space of $L^1$ space
 \end{parts}
 \end{prb}
 
+
+
 \begin{prb}[Radon measures]
 Let $\Omega$ be a locally compact Hausdorff space.
-The Riesz-Markov-Kakutani representation theorem states that positive bounded linear functionals on $C_0(\Omega)$ are corresponded to finite regular Borel measures on $\Omega$.
-A Radon measure is a generalization of a regular Borel measure, introduced in order to extend this theorem for \emph{unbounded} but positive linear functionals.
+A \emph{Radon measure} is a Borel measure $\mu$ on $\Omega$ such that
+\begin{enumerate}[(i)]
+\item $\mu$ is outer regular for every Borel set: for every Borel set $E$ we have
+\[\mu(E)=\inf\{\mu(U):E\subset U,\,U\text{ open}\},\]
+\item $\mu$ is inner regular for every open set: for every open set $U$ we have
+\[\mu(U)=\inf\{\mu(K):K\subset U,\,K\text{ compact}\},\]
+\item $\mu$ is locally finite.
+\end{enumerate}
+Radon measures generalize finite regular Borel measures which corresponds to positive linear functionals on $C_0(\Omega,\R)$, but may be infinite.
+This infiniteness makes them define positive linear functionals on $C_c(\Omega,\R)$, not $C_0(\Omega,\R)$.
 \begin{parts}
 \item A $\sigma$-finite Radon measure is regular.
+\item If every open subset of $\Omega$ is $\sigma$-compact, then a locally finite measure is Radon.
+\item $C_c(\Omega)$ is dense in $L^p(\mu)$ for $1\le p<\infty$.
 \end{parts}
 \end{prb}
 
 \begin{prb}[Riesz-Markov-Kakutani representation theorem for $C_c$]
-Let $\Omega$ be a locally compact Hausdorff space.
-We are concerned with positive linear functionals on $C_c(\Omega)$.
+Let $\Omega$ be a locally compact Hausdorff space and Consider the following map:
+\[\begin{array}{ccc}
+\{\text{Radon measures on $\Omega$}\} & \xrightarrow{\sim} & \{\text{positive linear functionals on $C_c(\Omega,\R)$}\},\\
+\mu & \mapsto & (f\mapsto\int f\,d\mu).
+\end{array}\]
+\begin{parts}
+\item a
+\end{parts}
 \end{prb}
 
 \begin{prb}[Existence of the Haar measure]
 \end{prb}
+
+
+
+
+
+
+
+
+\subsection{Measures on locally compact Hausdorff spaces}
+
+
+compact  closed set not containing infty
+open     open not containing infty
+closed   closed set containing infty
+
+for a measure that ``vanishes at infty'' = tight
+two definitions of inner regularity is equivalent.
+
+IRK -> IRF
+IRK + sigma finite -> tight
+
+
+Thm. The measure contructed by RMK is lf and regular(cpt version).
+1. open set is approx by cpt sets (by def of rho, if X is LCH)
+2. meas set is approx by opn sets (by def of outer meas)
+3. sigma finite set is approx by cpt sets (by thm)
+
+
+Consider
+\begin{cd}
+\text{regBorel}_{fin} \rar[hook]\dar[hook]& \text{Borel}_{fin} \rar\dar[hook]& \text{Baire}_{fin} \rar\dar[hook]& C_b^{*+} \dar[->>]&\\
+\text{regBorel}_{locfin} \rar[hook]& \text{Borel}_{locfin} \rar& \text{Baire}_{locfin} \rar& C_c^{*+}\rar[hook]& \text{pos lin on }C_c.
+\end{cd}
+for locally compact Hausdorff $X$.
+
+
+$\text{Borel}_{locfin}\to \text{pos lin on }C_c$ is surjective for all topological spaces.
+
+$\text{regBorel}_{fin}\to C_b^{*+}$ is injective for normal spaces.
+
+$\text{regBorel}_{locfin}\to C_c^{*+}$ is injective for locally compact Hausdorff spaces.(maybe)
+
+
+
+
+
+\begin{lem}
+Let $\mu$ be a Borel measure on a LCH $X$.
+Then, $\mu$ is inner regular on open sets iff
+\[\mu(U)=\|\mu\|_{C_c(U)^*}\]
+for every open $U$ in $X$.
+\end{lem}
+\begin{pf}
+($\Leftarrow$)
+($\ge$)
+For $f\in C_c(U)$, we have
+\[|\int f\,d\mu|=|\int_Uf\,d\mu|\le\mu(U)\,\|f\|.\]
+
+($\le$)
+Since $\mu$ is inner regular on $U$, there is a compact set $K\subset U$ such that $\mu(U)-\mu(K)<\e$ (for the case $\mu(U)=\infty$, we can deal with separately).
+We can find a nonnegative function $f\in C_c(U)$ with $f|_K \equiv 1$ and $f\le1$ by the construction of Urysohn.
+Then, for all $\e>0$ we have
+\[\mu(U)<\mu(K)+\e\le\int f\,d\mu+\e\le\|\mu\|_{C_c^*(U)}+\e.\]
+
+($\Rightarrow$)
+Let $f\in C_c(U)$ be a function such that $\|f\|=1$ and
+\[\mu(U)-\e<\int f\,d\mu.\]
+Let $K=\supp(f)$.
+Then
+\[\mu(K)\ge\int f>\mu(U)-\e.\]
+\end{pf}
+% 이런 거 쓸 때 메져가 유한인지 무한인지 케이스 나누고 증명쓰는 게 좋겠다
+
+\begin{prop}
+A Radon measure is inner regular on all $\sigma$-finite Borel sets.(Folland's)
+\end{prop}
+\begin{pf}
+First we approximate Borel sets of finite measure, with compact sets.
+Let $E$ be a Borel set with $\mu(E)<\infty$ and $U$ be an open set containing $E$.
+By outer regularity, there is an open set $V\supset U-E$ such that
+\[\mu(V)<\mu(U-E)+\frac\e2.\]
+By inner regularity, there is a compact set $K\subset U$ such that
+\[\mu(K)>\mu(U)-\frac\e2.\]
+Then, we have a compact set $K-V\subset K-(U-E)\subset E$ such that
+\begin{align*}
+\mu(K-V)&\ge\mu(K)-\mu(V)\\
+&>\left(\mu(U)-\frac\e2\right)-\left(\mu(U-E)+\frac\e2\right)\\
+&\ge\mu(E)-\e.
+\end{align*}
+It implies that a Radon measure is inner regular on Borel sets of finite measures.
+
+Suppose $E$ is a $\sigma$-finite Borel set so that $E=\bigcup_{n=1}^\infty E_n$ with $\mu(E_n)<\infty$.
+We may assume $E_n$ are pairwise disjoint.
+Let $K_n$ be a compact subset of $E_n$ such that
+\[\mu(K_n)>\mu(E_n)-\frac\e{2^n},\]
+and define $K=\bigcup_{n=1}^\infty K_n\subset E$.
+Then,
+\[\mu(K)=\sum_{n=1}^\infty\mu(K_n)>\sum_{n=1}^\infty\left(\mu(E_n)-\frac\e{2^n}\right)=\mu(E)-\e.\]
+Therefore, a Radon measure is inner regular on all $\sigma$-finite Borel sets.
+\end{pf}
+
+\begin{thm}
+If every open set in $X$ is $\sigma$-compact(i.e. Borel sets and Baire sets coincide), then every locally finite Borel measure is regular.
+\end{thm}
+\begin{prop}
+In a second countable space, every open set is $\sigma$-compact(i.e. Borel sets and Baire sets coincide).
+\end{prop}
+
+
+Two corollaries are presented as follows:
+\begin{rd}[column sep={120pt,between origins}]
+\parbox{7em}{\centering locally finite \\ Borel regular} \rar &
+\parbox{5em}{\centering Radon} \rar \lar[dashed, bend right, swap]{$X$ is $\sigma$-compact} &
+\parbox{7em}{\centering locally finite \\ Borel} \ar[dashed, bend left]{ll}{$X$ is second countable}
+\end{rd}
+
+
+
+
+\begin{prb}
+Let $X$ be compact.
+A positive linear functional $\rho$ on $C(X)$ is bounded with norm $\rho(1)$.
+\end{prb}
+\begin{pf}
+Since $0\le\rho(\|f\|\pm f)=\|f\|\rho(1)\pm\rho(f)$, we have $|\rho(f)|\le\rho(1)\|f\|$.
+\end{pf}
+
+\begin{prb}
+Let $X$ be a locally compact Hausdorff space.
+\begin{parts}
+\item The Baire $\sigma$-algebra is generated by compact $G_\delta$ sets.
+\item If $X$ is second countable, then every Baire set is Borel.
+\end{parts}
+\end{prb}
+\begin{sol}
+(b)
+(A second countable locally compact space is $\sigma$-compact.
+
+Since $X$ is $\sigma$-compact and Hausdorff, every closed set is a countable union of compact sets, so the Borel $\sigma$-algebra on $X$ is generated by compact sets.)
+
+Since locally compact Hausdorff space is regular, the Urysohn metrization implies $X$ is metrizable, and every closed sets in metrizable space is $G_\delta$ set.
+\end{sol}
+
+
+
+%%%%%%%%%%%%%%%
+\begin{prb}
+Let $X$ be compact.
+There is a map from the set of finite Baire measures to the set of positive linear functionals on $C(X)$.
+\end{prb}
+\begin{sol}
+A function in $C(X)$ is Baire measurable and bounded.
+Thus the integration is well-defined.
+\end{sol}
+
+\begin{prb}
+Let $X$ be compact.
+There is a map from the set of positive linear functionals on $C(X)$ to the set of finite regular Borel measures.
+\end{prb}
+\begin{sol}
+i. and ii. and iii. of Theorem 7.2.
+\end{sol}
+
+\begin{prb}
+Let $X$ be compact.
+Let $\rho$ be a positive linear functional on $C(X)$.
+Let $\nu$ be the regular Borel measure associated to $\rho$.
+Then, $\rho(f)=\int f\,d\nu$.
+\end{prb}
+\begin{sol}
+iv. of Theorem 7.2.
+\end{sol}
+
+\begin{prb}
+Let $X$ be compact.
+Let $\nu$ be a finite regular Borel measure.
+Let $\nu'$ be the regular Borel measure associated to the positive linear functional $f\mapsto\int f\,d\nu$.
+Then, $\nu=\nu'$ on Borel sets.
+\end{prb}
+\begin{sol}
+Theorem 7.8.
+\end{sol}
+
+The two results above establish the correspondence between positive linear functionals and regular Borel measures.
+The following is an additional topic: Borel extension of Baire measures.
+\begin{prb}
+Let $X$ be compact.
+Let $\mu$ be a finite Baire measure.
+Let $\nu$ be the regular Borel measure associated to the positive linear functional $f\mapsto\int f\,d\mu$.
+Then, $\mu=\nu$ on Baire sets.
+\end{prb}
+\begin{sol}
+Let $\mu,\nu$ be finite Baire measures.
+Enough to show if $\int f\,d\mu=\int f\,d\nu$ then $\mu=\nu$ according to the preceding two results.
+
+Enough to show the regularity of Baire measures.
+\end{sol}
+
+
+
+
+
 
 \section{Group algebra}
 \begin{prb}[Modular functions]
@@ -49,6 +277,30 @@ We are concerned with positive linear functionals on $C_c(\Omega)$.
 \end{prb}
 
 \section{Structure theorems}
+
+\section*{Exercises}
+\begin{prb}
+\end{prb}
+
+\section*{Problems}
+\begin{enumerate}
+\item Let $\Omega$ be a topological space. For every positive linear functional $I$ on $C_c(\Omega,\R)$, show that there exists a Borel measure $\mu$ on $\Omega$ such that $I(f)=\int f\,d\mu$ for all $f\in C_c(\Omega,\R)$. (Hint: Consider the uncountable wedge sum of circles as an example.)
+\end{enumerate}
+\begin{sol}
+1.
+The constructed Carath\'eodory measure $\mu$ on $\Omega$ is outer regular Borel measure, but we do not have local finiteness.
+Everything is same to when $\Omega$ is locally compact Hausdorff except that $\mu(\supp f)$ may be infinite.
+Now it is enough to show $I(\min\{f,\frac1n\})$ converges to zero as $n\to\infty$ for $f\in C_c(\Omega,[0,1])$.
+
+Let $U:=f^{-1}((0,1])$.
+For $g\in C_0(U,[0,1])$, it clearly has compact support, and and it is also continuous because $g^{-1}((a,1])$ is open in $U$ and $g^{-1}([a,1])$ is closed in $K$ for any $0<a\le1$, so that we have $C_0(U)\subset C_c(X)$.
+We also have $f_1\in C_0(U)$ since $f_1^{-1}([\e,1])$ is a compact set in $U$ for every $\e>0$.
+Therefore, $I$ is a positive linear functional on $C_0(U)$.
+Assume that $I$ is not bounded; there is no constant $C$ such that $g\in C_0(U,[0,1])$ implies $I(g)\le C$.
+Construct a sequence $(h_k)_{k=1}^\infty$ in $C_0(U,[0,1])$ such that $I(h_k)\ge2^k$, and define $h:=\sum_{k=1}^\infty h_k/2^k$ so that $h\in C_0(U,[0,1])$.
+Then, $I(h)\ge \sum_{k=1}^mI(h_k)/2^k\ge m$ for every $m>0$, it contradicts to the assumption, which means that there is a constant $C$ such that $I(g)\le C$ for all $g\in C_0(U,[0,1])$, and it proves $I(f_1)\le C/n\to0$ as $n\to\infty$.
+Therefore, $I(f)=\int f\,d\mu$.
+\end{sol}
 
 
 \chapter{Pontryagin duality}

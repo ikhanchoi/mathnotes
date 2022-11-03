@@ -75,9 +75,19 @@ Let $N$ and $H$ be groups.
 On the set $\Hom(H,\Aut(N))$ of all group homomorphisms $H\to\Aut(N)$, we can establish an action by the group $\Aut(H)\times\Aut(N)$ with the following two operations:
 the \emph{twisting} by $\eta\in\Aut(H)$ such that $\f\mapsto\f\circ\eta$, and the \emph{intertwining} by $\nu\in\Aut(N)$ such that $\f\mapsto\nu\f\nu^{-1}$.
 Consider the following map from the orbit space, constructed by the definition of semidirect products:
-\[\Hom(H,\Aut(N))/(\Aut(H)\times\Aut(N))\to\left\{\begin{tabular}{c}isomorphism classes of\\semidirect products $N\rtimes H$\end{tabular}\right\}.\]
+\[\begin{array}{cccc}
+&\dfrac{\Hom(H,\Aut(N))}{\Aut(H)\times\Aut(N)}
+&\to&
+\left\{\begin{tabular}{c}isomorphism classes of\\semidirect products $N\rtimes H$\end{tabular}\right\}\\
+&\f&\mapsto&N\rtimes_\f H.
+\end{array}\]
 Also, we can define a map which takes images:
-\[\Hom(H,\Aut(N))/(\Aut(H)\times\Aut(N))\to\left\{\begin{tabular}{c}conjugacy classes of\\subgroups of $\Aut(N)$\end{tabular}\right\}.\]
+\[\begin{array}{ccc}
+\dfrac{\Hom(H,\Aut(N))}{\Aut(H)\times\Aut(N)}
+&\to&
+\left\{\begin{tabular}{c}conjugacy classes of\\subgroups of $\Aut(N)$\end{tabular}\right\}\\
+\f&\mapsto&\im\f.
+\end{array}\]
 \begin{parts}
 \item The first map is well-defined and surjective.
 \item The first map is injective if $|N|$ and $|H|$ are finite and relatively prime.
@@ -1010,15 +1020,16 @@ Galois descent..?
 \begin{prb}[Galois correspondence]
 Let $E/F$ be an algebraic extension and $G:=\Aut(E/F)$.
 Define a map
-\begin{alignat*}{2}
-\Aut(E/-)
-:&\,\{\,\text{subextensions of $E/F$}\,\}\,&\to&\,\{\,\text{subgroups of $G$}\,\}\,\\
-:&\omit\hfil$K$\hfil&\mapsto&\omit\hfil$\Aut(E/K)$\hfil.
-\end{alignat*}
+\[\begin{array}{ccc}
+\{\text{subextensions of $E/F$}\}
+&\to&
+\{\text{subgroups of $G$}\}\\
+K&\mapsto&\Aut(E/K).
+\end{array}\]
 \begin{parts}
 \item $K\le \Fix_E(\Aut(E/K))$ and $H\le\Aut(E/\Fix_E(H))$.
-\item The map $\Aut(E/-)$ is surjective onto finite subgroups of $G$.
-\item The map $\Aut(E/-)$ is injective if $E/F$ is normal and separable.
+\item The map is surjective onto finite subgroups of $G$.
+\item The map is injective if $E/F$ is normal and separable.
 \item If $E/F$ is finite and Galois, then the map $\Aut(E/-)$ is bijective.
 \end{parts}
 \end{prb}

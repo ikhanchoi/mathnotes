@@ -218,6 +218,10 @@ If $\spn\{\1_A:A\in\cA\}\subset H$ then $B^\infty(\sigma(\cA))\subset H$.
 
 \chapter{Measures on the real line}
 
+
+\begin{prb}[Borel $\sigma$-algebra]
+\end{prb}
+
 \begin{prb}[Distribution functions]
 \end{prb}
 
@@ -447,6 +451,11 @@ An integrable function as a measure
 $\sigma$-finite measures
 
 
+\section*{Exercises}
+\begin{prb}[Convergence of one-parameter family]
+\end{prb}
+
+
 
 
 \chapter{Product measures}
@@ -454,14 +463,254 @@ $\sigma$-finite measures
 \section{Lebesgue measure on Euclidean spaces}
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 \chapter{Measures on metric spaces}
-\section{Borel measures}
+
+
+
+\section{Continuous functions on metric spaces}
+
+Urysohn and Tietze.
+
+
+\begin{prb}[Regular Borel measures on metric spaces]
+Let $\mu$ be a Borel measure on a metric space $\Omega$.
+We say $\mu$ is \emph{outer regular} if
+\[\mu(E)=\inf\{\mu(U):E\subset U,\,U\text{ open}\},\]
+and say $\mu$ is \emph{inner regular} if
+\[\mu(E)=\sup\{\mu(F):F\subset E,\,F\text{ closed}\},\]
+for every Borel subset $E\subset\Omega$.
+If $\mu$ is both outer and inner regular, we say $\mu$ is \emph{regular}.
+\begin{parts}
+\item Let $E$ be $\sigma$-finite. Then, $E$ is $\mu$-regular if and only if for any $\e>0$ there are open $U$ and closed $F$ such that $F\subset E\subset U$ and $\mu(U\setminus F)<\e$.
+\item If $\mu$ is $\sigma$-finite, then the set of $\mu$-regular subsets is a $\sigma$-algebra. (may be extended?)
+\item Every closed set is $G_\delta$.
+\item Every finite Borel measure on $\Omega$ is regular.
+\end{parts}
+\end{prb}
+\begin{pf}
+\end{pf}
+
+
+
+
+\begin{prb}[Luzin's theorem]
+Let $\mu$ be a regular Borel measure on a metric space $\Omega$.
+Let $f:\Omega\to\R$ be a Borel measurable function.
+Two proofs: direct and Egoroff.
+% Important properties: NORMALITY for Tietze, and $\sigma$-FINITENESS for U,F squeezing.
+\begin{parts}
+\item If $E\subset\Omega$ is $\sigma$-finite, then there is a continuous $g$ blabla
+\item If $f$ vanishes outside a $\sigma$-finite set, then for any $\e>0$ there is a closed set $F\subset \Omega$ such that $f|_F:F\to\R$ is continuous and $\mu(\Omega\setminus F)<\e$.
+\item If $f$ vanishes outside a $\sigma$-finite set, then for any $\e>0$ there is a closed set $F\subset \Omega$ and continuous $g:\Omega\to\R$ such that $f|_F=g|_F$ and $\mu(\Omega\setminus F)<\e$.
+\item If $f$ is further bounded, then $g$ also can be taken to be bounded.
+\end{parts}
+\end{prb}
+\begin{pf}
+(a)
+Let $\e>0$ and suppose $E\subset \Omega$ is measurable with $\mu(E)<\infty$.
+Since $E$ is $\sigma$-finite, we have open $U$ and closed $F$ such that $F\subset E\subset U$ and $\mu(U\setminus F)<\e/2$.
+By the Urysohn lemma, there is a continuous function $g:\Omega\to[0,1]$ such that $g|_{U^c}=0$ and $g|_F=1$.
+Then,
+\[\int|\1_E-g|\,d\mu=\int_{U\setminus F}|\1_E-g|\,d\mu\le2\mu(U\setminus F)<\e.\]
+
+(b)
+Since $\R$ is second countable, we have a base $(V_n)_{n=1}^\infty$ of $\R$.
+Since $\mu$ is $\sigma$-finite, for each $n$ we can take open $U_n$ and closed $F_n$ such that
+\[F_n\subset f^{-1}(V_n)\subset U_n\]
+and $\mu(U_n\setminus F_n)<\e/2^n$.
+Define $F:=\left(\bigcup_{n=1}^\infty(U_n\setminus F_n)\right)^c$ so that $\mu(\Omega\setminus F)<\e$ and $F$ is closed.
+Then,
+\begin{align*}
+U_n\cap F
+&=U_n\cap((U_n^c\cup F_n)\cap F)\\
+&=(U_n\cap(U_n^c\cup F_n))\cap F\\
+&=(\varnothing\cup(U_n\cap F_n))\cap F\\
+&\subset F_n\cap F
+\end{align*}
+proves $f^{-1}(V_n)$ is open in $F$ for every $n$, hence the continuity of $f|_F$.
+(In fact, we require that $X$ to be just a topological space.)
+
+(b')
+We can alternatively use the part (a) and the Egoroff theorem.
+By the part (a), we can construct a sequence $(f_n)$ of continuous functions $X\to\R$ such that $f_n\to f$ in $L^1$.
+By taking a subsequence, we may assume $f_n\to f$ pointwise.
+Assuming $\mu$ is finite, by the Egorov theorem, there is a measurable $A\subset X$ such that $f_n\to f$ uniformly on $A$ and $\mu(X\setminus A)<\e/2$.
+Since $\mu$ is inner regular, we have closed $F\subset A$ such that $\mu(A\setminus F)<\e/2$, so that we have $\mu(X\setminus F)<\e$.
+Then, $f$ is continuous on $A$, and of course on $F$.
+
+\end{pf}
+
+
+
+\section{Locally compact metric spaces}
+
+
+compact  closed set not containing infty\\
+open     open not containing infty\\
+closed   closed set containing infty\\
+
+for a measure that ``vanishes at infty'' = tight\\
+two definitions of inner regularity is equivalent.\\
+
+inner regular on compact sets -> inner regular on closed sets\\
+inner regular on compact sets + sigma finite -> tight\\
+
+\begin{prb}[One-point compactification]
+\end{prb}
+
+\begin{prb}[Regular Borel measures on locally compact metric spaces]
+sss
+\begin{parts}
+\item $C_c(\Omega)$ is dense in $L^p(\mu)$ for $1\le p<\infty$.
+\item If $\mu$ is $\sigma$-finite, then for any $\e>0$ there is compact $K\subset\Omega$ and continuous $g:\Omega\to\R$ such that $f|_K=g|_K$ and $\mu(\Omega\setminus K)<\e$.
+\end{parts}
+\end{prb}
+
+
+\begin{prb}[Tightness and inner regularity]
+We have a similar but confusing concept called tightness; we say a Borel measure $\mu$ on a topological space $X$ is \emph{tight} if for any $\e>0$ there is a compact $K\subset X$ such that $\mu(X\setminus K)<\e$.
+
+History of Bourbaki's text.
+\begin{parts}
+\item
+\end{parts}
+\end{prb}
+
+
+
+
 
 \section{Riesz-Markov-Kakutani representation theorem}
 
-locally compact
+% We only consider $C_0$ and finite measures!
+% Don't care of $C_c$!
+% If $\Omega$ is no metrizable, then just replace finite measures to regular finite measures!
+
+\begin{prb}[Riesz-Markov-Kakutani representation theorem for $C_0$]
+Let $\Omega$ be a locally compact metric space.
+We want to establish the following one-to-one correspondence:
+\[\begin{array}{ccc}
+\{\text{finite Borel measures on $\Omega$}\} & \xrightarrow{\sim} & \{\text{positive linear functionals on $C_0(\Omega)$}\}\\
+\mu & \mapsto & (f\mapsto\int f\,d\mu).
+\end{array}\]
+Let $I$ a positive linear functional on $C_0(\Omega)$.
+Let $\cT$ be the set of all open subsets of $\Omega$ and $\rho:\cT\to[0,\infty]$ a set function such that
+\[\rho(U):=\sup\,\{\,I(f):f\in C_c(U,[0,1])\,\}\]
+for open $U$.
+Let $\mu^*:\cP(X)\to[0,\infty]$ be the associated outer measure defined from $\rho$, and $\mu:=\mu^*|_\cM$ the Carath\'eodory measure, where $\cM$ is the $\sigma$-algebra of Carath\'eodory measurable subsets relative to $\mu^*$, and $\cB$ is the Borel $\sigma$-algebra of $\Omega$.
+\begin{parts}
+\item $\mu^*|_\cT=\rho$.
+\item $\cB\subset\cM$.
+\item $I(f)=\int f\,d\mu$ for $f\in C(\Omega)$.
+\item The map $\mu\mapsto(f\mapsto\int f\,d\mu)$ is injective.
+\end{parts}
+\end{prb}
+\begin{pf}
+(a)
+It suffices to show that $\rho$ satisfies monotonically countably subadditive.
+Take an open set $U$ and a countable open cover $\{U_i\}_{i=1}^\infty$ of $U$.
+Take any $f\in C_c(U,[0,1])$ and let $K:=\supp f$.
+Since $K$ is compact, there is a finite subcover $\{U_j\}_{j=1}^n$ of $K$, and since $K$ is paracompact Hausdorff, there is a partition of unitiy $\{\chi_j\}_j$ on $K$ subordinate to the open cover $\{U_j\cap K\}_j$.
+Note that $\supp\chi_j\subset U_j\cap K$ for each $j$.
+
+The set $\supp(f\chi_j)$ is closed in $K$ so the compactness, and we also have the inclusion $\supp(f\chi_j)\subset\supp\chi_j\subset U_j$.
+For every $0<a\le 1$, since $(f\chi_j)^{-1}((a,1])$ is open in the interior of $K$ and $(f\chi_j)^{-1}([a,1])$ is closed in $K$, $f\chi_j$ is continuous on $U_j$.
+Now we have checked $f\chi_j\in C_c(U_j,[0,1])$.
+
+Then, because $I$ is linear so that it preserves finite sum, we have
+\[I(f)=I\left(\sum_{j=1}^n f\chi_j\right)=\sum_{j=1}^n I(f\chi_j)\le\sum_{j=1}^n\rho(U_j)\le\sum_{i=1}^\infty\rho(U_i).\]
+Since $f$ is arbitrary, we get $\rho(U)\le\sum_{i=1}^\infty\rho(U_i)$.
+
+(b)
+It suffices to show $\cT\subset\cM$.
+Clearly $\mu^*(E)\le\mu^*(E\cap U)+\mu^*(E\setminus U)$ for any measurable $E$ and open $U$.
+For the opposite direction, take $\e>0$.
+Note that we may assume $\mu^*(E)<\infty$.
+There are open $U_i$ such that $E\subset\bigcup_{i=1}^\infty U_i$ and
+\[\mu^*(E)+\frac\e3>\sum_{i=1}^\infty\rho(U_i).\]
+Take $f_i\in C_c(U_i\cap U,[0,1])$ such that
+\[\rho(U_i\cap U)-\frac13\cdot\frac\e{2^i}<I(f_i),\]
+and take $g_i\in C_c(U_i\setminus\supp f_i,[0,1])$ such that
+\[\rho(U_i\setminus\supp f_i)-\frac13\cdot\frac\e{2^i}<I(g_i).\]
+Then, since $f_i+g_i\in C_c(U_i,[0,1])$, we have
+\begin{align*}
+\rho(U_i)\ge I(f_i+g_i)
+&>\rho(U_i\cap U)+\rho(U_i\setminus\supp f_i)-\frac23\cdot\frac\e{2^i}\\
+&\ge\rho(U_i\cap U)+\rho(U_i\setminus U)-\frac23\cdot\frac\e{2^i}.
+\end{align*}
+It implies
+\[\mu^*(E)+\e>\sum_{i=1}^\infty\rho(U_i\cap U)+\sum_{i=1}^\infty\rho(U_i\setminus U))\ge\mu^*(E\cap U)+\mu^*(E\setminus U)\]
+because $E\cap U\subset\bigcup_{i=1}^\infty U_i\cap U$ and $E\setminus U\subset\bigcup_{i=1}^\infty U_i\setminus U$.
+
+
+(c)
+Note that we have
+\[\rho(U)=\sup_{f\in C_c(U,[0,1])}I(f),\qquad\mu(E)=\inf_{\substack{E\subset U\\U\text{ open}}}\rho(U).\]
+We first claim that for $g\in C_c(\Omega,[0,1])$, if $K$ and $K'$ are compact sets such that $g|_K=1$ and $g|_{K'^c}=0$ respectively, then we have
+\[\mu(K)\le I(g)\le\mu(K').\]
+The one inequality directly follows from
+\[I(g)\le\inf_{K'\subset U}\rho(U)=\mu(K').\]
+For the other, take sufficiently small $\e>0$ such that $U:=g^{-1}((1-\e,1])$ satisfies $K\subset U\subset\supp g$.
+For any $h\in C_c(U,[0,1])$, the inequality $(1-\e)h\le g$ implies $I(h)\le(1-\e)^{-1}I(g)$, so
+\[\mu(K)\le\rho(U)\le I(h)\le(1-\e)^{-1}I(g).\]
+By limiting $\e\to0$, we get $\mu(K)\le I(g)$, the claim proved.
+
+
+Since $C_c(\Omega)$ is the linear span of $C_c(\Omega,[0,1])$, it is enough to show $I(f)=\int f\,d\mu$ for $f\in C_c(X,[0,1])$.
+For a fixed positive integer $n$ and for each index $1\le i\le n$, let $K_i:=f^{-1}([i/n,1])$ and define
+\[f_i(x):=\begin{cases}0&\text{ if }x\in K_{i-1}^c,\\f(x)-\frac{i-1}n&\text{ if }x\in K_{i-1}\setminus K_i,\\\frac1n&\text{ if }x\in K_i,\end{cases}\]
+where $K_0:=\supp f$.
+Note that $nf_i\in C_c(X,[0,1])$ and $f=\sum_{i=1}^nf_i$.
+For $1\le i\le n$ we have $\mu(K_i)<\infty$ because $K_i$ is compact subsets contained in a locally compact Hausdorff space $U:=f^{-1}((0,1])$, but $\mu(K_0)$ is possibly infinite.
+By the previous claim and the property of integral, we have
+\[\frac{\mu(K_i)}n\le I(f_i),\qquad\frac{\mu(K_i)}n\le\int f_i\,d\mu\]
+for $1\le i\le n$ and
+\[I(f_i)\le\frac{\mu(K_{i-1})}n,\qquad\int f_i\,d\mu\le\frac{\mu(K_{i-1})}n\]
+for $2\le i\le n$.
+Then, using the above inequalities and $\mu(K_n)\ge0$, we have
+\[I(f)\le I(f_1)+\int f\,d\mu\quad\text{and}\quad\int f\,d\mu\le\int f_1\,d\mu+I(f).\]
+Note that $f_1=\min\{f,1/n\}$ is a sequence of functions indexed by $n$.
+By the monotone convergence theorem, $\int f_1\,d\mu\to0$ as $n\to\infty$.
+We now show $I(f_1)$ converges to zero.
+
+(d)
+Let $\mu$ and $\nu$ be finite Borel measures on $\Omega$ such that
+\[\int g\,d\mu=\int g\,d\nu\]
+for all $g\in C(\Omega)$.
+Let $E$ be any measurable set.
+Since $\mu+\nu$ is a finite Borel measure, it is regular, and by the Luzin theorem, we have a closed set $F$ and $g\in C(\Omega)$ with $0\le g\le1$ such that $\1_E|_F=g|_F$ and $(\mu+\nu)(\Omega\setminus F)<\e/2$.
+Then,
+\begin{align*}
+|\mu(E)-\nu(E)|&=|\int\1_E\,d\mu-\int\1_E\,d\nu\,|\\
+&\le\int_{\Omega\setminus F}|\1_E-g|\,d\mu+\int_{\Omega\setminus F}|g-\1_E|\,d\nu\\
+&\le2\mu(\Omega\setminus F)+2\nu(\Omega\setminus F)<\e.
+\end{align*}
+By limiting $\e\to0$, we have $\mu(E)=\nu(E)$.
+\end{pf}
+
+
+\begin{prb}[Dual of continuous function spaces]
+\end{prb}
+
+
 
 \section{Hausdorff measures}
+
+
+\section*{Exercises}
+
 
 
 
