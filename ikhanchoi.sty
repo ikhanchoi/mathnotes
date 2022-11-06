@@ -58,6 +58,8 @@
 
 
 
+
+
 %///////////////////////%
 %  Theorems and Proofs  %
 %///////////////////////%
@@ -91,6 +93,22 @@
   {\begin{proof}[Solution]}
   {\end{proof}}
 
+%\@ifclassloaded{report}
+%{
+%\let\@@chapter\chapter
+%\RenewDocumentCommand\chapter{sg}{
+%  \IfBooleanTF{#1}
+%    {\@@chapter*{#2}\addcontentsline{toc}{chapter}{#2}}
+%    {\@@chapter{#2}}
+%}
+%}{}
+%\let\@@section\section
+%\RenewDocumentCommand\section{sg}{
+%  \IfBooleanTF{#1}
+%    {\@@section*{#2}\addcontentsline{toc}{section}{#2}\setcounter%{prb}{0}}
+%    {\@@section{#2}}
+%}
+
 %\Requirepackage{environ}
 %\newif\if@hidepf % \@hidepffalse
 %\newif\if@hidesol
@@ -99,10 +117,6 @@
 %\ProcessOptions\relax
 %\NewEnviron{pf}[1][\unskip]{\if@hidepf\else\begin{proof}[Proof #1]\BODY\end{proof}\fi}
 %\NewEnviron{sol}[1][\unskip]{\if@hidesol\else\begin{proof}[Solution #1]\BODY\end{proof}\fi}
-
-\NewDocumentCommand{\Case}{mo}{\IfNoValueTF{#2}{\emph{Case #1.}}{\emph{Case #1: #2.}}}
-\NewDocumentCommand{\Step}{mo}{\IfNoValueTF{#2}{\emph{Step #1.}}{\emph{Step #1: #2.}}}
-%r[]+g
 
 
 

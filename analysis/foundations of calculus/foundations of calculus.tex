@@ -6,26 +6,109 @@
 \title{Foundations of Calculus}
 \author{Ikhan Choi}
 \maketitle
+
+
+
+\chapter*{Preface}
+the main objectives
+the audience
+the structure of the book
+how to use this book
+acknowledgements
+references
+
+% hypergeometric, bessel, gamma, zeta
+
 \tableofcontents
 
-% limit of sequences
-% metric spaces
-% continuous functions
-% differentiation
-% infinite series
-% integration
-% analytic functions
-% ?
-% ?
+
+\part{Sequences}
 
 
-\part{Convergence}
-\chapter{Sequences}
+\chapter{Metric spaces}
+% 문제의식: 노름과 메트릭 추상화, 동치는 다루지 않음
+\section{Metric spaces}
+\begin{prb}[Definition of metric spaces]
+Let $X$ be a set.
+A \emph{metric} is a function $d:X\times X\to\R_{\ge0}$ such that
+\begin{parts}[(i)]
+\item $d(x,y)=0$ if and only if $x=y$, \hfill(nondegeneracy)
+\item $d(x,y)=d(y,x)$ for all $x,y\in X$, \hfill(symmetry)
+\item $d(x,z)\le d(x,y)+d(y,z)$ for all $x,y,z\in X$. \hfill(triangle inequality)
+\end{parts}
+A pair $(X,d)$ of a set $X$ and a metric on $X$ is called a \emph{metric space}.
+We often write it simply $X$.
+\begin{parts}
+\item
+A normed space $X$ is a metric space with a metric defined by $d(x,y):=\|x-y\|$.
+\item
+A subset of a metric space is a metric space with a metric given by restriction.
+\end{parts}
+\end{prb}
 
-\section{Limit of sequences}
+\begin{prb}[System of open balls]
+A metric is often misunderstood as something that measures a distance between two points and belongs to the study of geoemtry.
+The main function of a metric is to make a system of small balls, sets of points whose distance from specified center points is less than fixed numbers.
+The balls centered at each point provide a concrete images of ``system of neighborhoods at a point'' in a more intuitive sense.
+In this viewpoint, a metric can be considered as a structure that lets someone accept the notion of neighborhoods more friendly.
 
+Note that taking either $\e$ or $\delta$ in analysis really means taking a ball of the very radius.
+Investigation of the distribution of open balls centered at a point is now an important problem.
+
+Let $X$ be a metric space.
+A set of the form 
+\[\{y\in X:d(x,y)<\e\}\]
+for $x\in X$ and $\e>0$ is called an \emph{open ball centered at $x$ with radius $\e$} and denoted by $B(x,\e)$ or $B_\e(x)$.
+\end{prb}
+
+\begin{prb}[Convergence and continuity in metric spaces]
+Let $\{x_n\}_n$ be a sequence of points on a metric space $(X,d)$.
+We say that a point $x$ is a \emph{limit} of the sequence or the sequence \emph{converges to $x$} if for arbitrarily small ball $B(x,\e)$, we can find $n_0$ such that $x_n\in B(x,\e)$ for all $n>n_0$.
+If it is satisfied, then we write
+\[\lim_{n\to\infty}x_n=x,\]
+or simply $x_n\to x$ as $n\to\infty$.
+We say a sequence is \emph{convergent} if it converges to a point.
+If it does not converge to any points, then we say the sequence \emph{diverges}.
+
+A function $f:X\to Y$ between metric spaces is called \emph{continuous at $x\in X$} if for any ball $B(f(x),\e)\subset Y$, there is a ball $B(x,\delta)\subset X$ such that $f(B(x,\delta))\subset B(f(x),\e)$.
+The function $f$ is called \emph{continuous} if it is continuous at every point on $X$.
+\begin{parts}
+\item A sequence $x_n$ in a metric space $X$ converges to $x\in X$ if and only if $d(x_n,x)$ converges to zero.
+\item 
+Let $f:X\to Y$ be a function between two metric spaces.
+If there is a constant $C$ such that $d(x,y)\le Cd(f(x),f(y))$ for all $x$ and $y$ in $X$, then $f$ is continuous.
+In this case, $f$ is particularly called \emph{Lipschitz continuous} with the \emph{Lipschitz constant} $C$.
+\end{parts}
+\end{prb}
+
+
+\begin{prb}[Separable metric spaces]
+separable iff second countable iff lindelof
+\end{prb}
+
+\section{Normed spaces}
+banach space
+
+\section{Open sets and closed sets}
+convergence, limit point
+\section{Compact sets}
+Bolzano-Weierstrass
+\section{Connected sets}
+
+
+
+\section*{Exercises}
+\section*{Problems}
+
+
+
+
+\chapter{Real sequences}
+
+\section{Monotone sequences}
 preserving inequalities
 limsup and liminf
+monotone convergence
 
 
 \section{Extended real numbers}
@@ -36,12 +119,13 @@ We can extend addition (except $\infty+(-\infty)$), subtraction, multiplication 
 \begin{prb}[Limits in the extended real numbers]
 \end{prb}
 
-\section{Control of the error}
 
+\section{Asymptotic analysis}
 sufficiently large
 asymptotic expressions
+growth and decay
 
-Approximate sequences and change of limits
+Approximate sequences($\e/3$)
 
 \begin{prb}[Change of limits]
 \[|a_n-a|\le|a_n-b_{mn}|+|b_{mn}-b_m|+|b_m-a|\]
@@ -53,9 +137,6 @@ Approximate sequences and change of limits
 
 
 
-\section{Bounded sequences}
-monotone convergence
-Bolzano-Weierstrass
 
 
 \section*{Exercises}
@@ -144,6 +225,10 @@ We can use $\sin x=x-\frac{x^3}6+O(x^5)$.
 \end{prb}
 
 
+\begin{prb}[Convergence rates of recursive sequences]
+If $a_{n+1}=a_n-f(a_n)$, $f(0)=0$, $f(x)>0$ for $0<x<\e$, $f\in C^2$? then
+\[f'(a_n)\sim\lim_{x\to0+}\frac{f'(x)^2}{f''(x)f(x)}\frac1n.\]
+\end{prb}
 \section*{Problems}
 \begin{enumerate}
 \item If $a_n\to0$, then $\frac1n\sum_{k=1}^na_k\to0$.
@@ -154,79 +239,32 @@ We can use $\sin x=x-\frac{x^3}6+O(x^5)$.
 
 
 
-\chapter{Metrics and norms}
-% 문제의식: 노름과 메트릭 추상화, 동치는 다루지 않음
-\section{Metric spaces}
-\begin{prb}[Definition of metric spaces]
-Let $X$ be a set.
-A \emph{metric} is a function $d:X\times X\to\R_{\ge0}$ such that
-\begin{parts}[(i)]
-\item $d(x,y)=0$ if and only if $x=y$, \hfill(nondegeneracy)
-\item $d(x,y)=d(y,x)$ for all $x,y\in X$, \hfill(symmetry)
-\item $d(x,z)\le d(x,y)+d(y,z)$ for all $x,y,z\in X$. \hfill(triangle inequality)
-\end{parts}
-A pair $(X,d)$ of a set $X$ and a metric on $X$ is called a \emph{metric space}.
-We often write it simply $X$.
-\begin{parts}
-\item
-A normed space $X$ is a metric space with a metric defined by $d(x,y):=\|x-y\|$.
-\item
-A subset of a metric space is a metric space with a metric given by restriction.
-\end{parts}
-\end{prb}
 
-\begin{prb}[System of open balls]
-A metric is often misunderstood as something that measures a distance between two points and belongs to the study of geoemtry.
-The main function of a metric is to make a system of small balls, sets of points whose distance from specified center points is less than fixed numbers.
-The balls centered at each point provide a concrete images of ``system of neighborhoods at a point'' in a more intuitive sense.
-In this viewpoint, a metric can be considered as a structure that lets someone accept the notion of neighborhoods more friendly.
+\part{Functions}
 
-Note that taking either $\e$ or $\delta$ in analysis really means taking a ball of the very radius.
-Investigation of the distribution of open balls centered at a point is now an important problem.
+\chapter{Continuity}
+% 문제의식: 연속함수의 성질을 엄밀하게 기술할 수 있는 보조정리 증명, 연속함수 공간 개요
+\section{Intermediate and extreme value theorems}
 
-Let $X$ be a metric space.
-A set of the form 
-\[\{y\in X:d(x,y)<\e\}\]
-for $x\in X$ and $\e>0$ is called an \emph{open ball centered at $x$ with radius $\e$} and denoted by $B(x,\e)$ or $B_\e(x)$.
-\end{prb}
-
-\begin{prb}[Convergence and continuity in metric spaces]
-Let $\{x_n\}_n$ be a sequence of points on a metric space $(X,d)$.
-We say that a point $x$ is a \emph{limit} of the sequence or the sequence \emph{converges to $x$} if for arbitrarily small ball $B(x,\e)$, we can find $n_0$ such that $x_n\in B(x,\e)$ for all $n>n_0$.
-If it is satisfied, then we write
-\[\lim_{n\to\infty}x_n=x,\]
-or simply $x_n\to x$ as $n\to\infty$.
-We say a sequence is \emph{convergent} if it converges to a point.
-If it does not converge to any points, then we say the sequence \emph{diverges}.
-
-A function $f:X\to Y$ between metric spaces is called \emph{continuous at $x\in X$} if for any ball $B(f(x),\e)\subset Y$, there is a ball $B(x,\delta)\subset X$ such that $f(B(x,\delta))\subset B(f(x),\e)$.
-The function $f$ is called \emph{continuous} if it is continuous at every point on $X$.
-\begin{parts}
-\item A sequence $x_n$ in a metric space $X$ converges to $x\in X$ if and only if $d(x_n,x)$ converges to zero.
-\item 
-Let $f:X\to Y$ be a function between two metric spaces.
-If there is a constant $C$ such that $d(x,y)\le Cd(f(x),f(y))$ for all $x$ and $y$ in $X$, then $f$ is continuous.
-In this case, $f$ is particularly called \emph{Lipschitz continuous} with the \emph{Lipschitz constant} $C$.
-\end{parts}
-\end{prb}
+left and right limits
+semicontinuous
 
 
-\begin{prb}[Separable metric spaces]
-separable iff second countable iff lindelof
-\end{prb}
-
-\section{Normed spaces}
-banach space
-
-\section{Open sets and closed sets}
-convergence, limit point
-\section{Compact sets}
-\section{Connected sets}
+\section{Various continuities}
 
 
 
 \section*{Exercises}
 
+\section*{Problems}
+\begin{enumerate}
+\item The set of local minima of a convex real function is connected.
+\item Let $f:\R\to\R$ be continuous.
+The equation $f(x)=c$ cannot have exactly two solutions for every constant $c\in\R$.
+\item A continuous function that takes on no value more than twice takes on some value exactly once.
+\item Let $f$ be a function that has the intermediate value property.
+If the preimage of every singleton is closed, then $f$ is continuous.
+\end{enumerate}
 
 
 
@@ -234,13 +272,79 @@ convergence, limit point
 
 
 
-\part{Real functions}
+\chapter{Differentiation}
+\section{Differentiability}
+\begin{prb}[L'hopital theorem]
+\end{prb}
+
+\section{Monotonicty and convexity}
+
+\section{Mean value theorem}
+\begin{prb}[Taylor theorem]
+\end{prb}
+\section{Smooth functions}
+
+\section*{Exercises}
+\begin{prb}[Variations on the mean value theorem]
+Let $f$ be a differentiable function on the unit closed interval.
+\begin{parts}
+\item If $f(0)=0$ there is $c$ such that $cf'(c)=f(c)$. (Flett)
+\item If $f(0)=0$ there is $c$ such that $cf(c)=(1-c)f'(c)$.
+\end{parts}
+\end{prb}
+\begin{prb}[Dini derivatives]
+\end{prb}
+\begin{prb}[Darboux theorem]
+\end{prb}
+
+\section*{Problems}
+\begin{enumerate}
+\item If $\lim_{x\to\infty}f(x)=a$ and $\lim_{x\to\infty}f'(x)=b$, then $a=0$.
+\item Let $f$ be a real $C^2$ function with $f(0)=0$ and $f''(0)\ne0$.
+Defined a function $\xi$ such that $f(x)=xf'(\xi(x))$ with $|\xi|\le|x|$, we have $\xi'(0)=1/2$.
+\item Let $f$ be a $C^2$ function such that $f(0)=f(1)=0$.
+We have $\|f\|\le\frac18\|f''\|$.
+\item A smooth function such that for each $x$ there is $n$ having the $n$th derivative vanish is a polynomial.
+\item If a real $C^1$ function $f$ satisfies $f(x)\ne0$ for $x$ such that $f'(x)=0$, then in a bounded set there are only finite points at which $f$ vanishes.
+\item Let a real function $f$ be differentiable.
+For $a<a'<b<b'$ there exist $a<c<b$ and $a'<c'<b'$ such that $f(b)-f(a)=f'(c)(b-a)$ and $f(b')-f(a')=f'(c')(b'-a')$.
+\end{enumerate}
+
+
+
+
+
+
+\chapter{Integration}
+
+\section{Riemann integral}
+tagged partition
+\section{Henstock-Kurzweil intergral}
+bounded compact support <-> lebesgue
+\section{Improper integral}
+\section{Fundamental theorem of calculus for continuous functions}
+
+\section*{Exercises}
+
+\section*{Problems}
+\begin{enumerate}
+\item Find the value of $\lim_{n\to\infty}\frac1n\left(\sum_{k=1}^n\frac1nf\left(\frac kn\right)-\int_0^1f(x)\,dx\right)$.
+\item Find all $a>0$ and $b>0$ such that $\int_0^\infty x^{-b}|\tan x|^a\,dx$ converges.
+\item* If $xf'(x)$ is bounded and $x^{-1}\int_0^xf\to L$ then $f(x)\to L$ as $x\to\infty$.
+\end{enumerate}
+
+
+
+
+
+
+
+
+
+\part{Function spaces}
 
 \chapter{Continuous functions}
-% 문제의식: 연속함수의 성질을 엄밀하게 기술할 수 있는 보조정리 증명, 연속함수 공간 개요
-\section{Intermediate and extreme value theorems}
 \section{Uniform convergence}
-
 \begin{pf}
 Divide the error
 \[|f(x_n)-f(x)|\le|f(x_n)-f_m(x_n)|+|f_m(x_n)-f_m(x)|+|f_m(x)-f(x)|.\]
@@ -256,112 +360,46 @@ Since $\e>0$ has been arbitrarily taken,
 \section{Stone-Weierstrass theorem}
 
 \section*{Exercises}
-
+\begin{prb}[Weierstrass' nowhere differentiable function]
+\end{prb}
 \section*{Problems}
 \begin{enumerate}
-\item The set of local minima of a convex real function is connected.
-\item Let $f:\R\to\R$ be continuous.
-The equation $f(x)=c$ cannot have exactly two solutions for every constant $c\in\R$.
-\item A continuous function that takes on no value more than twice takes on some value exactly once.
-\item Let $f$ be a function that has the intermediate value property.
-If the preimage of every singleton is closed, then $f$ is continuous.
 \item* If a sequence of real functions $f_n\colon[0,1]\to[0,1]$ satisfies $|f(x)-f(y)|\le|x-y|$ whenever $|x-y|\ge\frac1n$, then it has a uniformly convergent subsequence.
 \end{enumerate}
 
 \chapter{Differentiable functions}
-% 로피탈..
-\section{Monotonicty and convexity}
-\section{Mean value theorem}
-Darboux
-\section{Taylor theorem}
 \section{Differentiable class}
 completeness
+\section{H\"older spaces}
 
-\section*{Exercises}
-\begin{prb}[Variations on the mean value theorem]
-Let $f$ be a differentiable function on the unit closed interval.
-\begin{parts}
-\item If $f(0)=0$ there is $c$ such that $cf'(c)=f(c)$. (Flett)
-\item If $f(0)=0$ there is $c$ such that $cf(c)=(1-c)f'(c)$.
-\end{parts}
-\end{prb}
+\section{Analytic functions}
 
-\begin{prb}[Convergence rates of recursive sequences]
-If $a_{n+1}=a_n-f(a_n)$, $f(0)=0$, $f(x)>0$ for $0<x<\e$, $f\in C^2$? then
-\[f'(a_n)\sim\lim_{x\to0+}\frac{f'(x)^2}{f''(x)f(x)}\frac1n.\]
-\end{prb}
-
-\begin{pf}
-
-\end{pf}
-
-\section*{Problems}
-\begin{enumerate}
-\item If $\lim_{x\to\infty}f(x)=a$ and $\lim_{x\to\infty}f'(x)=b$, then $a=0$.
-\item Let $f$ be a real $C^2$ function with $f(0)=0$ and $f''(0)\ne0$.
-Defined a function $\xi$ such that $f(x)=xf'(\xi(x))$ with $|\xi|\le|x|$, we have $\xi'(0)=1/2$.
-\item Let $f$ be a $C^2$ function such that $f(0)=f(1)=0$.
-We have $\|f\|\le\frac18\|f''\|$.
-\item A smooth function such that for each $x$ there is $n$ having the $n$th derivative vanish is a polynomial.
-\item If a real $C^1$ function $f$ satisfies $f(x)\ne0$ for $x$ such that $f'(x)=0$, then in a bounded set there are only finite points at which $f$ vanishes.
-\item Let a real function $f$ be differentiable.
-For $a<a'<b<b'$ there exist $a<c<b$ and $a'<c'<b'$ such that $f(b)-f(a)=f'(c)(b-a)$ and $f(b')-f(a')=f'(c')(b'-a')$.
-
-\end{enumerate}
-
-
-\chapter{Analytic functions}
-\section{Power series}
+Power series
 uniform convergence and absolute convergence, abel theorem?
 differentiation
-convergence of radius
+convergence of radius, complex domain
 sum, product, composition, reciprocal?
 closed under uniform convergence
-\section{Complex analytic functions}
-complex domain
-(real analytic iff its domain contains real line)
-convergence of radius, revisited
 identity theorem
-\section{Special functions}
-hypergeometric, bessel, gamma, zeta
-
-\section*{Exercises}
 
 
 
-\part{Integration}
 
-\chapter{Riemann integral}
-\section{Riemann integral}
-tagged partition
-\section{Henstock-Kurzweil intergral}
-bounded compact support <-> lebesgue
-\section{Improper integral}
-\section{Fundamental theorem of calculus for continuous functions}
-
-\section*{Exercises}
-\begin{prb}
-Find the value of $\lim_{n\to\infty}\frac1n\left(\sum_{k=1}^n\frac1nf\left(\frac kn\right)-\int_0^1f(x)\,dx\right)$.
-\end{prb}
-
-\begin{prb}
-Find all $a>0$ and $b>0$ such that $\int_0^\infty x^{-b}|\tan x|^a\,dx$ converges.
-\end{prb}
-
-\section*{Problems}
-\begin{enumerate}
-\item* If $xf'(x)$ is bounded and $x^{-1}\int_0^xf\to L$ then $f(x)\to L$ as $x\to\infty$.
-\end{enumerate}
 
 
 \chapter{Integrable functions}
 \section{}
-% 적분이 함수의 크기를 재는 수단임을 배운다
-% 각 함수들의 적분가능성을 배운다
-% 급수와 마찬가지로 적분이 수렴하거나 발산하게 되는 메커니즘을 배운다(영역, 함수가 얼마나 특이한지)
+
+\begin{prb}[Lebesgue criterion of Riemann integrability]
+\end{prb}
 
 
-\chapter{}
+
+
+
+
+
+
 
 
 
@@ -444,6 +482,8 @@ Symmetric product
 
 \begin{prb}[Geometric algebra]
 \end{prb}
+
+
 
 
 
