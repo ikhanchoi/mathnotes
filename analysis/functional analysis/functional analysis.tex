@@ -15,11 +15,15 @@
 
 
 \chapter{Locally convex spaces}
-\section{General vector topologies}
-canonical uniformity.
-canonical bornology.
-metrizability(Birkhoff-Kakutani).
-boundedness and continuity
+\section{Vector topologies}
+
+\begin{prb}[Canonical uniformity and bornology]
+\end{prb}
+\begin{prb}[Metrizability]
+Birkhoff-Kakutani
+\end{prb}
+\begin{prb}[Boundedness of linear operators]
+\end{prb}
 
 \section{Seminorms and convex sets}
 \begin{prb}[Seminorms]
@@ -27,13 +31,13 @@ boundedness and continuity
 Equivalent conditions on the continuity of seminorms
 \end{prb}
 \begin{pf}
-
 \end{pf}
 boundedness by seminorms, normability
 
 \section{Continuous linear functionals}
 \begin{prb}
-Let $\{x_i^*\}_{i=1}^n\subset X^*$.
+Let $\bar{x^*}=(x_1^*,\cdots,x_n^*)\in X^{*n}$.
+$\bar{x^*}:X\to\F^n$.
 If $x^*\in X^*$ vanishes on $\bigcap_{i=1}^n\ker x_i^*$, then $x^*$ is a linear combination of $\{x_i^*\}$.
 \end{prb}
 
@@ -42,11 +46,12 @@ If $x^*\in X^*$ vanishes on $\bigcap_{i=1}^n\ker x_i^*$, then $x^*$ is a linear 
 \section{Hahn-Banach theorem}
 
 \begin{prb}[Hahn-Banach theorem]
-Let $X$ be a real vector space and $Y$ a linear subspace of $X$.
-Suppose that $l:Y\to\R$ is a linear functional dominated by a sublinear functional $q:X\to\R$.
+Let $X$ be a real vector space.
+Suppose $V$ is a linear subspace of $X$ and $l:V\to\R$ is a linear functional dominated by a sublinear functional $q:X\to\R$, that is, $l(v)\le q(v)$ for all $v\in V$.
 \begin{parts}
 \item There is a linear functional $\tilde l:X\to\R$ that extends $l$.
-\item There is a linear functional $\tilde l:X\to\R$ that extends $l$.
+\item There is a linear functional $\tilde l:X\to\R$ that extends $l$ and is dominated by $q$ if $\dim X/V=1$.
+\item There is a linear functional $\tilde l:X\to\R$ that extends $l$ and is dominated by $q$.
 \end{parts}
 \end{prb}
 \begin{pf}
@@ -54,17 +59,42 @@ Suppose that $l:Y\to\R$ is a linear functional dominated by a sublinear function
 It can be done by the Hamel basis.
 
 (b)
+Let $e\in X\setminus V$ so that every vector $x\in X$ can be uniquely written as $x=v+te$ with $v\in V$ and $t\in\R$.
+For $v_1,v_2\in V$,
+\[l(v_1)+l(v_2)=l(v_1+v_2)\le q(v_1+v_2)\le q(v_1-e)+q(v_2+e)\]
+implies
+\[l(v_1)-q(v_1-e)\le-l(v_2)+q(v_2+e).\]
+Define a linear functional $\tilde l:X\to\R$ such that $\tilde l(v)=v$ and
+\[l(v)-q(v-e)\le\tilde l(e)\le-l(v)+q(v+e)\]
+for all $v\in V$.
+Since
+\[\tilde l(v+te)=l(v)+t\tilde l(e)\le l(v)+t(-l(t^{-1}v)+q(t^{-1}v+e))=q(v+te)\]
+if $t\ge0$ and
+\[\tilde l(v+te)=l(v)+t\tilde l(e)\le l(v)+t(l(-t^{-1}v)-q(-t^{-1}v-e))=q(v+te)\]
+if $t\le0$, we have $\tilde l(x)\in q(x)$ for all $x\in X$.
 
+(c)
+With $X$ and $q$, Consider a partially ordered set
+\[\{(\tilde V,\tilde l)\mid
+V\le\tilde V\le X,\ \tilde l:\tilde V\to\R\text{ is a linear extension of $l$ dominated by $q$}\}\]
+such that $(V_1,l_1)\prec(V_2,l_2)$ if and only if $V_1\le V_2$ and $l_2|_{V_1}=l_1$.
+The nonemptyness and the chain condition is easily satisfied, so it has a maximal element $(\tilde V,\tilde l)$ by the Zorn lemma.
+By the part (b), we have $\tilde V=X$.
 \end{pf}
 
 \begin{prb}[Complex linear functionals]
-Let $X$ be a vector space over $\F=\R$ or $\C$.
-\[\{\text{$\C$-linear functionals on $X$}\}\xrightarrow{\sim}\{\text{$\R$-linear functionals on $X$}\}.\]
-Let $p$ be a seminorm on $X$ and $l$ a linear functional on $X$.
+Let $X$ be a complex vector space.
+Consider a map
+\[\begin{array}{ccc}
+\{\text{$\C$-linear functionals on $X$}\}
+&\to&
+\{\text{$\R$-linear functionals on $X$}\}\\
+l&\mapsto&\Re l.
+\end{array}\]
+Let $p$ be a seminorm on $X$ and $l$ a complex linear functional on $X$.
 \begin{parts}
-\item
-\item If $\F=\C$, then $|l(x)|\le p(x)$ if and only if $|\Re l(x)|\le p(x)$.
-\item If $\F=\R$, then
+\item The above map is bijective.
+\item $|l(x)|\le p(x)$ if and only if $|\Re l(x)|\le p(x)$.
 \end{parts}
 \end{prb}
 \begin{pf}
@@ -74,10 +104,8 @@ Then,
 \[|l(x)|=|\lambda^{-1}l(\lambda x)|=l(\lambda x)=\Re l(\lambda x)\le p(\lambda x)=p(x).\]
 \end{pf}
 
-\begin{prb}
-Let $X$ be a vector space over $\F=\R$ or $\C$ and $Y$ a linear subspace of $X$.
-Suppose that $l:Y\to\R$ is a linear functional dominated by a seminorm $p:X\to\R$.
-Then, there is a linear functional $\tilde l:X\to\R$ that is an extension of $l$ and dominated by $p$.
+
+\begin{prb}[Applications of Hahn-Banach theorem]
 \end{prb}
 
 
@@ -95,6 +123,7 @@ Then, there is a linear functional $\tilde l:X\to\R$ that is an extension of $l$
 
 \section{Uniform boundedness principle}
 \begin{prb}[Barreled spaces]
+Let $X$ be a topological vector space.
 A \emph{barrel} is an absorbing, balanced, convex, and closed subset of $X$.
 A \emph{barreled space} is a topological space in which every barrel is a neighborhood of zero.
 \end{prb}
@@ -102,11 +131,12 @@ A \emph{barreled space} is a topological space in which every barrel is a neighb
 % If a closed convex cone contains a dense subset of absorbing at a point, then it is entire?
 
 \begin{prb}[Uniform boundedness principle]
-Let $\cT$ be a set of continuous linear operators from $X$ to $Y$.
-Suppose $\bigcup_{T\in\cT}Tx$ is bounded for each $x\in D$, where $D\subset X$.
+Let $X$ and $Y$ be topological vector spaces.
+Let $\cF$ be a family of continuous linear operator from $X$ to $Y$.
+Suppose $\bigcup_{T\in\cF}Tx$ is bounded for each $x\in D$, where $D\subset X$.
 \begin{parts}
-\item If $D$ is dense in $X$, then $\bigcap_{T\in\cT}T^{-1}\bar U$ is absorbing.
-\item If $X$ is barreled, then $\cT$ is equicontinuous.
+\item If $D$ is dense in $X$, then $\bigcap_{T\in\cF}T^{-1}\bar U$ is absorbing.
+\item If $X$ is barreled, then $\cF$ is equicontinuous.
 \end{parts}
 \end{prb}
 
@@ -115,31 +145,45 @@ Suppose $\bigcup_{T\in\cT}Tx$ is bounded for each $x\in D$, where $D\subset X$.
 \section{Baire category theorem}
 
 \begin{prb}[Baire spaces]
-A topological space is called a \emph{Baire space} if the intersection of countable open dense subsets is dense.
+A topological space is called a \emph{Baire space} if the countable intersection of open dense subsets is always dense.
+\begin{parts}
+\item If a topological vector space is Baire, then it is barreled.
+\item A Baire space is second category in itself.
+\item A topological group that is second category in itself is Baire.
+\end{parts}
 \end{prb}
 
 
-\begin{prb}[Absorbing set]
+
+\begin{prb}[Absorbing sets]
 Let $X$ be a topological vector space that is Baire.
+A subset $U\subset X$ is said to be \emph{absorbing} if for every $x\in X$ there is a sufficiently large $t>0$ such that $x\in tU$.
+Let $U\subset X$.
 \begin{parts}
-\item A closed and absorbing set has non-empty interior.
-\item A closed, convex, and absorbing set is a neighborhood of zero.
+\item If $U$ is closed and absorbing, then $U$ has non-empty interior.
+\item If $U$ is closed and absorbing, then $U-U$ is a neighborhood of zero.
+\item If $U$ is closed, convex, and absorbing, then $U$ is a neighborhood of zero.
 \end{parts}
 \end{prb}
 
 
-\begin{prb}[The Baire category theorem]
+\begin{prb}[Baire category theorem]
+The Baire category theorem proves many exmples of topological vector space are Baire, in particular barreled.
 \begin{parts}
+\item A complete metric space is Baire.
+\item A locally compact Hausdorff space is Baire.
 \end{parts}
 \end{prb}
+
 
 
 
 \section{Open mapping theorem}
 
 \begin{prb}[Open mapping theorem]
-Let $X$ be a F-space and $Y$ a barreled space.
-Suppose $T:X\to Y$ is continuous and surjective.
+Let $X$ be a $F$-space and $Y$ a barreled space.
+Suppose $T:X\to Y$ is a continuous and surjective linear operator.
+Let $B$ be an open neighborhood of zero in $X$.
 \begin{parts}
 \item $\bar{TB}$ is a neighborhood of zero.
 \item $TB$ is a neighborhood of zero.
@@ -148,20 +192,25 @@ Suppose $T:X\to Y$ is continuous and surjective.
 
 \begin{pf}
 (a)
-Let $B=B_1$ be an open ball in $X$.
 There is an open neighborhood $U$ of zero such that $U-U\subset B$.
-The set $\bar{TU}$ is clearly closed, and the surjectivity of $T$ implies $\bar{TU}$ is absorbing.
+The set $\bar{TU}$ is a closed absorbing set because $T$ is surjective.
 Since $Y$ is barreled, $\bar{TU}$ has a non-empty interior in $Y$.
-Thus, $\bar{TB}$ is a neighborhood of zero.
+Thus, $\bar{TB}\supset\bar{TU}-\bar{TU}$ is a neighborhood of zero.
 
 (b)
-We claim $\bar{TB_{1/2}}\subset TB$.
-Take $y_1\in\bar{TB_{1/2}}$.
-To construct $x\in B$ such that $Tx=y_1$, we use the metrizability and completeness of $X$.
-Since $\bar{TB_{1/2^{n+1}}}$ are neighborhoods of zero, we can inductively construct sequences $x_n\in B_{1/2^n}$ and $y_n\in\bar{TB_{1/2^n}}$ such that $Tx_n\in y_n+\bar{TB_{1/2^{n+1}}}$ and $y_{n+1}:=Tx_n-y_n$.
-Let $x:=\sum_{n=1}^\infty x_n\in B$.
-Then,
-\[Tx=\lim_{n\to\infty}\sum_{i=1}^nTx_i=\lim_{n\to\infty}\sum_{i=1}^ny_{i+1}-y_i=y_1.\qedhere\]
+Since $X$ is metrizable, we have a sequence of open neighborhoods $B_n:=\{x:d(x,0)<2^{-n}\}$, where the topology of $X$ is induced from a metric $d$.
+We claim $\bar{TB_1}\subset TB_0$.
+Take $y_1\in\bar{TB_1}$.
+
+If $y_n\in\bar{TB_n}$, then since $\bar{TB_{n+1}}$ are neighborhoods of zero, we have
+\[TB_n\cap(y_n+\bar{TB_{n+1}}))\ne\varnothing.\]
+So we can inductively construct sequences $x_n\in B_n$ and $y_n\in\bar{TB_n}$ for $n\ge2$ such that
+\[x_n\in B_n\cap T^{-1}(y_n+\bar{TB_{n+1}})\]
+and
+\[y_{n+1}:=Tx_n-y_n.\]
+Then, $\sum_{n=1}^\infty x_n$ converges to $x\in B_0$.
+Therefore,
+\[Tx=\sum_{n=1}^\infty Tx_n=\sum_{n=1}^\infty(y_{n+1}-y_n)=y_1.\qedhere\]
 \end{pf}
 
 
@@ -181,7 +230,6 @@ is a counterexample.
 
 
 
-\section*{Exercises}
 \begin{prb}
 There is no metric $d$ on $C([0,1])$ such that $d(f_n,f)\to0$ if and only if $f_n\to f$ pointwise as $n\to\infty$ for every sequence $f_n$.
 Note that this problem is slightly different to the non-metrizability of the topology of pointwise convergence.
@@ -590,22 +638,26 @@ There is an orthonormal basis $E\subset H$ such that
 
 \section{Spectral theorem for bounded normal operators}
 
-\begin{prb}[Projection valued measure]
+\begin{prb}[Spectral measure]
 Let $(\Omega,\cM)$ be a measurable space and $H$ a Hilbert space.
-A \emph{projection valued measure} on $\Omega$ for $H$ is a map $E:\cM\to B(H)$ such that $E(A)$ is an orthogonal projection with $E(\varnothing)=0$ and the set function $\cM\to\C:A\mapsto\<E(A)\xi,\eta\>$ is a complex measure on $\Omega$ for each $\xi$ and $\eta\in H$.
-(regularity, it has also two definitions)
+A \emph{projection valued measure} on $\Omega$ for $H$ is a map $E:\cM\to B(H)$ such that
+\begin{enumerate}[(i)]
+\item $E(A)$ is an orthogonal projection with $E(\varnothing)=0$,\item the set function $E_{\xi,\eta}:\cM\to\C:A\mapsto\<E(A)\xi,\eta\>$ is a complex measure on $\Omega$ for each $\xi,\eta\in H$.
+\end{enumerate}
+Let $\Omega$ be a locally compact Hausdorff space.
+A \emph{spectral measure} is a projection valued measure $E$ on the Borel measurable space $\Omega$ such that $E_{\xi,\eta}$ is regular.
 \begin{parts}
-\item The last condition is equivalent to the countable additivity: $E(\bigsqcup_{i=1}^\infty A_i)=\sum_{i=1}^\infty E(A_i)$ in the strong operator topology of $B(H)$ for $\{A_i\}_{i=1}^\infty\subset\cM$.
+\item The condition (ii) is equivalent to the countable additivity: $E(\bigsqcup_{i=1}^\infty A_i)=\sum_{i=1}^\infty E(A_i)$ in the strong operator topology of $B(H)$ for $\{A_i\}_{i=1}^\infty\subset\cM$.
 \item $E(A\cap B)=E(A)E(B)$ for $A,B\in\cM$.
 \end{parts}
 \end{prb}
 
-
+\begin{prb}
 Let $T\in B(H)$ be a normal operator.
 Then, there exists a spectral measure $E$ on $\sigma(T)$ for $H$ such that
 \[T=\int_{\sigma(T)}\lambda\,dE(\lambda).\]
 This spectral measure $E$ is also called the \emph{resolution of the identity}.
-
+\end{prb}
 
 
 
@@ -659,13 +711,18 @@ Kato-Rellich theorem
 \part{Operator algebras}
 \chapter{Banach algebras}
 
-\section{Spectral theory of unital Banach algebras}
-% every algebra is associative and over \C
+\section{Spectra}
 
-\begin{prb}[Unital Banach algebras]
+\begin{prb}[Banach algebras]
+
+\end{prb}
+
+
+\begin{prb}[Inverses in Banach algebras]
+Let $\cA$ be a unital Banach algebra.
 \begin{parts}
 \item If $\|a\|<1$, then $1-a$ is invertible. So $\cA^\times$ is open.
-\item $\cA^\times\to\cA:a\mapsto a^{-1}$ is differentiable.
+\item $\cA^\times\to\cA^\times:a\mapsto a^{-1}$ is differentiable.
 \item $\C\setminus\sigma(a)\to\cA:\lambda\mapsto(\lambda-a)^{-1}$ is differentiable.
 \end{parts}
 \end{prb}
@@ -673,17 +730,17 @@ Kato-Rellich theorem
 \begin{prb}[Vector-valued complex function theory]
 Let $\Omega$ be an open subset of $\C$ and $X$ a Banach space.
 For a vector-valued function $f:\Omega\to X$, we say $f$ is \emph{differentiable} if the limit
-\[\lim_{\lambda\to\lambda_0}\mu^{-1}(f(\lambda)-f(\lambda_0))\]
-exists in $X$, and \emph{weakly differentiable} if the limit
-\[\lim_{\lambda\to\lambda_0}\mu^{-1}\<f(\lambda)-f(\lambda_0),x^*\>\]
-exists in $\C$ for each $x^*\in X^*$.
+\[\lim_{\lambda\to\lambda_0}(\lambda-\lambda_0)^{-1}(f(\lambda)-f(\lambda_0))\]
+exists in $X$ for every $\lambda\in\Omega$, and \emph{weakly differentiable} if the limit
+\[\lim_{\lambda\to\lambda_0}(\lambda-\lambda_0)^{-1}\<f(\lambda)-f(\lambda_0),x^*\>\]
+exists in $\C$ for each $x^*\in X^*$ and every $\lambda\in\Omega$.
 Then, the followings are all equivalent.
 \begin{parts}
 \item $f$ is differentiable.
 \item $f$ is weakly differentiable.
-\item For each $\lambda_0\in\Omega$, there is a sequence $(x_k)_{k=0}^\infty$ such that the power series
-\[\sum_{k=0}^\infty(\lambda-\lambda_0)^kx_k\]
-converges to $f(\lambda)$ absolutely and uniformly on any closed ball $\bar{B(\lambda_0,r)}\subset\Omega$.
+\item For each $\lambda_0\in\Omega$, there is a sequence $(x_k)_{k=0}^\infty$ such that we have the power series expansion
+\[f(\lambda)=\sum_{k=0}^\infty(\lambda-\lambda_0)^kx_k,\]
+where the series on the right hand side converges absolutely and uniformly on any closed ball in $\Omega$ centered at $\lambda_0$.
 \end{parts}
 \end{prb}
 
@@ -706,7 +763,7 @@ Then, $1-\lambda a=\sum_{i=0}^\infty(\lambda a)^i$.
 
 If $|\lambda|<\|a\|^{-1}\le r(a)^{-1}$, then the inverse of $1-\lambda a$ is given by the power series.
 If $|\lambda|<r(a)^{-1}$, then we can only deduce the invertibility of $1-\lambda a$.
-Complex function theory let us to write the inverse even if we have only $|\lambda|<r(a)^{-1}$.
+The vector-valued complex function theory allows us to write the inverse even if we have only $|\lambda|<r(a)^{-1}$.
 Also, the radius of convergence is exactly $r(a)^{-1}$.
 \end{pf}
 
@@ -791,9 +848,8 @@ $B(\C^n)$ is simple, but $B(X)$ is not simple.
 
 
 
-\section{Gelfand theory of commutative Banach algebras}
+\section{Gelfand theory}
 
-also important spectrum for non-unital banach algebras
 Banach algebra of single generator
 semisimplicity and symmetricity
 
@@ -885,8 +941,10 @@ spectral radius is upper semi-continuous
 
 \section{C$^*$ identity}
 % normal elements, real/imaginary part
-
+\begin{prb}[Involutive Banach algebras]
 Banach $*$-algebra: $\|a^*\|=\|a\|$.
+\end{prb}
+
 
 \begin{prb}[C$^*$ identity]
 % history
@@ -1003,10 +1061,10 @@ defined by the inverse of the Gelfand transform, which we call the \emph{continu
 
 
 
-\section{Positive linear functionals}
+\section{Positivitiy in C$^*$-algebras}
 
 
-\begin{prb}
+\begin{prb}[Positive elements]
 
 \begin{parts}
 \item If $a,b\ge0$, then $a+b\ge0$.
@@ -1025,46 +1083,92 @@ defined by the inverse of the Gelfand transform, which we call the \emph{continu
 
 
 
-\begin{prb}[Operator monotonicity of square and commitativity]
-Let $\cA$ be a C$^*$-algebra in which the square function is operator monotone, that is, $0\le a\le b$ implies $a^2\le b^2$ for any positive elements $a$ and $b$ in $\cA$.
-We are going to show that $\cA$ is necessarily commutative.
-Let $a$ and $b$ denote arbitrary positive elements of $\cA$.
-\begin{parts}
-\item
-Show that $ab+ba\ge0$.
-\item
-Let $ab=c+id$ where $c$ and $d$ are self adjoints.
-Show that $d^2\le c^2$.
-\item
-Suppose $\lambda>0$ satisfies $\lambda d^2\le c^2$.
-Show that $c^2d^2+d^2c^2-2\lambda d^4\ge0$.
-\item
-Show that $\lambda(cd+dc)^2\le(c^2-d^2)^2$.
-\item
-Show that $\sqrt{\lambda^2+2\lambda-1}\cdot d^2\le c^2$ and deduce $d=0$.
-\item
-Extend the result for general exponent: $\cA$ is commitative if $f(x)=x^\beta$ is operator monotone for $\beta>1$.
-\end{parts}
-\end{prb}
 
 
-\begin{prb}[Injective $*$-homomorphism is an isometry]
+\begin{prb}[Injective $*$-homomorphism]
 % https://math.stackexchange.com/questions/434706/sufficient-condition-for-a-homomorphism-between-c-algebras-being-isometric/435105#435105
 \end{prb}
 
 
+\begin{prb}[Approximate identity]
+separable?
 
-\begin{prb}[States on unitization]
-Let $\cA$ and $\tilde\cA=\cA\oplus\C$ be a C$^*$-algebra and its unitization respectively.
-Let $\tilde\rho=\rho\oplus\lambda$ be a bounded linear functional on $\tilde\cA$, where $\rho\in\cA^*$ and $\lambda\in\C^*=\C$.
-\begin{parts}
-\item $\tilde\rho$ is positive if and only if $\lambda\ge0$ and $0\le\rho\le\lambda$.
-\item $\tilde\rho$ is a state if and only if $\lambda=1$ and $\rho$ is positive with $\|\rho\|\le1$.
-\item $\tilde\rho$ is a pure state if and only if $\lambda=1$ and $\rho$ is either a pure state or zero.
-\end{parts}
 \end{prb}
 
 
+
+
+
+\section{Representations of C$^*$-algebras}
+
+
+\begin{prb}[Representation of C$^*$-algebras]
+A \emph{representation} of a C$^*$-algebra is a $*$-homomorphism $\pi:\cA\to B(H)$ for a Hilbert space $H$.
+\end{prb}
+
+\begin{prb}[Non-degenerate representation]
+Let $\pi:\cA\to B(H)$ be a representation of a C$^*$-algebra $\cA$.
+We say $\pi$ is \emph{non-degenerate} if $\pi(\cA)H$ is dense in $H$.
+\begin{parts}
+\item $\pi$ is non-degenerate.
+\item For each $\xi\in H$ there is $a\in\cA$ such that $\pi(a)\xi\ne0$.
+\item $\pi(e_\alpha)\to\id_H$ strongly for every approximate identity $e_\alpha$ of $\cA$.
+\end{parts}
+\end{prb}
+
+\begin{prb}[Cyclic representation]
+Let $\pi:\cA\to B(H)$ be a representation of a C$^*$-algebra $\cA$.
+\begin{parts}
+\item
+\end{parts}
+\end{prb}
+
+\begin{prb}[Irreducible representation]
+Let $\pi:\cA\to B(H)$ be a representation of a C$^*$-algebra $\cA$.
+We say $\pi$ is irreducible if there is no proper closed subspace $K\subset H$ such that $\pi(a)K\subset K$.
+\begin{parts}
+\item $\pi$ is irreducible.
+\item $\pi(\cA)'=\C\id_H$.
+\item $\pi(\cA)$ is strongly dense in $B(H)$.
+\item Every non-zero vector is cyclic.
+\end{parts}
+\end{prb}
+
+\begin{prb}[Gelfand-Naimark-Segal representation]
+Let $\cA$ be a C$^*$-algebra, and $\rho$ be a state on $\cA$.
+\begin{parts}
+\item The left kernel $L_\rho:=\{a\in\cA:\rho(a^*a)=0\}$ is a left ideal of $\cA$.
+\item $\<a+L,b+L\>:=\rho(b^*a)$ is an inner product on $\cA/L_\rho$.
+\item There is a unique representation $\pi_\rho:\cA\to B(H_\rho)$ such that $\pi_\rho(a)(b+L):=ab+L$ for $a,b\in\cA$.
+\item $\pi_\rho:\cA\to B(H_\rho)$ is a cyclic representation.
+\end{parts}
+\end{prb}
+
+\begin{prb}[Representations of $C_0(\Omega)$]
+Let $\cA=C_0(\Omega)$ and $\mu$ be a state on $\cA$, a regular Borel probability measure on $\Omega$.
+\begin{parts}
+\item The left kernel of $\mu$ is $L_\mu=\{\,f\in\cA:f|_{\supp\mu}=0\,\}$.
+\item The quotient is $\cA/L_\mu\cong C(\supp\mu)$ so that $H_\mu=L^2(\supp\mu,\mu)$.
+\item The canonical cyclic vector is the unity function.
+\end{parts}
+\end{prb}
+
+\begin{prb}[Representations of $K(H)$]
+\end{prb}
+
+
+
+\begin{prb}[Kadison transitivity theorem]
+\end{prb}
+
+\begin{prb}[Left ideals]
+\end{prb}
+
+\begin{prb}[Primitive ideals]
+\end{prb}
+
+\begin{prb}[Hull-kernel topology]
+\end{prb}
 
 
 
@@ -1090,6 +1194,43 @@ Then,
 implies
 \[\lim_{\e\to0}b'=\lim_{\e\to0}\frac{\sqrt b}{\sqrt b+\sqrt\e}\sqrt a\cdot\sqrt a\frac{\sqrt b}{\sqrt b+\sqrt\e}=\sqrt a\cdot\sqrt a=a.\]
 \end{pf}
+
+\begin{prb}[Operator monotone square]
+Let $\cA$ be a C$^*$-algebra in which the square function is operator monotone, that is, $0\le a\le b$ implies $a^2\le b^2$ for any positive elements $a$ and $b$ in $\cA$.
+We are going to show that $\cA$ is necessarily commutative.
+Let $a$ and $b$ denote arbitrary positive elements of $\cA$.
+\begin{parts}
+\item
+Show that $ab+ba\ge0$.
+\item
+Let $ab=c+id$ where $c$ and $d$ are self adjoints.
+Show that $d^2\le c^2$.
+\item
+Suppose $\lambda>0$ satisfies $\lambda d^2\le c^2$.
+Show that $c^2d^2+d^2c^2-2\lambda d^4\ge0$.
+\item
+Show that $\lambda(cd+dc)^2\le(c^2-d^2)^2$.
+\item
+Show that $\sqrt{\lambda^2+2\lambda-1}\cdot d^2\le c^2$ and deduce $d=0$.
+\item
+Extend the result for general exponent: $\cA$ is commitative if $f(x)=x^\beta$ is operator monotone for $\beta>1$.
+\end{parts}
+\end{prb}
+
+
+\begin{prb}[States on unitization]
+Let $\cA$ and $\tilde\cA=\cA\oplus\C$ be a C$^*$-algebra and its unitization respectively.
+Let $\tilde\rho=\rho\oplus\lambda$ be a bounded linear functional on $\tilde\cA$, where $\rho\in\cA^*$ and $\lambda\in\C^*=\C$.
+\begin{parts}
+\item $\tilde\rho$ is positive if and only if $\lambda\ge0$ and $0\le\rho\le\lambda$.
+\item $\tilde\rho$ is a state if and only if $\lambda=1$ and $\rho$ is positive with $\|\rho\|\le1$.
+\item $\tilde\rho$ is a pure state if and only if $\lambda=1$ and $\rho$ is either a pure state or zero.
+\end{parts}
+\end{prb}
+
+
+
+
 
 \section*{Problems}
 \begin{enumerate}
@@ -1167,75 +1308,6 @@ This is because $\sigma(a)\subset\C$ is compact so that it is separable and metr
 
 
 
-
-\section{Representations of C$^*$-algebras}
-\begin{prb}[Representation of C$^*$-algebras]
-A \emph{representation} of a C$^*$-algebra is a $*$-homomorphism $\pi:\cA\to B(H)$ for a Hilbert space $H$.
-\end{prb}
-
-\begin{prb}[Non-degenerate representation]
-Let $\pi:\cA\to B(H)$ be a representation of a C$^*$-algebra $\cA$.
-We say $\pi$ is \emph{non-degenerate} if $\pi(\cA)H$ is dense in $H$.
-\begin{parts}
-\item $\pi$ is non-degenerate.
-\item For each $\xi\in H$ there is $a\in\cA$ such that $\pi(a)\xi\ne0$.
-\item $\pi(e_\alpha)\to\id_H$ strongly for every approximate identity $e_\alpha$ of $\cA$.
-\end{parts}
-\end{prb}
-
-\begin{prb}[Cyclic representation]
-Let $\pi:\cA\to B(H)$ be a representation of a C$^*$-algebra $\cA$.
-\begin{parts}
-\item
-\end{parts}
-\end{prb}
-
-\begin{prb}[Irreducible representation]
-Let $\pi:\cA\to B(H)$ be a representation of a C$^*$-algebra $\cA$.
-We say $\pi$ is irreducible if there is no proper closed subspace $K\subset H$ such that $\pi(a)K\subset K$.
-\begin{parts}
-\item $\pi$ is irreducible.
-\item $\pi(\cA)'=\C\id_H$.
-\item $\pi(\cA)$ is strongly dense in $B(H)$.
-\item Every non-zero vector is cyclic.
-\end{parts}
-\end{prb}
-
-\begin{prb}[Gelfand-Naimark-Segal representation]
-Let $\cA$ be a C$^*$-algebra, and $\rho$ be a state on $\cA$.
-\begin{parts}
-\item The left kernel $L_\rho:=\{a\in\cA:\rho(a^*a)=0\}$ is a left ideal of $\cA$.
-\item $\<a+L,b+L\>:=\rho(b^*a)$ is an inner product on $\cA/L_\rho$.
-\item There is a unique representation $\pi_\rho:\cA\to B(H_\rho)$ such that $\pi_\rho(a)(b+L):=ab+L$ for $a,b\in\cA$.
-\item $\pi_\rho:\cA\to B(H_\rho)$ is a cyclic representation.
-\end{parts}
-\end{prb}
-
-\begin{prb}[Representations of $C_0(\Omega)$]
-Let $\cA=C_0(\Omega)$ and $\mu$ be a state on $\cA$, a regular Borel probability measure on $\Omega$.
-\begin{parts}
-\item The left kernel of $\mu$ is $L_\mu=\{\,f\in\cA:f|_{\supp\mu}=0\,\}$.
-\item The quotient is $\cA/L_\mu\cong C(\supp\mu)$ so that $H_\mu=L^2(\supp\mu,\mu)$.
-\item The canonical cyclic vector is the unity function.
-\end{parts}
-\end{prb}
-
-\begin{prb}[Representations of $K(H)$]
-\end{prb}
-
-
-
-\begin{prb}[Kadison transitivity theorem]
-\end{prb}
-
-\begin{prb}[Left ideals]
-\end{prb}
-
-\begin{prb}[Primitive ideals]
-\end{prb}
-
-\begin{prb}[Hull-kernel topology]
-\end{prb}
 
 \section{Factors and traces}
 Every trace of factor is faithful

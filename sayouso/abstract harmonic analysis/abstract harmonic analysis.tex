@@ -15,11 +15,6 @@
 \section{Topological groups}
 \section{Haar measures}
 
-\begin{itemize}
-\item In $C_0(\Omega)$ theory for metrizable $\Omega$, it was enough to consider \textbf{finite measures}: most applications including PDE, probability theory, spectral theory of single operators.
-\item In $C_0(\Omega)$ theory for non-metrizable $\Omega$, it is enough to consider \textbf{regular finite measures} since a $\sigma$-finite Radon measure is regular: Choquet theory, spectral theory of general C$^*$-algebras.
-\item In $C_c(\Omega)$ theory for non-metrizable $\Omega$, we need general \textbf{Radon measures}, which may not be $\sigma$-finite: Haar measures on general locally compact groups.
-\end{itemize}
 
 
 
@@ -39,23 +34,19 @@ Following technical issues are important
 Let $\Omega$ be a locally compact Hausdorff space.
 A \emph{Radon measure} is a Borel measure $\mu$ on $\Omega$ such that
 \begin{enumerate}[(i)]
-\item $\mu$ is outer regular for every Borel set: for every Borel set $E$ we have
-\[\mu(E)=\inf\{\mu(U):E\subset U,\,U\text{ open}\},\]
-\item $\mu$ is inner regular for every open set: for every open set $U$ we have
-\[\mu(U)=\inf\{\mu(K):K\subset U,\,K\text{ compact}\},\]
+\item $\mu$ is outer regular for every Borel set: $\mu(E)=\inf\{\mu(U):E\subset U,\,U\text{ open}\}$ for Borel $E$,
+\item $\mu$ is inner regular for every open set: $\mu(U)=\inf\{\mu(K):K\subset U,\,K\text{ compact}\}$ for open $U$,
 \item $\mu$ is locally finite.
 \end{enumerate}
-Radon measures generalize finite regular Borel measures which corresponds to positive linear functionals on $C_0(\Omega,\R)$, but may be infinite.
-This infiniteness makes them define positive linear functionals on $C_c(\Omega,\R)$, not $C_0(\Omega,\R)$.
 \begin{parts}
 \item A $\sigma$-finite Radon measure is regular.
-\item If every open subset of $\Omega$ is $\sigma$-compact, then a locally finite measure is Radon.
+\item If every open subset of $\Omega$ is $\sigma$-compact, then a locally finite Borel measure is Radon.
 \item $C_c(\Omega)$ is dense in $L^p(\mu)$ for $1\le p<\infty$.
 \end{parts}
 \end{prb}
 
 \begin{prb}[Riesz-Markov-Kakutani representation theorem for $C_c$]
-Let $\Omega$ be a locally compact Hausdorff space and Consider the following map:
+Let $\Omega$ be a locally compact Hausdorff space and consider the following map:
 \[\begin{array}{ccc}
 \{\text{Radon measures on $\Omega$}\} & \xrightarrow{\sim} & \{\text{positive linear functionals on $C_c(\Omega,\R)$}\},\\
 \mu & \mapsto & (f\mapsto\int f\,d\mu).
@@ -73,7 +64,7 @@ Let $\Omega$ be a locally compact Hausdorff space and Consider the following map
 
 
 
-
+\iffalse
 
 \subsection{Measures on locally compact Hausdorff spaces}
 
@@ -265,12 +256,12 @@ Enough to show if $\int f\,d\mu=\int f\,d\nu$ then $\mu=\nu$ according to the pr
 Enough to show the regularity of Baire measures.
 \end{sol}
 
+\fi
 
 
 
 
-
-\section{Group algebra}
+\section{Group algebras}
 \begin{prb}[Modular functions]
 \end{prb}
 \begin{prb}[Convolution]
@@ -304,7 +295,7 @@ Therefore, $I(f)=\int f\,d\mu$.
 
 
 \chapter{Pontryagin duality}
-\section{Dual group}
+\section{Dual groups}
 \section{}
 \section{Fourier inversion}
 \begin{prb}[Positive definite functions]
@@ -364,7 +355,7 @@ Wigner classification
 
 
 \part{Kac algebras}
-
+\chapter{Left Hilbert algebras}
 
 
 
