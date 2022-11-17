@@ -29,10 +29,11 @@
 - Spectral Theory
 - Geometry of Banach Spaces
 
-- Operator Algebra
+- Operator Algebras
 - Abstract Harmonic Analysis
-- Noncommutative Geometry
+- Subfactor Theory
 
 - Algebraic Quantum Field Theory
 - Quantum Information Theory
+- Noncommutative Geometry
 - Categorical Representation Theory
