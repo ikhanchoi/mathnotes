@@ -1,5 +1,5 @@
 \documentclass[a4paper]{article}
-\usepackage{../../ikany}
+\usepackage{../../../ikhanchoi}
 \usepackage[margin=3cm]{geometry}
 \usepackage[T1]{fontenc}
 \usepackage[bitstream-charter,cal]{mathdesign}
@@ -257,76 +257,6 @@ Let $X=$, $Y=$, $Au$
 
 
 $u_j^n$, $t=t_0+nk$, $x=x_0+jh$
-
-
-
-\newpage
-\section{Vector valued integral}
-\begin{prb}[Simple functions]
-Let $(\Omega,\mu)$ be a measure space and $X$ a topological space with the Borel measurable structure.
-By a \emph{simple function} we mean a measurable function $s:\Omega\to X$ of finite image.
-
-Suppose $X$ satisfies the following property: for each open set $U\subset X$ there is a countable family $\{U_i\}_{i=1}^\infty$ of open sets such that $U=\bigcup_{i=1}^\infty U_i$ and $\bar U_i\subset U$.
-This is the ``pointwise approximation condition'' for the target space $X$.
-In particular, every metrizable space satisfy this condition.
-\begin{parts}
-\item The pointwise limit of a sequence of measurable functions is measurable.
-\item A measurable function is the pointwise limit of a sequence of simple functions, if $X$ is separable and metrizable.
-\item The pointwise limit of a net of simple functions may not be measurable, even for real-valued functions; nets are not appropriate for measure theory.
-\end{parts}
-\end{prb}
-\begin{pf}
-(a)
-Suppose a sequence $(f_n)_n$ of measurable functions converges pointwisely to a function $f$.
-For fixed open $U\subset X$ we claim
-\[f^{-1}(U)=\bigcup_{i=1}^\infty\ \liminf_{n\to\infty}\ f_n^{-1}(U_i).\]
-If it is true, then $f^{-1}(U)$ is the countable set operation of measurable sets $f_n^{-1}(U_i)$.
-Let $\{U_i\}_i$ be the countable family associated to $U$ taken by the ``pointwise approximation condition''.
-
-($\subset$) If $\omega\in f^{-1}(U)$, then for some $i$ we have $f(\omega)\in U_i$, so $f_n(\omega)$ is eventually in $U_i$, thus we have $\omega\in\liminf_{n\to\infty}f_n^{-1}(U_i)$.
-
-($\supset$) If $\omega\in\liminf_{n\to\infty}f_n^{-1}(U_i)$ for some $i$, then $f_n(\omega)$ is eventually in $U_i$, so $f(\omega)\in\bar U_i\subset U$, thus we have $\omega\in f^{-1}(U)$.
-
-(b)
-Suppose there is a increasing sequence of finite tagged partitions $\cP_n\subset\cB$ satisfying the following property: for each open-neighborhood pair $(x,U)$ there is $n$ and $i$ such that $P_{n,i}\in\cP_n$ and $x\in P_{n,i}\subset U$.
-We denote the tags by $t_{n,i}\in P_{n,i}$ for each $P_{n,i}\in\cP_n$.
-Define
-\[s_n(\omega):=t_{n,i}\quad\text{for}\quad f(\omega)\in P_{n,i}.\]
-To show $s_n(\omega)\to f(\omega)$, fix an open $f(\omega)\in U\subset X$.
-Then, there is $n_0$ such that there is a sequence $(P_{n,i_n})_{n=n_0}^\infty$ satisfying $P_{n,i_n}\in\cP_n$ and $f(\omega)\in P_{n,i_n}\subset U$.
-Then, for all $n\ge n_0$, we have for $f(\omega)\in P_{n,i_n}$ that $s_n(\omega)=t_{n,i_n}\in P_{n,i_n}\subset U$.
-
-The existence of such sequence of partitions...
-
-Another approach: mimicking Pettis measurability theorem.
-
-\end{pf}
-
-\begin{prb}[Strong measurability]
-Let $(\Omega,\mu)$ be a measure space and $X$ a Banach space.
-A function $f:\Omega\to X$ is said to be \emph{strongly measurable} or \emph{Bochner measurable} if it is a pointwise limit of a sequence of simple functions.
-
-\begin{parts}
-\item A
-\end{parts}
-\end{prb}
-
-
-\begin{prb}[Pettis measurability theorem]
-Furthermore, not only measurable, weakly measurables are also approximated by simples if $X$ is separable Banach.
-We introduce the notion of separably valued functions.
-
-If we associate a complete measure, then the pointwise convergence is relaxed to the almost everywhere convergence....
-\end{prb}
-
-\begin{prb}[Bochner integral]
-Let $(\Omega,\mu)$ be a measure space and $X$ a Banach space.
-
-if there is a net of simple functions $(s_\alpha)_{\alpha\in\cA}$ such that
-\[\int_\Omega\|f(\omega)-s_\alpha(\omega)\|\,d\mu\to0\]
-for $\alpha\in\cA$.
-\end{prb}
-
 
 
 

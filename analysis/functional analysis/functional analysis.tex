@@ -405,6 +405,9 @@ for all $i$.
 Choquet theory
 
 
+\section{Polar topologies}
+Mackey-Arens
+
 
 \section*{Exercises}
 \begin{prb}[James' space]
@@ -449,14 +452,9 @@ We can show $k$ is an isomorphism so that we have
 
 \end{prb}
 
-\begin{prb}[Dunford-Pettis property]
-
-\end{prb}
 
 
 
-\section{Polar topologies}
-Mackey-Arens
 
 
 
@@ -502,6 +500,14 @@ The Riesz representation theorem states that a continuous linear functional on a
 \item $H\to H^*:x\mapsto\<-,x\>$ is a natural linear and anti-linear isomorphism if $\F=\R$ and $\C$, respectively.
 \end{parts}
 \end{prb}
+
+
+
+\section*{Exercises}
+
+
+
+
 
 
 
@@ -565,7 +571,6 @@ Let $K$ be a closed subspace of $H$.
 
 
 
-
 \chapter{Compact operators}
 
 $K(X,Y)$ is closed in $B(X,Y)$.
@@ -604,7 +609,28 @@ composition makes the addition of indices.
 tensor products
 
 
+
+
+
 \section*{Exercises}
+
+\begin{prb}[Completely continuous operators]
+On reflexive spaces, completely continuous operators are same with compact operators.
+\end{prb}
+
+
+\begin{prb}[Dunford-Pettis property]
+A Banach space $X$ is said to have the \emph{Dunford-Pettis property} if all weakly compact operators $T:X\to Y$ to any Banach space $Y$ is completely continuous.
+\begin{parts}
+\item $X$ has the Dunford-Pettis property if and only if for every sequences $x_n\in X$ and $x^*_n\in X^*$ that converge to $x$ and $x^*$ weakly we have $x^*_n(x_n)\to x^*(x)$.
+\item $C(\Omega)$ for a compact Hausdorff space $\Omega$ has the Dunford-Pettis property.
+\item $L^1(\Omega)$ for a probability space $\Omega$ has the Dunford-Pettis property.
+\item Infinite dimensional reflexive Banach space does not have the Dunfor-Pettis property.
+\end{parts}
+\end{prb}
+
+
+
 
 \section*{Problems}
 \begin{enumerate}
@@ -627,8 +653,6 @@ It means $g=0$, which contradicts to the assumption.
 
 
 \part{Spectral theory}
-\chapter{}
-
 
 
 \chapter{Normal operators}
@@ -701,6 +725,8 @@ Kato-Rellich theorem
 
 
 
+\chapter{Toeplitz operators}
+
 
 
 
@@ -723,48 +749,68 @@ Let $\cA$ be a unital Banach algebra.
 \begin{parts}
 \item If $\|a\|<1$, then $1-a$ is invertible. So $\cA^\times$ is open.
 \item $\cA^\times\to\cA^\times:a\mapsto a^{-1}$ is differentiable.
-\item $\C\setminus\sigma(a)\to\cA:\lambda\mapsto(\lambda-a)^{-1}$ is differentiable.
 \end{parts}
 \end{prb}
 
-\begin{prb}[Vector-valued complex function theory]
-Let $\Omega$ be an open subset of $\C$ and $X$ a Banach space.
-For a vector-valued function $f:\Omega\to X$, we say $f$ is \emph{differentiable} if the limit
-\[\lim_{\lambda\to\lambda_0}(\lambda-\lambda_0)^{-1}(f(\lambda)-f(\lambda_0))\]
-exists in $X$ for every $\lambda\in\Omega$, and \emph{weakly differentiable} if the limit
-\[\lim_{\lambda\to\lambda_0}(\lambda-\lambda_0)^{-1}\<f(\lambda)-f(\lambda_0),x^*\>\]
-exists in $\C$ for each $x^*\in X^*$ and every $\lambda\in\Omega$.
-Then, the followings are all equivalent.
+
+
+\begin{prb}[Spectrum and resolvent]
+Let $a$ be an element of a unital Banach algebra $\cA$.
+The \emph{spectrum} of $a$ in $\cA$ is defined to be the set
+\[\sigma_\cA(a):=\{\lambda\in\C:\lambda-a\text{ is not invertible in }\cA\},\]
+and the \emph{resolvent} of $a$ in $\cA$ is defined to be its complement $\rho_\cA(a):=\C\setminus\sigma_\cA(a)$.
+We can now define the \emph{resolvent map} $R:\rho_\cA(a)\to\cA$ such that
+\[R(\lambda)=R(\lambda;a):=(\lambda-a)^{-1}.\]
+If $\cA$ is clear in its context, we omit it to just write $\sigma(a)$ and $\rho(a)$.
 \begin{parts}
-\item $f$ is differentiable.
-\item $f$ is weakly differentiable.
-\item For each $\lambda_0\in\Omega$, there is a sequence $(x_k)_{k=0}^\infty$ such that we have the power series expansion
-\[f(\lambda)=\sum_{k=0}^\infty(\lambda-\lambda_0)^kx_k,\]
-where the series on the right hand side converges absolutely and uniformly on any closed ball in $\Omega$ centered at $\lambda_0$.
+\item $\sigma(a)$ is compact.
+\item $\sigma(a)$ is non-empty.
+\item If $\cA$ is a division ring, then $\cA\cong\C$. This result is called the \emph{Gelfand-Mazur theorem}.
 \end{parts}
-\end{prb}
-
-
-\begin{prb}[Gelfand-Mazur]
-$\sigma(a)$ is non-empty.
-In particular, if $\cA^\times=\cA\setminus\{0\}$, then $\cA\cong\C$.
-\end{prb}
-
-\begin{prb}[Beurling]
-\[r(a)=\inf_{n\ge1}\|a^n\|^{1/n}=\lim_{n\to\infty}\|a^n\|^{1/n}\le\|a\|.\]
 \end{prb}
 \begin{pf}
-Let $\lambda\in\C$ such that $|\lambda|<r(a)^{-1}$.
-Then we have $\lambda^{-1}\notin\sigma(a)$ so that $1-\lambda a=\lambda(\lambda^{-1}-a)$ is invertible.
+(b)
+Suppose the spectrum $\sigma(a)=\varnothing$ so that $(\lambda-a)^{-1}$ exists for every $\lambda\in\C$.
+Note that $a\ne0$.
+Since the resolvent map $R:\C\to\cA$ is continuous and we have for $|\lambda|>2\|a\|$ that
+\[\|(\lambda-a)^{-1}\|=\|\lambda^{-1}(1-\lambda^{-1}a)^{-1}\|
+=\Bigl\|\lambda^{-1}\sum_{k=0}^\infty(\lambda^{-1}a)^k\Bigr\|
+<(2\|a\|)^{-1}\sum_{k=0}^\infty2^{-k}=\|a\|^{-1},\]
+the function $R$ is bounded.
+Also, for every $l\in\cA^*$ we have that the function $\C\to\C:\lambda\mapsto\<R(\lambda),l\>$ is holomorphic since $a\mapsto a^{-1}$ is differentiable.
+Therefore, by the Liouville theorem, the bounded entire function $\lambda\mapsto\<R(\lambda),l\>$ is constant for all $l\in\cA^*$.
+Because $\cA^*$ separates points of $\cA$, the function $R$ is constant, which implies $a\in\C$ and contradicts to $\sigma(a)=\varnothing$.
 
+(c)
+\end{pf}
 
-Then, $1-\lambda a=\sum_{i=0}^\infty(\lambda a)^i$.
+\begin{prb}[Spectral radius]
+Let $a$ be an element of a unital Banach algebra $\cA$.
+The \emph{spectral radius} of $a$ in $\cA$ is defined to be
+\[r(a):=\sup_{\lambda\in\sigma(a)}|\lambda|.\]
+\begin{parts}
+\item $r(a)\le\inf_{n\ge1}\|a^n\|^{\frac1n}$ for all $a\in\cA$.
+\item $\limsup_{n\to\infty}\|a^n\|^{\frac1n}\le r(a)$ for all $a\in\cA$.
+\end{parts}
+\end{prb}
+\begin{pf}
+(a)
+Since $(\lambda-a)^{-1}=\lambda^{-1}(1-\lambda^{-1}a)^{-1}$ exists if $|\lambda|>\|a\|$, we have $r(a)\le\|a\|$ for all $a\in\cA$.
+For every $\lambda\in\sigma(a)$ and every integer $n\ge1$ we have
+\[|\lambda|^n=|\lambda^n|\le r(a^n)\le\|a^n\|,\]
+and it proves $r(a)\le\inf_{n\ge1}\|a^n\|^{\frac1n}$.
 
+(b)
+On the domain $\{\lambda\in\C:|\lambda|>r(a)\}$, on which $R(\lambda)$ is well-defined, we have a holomorphic function $\lambda\mapsto\<R(\lambda),l\>$ for each $l\in\cA^*$.
+By comparing to the same function but on a smaller domain $\{\lambda\in\C:|\lambda|>\|a\|\}$, we can determine the coefficients of the Laurent series of $\<R(\lambda),l\>$ at infinity as
+\[\<R(\lambda),l\>=\Bigl\<\lambda^{-1}\sum_{k=0}^\infty(\lambda^{-1}a)^k,l\Bigr\>=\sum_{k=0}^\infty\<a^k,l\>\lambda^{-k-1}\]
+for each $l\in\cA^*$.
 
-If $|\lambda|<\|a\|^{-1}\le r(a)^{-1}$, then the inverse of $1-\lambda a$ is given by the power series.
-If $|\lambda|<r(a)^{-1}$, then we can only deduce the invertibility of $1-\lambda a$.
-The vector-valued complex function theory allows us to write the inverse even if we have only $|\lambda|<r(a)^{-1}$.
-Also, the radius of convergence is exactly $r(a)^{-1}$.
+It implies for each $\lambda\in\C$ with $|\lambda|>r(a)$ that the sequence $(a^k\lambda^{-k-1})_k$ in $\cA$ is weakly bounded, hence is normly bounded by the uniform boundedness principle.
+Let $\|a^n\|\le C_\lambda|\lambda^{n+1}|$ for all $n\ge1$.
+Then,
+\[\limsup_{n\to\infty}\|a^n\|^{\frac1n}\le\limsup_{n\to\infty}C_\lambda^{\frac1n}|\lambda^{n+1}|^{\frac1n}=|\lambda|\]
+for all $\lambda$ with $|\lambda|>r(a)$, so we are done.
 \end{pf}
 
 \begin{prb}[Spectrum in closed subalgebras]
@@ -880,14 +926,39 @@ Let $\cA$ be a commutative Banach algebra.
 \end{parts}
 \end{prb}
 
+
+
 \section{Holomorphic functional calculus}
 
-Dunford-Reisz functional calculus
 
+
+\begin{prb}
+Let $a$ be an element of a unital Banach algebra $\cA$.
+Let $f$ be a holomorphic function on a neighborhood $U$ of $\sigma(a)$.
+Let $C$ be a positively oriented smooth simple closed curve in $U$ enclosing $\sigma(a)$.
+Define $f(a)\in\cA^{**}$ as the Dunford integral
+\[\<f(a),l\>:=\int_Cf(\lambda)\<R(\lambda),l\>\,d\lambda\]
+for all $l\in\cA^*$.
+
+Let $\Hol(\sigma(a))$ be the space of all holomorphic functions on a neighborhood of $\sigma(a)$ endowed with the topology of compact convergence.
+Note that $\Hol(\sigma(a))$ is not Banach.
+We define the \emph{holomorphic functional calculus} by
+\[\Hol(\sigma(a))\to\cA:f\mapsto f(a).\]
+It is also called the Riesz or the Riesz-Dunford functional calculus.
+\begin{parts}
+\item $f(a)\in\cA$, i.e. $f(a)$ is given by the Pettis integral.
+\item $f(a)$ is independent of the choice of $C$.
+\item The functional calculus is an injective algebra homomorphism.
+\item The functional calculus is continuous.
+\item power series, 1 to 1, $\lambda$ to $a$.
+\end{parts}
+\end{prb}
+
+spectral mapping
 
 
 \section*{Exercises}
-\begin{prb}
+\begin{prb}[Basic properties of spectrum]
 Let $\cA$ be a unital algebra.
 \begin{parts}
 \item $\sigma(ab)\setminus\{0\}=\sigma(ba)\setminus\{0\}$.
@@ -914,7 +985,7 @@ In $C(\R)$, the modular ideals correspond to compact sets.
 \end{prb}
 
 \begin{prb}[Polynomial convexity]
-(conway)
+(See Conway)
 \end{prb}
 
 \begin{prb}[Inclusion relation on spectra]
@@ -925,11 +996,31 @@ In $C(\R)$, the modular ideals correspond to compact sets.
 \end{parts}
 \end{prb}
 
-spectral radius is upper semi-continuous
+\begin{prb}[Spectral radius function]
+\begin{parts}
+\item upper semi-continuous
+\end{parts}
+\end{prb}
 
+\begin{prb}[Vector-valued complex function theory]
+Let $\Omega$ be an open subset of $\C$ and $X$ a Banach space.
+For a vector-valued function $f:\Omega\to X$, we say $f$ is \emph{differentiable} if the limit
+\[\lim_{\lambda\to\lambda_0}(\lambda-\lambda_0)^{-1}(f(\lambda)-f(\lambda_0))\]
+exists in $X$ for every $\lambda\in\Omega$, and \emph{weakly differentiable} if the limit
+\[\lim_{\lambda\to\lambda_0}(\lambda-\lambda_0)^{-1}\<f(\lambda)-f(\lambda_0),x^*\>\]
+exists in $\C$ for each $x^*\in X^*$ and every $\lambda\in\Omega$.
+Then, the followings are all equivalent.
+\begin{parts}
+\item $f$ is differentiable.
+\item $f$ is weakly differentiable.
+\item For each $\lambda_0\in\Omega$, there is a sequence $(x_k)_{k=0}^\infty$ such that we have the power series expansion
+\[f(\lambda)=\sum_{k=0}^\infty(\lambda-\lambda_0)^kx_k,\]
+where the series on the right hand side converges absolutely and uniformly on any closed ball in $\Omega$ centered at $\lambda_0$.
+\end{parts}
+\end{prb}
 
-
-
+\begin{prb}[Exponential of an operator]
+\end{prb}
 
 
 
@@ -1140,25 +1231,16 @@ We say $\pi$ is irreducible if there is no proper closed subspace $K\subset H$ s
 
 \begin{prb}[Gelfand-Naimark-Segal representation]
 Let $\cA$ be a C$^*$-algebra, and $\rho$ be a state on $\cA$.
+The \emph{left kernel} of $\rho$ is defined to be
+\[L_\rho:=\{a\in\cA:\rho(a^*a)=0\}.\]
 \begin{parts}
-\item The left kernel $L_\rho:=\{a\in\cA:\rho(a^*a)=0\}$ is a left ideal of $\cA$.
+\item $L_\rho$ is a left ideal of $\cA$.
 \item $\<a+L,b+L\>:=\rho(b^*a)$ is an inner product on $\cA/L_\rho$.
 \item There is a unique representation $\pi_\rho:\cA\to B(H_\rho)$ such that $\pi_\rho(a)(b+L):=ab+L$ for $a,b\in\cA$.
 \item $\pi_\rho:\cA\to B(H_\rho)$ is a cyclic representation.
 \end{parts}
 \end{prb}
 
-\begin{prb}[Representations of $C_0(\Omega)$]
-Let $\cA=C_0(\Omega)$ and $\mu$ be a state on $\cA$, a regular Borel probability measure on $\Omega$.
-\begin{parts}
-\item The left kernel of $\mu$ is $L_\mu=\{\,f\in\cA:f|_{\supp\mu}=0\,\}$.
-\item The quotient is $\cA/L_\mu\cong C(\supp\mu)$ so that $H_\mu=L^2(\supp\mu,\mu)$.
-\item The canonical cyclic vector is the unity function.
-\end{parts}
-\end{prb}
-
-\begin{prb}[Representations of $K(H)$]
-\end{prb}
 
 
 
@@ -1233,6 +1315,17 @@ Let $\tilde\rho=\rho\oplus\lambda$ be a bounded linear functional on $\tilde\cA$
 \end{prb}
 
 
+\begin{prb}[Representations of $C_0(\Omega)$]
+Let $\cA=C_0(\Omega)$ and $\mu$ be a state on $\cA$, a regular Borel probability measure on $\Omega$.
+\begin{parts}
+\item The left kernel of $\mu$ is $L_\mu=\{\,f\in\cA:f|_{\supp\mu}=0\,\}$.
+\item The quotient is $\cA/L_\mu\cong C(\supp\mu)$ so that $H_\mu=L^2(\supp\mu,\mu)$.
+\item The canonical cyclic vector is the unity function.
+\end{parts}
+\end{prb}
+
+\begin{prb}[Representations of $K(H)$]
+\end{prb}
 
 
 
@@ -1244,7 +1337,7 @@ Let $\tilde\rho=\rho\oplus\lambda$ be a bounded linear functional on $\tilde\cA$
 
 
 \chapter{Von Neumann algebras}
-\section{Von Neumann algebras}
+\section{Density theorems}
 
 \begin{prb}[Von Neumann algebras]
 A C$^*$-algebra $\cA$ is called a \emph{von Neumann algebra} if there is a isometric $*$-homomorphism $\cA\to B(H)$ for a Hilbert space $H$ whose image is closed in the weak operator topology.
