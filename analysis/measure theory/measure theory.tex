@@ -630,9 +630,19 @@ History of Bourbaki's text.
 
 \section{Riesz-Markov-Kakutani representation theorem}
 
-% We only consider $C_0$ and finite measures!
-% Don't care of $C_c$!
-% If $\Omega$ is no metrizable, then just replace finite measures to regular finite measures!
+% 1. most general -> Radon
+% 2. sigma-finite -> regular measures
+% 3. loc finite, metrizable(=2nd cntbl) LCH -> Borel measures
+% 4. finite, metrizable -> Borel measures
+
+% pde, prob, spectral theorem -> 4.
+% Haar meas on Lie group, number theory -> 3.
+% c* algebra, choquet -> compact but bad topology -> 2.
+% Haar meas on LCG -> may not be sigma-finite -> 1.
+
+% 이제 증명들이 어느 정도 수준에서 가능한 지를 보자
+% C_c version
+
 
 \begin{prb}[Riesz-Markov-Kakutani representation theorem for $C_0$]
 Let $\Omega$ be a locally compact metric space.
@@ -649,8 +659,8 @@ Let $\mu^*:\cP(X)\to[0,\infty]$ be the associated outer measure defined from $\r
 \begin{parts}
 \item $\mu^*|_\cT=\rho$.
 \item $\cB\subset\cM$.
-\item $I(f)=\int f\,d\mu$ for $f\in C(\Omega)$.
-\item The map $\mu\mapsto(f\mapsto\int f\,d\mu)$ is injective.
+\item $I(f)=\int f\,d\mu$ for $f\in C(\Omega)$, i.e. the map given above is surjective.
+\item The map given above is injective.
 \end{parts}
 \end{prb}
 \begin{pf}

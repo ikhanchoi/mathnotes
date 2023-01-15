@@ -175,14 +175,206 @@ symmetric, exterior
 
 \part{Lie algebras}
 \chapter{Semisimple Lie algebras}
-Solvability and nilpotency
-Engel's theorem
-Killing forms
+\section{Linear Lie algebras}
 
-Casimir element
-Weyl's theorem
+group acts on an algebra $A$(e.g. $\End(V)$).
+then its group algebra acts on $A$.
+Lie algebra acts on $A$, and this Lie algebra information is enough to recover the group action.
+Geometric meaning of Lie algebra action?
 
+Lie algebra can only considered as a quantization of Poisson bracket.
+How can the Poisson bracket embodies the group action?
+
+
+
+
+
+
+Following Humphrey's book, let $L$ be always finite dimensional Lie algebra unless stated.
+
+\begin{prb}
+Every associative algebra is a Lie algebra, where the Lie bracket is given by the commutator.
+For a Lie algebra, we are 
+
+Intuitions of subalgebras, ideals, derivations.
+Intuitions of solvable, nilpotent, and semisimple Lie algebras.
+Constructing representations, trace forms,
+
+The \emph{general linear Lie algebra} $\fgl(V)$ is just $\End(V)$ with a Lie bracket $[x,y]:=xy-yx$.
+\end{prb}
+
+\begin{prb}[Derivations]
+Let $L$ be a Lie algebra.
+A \emph{derivation} of $L$ is a linear map $\delta:L\to L$ such that \[\delta([x,y])=[\delta(x),y)]+[x,\delta(y)]\]
+for all $x,y\in L$.
+The set of derivations $\Der(L)$ of $L$ is a subalgebra of $\fgl(L)$, and we have the \emph{adjoint representation} $L\to\Der(L)\le\fgl(L)$ of $L$.
+If $I$ is an ideal, then we have a faithful representation $\ad:L\to\ad L\le\Der(I)\le\fgl(I)$.
+\end{prb}
+
+\begin{prb}[Inner derivations and automorphisms]
+Let $L$ be a Lie algebra.
+
+The linear map $\ad x=[x,-]:L\to L$ for $x\in L$ is derivation, and derivation of this form is called \emph{inner}, and they form an ideal of $\Der(L)$.
+
+Automorphisms of the form $\exp(\ad x)$ with nilpotent $\ad x$ generates a normal subgroup of $\Aut(L)$, and each generator is called \emph{inner automorphisms}.
+\end{prb}
+
+
+
+
+
+
+
+\begin{prb}[Solvable Lie algebras]
+Let $L$ be a Lie algebra.
+If the \emph{derived series} $L^{(0)}=L$, $L^{(n)}=[L^{(n-1)},L^{(n-1)}]$ eventually vanishes, then we call $L$ \emph{solvable}.
+
+If $L$ is solvable, then its subalgebras and quotient algebras are all solvable.
+If $I$ is a solvable ideal of $L$ such that $L/I$ is solvable, then $L$ is solvable.
+The sum of two solvable ideals is also solvable.
+\end{prb}
+
+\begin{prb}[Nilpotent Lie algebras]
+Let $L$ be a Lie algebra.
+If the \emph{lower central series} $L^0=L$, $L^n=[L,L^{n-1}]$ eventually vanishes, then we call $L$ \emph{nilpotent}.
+It is a stronger notion than solvability.
+
+If $L$ is nilpotent, then its subalgebras and quotient algebras are all nilpotent.
+If $L/Z(L)\cong\ad(L)\subset\fgl(L)$ is nilpotent, then $L$ is nilpotent.
+If $L$ is non-zero and nipotent, then $Z(L)$ is non-trivial.
+\end{prb}
+
+\begin{prb}[Engel's theorem]
+.
+\begin{parts}
+\item A linear Lie algebra $L\subset\fgl(V)$ consists of nilpotent endomorphisms if and only if $L\subset\fn(V)$ for a certain basis of $V$.
+\item An abstract Lie algebra $L$ is nilpotent if and only if $\ad(L)$ consists of nilpotent endomorphisms.
+\item If $L\subset\fgl(V)$ is nilpotent in $\End(V)$, then there is a \emph{common eigenvector} $v\in V$ such that $[L,v]=0$, i.e. there is a flag $V_i$ such that $xV_i\subset V_{i-1}$...?
+\end{parts}
+\end{prb}
+\begin{pf}
+
+
+
+Let $L$ be an ad-nilpotent Lie algebra.
+Then, every element of $\ad L\subset\fgl(L)$ is a nilpotent endomorphism, so there is $x\in L$ such that $[L,x]=0$, which implies $Z(L)\ne0$.
+Since $L/Z(L)$ is also ad-nilpotent, and by induction on dimension, $L/Z(L)$ is nilpotent.
+Therefore, $L$ is nilpotent.
+\end{pf}
+
+
+\begin{prb}[Lie's theorem]
+Let $\F$ have characteristic zero and be algebraically closed.
+\begin{parts}
+\item A linear Lie algebra $L\subset\fgl(V)$ is solvable if and only if $L\subset\ft(V)$ for a certain basis of $V$.
+\item If $L$ is solvable, then there is a flag $V_i$ such that $xV_i\subset V_i$.
+\item Let $L$ be an abstract Lie algebra. $L$ is solvable if and only if $[L,L]$ is nilpotent.
+\item Every finite-dimensional irreduciable representation of a solvable Lie algebra is one-dimensional.
+\end{parts}
+\end{prb}
+\begin{pf}
+Use induction on dimension.
+Since $L/[L,L]$ is a non-trivial commutative Lie algebra, in which every subspace is an ideal, we can show the existence of an ideal $K$ of $L$ with codimension one by pullback.
+
+By the induction assumption, we have a common eigenvector in $V$ for $K$ so that we have the ``eigenvalue'' linear functional $\kappa:K\to\F$ such that the ``eigenspace'' of $\kappa$ as
+\[V_\kappa:=\{v\in V:xv=\kappa(x)v\text{ for }x\in K\}\]
+is non-trivial.
+
+Let $L=K+\F z$ with $z\in\fgl(V)$.
+If $V_\kappa$ is invariant by $L$, then $V_\kappa$ contains an eigenvector of $z$ by the fact that $\F$ is algebraically closed, so we can extend $\kappa$ to obtain $\lambda:L\to\F$ such that $(V_\kappa)_\lambda$ is non-trivial.
+
+We now show that $V_\kappa$ is invariant by $L$.
+Let $v\in V_\kappa$ and $x\in L$.
+Since
+\[yxv-\lambda(y)xv=yxv-xyv=[y,x]v=\lambda([y,x])v\]
+for $y\in K$, we have to show $\lambda([y,x])=0$.
+Take $n$ to be largest such that $v,\cdots,x^{n-1}v$ are linearly independent.
+Since $[x,y]$ is upper triangular matrix relative to the basis $v,\cdots,x^{n-1}v$ and the diagonal entries are $\lambda([x,y])$.
+Since the trace of $[x,y]$ must be zero, we have $\lambda([x,y])=0$ because $\F$ has characteristic zero.
+
+\end{pf}
+
+\begin{prb}
+
+
+
+\end{prb}
+
+There is a linear functional $\lambda:L\to\F$ such that $\lambda|_{[L,L]}=0$ and $V_\lambda$ is non-trivial.
+$V_\kappa$
+
+
+For a representation $\pi:\fg\to\fgl(V)$, then a weight of $V$ is a linear functional $\lambda:\pi(\fh)\to\F$ such that the weight space $V_\lambda$ is non-trivial.
+
+
+
+\section{Semisimple Lie algebras}
+
+
+\begin{prb}
+Therefore, $L$ admits a unique maximal solvable ideal, called \emph{radical}.
+If the radical is trivial, then we say $L$ is \emph{semisimple}.
+Since the center is a solvable ideal, the center of a semisimple Lie algebra is trivial.
+\begin{parts}
+\item A canonical example of a solvable Lie algebra is the Lie algbera of upper triangular matrices.
+\item The radical of $\fgl(n,\F)$ is $\fsl(n,\F)$.($\F$ cahracteristic zero?) Upper triangular matrices do not form an ideal of $\fgl(n,\F)$.
+\item $[\ft,\ft]=\fn$, $\ft=\fd\otimes\fn$. $\ft$ is a solvable subalgebra of $\fgl$, but not a solvable ideal.
+\item $\fsl(n,\F)$ is simple if $\char\F=0$.
+\end{parts}
+\end{prb}
+
+\begin{prb}[Jordan-Chevalley decomposition]
+Let $\char\F$ be arbitrary.
+We say $x\in\End(V)$ is called \emph{semisimple} if the roots of its minimal polynomial are all distinct.
+If $\F$ is algebraically closed, $x\in\End(V)$ is semisimple if and only if it is diagonalizable.
+Let $x\in\End V$.
+Even if $\F$ is not algebraically closed, we have a generalization of Jordan decomposition as follows:
+\begin{parts}
+\item There exist unique $x_s,x_n\in\End V$ such that $x=x_s+x_n$ and $x_s$ semisimple, $x_n$ nilpotent.
+\item $x_s$ and $x_n$ are polynomials in $x$.
+\item If $x$ maps $B$ to $A$, then $x_s$ and $x_n$ also map $B$ to $A$ for subspaces $A\le B\le V$.
+\end{parts}
+\end{prb}
+
+\begin{prb}[Cartan's criterion]
+We will show a powerful criterion for solvability.
+\begin{parts}
+\item Let $A\subset B$ be two subspaces of $\fgl(V)$, $V$ finite dimensional. Let
+\[M:=\{x\in\fgl(V):[x,B]\subset A\}.\]
+If $x\in M$ satisfies $\Tr(xy)=0$ for all $y\in M$, then $x$ is nilpotent.
+\item Let $L\subset\fgl(V)$, $V$ finite dimensional. If $\Tr(xy)=0$ for all $x\in[L,L]$ and $y\in L$, then $L$ is solvable.
+\end{parts}
+\end{prb}
+
+\begin{prb}[Killing forms]
+Let $L$ be a Lie algebra.
+\[\kappa(x,y):=\Tr(\ad x\ad y)\]
+is a symmetric bilinear form on $L$, which is called the \emph{Killing form} on $L$, i.e. it is the trace form for the adjoint representation.
+\begin{parts}
+\item On an ideal $I\subset L$, the Killing form is given by restriction.
+\item The kernel of $\kappa$ is contained in the radical of $L$, and triviality is equivalent; $L$ is semisimple if and only if $L$ is non-degenerate. (Here we use Cartan's criterion)
+\item If $L$ is semisimple, then it is the direct sum of simple ideals.
+\item If $L$ is semisimple, then every derivation is inner.
+\item If $L$ is semisimple, then $L=[L,L]$ and every subalgebras and quotients are semisimple.
+\end{parts}
+\end{prb}
+
+Levi decomposition
+
+
+\begin{prb}[Casimir element]
+For a faithful representation $\f:L\to\fgl(V)$, we can associate a non-degenerate trace form since $L$ is semisimple.
+Then, the \emph{Casimir element} of the representation $\f$ is $C_\f:=\sum_i\f(x_i)\f(y_i)\in\End(V)$ where $i$ runs over dual bases relative to the trace form.
+\end{prb}
+
+\begin{prb}[Weyl's theorem]
+Finite dimensional representation of a semisimple Lie algebra is completely reducible.
+Preservation of Jordan decomposition.
+\end{prb}
+
+\begin{prb}[Toral subalgebras]
 Cartan subalgebra uniqueness? (conjugacy theorem)
+\end{prb}
 
 
 

@@ -50,7 +50,7 @@ Higher order version: can be prove before the analyticity?
 
 
 
-\begin{prb}[Estimates of polynomials]
+\begin{prb}[Estimation of polynomials]
 Let $p\in\C[z]$ be a polynomial of degree $n$ such that
 \[p(z)=\sum_{k=0}^na_kz^k,\quad a_n\ne0.\]
 \begin{parts}
@@ -131,7 +131,6 @@ and nth root.
 \item If the set of points in a domain $U\subset\C$ at which a sequence of bounded holomorphic functions converges has a limit point, then it compactly converges.
 \item Find all entire functions $f$ satisfying $f(z)^2=f(z^2)$.
 \item An entire function maps every unbounded sequence to an unbounded sequence is a polynomial.
-\item Let $f$ be a holomorphic function on the open unit disk such that $f(0)=1$ and $f'(0)>2$. Then, there is $z$ such that $|z|<1$ and $f(z)$ is pure imaginary.
 \end{enumerate}
 
 
@@ -172,7 +171,7 @@ We want to justify the following definite integral:
 This can be viewed as a special value of the characteristic function of the \emph{Cauchy distribution} in probability theory.
 Define $f:\C\setminus\{\pm i\}\to\C$ be such that
 \[f(z)=\frac{e^{iz}}{z^2+1},\]
-and for $R>0$ let $C$ be a \emph{semicircular contour} defined by
+and for $R>0$ consider a \emph{semicircular contour} $C_1+C_2$ defined by
 \[\left\{
 \begin{alignedat}{2}
 C_1&:x\mapsto x,&\quad&x\in[-R,R],\\
@@ -180,40 +179,44 @@ C_2&:\theta\mapsto Re^{i\theta},&&\theta\in[0,\pi].
 \end{alignedat}
 \right.\]
 \begin{parts}
-\item $\lim_{R\to\infty}\int_Cf(z)\,dz=\frac\pi e$.
-\item $\lim_{R\to\infty}\int_{C_1}f(z)\,dz=2\int_0^\infty\frac{\cos x}{x^2+1}\,dx$.
-\item $\lim_{R\to\infty}\int_{C_2}f(z)\,dz=0$. More generally, the following holds: Let $h$ be a holomorphic function on a domain containing the arcs $C_2$ for every large $R>0$.
+\item Let $h$ be a holomorphic function on a domain containing the arcs $C_2$ for every large $R>0$.
 If $h$ vanishes at infinity, then
 \[\lim_{R\to\infty}\int_{C_2}e^{iz}h(z)\,dz=0.\]
 This is called the \emph{Jordan lemma}.
+\item
+\[\lim_{R\to\infty}\int_Cf(z)\,dz=\begin{cases}
+\frac\pi e&\text{ if }C=C_1+C_2\\
+2\int_0^\infty\frac{\cos x}{x^2+1}\,dx&\text{ if }C=C_1\\
+0&\text{ if }C=C_2
+\end{cases}\]
 \end{parts}
 \end{prb}
 \begin{pf}
 (a)
-Note that for sufficiently large $R$, the function $f$ has only one pole at $z=i$ in the interior of $C$, which is simple; define
-\[g(z):=f(z)(z-i)=\frac{e^{iz}}{z+i}.\]
-Then, by the residue theorem, we obtain
-\[\int_Cf(z)\,dz=\int_C\frac{g(z)}{z-i}\,dz=2\pi i\cdot g(i)=\frac\pi e\]
-for large $R$.
-
-(b)
-For the path $C_1$, we have
-\[\lim_{R\to\infty}\int_{C_1}f(z)\,dz=\lim_{R\to\infty}\int_{-R}^Rf(x)\,dx=2\int_0^\infty f(x)\,dx\]
-by the definition of improper integrals.
-Since $f$ is even on $\R$, we get the conclusion.
-
-(c)
 Let $M_R=\max_{z\in C_2}|h(z)|$.
 Since $\sin\theta\ge\frac2\pi\theta$ for $0\le\theta\le\frac\pi2$, we have
 \begin{align*}
-|\int_{C_2}e^{iz}h(z)\,dz|
-&=|\int_0^\pi e^{iRe^{i\theta}}h(Re^{i\theta})\,iRe^{i\theta}\,d\theta|\\
+\Bigl|\int_{C_2}e^{iz}h(z)\,dz\Bigr|
+&=\Bigl|\int_0^\pi e^{iRe^{i\theta}}h(Re^{i\theta})\,iRe^{i\theta}\,d\theta\Bigr|\\
 &\le M_RR\int_0^\pi e^{-R\sin\theta}\,d\theta\\
 &=2M_RR\int_0^{\frac\pi2}e^{-R\sin\theta}\,d\theta\\
 &\le2M_RR\int_0^{\frac\pi2}e^{-R\frac2\pi\theta}\,d\theta\\\
 &=M_R\pi(1-e^{-R}).
 \end{align*}
 So we are done because $\lim_{R\to\infty}M_R=0$.
+
+(b)
+For $C=C_1+C_2$, note that for sufficiently large $R$, the function $f$ has only one pole at $z=i$ in the interior of $C$, which is simple; define $g:\operatorname{int}C\to\C$ such that
+\[f(z)=:\frac{g(z)}{(z-i)}=\frac{g(i)}{z-i}+\frac{g(z)-g(i)}{z-i}.\]
+Then, by the residue theorem, we obtain
+\[\int_Cf(z)\,dz=\int_C\frac{g(z)}{z-i}\,dz=2\pi i\cdot g(i)=\frac\pi e\]
+for large $R$.
+
+For $C=C_1$, we have
+\[\lim_{R\to\infty}\int_{C_1}f(z)\,dz=\lim_{R\to\infty}\int_{-R}^Rf(x)\,dx=2\int_0^\infty f(x)\,dx\]
+by the definition of improper integrals.
+
+For $C=C_2$, it clearly follows from the aprt (a).
 \end{pf}
 
 \begin{prb}[Indented contour]
@@ -232,21 +235,23 @@ C_4&:\theta\mapsto re^{\pi-\theta},&&\theta\in[0,\pi].
 \right.\]
 The indented contour is effective when $f$ has a simple pole at zero.
 \begin{parts}
-\item $\lim_{R\to\infty,r\to0}[\int_{C_1}f(z)\,dz+\int_{C_3}f(z)\,dz]=2i\int_0^\infty\frac{\sin x}x\,dx$.
-\item $\lim_{R\to\infty}\int_{C_2}f(z)\,dz=0$.
-\item $\lim_{r\to0}\int_{C_4}f(z)\,dz=-\pi i$.
+\item
+\[\lim_{\substack{R\to\infty\\r\to0}}\int_Cf(z)\,dz=\begin{cases}
+2i\int_0^\infty\frac{\sin x}x\,dx&\text{ if }C=C_1+C_3\\
+0&\text{ if }C=C_2\\
+-\pi i&\text{ if }C=C_4.
+\end{cases}\]
 \end{parts}
 \end{prb}
 \begin{pf}
-(b)
+
 It follows from the Jordan lemma.
 
-(c)
-If $f$ has a simple pole at zero, we can conduct a partial fraction decomposition
-\[f(z)=\frac cz+h(z)\]
-such that $c$ is a constant and $h$ is holomorphic at zero.
-Then, it is easy to see
-\[\int_{C_4}f(z)\,dz=\int_{C_4}\frac{dz}z+\int_{C_4}\frac{e^{iz}-1}z\,dz\to-\pi i+0\]
+
+For $C=C_4$, since we have a partial fraction decomposition
+\[f(z)=\frac1z+h(z),\qquad h(z):=\frac{e^{iz}-1}z,\]
+where $h$ has a removable singularity at zero,
+\[\int_{C_4}f(z)\,dz=\int_{C_4}\frac{dz}z+\int_{C_4}h(z)\,dz\to-\pi i+0\]
 as $r\to\infty$.
 \end{pf}
 
@@ -296,8 +301,8 @@ Fourier integral?
 \begin{parts}
 \item $f$ has either a zero or a pole at $a$ if and only if $f'(z)/f(z)$ has a simple pole at $a$. 
 \item We have a partial fraction decomposition
-\[\frac{f'(z)}{f(z)}=\frac{\ord_a(f)}{z-a}+\frac{g'(z)}{g(z)},\]
-where $g(z):=f(z)/(z-a)^{\ord_a(f)}$ is holomorphic at $a$.
+\[\frac{f'(z)}{f(z)}=\frac{\ord_a(f)}{z-a}+h(z),\]
+where $h$ is holomorphic at $a$.
 \item
 \[\int_C\frac{f'(z)}{f(z)}\,dz=2\pi i(\text{number of zeros}-\text{number of poles}).\]
 \item
@@ -305,6 +310,10 @@ where $g(z):=f(z)/(z-a)^{\ord_a(f)}$ is holomorphic at $a$.
 \item Winding number
 \end{parts}
 \end{prb}
+\begin{pf}
+\[\frac{f'(z)}{f(z)}=\frac{\ord_a(f)}{z-a}+\frac{g'(z)}{g(z)},\]
+where $g(z):=f(z)/(z-a)^{\ord_a(f)}$ is holomorphic at $a$.
+\end{pf}
 
 
 \begin{prb}[Rouch\'e theorem]
@@ -348,7 +357,7 @@ Carlson's theorem
 \section*{Problems}
 \begin{enumerate}
 \item Show that $\int_0^{2\pi}\frac{d\theta}{1+\cos^2\theta}=\sqrt2\pi$.
-\item Find the number of roots of $z^{100}+z+1=0$ in $\{x+iy\in\C:x>0,y>0\}$.
+\item Find the number of roots of $z^6+z+1=0$ in $\{x+iy\in\C:x>0,y>0\}$.
 \end{enumerate}
 
 
@@ -438,14 +447,27 @@ Let $\Omega\subset\C$ be a simply connected domain such that $\Omega\ne\C$.
 \section{Harmonic functions}
 harmonic conjugates
 conformal change
-\begin{prb}[Mean value property and Poisson kernel]
-Let $f$ be a holomorphic function on a domain $\Omega$.
+
+\begin{prb}[Mean value property]
+\[\frac1{2\pi}\int_0^{2\pi}f(re^{i\theta})(re^{i\theta})^{-k}\,d\theta
+=\begin{cases}0&\text{ if }k<0\\\dfrac{f^{(k)}(0)}{k!}&\text{ if }k\ge0\end{cases}\]
+for $r$ such that $f$ is defined on $\bar B_r$.
+\end{prb}
+\begin{prb}[Poisson kernel]
+Let $f$ be a holomorphic function on the open unit disk $\D$.
 If $h$ is another holomorphic function, then
-\[f(a)=\frac1{2\pi}\int_{|z|=1}f(z)\left(\frac z{z-a}+zh(z)\right)\,\frac{dz}{iz}.\]
+\[f(a)=\frac1{2\pi}\int_{|z|=r}f(z)\left(\frac z{z-a}+zh(z)\right)\,\frac{dz}{iz}\]
+for $0<r<1$.
+\begin{parts}
+\item Find the holomorhpic $h$ on an open neighborhood of $\D$ in terms of $a$ such that $|z|=1$ implies $\frac z{z-a}+zh(z)$ is real.
+\end{parts}
 \end{prb}
 
 
-
+\section{Exercises}
+\begin{prb}[Carath\'eodory class]
+Let $f$ be a holomorphic function on the open unit disk $\D$ such that $\Re f(z)>0$ for $z\in\D$ and $f(0)=1$. Show that $|f'(0)|\ge2$.
+\end{prb}
 
 
 \chapter{}
@@ -473,6 +495,17 @@ Beltrami equations and Teichm\"uler theory?
 \part{Riemann surfaces}
 
 \chapter{Analytic continuation}
+\section{}
+Three perspectives:
+We can see $\CP^1$ with $\C^2\setminus\{(0,0)\}/\sim$ and $U_0\cup U_1$ and $\C\cup\{\infty\}$.
+
+holomorphic functions and meromorphic functions $\cO_{\P^1}=0$, $\cM_{\P^1}=\C(z)$, $\Aut(\P^1)=\PSL(2,\C)$, $\Hom(\P^1)=\C(z)\cup\{\infty\}$
+
+transformation rule? gluing rule?
+
+
+
+
 \section{Branch cuts}
 We can represent $f$ with any coordinate system(usually polar coordinates).
 

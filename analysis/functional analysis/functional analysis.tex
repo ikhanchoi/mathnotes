@@ -893,44 +893,7 @@ $B(\C^n)$ is simple, but $B(X)$ is not simple.
 % approximate identity, norm of left multiplication
 
 
-
-\section{Gelfand theory}
-
-Banach algebra of single generator
-semisimplicity and symmetricity
-
-\begin{prb}[Spectrum of a Banach algebra]
-Let $\cA$ be a commutative Banach algbera.
-A \emph{character} of $\cA$ is a non-zero algebra homomorphism $\f:\cA\to\C$.
-Denote by $\sigma(\cA)$ the set of all characters of $\cA$.
-We will show that all characters are bounded.
-Then, endow with the weak$^*$ topology on $\sigma(\cA)$ from the inclusion $\sigma(\cA)\subset\cA^*$.
-We call this space as the \emph{spectrum} of $\cA$.
-Let $\f\in\sigma(\cA)$.
-\begin{parts}
-\item $\|\f\|=1$.
-\item If $\cA$ is unital, then $\sigma(\cA)$ is compact and Hausdorff.
-\item Even if $\cA$ is non-unital, $\sigma(\cA)$ is locally compact and Hausdorff.
-\end{parts}
-\end{prb}
-
-
-\begin{prb}[Gelfan-Naimark representation]
-Let $\cA$ be a commutative Banach algebra.
-\[\Gamma:\cA\to C_0(\sigma(\cA)).\]
-\begin{parts}
-\item $\Gamma(\cA)$ separates points.
-\item $\Gamma$ has closed range if
-\item $\Gamma$ is injective if
-\item $\Gamma$ is isometric if $r(a)=\|a\|$ for all $a\in\cA$.
-\end{parts}
-\end{prb}
-
-
-
 \section{Holomorphic functional calculus}
-
-
 
 \begin{prb}
 Let $a$ be an element of a unital Banach algebra $\cA$.
@@ -955,6 +918,44 @@ It is also called the Riesz or the Riesz-Dunford functional calculus.
 \end{prb}
 
 spectral mapping
+
+
+
+
+\section{Gelfand theory}
+
+Banach algebra of single generator
+semisimplicity and symmetricity
+
+\begin{prb}[Spectrum of a Banach algebra]
+Let $\cA$ be a commutative Banach algbera.
+A \emph{character} of $\cA$ is a non-zero algebra homomorphism $\f:\cA\to\C$.
+Denote by $\sigma(\cA)$ the set of all characters of $\cA$.
+We will show that all characters are bounded.
+Then, endow with the weak$^*$ topology on $\sigma(\cA)$ from the inclusion $\sigma(\cA)\subset\cA^*$.
+We call this space as the \emph{spectrum} of $\cA$.
+Let $\f\in\sigma(\cA)$.
+\begin{parts}
+\item $\|\f\|=1$.
+\item If $\cA$ is unital, then $\sigma(\cA)$ is compact and Hausdorff.
+\item Even if $\cA$ is non-unital, $\sigma(\cA)$ is locally compact and Hausdorff.
+\end{parts}
+\end{prb}
+
+
+\begin{prb}[Gelfand transform]
+Let $\cA$ be a commutative Banach algebra.
+\[\Gamma:\cA\to C_0(\sigma(\cA)).\]
+\begin{parts}
+\item $\Gamma(\cA)$ separates points.
+\item $\Gamma$ has closed range if
+\item $\Gamma$ is injective if
+\item $\Gamma$ is isometric if $r(a)=\|a\|$ for all $a\in\cA$.
+\end{parts}
+\end{prb}
+
+
+
 
 
 \section*{Exercises}
@@ -1062,34 +1063,6 @@ The C$^*$-identity easily follows from the following inequality:
 \end{pf}
 
 
-\begin{prb}[Spectra of normal elements]
-Let $\cA$ be a C$^*$-algebra, and $\tilde\cA$ be its unitization.
-We say an element $a\in\tilde\cA$ is \emph{unitary} if $a^*a=aa^*=e$, and say an element $a\in\cA$ is \emph{self-adjoint} if $a^*=a$.
-\begin{parts}
-\item If $a\in\tilde\cA$ is unitary, then $\sigma(a)\subset\T$.
-\item If $a\in\cA$ is self-adjoint, then $\sigma(a)\subset\R$.
-\item The converses of the parts (a) and (b) are not generally true.
-\end{parts}
-\end{prb}
-\begin{pf}
-(a)
-
-(b)
-We may assume $\cA$ is unital.
-By the holomorphic functional calculus, we have
-\[e^{ia}=\sum_{n=1}^\infty\frac{(ia)^n}{n!}\in\cA,\]
-and the inverse of $e^{ia}$ is $e^{-ia}$.
-Since the involution $^*:\cA\to\cA$ is continuous, we can check $e^{ia}$ is unitary by
-\[(e^{ia})^*=\sum_{n=1}^\infty\frac{(-ia)^n}{n!}=e^{-ia}.\]
-For every $\f\in\sigma(\cA)$, then by the part (a) the equality
-\[e^{-\Im\f(a)}=|e^{i\f(a)}|=|\f(e^{ia})|=1\]
-proves $\f(a)\in\R$, hence $\sigma(a)\subset\R$.
-
-(c)
-Let $\cA=M_2(\C)$ and $a=(\mat[small]{1&1\\0&1})$.
-Then, $\sigma(a)=\{1\}$ but $a$ is neither unitary nor self-adjoint.
-We will show in the next section that the converses hold if we assume $a$ is normal.
-\end{pf}
 
 
 \begin{prb}[$*$-homomorphisms]
@@ -1149,6 +1122,29 @@ defined by the inverse of the Gelfand transform, which we call the \emph{continu
 
 
 
+\begin{prb}[Normal elements]
+Let $a$ be an element of a unital C$^*$-algebra $\cA$.
+We say $a$ is \emph{normal}, \emph{unitary}, and \emph{self-adjoint} if $a^*a=aa^*$, $a^*a=aa^*=e$, and $a^*=a$ respectively.
+For normality and self-adjointness, the definitions can be extended to non-unital C$^*$-algebras.
+\begin{parts}
+\item If $a$ is normal, then $a$ is unitary if and only if $\sigma(a)\subset\T$.
+\item If $a$ is normal, then $a$ is self-adjoint if and only if $\sigma(a)\subset\R$.
+\end{parts}
+\end{prb}
+\begin{pf}
+(a)
+
+(b)
+We may assume $\cA$ is unital.
+By the holomorphic functional calculus, we have
+\[e^{ia}=\sum_{n=1}^\infty\frac{(ia)^n}{n!}\in\cA,\]
+and the inverse of $e^{ia}$ is $e^{-ia}$.
+Since the involution $^*:\cA\to\cA$ is continuous, we can check $e^{ia}$ is unitary by
+\[(e^{ia})^*=\sum_{n=1}^\infty\frac{(-ia)^n}{n!}=e^{-ia}.\]
+For every $\f\in\sigma(\cA)$, then by the part (a) the equality
+\[e^{-\Im\f(a)}=|e^{i\f(a)}|=|\f(e^{ia})|=1\]
+proves $\f(a)\in\R$, hence $\sigma(a)\subset\R$.
+\end{pf}
 
 
 
@@ -1156,28 +1152,34 @@ defined by the inverse of the Gelfand transform, which we call the \emph{continu
 
 
 \begin{prb}[Positive elements]
-
+Let $a,b$ be elements of a C$^*$-algebra $\cA$.
+We say $a$ is \emph{positive} and write $a\ge0$ if it is normal and $\sigma(a)\subset\R_{\ge0}$.
+If we define a relation $a\le b$ as $b-a\ge0$, then we can see that it is a partial order on $\cA$.
 \begin{parts}
-\item If $a,b\ge0$, then $a+b\ge0$.
-\item If $a^*a\le0$, then $a^*a=0$.
-\item $a^*a\ge0$ for all $a\in\cA$.
+\item $a\ge0$ if and only if $\|\lambda-a\|\le\lambda$ for some $\lambda\ge\|a\|$.
+\item If $a\ge0$ and $\sigma(b)\subset\R_{\ge0}$, then $\sigma(a+b)\subset\R_{\ge0}$.
+\item If $a^*a\le0$, then $a=0$.
+\item $a\ge0$ if and only if $a=b^*b$ for some $b\in\cA$.
 \end{parts}
 \end{prb}
+\begin{pf}
 
+\end{pf}
 
 \begin{prb}[Absolute value of an operator]
 \end{prb}
 
 
-\begin{prb}[Operator monotone functions]
+\begin{prb}[Operator monotonicity]
 \begin{parts}
-\item inverse
-\item conjugation
+\item If $0\le a\le b$, then $a^{-1}\ge b^{-1}$.
+\item If $a\le b$, then $cac^*\le cbc^*$.
 \end{parts}
 \end{prb}
 
 
-
+\begin{prb}[Positive linear functionals]
+\end{prb}
 
 
 \begin{prb}[Injective $*$-homomorphism]
@@ -1190,7 +1192,8 @@ separable?
 
 \end{prb}
 
-
+\begin{prb}[Hereditary C$^*$-algebras]
+\end{prb}
 
 
 
@@ -1201,7 +1204,7 @@ separable?
 A \emph{representation} of a C$^*$-algebra is a $*$-homomorphism $\pi:\cA\to B(H)$ for a Hilbert space $H$.
 \end{prb}
 
-\begin{prb}[Non-degenerate representation]
+\begin{prb}[Non-degenerate representations]
 Let $\pi:\cA\to B(H)$ be a representation of a C$^*$-algebra $\cA$.
 We say $\pi$ is \emph{non-degenerate} if $\pi(\cA)H$ is dense in $H$.
 \begin{parts}
@@ -1211,14 +1214,14 @@ We say $\pi$ is \emph{non-degenerate} if $\pi(\cA)H$ is dense in $H$.
 \end{parts}
 \end{prb}
 
-\begin{prb}[Cyclic representation]
+\begin{prb}[Cyclic representations]
 Let $\pi:\cA\to B(H)$ be a representation of a C$^*$-algebra $\cA$.
 \begin{parts}
 \item
 \end{parts}
 \end{prb}
 
-\begin{prb}[Irreducible representation]
+\begin{prb}[Irreducible representations]
 Let $\pi:\cA\to B(H)$ be a representation of a C$^*$-algebra $\cA$.
 We say $\pi$ is irreducible if there is no proper closed subspace $K\subset H$ such that $\pi(a)K\subset K$.
 \begin{parts}
@@ -1329,6 +1332,10 @@ Let $\cA=C_0(\Omega)$ and $\mu$ be a state on $\cA$, a regular Borel probability
 
 
 
+\begin{prb}[Approximate eigenvectors]
+\end{prb}
+
+
 \section*{Problems}
 \begin{enumerate}
 \item* A C$^*$-algebra is commutative if and only if a function $f(x)=x(1+x)^{-1}$ is operator subadditive.
@@ -1337,7 +1344,8 @@ Let $\cA=C_0(\Omega)$ and $\mu$ be a state on $\cA$, a regular Borel probability
 
 
 \chapter{Von Neumann algebras}
-\section{Density theorems}
+
+\section{Borel functional calculus}
 
 \begin{prb}[Von Neumann algebras]
 A C$^*$-algebra $\cA$ is called a \emph{von Neumann algebra} if there is a isometric $*$-homomorphism $\cA\to B(H)$ for a Hilbert space $H$ whose image is closed in the weak operator topology.
@@ -1347,6 +1355,33 @@ A C$^*$-algebra $\cA$ is called a \emph{von Neumann algebra} if there is a isome
 Increasing bounded net is convergent in strong operator topology.
 The boundedness is important because we have to construct a bounded sesquilinear form using the monotone convergence in $\R$.
 \end{prb}
+
+
+
+
+\begin{prb}[Borel functional calculus]
+Let $\cA$ be a von Neumann algebra.
+\[B^\infty(\sigma(a))\to\cA.\]
+\begin{parts}
+\item The Borel functional calculus is in general not injective.
+\item If we endow the topology of pointwise convergence on $B^\infty(\sigma(a))$ and the strong operator topology on $\cA$, then the Borel functional calculus is continuous.
+\item not isometric, even if it is injective.
+\item Every von Neumann algebra is the closed span of projections.
+\end{parts}
+\end{prb}
+\begin{prb}
+
+(b)
+By the bounded convergence theorem.
+
+(d)
+This is because $\sigma(a)\subset\C$ is compact so that it is separable and metrizable; every bounded measurable function is a pointwise limit of simple functions.
+
+\end{prb}
+
+
+
+\section{Density theorems}
 
 \begin{prb}[Bicommutant theorem]
 Let $\cA$ be a non-degenerate C$^*$-subalgebra of $B(H)$.
@@ -1376,39 +1411,14 @@ Also, $\cA''$ is weakly closed, $\bar\cA^\wot\subset\cA''$.
 
 
 
-
-\section{Borel functional calculus}
-resolution of identity
-normal operator theories: multiplicity, invariant subspaces
-$L^\infty$ representation
-
-\begin{prb}[Borel functional calculus]
-Let $\cA$ be a von Neumann algebra.
-\[B^\infty(\sigma(a))\to\cA.\]
-\begin{parts}
-\item The Borel functional calculus is in general not injective.
-\item If we endow the topology of pointwise convergence on $B^\infty(\sigma(a))$ and the strong operator topology on $\cA$, then the Borel functional calculus is continuous.
-\item not isometric, even if it is injective.
-\item Every von Neumann algebra is the closed span of projections.
-\end{parts}
-\end{prb}
-\begin{prb}
-
-(b)
-By the bounded convergence theorem.
-
-(d)
-This is because $\sigma(a)\subset\C$ is compact so that it is separable and metrizable; every bounded measurable function is a pointwise limit of simple functions.
-
-\end{prb}
-
-
+\section{Predual}
 
 
 
 \section{Factors and traces}
-Every trace of factor is faithful
 
+
+Every trace of factor is faithful
 
 \begin{prb}
 Normal states is a state in which the monotone convergence theorem holds.
@@ -1416,7 +1426,13 @@ Precisely, a state $\rho$ is \emph{normal} if a monotone net $a_\alpha$ strongly
 \end{prb}
 
 
+\section*{Exercises}
+\begin{prb}[Extremally disconnected space]
+$\sigma(B^\infty(\Omega))$ is extremally disconnected.
+\end{prb}
 
-
+resolution of identity
+normal operator theories: multiplicity, invariant subspaces
+$L^\infty$ representation
 
 \end{document}
