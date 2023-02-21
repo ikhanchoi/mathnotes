@@ -245,6 +245,12 @@
 \newcommand\mn{\rightarrowtail}
 \newcommand\ep{\twoheadrightarrow}
 \newcommand\impl{\mathchoice{\quad\Longrightarrow\quad}{\,\Rightarrow\,}{\,\Rightarrow\,}{\,\Rightarrow\,}}
+\providecommand*{\xmapstofill@}{%
+  \arrowfill@{\mapstochar\relbar}\relbar\rightarrow
+}
+\providecommand*{\xmapsto}[2][]{%
+  \ext@arrow 0395\xmapstofill@{#1}{#2}%
+}
 
 % Diacrritics
 \renewcommand\tilde{\widetilde}
@@ -500,11 +506,13 @@
 \newcommand{\im}{\operatorname{im}}
 \newcommand{\Im}{\operatorname{Im}}
 \newcommand{\Ind}{\operatorname{Ind}}
+\newcommand{\Iso}{\operatorname{Iso}}
 \newcommand{\Isom}{\operatorname{Isom}}
 \newcommand{\Lip}{\operatorname{Lip}}
 \newcommand{\Nat}{\operatorname{Nat}}
 \newcommand{\Orb}{\operatorname{Orb}}
 \newcommand{\ord}{\operatorname{ord}}
+\newcommand{\pr}{\operatorname{pr}}
 \newcommand{\Prob}{\operatorname{Prob}}
 \newcommand{\pv}{\operatorname{p.v.}}
 \newcommand{\Re}{\operatorname{Re}}

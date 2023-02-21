@@ -202,16 +202,8 @@ K normalizes H : K -> NG(H) -> Aut(H)  with ker = CG(H)
 \chapter{Ideals}
 \section{Definitions of rings and ideals}
 \begin{prb}[Definition of rings]
-A \emph{ring} is a set $R$ together with
-\begin{enumerate}[(i)]
-\item an \emph{addition} $+:R\times R\to R$ which defines an abelian group structure,
-\item a \emph{multiplication} $\times:R\times R\to R$ which defines an \emph{abelian monoid} structure,
-\end{enumerate}
-such that the following compatibility condition holds:
-\begin{enumerate}[(i)]\setcounter{enumi}{2}
-\item the \emph{distributive law}: for every $r,s,t\in R$, we have
+A \emph{ring} is an additive abelian group $R$ together with a \emph{multiplication} $\times:R\times R\to R$ which defines an \emph{abelian monoid} structure, such that the following compatibility condition holds: the \emph{distributive law}: for every $r,s,t\in R$, we have
 \[r\times(s+t)=(r\times s)+(r\times t).\]
-\end{enumerate}
 The additive and multiplicative identities are usually denoted by $0$ and $1$ and called the \emph{zero} and the \emph{unity} respectively.
 
 We are only concerned with \emph{commutative} rings with \emph{unity} when mentioning rings, so we specified the multiplication to be an abelian monoid.
@@ -316,17 +308,10 @@ maximal ideals and monic irreducibles
 
 \begin{prb}[Definition of modules]
 Let $R$ be a non-commutative ring.
-An (left) \emph{$R$-module} is a set $M$ together with 
-\begin{enumerate}[(i)]
-\item an \emph{addition} $+:M\times M\to M$ which defines an abelian group structure on $M$,
-\item a \emph{scalar multiplication} $\cdot:R\times M\to M$ which defines an \emph{left action} on $M$: for every $r,s\in R$ and $m\in M$, we have
+An (left) \emph{$R$-module} is an additive abelian group $M$ together with a \emph{scalar multiplication} $\cdot:R\times M\to M$ which defines an \emph{left action} on $M$, i.e. for every $r,s\in R$ and $m\in M$, we have
 \[r\cdot(s\cdot m)=(rs)\cdot m\quad\text{ and }\quad1\cdot m=m,\]
-\end{enumerate}
-such that the following compatibility condition holds:
-\begin{enumerate}[(i)]\setcounter{enumi}{2}
-\item the \emph{distributive laws} hold: for every $r,s\in R$ and $m,n\in M$, we have
+such that the following compatibility condition holds: the \emph{distributive laws} hold: for every $r,s\in R$ and $m,n\in M$, we have
 \[r\cdot (m+n)=r\cdot m+r\cdot n\quad\text{ and }\quad(r+s)\cdot m=r\cdot m+s\cdot m.\]
-\end{enumerate}
 \begin{parts}
 \item If $R$ is commutative, then
 \end{parts}
@@ -340,15 +325,8 @@ isomorphism theorems
 \section{Algebras}
 \begin{prb}[Definition of algebras]
 Let $R$ be a ring.
-An (associative) \emph{$R$-algebra} is a set $A$ together with
+An (associative) \emph{$R$-algebra} is an $R$-module $A$ together with a \emph{multiplication} $\times:A\times A\to A$ which is associative, such that the following compatibility conditions hold:
 \begin{enumerate}[(i)]
-\item an \emph{addition} $+:A\times A\to A$ which defines an abelian group structure,
-\item a \emph{scalar multiplication} $\cdot:R\times A\to A$ which defines a left action,
-\item a \emph{multiplication} $\times:A\times A\to A$ which is associative,
-\end{enumerate}
-such that the following compatibility conditions hold:
-\begin{enumerate}[(i)]\setcounter{enumi}{3}
-\item $(A,+,\cdot)$ is an $R$-module,
 \item the \emph{distributive laws} hold: for every $a,b,c\in A$, we have
 \[a\times(b+c)=a\times b+a\times c\quad\text{ and }\quad(a+b)\times c=a\times c+b\times c,\]
 \item the \emph{compatibility with scalars}: for every $r,s\in R$ and $a,b\in A$, we have

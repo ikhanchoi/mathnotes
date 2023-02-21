@@ -9,6 +9,27 @@
 
 \begin{document}
 \tableofcontents
+
+\newpage
+\section{The Bartle-Graves theorem}
+Let $E$ be a Banach space and $N$ a closed subspace.
+For $\e>0$, there is a continuous homogeneous map $\rho:E/N\to E$ such that $\pi\rho(y)=y$ and $\|\rho(y)\|\le(1+\e)\|y\|$ for all $y\in E/N$.
+\begin{pf}
+We want to construct a continuous map $\psi:S_{E/N}\to E$ with $\|\psi(y)\|\le1+\e$ for all $y\in S_{E/N}$.
+If then, $\rho$ can be made from $\psi$.
+
+For each $y_0\in S_{E/N}$, choose $x_0\in\pi^{-1}(y_0)\cap B_{1+\e}$.
+There is a neighborhood $V_{y_0}\subset S_{E/N}$ of $y_0$ such that $y\in V_{y_0}$ implies $x_0$ belongs to $(\pi^{-1}(y)\cap B_{1+\e})+U_{2^{-1}}$, which is convex.
+With a locally finite subcover $V_{y_\alpha}$ and a partition of unity $\eta_\alpha(y)$, define $\psi_1(y)=\sum_\alpha\eta_\alpha(y)x_\alpha$.
+Then, $\psi_1(y)\in(\pi^{-1}(y)\cap B_{1+\e})+U_{2^{-1}}$.
+
+For $i\le2$, choose for each $y_0$ the element $x_0$ in $\pi^{-1}(y_0)\cap B_{1+\e}\cap(\psi_{i-1}(y_0)+U_{2^{-{i-1}}})$.
+Then, we obtain
+\[\psi_i(y)\in\Bigl(\pi^{-1}(y)\cap B_{1+\e}\cap(\psi_{i-1}(y_0)+U_{2^{-{i-1}}})\Bigr)+U_{2^{-i}}.\]
+Therefore, $\|\psi_i(y)-\psi_{i-1}(y)\|<2^{-{i-2}}$, so it converges uniformly to $\psi$ such that $\psi(y)\in\pi^{-1}(y)\cap B_{1+\e}$.
+\end{pf}
+
+
 \newpage
 
 \section{Nets of measurable functions}

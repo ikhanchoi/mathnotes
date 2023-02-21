@@ -160,7 +160,7 @@ Let $X$ be a topological vector space that is Baire.
 A subset $U\subset X$ is said to be \emph{absorbing} if for every $x\in X$ there is a sufficiently large $t>0$ such that $x\in tU$.
 Let $U\subset X$.
 \begin{parts}
-\item If $U$ is closed and absorbing, then $U$ has non-empty interior.
+\item If $U$ is closed and absorbing, then $U$ has a non-empty open subset.
 \item If $U$ is closed and absorbing, then $U-U$ is a neighborhood of zero.
 \item If $U$ is closed, convex, and absorbing, then $U$ is a neighborhood of zero.
 \end{parts}
@@ -183,34 +183,32 @@ The Baire category theorem proves many exmples of topological vector space are B
 \begin{prb}[Open mapping theorem]
 Let $X$ be a $F$-space and $Y$ a barreled space.
 Suppose $T:X\to Y$ is a continuous and surjective linear operator.
-Let $B$ be an open neighborhood of zero in $X$.
 \begin{parts}
-\item $\bar{TB}$ is a neighborhood of zero.
-\item $TB$ is a neighborhood of zero.
+\item $\bar{TU}$ is a neighborhood of zero.
+\item $TU$ is a neighborhood of zero.
 \end{parts}
 \end{prb}
 
 \begin{pf}
 (a)
-There is an open neighborhood $U$ of zero such that $U-U\subset B$.
-The set $\bar{TU}$ is a closed absorbing set because $T$ is surjective.
-Since $Y$ is barreled, $\bar{TU}$ has a non-empty interior in $Y$.
-Thus, $\bar{TB}\supset\bar{TU}-\bar{TU}$ is a neighborhood of zero.
+Let $U'$ be a neighborhood of zero such that $U\supset U'-U'$.
+Because $T$ is surjective, the set $\bar{TU'}$ is a closed absorbing set, so it contains a non-empty open subset, since $Y$ is barreled.
+Thus, $\bar{TU}\supset\bar{TU'}-\bar{TU'}$ is a neighborhood of zero.
 
 (b)
-Since $X$ is metrizable, we have a sequence of open neighborhoods $B_n:=\{x:d(x,0)<2^{-n}\}$, where the topology of $X$ is induced from a metric $d$.
-We claim $\bar{TB_1}\subset TB_0$.
-Take $y_1\in\bar{TB_1}$.
+We claim $\bar{TU_{2^{-1}}}\subset TU_1$.
+Take $y_1\in\bar{TU_{2^{-1}}}$.
 
-If $y_n\in\bar{TB_n}$, then since $\bar{TB_{n+1}}$ are neighborhoods of zero, we have
-\[TB_n\cap(y_n+\bar{TB_{n+1}}))\ne\varnothing.\]
-So we can inductively construct sequences $x_n\in B_n$ and $y_n\in\bar{TB_n}$ for $n\ge2$ such that
-\[x_n\in B_n\cap T^{-1}(y_n+\bar{TB_{n+1}})\]
-and
-\[y_{n+1}:=Tx_n-y_n.\]
-Then, $\sum_{n=1}^\infty x_n$ converges to $x\in B_0$.
+Assume $y_n\in\bar{TU_{2^{-n}}}$.
+Since $\bar{TU_{2^{-(n+1)}}}$ is a neighborhood of zero, we have
+\[(y_n+\bar{TU_{2^{-(n+1)}}})\cap TU_{2^{-n}}\ne\varnothing.\]
+Then, there is $x_n\in U_{2^{-n}}$ such that $Tx_n\in y_n+\bar{TU_{2^{-(n+1)}}}$.
+Define
+\[y_{n+1}:=y_n-Tx_n.\]
+
+Then, $\sum_{n=1}^\infty x_n$ clearly converges to $x\in U_1$.
 Therefore,
-\[Tx=\sum_{n=1}^\infty Tx_n=\sum_{n=1}^\infty(y_{n+1}-y_n)=y_1.\qedhere\]
+\[Tx=\sum_{n=1}^\infty Tx_n=\sum_{n=1}^\infty(y_n-y_{n+1})=y_1.\qedhere\]
 \end{pf}
 
 
