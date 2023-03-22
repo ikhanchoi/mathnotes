@@ -355,6 +355,13 @@ Then,
 \section{Weak compactness}
 \begin{prb}[Banach-Alaoglu theorem]
 \end{prb}
+\begin{pf}
+Consider
+\[B_{X^*}\to\prod_{x\in X}\|x\|B:l\mapsto(l(x))_{x\in X}.\]
+Since it is an embedding into a compact space, it suffices to show the closedness of image: for $l(x):=\lim_\alpha l_\alpha(x)$, we have
+\[\|l(x)\|\le\|l(x)-l_\alpha(x)\|+\|x\|\xrightarrow{\alpha\to\infty}\|x\|,\]
+so $l$ is contained in the range.
+\end{pf}
 \begin{prb}[Eberlein-\v Smulian theorem]
 \end{prb}
 \begin{prb}[James' theorem]
@@ -735,21 +742,35 @@ Kato-Rellich theorem
 \part{Operator algebras}
 \chapter{Banach algebras}
 
-\section{Spectra}
+\section{Spectral theory of unital Banach algebras}
 
 \begin{prb}[Banach algebras]
+For a Banach algebra $\cA$ with multiplicative unit, there is a complete renorming such that $\|1\|=1$, i.e. we can always assume $\|1\|=1$.
 
-\end{prb}
-
-
-\begin{prb}[Inverses in Banach algebras]
 Let $\cA$ be a unital Banach algebra.
 \begin{parts}
 \item If $\|a\|<1$, then $1-a$ is invertible. So $\cA^\times$ is open.
+\item $\cA^\times\to\cA^\times:a\mapsto a^{-1}$ is continuous.
 \item $\cA^\times\to\cA^\times:a\mapsto a^{-1}$ is differentiable.
 \end{parts}
 \end{prb}
+\begin{pf}
+(a)
+We can show
+\[(1-a)^{-1}=\sum_{k=0}^\infty a^k.\]
+If $a$ is invertible, then $a+h=a(1+a^{-1}h)$ has the inverse $(1+a^{-1}h)^{-1}a^{-1}$ if $h$ is sufficiently small such that $\|a^{-1}h\|<1$.
 
+(b)
+Clear from
+\[b^{-1}-a^{-1}=b^{-1}(a-b)a^{-1}.\]
+
+(c)
+\begin{align*}
+\frac{\|b^{-1}-a^{-1}-(-a^{-1}(b-a)a^{-1})\|}{\|b-a\|}
+&=\frac{\|(a^{-1}-b^{-1})(b-a)a^{-1}\|}{\|b-a\|}\\
+&\le\|a^{-1}-b^{-1}\|\|a^{-1}\|\xrightarrow{b\to a}0.
+\end{align*}
+\end{pf}
 
 
 \begin{prb}[Spectrum and resolvent]
@@ -767,19 +788,26 @@ If $\cA$ is clear in its context, we omit it to just write $\sigma(a)$ and $\rho
 \end{parts}
 \end{prb}
 \begin{pf}
+(a)
+If $|\lambda|>\|a\|$, then $\lambda-a$ is always invertible, so the spectrum is bounded.
+Closedness follows from the fact that the set of invertibles is open.
+
 (b)
-Suppose the spectrum $\sigma(a)=\varnothing$ so that $(\lambda-a)^{-1}$ exists for every $\lambda\in\C$.
+Suppose the spectrum $\sigma(a)=\varnothing$ so that the resolvent function $R:\C\to\cA$ is well-defined on the entire $\C$.
 Note that $a\ne0$.
-Since the resolvent map $R:\C\to\cA$ is continuous and we have for $|\lambda|>2\|a\|$ that
+Since $R$ is continuous and since
 \[\|(\lambda-a)^{-1}\|=\|\lambda^{-1}(1-\lambda^{-1}a)^{-1}\|
 =\Bigl\|\lambda^{-1}\sum_{k=0}^\infty(\lambda^{-1}a)^k\Bigr\|
-<(2\|a\|)^{-1}\sum_{k=0}^\infty2^{-k}=\|a\|^{-1},\]
-the function $R$ is bounded.
+<(2\|a\|)^{-1}\sum_{k=0}^\infty2^{-k}=\|a\|^{-1}\]
+on $\{\lambda\in\C:|\lambda|>2\|a\|\}$, the function $R$ is bounded.
 Also, for every $l\in\cA^*$ we have that the function $\C\to\C:\lambda\mapsto\<R(\lambda),l\>$ is holomorphic since $a\mapsto a^{-1}$ is differentiable.
+
 Therefore, by the Liouville theorem, the bounded entire function $\lambda\mapsto\<R(\lambda),l\>$ is constant for all $l\in\cA^*$.
 Because $\cA^*$ separates points of $\cA$, the function $R$ is constant, which implies $a\in\C$ and contradicts to $\sigma(a)=\varnothing$.
 
 (c)
+For any $a\in\cA$, by the part (b), there must be $\lambda$ such that $\lambda-a$ is not invertible.
+In a division ring, zero is the only non-invertible element, so $\lambda=a$.
 \end{pf}
 
 \begin{prb}[Spectral radius]
@@ -787,8 +815,8 @@ Let $a$ be an element of a unital Banach algebra $\cA$.
 The \emph{spectral radius} of $a$ in $\cA$ is defined to be
 \[r(a):=\sup_{\lambda\in\sigma(a)}|\lambda|.\]
 \begin{parts}
-\item $r(a)\le\inf_{n\ge1}\|a^n\|^{\frac1n}$ for all $a\in\cA$.
-\item $\limsup_{n\to\infty}\|a^n\|^{\frac1n}\le r(a)$ for all $a\in\cA$.
+\item $r(a)\le\inf_n\|a^n\|^{\frac1n}$.
+\item $\limsup_n\|a^n\|^{\frac1n}\le r(a)$, i.e. $r(a)=\lim_n\|a^n\|^{\frac1n}$.
 \end{parts}
 \end{prb}
 \begin{pf}
@@ -796,19 +824,24 @@ The \emph{spectral radius} of $a$ in $\cA$ is defined to be
 Since $(\lambda-a)^{-1}=\lambda^{-1}(1-\lambda^{-1}a)^{-1}$ exists if $|\lambda|>\|a\|$, we have $r(a)\le\|a\|$ for all $a\in\cA$.
 For every $\lambda\in\sigma(a)$ and every integer $n\ge1$ we have
 \[|\lambda|^n=|\lambda^n|\le r(a^n)\le\|a^n\|,\]
-and it proves $r(a)\le\inf_{n\ge1}\|a^n\|^{\frac1n}$.
+and it proves $r(a)\le\inf_n\|a^n\|^{\frac1n}$.
 
 (b)
-On the domain $\{\lambda\in\C:|\lambda|>r(a)\}$, on which $R(\lambda)$ is well-defined, we have a holomorphic function $\lambda\mapsto\<R(\lambda),l\>$ for each $l\in\cA^*$.
-By comparing to the same function but on a smaller domain $\{\lambda\in\C:|\lambda|>\|a\|\}$, we can determine the coefficients of the Laurent series of $\<R(\lambda),l\>$ at infinity as
-\[\<R(\lambda),l\>=\Bigl\<\lambda^{-1}\sum_{k=0}^\infty(\lambda^{-1}a)^k,l\Bigr\>=\sum_{k=0}^\infty\<a^k,l\>\lambda^{-k-1}\]
+Consider a holomorphic function
+\[f:\{\lambda\in\C:|\lambda|>r(a)\}\to\C:\lambda\mapsto\<R(\lambda),l\>\]
 for each $l\in\cA^*$.
+Since on a smaller domain $\{\lambda\in\C:|\lambda|>\|a\|\}$, the function $f$ can be given by
+\[f(\lambda)=\Bigl\<\lambda^{-1}\sum_{k=0}^\infty(\lambda^{-1}a)^k,l\Bigr\>,\]
+we can determine the coefficients of the Laurent series of $f$ at infinity as
+\[f(\lambda)=\sum_{k=0}^\infty\<a^k,l\>\lambda^{-k-1}\]
+on $\{\lambda\in\C:|\lambda|>r(a)\}$.
 
-It implies for each $\lambda\in\C$ with $|\lambda|>r(a)$ that the sequence $(a^k\lambda^{-k-1})_k$ in $\cA$ is weakly bounded, hence is normly bounded by the uniform boundedness principle.
+Take $\lambda$ such that $|\lambda|>r(a)$.
+Then, the sequence $(a^k\lambda^{-k-1})_k\in\cA$ is weakly bounded, hence is normly bounded by the uniform boundedness principle.
 Let $\|a^n\|\le C_\lambda|\lambda^{n+1}|$ for all $n\ge1$.
 Then,
-\[\limsup_{n\to\infty}\|a^n\|^{\frac1n}\le\limsup_{n\to\infty}C_\lambda^{\frac1n}|\lambda^{n+1}|^{\frac1n}=|\lambda|\]
-for all $\lambda$ with $|\lambda|>r(a)$, so we are done.
+\[\limsup_{n\to\infty}\|a^n\|^{\frac1n}\le\limsup_{n\to\infty}C_\lambda^{\frac1n}|\lambda^{n+1}|^{\frac1n}=|\lambda|.\]
+If we limit $|\lambda|\downarrow r(a)$, we are done.
 \end{pf}
 
 \begin{prb}[Spectrum in closed subalgebras]
@@ -898,24 +931,33 @@ Let $a$ be an element of a unital Banach algebra $\cA$.
 Let $f$ be a holomorphic function on a neighborhood $U$ of $\sigma(a)$.
 Let $C$ be a positively oriented smooth simple closed curve in $U$ enclosing $\sigma(a)$.
 Define $f(a)\in\cA^{**}$ as the Dunford integral
-\[\<f(a),l\>:=\int_Cf(\lambda)\<R(\lambda),l\>\,d\lambda\]
-for all $l\in\cA^*$.
+\[\<f(a),l\>:=\int_Cf(\lambda)\<R(\lambda),l\>\,d\lambda,\qquad l\in\cA^*.\]
 
 Let $\Hol(\sigma(a))$ be the space of all holomorphic functions on a neighborhood of $\sigma(a)$ endowed with the topology of compact convergence.
 Note that $\Hol(\sigma(a))$ is not Banach.
-We define the \emph{holomorphic functional calculus} by
+We define the \emph{holomorphic functional calculus} by the map
 \[\Hol(\sigma(a))\to\cA:f\mapsto f(a).\]
 It is also called the Riesz or the Riesz-Dunford functional calculus.
 \begin{parts}
 \item $f(a)\in\cA$, i.e. $f(a)$ is given by the Pettis integral.
 \item $f(a)$ is independent of the choice of $C$.
-\item The functional calculus is an injective algebra homomorphism.
-\item The functional calculus is continuous.
-\item power series, 1 to 1, $\lambda$ to $a$.
+\item The functional calculus is an algebra homomorphism.
+\item The functional calculus is bounded.
+\item injective.
+\item unital, $\id_\C\mapsto a$.
+\item spectral mapping.
+\item power series.
 \end{parts}
 \end{prb}
+\begin{pf}
+(a)
 
-spectral mapping
+
+\end{pf}
+
+lin map > alg hom > star hom > cts
+
+
 
 
 

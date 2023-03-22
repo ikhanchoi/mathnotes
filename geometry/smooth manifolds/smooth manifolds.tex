@@ -1,7 +1,7 @@
 \documentclass{../../large}
 \usepackage{../../ikhanchoi}
 
-\newcommand{\a}{\alpha}
+\renewcommand{\a}{\alpha}
 \newcommand{\II}{\mathrm{II}}
 \newcommand{\ssum}{{\textstyle\sum\,}}
 
@@ -492,6 +492,7 @@ There exists unique smooth structure on $f(M)$ such that $i$ are smooth.
 % metric tensor
 % connections
 % geodesics, completeness
+
 % parallel transport
 % covariant derivative
 % curvature
@@ -500,33 +501,22 @@ There exists unique smooth structure on $f(M)$ such that $i$ are smooth.
 % homogeneous
 % Jacobi field
 % variational formula
-% Comparison theory
+% comparison theory
 
-\chapter{Intrinsic geometry}
+% bochner technique
+% symmetric spaces and holonomy
 
-We say a quantity on a surface is \emph{intrinsic} if it is independent of how the surface is embedded in space.
+\chapter{Metrics and connections}
+\section{Riemannian metric}
+We say a quantity is \emph{intrinsic} in two different contexts: one is the embedding independency, and the other is the coordinates independency.
 
-Notations: Einstein summation convention, set of vector fields.
-
-To $n$-dimensional.
-
-\section{Covariance and contravariance}
-% 좌표변환에 대하여 어떻게 변하는지 - 텐서에 대하여
-
-% 크리스토펠은 좌표변환이 잘 안됨: 텐서가 아니라서
-% 공변미분: 근데 걍 3차원공간 편미분에다가 이 좌표변환 추가 텀 붙은 크리스토펠 텀을 추가하면 그 미분 결과가 텐서(접벡터)가 됨
-
-\section{Theorema Egregium}
-% metric 정의
-% isometry
-% 가우스의 놀라운 정리: 크리스토펠 -> 곡률텐서 -> 가우스곡률?
+Riemannian measure
 
 \begin{itemize}
 \item Intrinsic: $g_{ij}$, $\Gamma_{ij}^k$, $K$, ${R^l}_{ijk}$;
 \item Not intrinsic: $\nu$, $L_{ij}$, $\kappa_i$, $H$.
 \end{itemize}
 
-Isometry
 \begin{ex}
 Let $\a:(-\log2,\log2)\times(0,2\pi)\to\R^3$ and $\beta:(-\frac34,\frac34)\times(0,2\pi)\to\R^3$ be regular surfaces given by
 \[\a(x,\theta)=(\cosh x\cos\theta,\,\cosh x\sin\theta,\,x),\qquad
@@ -545,53 +535,7 @@ the map $f$ is an isometry.
 
 
 
-
-\chapter{Covariant derivatives}
-
-\section{Orthogonal projection}
-We are going to think about ``intrinsic'' derivatives for tangent vectors.
-For coordinate independence, directional derivatives of a tangent vector field should be at least a tangent vector field, which is false for the obvious partial derivatives in the embedded surface setting; for example, $\rT$ is a tangent vector, but $\rN=\kappa\rT'$ is not tangent.
-
-Recall that the Gauss formula reads
-\[\pd_i\a_j=\Gamma_{ij}^k\a_k+L_{ij}\nu\]
-so that we have
-\begin{align*}
-\pd_XY
-&=X^i\pd_i(Y^j\a_j)\\
-&=X^i(\pd_iY^k)\a_k+X^iY^j\pd_i\a_j\\
-&=\left(X^i\pd_iY^k+X^iY^j\Gamma_{ij}^k\right)\a_k+X^iY^jL_{ij}\nu.
-\end{align*}
-If we write $\nabla_XY=\left(X^i\pd_iY^k+X^iY^j\Gamma_{ij}^k\right)\a_k$, then it embodies the orthogonal projection of $\pd_XY$ onto its tangent space, and we have
-\[\pd_XY=\nabla_XY+\II(X,Y)\nu.\]
-
-\begin{defn}
-Let $\a:U\to\R^n$ be an $m$-dimensional parametrization with $\im\a=M$.
-Let $X=X^i\a_i$ and $Y=Y^j\a_j$ be tangent vector fields on $M$.
-The \emph{covariant derivative} of $Y$ along $X$ is defined as the orthogonal projection of the partial derivative $\pd_XY$ onto the tangent space:
-\[\nabla_XY:=\left(X^i\pd_iY^k+X^iY^j\Gamma_{ij}^k\right)\a_k.\]
-\end{defn}
-
-\begin{prop}
-Covariant derivatives are intrinsic.
-In other words, the above definition does not depend on the choice of parametrizations.
-\end{prop}
-\begin{pf}
-Recall that the Christoffel symbols transform as follows:
-\[X^iY^j\Gamma_{ij}^k=X^aY^b\left(\Gamma_{ab}^c+\pd{x^i}{x^a}\pd{x^j}{x^b}\pd[2]{x^c}{x^i}{x^j}\right)\pd{x^k}{x^c}.\]
-Thus, we have
-\begin{align*}
-&\left(X^i\pd_iY^k+X^iY^j\Gamma_{ij}^k\right)\a_k\\
-&\quad=X^a\pd{x^a}\left(Y^c\pd{x^k}{x^c}\right)\a_k+X^aY^b\left(\pd{x^i}{x^a}\pd{x^j}{x^b}\pd[2]{x^c}{x^i}{x^j}+\Gamma_{ab}^c\right)\pd{x^k}{x^c}\a_k\\
-&\quad=X^a\pd{Y^c}{x^a}\a_c+X^aY^b\left(\pd[2]{x^k}{x^a}{x^b}\pd{x^c}{x^k}+\pd{x^i}{x^a}\pd{x^j}{x^b}\pd[2]{x^c}{x^i}{x^j}\right)\a_c+X^aX^b\Gamma_{ab}^c\a_c\\
-&\quad=\left(X^a\pd_aY^c+X^aY^b\Gamma_{ab}^c\right)\a_c
-\end{align*}
-since
-\[\pd[2]{x^j}{x^a}{x^b}\pd{x^c}{x^j}+\pd{x^i}{x^a}\pd{x^j}{x^b}\pd[2]{x^c}{x^i}{x^j}=\pd{x^a}\left(\pd{x^j}{x^b}\pd{x^c}{x^j}\right)=\pd_a\delta_b^c=0.\qedhere\]
-\end{pf}
-
-
-
-\section{Connection}
+\section{Connections}
 
 \begin{prb}[Affine connection]
 Let $M$ be a smooth manifold
@@ -640,12 +584,75 @@ defines a Levi-Civita connection.
 \end{prb}
 
 
-\section{Curvature tensor}
+% 좌표변환에 대하여 어떻게 변하는지 - 텐서에 대하여
+
+% 크리스토펠은 좌표변환이 잘 안됨: 텐서가 아니라서
+% 공변미분: 근데 걍 3차원공간 편미분에다가 이 좌표변환 추가 텀 붙은 크리스토펠 텀을 추가하면 그 미분 결과가 텐서(접벡터)가 됨
+
+
+\begin{prb}[Covariant derivative as orthogonal projection]
+We are going to think about ``intrinsic'' derivatives for tangent vectors.
+For coordinate independence, directional derivatives of a tangent vector field should be at least a tangent vector field, which is false for the obvious partial derivatives in the embedded surface setting; for example, $\rT$ is a tangent vector, but $\rN=\kappa\rT'$ is not tangent.
+
+Recall that the Gauss formula reads
+\[\pd_i\a_j=\Gamma_{ij}^k\a_k+L_{ij}\nu\]
+so that we have
+\begin{align*}
+\pd_XY
+&=X^i\pd_i(Y^j\a_j)\\
+&=X^i(\pd_iY^k)\a_k+X^iY^j\pd_i\a_j\\
+&=\left(X^i\pd_iY^k+X^iY^j\Gamma_{ij}^k\right)\a_k+X^iY^jL_{ij}\nu.
+\end{align*}
+If we write $\nabla_XY=\left(X^i\pd_iY^k+X^iY^j\Gamma_{ij}^k\right)\a_k$, then it embodies the orthogonal projection of $\pd_XY$ onto its tangent space, and we have
+\[\pd_XY=\nabla_XY+\II(X,Y)\nu.\]
+
+Let $\a:U\to\R^n$ be an $m$-dimensional parametrization with $\im\a=M$.
+Let $X=X^i\a_i$ and $Y=Y^j\a_j$ be tangent vector fields on $M$.
+The \emph{covariant derivative} of $Y$ along $X$ is defined as the orthogonal projection of the partial derivative $\pd_XY$ onto the tangent space:
+\[\nabla_XY:=\left(X^i\pd_iY^k+X^iY^j\Gamma_{ij}^k\right)\a_k.\]
+\begin{parts}
+\item
+Covariant derivatives are intrinsic.
+In other words, the above definition does not depend on the choice of parametrizations.
+\end{parts}
+\end{prb}
+\begin{pf}
+Recall that the Christoffel symbols transform as follows:
+\[X^iY^j\Gamma_{ij}^k=X^aY^b\left(\Gamma_{ab}^c+\pd{x^i}{x^a}\pd{x^j}{x^b}\pd[2]{x^c}{x^i}{x^j}\right)\pd{x^k}{x^c}.\]
+Thus, we have
+\begin{align*}
+&\left(X^i\pd_iY^k+X^iY^j\Gamma_{ij}^k\right)\a_k\\
+&\quad=X^a\pd{x^a}\left(Y^c\pd{x^k}{x^c}\right)\a_k+X^aY^b\left(\pd{x^i}{x^a}\pd{x^j}{x^b}\pd[2]{x^c}{x^i}{x^j}+\Gamma_{ab}^c\right)\pd{x^k}{x^c}\a_k\\
+&\quad=X^a\pd{Y^c}{x^a}\a_c+X^aY^b\left(\pd[2]{x^k}{x^a}{x^b}\pd{x^c}{x^k}+\pd{x^i}{x^a}\pd{x^j}{x^b}\pd[2]{x^c}{x^i}{x^j}\right)\a_c+X^aX^b\Gamma_{ab}^c\a_c\\
+&\quad=\left(X^a\pd_aY^c+X^aY^b\Gamma_{ab}^c\right)\a_c
+\end{align*}
+since
+\[\pd[2]{x^j}{x^a}{x^b}\pd{x^c}{x^j}+\pd{x^i}{x^a}\pd{x^j}{x^b}\pd[2]{x^c}{x^i}{x^j}=\pd{x^a}\left(\pd{x^j}{x^b}\pd{x^c}{x^j}\right)=\pd_a\delta_b^c=0.\qedhere\]
+\end{pf}
 
 
 
-\chapter{Parallel transport}
-% linearity, holonomy
+
+\section{Geodesics}
+Geodesic equation
+Hopf-Rinow theorem
+Exponential map, Gauss lemma
+Jacobi fields
+Cartan-Hadamrd
+
+
+
+% 측지선에 대한 기저(n,T,S)
+% 측지꼬임/곡률
+
+
+
+\chapter{Curvature}
+
+
+
+
+\chapter{}
 
 
 
@@ -666,9 +673,8 @@ defines a Levi-Civita connection.
 
 
 
-\part{Local theory of curves and surfaces}
 
-\chapter{Local theory of curves}
+
 
 \section{Parametrization}
 
@@ -697,8 +703,6 @@ Define $\a:I_s\to\R^d$ by $\a:=\beta\circ\tau^{-1}$.
 Then, by the chain rule,
 \[\a'=\dd{\a}{s}=\dd{\beta}{t}\dd{\tau^{-1}}{s}=\beta'\left(\dd{\tau}{t}\right)^{-1}=\frac{\beta'}{\|\beta'\|}.\qedhere\]
 \end{pf}
-
-
 
 
 \section{Frenet-Serret frame}
@@ -789,12 +793,6 @@ In other words, the tangent space $T_I\SO(3)$ forms a skew symmetric matrix.
 
 
 
-
-
-
-
-
-
 \section{Computational problems}
 
 The following proposition gives the most effective and shortest way to compute the Frenet-Serret apparatus in general case.
@@ -865,18 +863,23 @@ then
 A curve whose normal lines always pass through a fixed point lies in a circle.
 \end{prb}
 \begin{sol}
-\Step{1}[Formulate conditions]
+By the assumption, we have
+\[\a-p=0\cdot\rT+\<\a-p,\rN\>\cdot\rN+0\cdot\rB.\]
+
+\[\a'=-\kappa\<\a-p,\rN\>\cdot\rT+0\cdot\rN+\tau\<\a-p,\rN\>\cdot\rB.\]
+
+[Formulate conditions]
 By the assumption, there is a constant point $p\in\R^3$ such that the vectors $\a-p$ and $\rN$ are parallel so that we have
 \[\<\a-p,\rT\>=0,\qquad\<\a-p,\rB\>=0.\]
 Our goal is to show that $\|\a-p\|$ is constant and there is a constant vector $v$ such that $\<\a-p,v\>=0$.
 
-\Step{2}[Collect information]
+[Collect information]
 Differentiate $\<\a-p,\rT\>=0$ to get
 \[\<\a-p,\rN\>=-\frac1\kappa.\]
 Differentiate $\<\a-p,\rB\>=0$ to get
 \[\tau=0.\]
 
-\Step{3}[Complete proof]
+[Complete proof]
 We can deduce that $\|\a-p\|$ is constant from
 \[(\|\a-p\|^2)'=\<\a-p,\a-p\>'=2\<\a-p,\rT\>=0.\]
 Also, if we heuristically define a vector $v:=\rB$, then $v$ is constant since
@@ -888,13 +891,13 @@ and clearly $\<\a-p,v\>=0$
 A spherical curve of constant curvature lies in a circle.
 \end{prb}
 \begin{sol}
-\Step{1}[Formulate conditions]
+[Formulate conditions]
 The condition that $\a$ lies on a sphere can be given as follows: for a constant point $p\in\R^3$,
 \[\|\a-p\|=\const.\]
 Also we have
 \[\kappa=\const.\]
 
-\Step{2}[Collect information]
+[Collect information]
 Differentiate $\|\a-p\|^2=\const$ to get
 \[\<\a-p,\rT\>=0.\]
 Differentiate $\<\a-p,\rT\>=0$ to get
@@ -918,7 +921,7 @@ we get $\<\a-p,\rB\>=\const$.
 Differentiate to get $\tau\<\a-p,\rN\>=0$.
 Finally we can deduce $\tau=0$ since $\<\a-p,\rN\>\ne0$.
 
-\Step{3}[Complete proof]
+[Complete proof]
 The zero torsion implies that the curve lies on a plane.
 A planar curve in a sphere is a circle.
 \end{sol}
@@ -927,13 +930,13 @@ A planar curve in a sphere is a circle.
 A curve such that $\tau/\kappa=(\kappa'/\tau\kappa^2)'$ lies on a sphere.
 \end{prb}
 \begin{sol}
-\Step{1}[Find the center heuristically]
+[Find the center heuristically]
 If we assume that $\a$ is on a sphere so that we have $\|\a-p\|=r$ for constants $p\in\R^3$ and $r>0$, then by the routine differentiations give
 \[\<\a-p,\rT\>=0,\qquad\<\a-p,\rN\>=-\frac1\kappa,\qquad\<\a-p,\rB\>=-\left(\frac1\kappa\right)'\frac1\tau,\]
 that is,
 \[\a-p=-\frac1\kappa\rN-\left(\frac1\kappa\right)'\frac1\tau\rB.\]
 
-\Step{2}[Complete proof]
+[Complete proof]
 Let us get started the proof.
 Define
 \[p:=\a+\frac1\kappa\rN+\left(\frac1\kappa\right)'\frac1\tau\rB.\]
@@ -948,7 +951,7 @@ So we are done.
 A curve with more than one Bertrand mates is a circular helix.
 \end{prb}
 \begin{sol}
-\Step{1}[Formulate conditions]
+[Formulate conditions]
 Let $\beta$ be a Bertrand mate of $\a$ so that we have
 \[\beta=\a+\lambda\rN,\qquad\rN_\beta=\pm\rN,\]
 where $\lambda$ is a function not vanishing somewhere and $\{\rT_\beta,\rN_\beta,\rB_\beta\}$ denotes the Frenet-Serret frame of $\beta$.
@@ -956,7 +959,7 @@ We can reformulate the conditions as follows:
 
 Note that $\beta$ is not unit speed.
 
-\Step{2}[Collect information]
+[Collect information]
 Differentiate $\<\beta-\a,\rN\>=\lambda$ to get
 \[\lambda=\const\ne0.\]
 Differentiate $\<\beta-\a,\rT\>=0$ and $\<\beta-\a,\rB\>=0$ to get
@@ -970,7 +973,7 @@ if $\a$ is not planar so that $\tau\ne0$.
 We have shown that the torsion is either always zero or never zero at every point: $\lambda\tau/\|\beta'\|=\const$.
 The problem can be solved by dividing the cases, but in this solution we give only for the case that $\a$ is not planar; the other hand is not difficult.
 
-\Step{3}[Complete proof]
+[Complete proof]
 If
 \[\beta=\a+\lambda\rN,\qquad\tilde\beta=\a+\tilde\lambda\rN\]
 are different Bertrand mates of $\a$ with $\lambda\ne\tilde\lambda$, then $(\kappa,\tau)$ solves a two-dimensional linear system
@@ -1035,7 +1038,7 @@ TFAE:
 
 
 
-\chapter{Local theory of surfaces}
+\chapter*{Local theory of surfaces}
 
 \section{Reparametrization}
 
@@ -1209,8 +1212,7 @@ We have $GM-FN=EM-FL$, and the \emph{Weingarten equations}:
 
 
 
-\begin{thm}[Gaussian curvature formula]
-$ $\\[-12pt]
+\begin{prb}[Gaussian curvature formula]
 \begin{parts}
 \item
 In general,
@@ -1226,34 +1228,43 @@ where $\nabla f$ denotes the gradient $\nabla f=(f_x,f_y,f_z)$.
 \[K=-\tau^2.\]
 \item(Brioschi) $E,F,G$ describes $K$.
 \end{parts}
-\end{thm}
+\end{prb}
 
-\begin{pf}$ $\\[-12pt]
-\begin{parts}
-\item Clear.
-\item
+\begin{pf}
+(a) Clear.
+
+(b)
 We have $GM=EM$ and
 \[\nu_x=-\frac LE\a_x-\frac MG\a_y,\qquad\nu_y=-\frac ME\a_x-\frac NG\a_y.\]
 \[\nu_x\times\nu_y=\frac{LN-M^2}{EG}\a_x\times\a_y\]
 After curvature tensors...
-\end{parts}
+
 \end{pf}
 
 
 
-\begin{ex}
+\begin{prb}[Computation of Gaussian curvatures]
 \begin{parts}
 \item
 (Monge's patch)
 For $(x,y,f(x,y))$,
 \[K=\frac{f_{xx}f_{yy}-f_{xy}^2}{(1+f_x^2+f_y^2)^2}.\]
+
 \item
 (Surface of revolution).
 Let $\gamma(t)=(r(t),z(t))$ be a plane curve with $r(t)>0$.
+If $t\mapsto(r(t),z(t))$ is a unit-speed curve, then
+\[K=-\frac{r''}r.\]
+
+\item
+(Models of hyperbolic planes)
+\end{parts}
+\end{prb}
+\begin{pf}
+(b)
 Let
 \[\a(\theta,t)=(r(t)\cos\theta,r(t)\sin\theta,z(t))\]
 be a parametrization of a surface of revolution.
-
 Then,
 \begin{align*}
 \a_\theta&=(-r(t)\sin\theta,r(t)\cos\theta,0)\\
@@ -1274,11 +1285,7 @@ Therefore,
 \[K=\frac{LN-M^2}{EG-F^2}=\frac{z'(r'z''-r''z')}{r(r'^2+z'^2)^2}.\]
 In particular, if $t\mapsto(r(t),z(t))$ is a unit-speed curve, then
 \[K=-\frac{r''}r.\]
-
-\item
-(Models of hyperbolic planes)
-\end{parts}
-\end{ex}
+\end{pf}
 
 
 % asymptotic curve -> hyperbolic
@@ -1291,18 +1298,10 @@ In particular, if $t\mapsto(r(t),z(t))$ is a unit-speed curve, then
 % ruled surface
 % developable surface
 
-% 밀만 파커 다 풀어보기
 
-
-
-
-\section{General problems}
-
-% isometric....?
-
-\begin{thm}
+\begin{prb}[Local isomorphism]
 Surfaces of the same constant Gaussian curvature are locally isomorphic.
-\end{thm}
+\end{prb}
 \begin{pf}
 Let
 \[\mat{\|\a_r\|^2&\<\a_r,\a_t\>\\\<\a_t,\a_r\>&\|\a_t\|^2}=\mat{1&0\\0&h(r,t)^2}\]
@@ -1319,14 +1318,6 @@ Therefore, $h$ is uniquely determined by $K$.
 
 
 
-\chapter{Geodesics}
-% 측지선에 대한 기저(n,T,S)
-% 측지꼬임/곡률
-% 측지선 방정식
-% 측지완비: 호프 리노프
-% 지수사상: 가우스 보조정리
-% 야코비장
-% 카르탕 아다마르
 
 
 
@@ -1352,30 +1343,114 @@ Therefore, $h$ is uniquely determined by $K$.
 
 
 
+\subsection*{Global theory of curves}
+\begin{prb}[Isoperimetric inequality]
+\end{prb}
+\begin{prb}[Four vertex theorem]
+\end{prb}
+\begin{prb}[Ovals]
+\end{prb}
+
+\subsection*{Global theory of surfaces}
+\begin{prb}[Minimal surfaces]
+\end{prb}
+\begin{prb}[Classification of compact surfaces]
+\end{prb}
+\begin{prb}[Hilbert theorem]
+\end{prb}
+
+\subsection*{Total curvatures}
+\begin{prb}[Fary-Minor theorem]
+\end{prb}
+\begin{prb}[Fenchel's theorem]
+\end{prb}
+\begin{prb}[The Gauss-Bonnet theorem]
+\end{prb}
 
 
 
 
 
-\part{Global theory of curves and surfaces}
-
-\chapter{Global theory of curves}
-\section{Isoperimetric inequality}
-\section{Four vertex theorem}
-\section{Ovals}
 
 
-\chapter{Global theory of surfaces}
-% Global theory
-%  곡선: 등주부등식, (네 꼭짓점, 펜첼/페리-밀너), 볼록성/오발
-%  곡면: 최소곡면, (컴팩트곡면분류, 가우스-보네), 임베딩문제,
-\section{Minimal surfaces}
-\section{Classification of compact surfaces}
-\section{The Hilbert theorem}
 
-\chapter{Total curvatures}
-\section{The Fary-Minor theorem}
-Fenchel's theorem
-\section{The Gauss-Bonnet theorem}
+
+\part{Lie groups}
+\chapter{Lie correspondence}
+\section{Exponential map}
+\begin{prb}[Exponential map]
+\end{prb}
+\begin{prb}[Surjectivity of exponential map]
+\end{prb}
+
+\begin{prb}[Lie functor]
+\end{prb}
+
+
+\section{Lie's second theorem}
+\begin{prb}[Derivative of the exponential map]
+Let $G$ be a Lie group.
+\begin{parts}
+\item
+\[\dd{s}\exp(sX)=\exp(sX)X\]
+for $s\in\R$ and $X\in\fg$.
+\item
+\[\pd{s}\]
+\end{parts}
+\end{prb}
+
+\begin{prb}[Baker-Campbell-Hausdorff formula]
+Let $G$ be a Lie group.
+Let $X,Y\in\fg$ such that $\exp(X)\exp(Y)$
+Define
+\[Z(t):=\log(\exp(X)\exp(tY))\]
+\end{prb}
+
+\begin{prb}[]
+\begin{parts}
+\item The Lie functor
+\[\mathrm{Lie}:\mathrm{LieGrp}_{simple}\to\mathrm{LieAlg}_\R\]
+is fully faithful.
+\end{parts}
+\end{prb}
+
+
+\section{Lie's third theorem}
+\begin{prb}[Ado's theorem]
+\end{prb}
+
+\begin{prb}[Lie's third theorem]
+Also called the Cartan-Lie theorem.
+\begin{parts}
+\item The Lie functor
+\[\mathrm{Lie}:\mathrm{LieGrp}_{simple}\to\mathrm{LieAlg}_\R\]
+is essentially surjective.
+\end{parts}
+\end{prb}
+
+\section{Fundamental groups of Lie groups}
+
+
+
+\chapter{Compact Lie groups}
+\section{Special orthogonal groups}
+\section{Special unitary groups}
+\section{Symplectic groups}
+
+\section*{Exercises}
+\begin{prb}[Lorentz group]
+$\SL(2,\C)\to\SO^+(1,3)$
+\begin{parts}
+\item $O(1,3)$ has four components and $SO^+(1,3)$ is the identity component. Orthochronous $O^+(1,3)$, proper $SO(1,3)$.
+\end{parts}
+\end{prb}
+
+
+\chapter{Representations of Lie groups}
+\section{Peter-Weyl theorem}
+\section{Spin representations}
+Clifford algebra
+
+
 
 \end{document}

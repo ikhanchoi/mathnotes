@@ -252,6 +252,9 @@ semicontinuous
 
 \section{Various continuities}
 
+Lipschitz
+uniform
+cauchy
 
 
 \section*{Exercises}
@@ -274,14 +277,35 @@ If the preimage of every singleton is closed, then $f$ is continuous.
 
 \chapter{Differentiation}
 \section{Differentiability}
-\begin{prb}[L'hopital theorem]
+\begin{prb}[L'hopital's theorem]
 \end{prb}
 
 \section{Monotonicty and convexity}
 
-\section{Mean value theorem}
+\section{Taylor expansion}
+\begin{prb}[Rolle's theorem]
+Let $f:[a,b]\to\R$ be a function that is continuous on $[a,b]$ and differentiable on $(a,b)$.
+\begin{parts}
+\item If $f(a)=f(b)=0$, then there is $c\in(a,b)$ such that $f'(c)=0$.
+\item Suppose $f$ is $(n+1)$-times differentiable. If $f(a)=f'(a)=\cdots=f^{(n)}(a)=0$ and $f(b)=0$, then there is $c\in(a,b)$ such that $f^{(n+1)}(c)=0$.
+\end{parts}
+\end{prb}
+\begin{pf}
+(a)
+If $f\equiv0$, then it is clear.
+If not, we may assume there is $x\in(a,b)$ such that $f(x)>0$ by multiplying $-1$.
+Since $f$ is continuous, by the extreme value theorem, there is $c\in(a,b)$ such that $c$ attains the maximum of $f$.
+Then, $f'(c)=0$.
+
+(b)
+By the induction, we have $c_n\in(a,b)$ such that $f^{(n)}(c)=0$.
+By applying Rolle's theorem (the part (a)) for $f^{(n)}$, we have $c_{n+1}\in(a,c_n)$ such that $f^{(n+1)}(c_{n+1})=0$.
+\end{pf}
+
 \begin{prb}[Taylor theorem]
 \end{prb}
+
+
 \section{Smooth functions}
 
 \section*{Exercises}

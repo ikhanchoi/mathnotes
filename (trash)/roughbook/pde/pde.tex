@@ -152,7 +152,7 @@ The word ``approximation'' in here can be replaced into ``discretization''.
 \begin{defn}[Approximation]
 Let $X$ be a Banach space.
 An \emph{approximation} of $X$ is an indexed family $X_h$ of finite-dimensional normed spaces, with a \emph{prolongation operator} $p_h\in B(X_h,X)$ and a \emph{restriction operator} $r_h:X\to X_h)$.
-The operator $\tau_h:=p_hr_h$ is called the \emph{truncation operator}.
+The operator $p_hr_h:X\to X$ is called the \emph{truncation operator}.
 \begin{cd}
 X\dar[->>,swap]{r_h} \\ X_h\uar[bend right,swap]{p_h}
 \end{cd}
@@ -160,24 +160,36 @@ X\dar[->>,swap]{r_h} \\ X_h\uar[bend right,swap]{p_h}
 
 \begin{defn}[Errors]
 Let $X_h$ be an approximation of a Banach space $X$.
-For $x\in X$ and $x_h\in X_h$, the quantities $E(x_h,x):=\|p_hx_h-x\|$ and $DE(x_h,x):=\|x_h-r_hx\|_h$ are called the \emph{error} and the \emph{discrete error} between $x$ and $x_h$.
-The quantity $TE(x):=\|x-\tau_hx\|$ is called the \emph{truncation error}.
+For $x\in X$ and $x_h\in X_h$, the quantities $E(x_h,x):=\|p_hx_h-x\|$ and $DE(x_h,x):=\|x_h-r_hx\|$ are called the \emph{error} and the \emph{discrete error} between $x$ and $x_h$.
+The quantity $TE(x):=\|x-p_hr_hx\|$ is called the \emph{truncation error}.
 \end{defn}
 
 \begin{defn}[Stable and convergent approximations]
 We say an approximation $X_h$ is
 \begin{parts}
 \item \emph{stable} if $\|p_h\|+\|r_h\|\lesssim1$,
-\item \emph{convergent} if $\|x-\tau_hx\|\to0$.
+\item \emph{convergent} if $\|p_hr_hx-x\|\to0$ for each $x\in X$.
 \end{parts}
 \end{defn}
+
 \begin{lem}
 Let $X_h$ be an approximation of a Banach space $X$.
-If $X_h$ is stable and convergent, then the discrete convergence implies the strong convergence.
+If $X_h$ is stable and convergent, then for each net $x_h\in X_h$ the discrete convergence implies the strong convergence.
 \end{lem}
 \begin{pf}
-\[\|p_hx_h-x\|\le\|p_hx_h-p_hr_hx\|+\|p_hr_hx-x\|\le\|p_h\|\|x_h-r_hx\|+\|\tau_hx-x\|.\qedhere\]
+We have for each $x\in X$ that
+\[DE=\|r_h\|\cdot E\quad\text{ and }\quad E=\|p_h\|\cdot DE+TE.\qedhere\]
 \end{pf}
+
+\begin{lem}
+Let $X_h$ be an approximation of a Banach space $X$.
+If $\|p_hx\|\sim\|x\|$, then the stability of $X_h$ follows from the convergence of $X_h$.
+\end{lem}
+\begin{pf}
+It is by the uniform boundedness principle:
+\[\|r_hx\|\lesssim\|p_hr_hx-x\|+\|x\|.\]
+\end{pf}
+In most cases we have $\|p_hx\|=\|x\|$, so for an approximation it is enough to verify the truncation error converges to zero.
 
 
 
@@ -191,7 +203,6 @@ We will always assume $L:X\to Y$ is a right invertible(i.e. well-posed) linear o
 Let $L$ be a well-posed linear problem.
 An \emph{approximation} of $L$ is an indexed family $L_h\in L(X_h,Y_h)$ of invertible linear operators, where $X_h$ and $Y_h$ are stable and convergent approximations of $X$ and $Y$.
 \end{defn}
-Note that we never use the prolongation operator for $Y_h$, but the restriction operator $r_h$ for $Y_h$ is taken to be routine.
 We also do not need to assume in fact the stability of $r_h$.
 The approximation $X_h$ of $X$ is where we should take subtly, and the art of numerical analysis begins with the choice of $X_h$.
 The following diagram does not commute, but \emph{approximately} commute.
@@ -200,15 +211,13 @@ X \dar[dashed,bend right,swap]{r_h}\rar{L} & Y \dar{r_h} \\
 X_h \uar[dashed,bend right,swap]{p_h}\rar{L_h} & Y_h
 \end{cd}
 
-Given an approximated problem $L_h$, we will always write $x_h:=L_h^{-1}r_hLx$ the \emph{approximate solution} for each $x\in X$.
-
 \begin{defn}
 Let $L_h$ be an approximation of a well-posed linear problem $L$.
 We say $L_h$ is
 \begin{parts}
+\item \emph{consistent} if $CE=\|r_hLx-L_hr_hx\|\to0$ for each $x$,
 \item \emph{stable} if $\|L_h^{-1}\|\lesssim1$,
-\item \emph{consistent} if $CE=\|r_hLx-L_hr_hx\|_h\to0$,
-\item \emph{convergent} if $DE=\|x_h-r_hx\|_h\to0$.
+\item \emph{convergent} if $DE=\|L_h^{-1}r_hLx-r_hx\|\to0$ for each $x$.
 \end{parts}
 \end{defn}
 
@@ -219,28 +228,48 @@ If $L_h$ is consistent, then it is stable if and only if it is convergent.
 \begin{pf}
 ($\Rightarrow$)
 It is clear from
-\[DE=\|x_h-r_hx\|_h\le\|L_h^{-1}\|\|r_hLx-L_hr_hx\|_h=\|L_h^{-1}\|\cdot CE.\]
-Conversely, suppose $L_h$ is convergent.
-For any $y_h\in Y_h$, since $r_h:Y\to Y_h$ and $L$ are surjective, there is $x$ such that $y_h=r_hLx$ so that $L_h^{-1}y_h=x_h$ is convergent since
-\[DE=\|x_h-r_hx\|_h\le\|r_h\|_{X\to X_h}\cdot SE.\]
-By the uniform boundedness principle, $L_h^{-1}$ is uniformly bounded.
+\[DE=\|x_h-r_hx\|\le\|L_h^{-1}\|\|r_hLx-L_hr_hx\|=\|L_h^{-1}\|\cdot CE.\]
+
+($\Leftarrow$)
+If we show for the net of operators $p_hL_h^{-1}r_h:Y\to X$ that $p_hL_h^{-1}r_hy$ is bounded in $X$ for each $y\in Y$, then by the uniform boundedness principle the operators $p_hL_h^{-1}r_h$ is uniformly bounded, and we obtain the stability from
+\[\|L_h^{-1}\|=\|r_hp_hL_h^{-1}r_hp_h\|\le\|r_h\|\|p_hL_h^{-1}r_h\|\|p_h\|.\]
+
+Since $L$ is surjective by the well-posedness, there is $x\in X$ such that $Lx=y$.
+With this $x$ we have
+\[\|p_hL_h^{-1}r_hy-x\|\le\|p_h\|\cdot DE+TE\to0,\]
+so we are done. 
+
 \end{pf}
 
 
-\begin{ex}
-
-\end{ex}
 
 
-\subsection{Consistency analysis}
-The Taylor's theorem method for finite difference scheme.
+\subsection{Numerical analyses}
+For a numerical approximation, we can consider three analyses:
+\begin{enumerate}
+	\item Consistency analysis,
+	\item Statbility analysis,
+	\item Error analysis.
+\end{enumerate}
+Note that we have $DE\le\|L_h^{-1}\|\cdot CE$.
+If we have the estimate for the rate of the consistency error from the consistency analysis, and also if we have the bound of $\|L_h^{-1}\|$ in the stability analysis, we can easily obtian an \emph{error estimate}.
+In this regard, the main difficulty is the former two.
 
-\subsection{Stability analysis}
-We must bound $\|L_h^{-1}\|$.
 
-The von Neumann stability analysis for finite difference scheme.
-% 여기서 말하는 stability, lax equivalence에서 말하는 stability와 미묘하게 다르다. 시간이 지날수록 오차가 뛰어서 수렴 안하는 건 스텝사이즈를 줄여서 수렴시키는 것과는 다른 것 같은데
-% 초기 데이터가 조금 바뀔 때 전체 솔루션이 조금 바뀌어야 한다는 건데, 이거 어차피 시간을 유한하게 잡으면 스텝사이즈 죽여서 결국 실제 해로 수렴시킬 수 있지 않나
+\subsubsection*{Consistency analysis}
+Usually the Taylor's theorem is used in finite difference schemes.
+
+
+\subsubsection*{Stability analysis}
+For the bound of $\|L_h^{-1}\|$, we have to make a \emph{stability estimate}
+\[\|x_h\|\lesssim\|L_hx_h\|.\]
+
+We have some notes about uniqueness and existence: the injectivity of $L_h^{-1}$ clearly follows from the above estimate, and the surjectivity is deduced thanks to the finite-dimensional nature of $X_h$ and $Y_h$ when their dimensions coincide.
+
+\subsubsection*{Error analysis}
+In the Ritz-Galerkin approximation the discrete solution operator $p_hL_h^{-1}r_hL$ can be directly shown to be an orthogonal projection called the \emph{Ritz projection}, which deduces an \emph{a priori} convergence result before justifying proving consistency and stability.
+
+
 
 
 \subsection{Applications}

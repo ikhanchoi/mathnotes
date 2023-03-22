@@ -8,7 +8,7 @@
 \maketitle
 \tableofcontents
 
-\part{Measures}
+\part{}
 
 
 
@@ -201,6 +201,25 @@ for each $i$, so we have by the part (c) that
 \end{pf}
 
 
+
+\section{Measures on the real line}
+
+
+\begin{prb}[Borel $\sigma$-algebra]
+\end{prb}
+
+\begin{prb}[Distribution functions]
+\end{prb}
+
+\begin{prb}[Helly selection theorem]
+\end{prb}
+
+\begin{prb}[Vitali set]
+\end{prb}
+
+
+
+
 \section*{Exercises}
 \begin{prb}[Boolean algebras and rings]
 
@@ -242,26 +261,6 @@ If $\spn\{\1_A:A\in\cA\}\subset H$ then $B^\infty(\sigma(\cA))\subset H$.
 \end{prb}
 
 
-
-
-
-\chapter{Measures on the real line}
-
-
-\begin{prb}[Borel $\sigma$-algebra]
-\end{prb}
-
-\begin{prb}[Distribution functions]
-\end{prb}
-
-\begin{prb}[Helly selection theorem]
-\end{prb}
-
-\begin{prb}[Non-Lebesgue measurable set]
-\end{prb}
-
-
-\section*{Exercises}
 
 \begin{prb}[Steinhaus theorem]
 Let $\lambda$ denote the Lebesgue measure on $\R$ and let $\E\subset\R$ be a Lebesgue measurable set with $\lambda(E)>0$.
@@ -493,19 +492,107 @@ Another approach: mimicking Pettis measurability theorem.
 
 
 
-\part{Lebesgue integral}
 
-
-\chapter{Convergence theorems}
-\section{Definition of Lebesgue integral}
-\section{Convergence theorems}
+\chapter{Lebesgue integral}
+\section{Monotone convergence theorem}
 
 % Stein: Egorov $\to$ BCT $\to$ Fatou $\to$ MCT $\to$ L1<M\\
 % Stein: BCT + L1<M $\to$ DCT\\
 % Folland: MCT $\to$ Fatou $\to$ DCT $\to$ BCT
 
-\begin{prb}[Monotone convergence theorem]
+\begin{prb}[Lebesgue integral of non-negative functions]
+Let $(\Omega,\mu)$ be a measure space.
+Let $f:\Omega\to\R_{\ge0}$ be a measurable function.
+The \emph{Lebesgue integral} of $f$ is defined by
+\[\int f\,d\mu:=\sup\left\{\int s\,d\mu:0\le s\le f,\ \text{$s$ simple}\right\}\]
 \end{prb}
+
+\begin{prb}[Monotone convergence theorem]
+Let $(\Omega,\mu)$ be a measure space.
+Let $f_n$ and $f$ be measurable functions $\Omega\to\R_{\ge0}$.
+\begin{parts}
+\item $E\mapsto\int_Ef\,d\mu$ is a measure if $f$ is simple.
+\item $E\mapsto\int_Ef\,d\mu$ is a measure even if $f$ is not simple.
+\item If $f_n\uparrow f$ a.e., then $\int f_n\to\int f$.
+\end{parts}
+\end{prb}
+\begin{pf}
+(a)
+Clear from the linearity of the integral for simple functions.
+
+(b)
+For $E_n\uparrow E$, we want to show the continuity from below, $\tint_{E_n}f\to\tint_Ef$.
+Take $\e>0$.
+We introduce a continuous bijection $\beta:[0,\infty]\to[0,1]:t\mapsto t/(1+t)$ to avoid dividing the cases for infinity.
+By the definition of the Lebesgue integral, we have a simple function $s$ such that $0\le s\le f$ and
+\[\beta(\tint_Ef)-\beta(\tint_Es)<\e,\]
+whether or not $\int_Ef$ diverges.
+Then,
+\begin{align*}
+\beta(\tint_Ef)-\beta(\tint_{E_n}f)
+&=[\beta(\tint_Ef)-\beta(\tint_Es)]+[\beta(\tint_Es)-\beta(\tint_{E_n}s)]+[\beta(\tint_{E_n}s)-\beta(\tint_{E_n}f)]\\
+&<\e+[\beta(\tint_Es)-\beta(\tint_{E_n}s)]+0\xrightarrow{n\to\infty}\e
+\end{align*}
+by the part (a).
+We are done by letting $\e\to0$.
+
+(c)
+Define $E_n:=\{x:f(x)<(1+\e)f_n(x)\}$,
+which converges to a full set because $f_n\to f$ a.e.
+Since $f$ is a measure, we can choose $N$ such that
+\[\beta(\tint_Ef)-\beta(\tint_{E_N}f)<\e.\]
+With this $N$, we have
+\[\beta(\tint_{E_N}f)-\beta(\tint_{E_N}f_n)\le\frac{\tint_{E_N}f-\tint_{E_N}f_n}{(1+\tint_{E_N}f)(1+\tint_{E_N}f_n)}<\e,\qquad n\ge N.\]
+Then, we have for $n\ge N$ that
+\begin{align*}
+\beta(\tint_Ef)-\beta(\tint_Ef_n)
+&=[\beta(\tint_Ef)-\beta(\tint_{E_N}f)]+[\beta(\tint_{E_N}f)-\beta(\tint_{E_N}f_n)]+[\beta(\tint_{E_N}f_n)-\beta(\tint_{E}f_n)]\\
+&<0+\e+\e,
+\end{align*}
+so we are done by letting $n\to\infty$ and $\e\to0$.
+\end{pf}
+
+\begin{prb}[Corollaries of monotone convergence theorem]
+Fatou's lemma, linearity of the integral, $f\ge0$ and $\int f=0$ imply $f=0$ a.e.
+\end{prb}
+
+
+\section{Dominated convergence theorem}
+
+
+\begin{prb}[Lebesgue integral of complex-valued functions]
+\end{prb}
+
+\begin{prb}[Bounded convergence theorem]
+Semifinite measures
+\begin{parts}
+\item
+\[\sup_{g\le f}\int g\,d\mu=\int f\,d\mu\]
+where $g$ runs through bounded measurable functions.
+\item
+\end{parts}
+\end{prb}
+
+
+\section{Product measures}
+
+\begin{prb}[Fubini-Tonelli theorem]
+Lebesgue measure on Euclidean spaces
+\end{prb}
+
+
+
+
+\section*{Exercises}
+\begin{prb}[Convergence of one-parameter family]
+\end{prb}
+
+
+
+\part{}
+
+
+\chapter{Signed measures}
 
 
 
@@ -516,31 +603,8 @@ An integrable function as a measure
 $\sigma$-finite measures
 
 
-\section*{Exercises}
-\begin{prb}[Convergence of one-parameter family]
-\end{prb}
 
-
-
-
-\chapter{Product measures}
-\section{Fubini-Tonelli theorem}
-\section{Lebesgue measure on Euclidean spaces}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-\chapter{Measures on metric spaces}
+\chapter{Borel measures}
 
 
 
@@ -619,7 +683,7 @@ Then, $f$ is continuous on $A$, and of course on $F$.
 
 
 
-\section{Locally compact metric spaces}
+\section{Locally compact spaces}
 
 
 compact  closed set not containing infty\\
@@ -795,9 +859,6 @@ By limiting $\e\to0$, we have $\mu(E)=\nu(E)$.
 
 
 
-\part{Linear operators}
-
-
 
 \chapter{Lebesgue spaces}
 \section{$L^p$ spaces}
@@ -833,25 +894,30 @@ Note that we can show that $1\le2p^{-\frac1p}q^{-\frac1q}\le2$ and the minimum i
 
 
 
+\part{Distribution theory}
+\chapter{Test functions}
+
+
+\chapter{Distributioins}
+
 
 \chapter{Bounded linear operators}
-\section{Continuity}
-Schur test
 
-\section{Density arguments}
-extension of operators
+\section{Boundedness}
 
-\section{Interpolation}
+Translation and multiplication operators
+
+\begin{prb}[Extension of operators]
+\end{prb}
+
+\section{Interpolations}
 weak Lp, marcinkiewicz
-
-
 
 \begin{defn}
 Let $f$ be a measurable function on a measure space $(X,\mu)$.
 The \emph{distribution function} $\lambda_f:[0,\infty)\to [0,\infty)$ is defined as:
 \[\lambda_f(\alpha):=\mu(\{x:|f(x)|>\alpha\}).\]
 \end{defn}
-
 
 Do not use $\mu(\{x:|f(x)|\ge\alpha\})$.
 The strict inequality implies the \emph{lower semi-continuity} of $\lambda_f$.
@@ -873,10 +939,6 @@ By the Chebyshev inequality,
 \[\sup_{0<\alpha<\infty}\left[\alpha^p\cdot\mu(|f|>\alpha)\right]\le\int_0^\infty p\alpha^{p-1}\cdot\mu(|f|>\alpha)\,d\alpha=\|f\|_{L^p}^p.\]
 
 \end{pf}
-
-
-
-
 
 \begin{prb}[Marcinkiewicz interpolation]
 Let $X$ be a $\sigma$-finite measure space and $Y$ be a measure space.
@@ -902,23 +964,19 @@ by (1) Fubini, (2) Sublinearlity, (3) Chebyshev, (4) Boundedness, (5) Fubini.
 \end{pf}
 
 \begin{prb}[Hadamard's three line lemma]
-Let $f$ be a bounded holomorphic function on the vertical unit stripe $\{z:0<\Re z<1\}$.
+Let $f$ be a bounded holomorphic function on the vertical unit strip $\{z:0<\Re z<1\}$.
 Then, for $0<\theta<1$,
 \[\|f\|_{L^\infty(\Re=\theta)}\le\|f\|_{L^\infty(\Re=0)}^{1-\theta}\|f\|_{L^\infty(\Re=1)}^\theta.\]
 \end{prb}
 \begin{pf}
-Define
-\[g(z):=\frac{f(z)}{\|f\|_{L^\infty(\Re=0)}^{1-z}\|f\|_{L^\infty(\Re=1)}^z},\qquad g_n(z)=g(z)e^\frac{z^2-1}n.\]
-Then we have
-\begin{enumerate}
-\item $g_n\to g$ pointwisely as $n\to\infty$,
-\item $g_n(z)\to0$ uniformly as $\Im z\to\infty$.
-\end{enumerate}
-The second one is because $g$ is bounded and for $z=x+yi$ we have
-\[|g_n(z)|\lesssim|e^\frac{z^2-1}n|=e^{\Re\frac{z^2-1}n}=e^\frac{x^2-y^2-1}n\le e^\frac{-y^2}n.\]
-
-By (1), it is enough to bound $g_n$ for each $n$.
-Truncating the stripe, the outer region is controlled by (2) and the interior region is controlled by the maximum modulus principle.
+Fix $n$ and define
+\[g_n(z):=\frac{f(z)}{\|f\|_{L^\infty(\Re=0)}^{1-z}\|f\|_{L^\infty(\Re=1)}^z}e^{-\frac{z(1-z)}n}.\]
+Then,
+\[|g_n(z)|\le e^{-\frac{(\Im z)^2}n}\]
+for $z$ in the strip.
+By the maximum principle,
+\[|f(z)|\le\|f\|_{L^\infty(\Re=0)}^{1-\theta}\|f\|_{L^\infty(\Re=1)}^\theta e^{\frac{y^2}n}.\]
+Letting $n\to\infty$, we are done.
 \end{pf}
 
 
@@ -955,14 +1013,18 @@ Putting $z=\theta$ in the last inequality, we get the desired result.
 
 
 
-\chapter{Convergence of linear operators}
-\section{Translation and multiplication operators}
+\section{Kernels}
+\begin{prb}[Schur test]
+\end{prb}
+\begin{prb}[Young's inequality of integral operators]
+\end{prb}
 
 \section{Convolution type operators}
-approximation of identity
+\begin{prb}[Approximation of identity]
 Fej\'er, Poisson, box?
-
-\section{Computation of integral transforms}
+\end{prb}
+\begin{prb}[Summability methods]
+\end{prb}
 
 
 
