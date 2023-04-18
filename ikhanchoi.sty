@@ -74,33 +74,29 @@
   \newtheorem*{cor*}{Corollary}
   \newtheorem{lem}[thm]{Lemma}
   \newtheorem*{lem*}{Lemma}
-  \newtheorem*{clm}{Claim}
+  \newtheorem{clm}[thm]{Claim}
+  \newtheorem*{clm*}{Claim}
 \theoremstyle{definition}
-  \newtheorem{defn}{Definition}[section]
+  \newtheorem{defn}[thm]{Definition}
   \newtheorem*{defn*}{Definition}
-  \newtheorem{ex}{Example}[section]
+  \newtheorem{ex}[thm]{Example}
   \newtheorem*{ex*}{Example}
   \newtheorem{notn}{Notation}[section]
   \newtheorem*{notn*}{Notation}
   \@ifclassloaded{report}{\newtheorem{prb}{}[chapter]}{\newtheorem{prb}{}[section]}
 \theoremstyle{remark}
-  \newtheorem*{rmk}{Remark}
+  \newtheorem{rmk}[thm]{Remark}
+  \newtheorem*{rmk*}{Remark}
+  \newtheorem{exe}[thm]{Exercise}
+  \newtheorem*{exe*}{Exercise}
 
-%\NewDocumentEnvironment{pf}{}
-%  {\begin{proof}}
-%  {\end{proof}}
-%\NewDocumentEnvironment{sol}{}
-%  {\begin{proof}[Solution]}
-%  {\end{proof}}
+\NewDocumentEnvironment{pf}{}
+  {\begin{proof}}
+  {\end{proof}}
+\NewDocumentEnvironment{sol}{}
+  {\begin{proof}[Solution]}
+  {\end{proof}}
 
-\RequirePackage{environ}
-\newif\if@hidepf % \@hidepffalse
-\newif\if@hidesol
-\DeclareOption{hidepf}{\global\@hidepftrue}
-\DeclareOption{hidesol}{\global\@hidesoltrue}
-\ProcessOptions\relax
-\NewEnviron{pf}[1][\unskip]{\if@hidepf\else\begin{proof}[Proof #1]\BODY\end{proof}\fi}
-\NewEnviron{sol}[1][\unskip]{\if@hidesol\else\begin{proof}[Solution #1]\BODY\end{proof}\fi}
 
 
 %\@ifclassloaded{report}
@@ -129,6 +125,7 @@
 \newlist{parts}{enumerate}{1}
 \setlist[parts]{label=\rm{(\alph*)},leftmargin=9mm,itemsep=0pt}
 \setlist[enumerate]{itemsep=0pt}
+\setlist[itemize]{itemsep=0pt}
 
 \let\@@item\item
 \newcommand{\@@sitem}{\refstepcounter{\@enumctr}\@@item[$^*$\csname label\@enumctr\endcsname]}

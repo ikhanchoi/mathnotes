@@ -8,11 +8,178 @@
 \tableofcontents
 
 \newpage
-\section{Day 1}
+\section{Day 1: April 10}
+
+References:
+Steenrod, \emph{The topology of fiber bundles}, and Tamaki, \emph{Fiber bundles and homotopy} (Japanese)
+
+\subsection*{1. Introduction}
+
+An ultimate goal of topology is to classify topological spaces, up to homeomorphism.
+If you want to show two spaces are homeomorphic, we should construct a homeomorphism: \emph{Shokuninwaza} (wild knot, Casson handle).
+If you want to show two spaces are not homeomorphic, then we can investigate topological \emph{properties}, and as their quantitative comparison, we can investigate topological \emph{invariants}
+Some examples include
+\begin{itemize}
+\item the number of connected componenets,
+\item the Euler characteristic,
+\item homology groups,
+\item homotopy groups,
+\item the minimal number of open contractible sets to cover the spaces (Lusternik-Schnirelmann category, topological complexity),
+\item Gelfand-Naimark theorem: $C(X)\cong C(Y)$ implies $X\cong Y$ if they are compact Hausdorff.
+\end{itemize}
+
+
+We will restrict objects to study.
+For example, metric spaces, manifolds, CW-complexes.
+As the assumptions change, invariants may have different appearances.
+For a manifold $X$,
+\[\chi(X)=\sum_{q=0}^\infty(-1)^q\rk_\Z H_q(X)=\sum_{q=0}^\infty(-1)^qb_q(X).\]
+For a CW-complex $X$,
+\[\chi(X)=\sum_{q=0}^\infty(-1)^q(\text{the number of $q$-cells}).\]
+
+
+\smallskip\hrule\bigskip
+
+Let $M$ be an connected closed $n$-dimensional manifold.
+Some classification results are as follows(up to both homeomorphisms and diffeomorphisms, because $d\le2$):
+\begin{itemize}
+\item ($n=0$) $M\cong *$, and $\chi(*)=1$.
+\item ($n=1$) $M\cong S^1$, and $\chi(S^1)=0$.
+\item ($n=2$)
+	\begin{itemize}
+	\item If $M$ is orientable, then $M\cong\Sigma_g$ for $g\ge0$, and $\chi(\Sigma_g)=2-2g$.\\
+	$\Sigma_0\cong S^2$, $\Sigma_1\cong T^2$.
+	\item If $M$ is not orientable, then $M\cong(\RP^2)^{\# h}$ for $h\ge1$, and $\chi((\RP^2)^{\#h})=2-h$.\\
+	$\RP^2(\cong\text{M\"obius strip}\cup D^2)$, $K=\RP^2\#\RP^2$
+	\end{itemize}
+\end{itemize}
+
+\textbf{Problem 1.} Show $\RP^2\#T^2\cong\RP^2\#K$.
+\bigskip
+
+Here are some facts about triangulability:
+\begin{itemize}
+\item Cairns(1935), Whitehead (1940): every $C^1$-manifold is triangulable (unique as a PL-manifold).
+\item Rado(1925, $n=2$), Moise(1952, $n=3$): for $n\le3$, every $C^0$-manifold is triangulable (unique as a PL-manifold).
+\item Kirby-Siebermann(1966, $n\ge5$): for $n\ge4$, there is a non-triangulable PL-manifold.
+\item Donaldson, Freedman, Casson: for $n=4$, there is a non-triangulable manifold as a topological space.
+\item Manolescu(2013): for $n\ge5$, there is a non-triangulable manifold as a topological space.
+\end{itemize}
+
+Orientability?
+For a connected closed surface $S$, it is orientable iff $H_2(S)\cong\Z$, not orientable iff $H_2(S)\cong0$. The generator of $H_2(S)$ is called the fundamental class.
+Orientability asks if the tubular neighborhood of every simple closed curve is homeomorphic to an anulus.
+It is described by the first Stiefel-Whitney class:
+\[w_1(S)\in H^1(S;\Z/2\Z)\cong\Hom(H^1(S),\Z/2\Z)\cong\Hom(\pi_1(S),\Z/2\Z).\]
+
+\smallskip\hrule
+
+\subsection*{Euler characteristic of manifolds}
+
+\subsubsection*{(0) Odd-dimensional manifolds}
+
+\begin{thm*}
+For an odd-dimensional closed connected manifold, $\chi(M^{2n+1})=0$.
+\end{thm*}
+\begin{pf}
+If orientable, then $b_0(M)=1$, $b_3(M)=1$, $b_1(M)=b_2(M)$ by the Poincar\'e duality.
+If not, a double cover is orientable, and $\chi(\tilde M)=2\chi(M)$.
+\end{pf}
+
+
+\subsubsection*{(1) Gauss-Bonnet theorem}
+\begin{thm*}[Gauss-Bonnet]
+If a smooth manifold $M^n$ embeds into $\R^{n+1}$ (hypersurface), then it is orientable and the Euler characteristic is given by
+\[\chi(M)=\frac2{\vol(S^n)}\int_MK\,d\vol_M.\]
+\end{thm*}
 
 
 
 
 
+\section{Day 2: April 17}
+
+We have a cohomological interpretation.
+In the Chern-Weil theory, we have a generalized version of the Gauss-Bonnet theorem for a general compact manifold using the theory of connections.
+We can interpret $2\vol(S^n)^{-1}K\cdot d\vol_M$ as a differential form which provides with the Euler characteristic.
+In the context of the de Rham theorem, we will eventually call the equivalence class of this differential form as the \emph{Euler class}.
+
+\subsubsection*{(2) Poincar\'e-Hopf theorem}
+
+Let $M^n$ be a orientable connected smooth closed manifold.
+Let $X$ be a smooth vector field on $M$ such that there are only finitely many zeros $\{p_1,\cdots,p_m\}$.
+For each $p_j$, define the index $\Ind(X,p_j)$ as follows: 
+seeing $X$ as a vector field on $\f_j(U_j)$ for a chart $(U_j,\f_j)$ not containing zeros of $X$ but $p_j$ and mapping $p_j$ to zero in $\R^n$, we define $\Ind(X,p_j)=\deg f_j$, where $f_j:S_\e(\approx S^{n-1})\to S^{n-1}:x\mapsto X_x/\|X_x\|$.
+
+\begin{ex*}
+Let $n=2$.
+We have indices $1, 1, 1, -1, 0, 2$ for
+\[X_1(x,y)=(x,y),\quad X_2(x,y)=(-x,-y),\quad X_3(x,y)=(-y,x),\]
+\[X_4(x,y)=(-x,y),\quad X_5(x,y)=\sqrt{x^2+y^2}(1,1),\quad X_6(x,y)=(x^2-y^2,2xy).\]
+\end{ex*}
+
+\begin{thm*}[Poincar\'e-Hopf]
+\[\sum_{j=1}^m\Ind(X,p_j)=\chi(M).\]
+\end{thm*}
+
+We have a cohomological interpretation.
+Let $c=\sum_{j=1}^m\Ind(X,p_j)p_j$ be a singular 0-cycle on $M$.
+Then, the Poincar\'e-Hopf theorem states that we have
+\[\begin{array}{ccc}
+H_0(M)&\xrightarrow{\sim}&\Z\\
+p_j&\mapsto&1\\
+c&\mapsto&\chi(M).
+\end{array}\]
+By the Poincar\'e duality, we can identify the homology class $[c]$ with a de Rham cohomology class, and the above map is just an integration map.
+
+The cycle $c$ tells us the information of intersections of $X$ and zero section(of the tangent bundle).
+If $TM$ is trivial, then the zero section does not self-intersection(?) so that $c=0$.
+The Euler characteristic measures the twist of a bundle, and the characteristic class generalizes this wakugumi.
+
+
+\subsection*{2. Fiber bundles}
+
+From now we will only consider paracompact Hausdorff spaces.
+Recall that a space is paracompact iff for every open cover there is a locally finite refinement.
+\begin{ex*}
+Open sets of $\R^n$, metric spaces, CW-complexes, countable inductive limit of compact spaces are paracompact.
+\end{ex*}
+\begin{thm}
+For any open cover of a paracompact Hausdorff space $X$, there is a partition of unity subordinate to it.
+\end{thm}
+
+\textbf{Problem 2.} Prove the above theorem.
+
+\begin{defn}
+Let $B$ be connected(for simplicity).
+A map $E\to B$ is called a fiber bundle with fiber $F$, or just a $F$-bundle, if it is locally trivial: every point $x\in B$ has an open neighborhood $U_x$ such that there is a homeomorphism $\f:p^{-1}(U_x)\to U_x\times F$ with $p=\pr_{U_x}\circ\f$.
+
+For each $y\in B$ $E_y:=p^{-1}(y)$ is homeomorphic to $F$, and is called the fiber at $y$.
+Also, $E$ and $B$ are called the total space and the base space.
+We somtimes write as $\xi=(F\to E\xrightarrow{p}B)$.
+\end{defn}
+\begin{ex*}\,
+\begin{parts}
+\item We say $\pr_1:B\times F\to B$ is the product or bundle.
+\item $p:\R\to S^1=\R/\Z:t\mapsto[t]$ is a $\Z$-bundle. In general, a fiber bundle with a discrete fiber is called a covering space.
+\item $p_1:S^n\to\RP^n=S^n/(x\sim-x)$ is a $\Z/2\Z$-bundle.
+\item $p:S^{2n+1}\to\CP^n=S^{2n+1}/(z\sim uz)$ for $u\in S^1$ is a $S^1$-bundle. (a generalization of Hopf bundles)
+\item Let $M^n$ be a smooth manifold. Then, the tangent and the contangent bundles are $\R^n$-bundles.
+\end{parts}
+\end{ex*}
+
+\textbf{Problem 3.} Show that $p:S^{2n+1}\to\CP^n$ is a $S^1$-bundle by checking concretely its local triviality.
+
+\begin{defn}
+If $F,E,B$ are $C^r$, $p:E\to B$ is $C^r$, and the local trivialzation is $C^r$, then we say the fiber bundle is $C^r$.
+\end{defn}
+\begin{defn}
+For $\xi_1=(F\to E_1\xrightarrow{p_1}B_1$, $\xi_2=(F\to E_2\xrightarrow{p_2}B_2$, a bundle map $\Phi=(\tilde f,f):\xi_1\to\xi_2$ is a pair of maps $\tilde f:E_1\to E_2$ and $f:B_1\to B_2$ such that $f\circ p_1=p_2\tilde f$ and the restriction $\tilde f:p_1^{-1}(b)\to p_2^{-1}(f(b))$ is a homeomorphism for every $b\in B$.
+
+If both $f$ and $\tilde f$ are homeomorphisms, then $\Phi$ is called a bundle isomorphism.
+If a bundle is isomorphic to a product bundle, then it is called to be trivial.
+\end{defn}
+
+\textbf{Problem 4} For a bundle map $\Phi$, is $\tilde f$ homeomorphic if $f$ is homeomorphic? (If we are doing in the category of smooth manifolds, then the inverse function theorem may be helpful.....?????)
 
 \end{document}

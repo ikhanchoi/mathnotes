@@ -1,0 +1,395 @@
+\documentclass{../../small}
+\usepackage{../../ikhanchoi}
+
+\begin{document}
+
+\section{April 14}
+
+
+
+\subsection{Completely positive maps}
+
+\begin{defn}
+Let $\cA$ and $\cB$ be C$^*$-algebras.
+A linear map $\f:\cA\to\cB$ is said to be \emph{completely positive} (c.p.) if the inflation $\f_n:M_n(\cA)\to M_n(\cB):[a_{ij}]\mapsto[\f(a_{ij})]$ is positive for each $n\ge1$.
+\end{defn}
+
+\begin{rmk}
+For the positivity in matrix algebras, the following equivalent statements are useful.
+\begin{parts}
+\item $[a_{ij}]\in M_n(\cA)$ is positive.
+\item $[a_{ij}]=[b_{ij}]^*[b_{ij}]=[b_{ji}^*][b_{ij}]=[\sum_kb_{ki}^*b_{kj}]$ for some $[b_{ij}]\in M_n(\cA)$.
+\item $\sum_{i,j}\<\pi(a_{ij})\xi_j,\xi_i\>_H\ge0$ for $[\xi_i]\in H^n$, for a faithful representation $\pi:\cA\to B(H)$.
+\item $\sum_{i,j}\<\pi(a_{ij})\xi_j,\xi_i\>_H\ge0$ for $[\xi_i]\in H^n$, for every representation $\pi:\cA\to B(H)$.
+\end{parts}
+\end{rmk}
+
+\begin{ex}\,
+\begin{parts}
+\item A $*$-homomorphism is c.p.
+\item A state is c.p.
+\item A conjugation $B(\hat H)\to B(H):a\mapsto V^*aV$ is c.p. for every bounded linear $V:H\to\hat H$.
+\item The transpose $M_2(\C)\to M_2(\C)$ is not c.p.
+\item The convex combination, composition, restriction of c.p. maps is c.p.
+\end{parts}
+\end{ex}
+\begin{pf}
+(a)
+A $*$-homomorphism is positive, and its inflations are all $*$-homomorphisms.
+
+(b)
+Let $\rho:\cA\to\C$ be a state.
+If $[a_{ij}]=[\sum_kb_{ki}^*b_{kj}]\in M_n(\cA)_+$, then we have for $[x_i]\in\ell_2^n$ that
+\[\sum_{i,j}\<\rho(a_{ij})x_j,x_i\>_\C=\sum_{i,j}\bar{x_i}\rho(a_{ij})x_j=\rho(\sum_{i,j,k}\bar{x_i}b_{ki}^*b_{kj}x_j)=\sum_k\rho((\sum_ib_{ki}x_i)^*(\sum_jb_{kj}x_j))\ge0.\]
+
+(c)
+If $[a_{ij}]=[\sum_kb_{ki}^*b_{kj}]\in M_n(B(\hat H))_+$, then we have for $[\xi_i]\in H^n$ that
+\[\sum_{i,j}\<V^*a_{ij}V\xi_j,\xi_i\>=\sum_{i,j,k}\<b_{kj}V\xi_j,b_{ki}V\xi_i\>=\sum_k\<\sum_jb_{kj}V\xi_j,\sum_ib_{ki}V\xi_i\>\ge0.\]
+
+(d)
+We have a counterexample for $M_2(M_2(\C))\to M_2(M_2(\C))$:
+\[\mat{1&0&0&1\\0&0&0&0\\0&0&0&0\\1&0&0&1}\mapsto\mat{1&0&0&0\\0&0&1&0\\0&1&0&0\\0&0&0&1}.\]
+The former has an eigenvalues $\{2,0\}$, and the latter has $\{\pm1\}$.
+
+(e) Clear.
+\end{pf}
+
+\begin{thm}[Stinespring dilation]
+Let $\cA$ be a unital C$^*$-algebra and $\f:\cA\to B(H)$ be a c.p. map.
+Then, there is a representation $\pi:\cA\to B(\hat H)$ and a bounded linear operator $V:H\to\hat H$ such that the following diagram commutes:
+\begin{cd}
+\cA \ar{r}{\f} \ar[swap]{d}{\pi} & B(H) \\
+B(\hat H) \ar[swap]{ur}{V^*\cdot V} &
+\end{cd}
+\end{thm}
+\begin{pf}
+Define a sesquilinear form on the algebraic tensor product $\cA\odot H$ as
+\[\<\sum_ja_j\otimes\xi_j,\sum_ib_i\otimes\eta_i\>:=\sum_{i,j}\<\f(b_i^*a_j)\xi_j,\eta_i\>.\]
+It is positive since
+\[\sum_{i,j}\<a_i^*a_j\xi_j,\xi_i\>=\sum_{i,j}\<a_j\xi_j,a_i\xi_i\>=\|\sum_ia_i\xi_i\|^2\ge0\]
+implies
+\[\<\sum_ja_j\otimes\xi_j,\sum_ia_i\otimes\xi_i\>=\sum_{i,j}\<\f(a_i^*a_j)\xi_j,\xi_i\>\ge0.\]
+Taking quotient by the left kernel $N$ and completion, we obtain a hilbert space $\hat H:=(\cA\odot H/N)^-$.
+
+Define $\pi:\cA\to B(\hat H)$ such that
+\[\pi(a)(b\otimes\xi+N):=ab\otimes+N,\]
+and define $V:H\to\hat H$ such that
+\[V\xi:=1_\cA\otimes\xi+N.\]
+Then for any $\xi,\eta\in H$,
+\[\<V^*\pi(a)V\xi,\eta\>=\<\pi(a)(1_\cA\otimes\xi+N),1_\cA\otimes\xi+N\>=\<a_\cA\otimes\xi+N,1_\cA\otimes\xi+N\>=\<\f(a)\xi,\eta\>.\qedhere\]
+\end{pf}
+
+\begin{rmk}\,
+\begin{parts}
+\item If $\f$ is unital, then $V$ is an isometry since $V^*V=V^*\pi(1)V=\f(1)=1$.
+\item If $\f$ is unital and $H=\C$, then it is just the GNS-construction with the cyclic vector $V1_\C$.
+\item If $\f:\cA\to\cB$ is c.p., then by embedding $\cB$ into $B(H)$ and applying the Stinespring dilation,
+\[\|\f(a)\|=\|V^*\pi(a)V\|\le\|V\|\|a\|\|V\|=\|a\|\|V^*V\|=\|a\|\|\f(1)\|\]
+implies $\|\f\|\le\|\f(1)\|$, hence $\|\f\|=\|\f(1)\|$.
+\item It has a physical meaning: a unital completely positive map is called quantum channel or quantum operation in quantum information theory. They are interpreted as an evolution in open quantum system, and taking $\hat H$ means introducing a closed ambient system in which unitary evolution occurs.
+\end{parts}
+\end{rmk}
+
+\begin{thm}[Completely positive maps for matrix algebras]
+Let $\cA$ be a C$^*$-algebra.
+Let $e_i\in\ell_2^n$ be standard orthonormal basis and let $e_{ij}=e_i\otimes e_j=|e_i\>\<e_j|\in M_n(\C)$ be unit matrix elements.
+\begin{parts}
+\item
+There is a 1-1 correspondence
+\[\mathrm{CP}(M_n(\C),\cA)\to M_n(\cA)_+:\psi\mapsto[\psi(e_{ij})].\]
+\item
+Let $\cA$ be unital.
+There is a 1-1 correspondence
+\[\mathrm{CP}(\cA,M_n(\C))\to M_n(\cA)^*_+:\f\mapsto(\hat\f:[a_{ij}]\mapsto\sum_{i,j}\<\f(a_{ij})e_j,e_i\>).\]
+\end{parts}
+\end{thm}
+\begin{pf}
+(a)
+Fix $\cA\to B(H)$ a faithful representation and just write $\cA\subset B(H)$.
+
+Suppose $\psi:M_n(\C)\to\cA$ is a c.p. map.
+Identify $M_n(\C)=B(\ell_2^n)$.
+Since $[e_{ij}]\in M_n(B(\ell_2^n))_+$ is positive because
+\[\sum_{i,j}\<e_{ij}\xi_j,\xi_i\>=\sum_{i,j}\<e_j,\xi_j\>\<\xi_i,e_i\>=|\sum_i\<e_i,\xi_i\>|^2\ge0,\qquad\forall[\xi_i]\in(\ell_2^n)^n,\]
+it follows that $[\psi(e_{ij})]\in M_n(\cA)_+$ by the complete positivity of $\psi$.
+
+Conversely, let $[\psi(e_{ij})]=[\sum_kb_{ki}^*b_{kj}]\in M_n(B(H))_+$,
+For $T=[t_{ij}]\in M_n(\C)$ and $\xi,\eta\in H$, write
+\begin{align*}
+\<\psi(T)\xi,\eta\>
+&=t_{ij}\<\psi(e_{ij})\xi,\eta\>\\
+&=t_{ij}\<b_{kj}\xi,b_{ki}\eta\>\\
+&=t_{ij}\delta_{kl}\<b_{lj}\xi,b_{ki}\eta\>\\
+&=\<Te_j,e_i\>\<e_l,e_k\>\<b_{lj}\xi,b_{ki}\eta\>\\
+&=\<(T\otimes1\otimes1)(e_j\otimes e_l\otimes(b_{lj}\xi)),(e_i\otimes e_k\otimes(b_{ki}\eta))\>.
+\end{align*}
+The summation symols are omitted in each row.
+Then, if we define
+\[V:H\to\ell_2^n\otimes\ell_2^n\otimes H:\xi\mapsto\sum_{i,k}e_i\otimes e_k\otimes(b_{ki}\eta),\]
+we have an expression
+\[\<\psi(T)\xi,\eta\>=\<V^*(T\otimes1\otimes1)V\xi,\eta\>,\]
+which implies that $\psi$ is c.p. because $T\mapsto T\otimes1_{\ell_2^n}\otimes1_H$ is a $*$-homomorphism.
+
+(b)
+Suppose $\f:\cA\to M_n(\C)$ is a c.p. map.
+Then, $\hat\f$ is positive since $[a_{ij}]\in M_n(\cA)_+$ implies
+\[\hat\f([a_{ij}])=\sum_{i,j}\<\f(a_{ij})e_j,e_i\>\ge0.\]
+
+Conversely, let $\hat\f\in M_n(\cA)^*_+$.
+By the GNS-construction, we have a cyclic representation $\pi:M_n(\cA)\to B(H)$ with a cyclic vector $\psi\in H$ such that
+\[\hat\f([a_{ij}])=\<\pi([a_{ij}])\psi,\psi\>.\]
+For $\xi=\sum_j\xi_je_j,\eta=\sum_i\eta_ie_i\in\ell_2^n$, write
+\begin{align*}
+\<\f(a)\xi,\eta\>
+&=\sum_{i,j}\<\f(a)\xi_je_j,\eta_ie_i\>
+=\sum_{i,j}\<\f(\bar{\eta_i}a\xi_j)e_j,e_i\>\\
+&=\hat\f([\bar{\eta_i}a\xi_j])
+=\<\pi([\bar{\eta_i}a\xi_j])\psi,\psi\>
+=\<\pi([\delta_{ij}\eta_i1_\cA]^*[a][\delta_{ij}\xi_j1_\cA])\psi,\psi\>\\
+&=\<\pi([a])\pi([\delta_{ij}\xi_j1_\cA])\psi,\pi([\delta_{ij}\eta_i1_\cA])\psi\>.
+\end{align*}
+If we define
+\[V:\ell_2^n\to H:\xi\mapsto\pi([\delta_{ij}\xi_j1_\cA])\psi,\]
+then
+\[\<\f(a)\xi,\eta\>=\<V^*\pi([a])V\xi,\eta\>,\]
+so $\f$ is c.p. since $\cA\to M_n(\cA):a\mapsto[a]$ is a $*$-homomorphism.
+\end{pf}
+
+\begin{thm}[Arveson extension]
+Let $\cB\subset\cA$ be C$^*$-algebras such that $1_\cA\in\cB$.
+Then, every c.p. map $\f:\cB\to B(H)$ has an norm-preserving c.p. extension $\tilde\f:\cA\to B(H)$, i.e. $\|\tilde\f\|=\|\f\|$.
+\end{thm}
+
+
+
+\subsection{Enveloping von Neumann algebras}
+
+\begin{thm}[Sherman-Takeda]
+Let $\cA$ be a C$^*$-algebra and $\pi:\cA\to B(H)$ a faithful representation.
+Here we can obtain an linear map $\tilde\pi:\cA^{**}\to\pi(\cA)''$ by taking bitranspose for $\pi:\cA\to(\pi(\cA)'',\sigma w)$.
+\begin{parts}
+\item $\tilde\pi$ is an isometric isomorhpism (w.r.t. norms), and is an homeomorphism (w.r.t. weak$^*$-topologies)
+\item $\cA^{**}$ enjoys a universal property in the sense that for every $*$-homomorphism $\f:\cA\to\cM$ to a von Neumann algebra $\cM$, there exists a unique $\sigma$-weakly continuous extension $\tilde\f:\cA^{**}\to\cM$ of $\f$.
+\end{parts}
+We will always see the bidual $\cA^{**}$ as a von Neumann algebra.
+\end{thm}
+\begin{pf}
+(a)
+Consider
+\[\pi:\cA\to(\pi(\cA)'',\sigma w),\qquad\pi^*:\pi(\cA)''_*\to\cA^*,\qquad\tilde\pi:=\pi^{**}:\cA^{**}\to\pi(\cA)'',\]
+where $\pi(\cA)''_*$ denotes the set of $\sigma$-weakly continuous(=normal) linear functionals on $\pi(\cA)''$.
+Note that $\pi$ is isometric and has dense range.
+It implies that $\pi^*$ is surjective and injective.
+In fact, $\pi^*$ is isometric because for $l\in\pi(\cA)''_*$ we have by the density that
+\[\|\pi^*(l)\|=\sup_{\substack{\|a\|=1\\a\in\cA}}|l(\pi(a))|=\sup_{\substack{\|b\|=1\\b\in\pi(\cA)''}}|l(b)|=\|l\|.\]
+Then, the claim for $\pi^{**}$ is now clear.
+
+(b)
+We can define $\tilde\f$ as the bitranspose of $\f:\cA\to(\cM,\sigma w)$ as in the part (a), and it is a unique extension because $\cA$ is $\sigma$-weakly dense in $\cA^{**}$.
+\end{pf}
+
+
+\begin{thm}[Tomiyama]
+Let $\cB\subset\cA$ be C$^*$-algebras.
+Let $\f:\cA\to\cB$ be a \emph{conditional expectation}, i.e. a contractive idempotent linear map.
+\begin{parts}
+\item $\f$ is $B$-bimodule map.
+\item $\f$ is completely positive.
+\end{parts}
+\end{thm}
+\begin{pf}
+Since each conclusion of (a) and (b) still holds for restriction, we may assume $\cA$ and $\cB$ are von Neumann algebras by thinking of the bitranspose $\f^{**}:\cA^{**}\to\cB^{**}$.
+
+(a)
+Since the linear span of projections is $\sigma$-weakly dense in a von Neumann algebra, we are enough to show $p\f(a)=\f(pa)$ and $\f(ap)=\f(a)p$ for any projection $p\in\cB$.
+
+Let $p\in\cB$ be a projection and let $a\in\cA$.
+Note that we have
+\[p\f(a)=pp\f(a)=p\f(p\f(a))\]
+and
+\[(a-pa)^*(p\f(a-pa))=(p\f(a-pa))^*(a-pa)=0.\]
+Then,
+\begin{align*}
+(1+t)^2\|p\f(a-pa)\|^2
+&=\|p\f(a-pa)+tp\f(a-pa)\|^2\\
+&=\|p\f((a-pa)+tp\f(a-pa))\|^2\\
+&\le\|(a-pa)+tp\f(a-pa)\|^2\\
+&=\|a-pa\|^2+t^2\|p\f(a-pa)\|^2
+\end{align*}
+implies $p\f(a-pa)=0$ by letting $t\to\infty$.
+Putting $1_\cB-p$ and $1_\cB$ instead of $p$, we obtain $(1_\cB-p)\f(a-1_\cB a+pa)=0$ and $\f(a-1_\cB a)=0$, so
+\[p\f(a)=p\f(pa)=\f(pa).\]
+Similarly, we can show $\f(a-ap)p=0$ and $\f(ap)(1-p)=0$, we are done.
+
+(b)
+Let $[a_{ij}]\in M_n(\cA)_+$.
+Let $\pi:\cB\to B(H)$ be a cyclic representation with a cyclic vector $\psi$.
+Then, $[\xi_i]\in H^n$ can be replaced to $[\pi(b_i)\psi]$, so we can check the positivity of inflations $\f_n$ as
+\[\sum_{i,j}\<\pi(\f(a_{ij}))\pi(b_j)\psi,\pi(b_i)\psi\>=\<\pi(\f(\sum_{i,j}b_i^*a_{ij}b_j))\psi,\psi\>\ge0,\]
+because it follows $\sum_{i,j}b_i^*a_{ij}b_j\ge0$ by the positivity of $a_{ij}$ from
+\[\<\pi_\cA(\sum_{i,j}b_i^*a_{ij}b_j)\xi,\xi\>=\sum_{i,j}\<\pi_\cA(a_{ij})\pi_\cA(b_j)\xi,\pi_\cA(b_i)\xi\>\ge0,\]
+where $\pi_\cA$ is any representation of $\cA$.
+\end{pf}
+
+\begin{thm}[Sakai]
+Suppose $\cA$ is a C$^*$-algebra which admits a predual $F$.
+\begin{parts}
+\item There is an injective $*$-homomorphism $\pi:\cA\to\cA^{**}$ with weakly$^*$ closed image.
+\item $\pi$ is a topological embedding w.r.t. $\sigma(\cA,F)$ and $\sigma(\cA^{**},\cA^*)$.
+\item The predual $F$ is unique in $\cA^*$.
+\end{parts}
+(a)
+In particular, there is a faithful representation $\cA\to B(H)$ whose image is ($\sigma$-)weakly closed.
+\end{thm}
+\begin{pf}
+By taking the adjoint for the embedding $F\hookrightarrow{i}\cA^*$, we have a conditional expectation $\e:\cA^{**}\twoheadrightarrow\cA$.
+Its kernel is a $\cA$-bimodule, and by the $\sigma$-weak density of $\cA$ in $\cA^{**}$ and the continuity of $\e$ between weak$^*$ topologies, so is a $\cA^{**}$-bimodule, which means it is a $\sigma$-weakly closed ideal of $\cA^{**}$.
+Thus we have a central projection $z\in\cA^{**}$ such that $\ker\e=(1-z)\cA^{**}$.
+
+Define $\pi:\cA\to\cA^{**}$ such that $\pi(a):=za$.
+It is clearly a $*$-homomorphism.
+The injectivity follows from $a=\e(a)=\e(za)$ for $a\in\cA$.
+The image is weakly$^*$ closed because $\e(x-\e(x))=0$ implies $z(x-\e(x))=0$ for $x\in\cA^{**}$ so that $z\cA^{**}=z\cA$.
+
+(b)
+Since $\<a,f\>=\<\e(za),f\>=\<za,f\>$ for $a\in\cA$ and $f\in F$, in which the second equality holds by the definition of $\e$, it is enough to show $\sigma(z\cA,\cA^*)=\sigma(z\cA,F)$.
+
+For $l\in\cA^*$, we claim there exists $f$ such that $\<za,l\>=\<za,f\>$.
+Define $\tilde l\in\cA^*$ such that $\<x,\tilde l\>:=\<zx,l\>$ for $x\in\cA^{**}$.
+Then, $\<zx,l\>=\<z^2x,l\>=\<zx,\tilde l\>$ for $x\in\cA^{**}$.
+Suppose $\tilde l\notin F$.
+Because $F$ is closed in $\cA^*$, there is $x\in\cA^{**}$ such that $\<x,\tilde l\>\ne0$ and $\<x,f\>=0$ for all $f\in F$ by the Hahn-Banach extension.
+Then, $0=\<x,f\>=\<x,i(f)\>=\<\e(x),f\>$ implies $\e(x)=0$ so that $zx=0$, which leads a contradiction $\<x,\tilde l\>=\<zx,l\>=0$, so we have $\tilde l\in F$.
+
+(c)
+If closed subspaces $F_1$ and $F_2$ of $\cA^*$ are preduals of $\cA$, then $\sigma(\cA,F_1)=\sigma(\cA,F_2)$ by the part (b).
+If $l\in F_1$, which is obviously continuous on $\sigma(\cA,F_1)$, and the continuity in $\sigma(\cA,F_2)$ implies that $l$ is contained in a linear span of some finitely many elements of $F_2$, hence $F_1\subset F_2$.
+\end{pf}
+
+
+
+\newpage
+\section{May 12}
+
+\subsection{Nuclear maps}
+
+\begin{defn}
+A linear map $\theta:\cA\to\cB$ between C$^*$-algebras is called \emph{nuclear} if it is a limit of finite-rank c.c.p. maps in the point-norm topology.
+Equivalently, by the following lemma, there is a net of pairs of c.c.p. maps $\f_\alpha:\cA\to M_{n_\alpha}(\C)$ and $\psi_\alpha:M_{n_\alpha}(\C)\to\cB$ such that $\|\theta(a)-\psi_\alpha\circ\f_\alpha(a)\|\to0$ for each $a\in\cA$.
+
+If $\cB$ is a con Neumann algebra, $\theta$ is called \emph{weakly nuclear} if it is a limit of finite-rank c.c.p. maps in the point-$\sigma$-weak topology.
+\end{defn}
+
+\begin{lem}
+A c.c.p. map $\theta:\cA\to\cB$ between C$^*$-algebras is of finite-rank iff there are c.c.p. maps $\f:\cA\to M_n(\C)$ and $\psi:M_n(\C)\to\cB$ for some $n$ such that $\theta=\psi\circ\f$.
+In Brown-Ozawa, a finite-rank c.c.p. map is called a factorable map.
+\end{lem}
+\begin{pf}
+($\Leftarrow$) Clear.
+($\Rightarrow$)
+By the structure theorem of finite-dimensional C$^*$-algebras, we have $\im\theta\cong\bigoplus_{i=1}^mM_{n_i}(\C)$,
+so for $n=\sum_{i=1}^mn_i$ there is a unital embedding $\im\theta\hookrightarrow M_n(\C)$ and conditional expectation $M_n(\C)\to\im\theta:T\mapsto\sum_{i=1}^mP_iTP_i$, where $P_i$ denotes the projection on the image of $M_{n_i}(\C)$.
+Now we are done.
+(In fact, such a conditional expectation also exists for unital subalgebras beetween von Neumann algebras.)
+\end{pf}
+
+
+\begin{prop}[Local property]
+Let $\theta:\cA\to\cB$ be a linear map between C$^*$-algebras.
+If the restriction of $\theta$ on any finite-dimensional subspace of $\cA$ is nuclear, then $\theta$ is nuclear.
+\end{prop}
+\begin{pf}
+
+\end{pf}
+
+
+\begin{prop}[Weak approximations]
+Let $\cA$ and $\cB$ be C$^*$-algebras, and $\cM\subset B(H)$ a von Neumann algebra.
+\begin{parts}
+\item $\theta:\cA\to\cB$ is nuclear if there is a net $\cA\xrightarrow{\f_\alpha}M_{n_\alpha}(\C)\xrightarrow{\psi_\alpha}\cB$ such that
+\[\lim_\alpha\<\theta(a)-\psi_\alpha\circ\f_\alpha(a),l\>=0\qquad a\in\cA,\ l\in\cB^*.\]
+\item $\theta:\cA\to\cM$ is weakly nuclear if there is a net $\cA\xrightarrow{\f_\alpha}M_{n_\alpha}(\C)\xrightarrow{\psi_\alpha}\cM$ such that
+\[\lim_\alpha\<(\theta(a)-\psi_\alpha\circ\f_\alpha(a))\xi,\xi\>=0\qquad a\in\cA,\ \xi\in H.\]
+\end{parts}
+\end{prop}
+
+\begin{pf}
+(a)
+By applying the Hahn-Banach extension for each $a\in\cA$, we can show the closures of a convex set is same with respect to the point-norm topology and the point-$\sigma(\cB,\cB^*)$-topology.
+Thus it suffices to show that the set of finite-rank c.c.p. maps is convex.
+
+Let $\cA\xrightarrow{\psi_i}M_{n_i}(\C)\xrightarrow{\f_i}\cB$ be c.c.p. maps for $i\in\{0,1\}$.
+Then, we have a diagram
+\begin{cd}
+\cA \ar{rrr}{(1-t)\psi_0\circ\f_0+t\psi_1\circ\f_1}\ar{d}&&&\cB\\
+\cA\oplus\cA\ar[swap]{r}{\f_0\oplus\f_1}&M_{n_0}(\C)\oplus M_{n_1}(\C)\ar[swap]{rr}{((1-t)\psi_0)\oplus(t\psi_1)}&&\cB\oplus\cB\ar{u}
+\end{cd}
+which is commutative, so we are done.
+
+(b)
+Fix $a\in\cA$.
+Note that are net is bounded.
+Since the unit ball is compact in $\sigma$-weak topology and hence in the weak operator topology, we are enough to verify the convergence of $\psi_\alpha\circ\f_\alpha$ in the weak operator topology.
+Using the polarization identity, the claim holds.
+\end{pf}
+
+
+nonunital technicalities
+
+
+
+\subsection{Examples of nuclear C$^*$-algebras}
+
+
+
+C$^*$-subalgebra of a nuclear C$^*$-algebra may not be nuclear.
+C$^*$-subalgebra of a exact C$^*$-algebra is exact.
+injective limit of nuclear C$^*$-algebras is nuclear.
+$M_n(\cA)$ is nuclear if $\cA$ is nuclear.
+
+\begin{thm}[Effros-Lance]
+If $\cA^{**}$ is semidiscrete, then $\cA$ is nuclear.
+(The converse also holds)
+\end{thm}
+\begin{pf}
+Since the set of finite-rank c.c.p. maps is convex, and since the closures of a convex set are same in the norm and weak topologies on a Banach space, 
+\end{pf}
+
+\begin{thm}
+An abelian C$^*$-algebra is nuclear.
+\end{thm}
+
+
+
+\newpage
+\section{May 22}
+
+\end{document}
+
+
+
+
+熊谷　山崎　３１８　数理物理
+倉橋　新井　４２１　基礎論
+小松　木田　４１８　에르고딕
+近藤　伊藤　４０２　シュレディンガー
+佐藤　３１７ PDE Hamilton-Jacobi
+佐藤　３１８　量子群
+高橋　新井　４２１
+田渕　会田
+
+友永　井山　３５７　表現論
+永井　伊藤　代数幾何
+中浦　新井　５７０　モデル
+中村　宮本　４０２
+星屋　伊藤　５５７　pで
+宮内　小林　４０６
+Liu　志甫　３２６　数論幾何
+渡辺　志甫　５５７　数論幾何
+会沢　松井　２６１
+
+原田　山崎　４５７
+
+
+
+２１

@@ -1,5 +1,10 @@
 \documentclass{../../small}
 \usepackage{../../ikhanchoi}
+\usepackage{proof}
+
+\DeclareMathOperator{\Var}{Var}
+\DeclareMathOperator{\Tm}{Tm}
+\DeclareMathOperator{\Fml}{Fml}
 
 \begin{document}
 \title{Proof Theory}
@@ -8,11 +13,211 @@
 \tableofcontents
 
 \newpage
-\section{Day 1}
+\section{Day 1: April 10}
+
+In this lecture we only consider classical 1st order logic.
+
+Completeness theorem
+\[\text{logically valid}\quad\Leftrightarrow\quad\text{provable}\]
+If a statement is provable, then it is true, isn't it?
+If a statement can't be proved, then it is not true, is it?
+No!
+
+Most references share the common notion of logical validity, but provability slightly differs although they are same eventually.
+Provability depends on the choice of axioms and inference rules, and we will choose G. Gentzen's(1934/35).
+
+Informally,
+\begin{itemize}
+\item a \emph{formula} is a formal expression which represents propositions,
+\item the truth of a formula is determined by a \emph{structure} and \emph{satisfaction relation},
+\item a \emph{language} can give strucures their shapes.
+\end{itemize}
+\begin{defn}
+A language is a set $\cL$ of symbols.
+The set of symbols $\cL=\cF\cup\cP$ are divided into two categories: functions and predicates(also called relations or conditions).
+A non-negative integer, called arity, is assigned to each symbol.
+A 0-ary function is called a constant.
+We will write the set of $n$-ary function symbols as $\cF_n$ and $n$-ary predicate symbols as $\cP_n$.
+(Symbols given in a language is somtimes called non-logical symbols, because they depend on the definition of languages.)
+\end{defn}
+
+\begin{defn}
+Let $\cL$ be a language.
+An $\cL$-structure is a pair $\cM=(M,F)$ of a set $M$ and a function $F$ with domain $\cL$ such that $F(p)=p^\cM\subset M^n$, $F(f)=f^\cM:M^n\to M$.
+\end{defn}
+
+\begin{defn}[Term]
+Let $\cL$ be a language.
+A variable is an element of a countable set $\Var$ such that $\Var\cap\cL=\varnothing$.
+A term is an element of $\Tm_\cL$, recursively defined such that
+\begin{parts}
+\item $\Var\subset\Tm_\cL$,
+\item If $t_1,\cdots,t_n\in\Tm_\cL$ and $f\in\cF_n$, then $f(t_1,\cdots,t_n)\in\Tm_\cL$.
+\end{parts}
+\end{defn}
+
+
+Let $\cM$ be an $\cL$-structure and let $\cL(\cM):=\cL\cup\{c_\alpha:\alpha\in M\}$.
+$\cM$ is a $\cL(\cM)$-structure by letting $c_\alpha^\cM:=\alpha$.
+A closed term is a term which does not contain any variables, so that it is recursively constructed from constants by functions.
+Let $\cM$ be an $\cL$-structure and $t$ be a closed $\cL(\cM)$-term.
+If $t\equiv f(t_1,\cdots,t_n)$ (completely equal as sequences of symbols), then $t^\cM$ is recursively defined by $t^\cM:=f^\cM(t_1^\cM,\cdots,t_n^\cM)\in M$.
+
+
+\begin{defn}[Formula]
+Let $\cL$ be a language.
+A formula is an element of $\Fml_\cL$, recursively defined such that
+\begin{parts}
+\item if $t_1,\cdots,t_n\in\Tm_\cL$ and $p\in\cP_n$, then $p(t_1,\cdots,t_n)\in\Fml_\cL$,
+\item if $A,B\in\Fml_\cL$, then $\neg A,\ A\vee B,\ A\wedge B,\ A\to B\in\Fml_\cL$,
+\item if $A\in\Fml_\cL$ and $x\in\Var$, then $\exists x\,A,\ \forall x\,A\in\Fml_\cL$.
+\end{parts}
+The symbols $\neg,\ \vee,\ \wedge,\ \to$ are called connectives, and the symbols $\exists,\ \forall$ are called quantifiers.
+They are called logical symbols, which does not depend on languages. 
+\end{defn}
+
+\begin{defn}[Free variables]
+For a term $t$, the set $\Var(t)\subset\Var$ is defined as
+\begin{parts}
+\item if $x\in\Var$, then $\Var(x)=\{x\}$,
+\item $\Var(f(t_1,\cdots,t_n))=\bigcup_{i=1}^n\Var(t_i)$.
+\end{parts}
+For a formula $A$, the set $\Var(A)\subset\Var$ is defined as
+\begin{parts}
+\item $\Var(p(t_1,\cdots,t_n))=\bigcup_{i=1}^n\Var(t_i)$.
+\item if $\circ\in\{\vee,\wedge,\to\}$, then $\Var(A\circ B)=\Var(A)\cup\Var(B)$,
+\item if $\circ\in\{\exists,\forall\}$ and $x\in\Var$, then $\Var(\circ x\,A)=\Var(A)\setminus\{x\}$.
+\end{parts}
+An element of $\Var(A)$ is called a free variable, and a formula $A$ is said to be closed if $\Var(A)=\varnothing$.
+\end{defn}
+
+\begin{defn}[Satisfiability relation]
+Let $A$ be a closed formula over $\cM$.
+We write $\cM\models A$ and say $A$ holds on $\cM$ or $\cM$ satisfies $A$ if
+\begin{parts}
+\item $\cM\models p(t_1,\cdots,t_n)$ iff $(t_1^\cM,\cdots,t_n^\cM)\in p^\cM$,
+\item $\cM\models\neg A$ iff $\cM\not\models A$,
+\item $\cM\models A\vee B$ iff $\cM\models A$ or $\cM\models B$ (similarly for $\wedge$ and $\to$),
+\item $\cM\models\exists x\,A$ iff there is $\alpha\in M$ such that $\cM\models A[x:=c_\alpha]$, where $A[x:=c_\alpha]$ is the result of replacing the variable $x$ by $c_\alpha$ in $A$ (similarly for $\forall$).
+\end{parts}
+\end{defn}
 
 
 
+\iffalse
+First order syntax
+
+variables
+	functions
+terms
+	a relation
+literals
+	connectives
+formulas
+	quantifiers
+sentences
+\fi
 
 
+
+\section{Day 2: April 17}
+
+Let $A$ be a formula.
+Then, the universal closure is $\forall(A):=\forall x_1\cdot\forall x_n\,A$, where $\{x_1,\cdots,x_n\}=\Var(A)$.
+
+\begin{defn*}
+A formula $A$ is called \emph{logically valid} if its universal closure holds on every structure $\cM$ and write $\models A$.
+A formula $A$ is called to be \emph{logically equivalent} to another formula $B$ if $\models A\leftrightarrow B$.
+\end{defn*}
+
+\begin{defn*}
+A \emph{literal} is an atomic formula or its negation.
+A \emph{negation normal form}(nnf) of a formula is a formula in which negation symbols are placed as inner as possible.
+We may also write
+\[nnf::=literals\mid A_0{\wedge\atop\vee}A_1\mid{\exists\atop\forall}x\,A.\]
+\end{defn*}
+
+\begin{prop*}
+For each formula $A$, there is a logically equivalent nnf.
+\end{prop*}
+
+\begin{pf}
+We have four logically valid formulas
+\begin{align*}
+&\models(A\to B)\leftrightarrow(\neg A\vee B),\\
+&\models\neg(A{\vee\atop\wedge}B)\leftrightarrow(\neg A{\wedge\atop\vee}\neg B),\\
+&\models\neg({\exists\atop\forall}x\,A)\leftrightarrow{\forall\atop\exists}x\,\neg A,\\
+&\models\neg\neg A\leftrightarrow A.\qedhere
+\end{align*}
+\end{pf}
+
+\subsection*{1. Sequent calculus}
+\setcounter{section}{1}
+
+Languages are assumed to be countable.
+\begin{defn}
+A finite set of formulas in nnf is said to be a \emph{sequent}. % 推件
+Then, a sequence $\{A_1,\cdots,A_n\}$ intends to be the disjunction $A_1\vee\cdots\vee A_n$.
+Greek alphabets $\Gamma,\Delta$ will be used to denote sequents, and comma between sequents actually mean their union, i.e. $\Gamma,\Delta=\Gamma\cup\Delta$, and $\Gamma,\{A\}=\Gamma\cup\{A\}$.
+The empty sequent denotes an absurdity.
+\end{defn}
+
+\begin{defn}[Sequent calculus]
+Our sequent calculus $\G$ is a proof system defined as follows.
+We have only one logical axiom for $\G$:
+\begin{itemize}
+\item $\Gamma,L,\bar{L}$ for arbitrary sequent $\Gamma$ and literal $L$.
+\end{itemize}
+We have the following inference rules for $\G$:
+\begin{itemize}
+\item \qquad$\infer[^{(\vee)}]{\Gamma}{\Gamma,A_0,A_1}$\qquad if $(A_0\vee A_1)\in\Gamma$.
+\item \qquad$\infer[^{(\wedge)}]{\Gamma}{\Gamma,A_0 & \Gamma,A_1}$\qquad if $(A_0\wedge A_1)\in\Gamma$.
+\item \qquad$\infer[^{(\exists)}]{\Gamma}{\Gamma,A(t)}$\qquad if $(\exists x\,A(x))\in\Gamma$, where $A(t):\equiv A[x:=t]=A[t/x]$.
+\item \qquad$\infer[^{(\forall)}]{\Gamma}{\Gamma,A(a)}$\qquad if $(\forall x\,A(x))\in\Gamma$, provided that the variable $a$ does not occur in any formulas in $\Gamma$. Such a variable $a$ is called \emph{eigenvariable} of the rule $(\forall)$.
+\end{itemize}
+We also consider another inference rule, which is not for $\G$:
+\begin{itemize}
+\item \qquad$\infer[^{(cut)}]{\Gamma}{\Gamma,\neg C & C,\Gamma}$\qquad
+\end{itemize}
+In a proof system, derivable seuqents are defined recursively as follows: all logical axioms are derivable, for each inference rule the lower sequent is derivable if all sequents in the upper sequent is derivable.
+\end{defn}
+
+\begin{thm}[Soundness of $\G+(\mathrm{cut})$]
+If $\G+(\mathrm{cut})\vdash\Gamma$, then $\models\Gamma$.
+\end{thm}
+\begin{pf}
+We can check from definition.
+\end{pf}
+
+\begin{thm}[Completeness of $\G$]
+If $\models\Gamma$, then $\G\vdash\Gamma$.
+\end{thm}
+
+\begin{cor}[Cut elimination theorem]
+If $\G+(\mathrm{cut})\vdash\Gamma$, then $\G\vdash\Gamma$.
+\end{cor}
+\begin{pf}
+Clear from the soundness of $\G+(\mathrm{cut})$ and the completeness of $\G$.
+\end{pf}
+
+\begin{cor}[Weakening]
+If $\G\vdash\Gamma$, then $\G\vdash\Gamma,\Delta$.
+\end{cor}
+\begin{pf}
+In the proof tree, add $\Delta$ in every nodes(sequents).
+Then, every inference rule is preserved (for ($\forall$)-rule, we can obtain same result by changing eigenvariables into another eigenvariables, and it is done because the eigenvariables are finite and the set of variables is countebly infinite).
+\end{pf}
+\begin{prop}
+$\G\vdash\Gamma,\neg A,A$. (Note that $A$ is not a literal in general, it is not a logical axiom)
+\end{prop}
+\begin{pf}
+It is done by induction on the number of $\vee,\wedge,\exists,\forall$ occurring in $A$.
+For $\vee$,
+\[\infer[^{(\wedge)}]{\Gamma,\neg(A_0\vee A_1),A_0\vee A_1}{\infer[^{(\vee)}]{\Gamma,\neg A_0,A_0\vee A_1}{\Gamma,\neg A_0,A_0} & \infer[^{(\vee)}]{\Gamma,\neg A_1, A_0\vee A_1}{\Gamma,\neg A_1,A_1}}.\]
+For $\exists$,
+\[\infer[^{(\forall)}]{\Gamma,\neg(\exists x\,A(x)),\exists x\,A(x)}{\infer[^{(\exists)}]{\Gamma,\neg A(a),\exists x\,A(x)}{\Gamma,\neg A(a),A(a)}},\]
+where $a$ is an eigenvariable.
+(Here, we cannot change the order of $(\forall)$-rule and $(\exists)$-rule because the eigenvariable can occur in inferences)
+\end{pf}
 
 \end{document}

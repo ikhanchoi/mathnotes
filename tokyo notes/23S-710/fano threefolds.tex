@@ -1,6 +1,9 @@
 \documentclass{../../small}
 \usepackage{../../ikhanchoi}
 
+\DeclareMathOperator{\Pic}{Pic}
+\DeclareMathOperator{\Div}{Div}
+
 \begin{document}
 \title{Fano Threefolds}
 \author{Ikhan Choi\\Lectured by Hiromu Tanaka\\University of Tokyo, Spring 2023}
@@ -8,11 +11,433 @@
 \tableofcontents
 
 \newpage
-\section{Day 1}
+\section{Day 1: April 6}
+
+Grade: solve 2\sim4 exercises (report)
+
+Throughout this lecture,
+\begin{itemize}
+\item we work over $\C$.
+\item A projective scheme is a projective scheme over $\C$, i.e. a closed subscheme of $\P_\C^N$ for some $N$.
+\item A variety is an integral scheme which is separated and of finite type over $\C$.
+\end{itemize}
 
 
+\smallskip\hrule
+
+\begin{defn}
+A Fano variety is a smooth projective variety $X$ such that $-K_X$ is ample.
+\end{defn}
+\begin{defn}
+Let $X$ be a smooth variety.
+A canonical divisor $K_X$ is a Weil divisor such that $\cO_X(K_X)\cong\omega_X:=\bigwedge^{\dim X}\Omega_X^1\in\Pic(X)$.
+($\Omega$ is a locally free sheaf of rank($=\dim X$))
+the canonical divisor
+\end{defn}
+
+\begin{ex}
+If $X$ is a smooth projective curve, then $X$ is Fano iff $X\equiv\P^1$.
+\end{ex}
+\begin{pf}
+\begin{enumerate}
+\item A divisor $D$ on $X$ is ample iff $\deg D>0$.
+($\deg D=\sum a_i$ for $D=\sum a_iP_i$)
+\item $\deg K_X=2g-2$, ($g:=h^1(X,\cO_X)\in\Z_{2n}$)
+\item $g=0$ iff $X=\P^1$.
+\end{enumerate}
+Moreover, $\P^n$ is Fano.
+\end{pf}
+
+\begin{ex}
+Let $X\subset\P^N$: smooth hypersurface of $\deg d$.
+For example, we may consider $X=\{x_0^d+\cdots+x_N^d\}$.
+Then, $X$ is Fano iff $d\le N$.
+\end{ex}
+\begin{pf}
+(Sketch)
+By the adjunction formula,
+\[\cO_X(K_X)\cong\cO_{\P^N}(K_{\P^N}+X)|_X\cong\cO_{\P^N}(-N-1-d)|_X.\]
+Then, $\Pic\P^N=\{\cO_{\P^N}(m)|m\in\Z\}\cong\Z$ (group isomoprhism).
+\end{pf}
+
+\smallskip
+\hrule
+\bigskip
+
+Why 3-folds?
+It is started by Gino Fano (1904\sim), and the following theorem gives a motivation:
+\begin{thm}[L\"uroth,1876]
+$\C\subset K\subset\C(x)$ be field extensions.
+Assume the trenscendental degree of $K$ is one.
+Then, $K\cong\C(y)$.
+\end{thm}
+The L\"uroth problem states that: if $\C\subset K\subset\C(x_1,\cdots,x_n)$ field extensions, assuming the trenscendental degree of $K$ is $n$, then $K\cong\C(y_1,\cdots,y_n)$?
+
+\begin{thm}[Castelnuovo, 1886]
+The L\"uroth problem is true if $n=2$.
+\end{thm}
+The idea of this theorem is to convert L\"uroth problem into a geometric version.
+A field extension $K\subset\C(x)$ corresponds to a dominant rational map $\P_\C^1\to X$, and the trenscendental degree one is equivalent to that $X$ is curve.
+Here we may assume $X$ to be a smooth projective curve.
+So, the L\"uroth theorem can be restated as
+\begin{thm}
+If $\P_\C^1\twoheadrightarrow X$ for a smooth projective curve $X$, then $X\cong\P_\C^1$.
+\end{thm}
+For $n=2$, we consider the rationality criterion.
+\begin{thm}
+Let $X$ be a smooth projective surface.
+Then, $X$ is rational iff $H^1(X,\cO_X)=H^0(X,2K_X)=0$
+\end{thm}
+\begin{ex}
+If a surface $X$ is del Pezzo($=$Fano surface), then $X$ is rational.
+It is because if $-K_x$ is ample then $H^0(X,2K_X)=0$ ($\because$ if not, then $2K_X$ is linearly equivalent to an effective divisor $D$, and $2(-K_X)^2=2K_X\cdot K_X=D\cdot K_X=\sum a_iC_i\cdot K_x\ge0$.)
+Also, by the Kodaira vanishing, we have $H^1(X,\cO_X)=H^1(X,\cO_X(K_X+(-K_X)))=0$.
+\end{ex}
+
+How about $n=3$?
+We may consider
+\begin{itemize}
+\item Three-dimensional rationality criterion?
+\item Fano hypersurface $X\subset\P^4$ are rational?
+\end{itemize}
+To settle the second question, Fano studied similar and easier Fano threefolds.
+\begin{thm}
+There is a counterexample to L\"uroth's problem.
+Specifically, if $X$ is the complete intersection of deg 2 hypersurface and deg 3 hypersurface in $\P^5$, $X$ is not rational (1908, Fano), but $X$ is unirational (1912, Enriques).
+\end{thm}
+\begin{thm}[1942, G. Fano]
+There is a hypersurface of degree 3 $X\subset\P^4$ which is not rational but unirational.
+\end{thm}
+\begin{rmk}
+The proof by Fano is not rigorous, so the second question(rationality of hypersurface) is now considered as results of
+\begin{itemize}
+	\item Clemes-Griffiths (deg$=3$)
+	\item Iskovskih-Manin (deg$\ge4$)
+\end{itemize}
+\end{rmk}
+
+\smallskip\hrule
+
+\subsection*{Classificaiton of Fano 3-folds}
+Two invariants: Picard number $\rho$ and index $r$.
+\begin{defn}
+Let $X$ be a smooth projective variety.
+\[\rho=\rho(X):=\dim_\Q((\Pic X\otimes_\Z\Q)/\equiv)\in\Z_{\ge0}.\]
+It is equal to $\dim_\Q((\mathrm{Div}X\otimes_\Z\Q)/\equiv$, where $\mathrm{Div}X$ is the group of Weil divisors so that $\mathrm{Div}X\otimes_\Z\Q$ contains the formal linear combinations of prime divisors over $\Q$, and where the quivalence relation is given by $D\equiv D'$ iff $D\cdot C=D'\cdot C$ for every curve on $X$.
+From the intersection theory, $D\cdot C=\cO_X(D)\cdot C=\deg(\mu^*\cO_X(D))$ for $\mu:C^N\to C\hookrightarrow X$(composition of normal and closed immersion).
+Then, $D\in\mathrm{Div}X\otimes_\Z\Q$ implies that there is $m\in\Z_{\ge0}$ such that $mD\in\Div X$, then $D\cdot C:=\frac1m((mD)\cdot C)$.
+\begin{rmk}
+Let $X$be a Fano variety.
+Then, $\Pic X\cong \Pic X/\equiv\cong\Z^{\oplus\rho(X)}$.
+In particular, $D\sim D'$ implies $D\equiv D'$.
+\end{rmk}
+\end{defn}
+
+\begin{defn}
+Let $X$ be a Fano variety.
+\[r=r_X:=\text{the largest positive integer that divides $K_X$},\]
+that is, there is a divisor $H$ such that $-K_X\sim rH$, but for $s>r$ there is no divisor $H$ such that $-K_X\sim sH$.
+\end{defn}
+
+We shall prove $1\le r\le\dim X+1$(for $\dim X=3$, then $r=1,2,3,4$).
+\begin{ex}
+Let $X=\P^3$.
+Then, $\Pic X\cong \Z H$, where $H$ is a hyperplane, and $-K_x\equiv\sim 4H$, hence $\rho=1$ and $r=4$.
+\end{ex}
+
+So here is the outline:
+\begin{enumerate}
+\item $r\ge2$: Iskovskih, Fujita
+\item $\rho=r=1$: Iskovskih, Fujita
+\item $\rho\ge2$: Mori-Mukai
+\end{enumerate}
+For 1, $\Delta$-genus(Fujita) is used, and for 2 and 3, the cone theorem(minimal model program) is used.
+When $\dim X=2$, using MMP, a del Pezzo surface $X$ is reduced to $\P^2$ or $\P^1\times\P^1$.
+When $\dim X=3$, we have primitive Fano threefolds.
+
+Our plan:
+\begin{enumerate}
+\item Cone theorem(mainly 2-dim)
+\item $r\ge2$
+\item $\rho=r=1$
+\item $\rho\ge2$ (primitive)
+\item $\rho\ge2$ (imprimitive)
+\end{enumerate}
+\smallskip\hrule
+
+\subsection*{Cone theorem}
+\begin{thm}[Cone theorem, Mori, 1982]
+Let $X$ be a Fano variety.
+Then, there is rational curves $l_1,\cdots,l_m$ such that
+\[NE(X)=\sum_{i=1}^m\R_{\ge0}[l_i]\quad\text{and}\quad-K_X\cdot l_i\le\dim X+1.\]
+\end{thm}
+When $\rho=3$, $NE(X)\subset N_1(X)\cong\R^{\rho(X)}$ is a triangular pyramid.
+
+\begin{defn}
+Let $X$ be a smooth projective variety.
+\begin{enumerate}
+\item $Z_1(X):=\bigoplus_{C:\text{curve on }X}\Z C$,
+\item $N_1(X):=(Z_1(X)\otimes_\Z\R)/\equiv$, where $Z\equiv Z'$ iff $L\cdot Z=L\cdot Z'$ for all $L\in\Pic X$.
+\end{enumerate}
+\end{defn}
+It is well-known that
+\[N_1(X)\times\left(\frac{\Pic X\otimes_\Z\R}{\equiv}\right)\to\R\]
+induces a bijection
+\[N_1(X)\to\Hom_\R\left(\frac{\Pic X\otimes_\Z\R}{\equiv},\R\right),\]
+therefore $\dim_\R N_1(X)=\rho(X)$.
+
+\begin{defn}
+Let $X$ be a smooth projective variety.
+\begin{enumerate}
+	\item For $Z\in Z_1(X)\otimes\R$, denote by $[Z]\in N_1(X)$ the numerical equivalence class of $Z$.
+	\item For $Z\in Z_1(X)\otimes\R$ is an effective 1-cycle.
+	\item $NE(X):=\{[Z]\in N_1(X): Z\text{ effective 1-cycles}\}$
+\end{enumerate}
+\end{defn}
+\begin{rmk}
+$NE(X)$ is a convex cone.
+\end{rmk}
+
+\begin{ex}
+Let $X:=\P^1\times\P^1$.
+Let $l_i=\pi_i^{-1}(*)$ for $i=1,2$ be any fibers.
+Then, $NE(X)=\R\ge_0[l_1]+\R_{\ge0}[l_2]$.
+One direction is clear, and for the opposite, pick $[D]=[a_1C_1+\cdots+a_rC_r]\in NE(X)$ ($a_i\ge0$).
+It is enough to show $C_i\equiv b_1l_1+b_2l_2$ for some $b_1,b_2\ge0$.
+Fix a curve $C$ on $X$.
+Note that since $\Pic X=\Z l_1\oplus\Z l_2$, we have $C\equiv b_1l_1+b_2l_2$, so $0\le C\cdot l_i=(b_1l_1+b_2l_2)\cdot l_i=b_il_1\cdot l_2>0$, we are done.
+\end{ex}
+
+References for surfaces:
+\begin{itemize}
+\item Beauville: Complex algebraic surfaces (over $\C$), 
+\item B\v adescu: Algebraic surfaces
+\end{itemize}
+
+References for cone thm:
+\begin{itemize}
+\item Koll\'ar-Mori: Birational geometry of algebraic varieties 
+\item Debarre: Higher-dimensional algebraic geometry
+\end{itemize}
 
 
+\section{Day 2: April 13}
 
+\subsection*{Extremal rays}
+
+\begin{defn}
+Let $X$ be a Fano variety.
+A ray $R$ is called an extremal ray (of $NE(X)$ or of $X$) if $\zeta,\xi\in NE(X)$ and $\zeta+\xi\in R$ imply $\zeta,\xi\in R$.
+\end{defn}
+
+\begin{thm}[Contraction theorem]
+Let $X$ be a Fano variety, $R=\R_{\ge0}[l]$ an extremal ray for a curve $l$ on $X$.
+Then, there is a unique morphism $f:X\to Y$ such that
+\begin{enumerate}[(i)]
+\item $Y$ is a projective normal variety,
+\item $f_*\cO_X=\cO_Y$,
+\item For a curve $c$ on $X$, $f(c)$ is point iff $[c]\in R$.
+\end{enumerate}
+Moreover, we have $\rho(X)=\rho(Y)+1$ and an exact sequence $0\to\Pic Y\xrightarrow{f^*}\Pic X\xrightarrow{\cdot l}\Z$.
+The morphism $f$ is called the contraction morphism of R.
+\end{thm}
+\begin{pf}
+See [Koll\'ar-Mori].
+\end{pf}
+
+\begin{thm}
+Let $X$ be a del Pezzo surface.
+Let $R=\R_{\ge0}[l]$ be an extremal ray for a curve $l$ on $X$ and $f:X\to Y$ be its contraction.
+Then, one of the following holds:
+\begin{enumerate}[(A)]
+\item $l$ is a $(-1)$-curve and $f$ is a blow down of $l$ (hence $\dim Y=2$),
+\item $\dim Y=1$ (i.e. $Y$ is a smooth projective curve) and $\rho(X)=2$, and $f$ is a $\P^1$-bundle with fiber $l$.
+\item $\dim Y=0$ (i.e. $Y=\Spec\C$) and $\rho(X)=1$.
+\end{enumerate}
+\end{thm}
+
+\begin{rmk}
+Let $Y$ be a smooth projective surface and $f:X\to Y$ be the blowup at a point $P\in Y$.
+Then, $l:=f^{-1}(p)$ satisfies $l\cong\P^1$ and $l^2=-1$; called $(-1)$-curve.
+In this case we say $f$ is the blowdown of $l$.
+\end{rmk}
+
+\begin{rmk}
+Let $X$ be a del Pezzo surface and $\rho(X)=1$.
+Then, it is known that $X\cong\P^2$.
+\end{rmk}
+
+\begin{exe}
+Show the above remark.
+\end{exe}
+
+\begin{rmk}
+Let $X$ be a smooth projective rational surface.
+If there is no $(-1)$-curve on $X$, then $X\cong \P^2$ or $X$ is isomorphic to the Hirzeburch surface $\P_{\P^1}(\cO_{\P^1}\oplus\cO_{\P^1}(n))$, where $n\in\Z_{\ge0}\setminus\{1\}$.
+\end{rmk}
+
+\begin{rmk}
+Let $X$ be a del Pezzo surface and $f:X\to Y$ be a $\P^1$-bundle on a smooth projective curve $Y$.
+Then, $Y=\P^1$ and $X\cong\P_{\P^1}(\cO_{\P^1}\oplus\cO_{\P^1}(n))$, $n\in\{0,1\}$.
+\begin{pf}[Sketch]
+Leray spectral sequence gives $H^1(Y,f_*\cO_X(=\cO_Y))\hookrightarrow H^1(X,\cO_X)=0$, so $H^1(Y,\cO_Y)=0$ implies $Y=\P^1$.
+
+Also, $\P^1$-bundle, $X\cong\P_{\P^1}(E)$ of rank two, it is well known that $E\cong\cO_{\P^1}(a)\oplus\cO_{\P^1}(b)$ and $X\cong\P_{\P^1}(\cO(a)\oplus\cO(b))\cong\P_{\P^1}(\cO\oplus\cO(b-a))$ for $n:=b-a\ge0$.
+It is known that for a $\P^1$-bundle over $\P^1$ there is a section $c$ such that $c^2=-n$, then $n\in\{0,1\}$.
+\end{pf}
+\end{rmk}
+
+\begin{lem}
+Let $X$ be a del Pezzo surface and $C$ a curve on $X$.
+Then, $C^2\ge-1$.
+\end{lem}
+\begin{pf}
+Write $(K_X+C)\cdot C=2h^1(C,\cO_C)-2$.
+Recall that $(\omega_X\otimes\cO_X(C))|_C\cong\omega_C$ holds even if $C$ is a singular curve.
+Hence, $C^2\ge-K_X\cdot C-2\ge1-2=-1$.
+\end{pf}
+
+\begin{ex}
+Let $X=\P^1\times\P^1$ and $l_i=\pi_i^{-1}(*)$ fibers.
+Then, each projection map $\pi_i$ corresponds to the extremal rays $\R_{\ge0}[l_i]$.
+\end{ex}
+\begin{ex}
+Let $X=\P^2$.
+Then, $NE(X)=\R_{\ge0}[l]=\R_{\ge0}[l']=\cdots$ since $N_1(X)=\R^{\rho(X)}=\R$.
+\end{ex}
+\begin{ex}
+Let $X=\P_{\P^1}(\cO_{\P^1}\oplus\cO_{\P^1}(1))$, which is del Pezzo.
+Then, if $f$ is a blowdown of a section $l\cong\P^1$, then $\rho(Y)=1$ and $Y\cong\P^2$.
+Then, we have two extremal rays $[l]$ and $[l']$ which correspond to $f$ and $\pi$ respectively.
+\end{ex}
+
+\begin{rmk}
+Let $X$ be a del Pezzo surface with $\rho(X)\ge3$.
+Then,
+\[\{\text{extremal rays}\}\leftrightarrow\{\text{$(-1)$-curves}\}.\]
+Therefore, a del Pezzo surface has a finitely many $(-1)$-curves.
+\end{rmk}
+
+\begin{ex}
+Let $f:X\to\P^2$ be a blowup at two points $P$ and $Q$ with $l_P=f^{-1}(P)$ and $l_Q=f^{-1}(Q)$.
+Lifting a line $m$ passing through $P$ and $Q$, we obtain $m_X$ the proper transform of $m$.
+Then, $\rho(X)=3$ and $NE(X)=\R_{\ge0}[l_P]+\R_{\ge0}[l_Q]+\R_{\ge0}[m_X]$.
+\end{ex}
+\begin{rmk}
+Let $X\subset\P^3$ be a smooth cubic surface, for example, $X:x^3+y^3+z^3+w^3=0$.
+It is well-known that $X$ has exactly 27 $(-1)$-curves so that $NE(X)=\sum_{i=1}^{27}\R_{\ge0}[l_i]$.
+\end{rmk}
+\begin{rmk}
+Minimal model program for del Pezzo surfaces.
+\begin{cd}
+&X:\text{ del Pezzo surface} \ar{d}&\\
+&\exists(-1)\text{-curve on }X?\ar[swap]{dl}{YES}\ar{dr}{NO}&\\
+f:X\to Y\text{ a blowdown of a $(-1)$-curve}\ar{d}&&\exists\text{ extremal }\R_{\ge0}[l]\text{ s.t. }l\text{ is not $(-1)$-curve}\ar{d}\\
+\text{we can show $Y$ is del Pezzo}&&f:X\to Y\text{ the contraction of $\R_{\ge0}[l]$} \ar[swap]{dl}{\dim Y=1}\ar{d}{\dim Y=0}\\
+&X\cong\P^1\times\P^1&X\cong\P^2\text{ (2.5)}
+\end{cd}
+\end{rmk}
+\begin{rmk*}
+Let $X\cong\P_{\P^1}(\cO_{\P^1}\oplus\cO_{\P^1}(n))$ with $n\in\{0,1\}$.
+
+If $n=0$, then $X\cong\P_{\P^1}(\cO_{\P^1}\oplus\cO_{\P^1})\cong\P^1\times\P^1$.
+
+If $n=1$, then $X\cong\P_{\P^1}(\cO_{\P^1}\oplus\cO_{\P^1}(1))$, there is a $(-1)$-curve on $X$ (cf.(2.11))
+\end{rmk*}
+
+\begin{pf}[Outline of (2.3)]
+For an extremal ray $R=\R_{\ge0}[l]$, (A) for $l^2<0$, (B) for $l^2=0$, (C) for $l^2>0$.
+\end{pf}
+
+\begin{prop}
+Let $X$ be a del Pezzo surface and $l$ be a curve on $X$ with $l^2<0$.
+Then,
+\begin{parts}
+\item $l$ is a $(-1)$-curve,
+\item $\R_{\ge0}[l]$ is an extremal ray,
+\item the contraction of $R$ is the blowdown of $l$.
+\end{parts}
+\end{prop}
+\begin{pf}
+(a)
+TFAE:
+\begin{enumerate}[(i)]
+\item $l$ is a $(-1)$-curve,
+\item $l\cong\P^1$ and $l^2=-1$,
+\item $K_X\cdot l=l^2=-1$,
+\item $K_X\cdot<0$ and $l^2<0$.
+\end{enumerate}
+Here $X$ is a smooth projective surface and $l$ a curve on it.
+Note (i) and (ii) are equivalent by definition.
+The equivalence between (ii) and (iii) is due to $(K_X+l)\cdot l=2h^1(l,\cO_l)-2\ge-2$.
+The equivalence between (iii) and (iv) is clear.
+
+(b) Omitted.
+
+(c) Let $f:X\to Y$ blowdown of $l$ and $P:=f(l)$.
+Recall that $f$ is a contraction of $R$ iff
+\begin{enumerate}[(i)]
+\item $Y$ is a projective normal variety,
+\item $f_*\cO_X=\cO_Y$,
+\item for a curve $C$ on $X$, $f(C)$ is a point iff $[C]\in\R_{\ge0}[l]$.
+\end{enumerate}
+It follows (ii) from the following lemma (2.18).
+For (iii), ($\Rightarrow$) is clear.
+($\Leftarrow$) Suppose $[C]\in\R_{\ge0}[l]$ and $C\ne l$ so that $C\cdot l\ge0$.
+Then, $C\equiv al$ for $a\in\R_{\ge0}$, and $a>0$ since $C\cdot H=al\cdot H$ for ample $H$.
+Now $0\le C\cdot l=al\cdot l=a(>0)\cdot l^2(=-1)<0$, a contradiction.
+\end{pf}
+
+\begin{lem}
+If $f$ is a projective birational morphism of normla varieties, then $f_*\cO_X=\cO_Y$.
+\end{lem}
+\begin{pf}
+Consider the Stein factorization
+\begin{cd}
+X\ar{dr}{g}\ar{rr}{f}&&Y\\
+&Z\ar{ur}{h}
+\end{cd}
+such that $g_*\cO_X=\cO_Z$ and $h$ finite.
+Then,
+\begin{cd}
+K(X)&&K(Y)\ar[swap]{ll}{\cong}\ar{dl}\\
+&K(Z)\ar{ul}
+\end{cd}
+implies $Z\xrightarrow{h}Y$ is finite birational morphism, and $A\hookrightarrow B$ is integral extension with $K(A)=K(B)$ where $\Spec A\subset Y$ is affine open and $\Spec B$ is given by the pullback(inverse image of $h$), hence $A=B$.
+\end{pf}
+
+\begin{lem}
+Let $X$ be a del Pezzo surface and $\R_{\ge0}[l]$ be an extremal ray for a curve $l$ on $X$, whose contraction is $f:X\to Y$.
+Then,
+\begin{enumerate}[(A)]
+\item $l^2<0$ iff $\dim Y=2$,
+\item $l^2=0$ iff $\dim Y=1$,
+\item $l^2>0$ iff $\dim Y=0$.
+\end{enumerate}
+\end{lem}
+\begin{pf}
+Next lecture.
+
+For the case (C), we have done in (2.19)
+\end{pf}
+
+\begin{prop}[(B)]
+If $l^2=0$, then the fiber is isomorphic to $\P^1$.
+\end{prop}
+\begin{pf}
+For $P\in Y$, let $F:=f^*P=\sum_{i=1}^ra_iC_i$ with $a_i\in\Z_{>0}$ and $C_i$ prime divisors.
+\begin{clm}
+Every fiber is irreducible.
+\end{clm}
+\begin{pf}
+If it is reducible, then there are $C_1\ne C_2$ in the fiber, then
+\[F\cdot C_1=(\sum_{i=1}^ra_iC_i)\cdot C_1=a_1C_1^2+(\text{positive}),\]
+so $C_1^2<0$.
+Then, $C_i\equiv b_il$, so $C_1^2<0$ implies $l^2<0$ and $C_1\cdot C_2\ge0$ implies $l^2\ge0$, a contradiction.
+\end{pf}
+We can show that every fiber $F$ is reduced:
+\[(K_X+F)\cdot F=K_X\cdot F+F^2=K_X\cdot F+0<0,\]
+by the adjunction, $F\cong\P^1$.
+\end{pf}
 
 \end{document}

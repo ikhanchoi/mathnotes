@@ -8,11 +8,319 @@
 \tableofcontents
 
 \newpage
-\section{Modules}
+\section{Day 1: April 6}
+
+\section*{1. Modules}
+
+References: Atsushi Shiho, Yukiyoshi Kawada
+
+\subsection*{1.1. $R$-modules}
+\begin{defn}
+Let $R$ be a ring with 1.
+A (left) $R$-module is an abelian group $M$ with a map $R\times M\to M:(a,x)\mapsto ax$ satisfying $a(x+y)=ax+ay$, $(a+b)x=ax+bx$, $(ab)x=a(bx)$, $1x=x$.
+\end{defn}
+\begin{ex}
+\begin{parts}
+\item Every abelian group is a $\Z$-module. The $R$-module structures on an abelian group $M$ has 1-1 correspondence with the ring homomorphisms $R\to\End_\Z(M)$.
+\item $M=C^\infty(\R)$, $R=\R[T]$ a polynomial ring, $R\times M\to M:(P(T),f(x))\mapsto P(\dd{x})f(x)$.
+\end{parts}
+\end{ex}
+
+\begin{defn}
+A (left) $R$-submodule of $M$ is a subgroup $N\subset M$ such that $ax\in N$ for $a\in R$, $x\in N$.
+A (left) $R$-homomorphism is a group homomorphism $M\to N$ which preserves the action of $R$.
+\end{defn}
+\begin{ex}
+\begin{parts}
+\item $M=C^\infty(\R)$, $R=\R[T]$, then $\f:M\to M:f(x)\mapsto f(x+1)$ is an $R$-homomorphism.
+\end{parts}
+\end{ex}
+
+\begin{defn}
+Let $f:M\to N$ be an $R$-homomorphism.
+The kernel of $f$ is $\ker f:=\{x\in M:f(x)=0\}\xrightarrow{i}M$, and the cokernel of $f$ is $N\xrightarrow{p}\coker f:=N/\im f$, where the image is $\im f:=\{f(x)\in N:x\in M\}\xrightarrow{j}N$.
+\begin{cd}
+\ker f \ar{r}{i}& M \ar{rr}{f}\ar{dr}{f}&& N \ar{r}{p}& \coker{f}\\
+&&\im f \ar{ur}{j}&&
+\end{cd}
+On each of them, there is a unique $R$-module structure such that the each map $i,j,p$ becomes an $R$-homomorphism respectively.
+\end{defn}
+
+\begin{thm}[Universal property]
+For the above setting, note that $fi=0$ and $pf=0$.
+If an $R$-homomorphism $g:M'\to M$ satisfies $fg=0$, then there is a unique $R$-homomorphism $h:M'\to\ker f$ such that $g=ih$.
+If an $R$-homomorphism $g:N\to N'$ satisfies $gf=0$, then there is a unique $R$-homomorphism $h:\coker f\to N'$ such that $g=hp$.
+\end{thm}
+
+\subsection{Commutative diagrams and exact sequences}
+
+\begin{defn}[Diagram]
+Among some $R$-modules suppose we have $R$-homomorphisms as the following diagram:
+\begin{cd}
+M_1\ar{r}{f_1}\ar[swap]{d}{f_3} & M_2 \ar[swap]{ld}{f_2} \ar{d}{g_1}\\
+M_3\ar{r}{g_2}&M_4\qquad.
+\end{cd}
+Then, if the compositions sharing each source and target coincide, then we say the diagram is commutative.
+For example, we say the triangle formed by $M_2,M_3,M_4$ is commutative iff $g_1=g_2f_2$.
+\end{defn}
+
+\begin{defn}[Sequence]
+A sequence is a diagram of $R$-modules placed linearly as
+\begin{es}
+\cdots\>M_n\>{f_n} M_{n+1}\>{f_{n+1}} M_{n+2} \>\cdots.
+\end{es}
+If $\im f_n=\ker f_{n+1}$ for all $n$, then we say the sequence is exact.
+\end{defn}
+
+\begin{ex}
+\begin{parts}
+\item $f:M\to N$ is injective iff $0\to M\xrightarrow{f}N$ is exact. $f:M\to N$ is surjective iff $M\xrightarrow{f}N\to0$ is exact.
+\item
+\begin{es}
+	0 \> \ker f \>{i} M \>{f} N \>{p} \coker f \> 0
+\end{es}
+is exact.
+\item
+\begin{es}
+	0 \> \Z \>{n} \Z \> \Z/n\Z \> 0
+\end{es}
+is exact.
+\item 
+\begin{es}
+	0 \> \R\cos x\oplus\R\sin x \>{n} C^\infty(\R) \>{\dd[2]{x}+1} C^\infty(\R) \> 0
+\end{es}
+is exact.
+\end{parts}
+\end{ex}
+
+\begin{prop}[Five lemma]
+Suppose each row is exact in the folloing commutative diagram:
+\begin{cd}
+M_1 \ar{r}{f_1}\ar{d}{h_1} & M_2 \ar{r}{f_2}\ar{d}{h_2} & M_3 \ar{r}{f_3}\ar{d}{h_3} & M_4 \ar{r}{f_4}\ar{d}{h_4} & M_5 \ar{d}{h_5}\\
+N_1 \ar{r}{g_1} & N_2 \ar{r}{g_2} & N_3 \ar{r}{g_3} & N_4 \ar{r}{g_4} & N_5 .
+\end{cd}
+Then,
+\begin{parts}
+\item
+\begin{cd}
+\,\ar[two heads]{d} & \,\ar[hook]{d} & \,\ar[hook,dashed]{d} & \,\ar[hook]{d} & \, \\ \,&\,&\,&\,&\,
+\end{cd}
+\item
+\begin{cd}
+\, & \, \ar[two heads]{d} & \, \ar[two heads,dashed]{d} & \, \ar[two heads]{d} & \, \ar[hook]{d}\\ \,&\,&\,&\,&\,
+\end{cd}
+\item
+\begin{cd}
+\, \ar[two heads]{d} & \, \ar{d}{\sim} & \, \ar[dashed]{d}{\sim} & \, \ar{d}{\sim} & \, \ar[hook]{d}\\ \,&\,&\,&\,&\,
+\end{cd}
+\end{parts}
+\end{prop}
+\begin{pf}
+(a)
+We will show $x\in\ker h_3$ is in the image of $f_2f_1$:
+$h_3(x)=0\implies f_3(x)=0\implies x=f_2(y)\implies g_2h_2(y)=0\implies h_2(y)=g_1(z)\implies z=h_1(u)\implies f_1(u)=y$. Then, $x=f_2(y)=f_2f_1=0$.
+
+(b)
+Similar.
+
+(c)
+Clear.
+\end{pf}
+
+\begin{prop}[Snake lemma]
+Suppose the second and the third rows are exact in the following commutative diagram:
+\begin{cd}
+&\ker h_1&\ker h_2&\ker h_3&\\
+&M_1&M_2&M_3&0\\
+0&N_1&N_2&N_3&\\
+&\coker h_1&\coker h_2&\coker 3&\\
+\end{cd}
+\begin{parts}
+\item There is $\delta:\ker h_3\to\coker h_1$ such that
+\begin{es}
+\ker h_1 \>{k_1} \ker h_2 \>{k_2} \ker h_3 \>{\delta} \coker h_1 \>{l_1} \coker h_2 \>{l_2} \coker 3
+\end{es}
+is exact.
+Here $k_1,k_2,l_1,l_2$ are induced from $f_1,f_2,g_1,g_2$, respectively.
+The element $\delta(x)$ is determined by $u$ such that $x=f_2(y)$, $z=h_2(y)$, $z=g_1(u)$, and we can check that $u$ does not depend on the choice of $y$.
+\item
+\end{parts}
+\end{prop}
+\begin{pf}
+(a)
+We have to show the well-definedness of $\delta$, $\ker\subset\im$, and $\im\subset \ker$.
+Skip.
+\end{pf}
+
+In the general abelian cateogies, the five lemma and the snake lemma hold but the proofs become more complicated.
+
+
+\subsection{Direct sum, direct product, inductive limit, direct limit}
+
+\begin{defn}
+Let $M_\lambda$ be a family of $R$-modules.
+The direct product is
+\[\prod_\lambda M_\lambda:=\{(x_\lambda):x_\lambda\in M_\lambda\}\twoheadrightarrow M_\lambda,\]
+and the direct sum is the submodule of the direct product such that
+\[\bigoplus_\lambda M_\lambda:=\{(x_\lambda):x_\lambda=0\text{ but finitely many}\}\hookleftarrow M_\lambda\]
+\end{defn}
+\begin{prop}[Universal property]
+\begin{parts}
+\item For $f_\mu:M_\mu\to N$ there is unique $f:\bigoplus_\lambda M_\lambda\to N$ such that $fi_\mu=f_\mu$.
+\item For $g_\mu:N\to M_\mu$ there is unique $g:N\to\prod_\lambda M_\lambda$ such that $p_\mu g=g_\mu$.
+\end{parts}
+\end{prop}
+\begin{rmk}
+\begin{parts}
+\item The direct sum and direct product is unique up to isomorphism by the universal property.
+\item For $R$-homomorphisms $f_\lambda:M_\lambda\to N_\lambda$ we can induce $\prod_\lambda f_\lambda:\prod_\lambda M_\lambda\to\prod_\lambda N_\lambda$ and $\bigoplus_\lambda f_\lambda:\bigoplus_\lambda M_\lambda\to\bigoplus_\lambda N_\lambda$.
+\item In the category of modules, even for infinite indices, direct product and sum commute with the kernel, cokernel, and image. In an abelian category, we may not have infinie direct product/sum.
+\item exactness also preserved under products and sums
+\end{parts}
+\end{rmk}
 
 
 
+\section{Day 2: April 13}
+
+Let $(\Lambda,\prec)$ be a totally ordered set.
+By a direct system, we refer the family of $R$-modules $M_\lambda$ for each $\lambda\in\Lambda$ and the family of $R$-homomorphisms $\tau_{\mu\lambda}:M_\lambda\to M_\mu$ for $\lambda\prec\mu$ such that $\tau_{\lambda\lambda}=\id_{M_\lambda}$ and $\tau_{\kappa\lambda}=\tau_{\kappa\mu}\tau_{\mu\lambda}$ for $\lambda\prec\mu\prec\kappa$.
+
+\begin{ex}[1.3.3.]
+\begin{parts}
+\item Let $\Lambda=\N$ and $n\prec m\Leftrightarrow n\mid m$, $M_n=\Z$ and $\tau_{mn}(z):M_n\to M_m:z\mapsto(m/n)z$.
+\item Let $M$ be a $R$-module, $\{M_\lambda\}$ are finitely generated $R$-submodules of $M$, and $\lambda\prec\mu\Leftrightarrow M_\lambda\subset M_\mu$, with $\tau_{\mu\lambda}$ inclusions.
+\end{parts}
+\end{ex}
+
+\begin{defn}
+\[\lim_{\longrightarrow}M_\lambda=\lim_{\longrightarrow}(M_\lambda,\tau_{\mu\lambda}):=\coker(\bigoplus_{\substack{(\lambda,\mu)\in\Lambda\\\lambda\prec\mu}} M_\lambda\xrightarrow{\Phi}\bigoplus_{\lambda\in\Lambda}M_{\lambda}),\]
+where $\Phi((x_{\lambda\mu}))=\sum_{\lambda\prec\mu}\iota_\mu\tau_{\mu\lambda}(x_{\lambda\mu})-\iota_\lambda(x_{\lambda\mu})$, and $\iota_\lambda:M_\lambda\to\bigoplus_\lambda M_\lambda$ is a componentwise embedding.
+That is, we want to identify $x\in M_\lambda$ and $\tau_{\mu\lambda}(x)\in M_\mu$ with the map $\Phi$.
+\end{defn}
+\begin{prop}[1.3.4]
+Let $\tau_\mu:M_\mu\xrightarrow{\iota_\mu}\bigoplus_\lambda M_\lambda\twoheadrightarrow\lim_{\longrightarrow}M_\lambda$.
+\begin{parts}
+\item $\tau_\mu=\tau_\kappa\tau_{\kappa\mu}$.
+\item $M_\mu\xrightarrow{f_\mu} N$ for $\mu\in\Lambda$ are $R$-homomorphisms, and they satisfy $f_\mu=f_\kappa\tau_{\kappa\mu}$. Then, there is a unique $f:\lim_{\longrightarrow}M_\lambda\to N$ such that $f_\mu=f\tau_\mu$
+\end{parts}
+\end{prop}
+
+For each example in 1.3.3, $\Q$ and $M$ are the direct limits because it satisfies the universal property (1.3.4(b))
+
+\begin{rmk}
+(1) The direct limit is unique by the universal property up to isomorphism.
+
+(2) If $f_\lambda:M_\lambda\to M_\lambda'$ are $R$-homomorphism such that
+\begin{cd}
+M_\lambda \ar{r}{f_\lambda} \ar{d} & M\lambda' \ar{d}\\
+M_\mu \ar{r}{f_\mu} & M_\mu'
+\end{cd}
+commutes for all $\lambda\prec\mu$,
+then there is a unique $f$ such that
+\begin{cd}
+\bigoplus_{\lambda\prec\mu}M_\lambda
+&\bigoplus_{\lambda}M_\lambda
+&\lim_{\longrightarrow}M_\lambda \ar{d}{\exists!f}
+&0\\
+\bigoplus_{\lambda\prec\mu}M_\lambda'
+&\bigoplus_{\lambda}M_\lambda'
+&\lim_{\longrightarrow}M_\lambda'
+&0
+\end{cd}
+commutes, and $f$ is denoted by $\lim_{\longrightarrow}f_\lambda$.
+It is by the universal property of cokernel.
+\end{rmk}
+
+\begin{defn}[1.3.6]
+A preordered set $\Lambda$ is a directed set if $\forall\lambda,\lambda'\in\Lambda$, there is $\mu\in\Lambda$ such that $\lambda,\lambda'\prec\mu$.
+\end{defn}
+\begin{prop}
+If $\Lambda$ is a directed set, then there is a 1-1 correspondence
+\[(\coprod_\lambda M_\lambda)/\sim\to\lim_{\longrightarrow}M_\lambda:[x_\lambda]\mapsto\tau_\lambda(x_\lambda),\]
+where $x_\lambda\sim y_{\lambda'}$ iff there is $\mu\succ\lambda,\lambda'$ such that $\tau_{\mu\lambda}(x_\lambda)=\tau_{\mu\lambda'}(y_{\lambda'})$.
+\end{prop}
+
+\begin{prop}
+If
+\begin{es}
+L_\lambda \>{f_\lambda} M_\lambda \>{g_\lambda} N_\lambda \> 0
+\end{es}
+is exact, then
+\begin{es}
+\colim L_\lambda \> \colim M_\lambda \> \colim N_\lambda \> 0
+\end{es}
+is exact.
+\end{prop}
+\begin{pf}
+We cannot use the snake lemma directly on
+\begin{cd}
+\bigoplus_{\lambda\prec\mu}L_\lambda \ar{r}
+&\bigoplus_{\lambda\prec\mu}M_\lambda \ar{r}
+&\bigoplus_{\lambda\prec\mu}N_\lambda \ar{r}
+&0\\
+\bigoplus_{\lambda}L_\lambda \ar{r}
+&\bigoplus_{\lambda}M_\lambda \ar{r}
+&\bigoplus_{\lambda}N_\lambda \ar{r}
+&0\\
+\colim L_\lambda \ar{r}
+&\colim M_\lambda \ar{r}
+&\colim N_\lambda \ar{r}
+&0.
+\end{cd}
+So, 
+\begin{cd}
+0 \ar{r}
+&\bigoplus_{\lambda\prec\mu}\ker g_\lambda \ar{r}
+&\bigoplus_{\lambda\prec\mu}M_\lambda \ar{r}
+&\bigoplus_{\lambda\prec\mu}N_\lambda \ar{r}
+&0\\
+0 \ar{r}
+&\bigoplus_{\lambda}\ker g_\lambds \ar{r}
+&\bigoplus_{\lambda}M_\lambda \ar{r}
+&\bigoplus_{\lambda}N_\lambda \ar{r}
+&0\\
+\,
+&\colim \ker g_\lambda \ar{r}
+&\colim M_\lambda \ar{r}
+&\colim N_\lambda \ar{r}
+&0
+\end{cd}
+and
+\begin{cd}
+0 \ar{r}
+&\bigoplus_{\lambda\prec\mu}\ker f_\lambda \ar{r}
+&\bigoplus_{\lambda\prec\mu}L_\lambda \ar{r}
+&\bigoplus_{\lambda\prec\mu}\im f_\lambda \ar{r}
+&0\\
+0 \ar{r}
+&\bigoplus_{\lambda}\ker f_\lambds \ar{r}
+&\bigoplus_{\lambda}L_\lambda \ar{r}
+&\bigoplus_{\lambda}\im f_\lambda
+&\,\\
+\,
+&\colim \ker f_\lambda \ar{r}
+&\colim L_\lambda \ar{r}
+&\colim \im f_\lambda
+&\,
+\end{cd}
+????????????
+\end{pf}
+
+\begin{ex}
+Examples of inverse limit
+\begin{parts}
+\item projection $\Z/p^m\Z\twoheadarrow\Z/p^n\Z$ for $m>n$.
+\item restriction $C^\infty((-r,r))\to C^\infty((-r',r')$ for $r'>r$.
+\end{parts}
+\end{ex}
 
 
+Ab-enriched: preadditive
+binary biproduct: semiadditive
+existence of ker/coker
+normality of mono/epi
+
+constructions: universals(products and equalizers, pullbacks, limits, representables)
 
 \end{document}

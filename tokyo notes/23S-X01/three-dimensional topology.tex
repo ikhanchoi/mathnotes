@@ -8,11 +8,268 @@
 \tableofcontents
 
 \newpage
-\section{Day 1}
+\section{Day 1: April 11}
+
+Plan:
+\begin{enumerate}
+\item Fundamental groups of manifolds
+\item Examples and constructions
+\item Prime decomposition
+\item Loop and sphere theorems
+\item Haken manifolds
+\item Seifert manifolds
+\item JSJ composition
+\item Geometrization
+\item Virtually special theorems
+\end{enumerate}
+
+\noindent References:
+\begin{enumerate}
+\item J. Hempel, 3-manifolds
+\item W. Jaco, Lectures on three-manifold topology
+\item B. Martelli, An introduction to geometric topology
+\item Morimoto, An introduction to three-dimensional manifolds (Japanses)
+\end{enumerate}
+
+\noindent Grading:
+Submit a report for any three among the exercises given in the lecture (ITC-LMS Kadai).
+Cancellation of class: 5/2, 7/11(maybe)
+
+\noindent Convention:
+\begin{itemize}
+\item manifold = connected compact orientable smooth manifold
+\item surface = connected compact orientable smooth 2-dimensional manifold
+\item tub nbd, isotopy extension, transversality, triangulation,$\cdots$
+\end{itemize}
+
+\subsection*{1. Fundamental group}
+\subsubsection*{1.1. Fundamental groups of higher dimensional manifolds}
+\begin{prop}
+Let $\pi$ be a finitely presented group.
+Then, for every $d\ge4$ there is a $d$-manifold $X$ such that $\pi_1(X)\cong\pi$.
+\end{prop}
+\begin{pf}
+Let $\pi=\<x_1,\cdots,x_n\mid r_1,\cdots r_m\>$ be given.
+If $Y=(S^1\times S^{d-1})^{\#n}$, then $\pi_1(Y)\cong\<x_1,\cdots\,x_n\>$ by the van Kampen theorem.
+Let
+\[Z=Y\setminus(\coprod_{i=1}^m\nu(l_i)),\]
+where $l_i\subset Y$ is embedded loops representing $r_i$ and $\nu$ denotes the open tubular neighborhood.
+Then, $\pd Z=\coprod_{i=1}^ml_i\times S^{d-2}$.
+Since $d\ge4$, any loops and disks can be pushed off $l_1\cdots,l_n$, we have an isomorphism $\pi_1(Z)\to\pi_1(Y)$.
+Then, if we let
+\[X=Z\cup_{\pd}(\coprod_{i=1}^mD^2\times S^{d-2}),\] then $l_i\times*=\pd(D^2\times*)$, we have $\pi_1(X)\cong\pi_1(Y)/\<[l_1],\cdots,[l_m]\>\cong\pi$.
+\end{pf}
+
+\subsubsection*{1.2. Surfaces and their groups}
+
+\begin{thm}[Rad\'o, Whitehead]
+Every topological surface admits a unique smooth and PL structure.
+\end{thm}
+
+\begin{thm}
+Every surface is diffeomorphic to only one of $\Sigma_{g,b}$, where $\Sigma_{g,b}=(T^2)^{\#g}\#(D^2)^{\#b}$.
+\end{thm}
+
+\begin{cor}
+$S=S^2,T^2,D^2$ are prime, that is, $S=S_1\#S_2$ implies $S_i\approx S^2$ for $i=1$ or $i=2$.
+\end{cor}
+
+\begin{rmk}
+If the orientability is reduced out, then $\RP^2$ is prime.
+Also note that $T^2\#\RP^2\approx(\RP^2)^{\#3}$.
+\end{rmk}
+
+\begin{thm}[Uniformization]
+For every surface $S\ne D^2$, its interior admits a complete Riemannian metric of constant curvature
+\[\begin{cases}1,&\chi(S)>0\\0,&\chi(S)=0\\-1,&\chi(S)<0\end{cases}\]
+with universal covering $S^2$, $\R^2$, $\H^2$, respectively.
+\end{thm}
+
+The hyperbolic plane is $\H^2=\{(x,y)\in\R^2:y>0\}$ with the Riemannian metric $ds^2=(dx^2+dy^2)/y^2$, and $\Isom^+(\H^2)=\PSL_2(\R)$.
+
+\begin{prop}
+If a surface $S$ has $\chi(S)<0$, then there is a discrete group $\Gamma\le\PSL_2(\R)$ such that $S\approx\H^2/\Gamma$.
+In particular, $\pi_1(S)$ is isomorphic to $\Gamma$.
+\end{prop}
+We have
+\[\pi_1(\Sigma_{g,b})\cong F_{2g+b-1}\quad\text{ and }\quad\pi_1(\Sigma_g)\cong\<a_1,b_1,\cdots,a_g,b_g\mid[a_1,b_1],\cdots,[a_g,b_g]\>.\]
+
+\begin{prop}
+$\pi_1(\Sigma_g)$ is torsion free.
+\end{prop}
+
+\textbf{Exercise 1.} Prove Proposition 1.7.
 
 
+\begin{thm}[Newman]
+$\pi_1(\Sigma_{g,b})$ is linear over $\Z$, that is, is isomorphic to a subgroup of $\GL_n(\R)$.
+For example, we can check $F_n\hookrightarrow F_2\hookrightarrow \SL_2(\Z)$ according to the pingpong lemma.
+\end{thm}
 
 
+Over $\R$, we may embed $\pi_1(S)\hookrightarrow\PSL_2(\Z)\cong\SO_{1,2}^+(\R)<\GL_3(\R)$ if $\chi(S)<0$,
 
+\begin{defn*}
+A group $\pi$ is called residually finite(RF) if for every $1\ne\gamma\in\pi$ there is a group homomorphism $\f:\pi\to G$ to a finite group $G$ such that $\f(\gamma)\ne1$.
+A subgroup $\pi'<\pi$ is called separable if there is a group homomorphism $\f:\pi\to G$ to a finite group $G$ such that $\f(\gamma)\notin\f(\pi')$.
+In particular, $\pi$ is residually finite if the trivial subgroup is separable in $\pi$.
+A group $\pi$ is called locally extended residually finite(LERF) if every finitely generated subgroup of $\pi$ is separable.
+\end{defn*}
+
+\begin{thm}[Mal'cev]
+Every finitely generated linear group over a field is residually finite.
+\end{thm}
+
+Over $\Z$, if $1\ne(a_{ij})\in\pi<\GL_n(\Z)$ given, then for $m>\max_{i,j}|a_{ij}|$ if we let $\f_m:\pi\hookrightarrow\GL_n(\Z)\twoheadrightarrow\GL_n(\Z/m\Z)$, then $\f_m((a_{ij}))\ne1$.
+
+\begin{thm}[Scott]
+$\pi_1(\Sigma_{g,b})$ is LERF.
+\end{thm}
+
+
+\section{Day 2: April 18}
+
+\subsection*{2. Examples and constructions of 3-manifolds}
+
+\begin{thm}[Moise]
+Every topological 3-manifold(not neccesarily compact, connected, orientable) admits a unique smooth and PL structure.
+\end{thm}
+
+\subsection{Spherical manifolds}
+
+Recall
+\begin{align*}
+S^3:&=\{x\in\R^4:|x|=1\}\\
+&=\{(z,w)\in\C^2:|z|^2+|w|^2=1\}\\
+&=\{a+bi+cj+dk\in\H:a^2+b^2+c^2+d^2=1\}.
+\end{align*}
+\subsubsection*{Lens spaces}
+Let $p,q\in\Z$, $p>0$, $(p,q)=1$.
+Then, $\Z/p\Z=\<\zeta=\exp(2\pi\sqrt{-1}/p)\>$ acts on $S^3$ such that $\zeta\cdot(z,w)=(\zeta z,\zeta^qw)$.
+Then, the Lens spaces are defined as
+\[L(p,q):=S^3/(\Z/p\Z)\quad\text{ with }\quad\pi_1(L(p,q))=\Z/p\Z.\]
+For example, $L(1,1)=S^3$ and $L(2,1)=\RP^3$.
+
+
+\begin{thm}[Reidemeister]\,
+\begin{parts}
+\item $L(p,q)\simeq L(p,q')$ (homotopy equiv) if and only if there is $a\in\Z$ such that $qq'\equiv\pm a^2\pmod p$.
+\item $L(p,q)\approx L(p,q')$ (diffeo) if and only if $q'\equiv\pm q^{\pm1}\pmod p$.
+\end{parts}
+\end{thm}
+
+For example, $L(7,1)\simeq L(7,2)$ since $1\cdot2\equiv 3^2\pmod7$, but $L(7,1)\approx L(7,2)$ since $2\not\equiv\pm1\pmod7$.
+\begin{pf}[Sketch of ($\Leftarrow$)]
+Direct construction.
+(a) With the linking form $H_1(L)\times H_1(L)\to\Q/\Z$.
+(b) Reidemeister torsion. 
+\end{pf}
+
+\subsubsection*{General quotients}
+A spherical manifold is the orbit space $S^3/\Gamma$, where $\Gamma$ is a finite subgroup of $\SO(4)$ and $\Gamma\curvearrowleft S^3$ freely.
+
+\begin{ex*}
+With an action $\<-1,i,j,k\>\curvearrowleft S^3$, we obtain the prism manifold.
+\end{ex*}
+\begin{ex*}
+With an action of the binary icosahedral group $\Gamma=\Z/2\Z\rtimes A_5$ on $S^3$, we obtain the Poincar\'e sphere.
+We have $H_*(S^3/\Gamma)\cong H_*(S^3)$.
+If we take 3/10 turn instead of 1/10, we have the Seifert-Weber space.
+\end{ex*}
+
+\subsection{Fibered manifolds}
+
+
+\subsubsection*{Twisted bundles}
+\[N_{g,b}=(\RP^2)^{\#g}\#(D^2)^{\#b}.\]
+
+Let $D$ be a polygon with oriented sides $a_1,a_1',a_2,a_2',\cdots,a_g,a_g'$.
+\[N_g\tilde\times[0,1]:=D\times[0,1]/\sim,\] where $(x,t)\sim(x',1-t)$ for $x\in a_i$, $x'\in a_i'$, $t\in[0,1]$ with $[x]=[x']\in N_g$, and it is orientable.
+\[N_g\tilde\times S^1:=N_g\tilde\times[0,1]/(x,0)\sim(x,1),\ x\in N_g\]
+\[N_{g,b}\tilde\times S^1:=N_g\tilde\times S^1\setminus\nu(b\text{ fibers}).\]
+
+\textbf{Exercise 2.} Show the following:
+\begin{parts}
+\item $\RP^2\tilde[0,1]\approx\RP^3\setminus\text{(open ball)}$.
+\item $\RP^2\tilde\times S^1\approx\RP^3\#\RP^3$.
+\item $N_{1,1}\tilde\times S^1\approx N_2\tilde\times[0,1]$.
+\end{parts}
+
+\subsubsection*{Mapping tori}
+The mapping class group is
+\[\cM_{g,b}:=\mathrm{Diff}^+(\Sigma_{g,b},\pd\Sigma_{g,b})/\text{isotopy relative to }\pd.\]
+
+\begin{thm}[Dehn, Lickorish]
+$\cM_{g,b}$ is finitely generated by Dehn twists.
+\end{thm}
+For examples, $\cM_0=\cM_{0,1}=1$ by the Alexander trick, and $\cM_{0,2}\cong\Z$, $\cM_1=\cM_{1,1}\cong\SL_2(\Z)$.
+
+Let $\f\in\cM_{g,b}$.
+Then, a mapping torus is defined by
+\[M_\f:=\Sigma_{g,b}\times[0,1]/(\f(x),0)\sim(x,1).\]
+
+\subsection{Heegaard decomposition}
+
+A manifold with a boundary
+\[H_g:=D^3\cup(D^2\times[0,1])^{\sqcup g}\]
+is called the handle body with genus $g$.
+Then, $\pi_1(H_g)\cong F_g$ and $\pd H_g\approx\Sigma_g$.
+Let $\f:\pd H_g\to\pd H_g$ be an orientation-preserving diffeomorphism, i.e. an element of the mapping class group $\cM_g$.
+If a 3-manifold $M$ satisfies
+\[M\approx H_g\approx H_g,\]
+then the right-hand side is called the Heegaard decomposition(splitting) of $M$.
+\begin{prop}
+Every closed 3-manifold admitting a Heegaard decomposition of genus 0 is diffeomorphic to $S^3$.
+\end{prop}
+\begin{pf}
+$\cM_0=1$.
+\end{pf}
+\begin{prop}
+Every closed 3-manifold admitting a Heegaard decomposition of genus 1 is diffeomorphic to $S^3$, $S^2\times$, or $L(p,q)$.
+\end{prop}
+\textbf{Exercise 3.} Prove the above proposition.
+\begin{thm}
+Every closed 3-manifold $M$ admits a Heegaard decomposition along some $\Sigma_g$.
+\end{thm}
+\begin{pf}
+Pick a triangulation $T$ of $M$.
+Then, $H:=\bar{\nu(T^{(1)})}$ is a handlebody.
+Then, $H':=M\setminus\mathrm{Int}H$ is also a handlebody.
+Since $M$ is orientable, so are $H$ and $H'$, thus we are done.
+\end{pf}
+There is another proof using Morse theory.
+
+\begin{cor}
+The fundamental group of every closed 3-manifold admits a finite presentation of deficiency 0, i.e. the number of generators is equal to the number of relations.
+\end{cor}
+\begin{pf}
+Apply the van Kampen theorem to
+\[M=H_g\cup H_g=H_g\cup(D^2\times[-\e,\e])^{\sqcup g}\cup D^3.\qedhere\]
+\end{pf}
+
+\subsection{Dehn surgery}
+Let $L$ be a link.
+The link exterior is the set $E_L=S^3\setminus\nu(L)$.
+
+\begin{prop}
+Let $M$ be a 3-manifold, and $T\subset\pd M$ a torus component.
+Let $h:\pd(D^2\times S^1)\to T$ be a diffeomorphism.
+Then, $M\cup_h(D^2\times S^1)$ is determined only by $\pm[h(\pd D^2\times*)]\in H_1(T)$.
+\end{prop}
+\begin{pf}
+Write
+\[M\cup_h(D^2\times S^1)=M\cup_h(D^2\times(-\e,\e))\cup D^3.\qedhere\]
+\end{pf}
+For a knot $K$, there are two generators $\mu$ and $\lambda$, called the meridian and the longitude, of $H_1(\pd E_K)$ such that $\ker(H_1(\pd E_K)\to H_1(E_K)=\Z\mu)$ is generated by $\lambda$.
+
+\textbf{Exercise 4.} Show that $L(p,q)$ with $p\ne0$ and $S^2\times S^1$ are obtained by the $p/q$-Dehn surgery along the unknot.
+
+\begin{thm}[Lickorish-Wallace]
+Every closed 3-manifold can be obtained by an (integral)-Dehn surgery along some link in $S^3$.
+\end{thm}
+\begin{pf}[Sketch]
+Heegaard decomposition and $\cM_g=\<\text{Dehn twists}\>$.
+Each Dehn twist realizes the Dehn surgery steps.
+\end{pf}
 
 \end{document}
