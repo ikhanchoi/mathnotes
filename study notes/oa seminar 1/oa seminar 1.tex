@@ -2,10 +2,22 @@
 \usepackage{../../ikhanchoi}
 
 \begin{document}
+\title{Operator Algebra Seminar Note I}
+\author{Ikhan Choi}
+\maketitle
+\tableofcontents
 
+
+\section*{Acknowledgement}
+This note has been written based on the first-year graduate seminar presented at the University of Tokyo in the 2023 Spring semester.
+Each seminar was delivered for 105 minutes. % without referring to any notes or references.
+The main reference for this seminar was Brown-Ozawa, and detailed gaps were filled with the aids of other books such as Takesaki, Murphy, and Paulsen whenever required.
+% I gratefully acknowledge advice of Prof. Yasuyuki Kawahigashi and support of my colleagues Futaba Sato and Yusuke Suzuki.
+
+
+
+\newpage
 \section{April 14}
-
-
 
 \subsection{Completely positive maps}
 
@@ -55,7 +67,7 @@ The former has an eigenvalues $\{2,0\}$, and the latter has $\{\pm1\}$.
 \end{pf}
 
 \begin{thm}[Stinespring dilation]
-Let $\cA$ be a unital C$^*$-algebra and $\f:\cA\to B(H)$ be a c.p. map.
+Let $\cA$ be a unital C$^*$-algebra and $\f:\cA\to B(H)$ be a c.p.~map.
 Then, there is a representation $\pi:\cA\to B(\hat H)$ and a bounded linear operator $V:H\to\hat H$ such that the following diagram commutes:
 \begin{cd}
 \cA \ar{r}{\f} \ar[swap]{d}{\pi} & B(H) \\
@@ -107,7 +119,7 @@ There is a 1-1 correspondence
 (a)
 Fix $\cA\to B(H)$ a faithful representation and just write $\cA\subset B(H)$.
 
-Suppose $\psi:M_n(\C)\to\cA$ is a c.p. map.
+Suppose $\psi:M_n(\C)\to\cA$ is a c.p.~map.
 Identify $M_n(\C)=B(\ell_2^n)$.
 Since $[e_{ij}]\in M_n(B(\ell_2^n))_+$ is positive because
 \[\sum_{i,j}\<e_{ij}\xi_j,\xi_i\>=\sum_{i,j}\<e_j,\xi_j\>\<\xi_i,e_i\>=|\sum_i\<e_i,\xi_i\>|^2\ge0,\qquad\forall[\xi_i]\in(\ell_2^n)^n,\]
@@ -128,10 +140,10 @@ Then, if we define
 \[V:H\to\ell_2^n\otimes\ell_2^n\otimes H:\xi\mapsto\sum_{i,k}e_i\otimes e_k\otimes(b_{ki}\eta),\]
 we have an expression
 \[\<\psi(T)\xi,\eta\>=\<V^*(T\otimes1\otimes1)V\xi,\eta\>,\]
-which implies that $\psi$ is c.p. because $T\mapsto T\otimes1_{\ell_2^n}\otimes1_H$ is a $*$-homomorphism.
+which implies that $\psi$ is c.p.~because $T\mapsto T\otimes1_{\ell_2^n}\otimes1_H$ is a $*$-homomorphism.
 
 (b)
-Suppose $\f:\cA\to M_n(\C)$ is a c.p. map.
+Suppose $\f:\cA\to M_n(\C)$ is a c.p.~map.
 Then, $\hat\f$ is positive since $[a_{ij}]\in M_n(\cA)_+$ implies
 \[\hat\f([a_{ij}])=\sum_{i,j}\<\f(a_{ij})e_j,e_i\>\ge0.\]
 
@@ -152,13 +164,27 @@ If we define
 \[V:\ell_2^n\to H:\xi\mapsto\pi([\delta_{ij}\xi_j1_\cA])\psi,\]
 then
 \[\<\f(a)\xi,\eta\>=\<V^*\pi([a])V\xi,\eta\>,\]
-so $\f$ is c.p. since $\cA\to M_n(\cA):a\mapsto[a]$ is a $*$-homomorphism.
+so $\f$ is c.p.~since $\cA\to M_n(\cA):a\mapsto[a]$ is a $*$-homomorphism.
 \end{pf}
 
 \begin{thm}[Arveson extension]
 Let $\cB\subset\cA$ be C$^*$-algebras such that $1_\cA\in\cB$.
-Then, every c.p. map $\f:\cB\to B(H)$ has an norm-preserving c.p. extension $\tilde\f:\cA\to B(H)$, i.e. $\|\tilde\f\|=\|\f\|$.
+Then, every c.p.~map $\f:\cB\to B(H)$ has an norm-preserving c.p.~extension $\tilde\f:\cA\to B(H)$, i.e. $\|\tilde\f\|=\|\f\|$.
 \end{thm}
+\begin{pf}
+Let $p_\alpha$ be the net of projections of finite rank $n_\alpha$ in $B(H)$ with the image $V_\alpha$, which strongly converges to $\id_H$.
+Fix $\alpha$ temporarily and let $\f_\alpha:=p_\alpha\f|_{V_\alpha}:\cB\to B(V_\alpha)$.
+Choosing an any orthonormal basis of each $V_\alpha$, we can rewrite as $\f_\alpha:\cB\to M_{n_\alpha}(\C)$.
+By the above theorem, we have the associated linear functional $\hat\f_\alpha\in M_{n_\alpha}(\cB)$.
+Then, the Hahn-Banach extension provides an extension $(\hat\f_\alpha)^\sim\in M_{n_\alpha}(\cA)$, and we can define $\tilde\f_\alpha:\cA\to M_{n_\alpha}(\C)$ as the associated completely positive map.
+Via the identification $B(V_\alpha)=M_{n_\alpha}(\C)$ we used to write $\f_\alpha:\cB\to M_{n_\alpha}(\C)$, we have $\tilde\f_\alpha:\cA\to B(V_\alpha)$.
+We can check $\tilde\f_\alpha$ actually extends $\f_\alpha$, i.e. $\tilde\f_\alpha(b)=\f_\alpha(b)$ for $b\in\cB$, by putting $[b\delta_{ik}\delta_{jl}]_{i,j}\in M_{n_\alpha}(\cB)$ and comparing matrix components for each $k,l$.
+
+Since $\|\tilde\f_\alpha\|=\|\tilde\f_\alpha(1)\|=\|\f_\alpha(1)\|=\|\f_\alpha\|\le\|\f\|$, the net $\tilde\f_\alpha$ is bounded in $B(\cA,B(H))$.
+The norm-closed unit ball is compact in the point-$\sigma$-weak topology $\sigma(B(\cA,B(H)),\cA\odot L^1(H))$ because it is coarser than the weak$^*$ topology $\sigma(B(\cA,B(H)),\cA\hat\otimes_\pi L^1(H))$.
+By taking a convergent subnet, we have a limit point $\tilde\f:\cA\to B(H)$.
+It is easily seen to be completely positive and extend $\f$, and satisfies $\|\f\|=\|\f(1)\|=\|\tilde\f(1)\|=\|\tilde\f\|$.
+\end{pf}
 
 
 
@@ -238,12 +264,12 @@ Suppose $\cA$ is a C$^*$-algebra which admits a predual $F$.
 \item $\pi$ is a topological embedding w.r.t. $\sigma(\cA,F)$ and $\sigma(\cA^{**},\cA^*)$.
 \item The predual $F$ is unique in $\cA^*$.
 \end{parts}
-(a)
 In particular, there is a faithful representation $\cA\to B(H)$ whose image is ($\sigma$-)weakly closed.
 \end{thm}
 \begin{pf}
-By taking the adjoint for the embedding $F\hookrightarrow{i}\cA^*$, we have a conditional expectation $\e:\cA^{**}\twoheadrightarrow\cA$.
-Its kernel is a $\cA$-bimodule, and by the $\sigma$-weak density of $\cA$ in $\cA^{**}$ and the continuity of $\e$ between weak$^*$ topologies, so is a $\cA^{**}$-bimodule, which means it is a $\sigma$-weakly closed ideal of $\cA^{**}$.
+(a)
+By taking the adjoint for the inclusion $i:F\hookrightarrow\cA^*$, we have a conditional expectation $\e:\cA^{**}\twoheadrightarrow\cA$.
+Its kernel is a $\cA$-bimodule, and by the $\sigma$-weak density of $\cA$ in $\cA^{**}$ and the continuity of $\e$ between weak$^*$ topologies, so it is in fact a $\cA^{**}$-bimodule, which means it is a $\sigma$-weakly closed ideal of $\cA^{**}$.
 Thus we have a central projection $z\in\cA^{**}$ such that $\ker\e=(1-z)\cA^{**}$.
 
 Define $\pi:\cA\to\cA^{**}$ such that $\pi(a):=za$.
@@ -274,15 +300,15 @@ If $l\in F_1$, which is obviously continuous on $\sigma(\cA,F_1)$, and the conti
 \subsection{Nuclear maps}
 
 \begin{defn}
-A linear map $\theta:\cA\to\cB$ between C$^*$-algebras is called \emph{nuclear} if it is a limit of finite-rank c.c.p. maps in the point-norm topology.
-Equivalently, by the following lemma, there is a net of pairs of c.c.p. maps $\f_\alpha:\cA\to M_{n_\alpha}(\C)$ and $\psi_\alpha:M_{n_\alpha}(\C)\to\cB$ such that $\|\theta(a)-\psi_\alpha\circ\f_\alpha(a)\|\to0$ for each $a\in\cA$.
+A linear map $\theta:\cA\to\cB$ between C$^*$-algebras is called \emph{nuclear} if it is a limit of finite-rank contractive c.p.(c.c.p.)~maps in the point-norm topology.
+Equivalently, by the following lemma, there is a net of pairs of c.c.p.~maps $\f_\alpha:\cA\to M_{n_\alpha}(\C)$ and $\psi_\alpha:M_{n_\alpha}(\C)\to\cB$ such that $\|\theta(a)-\psi_\alpha\circ\f_\alpha(a)\|\to0$ for each $a\in\cA$.
 
 If $\cB$ is a con Neumann algebra, $\theta$ is called \emph{weakly nuclear} if it is a limit of finite-rank c.c.p. maps in the point-$\sigma$-weak topology.
 \end{defn}
 
 \begin{lem}
-A c.c.p. map $\theta:\cA\to\cB$ between C$^*$-algebras is of finite-rank iff there are c.c.p. maps $\f:\cA\to M_n(\C)$ and $\psi:M_n(\C)\to\cB$ for some $n$ such that $\theta=\psi\circ\f$.
-In Brown-Ozawa, a finite-rank c.c.p. map is called a factorable map.
+A c.c.p.~map $\theta:\cA\to\cB$ between C$^*$-algebras is of finite-rank iff there are c.c.p.~maps $\f:\cA\to M_n(\C)$ and $\psi:M_n(\C)\to\cB$ for some $n$ such that $\theta=\psi\circ\f$.
+In Brown-Ozawa, a finite-rank c.c.p.~map is called a factorable map.
 \end{lem}
 \begin{pf}
 ($\Leftarrow$) Clear.
@@ -316,9 +342,9 @@ Let $\cA$ and $\cB$ be C$^*$-algebras, and $\cM\subset B(H)$ a von Neumann algeb
 \begin{pf}
 (a)
 By applying the Hahn-Banach extension for each $a\in\cA$, we can show the closures of a convex set is same with respect to the point-norm topology and the point-$\sigma(\cB,\cB^*)$-topology.
-Thus it suffices to show that the set of finite-rank c.c.p. maps is convex.
+Thus it suffices to show that the set of finite-rank c.c.p.~maps is convex.
 
-Let $\cA\xrightarrow{\psi_i}M_{n_i}(\C)\xrightarrow{\f_i}\cB$ be c.c.p. maps for $i\in\{0,1\}$.
+Let $\cA\xrightarrow{\psi_i}M_{n_i}(\C)\xrightarrow{\f_i}\cB$ be c.c.p.~maps for $i\in\{0,1\}$.
 Then, we have a diagram
 \begin{cd}
 \cA \ar{rrr}{(1-t)\psi_0\circ\f_0+t\psi_1\circ\f_1}\ar{d}&&&\cB\\
@@ -352,7 +378,7 @@ If $\cA^{**}$ is semidiscrete, then $\cA$ is nuclear.
 (The converse also holds)
 \end{thm}
 \begin{pf}
-Since the set of finite-rank c.c.p. maps is convex, and since the closures of a convex set are same in the norm and weak topologies on a Banach space, 
+Since the set of finite-rank c.c.p.~maps is convex, and since the closures of a convex set are same in the norm and weak topologies on a Banach space, 
 \end{pf}
 
 \begin{thm}
