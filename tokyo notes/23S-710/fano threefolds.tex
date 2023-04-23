@@ -236,8 +236,9 @@ Then, there is a unique morphism $f:X\to Y$ such that
 \begin{enumerate}[(i)]
 \item $Y$ is a projective normal variety,
 \item $f_*\cO_X=\cO_Y$,
-\item For a curve $c$ on $X$, $f(c)$ is point iff $[c]\in R$.
+\item For a curve $C$ on $X$, $f(C)$ is point iff $[C]\in R$.
 \end{enumerate}
+Note that such $f$ can define the associated extremal ray.
 Moreover, we have $\rho(X)=\rho(Y)+1$ and an exact sequence $0\to\Pic Y\xrightarrow{f^*}\Pic X\xrightarrow{\cdot l}\Z$.
 The morphism $f$ is called the contraction morphism of R.
 \end{thm}
@@ -357,15 +358,16 @@ Then,
 \item $\R_{\ge0}[l]$ is an extremal ray,
 \item the contraction of $R$ is the blowdown of $l$.
 \end{parts}
+In particular, $\dim Y=\dim X=2$.
 \end{prop}
 \begin{pf}
 (a)
-TFAE:
+We will show the following statements are equivalent:
 \begin{enumerate}[(i)]
 \item $l$ is a $(-1)$-curve,
 \item $l\cong\P^1$ and $l^2=-1$,
 \item $K_X\cdot l=l^2=-1$,
-\item $K_X\cdot<0$ and $l^2<0$.
+\item $K_X\cdot l<0$ and $l^2<0$.
 \end{enumerate}
 Here $X$ is a smooth projective surface and $l$ a curve on it.
 Note (i) and (ii) are equivalent by definition.
@@ -417,8 +419,6 @@ Then,
 \end{lem}
 \begin{pf}
 Next lecture.
-
-For the case (C), we have done in (2.19)
 \end{pf}
 
 \begin{prop}[(B)]
@@ -438,6 +438,189 @@ Then, $C_i\equiv b_il$, so $C_1^2<0$ implies $l^2<0$ and $C_1\cdot C_2\ge0$ impl
 We can show that every fiber $F$ is reduced:
 \[(K_X+F)\cdot F=K_X\cdot F+F^2=K_X\cdot F+0<0,\]
 by the adjunction, $F\cong\P^1$.
+\end{pf}
+
+
+
+\newpage
+\section{Day 3: April 20}
+
+\subsection*{Nef divisors and big divisors}
+Our today's goal is to prove Lemma 2.19.
+
+
+\begin{rmk}
+Since $f_*(\cO_X)=\cO_Y$, $f:X\to Y$ is surjective so that $\dim Y\in\{0,1,2\}$.
+If we prove (A) and (C) in the Lemma 2.19, then we are enough.
+\end{rmk}
+
+\begin{pf}[Proof of Lemma 2.19 (A)]
+($\Rightarrow$) Proposition 2.17.
+
+($\Leftarrow$)
+Note that $\dim X=\dim Y$ and $f_*(\cO_X)=\cO_Y$ imply $f$ is birational.
+For an ample Cartier divisor $A_Y$ on $Y$, $f^*A_Y$ is a big divisor(defined later).
+Then,
+\[f^*A_Y\cdot l=\deg(f^*A_Y|_l)=\deg(i^*f^*A_Y)=\deg((f|_l)^*j^*A_Y)=\deg((f|_l)^*\cO_{f(l)})=\deg\cO_l=0,\]
+where $i:l\hookrightarrow X$ and $j:f(l)=*\hookrightarrow Y$ such that $fi=jf|_l$.
+
+We can define $f^*A_Y$ to be a big divisor if and only if there is $m\in\Z_{>0}$ such that $mf^*A_Y$ is the sum of an ample divisor $A$ and an effective divisor $E$.
+Then, $A\cdot l+E\cdot l=0$ implies $E\cdot l<0$, so if we write $E=\sum a_iC_i$, then $l=C_i$ for some $i$, hence $l^2<0$.
+\end{pf}
+
+\begin{defn}
+Let $X$ be a projective normal variety and $D$ a Cartier divisor.
+Then, $D$ is called to be big if and only if there are $m\in\Z_{>0}$, an ample Cartier divisor $A$, and an effective Cartier divisor $E$ such that $mD=A+E$.
+\end{defn}
+
+\begin{rmk}
+In the above definition, the equality $mD=A+E$ can be replaced by $\sim$ or $\equiv$.
+\end{rmk}
+
+\begin{rmk}
+A divisor $D$ is big iff $nD$ is big for all $n\in\Z_{>0}$ iff $nD$ is big for some $n\in\Z_{>0}$.
+\end{rmk}
+
+\begin{prop}
+Let $f:X\to Y$ be a birational morphism of projective normal varieties.
+For a Cartier divisor $D$ on $Y$, $f^*D$ is big iff $D$ is big.
+\end{prop}
+\begin{pf}
+Since $f_*\cO_X=\cO_Y$, by tensoring $\cO_Y(mD)$ we get
+\[\cO_Y(mD)=(f_*\cO_X)\otimes_{\cO_Y}\cO_Y(mD)=f_*(\cO_X\otimes_{\cO_X}f^*\cO_Y(mD))=f_*f^*\cO_Y(mD)\]
+(the second equality is due to the projection formula),
+so
+\[H^0(Y,\cO_Y(mD))=H^0(Y,f_*f^*\cO_Y(mD))=H^0(X,f^*\cO_Y(mD))=H^0(X,\cO_X(mf^*(D))).\]
+Therefore, $f^*D$ is big iff $D$ is big by Proposition 3.6.
+\end{pf}
+
+\begin{prop}
+Let $X$ be a projective normal variety and $D$ a Cartier divisor on $X$.
+Then $D$ is big iff there is $c\in\Q_{>0}$ such that for all sufficiently large $m$ we have
+\[h^0(X,\cO_X(mD))>c\cdot m^{\dim X}.\]
+\end{prop}
+\begin{pf}
+($\Rightarrow$)
+We may assume $D=A+E$ with $A$ ample and $E$ effective.
+Then, $H^0(X,mD)=H^0(X,m(A+E))\hookleftarrow H^0(X,mA)$ by
+\[0\to \cO_X(-mE)\to\cO_X\to\cO_{mE}\to0.\]
+Thus we may assume $D$ is ample.
+
+It is well-known that
+\[\chi(X,mD)=\frac{D^{\dim X}}{(\dim X)!}m^{\dim X}+O(m^{\dim X-1})\in\Z[m]\]
+from the Riemann-Roch, and by the Serr vanishing we have $\chi(X,mD)=h^0(X,mD)$ for large $m$, and we also have $D^{\dim X}>0$ by Nakai's criterion.
+
+($\Leftarrow$)
+Fix $A$ a very ample divisor on $X$.
+We may assume by Bertini that $A$ is a normal prime divisor.
+We have
+\[0\to\cO_X(mD-A)\to\cO_X(mD)\to\cO_X(mD)|_A\to0,\]
+and $\cO_X(mD)|_A\cong\cO_A(mD_A)$ for some Cartier divisor $D_A$ on $A$ such that $\cO_X(D)|_A\cong \cO_A(D_A)$.
+
+Write
+\[0\to H^0(X,mD-A)\to H^0(X,mD)\to H^0(A,mD_A).\]
+Here $h_0(X,mD)\ge c\cdot m^{\dim X}$ and $h^0(A,mD_A)\le b\cdot m^{\dim A}$ by the Exercise 3.7, we have $H^0(X,mD-A)\ne0$ for some $m>0$, i.e. $mD-A$ is linearly equivalent to an effective divisor.
+\end{pf}
+
+\textbf{Exercise 3.7.} Let $Z$ be a projective normal variety and $D$ a Cartier divisor on $Z$.
+Show that there exists $b>0$ such that $h^0(Z,mD)\le b\cdot m^{\dim Z}$ for all $m\in\Z_{>0}$.
+If you want, you may assume that $Z$ is smooth.
+
+\begin{pf}[Proof of Lemma 2.19 (C)]
+($\Leftarrow$)
+Let $\dim Y=0$ i.e. $Y=\Spec\C$ with $\rho(X)=\rho(Y)+1=1$, which implies that $l\equiv cA$ for some $c\in\Q$ and an ample divisor $A$ on $X$.
+Then, we can prove $c>0$ from $A\cdot l=A\cdot(cA)=cA^2$, hence $l^2=(cA)\cdot(cA)=c^2A^2>0$.
+
+($\Rightarrow$)
+Let $l^2>0$.
+Note that if $l$ is a curve on a smooth projective surface $X$ such that $l^2>0$, then $l$ is nef because $l\cdot C>0$ if $l=C$ and $l\cdot C\ge0$ if $l\ne C$, and furthermore $l$ is big by Proposition 3.9.
+Fix $C$ a curve on $X$.
+We are enough to show $[C]\in\R_{\ge0}[l]$.
+Then, $N_1(X)=\bigoplus_C\R_C/\equiv$ is generated by $[l]$, we get $\rho(X)=\dim N_1(X)=1$ and $\dim Y=0$.
+
+Let $l$ be a big divisor so that there is a sufficiently large $m$ with a rational map $f:X\dashrightarrow\P^N$ defined by the complete linear system $|ml|$ whose image is a surface.
+By considering the defining polynomials of $\f(C)=\bar{V_+}(f_1,\cdots,f_r)$ such that $\f(ml)$ is a hyperplane section, there must be $f_i$ not vanishing on $X$, so we have $f_i$ with $\bar{V_+}(f_i)\cap\f(X)=\f(C)+\f(E)$, where $E=\f^{-1}(\f(E))$.
+Then, since $\bar{V_+}(f_i)\sim\f((\deg f_i)ml)$, which implies $(\deg f_i)ml\sim C+E$.
+Thus, using the definition of extremal rays, we have $[C]\in\R_{\ge0}[l]$.
+\end{pf}
+
+\setcounter{thm}{7}
+\begin{defn}
+Let $X$ be a projective normal variety.
+A Cartier divisor $D$ is called nef iff $D\cdot C\ge0$ for all curves $C$ on $X$.
+\end{defn}
+\begin{prop}
+Let $X$ be a projective normal variety and $D$ a nef Cartier divisor.
+Then, $D$ is big iff $D^{\dim X}>0$.
+\end{prop}
+
+
+\begin{pf}
+For simplicity, assume $\dim X=2$.
+
+($\Rightarrow$)
+Let $mD=A+E$ with $z\in\Z_{>0}$, $A$ ample, $E$ effective.
+Since $mD\cdot E\ge0$ and $mD\cdot A=A^2+E\cdot A>0$, we have $(mD)^2=mD\cdot A+mD\cdot E>0$.
+
+($\Leftarrow$)
+We may assume $X$ is smooth by taking a resolution of $X$(the pullback via a rational map of a nef or big divisor is also nef of big respectively).
+Take $H$ a very ample divisor on $X$.
+We also may assume $H-K_X$ is ample by the Serre criterion.
+Then,
+\[0\to\cO_X(mD)\to\cO_X(mD+H)\to\cO_X(mD+H)|_H\to0\]
+and
+\[0\to H^0(\cO_X(mD))\to H^0(\cO_X(mD+H))\to H^0(\cO_X(mD+H)|_H)\]
+are exact.
+Note that we have
+\[h^0(\cO_X(mD+H))=\chi(X,mD+H)=\frac{(mD+H)^2}{2!}+O(m)\ge c\cdot m^2\]
+by the Kodaira vanishing
+\[H^i(X,mD+H)=H^i(X,K_X+(mD)_{(\text{it is nef})}+(H-K_X)_{(\text{it is ample})})=0\]
+(sum of nef and ample is ample $\because$ Corollary 3.12.)
+and $h^0(\cO_X(mD+H)|_H)\le b\cdot m^{\dim H}=b\cdot m$.
+Therefore, $h^0(X,\cO(mD))\ge c'\cdot m^2$ for some $c'$ and sufficiently large $m$.
+\end{pf}
+
+\begin{rmk}
+Let $X$ be a projective normal variety with a nef divisor $D$.
+Then,
+\begin{parts}
+\item $D\cdot{}^\forall(\text{curve})\ge0$ (by def),
+\item $D\cdot{}^\forall(\text{effective 1-cycle})\ge0$.
+\end{parts}
+In particular, $NE(X)\subset D^{\ge0}:=\{\zeta\in N_1(X):D\cdot\zeta\ge0\}=D^{>0}\cup D^\perp$.
+In fact,
+\begin{parts}
+\item[(c)] The Kleiman-Mori cone is contained in $D^{\ge0}$, i.e. $\bar{NE(X)}\subset D^{\ge0}$.
+\end{parts}
+\end{rmk}
+
+\begin{thm}[Kleiman's ampleness criterion]
+Let $X$ be a projective normal variety and $D$ a Cartier divisor.
+Then, $D$ is ample iff $\bar{NE(X)}\setminus\{0\}\subset D^{>0}$.
+\end{thm}
+\begin{pf}
+Omitted.
+\end{pf}
+\begin{cor}
+If $N$ is nef and $A$ is ample, then $N+A$ is ample.
+\end{cor}
+\begin{pf}
+$\zeta\in\bar{NE(X)}\setminus\{0\}$ implies $(N+A)\cdot\zeta=N\cdot\zeta+A\cdot\zeta>0$ because $N\cdot\zeta\ge0$ and $A\cdot\zeta>0$.
+\end{pf}
+
+\begin{rmk}
+It is useful to use $\Q$-divisors.
+For $D\in\Div X\otimes_\Z\Q$, $D$ is defined to be nef if there is $m\in\Z_{>0}$ such that $D$ is a nef Cartier divisor, and defined to be ample if there is $m\in\Z_{>0}$ such that $D$ is a ample Cartier divisor.
+Then, a nef divisor can be approximated by $D=\lim_{\e\to0+}(D+\e A)$.
+\end{rmk}
+
+\begin{thm}[Nakai-Moishezon]
+Let $X$ be a projective normal variety and $D$ a Cartier divisor.
+Then, $D$ is ample (resp.~nef) iff for a subvariety $Y\subset X$ we have $Y\cdot D^{\dim Y}>0$ (resp.~$\ge0$).
+\end{thm}
+\begin{pf}
+For amples, well-known.
+For nefs, it follows from $Y\cdot D^{\dim Y}=\lim_{\e\to0+}Y\cdot(D+\e A)^{\dim Y}\ge0$.
 \end{pf}
 
 \end{document}

@@ -222,18 +222,18 @@ Automorphisms of the form $\exp(\ad x)$ with nilpotent $\ad x$ generates a norma
 
 
 
+\section{Solvable Lie algebras}
 
 
-\begin{prb}[Solvable Lie algebras]
+\begin{prb}[Solvable and nilpotent Lie algebras]
 Let $L$ be a Lie algebra.
 If the \emph{derived series} $L^{(0)}=L$, $L^{(n)}=[L^{(n-1)},L^{(n-1)}]$ eventually vanishes, then we call $L$ \emph{solvable}.
 
 If $L$ is solvable, then its subalgebras and quotient algebras are all solvable.
 If $I$ is a solvable ideal of $L$ such that $L/I$ is solvable, then $L$ is solvable.
 The sum of two solvable ideals is also solvable.
-\end{prb}
 
-\begin{prb}[Nilpotent Lie algebras]
+
 Let $L$ be a Lie algebra.
 If the \emph{lower central series} $L^0=L$, $L^n=[L,L^{n-1}]$ eventually vanishes, then we call $L$ \emph{nilpotent}.
 It is a stronger notion than solvability.
@@ -293,12 +293,6 @@ Since the trace of $[x,y]$ must be zero, we have $\lambda([x,y])=0$ because $\F$
 
 \end{pf}
 
-\begin{prb}
-
-
-
-\end{prb}
-
 There is a linear functional $\lambda:L\to\F$ such that $\lambda|_{[L,L]}=0$ and $V_\lambda$ is non-trivial.
 $V_\kappa$
 
@@ -306,21 +300,6 @@ $V_\kappa$
 For a representation $\pi:\fg\to\fgl(V)$, then a weight of $V$ is a linear functional $\lambda:\pi(\fh)\to\F$ such that the weight space $V_\lambda$ is non-trivial.
 
 
-
-\section{Semisimple Lie algebras}
-
-
-\begin{prb}
-Therefore, $L$ admits a unique maximal solvable ideal, called \emph{radical}.
-If the radical is trivial, then we say $L$ is \emph{semisimple}.
-Since the center is a solvable ideal, the center of a semisimple Lie algebra is trivial.
-\begin{parts}
-\item A canonical example of a solvable Lie algebra is the Lie algbera of upper triangular matrices.
-\item The radical of $\fgl(n,\F)$ is $\fsl(n,\F)$.($\F$ cahracteristic zero?) Upper triangular matrices do not form an ideal of $\fgl(n,\F)$.
-\item $[\ft,\ft]=\fn$, $\ft=\fd\otimes\fn$. $\ft$ is a solvable subalgebra of $\fgl$, but not a solvable ideal.
-\item $\fsl(n,\F)$ is simple if $\char\F=0$.
-\end{parts}
-\end{prb}
 
 \begin{prb}[Jordan-Chevalley decomposition]
 Let $\char\F$ be arbitrary.
@@ -345,7 +324,23 @@ If $x\in M$ satisfies $\Tr(xy)=0$ for all $y\in M$, then $x$ is nilpotent.
 \end{parts}
 \end{prb}
 
-\begin{prb}[Killing forms]
+
+\section{Semisimple Lie algebras}
+
+
+\begin{prb}[Levi decomposition]
+Therefore, $L$ admits a unique maximal solvable ideal, called \emph{radical}.
+If the radical is trivial, then we say $L$ is \emph{semisimple}.
+Since the center is a solvable ideal, the center of a semisimple Lie algebra is trivial.
+\begin{parts}
+\item A canonical example of a solvable Lie algebra is the Lie algbera of upper triangular matrices.
+\item The radical of $\fgl(n,\F)$ is $\fsl(n,\F)$.($\F$ cahracteristic zero?) Upper triangular matrices do not form an ideal of $\fgl(n,\F)$.
+\item $[\ft,\ft]=\fn$, $\ft=\fd\otimes\fn$. $\ft$ is a solvable subalgebra of $\fgl$, but not a solvable ideal.
+\item $\fsl(n,\F)$ is simple if $\char\F=0$.
+\end{parts}
+\end{prb}
+
+\begin{prb}[Killing form]
 Let $L$ be a Lie algebra.
 \[\kappa(x,y):=\Tr(\ad x\ad y)\]
 is a symmetric bilinear form on $L$, which is called the \emph{Killing form} on $L$, i.e. it is the trace form for the adjoint representation.
@@ -358,21 +353,14 @@ is a symmetric bilinear form on $L$, which is called the \emph{Killing form} on 
 \end{parts}
 \end{prb}
 
-Levi decomposition
 
-
-\begin{prb}[Casimir element]
-For a faithful representation $\f:L\to\fgl(V)$, we can associate a non-degenerate trace form since $L$ is semisimple.
-Then, the \emph{Casimir element} of the representation $\f$ is $C_\f:=\sum_i\f(x_i)\f(y_i)\in\End(V)$ where $i$ runs over dual bases relative to the trace form.
-\end{prb}
-
-\begin{prb}[Weyl's theorem]
+\begin{prb}[Weyl's theorem on complete reducibility]
 Finite dimensional representation of a semisimple Lie algebra is completely reducible.
 Preservation of Jordan decomposition.
 \end{prb}
 
 \begin{prb}[Toral subalgebras]
-Cartan subalgebra uniqueness? (conjugacy theorem)
+Cartan subalgebra uniqueness (conjugacy theorem)
 \end{prb}
 
 
@@ -380,19 +368,16 @@ Cartan subalgebra uniqueness? (conjugacy theorem)
 
 \chapter{Root systems}
 root space decomposition
-integrality
+Killing form on Cartan subalgebra
+integrality and rationality
 Weyl group
 
+
+Classification:
 Coxeter graph
 Dynkin diagram
 Real forms
 
-Isomorphism theorem
-
-Existence theorem
-Universal enveloping algebra
-PBW theorem
-Verma module
 
 
 
@@ -407,7 +392,15 @@ Pauli matrices are
 \item For a unit vector $n=(n_1,n_2,n_3)\in\R^3$, $n_1\sigma_1+n_2\sigma_2+n_3\sigma_3$ has eigenvalues $\pm1$.
 \end{parts}
 \end{prb}
-\section{Highest weight theorem}
+\section{Highest weight theory}
+
+Isomorphism and conjugacy theorem?
+
+Existence:
+Universal enveloping algebra and the PBW theorem
+Verma module definition and quotient finiteness proof
+
+\section{Character theory}
 
 \section{Multiplicity formulas}
 
@@ -420,6 +413,8 @@ $V_2^{\otimes3}$.
 \end{prb}
 \begin{prb}[Casimir element]
 Casimir element decomposes a representation into irreducible representations.
+For a faithful representation $\f:L\to\fgl(V)$, we can associate a non-degenerate trace form since $L$ is semisimple.
+Then, the \emph{Casimir element} of the representation $\f$ is $C_\f:=\sum_i\f(x_i)\f(y_i)\in\End(V)$ where $i$ runs over dual bases relative to the trace form.
 \end{prb}
 
 

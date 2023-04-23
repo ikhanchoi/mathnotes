@@ -180,35 +180,35 @@ and the direct sum is the submodule of the direct product such that
 \end{rmk}
 
 
-
+\newpage
 \section{Day 2: April 13}
 
 Let $(\Lambda,\prec)$ be a totally ordered set.
 By a direct system, we refer the family of $R$-modules $M_\lambda$ for each $\lambda\in\Lambda$ and the family of $R$-homomorphisms $\tau_{\mu\lambda}:M_\lambda\to M_\mu$ for $\lambda\prec\mu$ such that $\tau_{\lambda\lambda}=\id_{M_\lambda}$ and $\tau_{\kappa\lambda}=\tau_{\kappa\mu}\tau_{\mu\lambda}$ for $\lambda\prec\mu\prec\kappa$.
 
-\begin{ex}[1.3.3.]
+\begin{ex*}\hspace{-5pt}\textbf{1.3.3.}\,
 \begin{parts}
 \item Let $\Lambda=\N$ and $n\prec m\Leftrightarrow n\mid m$, $M_n=\Z$ and $\tau_{mn}(z):M_n\to M_m:z\mapsto(m/n)z$.
 \item Let $M$ be a $R$-module, $\{M_\lambda\}$ are finitely generated $R$-submodules of $M$, and $\lambda\prec\mu\Leftrightarrow M_\lambda\subset M_\mu$, with $\tau_{\mu\lambda}$ inclusions.
 \end{parts}
-\end{ex}
+\end{ex*}
 
-\begin{defn}
+\begin{defn*}
 \[\lim_{\longrightarrow}M_\lambda=\lim_{\longrightarrow}(M_\lambda,\tau_{\mu\lambda}):=\coker(\bigoplus_{\substack{(\lambda,\mu)\in\Lambda\\\lambda\prec\mu}} M_\lambda\xrightarrow{\Phi}\bigoplus_{\lambda\in\Lambda}M_{\lambda}),\]
 where $\Phi((x_{\lambda\mu}))=\sum_{\lambda\prec\mu}\iota_\mu\tau_{\mu\lambda}(x_{\lambda\mu})-\iota_\lambda(x_{\lambda\mu})$, and $\iota_\lambda:M_\lambda\to\bigoplus_\lambda M_\lambda$ is a componentwise embedding.
 That is, we want to identify $x\in M_\lambda$ and $\tau_{\mu\lambda}(x)\in M_\mu$ with the map $\Phi$.
-\end{defn}
-\begin{prop}[1.3.4]
+\end{defn*}
+\begin{prop*}\hspace{-5pt}\emph{\textbf{1.3.4.}}\,
 Let $\tau_\mu:M_\mu\xrightarrow{\iota_\mu}\bigoplus_\lambda M_\lambda\twoheadrightarrow\lim_{\longrightarrow}M_\lambda$.
 \begin{parts}
 \item $\tau_\mu=\tau_\kappa\tau_{\kappa\mu}$.
 \item $M_\mu\xrightarrow{f_\mu} N$ for $\mu\in\Lambda$ are $R$-homomorphisms, and they satisfy $f_\mu=f_\kappa\tau_{\kappa\mu}$. Then, there is a unique $f:\lim_{\longrightarrow}M_\lambda\to N$ such that $f_\mu=f\tau_\mu$
 \end{parts}
-\end{prop}
+\end{prop*}
 
 For each example in 1.3.3, $\Q$ and $M$ are the direct limits because it satisfies the universal property (1.3.4(b))
 
-\begin{rmk}
+\begin{rmk*}
 (1) The direct limit is unique by the universal property up to isomorphism.
 
 (2) If $f_\lambda:M_\lambda\to M_\lambda'$ are $R$-homomorphism such that
@@ -219,29 +219,29 @@ M_\mu \ar{r}{f_\mu} & M_\mu'
 commutes for all $\lambda\prec\mu$,
 then there is a unique $f$ such that
 \begin{cd}
-\bigoplus_{\lambda\prec\mu}M_\lambda
-&\bigoplus_{\lambda}M_\lambda
-&\lim_{\longrightarrow}M_\lambda \ar{d}{\exists!f}
-&0\\
-\bigoplus_{\lambda\prec\mu}M_\lambda'
-&\bigoplus_{\lambda}M_\lambda'
-&\lim_{\longrightarrow}M_\lambda'
+\bigoplus_{\lambda\prec\mu}M_\lambda \ar{r}\ar{d}
+&\bigoplus_{\lambda}M_\lambda \ar{r}\ar{d}
+&\lim_{\longrightarrow}M_\lambda \ar{d}{\exists!f} \ar{r}
+&0\ar{d}\\
+\bigoplus_{\lambda\prec\mu}M_\lambda' \ar{r}
+&\bigoplus_{\lambda}M_\lambda' \ar{r}
+&\lim_{\longrightarrow}M_\lambda'\ar{r}
 &0
 \end{cd}
 commutes, and $f$ is denoted by $\lim_{\longrightarrow}f_\lambda$.
 It is by the universal property of cokernel.
-\end{rmk}
+\end{rmk*}
 
-\begin{defn}[1.3.6]
+\begin{defn*}\hspace{-5pt}\textbf{1.3.6.}\,
 A preordered set $\Lambda$ is a directed set if $\forall\lambda,\lambda'\in\Lambda$, there is $\mu\in\Lambda$ such that $\lambda,\lambda'\prec\mu$.
-\end{defn}
-\begin{prop}
+\end{defn*}
+\begin{prop*}
 If $\Lambda$ is a directed set, then there is a 1-1 correspondence
 \[(\coprod_\lambda M_\lambda)/\sim\to\lim_{\longrightarrow}M_\lambda:[x_\lambda]\mapsto\tau_\lambda(x_\lambda),\]
 where $x_\lambda\sim y_{\lambda'}$ iff there is $\mu\succ\lambda,\lambda'$ such that $\tau_{\mu\lambda}(x_\lambda)=\tau_{\mu\lambda'}(y_{\lambda'})$.
-\end{prop}
+\end{prop*}
 
-\begin{prop}
+\begin{prop*}
 If
 \begin{es}
 L_\lambda \>{f_\lambda} M_\lambda \>{g_\lambda} N_\lambda \> 0
@@ -251,69 +251,163 @@ is exact, then
 \colim L_\lambda \> \colim M_\lambda \> \colim N_\lambda \> 0
 \end{es}
 is exact.
-\end{prop}
+\end{prop*}
 \begin{pf}
-We cannot use the snake lemma directly on
-\begin{cd}
-\bigoplus_{\lambda\prec\mu}L_\lambda \ar{r}
-&\bigoplus_{\lambda\prec\mu}M_\lambda \ar{r}
-&\bigoplus_{\lambda\prec\mu}N_\lambda \ar{r}
-&0\\
-\bigoplus_{\lambda}L_\lambda \ar{r}
-&\bigoplus_{\lambda}M_\lambda \ar{r}
-&\bigoplus_{\lambda}N_\lambda \ar{r}
-&0\\
-\colim L_\lambda \ar{r}
-&\colim M_\lambda \ar{r}
-&\colim N_\lambda \ar{r}
-&0.
-\end{cd}
-So, 
-\begin{cd}
-0 \ar{r}
-&\bigoplus_{\lambda\prec\mu}\ker g_\lambda \ar{r}
-&\bigoplus_{\lambda\prec\mu}M_\lambda \ar{r}
-&\bigoplus_{\lambda\prec\mu}N_\lambda \ar{r}
-&0\\
-0 \ar{r}
-&\bigoplus_{\lambda}\ker g_\lambds \ar{r}
-&\bigoplus_{\lambda}M_\lambda \ar{r}
-&\bigoplus_{\lambda}N_\lambda \ar{r}
-&0\\
-\,
-&\colim \ker g_\lambda \ar{r}
-&\colim M_\lambda \ar{r}
-&\colim N_\lambda \ar{r}
-&0
-\end{cd}
-and
-\begin{cd}
-0 \ar{r}
-&\bigoplus_{\lambda\prec\mu}\ker f_\lambda \ar{r}
-&\bigoplus_{\lambda\prec\mu}L_\lambda \ar{r}
-&\bigoplus_{\lambda\prec\mu}\im f_\lambda \ar{r}
-&0\\
-0 \ar{r}
-&\bigoplus_{\lambda}\ker f_\lambds \ar{r}
-&\bigoplus_{\lambda}L_\lambda \ar{r}
-&\bigoplus_{\lambda}\im f_\lambda
-&\,\\
-\,
-&\colim \ker f_\lambda \ar{r}
-&\colim L_\lambda \ar{r}
-&\colim \im f_\lambda
-&\,
-\end{cd}
-????????????
+The only non-trivial part is the exactness at $\colim M_\lambda$.
+We can prove it by diagram chasing.
 \end{pf}
 
-\begin{ex}
+\begin{ex*}
 Examples of inverse limit
 \begin{parts}
-\item projection $\Z/p^m\Z\twoheadarrow\Z/p^n\Z$ for $m>n$.
+\item projection $\Z/p^m\Z\twoheadrightarrow\Z/p^n\Z$ for $m>n$.
 \item restriction $C^\infty((-r,r))\to C^\infty((-r',r')$ for $r'>r$.
 \end{parts}
-\end{ex}
+\end{ex*}
+
+
+\newpage
+\section{Day 3: April 20}
+\begin{ex*}
+Limit preserves injectivity, but not surjectivity: although the diagram
+\begin{cd}
+\Z\ar{r}\ar{d} & \cdots\ar{r} & \Z \ar{r}{\id}\ar[two heads]{d} & \Z \ar[two heads]{d}\\
+\Z_p \ar{r} & \cdots\ar{r} & \Z/p^2\Z \ar{r} & \Z/p\Z
+\end{cd}
+commutes, but  the induced map $\Z\to\Z_p:=\lim_n\Z/p^n\Z$ is not surjective.
+\end{ex*}
+\begin{lem*}[Mittag-Leffler condition]
+Let
+\begin{es}
+0 \> M_n \> N_n \> L_n \> 0
+\end{es}
+be a sequence of exact sequences.
+Suppose $(M_n)$ satisfies that for each $n$ we have a eventually constant monotonically decreasing sequence of submodules
+\[M_n\supset\pi_{n,n+1}(M_{n+1})\supset\pi_{n,n+2}(M_{n+2})\supset\cdots.\]
+Then,
+\begin{es}
+0 \> \lim M_n \> \lim N_n \> \lim L_n \> 0.
+\end{es}
+\end{lem*}
+When we consider the seuqence of kernels $p^n\Z$ of $\Z\to\Z/p^n\Z$, we can check it does not satisfy the Mittag-Leffler condition.
+
+\subsection*{1.4. Properties of Hom}
+
+Let $R$ be a commutative ring and $M,N$ be a $R$-modules.
+Define
+\[\Hom_R(M,N):=\{f:M\to N\text{ $R$-homomorphism}\}.\]
+It is an $R$-module, which is not the case if $R$ is not commutative.
+If $\f:N_1\to N_2$ is an $R$-homomorphism, then
+\[\Hom_R(M,N_1)\to\Hom_R(M,N_2):f\mapsto\f\circ f\]
+is an $R$-homomorphism.
+If $\psi:M_1\to M_2$ is an $R$-homomorphism, then
+\[\Hom_R(M_2,N)\to\Hom_R(M_1,N):f\mapsto f\circ\psi\]
+is an $R$-homomorphism.
+\begin{prop*}\hspace{-5pt}\emph{\textbf{1.4.1.}}
+\begin{parts}
+\item If \begin{es}0\>N_1\>N_2\>N_3\end{es} is exact, then \begin{es}0\>\Hom_R(M,N_1)\>\Hom_R(M,N_2)\>\Hom_R(M,N_3)\end{es} is exact.
+\item If \begin{es}M_1\>M_2\>M_3\>0\end{es} is exact, then \begin{es}0\>\Hom_R(M_3,N)\>\Hom_R(M_2,N)\>\Hom_R(M_1,N)\end{es} is exact.
+\end{parts}
+\end{prop*}
+\begin{pf}
+(a)
+If $f\in\Hom_R(M,N_2)$ satisfies $\f_2\circ f=0$ where $\f:N_2\to N_3$, then by the universal property 
+\begin{cd}
+&&M\ar[dashed,swap]{dl}{\exists!}\ar{d}\ar{dr}&\\
+0\ar{r}&N_1\ar{r}&N_2\ar{r}&N_3
+\end{cd}
+\end{pf}
+
+\begin{ex*}
+For
+\begin{es}
+0\>\Z\>{n}\Z\>\Z/n\Z\>0,
+\end{es}
+The maps
+\[0\cong\Hom(\Z/n\Z,\Z)\to\Hom(\Z/n\Z,\Z/n\Z)\cong\Z/n\Z\]
+and
+\[\Z\cong\Hom(\Z,\Z)\xrightarrow{n}\Hom(\Z,\Z)\cong\Z\]
+are not surjective.
+\end{ex*}
+
+\subsection*{1.5. Projective modules}
+
+\begin{defn*}\hspace{-5pt}\textbf{1.5.1.}
+An $R$-module is said to be projective if for every surjective $\f:N_1\twoheadrightarrow N_2$ and for every $f:M\to N_2$, there is a map $\tilde f:M\to N_1$ such that
+\begin{cd}
+\, & M \ar{d}{f}\ar[dashed,swap]{dl}{\tilde f}\\
+N_1 \ar[two heads]{r} & N_2
+\end{cd}
+commutes, equivalently,
+\[\Hom_R(M,N_1)\to\Hom_R(M,N_2)\to0\]
+is exact for every exact $N_1\to N_2\to0$.
+\end{defn*}
+
+\begin{prop*}\hspace{-5pt}\emph{\textbf{1.5.2.}}\,
+If $M$ is a projective module, then $\Hom_R(M,-)$ is an exact functor.
+\end{prop*}
+\begin{prop*}\hspace{-5pt}\emph{\textbf{1.5.3.}}\,
+A direct sum of $R$-modules is projective iff its summands are all projective.
+In particular, a free $R$-module is projective.
+\end{prop*}
+
+\begin{rmk*}\hspace{-5pt}1.5.4.\,
+A module $M$ is projective if and only if there is another module $N$ such that $M\oplus N$ is free.
+\end{rmk*}
+\begin{pf}
+($\Rightarrow$)
+Take generators of $\{e_\lambda\}_\lambda$ of $M$.
+Then, for
+\[f:\bigoplus_\lambda R\twoheadrightarrow M:(a_\lambda)\mapsto \sum_\lambda a_\lambda e_\lambda,\]
+we have a exact sequence
+\[0\to\ker f\to\bigoplus_\lambda R\to M\to0,\]
+which is right split by applying the definition of projective modules to extend the codomain of $\id_M:M\to M$.
+
+($\Leftarrow$)
+Clear from Proposition 1.5.3.
+\end{pf}
+\begin{rmk*}\hspace{-5pt}1.5.5.
+Let $R$ be a PID.
+Then, since a submodule of a free module is free, so a module is projective if and only if it is free.
+\end{rmk*}
+
+\subsection*{1.6. Injective modules}
+
+\begin{defn*}\hspace{-5pt}\textbf{1.6.1.}
+An $R$-module is said to be injective if for every injective $\f:N_1\hookrightarrow N_2$ and for every $g:N_1\to M$, there is a map $\tilde g:N_2\to M$ such that
+\begin{cd}
+N_1 \ar{d}{g} \ar[hook]{r}{\f} & N_2 \ar[dashed]{dl}{\tilde g}\\
+M  & \,
+\end{cd}
+commutes, equivalently,
+\[\Hom_R(M,N_1)\to\Hom_R(M,N_2)\to0\]
+is exact for every exact $N_1\to N_2\to0$.
+\end{defn*}
+
+
+\begin{prop*}1.6.3.
+An $R$-module $M$ is injective iff the restriction $\Hom(R,M)\to\Hom(I,M)$ is surjective for every ideal $I$ of $R$.
+\end{prop*}
+\begin{pf}
+($\Rightarrow$) Clear.
+($\Leftarrow$) Suppose there is $x\in N_2$ such that $N_2=N_1+Rx$.
+By letting $I$ be the kernel of a ring homomorphism $R\to(N_1+Rx)/N_1:a\mapsto ax+N_1$, we have an exact sequence
+\[0\to I\to N_1\oplus R\to N_1+Rx=N_2\to0\]
+in which the first map sends $b$ to $(-bx,b)$ and the second map sends $(y,a)$ to $y+ax$.
+
+\end{pf}
+
+\begin{rmk*}1.6.4.
+If $R$ is a PID, then an $R$-module $M$ is injective iff for all $0\ne a\in R$ the map $M\xrightarrow{\cdot a}M$ is surjective.
+\end{rmk*}
+\begin{pf}
+
+\end{pf}
+
+\begin{ex*}
+If $R=\Z$, then $\Q$ and $\Q/\Z$ are injective, and $\Z$ and $\Z/n\Z$ are not injective.
+\end{ex*}
+
 
 
 Ab-enriched: preadditive
