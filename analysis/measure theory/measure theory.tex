@@ -528,11 +528,16 @@ By the definition of the Lebesgue integral, we have a simple function $s$ such t
 \[\beta(\tint_Ef)-\beta(\tint_Es)<\e,\]
 whether or not $\int_Ef$ diverges.
 Then,
-\begin{align*}
+\begin{alignat*}{4}
 \beta(\tint_Ef)-\beta(\tint_{E_n}f)
-&=[\beta(\tint_Ef)-\beta(\tint_Es)]+[\beta(\tint_Es)-\beta(\tint_{E_n}s)]+[\beta(\tint_{E_n}s)-\beta(\tint_{E_n}f)]\\
-&<\e+[\beta(\tint_Es)-\beta(\tint_{E_n}s)]+0\xrightarrow{n\to\infty}\e
-\end{align*}
+&=[\beta(\tint_Ef)-\beta(\tint_Es)]
+&&+[\beta(\tint_Es)-\beta(\tint_{E_n}s)]
+&&+[\beta(\tint_{E_n}s)-\beta(\tint_{E_n}f)]\\
+&\ccol{<}{\e}
+&&+[\beta(\tint_Es)-\beta(\tint_{E_n}s)]
+&&\ccol{+}{0}\\
+&\xrightarrow{n\to\infty}\e
+\end{alignat*}
 by the part (a).
 We are done by letting $\e\to0$.
 
@@ -901,14 +906,88 @@ Note that we can show that $1\le2p^{-\frac1p}q^{-\frac1q}\le2$ and the minimum i
 \chapter{Distributioins}
 
 
-\chapter{Bounded linear operators}
+\chapter{Linear operators}
 
 \section{Boundedness}
 
 Translation and multiplication operators
 
-\begin{prb}[Extension of operators]
+\begin{prb}[Bitranspose extension]
 \end{prb}
+
+
+\section{Kernels}
+\begin{prb}[Schur test]
+\end{prb}
+\begin{prb}[Young's inequality of integral operators]
+\end{prb}
+
+\section{Convolution}
+\begin{prb}[Approximation of identity]
+Fej\'er, Poisson, box?
+\end{prb}
+\begin{prb}[Summability methods]
+\end{prb}
+
+
+
+
+
+
+
+
+
+
+
+\part{Fundamental theorem of calculus}
+
+\chapter{Absolute continuity}
+
+The space of weakly differentiable functions with respect to all variables $=W_\loc^{1,1}$.
+
+\begin{prb}[Product rule for weakly differentiable functions]
+We want to show that if $u$, $v$, and $uv$ are weakly differentiable with respect to $x_i$, then $\pd_{x_i}(uv)=\pd_{x_i}uv+u\pd_{x_i}v$.
+\begin{parts}
+\item If $u$ is weakly differentiable with respect to $x_i$ and $v\in C^1$, then $\pd_{x_i}(uv)=\pd_{x_i}uv+u\pd_{x_i}v$.
+\end{parts}
+\end{prb}
+
+
+\begin{prb}[Interchange of differentiation and integration]
+Let $f:\Omega_x\times\Omega_y\to\R$ be such that $\pd_{x_i}f$ is well-defined. Suppose $f$ and $\pd_{x_i}f$ are locally integrable in $x$ and integrable $y$.
+
+Then,
+\[\pd_{x_i}\int f(x,y)\,dy=\int\pd_{x_i}f(x,y)\,dy.\]
+\end{prb}
+
+
+Do not think the Schwarz theorem as the condition for partial differentiation to commute.
+We should understand like this: if $F$ is $C^2$ then the \emph{classical} partial differentiation commute, and if $F$ is not $C^2$ then the \emph{classical} partial derivatives of order two or more are \emph{meaningless} because it is not compatible with the generalized concept of differentiation.
+
+
+
+\section{Absolutely continuity}
+
+\begin{parts}
+\item $f$ is $\Lip_\loc$ iff $f'$ is $L_\loc^\infty$
+\item $f$ is $\textrm{AC}_\loc$ iff $f'$ is $L_\loc^1$
+\end{parts}
+\begin{parts}
+\item $f$ is $\Lip$ iff $f'$ is $L^\infty$
+\item $f$ is $\textrm{AC}$ iff $f'$ is $L^1$
+\item $f$ is $\textrm{BV}$ iff $f'$ is a finite regular Borel measure
+\end{parts}
+
+\begin{prb}[Absolute continuous measures]
+\end{prb}
+
+\begin{prb}[Absolute continuous functions]
+\end{prb}
+
+\begin{prb}[Functions of bounded variation]
+\end{prb}
+
+
 
 \section{Interpolations}
 weak Lp, marcinkiewicz
@@ -1010,76 +1089,6 @@ for $\Re z=\theta$.
 Putting $z=\theta$ in the last inequality, we get the desired result.
 \end{pf}
 
-
-
-
-\section{Kernels}
-\begin{prb}[Schur test]
-\end{prb}
-\begin{prb}[Young's inequality of integral operators]
-\end{prb}
-
-\section{Convolution type operators}
-\begin{prb}[Approximation of identity]
-Fej\'er, Poisson, box?
-\end{prb}
-\begin{prb}[Summability methods]
-\end{prb}
-
-
-
-
-
-
-
-
-
-
-
-\part{Fundamental theorem of calculus}
-
-\chapter{Weak derivatives}
-
-The space of weakly differentiable functions with respect to all variables $=W_\loc^{1,1}$.
-
-\begin{prb}[Product rule for weakly differentiable functions]
-We want to show that if $u$, $v$, and $uv$ are weakly differentiable with respect to $x_i$, then $\pd_{x_i}(uv)=\pd_{x_i}uv+u\pd_{x_i}v$.
-\begin{parts}
-\item If $u$ is weakly differentiable with respect to $x_i$ and $v\in C^1$, then $\pd_{x_i}(uv)=\pd_{x_i}uv+u\pd_{x_i}v$.
-\end{parts}
-\end{prb}
-
-
-\begin{prb}[Interchange of differentiation and integration]
-Let $f:\Omega_x\times\Omega_y\to\R$ be such that $\pd_{x_i}f$ is well-defined. Suppose $f$ and $\pd_{x_i}f$ are locally integrable in $x$ and integrable $y$.
-
-Then,
-\[\pd_{x_i}\int f(x,y)\,dy=\int\pd_{x_i}f(x,y)\,dy.\]
-\end{prb}
-
-
-Do not think the Schwarz theorem as the condition for partial differentiation to commute.
-We should understand like this: if $F$ is $C^2$ then the \emph{classical} partial differentiation commute, and if $F$ is not $C^2$ then the \emph{classical} partial derivatives of order two or more are \emph{meaningless} because it is not compatible with the generalized concept of differentiation.
-
-
-
-\chapter{Absolutely continuity}
-
-\begin{parts}
-\item $f$ is $\Lip_\loc$ iff $f'$ is $L_\loc^\infty$
-\item $f$ is $\textrm{AC}_\loc$ iff $f'$ is $L_\loc^1$
-\end{parts}
-\begin{parts}
-\item $f$ is $\Lip$ iff $f'$ is $L^\infty$
-\item $f$ is $\textrm{AC}$ iff $f'$ is $L^1$
-\item $f$ is $\textrm{BV}$ iff $f'$ is a finite regular Borel measure
-\end{parts}
-
-\section{Absolute continuous measures}
-
-\section{Absolute continuous functions}
-
-\section{Functions of bounded variation}
 
 
 

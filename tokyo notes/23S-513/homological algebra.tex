@@ -274,28 +274,26 @@ Limit preserves injectivity, but not surjectivity: although the diagram
 \Z\ar{r}\ar{d} & \cdots\ar{r} & \Z \ar{r}{\id}\ar[two heads]{d} & \Z \ar[two heads]{d}\\
 \Z_p \ar{r} & \cdots\ar{r} & \Z/p^2\Z \ar{r} & \Z/p\Z
 \end{cd}
-commutes, but  the induced map $\Z\to\Z_p:=\lim_n\Z/p^n\Z$ is not surjective.
+commutes, but  the induced map $\Z\to\Z_p:=\lim_n\Z/p^n\Z$ is not surjective because we have an element $x\in\Z_p$ such that for $\pi_n:\Z_p\to\Z/p^n\Z$ we have $\pi_n(x)\equiv1\pmod{p^n}$ for all $n$.
 \end{ex*}
 \begin{lem*}[Mittag-Leffler condition]
 Let
-\begin{es}
-0 \> M_n \> N_n \> L_n \> 0
-\end{es}
+\[0\to M_n\to N_n\to L_n\to0\]
 be a sequence of exact sequences.
-Suppose $(M_n)$ satisfies that for each $n$ we have a eventually constant monotonically decreasing sequence of submodules
-\[M_n\supset\pi_{n,n+1}(M_{n+1})\supset\pi_{n,n+2}(M_{n+2})\supset\cdots.\]
+Suppose $(M_n)$ satisfies that for each $n$ we have a eventually constant monotonically decreasing sequence
+\[M_n\supset\pi_{n,n+1}(M_{n+1})\supset\pi_{n,n+2}(M_{n+2})\supset\cdots\]
+of submodules of $M_n$.
 Then,
-\begin{es}
-0 \> \lim M_n \> \lim N_n \> \lim L_n \> 0.
-\end{es}
+\[0\to \lim M_n\to \lim N_n\to \lim L_n\to 0.\]
 \end{lem*}
-When we consider the seuqence of kernels $p^n\Z$ of $\Z\to\Z/p^n\Z$, we can check it does not satisfy the Mittag-Leffler condition.
+
+Note that when we consider the seuqence of kernels $p^n\Z$ of the maps $\Z\to\Z/p^n\Z$ in the above example, we can check the sequence does not satisfy the Mittag-Leffler condition.
 
 \subsection*{1.4. Properties of Hom}
 
-Let $R$ be a commutative ring and $M,N$ be a $R$-modules.
+From now on, we always let $R$ be a commutative ring and $M,N$ be a $R$-modules.
 Define
-\[\Hom_R(M,N):=\{f:M\to N\text{ $R$-homomorphism}\}.\]
+\[\Hom_R(M,N):=\{f:M\to N\text{, $R$-homomorphism}\}.\]
 It is an $R$-module, which is not the case if $R$ is not commutative.
 If $\f:N_1\to N_2$ is an $R$-homomorphism, then
 \[\Hom_R(M,N_1)\to\Hom_R(M,N_2):f\mapsto\f\circ f\]
@@ -305,35 +303,45 @@ If $\psi:M_1\to M_2$ is an $R$-homomorphism, then
 is an $R$-homomorphism.
 \begin{prop*}\hspace{-5pt}\emph{\textbf{1.4.1.}}
 \begin{parts}
-\item If \begin{es}0\>N_1\>N_2\>N_3\end{es} is exact, then \begin{es}0\>\Hom_R(M,N_1)\>\Hom_R(M,N_2)\>\Hom_R(M,N_3)\end{es} is exact.
-\item If \begin{es}M_1\>M_2\>M_3\>0\end{es} is exact, then \begin{es}0\>\Hom_R(M_3,N)\>\Hom_R(M_2,N)\>\Hom_R(M_1,N)\end{es} is exact.
+\item If
+\[0\to N_1\to N_2\to N_3\]
+is exact, then
+\[0\to\Hom_R(M,N_1)\to\Hom_R(M,N_2)\to\Hom_R(M,N_3)\]
+is exact.
+\item If
+\[M_1\to M_2\to M_3\to0\]
+is exact, then
+\[0\to\Hom_R(M_3,N)\to\Hom_R(M_2,N)\to\Hom_R(M_1,N)\]
+is exact.
 \end{parts}
 \end{prop*}
 \begin{pf}
 (a)
-If $f\in\Hom_R(M,N_2)$ satisfies $\f_2\circ f=0$ where $\f:N_2\to N_3$, then by the universal property 
+If $f_2\in\Hom_R(M,N_2)$ satisfies $\f_2\circ f_2=0$, then by the universal property there exists unique $f_1:M\to N_1$ such that the diagram
 \begin{cd}
-&&M\ar[dashed,swap]{dl}{\exists!}\ar{d}\ar{dr}&\\
-0\ar{r}&N_1\ar{r}&N_2\ar{r}&N_3
+&&M\ar[dashed,swap]{dl}{\exists!\,f_1}\ar{d}{f_2}\ar{dr}&\\
+0\ar{r}&N_1\ar{r}&N_2\ar{r}{\f_2}&N_3
 \end{cd}
+commutes.
+
+(b)
+Similar.
 \end{pf}
 
 \begin{ex*}
 For
-\begin{es}
-0\>\Z\>{n}\Z\>\Z/n\Z\>0,
-\end{es}
+\[0\to\Z\xrightarrow{\cdot n}\Z\to\Z/n\Z\to0,\]
 The maps
 \[0\cong\Hom(\Z/n\Z,\Z)\to\Hom(\Z/n\Z,\Z/n\Z)\cong\Z/n\Z\]
 and
-\[\Z\cong\Hom(\Z,\Z)\xrightarrow{n}\Hom(\Z,\Z)\cong\Z\]
+\[\Z\cong\Hom(\Z,\Z)\xrightarrow{\circ(\cdot n)}\Hom(\Z,\Z)\cong\Z\]
 are not surjective.
 \end{ex*}
 
 \subsection*{1.5. Projective modules}
 
 \begin{defn*}\hspace{-5pt}\textbf{1.5.1.}
-An $R$-module is said to be projective if for every surjective $\f:N_1\twoheadrightarrow N_2$ and for every $f:M\to N_2$, there is a map $\tilde f:M\to N_1$ such that
+An $R$-module is said to be \emph{projective} if for every surjective $\f:N_1\twoheadrightarrow N_2$ and for every $f:M\to N_2$, there is a map $\tilde f:M\to N_1$ such that
 \begin{cd}
 \, & M \ar{d}{f}\ar[dashed,swap]{dl}{\tilde f}\\
 N_1 \ar[two heads]{r} & N_2
@@ -351,25 +359,25 @@ A direct sum of $R$-modules is projective iff its summands are all projective.
 In particular, a free $R$-module is projective.
 \end{prop*}
 
-\begin{rmk*}\hspace{-5pt}1.5.4.\,
-A module $M$ is projective if and only if there is another module $N$ such that $M\oplus N$ is free.
-\end{rmk*}
+\begin{cor*}\hspace{-5pt}1.5.4.\,
+As a corollary, a module $M$ is projective if and only if there is another module $N$ such that $M\oplus N$ is free.
+\end{cor*}
 \begin{pf}
 ($\Rightarrow$)
 Take generators of $\{e_\lambda\}_\lambda$ of $M$.
 Then, for
 \[f:\bigoplus_\lambda R\twoheadrightarrow M:(a_\lambda)\mapsto \sum_\lambda a_\lambda e_\lambda,\]
-we have a exact sequence
+we have an exact sequence
 \[0\to\ker f\to\bigoplus_\lambda R\to M\to0,\]
 which is right split by applying the definition of projective modules to extend the codomain of $\id_M:M\to M$.
 
 ($\Leftarrow$)
 Clear from Proposition 1.5.3.
 \end{pf}
-\begin{rmk*}\hspace{-5pt}1.5.5.
+\begin{cor*}\hspace{-5pt}1.5.5.
 Let $R$ be a PID.
 Then, since a submodule of a free module is free, so a module is projective if and only if it is free.
-\end{rmk*}
+\end{cor*}
 
 \subsection*{1.6. Injective modules}
 
@@ -380,28 +388,39 @@ N_1 \ar{d}{g} \ar[hook]{r}{\f} & N_2 \ar[dashed]{dl}{\tilde g}\\
 M  & \,
 \end{cd}
 commutes, equivalently,
-\[\Hom_R(M,N_1)\to\Hom_R(M,N_2)\to0\]
-is exact for every exact $N_1\to N_2\to0$.
+\[\Hom_R(N_2,M)\to\Hom_R(N_1,M)\to0\]
+is exact for every exact $0\to N_1\to N_2$.
 \end{defn*}
 
 
-\begin{prop*}1.6.3.
+\begin{prop*}\hspace{-5pt}\textbf{\emph{1.6.3.}}
 An $R$-module $M$ is injective iff the restriction $\Hom(R,M)\to\Hom(I,M)$ is surjective for every ideal $I$ of $R$.
 \end{prop*}
 \begin{pf}
 ($\Rightarrow$) Clear.
 ($\Leftarrow$) Suppose there is $x\in N_2$ such that $N_2=N_1+Rx$.
-By letting $I$ be the kernel of a ring homomorphism $R\to(N_1+Rx)/N_1:a\mapsto ax+N_1$, we have an exact sequence
-\[0\to I\to N_1\oplus R\to N_1+Rx=N_2\to0\]
+Define an ideal $I$ of $R$ such that there is an exact sequence
+\[0 \to I \to N_1\oplus R \to N_2 \to 0,\]
 in which the first map sends $b$ to $(-bx,b)$ and the second map sends $(y,a)$ to $y+ax$.
-
+Define $h:I\to M$ by $h(b):=g(bx)$ and extend it to $\tilde h:R\to M$.
+Define $\tilde g:N_2\to M$ by $\tilde g(y+ax):=g(y)+\tilde h(a)$.
+We can check it is well-defined from the exactness of the above defining sequence of $I$.
+(To be continued..)
 \end{pf}
 
-\begin{rmk*}1.6.4.
+\begin{cor*}\hspace{-5pt}\textbf{\emph{1.6.4.}}
 If $R$ is a PID, then an $R$-module $M$ is injective iff for all $0\ne a\in R$ the map $M\xrightarrow{\cdot a}M$ is surjective.
-\end{rmk*}
+\end{cor*}
 \begin{pf}
-
+Let $I$ be an ideal.
+If $I=0$, then clear.
+If not, we have $I=aR$ for some $0\ne a\in R$.
+Then, the restriction $\Hom(R,M)\to\Hom(I,R)$ is surjective if and only if
+\[\begin{array}{ccccccc}
+M&\xrightarrow{\sim}&\Hom(R,M)&\to&\Hom(aR,M)&\xrightarrow{\sim}&aM\\
+m&\mapsto&(1\mapsto m)&\mapsto&(a\mapsto am)&\mapsto&am
+\end{array}\]
+is surjective.
 \end{pf}
 
 \begin{ex*}
@@ -410,11 +429,191 @@ If $R=\Z$, then $\Q$ and $\Q/\Z$ are injective, and $\Z$ and $\Z/n\Z$ are not in
 
 
 
-Ab-enriched: preadditive
-binary biproduct: semiadditive
-existence of ker/coker
-normality of mono/epi
+\newpage
+\section{Day 4: April 27}
 
-constructions: universals(products and equalizers, pullbacks, limits, representables)
+\begin{pf}[Proof of 1.6.3.]
+Let $\cS$ be the set of all pairs $(N,h)$ such that $N_1\subset N\subset N_2$ and
+\begin{cd}
+N_1 \ar[hook]{r}\ar{d} & N\ar{dl}\\
+M
+\end{cd}
+commutes, and define a partial order $\prec$ such that $(N,h)\prec(N',h')$ if ando only if
+\begin{cd}
+N \ar[hook]{r}\ar{d} & N'\ar{dl}\\
+M
+\end{cd}
+commutes.
+Since the union of a chain belongs to $\cS$, $\cS$ has a maximal element $(N_0,h_0)$ by Zorn's lemma.
+If $N_0\subsetneq N_2$, then by taking $x\in N_2\setminus N_0$, we can show $N_0$ is not maximal, so $N_0=N_2$.
+\end{pf}
+
+\begin{prop*}\hspace{-5pt}\textbf{\emph{1.6.5.}}
+Let $M_\lambda$ be $R$-modules, and $M$ be their product.
+Then, $M$ is injective if and only if every $M_\lambda$ is injective.
+\end{prop*}
+\begin{pf}
+Apply the definition on the following diagram to show the first row is surjective:
+\begin{cd}
+\Hom_R(N_2,\prod_\lambda M_\lambda)\ar{r}\ar{d}{=}
+&\Hom_R(N_1,\prod_\lambda M_\lambda)\ar{d}{=}\\
+\prod_\lambda\Hom_R(N_2,M_\lambda)\ar{r}
+&\prod_\lambda\Hom_R(N_1,M_\lambda).
+\end{cd}
+\end{pf}
+
+\begin{prop*}\hspace{-5pt}\textbf{\emph{1.6.6.}}
+If $M$ is injective $Z$-module, then $\Hom_\Z(R,M)$ is an injective $R$-module.
+\end{prop*}
+\begin{lem*}\hspace{-5pt}\textbf{\emph{1.6.7.}}
+Let $N$ be an $R$-module and $M$ be a $\Z$-module.
+Then, $\Hom_\Z(R,M)$ is an $R$-module, and there is a bijection
+\[\Hom_R(N,\Hom_\Z(R,M))\cong\Hom_\Z(N,M).\]
+\end{lem*}
+\begin{pf}[Proof of Proposition 1.6.6.]
+Apply Lemma 1.6.7 to show the first row is surjective:
+\begin{cd}
+\Hom_R(N_2,\Hom_\Z(R,M)) \ar{r} \ar{d}{=}
+&\Hom_R(N_1,\Hom_\Z(R,M)) \ar{d}{=} \\
+\Hom_\Z(N_2,M) \ar{r} & \Hom_\Z(N_1,M).
+\end{cd}
+\end{pf}
+
+\begin{thm*}\hspace{-5pt}\textbf{\emph{1.6.8.}}
+Every $R$-module $M$ is embedded in an injective $R$-module.
+\end{thm*}
+\begin{pf}
+Suppose $R=\Z$.
+The surjectivity of
+\[\bigoplus_\lambda\Z\twoheadrightarrow\Hom_\Z(M,\Q/\Z)\]
+implies
+\[\Hom_\Z(\Hom_\Z(M,\Q/\Z),\Q/\Z)\hookrightarrow\Hom_\Z(\bigoplus_\lambda\Z,\Q/\Z)=\prod_\lambda\Q/\Z.\]
+Then, it suffices to prove the canonical map
+\[M\to\Hom_\Z(\Hom_\Z(M,\Q/\Z),\Q/\Z))\]
+is injective.
+For non-zero $x\in M$, by the injectivity of $\Q/\Z$, we can extend a $\Z$-homomorphism $f:\Z x\to\Q/\Z$ satisfying $f(x)\ne0$ to a $\Z$-homomorphism $\tilde f:M\to\Q/\Z$ satisfying $\tilde f(x)=f(x)\ne0$.
+Threrfore, we are done.
+
+Now let $R$ be arbitrary commutative ring.
+Consider an $R$-homomorphism
+\[\Phi:M\hookrightarrow\Hom_\Z(R,M):x\mapsto(a\mapsto ax),\]
+which is easily checked to be injective by putting $a=1$.
+Let $M'$ be an injective $\Z$-module with an injective $\Z$-homomorphism $M\to M'$, and it induces
+\[M\hookrightarrow\Hom_\Z(R,M)\hookrightarrow\Hom_\Z(R,M').\qedhere\]
+\end{pf}
+
+% The general failure of surjectivity of Hom(-,-)->Hom(-,-)
+
+% projective
+%  direct sum of projectives is projective
+%  projective iff direct summand of a free
+%  PID: projective iff free
+
+% injective
+%  M is injective iff Hom_R(R,M)->Hom_R(I,M) surjective
+%  PID: injective iff divisible
+%  direct product of injectives is injective
+%  Hom_Z(R,M) is injective if M is injective Z-module
+%  every module is embedded in injective
+
+\subsection*{1.7. Tensor products}
+
+\begin{defn*}\hspace{-5pt}\textbf{{1.7.1.}}
+Let $R$ be a commutative ring, and $M_1,M_2,N$ be $R$-modules.
+Let $\Phi:M_1\times M_2\to N$ be an $R$-bilinear map.
+If $R$ is non-commutative, then $M_1$ and $M_2$ are set to be right and left $R$-modules resepctively, and $\Phi$ is just a $\Z$-bilinear map but required to satisfy an additional condition $\Phi(-a,-)=\Phi(-,a-)$.
+Such $\Phi$ is called a balanced product.
+
+There is an $R$-module such that the following universal property holds: for every balanced product $\Phi:M_1\to M_2\to N$, there is a unique $R$-homomorphism
+\begin{cd}
+M_1\times M_2 \ar{r}{\otimes} & M\\
+& N
+\end{cd}
+Then, $M$ is called the tensor product of $M_1$ and $M_2$.
+\end{defn*}
+
+
+\begin{pf}
+Let $\tilde M$ be a free $R$-module generated by $M_1\times M_2$.
+Let $\tilde M_0$ be a $R$-subodule of $\tilde M$ generated by
+\begin{gather*}
+(p+p',q)-(p,q)-(p',q),\quad (p,q+q')-(p,q)-(p,q'),\\
+(ap,q)-a(p,q),\qquad\qquad\quad (p,aq)-a(p,q).
+\end{gather*}
+Let $M:=\tilde M/\tilde M_0$.
+Then, it satisfies the universal property(Exercise!).
+\end{pf}
+
+\begin{rmk}\hspace{-5pt}\emph{1.7.2.}
+\begin{parts}
+\item The tensor product is unique.
+\item $M_1\otimes M_2$ is an $R$-module.
+\item For $f_1:M_1\to M_1'$ and $f_2:M_2\to M_2'$, we have an $R$-homomorphism $f_1\otimes f_2:M_1\otimes M_2\to M_1'\otimes M_2'$ defined by
+\begin{cd}
+M_1\times M_2 \ar{r}{\otimes}\ar{d} & M_1\otimes_RM_2 \ar[dashed]{d}{\exists!\,f_1\otimes f_2}\\
+M_1'\times M_2'\ar{r}{\otimes} & M_1'\otimes_RM_2'.
+\end{cd}
+\end{parts}
+\end{rmk}
+
+\begin{prop}\hspace{-5pt}\textbf{\emph{1.7.3.}}
+\begin{parts}
+\item $R\otimes_RM\cong M$.
+\item $M\otimes_RR\cong M$.
+\item $(\bigoplus_\lambda M_\lambda)\otimes_RN\cong\bigoplus_\lambda(M_\lambda\otimes_RN)$.
+\item $N\otimes_R(\bigoplus_\lambda M_\lambda)\cong\bigoplus_\lambda(N\otimes_RM_\lambda)$.
+\end{parts}
+\end{prop}
+\begin{pf}
+Use the universal properties for the right-hand sides.
+\end{pf}
+\begin{prop}\hspace{-5pt}\textbf{\emph{1.7.4.}}
+Let $R$ be commutative.
+\begin{parts}
+\item $(M_1\otimes_RM_2)\otimes_RM_3\cong M_1\otimes_R(M_2\otimes_RM_3)$.
+\item $M_1\otimes_RM_2\cong M_2\otimes_RM_1$.
+\end{parts}
+\end{prop}
+\begin{pf}
+(a) Use the universal property.
+
+(b) Omitted.
+\end{pf}
+
+\begin{prop}\hspace{-5pt}\textbf{\emph{1.7.5.}}
+If
+\[M_1\xrightarrow{f} M_2\to M_3\to0\]
+is exact, then
+\[N\otimes_RM_1\to N\otimes_RM_2\to N\otimes_RM_3\to0\]
+is exact.
+\end{prop}
+\begin{pf}
+We can construct a unique $\Psi$ by the universal property of $N\otimes M_2$ so that the following diagram commutes.
+\begin{cd}
+N\otimes_RM_1 \ar{r} & N\otimes_RM_2 \ar{r} & \coker(\id_N\otimes f) \ar{r} & 0\\
+N\times M_1 \ar{r}\ar{u}{\otimes} & N\times M_2 \ar[two heads]{r}\ar{u}{\otimes} & N\times M_3 \ar[dashed]{u}{\exists!\,\Psi}&
+\end{cd}
+Therefore, we can check $\coker(\id_N\otimes f)$ satisfies the universal property.
+\end{pf}
+
+\begin{ex*}
+We have
+\[M/IM\cong(R\otimes M)/(I\otimes M)\cong(R/I)\otimes M.\]
+If $M=R/I$, then
+\[I/I^2\to R/I\to(R/I)^{\otimes2}\to0\]
+is exact, and the first map is not injective.
+\end{ex*}
+
+Direct limit.
+\[(\colim_\lambda N_\lambda)\otimes_RM\cong\colim_\lambda (N_\lambda\otimes_R M).\]
+\begin{pf}
+\begin{cd}
+(\bigoplus_{\lambda<\mu}N_\lambda)\otimes_RM \ar{r} & (\bigoplus_{\lambda}N_\lambda)\otimes_RM \ar{r} & \coker \ar{r} & 0\\
+\bigoplus_{\lambda<\mu}(N_\lambda\otimes_RM) \ar{r}\ar{u}{\otimes} & \bigoplus_{\lambda}(N_\lambda\otimes_RM) \ar[two heads]{r}\ar{u}{\otimes} & \colim_{\lambda}(N_\lambda\otimes_RM) \ar[dashed]{u}{\exists!\,\Psi}&
+\end{cd}
+\end{pf}
+
+보족: 사진 참고
+
 
 \end{document}

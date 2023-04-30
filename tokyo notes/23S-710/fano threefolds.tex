@@ -504,7 +504,7 @@ Then $D$ is big iff there is $c\in\Q_{>0}$ such that for all sufficiently large 
 We may assume $D=A+E$ with $A$ ample and $E$ effective.
 Then, $H^0(X,mD)=H^0(X,m(A+E))\hookleftarrow H^0(X,mA)$ by
 \[0\to \cO_X(-mE)\to\cO_X\to\cO_{mE}\to0.\]
-Thus we may assume $D$ is ample.
+Thus $h^0(X,mA)\le h^0(X,mD)$ implies that we may assume $D$ is ample.
 
 It is well-known that
 \[\chi(X,mD)=\frac{D^{\dim X}}{(\dim X)!}m^{\dim X}+O(m^{\dim X-1})\in\Z[m]\]
@@ -528,7 +528,7 @@ If you want, you may assume that $Z$ is smooth.
 
 \begin{pf}[Proof of Lemma 2.19 (C)]
 ($\Leftarrow$)
-Let $\dim Y=0$ i.e. $Y=\Spec\C$ with $\rho(X)=\rho(Y)+1=1$, which implies that $l\equiv cA$ for some $c\in\Q$ and an ample divisor $A$ on $X$.
+Let $\dim Y=0$ i.e. $Y=\Spec\C$ with $\rho(X)=\rho(Y)+1=1$, which implies that $l\equiv cA$ for some $c\in\Q$ and an ample divisor $A$ on $X$ because every projective variety has an ample divisor.
 Then, we can prove $c>0$ from $A\cdot l=A\cdot(cA)=cA^2$, hence $l^2=(cA)\cdot(cA)=c^2A^2>0$.
 
 ($\Rightarrow$)
@@ -560,7 +560,7 @@ For simplicity, assume $\dim X=2$.
 
 ($\Rightarrow$)
 Let $mD=A+E$ with $z\in\Z_{>0}$, $A$ ample, $E$ effective.
-Since $mD\cdot E\ge0$ and $mD\cdot A=A^2+E\cdot A>0$, we have $(mD)^2=mD\cdot A+mD\cdot E>0$.
+Since $mD\cdot E\ge0$ from that $D$ is nef and $mD\cdot A=A^2+E\cdot A>0$ from that $A$ is ample, we have $(mD)^{\dim X}=(mD)^2=mD\cdot A+mD\cdot E>0$.
 
 ($\Leftarrow$)
 We may assume $X$ is smooth by taking a resolution of $X$(the pullback via a rational map of a nef or big divisor is also nef of big respectively).
@@ -622,5 +622,279 @@ Then, $D$ is ample (resp.~nef) iff for a subvariety $Y\subset X$ we have $Y\cdot
 For amples, well-known.
 For nefs, it follows from $Y\cdot D^{\dim Y}=\lim_{\e\to0+}Y\cdot(D+\e A)^{\dim Y}\ge0$.
 \end{pf}
+
+
+\newpage
+\section{Day 4: April 27}
+\subsection*{$\Delta$-genus}
+
+We study $\Delta$-genus to classify Fano 3-folds with index $r\ge2$.
+
+\subsection{Index}
+
+\begin{defn}
+Let $X$ be a Fano 3-fold.
+The index $r=r_X\in\Z_{>0}$ is defined such that there is a divisor $H$ with $-K_X\sim rH$ but no divisors $H$ satisfy $-K_X\sim sH$ for $s\in\Z_{r>0}$.
+\end{defn}
+\begin{lem}
+$1\le r\le 4$.
+\end{lem}
+\begin{pf}
+Cone theorem implies $NE(X)=\sum_{i=1}^m\R_{\ge}[l_i]$
+with $0<-K_X\cdot l_i\le\dim X+1=4$.
+Then, since $r\le-K_X\cdot l_i$, we are done.
+\end{pf}
+
+Today's goal: $r=4$ implies $X\cong\P^3$, $r=3$ implies $X\cong\text{(quadratic)}\subset\P^4$.
+
+Outline\\
+$r=4$ => $\Delta(X,H)=0$ with $-K_X\sim4H$ => $|H|$ is very ample with $H^3=1$. => $X\cong\P^3$.\\
+$r=3$ similar.
+
+\subsection{$\Delta$-genus: definition and examples}
+\begin{defn}
+A pair $(X,D)$ is called a polarized variety if $X$ is a projective variety and $D$ is an ample divisor(or invertible sheaf) on $X$.
+\end{defn}
+\begin{defn}
+Let $(X,D)$ be a polarized variety.
+Then,
+\[\Delta(X,D):=\dim X+D^{\dim X}-h^0(X,D).\]
+\end{defn}
+\begin{ex}\,
+\begin{enumerate}[(i)]
+\item
+Let $n\in\Z_{>0}$.
+Then,
+\begin{align*}
+\Delta(\P^1,\cO_{\P^1}(n))&=\dim\P^1+\deg\cO_{\P^1}(n)-h^0(\P^1,\cO_{\P^1}(n))\\&=1+n-(n+1)=0.\end{align*}
+\item
+Let $X$ be an elliptic curve and $D$ an ample divisor on $X$.
+Then, by the Riemann-Roch
+\[h^0(X,D)-h^1(X,D)=\chi(X,D)=\deg D+1-g=\deg D\]
+and the Serre duality $h^1(X,D)=h^0(X,-D)=0$, we have
+\[\Delta(X,D)=1+\deg D-\deg D=1.\]
+\end{enumerate}
+\end{ex}
+
+\begin{ex}
+Let $X$ be a del Pezzo surface.
+Then, $\Delta(X,-K_X)=1$.
+\end{ex}
+\begin{pf}
+By the Riemann-Roch
+\[\chi(X,D)=\chi(X,\cO_X)+\frac12(-K_X)\cdot(-K_X-K_X)\]
+and the Kodaira vanishing
+\[\chi(X,-K_X)=\chi(X,K_X+(-2K_X))=h^0(X,-K_X),\qquad\chi(X,\cO_X)=h^0(X,\cO_X),\]
+we have $h^0(X,-K_X)=K_X^2+1$.
+Therefore,
+\[\Delta(X,-K_X)=\dim X+(-K_X)^2-h^0(X,-K_X)=1.\]
+\end{pf}
+
+\begin{prop}
+Let $X$ be a Fano 3-fold.
+Pick a divisor $H$ such that $-K_X\sim rH$.
+\begin{parts}
+\item If $r=4$, then $\Delta(X,H)=0$ and $H^3=1$.
+\item If $r=3$, then $\Delta(X,H)=0$ and $H^3=2$.
+\end{parts}
+\end{prop}
+\begin{prop}[Riemann-Roch for 3-folds]
+Let $X$ be a smooth projective 3-fold and $D$ a divisor.
+Then,
+\begin{parts}
+\item \[\chi(X,D)=\frac1{12}D\cdot(D-K_X)\cdot(2D-K_X)+\frac1{12}D\cdot C_2(X)+\chi(X,\cO_X).\]
+\item \[-K_X\cdot C_2(X)=24\chi(X,\cO_X).\]
+\end{parts}
+\end{prop}
+\begin{pf}
+Omitted.
+\end{pf}
+\begin{cor}
+Let $X$ be Fano 3-fold and $H$ an ample divisor such that $H\equiv -qK_X$ with $q\in\Q_{>0}$.
+Then,
+\[h^0(X,H)=\chi(X,H)=\frac1{12}q(q+1)(2q+1)(-K_X)^3+2q+1.\]
+\end{cor}
+As a comment for $\Q_{>0}$, in most cases we have $q^{\pm1}\in\Z_{>0}$.
+For example, $H\equiv-\frac1rK_X$ iff $rH\equiv-K_X$.
+\begin{pf}
+By Propositioin 4.8 and the Kodaira vanishing
+\[\chi(X,H)=h^0(X,H),\quad\chi(X,\cO_X)=1,\]
+we can complete the proof by simple computation.
+\end{pf}
+\begin{thm}
+Let $(X,D)$ be a polarized variety.
+Then, $\Delta(X,D)>\dim Bs|D|$, where $\dim\varnothing:=-1$.
+In particular, $\Delta(X,D)\ge0$.
+\end{thm}
+\begin{pf}
+We will do if time permits.
+\end{pf}
+
+\begin{pf}[Proof of Proposition 4.7.]
+We only show (a).
+Note that
+\[h^0(X,H)=^{(4.9)}\frac1{12}q(q+1)(2q+1)(-K_X)^3+2q+1=h^0(X,H)=\frac52H^3+\frac32\]
+since $q=\frac14$ and $(-K_X)^3=(4H)^3=64H^3$, so
+Then, Theorem 4.10 and $H^3\ge1$ imply
+\[0\ge\Delta(X,H)=\dim X+H^3-h^0(X,H)=\frac32(1-H^3)\le0.\]
+Therefore, $H^3=1$ and $\Delta(X,H)=0$.
+\end{pf}
+
+\begin{rmk}
+If $r=4$ and $-K_X\sim4H$, then $h^0(X,H)=4$.
+If $|H|$ is very ample, then $X\hookrightarrow\P^{4-1}=\P^3$, hence $X\cong\P^3$.
+Thus we are enough to show the complete linear system $|H|$ is very ample.
+\end{rmk}
+
+\begin{thm}
+Let $(X,D)$ be a polarized variety with $\Delta(X,D)=0$.
+Then,
+\begin{parts}
+\item $N_1$ property holds: $\bigoplus_{m=0}^\infty H^0(X,mD)$ is generated by $H^0(X,D)$ as a $\C$-algebra.
+\item $|D|$ is very ample.
+\end{parts}
+\end{thm}
+
+\begin{exe}
+Show that under the $N_1$ property, if $D$ is ample, then $|D|$ is very ample.
+\end{exe}
+
+\begin{prop}
+Let $(X,L)$ be a polarized variety with invertible sheaf $L$.
+Let $Y$ be an integral closed subscheme in $|L|$.
+For example, if $X$ is normal with $L\cong\cO_X(D)$, then $D\sim Y$, and it is a prime divisor.
+Then,
+\begin{parts}
+\item $L^{\dim X}=(L|_Y)^{\dim X-1}$.
+\item $0\le\Delta(X,L)-\Delta(Y,L|_Y)\le h^1(X,\cO_X)$.
+\item $H^0(X,L)\to H^0(Y,L|_Y)$ is surjective iff $\Delta(X,L)=\Delta(Y,L|_Y)$.
+\item Assume the condition in the part (c). Then, if $L|_Y$ satisfies $N_1$ property, then so does $L$.
+\end{parts}
+\end{prop}
+
+\begin{pf}[Proof of Proposition 4.12 assuming Proposition 4.14.]
+For simplicity, we assume $X$ is smooth.
+The complete linear system $|D|$ is base point free by $\Delta(X,D)=0$ and Theorem 4.10 ($\dim Bs|D|<\Delta(X,D)$).
+Let $Y\in|D|$ be a general member.
+By Bertini, $Y$ is smooth and connected($D$ is ample), hence $Y$ is a smooth prime divisor.
+Applying Proposition 4.14, we have $0\le\Delta(Y,D|_Y)\le\Delta(X,D)\le0$.
+By Proposition 4.14 (d), $D$ satisfies $N_1$ property from applying the induction hypothesis.
+\end{pf}
+
+\begin{rmk}
+We can check that for a projective curve $X$ we have TFAE:
+\begin{enumerate}[(i)]
+\item $X\cong\P^1$,
+\item $\Delta(X,D)=0$ for every ample $D$,
+\item $\Delta(X,D)=0$ for an ample $D$.
+\end{enumerate}
+\end{rmk}
+
+\begin{pf}[Proof of Proposition 4.14]
+Write $n:=\dim X$.
+
+(a)
+$L^n=L^{n-1}\cdot Y=(L|_Y)^{n-1}$
+
+(b)
+$\Delta(X,L)=n+L^n-h^0(X,L)$ and $\Delta(Y,L|_Y)=(n-1)+(L|_Y)^{n-1}-h^0(Y,L|_Y)$ imply
+\[\Delta(X,L)-\Delta(Y,L|_Y)=1+h^0(Y,L|_Y)-h^0(X,L).\]
+By taking $-\otimes L$ on
+\[0\to\cO(-Y)\to\cO_X\to\cO_Y\to0,\]
+we have exact sequences
+\[0\to \cO_X\to L\to L|_Y\to0\]
+and
+\[0\to H^0(X,\cO_X)\to H^0(X,L)\to H^0(Y,L|_Y)\xrightarrow{\delta}H^1(X,\cO_X).\]
+Then,
+\[h^1(X,\cO_X)\ge\dim\im\delta=1+h^0(Y,L|_Y)-h^0(X,L)=\Delta(X,L)-\Delta(Y,L|_Y)\]
+and $\dim\im\delta\ge0$ implies the desired result.
+
+(c)
+We have $\delta=0$ if and only if $\Delta(X,L)=\Delta(Y,L|_Y)$, which is also equivalent to that $H_0(X,L)\to H^0(Y,L|_Y)$ is surjective.
+
+(d)
+Note that we have a surjection $H^0(X,L)\to H^0(Y,L|_Y)$.
+Suppose $L|_Y$ satisfies $N_1$ property.
+If $\zeta\in H^0(Y,mL|_Y)$, then $\zeta=\sum c\xi_1\cdots\xi_m$ for $c\in\C$ and $\xi_i\in H^0(Y,L|_Y)$, so we can show the map $H^0(X,mL)\to H^0(Y,mL|_Y)$ is surjective.
+\end{pf}
+
+
+\begin{pf}[Proposition 4.12 (b)..?]
+It is enough to show $H^0(X,mL)\otimes_\C H^0(X,L)\to H^0(X,(m+1)L)$ is surjective.
+\begin{cd}
+\,&
+\,&
+H^0(X,mL)\otimes_\C H^0(X,L)\ar[two heads]{r}\ar{d}{\mu_X}&
+H^0(Y,mL|_Y)\otimes_\C H^0(Y,L|_Y)\ar[two heads]{d}{\mu_Y}\\
+0\ar{r}&
+H^0(X,mL)\ar{r}&
+H^0(X,(m+1)L)\ar{r}&
+H^0(Y,(m+1)L|_Y)
+\end{cd}
+For $\zeta\in H^0(X,(m+1)L)$, we have $\zeta_Y\in H^0(Y,(m+1)L|_Y)$ and there is $\sum c\xi_Y\otimes\eta_Y\in H^0(Y,mL|_Y)\otimes_\C H^0(Y,L|_Y)$ and back to obtain $\sum c\xi_X\otimes\eta_X\in H^0(X,mL)\otimes_\C H^0(X,L)$ with surjectivity.
+If we define $\tilde \zeta:=\zeta-\mu_X(\sum c\xi_X\otimes \eta_X)$,
+then there is $\tilde{\tilde\zeta}\mapsto$
+%　写真を見よう
+\end{pf}
+
+
+We now prove Theorem 4.10.
+
+\begin{defn}
+Let $X$ be a projective variety and $L$ an ample invertible sheaf.
+Let $V\subset H^0(X,L)$ be a $\C$-linear subspace.
+Let $\Delta(X,L,V):=\dim X+L^{\min X}-\dim_\C V$.
+(Note $\Delta(X,L)=\Delta(X,L,H^0(X,L)$)
+\end{defn}
+\begin{thm}
+$\Delta(X,L,V)>\dim Bs|V|$, where $|V|$ is the linear system corresponding to $V$.
+\end{thm}
+\begin{pf}
+We may assume that $X$ is normal and $V=H^0(X,L)$.
+the normalization of the resolution of the inderminacies of $\f_{|L|}$..
+\begin{cd}
+X \ar[dashed]{r}{\f_{|L|}} & \P_\C^N & Z:=\psi(Y) \ar[hook]{l}{subsp}\\
+Y\ar{u}{\mu}\ar{ru}{\psi}\ar{rru}{\psi}
+\end{cd}
+
+One of the following holds:
+\begin{enumerate}[(i)]
+\item $\dim Bs|L|=n$, where $n=\dim X$,
+\item $\dim Z=1$,
+\item $\dim Z\ge2$ and $\dim Bs|L|=n-1$,
+\item $\dim Z\ge2$ and $\dim Bs|L|\le n-2$,
+\end{enumerate}
+
+For the case (i), since $\dim Bs|L|=n$ iff $H^0(X,L)=0$, we have
+\[\Delta(X,L)=n+L^n-h^0(X,L)>n=\dim Bs|L|.\]
+
+For the case (ii), we have $\Delta(X,L)=n+L^n-h^0(X,L)$.
+Then, $\mu^*L=M+F$ is decomposed into base point free $M$ and fixed part $F$ by $L\mapsto\mu*L$ and $L_Z:=\cO_{\P^1}(1)|_Z\mapsto M$.
+Then, with normal $X$ and $\mu$ birational we have
+\[H_0(X,L)\cong H^0(Y,\mu^*L)\cong H^0(Y,M).\]
+Also $H^0(Y,M)\cong H^0(Z,L_Z)$ since the injectivity follows from $\psi_*\cO_Y\hookleftarrow\cO_Z$ and the surjectivity is due to the fact that the composition $H^0(Y,M)\leftarrow H^0(Z,L_Z)\leftarrow H^0(\P^N,\cO(1))$ is bijective.
+Now
+\[0\le\Delta(Z,L_Z)=1+\deg L_Z-h^0(Z,L_Z)\]
+and
+\[(\mu^*L)^{n-1}\cdot(\psi^*L_Z)=(\deg L_Z)\cdot(\mu^*L)^{n-1}\cdot(\text{a general fiber of $\psi$})\ge\deg L_Z\]
+because $\mu^*L$ is nef and big.
+\[L^n=(\mu^*L)^n=(\mu^*L)^n\cdot(M+F)\ge\deg L_Z+(\mu^*L)^{n-1}F,\]
+\[\Delta(X,L)=n+L^n-h^0(X,L)\ge n+\deg L_Z+(\mu^*L)^{n-1}\cdot F-h^0(Z,L_Z)\gen-1+(\mu^*L)^{n-1}\cdot F\ge n-1\]
+If $\dim Bs|L|\le n-2$, then we are done.
+If $\dim Bs|L|=n-1$, then $(\mu^*L)^{n-1}\cdot F>0$ because $\mu(F)$ has dimension $n-1$, so $\Delta(X,L)\cdots>n-1$.
+
+For the case (iii) and (iv), see [Fujita].
+\end{pf}
+\begin{itemize}
+	\item T. Fujita, Classification $\cdots$ of polarized varieties (Book)
+	\item T. Fujita, On the structure $\cdots$ with $\Delta$-genus zero (Many papers by Fujita)
+\end{itemize}
+
+
+% C_2(X)?
+% Bs|D|?
+% complete linear system is very ample?
+
+
 
 \end{document}

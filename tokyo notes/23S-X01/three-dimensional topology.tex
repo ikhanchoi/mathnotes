@@ -129,7 +129,7 @@ $\pi_1(\Sigma_{g,b})$ is LERF.
 
 \section{Day 2: April 18}
 
-\subsection*{2. Examples and constructions of 3-manifolds}
+\subsection*{Examples and constructions of 3-manifolds}
 
 \begin{thm}[Moise]
 Every topological 3-manifold(not neccesarily compact, connected, orientable) admits a unique smooth and PL structure.
@@ -271,5 +271,124 @@ Every closed 3-manifold can be obtained by an (integral)-Dehn surgery along some
 Heegaard decomposition and $\cM_g=\<\text{Dehn twists}\>$.
 Each Dehn twist realizes the Dehn surgery steps.
 \end{pf}
+
+\newpage
+\section{Day 3: April 25}
+\subsection*{Prime decomposition}
+
+\subsection{Alexander's theorem}
+\begin{thm}
+Every (smooth) embedding $S^2\subset\R^3$ bounds some (smooth) embedding $D^3\subset\R^3$.
+\end{thm}
+\begin{rmk*}
+The above theorem does not hold in the category of topological spaces.
+Alexander's horned sphere is one of the counterexamples.
+
+If $\R^d$ for $d\ge5$, then more complicated result such as h-cobordism theorem must be used to obtain the same conclusion.
+\end{rmk*}
+\begin{pf}[Sketch]
+Isotope such a sphere $S$ so that the coordinate $z:S\to\R$ is a Morse function.
+Assume that for all $p\ne q\in\mathrm{Crit}(z)$, then $z(p)\ne z(q)$.
+We use induction on $(m,n)$, where $m$ is the number of saddles and
+\[n:=\min\{\#\pi_0(S\cap z^{-1}(r)):\text{$r$ is a regular value s.t. $z(p)<r<z(q)$ for some saddles $p,q$}\}.\]
+Note that $\#(\text{minima of $z$})-m+\#(\text{maxima of $z$})=\chi(S)=2$.
+
+For the case $m=0$ so that there are only one minimum and maximum, then we can construct a ball by applying the Jordan-Sch\"onflies theorem to each level.
+
+For the case $m=1$, then only four types appear: a jelly bean, a red blood cell, and their upside down versions.
+Apply the Jordan Sch\"onflies again.
+
+For the case $m\ge2$, let $r$ be a regular value realizing the value of $n$.
+Let $D$ be union of the closure of the interior of the innermost circles of $S\cap z^{-1}(r)$.
+Replace $S$ by $(S\setminus\pd D\times(-\e,\e))\cup(D\times\{-\e,\e\})$.
+Then, each connected component has lower $(m,n)$ so that it bounds a ball.
+Attaching all balls bounded by the components with balls $D\times[-\e,\e]$, $S$ also bounds a ball.
+\end{pf}
+
+\subsection{Irreducible manifolds}
+
+The connected sum is defined as
+\[M\# N:=(M\setminus(\text{open ball}))\cup_\partial(N\setminus(\text{open ball})).\]
+\begin{prop}\,
+\begin{parts}
+\item $M\# N\approx N\# M$.
+\item $(M_1\# M_2)\# M_3\approx M_1\#(M_2\# M_3)$.
+\item $M\# S^3\approx M$.
+\end{parts}
+\end{prop}
+
+We say a manifold $M$ is \emph{prime} if $M=N_1\# N_2$ implies $N_1\approx S^3$ or $N_2\approx S^3$.
+We say a 3-manifold $M$ is \emph{irreducible} if every embedding $S^2\subset M$ bounds some embedding $D^3\subset M$.
+In other words, in a prime manifold every separating sphere bounds a ball, in an irreducible manifold every sphere bounds a ball.
+
+\begin{cor}
+Every irreducible 3-manifold is prime.
+\end{cor}
+\begin{cor}
+By Theorem 3.1, $S^3$ is irreducible.
+\end{cor}
+\begin{thm}\,
+\begin{parts}
+\item $S^2\times S^1$ is prime, but is not irreducible.
+\item Every closed prime 3-manifold which is not irreducible is diffeomorphic to $S^2\times S^1$.
+\end{parts}
+\end{thm}
+\begin{pf}
+(a)
+A sphere $S^2\times *$ cannot bound any $D^3\subset S^2\times S^1$ because $[S^2\times *]\ne0\in H_2(S^2\times S^1)$, so $S^2\times S^1$ is not irreducible.
+
+Suppose $S^2\times S^1=N_1\# N_2$.
+Since $\pi_1(N_1)*\pi_1(N_2)\cong\Z$, one of $\pi_1(N_1)$ or $\pi_1(N_1)$ is trivial.
+Assume $\pi_1(N_1)$ is trivial and let $B:=N_1\setminus(\text{open ball})$.
+Since $B$ is also simply connected, it lifts diffeomorphically into the universal cover $S^2\times\R$ of $S^2\times S^1$.
+Because $S^2\times\R\approx\R^3\setminus\{0\}$, we have an embedding $B\subset\R^3$.
+Because $\partial B\approx S^2$, by Theorem 3.1 we have $B\approx D^3$, so $N_1\approx S^3$.
+
+(b)
+If every sphere in $M$ is separating, then it has to be irreducible since $M$ is prime, so such $M$ contains a nonseparating sphere $S$.
+Let $\gamma$ be an arc connecting the inside and the outside of $\pd\nu(S)$.
+If we let $M':=\bar{\nu(S)}\cup\bar{\nu(\gamma)}$, then $\pd M'\approx S^2\#(S^1\times I)\#S^2\approx S^2$ is a separating sphere.
+Since $M\setminus\mathrm{Int}M'\approx D^3$ because $M'$ is not simply connected and $M$ is prime, $M$ is diffeomorphic to $S^2\times S^1$.
+\end{pf}
+
+\begin{prop}
+If a covering space $\tilde M$ of $M$ is irreducible, then so is $M$.
+\end{prop}
+
+\noindent\textbf{Exercise 4.} Prove Proposition 3.6.
+\begin{rmk}
+The converse of Proposition 3.6 is also known to be true.
+\end{rmk}
+
+\subsection{Normal surfaces}
+
+Fix a 3-manifold $M$ and its triangulation $T$.
+A (possibly disconnected) subsurface $S\subset M$ is called a \emph{normla surface} with respect to $T$ if $S$ is a union of \emph{normal disks}, defined as seven types of disks in a given tetrahedron: four triangles and three quadrilaterals.
+
+\begin{prop}
+Every (possibly disconnected) subsurface $S\subset M$ becomes a normal surface with respect to $T$ by isotopies and the following operations:
+\begin{enumerate}[(i)]
+\item Replace $S$ by $(S\setminus\partial D\times(-\e,\e))\cup(D\times\{\pm\e\})$ for a disk $D$ satisfying $D\cap(S\cup\partial M)=\partial D$.
+\item Remove a components of $S$ contained in a ball in $M$.
+\end{enumerate}
+\end{prop}
+\begin{pf}
+Isotope $S$ so that $S\pitchfork T$.
+It is sufficient to realize the following:
+\begin{parts}
+\item For every tetrahedron $\Delta\subset T$, $S\cap\Delta=\coprod(\text{disks})$.
+\item For every disk $D$ in (a) and for every edge $e\in T^{(1)}$, $\#(D\cap e)\le1$.
+\item For every triangle $\tau\subset T^{(2)}$, $S\cap\tau=\coprod(\text{arcs})$.
+\end{parts}
+
+For (a), if there is a non-disk component of $S\cap\Delta$, perform (i) along innermost loops in $S\cap\partial\Delta$.
+Then, perform (ii) for closed components of $S$.
+
+For (b), if there is a disk component of $S\cap\Delta$ which intersects an edge more than twice, inner most pair of two points connected by an arc in $D$, push the arc outside $\Delta$ with an ambient isotopy.
+(To be continued)
+\end{pf}
+
+
+\subsection{Prime decomposition theorem}
 
 \end{document}

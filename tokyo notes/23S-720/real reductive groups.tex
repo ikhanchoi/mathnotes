@@ -93,7 +93,8 @@ For reps $(\pi_1,V_1),\cdots,(\pi_n,V_n)$ of $G$, we define the direct sum as a 
 \[\pi\sim\mu^{m_1}\oplus\cdots\oplus\mu^{m_n}.\]
 \item If $(\pi,V)$ is a holomorphic representation of $\rU(1)$, then there is $m_1,\cdots,m_n\in\Z$ such that
 \[\pi\sim\mu^{m_1}\oplus\cdots\oplus\mu^{m_n}.\]
-\end{parts}	
+\end{parts}
+In other words, every finite-dimensional holomorphic representations of $\GL(1,\C)=\C^\times$ and $\SL(1,\C)=\rU(1)$ are completely reducible, and the sequence $(\mu^m)_{m=-\infty}^\infty$ provides a complete list of irreducible($=$one-dimensional, on abelian groups) holomorphic representations.
 \end{prop} 
 \begin{pf}
 We first show the following lemma: 
@@ -148,17 +149,29 @@ and
 \begin{rmk}
 In particular, a holomorphic representation of $\C^\times$ is the direct sum of irreducible representations.
 However, a holomorphic representation of $\C$ may not be the direct sum of irreducible representations, i.e. not completely reducible.
-We have a counterexample $\C\to\GL(2,\C):t\mapsto\mat{1&t\\0&1}$.
+We have a counterexample
+\[\C\to\GL(2,\C):t\mapsto\mat{1&t\\0&1}.\]
 Every finite-dimensional representation of $\GL(n,\C)$ is completely reducible.
 \end{rmk}
 
+\subsubsection*{Borel-Weil theory}
+
 Let $G=\GL(n,\C)$ or $\SL(n,\C)$.
-Let $X$ be 
+Let $X$ be a flag variety(we have not defined yet).
 For each $\lambda=(\lambda_i)\in\Z^n$, a holomorphic line bundle $L_\lambda$ over $X$ is determined.
 \begin{thm}
 $\Gamma(X,L_\lambda)\ne0$ if and only if $\lambda_1\ge\cdots\ge\lambda_n$.
 \end{thm}
 
+\begin{ex}[$n=2$]
+We have $X=\CP^1$.
+
+Then, $\Gamma$
+
+The natural action $G=\GL(2,\C)$ on $V=\C^2$ induces an action of $G$ on $\P^1$, which also induces an action of $G$ on $\Gamma(\P^1,L_{\cO(k)})$.
+
+
+\end{ex}
 
 \begin{align*}
 \Gamma(U_1,L_{\cO(k)})&\cong&\{\text{holomorphic functions on $\C$}\}\\
@@ -167,6 +180,16 @@ $\Gamma(X,L_\lambda)\ne0$ if and only if $\lambda_1\ge\cdots\ge\lambda_n$.
 
 
 every integral weight corresponds to a holomorphic line bundle
+
+\newpage
+\section{Day 3: April 26}
+
+When we write $\hat G$ as the set of equivalence classes of irreducible holomorphic representations of $G$, then we have shown that there is a one-to-one correspondence $\hat{\GL(1,\C)}\leftrightarrow\Z$.
+In this case, $X=\{*\}$.
+
+
+
+
 
 
 \end{document}

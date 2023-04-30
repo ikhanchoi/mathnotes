@@ -12,7 +12,7 @@
 \part{Homology}
 
 
-\chapter{Axiomatic homology theory}
+\chapter{Axiomatic homology}
 
 \section{Singular homology}
 
@@ -22,7 +22,7 @@ Mayer-Vietoris sequence
 
 
 
-\chapter{Computation of homology}
+\chapter{Homology groups}
 
 \section{Cellular homology}
 CW complex,
@@ -40,7 +40,8 @@ simplicial approximation,
 \chapter{Cohomology}
 
 cup product
-Universal coefficient theorem
+universal coefficient theorem
+
 
 \section{Poincar\'e duality}
 
@@ -117,70 +118,84 @@ Spin, Spin$_\C$ structure
 \section{Principal bundles}
 
 \begin{prb}[Structure groups]
-Let $G$ be a topological group and $Y$ be a left $G$-space.
-A \emph{$G$-bundle} or a \emph{fiber bundle with structure group $G$} with fiber $Y$ is a fiber bundle $p:E\to B$, together with a local trivialization $\f=\{\f_i:p^{-1}(U_i)\to U_i\times Y\}_i$ such that the transition map are given by
-\[\tau_{ij}(b,y):=\f_j\f_i^{-1}(b,y)=(b,g_{ij}(b)y),
-\qquad b\in U_i\cap U_j,\ y\in Y,\]
-where $g_{ij}:U_i\cap U_j\to G$ are maps.
+Let $G$ be a topological group and $F$ be a left $G$-space, and $p:E\to B$ be a fiber bundle with fiber $F$.
+We say an atlas $\{\f_i:p^{-1}(U_i)\to U_i\times F\}_i$ is a \emph{$G$-atlas} if there is a set $\{g_{ij}:U_i\cap U_j\to G\}_{i,j}$ of maps such that the transition maps are given by
+\[\f_j\circ\f_i^{-1}(b,f)=(b,g_{ij}(b)f),
+\qquad b\in U_i\cap U_j,\ f\in F.\]
 
-A \emph{$G$-bundle map} is a bundle map $(u,f):(E_1,B_1)\to(E_2,B_2)$ such that
-\[\f_{2,j}u\f_{1,i}^{-1}(b,y)=(f(b),h_{ij}(b)y),
-\qquad b\in U_{1,i}\cap f^{-1}(U_{2,j}),\ y\in Y,\]
-where $h_{ij}:U_{1,i}\cap f^{-1}(U_{2,j})\to G$ are maps.
-If $B_1=B_2=B$, a $G$-bundle map over $B$ is a $G$-bundle map $(u,f)$ such that $f=\id_B$.
-We denote by $\mathbf{Bun}_Y(B)$ the category of $G$-bundles over $B$ with fiber $Y$.
+A \emph{$G$-bundle} with fiber $F$ is a fiber bundle $p:E\to B$ that admits a $G$-atlas.
+In this case the group $G$ is called the \emph{structure group} of the fiber bundle.
+A \emph{$G$-bundle map} is a bundle map $(\tilde u,u):(E,B)\to(E',B')$ with a set $\{h_{ij'}:U_i\cap u^{-1}(U'_{j'})\to G\}_{i,j'}$ such that
+\[\f'_{j'}\circ\tilde u\circ \f_i^{-1}(b,f)=(u(b),h_{ij'}(b)f),
+\qquad b\in U_i\cap u^{-1}(U'_{j'}),\ f\in F.\]
+If $B=B'$, a $G$-bundle map over $B$ is a $G$-bundle map $(\tilde u,u)$ such that $u=\id_B$.
+We denote by $\mathbf{Bun}_F(B)$ the category of $G$-bundles over $B$ with fiber $F$.
 \begin{parts}
-\item If $B$ is locally compact and Hausdorff, then every fiber bundle with fiber $Y$ has a structure group $\Homeo(Y)$.
-\item A $G$-bundle map $(u,f)$ is an isomorphism if and only if $f$ is a homeomorphism.
+\item If $F$ is a locally compact and locally connected Hausdorff space, then every fiber bundle with fiber $F$ is a $\Homeo(F)$-bundle, where $\Homeo(F)$ is the group of autohomeomorphism group with compact-open topology.
+\item A $G$-bundle map $(\tilde u,u)$ is an isomorphism if and only if $u$ is a homeomorphism.
+\item A bundle map $(\tilde u,\id_B):(E,B)\to(E',B)$ is a $G$-bundle map if and only if there is a set $\{h_i:U_i\to G\}_i$ such that
+\[\f_i'\circ\tilde u\circ\f_i^{-1}(b,f)=(b,h_i(b)f),
+\qquad b\in U_i,\ f\in F,\]
+where $\{U_i\}$ is an open cover over which both $E$ and $E'$ are trivialized.
 \end{parts}
 \end{prb}
 \begin{pf}
 (a)
 
-(b) 
+(b)
+($\Rightarrow$)
+Clear.
+
+($\Leftarrow$)
+The total map $\tilde u$ is continuous bijection because $u$ is a bijection, so it suffices to show $\tilde u^{-1}$ is continuous.
+Fix $U_i\subset B$ and $U'_{j'}\subset B'$.
+By substitution of $b':=u(b)$, $f':=h_{ij'}(b)f$, we can write
+\[\f_i\circ\tilde u^{-1}\circ\f_{j'}'^{-1}(b',f')=(u^{-1}(b'),h_{ij'}(u^{-1}(b'))^{-1}f').\]
+Since the local trivializations, the inverse operation of $G$, and the inverse $u^{-1}$ are all continuous, $\tilde u^{-1}$ is also continuous.
 \end{pf}
 
 
 
 \begin{prb}[Fiber bundle construction theorem]
 Let $\cU=\{U_i\}_i$ be an open cover of a topological space $B$, and $G$ be a topological group.
-A \emph{\v Cech 1-cocyle} on $\cU$ with coefficients in $G$ is a set of maps $g=\{g_{ij}:U_i\cap U_j\to G\}_i$ such that the following \emph{cocycle condition} holds:
-\[g_{ik}(b)=g_{jk}(b)g_{ij}(b),\qquad\forall i,j,k,\ b\in U_i\cap U_j\cap U_k.\]
+A \emph{\v Cech 1-cocyle} on $\cU$ with coefficients in $G$ is a set $\{g_{ij}:U_i\cap U_j\to G\}_{i,j}$ of maps such that the following \emph{cocycle condition} holds:
+\[g_{ik}(b)=g_{jk}(b)g_{ij}(b),\qquad b\in U_i\cap U_j\cap U_k.\]
 The set of \v Cech 1-cocycles on $\cU$ with coeffients in $G$ is denoted by $\check Z^1(\cU,G)$.
 
-Let $g\in\check Z^1(\cU,G)$ and $Y$ a left $G$-space.
-We will construct a $G$-bundle with fiber $Y$ that is trivialized over $\cU$ in which the transition maps are given by $g$.
+Let $g\in\check Z^1(\cU,G)$ be a \v Cech 1-cocycle on $\cU$.
+We will construct a $G$-bundle with fiber $F$ for any left $G$-space $F$, which is trivialized over $\cU$ in which the transition maps are given by $\{g_{ij}\}$.
 Define
-\[E:=\left(\coprod_i(U_i\times Y)\right)/\sim,\]
+\[E:=\left(\coprod_i(U_i\times F)\right)/\sim,\]
 where $\sim$ is an equivalence relation generated by
-\[(i,b,y)\sim(j,b,g_{ij}(b)y),
-\qquad\forall i,j,\ b\in U_i\cap U_j,\ y\in Y.\]
-Also define $p:E\to B:[i,b,y]\mapsto b$ and $\f_i^{-1}:U_i\times Y\to p^{-1}(U_i):(b,y)\mapsto[i,b,y]$, which are clearly continuous and surjective even without the cocycle condition.
+\[(b,f,i)\sim(b,g_{ij}(b)f,j),
+\qquad b\in U_i\cap U_j,\ f\in F.\]
+Also define $p:E\to B:[b,f,i]\mapsto b$ and $\f_i^{-1}:U_i\times F\to p^{-1}(U_i):(b,f)\mapsto[b,f,i]$, which are clearly continuous and surjective even without the cocycle condition.
 \begin{parts}
 \item $\f_i^{-1}$ is injective.
 \item $\f_i^{-1}$ is open.
-\item The transition maps from the local trivialization $\f=\{\f_i\}_i$ coincides with the cocycle $g$.
+\item The transition maps of the local trivialization $\{\f_i\}$ coincides with the cocycle $\{g_{ij}\}$.
 \end{parts}
 \end{prb}
 \begin{pf}
 (a)
-Suppose $\f_i^{-1}(b,y)=\f_i^{-1}(b',y')$.
-Since $(i,b,y)\sim(i,b',y')$, we have $b=b'$ and there is a sequence
-\[y'=g_{i_{n-1}i_n}(b)g_{i_{n-2}i_{n-1}}(b)\cdots g_{i_0i_1}(b)y,\]
+Suppose $\f_i^{-1}(b,f)=\f_i^{-1}(b',f')$.
+Since $(b,y,i)\sim(b',y',i)$, we have $b=b'$ and there is a sequence
+\[f'=g_{i_{n-1}i_n}(b)g_{i_{n-2}i_{n-1}}(b)\cdots g_{i_0i_1}(b)f,\]
 where $i_0=i_n=i$.
-By applying the cocycle condition inductively, we obtain $y=y'$, which implies the injectivity of $\f_i^{-1}$.
+By applying the cocycle condition inductively, we obtain $f=f'$, which implies the injectivity of $\f_i^{-1}$.
 
 (b)
-The map $\f_i^{-1}$ factors through $\coprod_i(U_i\times Y)$ such that
-\[\f_i^{-1}:U_i\times Y\to\coprod_i(U_i\times Y)\xrightarrow{\pi}p^{-1}(U_i).\]
-Since the inclusion to disjoint union is open, it suffices to show the quotient map $\pi:\coprod_i(U_i\times Y)\to E$ is open.
-Let $V\subset\coprod_i(U_i\times Y)$ be open.
-Observe for each pair of $i$ and $j$ that
-\[\pi^{-1}\pi(V\cap(U_i\times Y))\cap(U_j\times Y)\]
-is open because it is exactly same as the inverse image of the open set $V\cap(U_i\times Y)$ under the map $(U_i\cap U_j)\times Y\subset U_j\times Y\to U_i\times Y:(b,y)\mapsto(b,g_{ij}(b)y)$.
-Here we used the cocycle condition of $g$.
+The map $\f_i^{-1}$ factors through $\coprod_i(U_i\times F)$ such that
+\[\f_i^{-1}:U_i\times F\to\coprod_i(U_i\times F)\xrightarrow{\pi}p^{-1}(U_i).\]
+Since the canonical inclusion to disjoint union is open, it suffices to show the quotient map $\pi:\coprod_i(U_i\times F)\to E$ is open.
+Let $V\subset\coprod_i(U_i\times F)$ be open.
+Observe that
+\[\pi^{-1}\pi(V\cap(U_i\times F))\cap(U_j\times F)\]
+is open for each pair of $i$ and $j$ because it is exactly same as the inverse image of the open set $V\cap(U_i\times F)$ under the map
+\[(U_i\cap U_j)\times F\subset U_j\times F\to U_i\times F:(b,f)\mapsto(b,g_{ij}(b)f).\]
+Here we used the cocycle condition of $\{g_{ij}\}$.
 Therefore,
-\[\pi^{-1}\pi(V)=\bigcup_{ij}\pi^{-1}\pi(V\cap(U_i\times Y))\cap(U_j\times Y)\]
+\[\pi^{-1}\pi(V)=\bigcup_{i,j}\pi^{-1}\pi(V\cap(U_i\times F))\cap(U_j\times F)\]
 is open, hence the open $\pi$.
 
 (c)
@@ -190,80 +205,84 @@ Clear by the cocycle condition.
 
 \begin{prb}[Cohomologous transitions]
 Let $\cU=\{U_i\}_i$ be an open cover of a topological space $B$, and $G$ be a topological group. 
-A \emph{\v Cech 0-cochain} on $\cU$ with coefficients in $G$ is a set of maps $h=\{h_i:U_i\to G\}_i$.
+A \emph{\v Cech 0-cochain} on $\cU$ with coefficients in $G$ is a set $\{h_i:U_i\to G\}_i$ of maps.
 The group of \v Cech 0-cochains on $\cU$ with coefficients in $G$ is denoted by $\check C^0(\cU,G)$.
 
 The \emph{first \v Cech cohomology group} of $\cU$ with coefficients $G$ is the orbit space of an action on $\check Z^1(\cU,G)$ by $\check C^0(\cU,G)$ defined as follows:
 \[(hg)_{ij}(b):=h_j(b)g_{ij}(b)h_i(b)^{-1},
-\qquad\forall i,j,\ b\in U_i\cap U_j,\]
+\qquad b\in U_i\cap U_j,\]
 which is denoted by $\check H^1(\cU,G)$.
 We define the \emph{first \v Cech cohomology group} of $B$ with coefficients in $G$ as the direct limit
 \[\check H^1(B,G):=\lim_{\substack{\longrightarrow\\\cU}}\check H^1(\cU,G).\]
 
-Let $Y$ be a left $G$-space, and let $\mathrm{Bun}_Y(B)$ be the set of isomorphism classes of $G$-bundles over $B$ with fiber $Y$.
+Let $F$ be a left $G$-space, and let $\mathrm{Bun}_F(B)$ be the set of isomorphism classes of $G$-bundles over $B$ with fiber $F$.
 \begin{parts}
-\item $\mathrm{Bun}_Y(B)\to\check H^1(B,G)$ is well-defined.
-\item $\mathrm{Bun}_Y(B)\to\check H^1(B,G)$ is surjective.
-\item $\mathrm{Bun}_Y(B)\to\check H^1(B,G)$ is injective if $Y$ is faithful.
+\item $\mathrm{Bun}_F(B)\to\check H^1(B,G)$ is well-defined.
+\item $\mathrm{Bun}_F(B)\to\check H^1(B,G)$ is surjective.
+\item $\mathrm{Bun}_F(B)\to\check H^1(B,G)$ is injective if $F$ is faithful.
 \end{parts}
 \end{prb}
 \begin{pf}
 (a)
-Suppose $p_1:E_1\to B$ and $p_2:E_2\to B$ be isomorphic $G$-bundles with fiber $Y$.
-Let $u:E_1\to E_2$ be a $G$-bundle isomorphism.
-By considering the refinement, we can find an open cover $\cU=\{U_i\}_i$ of $B$ on which $E_1$ and $E_2$ are simultaneously locally trivialized.
-\[g_1:=\{g_{1,ij}:U_i\cap U_j\to G\}.\]
+Suppose $p:E_1\to B$ and $p':E'\to B$ be isomorphic $G$-bundles with fiber $F$.
+Let $u:E\to E'$ be a $G$-bundle isomorphism.
+By considering the refinement, we can find an open cover $\cU=\{U_i\}_i$ of $B$ on which $E$ and $E'$ are simultaneously locally trivialized.
+\[\{g_{ij}:U_i\cap U_j\to G\}.\]
 
+(b)
+
+(c)
 \end{pf}
 
 
 \begin{prb}[Principal bundles]
-Let $G$ be a topological group, and $X$ be a left \emph{principal homogeneous $G$-space}, i.e. a free and transitive left $G$-space such that $G\times X\to X\times X:(g,x)\mapsto(gx,x)$ is a homeomorphism.
+Let $G$ be a topological group, and $X$ be a left \emph{principal homogeneous $G$-space}, i.e. a free and transitive left $G$-space such that the shear map $G\times X\to X\times X:(g,x)\mapsto(gx,x)$ is a homeomorphism.
 
 A \emph{principal $G$-bundle} is a $G$-bundle $p:P\to B$ with fiber $X$, often together with a fiber-preserving continuous right action $\rho:P\times G\to P$ such that each chart $\f_i:p^{-1}(U_i)\to U_i\times X$ induces a principal homogeneous right action on $\{b\}\times X\subset U_i\times X$ which commutes with the left action.
 The right action $\rho$ is called the \emph{principal right action} or \emph{(global) gauge transformation}.
-Note that for each $b\in B$ the \emph{fiber} $\{b\}\times X$ has commuting left and right actions, but the \emph{fiber} $p^{-1}(b)$ cannot be given a natural left action from local trivializations.
+Note that for each $b\in B$ the \emph{fiber} $\{b\}\times X$ has commuting left and right actions, but the \emph{fiber} $p^{-1}(b)$ can admit only the principal right action.
 
-The category of principal $G$-bundles over $B$ is denoted by $\mathbf{Prin}_G(B)$, and the morphisms are usually defined as right $G$-equivariant maps.
+The category of principal $G$-bundles over $B$ is denoted by $\mathbf{Prin}_G(B)$, and the morphisms are usually defined as right $G$-equivariant maps with respect to the pricipal right actions.
 Then, we may consider the forgetful functor $\mathbf{Prin}_G(B)\to\mathbf{Bun}_X(B)$.
 \begin{parts}
-\item $\mathbf{Prin}_G(B)\to\mathbf{Bun}_X(B)$ is fully faithful, i.e. a bundle map $u:P_1\to P_2$ over $B$ is a $G$-bundle map if and only if it is a right $G$-equivariant map. 
+\item $\mathbf{Prin}_G(B)\to\mathbf{Bun}_X(B)$ is fully faithful, i.e. a bundle map $u:P\to P'$ over $B$ is a $G$-bundle map if and only if it is a right $G$-equivariant map. 
 \item $\mathbf{Prin}_G(B)\to\mathbf{Bun}_X(B)$ is surjective, i.e. every $G$-bundle with fiber $X$ has a principal right action.
 \item A principal bundle is trivial if it has a global section.
 \end{parts}
 \end{prb}
 \begin{pf}
 (a)
-Let $u:P_1\to P_2$ be a $G$-bundle map over $B$ so that there is a map $g_i:U_i\to G$ for each $i$ such that
-\[\f_iu\f_i^{-1}(b,x)=(b,g_i(b)x),
-\qquad\forall i,\ b\in U_i,\ x\in X.\]
-If we write $\rho_s=\rho(-,s)$, then the induced action $\f_i\rho_s\f_i^{-1}$ on $U_i\times X$ commutes with $\f_iu\f_i^{-1}$.
+Let $u:P\to P'$ be a $G$-bundle map over $B$ so that there is a set $\{h_i:U_i\to G\}_i$ of maps such that
+\[\f_i\circ u\circ\f_i^{-1}(b,x)=(b,h_i(b)x),
+\qquad b\in U_i,\ x\in X.\]
+If we write $\rho_s:P\to P:e\mapsto \rho(e,s)$ for $s\in G$, then the induced right action $\f_i\circ\rho_s\circ\f_i^{-1}$ commutes with the left action $\f_i\circ u\circ\f_i^{-1}$ on $U_i\times X$.
 Now for every $e\in P_1$, we have
 \begin{align*}
-\rho_su(e)
-&=\f_i^{-1}(\f_i\rho_s\f_i^{-1})(\f_iu\f_i^{-1})\f_i(e)\\
-&=\f_i^{-1}(\f_iu\f_i^{-1})(\f_i\rho_s\f_i^{-1})\f_i(e)\\
-&=u\rho_s(e),
+\rho_s\circ u(e)
+&=\f_i^{-1}\circ(\f_i\circ\rho_s\circ\f_i^{-1})\circ(\f_i\circ u\circ\f_i^{-1})\circ\f_i(e)\\
+&=\f_i^{-1}\circ(\f_i\circ u\circ\f_i^{-1})\circ(\f_i\circ\rho_s\circ\f_i^{-1})\circ\f_i(e)\\
+&=u\circ\rho_s(e),
 \end{align*}
 therefore $u$ is right $G$-equivariant.
 
-Conversely, let $u:P_1\to P_2$ be a right $G$-equivariant map.
+Conversely, let $u:P\to P'$ be a right $G$-equivariant map.
 By fixing $x_0\in X$ and using the fact that the left action is free and transitive, define $g_i:U_i\to G$ such that
-\[(b,g_i(b)x_0)=\f_iu\f_i^{-1}(b,x_0).\]
+\[(b,g_i(b)x_0):=\f_i\circ u\circ\f_i^{-1}(b,x_0).\]
 The function $g_i$ is continuous since it factors as
-\[b\mapsto(b,x_0)\xmapsto{\f_iu\f_i^{-1}}(b,g_i(b)x_0)\mapsto g_i(b)x_0\mapsto g_i(b).\]
-The last map is continuous since $X$ is a principal homogeneous space.
-Then, for every $(b,x)\in U_i\times X$, there is a unique $s=s(b,x)\in G$ such that
-\[\f_i\rho_s\f_i^{-1}(b,x_0)=(b,x),\]
+\[b\mapsto(b,x_0)\xmapsto{\f_i\circ u\circ\f_i^{-1}}(b,g_i(b)x_0)\mapsto g_i(b)x_0\mapsto g_i(b).\]
+The continuity of the last map is due to the assumption that the map $(g,x)\mapsto(gx,x)$ is a homeomorphism.
+
+Then, for every $(b,x)\in U_i\times X$ there is a unique $s\in G$ such that
+\[\f_i\circ\rho_s\circ\f_i^{-1}(b,x_0)=(b,x),\]
 so we have
 \begin{align*}
-\f_iu\f_i^{-1}(b,x)
-&=(\f_iu\f_i^{-1})(\f_i\rho_s\f_i^{-1})(b,x_0)\\
-&=\f_iu\rho_s\f_i^{-1}(b,x_0)\\
-&=\f_i\rho_su\f_i^{-1}(b,x_0)\\
-&=(\f_i\rho_s\f_i^{-1})(\f_iu\f_i^{-1})(b,x_0)\\
-&=(\f_i\rho_s\f_i^{-1})g_i(b)(b,x_0)\\
-&=g_i(b)(\f_i\rho_s\f_i^{-1})(b,x_0)\\
+\f_i\circ u\circ\f_i^{-1}(b,x)
+&=(\f_i\circ u\circ\f_i^{-1})\circ(\f_i\circ\rho_s\circ\f_i^{-1})(b,x_0)\\
+&=\f_i\circ u\circ\rho_s\circ\f_i^{-1}(b,x_0)\\
+&=\f_i\circ\rho_s\circ u\circ\f_i^{-1}(b,x_0)\\
+&=(\f_i\circ\rho_s\circ\f_i^{-1})\circ(\f_i\circ u\circ\f_i^{-1})(b,x_0)\\
+&=(\f_i\circ\rho_s\circ\f_i^{-1})g_i(b)(b,x_0)\\
+&=g_i(b)(\f_i\circ\rho_s\circ\f_i^{-1})(b,x_0)\\
 &=g_i(b)(b,x)\\
 &=(b,g_i(b)x).
 \end{align*}
@@ -272,11 +291,11 @@ Hence, $u$ is a $G$-bundle map.
 (b)
 Fix $x_0\in X$ and consider the homeomorphism $G\to X:g\to gx_0$.
 Define a right action
-\[X\times G\to X:(gx_0,s)\mapsto gsx_0.\]
-It defines a right principal homogeneous $X$ and commutes with the left action, 
+\[X\times G\to X:(gx_0,s)\mapsto gx_0s:=gsx_0.\]
+It defines a right principal homogeneous $X$ that commutes with the left action on $X$.
 
 Define $\rho:P\times G\to P$ such that
-\[\f_i\rho_s\f_i^{-1}(b,x)=(b,xs).\]
+\[\f_i\circ\rho_s\circ\f_i^{-1}(b,x)=(b,xs).\]
 It is well defined, fiber preserving, continuous.
 also for any $b$ and any chart $\f_j$ containing $b$, the action on $\{b\}\times X$ defines a principal homogeneous as we have seen.
 Therefore, $\rho$ is a gauge tranformation.
@@ -307,9 +326,8 @@ such that there is a natural isomorphism between contravariant functors
 
 \begin{prb}[Homotopy properteis]
 Let $p:E\to B$ be a vector bundle
-
 \begin{parts}
-\item If $p_1:E_1\to B\times[0,\frac12]$ and $p_2:E_2\to B\times[\frac12,1]$ are trivial, then 
+\item If $p:E\to B\times[0,\frac12]$ and $p':E'\to B\times[\frac12,1]$ are trivial, then 
 \item If $f,g:B'\to B$ are homotopic, then $f^*\xi\cong g^*\xi$.
 \end{parts}
 \end{prb}
@@ -331,7 +349,7 @@ bundle operations: sum, tensor, dual, hom, exterior
 reduction and metrics
 
 \begin{prb}[Vector bundles]
-Let $p_1:E_1\to B$ and $p_2:E_2\to B$ be vector bundles.
+Let $p:E\to B$ and $p:E'\to B$ be vector bundles.
 \begin{parts}
 \item A vector bundle map $u$ over $B$ is a vector bundle isomorphism if and only if it is a fiberwise linear isomorphism.
 \end{parts}
@@ -353,7 +371,7 @@ group quotient gives a principal G-bundle.
 
 Hopf fibration(real, complex, quaternionic, but not octonianic)
 
-
+In the category of smooth manifolds, if $f$ diffeomorphic, then $\tilde f$ diffeomorphic.
 
 
 

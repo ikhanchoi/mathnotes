@@ -771,7 +771,7 @@ Every field has an algebraic closure.
 \begin{pf}
 Let $F$ be a field.
 
-\Step{1}[Construct an algebraically closed field containing $F$]
+Construct an algebraically closed field containing $F$:
 At first we want to construct a field $K_1\ge F$ such that every $f\in F[x]$ has a root in $K_1$.
 This is satisfied by $K_1:=R/\fm$, where a ring $R$ and its maximal ideal $\fm$ is defined as follows:
 Let $S$ be the set of all nonconstant irreducibles in $F[x]$.
@@ -785,7 +785,7 @@ Define $K:=\lim_{\to}K_n$ as the inductive limit.
 It is in other word just the directed union of $K_n$ through all $n\in\N$.
 Then, $K$ is easily checked to be algebraically closed.
 
-\Step{2}[Construct the algebraic closure of $F$]
+Construct the algebraic closure of $F$:
 Let $\bar F$ be the set of all algebraic elements of $K$ over $F$.
 Then, this is an algebraic closure.
 \end{pf}
@@ -1024,8 +1024,16 @@ Define a map
 \{\text{subextensions of $E/F$}\}
 &\to&
 \{\text{subgroups of $G$}\}\\
-K&\mapsto&\Aut(E/K).
-\end{array}\]
+K&\mapsto&\Aut(E/K)
+\end{array}.\]
+
+\begin{alignat*}{2}
+&\{\text{subextensions of $E/F$}\}
+&&\to \{\text{subgroups of $G$}\} \\
+&\ccol{}{K}
+&&\ccol{\mapsto}{\Aut(E/K)}
+\end{alignat*}
+
 \begin{parts}
 \item $K\le \Fix_E(\Aut(E/K))$ and $H\le\Aut(E/\Fix_E(H))$.
 \item The map is surjective onto finite subgroups of $G$.

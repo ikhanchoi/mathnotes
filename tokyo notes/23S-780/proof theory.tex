@@ -5,6 +5,7 @@
 \DeclareMathOperator{\Var}{Var}
 \DeclareMathOperator{\Tm}{Tm}
 \DeclareMathOperator{\Fml}{Fml}
+\DeclareMathOperator{\Seq}{Seq}
 
 \begin{document}
 \title{Proof Theory}
@@ -220,4 +221,87 @@ where $a$ is an eigenvariable.
 (Here, we cannot change the order of $(\forall)$-rule and $(\exists)$-rule because the eigenvariable can occur in inferences)
 \end{pf}
 
+
+
+\newpage
+\section{Day 3: April 24}
+\subsubsection*{Propositional logic}
+\begin{itemize}
+\item atoms(propositional variables): $p_0,\ p_1,\ p_2,\ \cdots$.
+\item literals: $p_0,\ \bar{p_0},\ p_1,\ \bar{p_1},\ \cdots$
+\item formulas: $A::=p\mid\bar p\mid A\vee A\mid A\wedge A$
+\item truth assignment: $\nu:\{p_0,p_1,\cdots\}\to\{0,1\}$
+\end{itemize}
+
+For connectives, truth assignment must satisfy
+\[\nu(\bar p)=1-\nu(p),\quad\nu(A_0\vee A_1)=\max\{\nu(A_0),\nu(A_1)\},\quad\nu(A_0\wedge A_1)=\min\{\nu(A_0),\nu(A_1)\}.\]
+We say a formula $A$ is tautoloy if $\nu(A)=1$ for all truth assignment $\nu$, and satisfiable if $\nu(A)=1$ for some truth assignment $\nu$.
+
+\begin{defn*}[$\G_0$; propositional fragment of $\G$]
+axioms
+\begin{itemize}
+\item $\Gamma,p,\bar p$
+\end{itemize}
+rules
+\begin{itemize}
+\item $\infer[(\vee)]{\Gamma}{\Gamma,A_0,A_1}$ if $(A_0\vee A_1)\in\Gamma$
+\item $\infer[(\wedge)]{\Gamma}{\Gamma,A_0 & \Gamma,A_1}$ if $(A_0\wedge A_1)\in\Gamma$
+\end{itemize}
+\end{defn*}
+
+Soundness of $\G_0$ means that $\G_0\vdash\Gamma$ implies that $\bigvee\Gamma$ is a tautology, and completeness means the converse.
+
+\begin{pf}[Proof of completeness]
+$T\subset{}^{<\omega}2=\bigcup_{n=0}^\infty 2^n$ is a tree iff $T\ne\varnothing$, $\sigma*\tau\in T$ implies $\sigma\in T$($*:2^n\times 2^{m-n}\to 2^m$ is the concatentation $(a_0,\cdots,a_{n-1})*(a_n,\cdots,a_{m-1})=(a_0,\cdots,a_{m-1})$).
+Each element means a node, and the length of node means the depth.
+
+Define the following recursively on sequences($=$nodes)  $\sigma\in{}^{<\omega}2$ and a tree $T$($=\varnothing$initially):
+\begin{itemize}
+\item $\mathrm{Seq}(\sigma)=\mathrm{Seq}_0(\sigma)\cup\mathrm{Seq}_1(\sigma)=$ sequents at $\sigma$.
+\item $\mathrm{Ord}(\sigma)=$ total order on $\mathrm{Seq}_0(\sigma)$
+\item for the empty sequence $\varnothing$($=$root node),
+\[\mathrm{Seq}_0(\varnothing):=NL(\Gamma)=\text{non-literals in $\Gamma$},\quad\mathrm{Seq}_1(\varnothing):=L(\Gamma)=\text{literals in $\Gamma$}.\]
+\item if $\mathrm{Seq}(\sigma)$ is an axiom, that is, there is an atom $p$ such that $\{p,\bar p\}\subset\mathrm{Seq}(\sigma)$, then $\sigma$ is a leaf of $T$.
+\item if $\mathrm{Seq}_0(\sigma)=\varnothing$, then $\sigma$ is a leaf of $T$.
+\item Suppose $B$ is the leftmost member of $\mathrm{Seq}_0(\sigma)$; we have two cases.\\
+The first case is $B\equiv A_0\vee A_1$.
+We put $\sigma*(0)$ into $T$ and write
+\[\mathrm{Seq}_0(\sigma)=A_0\vee A_1,\Gamma_0,\quad\mathrm{Seq}_1(\sigma)=\Gamma_1.\]
+Then,
+\[\Seq_0(\sigma*(0)):=\Gamma_0,NL(A_0,A_1),\quad\Seq_1(\sigma*(0)):=\Gamma_1,A_0\vee A_1,L(A_0,A_1).\]
+For the second case $B\equiv A_0\wedge A_1$, we put $\sigma*(0)$ and $\sigma*(1)$ into $T$ and write
+\[\mathrm{Seq}_0(\sigma)=A_0\wedge A_1,\Gamma_0,\quad\mathrm{Seq}_1(\sigma)=\Gamma_1.\]
+Then,
+\[\Seq_0(\sigma*(0)):=\Gamma_0,NL(A_0),\quad\Seq_1(\sigma*(0)):=\Gamma_1,A_0\wedge A_1,L(A_0),\]
+\[\Seq_0(\sigma*(1)):=\Gamma_0,NL(A_1),\quad\Seq_1(\sigma*(1)):=\Gamma_1,A_0\wedge A_1,L(A_1).\]
+\end{itemize}
+The decomposition $\mathrm{Seq}(\sigma)=\mathrm{Seq}_0(\sigma)\cup\mathrm{Seq}_1(\sigma)$ is introduced in order to avoid
+\[\infer{A_0\vee A_1,\Gamma}{\infer{A_0,A_1,A_0\vee A_1,\Gamma}{\infer{A_0,A_1,A_0,A_1,A_0\vee A_1,\Gamma}{\vdots}}}.\]
+The set $\mathrm{Seq}_0(\sigma)$ is the set of \emph{unanalyzed sequents}.
+We will write the decomposition as $\mathrm{Seq}(\sigma)=\mathrm{Seq}_0(\sigma);\mathrm{Seq}_1(\sigma)$
+The tree $T$ is finite because if we define $lc(A)$ as the number of occurences of $\vee,\wedge$ in $A$ and $lc(\sigma)=\sum_{A\in\Seq_0(\sigma)} lc(A)$, then we can check $lc(\sigma)>lc(\sigma*(i))$ for $i\in\{0,1\}$.
+
+Now we suppose $\G_0\not\vdash\Gamma$ so that there is a leaf $\sigma\in T$ such that $\Seq(\sigma)$ is not an axiom.
+For every atom $p$, we have $\{p,\bar p\}\not\subset\Seq_1(\sigma)$.
+Define any truth assignment $\nu$ such that
+\[\nu(l)=0\text{ for literals }l\in\Seq_1(\sigma).\]
+
+Define for the leaf $\sigma$ a set
+\[S:=\bigcup_{\exists\rho,\tau*\rho=\sigma}\Seq(\tau).\]
+In other words, $A\in S$ iff $A$ occurs in the path from $\sigma$ to the root.
+Let $B\in S$.
+We claim $\nu(B)=0$.
+Use the induction on $lc(B)$.
+If $B$ is a literal, then $\nu(B)=0$ by definition of $\nu$.
+If $B\equiv A_0\vee A_1$, then we can show $\{A_0,A_1\}\subset S$, so $\nu(B)=0$ by the induction hypothesis.
+If $B\equiv A_0\wedge A_1$, then we can show $\{A_0,A_1\}\cap S\ne\varnothing$, so $\nu(B)=0$ by the induction hypothesis.
+From $\Gamma\subset S$, we have $\nu(A)=0$ for all $A\in\Gamma$, so $\nu(\bigvee\Gamma)=0$, i.e. $\bigvee\Gamma$ is not a tautology.
+\end{pf}
 \end{document}
+
+
+
+latex 문제
+- axioms, rules
+- map
+
