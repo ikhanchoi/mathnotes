@@ -125,7 +125,7 @@ We say an atlas $\{\f_i:p^{-1}(U_i)\to U_i\times F\}_i$ is a \emph{$G$-atlas} if
 
 A \emph{$G$-bundle} with fiber $F$ is a fiber bundle $p:E\to B$ that admits a $G$-atlas.
 In this case the group $G$ is called the \emph{structure group} of the fiber bundle.
-A \emph{$G$-bundle map} is a bundle map $(\tilde u,u):(E,B)\to(E',B')$ with a set $\{h_{ij'}:U_i\cap u^{-1}(U'_{j'})\to G\}_{i,j'}$ such that
+A \emph{$G$-bundle map} is a bundle map $(\tilde u,u):(E,B)\to(E',B')$ between $G$-bundles together with a set $\{h_{ij'}:U_i\cap u^{-1}(U'_{j'})\to G\}_{i,j'}$ such that
 \[\f'_{j'}\circ\tilde u\circ \f_i^{-1}(b,f)=(u(b),h_{ij'}(b)f),
 \qquad b\in U_i\cap u^{-1}(U'_{j'}),\ f\in F.\]
 If $B=B'$, a $G$-bundle map over $B$ is a $G$-bundle map $(\tilde u,u)$ such that $u=\id_B$.
@@ -252,6 +252,7 @@ Then, we may consider the forgetful functor $\mathbf{Prin}_G(B)\to\mathbf{Bun}_X
 \end{prb}
 \begin{pf}
 (a)
+($\Rightarrow$)
 Let $u:P\to P'$ be a $G$-bundle map over $B$ so that there is a set $\{h_i:U_i\to G\}_i$ of maps such that
 \[\f_i\circ u\circ\f_i^{-1}(b,x)=(b,h_i(b)x),
 \qquad b\in U_i,\ x\in X.\]
@@ -265,7 +266,7 @@ Now for every $e\in P_1$, we have
 \end{align*}
 therefore $u$ is right $G$-equivariant.
 
-Conversely, let $u:P\to P'$ be a right $G$-equivariant map.
+($\Leftarrow$) let $u:P\to P'$ be a right $G$-equivariant map.
 By fixing $x_0\in X$ and using the fact that the left action is free and transitive, define $g_i:U_i\to G$ such that
 \[(b,g_i(b)x_0):=\f_i\circ u\circ\f_i^{-1}(b,x_0).\]
 The function $g_i$ is continuous since it factors as
@@ -301,18 +302,19 @@ also for any $b$ and any chart $\f_j$ containing $b$, the action on $\{b\}\times
 Therefore, $\rho$ is a gauge tranformation.
 
 (c)
+($\Rightarrow$)
+Clear.
 
+($\Leftarrow$)
+Let $s:B\to E$ be a global section and define
+\[\tilde u:B\times X\to E:(b,gx_0)\mapsto s(b)g\]
+for any fixed $x_0\in X$.
+Then, the continuous map $(\tilde f,\id_B)$ preserves fibers and defines a right $G$-equivariant isomorphism.
 \end{pf}
 
-
-\begin{prb}[Associated bundles]
-
-\[\mathrm{Prin}_G(B)\xrightarrow{\sim}\mathrm{Bun}_X(B)\xrightarrow{\sim}\check H^1(B,G)\hookrightarrow\mathrm{Bun}_F(B)\]
-can be given in a more simple way.
+\begin{prb}[Quotient principal bundles]
 
 \end{prb}
-
-
 
 
 \section{Classifying spaces}
@@ -372,6 +374,15 @@ group quotient gives a principal G-bundle.
 Hopf fibration(real, complex, quaternionic, but not octonianic)
 
 In the category of smooth manifolds, if $f$ diffeomorphic, then $\tilde f$ diffeomorphic.
+
+
+\begin{prb}[Associated bundles]
+
+\[\mathrm{Prin}_G(B)\xrightarrow{\sim}\mathrm{Bun}_X(B)\xrightarrow{\sim}\check H^1(B,G)\hookrightarrow\mathrm{Bun}_F(B)\]
+can be given in a more simple way.
+
+\end{prb}
+
 
 
 

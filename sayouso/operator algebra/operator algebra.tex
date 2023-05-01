@@ -52,6 +52,28 @@ Let $g\in M(C_0(\Omega))^+$.
 
 \end{prb}
 
+
+\section*{Exercises}
+\begin{prb}
+Let $\cB$ be a hereditary C$^*$-subalgebra of a C$^*$-algebra $\cA$.
+Let $a\in\cA^+$.
+If for any $\e>0$ there is $b\in\cB^+$ such that $a-\e\le b$, then $a\in B^+$.
+\end{prb}
+\begin{pf}
+To catch the idea, suppose $\cA$ is abelian.
+We want to approximate $a$ by the elements of $\cB$ in norm.
+To do this, for each $\e>0$, we want to construct $b'\in\cB^+$ such that $a-\e\le b'\le a+\e$ using $b$.
+Taking $b'=\min\{a,b\}$ is impossible in non-abelian case, but we can put $b'=\frac a{b+\e}b$.
+For a simpler proof, $b'=(\frac{\sqrt{ab}}{\sqrt b+\sqrt\e})^2$ is a better choice.
+
+Define
+\[b':=\frac{\sqrt b}{\sqrt b+\sqrt\e}a\frac{\sqrt b}{\sqrt b+\sqrt\e}.\]
+Then,
+\[\|\sqrt a-\sqrt a\frac{\sqrt b}{\sqrt b+\sqrt\e}\|^2=\|\frac{\sqrt\e}{\sqrt b+\sqrt\e}a\frac{\sqrt\e}{\sqrt b+\sqrt\e}\|\le\e\]
+implies
+\[\lim_{\e\to0}b'=\lim_{\e\to0}\frac{\sqrt b}{\sqrt b+\sqrt\e}\sqrt a\cdot\sqrt a\frac{\sqrt b}{\sqrt b+\sqrt\e}=\sqrt a\cdot\sqrt a=a.\]
+\end{pf}
+
 \chapter{}
 
 
@@ -73,6 +95,18 @@ Let $g\in M(C_0(\Omega))^+$.
 \part{Von Neumann algebras}
 
 \chapter{Factor classifications}
+
+
+\section{Factors and traces}
+
+
+Every trace of factor is faithful
+
+\begin{prb}
+Normal states is a state in which the monotone convergence theorem holds.
+Precisely, a state $\rho$ is \emph{normal} if a monotone net $a_\alpha$ strongly converges to $a$ then $\rho(a_\alpha)\to\rho(a)$.
+\end{prb}
+
 
 \section{}
 \begin{prb}[Semi-finite traces]

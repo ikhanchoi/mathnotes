@@ -1105,14 +1105,6 @@ The C$^*$-identity easily follows from the following inequality:
 
 
 
-\begin{prb}[$*$-homomorphisms]
-\begin{parts}
-\item determined by self-adjoint elements
-\item norm-decreasing
-\item
-\end{parts}
-\end{prb}
-
 
 \section{Continuous functional calculus}
 
@@ -1143,7 +1135,7 @@ Then, $\Gamma(\cA)$ is dense in $C(\sigma(\cA))$ by the Stone-Weierstrass theore
 
 
 
-\begin{prb}[Finitely generated C$^*$-algebras]
+\begin{prb}[Generators of a C$^*$-algebra]
 joint spectrum.
 \end{prb}
 
@@ -1186,6 +1178,16 @@ For every $\f\in\sigma(\cA)$, then by the part (a) the equality
 proves $\f(a)\in\R$, hence $\sigma(a)\subset\R$.
 \end{pf}
 
+\begin{prb}[$*$-homomorphism]
+Let $\f:\cA\to\cB$ be a $*$-homomorphism between C$^*$-algerbas.
+\begin{parts}
+\item $\f$ is determined by self-adjoint elements.
+\item $\f$ is contractive.
+\item The iamge of $\f$ is closed.
+\item The induced map $\cA/\ker\f\to\cB$ is an isometry.
+\end{parts}
+\end{prb}
+
 
 
 \section{Positivitiy in C$^*$-algebras}
@@ -1206,34 +1208,27 @@ If we define a relation $a\le b$ as $b-a\ge0$, then we can see that it is a part
 
 \end{pf}
 
-\begin{prb}[Absolute value of an operator]
-\end{prb}
+% Absolute value of an operator
 
 
-\begin{prb}[Operator monotonicity]
+
+\begin{prb}[Operator monotone operations]
 \begin{parts}
 \item If $0\le a\le b$, then $a^{-1}\ge b^{-1}$.
 \item If $a\le b$, then $cac^*\le cbc^*$.
 \end{parts}
 \end{prb}
 
-
-\begin{prb}[Positive linear functionals]
-\end{prb}
-
-
-\begin{prb}[Injective $*$-homomorphism]
-% https://math.stackexchange.com/questions/434706/sufficient-condition-for-a-homomorphism-between-c-algebras-being-isometric/435105#435105
-\end{prb}
-
-
 \begin{prb}[Approximate identity]
 separable?
 
 \end{prb}
 
-\begin{prb}[Hereditary C$^*$-algebras]
+\begin{prb}[Positive linear functionals]
 \end{prb}
+
+
+
 
 
 
@@ -1241,36 +1236,27 @@ separable?
 
 
 \begin{prb}[Representation of C$^*$-algebras]
-A \emph{representation} of a C$^*$-algebra is a $*$-homomorphism $\pi:\cA\to B(H)$ for a Hilbert space $H$.
-\end{prb}
-
-\begin{prb}[Non-degenerate representations]
-Let $\pi:\cA\to B(H)$ be a representation of a C$^*$-algebra $\cA$.
-We say $\pi$ is \emph{non-degenerate} if $\pi(\cA)H$ is dense in $H$.
+Let $\cA$ be a C$^*$-algebra.
+A \emph{representation} of $\cA$ is a $*$-homomorphism $\pi:\cA\to B(H)$ for a Hilbert space $H$.
+We say a representation $\pi:\cA\to B(H)$ is \emph{non-degenerate} if $\pi(\cA)H$ is dense in $H$, \emph{cyclic} if there is $\psi\in H$ such that $\cA\psi$ is dense in $H$, and \emph{irreducible} if there is no proper closed subspace $K\subset H$ such that $\pi(\cA)K\subset K$.
 \begin{parts}
+\item The following statements are equivalent:
+\begin{enumerate}[(i)]
 \item $\pi$ is non-degenerate.
 \item For each $\xi\in H$ there is $a\in\cA$ such that $\pi(a)\xi\ne0$.
-\item $\pi(e_\alpha)\to\id_H$ strongly for every approximate identity $e_\alpha$ of $\cA$.
-\end{parts}
-\end{prb}
+\item $\pi(e_\alpha)\to\id_H$ strongly for an approximate identity $e_\alpha$ of $\cA$.
+\end{enumerate}
 
-\begin{prb}[Cyclic representations]
-Let $\pi:\cA\to B(H)$ be a representation of a C$^*$-algebra $\cA$.
-\begin{parts}
-\item
-\end{parts}
-\end{prb}
-
-\begin{prb}[Irreducible representations]
-Let $\pi:\cA\to B(H)$ be a representation of a C$^*$-algebra $\cA$.
-We say $\pi$ is irreducible if there is no proper closed subspace $K\subset H$ such that $\pi(a)K\subset K$.
-\begin{parts}
-\item $\pi$ is irreducible.
+\item The following statements are equivalent:
+\begin{enumerate}[(i)]
+\item $\pi$ is irreducible
 \item $\pi(\cA)'=\C\id_H$.
 \item $\pi(\cA)$ is strongly dense in $B(H)$.
 \item Every non-zero vector is cyclic.
+\end{enumerate}
 \end{parts}
 \end{prb}
+
 
 \begin{prb}[Gelfand-Naimark-Segal representation]
 Let $\cA$ be a C$^*$-algebra, and $\rho$ be a state on $\cA$.
@@ -1287,9 +1273,6 @@ The \emph{left kernel} of $\rho$ is defined to be
 
 
 
-\begin{prb}[Kadison transitivity theorem]
-\end{prb}
-
 \begin{prb}[Left ideals]
 \end{prb}
 
@@ -1303,26 +1286,6 @@ The \emph{left kernel} of $\rho$ is defined to be
 
 \section*{Exercises}
 
-
-\begin{prb}
-Let $\cB$ be a hereditary C$^*$-subalgebra of a C$^*$-algebra $\cA$.
-Let $a\in\cA^+$.
-If for any $\e>0$ there is $b\in\cB^+$ such that $a-\e\le b$, then $a\in B^+$.
-\end{prb}
-\begin{pf}
-To catch the idea, suppose $\cA$ is abelian.
-We want to approximate $a$ by the elements of $\cB$ in norm.
-To do this, for each $\e>0$, we want to construct $b'\in\cB^+$ such that $a-\e\le b'\le a+\e$ using $b$.
-Taking $b'=\min\{a,b\}$ is impossible in non-abelian case, but we can put $b'=\frac a{b+\e}b$.
-For a simpler proof, $b'=(\frac{\sqrt{ab}}{\sqrt b+\sqrt\e})^2$ is a better choice.
-
-Define
-\[b':=\frac{\sqrt b}{\sqrt b+\sqrt\e}a\frac{\sqrt b}{\sqrt b+\sqrt\e}.\]
-Then,
-\[\|\sqrt a-\sqrt a\frac{\sqrt b}{\sqrt b+\sqrt\e}\|^2=\|\frac{\sqrt\e}{\sqrt b+\sqrt\e}a\frac{\sqrt\e}{\sqrt b+\sqrt\e}\|\le\e\]
-implies
-\[\lim_{\e\to0}b'=\lim_{\e\to0}\frac{\sqrt b}{\sqrt b+\sqrt\e}\sqrt a\cdot\sqrt a\frac{\sqrt b}{\sqrt b+\sqrt\e}=\sqrt a\cdot\sqrt a=a.\]
-\end{pf}
 
 \begin{prb}[Operator monotone square]
 Let $\cA$ be a C$^*$-algebra in which the square function is operator monotone, that is, $0\le a\le b$ implies $a^2\le b^2$ for any positive elements $a$ and $b$ in $\cA$.
@@ -1371,8 +1334,14 @@ Let $\cA=C_0(\Omega)$ and $\mu$ be a state on $\cA$, a regular Borel probability
 \end{prb}
 
 
-
 \begin{prb}[Approximate eigenvectors]
+\end{prb}
+
+
+\begin{prb}[Kadison transitivity theorem]
+\end{prb}
+
+\begin{prb}[Hereditary C$^*$-algebras]
 \end{prb}
 
 
@@ -1451,18 +1420,18 @@ Also, $\cA''$ is weakly closed, $\bar\cA^\wot\subset\cA''$.
 
 
 
-\section{Predual}
-
-
-
-\section{Factors and traces}
-
-
-Every trace of factor is faithful
-
-\begin{prb}
-Normal states is a state in which the monotone convergence theorem holds.
-Precisely, a state $\rho$ is \emph{normal} if a monotone net $a_\alpha$ strongly converges to $a$ then $\rho(a_\alpha)\to\rho(a)$.
+\section{Envelpoing von Neumann algebra}
+\begin{prb}[Sherman-Takeda theorem]
+\end{prb}
+\begin{prb}[Conditional expectations]
+Let $\cB$ be a closed subalgebra of a C$^*$-algebra $\cA$ with $1_\cA\in\cB$.
+A \emph{conditional expectation} is a positive $\cB$-bimodule map $\f:\cA\to\cB$.
+\begin{parts}
+\item
+\item Tomiyama theorem: contractive idempotent linear map $\cA\to\cB$ is a conditional expectation.
+\end{parts}
+\end{prb}
+\begin{prb}[Sakai theorem]
 \end{prb}
 
 

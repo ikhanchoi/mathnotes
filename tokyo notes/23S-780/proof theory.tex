@@ -224,8 +224,9 @@ where $a$ is an eigenvariable.
 
 
 \newpage
+\setcounter{section}{2}
 \section{Day 3: April 24}
-\subsubsection*{Propositional logic}
+\subsubsection*{Completeness of propositional logic}
 \begin{itemize}
 \item atoms(propositional variables): $p_0,\ p_1,\ p_2,\ \cdots$.
 \item literals: $p_0,\ \bar{p_0},\ p_1,\ \bar{p_1},\ \cdots$
@@ -277,8 +278,8 @@ Then,
 \end{itemize}
 The decomposition $\mathrm{Seq}(\sigma)=\mathrm{Seq}_0(\sigma)\cup\mathrm{Seq}_1(\sigma)$ is introduced in order to avoid
 \[\infer{A_0\vee A_1,\Gamma}{\infer{A_0,A_1,A_0\vee A_1,\Gamma}{\infer{A_0,A_1,A_0,A_1,A_0\vee A_1,\Gamma}{\vdots}}}.\]
-The set $\mathrm{Seq}_0(\sigma)$ is the set of \emph{unanalyzed sequents}.
-We will write the decomposition as $\mathrm{Seq}(\sigma)=\mathrm{Seq}_0(\sigma);\mathrm{Seq}_1(\sigma)$
+The set $\mathrm{Seq}_0(\sigma)$ is the set of \emph{unanalyzed sequents}, which contains non-literals only.
+We will write the decomposition as $\mathrm{Seq}(\sigma)=\mathrm{Seq}_0(\sigma);\mathrm{Seq}_1(\sigma)$.
 The tree $T$ is finite because if we define $lc(A)$ as the number of occurences of $\vee,\wedge$ in $A$ and $lc(\sigma)=\sum_{A\in\Seq_0(\sigma)} lc(A)$, then we can check $lc(\sigma)>lc(\sigma*(i))$ for $i\in\{0,1\}$.
 
 Now we suppose $\G_0\not\vdash\Gamma$ so that there is a leaf $\sigma\in T$ such that $\Seq(\sigma)$ is not an axiom.
@@ -297,11 +298,114 @@ If $B\equiv A_0\vee A_1$, then we can show $\{A_0,A_1\}\subset S$, so $\nu(B)=0$
 If $B\equiv A_0\wedge A_1$, then we can show $\{A_0,A_1\}\cap S\ne\varnothing$, so $\nu(B)=0$ by the induction hypothesis.
 From $\Gamma\subset S$, we have $\nu(A)=0$ for all $A\in\Gamma$, so $\nu(\bigvee\Gamma)=0$, i.e. $\bigvee\Gamma$ is not a tautology.
 \end{pf}
+
+
+
+\newpage
+\section{Day 4: May 1}
+\subsection*{Completeness of first order logic}
+
+Assuming $\G\not\vdash\Gamma$, we have to construct a structure $\cM$ such that $\cM\not\models\bigvee\Gamma$ (i.e.$\cM\not\models\forall\bigvee\Gamma$, the universal closure).
+For this, we have to make a set and construct interpretations of each symbol of the given language, the set of non-logical symbols.
+
+(1)
+For universal formula,
+\[\infer{\forall x\,A(x),\cdots;}{\cdots, NL(A(a));\cdots,\forall x\,A(x),L(A(a))}.\]
+
+(2)
+Suppose an existential formula $\exists x\,A(x)$ occurs in a path $P$.
+Note that $\cM\not\models \exists x\,A(x)$ implies $\cM\not\models A(t)$ for any term $t$.
+For each term $t$, $A(t)$ should occur in the path $P$.
+Define $\Tm(\sigma;\exists x\,B(x))$ such that $t\in\Tm(\sigma;\exists x\,B(x))$ if and only if an inference
+\[\infer{\exists x\,B(x),\cdots;\cdots}{\cdots,B(t);\cdots}\]
+occurs in the path from the root $\varnothing$ to the node $\sigma$.
+
+Now we are going to construct a tree $T$ recursively from the root as follows:
+\begin{enumerate}[\text{Case} 1:]
+\item
+$\Seq_1(\sigma)\supset\{L,\bar{L}\}$ for some literal $L$, then we stop to prolong the tree.
+In what follows, assume no literals satisfy $\Seq_1(\sigma)\supset\{L,\bar{L}\}$.
+
+\item
+$\Seq_0(\sigma)=\varnothing$, then we repeat as
+\[\infer{\varnothing;\Seq_1(\sigma)}{\varnothing;\Seq_1(\sigma)}.\]
+Now let $A$ be the leftmost formula in $\Seq_0(\sigma)$.
+
+\item
+$A\equiv A_0\vee A_1$.
+As in the last lecture.
+
+\item
+$A\equiv A_0\wedge A_1$.
+As in the last lecture.
+
+\item
+$A\equiv\forall x\,B(x)$.
+Then, we extend the tree as follows:
+\[\infer{\forall x\,B(x),\Gamma_0;\Gamma_1}{\Gamma_0,NL(B(a));\Gamma_1,\forall x\,B(x),L(B(a))}.\]
+
+\item
+$A\equiv\exists x\,B(x)$.
+Let $t\equiv t_n$ be the first one in the enumeration $\Tm=\{t_0,t_1,\cdots\}$ such that $t_n\notin\Tm(\sigma;\exists x\,B(x))$.
+Then, we can extend the tree as
+\[\infer{\exists x\,B(x),\Gamma_0;\Gamma_1}{\Gamma_0,NL(B(t)),\exists x\,B(x);\Gamma_1,L(B(t))}.\]
+Note that we have put $\exists x\,B(x)$ into $\Seq_0$, not $\Seq_1$.
+\end{enumerate}
+
+Suppose $\G\not\vdash\Gamma$.
+If $T$ is finite, then every leaf is an axiom so that the tree is indeed a derivation of $\Gamma$, $T$ is infinite.
+By K\"onig's infinity lemma, there exists an infinite path $P$ through the constructed binary tree $T$.
+
+\begin{pf}[Proof of K\"onig's lemma]
+The lemma holds for general connected locally finite infinite graphs, but we assume the graph is tree.
+Choose $\sigma_n$ recursively as follows: suppose $\sigma_n$ satisfies that $\{\tau:\sigma*\tau\in T\}$ is infinite.
+By the local finiteness, there is $i$ such that $\{\tau:\sigma*(i)*\tau\in T\}$ is infinite.
+Let $\sigma_{n+1}:=\sigma_n*(i)$.
+Then, $\sigma_n$ defines an infinite path in $T$.
+\end{pf}
+
+Now we construct the \emph{Herbrand structure} $\cM=\<M;f^\cM,\cdots,R^\cM,\cdots\>$ as:
+\begin{itemize}
+\item $M:=\Tm(\cL)$,
+\item $f^\cM(t_1,\cdots,t_n):=f(t_1,\cdots,t_n)$,
+\item $R^\cM(t_1,\cdots,t_n)$ is true if and only if
+\[R(t_1,\cdots,t_n)\notin\Seq(P):=\bigcup_{\sigma\in P}\Seq(\sigma)\]
+\end{itemize}
+Then, $\cM\models\bar{L}$ if and only if $L\in\Seq(P)$ for literals $L$.
+\begin{clm*}
+If $A\in\Seq(P)$, then $\cM\not\models A$.
+\end{clm*}
+\begin{pf}
+Define the literal complexity $lc(A)$ by the number of occurrences of logical symbols in $A$, and use induction on $lc(A)$.
+
+For the Case 5: $A\equiv\forall x\,B(x)$.
+We have $B(a)\in\Seq(P)$ so that $\cM\not\models B(a)$ by the induction hypothesis.
+
+For the Case 6: $A\equiv\exists x\,B(x)$.
+We have $\exists x\,B(x)\in\Seq(P)$, and it implies $\{B(t):t\in\Tm\}\subset\Seq(P)$.
+By the induction hypothesis, $\cM\not\models B(t)$ for all $t\in\Tm$, hence $\cM\not\models\exists xB(x)$.
+\end{pf}
+
+% 계산이론이 필요한 경우 관계의 해석을 원자식이 아니라 임의의 식에 대해 정의하고 그것이 타르스키의 진리론(컨벤션)을 만족함을 보일 수 있다.
 \end{document}
 
 
 
-latex 문제
-- axioms, rules
-- map
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+めんどくせ
+ちゃんと書くね
+ちょいちょい
+しゃべっていい？

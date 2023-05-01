@@ -279,6 +279,116 @@ The right action of $G$ on $E$ is continuous and free, and $\bar p:E/G\to B$ is 
 
 \begin{rmk*}
 A principal $G$-bundle may also be defined as follows: a $G$-bundle such that (1) there is a continuous free right action of $G$ on $E$ which is (2) fiber-preserving and fiberwise transitive, and (3) we can choose \emph{$G$-equivariant} local trivialization such that $\f_\alpha(u)=(p(u),h)$ implies $\f_\alpha(ug)=(p(u),hg)$.
-
 \end{rmk*}
+
+\newpage
+\setcounter{section}{3}
+\section{Day 4: May 1}
+\setcounter{section}{2}
+\setcounter{thm}{7}
+
+Let $G$ be a topological group.
+A pricipal $G$-bundle $(G\to E\to B,G)$ has a continuou free action of $G$ on $E$.
+
+\begin{rmk*}
+For two principal $G$-bundles, $(\tilde f,f)$ is a bundle map if and only if $\tilde f$ is $G$-equivariant.
+\end{rmk*}
+
+\begin{defn}
+Let $\xi=(F\to E\xrightarrow{p}B)$ be a fiber bundle.
+A continuous map $s:B\to E$ such that $p\circ s=\id_B$ is called a section or a cross section.
+
+An important question asks if there is a section globally defined on the whole $B$.
+\end{defn}
+
+\begin{prop}
+Let $\xi=(G\to E\to B,G)$ be a principal $G$-bundle.
+Then, $\xi$ is trivial if and only if it admits a global section.
+\end{prop}
+
+\begin{pf}
+($\Rightarrow$)
+Clear.
+
+($\Leftarrow$)
+Let $s:B\to E$ be a global section.
+Define
+\[\Phi:B\times G\to E:(b,g)\mapsto s(b)g.\]
+Then, it is an $G$-equivariant isomorphism.
+\end{pf}
+
+
+Let $X$ be a right $G$-space which is free.
+Then, is $X/G$ a principal $G$ bundle?
+We have two problems:
+\begin{parts}
+\item Is the inverse image($=$orbit) of each point of $X/G$ homeomorphic to $G$?
+No, the dynamics $\T^2\curvearrowright\R$ with irrational slope.
+\item Does it satisfy the local triviality?
+No, the translation $\R\leftarrow\Q$.
+\end{parts}
+
+\begin{prop}
+Let $X$ be a right $G$-space which is free.
+The quotient map $\pi:X\to X/G$ defines a principal $G$-bundle if and only if $X\curvearrowright G$ strongly freely(i.e. $X\times X\to G:(x,xg)\mapsto g$ is continuous) and there is a local trivialization for some $y\in X/G$.
+\end{prop}
+\begin{pf}
+($\Rightarrow$) Clear.
+
+($\Leftarrow$)
+\[\pi^{-1}(U)\to U\times G:s(x)g\mapsto(x,g)\]
+is continuous by the strongly free action.
+It defines local trivializations.
+\end{pf}
+
+\begin{thm}[Gleason, 1950]
+Let $M$ be a smooth manifold and $G$ a compact Lie group which gives a free right smooth action on $M$.
+Then, $M/G$ is a smooth manifold such that $M\to M/G$ is a principal $G$-bundle.
+\end{thm}
+(Compactness of $G$ implies the properness of the action, and smoothness implies the local triviality)
+\begin{cor}[Samelson, 1941]
+Let $H$ be a compact Lie subgroup of a Lie group $G$.
+Then, $G\to G/H$ is a principal $H$-bundle.
+In fact, it is sufficient for $H$ to be a closed subgroup of $G$, even if it is not compact.
+\end{cor}
+\begin{ex*}\,
+\begin{parts}
+\item
+With an action $S^{2n+1}\curvearrowright S^1$ such that $(z_0,\cdots,z_n)w=(z_1w,\cdots,z_nw)$, we have an $S^1$-bundle
+\[S^{2n+1}\to\CP^n:(z_0,\cdots,z_n)\mapsto[z_0:\cdots:z_n].\]
+\item
+For $k\le n$, the Stiefel variety is
+\[V_k(\R^n):=\{M\in M_{n,k}(\R):\rk M=k\}.\]
+Also define
+\[V_k^0(\R^n):=\{M\in V_k(\R^n):\text{column vectors of $M$ are orthonormal}\}\]
+and the Grassmannian manifold
+\[G_k(\R^n):=\{\text{$k$-dimensional subspaces of $\R^n$}\}.\]
+With an action $V_k(\R^n)\curvearrowright\GL(k,\R)$ such that $(v_1,\cdots,v_k)X=(v_1X,\cdots,v_kX)$, we have $G_k(\R^n)\cong V_k(\R^n)/\GL(k,\R)$ and $G_k(\R^n)\cong V_k^0(\R^n)/\rO(k)$.
+Then, $(\rO(k)\to V_k^0(\R^n)\to G_k(\R^n))$ and $(\GL(k,\R)\to V_k(\R^n)\to G_k(\R^n))$ are principal bundles.
+\item
+As a complex version of (b), we have principal bundles $(\rU(k)\to V_k^0(\C^n)\to G_k(\C^n))$ and $(\GL(k,\C)\to V_k(\C^n)\to G_k(\C^n))$.
+\end{parts}
+\end{ex*}
+
+
+\begin{thm}
+Let $M$ be smooth manifold and suppose we have a transitive smooth left action of a Lie group $G$ on $M$.
+Let $H$ be \emph{the} isotropy group.
+Then, $G/H\to M$ defines a diffeomorphism and $(H\to G\to M)$ is a principal bundle.
+Such $M$ is called a homogeneous space.
+\end{thm}
+
+\begin{ex*}
+With an action $\SO(n)\curvearrowleft S^{n-1}$, since the isotropy group is isomorphic to $\SO(n-1)$, we have a principal bundle $SO(n-1)\to SO(n)\to S^n$.
+
+We can also see the examples above(Grassmann and Steifel manifolds) as principal bundles on homogeneous spaces with a diffeomorphsim $\rO(n-k)\setminus\rO(n)\to V_k^0(\R^n):[A]\mapsto(Ae_1,\cdots,Ae_k)$ and $\rO(n)/\rO(n-k)\times\rO(k)\cong G_k(\R^n)$: principal $\rO(k)$-bundle
+\begin{cd}
+\rO(k)\ar{r} & V_k^0(\R^n) \ar{d}\ar{r}{\sim}& \rO(n)/\rO(n-k)\\
+& G_k(\R^n) \ar{r}{\sim} & \rO(n)/\rO(n-k)\times\rO(k).
+\end{cd}
+We also have a complex version.
+
+
+\end{ex*}
+
 \end{document}
