@@ -102,7 +102,7 @@ Between the second row and the third row in the aligned equations, we have used
 \[\cF(e^{i\frac12Q(x)}e^{-\e x({}^tP^{-1}P^{-1})x})(P^{-1}\eta)=(2\pi)^{-d/2}\int_{\R^d}e^{-ix\cdot P^{-1}\eta}e^{i\frac12Q(x)}e^{-\e x({}^tP^{-1}P^{-1})x}\,dx.\]
 \end{itemize}
 
-
+\newpage
 \section{Day 3: April 25}
 
 \begin{itemize}
@@ -115,6 +115,62 @@ Between the second row and the third row in the aligned equations, we have used
 \item Theorem 2.1. 증명 첫줄
 \[\<\xi\>^{-2}\<D_y\>^2e^{i(x-y)\xi}=e^{i(x-y)\xi}\]
 \item Theorem 2.2. 전개식의 각 항을 먼저 주고 전체 심볼을 컨스트럭트할 수 있다는 것. rho와 delta는 고정하고 m만 신경쓰자. Borel 정리(거의 안쓰임)와 증명 및 의미를 비교해보자.
+\item 유한에서 적당히 스무스하다 가정하고 무한에서의 디케이만 보는 개념이다
 \end{itemize}
+
+
+
+\newpage
+\section{Day 4: May 2}
+
+
+
+For a fixed cutoff $\chi\in\cS$,
+\[\partial^\alpha(\chi(\e x)a(x))
+=\begin{cases}
+\partial^\alpha a(x),&\text{ if }|x|<\e^{-1}\\
+\partial^\alpha a(x)+O_\alpha(\e),&\text{ if }\e^{-1}\le|x|<2\e^{-1}\\
+0,&\text{ if }|x|\ge 2\e^{-1}
+\end{cases}.\]
+and
+\[\partial^\alpha([1-\chi(\e x)]a(x))
+=\begin{cases}
+0,&\text{ if }|x|<\e^{-1}\\
+\partial^\alpha a(x)+O_\alpha(\e),&\text{ if }\e^{-1}\le|x|<2\e^{-1}\\
+\partial^\alpha a(x),&\text{ if }|x|\ge 2\e^{-1}
+\end{cases}.\]
+We have if
+\[|\partial_\xi^\beta a(\xi)|\lesssim\<\xi\>^{m-\rho|\beta|},\]
+then
+\[|\partial_\xi^\beta(\chi(\e\xi)a(\xi))|\lesssim\<\xi\>^{m-\rho|\beta|}+\e\quad\text{ with }\quad\<\xi\>\lesssim\e^{-1},\]
+and
+\[|\partial_\xi^\beta([1-\chi(\e\xi)]a(\xi))|\lesssim\<\xi\>^{m-\rho|\beta|}+\e\quad\text{ with }\quad\e^{-1}\lesssim\<\xi\>,\]
+
+\begin{pf}
+Suppose we have a sequence $(a_j)_{j=0}^\infty$ of functions such that $a_j\in S_{\rho,\delta}^{m_j}(\R^{2d})$ with $m_j\downarrow-\infty$.
+Then, there exists $a\in S_{\rho,\delta}^{m_0}$ such that the asymptotic expansion formula holds:
+\[a-\sum_{j=0}^{k-1}a_j\in S_{\rho,\delta}^{m_k}.\]
+In addition, we have a uniqueness result and a support description.
+
+Note that
+\[a(x,\xi)=\sum_{j=0}^\infty a_j(x,\xi)\]
+will not converges, so we introduce a cutoff function $\chi$ to define
+\[a(x,\xi):=\sum_{j=0}^\infty[1-\chi(\e_j\xi)]a_j(x,\xi)\]
+with $\e_j\downarrow0$ so that the summation is locally finite.
+Then, the error of the expansion formula is decomposed into
+\[a-\sum_{j=0}^{k-1}a_j=-\sum_{j=0}^{k-1}\chi(\e_j\xi)a_j(x,\xi)+\sum_{j=k}^\infty[1-\chi(\e_j\xi)]a_j(x,\xi).\]
+
+\[|\partial_x^\alpha\partial_\xi^\beta([1-\chi(\e_j\xi)]a_j(x,\xi))|\lesssim\<\xi\>^{m+\delta|\alpha|-\rho|\beta|}+\e_j\quad\text{ with }\quad\e_j^{-1}\lesssim\<\xi\>\]
+The first term vanishes 
+
+
+\end{pf}
+\begin{itemize}
+\item formal adjoint: 내 이해 방식으로는 transpose 라 하는 게 좋을 거 같다
+\item 다이아몬드 보일 때 편미분이 적분 안으로 들어가는 거는 진동적분 이용해서 진폭과 그 도함수가 적분가능이 될 만큼 미분해 바꾼 다음 편미분을 집어넣는 것
+\item 네 개의 컷오프로 쪼개는 것에 대해 y와 eta가 도메인, xi는 패러미터라 보자. $(y,\eta)=0$에서 stationary이므로 $\chi_1$에서 유의미한 기여가 있을 것이고 나머지 영역에서는 0으로 보낼 예정.
+\end{itemize}
+
+
 
 \end{document}

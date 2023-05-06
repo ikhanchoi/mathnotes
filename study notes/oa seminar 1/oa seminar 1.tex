@@ -302,7 +302,36 @@ If $l\in F_1$, which is obviously continuous on $\sigma(\cA,F_1)$, and the conti
 \newpage
 \section{May 12}
 
-\subsection{Nuclear maps}
+We will not use the word \emph{nuclear maps}.
+
+
+\subsection{Nuclear C$^*$-algebras}
+
+
+C$^*$-subalgebra of a nuclear C$^*$-algebra may not be nuclear.
+C$^*$-subalgebra of a exact C$^*$-algebra is exact.
+injective limit of nuclear C$^*$-algebras is nuclear.
+$M_n(\cA)$ is nuclear if $\cA$ is nuclear.
+
+\begin{thm}[Effros-Lance]
+If $\cA^{**}$ is semidiscrete, then $\cA$ has the CPAP.
+(The converse also holds)
+\end{thm}
+\begin{pf}
+Since the set of finite-rank c.c.p.~maps is convex, and since the closures of a convex set are same in the norm and weak topologies on a Banach space, 
+\end{pf}
+
+\begin{thm}
+An abelian C$^*$-algebra is nuclear.
+\end{thm}
+
+\begin{thm}
+A finite-dimensional C$^*$-algebra is nuclear.
+\end{thm}
+
+
+
+\subsection{Completely positive approximation property}
 
 \begin{defn}
 A linear map $\theta:\cA\to\cB$ between C$^*$-algebras is called \emph{nuclear} if it is a limit of finite-rank contractive c.p.(c.c.p.)~maps in the point-norm topology.
@@ -327,7 +356,7 @@ Now we are done.
 
 \begin{prop}[Local property]
 Let $\theta:\cA\to\cB$ be a linear map between C$^*$-algebras.
-If the restriction of $\theta$ on any finite-dimensional subspace of $\cA$ is nuclear, then $\theta$ is nuclear.
+If the restriction of $\theta$ on any finite-dimensional subspace of $\cA$ is approximated by c.p.~maps, then so is $\theta$.
 \end{prop}
 \begin{pf}
 
@@ -337,9 +366,9 @@ If the restriction of $\theta$ on any finite-dimensional subspace of $\cA$ is nu
 \begin{prop}[Weak approximations]
 Let $\cA$ and $\cB$ be C$^*$-algebras, and $\cM\subset B(H)$ a von Neumann algebra.
 \begin{parts}
-\item $\theta:\cA\to\cB$ is nuclear if there is a net $\cA\xrightarrow{\f_\alpha}M_{n_\alpha}(\C)\xrightarrow{\psi_\alpha}\cB$ such that
+\item $\theta:\cA\to\cB$ is approximated by c.p.~maps if there is a net $\cA\xrightarrow{\f_\alpha}M_{n_\alpha}(\C)\xrightarrow{\psi_\alpha}\cB$ such that
 \[\lim_\alpha\<\theta(a)-\psi_\alpha\circ\f_\alpha(a),l\>=0\qquad a\in\cA,\ l\in\cB^*.\]
-\item $\theta:\cA\to\cM$ is weakly nuclear if there is a net $\cA\xrightarrow{\f_\alpha}M_{n_\alpha}(\C)\xrightarrow{\psi_\alpha}\cM$ such that
+\item $\theta:\cA\to\cM$ is weakly approximated by c.p.~maps if there is a net $\cA\xrightarrow{\f_\alpha}M_{n_\alpha}(\C)\xrightarrow{\psi_\alpha}\cM$ such that
 \[\lim_\alpha\<(\theta(a)-\psi_\alpha\circ\f_\alpha(a))\xi,\xi\>=0\qquad a\in\cA,\ \xi\in H.\]
 \end{parts}
 \end{prop}
@@ -369,31 +398,18 @@ nonunital technicalities
 
 
 
-\subsection{Examples of nuclear C$^*$-algebras}
 
 
 
-C$^*$-subalgebra of a nuclear C$^*$-algebra may not be nuclear.
-C$^*$-subalgebra of a exact C$^*$-algebra is exact.
-injective limit of nuclear C$^*$-algebras is nuclear.
-$M_n(\cA)$ is nuclear if $\cA$ is nuclear.
+\subsection{Choi-Effros-Kirchberg characterization}
 
-\begin{thm}[Effros-Lance]
-If $\cA^{**}$ is semidiscrete, then $\cA$ is nuclear.
-(The converse also holds)
-\end{thm}
-\begin{pf}
-Since the set of finite-rank c.c.p.~maps is convex, and since the closures of a convex set are same in the norm and weak topologies on a Banach space, 
-\end{pf}
 
-\begin{thm}
-An abelian C$^*$-algebra is nuclear.
-\end{thm}
 
 
 
 \newpage
 \section{May 22}
+
 
 \end{document}
 

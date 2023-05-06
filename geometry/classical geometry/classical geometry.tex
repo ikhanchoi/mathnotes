@@ -23,7 +23,7 @@ axioms 2 and 4
 \section{Hyperbolic geometry}
 axiomes 1 to 4
 
-Models of hyperbolic geometry
+Models of hyperbolic geometry (metric description)
 Elementary figures
 Isometries
 Length, volume, angle
@@ -36,8 +36,398 @@ axioms 1,2,5
 \section{Conformal and inversive geometry}
 
 
-\part{Differential geometry of surfaces}
+
+
+\part{Smooth surfaces}
 \chapter{}
+
+\subsection*{Reparametrization}
+
+%         선형독립    벡터들이 한점에서 주어졌을 때 ->
+%         선형독립    벡터장이 근방에서 주어졌을 때 -> 일반적으론 2차원에서만
+%         선형독립 가환벡터장이 근방에서 주어졌을 때 -> n차원 다돼
+%         선형독립    직교벡터들이 한점에서 주어졌을 때
+%         선형독립    직교벡터장이 근방에서 주어졌을 때
+%         선형독립 직교가환벡터장이 근방에서 주어졌을 때
+%             -> 곡률의 선, 점근곡선, 측지좌표
+
+% preimage theorem
+
+\begin{thm}
+Let $S$ be a regular surface.
+Let $v,w$ be linearly independent tangent vectors in $T_pS$ for a point $p\in S$.
+Then, $S$ admits a parametrization $\alpha$ such that $\alpha_x|_p=v$ and $\alpha_y|_p=w$.
+\end{thm}
+\begin{thm}
+Let $X,Y$ be linearly independent tangent vector fields on a regular surface $S$.
+Then, $S$ admits a parametrization $\alpha$ such that $\alpha_x|_p$ and $\alpha_y|_p$ are parallel to $X|_p,Y|_p$ respectively for each $p\in S$.
+\end{thm}
+\begin{thm}
+Let $X,Y$ be linearly independent tangent vector fields on a regular surface $S$.
+If $\pd_XY=\pd_YX$, then $S$ admits a parametrization $\alpha$ such that $\alpha_x|_p=X|_p$ and $\alpha_y|_p=Y|_p$ for each $p\in S$.
+\end{thm}
+
+Let $S$ be a regular surface embedded in $\R^3$.
+The inner product on $T_pS$ induced from the standard inner product of $\R^3$ can be represented not only as a matrix
+\[\mat{1&0&0\\0&1&0\\0&0&1}\]
+in the basis $\{(1,0,0),(0,1,0),(0,0,1)\}\subset\R^3$, but also as a matrix
+\[\mat{\<\alpha_x,\alpha_x\>&\<\alpha_x,\alpha_y\>\\\<\alpha_y,\alpha_x\>&\<\alpha_y,\alpha_y\>}\]
+in the basis $\{\alpha_x|_p,\alpha_y|_p\}\subset T_pS$.
+
+\begin{defn}
+\emph{Metric coefficients}
+\begin{alignat*}{2}
+\<\alpha_x,\alpha_x\>&=:g_{11}&\qquad
+\<\alpha_x,\alpha_y\>&=:g_{12}\\
+\<\alpha_y,\alpha_x\>&=:g_{21}&
+\<\alpha_y,\alpha_y\>&=:g_{22}
+\end{alignat*}
+\end{defn}
+
+\begin{thm}[Normal coordinates]
+...?
+\end{thm}
+
+
+
+
+\subsection*{Differentiation of tangent vectors}
+
+\begin{defn}
+Let $\alpha:U\to\R^3$ be a regular surface.
+The \emph{Gauss map} or \emph{normal unit vector} $\nu:U\to\R^3$ is a vector field on $\alpha$ defined by:
+\[\nu(x,y):=\frac{\alpha_x\times \alpha_y}{\|\alpha_x\times \alpha_y\|}(x,y).\]
+The set of vector fields $\{\alpha_x|_p,\alpha_y|_p,\nu|_p\}$ forms a basis of $T_p\R^3$ at each point $p$ on $\alpha$.
+The Gauss map is uniquely determined up to sign as $\alpha$ changes.
+\end{defn}
+
+\begin{defn}[Gauss formula, $\Gamma_{ij}^k$, $L_{ij}$]
+Let $\alpha:U\to\R^3$ be a regular surface.
+Define indexed families of smooth functions $\{\Gamma_{ij}^k\}_{i,j,k=1}^2$ and $\{L_{ij}\}_{i,j=1}^2$ by the Gauss formula
+\begin{alignat*}{2}
+\alpha_{xx}&=:\Gamma_{11}^1\alpha_x+\Gamma_{11}^2\alpha_y+L_{11}\nu,&\qquad
+\alpha_{xy}&=:\Gamma_{12}^1\alpha_x+\Gamma_{12}^2\alpha_y+L_{12}\nu,\\
+\alpha_{yx}&=:\Gamma_{21}^1\alpha_x+\Gamma_{21}^2\alpha_y+L_{21}\nu,&
+\alpha_{yy}&=:\Gamma_{22}^1\alpha_x+\Gamma_{22}^2\alpha_y+L_{22}\nu.
+\end{alignat*}
+The \emph{Christoffel symbols} refer to eight functions $\{\Gamma_{ij}^k\}_{i,j,k=1}^2$.
+The Christoffel symbols and $L_{ij}$ \emph{do depend} on $\alpha$.
+\end{defn}
+We can easily check the symmetry $\Gamma_{ij}^k=\Gamma_{ji}^k$ and $L_{ij}=L_{ji}$.
+Also,
+\begin{align*}
+\pd_XY
+&=X^i\pd_i(Y^j\alpha_j)\\
+&=X^i(\pd_iY^k)\alpha_k+X^iY^j\pd_i\alpha_j\\
+&=\left(X^i\pd_iY^k+X^iY^j\Gamma_{ij}^k\right)\alpha_k+X^iY^jL_{ij}\nu.
+\end{align*}
+
+% Examples
+
+
+\subsection*{Differentiation of normal vector}
+
+The partial derivative $\pd_X\nu$ is a tangent vector field since
+\[\<\pd_X\nu,\nu\>=\frac12\pd_X\<\nu,\nu\>=0.\]
+Therefore, we can define the following useful operator.
+\begin{defn}
+Let $S$ be a regular surface embedded in $\R^3$.
+The \emph{shape operator} is $\cS:\fX(S)\to\fX(S)$ defined as
+\[\cS(X):=-\pd_X\nu.\]
+\end{defn}
+\begin{prop}
+The shape operator is self-adjoint, i.e. symmetric.
+\end{prop}
+\begin{pf}
+Recall that $\pd_XY-\pd_YX$ is a tangent vector field.
+Then,
+\[\<X,\cS(Y)\>=\<X,-\pd_Y\nu\>=\<\pd_YX,\nu\>=\<\pd_XY,\nu\>=\<\cS(X),Y\>.\qedhere\]
+\end{pf}
+
+% The reason of minus sign in the shape operator.
+
+\begin{thm}
+Let $\alpha:U\to\R^3$ be a regular surface and $\cS$ be the shape operator.
+Then $\cS$ has the coordinate representation
+\[\cS=\mat{g_{11}&g_{12}\\g_{21}&g_{22}}^{-1}\mat{L_{11}&L_{12}\\L_{21}&L_{22}}\]
+with respect to the frame $\{\alpha_x,\alpha_y\}$ for tangent spaces.
+In other words, if we let $X=X^i\alpha_i$ and $\cS(X)=\cS(X)^j\alpha_j$, then
+\[\mat{\cS(X)^1\\\cS(Y)^2}=\mat{g_{11}&g_{12}\\g_{21}&g_{22}}^{-1}\mat{L_{11}&L_{12}\\L_{21}&L_{22}}\mat{X^1\\X^2}.\]
+\end{thm}
+\begin{pf}
+Let $\cS(X)^j=\cS_i^jX_i$.
+Then,
+\[g_{ik}X^i\cS_j^kY^j=\<X,\cS(Y)\>=\<\pd_XY,\nu\>=X^iY^jL_{ij}\]
+implies $g_{ik}\,\cS_j^k=L_{ij}$.
+\end{pf}
+
+% principal curvature
+% mean curvature, gaussian curvature
+
+
+
+% curvature tensor?
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\chapter{Gaussian curvature}
+Theorema egregium
+surfaces of constant gaussian curvature
+
+% 제1기본형식, 크리스토펠: 
+% 모양 연산자, 제2기본형식: 바인가르텐 이퀘이션
+
+% 가우스곡률
+\begin{defn}
+Let $\alpha:U\to\R^3$ be a regular surface.
+\begin{gather*}
+E:=\<\alpha_x,\alpha_x\>=g_{11},\qquad F:=\<\alpha_x,\alpha_y\>=g_{12},\qquad G:=\<\alpha_y,\alpha_y\>=g_{22},\\
+L:=\<\alpha_{xx},\nu\>=L_{11},\qquad M:=\<\alpha_{xy},\nu\>=L_{12},\qquad N:=\<\alpha_{yy},\nu\>=L_{22}.
+\end{gather*}
+\end{defn}
+
+
+\begin{cor}
+We have $GM-FN=EM-FL$, and the \emph{Weingarten equations}:
+\begin{align*}
+\nu_x&=\frac{FM-GL}{EG-F^2}\alpha_x+\frac{FL-EM}{EG-F^2}\alpha_y,\\
+\nu_y&=\frac{FN-GM}{EG-F^2}\alpha_x+\frac{FM-EN}{EG-F^2}\alpha_y.
+\end{align*}
+\end{cor}
+
+
+
+\begin{thm}
+\[\Gamma_{ij}^l=\frac12g^{kl}(g_{ik,j}-g_{ij,k}+g_{kj,i}).\]
+\end{thm}
+
+\[\frac12(\log g)_x=\Gamma_{11}^1.\]
+
+\[\nu_x\times\nu_y=K\sqrt{\det g}\ \nu.\]
+\[\alpha_x\times\alpha_y=\sqrt{\det g}\ \nu\]
+\[\<\nu_x\times\nu_y,\alpha_x\times\alpha_y\>=\det\mat{\<\nu_x,\alpha_x\>&\<\nu_x,\alpha_y\>\\\<\nu_y,\alpha_x\>&\<\nu_y,\alpha_y\>}=\det\mat{-L&-M\\-M&-N}=K\det g\]
+
+
+
+
+
+
+
+
+
+
+
+\begin{prb}[Gaussian curvature formula]
+\begin{parts}
+\item
+In general,
+\[K=\frac{LN-M^2}{EG-F^2}.\]
+\item
+For orthogonal coordinates such that $F\equiv0$,
+\[K=-\frac1{2\sqrt{\det g}}\left((\frac1{\sqrt{\det g}}E_y)_y+(\frac1{\sqrt{\det g}}G_x)_x\right).\]
+\item
+For $f(x,y,z)=0$,
+\[K=-\frac1{|\nabla f|^4}\mat[v]{0&\nabla f\\\nabla f^T&\Hess(f)},\]
+where $\nabla f$ denotes the gradient $\nabla f=(f_x,f_y,f_z)$.
+\item(Beltrami-Enneper) If $\tau$ is the torsion of an asymptotic curve, then
+\[K=-\tau^2.\]
+\item(Brioschi) $E,F,G$ describes $K$.
+\end{parts}
+\end{prb}
+
+\begin{pf}
+(a) Clear.
+
+(b)
+We have $GM=EM$ and
+\[\nu_x=-\frac LE\alpha_x-\frac MG\alpha_y,\qquad\nu_y=-\frac ME\alpha_x-\frac NG\alpha_y.\]
+\[\nu_x\times\nu_y=\frac{LN-M^2}{EG}\alpha_x\times\alpha_y\]
+After curvature tensors...
+
+\end{pf}
+
+
+
+\begin{prb}[Computation of Gaussian curvatures]
+\begin{parts}
+\item
+(Monge's patch)
+For $(x,y,f(x,y))$,
+\[K=\frac{f_{xx}f_{yy}-f_{xy}^2}{(1+f_x^2+f_y^2)^2}.\]
+
+\item
+(Surface of revolution).
+Let $\gamma(t)=(r(t),z(t))$ be a plane curve with $r(t)>0$.
+If $t\mapsto(r(t),z(t))$ is a unit-speed curve, then
+\[K=-\frac{r''}r.\]
+
+\item
+(Models of hyperbolic planes)
+\end{parts}
+\end{prb}
+\begin{pf}
+(b)
+Let
+\[\alpha(\theta,t)=(r(t)\cos\theta,r(t)\sin\theta,z(t))\]
+be a parametrization of a surface of revolution.
+Then,
+\begin{align*}
+\alpha_\theta&=(-r(t)\sin\theta,r(t)\cos\theta,0)\\
+\alpha_t&=(r'(t)\cos\theta,r'(t)\sin\theta,z'(t))\\
+\nu&=\frac1{\sqrt{r'(t)^2+z'(t)^2}}(z'(t)\cos\theta,z'(t)\sin\theta,-r'(t)),
+\end{align*}
+and
+\begin{align*}
+\alpha_{\theta\theta}&=(-r(t)\cos\theta,-r(t)\sin\theta,0)\\
+\alpha_{\theta t}&=(-r'(t)\sin\theta,-r'(t)\cos\theta,0)\\
+\alpha_{tt}&=(r''(t)\cos\theta,r''(t)\sin\theta,z''(t)).
+\end{align*}
+Thus we have
+\[E=r(t)^2,\quad F=0,\quad G=r'(t)^2+z'(t)^2,\]
+and
+\[L=-\frac{r(t)z'(t)}{\sqrt{r'(t)^2+z'(t)^2}},\quad M=0,\quad N=\frac{r''(t)z'(t)-r'(t)z''(t)}{\sqrt{r'(t)^2+z'(t)^2}}.\]
+Therefore,
+\[K=\frac{LN-M^2}{EG-F^2}=\frac{z'(r'z''-r''z')}{r(r'^2+z'^2)^2}.\]
+In particular, if $t\mapsto(r(t),z(t))$ is a unit-speed curve, then
+\[K=-\frac{r''}r.\]
+\end{pf}
+
+
+% asymptotic curve -> hyperbolic
+% line of curvature -> non-umbilic
+
+% minimal surface
+% 	회전곡면
+% asymptotic curve
+% 	Beltrami-Enneper
+% ruled surface
+% developable surface
+
+
+\begin{prb}[Local isomorphism]
+Surfaces of the same constant Gaussian curvature are locally isomorphic.
+\end{prb}
+\begin{pf}
+Let
+\[\mat{\|\alpha_r\|^2&\<\alpha_r,\alpha_t\>\\\<\alpha_t,\alpha_r\>&\|\alpha_t\|^2}=\mat{1&0\\0&h(r,t)^2}\]
+be the first fundamental form for a geodesic coordinate chart along a geodesic curve so that $\alpha_{tt}$ and $\alpha_{rr}$ are normal to the surface.
+Then,
+\[K=-\frac{h_{rr}}h\]
+is constant.
+Also, since
+\[\frac12(h^2)_r+\<\alpha_r,\alpha_{tt}\>=\<\alpha_{rt},\alpha_t\>+\<\alpha_r,\alpha_{tt}\>=\<\alpha_r,\alpha_t\>_t=0\]
+implies $h_r=0$ at $r=0$, the function $f:r\mapsto h(r,t)$ satisfies the following initial value problem
+\[f_{rr}=-Kf,\quad f(0)=1,\quad f'(0)=0.\]
+Therefore, $h$ is uniquely determined by $K$.
+\end{pf}
+
+
+
+\chapter{}
+
+
+
+% Global theory of curves
+%  Isoperimetric inequality
+%  Four vertex theorem
+%  Ovals
+
+% Global theory of surfaces
+%  Minimal surfaces
+%  classification of compact surfaces?
+%  Hilbert theorem
+
+% Total curvatures
+%  Fary-Milnor
+%  Fenchel
+%  Gaus-Bonnet, euler characteristic
+
+
+
+
+
+
+
+
+
+
+
+
+
+\part{Riemann surfaces}
+\chapter{}
+
+\chapter{Riemann-Roch theorem}
+\chapter{Algebraic curves}
+
+multiplicities, Bezout theorem
+divisors, line bundles
+Embedding theorem
+euler characteristic
+(tangent line bundle degree 2-2g, canonical line bundle 2g-2)
+$L(D):=H^0(X,\cO(D))$
+
+Jacobian variety (moduli spaces....)
+Chow theorem
+
+
+
+
+\part{Topological surfaces}
+
+\chapter{Classification of surfaces}
+\section{Combinatorial surfaces}
+
+triangulation
+orientability
+euler characteristic
+genus
+connected sum
+
+
+\chapter{Fundamental groups}
+
+\section{}
+\begin{prb}
+A \emph{homotopy of paths} is a continuous map $h:I\times I\to X$ such that $h(0,)=x_0$ and 
+\begin{parts}
+\item linear homotopy
+\item reparametrization
+\end{parts}
+\end{prb}
+\begin{prb}
+The fundamental group is a group
+composition
+\end{prb}
+
+\begin{prb}[Van Kampen theorem]
+\end{prb}
+
+\section{Covering spaces}
+
+path lifting property
+universal covering
+
+\chapter{Uniformization}
+
 \iffalse
 \section{Symmetry groups}
 isometry, conformal, rigid motion, etc.
@@ -48,10 +438,5 @@ tesselation, polygon theorem
 Fuchsian and Kleinian
 \fi
 
-\chapter{Uniformization}
-
-\part{Algebraic curves}
-
-\part{Classification of surfaces}
 
 \end{document}

@@ -1,14 +1,15 @@
-\documentclass{../note}
-\usepackage{../../ikany}
+\documentclass{../../large}
+\usepackage{../../ikhanchoi}
 
 \def\a{\alpha}
 \def\I{\mathrm{I}}
 \def\II{\mathrm{II}}
 \def\ssum{{\textstyle\sum\,}}
+\def\Step{Step}
 
 
 \begin{document}
-\title{Smooth Surfaces}
+\title{Curves}
 \author{Ikhan Choi}
 \maketitle
 \tableofcontents
@@ -749,483 +750,352 @@ TFAE:
 
 
 
+%----------------
+\section{Curves may be updated}
 
-\section{Surfaces}
+By definition, a regular curve has at least one parametrization.
+However, a given parametrization may not have useful properties, so we often take a new parametrization.
+The existence of a parametrization with certain properties is one of the main problems in differential geometry.
+Practically, the existence proof is usually done by constructing a \emph{diffeomorphism} between open sets in $\R^m$; a bijective smooth map whose inverse is also smooth.
 
-\subsection{Parametrization}
-
-%         선형독립    벡터들이 한점에서 주어졌을 때 ->
-%         선형독립    벡터장이 근방에서 주어졌을 때 -> 일반적으론 2차원에서만
-%         선형독립 가환벡터장이 근방에서 주어졌을 때 -> n차원 다돼
-%         선형독립    직교벡터들이 한점에서 주어졌을 때
-%         선형독립    직교벡터장이 근방에서 주어졌을 때
-%         선형독립 직교가환벡터장이 근방에서 주어졌을 때
-%             -> 곡률의 선, 점근곡선, 측지좌표
-
-% preimage theorem
-
+We introduce the arc-length reparametrization.
+It is the most general choice for the local study of curves.
+\begin{defn}
+A parametrization $\a$ of a regular curve is called a \emph{unit speed curve} or an \emph{arc-length parametrization} when it satisfies $\|\a'\|=1$.
+\end{defn}
 \begin{thm}
-Let $S$ be a regular surface.
-Let $v,w$ be linearly independent tangent vectors in $T_pS$ for a point $p\in S$.
-Then, $S$ admits a parametrization $\a$ such that $\a_x|_p=v$ and $\a_y|_p=w$.
+Every regular curve may be assumed to have unit speed.
+Precisely, for every regular curve, there is a parametrization $\a$ such that $\|\a'\|=1$.
 \end{thm}
-\begin{thm}
-Let $X,Y$ be linearly independent tangent vector fields on a regular surface $S$.
-Then, $S$ admits a parametrization $\a$ such that $\a_x|_p$ and $\a_y|_p$ are parallel to $X|_p,Y|_p$ respectively for each $p\in S$.
-\end{thm}
-\begin{thm}
-Let $X,Y$ be linearly independent tangent vector fields on a regular surface $S$.
-If $\pd_XY=\pd_YX$, then $S$ admits a parametrization $\a$ such that $\a_x|_p=X|_p$ and $\a_y|_p=Y|_p$ for each $p\in S$.
-\end{thm}
+\begin{pf}
+By the definition of regular curves, we can take a parametrization $\beta:I_t\to\R^d$ for a given regular curve.
+We will construct an arc-length parametrization from $\beta$.
 
-Let $S$ be a regular surface embedded in $\R^3$.
-The inner product on $T_pS$ induced from the standard inner product of $\R^3$ can be represented not only as a matrix
-\[\mat{1&0&0\\0&1&0\\0&0&1}\]
-in the basis $\{(1,0,0),(0,1,0),(0,0,1)\}\subset\R^3$, but also as a matrix
-\[\mat{\<\a_x,\a_x\>&\<\a_x,\a_y\>\\\<\a_y,\a_x\>&\<\a_y,\a_y\>}\]
-in the basis $\{\a_x|_p,\a_y|_p\}\subset T_pS$.
+Define $\tau:I_t\to I_s$ such that
+\[\tau(t):=\int_0^t\|\beta'(s)\|\,ds.\]
+Since $\tau$ is smooth and $\tau'>0$ everywhere so that $\tau$ is strictly increasing, the inverse $\tau^{-1}:I_s\to I_t$ is smooth by the inverse function theorem; $\tau$ is a diffeomorphism.
+Define $\a:I_s\to\R^d$ by $\a:=\beta\circ\tau^{-1}$.
+Then, by the chain rule,
+\[\a'=\dd{\a}{s}=\dd{\beta}{t}\dd{\tau^{-1}}{s}=\beta'\left(\dd{\tau}{t}\right)^{-1}=\frac{\beta'}{\|\beta'\|}.\qedhere\]
+\end{pf}
+
+
+The Frenet-Serret frame is a standard frame for a curve, and it is in particular effective when we assume the arc-length parametrization.
+It is defined for nondegenerate regular curves, i.e. nowhere straight curves.
+It provides with a useful orthonormal basis of $T_p\R^3\supset T_p\gamma(I)$ for points $p$ on a regular curve $\gamma:I\to\R^3$.
+\begin{prb}
+A regular curve $\gamma:I\to\R^3$ is called \emph{non-degenerate} if the normalized tangent vector $\gamma'/\|\gamma'\|$ is never locally constant everywhere.
+In other words, $\gamma$ is nowhere straight.
+\end{prb}
+
+\begin{defn}[Frenet-Serret frame]
+Let $\a$ be a nondegenerate curve.
+The \emph{tangent unit vector}, \emph{normal unit vector}, \emph{binormal unit vector} are $T_p\R^3$-valued vector fields on $\a$ defined by:
+\[\rT(t):=\frac{\a'(t)}{\|\a'(t)\|},\qquad\rN(t):=\frac{\rT'(t)}{\|\rT'(t)\|},\qquad\rB(t):=\rT(t)\times\rN(t).\]
+The set of vector fields $\{\rT,\rN,\rB\}$, which is called \emph{Frenet-Serret frame}, forms an orthonormal basis of $T_p\R^3$ at each point $p$ on $\a$.
+The Frenet-Serret frame is uniquely determined up to sign as $\a$ changes.
+\end{defn}
+
+We study the derivatives of the Frenet-Serret frame and their coordinate representations.
+In the coordinate representations on the Frenet-Serret frame, important geometric measurements such as curvatrue and torsion come out as coefficients.
 
 \begin{defn}
-\emph{Metric coefficients}
-\begin{alignat*}{2}
-\<\a_x,\a_x\>&=:g_{11}&\qquad
-\<\a_x,\a_y\>&=:g_{12}\\
-\<\a_y,\a_x\>&=:g_{21}&
-\<\a_y,\a_y\>&=:g_{22}
-\end{alignat*}
+Let $\a$ be a nondegenerate curve.
+The \emph{curvature} and \emph{torsion} are scalar fields on $\a$ defined by:
+\[\kappa(t):=\frac{\<\rT'(t),\rN(t)\>}{\|\a'\|},\quad\tau(t):=-\frac{\<\rB'(t),\rN(t)\>}{\|\a'\|}.\]
+Note that $\kappa>0$ cannot vanish by definition of nondegenerate curve.
+This definition is independent on $\a$.
 \end{defn}
 
-\begin{thm}[Normal coordinates]
-...?
-\end{thm}
+\begin{prb}\emph{Frenet-Serret formula.}
+Let $\gamma$ be a non-degenerate regular curve.
+Then,
+\[\mat{\rT'\\\rN'\\\rB'}=\|\gamma'\|\mat{0&\kappa&0\\-\kappa&0&\tau\\0&-\tau&0}\mat{\rT\\\rN\\\rB}.\]
+\begin{parts}
+\item $\rT'=\|\gamma'\|\kappa\rN$.
+\item $\rB'=-\|\gamma'\|\tau\rN$.
+\item $\rN'=-\|\gamma'\|\kappa\rT+\|\gamma'\|\tau\rB$.
+\end{parts}
+\end{prb}
+\begin{pf}
+Note that $\{\rT,\rN,\rB\}$ is an orthonormal basis.
 
+(a)
+Two vectors $\rT'$ and $\rN$ are parallel by definition of $\rN$.
+By the definition of $\kappa$, we get $\rT'=\|\gamma'\|\kappa\rN$.
 
-\subsection{Differentiation of tangent vectors}
+(b)
+Since $\<\rT,\rB\>=0$ and $\<\rB,\rB\>=1$ are constant, we have
+\[\<\rB',\rT\>=\<\rB,\rT\>'-\<\rB,\rT'\>=0,\qquad\<\rB',\rB\>=\tfrac12\<\rB,\rB\>'=0.\]
+By the definition of $\tau$, we get $\rB'=-\|\a'\|\tau\rN$.
 
-
-
-\begin{defn}
-Let $\a:U\to\R^3$ be a regular surface.
-The \emph{Gauss map} or \emph{normal unit vector} $\nu:U\to\R^3$ is a vector field on $\a$ defined by:
-\[\nu(x,y):=\frac{\a_x\times \a_y}{\|\a_x\times \a_y\|}(x,y).\]
-The set of vector fields $\{\a_x|_p,\a_y|_p,\nu|_p\}$ forms a basis of $T_p\R^3$ at each point $p$ on $\a$.
-The Gauss map is uniquely determined up to sign as $\a$ changes.
-\end{defn}
-
-\begin{defn}[Gauss formula, $\Gamma_{ij}^k$, $L_{ij}$]
-Let $\a:U\to\R^3$ be a regular surface.
-Define indexed families of smooth functions $\{\Gamma_{ij}^k\}_{i,j,k=1}^2$ and $\{L_{ij}\}_{i,j=1}^2$ by the Gauss formula
-\begin{alignat*}{2}
-\a_{xx}&=:\Gamma_{11}^1\a_x+\Gamma_{11}^2\a_y+L_{11}\nu,&\qquad
-\a_{xy}&=:\Gamma_{12}^1\a_x+\Gamma_{12}^2\a_y+L_{12}\nu,\\
-\a_{yx}&=:\Gamma_{21}^1\a_x+\Gamma_{21}^2\a_y+L_{21}\nu,&
-\a_{yy}&=:\Gamma_{22}^1\a_x+\Gamma_{22}^2\a_y+L_{22}\nu.
-\end{alignat*}
-The \emph{Christoffel symbols} refer to eight functions $\{\Gamma_{ij}^k\}_{i,j,k=1}^2$.
-The Christoffel symbols and $L_{ij}$ \emph{do depend} on $\a$.
-\end{defn}
-We can easily check the symmetry $\Gamma_{ij}^k=\Gamma_{ji}^k$ and $L_{ij}=L_{ji}$.
-Also,
+(c)
+Since
 \begin{align*}
-\pd_XY
-&=X^i\pd_i(Y^j\a_j)\\
-&=X^i(\pd_iY^k)\a_k+X^iY^j\pd_i\a_j\\
-&=\left(X^i\pd_iY^k+X^iY^j\Gamma_{ij}^k\right)\a_k+X^iY^jL_{ij}\nu.
+\<\rN',\rT\>&=-\<\rN,\rT'\>=-\|\a'\|\kappa,\\
+\<\rN',\rN\>&=\tfrac12\<\rN,\rN\>'=0,\\
+\<\rN',\rB\>&=-\<\rN,\rB'\>=\|\a'\|\tau,
 \end{align*}
+we have
+\[\rN'=\|\a'\|(-\kappa\rT+\tau\rB).\qedhere\]
+\end{pf}
+\begin{rmk}
+Let $\rX(t)$ be the curve of orthogonal matrices $(\rT(t),\rN(t),\rB(t))^T$.
+Then, the Frenet-Serret formula reads
+\[\rX'(t)=A(t)\rX(t)\]
+for a matrix curve $A(t)$ that is completely determined by $\kappa(t)$ and $\tau(t)$, if we let us only consider arc-length parametrized curves.
+This is a typical form of an ODE system, so we can apply the Picard-Lindel\"of theorem to get the following proposition: if we know $\kappa(t)$ and $\tau(t)$ for all time $t$, and if $\rT(0)$ and $\rN(0)$ are given so that an initial condition
+\[\rX(0)=(\rT(0),\,\rN(0),\,\rT(0)\times\rN(0))\]
+is established, then the solution $\rX(t)$ exists and uniquely determined in a short time range.
+Furthermore, if $\a(0)$ is given in addition, the integration
+\[\a(t)=\a(0)+\int_0^t\rT(s)\,ds\]
+provides a complete formula for unit speed parametrization $\a$.
+\end{rmk}
+\begin{rmk}
+Skew-symmetry in the Frenet-Serret formula is not by chance.
+Let $\rX(t)=(\rT(t),\rN(t),\rB(t))^T$ and write $\rX'(t)=A(t)\rX(t)$ as we did in the above remark.
+Since $\rX(t+h)=R_t(h)\rX(t)$ for a family of special orthogonal matrices $\{R_t(h)\}_h$ with $R_t(0)=I$, we can describe $A(t)$ as 
+\[A(t)=\left.\dd{R_t}{h}\right\rvert_{h=0}.\]
+By differentiating the relation $R_t^T(h)R_t(h)=I$ with respect to $h$, we get to know that $A(t)$ is skew-symmetric for all $t$.
+In other words, the tangent space $T_I\SO(3)$ forms a skew symmetric matrix.
+\end{rmk}
+
+
+
+The following proposition gives the most effective and shortest way to compute the Frenet-Serret apparatus in general case.
+If we try to reparametrize the given curve into a unit speed curve or find $\kappa$ by differentiating $\rT$, then we must encounter the normalizing term of the form $\sqrt{(-)^2+(-)^2+(-)^2}^{-1}$, and it must be painful when time is limited.
+The Frenet-Serret frame is useful in proofs of interesting propositions, but not a good choice for practical computation.
+Instead, a computation from derivatives of parametrization is highly recommended.
+\begin{prop}
+Let $\a$ be a nondegenerate curve.
+Then,
+\[\kappa=\frac{\|\a'\times\a''\|}{\|\a'\|^3},\qquad\tau=\frac{\a'\times\a''\cdot\a'''}{\|\a'\times\a''\|}\]
+and
+\[\rT=\frac{\a'}{\|\a'\|},\qquad\rB=\frac{\a'\times\a''}{\|\a'\times\a''\|},\qquad\rN=\rB\times\rT.\]
+\end{prop}
+\begin{pf}
+If we let $s=\|\a'\|$, then
+\begin{align*}
+\a'&=s\rT,\\
+\a''&=s'\rT+s^2\kappa\rN,\\
+\a'''&=(s''-s^3\kappa^2)\rT+(3ss'\kappa+s^2\kappa')\rN+(s^3\kappa\tau)\rB.
+\end{align*}
+Now the formulas are easily derived.
+\end{pf}
 
 % Examples
 
 
-\subsection{Differentiation of normal vector}
-
-The partial derivative $\pd_X\nu$ is a tangent vector field since
-\[\<\pd_X\nu,\nu\>=\frac12\pd_X\<\nu,\nu\>=0.\]
-Therefore, we can define the following useful operator.
-\begin{defn}
-Let $S$ be a regular surface embedded in $\R^3$.
-The \emph{shape operator} is $\cS:\fX(S)\to\fX(S)$ defined as
-\[\cS(X):=-\pd_X\nu.\]
-\end{defn}
-\begin{prop}
-The shape operator is self-adjoint, i.e. symmetric.
-\end{prop}
-\begin{pf}
-Recall that $\pd_XY-\pd_YX$ is a tangent vector field.
-Then,
-\[\<X,\cS(Y)\>=\<X,-\pd_Y\nu\>=\<\pd_YX,\nu\>=\<\pd_XY,\nu\>=\<\cS(X),Y\>.\qedhere\]
-\end{pf}
-
-% The reason of minus sign in the shape operator.
-
-\begin{thm}
-Let $\a:U\to\R^3$ be a regular surface and $\cS$ be the shape operator.
-Then $\cS$ has the coordinate representation
-\[\cS=\mat{g_{11}&g_{12}\\g_{21}&g_{22}}^{-1}\mat{L_{11}&L_{12}\\L_{21}&L_{22}}\]
-with respect to the frame $\{\a_x,\a_y\}$ for tangent spaces.
-In other words, if we let $X=X^i\a_i$ and $\cS(X)=\cS(X)^j\a_j$, then
-\[\mat{\cS(X)^1\\\cS(Y)^2}=\mat{g_{11}&g_{12}\\g_{21}&g_{22}}^{-1}\mat{L_{11}&L_{12}\\L_{21}&L_{22}}\mat{X^1\\X^2}.\]
-\end{thm}
-\begin{pf}
-Let $\cS(X)^j=\cS_i^jX_i$.
-Then,
-\[g_{ik}X^i\cS_j^kY^j=\<X,\cS(Y)\>=\<\pd_XY,\nu\>=X^iY^jL_{ij}\]
-implies $g_{ik}\,\cS_j^k=L_{ij}$.
-\end{pf}
-
-% principal curvature
-% mean curvature, gaussian curvature
-
-
-
-% curvature tensor?
-
-
-\subsection{Computational problems}
-% 제1기본형식, 크리스토펠: 
-% 모양 연산자, 제2기본형식: 바인가르텐 이퀘이션
-
-% 가우스곡률
-\begin{defn}
-Let $\a:U\to\R^3$ be a regular surface.
-\begin{gather*}
-E:=\<\a_x,\a_x\>=g_{11},\qquad F:=\<\a_x,\a_y\>=g_{12},\qquad G:=\<\a_y,\a_y\>=g_{22},\\
-L:=\<\a_{xx},\nu\>=L_{11},\qquad M:=\<\a_{xy},\nu\>=L_{12},\qquad N:=\<\a_{yy},\nu\>=L_{22}.
-\end{gather*}
-\end{defn}
-
-
-\begin{cor}
-We have $GM-FN=EM-FL$, and the \emph{Weingarten equations}:
-\begin{align*}
-\nu_x&=\frac{FM-GL}{EG-F^2}\a_x+\frac{FL-EM}{EG-F^2}\a_y,\\
-\nu_y&=\frac{FN-GM}{EG-F^2}\a_x+\frac{FM-EN}{EG-F^2}\a_y.
-\end{align*}
-\end{cor}
-
-
-
-\begin{thm}
-\[\Gamma_{ij}^l=\frac12g^{kl}(g_{ik,j}-g_{ij,k}+g_{kj,i}).\]
-\end{thm}
-
-\[\frac12(\log g)_x=\Gamma_{11}^1.\]
-
-\[\nu_x\times\nu_y=K\sqrt{\det g}\ \nu.\]
-\[\a_x\times\a_y=\sqrt{\det g}\ \nu\]
-\[\<\nu_x\times\nu_y,\a_x\times\a_y\>=\det\mat{\<\nu_x,\a_x\>&\<\nu_x,\a_y\>\\\<\nu_y,\a_x\>&\<\nu_y,\a_y\>}=\det\mat{-L&-M\\-M&-N}=K\det g\]
-
-
-
-
-
-
-
-
-
-
-
-\begin{thm}[Gaussian curvature formula]
-$ $\\[-12pt]
-\begin{parts}
-\item
-In general,
-\[K=\frac{LN-M^2}{EG-F^2}.\]
-\item
-For orthogonal coordinates such that $F\equiv0$,
-\[K=-\frac1{2\sqrt{\det g}}\left((\frac1{\sqrt{\det g}}E_y)_y+(\frac1{\sqrt{\det g}}G_x)_x\right).\]
-\item
-For $f(x,y,z)=0$,
-\[K=-\frac1{|\nabla f|^4}\mat[v]{0&\nabla f\\\nabla f^T&\Hess(f)},\]
-where $\nabla f$ denotes the gradient $\nabla f=(f_x,f_y,f_z)$.
-\item(Beltrami-Enneper) If $\tau$ is the torsion of an asymptotic curve, then
-\[K=-\tau^2.\]
-\item(Brioschi) $E,F,G$ describes $K$.
-\end{parts}
-\end{thm}
-
-\begin{pf}$ $\\[-12pt]
-\begin{parts}
-\item Clear.
-\item
-We have $GM=EM$ and
-\[\nu_x=-\frac LE\a_x-\frac MG\a_y,\qquad\nu_y=-\frac ME\a_x-\frac NG\a_y.\]
-\[\nu_x\times\nu_y=\frac{LN-M^2}{EG}\a_x\times\a_y\]
-After curvature tensors...
-\end{parts}
-\end{pf}
-
-
-
-\begin{ex}
-\begin{parts}
-\item
-(Monge's patch)
-For $(x,y,f(x,y))$,
-\[K=\frac{f_{xx}f_{yy}-f_{xy}^2}{(1+f_x^2+f_y^2)^2}.\]
-\item
-(Surface of revolution).
-Let $\gamma(t)=(r(t),z(t))$ be a plane curve with $r(t)>0$.
-Let
-\[\a(\theta,t)=(r(t)\cos\theta,r(t)\sin\theta,z(t))\]
-be a parametrization of a surface of revolution.
-
-Then,
-\begin{align*}
-\a_\theta&=(-r(t)\sin\theta,r(t)\cos\theta,0)\\
-\a_t&=(r'(t)\cos\theta,r'(t)\sin\theta,z'(t))\\
-\nu&=\frac1{\sqrt{r'(t)^2+z'(t)^2}}(z'(t)\cos\theta,z'(t)\sin\theta,-r'(t)),
-\end{align*}
-and
-\begin{align*}
-\a_{\theta\theta}&=(-r(t)\cos\theta,-r(t)\sin\theta,0)\\
-\a_{\theta t}&=(-r'(t)\sin\theta,-r'(t)\cos\theta,0)\\
-\a_{tt}&=(r''(t)\cos\theta,r''(t)\sin\theta,z''(t)).
-\end{align*}
-Thus we have
-\[E=r(t)^2,\quad F=0,\quad G=r'(t)^2+z'(t)^2,\]
-and
-\[L=-\frac{r(t)z'(t)}{\sqrt{r'(t)^2+z'(t)^2}},\quad M=0,\quad N=\frac{r''(t)z'(t)-r'(t)z''(t)}{\sqrt{r'(t)^2+z'(t)^2}}.\]
-Therefore,
-\[K=\frac{LN-M^2}{EG-F^2}=\frac{z'(r'z''-r''z')}{r(r'^2+z'^2)^2}.\]
-In particular, if $t\mapsto(r(t),z(t))$ is a unit-speed curve, then
-\[K=-\frac{r''}r.\]
-
-\item
-(Models of hyperbolic planes)
-\end{parts}
-\end{ex}
-
-
-% asymptotic curve -> hyperbolic
-% line of curvature -> non-umbilic
-
-% minimal surface
-% 	회전곡면
-% asymptotic curve
-% 	Beltrami-Enneper
-% ruled surface
-% developable surface
-
-% 밀만 파커 다 풀어보기
-
-
-
-
-\subsection{General problems}
-
-% isometric....?
-
-\begin{thm}
-Surfaces of the same constant Gaussian curvature are locally isomorphic.
-\end{thm}
-\begin{pf}
-Let
-\[\mat{\|\a_r\|^2&\<\a_r,\a_t\>\\\<\a_t,\a_r\>&\|\a_t\|^2}=\mat{1&0\\0&h(r,t)^2}\]
-be the first fundamental form for a geodesic coordinate chart along a geodesic curve so that $\a_{tt}$ and $\a_{rr}$ are normal to the surface.
-Then,
-\[K=-\frac{h_{rr}}h\]
-is constant.
-Also, since
-\[\frac12(h^2)_r+\<\a_r,\a_{tt}\>=\<\a_{rt},\a_t\>+\<\a_r,\a_{tt}\>=\<\a_r,\a_t\>_t=0\]
-implies $h_r=0$ at $r=0$, the function $f:r\mapsto h(r,t)$ satisfies the following initial value problem
-\[f_{rr}=-Kf,\quad f(0)=1,\quad f'(0)=0.\]
-Therefore, $h$ is uniquely determined by $K$.
-\end{pf}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-\chapter{Riemannian Manifolds}
-Notations: Einstein summation convention, set of vector fields.
-
-To $n$-dimensional.
-
-\section{Coordinates intrinsicness}
-% 좌표변환에 대하여 어떻게 변하는지 - 텐서에 대하여
-
-% 크리스토펠은 좌표변환이 잘 안됨: 텐서가 아니라서
-% 공변미분: 근데 걍 3차원공간 편미분에다가 이 좌표변환 추가 텀 붙은 크리스토펠 텀을 추가하면 그 미분 결과가 텐서(접벡터)가 됨
-
-\section{Metric intrinsicness}
-% metric 정의
-% isometry
-% 가우스의 놀라운 정리: 크리스토펠 -> 곡률텐서 -> 가우스곡률?
-
+Now we are interested in regular curves, not a particular parametrization.
+By the Theorem 2.1, we may always assume that a parametrization $\a$ has unit speed.
+Let $\a$ be a nondegenerate unit speed space curve, and let $\{\rT,\rN,\rB\}$ be the Frenet-Serret frame for $\a$.
+
+Consider a diagram as follows:
+\begin{cd}
+\<\a,\rT\>=\ ?\ar{r}\ar{d} & \<\a,\rN\>=\ ? \ar{l}\ar{d}\ar{r} & \<\a,\rB\>=\ ? \ar{l}\ar{d} \\
+\<\a',\rT\>=1 & \<\a',\rN\>=0 &\<\a',\rB\>=0.
+\end{cd}
+Here the arrows indicate which term we are able to get by differentiation.
+For example, if we know a condition
+\[\<\a(t),\rT(t)\>=f(t),\]
+then we can obtain
+\[\<\a(t),\rN(t)\>=\frac{f'(t)-1}{\kappa(t)}\]
+by direct differentiation since we have known $\<\a',\rT\>$ but not $\<\a,\rN\>$.
+Further, we get
+\[\<\a(t),\rB(t)\>=\frac{\left(\frac{f'(t)-1}{\kappa(t)}\right)'+\kappa(t)f(t)}{\tau(t)}\]
+since we have known $\<\a,\rT\>$ and $\<\a',\rN\>$ but not $\<\a,\rB\>$.
+Thus, $\<\a,\rT\>=f$ implies
+\[\a(t)=f(t)\cdot\rT+\frac{f'(t)-1}{\kappa(t)}\cdot\rN+\frac{\left(\frac{f'(t)-1}{\kappa(t)}\right)'+\kappa(t)f(t)}{\tau(t)}\cdot\rB,\]
+when given $\tau(t)\ne0$.
+
+We suggest a strategy for space curve problems:
 \begin{itemize}
-\item Intrinsic: $g_{ij}$, $\Gamma_{ij}^k$, $K$, ${R^l}_{ijk}$;
-\item Not intrinsic: $\nu$, $L_{ij}$, $\kappa_i$, $H$.
+\item Build and differentiate equations of the following form:
+\[\<\ \text{(interesting vector)},\ \text{(Frenet-Serret basis)}\ \>\ =\ \text{(some function)}.\]
+\item Aim for finding the coefficients of the position vector in the Frenet-Serret frame, and obtain relations of $\kappa$ and $\tau$ by comparing with assumptions.
+\item Heuristically find a constant vector and show what you want directly.
 \end{itemize}
-
-Isometry
-\begin{ex}
-Let $\a:(-\log2,\log2)\times(0,2\pi)\to\R^3$ and $\beta:(-\frac34,\frac34)\times(0,2\pi)\to\R^3$ be regular surfaces given by
-\[\a(x,\theta)=(\cosh x\cos\theta,\,\cosh x\sin\theta,\,x),\qquad
-\beta(r,z)=(r\cos z,\,r\sin z,\,z).\]
-Their Riemannian metrics are
-\[\mat{\cosh^2x&0\\0&\cosh^2x}_{(\a_x,\a_\theta)},\qquad\mat{1&0\\0&1+r^2}_{(\beta_r,\beta_z)}.\]
-
-Define a map $f:\im\a\to\im\beta$ by
-\[f:\a(x,\theta)\mapsto\beta(\sinh x,\theta)=(r(x,\theta),z(x,\theta)).\]
-The Jacobi matrix of $f$ is computed
-\[df|_{\a(x,\theta)}=\mat{\cosh x&0\\0&1}_{(\a_x,\a_\theta)\to(\beta_r,\beta_z)}.\]
-Since $f$ is a diffeomorphism and
-\[\mat{\cosh^2x&0\\0&\cosh^2x}=\mat{\cosh x&0\\0&1}^T\mat{1&0\\0&1+r^2}\mat{\cosh x&0\\0&1},\]
-the map $f$ is an isometry.
-\end{ex}
+Here we give example solutions of several selected problems.
+Always $\a$ denotes a reparametrized unit speed nondegenerate curve in $\R^3$.
 
 
+If
+\[f=\<\a-p,\rT\>,\quad g=\<\a-p,\rN\>,\quad h=\<\a-p,\rB\>,\]
+then
+\[f'=1+\kappa g,\quad g'=-\kappa f+\tau h,\quad h'=-\tau g.\]
 
+\begin{prb}
+A curve whose normal lines always pass through a fixed point lies in a circle.
+\end{prb}
+\begin{sol}
+By the assumption, we have
+\[\a-p=0\cdot\rT+\<\a-p,\rN\>\cdot\rN+0\cdot\rB.\]
 
-\section{Covariant derivatives}
+\[\a'=-\kappa\<\a-p,\rN\>\cdot\rT+0\cdot\rN+\tau\<\a-p,\rN\>\cdot\rB.\]
 
-\subsection{Orthogonal projection}
-We are going to think about ``intrinsic'' derivatives for tangent vectors.
-For coordinate independence, directional derivatives of a tangent vector field should be at least a tangent vector field, which is false for the obvious partial derivatives in the embedded surface setting; for example, $\rT$ is a tangent vector, but $\rN=\kappa\rT'$ is not tangent.
+[Formulate conditions]
+By the assumption, there is a constant point $p\in\R^3$ such that the vectors $\a-p$ and $\rN$ are parallel so that we have
+\[\<\a-p,\rT\>=0,\qquad\<\a-p,\rB\>=0.\]
+Our goal is to show that $\|\a-p\|$ is constant and there is a constant vector $v$ such that $\<\a-p,v\>=0$.
 
-Recall that the Gauss formula reads
-\[\pd_i\a_j=\Gamma_{ij}^k\a_k+L_{ij}\nu\]
-so that we have
+[Collect information]
+Differentiate $\<\a-p,\rT\>=0$ to get
+\[\<\a-p,\rN\>=-\frac1\kappa.\]
+Differentiate $\<\a-p,\rB\>=0$ to get
+\[\tau=0.\]
+
+[Complete proof]
+We can deduce that $\|\a-p\|$ is constant from
+\[(\|\a-p\|^2)'=\<\a-p,\a-p\>'=2\<\a-p,\rT\>=0.\]
+Also, if we heuristically define a vector $v:=\rB$, then $v$ is constant since
+\[v'=-\tau\rN=0,\]
+and clearly $\<\a-p,v\>=0$
+\end{sol}
+
+\begin{prb}
+A spherical curve of constant curvature lies in a circle.
+\end{prb}
+\begin{sol}
+[Formulate conditions]
+The condition that $\a$ lies on a sphere can be given as follows: for a constant point $p\in\R^3$,
+\[\|\a-p\|=\const.\]
+Also we have
+\[\kappa=\const.\]
+
+[Collect information]
+Differentiate $\|\a-p\|^2=\const$ to get
+\[\<\a-p,\rT\>=0.\]
+Differentiate $\<\a-p,\rT\>=0$ to get
+\[\<\a-p,\rN\>=-\frac1\kappa.\]
+Differentiate $\<\a-p,\rN\>=-1/\kappa=\const$ to get
+\[\tau\<\a-p,\rB\>=0.\]
+
+There are two ways to show that $\tau=0$.
+
+\emph{Method 1}:
+Assume that there is $t$ such that $\tau(t)\ne0$.
+By the continuity of $\tau$, we can deduce that $\tau$ is locally nonvanishing.
+In other words, we have $\<\a-p,\rB\>=0$ on an open interval containing $t$.
+Differentiate $\<\a-p,\rB\>=0$ at $t$ to get $\<\a-p,\rN\>=0$ near $t$, which is a contradiction.
+Therefore, $\tau=0$ everywhere.
+
+\emph{Method 2}:
+Since $\<\a-p,\rB\>$ is continuous and
+\[\<\a-p,\rB\>=\pm\sqrt{\|\a-p\|^2-\<\a-p,\rT\>^2-\<\a-p,\rN\>^2}=\pm\const,\]
+we get $\<\a-p,\rB\>=\const$.
+Differentiate to get $\tau\<\a-p,\rN\>=0$.
+Finally we can deduce $\tau=0$ since $\<\a-p,\rN\>\ne0$.
+
+[Complete proof]
+The zero torsion implies that the curve lies on a plane.
+A planar curve in a sphere is a circle.
+\end{sol}
+
+\begin{prb}
+A curve such that $\tau/\kappa=(\kappa'/\tau\kappa^2)'$ lies on a sphere.
+\end{prb}
+\begin{sol}
+[Find the center heuristically]
+If we assume that $\a$ is on a sphere so that we have $\|\a-p\|=r$ for constants $p\in\R^3$ and $r>0$, then by the routine differentiations give
+\[\<\a-p,\rT\>=0,\qquad\<\a-p,\rN\>=-\frac1\kappa,\qquad\<\a-p,\rB\>=-\left(\frac1\kappa\right)'\frac1\tau,\]
+that is,
+\[\a-p=-\frac1\kappa\rN-\left(\frac1\kappa\right)'\frac1\tau\rB.\]
+
+[Complete proof]
+Let us get started the proof.
+Define
+\[p:=\a+\frac1\kappa\rN+\left(\frac1\kappa\right)'\frac1\tau\rB.\]
+We can show that it is constant by differentiation.
+Also we can show that
+\[\<\a-p,\a-p\>\]
+is constant by differentiation.
+So we are done.
+\end{sol}
+
+\begin{prb}
+A curve with more than one Bertrand mates is a circular helix.
+\end{prb}
+\begin{sol}
+[Formulate conditions]
+Let $\beta$ be a Bertrand mate of $\a$ so that we have
+\[\beta=\a+\lambda\rN,\qquad\rN_\beta=\pm\rN,\]
+where $\lambda$ is a function not vanishing somewhere and $\{\rT_\beta,\rN_\beta,\rB_\beta\}$ denotes the Frenet-Serret frame of $\beta$.
+We can reformulate the conditions as follows:
+
+Note that $\beta$ is not unit speed.
+
+[Collect information]
+Differentiate $\<\beta-\a,\rN\>=\lambda$ to get
+\[\lambda=\const\ne0.\]
+Differentiate $\<\beta-\a,\rT\>=0$ and $\<\beta-\a,\rB\>=0$ to get
+\[\<\rT_\beta,\rT\>=\frac{1-\lambda\kappa}{\|\beta'\|},\qquad\<\rT_\beta,\rB\>=\frac{\lambda\tau}{\|\beta'\|}.\]
+Differentiate $\<\rT_\beta,\rT\>$ and $\<\rT_\beta,\rB\>$ to get
+\[\frac{1-\lambda\kappa}{\|\beta'\|}=\const,\qquad\frac{\lambda\tau}{\|\beta'\|}=\const.\]
+Thus, there exists a constant $\mu$ such that
+\[1-\lambda\kappa=\mu\lambda\tau\]
+if $\a$ is not planar so that $\tau\ne0$.
+
+We have shown that the torsion is either always zero or never zero at every point: $\lambda\tau/\|\beta'\|=\const$.
+The problem can be solved by dividing the cases, but in this solution we give only for the case that $\a$ is not planar; the other hand is not difficult.
+
+[Complete proof]
+If
+\[\beta=\a+\lambda\rN,\qquad\tilde\beta=\a+\tilde\lambda\rN\]
+are different Bertrand mates of $\a$ with $\lambda\ne\tilde\lambda$, then $(\kappa,\tau)$ solves a two-dimensional linear system
 \begin{align*}
-\pd_XY
-&=X^i\pd_i(Y^j\a_j)\\
-&=X^i(\pd_iY^k)\a_k+X^iY^j\pd_i\a_j\\
-&=\left(X^i\pd_iY^k+X^iY^j\Gamma_{ij}^k\right)\a_k+X^iY^jL_{ij}\nu.
+\kappa+\mu\tau&=\lambda^{-1},\\
+\kappa+\tilde\mu\tau&=\tilde\lambda^{-1}.
 \end{align*}
-If we write $\nabla_XY=\left(X^i\pd_iY^k+X^iY^j\Gamma_{ij}^k\right)\a_k$, then it embodies the orthogonal projection of $\pd_XY$ onto its tangent space, and we have
-\[\pd_XY=\nabla_XY+\II(X,Y)\nu.\]
+It is nonsingular since $\mu=\tilde\mu$ implies $\lambda=\tilde\lambda$, which means we can represent $\kappa$ and $\tau$ in terms of constants $\lambda,\tilde\lambda,\mu,$ and $\tilde\mu$.
+Therefore, $\kappa$ and $\tau$ are constant.
+\end{sol}
 
-\begin{defn}
-Let $\a:U\to\R^n$ be an $m$-dimensional parametrization with $\im\a=M$.
-Let $X=X^i\a_i$ and $Y=Y^j\a_j$ be tangent vector fields on $M$.
-The \emph{covariant derivative} of $Y$ along $X$ is defined as the orthogonal projection of the partial derivative $\pd_XY$ onto the tangent space:
-\[\nabla_XY:=\left(X^i\pd_iY^k+X^iY^j\Gamma_{ij}^k\right)\a_k.\]
-\end{defn}
+Here is a well-prepared problem set for exercises.
 
-\begin{prop}
-Covariant derivatives are intrinsic.
-In other words, the above definition does not depend on the choice of parametrizations.
-\end{prop}
-\begin{pf}
-Recall that the Christoffel symbols transform as follows:
-\[X^iY^j\Gamma_{ij}^k=X^aY^b\left(\Gamma_{ab}^c+\pd{x^i}{x^a}\pd{x^j}{x^b}\pd[2]{x^c}{x^i}{x^j}\right)\pd{x^k}{x^c}.\]
-Thus, we have
-\begin{align*}
-&\left(X^i\pd_iY^k+X^iY^j\Gamma_{ij}^k\right)\a_k\\
-&\quad=X^a\pd{x^a}\left(Y^c\pd{x^k}{x^c}\right)\a_k+X^aY^b\left(\pd{x^i}{x^a}\pd{x^j}{x^b}\pd[2]{x^c}{x^i}{x^j}+\Gamma_{ab}^c\right)\pd{x^k}{x^c}\a_k\\
-&\quad=X^a\pd{Y^c}{x^a}\a_c+X^aY^b\left(\pd[2]{x^k}{x^a}{x^b}\pd{x^c}{x^k}+\pd{x^i}{x^a}\pd{x^j}{x^b}\pd[2]{x^c}{x^i}{x^j}\right)\a_c+X^aX^b\Gamma_{ab}^c\a_c\\
-&\quad=\left(X^a\pd_aY^c+X^aY^b\Gamma_{ab}^c\right)\a_c
-\end{align*}
-since
-\[\pd[2]{x^j}{x^a}{x^b}\pd{x^c}{x^j}+\pd{x^i}{x^a}\pd{x^j}{x^b}\pd[2]{x^c}{x^i}{x^j}=\pd{x^a}\left(\pd{x^j}{x^b}\pd{x^c}{x^j}\right)=\pd_a\delta_b^c=0.\qedhere\]
-\end{pf}
-
-
-
-\subsection{Connections}
-
-We will give a coordinate-free axiomatic definition of covariant derivatives and show that they coincide.
-By doing this, we obtain an alternative proof for the statement that covariant derivatives are intrinsic.
-
-\begin{defn}[Affine connection]
-Let $M$ be the image of a parametrization.
-An \emph{affine connection} is a map $\nabla:\fX(M)\times\fX(M)\to\fX(M)$ such that
+\begin{prb}[Plane curves]
+Let $\a$ be a nondegenerate curve in $\R^3$.
+TFAE:
 \begin{parts}
-\item $\nabla_{(-)}Y:\fX(M)\to\fX(M):X\mapsto\nabla_XY$ is $C^\infty(M)$-linear;
-\item $\nabla_X(-):\fX(M)\to\fX(M):Y\mapsto\nabla_XY$ is $\R$-linear;
-\item the Leibniz rule
-\[\nabla_X(fY)=(\pd_Xf)Y+f\nabla_XY\]
-is satisfied.
+\item the curve $\a$ lies on a plane,
+\item $\tau=0$,
+\item the osculating plane constains a fixed point.
 \end{parts}
-\end{defn}
+\end{prb}
 
-\begin{defn}[Metric connection]
-Let $M$ be the image of a parametrization and $\<\,,\>$ be a Riemannian metric on $M$.
-A \emph{metric connection} is an affine connection $\nabla:\fX(M)\times\fX(M)\to\fX(M)$ such that:
-\[\pd_Z\<X,Y\>=\<\nabla_ZX,Y\>+\<X,\nabla_ZY\>.\]
-\end{defn}
+\begin{prb}[Helices]
+Let $\a$ be a nondegenerate curve in $\R^3$.
+TFAE:
+\begin{parts}
+\item the curve $\a$ is a helix,
+\item $\tau/\kappa=\const$,
+\item normal lines are parallel to a plane.
+\end{parts}
+\end{prb}
 
-\begin{defn}[Levi-Civita connection]
-Let $M$ be the image of a parametrization and $\<\,,\>$ be a Riemannian metric on $M$.
-A \emph{Levi-Civita connection} is a metric connection $\nabla:\fX(M)\times\fX(M)\to\fX(M)$ such that:
-\[\nabla_XY-\nabla_YX=\pd_XY-\pd_YX.\]
-\end{defn}
+\begin{prb}[Sphere curves]
+Let $\a$ be a nondegenerate curve in $\R^3$.
+TFAE:
+\begin{parts}
+\item the curve $\a$ lies on a sphere,
+\item $(1/\kappa)^2+((1/\kappa)'/\tau)^2=\const$,
+\item $\tau/\kappa=(\kappa'/\tau\kappa^2)'$,
+\item normal planes contain a fixed point.
+\end{parts}
+\end{prb}
 
-\begin{thm}
-Let $\a:U\to\R^n$ be an $m$-dimensional parametrization with $M=\im\a$.
-Then, there is a unique Levi-Civita connection on $M$.
-\end{thm}
-\begin{pf}
-(Uniqueness)
-Suppose $\nabla$ is a Levi-Citiva connection on $M$.
-\begin{align*}
-2\<\nabla_XY,Z\>&=\pd_X\<Y,Z\>+\pd_Y\<X,Z\>-\pd_Z\<X,Y\>\\
-&\qquad-\<[X,Z],Y\>-\<[Y,Z],X\>+\<[X,Y],Z\>.
-\end{align*}
+\begin{prb}[Bertrand mates]
+Let $\a$ be a nondegenerate curve in $\R^3$.
+TFAE:
+\begin{parts}
+\item the curve $\a$ has a Bertrand mate,
+\item there are two constants $\lambda\ne0,\mu$ such that $1/\lambda=\kappa+\mu\tau$.
+\end{parts}
+\end{prb}
 
-(Existence)
-\end{pf}
-
-Our claim is that this definition is equivalent to the above coordinate dependent definition, the Levi-Civita connection, of the covariant derivative.
-
-\begin{prop}
-Let $S$ be a regular surface embedded in $\R^3$.
-If we define Christoffel symbols as the Gauss formula, then
-\[\fX(S)\times\fX(S)\to\fX(S):(X^i\a_i,Y^j\a_j)\mapsto\left(X^i\pd_iY^k+X^iY^j\Gamma_{ij}^k\right)\a_k\]
-defines a Levi-Civita connection.
-\end{prop}
+% -------------
 
 
 
 
-\section{Parallel transport}
-% linearity, holonomy
-
-
-
-\section{Geodesics}
-% 측지선에 대한 기저(n,T,S)
-% 측지꼬임/곡률
-% 측지선 방정식
-% 측지완비: 호프 리노프
-% 지수사상: 가우스 보조정리
-% 야코비장
-% 카르탕 아다마르
-
-\section{Curvature}
-
-
-
-\chapter{Global Theory of Curves and Surfaces}
-
-% Global theory
-%  곡선: 등주부등식, (네 꼭짓점, 펜첼/페리-밀너), 볼록성/오발
-%  곡면: 최소곡면, (컴팩트곡면분류, 가우스-보네), 임베딩문제,
 
 \end{document}

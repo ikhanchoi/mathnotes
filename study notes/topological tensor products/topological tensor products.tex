@@ -1,0 +1,131 @@
+\documentclass{../../small}
+\usepackage{../../ikhanchoi}
+
+\begin{document}
+\title{Topological Tensor Products}
+\author{Ikhan Choi}
+\maketitle
+\tableofcontents
+
+\subsection*{Notation}
+\begin{tabular}{cl}
+$L(X,Y)$ & the set of bounded linear operators from $X$ to $Y$\\
+$B(X,Y)$ & the set of bounded bilinear forms on $X\times Y$\\
+$F(X,Y)$ & the set of continuous finite-rank linear operators from $X$ to $Y$\\
+$B_X$ & closed unit ball of a normed space $X$\\
+$S_X$ & unit sphere of a normed space $X$\\
+$X\otimes Y$ & algebraic tensor product of $X$ and $Y$\\
+$X^*$ & continuous dual space\\
+$X^\#$ & algebraic dual space
+\end{tabular}
+
+\newpage
+\section{Universal properties}
+
+\begin{prb}[Algebraic tensor product of vector spaces]
+Let $X$ and $Y$ be vector spaces.
+The \emph{algebraic tensor product} is a vector space $X\otimes Y$ with a bilinear map $\otimes:X\times Y\to X\otimes Y$ such that the following universal property: for any vector space $Z$ and any bilinear map $\sigma:X\times Y\to Z$, there exists a unique linear map $\tilde\sigma:X\otimes Y\to Z$ such that the diagram
+\begin{cd}
+X\times Y \ar{r}{\otimes}\ar[swap]{dr}{\sigma} & X\otimes Y \ar[dashed]{d}{\tilde\sigma}\\
+\, & Z 
+\end{cd}
+is commutative.
+\begin{parts}
+\item The tensor product $X\otimes Y$ always exists.
+\item We have linear maps $L(X,Z)\otimes L(Y,W)\to L(X\otimes Y,Z\otimes W)$ and $B(L(X,Z),L(Y,Z))\to L(X\otimes Y,Z)$.
+\item Every element $t\in X\otimes Y$ is represented as $t=\sum_{i=1}^nx_i\otimes y_i$ such that $\{x_i\}$ is linearly indpendent. In this case, if $t=0$ then $y_i=0$ for all $i$.
+\end{parts}
+\end{prb}
+\begin{pf}
+(a)
+Let $T$ be the set of formal linear combinations of $X\times Y$, that is, an element of $T$ has the form $\sum_{i=1}^na_i\cdot(x_i,y_i)$ for $x_i\in X$, $y_i\in Y$, and scalars $a_i$.
+Define $T_0\subset T$ to be a linear space spanned by the elements of the following four types:
+\begin{gather*}
+(x+x',y)-(x,y)-(x',y),\quad (x,y+y')-(x,y)-(x,y'),\\
+(ax,y)-a(x,y), \quad\qquad\qquad (x,ay)-a(x,y).
+\end{gather*}
+Then, the quotient space $T/T_0$ satisfies the universal property with the bilinear map $X\times Y\to T/T_0:(x,y)\mapsto(x,y)+T_0$.
+\end{pf}
+
+\begin{prb}[Algebraic tensor product of involutive algebras]
+
+\end{prb}
+
+
+
+\section{Banach spaces}
+
+\begin{prb}[Subcross norms]
+
+\end{prb}
+
+\begin{prb}[Injective tensor products]
+Let $X$ and $Y$ be Banach spaces.
+Define the \emph{injective norm} $\e$ on $X\otimes Y$ such that
+\[\e\left(\sum_{i=1}^nx_i\otimes y_i\right):=\sup_{\substack{x^*\in B_{X^*}\\y^*\in B_{Y^*}}}\left|\sum_{i=1}^n\<x_i,x^*\>\<y_i,y^*\>\right|.\]
+We denote by $X\otimes_\e Y$ the algebraic tensor product with the injective norm, and by $X\hat\otimes_\e Y$ its completion.
+\begin{parts}
+\item $X\otimes_\e Y$ is naturally isometrically isomorphic to $F((X^*,w^*),(Y,w))$.
+\item $X^*\otimes_\e Y$ is naturally isometrically isomorphic to $F(X,Y)$.
+\end{parts}
+\end{prb}
+
+\begin{prb}[Projective tensor products]
+Let $X$ and $Y$ be Banach spaces.
+Define the \emph{projective norm} $\pi$ on $X\otimes Y$ such that
+\[\pi\left(t\right):=\inf\left\{\sum_{i=1}^n\|x_i\|\|y_i\|:t=\sum_{i=1}^nx_i\otimes y_i\right\}.\]
+We denote by $X\otimes_\pi Y$ the algebraic tensor product with the projective norm, and by $X\hat\otimes_\pi Y$ its completion.
+\begin{parts}
+\item There are natural isometric isomorphisms $(X\otimes_\pi Y)^*\cong B(X,Y)\cong L(X,Y^*)$.
+\item
+\end{parts}
+\end{prb}
+
+\begin{prb}[Hilbert space tensor product]
+
+Let $\f:H\otimes K\to L(H^*,K)$.
+Then, $\lambda(\xi)=\|\f(\xi)\|$, $\gamma(\xi)=\tr(|\f(\xi)|)$, so $H\hat\otimes_\lambda K\cong K(H^*,K)$ and $H\hat\otimes_\gamma K\cong L^1(H^*,K)$.
+\end{prb}
+
+
+\begin{prb}[Nuclear operators]
+\[X^*\otimes_\pi Y\to X^*\otimes_\e Y\xrightarrow{\sim} F(X,Y)\xrightarrow{1}K(X,Y)\]
+defines
+\[J:X^*\hat\otimes_\pi Y\to K(X,Y).\]
+Define $N(X,Y):=\im J$.
+\end{prb}
+
+\begin{prb}[Grothendieck theorem]
+Let $Y^*$ be an RNP space.
+Then, there is an isometric isomorphism $(X\hat\otimes_\e Y)^*\cong N(X,Y^*)$.
+\end{prb}
+
+\section{Approximation property}
+
+\begin{prb}[Approximation property of locally convex spaces]
+\end{prb}
+
+\begin{prb}[Approximation property of Banach spaces]
+\end{prb}
+
+\begin{prb}[Approximation property of dual Banach spaces]
+\end{prb}
+
+\begin{prb}[Mazur's goose]
+\begin{parts}
+\item If $X$ has a Schauder basis, then it has the approximation property.
+\end{parts}
+\end{prb}
+
+
+
+\section{Nuclear spaces}
+
+
+\section{C$^*$-algebras}
+
+
+von Neumann algebras, Haagerup tensor product
+
+
+\end{document}
