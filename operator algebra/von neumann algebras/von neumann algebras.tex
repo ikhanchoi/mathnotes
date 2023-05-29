@@ -3,96 +3,15 @@
 
 
 \begin{document}
-\title{Operator Algebra}
+\title{Von Neumann Algebras}
 \author{Ikhan Choi}
 \maketitle
 \tableofcontents
 
-\part{C$^*$-algebras}
-\chapter{Basic concepts}
-
-\section{Multiplier algebra}
-
-\begin{prb}[Multiplier algebra]
-Let $\cA$ be a C$^*$-algebra.
-A \emph{double centralizer} of $\cA$ is a pair $(L,R)$ of bounded linear maps on $\cA$ such that $aL(b)=R(a)b$ for all $a,b\in\cA$.
-The \emph{multiplier algebra} $M(\cA)$ of $\cA$ is defined to be the set of all double centralizers of $\cA$.
-\end{prb}
-
-\begin{prb}[Essential ideals]
-\begin{parts}
-\item Hilbert C$^*$-module description
-\end{parts}
-\end{prb}
-
-\begin{prb}[Examples of multiplier algebras]
-\begin{parts}
-\item $M(K(H))\cong B(H)$.
-\item $M(C_0(\Omega))\cong C_b(\Omega)$.
-\end{parts}
-\end{prb}
-\begin{pf}
-(a)
-
-(b)
-First we claim $C_0(\Omega)$ is an essential ideal of $C_b(\Omega)$.
-Since $C_b(\Omega)\cong C(\beta\Omega)$, and since closed ideals of $C(\beta\Omega)$ are corresponded to open subsets of $\beta\Omega$, $C_0(\Omega)\cap J$ is not trivial for every closed ideal $J$ of $C_b(\Omega)$.
-
-Now we have an injective $^*$-homomorphism $C_b(\Omega)\to M(C_0(\Omega))$, for which we want to show the surjectivity.
-Let $g\in M(C_0(\Omega))^+$.
-\end{pf}
-
-\begin{prb}[Strict topology]
-\end{prb}
 
 
 
-\section{Hereditary C$^*$-subalgebras}
-\begin{prb}[Hereditary C$^*$-subalgebra and state embedding]
-
-\end{prb}
-
-
-\section*{Exercises}
-\begin{prb}
-Let $\cB$ be a hereditary C$^*$-subalgebra of a C$^*$-algebra $\cA$.
-Let $a\in\cA^+$.
-If for any $\e>0$ there is $b\in\cB^+$ such that $a-\e\le b$, then $a\in B^+$.
-\end{prb}
-\begin{pf}
-To catch the idea, suppose $\cA$ is abelian.
-We want to approximate $a$ by the elements of $\cB$ in norm.
-To do this, for each $\e>0$, we want to construct $b'\in\cB^+$ such that $a-\e\le b'\le a+\e$ using $b$.
-Taking $b'=\min\{a,b\}$ is impossible in non-abelian case, but we can put $b'=\frac a{b+\e}b$.
-For a simpler proof, $b'=(\frac{\sqrt{ab}}{\sqrt b+\sqrt\e})^2$ is a better choice.
-
-Define
-\[b':=\frac{\sqrt b}{\sqrt b+\sqrt\e}a\frac{\sqrt b}{\sqrt b+\sqrt\e}.\]
-Then,
-\[\|\sqrt a-\sqrt a\frac{\sqrt b}{\sqrt b+\sqrt\e}\|^2=\|\frac{\sqrt\e}{\sqrt b+\sqrt\e}a\frac{\sqrt\e}{\sqrt b+\sqrt\e}\|\le\e\]
-implies
-\[\lim_{\e\to0}b'=\lim_{\e\to0}\frac{\sqrt b}{\sqrt b+\sqrt\e}\sqrt a\cdot\sqrt a\frac{\sqrt b}{\sqrt b+\sqrt\e}=\sqrt a\cdot\sqrt a=a.\]
-\end{pf}
-
-\chapter{}
-
-
-
-\chapter{}
-
-
-
-
-
-
-
-
-
-
-
-
-
-\part{Von Neumann algebras}
+\part{}
 
 \chapter{Factor classifications}
 
@@ -190,26 +109,6 @@ Let $\cA$ be a uniformly hyperfinite algebra.
 
 
 
-
-
-
-
-\part{Operator K-theory}
-\chapter{Brown-Douglas-Fillmore theory}
-\begin{prb}[Haagerup property]
-\end{prb}
-
-Baum-Connes conjecture
-Non-commutative geometry
-Elliott theorem
-
-
-
-
-\chapter{Approximately finite algebras}
-Elliott conjecture: amenable simple separable C$^*$-algerbas are classified by K-theory.
-
-\chapter{Crossed products and dynamical systems}
 
 
 

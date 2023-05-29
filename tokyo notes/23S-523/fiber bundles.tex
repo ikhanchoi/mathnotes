@@ -356,17 +356,20 @@ In fact, it is sufficient for $H$ to be a closed subgroup of $G$, even if it is 
 \item
 With an action $S^{2n+1}\curvearrowright S^1$ such that $(z_0,\cdots,z_n)w=(z_1w,\cdots,z_nw)$, we have an $S^1$-bundle
 \[S^{2n+1}\to\CP^n:(z_0,\cdots,z_n)\mapsto[z_0:\cdots:z_n].\]
+It is a general Hopf bundle.
 \item
 For $k\le n$, the Stiefel variety is
 \[V_k(\R^n):=\{M\in M_{n,k}(\R):\rk M=k\}.\]
 Also define
-\[V_k^0(\R^n):=\{M\in V_k(\R^n):\text{column vectors of $M$ are orthonormal}\}\]
+\[V_k^O(\R^n):=\{M\in V_k(\R^n):\text{column vectors of $M$ are orthonormal}\}\]
 and the Grassmannian manifold
 \[G_k(\R^n):=\{\text{$k$-dimensional subspaces of $\R^n$}\}.\]
-With an action $V_k(\R^n)\curvearrowright\GL(k,\R)$ such that $(v_1,\cdots,v_k)X=(v_1X,\cdots,v_kX)$, we have $G_k(\R^n)\cong V_k(\R^n)/\GL(k,\R)$ and $G_k(\R^n)\cong V_k^0(\R^n)/\rO(k)$.
-Then, $(\rO(k)\to V_k^0(\R^n)\to G_k(\R^n))$ and $(\GL(k,\R)\to V_k(\R^n)\to G_k(\R^n))$ are principal bundles.
+Stiefel varieties can be realized as principal bundles on Grassmannian manifolds.
+
+With an action $V_k(\R^n)\curvearrowright\GL(k,\R)$ such that $(v_1,\cdots,v_k)X=(v_1X,\cdots,v_kX)$, we have $G_k(\R^n)\cong V_k(\R^n)/\GL(k,\R)$ and $G_k(\R^n)\cong V_k^O(\R^n)/\rO(k)$.
+Then, $(\rO(k)\to V_k^O(\R^n)\to G_k(\R^n))$ and $(\GL(k,\R)\to V_k(\R^n)\to G_k(\R^n))$ are principal bundles.
 \item
-As a complex version of (b), we have principal bundles $(\rU(k)\to V_k^0(\C^n)\to G_k(\C^n))$ and $(\GL(k,\C)\to V_k(\C^n)\to G_k(\C^n))$.
+As a complex version of (b), we have principal bundles $(\rU(k)\to V_k^U(\C^n)\to G_k(\C^n))$ and $(\GL(k,\C)\to V_k(\C^n)\to G_k(\C^n))$.
 \end{parts}
 \end{ex*}
 
@@ -381,14 +384,110 @@ Such $M$ is called a homogeneous space.
 \begin{ex*}
 With an action $\SO(n)\curvearrowleft S^{n-1}$, since the isotropy group is isomorphic to $\SO(n-1)$, we have a principal bundle $SO(n-1)\to SO(n)\to S^n$.
 
-We can also see the examples above(Grassmann and Steifel manifolds) as principal bundles on homogeneous spaces with a diffeomorphsim $\rO(n-k)\setminus\rO(n)\to V_k^0(\R^n):[A]\mapsto(Ae_1,\cdots,Ae_k)$ and $\rO(n)/\rO(n-k)\times\rO(k)\cong G_k(\R^n)$: principal $\rO(k)$-bundle
+We can also see the examples above(Grassmann and Steifel manifolds) as principal bundles on homogeneous spaces with a diffeomorphsim $\rO(n-k)\setminus\rO(n)\to V_k^O(\R^n):[A]\mapsto(Ae_1,\cdots,Ae_k)$ and $\rO(n)/\rO(n-k)\times\rO(k)\cong G_k(\R^n)$: principal $\rO(k)$-bundle
 \begin{cd}
-\rO(k)\ar{r} & V_k^0(\R^n) \ar{d}\ar{r}{\sim}& \rO(n)/\rO(n-k)\\
-& G_k(\R^n) \ar{r}{\sim} & \rO(n)/\rO(n-k)\times\rO(k).
+\rO(k)\ar{r} & V_k^O(\R^n) \ar{d}\ar{r}{\sim}& \rO(n)/\rO(n-k)\\
+& G_k(\R^n) \ar{r}{\sim} & (\rO(n)/\rO(n-k))/\rO(k).
 \end{cd}
 We also have a complex version.
 
 
 \end{ex*}
+
+
+
+\newpage
+\setcounter{section}{4}
+\section{Day 5: May 8}
+
+
+\subsubsection*{Principal bundles and associated bundles}
+
+Let $G$ be a topological group and $\xi=(G\to E\xrightarrow{p}B,G)$ be a principal $G$-bundle.
+Let $\{U_\alpha\}$ be an open cover of $B$.
+Let $G$ effectively act on $F$ from left as a transformation group, i.e. there is an injective group homomorphism $\sigma:G\to\Homeo(F)$ such that the action $G\times F\to F$ is continuous.
+Define
+\[E\times_GF:=E\times F/(eh,f)\sim(e,\sigma(h)f)\]
+and
+\[\pi:E\times_GF\to B:[e,f]\mapsto p(e).\]
+This map is well-defined and continuous so that $\eta=(F\to E\times_GF\xrightarrow{\pi}B,G)$ is a fiber bundle with structure group $G$ and fiber $F$.
+
+In fact, if $\{g_{\alpha\beta}\}$ is the transition maps of $\xi$, then the transition maps of $\eta$ are given by $\{\sigma\circ g_{\alpha\beta}\}$.
+
+Conversely, let $\tilde\eta=(F\to\tilde E\to B,G)$ be a fiber bundle with structure group $G$ and fiber $F$.
+If we construct principal $G$-bundle $\xi$ with the transition data $\{g_{\alpha\beta}\}$ of $\tilde\eta$, then $\eta$ and $\tilde\eta$ are isomorphic.
+
+\begin{rmk*}
+If $\sigma:G\to\Homeo(F)$ is not injective, then $\eta=(F\to E\times_GF\to B$ is a $G/\ker\sigma$-bundle with fiber $F$.
+It can be seen as a generalized version of assoicated bundles.
+\end{rmk*}
+\begin{ex*}
+Let $M^n$ be a smooth manifold and $p:TM\to M$ be the tangent bundle with structure group $\GL(n,\R)$.
+For each $x\in M$, consider
+\[F_x:=\{[v_1,\cdots,v_n]:\text{ordered bases of }T_xM\}\]
+and $FM:=\bigcup_{x\in M}F_x\curvearrowright\GL(n,\R)$.
+We call $FM\to M$ the tangent frame bundle.
+\end{ex*}
+
+\begin{thm*}[2.14]
+\[\begin{array}{ccc}
+\left\{\begin{tabular}{c}isomorphism classes of\\real vector bundles of rank $n$ on $B$\end{tabular}\right\}
+&\xrightarrow{\sim}&
+\left\{\begin{tabular}{c}isomorphism classes of\\principal $\GL(n,\R)$-bundles on $B$\end{tabular}\right\}.
+\end{array}\]
+\end{thm*}
+\begin{pf}
+Transition maps.
+\end{pf}
+
+\begin{ex*}
+The tautological vector bundle $\gamma_k$ is defined as $\R^k\to E_k\xrightarrow{\pr_1}G_k(\R^n)$, where
+\[E_k:=\{(W,p)\in G_k(\R^n)\times\R^n:p\in W\}.\]
+This is the vector bundle associated to the canonical principal $\GL(n,\R)$-bundle on $G_k(\R^n)$.
+\end{ex*}
+
+\subsubsection*{Reduction of structure groups}
+\begin{defn*}[2.15]
+Let $H$ be a closed subgroup $G$.
+We say the structure group of a $G$-bundle $\xi$ with fiber $F$ can be reduced to $H$ if $\xi$ is isomorphic to a $H$-bundle with fiber $F$.
+In other words, we have a collection of $H$-valued transition maps on an appropriately taken open cover on the base space.
+\end{defn*}
+
+\begin{ex*}\,
+\begin{parts}
+\item Let $H:=\Homeo^+(F)\subset G:=\Homeo(F)$.
+A bundle with fiber $F$ is orientable if and only if the structure group can be reduced to $H$.
+\item Let $H:=\rO(n)\subset G:=\GL(n,\R)$.
+A vector bundle of rank $n$ has a Euclidean metric(it is a Riemannian metric if smooth) if and only if the structure group of the associated principal $G$-bundle can be reduced to $H$.
+
+($\Rightarrow$)
+Suppose a vector bundle $\xi$ has a collection of $\rO(n)$-valued transition maps on a sufficiently refiend open cover, and the local trivialization is written by $\f_\alpha:p^{-1}(U_\alpha)\to U_\alpha\times\R^n$.
+Then, for $x,y\in E_b$ and $b\in U_\alpha\subset B$, the symmetric bilinear form
+\[(x,y)_b:=(\pr_2\circ\f_\alpha(x),\pr_2\circ\f_\alpha(y))_{\R^n}\]
+is a well-defined inner product.
+
+($\Leftarrow$)
+Suppose a Euclidean metric on a vector bundle $\xi$ of rank $n$ is given.
+Since $p^{-1}(U_\alpha)\to U_\alpha$ is trivial, we can take sections $(s_i)_{i=1}^n$ on $U_\alpha$ which are linearly independent at each point of $U_\alpha$.
+Using the given Euclidean metric, we can apply the Gram-Schmidt algorithm to get another set of sections $(e_i)_{i=1}^n$ which form an orthonormal basis at each point of $U_\alpha$.
+With these sections we can construct new local trivializations, having $\rO(n)$-valued transition maps.
+
+(Another remark)
+Since every vector bundle over a paracompact space $B$ admits a Euclidean metric, the structure group of every principal $\GL(n,\R)$-bundle can be reduced to $\rO(n)$.
+
+\item
+For a complex version, a complex vector bundle of rank $n$ admits a Hermitian metric if and only if the structure group $\GL(n,\C)$ can be reduced to $\rU(n)$.
+Similarly, the reduction is always possible if $B$ is paracompact.
+\end{parts}
+\end{ex*}
+
+
+\subsection*{3. Classification of principal bundles}
+
+\subsubsection*{Pullback bundles}
+
+transition data of pullback bundle
+pullback of vector budle is a vector bundle
+
 
 \end{document}

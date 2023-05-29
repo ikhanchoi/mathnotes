@@ -1,0 +1,565 @@
+\documentclass{amsart}
+
+%%% Start of the area for technical editor.
+\newcommand{\publname}{Seoul Science High School}
+%\newcommand{\doiname}{http://dx.doi.org/10.4134/JKMS}
+\issueinfo{}% volume number
+  {}%        % issue number
+  {}%        % month
+  {}%     % year
+\pagespan{1}{}
+%\received{Received January 5, 2005}
+%\received{Received August 25, 2005;\enspace Revised October 20, 2005}
+\copyrightinfo{}%              % copyright year
+  {Seoul Science High School}% copyright holder
+%%% End of the area for technical editor.
+
+\usepackage{kotex}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage{dhucs-nanumfont}
+\else\ifXeTeX
+  \setmainhangulfont[Ligatures=TeX]{HCR Batang LVT}
+  \setsanshangulfont[Ligatures=TeX]{HCR Dotum LVT}
+\else\ifLuaTeX
+  \setmainhangulfont[Ligatures=TeX]{HCR Batang LVT}
+  \setsanshangulfont[Ligatures=TeX]{HCR Dotum LVT}
+\fi\fi\fi
+\usepackage{amssymb}
+
+\allowdisplaybreaks
+
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+
+\theoremstyle{definition}
+\newtheorem*{definition}{Definition}
+
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\begin{document}
+
+\title[Fold-and-Cut <<Closed Rectifiable Curve>> under Conical Origami]
+{Folding and Cutting <<Closed Rectifiable Curve>> under Conical Origami}
+
+\author[I. Choi, J. W. Jung]{Ikhan Choi, Jong Wook Jung}
+\address{address}
+\email{email}
+
+\subjclass{subclass}
+\keywords{keywords}
+
+
+
+
+\begin{abstract}
+
+
+\end{abstract}
+
+
+
+\maketitle
+
+\section{Introduction}
+
+%isometric imbedding
+%foldcut
+%origami
+%cutcut conical
+%main result
+
+
+%simple flat folding-vertex, local
+
+
+
+
+
+
+
+
+\section{Definitions of Origami and Cut}%section 2
+
+%des
+In this section, we propose the definitions of words that is necessary to present the problem, that there is a proper planar straight cut drawing the given graph.
+As a first, we define {\it piecwise $C^1$} for Lipschitz-continuous function, and a kind of rigid map {\it origami} that is modelling paper folding imbedded in ${\mathbb R}^3$.
+See \cite{Lip}.
+Next, in special case, we define {\it conical origami} as an origami the image is (general) cone, and present expansion of {\it cutting} paper into {\it non-flat origami model}.
+To refer to usual geometrical approach to origami, see [123] %\cite{}
+
+
+\begin{definition}%def
+{\it (Piecewise $C^1$)}.
+Let $f:\Omega\subset{\mathbb R}^n\to{\mathbb R}^m$ be a Lipschitz continuous map that is differntiable for almost everywhere $x\in\Omega$. We call {\it singular set} of the map $f$ the set of points $\Sigma_f\subset\Omega$ where $f$ is not differentiable.
+We say that $f$ is {\it piecewise $C^1$} if the following conditions hold:
+\begin{itemize}
+\item $\Sigma_f$ is closed in $\Omega$;
+\item $f$ is $C^1$ on every connected component of $\Omega\backslash\Sigma_f$;
+\item for every compact set $K\subset\Omega$ the number of connected components of $\Omega\backslash\Sigma_f$ which intersect $K$ is finite.
+\end{itemize}
+\end{definition}
+
+
+
+%des
+We define {\it origami} as a piecewise $C^1$ map with orthogonal gradient and exclusion to intersect itself.
+To make more practical physical model of origami, we allow precise overlappings which can be approximated by injective maps, that means it is possible to be tangent to itself but not to transverse.
+For example, the map $u(x,y)=(|x|,y,0)$ is not injective but can be obtained as $k\to\infty$ of the injective maps $u_k(x,y)=(|x|\cos\frac1k,y,x\sin\frac1k)$ which represent actual folding process along time (see \cite{Com}).
+
+
+\begin{definition}%def
+{\it (Conical Origami)}.
+Let $\Omega\subset {\mathbb R}^2$ be a connected set.
+A Lipschitz continuous map $u:\Omega\to{\mathbb R}^3$ is an {\it conical origami} if $u$ is piecewise $C^1$ map, such that the gradient $Du$ is orthogonal $3\times2$ matrix for all $x\in\Omega\backslash\Sigma_u$, and there exists a sequence of maps $u_k:\Omega\to{\mathbb R}^3$ that are Lipschitz continuous and injective such that $u_k\to u$ in the uniform convergence, and the image of $u$ is a cone, not a plane.
+\end{definition}
+
+%des
+If we exclude the condition which describes the image of $u$ is a cone, then the map $u$ is called just {\it origami}.
+See \cite{Lip}.
+
+%des
+In comparison with flat origami model, singular set $\Sigma_u$ and conical origami are corresponding to {\it crease pattern} and {\it single-vertex flat folding} of flat origami respectively.
+The conical origami is defined in order to treat single-vertex folding which is easier than global flat folding (there are two or more vertices).
+
+%des
+Fold-and-cut theorem states that we can find a flat folding of paper, so that one complete straight cut on folding creates any desired plane graph of cuts made up with straight sides.
+Similarly, but in 3-dimensional space, we ask that there is an origami map such that a certain planar straight cut on folding creates the given curve, especially <<{\it closed curve}>>, on plane.
+If there is such an origami, we call the curve {\it cut by the origami}.
+For more detail contents apropos of fold-and-cut theorem, see \cite{Fac}.
+
+
+\begin{definition}%def
+Let us define that a <<curve>> $\gamma:I\to{\mathbb R}^2$ is {\it cut by origami $u:\Omega={\mathbb R}^2\to{\mathbb R}^3$} if there exists a plane $S\subset{\mathbb R}^3$ such that $S\cap{\rm im}\,u=u({\rm im}\,\gamma)$.
+\end{definition}
+
+%des
+From now on, we will investigate the properties of <<closed curve>> that is cut by conical origami, and suggest a concrete illustration of conical origami which have the given curve satisfying condition (\ref{condition}) in Theorem \ref{4.1} be cut.
+
+
+
+
+
+
+
+\section{Properties of <<Closed Curve>> that is Cut by Conical Origami}%section 3
+
+%des
+Let $O$ be a point on plane such that the image of $O$ under a conical origami is the vertex of the cone.
+We suggest the way to deal with the problem in polar coordinate which has $O$ be the pole, by representing the given closed curve by a polar equation.
+The following two theorems show the {\it necessary condition} for the closed curve to be cut by conical origami, related on representing the <<closed curve>> as a simple polar equation.
+
+
+\begin{theorem}\label{3.1}%3.1
+Let $u:{\mathbb R}^2\to{\mathbb R}^3$ be a conical origami and $O$ be a point on ${\mathbb R}^2$ such that $u(O)$ is vertex of the cone.
+If a closed curve $\gamma:S^1\to{\mathbb R}^2$ is cut by $u$, then arbitrary half line starting at $O$ meets $\gamma$ at one point that is not $O$.
+\end{theorem}
+
+\begin{proof}
+
+\end{proof}
+
+
+\begin{theorem}\label{3.2}%3.2
+Let $u:{\mathbb R}^2\to{\mathbb R}^3$ be a conical origami and $O$ be a point on ${\mathbb R}^2$ such that $u(O)$ is vertex of the cone.
+If a closed curve $\gamma:S^1\to{\mathbb R}^2$ is cut by $u$ and there exists a point $\gamma$ is differentiable, then arbitrary half line starting at $O$ is not tangent to $\gamma$.
+\end{theorem}
+
+\begin{proof}
+
+\end{proof}
+
+%des
+As the <<curve>> gratifying two conditions right above, we give a definition of {\it cut graph} that is the curve that we have to investigate whether it can be cut by conical origami.
+The words was borrowed from \cite{Fac}.
+
+
+\begin{definition}%def
+A <<Lipschitz continuous simple closed curve>> $\gamma:S^1\to{\mathbb R}^2$ and a point $O$ in the interior of $\gamma$ are called {\it cut graph} and {\it skeleton vertex of $\gamma$} respectively if arbitrary half line starting at $O$ meets $\gamma$ at one point but is not tangent to $\gamma$.
+\end{definition}
+
+
+%des
+Now, we can deal with the closed curve by putting in polar coordinate which has $O$ be the pole.
+Following corollary defines this polar coordinate system.
+
+
+\begin{corollary}\label{3.3}%3.3
+If a <<Lipschitz continuous simple closed curve>> $\gamma:S^1\to{\mathbb R}^2$ is cut graph and a point $O$ in the interior of $\gamma$ is skeleton vertex of $\gamma$, then there exists a positive real valued function $r:[0,2\pi]\to(0,\infty)$ such that polar eqation $\rho=r(\psi)$ represents the curve $\gamma$, in polar coordinate system $(\rho,\psi)$ such that $O$ is the pole and a certain half line starting at $O$ is polar axis.
+\end{corollary}
+
+%des
+The following theorem is our third necessary condition for the closed curve to be cut by conical origami.
+
+\begin{theorem}\label{3.4}%3.4
+Let $r$ be a piecewise $C^1$ function defined as same manner with Corollary 3.3 for a cut graph $\gamma$. If a cut graph $\gamma$ is cut by conical origami, then the function $r$ is piecewise $C^1$.
+\end{theorem}
+
+\begin{proof}
+
+\end{proof}
+
+
+
+
+
+
+
+
+
+
+\section{}%section 4
+
+%des
+%우리는 필요조건들을 보았다. 이 필요조건들을 만족하는 gamma에 대해서 이 gamma가 cut이 되는 conical origami를 직접 제시할 것이다.
+%극좌표에서 원통좌표로 origami에 의해 보내졌을 때 그 곡선을 포함하는 평면에의 사영을 고려할 것이다.
+%각도의 사영을 정의하자.............................
+
+We have inquired some necessary conditions in Section 3.
+For the curve $\gamma$ satisfying the conditions, we directly propose conical origami by which $\gamma$ be cut in Theorem \ref{4.1}.
+
+
+\begin{definition}%def
+Let $r$ be a piecewise $C^1$ function defined as same manner with Corollary 3.3 for a cut graph $\gamma$, and $L_r$ defined as an open interval such that:
+\begin{align*}
+L_r:=\left(\;0\,,\;\inf_{\psi\in[0,2\pi]\backslash\Sigma_r}\frac{r(\psi)^2}{\sqrt{r(\psi)^2+r'(\psi)^2}}\,\right).
+\end{align*}
+
+For the function $r$, a function $A_z:[0,2\pi]\to{\mathbb R}$ is defined such that: 
+\begin{align*}
+A_z(\psi):=\int_{[0,\psi]\backslash\Sigma_r}\left(1+\frac{z^2}{r(\theta)^2 -z^2}\left(1-\frac{r'(\theta)^2}{r(\theta)^2 -z^2}\right)\right)^{\frac12}\,d\theta
+\end{align*}
+for $z\in L_r$, where $r'$ is derivative of the function $r$ and $\Sigma_r$ is singular set.
+\end{definition}
+
+%des
+%$A_0(\psi)=\psi$
+%여기서 z는 평면과 꼭짓점 사이의 거리이다.
+%정리3.2덕분에 L은 공집합이 될 수 없다.
+
+
+%des
+%위의 사영각은 다음과 같이 정의되었다
+
+%---------------------------------┐
+\iffalse
+어떤 developable surface를 작은 삼각형들로 분할하여 근사시키는 것을 triangulation approximating이라 한다.
+Pattern $\gamma$의 내부 영역을 $I$라 할 때 상 $\varphi(I)$는 generalized cone이므로 triangulation 과정에 있는 모든 삼각형은 꼭짓점 중 하나가 $\varphi(O)$에 있고 그 변이 $\varphi(\gamma)$ 위에 있게 분할할 수 있을 것이다.
+각 $\theta$의 변화량 $\Delta\theta$를 생각하여 세 점 $\varphi(\gamma(\theta))$와 $\varphi(\gamma(\theta+\Delta\theta)), \varphi(O)$를 꼭짓점으로 갖는 삼각형을 $T$라 할 때 $T$는 삼각형 $(\gamma(\theta), \gamma(\theta+\Delta\theta), O)$와 합동이며 triangulation에 의한 분할의 원소 중 하나가 될 수 있다.
+
+삼각형 $T$와 각 $\Delta\theta$를 평면 $U$에 정사영시킨 삼각형 $T^*$와 정사영된 각 $\Delta\theta^*$를 생각하자.
+이 때 삼각형 $T^*$는 세 점 $\varphi(\gamma(\theta))$와 $\varphi(\gamma(\theta+\Delta\theta)), O$를 꼭짓점으로 가지는 삼각형이다.
+
+
+$r_1=r(\theta), r_2=r(\theta+\Delta\theta)$라 할 때 코사인 법칙에 의하여 다음을 얻는다.
+\begin{align*}
+r_1^2+r_2^2-2r_1r_2\cos\Delta\theta\,&=\,\left(r_1^2-z^2\right)+\left(r_2^2-z^2\right)
+\\&\quad-2\sqrt{r_1^2-z^2}\sqrt{r_2^2-z^2}\cos\Delta\theta^*.
+\end{align*}
+다음과 같이 식을 변형하자.
+\begin{align*}
+r_1r_2(1-\cos\Delta\theta)\,&=\,r_1r_2-z^2-\sqrt{r_1^2-z^2}\sqrt{r_2^2-z^2}
+\\&\quad+\sqrt{r_1^2-z^2}\sqrt{r_2^2-z^2}(1-\cos\Delta\theta^*).
+\end{align*}
+삼각함수의 반각공식에 의하여 다음을 얻는다.
+\begin{align*}
+r_1r_2\sin^2\frac{\Delta\theta}2=\frac{(r_2-r_1)^2z^2}{r_1r_2-z^2+\sqrt{r_1^2-z^2}\sqrt{r_2^2-z^2}}+\sqrt{r_1^2-z^2}\sqrt{r_2^2-z^2}\sin^2\frac{\Delta\theta^*}2.
+\end{align*}
+양변을 $(\Delta\theta/2)^2$로 나누고 극한 $\lim_{\Delta\theta\to0}$를 취하면 $\lim_{\Delta\theta\to0}(r_2-r_1)/\Delta\theta=r'(\theta)$이고 $\lim_{\Delta\theta\to0}\sin\Delta\theta/\Delta\theta=1$이므로 다음을 얻는다.
+\begin{align*}
+r(\theta)^2=\frac{2r'(\theta)^2z^2}{r(\theta)^2-z^2}+\left(r(\theta)^2-z^2\right)\left(\frac{d\theta^*}{d\theta}\right)^2.
+\end{align*}
+간단한 계산을 통해 다음을 얻는다.
+\begin{align}\label{tr2}
+\frac{d\theta^*}{d\theta}=\left(1+\frac{z^2}{r(\theta)^2 -z^2}\left(1-\frac{r'(\theta)^2}{r(\theta)^2 -z^2}\right)\right)^{\frac12}.
+\end{align}
+식 (\ref{tr2})에 의해 함수 transition이 식 (\ref{tr1})과 같이 정의되었음을 확인하자.
+\fi
+%---------------------------------┘
+
+%des
+%z의 정의역 구간 L에 포함되지 않으면 사영각이 복소수가 되거나 u가 평면이 되어버림
+
+
+
+\begin{theorem}\label{4.1}%4.1
+Consider the polar coordinate system $(\rho, \psi)$ and let $r$ be a piecewise $C^1$ function defined as same manner with Corollary 3.3. for a cut graph $\gamma$ satisfying:
+\begin{align}\label{condition}
+\sup_z\,A_z(2\pi)\ge2\pi.
+\end{align}
+
+If we define a map $\varphi:{\mathbb R}^2\to{\mathbb R}^3$ such that:
+\begin{align*}
+\varphi(\rho,\psi)_{polar}=\left(\;\rho\sqrt{1-\frac{z^2}{r(\psi)^2}}\,,\;\int_0^{\psi}(1-2\chi_{\kappa}(\theta))\frac{\partial A_z(\theta)}{\partial\theta}\,d\theta\,,\;z\left(1-\frac{\rho}{r(\psi)}\right)\,\right)_{cylindrical}
+\end{align*}
+for fixed $z\in L_r$ and interval $\kappa\subset[0,2\pi]$, then there exists a pair $(\kappa,z)$ such that $\varphi$ is origami.
+
+Moreover, if $\varphi$ is origami, then $\varphi$ is conical origami and $\gamma$ is cut by $\varphi$.
+\end{theorem}
+
+
+
+%des
+In the Theorem \ref{4.1}, the function $\chi_{\kappa}$ is {\it indicator function} such that:
+\begin{align*}
+\chi_{\kappa}(\psi)=
+\begin{cases}
+1&,\psi\in\kappa\\
+0&,{\rm otherwise.}
+\end{cases}
+\end{align*}
+
+%des
+If we put any point on $\gamma$ in $\varphi$, then the $z$-coordinate in cylindrical coordinate becomes 0, on the other hand, the $z$-coordinate is 0 implies that $\rho=r(\psi)$.
+So we get $S\cap{\rm im}\,\varphi=\varphi({\rm im}\,\gamma)$ where we let $S$ be plane $z=0$, it is trivial that $\gamma$ is cut by $\varphi$ if $\varphi$ is origami.
+
+%des
+Proof of Theorem \ref{4.1} is obtained by theorems from \ref{4.2} to \ref{4.5} that the gradient $D\varphi$ is orthogonal by Theorem \ref{4.2}, there exists a sequence of maps $\varphi_k$ that are injective such that $\varphi_k\to\varphi$ in uniform convergence by Theorem \ref{4.3}, and $\varphi_k$ is Lipscitz continuous and piecewise $C^1$ by Theorem \ref{4.4}, at last, we can prove that $\varphi$ is conical origami through Theorem \ref{4.5}.
+
+%des
+Precisely, we show the metric tensor is preserved by $\varphi$ in Theorem \ref{4.2}, and present the way how we set an interval $\kappa$ which can makes a sequence of injective maps $\varphi_k$ that uniformly converges to $\varphi$ in Theorem \ref{4.3}.
+And then using the consequence of Theorem \ref{4.3}, we show it is possible to take $z$ and $\kappa$ simultaneously with keeping Lipschitz continuity of $\varphi$.
+Recall that since the function $r$ is piecewise $C^1$, there exists an interval in which $r$ is increasing or decreasing monotonically.
+It says there is no problem to take $\kappa$ in Theorem \ref{4.3} to prove Theorem \ref{4.1}.
+
+
+\begin{theorem}\label{4.2}%4.2
+Let $\varphi:{\mathbb R}^2\to{\mathbb R}^3$ be the map defined in Theorem \ref{4.1}. The map $\varphi$ is local isometric immersion, i.e. the gradient $D\varphi$ is orthognal.
+\end{theorem}
+
+\begin{proof}
+%---------------------------------┐
+\iffalse
+점 $\varphi(O)$가 $z$축에 있는 것과 $\varphi(U)\cap U$가 열린 영역을 포함하지 않는 것은 자명하다.
+또한 $\varphi$의 각 성분이 연속이므로 $\varphi(O)$는 연결되어 있다.
+Generated folding $\varphi$의 상 $M$에 대하여 $M$의 미분불가능한 점은 면적을 가지지 않고 radius $r$이 미분불가능한 점과 같으므로 transition $\tau$가 정의되는 점에 대해서 거리가 보존됨을 보이면 충분하다.
+
+$\varphi$의 편도함수 $\varphi_{\rho},\varphi_{\psi}$는 다음과 같다.
+\begin{align*}
+\varphi_{\rho}=\left(\sqrt{1-\frac{z^2}{r^2}},\,0,\,-\frac{z}r\right),\ 
+\varphi_{\psi}=\left(\rho\frac{z^2r'}{r^2\sqrt{r^2-z^2}},\,\sigma(z,\psi),\,\rho\frac{zr'}{r^2}\right).
+\end{align*}
+극좌표를 가지는 공간 $U$와 원통좌표계를 가지는 공간 $U\times{\mathbb R}$의 거리 텐서는 각각
+\begin{align*}
+{\bold I}_{U}=\begin{pmatrix}1&0\\0&\rho^2\end{pmatrix},\ 
+{\bold I}_{U\times{\mathbb R}}=\begin{pmatrix}1&0&0\\0&\rho\sqrt{1-\frac{z^2}{r^2}}&0\\0&0&1\end{pmatrix}
+\end{align*}
+이므로 $M$ 위의 거리 텐서의 성분을 어느 정도의 계산을 통해 다음과 같이 구할 수 있다.
+\begin{align*}
+E&=\left\langle\varphi_{\rho},\varphi_{\rho}\right\rangle=1\\
+F&=\left\langle\varphi_{\rho},\varphi_{\psi}\right\rangle=0\\
+G&=\left\langle\varphi_{\psi},\varphi_{\psi}\right\rangle=\rho^2.
+\end{align*}
+이 때의 내적은 $U\times{\mathbb R}$ 위에서의 내적이다. 우리는 다음을 얻는다.
+\begin{align*}
+{\bold I}_M=\begin{pmatrix}E&F\\F&G\end{pmatrix}=\begin{pmatrix}1&0\\0&\rho^2\end{pmatrix}={\bold I}_U
+\end{align*}
+따라서 $\varphi$는 $r$이 미분가능한 점에서 거리를 보존하므로 local piecewise isometry이다.
+\fi
+%---------------------------------┘
+\end{proof}
+
+
+\begin{theorem}\label{4.3}%4.3
+Let $\varphi:{\mathbb R}^2\to{\mathbb R}^3$ be the map defined in Theorem \ref{4.1}, and $[a,b]\subset[0,2\pi]$ be an interval such that the function $r$ is increasing or decreasing monotonically for $\psi\in[a,b]$.
+Take $\kappa=[\alpha,\beta]$ where
+\begin{align*}
+A_z(\alpha)=\frac56A_z(a)+\frac16A_z(b)\,,\;A_z(\beta)=\frac23A_z(a)+\frac13A_z(b)
+\end{align*}
+for arbitrary $z\in L_r$.
+Then there exists a sequence of maps $\varphi_k:{\mathbb R}^2\to{\mathbb R}^3$ that are injective such that $\varphi_k\to\varphi$ in uniform convergence.
+\end{theorem}
+
+\begin{proof}
+%---------------------------------┐
+\iffalse
+구간 $\kappa$에서 정의된 signed transition $\sigma$가 simple이 아니라고 가정하면 어떤 두 실수 $\psi_1<\psi_2\in[0,2\pi]$가 존재해 식 (\ref{gen})에 의해 $\varphi(\gamma(\psi_1))=\varphi(\gamma(\psi_2))$이므로 다음이 성립한다.
+\begin{align*}
+r(\psi_1)=r(\psi_2),
+\end{align*}
+\begin{align}\label{psieq}
+\int_0^{\psi_1} \sigma(z,\theta)d\theta=\int_0^{\psi_2} \sigma(z,\theta)d\theta
+\iff \int_{\psi_1}^{\psi_2} \sigma(z,\theta)d\theta=0.
+\end{align}
+
+$\psi_2<\alpha$라 가정하면 $[\psi_1,\psi_2]\cap[\alpha,\beta]=\varnothing$이므로
+\begin{align*}
+\int_{\psi_1}^{\psi_2} \sigma(z,\theta)d\theta=\int_{\psi_1}^{\psi_2} \tau(z,\theta)d\theta>0
+\end{align*}
+식 (\ref{psieq})에 모순되어 $\psi_2\ge\alpha$를 얻는다.
+
+$\psi_1<a$라 가정하고 다음과 같이 식을 전개하자.
+\begin{align*}
+\int_{\psi_1}^{\psi_2} \sigma(z,\theta)d\theta=\left(a^*-\psi_1^*\right)+\left(\alpha^*-a^*\right)+\int_{\alpha}^{\psi_2} \sigma(z,\theta)d\theta.
+\end{align*}
+다음 부등식에 의하여
+\begin{align*}
+\int_{\alpha}^{\psi_2} \sigma(z,\theta)d\theta
+\ge\int_{\alpha}^{\beta} \sigma(z,\theta)d\theta
+=-\int_{\alpha}^{\beta} \tau(z,\theta)d\theta=-\beta^*+\alpha^*
+\end{align*}
+다음과 같은 식 (\ref{psieq})에 대한 모순을 얻는다.
+\begin{align*}
+\int_{\psi_1}^{\psi_2} \sigma(z,\theta)d\theta\ge\left(a^*-\psi_1^*\right)+\left(\alpha^*-a^*\right)-\left(\beta^*-\alpha^*\right)=a^*-\psi_1^*>0.
+\end{align*}
+따라서 $\psi_1\ge a$이고 비슷하게 $\psi_2\le b$를 증명할 수 있으므로 $[\psi_1,\psi_2]\subset[a,b]$이고 함수 $r(\theta)$는 구간 $[a,b]$에서 증가 또는 감소함수이므로 $r(\psi_1)=r(\psi_2)$가 성립하지 않는다.
+구간 $\kappa$에서 정의된 $\sigma$가 simple이 아니라는 가정은 조건에 위배된다.
+\fi
+%---------------------------------┘
+\end{proof}
+
+
+
+
+\begin{theorem}\label{4.4}%4.4
+Let $\varphi:{\mathbb R}^2\to{\mathbb R}^3$ be the map defined in Theorem \ref{4.1}, and $\varphi_k:{\mathbb R}^2\to{\mathbb R}^3$ be defined by replacing $r$ to $r_k$ defined such that:
+\begin{align*}
+r_k(\psi)=r(\psi)-\frac1k\chi_{[a,b]}(\psi)\left(2\chi_{[0,\infty)}(r(b)-r(a))-1\right)(\psi-a)(\psi-b)
+\end{align*}
+for a positive integer $k$ and real numbers $a,b\in[0,2\pi]$ satisfying $a<b$.
+For all $k$, there exists a pair $(\kappa,z)$ such that the map $\varphi_k$ is Lipschitz continuous and $r$ is increasing or decreasing monotonically for $\psi\in[a,b]$ where $\kappa=[\alpha,\beta]$ and
+\begin{align*}
+A_z(a)=2A_z(\alpha)-A_z(\beta)\,,\;A_z(b)=5A_z(\beta)-4A_z(\alpha).
+\end{align*}
+
+Moreover, if $\varphi_k$ is Lipschitz continuous, then it is also piecewise $C^1$.
+\end{theorem}
+
+\begin{proof}
+%---------------------------------┐
+\iffalse
+적절한 $z_0\in(0,L)$가 존재하여
+\begin{align*}
+\int_0^{2\pi}\tau(z_0,\theta)d\theta=0
+\end{align*}
+이 성립하면 $\kappa=\varnothing$이라 할 때 다음이 성립한다.
+\begin{align*}
+\int_0^{2\pi}\sigma(z,\theta)d\theta=\int_0^{2\pi}\tau(z,\theta)d\theta=2\pi
+\end{align*}
+이 때 $\sigma$는 cuttable transition이다.
+
+모든 $z\in(0,L)$에 대하여
+\begin{align*}
+\int_0^{2\pi}\tau(z,\theta)d\theta>2\pi
+\end{align*}
+이 성립하는 경우를 생각하자.
+적절한 실수 $Z\in(0,L)$에 대하여 다음과 같이 양수 $\lambda$를 정의하자:
+\begin{align*}
+\lambda=\int_0^{2\pi}\tau(Z,\theta)d\theta-2\pi>0.
+\end{align*}
+실수 $z\in(0,Z)$와 구간 $[\alpha,\beta]\subset[0,2\pi]$에 대하여 다음과 같이 함수 $\Sigma(z;\alpha,\beta)$를 정의하자:
+\begin{align*}
+\Sigma(z;\alpha,\beta)=\int_0^{2\pi}\tau(z,\theta)d\theta-2\int_{\frac{2\alpha+\beta}3}^{\frac{\alpha+2\beta}3}\tau(z,\theta)d\theta.
+\end{align*}
+$\tau$가 유계이므로 $\tau(Z,\theta)$의 상한 $\sup_{\theta}\tau(Z,\theta)$를 ${\rm Sup}$라 간단히 쓸 때 다음이 성립한다.
+\begin{align*}
+\int_{\frac{2\alpha+\beta}3}^{\frac{\alpha+2\beta}3}\tau(Z,\theta)d\theta\le\frac{\beta-\alpha}3 {\rm Sup}
+\end{align*}
+정리 \ref{inc}에 의해 존재하는 radius $r$이 증가 또는 감소하는 구간 $[a,b]$에 대하여 $\alpha^*=\frac{2a^*+b^*}3, \beta^*=\frac{a^*+2b^*}3$라 하고 $[\alpha_0,\beta_0]\subset[\alpha,\beta]$와 $\beta_0-\alpha_0<3\lambda/2{\rm Sup}$를 만족하는 구간 $[\alpha_0,\beta_0]$를 잡으면 다음과 같은 식이 성립한다.
+\begin{align*}
+\Sigma(Z;\alpha_0,\beta_0)
+&=\int_0^{2\pi}\tau(Z,\tau)d\theta-2\int_{\frac{2\alpha_0+\beta_0}3}^{\frac{\alpha_0+2\beta_0}3}\tau(Z,\theta)d\theta\\
+&\ge\int_0^{2\pi}\tau(Z,\theta)d\theta-\frac23(\beta_0-\alpha_0){\rm Sup}\\
+&>\int_0^{2\pi}\tau(Z,\theta)d\theta-\lambda=2\pi.
+\end{align*}
+반면 $z=0$을 대입하면 다음을 얻는다.
+\begin{align*}
+\Sigma(0;\alpha_0,\beta_0)=2\pi-\frac23(\beta_0-\alpha_0)<2\pi.
+\end{align*}
+함수 $\Sigma(z;\alpha_0,\beta_0)$는 $z$에 대하여 연속이므로 중간값 정리에 의하여 다음 식이 성립하는 $z_0\in(0,Z)$이 존재한다.
+\begin{align*}
+\Sigma(z_0;\alpha_0,\beta_0)=2\pi
+\end{align*}
+또한 $[\alpha_0,\beta_0]\subset[\alpha,\beta]$이므로 $\alpha_0^*=\frac{2a_0^*+b_0^*}3, \beta_0^*=\frac{a_0^*+2b_0^*}3$을 만족하는 구간 $[a_0,b_0]\subset[a,b]$가 존재하고 이 구간에서 $r$은 증가 또는 감소함수이다.
+$\kappa$를 구간 $[\alpha_0,\beta_0]$로 정의하면
+\begin{align*}
+\int_0^{2\pi}\sigma(z_0,\theta)d\theta=\Sigma(z_0;\alpha_0,\beta_0)=2\pi
+\end{align*}
+이므로 $\sigma$는 simple transition이고 cuttable transition이다.
+\fi
+%---------------------------------┘
+\end{proof}
+
+
+\begin{theorem}\label{4.5}%4.5
+Let $\varphi:{\mathbb R}^2\to{\mathbb R}^3$ be the map defined in Theorem \ref{4.1}.
+For a certain pair $(\kappa,z)$, if $\varphi$ is origami , then $\varphi$ is also conical origami such that $\varphi(O)$ is vertex of the cone where $O$ is skeleton vertex.
+\end{theorem}
+
+\begin{proof}
+
+\end{proof}
+
+\begin{proof}[Proof of Theorem \ref{4.1}]
+
+\end{proof}
+
+
+\bigskip
+.\\
+\textbf{Theorem.} If $X$ is an $n$-dimensional non-singular projective algebraic variety with ample tangent vector bundle defined over an algebraically closed field $k$, then $X$ is (algebraically) isomorphic to ${\bold P}^n$ over $k$.
+
+\bigskip
+
+
+
+
+\begin{thebibliography}{99}
+
+\bibitem{Lip} Dacorogna, Bernard, Paolo Marcellini, and Emanuele Paolini. "Lipschitz-continuous local isometric immersions: rigid maps and origami." {\it Journal de mathématiques pures et appliquées} 90.1 (2008): 66-81.
+
+\bibitem{Com} Bern, Marshall, and Barry Hayes. "The complexity of flat origami." {\it Proceedings of the seventh annual ACM-SIAM symposium on Discrete algorithms.} Society for Industrial and Applied Mathematics, 1996.
+
+\bibitem{Fac} Demaine, Erik D., Martin L. Demaine, and Anna Lubiw. "Folding and cutting paper." {\it Discrete and Computational Geometry}. Springer Berlin Heidelberg, 2000. 104-118.
+
+
+
+\end{thebibliography}
+
+
+
+
+\iffalse
+
+
+질문
+1. $Du$
+2. C1 preserving
+3. $[a,b]\backslash\Sigma_r$
+
+
+화 : section4 description,  증명 바꿀 준비
+
+수 : 피드백, 증명 바꾸기
+
+목 : 서론
+
+금 : 피드백
+
+토 : 함방 들어가기
+
+
+\fi
+
+
+
+
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+

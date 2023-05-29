@@ -1,5 +1,6 @@
 \documentclass{../../small}
 \usepackage{../../ikhanchoi}
+\DeclareMathOperator{\Tot}{Tot}
 
 \begin{document}
 \title{Homological Algebra}
@@ -502,20 +503,6 @@ Let $M'$ be an injective $\Z$-module with an injective $\Z$-homomorphism $M\to M
 \[M\hookrightarrow\Hom_\Z(R,M)\hookrightarrow\Hom_\Z(R,M').\qedhere\]
 \end{pf}
 
-% The general failure of surjectivity of Hom(-,-)->Hom(-,-)
-
-% projective
-%  direct sum of projectives is projective
-%  projective iff direct summand of a free
-%  PID: projective iff free
-
-% injective
-%  M is injective iff Hom_R(R,M)->Hom_R(I,M) surjective
-%  PID: injective iff divisible
-%  direct product of injectives is injective
-%  Hom_Z(R,M) is injective if M is injective Z-module
-%  every module is embedded in injective
-
 \subsection*{1.7. Tensor products}
 
 \begin{defn*}\hspace{-5pt}\textbf{{1.7.1.}}
@@ -613,7 +600,275 @@ Direct limit.
 \end{cd}
 \end{pf}
 
-보족: 사진 참고
+% 보족: 사진 참고
+
+\newpage
+\section{Day 5: May 11}
+
+\begin{defn*}[1.8.1]
+Let $R$ be a commutative ring and $M$ be an $R$-module.
+We say $M$ is flat if $\id\otimes f:M\otimes N_1\to M\otimes N_2$ is injective for every injective $f:N_1\hookrightarrow N_2$.
+If $R$ is noncommutative, consider $-\otimes M$ and $M\otimes-$ for left and right modules $M$ respectively.
+\end{defn*}
+
+\begin{ex*}\,
+\begin{parts}
+\item A free $R$-module is flat since tensor product and direct sum satisfy the distribution law.
+\item A direct limit of flat modules is flat. For example, $\Q=\colim\frac1n\Z$ is flat.
+\end{parts}
+\end{ex*}
+
+\begin{prop*}[1.8.2]
+If $M$ is flat, then $M\otimes_R-$ is an exact functor.
+\end{prop*}
+
+\begin{prop*}[1.8.3]
+Let $M$ be a left $R$-module.
+Then, we can give $\Hom_\Z(M,\Q/\Z)$ a right $R$-module structure by $(fa)(x)=f(ax)$ for $a\in R$ and $x\in M$.
+For an injective right $R$-homomorphism $N_1\hookrightarrow N_2$ between right $R$-modules, $N_1\otimes M\to N_2\otimes M$ is injective if and only if
+\[\Hom_R(N_2,\Hom_\Z(M,\Q/\Z))\xrightarrow{-\circ f}\Hom_R(N_1,\Hom(M,\Q/\Z))\]
+is surjective.
+\end{prop*}
+\begin{pf}
+We first observe that
+\[\Hom_\Z(N\otimes M,\Q/\Z)\cong\Hom_R(N,\Hom_\Z(M,\Q/\Z)).\]
+Also we have the following from the fact that $\Q/\Z$ is injective: for $\Z$-module homomorphism $f:L_1\to L_2$, $f$ is injective if and only if $\Hom_\Z(L_1,\Q/\Z)\to\Hom_\Z(L_2,\Q/\Z)$ is surjective.
+\end{pf}
+\begin{rmk*}
+If $N\curvearrowright R\curvearrowleft M\curvearrowright S$ and $L\curvearrowright S$, then $\Hom_S(N\otimes_RM,L)\cong\Hom_R(N,\Hom_S(M,L))$.
+\end{rmk*}
+
+\begin{cor*}[1.8.4]
+For a left $R$-module $M$, $M$ is flat if and only if $\Hom(M,\Q/\Z)$ is injective.
+\end{cor*}
+
+\begin{cor*}[1.8.5]
+For a right $R$-module $M$, $M$ is flat if and only if $I\otimes_RM\to R\otimes_RM=M$ is injective for every right ideal $I\subset R$
+\end{cor*}
+
+\begin{cor*}[1.8.6]
+Let $R$ be a PID.
+Then, $M$ is flat if and only if $M\xrightarrow{\cdot a}M$ is injective for every $a\in R$.
+\end{cor*}
+\begin{pf}
+\[M=R\otimes M\cong I\otimes M\hookrightarrow R\otimes M=M.\]
+\end{pf}
+
+
+\subsection*{2. Complexes}
+
+\subsubsection*{2.1. Definitions}
+
+\begin{defn*}[2.1.1]
+A chain complex is a pair of a (bilateral) sequence of $R$-modules $C_n$ and a (bilateral) sequence of $R$-homomorphisms $\partial_n:C_n\to C_{n-1}$ such that $\partial_{n-1}\circ\partial_n=0$.
+
+A cochain complex is a pair of a (bilateral) sequence of $R$-modules $C^n$ and a (bilateral) sequence of $R$-homomorphisms $d^n:C^n\to C^{n+1}$ such that $d^{n+1}\circ d^n=0$.
+\end{defn*}
+\begin{ex*}[2.1.2]
+The simplicial homology and the de Rham cohomology.
+\end{ex*}
+\begin{rmk*}
+It is frequently assumed to be $C_n=0$ and $C_n=0$ for negative $n$.
+\end{rmk*}
+\begin{defn*}[2.1.3]
+Let $C_\bullet$ be a chain complex.
+Then, $Z_n(C_\bullet):=\ker\partial_n$, $B_n(C_\bullet):=\im\partial_{n+1}$, and $H_n(C_\bullet):=Z_n(C_\bullet)/B_n(C_\bullet)$.
+For cochain complexes, we can do the same thing. 
+
+A chain map between two chain complexes $C_\bullet$ and $C'_\bullet$ is a sequence $f_\bullet=(f_n:C_n\to C'_n)$ such that $\partial'_{n-1}\circ f_n=f_{n-1}\circ\partial_n$.
+Then, we can check it induces $H_n(f_\bullet):H_n(C_\bullet)\to H_n(C'_\bullet)$.
+
+A short sequence of chain complexes is said to be exact if the short sequence at each $n$ is exact.
+\end{defn*}
+\begin{thm*}[2.1.4]
+If
+\[0\to C_\bullet\to C'_\bullet\to C''_\bullet\to0\]
+is exact, then there is a exact sequence
+\[\cdots\to H_n(C_\bullet)\to H_n(C'_\bullet)\to H_n(C''_\bullet)\xrightarrow{\delta_n}H_{n-1}(C_\bullet)\to\cdots.\]
+\end{thm*}	
+\begin{pf}
+\begin{cd}
+0 \ar{r}\ar{d} & Z_n \ar{r}\ar{d} & Z'_n \ar{r}\ar{d} & Z''_n \ar{d} & \,\\
+0 \ar{r}\ar{d} & C_n \ar{r}\ar{d} & C'_n \ar{r}\ar{d} & C''_n \ar{r}\ar{d} & 0 \ar{d}\\
+0 \ar{r} & C_{n-1} \ar{r}\ar{d} & C'_{n-1} \ar{r}\ar{d} & C''_{n-1} \ar{r}\ar{d} & 0 \ar{d}\\
+\, & C_{n-1}/B_{n-1} \ar{r} & C'_{n-1}/B'_{n-1} \ar{r} & C''_{n-1}/B''_{n-1} \ar{r} & 0
+\end{cd}
+The snake lemma implies the exactness of the first and fourth rows.
+\begin{cd}
+\, & H_n \ar{r}\ar{d} & H'_n \ar{r}\ar{d} & H''_n \ar{d} & \,\\
+\, & C_n/B_n \ar{r}\ar{d} & C'_n/B'_n \ar{r}\ar{d} & C''_n/B''_n \ar{r}\ar{d} & 0\\
+0 \ar{r} & Z_{n-1} \ar{r}\ar{d} & Z'_{n-1} \ar{r}\ar{d} & Z''_{n-1} \ar{d} & \,\\
+\, & H_{n-1} \ar{r} & H'_{n-1} \ar{r} & H''_{n-1} & \,
+\end{cd}
+The snake lemma implies the desired boundary map $\delta_n$.
+\end{pf}
+
+\subsubsection*{2.2. Homotopy}
+
+\begin{defn*}[2.2.1]
+Let $f,g:C\to C'$ be chain maps.
+A sequence $k=k_\bullet=(k_n:C_n\to C'_{n+1})$ of $R$-homomorphisms such that $f_n-g_n=k_{n-1}\circ\partial_n+\partial'_{n+1}\circ k_n$ is called a homotopy between $f$ and $g$.
+\end{defn*}
+\begin{prop*}[2.2.2]
+If $f,g:C_\bullet\to C'_\bullet$ are homotopic, then $H_n(f)=H_n(g)$.
+\end{prop*}
+\begin{ex*}\,
+\begin{parts}
+\item
+Let $K$ be an algebraic extension over $\Q$.
+\begin{cd}
+0 \ar{r} & K \ar{r}\ar{dl} & K[x] \ar{r}{\frac d{dx}}\ar[swap]{dl}{k^0} & K[x] \ar{r}\ar[swap]{dl}{k^1} & 0\ar{dl}\\
+0 \ar{r} & K \ar{r} & K[x] \ar{r}{\frac d{dx}} & K[x] \ar{r} & 0
+\end{cd}
+Define
+\[k^0(\sum_{n\ge0}a_nx^n):=a_0,\qquad k^1(\sum_{n\ge0}a_nx^n):=\sum_{n\ge0}(n+1)^{-1}a_{n+1}x^{n+1}.\]
+Then, $k$ is a homotopy between the zero and the identity, so the cohomology groups are all trivial.
+(cohomology groups of a exact cochain complex are trivial..?)
+
+\item
+Let $S$ be a set and $C^n:=\mathrm{Map}(S^{n+1},M)$ for $R$-module $M$.
+\[(d^nf)(x_0,\cdots,x_{n+1})=\sum_{i=0}^n(-1)^if(x_0,\cdots,\check x_i,\cdots, x_n).\]
+then, $\id$ and $0$ are homotopic.
+\end{parts}
+\end{ex*}
+
+
+
+\newpage
+\section{Day 6: May 18}
+
+\subsubsection*{2.3. Double complexes}
+
+\begin{defn*}
+A double complex is a family of $R$-modules $\{C_{p,q}\}$ indexed by $(p,q)\in\Z^2$ together with $R$-homomorphisms $\partial_{p,q}^I:C_{p,q}\to C_{p-1,q}$ and $\partial_{p,q}^{II}:C_{p,q}\to C_{p,q-1}$ such that
+\begin{enumerate}[(i)]
+\item  $(C_{\bullet,q},\partial_{\bullet,q}^I)$ and $(C_{p,\bullet},\partial_{p,\bullet}^{II})$ are chain complexes,
+\item $\partial^{II}\circ\partial^I+\partial^I\circ\partial^{II}=0$. (anticommuting squares convention, convenient in defining the total complex)
+\end{enumerate}
+For a double complex, we can define total complex by
+\[T_n:=\oplus_{p+q=n} C_{p,q},\qquad\partial_n:T_n\to T_{n-1}:(a_{p,q})_{p+q=n}\mapsto(\partial^I(a_{p,q}))+(\partial^{II}(a_{p,q})),\]
+and it satisfies the axiom of chain complex; $\partial^2=0$.
+The total complex is denoted by $\mathrm{Tot}^\oplus(C)$.
+We can also define with $\times$ instead of $\oplus$ to get $\mathrm{Tot}^\Pi(C)$.
+If $\mathrm{Tot}^\oplus=\mathrm{Tot}^\Pi$, then we write it as $\mathrm{Tot}$.
+\end{defn*}
+\begin{ex*}
+Let $C_\bullet$ and $C'_\bullet$ be chain complexes of right and left $R$-modules(resp.) for a commutative ring $R$.
+Then, $D_{p,q}:=C_p\otimes_RC_q$ and $\partial_{p,q}^I=\partial_p\otimes\id$, $\partial_{p,q}^{II}=(-1)^p\id\otimes\partial_q$ define a double complex, and its total complex is denoted by $C\otimes_RC'$.
+\end{ex*}
+
+\begin{ex*}
+Let $C_\bullet$ and $C'^\bullet$ be chain and cochain complexes $R$-modules for a commutative ring $R$.
+Then, $D_{p,q}:=\Hom(C_p,C'^q)$ and $d_{p,q}^I=-\circ\partial_{p+1}$, $d_{p,q}^{II}=(-1)^{p+q+1}d^q\circ-$ define a double (cochain) complex, and its total complex is denoted by $\Hom(C,C')$.
+\end{ex*}
+
+\begin{prop*}[2.3.1]\,
+\begin{parts}
+\item
+Let $f:C_{\bullet,\bullet}\to C'_{\bullet,\bullet}$; $f_{p,q}:C_{p,q}\to C'_{p,q}$ commutes with $\partial^I$ and $\partial^{II}$.
+Suppose there is $N\in\Z$ such that $p<N$ or $q<N$ imply $C_{p,q}=0$ and $C'_{p,q}=0$.
+Suppose also that $H_n(C_{\bullet,q},\partial^I)\cong H_n(C'_{\bullet,q},\partial^I)$ for each $n\in\Z$ and $q\in\Z$.
+Then, $H_n(\mathrm{Tot}(C))\cong H_n(\Tot(C'))$.
+
+\item
+Let $f:C^{\bullet,\bullet}\to C'^{\bullet,\bullet}$.
+Suppose there is $N\in\Z$ such that $p<N$ or $q<N$ imply $C^{p,q}=0$ and $C'^{p,q}=0$.
+If $H^n(C^{\bullet,q})\cong H^n(C'^{\bullet,q})$ for each $n\in\Z$ and $q\in\Z$, then $H^n(\mathrm{Tot}(C))\cong H^n(\Tot(C'))$.
+\end{parts}
+\end{prop*}
+
+\begin{pf}
+\[C_{p,q}^{\le r}=\begin{cases}0&q>r\\C_{p,q}&q\le r\end{cases}\]
+is a subcomplex of $C$.
+Then, we have an exact sequence
+\[0\to C^{\le r-1}\to C^{\le r}\to C^{(r)}\to0\]
+of double complexes.
+Taking $\Tot$, we have
+\begin{cd}
+\,\ar{r}&H_n(\Tot(C^{\le r-1}))\ar{r}\ar{d}&H_n(\Tot(C^{\le r}))\ar{r}\ar{d}&H_n(\Tot(C_{p,q}^{(r)}))\ar{r}\ar{d}{\sim}&\,\\
+\,\ar{r}&H_n(\Tot(C^{\le r-1}))\ar{r}&H_n(\Tot(C^{\le r}))\ar{r}&H_n(\Tot(C^{(r)}))\ar{r}&\,.
+\end{cd}
+Note that $H_n(\Tot(C^{(r)}))=H_{n-r}(C_{\bullet,r})$ gives the isomorphism at the third column.
+Then, use the five lemma inductively.
+\end{pf}
+
+\subsubsection*{2.4. Ext and Tor}
+
+Let $C$ be a chain complex of $R$-modules and $M$ be an $R$-module.
+Then, $C\otimes M$ is a chain complex and $\Hom(C,M)$ is a cochain complex.
+In this case, we have:
+\begin{enumerate}[(i)]
+\item If $M$ is flat, then $H_n(C\otimes_RM)\cong H_n(C)\otimes_RM$.
+\item If $M$ is injective, then $H_n(\Hom_R(C,M))\cong\Hom_R(H^n(C),M)$.
+\end{enumerate}
+We want to measure the failure of this.
+
+\begin{defn*}[2.4.1]
+Let $M$ be an $R$-module.
+\begin{parts}
+\item A \emph{projective resolution} is an exact sequence
+\[0\leftarrow M\xleftarrow{\e} P_0\xleftarrow{\partial_1} P_1\xleftarrow{\partial_2} P_2\leftarrow\cdots,\]
+where $P_n$ is a projective for each $n$.
+\item A \emph{injective resolution} is an exact sequence
+\[0\to M\xrightarrow{} I_0\xrightarrow{} I_1\xrightarrow{} I_2\rightarrow\cdots,\]
+where $I_n$ is a injective for each $n$.
+\end{parts}
+\end{defn*}
+
+\begin{prop*}[2.4.2]
+Every $R$-module admits a projective resolution and an injective resolution.
+\end{prop*}
+\begin{pf}
+Every module has a surjection(injection) from(to) a free(injective) module.
+Then, for the kernel(cokernel) we can do same thing.
+\end{pf}
+\begin{prop*}[2.4.3]
+Let $f:M\to M'$ be an $R$-homomorphism.
+\begin{parts}
+\item If $(P_\bullet)$ and $(P'_\bullet)$ are projective resolutions, then there is a chain map $g:P\to P'$. If $g$ and $g'$ are two chain maps between $P$ and $P'$, then $g$ and $g'$ are homotopic.
+\item Same for injective resolution.
+\end{parts}
+\end{prop*}
+\begin{pf}
+(a) Lift $f$ to get $g_0$. Restrict to kernel and lift $g_0$ to get $g_1$, and so on.
+
+Restrict to kernel and lift $g_0-g_0'$ to get $h_0$
+\end{pf}
+
+For an injective resolution $I$ of $N$, we define $\Ext_R^n(M,N):=H^n(\Hom_R(M,I^\bullet))$.
+
+For a projective resolution $P$ of $M$, we define $\Tor_n^R(M,N):=H_n(P_\bullet\otimes_RN)$.
+
+They do not depend on the choice of resolutions.
+
+For $f:M_1\to M_2$, we have an induced homomorphism $\Ext_R^n(M_2,N)\to\Ext_R^n(M_1,N)$.
+
+For $f:N_1\to N_2$, we have an induced homomorphism $\Tor_n^R(M,N_1)\to\Tor_n^R(M,N_2)$.
+
+functoriality.
+
 
 
 \end{document}
+
+
+The general failure of surjectivity of Hom(-,-)->Hom(-,-)
+from projectives, the lift
+
+projective
+  direct sum of projectives is projective
+  PID: projective iff free
+  projective iff direct summand of a free
+
+injective
+  direct product of injectives is injective
+  M injective iff Hom_R(R,M)->Hom_R(I,M) surj
+  PID: injective iff divisible (.a:M->M surj)
+  Hom_Z(R,M) is injective if M is injective Z-module
+  every module is embedded in injective
+
+flat
+  PID: flat iff (.a:M->M inj)
+  M flat iff Hom(M,Q/Z) is injective
+  M flat iff I⊗M->R⊗M inj
+  if projective then flat

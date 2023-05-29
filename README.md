@@ -1,10 +1,11 @@
 # Ikhan Choi's mathematics notes
 
 ## Algebra
-- Introduction to Algebra
+- Linear Algebra
+- Algebraic Structures
 - Galois Theory
-- Number Theory
 - Category Theory
+- Number Theory
 - Commutative Algebra
 - Representation Theory
 - Homological Algebra
@@ -13,10 +14,11 @@
 - Mathematical Logic
 
 ## Analysis
-- Introduction to Analysis
+- Calculus
+- Foundation of calculus
 - Measure Theory
-- Differential Equations
 - General Topology
+- Differential Equations
 - Harmonic Analysis
 - Complex Analysis
 - Functional Analysis
@@ -25,10 +27,11 @@
 - Computational Mathematics
 
 ## Geometry
+- Vector Analysis
 - Introduction to Geometry
 - Manifolds
-- Mathematical Physics
 - 
+- Mathematical Physics
 - Differential Topology
 - Algebraic Geometry
 - Algebraic Topology

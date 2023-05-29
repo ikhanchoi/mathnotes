@@ -347,9 +347,25 @@ Carleson measures, paraproducts
 % Strichartz
 % dispersive equations - Chicago and Prinston school
 
+\chapter{Oscillatory integrals}
+
+
+\begin{prb}[Justification of quadratic oscillatory integral]
+
+\end{prb}
+
+\begin{prb}[Stationary phase approximation]
+\end{prb}
+Van der Corput lemma
+Dispersive equations and strichartz estimates
+
+\chapter{Foureir restriction}
+Kakeya
+Bochner-Riesz
+Geometric measure theory
+
 \chapter{}
-\chapter{Restriction}
-\chapter{Dispersive equations}
+
 
 
 
@@ -360,20 +376,77 @@ Carleson measures, paraproducts
 
 \part{Pseudo-differential operators}
 % https://arxiv.org/abs/2107.12839
+% https://mtaylor.web.unc.edu/notes/pseudodifferential-operators-fourier-integral-operators-and-microlocal-analysis/
 
 % wave front sets
 % wavelets
 % uncertainty principle
 % weyl calculus - Folland
 
-\chapter{Symbols}
-\section{Kohn-Nirenberg calculus}
-$S_{\rho,\delta}^m$
-\[|D_x^\alpha D_\xi^\beta a(x,\xi)|\lesssim\<\xi\>^{m-\rho|\beta|+\delta|\alpha|}.\]
+\chapter{Pseudo-differential calculus}
+\section{}
 
-Let $a$ be a symbol on $M=\R_x^d\times\R_\xi^d$.
-Then, the associated $\Psi$DO is
-\[T_a\psi(x):=\frac1{(2\pi)^d}\iint e^{i\<x-y,\xi\>}a(x,\xi)\psi(y)\,dy\,d\xi.\]
+\begin{prb}[Symbol classes]
+Japanese bracket $\<x\>:=(1+x^2)^{\frac12}$.
+\[\<x-y\>^{-2}\<D_\xi\>^{-2}e^{i(x-y)\xi}=e^{i(x-y)\xi}\]
+\end{prb}
+
+
+\begin{prb}[Asymptotic expansion]
+\end{prb}
+
+
+
+\begin{prb}[Quantization]
+$t$-quantization of a symbol $a$ is the $\Psi$DO defined by
+\[a^t(x,D)f(x):=(2\pi)^{-d}\iint e^{i(x-y)\cdot\xi}a((1-t)x+ty),\xi)f(y)\,dy\,d\xi.\]
+Kohn-Nirenberg calculus for $t=0$, Weyl calculus for $t=\frac12$.
+
+Let $a\in S_{\rho,\delta}^m(\R^{2d})$ with $m\in\R$, $0\le\delta\le\rho\le1$ and $\delta\ne1$.
+Let $t,s\in[0,1]$ with $t\ne s$.
+\begin{parts}
+\item There exists a unique $b\in S_{\rho,\delta}(\R^{2d})$ such that $a^t(x,D)=b^s(x,D)$.
+\item $b$ is expressed as
+\[b(x,\xi)=e^{i(t-s)D_xD_\xi}a(x,\xi)=(2\pi)^{-d}|t-s|^{-d}\int_{\R^{2d}}e^{-iy\eta/(t-s)}a(x+y,\xi+\eta)\,dy\,d\eta,\]
+\item If $\delta<\rho$, then
+\[b\sim\sum_{\alpha\in\Z_{\ge0}^d}\frac{(t-s)^{|\alpha|}}{i^{|\alpha|}\alpha!}\partial_x^\alpha\partial_\xi^\alpha a.\]
+\end{parts}
+\end{prb}
+
+
+\begin{prb}[Formal adjoint]
+extension to tempered distributions
+\end{prb}
+
+
+
+\begin{prb}[Moyal product]
+Let $a\in S_{\rho,\delta}^m(\R^{2d})$ and $b\in S_{\rho,\delta}^l(\R^{2d})$.
+\begin{parts}
+\item there exists a unique function $a\#^tb\in S_{\rho,\delta}^{m+l}(\R^{2d})$ such that
+\[a^t(x,D)b^t(x,D)=(a\#^t)^t(x,D).\]
+\item It is concretely described by
+\[(a\#^tb)(x,\xi)=(2\pi)^{-2}\int_{\R^{4d}}e^{-i(y\eta-z\zeta)}a(x+tz,\xi+\eta)b((1-t)y+x,\xi+\zeta)\,dy\,d\eta\,dz\,d\zeta.\]
+\item If $\delta<\rho$, then
+\[a\#^tb(x,\xi)\sim\sum_{k\in\Z_{\ge0}}\frac1{i^kk!}(\partial_y\partial_\eta-\partial_z\partial_\zeta)^ka((1-t)x+tz,\eta)b(tx+(1-t)y,\zeta)\Bigr|_{\substack{y=z=x\\\eta=\zeta=\xi}}.\]
+\end{parts}
+\end{prb}
+
+
+
+\begin{prb}[Parametirx and elliptic operators]
+\end{prb}
+
+
+
+\section{}
+
+
+\begin{prb}[Calder\'on-Vaillancourt theorem]
+\end{prb}
+
+\chapter{Semiclassical analysis}
+
 For parameters $0\le\lambda\le1$ and $h>0$, let
 \[\hat a\psi(x):=\frac1{(2\pi h)^d}\iint e^{\frac ih\<x-y,\xi\>}a((1-\lambda)x+\lambda y,\xi)\psi(y)\,dy\,d\xi.\]
 For example, regardless of $h$ and $\lambda$,
@@ -387,16 +460,8 @@ where $V:\R_x^d\times\R_\xi^d\to\R$ and $H:\R_x^d\times\R_\xi^d\to\R$ such that
 \[\dd{t}a(t)=\{a(t),H\}=X_Ha(t)\]
 \[\dd{t}\hat a(t)=\dd{t}e^{\frac iht\hat H}\hat ae^{-\frac iht\hat H}=-\frac ih[\hat a(t),\hat H]\]
 
-
-
-
-\chapter{Semiclassical analysis}
-\section{Weyl calculus}
-\begin{prb}[Composition of Weyl quantization]
-
-\end{prb}
-
 \section{Heisenberg group}
+\section{Phase space transforms}
 
 \chapter{Microlocal analysis}
 

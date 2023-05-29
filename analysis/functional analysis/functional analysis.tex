@@ -511,6 +511,9 @@ The Riesz representation theorem states that a continuous linear functional on a
 \section*{Exercises}
 
 
+Let $H$ be a separable Hilbert space.
+Find a positive sequence $a_n$ such that every sequence $x_n$ of unit vectors of $H$ satisfying $|\<x_i,x_j\>|\le a_j$ for all $i<j$ converges weakly to zero.
+
 
 
 
@@ -688,6 +691,16 @@ Then, there exists a spectral measure $E$ on $\sigma(T)$ for $H$ such that
 This spectral measure $E$ is also called the \emph{resolution of the identity}.
 \end{prb}
 
+
+Let $E$ be the spectral measure of a normal operator $T\in B(H)$.
+If we choose $\xi_n\in E(B(\lambda,n^{-1}))H$, then
+\begin{align*}
+\|(\lambda-T)\xi\|^2
+&=\int|\lambda-z|^2\,d\<E_z\xi,\xi\>\\
+&=\int_{B(\lambda,n^{-1})}|\lambda-z|^2\,d\<E_z\xi,\xi\>\\
+&\le n^{-2}\int_{B(\lambda,n^{-1})}\,d\<E_z\xi,\xi\>\\
+&\le n^{-2}\|\xi\|^2.
+\end{align*}
 
 
 \section{Operator topologies}

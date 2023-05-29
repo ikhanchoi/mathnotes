@@ -1,0 +1,152 @@
+\documentclass{../../large}
+\usepackage{../../ikhanchoi}
+
+
+\begin{document}
+\title{C$^*$-Algebras}
+\author{Ikhan Choi}
+\maketitle
+\tableofcontents
+
+\part{C$^*$-algebras}
+\chapter{Basic concepts}
+
+\section{Multiplier algebra}
+
+\begin{prb}[Multiplier algebra]
+Let $\cA$ be a C$^*$-algebra.
+A \emph{double centralizer} of $\cA$ is a pair $(L,R)$ of bounded linear maps on $\cA$ such that $aL(b)=R(a)b$ for all $a,b\in\cA$.
+The \emph{multiplier algebra} $M(\cA)$ of $\cA$ is defined to be the set of all double centralizers of $\cA$.
+\end{prb}
+
+\begin{prb}[Essential ideals]
+\begin{parts}
+\item Hilbert C$^*$-module description
+\end{parts}
+\end{prb}
+
+\begin{prb}[Examples of multiplier algebras]
+\begin{parts}
+\item $M(K(H))\cong B(H)$.
+\item $M(C_0(\Omega))\cong C_b(\Omega)$.
+\end{parts}
+\end{prb}
+\begin{pf}
+(a)
+
+(b)
+First we claim $C_0(\Omega)$ is an essential ideal of $C_b(\Omega)$.
+Since $C_b(\Omega)\cong C(\beta\Omega)$, and since closed ideals of $C(\beta\Omega)$ are corresponded to open subsets of $\beta\Omega$, $C_0(\Omega)\cap J$ is not trivial for every closed ideal $J$ of $C_b(\Omega)$.
+
+Now we have an injective $^*$-homomorphism $C_b(\Omega)\to M(C_0(\Omega))$, for which we want to show the surjectivity.
+Let $g\in M(C_0(\Omega))^+$.
+\end{pf}
+
+\begin{prb}[Strict topology]
+\end{prb}
+
+
+
+\begin{prb}[Hereditary C$^*$-subalgebra]
+state extension, representation extension
+\end{prb}
+
+
+
+
+\section*{Exercises}
+\begin{prb}
+Let $\cB$ be a hereditary C$^*$-subalgebra of a C$^*$-algebra $\cA$.
+Let $a\in\cA^+$.
+If for any $\e>0$ there is $b\in\cB^+$ such that $a-\e\le b$, then $a\in B^+$.
+\end{prb}
+\begin{pf}
+To catch the idea, suppose $\cA$ is abelian.
+We want to approximate $a$ by the elements of $\cB$ in norm.
+To do this, for each $\e>0$, we want to construct $b'\in\cB^+$ such that $a-\e\le b'\le a+\e$ using $b$.
+Taking $b'=\min\{a,b\}$ is impossible in non-abelian case, but we can put $b'=\frac a{b+\e}b$.
+For a simpler proof, $b'=(\frac{\sqrt{ab}}{\sqrt b+\sqrt\e})^2$ is a better choice.
+
+Define
+\[b':=\frac{\sqrt b}{\sqrt b+\sqrt\e}a\frac{\sqrt b}{\sqrt b+\sqrt\e}.\]
+Then,
+\[\|\sqrt a-\sqrt a\frac{\sqrt b}{\sqrt b+\sqrt\e}\|^2=\|\frac{\sqrt\e}{\sqrt b+\sqrt\e}a\frac{\sqrt\e}{\sqrt b+\sqrt\e}\|\le\e\]
+implies
+\[\lim_{\e\to0}b'=\lim_{\e\to0}\frac{\sqrt b}{\sqrt b+\sqrt\e}\sqrt a\cdot\sqrt a\frac{\sqrt b}{\sqrt b+\sqrt\e}=\sqrt a\cdot\sqrt a=a.\]
+\end{pf}
+
+
+\chapter{Completely positive maps}
+
+\section{Operator systems and spaces}
+
+\section{Dilation theorems}
+
+\section{Extension theorems}
+
+Arveson
+Trick
+
+
+
+
+\chapter{Tensor products}
+
+\section{Minimal tensor product}
+spatiality
+Takesaki theorem
+
+\section{Maximal tensor product}
+
+universal property
+restriction theorem
+c.c.p.~tensor product
+
+\section{Nuclear C$^*$-algebras}
+finite dimensional, abelian, some constructions
+
+
+
+
+a separable C$^*$-algebra is nuclear if and only if every factor representation is hyperfinite.
+
+
+
+
+
+\part{Approximation properties}
+
+\section{Finite dimensional approximation}
+nuclear and exact C$^*$-algebras
+\section{Voiculescu theorem}
+\section{Quasidiagonal C$^*$-algebras}
+
+
+\part{Constructions}
+
+
+
+
+\part{Operator K-theory}
+\chapter{Brown-Douglas-Fillmore theory}
+\begin{prb}[Haagerup property]
+\end{prb}
+
+Baum-Connes conjecture
+Non-commutative geometry
+Elliott theorem
+
+
+
+
+\section{Approximately finite algebras}
+Elliott conjecture: amenable simple separable C$^*$-algerbas are classified by K-theory.
+
+
+
+
+
+
+
+
+\end{document}

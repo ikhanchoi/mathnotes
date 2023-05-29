@@ -84,7 +84,7 @@ implies
 Taking quotient by the left kernel $N$ and completion, we obtain a hilbert space $\hat H:=(\cA\odot H/N)^-$.
 
 Define $\pi:\cA\to B(\hat H)$ such that
-\[\pi(a)(b\otimes\xi+N):=ab\otimes+N,\]
+\[\pi(a)(b\otimes\xi+N):=ab\otimes\xi+N,\]
 and define $V:H\to\hat H$ such that
 \[V\xi:=1_\cA\otimes\xi+N.\]
 Then for any $\xi,\eta\in H$,
@@ -168,52 +168,68 @@ so $\f$ is c.p.~since $\cA\to M_n(\cA):a\mapsto[a]$ is a $*$-homomorphism.
 \end{pf}
 
 \begin{thm}[Arveson extension]
-Let $\cB\subset\cA$ be C$^*$-algebras such that $1_\cA\in\cB$.
-Then, every c.p.~map $\f:\cB\to B(H)$ has an norm-preserving c.p.~extension $\tilde\f:\cA\to B(H)$, i.e. $\|\tilde\f\|=\|\f\|$.
+Let $\cA\subset\cB$ be C$^*$-algebras such that $1_\cB\in\cA$.
+Then, every c.p.~map $\f:\cA\to B(H)$ has an norm-preserving c.p.~extension $\tilde\f:\cB\to B(H)$, i.e. $\|\tilde\f\|=\|\f\|$.
 \end{thm}
 \begin{pf}
 Let $p_\alpha$ be the net of projections of finite rank $n_\alpha$ in $B(H)$ with the image $V_\alpha$, which strongly converges to $\id_H$.
-Fix $\alpha$ temporarily and let $\f_\alpha:=p_\alpha\f|_{V_\alpha}:\cB\to B(V_\alpha)$.
-Choosing an any orthonormal basis of each $V_\alpha$, we can rewrite as $\f_\alpha:\cB\to M_{n_\alpha}(\C)$.
-By the above theorem, we have the associated linear functional $\hat\f_\alpha\in M_{n_\alpha}(\cB)$.
-Then, the Hahn-Banach extension provides an extension $(\hat\f_\alpha)^\sim\in M_{n_\alpha}(\cA)$, and we can define $\tilde\f_\alpha:\cA\to M_{n_\alpha}(\C)$ as the associated completely positive map.
-Via the identification $B(V_\alpha)=M_{n_\alpha}(\C)$ we used to write $\f_\alpha:\cB\to M_{n_\alpha}(\C)$, we have $\tilde\f_\alpha:\cA\to B(V_\alpha)$.
-We can check $\tilde\f_\alpha$ actually extends $\f_\alpha$, i.e. $\tilde\f_\alpha(b)=\f_\alpha(b)$ for $b\in\cB$, by putting $[b\delta_{ik}\delta_{jl}]_{i,j}\in M_{n_\alpha}(\cB)$ and comparing matrix components for each $k,l$.
+Fix $\alpha$ temporarily and let $\f_\alpha:=p_\alpha\f|_{V_\alpha}:\cA\to B(V_\alpha)$.
+Choosing an any orthonormal basis of each $V_\alpha$, we can rewrite as $\f_\alpha:\cA\to M_{n_\alpha}(\C)$.
+By the above theorem, we have the associated linear functional $\hat\f_\alpha\in M_{n_\alpha}(\cA)$.
+Then, the Hahn-Banach extension provides an extension $(\hat\f_\alpha)^\sim\in M_{n_\alpha}(\cB)$, and we can define $\tilde\f_\alpha:\cB\to M_{n_\alpha}(\C)$ as the associated completely positive map.
+Via the identification $B(V_\alpha)=M_{n_\alpha}(\C)$ we used to write $\f_\alpha:\cA\to M_{n_\alpha}(\C)$, we have $\tilde\f_\alpha:\cB\to B(V_\alpha)$.
+We can check $\tilde\f_\alpha$ actually extends $\f_\alpha$, i.e. $\tilde\f_\alpha(a)=\f_\alpha(a)$ for $a\in\cA$, by putting $[a\delta_{ik}\delta_{jl}]_{i,j}\in M_{n_\alpha}(\cA)$ and comparing matrix components for each $k,l$.
 
-Since $\|\tilde\f_\alpha\|=\|\tilde\f_\alpha(1)\|=\|\f_\alpha(1)\|=\|\f_\alpha\|\le\|\f\|$, the net $\tilde\f_\alpha$ is bounded in $B(\cA,B(H))$.
-The norm-closed unit ball is compact in the point-$\sigma$-weak topology $\sigma(B(\cA,B(H)),\cA\odot L^1(H))$ because it is coarser than the weak$^*$ topology $\sigma(B(\cA,B(H)),\cA\hat\otimes_\pi L^1(H))$.
-By taking a convergent subnet, we have a limit point $\tilde\f:\cA\to B(H)$.
+Since $\|\tilde\f_\alpha\|=\|\tilde\f_\alpha(1)\|=\|\f_\alpha(1)\|=\|\f_\alpha\|\le\|\f\|$, the net $\tilde\f_\alpha$ is bounded in $B(\cB,B(H))$.
+The norm-closed unit ball is compact in the point-$\sigma$-weak topology $\sigma(B(\cB,B(H)),\cB\odot L^1(H))$ because it is coarser than the weak$^*$ topology $\sigma(B(\cB,B(H)),\cB\hat\otimes_\pi L^1(H))$.
+By taking a convergent subnet, we have a limit point $\tilde\f:\cB\to B(H)$.
 It is easily seen to be completely positive and extend $\f$, and satisfies $\|\f\|=\|\f(1)\|=\|\tilde\f(1)\|=\|\tilde\f\|$.
 \end{pf}
 
 
 
 \subsection{Enveloping von Neumann algebras}
+\begin{defn}
+For a representation $\pi:\cA\to B(H)$ of a C$^*$-algebra $\cA$, we define a von Neumann algebra $\cM(\pi):=\pi(A)''$ associated to $\pi$.
+\end{defn}
 
 \begin{thm}[Sherman-Takeda]
-Let $\cA$ be a C$^*$-algebra and $\pi:\cA\to B(H)$ a faithful representation.
-Here we can obtain an linear map $\tilde\pi:\cA^{**}\to\pi(\cA)''$ by taking bitranspose for $\pi:\cA\to(\pi(\cA)'',\sigma w)$.
+Let $\cA$ be a C$^*$-algebra and $\pi_u:\cA\to B(H_u)$ the universal representation, the direct sum of all the GNS-representations of states of $\cA$.
+Consider the following three maps
+\[\pi_u:\cA\to(\cM(\pi_u),\sigma w),\qquad\pi_u^*:\cM(\pi_u)_*\to\cA^*,\qquad\tilde\pi_u:=\pi_u^{**}:\cA^{**}\to\cM(\pi_u),\]
+constructed by adjoints, where $\cM(\pi_u)_*$ denotes the set of $\sigma$-weakly continuous(= normal) linear functionals on $\cM(\pi_u)$.
 \begin{parts}
-\item $\tilde\pi$ is an isometric isomorhpism (w.r.t. norms), and is an homeomorphism (w.r.t. weak$^*$-topologies)
-\item $\cA^{**}$ enjoys a universal property in the sense that for every $*$-homomorphism $\f:\cA\to\cM$ to a von Neumann algebra $\cM$, there exists a unique $\sigma$-weakly continuous extension $\tilde\f:\cA^{**}\to\cM$ of $\f$.
+\item $\pi_u^*$ is isometric.
+\item $\pi_u^*$ is surjective.
+\item $\tilde\pi_u$ is an isometric isomorhpism(w.r.t. norms), and is an homeomorphism(w.r.t. weak$^*$-topologies).
+\item $\cA^{**}$ enjoys a universal property in the sense that for every $*$-homomorphism $\f:\cA\to\cM$ to a von Neumann algebra $\cM$, there exists a unique normal extension $\tilde\f:\cA^{**}\to\cM$ of $\f$.
 \end{parts}
-We will always see the bidual $\cA^{**}$ as a von Neumann algebra.
 \end{thm}
 \begin{pf}
 (a)
-Consider
-\[\pi:\cA\to(\pi(\cA)'',\sigma w),\qquad\pi^*:\pi(\cA)''_*\to\cA^*,\qquad\tilde\pi:=\pi^{**}:\cA^{**}\to\pi(\cA)'',\]
-where $\pi(\cA)''_*$ denotes the set of $\sigma$-weakly continuous(=normal) linear functionals on $\pi(\cA)''$.
-Note that $\pi$ is isometric and has dense range.
-It implies that $\pi^*$ is surjective and injective.
-In fact, $\pi^*$ is isometric because for $l\in\pi(\cA)''_*$ we have by the density that
-\[\|\pi^*(l)\|=\sup_{\substack{\|a\|=1\\a\in\cA}}|l(\pi(a))|=\sup_{\substack{\|b\|=1\\b\in\pi(\cA)''}}|l(b)|=\|l\|.\]
-Then, the claim for $\pi^{**}$ is now clear.
+It holds for any representation of $\pi:\cA\to B(H)$.
+For each $l\in\cM(\pi)_*$, we have
+\[\|\pi^*(l)\|=\sup_{\substack{\|a\|\le1\\a\in\cA}}|l(\pi(a))|=\sup_{\substack{\|b\|\le1\\b\in\cM(\pi)}}|l(b)|=\|l\|\] by the Kaplansky density theorem and the $\sigma$-weak continuity of $l$.
 
 (b)
-We can define $\tilde\f$ as the bitranspose of $\f:\cA\to(\cM,\sigma w)$ as in the part (a), and it is a unique extension because $\cA$ is $\sigma$-weakly dense in $\cA^{**}$.
-\end{pf}
+Although $\pi_u$ is an injective $*$-homomorphism and hence is isometric so that its dual $\cM(\pi_u)^*\to\cA^*$ is surjective by the Hahn-Banach extension, it does not guarantee the $\sigma$-weak continuity of the extended linear functional.
+We claim that every state of $\cA$ has a normal extension on $\cM(\pi_u)$.
+If the claim is true, then the Jordan decomposition can be applied to show that every bounded linear functional has a normal extension.
 
+Let $\rho$ be a state of $\cA$.
+If we let $\psi$ be the canonical cyclic vector of the GNS representation $\pi_\rho:\cA\to B(H_\rho)$, then the state $\rho$ can be represented as a vector state $\omega_\psi$.
+Since $\pi_\rho$ is a subrepresentation of $\pi_u$, the unit vector $\psi$ can be seen as an element of $H_u$, and it defines a normal state of $\cM(\pi_u)$.
+
+(c)
+It is is clear from (a) and (b).
+
+(d)
+We can define $\tilde\f$ as the bitranspose of $\f:\cA\to(\cM,\sigma w)$, and it is a unique extension because $\cA$ is $\sigma$-weakly dense in $\cA^{**}$.
+\end{pf}
+\begin{rmk}
+The bidual $\cA^{**}$ is frequently viewed as a von Neumann algebra, and we call it the \emph{enveloping von Neumann algebra} of a C$^*$-algebra $\cA$.
+By the universal property, we have a normal $*$-homomorphism $\cM(\pi_u)\to\cM(\pi)$ that is in fact surjective for every representation $\pi$ of $\cA$, and it fails to be injective even for faithful representations.
+\end{rmk}
 
 \begin{thm}[Tomiyama]
 Let $\cB\subset\cA$ be C$^*$-algebras.
@@ -284,7 +300,7 @@ For $l\in\cA^*$, we claim there exists $f$ such that $\<za,l\>=\<za,f\>$.
 Define $\tilde l\in\cA^*$ such that $\<x,\tilde l\>:=\<zx,l\>$ for $x\in\cA^{**}$.
 Then, $\<zx,l\>=\<z^2x,l\>=\<zx,\tilde l\>$ for $x\in\cA^{**}$.
 Suppose $\tilde l\notin F$.
-Because $F$ is closed in $\cA^*$, there is $x\in\cA^{**}$ such that $\<x,\tilde l\>\ne0$ and $\<x,f\>=0$ for all $f\in F$ by the Hahn-Banach extension.
+Because $F$ is closed in $\cA^*$, there is $x\in\cA^{**}$ such that $\<x,\tilde l\>\ne0$ and $\<x,f\>=0$ for all $f\in F$ by the Hahn-Banach separation.
 Then, $0=\<x,f\>=\<x,i(f)\>=\<\e(x),f\>$ implies $\e(x)=0$ so that $zx=0$, which leads a contradiction $\<x,\tilde l\>=\<zx,l\>=0$, so we have $\tilde l\in F$.
 
 (c)
@@ -302,113 +318,634 @@ If $l\in F_1$, which is obviously continuous on $\sigma(\cA,F_1)$, and the conti
 \newpage
 \section{May 12}
 
-We will not use the word \emph{nuclear maps}.
 
 
 \subsection{Nuclear C$^*$-algebras}
 
-
-C$^*$-subalgebra of a nuclear C$^*$-algebra may not be nuclear.
-C$^*$-subalgebra of a exact C$^*$-algebra is exact.
-injective limit of nuclear C$^*$-algebras is nuclear.
-$M_n(\cA)$ is nuclear if $\cA$ is nuclear.
-
-\begin{thm}[Effros-Lance]
-If $\cA^{**}$ is semidiscrete, then $\cA$ has the CPAP.
-(The converse also holds)
-\end{thm}
+\begin{prop}[Maximal and minimal tensor products]
+Let $\cA_1,\cA_2,\cB,\cB_1,\cB_2$ be C$^*$-algebras and $H_1,H_2$ be Hilbert spaces.
+\begin{parts}
+\item (Continuity of tensor product maps)
+For any $*$-homomorphisms $\f_1:\cA_1\to\cB_1$ and $\f_2:\cA_2\to\cB_2$, the $*$-homomorphisms
+\[\f_1\otimes\f_2:\cA_1\otimes_{\max}\cA_2\to\cB_1\otimes_{\max}\cB_2\]
+and
+\[\f_1\otimes\f_2:\cA_1\otimes_{\min}\cA_2\to\cB_1\otimes_{\min}\cB_2\]
+are well-defined.
+The same holds for c.p.~maps(see Corollary 3.3 for $\otimes_{\max}$).
+\item (Universal property)
+For any $*$-homomorphisms $\f_1:\cA_1\to\cB$ and $\f_2:\cA_2\to\cB$ whose images are commuting, there exists a unique $*$-homomorhpism
+\[\f_1\times\f_2:\cA_1\otimes_{\max}\cA_2\to\cB\]
+such that $\f_1\times\f_2(a_1\otimes a_2)=\f_1(a_1)\f_2(a_2)$.
+\item (Minimal norm is spatial)
+There is a natural $*$-monomorphism $B(H_1)\otimes_{\min}B(H_2)\hookrightarrow B(H_1\otimes H_2)$.
+\end{parts}
+\end{prop}
 \begin{pf}
-Since the set of finite-rank c.c.p.~maps is convex, and since the closures of a convex set are same in the norm and weak topologies on a Banach space, 
+Omitted.
 \end{pf}
 
-\begin{thm}
-An abelian C$^*$-algebra is nuclear.
-\end{thm}
+\begin{defn}
+A C$^*$-algebra $\cA$ is called \emph{nuclear} if the canonical surjection $\cA\otimes_{\max}\cB\to\cA\otimes_{\min}\cB$ is injective for any C$^*$-algebra $\cB$.
+\end{defn}
 
-\begin{thm}
-A finite-dimensional C$^*$-algebra is nuclear.
-\end{thm}
 
+\begin{ex}\,
+\begin{parts}
+\item Every finite-dimensional C$^*$-algebra is nuclear.
+\item Every abelian C$^*$-algebra is nuclear.
+\item A non-unital C$^*$-algebra is nuclear if and only if its unitization is nuclear.
+\item A quotient of a nuclear C$^*$-algebra is nuclear.
+\item The inductive limit of nuclear C$^*$-algebras is nuclear.
+\item The tensor product of nuclear C$^*$-algebra is nuclear.
+\end{parts}
+\end{ex}
+\begin{pf}
+(a), (b), (e) See Theorem 6.3.9, 6.4.15, and 6.3.10 of [Murphy].
+\end{pf}
 
 
 \subsection{Completely positive approximation property}
 
 \begin{defn}
-A linear map $\theta:\cA\to\cB$ between C$^*$-algebras is called \emph{nuclear} if it is a limit of finite-rank contractive c.p.(c.c.p.)~maps in the point-norm topology.
-Equivalently, by the following lemma, there is a net of pairs of c.c.p.~maps $\f_\alpha:\cA\to M_{n_\alpha}(\C)$ and $\psi_\alpha:M_{n_\alpha}(\C)\to\cB$ such that $\|\theta(a)-\psi_\alpha\circ\f_\alpha(a)\|\to0$ for each $a\in\cA$.
-
-If $\cB$ is a con Neumann algebra, $\theta$ is called \emph{weakly nuclear} if it is a limit of finite-rank c.c.p. maps in the point-$\sigma$-weak topology.
+Let $\theta:\cA\to\cB$ be a c.c.p.~map between C$^*$-algebras.
+We say $\theta$ is \emph{factorable} if it factors through a matrix algebra $M_n(\C)$.
+We say $\theta$ is \emph{approximable} or \emph{nuclear} if it is a limit of factorable maps in the point-norm topology.
+When $\cB$ is a von Neumann algebra, we say $\theta$ is \emph{weakly approximable} or \emph{weakly nuclear} if it is a limit of factorable maps in the point-$\sigma$-weak topology.
 \end{defn}
 
-\begin{lem}
-A c.c.p.~map $\theta:\cA\to\cB$ between C$^*$-algebras is of finite-rank iff there are c.c.p.~maps $\f:\cA\to M_n(\C)$ and $\psi:M_n(\C)\to\cB$ for some $n$ such that $\theta=\psi\circ\f$.
-In Brown-Ozawa, a finite-rank c.c.p.~map is called a factorable map.
-\end{lem}
-\begin{pf}
-($\Leftarrow$) Clear.
-($\Rightarrow$)
-By the structure theorem of finite-dimensional C$^*$-algebras, we have $\im\theta\cong\bigoplus_{i=1}^mM_{n_i}(\C)$,
-so for $n=\sum_{i=1}^mn_i$ there is a unital embedding $\im\theta\hookrightarrow M_n(\C)$ and conditional expectation $M_n(\C)\to\im\theta:T\mapsto\sum_{i=1}^mP_iTP_i$, where $P_i$ denotes the projection on the image of $M_{n_i}(\C)$.
-Now we are done.
-(In fact, such a conditional expectation also exists for unital subalgebras beetween von Neumann algebras.)
-\end{pf}
-
-
-\begin{prop}[Local property]
-Let $\theta:\cA\to\cB$ be a linear map between C$^*$-algebras.
-If the restriction of $\theta$ on any finite-dimensional subspace of $\cA$ is approximated by c.p.~maps, then so is $\theta$.
-\end{prop}
-\begin{pf}
-
-\end{pf}
-
-
-\begin{prop}[Weak approximations]
+\begin{prop}
 Let $\cA$ and $\cB$ be C$^*$-algebras, and $\cM\subset B(H)$ a von Neumann algebra.
+Let $\cF\subset B(\cA,\cB)$ or $B(\cA,\cM)$ be the set of factorabl maps.
 \begin{parts}
-\item $\theta:\cA\to\cB$ is approximated by c.p.~maps if there is a net $\cA\xrightarrow{\f_\alpha}M_{n_\alpha}(\C)\xrightarrow{\psi_\alpha}\cB$ such that
-\[\lim_\alpha\<\theta(a)-\psi_\alpha\circ\f_\alpha(a),l\>=0\qquad a\in\cA,\ l\in\cB^*.\]
-\item $\theta:\cA\to\cM$ is weakly approximated by c.p.~maps if there is a net $\cA\xrightarrow{\f_\alpha}M_{n_\alpha}(\C)\xrightarrow{\psi_\alpha}\cM$ such that
-\[\lim_\alpha\<(\theta(a)-\psi_\alpha\circ\f_\alpha(a))\xi,\xi\>=0\qquad a\in\cA,\ \xi\in H.\]
+\item $\cF$ is convex.
+\item In $B(\cA,\cB)$, we have
+\[\bar\cF^{co}=\bar\cF^{pt-\|\cdot\|}=\bar\cF^{pt-w}.\]
+\item In $B(\cA,\cM)$, we have
+\[\bar{\R_{\ge0}\cF}^{pt-\sigma w}\cap B=\bar\cF^{pt-\sigma w}=\bar\cF^{pt-wot}=\bar\cF^{pt-sot},\]
+where $B$ denotes the closed unit ball of $B(\cA,\cM)$.
 \end{parts}
 \end{prop}
-
-\begin{pf}
+\begin{pf}[Sketch]
 (a)
-By applying the Hahn-Banach extension for each $a\in\cA$, we can show the closures of a convex set is same with respect to the point-norm topology and the point-$\sigma(\cB,\cB^*)$-topology.
-Thus it suffices to show that the set of finite-rank c.c.p.~maps is convex.
-
 Let $\cA\xrightarrow{\psi_i}M_{n_i}(\C)\xrightarrow{\f_i}\cB$ be c.c.p.~maps for $i\in\{0,1\}$.
-Then, we have a diagram
+Then, for $t\in[0,1]$ we have a diagram
 \begin{cd}
 \cA \ar{rrr}{(1-t)\psi_0\circ\f_0+t\psi_1\circ\f_1}\ar{d}&&&\cB\\
 \cA\oplus\cA\ar[swap]{r}{\f_0\oplus\f_1}&M_{n_0}(\C)\oplus M_{n_1}(\C)\ar[swap]{rr}{((1-t)\psi_0)\oplus(t\psi_1)}&&\cB\oplus\cB\ar{u}
 \end{cd}
 which is commutative, so we are done.
 
-(b)
-Fix $a\in\cA$.
-Note that are net is bounded.
-Since the unit ball is compact in $\sigma$-weak topology and hence in the weak operator topology, we are enough to verify the convergence of $\psi_\alpha\circ\f_\alpha$ in the weak operator topology.
-Using the polarization identity, the claim holds.
+(b), (c)
+When comparing the strong (operator) topology and the weak (operator) topology, we can use the fact that continuous functionals with respect to both topologies are same and apply the Hahn-Banach separation because $\cF$ is convex.
+
+When comparing the weak topology and the $\sigma$-weak topology, we can use the compactness of the closed unit ball in the $\sigma$-weak topology and use the fact that weak topology is weaker than the $\sigma$-weak topology to prove a homeomoprhism.
+
+Finally, for the first equality of (b), see Proposition 3.8.2 in [Brown-Ozawa], which assumes unital maps.
 \end{pf}
 
 
-nonunital technicalities
+\begin{thm}
+Let $\cA$ be a C$^*$-algebra.
+Then, the identity $\cA\to\cA$ is approximable if and only if the inclusion $\cA\to\cA^{**}$ is weakly approximable.
+\end{thm}
+\begin{pf}
+($\Rightarrow$)
+Clear.
 
+($\Leftarrow$)
+Let $E\subset\cA$ and $F\subset\cA^*$ be any finite subsets and fix $\e>0$.
+We may assume $E$ and $F$ are bounded by one and $F$ is positive.
+We want to construct c.c.p.~maps $\cA\xrightarrow{\f}M_n(\C)\xrightarrow{\psi}\cA$ such that
+\[|l(a-\psi\circ\f(a))|<\e,\qquad a\in E,\ l\in F.\]
 
+By the assumption, we have a net of c.c.p.~maps $\cA\xrightarrow{\f'_\alpha}M_{n_\alpha}(\C)\xrightarrow{\psi'_\alpha}\cA^{**}$ satisfying
+\[|l(a-\psi'_\alpha\circ\f'_\alpha(a))|\to0,\qquad a\in\cA,\ l\in\cA^*.\]
+If we choose $0\le e\le1$ in $\cA$ such that $l(1-e)<\frac\e8$ for all $l\in F$, then
+\begin{align*}
+l(1-\psi'_\alpha(\id))
+&=l(1-e)+l(e-\psi'_\alpha\circ\f'_\alpha(e))+l(\psi'_\alpha(\f'_\alpha(e)-\id))\\
+&<\frac\e8+l(e-\psi'_\alpha\circ\f'_\alpha(e))+0
+\end{align*}
+implies that we have a c.c.p.~map $\cA\xrightarrow{\f'}M_n(\C)\xrightarrow{\psi'}\cA^{**}$ in the net such that
+\[|l(a-\psi'\circ\f'(a))|<\frac\e4,\qquad a\in E,\ l\in F\tag{1}\]
+and
+\[l(1-\psi'(\id))<\frac\e4,\qquad l\in F.\tag{1'}\]
+Now we let $\f:=\f'$ and try to deform $\psi'$ so that $\cA$ contains the codomain.
 
+Define $\psi'':M_n(\C)\to\cA^{**}$ such that
+\[\psi''(T):=\frac1n\Tr(T)(1-\psi'(\id))+\psi'(T).\]
+Then, $\psi''$ is a u.c.p.~map and (1') implies
+\[|l(\psi'\circ\f(a)-\psi''\circ\f(a))|<\frac\e4,\qquad a\in E,\ l\in F.\tag{2}\]
 
+Now consider the associated matrix element $[\psi''(e_{ij})]\in M_n(\cA^{**})_+$ and the correspondence
+\[M_n(\cA^*)\xrightarrow{\sim}M_n(\cA)^*:[l_{ij}]\mapsto([a_{ij}]\mapsto\sum_{i,j}l_{ij}(a_{ij})).\]
+Since $M_n(\cA)$ is $\sigma$-weakly dense in $M_n(\cA)^{**}=M_n(\cA^*)^*=M_n(\cA^{**})$, the Kaplansky density theorem implies that the closed ball of $M_n(\cA)_+$ is $\sigma$-weakly dense in the closed ball of $M_n(\cA^{**})_+$.
+For each pair $(a,l)\in E\times F$, if we define $[l_{ij}]\in M_n(\cA^*)$ such that $l_{ij}:=t_{ij}l$ and $\f(a)=[t_{ij}]\in M_n(\C)$, then we can take $[a_{ij}]\in M_n(\cA)$ such that
+\[|l(\psi''(\f(a))-\sum_{i,j}t_{ij}a_{ij})|=|\sum_{i,j}l_{ij}(\psi''(e_{ij})-a_{ij})|=|[l_{ij}]([\psi''(e_{ij})-a_{ij}])|<\frac\e4\]
+for all $a\in E$ and $l\in F$.
+Now we define $\psi''':M_n(\C)\to\cA$ by $\psi'''(e_{ij}):=a_{ij}$ to get
+\[|l(\psi''\circ\f(a)-\psi'''\circ\f(a))|<\frac\e4,\qquad a\in E,\ l\in F\tag{3}\]
+and $\psi'':M_n(\C)\to\cA$ is c.p.
+Note that we may not assume $\psi''$ is contractive because the correspondence $\mathrm{CP}(M_n(\C),\cA)\cong M_n(\cA)_+$ dose not preserve the norm.
+
+However, when we take $\psi'''$ we can insert an additional condition
+\[\|1-\psi'''(\id)\|=\|\psi''(\id)-\psi'''(\id)\|<\frac\e4\tag{3'}\]
+using Mazur's lemma.
+Define $\psi'''':M_n(\C)\to\cA$ by $\psi'''':=\psi'''/\|\psi'''\|$.
+Then, (3') implies
+\[|l((\psi'''-\psi'''')\circ\f(a))|=|l((\|\psi'''\|-1)\psi'''\circ\f(a))|\le|\|\psi'''\|-1|<\frac\e4,\qquad a\in E,\ l\in F.\tag{4}\]
+
+Combining (1)\sim(4), we finally obtain $\psi:=\psi''''$ such that
+\[|l(a-\psi''''\circ\f(a))|<\frac\e4\cdot4=\e,\qquad a\in E,\ l\in F,\]
+so we are done.
+In summary, we have constructed the following maps
+\begin{center}
+\begin{tabular}{rlc}
+$\psi'$&$:M_n(\C)\to\cA^{**}$ & c.c.p.\\
+$\psi''$&$:M_n(\C)\to\cA^{**}$ & u.c.p.\\
+$\psi'''$&$:M_n(\C)\to\cA$ & c.p.\\
+$\psi''''$&$:M_n(\C)\to\cA$ & u.c.p.
+\end{tabular}
+\end{center}
+\end{pf}
 
 
 \subsection{Choi-Effros-Kirchberg characterization}
+
+
+\begin{lem}[Bounded Radon-Nikodym theorem]
+Let $\cA$ be a C$^*$-algebra.
+For $F$ a finite dimensional subspace of $\cA^*$, there is a cyclic representation $\pi:\cA\to B(H)$ with the cyclic vector $\Omega$ such that there is a linear map $\pi':F\to\pi(\cA)'$ satisfying $l(a)=\<\pi(a)\pi'(l)\Omega,\Omega\>$ for every $l\in F$.
+The operator $\pi'(l)$ is called the Radon-Nikodym derivative of $l$ with respect to the vector state $\omega_\Omega$.
+\end{lem}
+\begin{pf}
+Choose a basis $l_1,\cdots,l_n$ of $F$.
+With the Jordan decomposition $l_i=l_{i,1}-l_{i,2}+i(l_{i,3}-l_{i,4})$, define a state
+\[l_0:=\frac1{4n}\sum_{i=1}^n\sum_{j=1}^4\frac{l_{i,j}}{\|l_{i,j}\|}\]
+by averaging, and let $\pi:\cA\to B(H)$ be the GNS-representation of $l_0$ with cyclic vector $\Omega\in H$.
+Then for each $l\in F$,
+\[\sigma(\pi(a)\Omega,\pi(b)\Omega):=l(b^*a)\]
+are extended to well-defined bounded sesquilinear forms on $H$.
+If we write by $\pi'(l)$ the bounded linear operator associated to the sesquilinear form $\sigma$, then for $l\in F$ we have
+\[l(b^*a)=\<\pi'(l)\pi(a)\Omega,\pi(b)\Omega\>=\<\pi(b^*)\pi'(l)\pi(a)\Omega,\Omega\>,\]
+and by putting $a=1$ and $b=1$ respectively, we can conclude $\pi'(l)\in\pi(\cA)'$ and the desired result.
+\end{pf}
+
+\begin{lem}[Fell's theorem]
+Let $\pi:\cA\to B(H)$ be a faithful representation of a C$^*$-algebra.
+Then, every state of $\cA$ is a weak$^*$ limit of the convex combination of pullbacks of vector states of $B(H)$.
+\end{lem}
+\begin{pf}
+Suppose not and let $\omega$ be a counterexample.
+By the Hahn-Banach separation, there is $a\in\cA$ and $r\in\R$ such that
+\[\Re\omega_\xi(a)\le r<\Re\omega(a)\]
+for all unit vector $\xi\in H$.
+Defining $h=(a+a^*)/2$, rewrite the above inequality as
+\[\omega_\xi(h)\le r<\omega(h).\]
+Then, $r-h\ge0$ by the left inequality, which contradicts to the right inequality.
+\end{pf}
+
+\begin{thm}[Choi-Effros-Kirchberg]
+Let $\cA$ be a C$^*$-subalgebra.
+\begin{parts}
+\item The identity $\cA\to\cA$ is approximable.
+\item $\cA$ is nuclear.
+\item $\pi\times i:\cA\odot_{\min}\pi(\cA)'\to B(H)$ is continuous.
+\end{parts}
+\end{thm}
+\begin{pf}
+(a)$\Rightarrow$(b)
+Recall that every finite-dimensional C$^*$-algebra is nuclear.
+For any C$^*$-algebra $\cB$, we have (by Corollary 3.3) a diagram
+\begin{cd}[row sep=10pt]
+\cA\otimes_{\max}\cB \ar{rr}\ar[dashed]{rd}\ar{dd} && \cA\otimes_{\max}\cB\\
+&M_{n_\alpha}(\C)\otimes_{\max}\cB \ar[dashed]{ru}\ar[dashed,leftrightarrow]{dd}&\\
+\cA\otimes_{\min}\cB \ar[dashed]{rd} &&\\
+&M_{n_\alpha}(\C)\otimes_{\min}\cB&
+\end{cd}
+in which the square at lower left side algebraically commutes for each $\alpha$ and the upper triangle approximately commutes in the point-norm topology because
+\[\|a\otimes b-\psi_\alpha\circ\f_\alpha(a)\otimes b\|_{\max}=\|a-\psi_\alpha\circ\f_\alpha(a)\|\|b\|\to0\]
+for each $a\in\cA$, $b\in\cB$.
+Here the dashed arrows mean that they vary as $\alpha$ goes to limit.
+Hence we have an approximately commuting diagram
+\begin{cd}[row sep=10pt]
+\cA\otimes_{\max}\cB \ar{rr}\ar{rd} && \cA\otimes_{\max}\cB\\
+&\cA\otimes_{\min}\cB \ar[dashed]{ur}&
+\end{cd}
+so that we can verify the injectivity of $\cA\otimes_{\max}\cB\to\cA\otimes_{\max}\cB$ (because it is just the identity, so we do not have to take care of the failure of inclusion for maximal tensor products) implies the injectivity of $\cA\otimes_{\max}\cB\to\cA\otimes_{\min}\cB$.
+
+(b)$\Rightarrow$(c)
+Clear.
+
+(c)$\Rightarrow$(a)
+Let $E\subset\cA$ and $F\subset\cA^*$ be finite subsets and fix $\e>0$.
+We want to find c.c.p.~maps $\cA\xrightarrow{\f}M_n(\C)\xrightarrow{\psi}\cA$ such that
+\[|l(a)-l(\psi\circ\f(a))|<\e\]
+for $a\in E$ and $l\in F$.
+To implement the approximation, we would like to regard the inclusion operator as a state of a tensor product C$^*$-algebra via the correspondence
+\[B(\cA,\cA)\subset B(\cA,\cA^{**})\xrightarrow{\sim}(\cA\otimes_\pi\cA^*)^*,\]
+which maps the identity map $\cA\to\cA$ to the linear functional characterized by $a\otimes l\mapsto l(a)$.
+Since $\cA^*$ is not a C$^*$-algebra, we think a ``representation'' of $\pi':F\to\pi(\cA)'$ through the above Radon-Nikodym type result.
+Let $\pi:\cA\to B(H)$ be the cyclic representation obtained from the above Radon-Nikodym theorem and $\Omega$ the cyclic vector such that $l(a)=\<\pi(a)\pi'(l)\Omega,\Omega\>$ for $a\in E$ and $l\in F$.
+
+By the assumption, we have a representation
+\[\pi\times i:\cA\otimes_{\min}\pi(\cA)'\to B(H).\]
+Consdier any faithful representation $\rho:\cA\to B(K)$ and the tensor representation
+\[\rho\otimes i:\cA\otimes_{\min}\pi(\cA)'\to B(K\otimes H),\]
+which is also faithful.
+By Fell's theorem, the state $\omega_\Omega\circ(\pi\times i)$ on $\cA\otimes_{\min}\pi(\cA)'$ can be approximated by convex combinations of vector states in $B(K\otimes H)$.
+In particular, by the density of $\pi(\cA)\Omega$ in $H$, we have tensors $(\tau_k)_{k=1}^m\subset K\odot\pi(\cA)\Omega$ such that
+\[\Bigl|\omega_\Omega((\pi\times i)(a\otimes\pi'(l)))-\sum_{k=1}^m\lambda_k\omega_{\tau_k}((\rho\otimes i)(a\otimes\pi'(l)))\Bigr|<\e\tag{\dagger}\]
+for all $a\in E$ and $l\in F$, where $\lambda_k\ge0$, $\sum_{k=1}^m\lambda=1$.
+
+If we write each element $\tau\in K\odot\pi(\cA)\Omega$ as
+\[\tau=\sum_{i=1}^n\eta_i\otimes\pi(b_i)\Omega,\]
+then
+\begin{align*}
+\omega_\tau((\rho\otimes i)(a\otimes\pi'(l)))
+&=\left\<(\rho(a)\otimes\pi'(l))\Bigl(\sum_{j=1}^n\eta_j\otimes\pi(b_j)\Omega\Bigr),\Bigl(\sum_{i=1}^n\eta_i\otimes\pi(b_i)\Omega\Bigr)\right\>\\
+&=\sum_{i,j=1}^n\<\rho(a)\eta_j,\eta_i\>\<\pi'(l)\pi(b_i^*b_j)\Omega,\Omega\>\\
+&=l\Bigl(\sum_{i,j=1}^n\<\rho(a)\eta_j,\eta_i\>b_i^*b_j\Bigr).
+\end{align*}
+If we define c.c.p.~maps $\cA\xrightarrow{\f}M_n(\C)\xrightarrow{\psi}\cA$ for each $\tau$ such that
+\[\f(a):=[\<\rho(a)\eta_j,\eta_i\>],\quad\psi([e_{ij}]):=b_i^*b_j,\]
+then we have $\omega_\tau(a\otimes\pi'(l))=l(\psi\circ\f(a))$.
+
+Since $\mu(a\otimes\pi'(l))=l(a)$ and since the c.c.p.~maps that factor through a matrix algebra form a convex set, we have c.c.p.~maps $\cA\xrightarrow{\f}M_n(\C)\xrightarrow{\psi}\cA$ such that the inequality (\dagger) is rewritten as
+\[|l(a)-l(\psi\circ\f(a))|<\e,\]
+so we are done.
+\end{pf}
+
 
 
 
 
 
 \newpage
-\section{May 22}
+\section{May 26}
+
+
+
+In the next two subsections, we extend our investigation of famous theorems related to copmletely positive maps: the Stinespring dilation theorem and the Arveson extension theorem.
+
+\subsection{Stinespring dilation revisited}
+
+Here is a Stinespring dilation theorem for non-unital C$^*$-algebras.
+We also discuss shortly the minimal Stinespring representation.
+
+\begin{thm}[Stinespring dilation]
+Let $\cA$ be a C$^*$-algebra and $\f:\cA\to B(H)$ is a c.p.~map.
+Then, there is a representation $\pi:\cA\to B(\hat H)$ and a bounded linear operator $V:H\to\hat H$ such that $\f(a)=V^*\pi(a)V$ for all $a\in\cA$.
+Moreover, we can take $\pi$ to be \emph{minimal} in the sense that $(\pi(\cA)VH)^-=\hat H$.
+\end{thm}
+\begin{pf}
+In the first day we have defined $\pi:\cA\to B(\hat H)$ and $V:H\to\hat H$, where $\hat H:=(\cA\odot H/N)^-$, such that
+\[\pi(a)(b\otimes\xi+N):=(ab)\otimes\xi+N,\qquad V\xi:=1_\cA\otimes\xi+N.\]
+Since $\cA$ may not have its unit, we want to adjust the definition of $V$ with approximate unit.
+For an approximate unit $e_\alpha$ of $\cA$, let $V_\alpha:H\to\hat H$ be such that
+\[V_\alpha\xi:=e_\alpha\otimes\xi+N.\]
+Recall that if $\omega$ is a positive linear functional, then $\lim_\alpha\omega(e_\alpha)=\omega(1)$.
+For fixed $\xi\in H$, because $\omega_\xi\circ\f$ is a positive linear functional and products of approximate units are also approximate units, we have
+\[\|(V_\alpha-V_\beta)\xi)\|^2=\<\f((e_\alpha-e_\beta)^2)\xi,\xi\>=\<\f(e_\alpha^2-e_\alpha e_\beta-e_\beta e_\alpha+e_\beta^2)\xi,\xi\>\to0,\]
+so the net $V_\alpha\xi$ is Cauchy.
+Define $V\xi:=\lim_\alpha V_\alpha\xi$.
+Then,
+\begin{align*}
+\<V^*\pi(a)V\xi,\eta\>
+&=\lim_\alpha\<\pi(a)V_\alpha\xi,V_\alpha\eta\>\\
+&=\lim_\alpha\<(ae_\alpha)\otimes\xi+N,e_\alpha\otimes\eta+N\>\\
+&=\lim_\alpha\<\f(e_\alpha ae_\alpha)\xi,\eta\>\\
+&=\<\f(a)\xi,\eta\>.
+\end{align*}
+It is easy to check the condition $(\pi(\cA)VH)^-=\hat H$ holds.
+\end{pf}
+
+\begin{rmk*}
+For a c.p.~map $\f:\cA\to B(H)$, we can define a \emph{Stinespring dilation} of $\f$ as a triplet $(\pi,K,V)$, where $\pi:\cA\to K$ is a representation and $V:H\to K$ is a bounded linear operator, such that $\f(a)=V^*\pi(a)V$.
+For two Stinespring dilations $(\pi_1,K_1,V_1)$ and $(\pi_2,K_2,V_2)$ of $\f$, we can define morphisms by a bounded linear operator $U:K_2\to K_1$ such that $\pi_2(a)=U^*\pi_1(a)U$ and $V_2=UV_1$.
+The two conditions imply that the following diagram commutes:
+\begin{cd}
+\cA\ar{rr}{\f}\ar{dr}{\pi_2}\ar[swap]{dddr}{\pi_1}&&B(H)\\
+&B(K_2)\ar{ur}{V_2^*\cdot V_2}&\\
+&&\\
+&B(K_1)\ar[swap]{uuur}{V_1^*\cdot V_1}\ar{uu}[description]{U^*\cdot U}&
+\end{cd}
+
+For arbitrary Stinespring dilation, we may always assume $\pi$ acts non-degenerately on the subspace $VH$ of $K$ by changing $V$ to $\lim_\alpha\pi(e_\alpha)V$ to make $\im V\subset(\pi(\cA)VH)^-$.
+Even we add this in the definition of a Stinespring dilation, the definition of morphisms still left unchanged.
+Here, the non-denegeracy condition $(\pi(\cA)VH)^-=\hat H$ for the \emph{minimal} Stinespring dilation is equivalent to that the Stinespring dilation enjoys the universal property, and hence unique up to morhpisms.
+A nice fact, the isomorhpism $U$ is unitary, which means the minimal Stinespring is unique up to unitary equivalence.
+\end{rmk*}
+
+\begin{prop}[Multiplicative domain]
+Let $\f:\cA\to\cB$ be a c.c.p.~map between C$^*$-algebras.
+\begin{parts}
+\item $|\f(a)|^2\le\f(|a|^2)$ for $a\in\cA$.
+\item If $|\f(a)|^2=\f(|a|^2)$ and $|\f(a^*)|^2=\f(|a^*|^2)$, then $\f(ba)=\f(b)\f(a)$ and $\f(ab)=\f(a)\f(b)$, respectively.
+\item $\{a\in\cA:|\f(a)|^2=\f(|a|^2)\}$ is a closed under the multiplication.
+In particular, $\{a\in\cA:|\f(a)|^2=\f(|a|^2),\ |\f(a^*)|^2=\f(|a^*|^2)\}$ is a C$^*$-subalgebra of $\cA$ on which the restriction of $\f$ is a $*$-homomorphism.
+\end{parts}
+\end{prop}
+\begin{pf}
+(a)
+Let $(\pi,H,V)$ be the minimal Stinespring dilation of $\f$.
+Since $\f$ is contractive, so is $V$.
+Then,
+\[\f(|a|^2)-|\f(a)^2|=V^*\pi(a)^*(1_H-VV^*)\pi(a)V\ge0.\]
+
+(b)
+For $a\in\cA$, the equality $|\f(a)|^2=\f(|a|^2)$ holds if and only if $(\id_H-VV^*)^{\frac12}\pi(a)V=0$.
+Then,
+\[\f(ba)-\f(b)\f(a)=V^*\pi(b)^*(1_H-VV^*)\pi(a)V=0.\]
+Similar for $a^*$.
+
+(c)
+If $a$ and $b$ satisfy the equality, then
+\begin{align*}
+(\id_H-VV^*)^{\frac12}\pi(ab)V
+&=(\id_H-VV^*)^{\frac12}\pi(a)\pi(b)V\\
+&=(\id_H-VV^*)^{\frac12}\pi(a)\pi(b)V-[(\id_H-VV^*)^{\frac12}\pi(a)V]V^*\pi(b)V\\
+&=(\id_H-VV^*)^{\frac12}\pi(a)(\id_H-VV^*)\pi(b)V\\
+&=(\id_H-VV^*)^{\frac12}\pi(a)(\id_H-VV^*)^{\frac12}[(\id_H-VV^*)^{\frac12}\pi(b)V]=0.\qedhere
+\end{align*}
+\end{pf}
+
+\begin{lem}[Restriction of product representation]
+Let $\cA$ and $\cB$ be C$^*$-algebras. and $\Pi:\cA\odot\cB\to B(H)$ be a $*$-homomorphism.
+Then, there are $*$-homomorphisms $\pi:\cA\to B(H)$ and $\pi':\cB\to B(H)$ with commuting ranges such that $\Pi=\pi\times\pi'$.
+\end{lem}
+\begin{pf}
+Let $K:=(\Pi(\cA\odot\cB)H)^-$.
+We first claim that a map $\pi:\cA\to B(K)$ defined by
+\[\pi(a)(\Pi(\sum_ia_i\otimes b_i)\xi):=\Pi(\sum_i(aa_i)\otimes b_i)\xi\]
+for $\xi\in H$ is indeed well-defined and bounded for each $a\in\cA$.
+We can define $\pi'$ in the same manner.
+
+We may assume $\|a\|\le1$.
+It suffices to show the inequality
+\[\|\Pi(\sum_i(aa_i)\otimes b_i)\eta\|^2\le\|\Pi(\sum_ia_i\otimes b_i)\eta\|^2.\]
+The left hand side is
+\[\|\Pi(\sum_i(aa_i)\otimes b_i)\eta\|^2
+=\<\Pi(\sum_{i,j}(a_i^*a^*aa_j)\otimes(b_i^*b_j))\eta,\eta\>\]
+and the right hand side is
+\[\|\Pi(\sum_ia_i\otimes b_i)\eta\|^2
+=\<\Pi(\sum_{i,j}(a_i^*a_j)\otimes(b_i^*b_j))\eta,\eta\>\]
+so that there difference is positive because
+\[\sum_{i,j}(a_i^*(1-a^*a)a_j)\otimes(b_i^*b_j)=|\sum_i((1-a^*a)^{\frac12}a_i)\otimes b_i|^2\ge0,\]
+where 1 is the unit in the unitization of $\cA$ for the continuous functional calculus.
+
+Note that the restrictions $\pi$ and $\pi'$ are clearly $*$-homomorphisms, and commuting ranges of $\pi$ and $\pi'$ also can be immediately checked.
+By definition of the restrictions, we have
+\[\pi(a)\pi'(b)\eta=\Pi(a\otimes b)\eta\]
+for all $a\in\cA$, $b\in\cB$, and $\eta\in K$.
+If we extend the domain from $K$ to $H$ by letting $\pi(a)\eta^\perp=\pi'(b)\eta^\perp:=0$ for $\eta^\perp\in H\ominus K$, then since
+\[\<\Pi(a\otimes b)\eta^\perp,\xi\>=\<\eta^\perp,\Pi(a^*\otimes b^*)\>=0\]
+for $\xi\in H$ implies $\Pi(a\otimes b)\eta^\perp=0$, we have
+\[\pi(a)\pi'(b)(\eta+\eta^\perp)=\pi(a)\pi'(b)\eta=\Pi(a\otimes b)\eta=\Pi(a\otimes b)(\eta+\eta^\perp),\]
+hence $\pi\times\pi'=\Pi$.
+\end{pf}
+
+
+\begin{prop}[Maximal tensor products of c.c.p.~maps]
+Let $\cA,\cB$ and $\cC$ be C$^*$-algebras and $\f:\cA\to\cB$ be a c.c.p.~map.
+Then, $\f\otimes i:\cA\otimes_{\max}\cC\to\cB\otimes_{\max}\cC$ is well-defined.
+\end{prop}
+\begin{pf}
+First assume $\cB\otimes_{\max}\cC\subset B(H)$ by taking a faithful representation $b\otimes c\mapsto bc$.
+By restriction, $\cB$ and $\cC$ can be seen as commuting C$^*$-subalgebras of $B(H)$.
+Let $\pi:\cA\to B(\hat H)$ be the minimal Stinespring representation of the c.c.p. map $\f:\cA\to\cB\subset B(H)$.
+\begin{cd}
+\cA\ar{d}{\f}\ar{r}{\pi}&B(\hat H)\ar{d}{V^*\cdot V}&\cC\ar[equal]{d}\ar[dashed,swap]{l}{\rho}\\
+\cB\ar[hook]{r}&B(H)&\cC\ar[hook']{l}
+\end{cd}
+Now we want to lift the inclusion $\cC\subset\cB'\subset B(H)$ to obtain a representation $\rho:\cC\to\pi(\cA)'\subset B(\hat H)$.
+
+Since $\pi(\cA)VH$ is dense in $\hat H$, we can try to define $\rho$ by
+\[\rho(c)(\sum_i\pi(a_i)V\xi_i):=\sum_i\pi(a_i)Vc\xi_i.\]
+It is indeed well-defined from the following inequality:
+\begin{align*}
+\|\sum_i\pi(a_i)Vc\xi_i\|^2
+&=\sum_{i,j}\<c^*\f(a_i^*a_j)c\xi_j,\xi_i\>\\
+&=\<([c\delta_{ij}]^*[\f(a_i^*a_j)][c\delta_{ij}])[\xi_i],[\xi_i]\>_{H^n}\\
+&=\<([\f(a_i^*a_j)]^{\frac12}[c\delta_{ij}]^*[c\delta_{ij}][\f(a_i^*a_j)]^{\frac12})[\xi_i],[\xi_i]\>_{H^n}\\
+&\le\|[c\delta_{ij}]\|_{M_n(\cC)}^2\<([\f(a_i^*a_j)]^{\frac12}[\f(a_i^*a_j)]^{\frac12})[\xi_i],[\xi_i]\>_{H^n}\\
+&=\|c\|^2\|\sum_i\pi(a_i)V\xi_i\|^2.
+\end{align*}
+Now then we can easily deduce that $\rho$ is linear and preserves the multiplication, and is a $*$-homomorhpism from checking
+\[\<\sum_j\pi(a_j)Vc\xi_j,\sum_i\pi(a_i)V\xi_i\>=\<\sum_j\pi(a_j)V\xi_j,\sum_i\pi(a_i)Vc^*\xi_i\>.\]
+The commutation with $\pi(\cA)'$ is clear.
+
+Using the universality, we have a $*$-homomorphism $\pi\times\rho:\cA\otimes_{\max}\cC\to\cB\otimes_{\max}\cC\subset B(\hat H)$, which satisfies
+\[V^*(\pi\times\rho)(a\otimes c)V\xi=V^*\pi(a)\rho(c)V\xi=V^*\pi(a)Vc\xi=\f(a)c\xi.\]
+Since the product $\f(a)c$ has been identified with the simple tensor $\f(a)\otimes c\in\cB\otimes_{\max}\cC$ when we embed $\cB$ and $\cC$ into $B(H)$, the above equality implies that $V^*(\pi\times\rho)V=\f\otimes i$.
+\end{pf}
+
+
+\subsection{Arveson extension revisited}
+
+\begin{prop}[Representation extensioin]
+Let $\cA$ be a closed ideal of a C$^*$-algebra $\cB$.
+For a representation $\pi:\cA\to B(H)$, there is a representation $\tilde\pi:\cB\to B(H)$ which extends $\pi$.
+Also, the extension is unique in the sense $\tilde\pi(b)=\lim_\alpha\pi(e_\alpha b)$ in the strong operator topology, where $e_\alpha$ is an approximate unit of $\cA$.
+\end{prop}
+\begin{pf}
+Let $K:=(\pi(\cA)H)^-$.
+Define $\tilde\pi:\cB\to B(H)$ such that
+\[\tilde\pi(b)(\pi(a)\xi+\eta):=\pi(ba)\xi\]
+for $\xi\in H$, $\eta\in H\ominus K$, which is well-defined since
+\[\|\pi(ba)\xi\|^2=\<\pi(a^*b^*ba)\xi,\xi\>\le\|b\|^2\<\pi(a^*a)\xi,\xi\>=\|b\|^2\|\pi(a)\xi\|^2.\]
+It is clearly a $*$-homomorphism and extends $\pi$ since $\<\pi(a')\eta,\zeta\>=\<\eta,\pi(a'^*)\zeta\>=0$ for all $\zeta\in H$ implies
+\[\tilde\pi(a')(\pi(a)\xi+\eta)=\pi(a'a)\xi=\pi(a')(\pi(a)\xi+\eta).\]
+For the uniqueness, we have for each $\pi(a)\xi+\eta\in H$ that
+\[\|(\tilde\pi(b)-\pi(e_\alpha b))(\pi(a)\xi+\eta)\|^2=\|\pi(ba)\xi\|^2+\|\pi(e_\alpha ba)\xi\|^2-2\Re\<\pi(a^*b^*e_\alpha ba)\xi,\xi\>\to0.\qedhere\]
+\end{pf}
+
+\begin{thm}[Arveson extension]
+Let $\cA\subset\cB$ be C$^*$-algebras.
+Let $\f:\cA\to B(H)$ be a c.p.~map and consider the following diagram:
+\begin{cd}
+\cB\ar[dashed]{dr}{\tilde\f}&\\
+\cA\ar{u}\ar[swap]{r}{\f}&B(H).
+\end{cd}
+\begin{parts}
+\item The n.p.c.p.(norm preserving c.p.)~extension $\tilde\f$ of $\f$ exists if $\cB$ is unital and $1_\cB\in\cA$.
+\item The n.p.c.p.~extension $\tilde\f$ of $\f$ exists if $\cA$ is unital and $\cB=\cA\oplus\C$.
+\item The n.p.c.p.~extension $\tilde\f$ of $\f$ exists if $\cA$ is non-unital and $\cB=\tilde\cA$.
+\item The n.p.c.p.~extension $\tilde\f$ of $\f$ always exists.
+\end{parts}
+\end{thm}
+\begin{pf}
+(a) We have proved on the first day.
+
+(b)
+Define $\tilde\f(a+\lambda)=\f(a)$.
+Then, $\tilde\f:\cA\oplus\C\to B(H)$ is a norm-preserving c.p.~extension of $\f$ since
+\[\|\tilde\f(a+\lambda)\|=\|\f(a)\|\le\|\f\|\|a\|\le\|\f\|\|a+\lambda\|\]
+and
+\[\|\f(a)\|=\|\tilde\f(a)\|\le\|\tilde\f\|\|a\|.\]
+
+(c)
+Let $\pi:\cA\to B(\hat H)$ be the Stinespring representation of $\f$.
+Since $\cA$ is a closed ideal of $\tilde\cA$, we can apply the representation extension for $\pi$ to get $\tilde\pi$ as follows:
+\begin{cd}
+\tilde\cA\ar{dr}{\tilde\pi}&\\
+\cA\ar{u}\ar{r}{\pi}&B(\hat H)\ar{d}{V^*\cdot V}\\
+\cA\ar[equal]{u}\ar{r}{\f}&B(H).
+\end{cd}
+Then, the c.p.~extension is given by $a\mapsto V^*\tilde\pi(a)V$.
+To check the norm is preserved, take an approximate unit $e_\alpha$ of $\cA$ so that the net $\f(e_\alpha^2)=V^*\pi(e_\alpha^2)V$ converges to $V^*\tilde\pi(1)V$ strongly and weakly.
+For any $\xi\in H$, we have
+\[\|\f(ae_\alpha)\xi\|^2
+=\<\f(ae_\alpha)^*\f(ae_\alpha)\xi,\xi\>
+\le\<\f(e_\alpha a^*ae_\alpha)\xi,\xi\>
+\le\|a\|^2\<\f(e_\alpha^2)\xi,\xi\>\le\|a\|^2\|\f\|^2\|\xi\|^2.\]
+Taking $\lim_\alpha$, $\sup_{\|\xi\|=1}$, and $\sup_{\|a\|=1}$, we obtain
+\[\|\f\|^2\le\|V^*\tilde\pi(1)V\|^2\le\|\f\|^2.\]
+
+(d)
+By the part (c), we may assume $\cB$ is unital.
+Let $\tilde\cA=\cA+1_\cB\C$ be the C$^*$-subalgebra of $\cB$ generated by $\cA$ and $1_\cB$.
+Since $\cA$ is an ideal of $\tilde\cA$ with codimension at most one, we have three cases:
+\begin{enumerate}[(i)]
+\item $\tilde\cA=\cA$, if $1_\cB\in\cA$,
+\item $\tilde\cA=\cA\oplus\C$, if $\cA$ is unital but $1_\cB\notin\cA$
+\item $\tilde\cA$ is the unitization of $\cA$, if $\cA$ is non-unital.
+\end{enumerate}
+For the last case reduces to the part (a). 
+By using (b) or (c), we have an extension to $\tilde\cA$, and the other two cases also reduce to the part (a).
+\end{pf}
+
+We introduce a  more controlled version of the Arveson extension, the Trick, named after [Brown-Ozawa].
+It is useful when we want to restrict the codomain of an Arveson extension.
+\begin{thm}[The Trick]
+Let $\cA\subset\cB$ and $\cC$ be C$^*$-algebras, and let $\pi:\cA\to B(H)$ be a representation.
+\begin{enumerate}[(i)]
+\item If there are C$^*$-norm $\alpha$ and $\beta$ on $\cA\odot\cC$ and $\cB\odot\cC$ respectively such that $\cA\otimes_\alpha\cC\to\cB\otimes_\beta\cC$ is injective,
+\item and if there is a representation $\pi':\cC\to B(H)$ such that $\pi\times\pi':\cA\odot_\alpha\cC\to B(H)$ is continuous,
+\end{enumerate}
+then there is a norm-preserving c.c.p. extension $\f:\cB\to\pi'(\cC)'$ of $\pi:\cA\to\pi'(\cC)'$.
+\end{thm}
+\begin{pf}
+We first claim that we may assume $\cB$ and $\cC$ are unital.
+To see this, we must verify the existence of a C$^*$-norm $\tilde\beta$ on $\cB\odot\tilde\cC$ such that $\cB\otimes_\beta\cC\to\cB\otimes_{\tilde\beta}\tilde\cC$ is injective.
+We can do same thing for $\cB$ with symmetry.
+Take a faithful representation $\rho\times\rho':\cB\otimes_\beta\cC\to B(K)$, where $\rho:\cB\to B(K)$ and $\rho':\cC\to B(K)$ are restrictions of $\rho\times\rho'$.
+Then, $\rho'$ can be extended to a faithful representation $\tilde\rho':\tilde\cC\to B(K)$, and it commutes with $\rho$ since the new element $\tilde\rho'(1)$ is the strong limit of elements of $\rho'(\cC)$.
+Now consider the product representation $\rho\times\tilde\rho':\cB\odot\tilde\cC\to B(K)$.
+We want to this is faithful.
+Suppose $(\rho\times\tilde\rho')(\sum_{i=1}^nb_i\otimes c_i)=0$ and $b_i$ are linearly independent.
+For approximate units $e_\alpha$ and $f_\alpha$ of $\cB$ and $\cC$ respectively, we have
+\[(\rho\times\rho')(\sum_ib_ie_\alpha\otimes c_if_\alpha)=(\rho\times\tilde\rho')((\sum_ib_i\otimes c_i)(e_\alpha\otimes f_\alpha))=0,\]
+which implies $\sum_ib_ie_\alpha\otimes c_if_\alpha=0$ for each $\alpha$.
+For every sufficiently large $\alpha$, the finite set $b_ie_\alpha$ should be linearly independent.
+(Define $W_i:=\spn(\{b_1,\cdots,b_n\}\setminus\{b_i\})$ and $d_{i,\alpha}:=\inf\{\|b_ie_\alpha-be_\alpha\|:b\in W_i\}$. Then, we can deduce $\min_id_{i,\alpha}>0$ for every sufficiently small $\|e_\alpha\|$ from the linear independence of $b_i$.)
+Therefore, $c_if_\alpha=0$.
+By $\lim_\alpha$, we can conclude $\rho\times\tilde\rho'$ is faithful so that we have $\cB\otimes_\beta\cC\to\cB\otimes_{\tilde\beta}\tilde\cC$ injective with the C$^*$-norm induced from $B(K)$.
+
+Now let $\cB$ and $\cC$ be unital.
+Then, by the Arveson extension theorem, there is a c.c.p.~map $\Phi:\cB\otimes_\beta\cC\to B(H)$ which extends $\pi\times\pi'$.
+Define $\f:\cB\to B(H)$ by $\f(b):=\Phi|_\cB(b)=\Phi(b\otimes1)$.
+Then, $\f$ clearly extends $\pi$.
+Since $\Phi|_{\C1\otimes\cC}=\pi'$ is a $*$-homomorphism, $1\otimes c$ belongs to the multiplicative domain of $\Phi$, hence we can compute
+\[\f(b)\pi'(c)=\Phi(b\otimes1)\Phi(1\otimes c)=\Phi((b\otimes1)(1\otimes c))=\Phi(1\otimes c)\Phi(b\otimes1)=\pi'(c)\f(b).\qedhere\]
+\end{pf}
+
+
+\begin{cor}[Inclusion problem]
+Let $\cA\subset\cB$ be C$^*$-algebras.
+Then, the following statements are all equivalent:
+\begin{parts}
+\item There is a c.c.p.~map $\f:\cB\to\cA^{**}$ such that
+\begin{cd}
+\cB\ar[dashed]{dr}{\f}&\\
+\cA\ar{u}\ar{r}&\cA^{**}
+\end{cd}
+is commutative.
+\item There is a c.c.p.~map $\f:\cB\to\pi(\cA)''$ such that
+\begin{cd}
+\cB\ar[dashed]{dr}{\f}&\\
+\cA\ar{u}\ar{r}{\pi}&\pi(\cA)''
+\end{cd}
+is commutative for every representation $\pi:\cA\to B(H)$.
+\item The map $\cA\otimes_{\max}C\to\cB\otimes_{\max}\cC$ is injective for every C$^*$-algebra $\cC$.
+\end{parts}
+\end{cor}
+\begin{pf}
+(a)$\Rightarrow$(b)
+For any representation $\pi:\cA\to B(H)$ admits a normal extension $\tilde\pi:\cA^{**}\to B(H)$ by the universal property of the enveloping von Neumann algebra.
+Then, our c.c.p.~map is $\tilde\pi\circ\f$, where $\f:\cB\to\cA^{**}$ is a c.c.p.~map constructed from the assumption (a), because the following diagram commutes:
+\begin{cd}
+\cB\ar[dashed]{dr}{\f}&\\
+\cA\ar{u}\ar{r}&\cA^{**}\ar{d}{\tilde\pi}\\
+\cA\ar[equal]{u}\ar{r}{\pi}&\pi(\cA)''.
+\end{cd}
+
+(b)$\Rightarrow$(a)
+Clear.
+
+(b)$\Rightarrow$(c)
+Taking any faithful representation of $\cA\otimes_{\max}\cC$ and by restriction, we may assume $\cA$, $\cC$, and $\cA\otimes_{\max}\cC$ are C$^*$-subalgebras of $B(H)$ such that $\cA\subset\cC'$.
+Then, by the assumption (b) we can define a c.c.p.~map $\f\otimes\id$ such that
+\begin{cd}
+\cB\otimes_{\max}\cC\ar[dashed]{dr}{\f\otimes\id}&\\
+\cA\otimes_{\max}\cC\ar{u}\ar{r}&\cA''\otimes_{\max}\cC\subset B(H).
+\end{cd}
+commutes.
+Since the horizontal arrow is injective, the vertial arrow is also injective.
+
+(c)$\Rightarrow$(b)
+This step is corollary of ``The Trick''.
+\end{pf}
+
+
+
+\subsection{Exact C$^*$-algebras}
+
+
+Let $\cI$ be a closed ideal of a C$^*$-algebra $\cA$.
+For a C$^*$-algebra $C$, do we have an exact sequence
+\[0\to\cI\otimes\cC\to\cA\otimes\cC\to(\cA/\cI)\otimes\cC\to0,\]
+where $\otimes=\otimes_{\min}$ or $\otimes_{\max}$?
+The answer is given as follows:
+\begin{center}
+\begin{tabular}{c|ccc}
+exact&at left&at middle&at right\\\hline
+$\otimes_{\min}$&True&False&True\\
+$\otimes_{\max}$&True&True&True
+\end{tabular}
+\end{center}
+
+
+injectivity
+
+\[(\cA/\cI)\otimes_\alpha\xrightarrow{\sim}\frac{\cA\otimes_{\max}\cB}{\cI\otimes_{\max}\cB}\to(\cA/\cI)\otimes_{\max}\cB.\]
+
+The surjectivity of $\cA\otimes\cC\to(\cA/\cI)\otimes\cC$ follows from the fact that the algebraic tensor product is dense and the image of a C$^*$-algebra under a $*$-homomorphism is closed.
+
+
+
+3.7.7. passing to subalgebras
+
+
+
+
+
+
+
+
+
+
+\newpage
+\section{June 16}
+
+3.7.11. RF $\Gamma$ is amenable iff $C^*(\Gamma)$ is exact.
+
+Chapter 5: When is $C_r^*(\Gamma)$ exact?
+
+nonamenable residually finite groups (e.g.~$F_n$, $\SL(n,\Z)$)
+
+\newpage
+\section{August 4}
 
 
 \end{document}
