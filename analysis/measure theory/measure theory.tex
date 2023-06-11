@@ -995,16 +995,22 @@ weak Lp, marcinkiewicz
 \begin{defn}
 Let $f$ be a measurable function on a measure space $(X,\mu)$.
 The \emph{distribution function} $\lambda_f:[0,\infty)\to [0,\infty)$ is defined as:
-\[\lambda_f(\alpha):=\mu(\{x:|f(x)|>\alpha\}).\]
+\[\lambda_f(\alpha):=\mu(\{x:|f(x)|>\alpha\})=\mu(|f|>\alpha).\]
 \end{defn}
 
 Do not use $\mu(\{x:|f(x)|\ge\alpha\})$.
 The strict inequality implies the \emph{lower semi-continuity} of $\lambda_f$.
 
-\begin{parts}
-\item For $p>0$, we have
-\[\|f\|_{L^p}^p=p\int_0^\infty\left[\alpha\cdot\mu(|f|>\alpha)^\frac1p\right]^p\,\frac{d\alpha}\alpha.\]
-\end{parts}
+
+For $p>0$,
+\begin{align*}
+\|f\|_{L^p}^p
+&=\int|f(x)|^p\,d\mu(x)\\
+&=\int\int_0^{|f(x)|}p\alpha^{p-1}\,d\alpha\,d\mu(x)\\
+&=\int_0^\infty\int_{|f(x)|>\alpha}p\alpha^{p-1}\,d\mu(x)\,d\alpha\\
+&=p\int_0^\infty\left[\alpha\cdot\mu(|f|>\alpha)^\frac1p\right]^p\,\frac{d\alpha}\alpha.
+\end{align*}
+
 \begin{defn}
 \[\|f\|_{L^{p,q}}^q:=p\int_0^\infty\left[\alpha\cdot\mu(|f|>\alpha)^\frac1p\right]^q\,\frac{d\alpha}\alpha.\]
 Also,
@@ -1026,7 +1032,7 @@ Let
 If a sublinear operator $T\colon L^{p_0}(X)+L^{p_1}(X)\to M(Y)$ has two weak-type estimates
 \[\|T\|_{L^{p_0}(X)\to L^{p_0,\infty}(Y)}<\infty\quad\text{and}\quad\|T\|_{L^{p_1}(X)\to L^{p_1,\infty}(Y)}<\infty,\]
 then it has a strong-type estimate
-\[\|T\|_{L^p(X)\to L^p(X)}<\infty.\]
+\[\|T\|_{L^p(X)\to L^p(Y)}<\infty.\]
 \end{prb}
 \begin{pf}
 Let $f\in L^p(X)$ and denote $f_h=\chi_{|f|>\alpha}f$ and $f_l=\chi_{|f|\le\alpha}f$.
@@ -1034,7 +1040,7 @@ It is easy to show $f_h\in L^{p_0}$ and $f_l\in L^{p_1}$.
 Then,
 \begin{align*} % 고치던 중
 \|Tf\|_{L^p(Y)}^p&\sim\int\alpha^p\cdot\mu(|Tf|>\alpha)\,\frac{d\alpha}\alpha\\
-&\lesssim\int\alpha^p\cdot\mu(|T(f\cdot\1_{|f|>\alpha})|>\alpha)\,\frac{d\alpha}\alpha+\int\alpha^p\cdot\mu(|Tf_l|>\alpha)\,\frac{d\alpha}\alpha\\
+&\lesssim\int\alpha^p\cdot\mu(|Tf_h|>\alpha)\,\frac{d\alpha}\alpha+\int\alpha^p\cdot\mu(|Tf_l|>\alpha)\,\frac{d\alpha}\alpha\\
 &\le\int\alpha^p\cdot\frac1{\alpha^{p_0}}\|Tf_h\|_{L^{p_0,\infty}}^{p_0}\,\frac{d\alpha}\alpha+\int\alpha^p\cdot\frac1{\alpha^{q_1}}\|Tf_l\|_{L^{p_1,\infty}}^{p_1}\,\frac{d\alpha}\alpha\\
 &\lesssim\int\alpha^{p-p_0}\|f_h\|_{p_0}^{p_0}\,\frac{d\alpha}\alpha+\int\alpha^{p-p_1}\|f_l\|_{p_1}^{p_1}\,\frac{d\alpha}\alpha\\
 &\sim\|f\|_p^p.
@@ -1043,8 +1049,8 @@ by (1) Fubini, (2) Sublinearlity, (3) Chebyshev, (4) Boundedness, (5) Fubini.
 \end{pf}
 
 \begin{prb}[Hadamard's three line lemma]
-Let $f$ be a bounded holomorphic function on the vertical unit strip $\{z:0<\Re z<1\}$.
-Then, for $0<\theta<1$,
+Let $f$ be a bounded holomorphic function on vertical unit strip $\{z:0<\Re z<1\}$ which is continuously extended to the boundary.
+Then, for $0<\theta<1$ we have
 \[\|f\|_{L^\infty(\Re=\theta)}\le\|f\|_{L^\infty(\Re=0)}^{1-\theta}\|f\|_{L^\infty(\Re=1)}^\theta.\]
 \end{prb}
 \begin{pf}

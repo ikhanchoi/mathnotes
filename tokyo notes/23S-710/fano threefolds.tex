@@ -1470,4 +1470,145 @@ $B,B'\subset Z\cap V\cong\P^1\times\P^1$ smooth quadric surface...
 \item[(B2)] we can show $\tau(B)=B'$.
 \end{enumerate}
 
+
+\newpage
+\section{Day 8: June 8}
+
+\section*{Primitive Fano 3-folds with $\rho\ge2$}
+
+\begin{defn}
+Let $X$ be a Fano 3-fold.
+Then, $X$ is called \emph{imprimitive} if there is a Fano 3-fold $Y$ and a smooth curve $B$ on $Y$ such that $X$ is isomorphic to the blowup of $Y$ along $B$, and called \emph{primitve} if it is not imprimitive.
+\end{defn}
+
+Our strategy of classification of Fano 3-folds is for an imprimitive Fano $X_i$ to find a blowup $X_i\to X_{i+1}$ such that $X_{i+1}$ is Fano, until $X_n$ is primitive.
+Since $\rho(X_i)>\rho(X_{i+1})$, this procedure terminates.
+In other words, the classification of primitive Fano 3-folds reduces to the classification of Fano 3-folds by blowups.
+
+\begin{rmk}
+Let $X$ be a primitive Fano 3-fold.
+For $\rho(X)=1$, then Iskovskih(Prokhorov), Takeuchi.
+For $\rho(X)\ge2$, then section 8 and 9 in [Mori-Mukai].
+\end{rmk}
+
+Here is the outline:
+\begin{parts}
+\item Prove $\rho(X)\le3$ and there is an extremal ray of type $C$, etc.
+\item Case study depending on $\rho(X)$ and types of extremal rays.
+\end{parts}
+
+\begin{thm}[Mori '82]
+Let $X$ be a Fano 3-fold, $R$ an extremal ray of $NE(X)$, and $f:X\to Y$ the contraction of $R$(i.e. the morphism to a projective normal variety $Y$ such that $f_*\cO_X=\cO_Y$ and $f(C)=\mathrm{pt}$ iff $[C]\in R$ for a curve $C\subset X$).
+Then, one of the following holds:
+\begin{enumerate}
+\item[(C)] $\dim Y=2$ and $Y$ smooth (\textbf{C}onic bundle)
+\item[(D)] $\dim Y=1$ (\textbf{D}el Pezzo fibration)
+\item[(E)] $\dim Y=3$ (birational, \textbf{E}xceptional(?))
+\item[(F)] $\dim Y=0$ (\textbf{F}ano)
+\end{enumerate}
+Moreover, the following hold:
+\begin{enumerate}
+\item[(C)] $Y$ is smooth and $f$ is flat, and $X$ is a conic bundle over $Y$, that is, by definition, $X$ is a subbundle of a rank-three vector bundle of $Y$ such that each fiber is conic in $\P_\C^2$.
+\item[(D)] By the adjunction formula with generic smooth, general fibers are del Pezzo surfaces.
+\item[(E)] The exceptional locus $D:=Ex(f)$ is a prime divisor and there are five types:
+\begin{enumerate}[($E_1$)]
+\item $Y$ is smooth, $X$ is a blowup along a smooth curve $B$; $D$ is a $\P^1$-bundle on $B$ and $f(D)=B$.
+\item $Y$ is smooth, $X$ is a blowup along a point; $D=\P^2$ and $f(D)=\mathrm{pt}$.
+\item $Y$ is singular, $D\cong\P^1\times\P^1$ and $f(D)=\mathrm{pt}$.
+\item $Y$ is singular, $D=$ a singular quadric surface in $\P^3$ and $f(D)=\mathrm{pt}$.
+\item $Y$ is singular, $D\cong\P^2$ with $\cO_X(D)|_D\cong\cO_{\P^2}(2)$ and $f(D)=\mathrm{pt}$.
+\end{enumerate}
+($E_3$ and $E_4$ are not that different)
+\item[(F)] if and only if $\rho(X)=1$. The proof will be omitted.
+\end{enumerate}
+\end{thm}
+
+\begin{exe}
+For a Fano 3-fold $X$ and the contraction $f:X\to Y$ of an extremal ray $R$, show that if $f$ is birational, then (1) $D:=Ex(f)$ is a prime divisor and (2) $D\cong\P^2$ or $D\cong$ quadric surface in $\P^3$ when $f(D)=\mathrm{pt}$.
+\end{exe}
+
+\begin{thm}[(A), Today's goal]
+Let $X$ be a primitive Fano 3-fold with $\rho(X)\ge2$.
+Then,
+\begin{parts}
+\item $\rho(X)\le3$,
+\item there is an extremal ray $R$ of type $C$,
+\item If $f:X\to Y$ is the contracion of $R$, then $\rho(X)=2$ and $3$ iff $Y=\P^2$ and $\P^1\times\P^1$, respectively.
+\end{parts}
+\end{thm}
+\begin{pf}[Outline of proof]
+We will show (b) first.
+Then, if $f:X\to Y$ is the contracion of $R$ of type $C$, then $Y$ is a smooth rational surface and there is no curve $C$ on $Y$ with $C^2<0$, so $Y=\P^2$ or $\P^1\times\P^1$.
+\end{pf}
+
+\begin{lem}
+Let $X$ be a Fano 3-fold with $\rho(X)\ge2$.
+\begin{parts}
+\item There is an extremal ray $R$ of type $C$ or $D$ or $E_1$.
+\item There is an extremal ray $R$ of type $C$ or $D$, if $X$ is primitve.
+\end{parts}
+\end{lem}
+\begin{pf}
+We only show (a).
+Suppose there is an extremal ray of type $E_2\sim E_5$.
+Let $f_i:X\to Y_i$ be the contraction of extremal ray $R_i=\R_{\ge0}[l_i]$.
+Let $D_i:=Ex(f_i)$ be a prime divisor.
+There is $s\in\Z_{>0}$ such that $|-sK_X|$ is very ample, so by taking $H,H'\in|-sK_X|$ general members, we can take a smooth curve $\Gamma:=H\cap H'$ on $X$ such that $[\Gamma]=\sum_{i=1}^na_il_i]$ with $a_i\ge0$.
+Then,
+\[0<D_1\cdot(-sK_X)^2=D_1\cdot H\cdot H'=(D_1|_{H'})\cdot(H|_{H'})=\deg_{\Gamma}(D_1|_\Gamma)=D_1\cdot\Gamma=D_1\cdot(\sum_{i=1}^na_il_i).\]
+By Remark 8.7, $D_1\cdot l_1<0$.
+Now we claim $D_1\cap D_2=\varnothing$ so that we have $D_1\cdot l_i=0$ for $i\ge2$ to obtain a contradiction.
+Suppose $D_1\cap D_2\ne\varnothing$.
+Then, there is a curve $C$ in the intersection by the Krull Hauptidealsatz(maybe?), so $[C]\in R_1\cap R_2=\{0\}$, which is absurd by $0<(\text{ample})\cdot C=(\text{ample})\cdot0$. 
+\end{pf}
+
+\begin{rmk}
+Let $f:X\to Y$ be type $E$.
+Then, $D\cdot l<0$ and $f$ is of type $E_2\sim E_5$.
+Thus $C\subset D$ iff $[C]\in R$ iff $D\cdot C<0$ for a curve $C$ on $X$.
+\end{rmk}
+\begin{pf}
+We only show $D\cdot l<0$, the other is easy.
+Let $A_Y$ be an ample Cartier divisor on $Y$ so that there is $m$ such that $mf^*A_Y=A+E$ is big.
+It implies $E\cdot l<0$ from $0=mf^*A_Y\cdot l=A\cdot l+E\cdot l$.
+
+Let $E_0:=D$ and $E=\sum_{i=0}^ra_iE_i$.
+Then, $E_i\cdot l\ge0$ for $1\le i\le n$ because $E_i\cdot l\ge0$ iff $E_i\cdot l'\ge0$ for a general curve $l'$ on $D$, therefore we have $D\cdot l<0$.
+\end{pf}
+
+\begin{prop}
+Let $X$ be a primitive Fano 3-fold.
+Then, there is an extremal ray of type $C$.
+\end{prop}
+\begin{pf}
+Suppose every extremal ray is not of type $C$.
+By Lemma 8.6, there is a type of $D$.
+See the picture $3\sim 6$.
+\end{pf}
+\setcounter{thm}{9}
+\begin{prop}
+Let $Y$ be a smooth projective surface.
+Then, $Y$ is unirueld iff ruled iff $K(\cdot Y)=-\infty$(?).
+\end{prop}
+\begin{pf}
+Omitted.
+\end{pf}
+
+\begin{thm}[Kollar-Miyaoka-Mori]
+If $X$ is a Fano variety, then $X$ is rationally connected; for $x_1,x_2\in X$, there is a rational curve $C$ in $X$ such that $x_1,x_2\in C$.
+\end{thm}
+
+\begin{prop}
+Let $X$ be a Fano 3-fold and $f:X\to Y$ be of type $C$.
+Then, $Y$ is rational.
+\end{prop}
+\begin{pf}
+If $X$ is rationally connected, then $Y$ is rationally connected.
+Now $Y$ is smooth projective surface.
+If $Y$ is rationally connected, then $Y$ is uniruled.
+If $Y$ is irrational uniruled, then by MMP, it is made by blowups from a irrational curve, but $B$ is also rationally connected, which impiles $B$ is rational, a contradiction.
+\end{pf}
+
+
+
 \end{document}

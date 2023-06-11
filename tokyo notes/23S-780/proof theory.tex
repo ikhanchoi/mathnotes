@@ -571,6 +571,88 @@ Then, $\prod_D\cM_i\models T$ since for $\f\in T$ we have $\{i\in I:\cM_i\models
 \end{pf}
 
 
+\newpage
+\section{Day 7: June 5}
+
+\subsection*{Some applications of compactness theorem}
+
+Let $\cL\subset\cL'$.
+Let $\cM$ and $\cM'$ be $\cL$ and $\cL'$- structures.
+We call $\cM'$ an \emph{expansion} of $\cM$ and $\cM$ a \emph{reduct} of $\cM'$ if $\cM'=\<M;f^\cM,\cdots,R^\cM,\cdots,g^{\cM'},\cdots,P^{\cM'},\cdots\>$ for $\cM=\<M;f^\cM,\cdots,R^\cM,\cdots\>$ and $g,P\in L'\setminus L$.
+Then, for $\f\in\cL(\cM)=\cL\cup\{c_\alpha:\alpha\in M\}$ we have $\cM\models\f$ if and only if $\cM'\models\f$.
+
+Let $\cM$ and $\cN$ be $\cL$-structures.
+We say $\cM$ is a \emph{submodel} of $\cN$ or $\cN$ is an \emph{extension} of $\cM$ and write $\cM\subset\cN$, if (1) $M\subset N$, (2) $R^\cM=\cN\cap M_k$ for $k$-ary relations $R\in\cL$, and (3) $f^\cM=f^\cN|_{\cM^k}$ for $k$-ary functions $f\in\cL$.
+Don't be confused about expansions and extensions.
+
+\begin{defn*}
+An \emph{existential} and \emph{universal} formula is a formula without universal and existential quantifiers, respectively.
+\end{defn*}
+\begin{prop*}
+Let $\cM\subset\cN$.
+If $\f\in\cL(\cM)$ is existential, then $\cM\models T$ implies $\cN\models T$.
+If $\f\in\cL(\cM)$ is universal, then $\cN\models T$ implies $\cM\models T$.
+\end{prop*}
+\begin{defn*}
+Let $\cM$ and $\cN$ be $\cL$-structures.
+We say $\cM$ is a \emph{elementary submodel} of $\cN$ or $\cN$ is an \emph{elementary extension} of $\cM$ and write $\cM\prec\cN$, if $\cM\subset\cN$ and for every $\f\in\cL(\cM)$ we have $\cM\models\f$ if and only if $\cN\models\f$.
+\end{defn*}
+\begin{ex*}
+Let $\R=\<\R:0,1,+,\cdot,<,f,\cdots,R,\cdots\>$.
+There exists an elementary extension $^*\R$ of $\R$ such that $^*\R$ is non-Archimedean.
+Recall that a field is non-Archimedean if for every $x$ there is a natural number $n$ such that $x\le n\cdot1$, which is equivalent to the existence of $c$ with $0<c<n^{-1}$.
+\end{ex*}
+\begin{pf}
+Let $\cL'=\cL\cup\{c\}$.
+Let $T:=\{\f\in\cL(\R):\R\models\f\}\cup\{0<c<n^{-1}:n=1,2,\cdots\}$ be an $\cL'$-theory.% \mathrm{Diag}_{el}(\R)=\{\f\in\cL(\R):\R\models\f\}
+If there is a model $\cM$ of $T$, and if we define $^*\R$ to be the reduct of $\cM$ to $\cL$, then we are done.
+
+For $T_0\subset_{\mathrm{fin}}T$, since $T_0$ contains only finite number of formulas of the form $0<c<n^{-1}$, which is clearly satisfiable by the standard $\R$ with interpretation $c^\R=k^{-1}$ for sufficiently large $k$.
+By the compactness theorem, the whole $T$ is satisfiable.
+\end{pf}
+\begin{ex*}
+If an $\cL$-theory $T$ has an arbitrary large finite model, i.e.~$\forall n$ $\exists\cM\models$ such that $n\le\|\cM\|(=|M|)<\infty$, then $T$ has an inifinite model.
+\end{ex*}
+\begin{pf}[Proof 1]
+Define an $\cL$-theory
+\[T_1:=T\cup\{\exists x_1\cdots\exists x_n\,\bigwedge_{1\le i<j\le n}(x_i\ne x_j):n=1,2,\cdots\},\]
+and take $T_0\subset_{\mathrm{fin}}T_1$.
+Then, $T_0$ is satisfiable by the assumption, so $T_1$ also has a model, which must be infinite.
+\end{pf}
+\begin{pf}[Proof 2]
+Let $\cL_2:=\cL\cup\{c_0,c_1,\cdots\}$.
+Define an $\cL_2$-theory
+\[T_2:=T\cup\{c_i\ne c_j:i\ne j\}.\]
+By the assumption, an $\cL_2$-theory $T\cup\{c_i\ne c_j:i\ne j,\max{i,j}\le n\}$ is satisfiable, the compactness theorem implies $T_2$ is satisfiable.
+Take a reduct.
+
+IN PARTICULAR, we can take an arbitrarily large model of $T$ by letting $\cL_2:=\cL\cup\{c_\alpha:\alpha\in I\}$ with $|I|=\kappa$ for any cardinal $\kappa$.
+\end{pf}
+
+\begin{thm*}[Upward L\"owenheim-Skolem-Tarski theorem]
+Let $T$ be an $\cL$-theory.
+Suppose for every $n\in\N$ there is a model $\cM$ of $T$ with $\|\cM\|\ge n$.
+Then, there is a model $\cM$ of $T$ with $\|\cM\|=\kappa$ for every $\kappa\ge|\cL|+\aleph_0\}$.
+\end{thm*}
+\begin{thm*}[Downward L\"owenheim-Skolem-Tarski theorem]
+Let $T$ be an $\cL$-theory.
+Let $\cM$ be an infinite model of $T$.
+Then, for every $X\subset M$, there is an elementary submodel $\cH(X)$ of $\cM$ such that $X\subset|\cH(X)|$ and $|\cH(X)|\le|X|+|\cL|+\aleph_0$.
+The model $\cH(X)$ is called the Skolem hull of $X$ in $\cM$.
+\end{thm*}
+
+\begin{ex*}[Skolem's paradox]
+Downward L\"owenheim-Skolem theorem implies that $ZF$ has a countably infinite model by taking $X=\varnothing$.
+Even though the existence of the power set of $\N$ is provable in $ZF$, it is not a contradiction.
+\end{ex*}
+
+\begin{pf}[Proof of the upward LST]
+Pick a model $\cM$ of $T$ such that $\|\cM\|\ge\kappa$.
+Let $X\subset M$ with $|X|=\kappa$.
+By the downward L\"owenheim-Skolem, there is $\cH(X)\prec\cM$ such that $|\cH(X)|\le\kappa+|\cL|+\aleph_0=\kappa$.
+Therefore, $\kappa\le|X|\le|\cH(X)|$ implies $|\cH(X)|=\kappa$.
+\end{pf}
+
 \end{document}
 
 

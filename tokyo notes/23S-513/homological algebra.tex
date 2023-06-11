@@ -605,6 +605,7 @@ Direct limit.
 \newpage
 \section{Day 5: May 11}
 
+\subsection*{1.8. Flat modules}
 \begin{defn*}[1.8.1]
 Let $R$ be a commutative ring and $M$ be an $R$-module.
 We say $M$ is flat if $\id\otimes f:M\otimes N_1\to M\otimes N_2$ is injective for every injective $f:N_1\hookrightarrow N_2$.
@@ -810,8 +811,8 @@ Let $M$ be an $R$-module.
 \[0\leftarrow M\xleftarrow{\e} P_0\xleftarrow{\partial_1} P_1\xleftarrow{\partial_2} P_2\leftarrow\cdots,\]
 where $P_n$ is a projective for each $n$.
 \item A \emph{injective resolution} is an exact sequence
-\[0\to M\xrightarrow{} I_0\xrightarrow{} I_1\xrightarrow{} I_2\rightarrow\cdots,\]
-where $I_n$ is a injective for each $n$.
+\[0\to M\xrightarrow{} I^0\xrightarrow{} I^1\xrightarrow{} I^2\rightarrow\cdots,\]
+where $I^n$ is a injective for each $n$.
 \end{parts}
 \end{defn*}
 
@@ -839,6 +840,8 @@ For an injective resolution $I$ of $N$, we define $\Ext_R^n(M,N):=H^n(\Hom_R(M,I
 
 For a projective resolution $P$ of $M$, we define $\Tor_n^R(M,N):=H_n(P_\bullet\otimes_RN)$.
 
+(For a flat resolution $F$ of $M$, we define $\Tor_n^R(M,N):=H_n(F_\bullet\otimes_RN)$).
+
 They do not depend on the choice of resolutions.
 
 For $f:M_1\to M_2$, we have an induced homomorphism $\Ext_R^n(M_2,N)\to\Ext_R^n(M_1,N)$.
@@ -848,6 +851,153 @@ For $f:N_1\to N_2$, we have an induced homomorphism $\Tor_n^R(M,N_1)\to\Tor_n^R(
 functoriality.
 
 
+\newpage
+\section{Day 7: June 8}
+
+\begin{thm*}[2.4.4]
+Let $0\to M_1\to M_2\to M_3\to0$ be an exact sequence of $R$-modules and $N$ be an $R$-module.
+Then, there exist long exact sequences
+\begin{parts}
+\item
+\begin{align*}
+0&\to\Hom_R(M_3,N)\to\Hom_R(M_2,N)\to\Hom_R(M_1,N)\\
+&\to\Ext_R^1(M_3,N)\to\Ext_R^1(M_2,N)\to\Ext_R^1(M_1,N)\\
+&\to\Ext_R^2(M_3,N)\to\Ext_R^2(M_2,N)\to\Ext_R^2(M_1,N)\to\cdots.
+\end{align*}
+\item
+\begin{align*}
+0&\to\Hom_R(N,M_1)\to\Hom_R(N,M_2)\to\Hom_R(N,M_3)\\
+&\to\Ext_R^1(N,M_1)\to\Ext_R^1(N,M_2)\to\Ext_R^1(N,M_3)\\
+&\to\Ext_R^2(N,M_1)\to\Ext_R^2(N,M_2)\to\Ext_R^2(N,M_3)\to\cdots.
+\end{align*}
+\item
+\begin{align*}
+\cdots\to\Tor^R_2(M_1,N)\to\Tor^R_2(M_2,N)\to\Tor^R_2(M_3,N)&\to\\
+\Tor^R_1(M_1,N)\to\Tor^R_1(M_2,N)\to\Tor^R_1(M_3,N)&\to\\
+M_1\otimes_RN\quad\to\quad M_2\otimes_RN\quad\to\quad M_3\otimes_RN&\to0.
+\end{align*}
+\item
+\begin{align*}
+\cdots\to\Tor^R_2(N,M_1)\to\Tor^R_2(N,M_2)\to\Tor^R_2(N,M_3)&\to\\
+\Tor^R_1(N,M_1)\to\Tor^R_1(N,M_2)\to\Tor^R_1(N,M_3)&\to\\
+N\otimes_RM_1\quad\to\quad N\otimes_RM_2\quad\to\quad N\otimes_RM_3&\to0.
+\end{align*}
+\end{parts}
+\end{thm*}
+\begin{pf}
+(a)
+For $N\to I^\bullet$ an injective resolution, we have a short exact sequence of cochain complexes
+\[0\to\Hom_R(M_3,I^\bullet)\to\Hom_R(M_2,I^\bullet)\to\Hom_R(M_1,I^\bullet)\to0.\]
+
+(d)
+For $P_\bullet\to N$ a projective resolution, since a projective module is flat, we have a short exact sequence of chain complexes
+\[0\to P_\bullet\otimes_RM_1\to P_\bullet\otimes_RM_2\to P_\bullet\otimes_RM_3\to0.\qedhere\]
+\end{pf}
+
+
+\begin{thm*}[2.4.5]
+We have a natural isomorphism $\Ext_R^n(M,N)=H^n(\Hom_R(P_\bullet,N))$ for any projective resolution $P_\bullet\to M$.
+\end{thm*}
+
+Recall that we have to see $\Hom_R(P_\bullet,N)$ as a cochain complex, although the index is placed at lower.
+The existence of the short exact sequence of cochain complexes
+\[0\to\Hom_R(P_\bullet,M_1)\to\Hom_R(P_\bullet,M_2)\to\Hom_R(P_\bullet,M_3)\to0\]
+implies that $H^n(\Hom_R(P_\bullet,M_i))$ enjoys a long exact sequence.
+
+Let $C^{\bullet,\bullet}$ and $D^{\bullet,\bullet}$ be double complexes bounded below with respect to both directions, i.e. there is $N$ such that if $p\le-N$ or $q\le-N$ then $C^{p,q}=D^{p,q}=0$, and that $H^p(C^{\bullet,q})\xrightarrow{\sim}H^p(D^{\bullet,q})$ for all $p$ and $q$.
+Then, we have shown that $H^n(\Tot(C^{\bullet,\bullet}))\xrightarrow{\sim}H^n(\Tot(D^{\bullet,\bullet}))$ for every $n$.
+
+\begin{prop*}\,
+\begin{parts}
+\item
+Let $C^{\bullet,\bullet}$ be a double complex with $C^{p,\bullet}=0$ for $p<0$.
+Let $A^\bullet$ be a cochian complex.
+Assume $A^\bullet$ and $C^{p,\bullet}$ are bounded below for every $p$.
+Suppose $\e:A^\bullet\to C^{0,\bullet}$ is a cochain map such that
+\[A^q\to C^{0,q}\to C^{1,q}\to\cdots\]
+is a resolution for every $q$.
+Then, $H^n(A^\bullet)\xrightarrow{\sim} H^n(\Tot(C^{\bullet,\bullet}))$.
+\item
+Let $C^{\bullet,\bullet}$ be a double complex with $C^{\bullet,q}=0$ for $q<0$.
+Let $B^\bullet$ be a cochian complex.
+Assume $B^\bullet$ and $C^{\bullet,q}$ are bounded below for every $q$.
+Suppose $\e:B^\bullet\to C^{\bullet,0}$ is a cochain map such that
+\[B^p\to C^{p,0}\to C^{p,1}\to\cdots\]
+is a resolution for every $p$.
+Then, $H^n(A^\bullet)\xrightarrow{\sim} H^n(\Tot(C^{\bullet,\bullet}))$.
+\item
+Let $C_{\bullet,\bullet}$ be a double complex with $C_{p,\bullet}=0$ for $p<0$.
+Let $A_\bullet$ be a chian complex.
+Assume $A_\bullet$ and $C_{p,\bullet}$ are bounded below for every $p$.
+Suppose $\e:C_{0,\bullet}\to A_\bullet$ is a chain map such that
+\[\cdots\to C_{1,q}\to C_{0,q}\to A_q\]
+is a resolution for every $q$.
+Then, $H_n(A_\bullet)\xleftarrow{\sim} H_n(\Tot(C_{\bullet,\bullet}))$.
+\item
+Let $C_{\bullet,\bullet}$ be a double complex with $C_{\bullet,q}=0$ for $q<0$.
+Let $B_\bullet$ be a chian complex.
+Assume $B_\bullet$ and $C_{\bullet,q}$ are bounded below for every $q$.
+Suppose $\e:C_{\bullet,0}\to B_\bullet$ is a chain map such that
+\[\cdots\to C_{p,1}\to C_{p,0}\to B_p\]
+is a resolution for every $p$.
+Then, $H_n(A_\bullet)\xleftarrow{\sim} H_n(\Tot(C_{\bullet,\bullet}))$.
+\end{parts}
+\end{prop*}
+\begin{pf}
+Inflate $A^\bullet$ to construct $A^{\bullet,\bullet}$.
+\end{pf}
+
+\begin{pf}[Proof of Theorem 2.4.5]
+Let $P_\bullet\to M$ and $N\to I^\bullet$ be a projective and an injective resolution respectively.
+Let $A^q:=\Hom_R(M,I^q)$, $B^p:=\Hom_R(P_p,N)$, and $C^{p,q}:=\Hom_R(P_p,I^q)$.
+Since $H^n(A^\bullet)=\Ext_R^n(M,N)$, enough to show $H^n(A^\bullet)=H^n(B^\bullet)$.
+We can define $\e:A^\bullet\to C^{0,\bullet}$ and $\delta:B^\bullet\to C^{\bullet,0}$.
+Apply the above proposition to obtain $H^n(A^\bullet)=H^n(\Tot(C^{\bullet,\bullet}))=H^n(B^\bullet)$.
+\end{pf}
+
+\begin{prop*}[2.4.6]
+Let $M$ be an $R$-module.
+\begin{parts}
+\item $M$ is projective $\Leftrightarrow$ $\Ext_R^n(M,N)=0$ $\forall n$ $\forall N$ $\Leftrightarrow$ $\Ext_R^1(M,N)=0$ $\forall N$.
+\item $M$ is injective $\Leftrightarrow$ $\Ext_R^n(N,M)=0$ $\forall n$ $\forall N$ $\Leftrightarrow$ $\Ext_R^1(N,M)=0$ $\forall N$.
+\item $M$ is flat $\Leftrightarrow$ $\Tor^R_n(M,N)=0$ $\forall n$ $\forall N$ $\Leftrightarrow$ $\Tor^R_1(M,N)=0$ $\forall N$.
+\end{parts}
+\end{prop*}
+\begin{pf}
+(a) For (1)$\Rightarrow$(2), use 2.4.5. For (3)$\Rightarrow$(1), use 2.4.4.
+\end{pf}
+
+
+\begin{lem*}\,
+\begin{parts}
+\item $\Ext_R^n(\bigoplus_\lambda M_\lambda,N)=\prod_\lambda\Ext_R^n(M_\lambda,N)$.
+\item $\Ext_R^n(M,\prod_\lambda N_\lambda)=\prod_\lambda\Ext_R^n(M,N_\lambda)$.
+\item $\Tor^R_n(\bigoplus_\lambda M_\lambda,N)=\bigoplus_\lambda\Tor^R_n(M_\lambda,N)$.
+\item $\Tor^R_n(M,\bigoplus_\lambda N_\lambda)=\bigoplus_\lambda\Tor^R_n(M,N_\lambda)$.
+\end{parts}
+\end{lem*}
+
+\begin{prop*}[2.4.8]
+If $R$ is PID, then $\Ext_R^n=\Tor^R_n=0$ for $n\ge2$.
+\end{prop*}
+\begin{pf}
+($\Ext=0$)
+Embed $N\hookrightarrow I_0$ into an injective.
+Then, $N\to I_0\to I_1\to0$ is an injective resolution because the cokernel $I_1$ is also injective by the $a$-times map.
+
+($\Tor=0$)
+Consider $P_0\twoheadrightarrow M$ from a free module.
+Then, $P_0$ is torsion-free, $P_1$ is also torsion-free, so the kernel $P_1$ is flat.
+(Or, recall that in PID a module is projective iff free, and that a submodule of a free module is free.)
+\end{pf}
+\begin{ex*}\,
+\begin{parts}
+\item $0\to\Z\to\Z\to\Z/m\Z\to0$ is a projective resolution of $\Z/m\Z$.
+Then, taking $\Hom_\Z(-,N)$, we have $N\xrightarrow{m}N\to0$.
+Thus $\Ext_\Z^n(\Z/m\Z)=H^n(N\xrightarrow{m}N\xrightarrow{0}N)$
+\item 
+\end{parts}
+\end{ex*}
 
 \end{document}
 
@@ -857,14 +1007,16 @@ from projectives, the lift
 
 projective
   direct sum of projectives is projective
-  PID: projective iff free
+  	(lem) free => projective
+  PID: projective iff free (note sub of free is free in PID)
   projective iff direct summand of a free
+  every module is a quotient of a free module
 
 injective
   direct product of injectives is injective
-  M injective iff Hom_R(R,M)->Hom_R(I,M) surj
+  	(lem) M injective iff Hom_R(R,M)->Hom_R(I,M) surj
   PID: injective iff divisible (.a:M->M surj)
-  Hom_Z(R,M) is injective if M is injective Z-module
+  	(lem) Hom_Z(R,M) is injective if M is injective Z-module
   every module is embedded in injective
 
 flat
@@ -872,3 +1024,6 @@ flat
   M flat iff Hom(M,Q/Z) is injective
   M flat iff I⊗M->R⊗M inj
   if projective then flat
+
+lower index: proj/flat resolution, tensor functor, tor functor, coprod
+upper index: inj resolution, hom functor, ext functor(can be def by proj res), prod

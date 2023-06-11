@@ -1,6 +1,8 @@
 \documentclass{../../small}
 \usepackage{../../ikhanchoi}
 
+\DeclareMathOperator{\Gr}{Gr}
+
 \begin{document}
 \title{Fiber Bundles}
 \author{Ikhan Choi\\Lectured by Takuya Sakasai\\University of Tokyo, Spring 2023}
@@ -482,12 +484,188 @@ Similarly, the reduction is always possible if $B$ is paracompact.
 \end{ex*}
 
 
+\newpage
+\section{Day 6: May 15}
+
 \subsection*{3. Classification of principal bundles}
 
 \subsubsection*{Pullback bundles}
 
-transition data of pullback bundle
-pullback of vector budle is a vector bundle
+Let $\xi=(F\to E\to B)$ and $f:A\to B$ a map.
+Then, the pullback bundle of $\xi$ by $f$ is $(F\to f^*E\to A)$, where $f^*E:=\{(a,e)\in A\times F:f(a)=p(e)\}$.
+For example, if $\iota:A\hookrightarrow B$ is an inclusion, then the restriction is defined by the pullback $\xi|_A:=\iota^*\xi=(F\to p^{-1}(A)\to A)$.
+For $i:\mathrm{Gt}_k(\R^n)\hookrightarrow\mathrm{Gr}_k(\R^n)$ with $k<n'<n$, if we define $E_{n,k}:=\{(W,p)\in\mathrm{Gr}_k(\R^n)\times\R^n\mid p\in W\}$, then $i^*E_{n,k}=E_{n',k}$.
+If $\eta$ is a pricnipal $G$-bundle and $F$ is a left $G$-space, then $f^*(\eta\times_G F)=f^*\eta\times_GF$.
 
+\begin{lem*}[3.1]
+Let $\xi=(F\to E_1\xrightarrow{p_1}B_1,G)$ and $\eta=(F\to E_2\xrightarrow{p_2}B_2,G)$.
+For a map $f:B_1\to B_2$, then a bundle map $(\tilde f,f):\xi\to\eta$ exists if and only if $\xi\cong f^*\eta$ over $B_1$.
+\end{lem*}
+\begin{pf}
+($\Rightarrow$)\[E_1\to f^*E:x\mapsto(p_1(x),\tilde f(x)).\]
+
+($\Leftarrow$)
+\begin{cd}[column sep=5pt]
+E_1\ar{rr}\ar{dr}&&f^*E_2\ar{dl}\ar{rr}&\qquad&E_2\ar{d}\\
+&B_1\ar{rrr}{f}&&&B_2
+\end{cd}
+\end{pf}
+\begin{exe*}6.
+\begin{enumerate}[(1)]
+\item Check that $f^*\eta$ over $B_1$ is an $F$-bundle which have $G$ as the structure group.
+\item Fill the gap of the above proof of Lemma 3.1.
+\end{enumerate}
+\end{exe*}
+\begin{thm*}[3.2]
+Let $\xi=(F\to E\to B,G)$ be a bundle and $A$ be a paracompact space.
+If there is a homotopy $F:A\times I\to B:(x,t)\mapsto f_t(x)$, then $f_0^*\xi\cong f_1^*\xi$ over $B_1$.
+\end{thm*}
+\begin{cor*}
+Let $A,B$ be paracompact homotopy equivalent spaces.
+Then, there is a one-to-one correspondence between the sets of equivalence classes of bundles with fiber $F$ and structure group $G$ over $A$ and $B$ respectively.
+\end{cor*}
+
+In the following lemmas, let $\xi=(F\to E\to A\times I,G)$ and $A$ a paracompact space.
+\begin{lem*}[Step 1 of 3.2]
+If $\xi|_{A\times[a,b]}$ and $\xi|_{A\times[b,c]}$ are trivial, then $\xi|_{A\times[a,c]}$ is also trivial, where $0\le a<b<c\le1$.
+\end{lem*}
+\begin{pf}
+	
+\end{pf}
+
+\begin{lem*}[Step 2 of 3.2]
+Each point $a\in A$ has an open neighborhood $U$ of $a$ such that $\xi|_{U\times I}$ is trivial.
+\end{lem*}
+\begin{pf}
+	
+\end{pf}
+
+\begin{lem*}[Step 3 of 3.2]
+If we define $r:A\times I\to A\times I:(a,t)\mapsto(a,1)$, then $\xi\cong r^*\xi$.
+\end{lem*}
+\begin{pf}
+	
+\end{pf}
+
+
+\newpage
+\section{Day 7: May 22}
+
+\newpage
+\section{Day 8: June 5}
+The total space $EG$ is always contractable.
+
+Note that the base space $BG$ need not be paracompact, but in most cases $BG$ is paracompact, e.g.~compact Lie groups and discrete groups.
+
+\begin{prop*}[3.7]
+Let $B_1,B_2$ be paracompact spaces and $\xi_1,\xi_2$ be the universal principal $G$-bundles of $B_1,B_2$, respectively.
+Then, there is a homotopy equivalence $f:B_1\to B_2$ such that $f^*\xi_2=\xi_1$.
+In particular, $BG$ is uniquely defined for a homotopy equivalence of paracompact spaces.
+\end{prop*}
+\begin{pf}
+By the universality, we have maps $f_1:B_1\to B_2$ and $f_2:B_2\to B_1$ such that $f_1^*\xi_2=\xi_1$ and $f_2^*\xi_1=\xi_2$.
+Then, $\id^*\xi_1=\xi_1=(f_2\circ f_1)^*\xi$ implies $f_2\circ f_1\simeq\id$ by Theorem 3.4.
+\end{pf}
+
+\begin{thm*}[3.8]
+Let $\xi=(G\to E\to B,G)$ be a principal $G$-bundle on a paracompact space $B$.
+If $E$ is contractible, then $\xi$ is universal principal $G$-bundle.
+\end{thm*}
+\begin{pf}
+For a paracompact $X$, we want to show the correspondence $[X,B]\to\mathrm{Prin}_G(X):[f]\mapsto f^*\xi$ is bijective.
+
+(Surjectivity)
+Let $\eta=(G\to E_1\to X,G)$ be a principal $G$-bundle on $X$.
+Define a left action $G\curvearrowleft E$ such that $ge:=eg^{-1}$ using the principal right action on $E$.
+Let $(\eta,\xi)=(E\to E_1\times_G E\to X)$ be the associated bundle of $\eta$.
+Since $E$ is contractible, it admits a global section by Theorem 3.9, which implies the existence of a bundle map $(\tilde f,f):\eta\to\xi$.
+Thus, $f^*\xi\cong\eta$.
+
+\noindent\textbf{Problem 8.} For two principal $G$-bundles $\xi_i=(G\to E_i\to B_i,G)$ with $i=1,2$, show that there is a bundle map $(\tilde f,f):\xi_1\to\xi_2$ if and only if the associated bundle $(\xi_1,\xi_2):=(E_2\to E_1\times_G E_2\to B_1)$ has a global section.
+
+(Injectivity)
+Suppose $f_0,f_1:X\to B$ satisfies $f_0^*\xi\cong f_1^*\xi$.
+Then, there eixst bundle maps $(\tilde f_i,f_i):f_i^*\xi\to\xi$ and a bundle isomorphism $(\tilde h,\id_X):f_0^*\xi\to f_1^*\xi$.
+Define $\xi:=(G\to f_0^*E\times[0,1]\xrightarrow{\pi\times\id}X\times[0,1],G)$, where $\pi:f_0^*\xi\to X$.
+Also define a partial bundle map $s:\zeta|_{X\times([0,\frac12)\cup(\frac12,1])}\to\xi$ such that
+\[s(z,t):=\begin{cases}
+\tilde f_0(z),&t<\frac12,\\
+\tilde f_1(\tilde h(z)),& t>\frac12
+\end{cases}.\]
+We can see $s$ as a section of the associated bundle $(\zeta,\xi)$ on $X\times([0,\frac12)\cup(\frac12,1])$.
+By Theorem 3.9, there exists a section $s'$ on $X\times[0,1]$ such that $s'|_{X\times\{0,1\}}=s|_{X\times\{0,1\}}$.
+The bundle map $S:\zeta\to\xi$ corresponding to $s'$ induces a map $X\times [0,1]\to B$, and it is a homotopy between $f_0$ and $f_1$.
+\end{pf}
+
+\begin{thm*}[3.9]
+Let $A$ be a closed subset of a paracompact Hausdorff space $B$, and $C$ be a contractible space.
+Let $\zeta=(C\to E\to B)$ be a $C$-bundle.
+For a section $s:N\to E$ on an open neighborhood of $N$ of $A$, there exists a section $S:B\to E$ such that $S|_A=s|_A$.
+In particular, if we take $A=N=\varnothing$, then $S:B\to E$ always exists.
+\end{thm*}
+\begin{pf}
+Uploaded on ITC-LMS.
+\end{pf}
+
+\begin{ex*}
+Recall that $\xi=(\rO(k)\to V_k^O(\R^n)\to\mathrm{Gr}_k(\R^n),\rO(k))$ is a principal $\rO(k)$-bundle, where
+\[V_k^O(\R^n)=\{M\in M_{n\times k}(\R)\mid\rk(M)=k,\text{orthonormal columns}\}\cong\rO(n)/\rO(n-k).\]
+Here, we refer to a well-known fact: $\mathrm{Gr}_k(\R^n)$ has a natural cell decomposition(Schubert) so that $\Gr_k(\R^n)\to\Gr_k(\R^{n+1})$ induced by the embedding $\R^n\to\R^{n+1}$ is a cellular map.
+
+Let $\xi_{\rO(k)}=(\rO(k)\to V_k^O(\R^\infty)\to\Gr_k(\R^\infty),\rO(k))$.
+(space of $k$-dimensional subspaces of a separable infinite dimensional Hilbert space..?)
+\end{ex*}
+\begin{thm*}[3.10]
+$\xi_{\rO(k)}$ is a universal principal $\rO(k)$-bundle.
+\end{thm*}
+\begin{pf}
+By Theorem 3.8, enough to show $V_k^O(\R^\infty)$ is contractible.
+
+Define unilateral $k$-shift $f:\R^\infty\to\R^\infty$, where $\R^\infty=\bigcup_{n\ge1}\R^n$.
+With the inner product on $\R^\infty$, we can check
+\[h_t(v):=\mathrm{Schmidt}[(1-t)v_1+tf(v_1),\cdots,(1-t)v_k+tf(v_k)]\]
+is well-defined homotopy such that $h_0=\id$ and $h_1(V_k^O(\R^\infty))=V_k^O(\{0\}^k\times\R^\infty)$.
+We also have
+\[h'_t:V_k^O(\{0\}^k\times\R^\infty)\to V_k^O(\R^\infty)\]
+such that
+\[h'_t(w_1,\cdots,w_k)\mapsto\mathrm{Schmidt}[te_1+(1-t)w_1,\cdots,te_k+(1-t)w_k],\]
+and by connecting them, we are done.
+\end{pf}
+With the same reasoning,
+\begin{gather*}
+\xi_{\GL(k,\R)}=(\GL(k,\R)\to V_k(\R^\infty)\to\Gr_k(\R^\infty),\GL(k,\R),\\
+\xi_{\rU(k)}=(\rU(k)\to V_k^U(\C^\infty)\to\Gr_k(\C^\infty),\rU(k),\\
+\xi_{\GL(k,\C)}=(\GL(k,\C)\to V_k(\C^\infty)\to\Gr_k(\C^\infty),\GL(k,\C)
+\end{gather*}
+are all universal.
+
+\begin{ex*}
+Let $G$ be a compact Lie group with closed embedding $G\hookrightarrow\rU(k)$.
+Then, the bundle
+\[G\to V_k^U(\C^\infty)\to V_k^U(\C^\infty)/G\]
+has a paracompact base space, hence it is universal since $V_k^U(\C^\infty)$ is contractible.
+If we write $EG=V_k^U(\C^\infty)$ and $BG=V_k^U(\C^\infty)/G$, then $U(k)/G\to BG\to BU(k)$ is a bundle.
+\end{ex*}
+
+In differential geoemtry, we sometimes stop to limit and take a sufficiently large but finite $n$ when, for example, considering $V_k^U(\C^\infty)/G=\lim_\to V_k^U(\C^n)/G$.
+
+% G가 F에 효과적으로 작용해야 할 것 같은데
+
+\begin{defn*}[3.11]
+For $\xi=(F\to E\to B,G)$ with $B$ paracompact,
+if $c(\xi_1)=f^*(c(\xi_2))\in H^*(B;R)$ for every bundle map $(\tilde f,f):\xi_1\to\xi_2$, then $c$ is called a \emph{characteristic class} of bundles with structure group $G$ and fiber $F$ with coefficient $R$.
+\end{defn*}
+From definition, $\xi_1\cong\xi_2$ implies $c(\xi_1)=c(\xi_2)$, and for trivial $\xi$, $c(\xi)=0$.
+
+\begin{prop*}[3.12]
+Let $G$ be a topological group such that we can take paracompact $BG$.
+Then,
+\[\left\{\begin{tabular}{c}
+characteristic classes\\
+of $G,F,R$
+\end{tabular}\right\}=H^*(BG,R).\]
+\end{prop*}
+Let $a\in H^*(BG,R)$.
+For $\xi=(F\to E\to B,G)$, if we define $a(\xi):=f^*(a)$ for $f:B\to BG$, then $a(\xi)$ is a characteristic class.
 
 \end{document}

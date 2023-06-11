@@ -693,14 +693,16 @@ This spectral measure $E$ is also called the \emph{resolution of the identity}.
 
 
 Let $E$ be the spectral measure of a normal operator $T\in B(H)$.
-If we choose $\xi_n\in E(B(\lambda,n^{-1}))H$, then
+If we choose $\xi\in E(B(\lambda,n^{-1}))H$, then since $E(B(\lambda,n^{-1})^c)\xi=0$, or since $E(B(\lambda,n^{-1}))\xi=\xi$, we have
 \begin{align*}
 \|(\lambda-T)\xi\|^2
-&=\int|\lambda-z|^2\,d\<E_z\xi,\xi\>\\
-&=\int_{B(\lambda,n^{-1})}|\lambda-z|^2\,d\<E_z\xi,\xi\>\\
-&\le n^{-2}\int_{B(\lambda,n^{-1})}\,d\<E_z\xi,\xi\>\\
-&\le n^{-2}\|\xi\|^2.
+&=\int|\lambda-z|^2\,d\<E(z)\xi,\xi\>\\
+&=\int_{B(\lambda,n^{-1})}|\lambda-z|^2\,d\<E(z)\xi,\xi\>\\
+&\le n^{-2}\int_{B(\lambda,n^{-1})}\,d\<E(z)\xi,\xi\>\\
+&\le n^{-2}\int\,d\<E(z)\xi,\xi\>\\
+&=n^{-2}\|\xi\|^2.
 \end{align*}
+
 
 
 \section{Operator topologies}

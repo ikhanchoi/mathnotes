@@ -2,6 +2,8 @@
 \usepackage{../../ikhanchoi}
 
 
+\DeclareMathOperator{\Op}{Op}
+
 \begin{document}
 \title{Harmonic Analysis}
 \author{Ikhan Choi}
@@ -350,14 +352,73 @@ Carleson measures, paraproducts
 \chapter{Oscillatory integrals}
 
 
-\begin{prb}[Justification of quadratic oscillatory integral]
-
+\begin{prb}[Justification of oscillatory integral]
+For $\phi$, we define a linear functional $O_\phi:A_\delta^m(\R^d)\to\C$ such that
+\[O_\phi(a):=\int_{\R^d}e^{i\phi(x)}a(x)\,dx\]
+for all $a\in A_\delta^m(\R^d)\cap L^1(\R^d)$.
+As a notation, we will use the above integral to denote the value of $O_\phi$ even for $a\in A_\delta^m(\R^d)\setminus L^1(\R^d)$.
+\begin{parts}
+\item $O_\phi$ is well-defined and continuous.
+\item The change of variables is justified as follows:
+\item The integral by parts is justified as follows: for $\phi\in$ and $a\in$, we have
+\[\int_{\R^d}e^{i\phi(y)}i\partial\phi(y)a(x+y)\,dy=-\int_{\R^d}e^{i\phi(y)}\partial a(x+y)\,dy.\]
+\item The Fubini theorem is justified as follows:
+\item The Fourier inversion is justified as follows:
+\[a(x)=(2\pi)^{-d}\int_{\R^{2d}}e^{i(x-y)\xi}a(y)\,dy\,d\xi.\]
+\end{parts}
 \end{prb}
+\begin{pf}
+(a)
+The most difficult part is the construction and the computation of $L$ and its transpose.
+
+(e)
+Note that the function $(y,\xi)\mapsto a(y)$ belongs to $A_\delta^{m'}(\R^{2d})$ since
+\end{pf}
+
+\begin{prb}[Point evaluation of multiplier]
+We want to show the following point evaluation holds with previously justified oscillatory integral: for each $x$ at which the left-hand side is continuous, we have
+\[\Phi(D)a(x)=(2\pi)^{-d}\int_{\R^d}e^{i\phi(y)}a(x+y)\,dy\]
+for all $a\in A_\delta^m$, where $\Phi:=\cF^*e^{i\phi}$.
+\end{prb}
+
+
 
 \begin{prb}[Stationary phase approximation]
+
 \end{prb}
-Van der Corput lemma
+\begin{pf}
+
+\end{pf}
+
+
+
+\begin{prb}[Van der Corput lemma]
+	
+\end{prb}
 Dispersive equations and strichartz estimates
+
+\section*{Exercises}
+\begin{prb}[Fresnel phase]
+We compute $L$ with a specific example
+\end{prb}
+\begin{pf}
+\[(1+xQ^{-1}D)e^{\frac i2xQx}=\<x\>^2e^{\frac i2xQx}.\]
+The transpose of $\<x\>^{-2}(1+xQ^{-1}D)$ is $\<x\>^{-2}(1+di-2ix^2-xD)$ for $Q=I$.
+
+Note that $\<x\>^{-2n}\<D\>^{2n}$ is self-adjoint.
+
+Let $Q$ be a non-degenerate symmetric bilinear form on $\R^d$.
+Consider a multiplier operator $e^{\frac i2DQD}:\cS\to\cS$ such that
+\[e^{\frac i2DQD}a(x):=\cF^*e^{\frac i2\xi Q\xi}\cF a(x).\]
+\begin{parts}
+\item
+If $a\in A_\delta^m(\R^d)$, then the pointwise evaluation is given by the oscillatory integral.
+\[e^{\frac i2DQD}a(x)=(2\pi)^{-d}\frac{e^{\frac{i\pi\sgn Q}4}}{|\det Q|^{\frac12}}\int_{\R^d}e^{-\frac i2yQ^{-1}y}a(x+y)\,dy.\]
+\item
+\[e^{\frac i2DQD}a(x)=\sum_{k=0}^n\frac{i^k}{2^kk!}(DQD)^ka(x)+r_n(x)\]
+\end{parts}
+\end{pf}
+
 
 \chapter{Foureir restriction}
 Kakeya
@@ -386,37 +447,152 @@ Geometric measure theory
 \chapter{Pseudo-differential calculus}
 \section{}
 
-\begin{prb}[Symbol classes]
-Japanese bracket $\<x\>:=(1+x^2)^{\frac12}$.
-\[\<x-y\>^{-2}\<D_\xi\>^{-2}e^{i(x-y)\xi}=e^{i(x-y)\xi}\]
-\end{prb}
-
-
-\begin{prb}[Asymptotic expansion]
-\end{prb}
-
-
-
-\begin{prb}[Quantization]
-$t$-quantization of a symbol $a$ is the $\Psi$DO defined by
-\[a^t(x,D)f(x):=(2\pi)^{-d}\iint e^{i(x-y)\cdot\xi}a((1-t)x+ty),\xi)f(y)\,dy\,d\xi.\]
-Kohn-Nirenberg calculus for $t=0$, Weyl calculus for $t=\frac12$.
-
-Let $a\in S_{\rho,\delta}^m(\R^{2d})$ with $m\in\R$, $0\le\delta\le\rho\le1$ and $\delta\ne1$.
-Let $t,s\in[0,1]$ with $t\ne s$.
+\begin{prb}[H\"ormander symbol classes]
+Let $m,\rho,\delta\in\R$.
+The \emph{H\"ormander class} $S_{\rho,\delta}^m(\R^{2d})$ of symbols is the set of smooth functions $a\in C^\infty(\R_x^d\times\R_\xi^d)$ such that
+\[|\partial_x^\alpha\partial_\xi^\beta a(x,\xi)|\lesssim_{\alpha,\beta}\<\xi\>^{m+\delta|\alpha|-\rho|\beta|}\]
+for each $\alpha,\beta\in\Z_{\ge0}^d$.
 \begin{parts}
-\item There exists a unique $b\in S_{\rho,\delta}(\R^{2d})$ such that $a^t(x,D)=b^s(x,D)$.
-\item $b$ is expressed as
-\[b(x,\xi)=e^{i(t-s)D_xD_\xi}a(x,\xi)=(2\pi)^{-d}|t-s|^{-d}\int_{\R^{2d}}e^{-iy\eta/(t-s)}a(x+y,\xi+\eta)\,dy\,d\eta,\]
-\item If $\delta<\rho$, then
-\[b\sim\sum_{\alpha\in\Z_{\ge0}^d}\frac{(t-s)^{|\alpha|}}{i^{|\alpha|}\alpha!}\partial_x^\alpha\partial_\xi^\alpha a.\]
+\item Fr\'echet space
 \end{parts}
 \end{prb}
 
 
-\begin{prb}[Formal adjoint]
-extension to tempered distributions
+\begin{prb}[Asymptotic expansion]
+Let $\rho,\delta\in\R$ and $(m_k)_{k=0}^\infty\subset\R$ be a sequence with $m_0$ and $m_k\downarrow-\infty$.
+Given $a_k\in S_{\rho,\delta}^{m_k}(\R^{2d})$, we want to construct $a\in S_{\rho,\delta}^{m_0}(\R^{2d})$ such that
+\[a-\sum_{k=0}^na_k\in S_{\rho,\delta}^{m_{n+1}}(\R^{2d}).\tag{\dagger}\]
+The symbol $a_0$ is called the \emph{principal symbol} of $a$, or the operator $\Op^t(a)$.
+
+Let $\chi\in C_c^\infty(\R_\xi^d,[0,1])$ be a cutoff function such that
+\[\chi(\xi)=\begin{cases}1,&\text{ if }|\xi|\le1\\0,&\text{ if }|\xi|\ge2\end{cases}.\]
+\begin{parts}
+\item If $a\in S_{\rho,\delta}^m$, then $\chi(\e\xi)a(x,\xi)$ is uniformly bounded in $S_{\rho,\delta}^m$ for $\e\in(0,1)$ if $\rho\le1$.
+\item There is $a\in S_{\rho,\delta}^{m_0}$ such that (\dagger) if $\rho\le1$.
+\end{parts}
 \end{prb}
+\begin{pf}
+(a)
+On the support of $\xi\mapsto\chi(\e\xi)$ holds $\<\xi\><2|\xi|\le4\e^{-1}$ because $1<\e^{-1}$, so for each $\alpha,\beta\in\Z_{\ge0}^d$ we have
+\begin{align*}
+|\partial_x^\alpha\partial_\xi^\beta(\chi(\e\xi)a(x,\xi))|
+&=|\sum_\tau{\beta\choose\tau}\partial_\xi^{\beta-\tau}(\chi(\e\xi))\partial_x^\alpha\partial_\xi^\tau a(x,\xi)|\\
+&=|\sum_\tau{\beta\choose\tau}\e^{|\beta|-|\tau|}\partial_\xi^{\beta-\tau}\chi(\e\xi)\partial_x^\alpha\partial_\xi^\tau a(x,\xi)|\\
+(\because\<\xi\>\le4\e^{-1})\quad
+&\le\sum_\tau{\beta\choose\tau}(4\<\xi\>^{-1})^{|\beta|-|\tau|}|\partial_\xi^{\beta-\tau}\chi(\e\xi)||\partial_x^\alpha\partial_\xi^\tau a(x,\xi)|\\
+&\lesssim\sum_{\tau}{\beta\choose\tau}\<\xi\>^{-(|\beta|-|\tau|)}\<\xi\>^{m+\delta|\alpha|-\rho|\tau|}\\
+(\because\rho\le1)\quad
+&\le\<\xi\>^{m+\delta|\alpha|-\rho|\beta|}.
+\end{align*}
+
+(b)
+Because we have $\e^{-1}\le\<\xi\>$ on the support of $1-\chi(\e\xi)$, for each $k$ we can take a sequence $\e_k$ small enough such that
+\[\max_{\substack{\alpha,\beta\in\Z_{\ge_0}^d\\|\alpha|+|\beta|\le k}}|\partial_x^\alpha\partial_\xi^\beta((1-\chi(\e_k\xi))a_k(x,\xi))|\le2^{-k}\<\xi\>^{m_k+1+\delta|\alpha|-\rho|\beta|}.\]
+We may assume $\e_k\downarrow0$ so that the following sum is locally finite:
+\[a(x,\xi):=\sum_{k=0}^\infty(1-\chi(\e_k\xi))a_k(x,\xi).\]
+If we choose $n$ such that $m_0\ge m_{n+1}+1$, then in the expansion
+\[a(x,\xi)=\sum_{k=0}^n(1-\chi(\e_k\xi))a_k(x,\xi)+\sum_{k=n+1}^\infty(1-\chi(\e_k\xi))a_k(x,\xi)\]
+the first sum clearly belongs to $S_{\rho,\delta}^{m_0}$ and so is the second sum because
+\begin{align*}
+|\partial_x^\alpha\partial_\xi^\beta\sum_{k=n+1}^\infty(1-\chi(\e_k\xi))a_k(x,\xi)|
+&\le\sum_{k=n+1}^\infty2^{-k}\<\xi\>^{m_{k+1}+1+\delta|\alpha|-\rho|\beta|}\\
+&\le\<\xi\>^{m_{n+1}+1+\delta|\alpha|-\rho|\beta|}\\
+&\le\<\xi\>^{m_0+\delta|\alpha|-\rho|\beta|}
+\end{align*}
+for every $\alpha,\beta\in\Z_{\ge0}^d$.
+Therefore, $a\in S_{\rho,\delta}^{m_0}$.
+
+Write
+\[(a-\sum_{k=0}^na_k)(x,\xi)=\sum_{k=0}^n\chi(\e_k\xi)a_k(x,\xi)+\sum_{k=n+1}^\infty(1-\chi(\e_k\xi))a_k(x,\xi).\]
+The first sum belongs to $S^{-\infty}$ because it is compactly supported, and we can also show that the second sum belongs to $S_{\rho,\delta}^{m_{n+1}}$ by decomposing with $n'$ such that $m_{n+1}\ge m_n'+1$ and by considering the multiplication with a cutoff remains in the same symbol class.
+\end{pf}
+
+
+\begin{prb}[Quantization]
+The $t$-quantization of a symbol $a$ is the pseudo-differential operator $\Op^t(a)$ on $\cS(\R_x^d)$ defined by
+\[\Op^t(a)f(x):=(2\pi)^{-d}\int_{\R^{2d}}e^{i(x-y)\xi}a((1-t)x+ty,\xi)f(y)\,dy\,d\xi\]
+for all $f\in\cS(\R^d)$.
+Kohn-Nirenberg calculus for $t=0$, Weyl calculus for $t=\frac12$.
+\begin{parts}
+\item $\Op^0(a):\cS(\R^d)\to\cS'(\R^d)$ is continuous for $a\in\cS'(\R^d)$.
+\item $\Op^0(a):\cS(\R^d)\to\cS(\R^d)$ is continuous for $a\in S_{\rho,\delta}^m(\R^{2d})$ if $\delta\le1$.
+\end{parts}
+\end{prb}
+\begin{pf}
+(b)
+Since $\<D_y\>^2$ is a self-adjoint partial differential operator, for any $n\in\Z_{\ge0}$ we have
+\begin{align*}
+\Op^0(a)f(x)
+&=(2\pi)^{-d}\int_{\R^{2d}}e^{i(x-y)\xi}a(x,\xi)f(y)\,dy\,d\xi\\
+(\because D_ye^{i(x-y)\xi}=\xi e^{i(x-y)\xi})\quad
+&=(2\pi)^{-d}\int_{\R^{2d}}\<\xi\>^{-2n}\<D_y\>^{2n}e^{i(x-y)\xi}a(x,\xi)f(y)\,dy\,d\xi\\
+(\because\text{IBP})\quad
+&=(2\pi)^{-d}\int_{\R^{2d}}e^{i(x-y)\xi}\<\xi\>^{-2n}a(x,\xi)\<D_y\>^{2n}f(y)\,dy\,d\xi.
+\end{align*}
+The derivatives of the integrand is integrable with respect to $\xi$ for a sufficiently large $n$ with $m+|\beta|-2n<-d$ because
+\begin{align*}
+&\hspace{-3em}|\partial_x^\beta(e^{i(x-y)\xi}\<\xi\>^{-2n}a(x,\xi)\<D_y\>^{2n}f(y))|\\
+&=|\sum_\tau{\beta\choose\tau}(i\xi)^{\beta-\tau}e^{i(x-y)\xi}\<\xi\>^{-2n}\partial_x^\tau a(x,\xi)\<D_y\>^{2n}f(y)|\\
+&\le\sum_\tau{\beta\choose\tau}\<\xi\>^{|\beta|-|\tau|}\<\xi\>^{-2n}|\partial_x^\tau a(x,\xi)||\<D_y\>^{2n}f(y)|\\
+(\because a\in S_{\rho,\delta}^m)\quad
+&\lesssim\sum_\tau{\beta\choose\tau}\<\xi\>^{|\beta|-|\tau|}\<\xi\>^{-2n}\<\xi\>^{m+\delta|\tau|}|\<D_y\>^{2n}f(y)|\\
+(\because\delta\le1)\quad
+&\lesssim\<\xi\>^{m+|\beta|-2n}|\<D_y\>^{2n}f(y)|,
+\end{align*}
+so the partial derivative $\partial_x$ commutes with the integral.
+Since
+\[x^\alpha e^{i(x-y)\xi}=(y+D_\xi)^\alpha e^{i(x-y)\xi}=\sum_{\sigma}{\alpha\choose\sigma}y^{\alpha-\sigma}D_\xi^\sigma e^{i(x-y)\xi},\]
+we have an expansion
+\begin{align*}
+x^\alpha\partial_x^\beta\Op^0(a)f(x)
+&=x^\alpha\partial_x^\beta\int_{\R^{2d}}e^{i(x-y)\xi}\<\xi\>^{-2n}a(x,\xi)\<D_y\>^{2n}f(y))\,dy\,d\xi\\
+&=\int_{\R^{2d}}x^\alpha\partial_x^\beta(e^{i(x-y)\xi}\<\xi\>^{-2n}a(x,\xi)\<D_y\>^{2n}f(y))\,dy\,d\xi\\
+&=\int_{\R^{2d}}\sum_{\sigma,\tau}{\alpha\choose\sigma}{\beta\choose\tau}y^{\alpha-\sigma}D_\xi^{\sigma}e^{i(x-y)\xi}(i\xi)^{\beta-\tau}\<\xi\>^{-2n}\partial_x^\tau a(x,\xi)\<D_y\>^{2n}f(y)\,dy\,d\xi\\
+&=\int_{\R^{2d}}\sum_{\sigma,\tau}{\alpha\choose\sigma}{\beta\choose\tau}e^{i(x-y)\xi}(-D_\xi)^{\sigma}[(i\xi)^{\beta-\tau}\<\xi\>^{-2n}\partial_x^\tau a(x,\xi)]y^{\alpha-\sigma}\<D_y\>^{2n}f(y)\,dy\,d\xi.
+\end{align*}
+Here
+\[\sup_{x\in\R^d}|(-D_\xi)^{\sigma}[(i\xi)^{\beta-\tau}\<\xi\>^{-2n}\partial_x^\tau a(x,\xi)]|\]
+is integrable with respect to $\xi$ for sufficiently large $n$, so with this $n$ we have
+\[\sup_{x\in\R^d}|x^\alpha\partial_x^\beta\Op^0(a)f(x)|\lesssim\sum_{\sigma\le\alpha}\sup_{y\in\R^d}|y^{\alpha-\sigma}\<D_y\>^{2n}f(y)|\]
+for each $\alpha,\beta\in\Z_{\ge0}^d$ and all $f\in\cS(\R^d)$, which implies $\Op^0(a)f\in\cS(\R^d)$.
+\end{pf}
+
+\begin{prb}[Change of quantization]
+Let $m\in\R$, .
+\begin{parts}
+\item $\Op^t(a)=\Op^0(e^{itD_xD_\xi}a)$.
+\item $a\in S_{\rho,\delta}^m(\R^{2d})$ if and only if $e^{itD_xD_\xi}a\in S_{\rho,\delta}^m(\R^{2d})$, if $0\le\delta\le\rho\le1$ and $\delta<1$.
+\item We have the formal adjoint
+\[\Op^t(a)^*=\Op^{1-t}(\bar a).\]
+In particular, we have $\Op^t(a):\cS'\to\cS'$.
+\end{parts}
+\end{prb}
+
+\begin{pf}
+(a)
+Note that
+\begin{align*}
+\Op^t(a)f(x)
+&=(2\pi)^{-d}\int_{\R^{2d}}e^{i(x-y)\xi}a((1-t)x+ty,\xi)f(y)\,dy\,d\xi\\
+(\because\text{Inversion on }\R^{2d})\quad
+&=(2\pi)^{-3d}\int_{\R^{4d}}e^{i(x-y)\xi}e^{i((1-t)x+ty)x^*+i\xi\xi^*}\hat a(x^*,\xi^*)f(y)\,dx^*\,d\xi^*\,dy\,d\xi\\
+&=(2\pi)^{-3d}\int_{\R^{4d}}e^{i(x-y+\xi^*)\xi}\hat a(x^*,\xi^*)e^{i((1-t)x+ty)x^*}f(y)\,dx^*\,d\xi^*\,dy\,d\xi\\
+(\because\text{Inversion on }\R^d)\quad
+&=-(2\pi)^{-2d}\int_{\R^{2d}}\hat a(x^*,y-x)e^{i((1-t)x+ty)x^*}f(y)\,dx^*\,dy\\
+(\because[\xi^*/y-x])\quad
+&=-(2\pi)^{-2d}\int_{\R^{2d}}e^{i(x+t\xi^*)x^*}\hat a(x^*,\xi^*)f(x+\xi^*)\,dx^*\,d\xi^*.
+\end{align*}
+
+(b)
+We have the oscillatory integral
+\[e^{itD_xD_\xi}a(x,\xi)=(2\pi)^{-d}|t|^{-d}\int_{\R^{2d}}e^{-it^{-1}y\eta}a(x+y,\xi+\eta)\,dy\,d\eta.\]
+%\[b\sim\sum_{\alpha\in\Z_{\ge0}^d}\frac{(t-s)^{|\alpha|}}{i^{|\alpha|}\alpha!}\partial_x^\alpha\partial_\xi^\alpha a\]if $\delta<\rho$.
+Enough to show
+\[|\int_{\R^{2d}}e^{-it^{-1}y\eta}a(x+y,\xi+\eta)\,dy\,d\eta|\lesssim\<\xi\>^m.\]
+Fix $\xi$ and
+\delta\le\rho
+\end{pf}
+
 
 
 
