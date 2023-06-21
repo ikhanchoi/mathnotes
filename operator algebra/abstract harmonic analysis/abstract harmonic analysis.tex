@@ -15,9 +15,6 @@
 \section{Topological groups}
 \section{Haar measures}
 
-
-
-
 \begin{prb}[Non-$\sigma$-finite measures]
 Following technical issues are important
 \begin{parts}
@@ -27,8 +24,6 @@ Following technical issues are important
 \item The dual space of $L^1$ space
 \end{parts}
 \end{prb}
-
-
 
 \begin{prb}[Radon measures]
 Let $\Omega$ be a locally compact Hausdorff space.
@@ -62,13 +57,114 @@ Let $\Omega$ be a locally compact Hausdorff space and consider the following map
 
 
 
+\section{Group algebras}
+\begin{prb}[Modular functions]
+\end{prb}
+\begin{prb}[Convolution]
+\end{prb}
+\begin{prb}[Positive definite functions]
+Bochner theorem
+\end{prb}
+\begin{prb}[Fourier-Stieltjes algebra]
+\end{prb}
+\begin{prb}[GNS construction for locally compact groups]
+Let $G$ be a locally compact group.
+By a state of $C^*(G)$, we could construct the GNS representation of $G$.
+An analog of GNS construction for $L^1(G)$ without completion is doable, when given a function of positive type on $G$, instead of a state.
+\end{prb}
 
 
-\iffalse
+\[\begin{tikzcd}
+G \ar{r} & M(G) & \, & \,\\
+L_1(G) \ar[hook]{ur}\ar[hook]{r}\ar[dashed]{d}{*} & C^*(G) \ar[two heads]{r}\ar[dashed]{d}{*} & C_r^*(G) \ar[hook]{r}\ar[dashed]{d}{*} & L(G) \ar[dashed]{d}{*\text{ with }\sigma w}\\
+L^\infty(G) & B(G) \ar[hook]{l} & C_r^*(G)^* \ar[hook]{l} & A(G) \ar[hook]{l}\\
+& C_0(G) \ar[hook]{ul} & &
+\end{tikzcd}\]
+
+
+\section{Pontryagin duality}
+
+\begin{prb}[Dual group]
+\end{prb}
+\begin{prb}[Fourier inversion theorem]
+\end{prb}
+\begin{prb}[Plancherel's theorem]
+\end{prb}
+
+
+\section{Structure theorems}
+
+\section*{Exercises}
+\begin{prb}
+\end{prb}
+
+\section*{Problems}
+\begin{enumerate}
+\item Let $\Omega$ be a topological space. For every positive linear functional $I$ on $C_c(\Omega,\R)$, show that there exists a Borel measure $\mu$ on $\Omega$ such that $I(f)=\int f\,d\mu$ for all $f\in C_c(\Omega,\R)$. (Hint: Consider the uncountable wedge sum of circles as an example.)
+\end{enumerate}
+\begin{sol}
+1.
+The constructed Carath\'eodory measure $\mu$ on $\Omega$ is outer regular Borel measure, but we do not have local finiteness.
+Everything is same to when $\Omega$ is locally compact Hausdorff except that $\mu(\supp f)$ may be infinite.
+Now it is enough to show $I(\min\{f,\frac1n\})$ converges to zero as $n\to\infty$ for $f\in C_c(\Omega,[0,1])$.
+
+Let $U:=f^{-1}((0,1])$.
+For $g\in C_0(U,[0,1])$, it clearly has compact support, and and it is also continuous because $g^{-1}((a,1])$ is open in $U$ and $g^{-1}([a,1])$ is closed in $K$ for any $0<a\le1$, so that we have $C_0(U)\subset C_c(X)$.
+We also have $f_1\in C_0(U)$ since $f_1^{-1}([\e,1])$ is a compact set in $U$ for every $\e>0$.
+Therefore, $I$ is a positive linear functional on $C_0(U)$.
+Since a positive linear map between C$^*$-algebras is bounded, there is a constant $C$ such that $I(g)\le C$ for all $g\in C_0(U,[0,1])$, and it proves $I(f_1)\le C/n\to0$ as $n\to\infty$.
+Therefore, $I(f)=\int f\,d\mu$.
+\end{sol}
+
+
+
+\section{Spectral synthesis}
+
+
+
+
+
+
+
+
+\chapter{Representation theory}
+
+\begin{prb}[Schur's lemma]
+\end{prb}
+\section{Group C$^*$-algerbas}
+\begin{prb}[Operator-valued Fourier transform]
+\end{prb}
+
+\chapter{Compact groups}
+\section{Peter-Weyl theorem}
+\section{Tannaka-Krein duality}
+\section{Example of compact Lie groups}
+
+\chapter{Mackey machine}
+\section{Example of non-compact Lie groups}
+Wigner classification
+
+
+
+
+
+
+
+
+\chapter{Kac algebras}
+
+
+
+
+\part{Topological quantum groups}
+\chapter{Compact quantum groups}
+\chapter{Locally compact quantum groups}
+\section{Multiplicative unitaries}
+
+
+\chapter*{}
 
 \subsection{Measures on locally compact Hausdorff spaces}
-
-
 compact  closed set not containing infty
 open     open not containing infty
 closed   closed set containing infty
@@ -79,12 +175,10 @@ two definitions of inner regularity is equivalent.
 IRK -> IRF
 IRK + sigma finite -> tight
 
-
 Thm. The measure contructed by RMK is lf and regular(cpt version).
 1. open set is approx by cpt sets (by def of rho, if X is LCH)
 2. meas set is approx by opn sets (by def of outer meas)
 3. sigma finite set is approx by cpt sets (by thm)
-
 
 Consider
 \begin{cd}
@@ -93,16 +187,11 @@ Consider
 \end{cd}
 for locally compact Hausdorff $X$.
 
-
 $\text{Borel}_{locfin}\to \text{pos lin on }C_c$ is surjective for all topological spaces.
 
 $\text{regBorel}_{fin}\to C_b^{*+}$ is injective for normal spaces.
 
 $\text{regBorel}_{locfin}\to C_c^{*+}$ is injective for locally compact Hausdorff spaces.(maybe)
-
-
-
-
 
 \begin{lem}
 Let $\mu$ be a Borel measure on a LCH $X$.
@@ -166,17 +255,12 @@ If every open set in $X$ is $\sigma$-compact(i.e. Borel sets and Baire sets coin
 In a second countable space, every open set is $\sigma$-compact(i.e. Borel sets and Baire sets coincide).
 \end{prop}
 
-
 Two corollaries are presented as follows:
 \begin{rd}[column sep={120pt,between origins}]
 \parbox{7em}{\centering locally finite \\ Borel regular} \rar &
 \parbox{5em}{\centering Radon} \rar \lar[dashed, bend right, swap]{$X$ is $\sigma$-compact} &
 \parbox{7em}{\centering locally finite \\ Borel} \ar[dashed, bend left]{ll}{$X$ is second countable}
 \end{rd}
-
-
-
-
 \begin{prb}
 Let $X$ be compact.
 A positive linear functional $\rho$ on $C(X)$ is bounded with norm $\rho(1)$.
@@ -200,9 +284,6 @@ Since $X$ is $\sigma$-compact and Hausdorff, every closed set is a countable uni
 
 Since locally compact Hausdorff space is regular, the Urysohn metrization implies $X$ is metrizable, and every closed sets in metrizable space is $G_\delta$ set.
 \end{sol}
-
-
-
 %%%%%%%%%%%%%%%
 \begin{prb}
 Let $X$ be compact.
@@ -256,113 +337,11 @@ Enough to show if $\int f\,d\mu=\int f\,d\nu$ then $\mu=\nu$ according to the pr
 Enough to show the regularity of Baire measures.
 \end{sol}
 
-\fi
-
-
-
-
-\section{Group algebras}
-\begin{prb}[Modular functions]
-\end{prb}
-\begin{prb}[Convolution]
-\end{prb}
-
-\section{Structure theorems}
-
-\section*{Exercises}
-\begin{prb}
-\end{prb}
-
-\section*{Problems}
-\begin{enumerate}
-\item Let $\Omega$ be a topological space. For every positive linear functional $I$ on $C_c(\Omega,\R)$, show that there exists a Borel measure $\mu$ on $\Omega$ such that $I(f)=\int f\,d\mu$ for all $f\in C_c(\Omega,\R)$. (Hint: Consider the uncountable wedge sum of circles as an example.)
-\end{enumerate}
-\begin{sol}
-1.
-The constructed Carath\'eodory measure $\mu$ on $\Omega$ is outer regular Borel measure, but we do not have local finiteness.
-Everything is same to when $\Omega$ is locally compact Hausdorff except that $\mu(\supp f)$ may be infinite.
-Now it is enough to show $I(\min\{f,\frac1n\})$ converges to zero as $n\to\infty$ for $f\in C_c(\Omega,[0,1])$.
-
-Let $U:=f^{-1}((0,1])$.
-For $g\in C_0(U,[0,1])$, it clearly has compact support, and and it is also continuous because $g^{-1}((a,1])$ is open in $U$ and $g^{-1}([a,1])$ is closed in $K$ for any $0<a\le1$, so that we have $C_0(U)\subset C_c(X)$.
-We also have $f_1\in C_0(U)$ since $f_1^{-1}([\e,1])$ is a compact set in $U$ for every $\e>0$.
-Therefore, $I$ is a positive linear functional on $C_0(U)$.
-Assume that $I$ is not bounded; there is no constant $C$ such that $g\in C_0(U,[0,1])$ implies $I(g)\le C$.
-Construct a sequence $(h_k)_{k=1}^\infty$ in $C_0(U,[0,1])$ such that $I(h_k)\ge2^k$, and define $h:=\sum_{k=1}^\infty h_k/2^k$ so that $h\in C_0(U,[0,1])$.
-Then, $I(h)\ge \sum_{k=1}^mI(h_k)/2^k\ge m$ for every $m>0$, it contradicts to the assumption, which means that there is a constant $C$ such that $I(g)\le C$ for all $g\in C_0(U,[0,1])$, and it proves $I(f_1)\le C/n\to0$ as $n\to\infty$.
-Therefore, $I(f)=\int f\,d\mu$.
-\end{sol}
-
-
-\chapter{Pontryagin duality}
-\section{Dual groups}
-\section{}
-\section{Fourier inversion}
-\begin{prb}[Positive definite functions]
-\end{prb}
-\begin{prb}[Bochner's theorem]
-\end{prb}
-\begin{prb}[Fourier inversion theorem]
-\end{prb}
-\begin{prb}[Plancherel's theorem]
-\end{prb}
-
-
-\chapter{Spectral synthesis}
-\section{Closed ideals of the colvolution algebra}
-
-
-
-
-
-
-
-
-\part{Representation theory}
-\chapter{Unitary representations}
-\section{}
-\begin{prb}[Schur's lemma]
-\end{prb}
-\section{Group C$^*$-algerbas}
-\begin{prb}[Operator-value Fourier transform]
-\end{prb}
-\section{Functions of positive type}
-\begin{prb}[Functions of positive type]
-\end{prb}
-\begin{prb}[Fourier-Stieltjes algebra]
-\end{prb}
-\begin{prb}[GNS construction for locally compact groups]
-Let $G$ be a locally compact group.
-By a state of $C^*(G)$, we could construct the GNS representation of $G$.
-An analog of GNS construction for $L^1(G)$ without completion is doable, when given a function of positive type on $G$, instead of a state.
-\end{prb}
-
-
-\chapter{Compact groups}
-\section{Peter-Weyl theorem}
-\section{Tannaka-Krein duality}
-\section{Example of compact Lie groups}
-
-\chapter{Mackey machine}
-\section{Example of non-compact Lie groups}
-Wigner classification
-
-
-
-
-
-
-
-
-\part{Kac algebras}
-\chapter{Left Hilbert algebras}
-
-
-
-
-\part{Topological quantum groups}
-\chapter{Compact quantum groups}
-\chapter{Locally compact quantum groups}
-\section{Multiplicative unitaries}
-
 \end{document}
+
+
+
+
+
+
+

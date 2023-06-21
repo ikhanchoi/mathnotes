@@ -84,7 +84,34 @@ zero trace, whole domain
 \end{prb}
 
 \section{Sobolev embeddings}
+
+Temporarily we define a \emph{function space} on $\R^d$ as a complete topological vector space $X$ together with embeddings $\cS(\R^d)\to X$ and $X\to\cS'(\R^d)$.
+If $\cS(\R^d)$ is dense in $X$, hence so is $X$ in $\cS'(\R^d)$, we will say $X$ is \emph{approximable}.
+We will not take dual spaces for non-approximable spaces, such as $L^\infty(\R^d)$ and $M(\R^d)$.
+
+Let $X,Y$ be function spaces on $\R^d$ such that $X$ is approximable.
+We claim that if $\|u\|_Y\lesssim\|u\|_X$, then we have embedding $X\subset Y$.
+Let $u\in X$.
+Since $\cS$ is dense in $X$, we can take a net $u_\alpha\in\cS$ such that $u_\alpha\to u$ in $X$.
+Then, $u_\alpha$ is Cauchy in $Y$ by the inequality, we have $v\in Y$ such that $u_\alpha\to v$ in $Y$.
+The uniqueness of limits in $\cS'$ implies that $u=v$, hence $u\in Y$.
+
+\begin{prb}
+We introduce the \emph{Sobolev regularity} $\frac sd-\frac1p$ for a triple of $s\in\R$, $p\in[1,\infty]$, $d\in\Z_{>0}$, and the \emph{H\"older regularity} $\frac{k+\alpha}d$ for a triple $k\in\Z_{\ge0}$, $\alpha\in[0,1)$, $d\in\Z_{>0}$.
+\begin{parts}
+\item
+\[\|u\|_{W^{k,p}(\R^d)}\lesssim\|u\|_{W^{k',p'}(\R^d)}.\]
+\item If $\frac kd<\frac sd-\frac1p$, then
+\[\|\nabla^\alpha u\|_{C_0(\R^d)}\lesssim\|u\|_{W^{s,p}(\R^d)},\qquad u\in W^{s,p}(\R^d).\]
+\end{parts}
+\end{prb}
+
+$\cS'=\bigcup_{\alpha,\beta\in\Z_{\ge0}^d}\<x\>^{-\alpha}\<\xi\>^{-\beta}L^2$.
+
+
 \begin{prb}[Gagliardo-Nirenberg-Sobolev inequality]
+If $\frac1d-\frac1p=-\frac1{p'}$, then
+\[\|u\|_{L^{p'}}\lesssim\|\nabla u\|_{L^p},\qquad u\in C_c^\infty(\R^d).\]
 \end{prb}
 \begin{prb}[H\"older spaces]
 \end{prb}
@@ -92,34 +119,36 @@ zero trace, whole domain
 \end{prb}
 \begin{prb}[Poincar\'e inequality] BMO
 \end{prb}
+
+
+
 \begin{prb}[Rellich-Kondrachov theorem]
 Let $\Omega$ be bounded open subset of $\R^d$ with Lipschitz boundary.
-Let $1\le p<d$ and $1\le q<p^*$ where $p^*:=\frac{dp}{d-p}$ denotes the Sobolev conjugate.
-Let $(u_n)_n$ be a bounded sequence in $W^{1,p}(\Omega)$.
-We may assume it is also bounded in $W^{1,1}(\R^d)$ by the embedding $W^{1,p}(\Omega)\subset W^{1,1}(\Omega)$ and the extension theorem.
+For $1\le p<d$, $p^*$ is given by $-\frac1{p^*}:=\frac1d-\frac1p$, called the \emph{Sobolev conjugate}.
 Let $\eta_\e$ be a standard mollifier.
 \begin{parts}
-\item There is a subsequence of $(\eta_\e*u_n)_n$ that is Cauchy in $L^q(\Omega)$ for each $\e>0$.
-\item $\sup_n\|\eta_\e*u_n-u_n\|_{L^1(\Omega)}\to0$ as $\e\to0$.
-\item $\sup_n\|\eta_\e*u_n-u_n\|_{L^q(\Omega)}\to0$ as $\e\to0$.
-\item There is a subsequence of $(u_n)_n$ that is Cauchy in $L^q(\Omega)$.
-\item $W^{k,p}(\Omega)\to W^{l,q}(\Omega)$ is a compact embedding if
-\[\frac ld-\frac1q<\frac kd-\frac1p.\]
+\item The convolution operator $(\eta_\e*-):L^1(\Omega)\to C(\bar\Omega)$ is compact for each $\e>0$.
+\item We have
+\[\|\eta_\e*u-u\|_{L^1(\Omega)}\lesssim\e\|u\|_{W^{1,1}(\Omega)},\qquad u\in W^{1,1}(\Omega).\]
+\item If $1\le p<d$ and $1\le q<p^*$, then there is $\theta>0$ such that we have
+\[\|\eta_\e*u-u\|_{L^q(\Omega)}\lesssim\e^\theta\|u\|_{W^{1,p}(\Omega)},\qquad u\in W^{1,p}(\Omega).\]
+\item If $1\le p<d$ and $1\le q<p^*$, then the embedding $W^{1,p}(\Omega)\hookrightarrow L^q(\Omega)$ is compact.
+\item If $\frac ld-\frac1q<\frac kd-\frac1p$, then the embedding $W^{k,p}(\Omega)\hookrightarrow W^{l,q}(\Omega)$ is a compact.
 \end{parts}
 \end{prb}
 \begin{pf}
 (a)
 The sequence $(\eta_\e*u_n)_n$ is pointwise bounded from
-\[\|\eta_\e*u_n\|_{C_0(\R^d)}\le\|\eta_\e\|_{C_0(\R^d)}\|u_n\|_{L^1(\R^d)}\lesssim_\e1,\]
+\[\|\eta_\e*u_n\|_{C_0(\R^d)}\le\|\eta_\e\|_{C_0(\R^d)}\|u_n\|_{L^1(\R^d)}\lesssim1,\qquad n\in\N,\]
 and equicontinuous from
-\[\|\nabla\eta_\e*u_n\|_{C_0(\R^d)}\le\|\nabla\eta_\e\|_{C_0(\R^d)}\|u_n\|_{L^1(\R^d)}\lesssim_\e1.\]
-By the Arzela-Ascoli theorem, since $\bar\Omega$ is compact, there is a subsequence $(\eta_\e*u_{n_k})_k$ that is Cauchy in $C(\bar\Omega)$, and hence in $L^q(\Omega)$.
+\[\|\nabla\eta_\e*u_n\|_{C_0(\R^d)}\le\|\nabla\eta_\e\|_{C_0(\R^d)}\|u_n\|_{L^1(\R^d)}\lesssim1,\qquad n\in\N.\]
+By the Arzela-Ascoli theorem, since $\bar\Omega$ is compact, there is a subsequence $(\eta_\e*u_{n_k})_k$ that is Cauchy in $C(\bar\Omega)$.
 
 (b)
 Write
 \begin{align*}
 \eta_\e*u_n(x)-u_n(x)
-&=\frac1{\e^d}\int\eta\left(\frac{x-y}\e\right)(u_n(y)-u_n(x))\,dy\\
+&=\int\e^{-d}\eta(\e^{-1}(x-y))(u_n(y)-u_n(x))\,dy\\
 &=\int\eta(y)(u_n(x-\e y)-u_n(x))\,dy\\
 &=\int\eta(y)\int_0^1\dd{t}(u_n(x-t\e y))\,dt\,dy\\
 &=\int\eta(y)\int_0^1(-\e y)\cdot\nabla u_n(x-t\e y)\,dt\,dy.
@@ -128,11 +157,12 @@ Then, since $|y|\ge1$ if $\eta(y)>0$,
 \[\|\eta_\e*u_n-u_n\|_{L^1(\R^d)}\le\e\int\eta(y)\int_0^1\int|\nabla u_n(x-t\e y)|\,dx\,dt\,dy=\e\|\nabla u_n\|_{L^1(\R^d)}.\]
 
 (c)
-The interpolation
+Consider the interpolation
 \[\|\eta_\e*u_n-u_n\|_{L^q(\Omega)}\le\|\eta_\e*u_n-u_n\|_{L^1(\Omega)}^\theta\|\eta_\e*u_n-u_n\|_{L^{p^*}(\Omega)}^{1-\theta}\]
-for $q=\frac\theta1+\frac{1-\theta}p$ with $0<\theta\le1$ and the Gagliardo-Nireberg-Sobolev inequality
-\[\|\eta_\e*u_n-u_n\|_{L^{p^*}(\Omega)}\lesssim\|\eta_\e*u_n-u_n\|_{W^{1,p}(\Omega)}\lesssim1\]
-give the $L^q$ version of the part (b),
+for $\frac1q=\frac\theta1+\frac{1-\theta}{p^*}$ with $0<\theta\le1$.
+Since the Gagliardo-Nireberg-Sobolev inequality gives the bound
+\[\|\eta_\e*u_n-u_n\|_{L^{p^*}(\Omega)}\lesssim\|\eta_\e*u_n-u_n\|_{W^{1,p}(\Omega)}\lesssim1,\qquad n\in\N,\ \e>0,\]
+
 \[\sup_n\|\eta_\e*u_n-u_n\|_{L^q(\Omega)}\to0\]
 as $\e\to0$.
 
@@ -174,11 +204,16 @@ If $\mu$ is complete, then all the pointwise convergence discussed here can be r
 
 \begin{prb}[Bochner and Pettis integrals]
 Let $(\Omega,\mu)$ be a measure space and $X$ a Banach space.
-
-if there is a net of simple functions $(s_\alpha)_{\alpha\in\cA}$ such that
-\[\int_\Omega\|f(\omega)-s_\alpha(\omega)\|\,d\mu\to0\]
+Let $f:\Omega\to X$ be a strongly measurable function.
+The function $f$ is said to be \emph{Bochner integrable} if there is a net of simple functions $(s_\alpha)_{\alpha\in\cA}$ such that
+\[\int_\Omega\|f(\omega)-s_\alpha(\omega)\|\,d\mu(\omega)\to0\]
 for $\alpha\in\cA$.
 
+
+\begin{parts}
+\item $f$ is Bochner integrable if and only if $\int\|f(\omega)\|\,d\mu(\omega)<\infty$.
+\item If $f$ is Bochner integrable, then it is Pettis integrable and the integrals coincides.
+\end{parts}
 Bochner integrable => Pettis integrable => weakly(scalarly) integrable
 \end{prb}
 

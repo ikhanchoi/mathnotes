@@ -1,5 +1,5 @@
-\documentclass{../../small}
-\usepackage{../../ikhanchoi}
+\documentclass{../../../small}
+\usepackage{../../../ikhanchoi}
 
 \DeclareMathOperator{\Gr}{Gr}
 
@@ -649,7 +649,7 @@ If we write $EG=V_k^U(\C^\infty)$ and $BG=V_k^U(\C^\infty)/G$, then $U(k)/G\to B
 
 In differential geoemtry, we sometimes stop to limit and take a sufficiently large but finite $n$ when, for example, considering $V_k^U(\C^\infty)/G=\lim_\to V_k^U(\C^n)/G$.
 
-% G가 F에 효과적으로 작용해야 할 것 같은데
+Let $G$ act $F$ faithfully.
 
 \begin{defn*}[3.11]
 For $\xi=(F\to E\to B,G)$ with $B$ paracompact,
@@ -667,5 +667,283 @@ of $G,F,R$
 \end{prop*}
 Let $a\in H^*(BG,R)$.
 For $\xi=(F\to E\to B,G)$, if we define $a(\xi):=f^*(a)$ for $f:B\to BG$, then $a(\xi)$ is a characteristic class.
+
+
+
+
+\newpage
+\section{Day 9: June 12}
+
+\subsection*{4. Characteristic classes of vector bundles}
+
+Let $X$ be a paracompact space.
+Then,
+\[\left\{\begin{tabular}{c}
+isomorphism classes of\\
+rank $n$ $\mathbb{K}$-vector bundles on $X$
+\end{tabular}\right\}
+\leftrightarrow[X,B\GL(n,\mathbb{K})].\]
+Note that $BGL(n,\mathbb{K})=\Gr_n(\mathbb{K}^\infty)$.
+
+\begin{ex*}
+Let $n=1$, $\K=\C$.
+Since $G=\GL(1,\C)$ and we can reduct it to $\rU(1)$, which, in fact, has the following homeomorphism:
+\[BG=B\GL(1,\C)\cong B\rU(1)\cong\CP^\infty.\]
+We will see later about these isomorphisms.
+\[H^*(\CP^\infty)=\begin{cases}
+	\Z,&*\text{ even }\\ 0,&*\text{ odd }
+\end{cases},\]
+and we have a rign isomorphism $H^*(\CP^\infty)\cong\Z[c_1]$, where $c_1\in H^2(\CP^\infty)$ is the element given by the cocycle $e^2\mapsto-1$.
+Here,
+\[\CP^\infty=\bigcup_{n\ge1}\CP^n=e_0\cup e^2\cup e^3\cup\cdots\]
+represents the CW structure.
+\end{ex*}
+
+\begin{thm*}[4.1]
+Let $X$ be a CW complex.
+If we see $\mathrm{Vect}_\C^1(X)$ as an abelian group with tensor product, and if we denote by $\gamma_1$ the tautological bundle, then we have group isomorphisms
+\[\begin{tikzcd}
+\mathrm{Vect}_\C^1(X) \ar{r}{=} & {[X,B\rU(1)(=\CP^\infty)]} \ar{r}{\cong} & H^2(X) \\
+f^*\gamma_1 \ar[|->]{r} & f \ar[|->]{r} & f^*(c_1)=:c_1(\xi).
+\end{tikzcd}\]
+\end{thm*}
+
+The element $c_1\in H^2(\CP^\infty)$ is called the \emph{first Chern class}, and also called the \emph{Euler class} for oriented real plane bundles.
+We have
+\[\mathrm{Vect}_\C^1(\CP^\infty)=[\CP^\infty,\CP^\infty]\cong H^2(\CP^\infty)\cong\Z,\]
+\[\gamma_1\mapsto\id\mapsto c_1\mapsto -1.\]
+
+
+
+\bigskip
+\subsubsection*{Basics of homotopy theory}
+Let $(X,x_0)$ be a based space.
+\[\pi_n(X,x_0):=[(S^n,b),(X,x_0)]=[(I^n,\partial I^n),(X,x_0)].\]
+The homotopy group $\pi_n(X,x_0)$ is indeed given a group structure from the componentwise composition along $(I_n,\partial I_n)$.
+It is abelian for $n\ge2$.
+By the obstruction theory, we have for $f:(S^n,b)\to(X,x_0)$ that $[f]=0\in\pi_n(X,x_0)$ if and only if it has an extension $D^{n+1}\to X$.
+
+\bigskip
+\subsubsection*{Eilenberg-MacLane complex}
+\begin{defn*}[4.2]
+Let $G$ be a group and $n\in\Z$ with $n\ge1$, such that $G$ is abelian if $n\ge2$.
+Then, a (homotopy class of a) topological space $X$ which satisfies $\pi_n(X)=G$ and $\pi_i(X)=0$ for $i\ne n$ is called the \emph{Eilenberg-MacLane space} and denoted by $K(G,n)$.
+\end{defn*}
+\begin{prop*}[4.3]\,
+\begin{parts}
+\item For every group $G$, there is $K(G,1)$ space which is a CW complex.
+\item For every abelian group $G$ and $n\ge2$, there is $K(G,n)$ space which is a CW complex.
+\item The space $K(G,n)$ is unique up to homotopy.
+\end{parts}
+\end{prop*}
+\begin{ex*}
+\[K(\{1\},1)=\{*\}=\text{any contractible spaces},\quad K(\Z,1)=S^1,\quad K(\Z^n,1)=T^n,\quad K(F_n,1)=\bigvee_{n\in\N}S^1.\]
+There is a long exact sequence
+\begin{cd}[row sep=5pt, column sep=5pt]
+\,&\Z&\R&S^1\\
+\pi_3&0\ar{r}&0\ar{r}&0\ar{dll}\\
+\pi_2&0\ar{r}&0\ar{r}&0\ar{dll}\\
+\pi_1&0\ar{r}&0\ar{r}&\Z\ar{dll}\\
+\pi_0&\Z&&\\
+\end{cd}
+Since the universal cover of $\bigvee_\N S^1$, given by the Cayley graph, is contractible so that we have $\pi_i(\bigvee_\N S^1)=0$ for $i\ge2$.
+\[K(\Z,2)=\CP^\infty,\quad K(\Z/2\Z,1)=\RP^\infty.\]
+\[
+\begin{tikzcd}[row sep=5pt, column sep=5pt]
+\,&S^1&S^\infty&\CP^\infty\\
+\pi_3&0\ar{r}&0\ar{r}&0\ar{dll}\\
+\pi_2&0\ar{r}&0\ar{r}&\Z\ar{dll}\\
+\pi_1&\Z\ar{r}&0\ar{r}&0\ar{dll}\\
+\pi_0&0&&\\
+\end{tikzcd}
+\qquad\qquad
+\begin{tikzcd}[row sep=5pt, column sep=5pt]
+\,&S^0&S^\infty&\RP^\infty\\
+\pi_3&0\ar{r}&0\ar{r}&0\ar{dll}\\
+\pi_2&0\ar{r}&0\ar{r}&0\ar{dll}\\
+\pi_1&0\ar{r}&0\ar{r}&\Z/2\Z\ar{dll}\\
+\pi_0&\Z/2\Z&&\\
+\end{tikzcd}
+\]
+\end{ex*}
+
+\begin{pf}[Partial(?) proof of Proposition 4.3]
+For every $B$ which is $K(G,1)$, we have $\xi=(G\to\tilde B\to B,G)$ for a discrete $G$ and the universal cover $B$.
+The homotopy long exact sequence implies $\pi_i(\tilde B)=\{1\}$ for all $i\ge1$, then Whitehead theorem says that $\tilde B$ is contractible.
+Therefore, $\xi$ is a universal principal $G$-bundle, in particular,
+\[K(G,1)=BG.\]
+Since $BG$ is unique up to homotopy, so is $K(G,1)$.
+
+For the existence, we have two ways.
+For the first method, we can slightly modify the Milnor construction of $BG$.
+For the second method, if we wright $G=\<g_\alpha\mid r_\beta\>_{\alpha\in\cA,\beta\in\cB}$, then we can attach 2-cells on $X_1:=K(F_\cA,1)$ to construct $X_2:=\bigvee_{\alpha\in\cA}S^1\cup(\text{2-cells})$ such that each attaching corresponds to $r_\beta$.
+Then, $X$ is a CW complex that satisfies $\pi_1(X)=G$.
+Put 3-cells and 4-cells and so on.
+\end{pf}
+\begin{ex*}
+How to construct $K(\Z/2\Z,1)$ in the second method:
+Note that $\Z/2\Z=\<x\mid x^2\>$ and $X_1=S^1$.
+Then, we can show $X_n=\RP^n=e^0\cup\cdots\cup e^n$ using $\Z/2\Z\to S^n\to\RP^n$.
+\end{ex*}
+
+\noindent\textbf{Problem.}
+Investigate the proof of Proposition 4.3.
+
+
+\begin{thm*}[4.4]
+Let $G$ be an abelian group.
+For every CW complex $X$, we have a bijection
+\[[X,K(G,n)]\xrightarrow{\sim} H^n(X,G):f\mapsto f^*(\iota).\]
+Here,
+\[H^n(K(G,n),G)\cong\Hom(H_n(K(G,n)),G)=\Hom(\pi_n(K(G,n)),G)=\Hom(G,G),\]
+where the first isomorphism follows from the Hurewicz theorem.
+Fundamental class of $K(G,n)$.
+\end{thm*}
+
+Now we will show
+\[c_1(\xi_1\otimes\xi_2)=c_1(\xi_1)+c_1(\xi_2).\]
+Suppose $g_i:X\to \CP^\infty$ are classfying maps of $\xi_i$, i.e. $g_i^*\gamma_1=\xi_i$.
+Let $p_i:\CP^\infty\times\CP^\infty\to\CP^\infty$ be canonical projections.
+Then, $p_1^*\gamma_1\otimes p_2^*\gamma_1$ is a line bundle on $\CP^\infty\times\CP^\infty$, let $h:\CP^\infty\times\CP^\infty\to\CP^\infty$ be the classifying map, i.e. $h^*\gamma\cong p_1^*\gamma_1\otimes p_2^*\gamma_1$.
+Consider
+\[g:X\xrightarrow{\Delta}X\times X\xrightarrow{g_1\times g_2}\CP^\infty\times\CP^\infty\xrightarrow{h}\CP^\infty.\]
+Then,
+\begin{align*}
+g^*\gamma_1
+&=\Delta^*(g_1\times g_2)^*h^*\gamma_1\\
+&\cong\Delta^*(g_1\times g_2)^*(p_1^*\gamma_1\otimes p_2^*\gamma_1)\\
+&\cong\Delta^*(g_1\times g_2)^*p_1^*\gamma_1\otimes\Delta^*(g_1\times g_2)^*p_2^*\gamma_1\\
+&=g_1^*\gamma_1\otimes g_2^*\gamma_1\\
+&\cong\xi_1\otimes\xi_2.
+\end{align*}
+Therefore,
+\[c_1(\xi_1\otimes\xi_2)=c_1(g^*\gamma_1)=g^*(c_1(\gamma_1))=\Delta^*(g_1\times g_2)^*h^*c_1(\gamma_1).\]
+Consider an isomorphism
+\[H^2(\CP^\infty\times\CP^\infty)\xrightarrow{i_1^*\oplus i_2^*}H^2(\CP^\infty\times\{p\})\oplus H^2(\{p\}\times\CP^\infty).\]
+such that $(i_1^*\oplus i_2^*)(p_1^*a+p_2^*b)=(a,b)$.
+Then, we have
+\begin{align*}
+i_1^*h^*c_1(\gamma_1)
+&=c_1(i_1^*h^*\gamma_1)=c_1(i_1^*(p_1^*\gamma\otimes p_2^*\gamma1))\\
+&=c_1(i_1^*p_1^*\gamma_1\otimes i_1^*p_2^*\gamma_1)\\
+&=c_1(\gamma_1\otimes\C)=c_1(\gamma_1).
+\end{align*}
+Similarly, $i_2^*h^*c_1(\gamma_1)\cong c_1(\gamma_1)$.
+Therefore, $h^*c_1(\gamma_1)=p_1^*c_1(\gamma_1)+p_2^*c_1(\gamma_1)$, and
+\begin{align*}
+c(\xi_1\otimes\xi_2)
+&=\Delta^*(g_1\times g_2)^*h^*c_1(\gamma_1)\\
+&=\Delta^*(g_1\times g_2)^*(p_1^*c_1(\gamma_1)+p_2^*c_1(\gamma_1))\\
+&=g_1^*c_1(\gamma_1)+g_2^*c_1(\gamma_1)\\
+&=c_1(g_1^*\gamma_1)+c_1(g_2^*\gamma_1)\\
+&=c_1(\xi_1)+c_1(\xi_2).
+\end{align*}
+
+
+
+\newpage
+\section{Day 10: June 19}
+
+\begin{thm*}[4.5]
+Let $X$ be a CW complex.
+If we see $\mathrm{Vect}_\R^1(X)$ as an abelian group with tensor product, and if we denote by $w_1$ the tautological bundle, then we have group isomorphisms
+\[\begin{tikzcd}
+\mathrm{Vect}_\R^1(X) \ar{r}{=} & {[X,B\rO(1)]} \ar{r}{\cong} & H^1(X,\Z/2\Z) \\
+\xi \ar[|->]{r} & f \ar[|->]{r} & f^*(w_1)=:w_1(\xi).
+\end{tikzcd}\]
+\end{thm*}
+Here we note that $B\rO(1)=\RP^\infty=K(\Z/2\Z,1)$.
+If $w_1(\xi)\ne0$, then from
+\[w_1(\xi)\in H_1(X,\Z/2\Z)=\Hom(H_1(X),\Z/2\Z)=\Hom(\pi_1(X),\Z/2\Z),\]
+there is a loop $\gamma$ on $X$ such that $w_1(\gamma^*\xi)\ne0$.
+It means that on the loop $\gamma$ the line bundle is given by the M\"obius strip.
+
+
+\subsection*{Thom isomorphism}
+
+The Lie groups $\SO(n)\subset\SL(n,\R)\subset\GL^+(n,\R)$ are all homotopy equivalent for $n\ge1$.
+Let $G$ be any of them.
+Let $\xi=(\R^n\to E\to B,G)$ be a vector bundle with paracompact $B$.
+Suppose $\xi$ is oriented, i.e.~there is a (maximal) collection of local trivializations $\{(U_\alpha,\f_\alpha)\}_\alpha$ with $A_x\in G$ that is globally determined such that whenever $U_\alpha\cap U_\beta\ne\varnothing$ we have
+\[\f_\beta\circ\f_\alpha^{-1}:(U_\alpha\cap U_\beta)\times\R^n\to(U_\alpha\cap U_\beta)\times\R^n:(x,v)\mapsto(x,A_xv).\]
+
+An \emph{orientation} on a $n$-dimensional real vector space $V$ is defined as an element of
+\[\{\text{ordered bases of $V$}\}/\GL^+(n,\R)=((\bigwedge^n V)\setminus\{0\})/\R_{>0}.\]
+Write $V_0:=V\setminus\{0\}$.
+
+Let $\sigma:\Delta^n\hookrightarrow V$ be an orientation preserving embedding such that $\frac1{n+1}\sum_{i=0}^ne_i\mapsto0\in V$, where the orientation on $\Delta^n\subset\R^{n+1}$ is given by $\<e_1-e_0,\cdots,e_n-e_{n-1}\>$. 
+Note that
+\[H_n(V,V_0)\cong H_{n-1}(V_0)\cong H_{n-1}(S^{n-1})\cong\Z.\]
+Then $[\sigma]\in H_n(V,V_0)$ is a generator.
+Take a dual $U_V\in H^n(V,V_0)\cong\Z$ such that $\<U_V,[\sigma]\>=1$.
+In other words, $H^n(V,V_0)$ determines an orientation of $V$.
+
+Let $\xi=(\R^n\to E\to B,\GL^+(n,\R)$.
+Let $\R^n$ be a vector space oriented by $\<e_1,\cdots,e_n\>$.
+Then, orientations on $E_x=p^{-1}(x)$ are induced for each $x\in B$ via arbitrarily taken local trivializations.
+The orientation does not depend on the choice of local trivializations in the structure group preserves the orientation.
+
+\begin{thm*}[4.6, Thom's isomorphism theorem]
+Let $B$ be a paracompact, arc-connected space.
+There is a unique $t\in H^n(E,E_0)$, called the \emph{Thom class}, such that
+\[H^n(E,E_0)\to H^n(E_x,E_{x,0}):t\mapsto U_x.\]
+Also, we have an isomorphism, called the \emph{Thom isomorphism},
+\[H^j(E)\to H^{j+n}(E,E_0):[\sigma]\mapsto[\sigma]\smile t\]
+for each $j$.
+The above theorem holds for PID coefficients.
+\end{thm*}
+
+See also the Leray-Hirsch theorem.
+We prove the Thom isomorphism theorem in the following substeps:
+\begin{parts}
+\item If 
+\end{parts}
+
+\begin{pf}
+Suppose first that $E=B\times\R^n$.
+By the (weak) K\"unneth theorem,
+\[H^*(B)\otimes H^*(\R^n,\R^n_0)\xrightarrow{\times}H^*(B\times\R^n,B\times\R^n_0)\]
+is a ring isomorphism
+Since $H^i(\R^n,\R^n_0)=0$ for $i\ne n$ and $H^n(\R^n,\R^n_0)=\Z$, the above cross product means that
+\[H^j(B)\otimes H^n(\R^n,\R^n_0)\xrightarrow{\times}H^{j+n}(B\times\R^n,B\times\R^n_0)\]
+is an isormorphism between abelian groups.
+We can take a generator $e^n\in H^n(\R^n,\R^n_0)$ inductively by the following isomorphism:
+\[H^{n-1}(\R^{n-1},\R^{n-1}_0)\otimes H^1(\R,\R_0)\xrightarrow{\times}H^n(\R^n,\R^n_0):e^{n-1}\otimes e_1\mapsto e^n.\]
+(Consider $H^*(X,A)\otimes H^*(Y,B)\xrightarrow{\times}H^*(X\times Y,(X\times B)\cup(A\times Y))$)
+Then, every morphism of the following diagram is an isomorphism:
+\[\begin{tikzcd}
+\Z \ar{r}\ar{d} & H^0(B) \ar{r}{\times e^n}& H^n(B\times\R^n,B\times\R_0^n)\\
+\Z \ar{r} & H^0(\{x_0\}) \ar{r}{\times e^n}& H^n(\{x_0\}\times\R^n,\{x_0\}\times\R_0^n).\end{tikzcd}\]
+Therefore $t=1\times e^n$ is unique element satisfying the theorem.
+The condition is indeed satisfied by checking the following diagram of isomorphisms commutes:
+\[\begin{tikzcd}
+H^j(B)\otimes H^0(\R^n)\ar{r} & H^j(B\times\R^n) \ar{r}{\smile t} & H^{j+n}(B\times\R^n,B\times\R_0^n)\\
+H^j(B)\ar{u}\ar{urr}{\times e^n}&\,&\,.\\
+\end{tikzcd}\]
+
+Now consider $B$ is decomposed into $B=B_1\cup B_2$, where the theorem holds on $B_1$ and $B_2$.
+
+
+
+
+
+\end{pf}
+
+
+
+
+\begin{defn*}[4.7]
+Let $\xi=(\R^n\to E\to B,\GL^+(n,\R))$ be an oriented real vector bundle.
+We define the \emph{Euler class} $e(\xi)\in H^n(B)$ such that \[H^n(E,E_0)\to H^n(E)\xrightarrow{s^*,\cong}H^n(B):t\mapsto e(\xi).\]
+For the case $R=\Z/2\Z$, then the orientation is not necessary to be given on $\xi$, and then we can define the $\Z/2\Z$-coefficient Euler class.
+\end{defn*}
+
+\begin{thm*}[4.8]
+The Euler class is a characteristic class for oriented real vector bundles.
+\end{thm*}
+\begin{pf}
+The naturality of $H^n(E,E_0)\to H^n(B)$.
+The pullback of the Thom class, preseves fibers.
+\end{pf}
 
 \end{document}

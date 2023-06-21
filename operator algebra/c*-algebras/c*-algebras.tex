@@ -12,51 +12,13 @@
 \part{C$^*$-algebras}
 \chapter{Basic concepts}
 
-\section{Multiplier algebra}
-
-\begin{prb}[Multiplier algebra]
-Let $A$ be a C$^*$-algebra.
-A \emph{double centralizer} of $A$ is a pair $(L,R)$ of bounded linear maps on $A$ such that $aL(b)=R(a)b$ for all $a,b\in A$.
-The \emph{multiplier algebra} $M(A)$ of $A$ is defined to be the set of all double centralizers of $A$.
-\end{prb}
-\begin{prb}[Cohen factorization theorem]
-	
-\end{prb}
-
-\begin{prb}[Strict topology]
-\end{prb}
-
-
-\begin{prb}[Examples of multiplier algebras]
-\begin{parts}
-\item $M(K(H))\cong B(H)$.
-\item $M(C_0(\Omega))\cong C_b(\Omega)$.
-\end{parts}
-\end{prb}
-\begin{pf}
-(a)
-
-(b)
-First we claim $C_0(\Omega)$ is an essential ideal of $C_b(\Omega)$.
-Since $C_b(\Omega)\cong C(\beta\Omega)$, and since closed ideals of $C(\beta\Omega)$ are corresponded to open subsets of $\beta\Omega$, $C_0(\Omega)\cap J$ is not trivial for every closed ideal $J$ of $C_b(\Omega)$.
-
-Now we have an injective $*$-homomorphism $C_b(\Omega)\to M(C_0(\Omega))$, for which we want to show the surjectivity.
-Let $g\in M(C_0(\Omega))_+$.
-\end{pf}
-
 
 
 \begin{prb}[Hereditary C$^*$-subalgebra]
 state extension, representation extension(not ideal?)
 \end{prb}
 
-
-
-\begin{prb}[Essential ideals]
-\begin{parts}
-\item Hilbert C$^*$-module description
-\end{parts}
-\end{prb}
+conditional expectation
 
 
 \section*{Exercises}
@@ -81,14 +43,13 @@ implies
 \end{pf}
 
 
+
+
+
 \chapter{Completely positive maps}
-
 \section{Operator systems and spaces}
-
 \section{Dilation theorems}
-
 \section{Extension theorems}
-
 Arveson
 Trick
 
@@ -96,18 +57,16 @@ Trick
 
 
 \chapter{Tensor products}
-
 \section{Minimal tensor product}
 spatiality
 Takesaki theorem
 
 \section{Maximal tensor product}
-
 universal property
 restriction theorem
 c.c.p.~tensor product
 
-\section{Nuclear C$^*$-algebras}
+\section{Nuclear and exact C$^*$-algebras}
 finite dimensional, abelian, some constructions
 
 
@@ -117,23 +76,68 @@ a separable C$^*$-algebra is nuclear if and only if every factor representation 
 
 
 
-
-
-\part{Approximation properties}
-
-\section{Finite dimensional approximation}
-nuclear and exact C$^*$-algebras
 \section{Voiculescu theorem}
 \section{Quasidiagonal C$^*$-algebras}
-
-
-\part{Constructions}
-
+\section{AF-embeddability}
 
 
 
-\part{Operator K-theory}
-\chapter{}
+\chapter{Hilbert C$^*$-modules}
+
+
+right $A$ convention: to make it commute with the action by adjointable operators.
+
+examples
+A itself, direct sum, tensoring with hilbert space, localization
+
+C$^*$-correspondence
+
+\section{Multiplier algebras}
+\begin{prb}[Multiplier algebra]
+Let $A$ be a C$^*$-algebra.
+A \emph{double centralizer} of $A$ is a pair $(L,R)$ of bounded linear maps on $A$ such that $aL(b)=R(a)b$ for all $a,b\in A$.
+The \emph{multiplier algebra} $M(A)$ of $A$ is defined to be the set of all double centralizers of $A$.
+There is another characterization $M(A):=L_A(A)$, the set of adjointable operators to itself.
+\end{prb}
+\begin{prb}[Cohen factorization theorem]
+\end{prb}
+\begin{prb}[Strict topology]
+\end{prb}
+\begin{prb}[Essential ideals]
+\begin{parts}
+\item Hilbert C$^*$-module description
+\end{parts}
+\end{prb}
+
+
+\begin{prb}[Examples of multiplier algebras]
+\begin{parts}
+\item $M(K(H))\cong B(H)$.
+\item $M(C_0(\Omega))\cong C_b(\Omega)$.
+\end{parts}
+\end{prb}
+\begin{pf}
+(a)
+
+(b)
+First we claim $C_0(\Omega)$ is an essential ideal of $C_b(\Omega)$.
+Since $C_b(\Omega)\cong C(\beta\Omega)$, and since closed ideals of $C(\beta\Omega)$ are corresponded to open subsets of $\beta\Omega$, $C_0(\Omega)\cap J$ is not trivial for every closed ideal $J$ of $C_b(\Omega)$.
+
+Now we have an injective $*$-homomorphism $C_b(\Omega)\to M(C_0(\Omega))$, for which we want to show the surjectivity.
+Let $g\in M(C_0(\Omega))_+$.
+\end{pf}
+
+
+
+Induced representations and Morita equivalence
+KK-theory
+C$^*$-algebraic quantum groups
+
+JenTho KK
+
+
+\chapter{Operator K-theory}
+\section{Construction of K-theory}
 
 \begin{prb}[Homotopy of $*$-homomorphisms]
 Let $A,B$ be C$^*$-algebras.
@@ -172,7 +176,8 @@ The additivity of $K_0$ and $K^0$ removes the connectedness condition.
 
 
 
-\chapter{Brown-Douglas-Fillmore theory}
+
+\section{Brown-Douglas-Fillmore theory}
 \begin{prb}[Haagerup property]
 \end{prb}
 
@@ -185,6 +190,7 @@ Elliott theorem
 
 \section{Approximately finite algebras}
 Elliott conjecture: amenable simple separable C$^*$-algerbas are classified by K-theory.
+Brattelli diagram
 
 
 

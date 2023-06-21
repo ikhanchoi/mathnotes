@@ -1,5 +1,5 @@
-\documentclass{../../small}
-\usepackage{../../ikhanchoi}
+\documentclass{../../../small}
+\usepackage{../../../ikhanchoi}
 
 \begin{document}
 \title{Three-dimensional Topology}
@@ -900,7 +900,232 @@ Every isomorphism by an orientation preserving diffeomorphism is determined by m
 Such a mapping class is some product of the twist along $A_j$, which corresponds the moves (i) or (ii).
 \end{pf}
 
+\newpage
+\setcounter{section}{7}
+\section{Day 8: June 13}
+\setcounter{section}{6}
+\setcounter{subsection}{1}
 \subsection{Classifications}
+\setcounter{thm}{3}
 
+
+Let $O$ and $\tilde O$ be 2-orbifolds with cone points.
+A map $p:\tilde O\to O$ is called a \emph{covering} if for each $x\in O$has an open neighborhood $U$ such that $p^{-1}(U)=\coprod_i U_i$, where $p|_{U_i}:U_i\to U$ is diffeomorphically interpreted as $\R^2/(\Z/m\Z)\to\R^2/(\Z/mn\Z)$ for some $m,n\ge1$.
+
+The Euler characteristic is defined by
+\[\chi(S(p_1,\cdots,p_k)):=\chi(S)-\sum_{i=1}^k(1-\frac1{p_i})\in\Q.\]
+Then we have $\chi(\tilde O)=\deg p\chi(O)$, where $\deg p=\# p^{-1}(x)$ for a non-singular $x\in O$.
+
+\begin{lem}
+Every 2-orbifol except $S^2(p)$ and $S^2(p_1,p_2)$ with $p_1\ne p_2$ is finitely covered by some (usual) surface.
+\end{lem}
+
+\begin{prop}
+Every Seifert manifold $M$ is finitely covered by $S^3$, $S^2\times S^1$, $S^1$-bundles over $\Sigma_g$ ($g\ge1$), or $\Sigma_{g,b}\times S^1$ ($b\ge1$).
+\end{prop}
+\begin{pf}
+Let $M\to S$ be a Seifert fibration.
+If $S=S^2(p)$ or $S^2(p_1,p_2)$, then $M$ is a lens space or diffeomorhpic to $S^2\times S^1$.
+Otherwise, by Lemma 6.4, $S$ is finitely covered by some surface $S'$.
+Pulling back $M$ along $S'\to S$, we have a $S^1$-bundle $M'\to S'$.
+If $S'=S^2$, then $M'$ is a lens space or diffeomorphic to $S^2\times S^1$.
+Otherwise, $M'$ is a $S^1$-bundle over $\Sigma_g$ with $g\ge1$, or diffeomorphic to $\Sigma_{g,b}\tilde\times S^1$ with $b\ne0$.
+\end{pf}
+\begin{prop}
+Every Seifert manifold finitely covered by $S^2\times S^1$ is diffeomorphic to $S^2\times S^1$ or $\RP^2\tilde\times S^1$.
+\end{prop}
+
+\noindent\textbf{Exercise 11.} Prove Proposition 6.6.
+
+\begin{thm}
+Every Seifert manifold not diffeomorphic to $S^2\times S^1$ nor $\RP^2\tilde\times S^1$ is irreducible.
+\end{thm}
+\begin{pf}
+By Proposition 6.5 and 6.6, the interior of such a 3-manifold has a universal cover diffeomorphic to $S^3$ or $\R^3$.
+Therefore, the theorem follows from Theorem 3.1 and Proposition 3.6.
+\end{pf}
+
+A subsurface $\Sigma$ of a Seifert manifold $M$ is called \emph{horizontal} if every fiber transversally intersects $\Sigma$, and \emph{vertical} if it is a union of regular fibers(?).
+Then, every horizontal subsurface is a finite cover of the base orbifold, and every vertical subsurface is diffeomorphic either to a torus or an annulus.
+
+\begin{prop}
+Every connected essential surface in an irreducible Seifert manifold is isotopic to a horizontal or vertical subsurface.
+\end{prop}
+\begin{pf}
+Let $M\to S$ be a Seifert fibration with an irreducible $M$.
+Let $C_1,\cdots,C_k$ be singular fibers.
+If there is no, pick one regular fiber as $C_1$.
+Let $\gamma_1,\cdots,\gamma_n\subset S$ be distinct arcs connecting cone points or $\partial S$, and cutting $S$ into a disk $D$.
+Let $A_j:=\gamma_j\times S^1$ be annuli, then we have
+\[M=\coprod_{i=1}^k\bar{\nu(C_i)}\cup\coprod_{j=1}^n\bar{\nu(A_j)}\cup(D\times S^1).\]
+
+Let $\Sigma$ be a connected essential surface and isotope $\Sigma$ so that
+\begin{itemize}
+\item for each $i$ we have $\Sigma\cap\bar{\nu(C_i)}=\coprod_p(\text{disk})\times\{p\}$, $p\in C_i$,
+\item for each $j$ we have $\Sigma\pitchfork A_j$,
+\item among these satisfying the above two conditions, $(\sum_{i=1}^k\#\Sigma\cap C_i,\sum_{j=1}^n\#\pi_0(\Sigma\cap A_j))$ is minimal.
+\end{itemize}
+It suffices to show the following:
+\begin{parts}
+\item Every component of $\Sigma\cap D\times S^1$ is isotopic to a horizontal disk or a vertical annulus.
+\item Every component of $\Sigma\cap A_j$ is a horizontal arc or a vertical loop.
+\end{parts}
+
+(a)
+We can check that the desired statement holds if and only if every component of $\Sigma\cap D\times S^1$ is incompressible in $D\times S^1$.
+Suppose there is a compressing disk $D'\subset D\times S^1$ for $\Sigma\cap D\times S^1$.
+Since $\Sigma$ is essential in $M$, $\partial D'$ bounds a disk $D''\subset\Sigma$.
+Since $M$ is irreducible, the sphere $D'\cup D''$ bounds some ball in $M$.
+We can isotope such a ball and it would reduce $\sum_{i=1}^k\#\Sigma\cap C_i$ or $\sum_{j=1}^n\#\pi_0(\Sigma\cap A_j)$, which is a contradiction, hence every component of $\Sigma\cap D\times S^1$ is incompressible.
+
+(b)
+The same argument shows that for each $j$ there is no loop in $\Sigma\cap A_j$ bounding a disk in $A_j$.
+If there is an arc $\gamma$ in $\Sigma\cap A_j$ bounding a disk, the since $\Sigma$ is boundary incomporessible, $\partial\gamma$ is adjacent to some $C_i$.
+An isotopy pushing the arc toward $C_i$ along such a disk would reduce $\sum_{i=1}^k\#\Sigma\cap C_i$, which is a contradiction, so the conclusion follows.
+\end{pf}
+
+\begin{prop}
+Let $M$ is an irreducible Seifert manifold.
+\begin{parts}
+\item Every horizontal subsurface in $M$ is essential.
+\item A vertical subsurface in $M$ is essential if its projection in the base orbifold is not the following:
+\begin{enumerate}[(i)]
+\item a loop bounding a disk with at most one cone point,
+\item a boundary parallel curve,
+\end{enumerate}
+\end{parts}
+\end{prop}
+
+\begin{pf}[Sketch]
+(a)
+Let $\Sigma\subset M$ be a horizontal subsurface.
+It is easy to see that $\Sigma$ is not boundary parallel.
+Since $\Sigma$ is a finite cover of the base manifold $S$, then we have $\pi_1(\Sigma)\hookrightarrow\pi_1(S)\hookrightarrow\pi_1(M)$, so $\Sigma$ is incompressible in $M$.
+The same argument shows that $\Sigma\cup_\partial\Sigma$ in a closed manifold $M\cup_\partial M$ is incompressible, which implies $\Sigma$ is boundary incompressible.
+
+(b)
+Let $\Sigma\subset M$ be a vertial subsurface satisgying the conditions.
+By the assumption (ii), $\Sigma$ is not boundary parallel.
+Components of $M\setminus\nu(\Sigma)$ are Seifert manifolds, suppose there is an essential disk in $M\setminus\nu(\Sigma)$.
+By Proposition 6.8, $M\setminus\nu(\Sigma)$ contains a horizontal disk $D$, and $D$ is a finite cover of the base orbifold, which is diffeomorphic to $D^2$ or $D^2(p)$.
+\end{pf}
+
+\begin{thm}
+Two Seifert manifolds are diffeomorphic if and only if their Seifert fibrations are isomorphic, except the following:
+\begin{enumerate}[(i)]
+\item $M(D^2;(p,q))\approx D^2\times S^1$.
+\item $M(D^2;(2,1),(2,1))\approx N_{1,1}\tilde\times S^1$.
+\item $M(S^2;(p_1,q_1),(p_2,q_2))\approx S^3,S^2\times S^1,\text{ or }L(p,q)$.
+\item $M(S^2;(p,q),(2,1),(2,-1))\approx M(\RP^2;(q,p))$.
+\item $M(S^2;(2,1),(2,1),(2,-1),(2,-1))\approx N_2\tilde\times S^1$.
+\end{enumerate}
+\end{thm}
+\begin{thm}
+Two closed Seifert manifold with isomorphic fundamental groups are diffeomorphic or both are lens spaces.
+\end{thm}
+
+\begin{thm}[Casson-Junreis, Gabai]
+For an irreducible manifold $M$ with infinite $\pi_1(M)$.
+Then, $M$ is Seifert if and only if $\pi_1(M)$ has a infinite cyclic normal subgroup.
+\end{thm}
+
+
+
+\newpage
+\setcounter{section}{8}
+\section{Day 9: June 20}
+\setcounter{section}{7}
+\subsection*{7. JSJ decomposition}
+Today, we assume that $M$ is an irreducible 3-manifold with $\partial M=\varnothing$ or $\coprod T^2$.
+We say $M$ is \emph{atoroidal} if there is no essential torus in $M$.
+
+\begin{thm}[JSJ(Jaco-Shalen, Johanson) decomposition]
+There is a (possibly empty) essential surface $S\subset M$ consisting of tori such that every component of $M\setminus\nu(S)$ is atoroidal or a Seifert manifold.
+Moreover, such $S$ with minimal $\#\pi_0(S)$ is unique up to isotopy.
+\end{thm}
+
+\subsection{Existence}
+\begin{prop}
+There is a (possibly empty) essential surface $S\subset M$ consisting of tori such that every component of $M\setminus\nu(S)$ is atoroidal.
+\end{prop}
+\begin{pf}
+If $S'\subset M$ is an essential surface consisting of tori such that no component of $M\setminus\nu(S)$ is a trivial $[0,1]$-bundle, then by Proposition 3.7, $S'$ is isotopic to a normal surface with respect to some triangulation of $M$, and by Proposition 3.8, $\#\pi_0(S')$ is bounded.
+
+Take $S\subset M$ to be such a surface $S'$ conditioned as above with maximal $\#\pi_0(S)$.
+Suppose that there is a component of $M\setminus\nu(S)$ contains an essential torus $T$.
+Then, no component of $M\setminus\nu(S\cup T)$ is a trivial $[0,1]$-bundle and $\#(S\cup T)=\#\pi_0(S)+1$, which is a contradiction.
+\end{pf}
+
+\subsection{Uniqueness}
+
+\begin{lem}
+Every atoroidal manifold $M$ containing an essential annulus is a Seifert manifold.
+\end{lem}
+\begin{lem}
+Every annulus in a Seifert manifold $M$ is isotopic to a vertical subsurface, if neccessay after we change Seifert fibrations.
+\end{lem}
+\begin{pf}
+Take $S\subset M$ to be such a surface $S'$ condition as in the proof of existence, with maximal $\#\pi_0(S)$.
+Suppose that there is a component of $M\setminus\nu(S)$ contains an essential torus $T$.
+Then, no component of $M\setminus\nu(S\cap T)$ is a trivial $[0,1]$-bundle and $\#\pi_0(S\cup T)=\#\pi_0(S)+1$.
+It is a contradiction.
+\end{pf}
+
+\begin{pf}[Proof of uniqueness]
+Let $S,S'\subset M$ be \emph{such} essential surfaces consisting of tori.
+Isotope $S$ and $S'$ so that they are transversal and $\#(S\cap S')$ is minimal.
+In the following we show:
+\begin{parts}
+\item $S\cap S'=\varnothing$,
+\item there is a pair of parallel components in $S$ and $S'$.
+\end{parts}
+If so, cutting $M$ along one of such parallel tori, we have the case with less $\#\pi_0(S)$.
+Therefore, the induction on $\#\pi_0(S)$ shows the uniqueness.
+
+(a)
+Suppose that $S\cap S'\ne\varnothing$.
+Since $M$ is irreducible, and since $S$ and $S'$ are essential, the standard argument shows that every component of $S\cap S'$ is a loop cutting torus components into annuli.
+Pick a torus component $T\subset S$ such that $T\cap S'\ne\varnothing$.
+Let $N$ be the union of one or two components of $M\setminus\nu(S)$ attaching $\bar{\nu(T)}$.
+Every annulus $A\subset N$ which is a part of $S'$ is essential.
+In particular, $A$ is not boundary parallel.
+Otherwise, an isotopy would reduce $\#\pi_0(S\cap S')$.
+By Lemma 7.3, $N$ is a Seifert manifold.
+By Lemma 7.4, we may assume that every annulus is a vertical subsurface.
+The fibration of $A$ induces one of $T$, which agrees with that of $N$.
+Therefore, $N\cup\bar{\nu(T)}$ becomes a bigger Seifert manifold, so $S\setminus T$ would satisfy the condition.
+
+(b)
+Suppose that no pair of torus components in $S$ and $S'$ is parallel.
+Then, every torus in $S$ (resp.~$S'$) is contained in a Seifert component of $M\setminus\nu(S')$ (resp.~$M\setminus\nu(S)$), and it is a vertical subsurface by Proposition 6.8.
+Every atoroidal component of $M\setminus\nu(S)$ (resp.~$M\setminus\nu(S')$) must be contained in a Seifert component of $M\setminus\nu(S')$ (resp.~$M\setminus(S)$), and it is also a Seifert manifold.
+Then, there are components $N\subset M\setminus\nu(S)$ and $N'\subset M\setminus\nu(S')$ such that $N\cap N'\ne\varnothing$ and any Seifert fibrations of $N$ and $N'$ are different in $N\cap N'$, since all Seifert fibrations would agree and $M$ would be a Seifert manifold otherwise.
+By Theorem 6.2 and 6.10, $N\cap N'\approx M(D^2;(2,1),(2,1))\approx N_{1,1}\tilde\times S^1$.
+Since $\partial(N\cap N')$ is connected, we have $N=N\cap N'\subset N'$ or $N'=N\cap N'\subset N$, and this implies that the Seifert fibration of the small one could be replaced by that of the bigger one, a contradiction.
+\end{pf}
+
+\begin{pf}[Proof of Lemma 7.3]
+Let $M$ be atoroidal and $A\subset M$ be an essential annulus.
+We have the following cases:
+\begin{parts}
+\item $\partial A$ lies in two tori $T_1,T_2\subset\partial M$.
+\item $\partial A$ lies in one torus $T_0\subset\partial M$:
+(b1) $A$ is twisted, (b2) $A$ is untwisted.
+\end{parts}
+If we let $V:=\nu(A\cup T_1\cup T_2)$ or $\nu(A\cup T_0)$, then $V\approx\Sigma_{0,3}\times S^1$ for (a) and (b1), and $V\approx N_{1,2}\tilde\times S^1$ for (b2).
+Since $M$ is atoroidal, $\partial V\setminus\partial M$ is compressible or boundary parallel.
+Such a compressible torus bounds $D^2\times S^1$(Exercise 6).
+Then, $M\approx V$ or $V\cup(\coprod D^2\times S^1)$.
+Since such $D^2\times S^1$ is attached so that $\partial D\times\{*\}$ is not isotopic to a fiber of $V$ because $A$ is incompressible, we have $M$ a Seifert manifold.
+\end{pf}
+
+\begin{pf}[Sketch of Lemma 7.4]
+Let $M$ be a Seifert manifold and $A\subset M$ be an essential annulus.
+By Proposition 6.8, $A$ is isotopic to a horizontal or vertical subsurface.
+Suppose that $A$ is a horizontal annulus.
+Then, $A$ is a finite cover of the base manifold $O$.
+Since $\chi(O)=\chi(A)=0$, $O\approx\Sigma_{0,2},\ N_{1,1}$, or $D^2(2,2)$, so $M\approx\Sigma_{0,2}\times S^1,\ N_{1,1}\tilde\times S^1$, or $M(D^2;(2,1),(2,1))$.
+Since we have $\Sigma_{0,2}\times S^1\approx[0,1]\times S^1\times S^1$ and $N_{1,1}\tilde\times S^1\approx M(D^2;(2,1),(2,1))$ with different Seifert fibrations, $A$ becomes a vertical subsurface if we swap Seifert fibrations of $M$.
+\end{pf}
 
 \end{document}

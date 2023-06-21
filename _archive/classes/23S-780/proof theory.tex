@@ -1,11 +1,12 @@
-\documentclass{../../small}
-\usepackage{../../ikhanchoi}
+\documentclass{../../../small}
+\usepackage{../../../ikhanchoi}
 \usepackage{proof}
 
 \DeclareMathOperator{\Var}{Var}
 \DeclareMathOperator{\Tm}{Tm}
 \DeclareMathOperator{\Fml}{Fml}
 \DeclareMathOperator{\Seq}{Seq}
+\DeclareMathOperator{\Th}{Th}
 
 \begin{document}
 \title{Proof Theory}
@@ -652,6 +653,173 @@ Let $X\subset M$ with $|X|=\kappa$.
 By the downward L\"owenheim-Skolem, there is $\cH(X)\prec\cM$ such that $|\cH(X)|\le\kappa+|\cL|+\aleph_0=\kappa$.
 Therefore, $\kappa\le|X|\le|\cH(X)|$ implies $|\cH(X)|=\kappa$.
 \end{pf}
+
+\newpage
+\section{Day 8: June 12}
+
+\begin{thm*}[Downward L\"owenheim-Skolem-Tarski theorem]
+Let $T$ be an $\cL$-theory.
+Let $\cM$ be an infinite model of $T$.
+Then, for every $X\subset M$, there is an elementary submodel $\cH(X)$ of $\cM$ such that $X\subset|\cH(X)|$ and $|\cH(X)|\le|X|+|\cL|+\aleph_0$.
+The model $\cH(X)$ is called the Skolem hull of $X$ in $\cM$.
+\end{thm*}
+\begin{pf}
+Let $\cL_0:=\cL$ and $\cL_{i+1}:=\cL_i\cup\cF_i$, where $\cF_i$ is constructed as follows:
+for each quantifier-free formula $\theta[\bar x;\bar y]$ in $\cL_i$, where $\bar x=(x_1,\cdots,x_n)$ and $\bar y=(y_1,\cdots,y_m)$, we introduce new $n$-ary function symbols $\{f_1,\cdots,f_m\}=\cF_i\setminus\cL_i$.
+Define $\cL_{sk}:=\bigcup_i\cL_i$ and $\cF_{sk}:=\bigcup_i\cF_i$.
+Then, $|\cF_i|\le|\cL|+\aleph_0$ implies $|\cF_{sk}|\le(|\cL|+\aleph_0)\cdot\aleph_0=|\cL|+\aleph_0$.
+The elements of $\cF_{sk}$ are called the \emph{Skolem functions}.
+
+We want to construct $T_{sk}$ a theory over $\cL_{sk}$ such that
+\begin{parts}
+\item each $\f\in T_{sk}$ is a universal formula in $\cL_{sk}$,
+\item each $\cL$-structure $\cM$ can be expanded to an $\cL_{sk}$-structure $\cM_{sk}$ such that $\cM_{sk}\models T_{sk}$,
+\item each $\cL$-formula $\f$ is equivalent to a universal formula $\f_\forall$ and an existential formula $\f_\exists$ in $\cL_{sk}$ over $T_{sk}$, i.e. $T_{sk}\models\f\leftrightarrow\f_\forall\leftrightarrow\f_\exists$.
+\end{parts}
+Define $T_{sk}$ by the following universal formula is an axiom in $T_{sk}$:
+\[\forall\bar x\forall\bar y\ \theta[\bar x,\bar y]\to\theta[\bar x,\bar f(\bar x)],\]
+where $\bar f(\bar x):=(f_1(\bar x),\cdots,f_m(\bar x))$.
+Then, (a) is clear.
+
+
+If $\f\equiv\forall x\exists y\,\theta[x,y]$ for a quantifier-free formula $\theta$, then
+\[T_{sk}\models\f\leftrightarrow\forall x\,\theta[x,f(x)],\]
+where $f$ is any Skolem function.
+If $\f\equiv\exists x\forall y\,\theta[x,y]$ for a quantifier-free formula $\theta$, then
+\[T_{sk}\models\f\leftrightarrow\exists x\,\theta[x,g(x)],\] where $g$ is any function such that
+\[\forall x,y\,(\neg\theta(x,y)\leftrightarrow\neg\theta(x,g(x)))\]
+By operations to change any formula $\f$ into a prenex normal form without harming the logical equivalence(we can establish an algorithm for it by extracting the quantifiers outside each negation, conjunction, and disjunction), (c) follows.
+
+Now we prove the theorem.
+Expand the given $\cL$-structure $\cM$ to an $\cL_{sk}$-structure $\cM_{sk}\models T_{sk}$.
+Define $\cH(X):=\bigcup_nX_n$, where $X_0:=X$ and
+\[X_{n+1}:=X_n\cup\{f^\cM(\alpha_1,\cdots,\alpha_m)\in\cM\mid\alpha_1\cdots,\alpha_m\in X_n,\text{ $f$ function symbol in $\cL_{sk}$}\}.\]
+Then, since $\cH(X)$ is closed under symbols $\cL_{sk}$, it is a universe of a submodel of $\cM$.
+Moreover, since
+\[|X_n|\le|X|+|\cF_{sk}|\le|X|+|\cL_{sk}|+\aleph_0\le|X|+(|\cL|+\aleph_0)+\aleph_0=|X|+|\cL|+\aleph_0,\]
+we have $|\cH(X)|\le(|X|+|\cL|+\aleph_0)\cdot\aleph_0=|X|+|\cL|+\aleph_0$.
+
+Now we claim $\cH(X)$ is elementary submodel of $\cM$.
+Since $\cM_{sk}\models T_{sk}$ and $T_{sk}$ is a universal theory, we have $\cH(X)\models T_{sk}$.
+For $\f[\bar x]$ an $\cL$-formula and $\bar\alpha=(\alpha_1,\cdots,\alpha_n)$ with $\alpha_i\in\cH(X)$, we want to show $\cH(X)\models\f[\bar\alpha]$ if and only if $\cM\models\f[\bar\alpha]$.
+Pick a universal $\f_\alpha$ and existential $\f_\exists$ such that $T_{sk}\models\f\leftrightarrow\f_\forall\leftrightarrow\f_\exists$.
+Then,
+\[\begin{tikzcd}
+\cH(X)\models\f_\forall[\bar\alpha] \ar[Leftrightarrow]{r}
+&\cH(X)\models\f[\bar\alpha] \ar[Leftrightarrow]{r}
+&\cH(X)\models\f_\exists[\bar\alpha] \ar[Rightarrow]{d}\\
+\cM\models\f_\forall[\bar\alpha] \ar[Leftrightarrow]{r}\ar[Rightarrow]{u}
+&\cM\models\f[\bar\alpha] \ar[Leftrightarrow]{r}
+&\cM\models\f_\exists[\bar\alpha].
+\end{tikzcd}\]
+\end{pf}
+
+\begin{defn*}
+An $\cL$-theory $T$ is called \emph{complete} if for each closed $\cL$-formula $\f$, $T\models\f$ or $R\models\neg\f$.
+\end{defn*}
+
+For an $\cL$-structure $\cM$, we define $\mathrm{Th}(\cM)$ to be the closed $\cL$-formulas $\f$ such that $\cM\models\f$.
+Two $\cL$-structures $\cM$ and $\cN$ is called to be \emph{elementary equivalent} if $\Th(\cM)=\Th(\cN)$.
+Then, $T$ is complete if and only if there exists a unique model of $T$ up to elementary equivalence.
+
+\begin{defn*}
+Let $\kappa$ be an infinite cardinal.
+A theory $T$ is called \emph{$\kappa$-categorical} if there exists a unique model $\cM$ of $T$ such that $\|\cM\|=\kappa$ up to isomorphism.
+\end{defn*}
+
+\begin{thm*}[Vaught test]
+If every model of consistent theory $T$ is infinite, and $T$ is $\kappa$-categorical for a cardinal $\kappa\ge|\cL|+\aleph_0$, then $T$ is complete.
+\end{thm*}
+\begin{pf}
+Suppose $T$ is incomplete and pick an $\cL$-closed formula $\f$ such that $T\not\models\f$ and $T\not\models\neg\f$.
+By the upward L\"owenheim-Skolem theorem, there are models $\cM_0$ and $\cM_1$ of $T$ such that $\cM_0\models T\cup\{\neg\f\}$, $\cM_1\models T\cup\{\f\}$, and $\|\cM_0\|=\|\cM_1\|=\kappa$.
+Since $T$ is $\kappa$-categorical, $\cM_0$ and $\cM_1$ are isomorphic, which is a contradiction.
+\end{pf}
+
+\begin{ex*}
+The following theories are complete.
+\begin{parts}
+\item Algebraic closed field in characteristic $p$ (ACF$_p$),
+\item Vector spaces over $\Q$,
+\item Non-trivial torsion free divisible abelian groups.
+\end{parts}
+\end{ex*}
+
+
+\newpage
+\section{Day 9: June 19}
+
+\subsection*{Cut elimination}
+
+The cut is an inference rule
+\[\infer{\Gamma}{\Gamma,\neg C&C,\Gamma}\]
+where $C$ is called a \emph{cut formula}.
+We will consider the \emph{weakening}
+\[\infer[^{(\vee)_i}]{\Gamma}{\Gamma,A_i}\]
+for $i=0,1$ when $A_0\vee A_1\in\Gamma$, instead of
+\[\infer[^{(\vee)}]{\Gamma}{\Gamma,A_0,A_1}.\]
+We can describe the inference rules of $\G$ as the set $\{(\vee)_0,(\vee)_1,(\wedge),(\exists),(\forall)\}$.
+Then, the only inference rule which has two assumption sequent is the cut.
+
+\begin{defn*}
+We define the \emph{rank} $\rk(A)$ of a formula $A$ inductively by $\rk(L)=0$ for literal $L$ and
+\[\rk(A_0\vee A_1)=\rk(A_0\wedge A_1):=\max\{\rk(A_0),\rk(A_1)\}+1,\qquad\rk(\exists x\,A)=\rk(\forall x\,A):=\rk(A)+1.\]
+We write $\vdash_c^a\Gamma$ if there is a derivation $\cD$ of $\Gamma$ in $\G+(\text{cut})$ such that $\mathrm{depth}(\cS)\le a$ and $\rk(C)<c$ for each cut formula $C$ in $\cD$.
+\end{defn*}
+
+If $\Gamma$ is an axiom, i.e.~$\{\bar L,L\}\subset\Gamma$ for some literal $L$, then $\vdash_c^a\Gamma$ holds for every $a$ and $c$.
+Then, every inference rule has $\vdash_c^a$ versions: if $b<a$ then $\vdash_c^b\Gamma'$ implies $\vdash_c^a\Gamma$, where $\Gamma'$ is an assumption sequent of each inference rule.
+
+\begin{thm*}[Cut elimination]
+If $\vdash_c^a\Gamma$, then $\vdash_0^{2_c(a)}\Gamma$, where $2_c(a):=2^{2_{c-1}(a)}$ and $2_1(a):=2^a$.
+\end{thm*}
+\begin{pf}
+Clear from the following lemma.
+\end{pf}
+\begin{lem*}
+If $\vdash_{c+1}^a\Gamma$, then $\vdash_c^{2^a}\Gamma$.
+\end{lem*}
+\begin{pf}
+We can prove the lemm from the reduction lemma in the below by induction and case study of inferences: axioms, inference by binary connetives and quantifiers(using $b<a$ implies $2^b<2^a$), and inference by cuts.
+For the former two cases are easy.
+
+For $b<a$, let $\vdash_{c+1}^b\Gamma,\neg C$ and $\vdash_{c+1}^bC,\Gamma$.
+We obtain by the induction hypothesis that $\vdash_c^{2^b}\Gamma,\neg C$ and $\vdash_c^{2^b}C,\Gamma$.
+We may assume that $\rk(C)\le c$ and $C$ is one of literals, $C_0\vee C_1$, or $\exists D$.
+The reduction lemma implies that $\vdash_c^{2^b+2^b}\Gamma$.
+Since $2^b+2^b\le2^a$, we have $\vdash_c^{2^a}\Gamma$.
+\end{pf}
+\begin{lem*}[Reduction lemma]
+Suppose $C$ is a literal, $C_0\vee C_1$, or $\exists x\, D$ such that $\rk(C)\le c$.
+If $\vdash_c^a\Gamma,\neg C$ and $\vdash_c^bC,\Delta$, then $\vdash_c^{a+b}\Gamma,\Delta$.
+\end{lem*}
+We have
+\begin{itemize}
+\item[(Weaking)] $\vdash_c^a\Gamma$ implies $\vdash_{c+\alpha}^{a+b}\Gamma,\Delta$
+\item[(Inversion)] $\vdash_c^a\Gamma,A_0\wedge A_1$ implies $\vdash_c^a\Gamma,A_i$ for $i=0,1$
+\item[(Inversion)] $\vdash_c^a\Gamma,\forall x\,D$ implies $\vdash_c^a\Gamma,D(t)$ for a term $t$.
+\end{itemize}
+\begin{pf}
+We use the induction on $b$.
+Suppose $\vdash_c^bC,\Delta$.
+
+Case 1: $\{\bar L,L\}\subset\{C\}\cup\Delta$ for a literal $L$.
+If $C\ne L$ nor $\bar L$, then $\{\bar L,L\}\subset\Delta$ so that $\Gamma,\Delta$ is an axiom.
+If $C=L$, then $\bar L\in\Delta$ so that $\Gamma\cup\{\neg C\}=\Gamma\cup\{\bar L\}\subset\Gamma\cup\Delta$.
+Then by weakening $\vdash_c^a\Gamma,\neg C$ implies $\vdash_c^{a+b}\Gamma,\Delta$.
+
+Case 2: $C$ is the major formula of the last inference in $\vdash_c^bC,\Delta$ with $C\equiv\exists x\,D(x)$ or $C\equiv C_0\vee C_1$.
+For $b_0<b$,
+\[\infer{\vdash_c^b\exists x\,D(x),\Delta}{\vdash_c^{b_0}D(t),\exists D,\Delta}.\]
+The induction hypothesis yields $\vdash_c^{a+b_0}\Gamma,\Delta,D(t)$ and $\vdash_c^a\Gamma,\neg D(t)$ by inversion.
+A cut with $\rk(D(t))<\rk(\exists x\,D)\le c$ gives $\vdash_c^{a+b}\Gamma,\Delta$.
+
+Case 3: otherwise.
+The induction hypothesis yields $\vdash_c^{a+b_0}\Gamma,\Delta,\neg D$ and $\vdash_c^{a+b_0}\Gamma,\Delta,D$.
+We obtain $\vdash_c^{a+b}\Gamma,\Delta$.
+
+\end{pf}
+
 
 \end{document}
 

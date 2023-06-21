@@ -606,7 +606,10 @@ For an approximate unit $e_\alpha$ of $\cA$, let $V_\alpha:H\to\hat H$ be such t
 \[V_\alpha\xi:=e_\alpha\otimes\xi+N.\]
 Recall that if $\omega$ is a positive linear functional, then $\lim_\alpha\omega(e_\alpha)=\omega(1)$.
 For fixed $\xi\in H$, because $\omega_\xi\circ\f$ is a positive linear functional and products of approximate units are also approximate units, we have
-\[\|(V_\alpha-V_\beta)\xi)\|^2=\<\f((e_\alpha-e_\beta)^2)\xi,\xi\>=\<\f(e_\alpha^2-e_\alpha e_\beta-e_\beta e_\alpha+e_\beta^2)\xi,\xi\>\to0,\]
+\begin{align*}
+\|(V_\alpha-V_\beta)\xi\|^2=\<\f((e_\alpha-e_\beta)^2)\xi,\xi\>&=\<\f(e_\alpha^2-e_\alpha e_\beta-e_\beta e_\alpha+e_\beta^2)\xi,\xi\>\\
+&\to\<(\f-\f-\f+\f)\xi,\xi\>=0,
+\end{align*}
 so the net $V_\alpha\xi$ is Cauchy.
 Define $V\xi:=\lim_\alpha V_\alpha\xi$.
 Then,
@@ -740,6 +743,13 @@ Using the universality, we have a $*$-homomorphism $\pi\times\rho:\cA\otimes_{\m
 Since the product $\f(a)c$ has been identified with the simple tensor $\f(a)\otimes c\in\cB\otimes_{\max}\cC$ when we embed $\cB$ and $\cC$ into $B(H)$, the above equality implies that $V^*(\pi\times\rho)V=\f\otimes i$.
 \end{pf}
 
+\begin{rmk*}
+For completely positive maps $\f_1:\cA_1\to\B_1$ and $\f_2:\cA_2\to\cB_2$, the tensor product map
+\[\f_1\otimes\f_2:\cA_1\odot\cA_2\to\cB_1\odot\cB_2:a_1\otimes a_2\mapsto\f_1(a_1)\otimes\f_2(a_2)\]
+can be extended to both minimal and maximal tensor products: $\cA_1\otimes_{\min}\cA_2\to\cB_1\otimes_{\min}\cB_2$ and $\cA_1\otimes_{\max}\cA_2\to\cB_1\otimes_{\max}\cB_2$, respectively.
+For $\otimes_{\max}$, it is justified by applying Proposition 3.4 twice, and for $\otimes_{\min}$, we can show it by the Stinespring dilation and the spatial property.
+\end{rmk*}
+
 
 \subsection{Arveson extension revisited}
 
@@ -867,7 +877,7 @@ is commutative.
 \cA\ar{u}\ar{r}{\pi}&\pi(\cA)''
 \end{cd}
 is commutative for every representation $\pi:\cA\to B(H)$.
-\item The map $\cA\otimes_{\max}C\to\cB\otimes_{\max}\cC$ is injective for every C$^*$-algebra $\cC$.
+\item The map $\cA\otimes_{\max}\cC\to\cB\otimes_{\max}\cC$ is injective for every C$^*$-algebra $\cC$.
 \end{parts}
 \end{cor}
 \begin{pf}
@@ -894,7 +904,7 @@ commutes.
 Since the horizontal arrow is injective, the vertial arrow is also injective.
 
 (c)$\Rightarrow$(b)
-This step is corollary of ``The Trick''.
+This step is a corollary of ``The Trick''.
 \end{pf}
 
 
@@ -915,17 +925,18 @@ $\otimes_{\max}$&True&True&True
 \end{tabular}
 \end{center}
 
+\begin{defn}
+A C$^*$-algebra $\cC$ is called \emph{exact} if the following sequence exact for every C$^*$-algerba $\cA$ and its closed ideal $\cI$:
+\[0\to\cI\otimes_{\min}\cC\to\cA\otimes_{\min}\cC\to(\cA/\cI)\otimes_{\min}\cC\to0.\]
+\end{defn}
 
-injectivity
-
-\[(\cA/\cI)\otimes_\alpha\xrightarrow{\sim}\frac{\cA\otimes_{\max}\cB}{\cI\otimes_{\max}\cB}\to(\cA/\cI)\otimes_{\max}\cB.\]
-
-The surjectivity of $\cA\otimes\cC\to(\cA/\cI)\otimes\cC$ follows from the fact that the algebraic tensor product is dense and the image of a C$^*$-algebra under a $*$-homomorphism is closed.
+\iffalse
+\[(\cA/\cI)\otimes_\alpha\cB\xrightarrow{\sim}\frac{\cA\otimes_{\max}\cB}{\cI\otimes_{\max}\cB}\to(\cA/\cI)\otimes_{\max}\cB.\]
+\fi
 
 
-
-3.7.7. passing to subalgebras
-
+% 3.7.7. exactness passing to subalgebras
+% Effros-Haagerup lifting theorem
 
 
 
@@ -938,19 +949,453 @@ The surjectivity of $\cA\otimes\cC\to(\cA/\cI)\otimes\cC$ follows from the fact 
 \newpage
 \section{June 16}
 
-Theorem 3.7.11: RF $\Gamma$ is amenable iff $C^*(\Gamma)$ is exact.
-Chapter 5: When is $C_r^*(\Gamma)$ exact?
+\subsection{Group C$^*$-algebras}
 
-\subsection{Amenability}
+Let $G$ be a locally compact group, which is possibly not $\sigma$-compact.
+We denote by $L^p(G)$ for $1\le p<\infty$ the $L^p$ space with respect to the \emph{left} Haar measure on $G$.
+Let $L^\infty(G)$ be the Kolmogov quotient of the set of all locally Borel measurable functions on $G$ that is bounded except on locally null subsets together with the norm of essential supremum.
+Then, we have a representation $L^1(G)^*\cong L^\infty(G)$.
+The Fubini theorem for integrable functions are always fine since their support are $\sigma$-finite.
 
-general theory of LCG
-discrete groups: unital, $\Gamma\hookrightarrow\ell_1(\Gamma)=c_0(\Gamma)^*$, $c_0(\Gamma)^{**}=\ell_\infty(\Gamma)$, passing property to quotients and subs, no strict continuity
 
-Characterizations
-	Day-Reiter: approximate invariant mean (e.g.~description for $\Z$)
+\begin{defn}[Left regular representations]
+We will consider the actions $\alpha:G\to\Aut(L^1(G))$ and $\lambda:G\to B(L^2(G))$ defined as
+\[\alpha_sf(t):=f(s^{-1}t),\qquad \lambda_s\xi(t):=\xi(s^{-1}t),\qquad \lambda_sx\lambda_s^*(t):=x(s^{-1}t)\]
+for $f\in L^1(G)$, $\xi\in L^2(G)$, $x\in L^\infty(G)$.
+The actions $\alpha$ and $\lambda$, called the \emph{left regular representations}, are continuous with respect to the strong operator topologies, i.e. the point-norm topology and the strict topology.
+\end{defn}
 
-examples(e.g.~finite, solvable, subexponential)
-nonexamples(e.g.~$F_n$, $\SL(n,\Z)$)
+\begin{defn}[Group C$^*$-algebras]
+Let $G$ be a locally compact group.
+Note that $C_c(G)$ has a (generally noncommutative) $*$-algebra structure
+\[f*g(s):=\int f(t)g(t^{-1}s)\,d\mu(t),\qquad f^*(s):=\Delta(s^{-1})\bar{f(s^{-1})}.\]
+The \emph{reduced group C$^*$-algebra} $C_r^*(G)$ and the \emph{full group C$^*$-algebra} $C^*(G)$ are defined as the completion of $C_c(G)$ with the following norms respectively:
+\[\|f\|_{C_r^*(G)}:=\|\lambda(f)\|_{B(L^2(G))},\qquad\|f\|_{C^*(G)}:=\sup\{\|\pi(f)\|\mid\pi:C_c(G)\to B(H)\text{ $*$-hom}\},\]
+where $\lambda:C_c(G)\to B(L^2(G))$ is given by $\lambda(f)\xi:=f*\xi$ for $\xi\in L^2(G)$.
+The \emph{group von Neumann algebra} $L(G)$ is defined to be the double commutant $C_r^*(G)''$.
+\end{defn}
+
+\begin{rmk*}\,
+\begin{itemize}
+\item By convention, we consider $C_r^*(G)$ as a C$^*$-subalgebra of $B(L^2(G))$.
+\item We have $\|f\|_{C_r^*(G)}\le\|f\|_{C^*(g)}\le\|f\|_{L^1(G)}$ because a homomorphism from a Banach algebra to a C$^*$-algebra is contractive. We can show the injectivity of $\lambda:L^1(G)\to C_r^*(G)$ using measure theory, and hence also $L^1(G)\subset C^*(G)$. Due to the closed image of $*$-homomorphisms, we have surjection $\lambda:C^*(G)\to C_r^*(G)$.
+\item There is a natural one-to-one correspondences among (non-degenerate, unitary) representations of $G$, $L^1(G)$, and $C^*(G)$.
+\item $L^1(G)$ has two order structure; as a $*$-subalgebra of group C$^*$-algebras, as a predual of $L^\infty(G)$.
+\item If $\rho:C_c(G)\to B(L^2(G))$ is the right regular representation, then it is known that $L(G)=\rho(C_c(G))'$, so in particular we have $\lambda_s\in L(G)$ for $s\in G$. We will skip the proof. See Theorem 6.1.4 in [Brown-Ozawa].
+\end{itemize}	
+\end{rmk*}
+
+\begin{lem}[Fell's absorption principle]
+Let $G$ be a locally compact group.
+\begin{parts}
+\item For every unitary representation $\rho:G\to U(H)$, we have the unitary equivalence $\lambda\otimes\rho\cong\lambda\otimes\id_H$.
+%\item The comultiplication $\Delta:C_c(G)\to M(C_c(G)\otimes C_c(G))$ can be extended to $\Delta:C_r^*(G)\to M(C_r^*(G)\otimes_{\min}C^*(G))$.(?)
+\end{parts}
+\end{lem}
+
+
+\begin{defn}[Positive definite functions]
+Let $G$ be a locally compact group.
+A function $\f$ is called \emph{positive definite} if the matrix $[\f(s_i^{-1}s_j)]_{i,j}\in M_n(\C)$ is always positive semi-definite for all $n$ and $[s_i]\in G^n$.
+The \emph{Fourier-Stieltjes algebra} $B(G)$ is the linear span of continuous positive definite functions.
+We can check $B(G)$ is a commutative $*$-algebra.
+\end{defn}
+
+\begin{prop}
+Let $G$ be a locally compact group and let $\f\in B(G)_{+,1}$, i.e.~$\f$ is continuous and positive definite satisfying $\f(e)=1$.
+Define a linear functional $\omega:C^*(G)\to\C$ and a linear operator $M:C^*(G)\to C^*(G)$ called multiplier such that
+\[\omega(f):=\int\f(s)f(s)\,\mu(s),\qquad M(f)(s):=\f(s)f(s),\qquad f\in C_c(G).\]
+Endow on $B(G)_{+,1}$ the topology of uniform convergence on compact sets.
+\begin{parts}
+\item If $\f$ is compactly supported, then there is $\xi\in L^2(G)$ such that $\f(s)=\<\lambda_s\xi,\xi\>_{L^2(G)}$.
+\item $\f\mapsto\omega$ defines a homeomorphism $B(G)_{+,1}\to S(C^*(G))$ with respect to the weak$^*$ topology.
+\item $\f\mapsto M$ defines a continuous map $B(G)_{+,1}\to B(C^*(G))$ with respect to the point-norm topology.
+\item If $\f$ is compactly supported, then $\omega$ and $M$ factor through $\lambda:C^*(G)\to C_r^*(G)$.
+\end{parts}
+\end{prop}
+\begin{pf}
+(a)
+Since
+\[\<\eta*\bar\f,\eta\>=\int\eta^**\eta(s)\bar{\f(s)}\,d\mu(s)\ge0,\]
+the convolution operator $(-*\bar\f)\in B(L^2(G))$ is positive.
+If we assume $\f(s)=\<\lambda_s\xi,\xi\>$ as an ansatz, then we have $\<\eta*\bar\f,\eta\>=\<\eta*\xi,\eta*\xi\>$.
+For an approximate unit $e_\alpha$ of $C^*(G)$ in $C_c(G)$, the net $(-*\bar\f)^{\frac12}e_\alpha$ is Cauchy because
+\[\|(-*\bar\f)^{\frac12}(e_\alpha-e_\beta)\|_{L^2(G)}^2=\<(e_\alpha-e_\beta)*\bar\f,e_\alpha-e_\beta\>\to0,\]
+which follows from that we can take large $\alpha,\beta$ for any $\e>0$ such that
+\[|\<e_\alpha*\bar\f,e_\beta\>-\bar{\f(e)}|\le\iint e_\alpha(s)|\f(s^{-1}t)-\f(e)|e_\beta(t)\,d\mu(s)\,d\mu(t)<\e.\]
+Define $\xi:=\lim_\alpha(-*\bar\f)^{\frac12}e_\alpha$ so that $\eta*\xi=(-*\bar\f)^{\frac12}\eta$.
+Then we can check $\f(s)=\<\lambda_s\xi,\xi\>$ by integration with arbitrarily taken $f\in C_c(G)$.
+
+(b)
+Skipped.
+See Theorem A.10 in [Williams].
+
+(c)
+Suppose $\f_\alpha\to0$ uniformly on compacts.
+Then, $\f_\alpha f\to0$ in $L^1(G)$ for $f\in C_c(G)$, so we have $\|\f_\alpha f\|_{C^*(G)}\le\|\f_\alpha f\|_{L^1(G)}\to0$.
+By the density of $C_c(G)$ in $C^*(G)$, the continuity follows.
+
+(d)
+For the states, it is easy to check from (a) and the Fubini theorem that $\omega(f)=\<\lambda(f)\xi,\xi\>$.
+For the multipliers, consdier the following commutative diagram:
+\[\begin{tikzcd}
+C^*(G) \ar{r}{\Delta}\ar{d}{\lambda} & M(C^*(G)\otimes_{\min}C^*(G)) \ar{r}{\omega\otimes\id}\ar{d}{\lambda\otimes\id} & C^*(G) \ar[equals]{d}\\
+C_r^*(G) \ar{r}{\Delta} & M(C_r^*(G)\otimes_{\min}C^*(G)) \ar{r}{\omega_\xi\otimes\id} & C^*(G).
+\end{tikzcd}\]
+The diagonal map $\Delta$ on the second row is due to Fell's absorption principle.
+Since $M$ can be realized as the compositioin $(\omega\otimes\id)\Delta$ at the first row, we are done. (We need more detail!)
+\end{pf}
+
+
+
+\subsection{Amenable groups}
+\begin{defn}
+Let $G$ be a locally compact group.
+A \emph{mean} on $G$ is a state of $L^\infty(G)$.
+We say $G$ is \emph{amenable} if there is an invariant mean $m$ on $L^\infty(G)$, i.e.~$m(\lambda_sx\lambda_s^*)=m(x)$ for $x\in L^\infty(G)$ and $s\in G$.
+By the Hahn-Banach separation, it is equivalent to $m(\lambda(f)x\lambda(f)^*)$ for $x\in L^\infty(G)$ and $f\in L^1(G)_{+,1}$.
+\end{defn}
+
+\begin{thm}
+Let $G$ be a locally compact group with a left Haar measure $\mu$.
+Then, the following are equivalent:
+\begin{parts}
+\item $G$ is amenable.
+\item $G$ satisfies the Day-Reiter condition: there is a net $f_\alpha\subset L^1(G)_{+,1}$ such that for each compact $K\subset G$,
+\[\lim_\alpha\sup_{s\in K}\|\alpha_sf_\alpha-f_\alpha\|_{L^1(G)}=0\]
+\item $G$ satisfies the F\o lner condition: there is a net $F_\alpha\subset G$ of Borel sets with $0<\mu(F_\alpha)<\infty$ such that for each compact $K\subset G$,
+\[\lim_\alpha\sup_{s\in K}\frac{\mu(sF_\alpha\triangle F_\alpha)}{\mu(F_\alpha)}=0.\]
+\item $G$ satisfies the Dixmier condition: there is a net of unit vectors $\xi_\alpha\in L^2(G)$ such that for each compact $K\subset G$,
+\[\lim_\alpha\sup_{s\in K}\|\lambda_s\xi_\alpha-\xi_\alpha\|_{L^2(G)}=0.\]
+\item There is a net of compactly supported continuous positive definite functions $\f_\alpha:G\to\C$ such that for each $K\subset G$,
+\[\lim_\alpha\sup_{s\in K}|\f_\alpha(s)-1|=0.\]
+\item $C^*(G)=C_r^*(G)$.
+\end{parts}
+\end{thm}
+\begin{pf}
+(a)$\Rightarrow$(b)
+Let $m\in L^\infty(G)_{+,1}$ be an invariant mean.
+Since the set $L^1(G)_{+,1}$ is exactly the set of normal states of $L^\infty(G)$, and since a state of a von Neumann algebra is $\sigma$-weakly approximated by normal states(we can show this similarly to Lemma 2.8), there exists a net $f_\alpha\in L^1(G)_{+,1}$ such that
+\[\lim_\alpha|f_\alpha(x)-m(x)|=0,\qquad x\in L^\infty(G).\]
+
+Fix any $h\in L^1(G)_{+,1}$ so that $h*f\in L^1(G)_{+,1}$ for any $f\in L^1(G)_{+,1}$.
+Since for every $x\in L^\infty(G)$ we have
+\begin{align*}
+\lim_\alpha|h*f_\alpha(x)-f_\alpha(x)|
+&\le\lim_\alpha|h*f_\alpha(x)-h*m(x)|+\lim_\alpha|m(x)-f_\alpha(x)|\\
+&=\lim_\alpha|f_\alpha(h^**x)-m(h^**x)|+\lim_\alpha|m(x)-f_\alpha(x)|=0,
+\end{align*}
+the Mazur lemma implies that the closed convex hull of the set $\{h*f-f:f\in L^1(G)_{+,1}\}$ contains the zero.
+In other words, we have a net $f_\alpha\in L^1(G)_{+,1}$ such that
+\[\lim_\alpha\|h*f_\alpha-f_\alpha\|_{L^1(G)}=0\qquad h\in L^1(G)_{+,1}.\]
+
+Let $K\subset G$ be compact and take $\e>0$.
+Take an open neighborhood $U$ of the unit of $G$ such that $t^{-1}s\in U$ implies $\|\alpha_sh-\alpha_th\|_{L^1(G)}<\e$.
+Using compactness, take a finite sequence $(s_i)\subset K$ such that for each $s\in K$ there is $s_i$ with $s_i^{-1}s\in U$.
+Then,
+\begin{align*}
+\|\alpha_s(h*f_\alpha)-h*f_\alpha\|_{L^1(G)}
+&\le\|(\alpha_sh-\alpha_{s_i}h)*f_\alpha\|_{L^1(G)}+\|(\alpha_{s_i}h)*f_\alpha-f_\alpha\|+\|f_\alpha-h*f_\alpha\|\\
+&<\e+\max_i\|(\alpha_{s_i}h)*f_\alpha-f_\alpha\|+\|f_\alpha-h*f_\alpha\|
+\end{align*}
+implies
+\[\lim_\alpha\sup_{s\in K}\|\alpha_s(h*f_\alpha)-h*f_\alpha\|_{L^1(G)}\le\e\]
+for arbitrary $\e>0$, so the net $h*f_\alpha$ satisfies our desired condition.
+
+(b)$\Rightarrow$(c)
+For $f\in L^1(G)_{+,1}$ and $r>0$, define $F(f,r):=\{s\in G:f(s)>r\}$.
+Then,
+\begin{align*}
+\|\alpha_sf-f\|_{L^1(G)}
+&=\int|\alpha_sf(t)-f(t)|\,d\mu(t)\\
+&=\int\int_0^\infty|\1_{F(\alpha_sf,r)}(t)-\1_{F(f,r)}(t)|\,dr\,\mu(t)\\
+&=\int_0^\infty\int|\1_{sF(f,r)}(t)-\1_{F(f,r)}(t)|\,d\mu(t)\,dr\\
+&=\int_0^\infty\mu(sF(f,r)\triangle F(f,r))\,dr,
+\end{align*}
+and
+\begin{align*}
+\int_0^\infty\mu(F(f,r))\,dr
+&=\int_0^\infty\int\1_{F(f,r)}(t)\,d\mu(t)\,dr\\
+&=\int\int_0^{f(t)}\,dr\,d\mu(t)\\
+&=\int f(t)\,d\mu(t)=1.
+\end{align*}
+
+Suppose a net $f_\alpha$ satisfies the Day-Reiter condition.
+Then, for arbitrary $\e>0$ we have sufficiently large $\alpha$ such that
+\[\int_0^\infty\mu(sF(f_\alpha,r)\triangle F(f_\alpha,r))\,dr=\|\alpha_sf-f\|_{L^1(G)}<\e=\e\int_0^\infty\mu(F(f_\alpha,r))\,dr\]
+so there is $r_\alpha>0$ such that
+\[\mu(sF(f_\alpha,r_\alpha)\triangle F(f_\alpha,r_\alpha))<\e\mu(F(f_\alpha,r_\alpha)).\]
+We are done if we take $F_\alpha:=F(f_\alpha,r_\alpha)$.
+
+(c)$\Rightarrow$(d)
+Let $F_\alpha$ be a net of subsets satisfying the F\o lner condition.
+Define $\xi_\alpha:=\mu(F_\alpha)^{-\frac12}\in L^2(G)$.
+Then,
+\[\|\lambda_s\xi_\alpha-\xi_\alpha\|_{L^2(G)}^2=\int\mu(F_\alpha)^{-1}|\1_{sF_\alpha}(t)-\1_{F_\alpha}(t)|\,d\mu(t)=\frac{\mu(sF_\alpha\triangle F_\alpha)}{\mu(F_\alpha)}\]
+proves the claim.
+
+(d)$\Rightarrow$(e)
+Let $\xi_\alpha$ be a net of unit vectors in $L^2(G)$ satisfying the Dixmier condition.
+Take compact sets $F_\alpha\subset G$ such that $0<\mu(F_\alpha)<\infty$ and $\|\xi_\alpha-\xi_\alpha\1_{F_\alpha}\|<\e_\alpha$ for each $\alpha$, where $\e_\alpha\downarrow0$.
+Since if we consider $\tilde\xi_\alpha:=\xi_\alpha\1_{F_\alpha}/\|\xi_\alpha\1_{F_\alpha}\|$, then we have
+\[\|\lambda_s\tilde\xi_\alpha-\tilde\xi_\alpha\|<\|\lambda_s\xi_\alpha-\xi_\alpha\|+4\e_\alpha,\]
+we may assum $\xi_\alpha$ is compactly supported.
+Define $\f_\alpha:G\to\C$ such that $\f_\alpha:=\<\lambda_s\xi_\alpha,\xi_\alpha\>$, which is clearly continuous, positive definite, and compactly supported function.
+We can also check $|\f_\alpha(s)|\le1$ and $\|\lambda_s\xi_\alpha-\xi_\alpha\|_{L^2(G)}^2=2-2\Re\f_\alpha(s)$ imply the compact convergence of $\f_\alpha\to1$.
+
+(e)$\Rightarrow$(f)
+Let $\f_\alpha$ be the net of compactly supported continuous positive definite functions satisfying the condition of (e).
+Since $\f_\alpha$ has the compact support, the associated multiplication operator $M_\alpha$ factors through $\lambda:C^*(G)\to C_r^*(G)$.
+Since the constant unity function $1\in B(G)_{+,1}$ corresponds to the identity operator in $B(C^*(G))$, the net $M_\alpha$ converges to the identity strongly.
+Therefore, if $a\in C^*(G)$ satisfies $\lambda(a)=0$, then
+\[a=\lim_\alpha M_\alpha(a)=0.\]
+The injectivity of $\lambda$ implies the equality $C^*(G)=C_r^*(G)$.
+
+(f)$\Rightarrow$(a)
+Take any one-dimensional representation $L^1(G)\to\C:f\mapsto\int f(s)\,d\mu(s)$ and extend to obtain a $*$-homomorphism $C_r^*(G)=C^*(G)\to\C$.
+It is extended again to a state $\f:B(L^2(G))\to\C$, whose multiplicative domain contains $C_r^*(G)$.
+Since $\lambda(f)\in C_r^*(G)$ for any $f\in L^1(G)$, we have
+\[\f(\lambda(f)x\lambda(f)^*)=\f(\lambda(f))\f(x)\f(\lambda(f)^*)=\f(x),\qquad x\in L^\infty(G).\]
+Therefore, $\f|_{L^\infty(G)}$ is a left-invariant mean.
+\end{pf}
+
+
+\begin{lem}[Markov-Kakutani fixed point theorem]
+Let $K$ be a compact convex subset of a topological vector space $X$.
+Let $\cT$ be a commuting family of continuous linear operators $T:X\to X$ such that $TK\subset K$.
+Then, $K$ has a point $x$ such that $Tx=x$ for all $T\in\cT$.
+\end{lem}
+\begin{pf}
+We may assume $\cT$ is convex and closed under the multiplication.
+Let
+\[T^{(n)}:=\frac1n\sum_{k=0}^{n-1}T^k\]
+Since
+\[\left\{T^{(n)}K:T\in\cT,n\in\N\right\}\subset K\]
+satisfies the finite intersection property.
+Take $x$ in the intersection.
+We claim that this $x$ is a fixed point.
+
+Fix $T\in\cT$ and take any neighborhood of $U$ of zero in $X$.
+Since $K-K$ is bounded, we have an integer $n$ such that $K-K\subset nU$.
+With this $n$, because $x\in T^{(n)}K$, we have $y\in K$ such that $T^{(n)}y=x$ so that
+\[Tx-x=\frac1n(T^ny-y)\in\frac1n(K-K)\subset U.\]
+Since $U$ is arbitrary, we have $Tx=x$.
+\end{pf}
+
+\begin{prop}
+Let $G$ be a locally compact group.
+\begin{parts}
+\item If $G$ is compact, then it is amenable.
+\item If $G$ is abelian, then it is amenable.
+\end{parts}
+\end{prop}
+\begin{pf}
+(a)
+The normalized left Haar measure gives rise to a left-invariant state of $L^\infty(G)$.
+
+(b)
+Define linear operators $T_s:L^\infty(G)^*\to L^\infty(G)^*$ such that $T_sm(x):=m(\lambda_sx\lambda_s^*)$ for $s\in G$ and $x\in L^\infty(G)$.
+We can check that $T_s(S(L^\infty(G)))\subset S(L^\infty(G))$ and is continuous with respect to the weak$^*$ topology because it is given by the dual operator in $B(L^\infty(G))$.
+Then, since $\{T_s:s\in G\}$ is commuting, by the Markov-Kakutani fixed point theorem, we have a left-invariant mean for $G$.
+\end{pf}
+
+\begin{prop}
+Let $G$ be a locally compact group and let $H\le G$ and $N\lhd G$ be closed.
+Then, we have the following permanence properties.
+\begin{parts}
+\item If $G$ is amenable, then so is $H$.
+\item If $G$ is amenable, then so is $G/N$.
+\item If $N$ and $G/N$ are amenable, then so is $G$.
+\item The direct limit of amenable groups is amenable.
+\end{parts}
+\end{prop}
+\begin{pf}
+See [Paterson].
+\end{pf}
+
+\subsection{Discrete amenable groups}
+
+
+Let $\Gamma$ be a discrete group.
+Then,
+\begin{itemize}
+\item $C_r^*(\Gamma)$ and $C^*(\Gamma)$ are unital.
+\item $c_0(\Gamma)^*\cong\ell^1(\Gamma),
+\quad\ell^1(\Gamma)^*\cong\ell^\infty(\Gamma),
+\quad\ell^\infty(\Gamma)^*\cong ba(\Gamma)$.
+We skip the proof of this.
+\item Any function $\Gamma\to X$ is continuous.
+\item We can write $C_c(C,\cA)=\cA\Gamma$.
+\end{itemize}
+A mean on $\Gamma$ is identified to a finitely additive probability measure on $\Gamma$.
+
+\begin{ex}[Subexponential growth]
+\end{ex}
+
+\begin{ex}[Elementary amenable groups]
+Every finite group and every abelian group is an discrete amenable group.
+Their finite number of elementary operations of four types (subgroups, quotients, extensions, direct limits) are also amenable, and they are called \emph{elementary amenable groups}.
+\end{ex}
+
+\begin{ex}[Nonabelian free groups]
+The free group $F_2$ is not amenable.
+In particular, every discrete group containing $F_2$, for example, $F_n$ or $\SL(n,\Z)$ for $n\ge2$, is not amenable.
+\end{ex}
+\begin{pf}
+Suppose there is a left-invariant finitely additive probability measure $m$ on $F_2=\<a,b\>$.
+Its value $m(S)$ of finite set $S$ is zero.
+Let $S(a)$ be the set of all reduced words in $F_2$ starting with $a$, and similarly for other generators.
+Then, $F_2=S(a)\sqcup aS(a^{-1})$ implies $m(S(a))+m(S(a^{-1}))=1$ and
+\[F_2=\{e\}\sqcup S(a)\sqcup S(a^{-1})\sqcup S(b)\sqcup S(b^{-1})\]
+implies
+\begin{align*}
+1=m(F_2)=m(S(a))+m(S(a^{-1}))+m(S(b))+m(S(b^{-1}))=2,
+\end{align*}
+a contradiction.
+\end{pf}
+
+\begin{rmk}
+We have the following implications for a discrete group $\Gamma$:
+\[\text{elementary amenable}\quad\Longrightarrow\quad\text{amenable}\quad\Longrightarrow\quad\text{no non-abelian free subgroup}\]
+The question about the converses had been a longstanding problem, which is also called the \emph{von Neumann-Day problem}.
+Grigorchuk's group(1984) is an amenable that is not elementary amenable, and the Tarski monster group(1980) is a non-amenable group without non-abelian free subgroup.
+The Tits alternative states that the three statements are equivalent for a linear group over a field.
+\end{rmk}
+
+
+\begin{thm}[Nuclearity]
+Let $\Gamma$ be a discrete group.
+Then, the following are equivalent:
+\begin{parts}
+\item $\Gamma$ is amenable.
+\item $C_r^*(\Gamma)$ is nuclear.
+\item $C^*(\Gamma)$ is nuclear.
+\end{parts}
+\end{thm}
+\begin{pf}
+(a)$\Rightarrow$(b)
+Take a F\o lner sequence $F_k\subset\Gamma$.
+Define $e_{s,t},p_k\in B(\ell^2(\Gamma))$ such that
+\[e_{s,t}\xi:=\<\xi,\delta_t\>\delta_s,\qquad p_k:=\sum_{s\in F_k}e_{s,s}.\]
+Define $C_r^*(\Gamma)\xrightarrow{\f_k}p_kB(\ell^2(\Gamma))p_k\xrightarrow{\psi_k}C_r^*(\Gamma)$ such that
+\[\f(a):=p_kap_k,\qquad\psi(e_{s,t}):=\frac1{|F_k|}\lambda_{st^{-1}}.\]
+Since
+\begin{align*}
+(p_k\lambda_sp_k)\delta_t
+&=p_k\lambda_s\delta_t\1_{F_k}(t)
+=p_k\delta_{st}\1_{F_k}(t)
+=\delta_{st}\1_{F_k}(t)\1_{F_k}(st)
+=\1_{sF_k\cap F_k}(st)\delta_{st}\\
+&=\sum_{p\in sF_k\cap F_k}\<\delta_{st},\delta_p\>\delta_p
+=\sum_{p\in sF_k\cap F_k}e_{p,s^{-1}p}\delta_t,
+\end{align*}
+we have
+\[\psi_k\circ\f_k(\lambda_s)=\psi_k\left(\sum_{p\in sF_k\cap F_k}e_{p,s^{-1}p}\right)=\sum_{p\in sF_k\cap F_k}e_{p,s^{-1}p}\frac1{|F_k|}\lambda_s=\frac{|sF_k\cap F_k|}{|F_k|}\lambda_s\]
+for all $s\in\Gamma$.
+Therefore, $\psi_k\circ\f_k$ converges to the identity in the point-norm topology, and $C_r^*(\Gamma)$ is nucelar.
+
+(b)$\Rightarrow$(a)
+Consider a net of c.c.p.~maps $C_r^*(\Gamma)\xrightarrow{\f_\alpha}M_{n_\alpha}(\C)\xrightarrow{\psi_\alpha}C_r^*(\Gamma)$ which converges to the identity in the point-norm topology.
+By the Arveson extension theorem, we have $\tilde\f_\alpha:B(\ell^2(\Gamma))\to M_{n_\alpha}$ which extends $\f_\alpha$.
+Then, the bounded net $\psi\circ\tilde\f_\alpha:B(\ell^2(\Gamma))\to C_r^*(\Gamma)\subset L(\Gamma)$ has a limit point in the point-$\sigma$-weak topology.
+By taking a subnet, denote by $\Phi$ the limit.
+Then, $\Phi(a)=a$ for $a\in C_r^*(\Gamma)$.
+See the following diagram.
+\[\begin{tikzcd}
+B(\ell^2(\Gamma)) \ar[dashed]{rddd}{\tilde\f_\alpha}\ar{rrrdd}{\Phi:=\lim_\alpha\psi\circ\tilde\f_\alpha}&&&\\
+&&&\\
+C_r^*(\Gamma)\ar{rr}\ar[swap,dashed]{rd}{\f_\alpha}\ar[hook]{uu}&&C_r^*(\Gamma)\ar[hook]{r}&L(\Gamma)=C_r^*(\Gamma)''.\\
+&M_{n_\alpha}(\C)\ar[swap,dashed]{ur}{\psi_\alpha}&&
+\end{tikzcd}\]
+
+Consider a vector state $\omega_{\delta_e}:x\mapsto\<x\delta_e,\delta_e\>$ on $L(\Gamma)\subset B(\ell^2(\Gamma))$.
+It is tracial because the right-hand side of
+\[\omega_{\delta_e}(ab)=\<ab\delta_e,\delta_e\>=\sum_{s,t}\<a_sb_t\delta_{st},\delta_e\>=\sum_sa_sb_{s^{-1}}\]
+is symmetric.
+Then, the state $m:=\omega_{\delta_e}\circ\Phi$ on $B(\ell^2(\Gamma))$ is left-invariant since $C_r^*(\Gamma)$ belongs to the multiplicative domain of $m$ so that
+\[m(\lambda_sx\lambda_s^*)=\omega_{\delta_e}(\Phi(\lambda_sx\lambda_s^*))=\omega_{\delta_e}(\lambda_s\Phi(x)\lambda_s^*))=\omega_{\delta_e}(\Phi(x))=m(x)\]
+for $x\in B(\ell^2(\Gamma))$.
+Therefore, $m|_{\ell^\infty(\Gamma)}$ is an invariant mean on $\Gamma$.
+
+(a)$\Rightarrow$(c)
+If $\Gamma$ is amenable, then $C_r^*(\Gamma)$ is amenable and $C^*(\Gamma)=C_r^*(\Gamma)$, so we are done.
+
+(c)$\Rightarrow$(a)
+It is known that a quotient of a nuclear C$^*$-algebra is nuclear, which requires a rather difficult proof in this stage, so we give a direct proof using the trick.
+
+Suppose $C^*(\Gamma)$ is nuclear.
+Here we denote by $C_\lambda^*(\Gamma)$ and $C_\rho^*(\Gamma)$ the reduced group C$^*$-algebras in $B(\ell^2(\Gamma))$ generated by the image of the left and right regular representations.
+Then the maximal tensor products in the following diagram can be changed into the minimal tensor products:
+\[\begin{tikzcd}
+B(\ell^2(\Gamma))\otimes_{\max}C^*(\Gamma) &\\
+C_\lambda^*(\Gamma)\otimes_{\max}C^*(\Gamma)\ar[hook]{r}{i\times\rho} \ar{u} & B(\ell^2(\Gamma)),
+\end{tikzcd}\]
+where $\rho:C^*(\Gamma)\to C_\rho^*(\Gamma)\subset B(\ell^2\Gamma)$ is the right regular representation.
+Then, we have two facts: the vertical arrow is injective because the minimal tensor products can be implemented spatially in a large Hilbert space(i.e.~the conclusion (c) of the inclusion problem in Corollary 3.8 always holds for minimal tensor product), and $\rho(C^*(\Gamma))'=C_\rho^*(\Gamma)'=L(\Gamma)$.
+By the trick, the embedding $C_\lambda^*(\Gamma)\hookrightarrow L(\Gamma)$ is extended to $B(\ell^2(\Gamma))\to L(\Gamma)$.
+Then, as we did in the proof of (b)$\Rightarrow$(a), pullback the tracial vector state $\omega_{\delta_e}$ of $L(\Gamma)$ to get a left-invariant state of $B(\ell^2(\Gamma))$, which contains $\ell^\infty(\Gamma)$.
+The restriction on $\ell^\infty(\Gamma)$ implies that $\Gamma$ is amenable.
+\end{pf}
+
+\begin{rmk}
+It is known that a locally compact group $G$ is amenable if and only if $C_r^*(G)$ is nuclear and admits a tracial state[Ng, 2015].
+Note that if $\Gamma$ is discrete, then the reduced group C$^*$-algebra $C_r^*(\Gamma)$ has a tracial state $a\mapsto\<a\delta_e,\delta_e\>$.
+\end{rmk}
+
+\iffalse
+General locally compact case:
+For $G$ a connected Lie group, $C_r^*(G)$ is nuclear, but $G$ may not be amenable.
+
+Theorem 3.7.11: $\Gamma$ with property (F) is amenable iff $C^*(\Gamma)$ is exact.
+Chapter 5: When is $-\otimes_{\min}C_r^*(\Gamma)$ or $-\rtimes_r\Gamma$ exact?
+\fi
+
+
+
+
+
+
+\newpage
+\subsection{Crossed products}
+
+\begin{defn}[C$^*$-dynamical system]
+A \emph{C$^*$-dynamical system} is a continuous group homomorphism $\alpha:G\to\Aut(\cA)$, where $G$ is a locally compact group, $\cA$ is a C$^*$-algebra, and $\Aut(\cA)$ is the group of $*$-automorphisms with the point-norm topology.
+\end{defn}
+\begin{defn}[Covariant representation]
+Let $\alpha:G\to\Aut(\cA)$ be a C$^*$-dynamical system.
+A \emph{covariant representation} of $\alpha$ is a pair $(\pi,\rho)$ of representations $\pi:\cA\to B(H)$ and $\rho:G\to U(H)$ such that $\pi(\alpha_sa)=\rho_s\pi(a)\rho_s^*$ for every $a\in\cA$ and $s\in G$.
+\end{defn}
+
+locally compact left $G$-spaces <-> commutative C$^*$-dynamical systems
+
+
+\begin{defn}[Induced representation]
+
+\end{defn}
+$C_c(G,\cA)$ is a $*$-algebra
+with
+\[f*g(s):=\int_Gf(t)\alpha_tg(t^{-1}s)\,dt,\qquad f^*(s):=\Delta(s^{-1})(\alpha_{s^{-1}}f(s^{-1}))^*.\]
+
+covariant representations <-> $L^1$-contractive $*$-homs $C_c(G,\cA)\to B(H)$
+\begin{defn}
+
+\end{defn}
+
+
+Day's fixed point theorem
+
+discrete: $A\rtimes\Gamma$ contains copies of $A$ and $\Gamma$.
+
+\begin{thm}
+Let $\alpha:\Gamma\to\Aut(\cA)$ be a discrete C$^*$-dynamical system.
+Then, the following are equivalent:
+\begin{parts}
+\item The action $\alpha$ is amenable.
+\item $\cA\rtimes_\alpha\Gamma=\cA\rtimes_{\alpha,r}\Gamma$.
+\item $\cA$ is nuclear if and only if $\cA\rtimes_\alpha\Gamma$ is nuclear.
+\item $\cA$ is exact if and only if $\cA\rtimes_\alpha\Gamma$ is exact.
+\end{parts}
+\end{thm}
 
 
 

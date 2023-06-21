@@ -124,6 +124,12 @@ BV function: Dini, Jordan's criterion
 \begin{prb}[Du Bois-Reymond function]
 \end{prb}
 
+\begin{prb}[Compactly supported functions]
+Let $f$ be an integrable compactly supported function.
+Using the Morera to prove $\hat f$ is analytic.
+
+\end{prb}
+
 
 
 
@@ -134,16 +140,38 @@ BV function: Dini, Jordan's criterion
 
 \chapter{Fourier transform}
 \section{Fourier transform in $L^p$ space}
+There are three conventions for the Fourier transform:
+\[\cF f(\xi)=\hat f(\xi):=\begin{cases}
+\int_{\R^d}e^{-ix\xi}f(x)\,dx,\\
+(2\pi)^{-\frac d2}\int_{\R^d}e^{-ix\xi}f(x)\,dx,\\
+\int_{\R^d}e^{-2\pi ix\xi}f(x)\,dx.
+\end{cases}\]
+We will accept the second one.
+
+
 \begin{prb}[Riemann-Lebesgue lemma]
-\end{prb}
+basic estimates
+\[\|\hat f\|_{L^\infty(\R^d)}\le(2\pi)^{-\frac d2}\|f\|_{L^1(\R^d)},\qquad f\in L^1(\R^d).\]
+\[\|\hat f\|_{L^1(\R^d)}\lesssim\|f\|_{W^{d+1,1}}(\R^d),\qquad f\in W^{d+1,1}(\R^d).\]
 Lp extension
-
-Gaussian function computation: differential equation method, contour integral method
-inversion theorem
-\begin{prb}[Plancherel theorem]
 \end{prb}
 
-\section{Distributions}
+\begin{prb}[Fourier inversion]
+inversion theorem
+Plancerel
+\[\|\hat f\|_{L^2(\R^d)}=\|f\|_{L^2(\R^d)},\qquad f\in L^2(\R^d).\]
+unitarity
+\end{prb}
+
+\begin{prb}[Properties]
+If $D:=-i\partial$, then
+\[\cF D_x\cF^*=M_\xi,\qquad D_\xi\cF=-\cF M_x.\]
+\[\cF(fg)=(2\pi)^{-\frac d2}\hat f*\hat g.\]
+\end{prb}
+
+
+\section{Tempered distributions}
+
 \begin{prb}[Cauchy principal value]
 indented contour, imaginary shift, Feynman's trick
 \end{prb}
@@ -163,6 +191,13 @@ $\operatorname{sinc}\in L^{1+\e}(\R)$.
 \end{prb}
 \begin{prb}[Uncertainty principle]
 \end{prb}
+
+\begin{prb}
+Gaussian function computation:
+differential equation method, contour integral method, imaginary shift
+\[\cF(e^{-\frac12xQx})=\frac{e^{\frac{i\pi}4\sgn(Q)}}{|\det Q|^{\frac12}}e^{-\frac12xQ^{-1}x}.\]
+\end{prb}
+
 
 \begin{prb}[Multipole expansion]
 Let $\rho$ be a compactly supported distribution on $\R^d$.
@@ -352,23 +387,27 @@ Carleson measures, paraproducts
 \chapter{Oscillatory integrals}
 
 
+
+
 \begin{prb}[Justification of oscillatory integral]
-For $\phi$, we define a linear functional $O_\phi:A_\delta^m(\R^d)\to\C$ such that
-\[O_\phi(a):=\int_{\R^d}e^{i\phi(x)}a(x)\,dx\]
-for all $a\in A_\delta^m(\R^d)\cap L^1(\R^d)$.
-As a notation, we will use the above integral to denote the value of $O_\phi$ even for $a\in A_\delta^m(\R^d)\setminus L^1(\R^d)$.
+For a function $\phi$ with fast growth toward infinity, we want to define a linear functional $I_\phi$ such that
+\[I_\phi(a):=\int_{\R^d}e^{i\phi(x)}a(x)\,dx,\qquad a\in\cS(\R^d).\]
+A linear functional of the above form is called the \emph{oscillatory integral} with \emph{phase function} $\phi$.
+As a notation, we will use the above integral in the right-hand side to denote the value of $I_\phi$ even for $a\notin L^1(\R^d)$.
+Then, we have pointwise justifications for integral calculus.
 \begin{parts}
-\item $O_\phi$ is well-defined and continuous.
+\item $I_\phi:A_\delta^m(\R^d)\to\C$ is well-defined and continuous, if $\phi$.
 \item The change of variables is justified as follows:
-\item The integral by parts is justified as follows: for $\phi\in$ and $a\in$, we have
-\[\int_{\R^d}e^{i\phi(y)}i\partial\phi(y)a(x+y)\,dy=-\int_{\R^d}e^{i\phi(y)}\partial a(x+y)\,dy.\]
+\item The integral by parts is justified as follows:
+\[\int_{\R^d}e^{i\phi(y)}i\partial\phi(y)a(x+y)\,dy=-\int_{\R^d}e^{i\phi(y)}\partial a(x+y)\,dy,\quad x\in\R^d,\ a\in A_\delta^m(\R^d).\]
 \item The Fubini theorem is justified as follows:
 \item The Fourier inversion is justified as follows:
-\[a(x)=(2\pi)^{-d}\int_{\R^{2d}}e^{i(x-y)\xi}a(y)\,dy\,d\xi.\]
+\[a(x)=(2\pi)^{-d}\int_{\R^{2d}}e^{i(x-y)\xi}a(y)\,dy\,d\xi,\quad x\in\R^d,\ a\in A_\delta^m(\R^d).\]
 \end{parts}
 \end{prb}
 \begin{pf}
 (a)
+Note that $A_\delta^m(\R^d)\cap L^1(\R^d)$ is dense in $A_\delta^m(\R^d)$.
 The most difficult part is the construction and the computation of $L$ and its transpose.
 
 (e)
@@ -376,9 +415,11 @@ Note that the function $(y,\xi)\mapsto a(y)$ belongs to $A_\delta^{m'}(\R^{2d})$
 \end{pf}
 
 \begin{prb}[Point evaluation of multiplier]
-We want to show the following point evaluation holds with previously justified oscillatory integral: for each $x$ at which the left-hand side is continuous, we have
-\[\Phi(D)a(x)=(2\pi)^{-d}\int_{\R^d}e^{i\phi(y)}a(x+y)\,dy\]
-for all $a\in A_\delta^m$, where $\Phi:=\cF^*e^{i\phi}$.
+Let $\phi\in$ be a phase function.
+We want to show the following point evaluation holds with previously justified oscillatory integral:
+\[\Phi(D)a(x)=(2\pi)^{-d}\int_{\R^d}e^{i\phi(y)}a(x+y)\,dy,\qquad x\in\R^d,\ a\in A_\delta^m(\R^d),\]
+where $\Phi:=\cF^*e^{i\phi}$.
+Which condition for $\phi$ makes $\Phi$ be able to act on $\cS'$ by multiplication?
 \end{prb}
 
 
@@ -412,8 +453,8 @@ Consider a multiplier operator $e^{\frac i2DQD}:\cS\to\cS$ such that
 \[e^{\frac i2DQD}a(x):=\cF^*e^{\frac i2\xi Q\xi}\cF a(x).\]
 \begin{parts}
 \item
-If $a\in A_\delta^m(\R^d)$, then the pointwise evaluation is given by the oscillatory integral.
-\[e^{\frac i2DQD}a(x)=(2\pi)^{-d}\frac{e^{\frac{i\pi\sgn Q}4}}{|\det Q|^{\frac12}}\int_{\R^d}e^{-\frac i2yQ^{-1}y}a(x+y)\,dy.\]
+The pointwise evaluation is given by the oscillatory integral.
+\[e^{\frac i2DQD}a(x)=(2\pi)^{-d}\frac{e^{\frac{i\pi}4}\sgn(Q)}{|\det Q|^{\frac12}}\int_{\R^d}e^{-\frac i2yQ^{-1}y}a(x+y)\,dy,\qquad x\in\R^d,\ a\in A_\delta^m.\]
 \item
 \[e^{\frac i2DQD}a(x)=\sum_{k=0}^n\frac{i^k}{2^kk!}(DQD)^ka(x)+r_n(x)\]
 \end{parts}
@@ -459,9 +500,10 @@ for each $\alpha,\beta\in\Z_{\ge0}^d$.
 
 
 \begin{prb}[Asymptotic expansion]
-Let $\rho,\delta\in\R$ and $(m_k)_{k=0}^\infty\subset\R$ be a sequence with $m_0$ and $m_k\downarrow-\infty$.
-Given $a_k\in S_{\rho,\delta}^{m_k}(\R^{2d})$, we want to construct $a\in S_{\rho,\delta}^{m_0}(\R^{2d})$ such that
-\[a-\sum_{k=0}^na_k\in S_{\rho,\delta}^{m_{n+1}}(\R^{2d}).\tag{\dagger}\]
+Let $\rho,\delta\in\R$.
+Let $a_k\in S_{\rho,\delta}^{m_k}(\R^{2d})$ for a sequence $(m_k)_{k=0}^\infty\subset\R$ with $m_0$ and $m_k\downarrow-\infty$.
+We want to construct $a\in S_{\rho,\delta}^{m_0}(\R^{2d})$ such that
+\[a-\sum_{k=0}^{n-1}a_k\in S_{\rho,\delta}^{m_n}(\R^{2d}).\tag{\dagger}\]
 The symbol $a_0$ is called the \emph{principal symbol} of $a$, or the operator $\Op^t(a)$.
 
 Let $\chi\in C_c^\infty(\R_\xi^d,[0,1])$ be a cutoff function such that
@@ -490,32 +532,32 @@ Because we have $\e^{-1}\le\<\xi\>$ on the support of $1-\chi(\e\xi)$, for each 
 \[\max_{\substack{\alpha,\beta\in\Z_{\ge_0}^d\\|\alpha|+|\beta|\le k}}|\partial_x^\alpha\partial_\xi^\beta((1-\chi(\e_k\xi))a_k(x,\xi))|\le2^{-k}\<\xi\>^{m_k+1+\delta|\alpha|-\rho|\beta|}.\]
 We may assume $\e_k\downarrow0$ so that the following sum is locally finite:
 \[a(x,\xi):=\sum_{k=0}^\infty(1-\chi(\e_k\xi))a_k(x,\xi).\]
-If we choose $n$ such that $m_0\ge m_{n+1}+1$, then in the expansion
-\[a(x,\xi)=\sum_{k=0}^n(1-\chi(\e_k\xi))a_k(x,\xi)+\sum_{k=n+1}^\infty(1-\chi(\e_k\xi))a_k(x,\xi)\]
+If we choose $n$ such that $m_0\ge m_n+1$, then in the expansion
+\[a(x,\xi)=\sum_{k=0}^{n-1}(1-\chi(\e_k\xi))a_k(x,\xi)+\sum_{k=n}^\infty(1-\chi(\e_k\xi))a_k(x,\xi)\]
 the first sum clearly belongs to $S_{\rho,\delta}^{m_0}$ and so is the second sum because
 \begin{align*}
-|\partial_x^\alpha\partial_\xi^\beta\sum_{k=n+1}^\infty(1-\chi(\e_k\xi))a_k(x,\xi)|
-&\le\sum_{k=n+1}^\infty2^{-k}\<\xi\>^{m_{k+1}+1+\delta|\alpha|-\rho|\beta|}\\
-&\le\<\xi\>^{m_{n+1}+1+\delta|\alpha|-\rho|\beta|}\\
+|\partial_x^\alpha\partial_\xi^\beta\sum_{k=n}^\infty(1-\chi(\e_k\xi))a_k(x,\xi)|
+&\le\sum_{k=n}^\infty2^{-k}\<\xi\>^{m_{k+1}+1+\delta|\alpha|-\rho|\beta|}\\
+&\le\<\xi\>^{m_n+1+\delta|\alpha|-\rho|\beta|}\\
 &\le\<\xi\>^{m_0+\delta|\alpha|-\rho|\beta|}
 \end{align*}
 for every $\alpha,\beta\in\Z_{\ge0}^d$.
 Therefore, $a\in S_{\rho,\delta}^{m_0}$.
 
 Write
-\[(a-\sum_{k=0}^na_k)(x,\xi)=\sum_{k=0}^n\chi(\e_k\xi)a_k(x,\xi)+\sum_{k=n+1}^\infty(1-\chi(\e_k\xi))a_k(x,\xi).\]
-The first sum belongs to $S^{-\infty}$ because it is compactly supported, and we can also show that the second sum belongs to $S_{\rho,\delta}^{m_{n+1}}$ by decomposing with $n'$ such that $m_{n+1}\ge m_n'+1$ and by considering the multiplication with a cutoff remains in the same symbol class.
+\[(a-\sum_{k=0}^{n-1}a_k)(x,\xi)=\sum_{k=0}^{n-1}\chi(\e_k\xi)a_k(x,\xi)+\sum_{k=n}^\infty(1-\chi(\e_k\xi))a_k(x,\xi).\]
+The first sum belongs to $S^{-\infty}$ because it is compactly supported, and we can also show that the second sum belongs to $S_{\rho,\delta}^{m_n}$ by decomposing with $n'$ such that $m_n\ge m_n'+1$ and by considering the multiplication with a cutoff remains in the same symbol class.
 \end{pf}
 
 
 \begin{prb}[Quantization]
-The $t$-quantization of a symbol $a$ is the pseudo-differential operator $\Op^t(a)$ on $\cS(\R_x^d)$ defined by
-\[\Op^t(a)f(x):=(2\pi)^{-d}\int_{\R^{2d}}e^{i(x-y)\xi}a((1-t)x+ty,\xi)f(y)\,dy\,d\xi\]
-for all $f\in\cS(\R^d)$.
-Kohn-Nirenberg calculus for $t=0$, Weyl calculus for $t=\frac12$.
+For a symbol $a$ defined on $\R^{2d}$ and $t\in[0,1]$, we want to define a pseudo-differential operator $\Op^t(a)$ such that
+\[\Op^t(a)f(x):=(2\pi)^{-d}\int_{\R^{2d}}e^{i(x-y)\xi}a((1-t)x+ty,\xi)f(y)\,dy\,d\xi,\qquad f\in\cS(\R^d).\]
+The operator $\Op^t(a)$ is the \emph{$t$-quantization} of the symbol $a$.
+The analysis of $t$-quantizations is sometimes called the \emph{Kohn-Nirenberg calculus} for $t=0$, the \emph{Weyl calculus} for $t=\frac12$.
 \begin{parts}
-\item $\Op^0(a):\cS(\R^d)\to\cS'(\R^d)$ is continuous for $a\in\cS'(\R^d)$.
-\item $\Op^0(a):\cS(\R^d)\to\cS(\R^d)$ is continuous for $a\in S_{\rho,\delta}^m(\R^{2d})$ if $\delta\le1$.
+\item $\Op^0(a):\cS(\R^d)\to\cS'(\R^d)$ is well-defined and continuous, if $a\in\cS'(\R^2d)$.
+\item $\Op^0(a):\cS(\R^d)\to\cS(\R^d)$ is well-defined and continuous, if $a\in S_{\rho,\delta}^m(\R^{2d})$ for $\delta\le1$.
 \end{parts}
 \end{prb}
 \begin{pf}
@@ -561,10 +603,11 @@ for each $\alpha,\beta\in\Z_{\ge0}^d$ and all $f\in\cS(\R^d)$, which implies $\O
 Let $m\in\R$, .
 \begin{parts}
 \item $\Op^t(a)=\Op^0(e^{itD_xD_\xi}a)$.
+In particular, since $M_{e^{itx\xi}}:\cS(\R^{2d})\to\cS(\R^{2d})$, $\Op^t(a):\cS(\R^{2d})\to\cS(\R^{2d})$ is well-defined and continuous.
 \item $a\in S_{\rho,\delta}^m(\R^{2d})$ if and only if $e^{itD_xD_\xi}a\in S_{\rho,\delta}^m(\R^{2d})$, if $0\le\delta\le\rho\le1$ and $\delta<1$.
 \item We have the formal adjoint
 \[\Op^t(a)^*=\Op^{1-t}(\bar a).\]
-In particular, we have $\Op^t(a):\cS'\to\cS'$.
+In particular, $\Op^t(a):\cS'(\R^d)\to\cS'(\R^d)$ is well-defined and continuous for $a\in S_{\rho,\delta}^m(\R^{2d})$.
 \end{parts}
 \end{prb}
 
@@ -600,7 +643,7 @@ Fix $\xi$ and
 Let $a\in S_{\rho,\delta}^m(\R^{2d})$ and $b\in S_{\rho,\delta}^l(\R^{2d})$.
 \begin{parts}
 \item there exists a unique function $a\#^tb\in S_{\rho,\delta}^{m+l}(\R^{2d})$ such that
-\[a^t(x,D)b^t(x,D)=(a\#^t)^t(x,D).\]
+\[a^t(x,D)b^t(x,D)=(a\#^tb)^t(x,D).\]
 \item It is concretely described by
 \[(a\#^tb)(x,\xi)=(2\pi)^{-2}\int_{\R^{4d}}e^{-i(y\eta-z\zeta)}a(x+tz,\xi+\eta)b((1-t)y+x,\xi+\zeta)\,dy\,d\eta\,dz\,d\zeta.\]
 \item If $\delta<\rho$, then
@@ -615,26 +658,55 @@ Let $a\in S_{\rho,\delta}^m(\R^{2d})$ and $b\in S_{\rho,\delta}^l(\R^{2d})$.
 
 
 
-\section{}
 
 
 \begin{prb}[Calder\'on-Vaillancourt theorem]
 \end{prb}
 
+\section*{Exercises}
+Quantization of linera and quadratic exponential symbols.
+
 \chapter{Semiclassical analysis}
 
-For parameters $0\le\lambda\le1$ and $h>0$, let
-\[\hat a\psi(x):=\frac1{(2\pi h)^d}\iint e^{\frac ih\<x-y,\xi\>}a((1-\lambda)x+\lambda y,\xi)\psi(y)\,dy\,d\xi.\]
-For example, regardless of $h$ and $\lambda$,
-\[\hat\xi\psi(x)=\frac hi\psi'(x)\]
+We define for $h>0$ and $t\in[0,1]$
+\[\Op_h^t(a)f(x):=(2\pi h)^{-d}\int_{\R^{2d}}e^{\frac ih(x-y)\xi}a((1-t)x+ty,\xi)f(y)\,dy\,d\xi,\qquad f\in\cS(\R^d).\]
+\[\Op_h^w(D_xa)=[D_x,\Op_h^w(a)],\qquad\Op_h^w(hD_\xi a)=-[x,\Op_h^w(a)].\]
+For example, regardless of $h>0$ and $t\in[0,1]$,
+\[\Op(\xi)\psi(x)=hD\psi(x)=-ih\psi'(x)\]
 and
-\[\hat H\psi(x)=-h^2\Delta\psi(x)+V(x)\psi(x),\]
-where $V:\R_x^d\times\R_\xi^d\to\R$ and $H:\R_x^d\times\R_\xi^d\to\R$ such that
-\[H(x,\xi):=|\xi|^2+V(x).\]
+\[\Op(H)\psi(x)=-\frac{h^2}{2m}\Delta\psi(x)+V(x)\psi(x),\]
+where
+\[H(x,\xi):=\frac{|\xi|^2}{2m}+V(x).\]
+In physics, the operator $\Op(H)$ is frequently written as $\hat H$, which will not be used to avoid the confusion regarding the Fourier transform.
 
 
 \[\dd{t}a(t)=\{a(t),H\}=X_Ha(t)\]
 \[\dd{t}\hat a(t)=\dd{t}e^{\frac iht\hat H}\hat ae^{-\frac iht\hat H}=-\frac ih[\hat a(t),\hat H]\]
+
+
+Let $J:\R^{2d}\to\R^{2d}:(x,\xi)\mapsto(\xi,-x)$ be a symplectomorphism, the rotation of $\frac\pi2$ in \emph{clock-wise}.
+Then, we have
+\[\cF_h^*\Op_h^w(a)\cF_h=\Op_h^w(J^*a).\]
+Also,
+\[[\Op_h^w(a),\Op_h^w(b)]=\Op_h^w(-ih\{a,b\})+O(h^2).\]
+
+Since the Weyl quantization has a bound
+\[\|\Op_h^w(a)\|_{B(L^2(\R^d))}\lesssim\|a\|_{C_b(\R^{2d})}+O(h^{\frac12}),\qquad a\in C_b(\R^{2d})\cap S_{\rho,\delta}^m(\R^{2d}),\]
+for a bounded net $f_h\in L^2(\R^d)$, the positive linear functional $C_0(\R^{2d})$ defined by
+\[a\mapsto\<\Op_h^w(a)f_h,f_h\>,\qquad a\in C_0(\R^{2d})\cap S_{\rho,\delta}^m(\R^{2d})\]
+has a limit point in the weak$^*$ topology.
+If a finite Radon measure $\mu$ on $\R^{2d}$ is a limit, then $\mu$ is called a \emph{semicalssical defect} of the net $f_h$.
+
+Let $p$ be a symbol such that $|p(x,\xi)|\gtrsim\<\xi\>^k$ for sufficiently large $|\xi|$.
+This symbol has an interpretation of the Hamiltonian.
+Suppose the following two conditions are satisfied:
+\[\lim_{h\to0}\|\Op_h^w(p)f_h\|_{L^2(\R^d)}=0,\qquad\|f_h\|_{L^2(\R^d)}=1.\]
+Then, the support of any semicalssical defect measure $\mu$ is contained in $p^{-1}(0)$, called the \emph{characteristic variety} or the \emph{zero energy surface} of the symbol $p$.
+We can understand this support restriction as saying that in the semiclassical limit $h\to0$ all the mass of solution coalesces onto a specific set in phase space.
+Also we have the flow invariance $\{p,\mu\}=0$, i.e.~$\int_{\R^{2d}}\{p,a\}d\mu=0$ for all $a\in\cD(\R^{2d})$, which means that $\mu$ is invariant under the Hamiltonian flow generated by $p$.
+
+
+
 
 \section{Heisenberg group}
 \section{Phase space transforms}
