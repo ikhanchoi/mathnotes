@@ -1,5 +1,5 @@
-\documentclass{../../small}
-\usepackage{../../ikhanchoi}
+\documentclass{../../../small}
+\usepackage{../../../ikhanchoi}
 
 \begin{document}
 \title{Operator Algebra Seminar Note I}
@@ -10,9 +10,9 @@
 
 \section*{Acknowledgement}
 This note has been written based on the first-year graduate seminar presented at the University of Tokyo in the 2023 Spring semester.
-Each seminar was delivered for 105 minutes. % without referring to any notes or references.
+Each seminar was delivered for 105 minutes.
 The main reference for this seminar was Brown-Ozawa, and detailed gaps were filled with the aids of other books such as Takesaki, Murphy, and Paulsen whenever required.
-% I gratefully acknowledge advice of Prof. Yasuyuki Kawahigashi and support of my colleagues Futaba Sato and Yusuke Suzuki.
+I gratefully acknowledge advice of Prof. Yasuyuki Kawahigashi and support of my colleagues Futaba Sato, Yusuke Suzuki, Hiroto Nishikawa, %Hiroki Maeda.
 
 
 
@@ -621,6 +621,12 @@ Then,
 &=\<\f(a)\xi,\eta\>.
 \end{align*}
 It is easy to check the condition $(\pi(\cA)VH)^-=\hat H$ holds.
+
+(Alternatively, we can define $V\in B(H,\hat H)\cong H^*\otimes\hat H$ by
+\[\<V\xi,a\otimes\eta+N\>:=\<\f(a^*)\xi,\eta\>.\]
+The vector $V\xi$ in $\hat H$ for each $\xi\in H$ is well-defined because
+\[|\<\f(a^*)\xi,\eta\>|^2=|\<\xi,\f(a)\eta\>|^2\le\|\xi\|^2\<\f(a^*)\f(a)\eta,\eta\>\le\|\xi\|^2\|\f\|\<\f(a^*a)\eta,\eta\>=\|\xi\|^2\|\f\|\|a\otimes\eta+N\|^2.\]
+(For this proof, we have to establish (a) in Proposition 3.2 by applying the Cauchy-Schwarz inequality on the second inflation of $\f$(Maybe..?).))
 \end{pf}
 
 \begin{rmk*}
@@ -686,13 +692,14 @@ We can define $\pi'$ in the same manner.
 
 We may assume $\|a\|\le1$.
 It suffices to show the inequality
-\[\|\Pi(\sum_i(aa_i)\otimes b_i)\eta\|^2\le\|\Pi(\sum_ia_i\otimes b_i)\eta\|^2.\]
+\[\|\Pi(\sum_i(aa_i)\otimes b_i)\xi\|^2\le\|\Pi(\sum_ia_i\otimes b_i)\xi\|^2\]
+for $\xi\in H$
 The left hand side is
-\[\|\Pi(\sum_i(aa_i)\otimes b_i)\eta\|^2
-=\<\Pi(\sum_{i,j}(a_i^*a^*aa_j)\otimes(b_i^*b_j))\eta,\eta\>\]
+\[\|\Pi(\sum_i(aa_i)\otimes b_i)\xi\|^2
+=\<\Pi(\sum_{i,j}(a_i^*a^*aa_j)\otimes(b_i^*b_j))\xi,\xi\>\]
 and the right hand side is
-\[\|\Pi(\sum_ia_i\otimes b_i)\eta\|^2
-=\<\Pi(\sum_{i,j}(a_i^*a_j)\otimes(b_i^*b_j))\eta,\eta\>\]
+\[\|\Pi(\sum_ia_i\otimes b_i)\xi\|^2
+=\<\Pi(\sum_{i,j}(a_i^*a_j)\otimes(b_i^*b_j))\xi,\xi\>\]
 so that there difference is positive because
 \[\sum_{i,j}(a_i^*(1-a^*a)a_j)\otimes(b_i^*b_j)=|\sum_i((1-a^*a)^{\frac12}a_i)\otimes b_i|^2\ge0,\]
 where 1 is the unit in the unitization of $\cA$ for the continuous functional calculus.
@@ -702,7 +709,7 @@ By definition of the restrictions, we have
 \[\pi(a)\pi'(b)\eta=\Pi(a\otimes b)\eta\]
 for all $a\in\cA$, $b\in\cB$, and $\eta\in K$.
 If we extend the domain from $K$ to $H$ by letting $\pi(a)\eta^\perp=\pi'(b)\eta^\perp:=0$ for $\eta^\perp\in H\ominus K$, then since
-\[\<\Pi(a\otimes b)\eta^\perp,\xi\>=\<\eta^\perp,\Pi(a^*\otimes b^*)\>=0\]
+\[\<\Pi(a\otimes b)\eta^\perp,\xi\>=\<\eta^\perp,\Pi(a^*\otimes b^*)\xi\>=0\]
 for $\xi\in H$ implies $\Pi(a\otimes b)\eta^\perp=0$, we have
 \[\pi(a)\pi'(b)(\eta+\eta^\perp)=\pi(a)\pi'(b)\eta=\Pi(a\otimes b)\eta=\Pi(a\otimes b)(\eta+\eta^\perp),\]
 hence $\pi\times\pi'=\Pi$.
@@ -756,18 +763,21 @@ For $\otimes_{\max}$, it is justified by applying Proposition 3.4 twice, and for
 \begin{prop}[Representation extensioin]
 Let $\cA$ be a closed ideal of a C$^*$-algebra $\cB$.
 For a representation $\pi:\cA\to B(H)$, there is a representation $\tilde\pi:\cB\to B(H)$ which extends $\pi$.
-Also, the extension is unique in the sense $\tilde\pi(b)=\lim_\alpha\pi(e_\alpha b)$ in the strong operator topology, where $e_\alpha$ is an approximate unit of $\cA$.
+If $\pi$ is non-degenerate, the extension is unique.
 \end{prop}
 \begin{pf}
 Let $K:=(\pi(\cA)H)^-$.
 Define $\tilde\pi:\cB\to B(H)$ such that
 \[\tilde\pi(b)(\pi(a)\xi+\eta):=\pi(ba)\xi\]
-for $\xi\in H$, $\eta\in H\ominus K$, which is well-defined since
+for $\xi\in H$, $\eta\in H\ominus K$.
+The well-definedness is from
 \[\|\pi(ba)\xi\|^2=\<\pi(a^*b^*ba)\xi,\xi\>\le\|b\|^2\<\pi(a^*a)\xi,\xi\>=\|b\|^2\|\pi(a)\xi\|^2.\]
 It is clearly a $*$-homomorphism and extends $\pi$ since $\<\pi(a')\eta,\zeta\>=\<\eta,\pi(a'^*)\zeta\>=0$ for all $\zeta\in H$ implies
 \[\tilde\pi(a')(\pi(a)\xi+\eta)=\pi(a'a)\xi=\pi(a')(\pi(a)\xi+\eta).\]
-For the uniqueness, we have for each $\pi(a)\xi+\eta\in H$ that
-\[\|(\tilde\pi(b)-\pi(e_\alpha b))(\pi(a)\xi+\eta)\|^2=\|\pi(ba)\xi\|^2+\|\pi(e_\alpha ba)\xi\|^2-2\Re\<\pi(a^*b^*e_\alpha ba)\xi,\xi\>\to0.\qedhere\]
+
+For the uniqueness, if $\pi$ is non-degenerate and $\tilde\pi$ is a $*$-homomorphism which extends $\pi$, then
+\[\tilde\pi(b)(\pi(a)\xi)=\tilde\pi(b)\tilde\pi(a)\xi=\tilde\pi(ba)\xi=\pi(ba)\xi,\]
+which is unique by the density of $\pi(\cA)H$ in $H$.
 \end{pf}
 
 \begin{thm}[Arveson extension]
@@ -1014,7 +1024,7 @@ Endow on $B(G)_{+,1}$ the topology of uniform convergence on compact sets.
 \end{parts}
 \end{prop}
 \begin{pf}
-(a)
+(
 Since
 \[\<\eta*\bar\f,\eta\>=\int\eta^**\eta(s)\bar{\f(s)}\,d\mu(s)\ge0,\]
 the convolution operator $(-*\bar\f)\in B(L^2(G))$ is positive.
@@ -1053,7 +1063,8 @@ Since $M$ can be realized as the compositioin $(\omega\otimes\id)\Delta$ at the 
 Let $G$ be a locally compact group.
 A \emph{mean} on $G$ is a state of $L^\infty(G)$.
 We say $G$ is \emph{amenable} if there is an invariant mean $m$ on $L^\infty(G)$, i.e.~$m(\lambda_sx\lambda_s^*)=m(x)$ for $x\in L^\infty(G)$ and $s\in G$.
-By the Hahn-Banach separation, it is equivalent to $m(\lambda(f)x\lambda(f)^*)$ for $x\in L^\infty(G)$ and $f\in L^1(G)_{+,1}$.
+It is known to be equivalent to that $m(\lambda(f)x\lambda(f)^*)$ for $x\in L^\infty(G)$ and $f\in C_c(G)_{+,1}$.
+See [Runde] or [Williams].
 \end{defn}
 
 \begin{thm}
@@ -1074,8 +1085,8 @@ Then, the following are equivalent:
 \end{thm}
 \begin{pf}
 (a)$\Rightarrow$(b)
-Let $m\in L^\infty(G)_{+,1}$ be an invariant mean.
-Since the set $L^1(G)_{+,1}$ is exactly the set of normal states of $L^\infty(G)$, and since a state of a von Neumann algebra is $\sigma$-weakly approximated by normal states(we can show this similarly to Lemma 2.8), there exists a net $f_\alpha\in L^1(G)_{+,1}$ such that
+Let $m\in L^\infty(G)^*_{+,1}$ be an invariant mean.
+Since the set $L^1(G)_{+,1}$ is exactly the set of normal states of $L^\infty(G)$, and since a state of a von Neumann algebra is $\sigma$-weakly approximated by normal states(we can show this similarly as Lemma 2.8), there exists a net $f_\alpha\in L^1(G)_{+,1}$ such that
 \[\lim_\alpha|f_\alpha(x)-m(x)|=0,\qquad x\in L^\infty(G).\]
 
 Fix any $h\in L^1(G)_{+,1}$ so that $h*f\in L^1(G)_{+,1}$ for any $f\in L^1(G)_{+,1}$.
@@ -1353,7 +1364,7 @@ Chapter 5: When is $-\otimes_{\min}C_r^*(\Gamma)$ or $-\rtimes_r\Gamma$ exact?
 
 
 
-
+\iffalse
 
 \newpage
 \subsection{Crossed products}
@@ -1396,12 +1407,247 @@ Then, the following are equivalent:
 \item $\cA$ is exact if and only if $\cA\rtimes_\alpha\Gamma$ is exact.
 \end{parts}
 \end{thm}
-
-
+\fi
 
 
 \newpage
 \section{August 4}
+
+\subsection{Hilbert C$^*$-modules}
+
+\begin{defn}
+Let $\cA$ be a C$^*$-algebra.
+An (right) \emph{inner product $\cA$-module} is a complex vector space $\cE$ together with
+\begin{enumerate}[(i)]
+\item
+a ring anti-homomorphism $\End_\C(\cE)\leftarrow\cA$ which is unital if $\cA$ is unital,
+\item
+a positive definite $\cA$-sesquilinear map $\<-,-\>:\cE\times\cE\to\cA$.
+\end{enumerate}
+On a inner product $\cA$-module $E$ we have a scalar-valued norm given by $\|\xi\|:=\|\<\xi,\xi\>\|^{\frac12}$ for $\xi\in E$, and we say $E$ is a \emph{Hilbert $\cA$-module} if the norm is complete.
+\end{defn}
+
+Note that we have the sesquilinear map to be linear in the second argument because $E$ is a right $\cA$-module.
+Boundedness follows from the following proposition.
+
+\begin{prop}
+$\cA$-valued norm $|\xi|:=\<\xi,\xi\>^{\frac12}$.
+\begin{parts}
+\item $|\<\xi,\eta\>|\le\|\xi\|_\cE|\eta|$ in $\cA$.
+\item $|\xi a|\le\|\xi\|_\cE|a|$ in $\cA$. In particular, the action of $a\in\cA$ is bounded; we have a ring anti-homomorphism $B(\cE)\leftarrow\cA$.
+\item $\cE\cA$ is dense in $\cA$.
+\item $\cE\<\cE,\cE\>$ is dense in $\cE$, but generally $\<\cE,\cE\>$ is not dense in $\cA$(non-full case).
+\end{parts}
+\end{prop}
+
+\begin{defn}[Adjointable operators]
+Let $\cA$ be a C$^*$-algebra.
+Let $\cE$ and $\cF$ be Hilbert $\cA$-modules.
+An \emph{adjointable operator} is a linear operator $t:\cE\to\cE'$ such that there is a linear operator $t^*:\cE'\to\cE$ satisfying $\<t\xi,\eta\>=\<\xi,t^*\eta\>$ for all $\xi\in\cE$ and $\eta\in\cE'$.
+The set of adjointable operators are denoted by $B_\cA(\cE,\cE')$.
+\end{defn}
+
+\begin{prop}\,
+\begin{parts}
+\item By the uniform boundedness principle, every adjointable operator is bounded and $\cA$-linear.
+\item The compositioin of adjointable operators are adjointable.
+\item The set of adjointable operators is a C$^*$-algebra with respect to the operator norm.
+\item If $t\in B_\cA(\cE,\cF)$, then $|t\xi|\le\|t\||\xi|$ (geometric series of Cauchy-Schwarz inequality).
+\end{parts}
+\end{prop}
+
+\begin{defn}[Compact adjointable operators]
+Define $K_\cA(\cE,\cE')$ to be the closed linear subspace of $B_\cA(\cE,\cE')$ spanned by adjointable operators of the form $\theta_{\xi,\eta}$.
+The elements of $K_\cA(\cE,\cE')$ are often called \emph{compact} even though they are not compact operators between Banach spaces.
+\end{defn}
+
+\begin{prop}\,
+\begin{parts}
+\item $K_\cA(\cE)$ is a closed ideal of $B_\cA(\cE)$.
+\item $K_\cA(\cA)\cong\cA$ (Use approximate identity!).
+\item If $\cA$ is unital, then $B_\cA(\cA)=K_\cA(\cA)\cong\cA$.
+\item We have $K_\cA(H\otimes\cA)\cong K(H)\otimes\cA$. Note that $K(H)=\lim_\to M_n(\C)$ is nuclear.
+\item $M_{m\times n}(K_\cA(\cE,\cE'))\cong K_\cA(\cE^n,\cE'^m)$ and $M_{m\times n}(B_\cA(\cE,\cE'))\cong B_\cA(\cE^n,\cE'^m)$.
+\end{parts}
+\end{prop}
+
+\begin{defn}[Strict topology]
+\end{defn}
+\begin{prop}\,
+\begin{parts}
+\item The unit ball of $K_\cA(\cE,\cE')$ is strictly dense in the unit ball of $B_\cA(\cE,\cE')$.
+\item The unit ball of any strictly dense C$^*$-subalgebra of $B_\cA(\cE)$ is dense in the unit ball of $B_\cA(\cE)$.(A generalization of Kaplansky density)
+\end{parts}
+\end{prop}
+
+
+\begin{thm}[Riesz representation]
+$t_\xi:\eta\mapsto\<\xi,\eta\>$ is an adjointable operator $\cE\to\cA$, and defines an isometry $\cE\to K_\cA(\cE,\cA)$. Conversely, every element of $K_\cA(\cE,\cA)$ is given by $t_\xi$ for some $\xi$.
+\end{thm}
+
+self-dual Hilbert C$^*$-modules, in which possibly non-adjointable operator $\cE\to\cA$ can be given by an inner product.
+
+
+
+
+
+
+
+
+\begin{ex}[Hilbert $C_0(X)$-modules]
+Let $X$ be a locally compact Hausdorff space.
+\begin{parts}
+\item The category of Hilbert bundles over $X$ is equivalent to the category of Hilbert $C_0(X)$-modules,
+via the functor $(E\to X)\mapsto\Gamma_0(E)$, the set of continuous sections of $E$ vanishing at infinity.
+\item Not every Hilbert bundle is locally trivial.
+\item If the fibers have a common finite dimension, then the Hilbert bundle is locally trivial.
+\end{parts}
+\end{ex}
+
+\begin{ex}[Hilbert modules for noncommutative C$^*$-algebras]
+Let $\cA$ be a C$^*$-algebra.
+\begin{parts}
+\item (Scalar change) Every Hilbert space $H$ is exactly same to the Hilbert $\C$-module. The algebraic vector space tensor product $H\odot_\C\cA$ has a natural inner product $\cA$-module structure. The completion $H_\cA:=H\otimes_\C\cA$ is a Hilbert $\cA$-module.
+\item (Trivial Hilbert module) $\cA^n$ is a $\cA$-module.
+\item (Standard Hilbert module) $\ell^2(\N,\cA)$.
+\item proper actions.
+\end{parts}
+\end{ex}
+
+\begin{ex}[Basic constructions]
+product, coproducts, pullbacks, pushouts, direct limits
+complementations(sub,quo), tensor products........??
+localization
+\begin{parts}
+\item a
+\item (Localization) 
+Let $\cA\subset\cB$ be C$^*$-algebras and let $1_\cB\in\cA$.
+Let $\f:\cB\to\cA$ be a conditional expectation.
+Suppose 
+Let $\cE$ be a Hilbert $\cA$-mmodule.
+\end{parts}
+\end{ex}
+
+\begin{ex}[Adjointable operators and their convergences]
+Let $\cA:=C([0,1])$ and $\cI:=C_0((0,1])$.
+The inclusion $\cI\to\cA$ is not adjointable.
+The $\cA\oplus\cI\to\cA\oplus\cI$ that maps $(\xi_1,\xi_2)$ to $(\xi_2,0)$ is bounded but not adjointable.
+\end{ex}
+
+
+
+
+
+
+
+
+
+
+
+\subsection{Multipliers and tensor products}
+
+\begin{defn}[Multiplier algebra]
+Let $\cA$ be a C$^*$-algebra.
+The \emph{multiplier algebra} is a maximal C$^*$-algebra denoted by $M(\cA)$ which contains $\cA$ as an essential ideal.
+We will show that $M(\cA)$ always uniquely exists up to $*$-isomorphism.
+\end{defn}
+
+Stone-\v Cech compactification
+double centralizer approach
+
+
+\begin{prop}[Ideal extension of representation]
+Let $\cA,\cB,\cC$ be C$^*$-algebras, and suppose $\cA$ is a closed ideal of $\cB$.
+Let $\cE$ be a Hilbert $\cC$-module.
+For a representation $\pi:\cA\to B_\cC(\cE)$, there is a representation $\tilde\pi:\cB\to B_\cC(\cE)$ which extends $\pi$.
+If $\pi$ is non-degenerate, then the extension is unique.
+If $\pi$ is injective and $\cA$ is essential in $\cB$, then the extension is injective.
+\end{prop}
+
+\begin{prop}[Idealizer description of multiplier algebra]
+Let $\pi:\cA\to B_\cA(\cE)$ be a non-degenerate injective representation.
+Let
+\[\cB:=\{b\in B_\cA(\cE):\{b\pi(a),\pi(a)b\}\subset\pi(\cA)\ \forall a\in\cA\}.\]
+Then, $\pi$ extends to a $*$-isomorphism between $M(\cA)$ and $\cB$
+\end{prop}
+
+\begin{ex}\,
+\begin{parts}
+\item
+Since the inclusion representation $K_\cA(\cE)\to B_\cA(\cE)$ is non-degenerate, the above proposition implies that $B_\cA(\cE)$ is the multiplier algebra of $K_\cA(\cE)$(Kasparov).
+\item $M(K(H))\cong B(H)$.
+\item $M(C_0(X))\cong C_b(X)$ from $C_0(X)\to B(\ell^2(X))$.
+\end{parts}
+\end{ex}
+
+\begin{defn}
+A \emph{morphism} from $\cA$ to $\cB$ is a non-degenerate $*$-homomorphism $\cA\to M(\cB)\cong B_\cB(\cB)$.
+Every morphism uniquely extends to a $*$-homomorphism $M(\cA)\to M(\cB)$, and the injectivity is preserved.
+The composition is well-defined in the sense of extensions, and the non-degeneracy is proved by the following proposition.
+\end{defn}
+\begin{lem}[Non-degeneracy]
+For a representation $\pi:\cA\to B_\cB(\cE)$, TFAE:
+\begin{parts}
+\item $\pi$ is non-degenerate
+\item $\pi$ is the restriction to $\cA$ of a unital $*$-homomorphism $\tilde\pi:M(\cA)\to B_\cB(\cE)$ which is strictly continuous on the unit ball.
+\item $\pi(e_\alpha)\to\id_\cE$ strictly.
+\end{parts}
+\end{lem}
+
+
+
+
+
+
+
+
+\subsection{Cuntz-Pimsner algebras}
+
+
+\begin{defn}[Toeplitz representation]
+For a Hilbert $\cA$-module $\cE$, \emph{Toeplitz representation} from $\cE$ to $\cB$ is a pair of a complex linear map $\psi_\cE:\cE\to\cB$ and a $*$-homomorphism $\psi_\cA:\cA\to\cB$ such that
+\[\psi_\cE(aea')=\psi_\cA(a)\psi_\cE(e)\psi_\cA(a'),\qquad\psi_\cE(e)^*\psi_\cE(e')=\psi_\cA(\<e,e'\>).\]
+\end{defn}
+
+\begin{defn}[C$^*$-correspondences]
+A \emph{C$^*$-correspondence} is a Hilbert $\cB$-bundle $\cE$ together with a faithful representation $\cA\to B_\cB(\cE)$.
+\end{defn}
+\begin{itemize}
+\item $*$-homomorphism $\cA\to\cB$
+\item non-degenerate $*$-homomorphism $\cA\to M(\cB)$
+\item C$^*$-correspondence $\cE:\cA\to\cB$.
+\end{itemize}
+non-degenerate? faithful?
+
+
+An element of $\operatorname{Mor}(\cA,K_\cB(\cE))$ is the same thing as a non-degenerate $*$-homomorphism $\cA\to B_\cB(\cE)$.
+
+covariant Toeplitz representation
+
+Every Toeplitz representation admits a gauge action of $\T$.
+
+
+direct sums and tensor products of C$^*$-correspondences.
+
+\begin{defn}[Full Fock space]
+Toeplitz operator or creation operator
+$\cA$ and $\cF(\cE)\id_\cE$ are
+\end{defn}
+
+second quantization representation $B_\cA(\cE)\to B_\cA(\cF(\cE))$.
+
+
+Cuntz-Pimsner: C$^*$-correspondence version of Calkin algebra
+
+
+
+gauge action
+examples
+universality
+nuclearity and exactness..?
+
+
+
 
 
 \end{document}

@@ -1,5 +1,5 @@
-\documentclass{../../small}
-\usepackage{../../ikhanchoi}
+\documentclass{../../../small}
+\usepackage{../../../ikhanchoi}
 \DeclareMathOperator{\Tot}{Tot}
 
 \begin{document}
@@ -994,36 +994,36 @@ Then, $P_0$ is torsion-free, $P_1$ is also torsion-free, so the kernel $P_1$ is 
 \begin{parts}
 \item $0\to\Z\to\Z\to\Z/m\Z\to0$ is a projective resolution of $\Z/m\Z$.
 Then, taking $\Hom_\Z(-,N)$, we have $N\xrightarrow{m}N\to0$.
-Thus $\Ext_\Z^n(\Z/m\Z)=H^n(N\xrightarrow{m}N\xrightarrow{0}N)$
+Thus $\Ext_\Z^n(\Z/m\Z)=H^n(N\xrightarrow{m}N\xrightarrow{0}N)$, $\Ext_\Z^1(\Z/m\Z)=N/mN$.
 \item 
+$\Tor_n^\Z(\Z,N)=0$, $\Tor_n^\Z(\Z/m,N)=?$
+\item
+Let $R=\Z/p^2\Z$.
+Then we have a projective resolution
+\[\xrightarrow{p}\Z/p^2\xrightarrow{p}\Z/p^2\xrightarrow{p}\Z/p^2\to\Z/p^2\to0.\]
+Thus $\Tor_n^{\Z/p^2}(\Z/p,\Z/p)\cong\Z/p$ for $n\ge0$.
+Then, $\Ext_{\Z/p^2}^n(\Z/p,\Z/p)=?$
+\item
+Let $R=k[x,y]$ and $N=R/(x,y)$.
+Then,
+\[0\to R\xrightarrow{h\mapsto(yh,-xh)}R^{\oplus2}\xrightarrow{(f,g)\mapsto xf-yg}R\to N\to 0\]
+is a projective resolution,
+\[\Ext_R^n(N,N)=\begin{cases}N&n=0\\N^{\oplus2}&n=1\\N&n=2\\0&n\ge3.\end{cases}\]
 \end{parts}
 \end{ex*}
 
+
+
+\newpage
+\setcounter{section}{8}
+\section{Day 9: June 22}
+
+
+five lemma, snake lemma
+long exact sequences
+
+injective object
+
+
+
 \end{document}
-
-
-The general failure of surjectivity of Hom(-,-)->Hom(-,-)
-from projectives, the lift
-
-projective
-  direct sum of projectives is projective
-  	(lem) free => projective
-  PID: projective iff free (note sub of free is free in PID)
-  projective iff direct summand of a free
-  every module is a quotient of a free module
-
-injective
-  direct product of injectives is injective
-  	(lem) M injective iff Hom_R(R,M)->Hom_R(I,M) surj
-  PID: injective iff divisible (.a:M->M surj)
-  	(lem) Hom_Z(R,M) is injective if M is injective Z-module
-  every module is embedded in injective
-
-flat
-  PID: flat iff (.a:M->M inj)
-  M flat iff Hom(M,Q/Z) is injective
-  M flat iff I⊗M->R⊗M inj
-  if projective then flat
-
-lower index: proj/flat resolution, tensor functor, tor functor, coprod
-upper index: inj resolution, hom functor, ext functor(can be def by proj res), prod

@@ -1,0 +1,161 @@
+\documentclass{../../../small}
+\usepackage{../../../ikhanchoi}
+
+\begin{document}
+
+\title{Pseudodifferential operators}
+\author{Ikhan Choi}
+\date{}
+\maketitle
+
+\renewcommand{\theprb}{\arabic{prb}}
+
+\begin{pf}[Solution of 1]
+By symmetry, it is enough to show there are $c>0$ such that
+\[|\partial^\alpha a(\zeta)|\lesssim(1+|\zeta|^2)^{(m-|\alpha|)/2}\]
+for $\zeta=\xi+i\eta$ such that $|\xi|\ge c$ and $\eta=0$.
+Let
+\[\Omega_\e:=\{\xi+i\eta\in\C^d:|\eta|<\e|\xi|\},\qquad\e>0.\]
+Then, $a$ is holomorphic on $\Omega_\e$ by condition.
+For $0<\e'<\e$, there is a small $r=r(\e,\e')>0$ such that $\zeta=(\zeta_1,\cdots,\zeta_d)\in\Omega_{\e'}$ and $|\zeta_1'-\zeta_1|\le r|\zeta|$ imply $(\zeta_1',\zeta_2,\cdots,\zeta_d)\in\Omega_\e$.
+With this $r$, write the Cauchy integral formula with respect to the first argument as follows:
+\[\partial_1a(\zeta)=\frac1{2\pi i}\int_{|\zeta_1'-\zeta_1|=r|\zeta|}\frac{a(\zeta_1',\zeta_2,\cdots,\zeta_d)}{(\zeta'_1-\zeta_1)^2}\,d\zeta'_1,\qquad\zeta\in\Omega_{\e'}.\]
+Thus we have an estimate
+\[|\partial_1a(\zeta)|\le \frac1{2\pi}r|\zeta|\frac{C(1+(1+r^2)|\zeta|^2)^{m/2}}{(r|\zeta|)^2}\lesssim\frac{(1+|\zeta|^2)^{m/2}}{|\zeta|},\qquad\zeta\in\Omega_{\e'},\]
+so now we obtain for some small $c>0$ that
+\[|\partial_1a(\zeta)|\lesssim(1+|\zeta|^2)^{(m-1)/2},\qquad\zeta\in\Omega_{\e'}\setminus B(0,c).\]
+Since the index 1 can be changed into any indices, by taking a finite decreasing sequence of $\e'>0$, we get our claim by the induction.
+\end{pf}
+
+\begin{pf}[Solution of 2]
+(1)
+The Schwartz kernel of the operator $\cF a^w(x,D_x)\cF^*$ is given by
+\begin{align*}
+k(\xi,\eta)
+&=(2\pi)^{-2d}\int_{\R^{3d}}e^{i(-x\xi+(x-y)\zeta+y\eta)}a(\frac{x+y}2,\zeta)\,dx\,dy\,d\zeta\\
+&=(2\pi)^{-2d}2^d\int_{\R^{3d}}e^{i(-x\xi+2(x-z)\zeta+(2z-x)\eta)}a(z,\zeta)\,dx\,dz\,d\zeta\\
+&=(2\pi)^{-2d}2^d\int_{\R^{3d}}e^{-ix(\xi+\eta-2\zeta)-i2z(\zeta-\eta)}a(z,\zeta)\,dx\,dz\,d\zeta\\
+&=(2\pi)^{-2d}(-1)^d\int_{\R^{3d}}e^{-i2z(\frac{\xi+\eta}2-\eta)}a(z,\frac{\xi+\eta}2)\,dz\\
+&=(2\pi)^{-2d}(-1)^d\int_{\R^{3d}}e^{i(\xi-\eta)(-z)}a(z,\frac{\xi+\eta}2)\,dz\\
+&=(2\pi)^{-2d}\int_{\R^{3d}}e^{i(\xi-\eta)z}a(-z,\frac{\xi+\eta}2)\,dz,
+\end{align*}
+which can be interpreted to be the kernel of the operator $a^w(-D_\xi,\xi)$.
+The integral formula for the kernel is justified for $a\in S^0_{0,0}$ when we do the above same computation with Schwartz test functions.
+\end{pf}
+
+\begin{pf}[Solution of 4]
+(1)
+We have $\operatorname{sing}\supp(\delta)=\{0\}$.
+Since
+\[\cF(\chi\delta)(\xi)=\chi(0)\cF(\delta)(\xi)=(2\pi)^{-\frac d2}\chi(0)\]
+is constant for $\chi\in C_c^\infty(\R^d)$, we have $\operatorname{WF}(\delta)=\{(0,\xi)\in\R^{2d}:\xi\ne0\}$.
+
+(2)
+We have $\operatorname{sing}\supp(\delta\otimes1)=\{(0,x'')\in\R^p\times\R^q:x''\in\R^q\}$.
+Since
+\begin{align*}
+\cF(\chi(\delta\otimes1))(\xi',\xi'')
+&=\cF(\delta\otimes(\chi|_{\{0\}\times\R^q}))(\xi',\xi'')\\
+&=\cF(\delta)(\xi')\cF(\chi|_{\{0\}\times\R^q})(\xi'')\\
+&=(2\pi)^{-\frac p2}\cF(\chi|_{\{0\}\times\R^q})(\xi'')
+\end{align*}
+is constant along the direction of $\xi'$ for $\chi\in C_c^\infty(\R^p\times\R^q)$, we have $\operatorname{WF}(\delta\otimes1)=\{(0,x'',\xi',0):\xi'\ne0\}$.
+
+(3)
+We have $\operatorname{sing}\supp(\delta_{S^{d-1}})=S^{d-2}$.
+For test functions $\f=\f(\xi)$, we have
+\begin{align*}
+\<\cF(\chi\delta_{S^{d-1}}),\f\>
+&=\chi(x)\delta_{S^{d-1}}(\cF^*\f)\\
+&=\int_{S^{d-1}}\chi(x)(2\pi)^{-\frac d2}\int e^{ix\xi}\f(\xi)\,d\xi\,d\sigma(x)\\
+&=(2\pi)^{-\frac d2}\int\left(\int_{S^{d-1}}\chi(x)e^{ix\xi}\,d\sigma(x)\right)\f(\xi)\,d\xi
+\end{align*}
+implies
+\[\cF(\chi\delta_{S^{d-1}})(\xi)=(2\pi)^{-\frac d2}\int_{S^{d-1}}\chi(y)e^{iy\xi}\,d\sigma(y).\]
+Without loss of generality, fix a point $x=(1,0,\cdots,0)$ in the singular support.
+If $\xi$ is not parallel to $x$, then we can take $\chi\in C_c^\infty(\R^d)$ with $\chi(x)\ne0$ on a small support so that $\cF(\chi\delta_{S^{d-1}})(\xi)$ vanishes out.
+Then, we have three possibilities for $\xi=(t,0,\cdots,0)$; $t<0$, $t>0$, $t\ne0$.
+We have a further calculation with the assumption that $\xi$ is parallel to $x$ and the coordinate representation $y=(z,\sqrt{1-z^2}w)\in S^{d-1}$ for $z\in[-1,1]$ and $w\in S^{d-2}$ as
+\[\cF(\chi\delta_{S^{d-1}})(\xi)=\int_{-1}^1\int_{S^{d-2}}\chi(z,\sqrt{1-z^2}w)e^{itz}(1-z^2)^{\frac{d-3}2}\,d\sigma(w)\,dz.\]
+If we introduce a function $a(z):=(1-z^2)^{\frac{d-3}2}\int_{S^{d-2}}\chi(z,\sqrt{1-z^2}w)\,d\sigma(w)$ supported on $[-1,1]$, then
+\[\cF(\chi\delta_{S^{d-1}})(\xi)=\cF^*a(\xi).\]
+Since 
+\[a(1-\e)\sim|S^{d-2}|\chi(1,0)(2\e)^{\frac{d-3}2},\qquad a(-1+\e)\sim|S^{d-2}|\chi(-1,0)(2\e)^{\frac{d-3}2}\]
+as $\e\to0+$, the condition $\chi(1,0)\ne0$ implies $\cF^*a$ does not decay at sufficiently fast speed.
+It means the wave front set includes the both case of $t<0$ and $t>0$.
+Thus $\operatorname{WF}(\delta_{S^{d-1}})=\{(x,tx):t\ne0\}$.
+
+(4)
+We have $\operatorname{sing}\supp((x+i0)^{-1})=\{0\}$.
+Note that
+\[\cF((x+i0)^{-1})(\xi)=-i(2\pi)^{-\frac12}\1_{(-\infty,0]}(\xi).\]
+Therefore,
+\[\cF(\chi(x+i0)^{-1})(\xi)=\cF(\chi)*\cF((x+i0)^{-1})(\xi)=i(2\pi)^{-\frac12}\int_\xi^\infty\cF(\chi)(\eta)\,d\eta,\]
+which implies
+\[\lim_{\xi\to\infty}\cF(\chi(x+i0)^{-1})(\xi)=0,\qquad\lim_{\xi\to-\infty}\cF(\chi(x+i0)^{-1})(\xi)=i\chi(0)\ne0.\]
+Therefore $\operatorname{WF}((x+i0)^{-1})=\{(0,\xi):\xi<0\}$.
+
+(5)
+We first claim the characteristic function $1\otimes H$ of the upper half plane has the wave front set $\{(x,0,0,\eta):x\in\R,\eta\ne0\}$, where $H=\1_{[0,\infty)}$ denotes the Heaviside step function.
+Its singular support is clealy $\{(x,0):x\in\R\}$.
+Fix a point, say $(0,0)$, in this singular support.
+Take $\chi(x,y)=\chi_1(x)\chi_2(y)$ with $\chi(0,0)\ne0$ so that
+\[\cF(\chi(1\otimes H))(\xi,\eta)=\cF(\chi_1)(\xi)\cF(\chi_2 H)(\eta).\]
+Then $(0,\infty)\to\C:t\mapsto\cF(\chi(1\otimes H))(t\xi,t\eta)$ decay rapidly if $\xi\ne0$, so
+\[\operatorname{WF}(1\otimes H)\subset\{(x,0,0,\eta):x\in\R,\eta\ne0\}.\]
+The inclusion is in fact the equality because the wave front set is not empty and the symmetry implies that $(x,0,0,\eta)\in\operatorname{WF}(1\otimes H)$ is equivalent to $(x,0,0,-\eta)\operatorname{WF}(1\otimes H)$.
+Then, we can eaily extend the above argument to show
+\[\operatorname{WF}(u)=\{(r,0,0,t),(r\cos\alpha,r\sin\alpha,-t\sin\alpha,t\cos\alpha):r>0,t\ne0\}\cup\{(0,0,\xi,\eta):(\xi,\eta)\in\R^2\}.\qedhere\]
+\end{pf}
+
+\begin{pf}[Solution of 5]
+(1)
+Fix $x$.
+Since $\xi\mapsto a(x,\xi)$ is integrable, we have the explicit formula for the Schwartz kernel
+\[k(x,y)=(2\pi)^{-d}\int e^{i(x-y)\xi}a(x,\xi)\,d\xi\]
+of the operator $a(x,D)$ by applying the Fubini on
+\[a(x,D)u(x)=(2\pi)^{-d}\iint e^{i(x-y)\xi}a(x,\xi)u(y)\,dy\,d\xi.\]
+We claim that $k$ is diagonally supported from the locality condition of $a(x,D)$.
+In other words, we will show $y=x$ if $y$ satisfies $k(x,y)\ne0$.
+If the claim is true, then because the Fourier transform maps an integrable function to a continuous function, $k(x,y)$ is continuous with respect to $y$ so that $k(x,y)\equiv0$.
+
+Suppose $y$ satisfies $k(x,y)\ne0$, and take $u_n\in C_c^\infty(\R^d)$ such that $\supp u_n\subset B(y,n^{-1})$ and $u_n\ge0$.
+Since the integral
+\[a(x,D)u_n(x)=\int k(x,y)u_n(y)\,dy\]
+eventually belongs to $\C\setminus\{0\}$ as $n$ goes to infinity, we can deduce
+\[x\in\supp a(x,D)u_n\subset\supp u_n,\]
+which implies $x\in\{y\}$.
+So we are done.
+
+(2)
+The integral by part provides
+\[(\partial_\xi a)(x,D)u(y)=-iya(x,D)u(y)+ia(x,D)(M_xu)(y),\]
+which implies the locality as follows:
+\[\supp(\partial_\xi a)(x,D)u
+\subset\supp a(x,D)u \cup \supp a(x,D)(M_xu)
+\subset\supp u\cap\supp M_x u=\supp u,\]
+where $M_x$ denotes the multiplication operator by the identity function.
+Then, the desired result follows from the induction.
+
+(3)
+Note that $\partial_\xi^\alpha a\in S^{m-\rho|\alpha|}_{\rho,\delta}(\R^{2d})$.
+Since $\rho>0$, if we take $\alpha$ such that $m-\rho|\alpha|<-d$, then $\partial_x^\alpha a\equiv0$ by the part (1) and (2).
+Therefore, $a$ is a polynomial in $\xi$ so that $a(x,D)$ is a partial differerntial operator.
+\end{pf}
+
+\begin{pf}[Solution of 6]
+(1)
+Note
+\[\Re\psi(x)=B(x_1)-B(x_1)^2+x_2^2.\]
+Since
+\[\frac{B(x_1)-B(x_1)^2}{B(x_1)}\to1\]
+as $x_1\to0$, we have $B(x_1)\lesssim B(x_1)-B(x_1)^2\lesssim B(x_1)$ at $|x_1|\ll1$.
+
+(2)
+We can check
+\[a^*(x,D)=D_1-ib(x_1)D_2,\qquad a^*(x,D)\psi=0,\qquad a^*(x,D)e^{-\mu\psi(x)}=0.\]
+
+
+\end{pf}
+
+\end{document}

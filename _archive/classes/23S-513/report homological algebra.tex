@@ -1,0 +1,124 @@
+\documentclass{../../../small}
+\usepackage{../../../ikhanchoi}
+
+\begin{document}
+
+\title{Homological Algebra}
+\author{Ikhan Choi}
+\maketitle
+
+\renewcommand{\theprb}{\arabic{prb}}
+
+\begin{prb}
+Show that if $n\ge2$ is an integer which is not a power of a prime, then there is a projective $\Z/n\Z$-module which is not free.
+\end{prb}
+\begin{sol}
+\end{sol}
+
+\begin{prb}
+Show that if $n$ is a power of prime, then every projective $\Z/n\Z$-module is free.
+\end{prb}
+\begin{sol}
+\end{sol}
+
+\begin{prb}
+Let $p$ be a prime and $M_i$ are abelian groups, where $i\in\{1,2,3\}$.
+Suppose that $f:M_1\to M_2$ and $g:M_2\to M_3$ are group homomorphisms satisfying $g\circ f=0$, and that the homomorphisms $M_i\to M_i:x\mapsto px$ are injective for all $i$.
+Consider a sequence
+\[0\to M_1/p^nM_1\xrightarrow{f_n}M_2/p^nM_2\xrightarrow{g_n}M_3/p^nM_3\to0,\]
+where $f_n$ and $g_n$ are homomorphisms naturally induced from $f$ and $g$.
+Show that the following statements are equivalent:
+\begin{enumerate}[(i)]
+\item The above sequence is exact for an integer $n\ge1$.
+\item The above sequence is exact for all integer $n\ge1$.
+\end{enumerate}
+\end{prb}
+\begin{sol}
+\end{sol}
+
+\begin{prb}
+Let $R:=\Z/n\Z$ for an integer $n\ge2$.
+\begin{enumerate}[(1)]
+\item Show that an $R$-module $M$ is injective if and only if for every $a\in M\setminus\{0\}$ there exist $b\in M$ and $m\mid n$ such that the order of $a$ is $n/m$ and $a=mb$.
+\item Let $m$ and $l$ be divisors of $n$. Using an injective resolution of $\Z/m\Z$ in the category of $R$-modules, compute $\Ext_R^i(\Z/l\Z,\Z/m\Z)$.
+\end{enumerate}
+\end{prb}
+\begin{sol}
+\end{sol}
+
+\begin{prb}
+Let $R=\C[x,y]$.
+\begin{enumerate}[(1)]
+\item Compute $\Ext_R^i(R/(x,y),R)$.
+\item Are $\C(x,y)$ and $\C(x,y)/\C[x,y]$ injective $R$-modules?
+\end{enumerate}
+\end{prb}
+\begin{sol}
+\end{sol}
+
+\begin{prb}
+For a prime $p$, is the ideal $(p,x)$ of $\Z[x]$ a flat $\Z[x]$-module?
+\end{prb}
+\begin{sol}
+\end{sol}
+
+\begin{prb}
+Let $A$ be a commutative ring and $B$ be a $A$-algebra.
+Let $d$ be a positive integer and suppose an $A$-module $M$ satisfies $\Tor^A_n(B,M)=0$ for $0<n\le d$.
+Show that for any $B$-module $N$ we have $\Ext_B^m(B\otimes AM,N)\cong\Ext_A^m(M,N)$ for $0\le m\le d$.
+\end{prb}
+\begin{sol}
+\end{sol}
+
+\begin{prb}
+Let $L_\bullet$ be a chain complex of finitely generated free abelian groups.
+Here we do not assume $L$ is bounded below.
+For a prime $p$ and an integer $n$, define $r_{n,p}:=\dim_{\F_p}H_n(L_\bullet\otimes_\Z\F_p)$.
+Show that the following are equivalent:
+\begin{enumerate}[(i)]
+\item The integer $r_{n,p}$ does not depend on $p$ for all $n$.
+\item The homology group $H_n(L_\bullet)$ is free for all $n$.
+\end{enumerate}
+\end{prb}
+\begin{sol}
+\end{sol}
+
+\begin{prb}
+Define a category $\cC$ as follows: an object is a tuple $\cM=(M_0,M_1,f_0,f_1)$ of abelian groups $M_0,M_1$ and homomorphisms $f_i:M_0\to M_1$ with $i\in\{0,1\}$, and a morphism between $\cM=(M_0,M_1,f_0,f_1)$ and $\cM'=(M_0',M_1',f_0',f_1')$ is a pair $\f=(\f_0,\f_1)$ of homomorphisms $\f_i:M_i\to M_i'$ such that $\f_1\circ f_j=f_j'\circ\f_0$ for $i,j\in\{0,1\}$.
+\begin{enumerate}[(1)]
+\item Show that $\cC$ is abelian.
+\item For an abelian group $N$, define objects $r_0(N):=(N,0,0,0)$ and $r_1(N):=(N\otimes N,N,\pr_0,\pr_1)$ in $\cC$. Show that for any object $\cM=(M_0,M_1,f_0,f_1)$ in $\cC$ there are natural isomorphisms
+\[\Hom_\cC(\cM,r_0(N))\cong\Hom(M_0,N),\qquad\Hom_\cC(\cM,r_1(N))\cong\Hom(M_1,N).\]
+\item Show that $\cC$ has enough injective objects.
+\item Define a functor $F:\cC\to\mathbf{Ab}$ such that $F(\cM):=\{m\in M_0:f_0(m)=f_1(m)\}$. Show that $R^1F(\cM)=\coker(f_0-f_1)$ and $R^iF=0$ for $i\ge2$, where $R^iF$ denotes the right derived functor.
+\end{enumerate}
+\end{prb}
+\begin{sol}
+\end{sol}
+
+\begin{prb}
+Let $\cA$ be an abelian category with enough injective objects.
+Let $C^{\ge0}(\cA)$ be an abelian category of cochain complexes $K^\bullet$ such that $K^n=0$ for $n<0$.
+\begin{enumerate}[(1)]
+\item For an integer $n\ge0$, find the right adjoint functor of the functor $e_n^*:C^{\ge0}(\cA)\to\cA:K^\bullet\mapsto K^n$.
+\item Show that $C^{\ge0}(\cA)$ has enough injective objects.
+\item Show that the right derived functor of the left exact functor $H^0:C^{\ge0}(\cA)\to\cA:K^\bullet\mapsto H^0(K^\bullet)$ is given by $H^n:C^{\ge0}(\cA)\to\cA:K^\bullet\mapsto H^n(K^\bullet)$ for $n\ge0$.
+\end{enumerate}
+\end{prb}
+\begin{sol}
+\end{sol}
+
+\begin{prb}
+Give an example of an abelian category in which the direct product exists and the direct product does not preserve right exact sequences.
+\end{prb}
+\begin{sol}
+\end{sol}
+
+\begin{prb}
+Give an example of an additive category $\cC$ with kernels and cokernels in which a morphism $f:A\to B$ such that $\operatorname{coim}f\to\im f$ is not epi exists.
+\end{prb}
+\begin{sol}
+
+\end{sol}
+
+\end{document}

@@ -370,15 +370,42 @@ bounded compact support <-> lebesgue
 
 \chapter{Continuous functions}
 \section{Uniform convergence}
+
+\begin{prb}
+Let $X$ be a compact space.
+\begin{parts}
+\item $C(X)$ is complete.
+\end{parts}
+\end{prb}
 \begin{pf}
-Divide the error
+(a)
+Suppose $f_m$ is a Cauchy sequence in $C(X)$.
+Since $f_m$ is Cauchy pointwise, we can define the pointwise limit $f$.
+We first claim that $f_m$ converges to $f$ uniformly.
+Fix $\e>0$.
+Write
+\[|f_m(x)-f(x)|\le\|f_m-f_{m'}\|+|f_{m'}(x)-f(x)|.\]
+Since $f_m$ is uniformly Cauchy, there is $m_0$ such that $m,m'>m_0$ implies
+\[|f_m(x)-f(x)|<\e+|f_{m'}(x)-f(x)|.\]
+Taking limit $m'\to\infty$, we have
+\[|f_m(x)-f(x)|\le\e+0.\]
+Taking the supremum over $x\in X$ and limit $m\to\infty$, we obtain
+\[\lim_{m\to\infty}\|f_m-f\|\le\e.\]
+Since $\e$ is arbitrary, we have the uniform limit $f_m\to f$.
+
+Now we claim $f$ is continuous.
+Let $x\in X$ and suppose $x_n$ converges to $x$.
+Divide the error as
 \[|f(x_n)-f(x)|\le|f(x_n)-f_m(x_n)|+|f_m(x_n)-f_m(x)|+|f_m(x)-f(x)|.\]
-Using the uniform convergence, we can take $m$ such that $\|f_m-f\|<\e$, so we have
+Using the uniform convergence, we can take sufficiently large $m$ such that $\|f_m-f\|<\e$, so we have
 \[|f(x_n)-f(x)|<\e+|f_m(x_n)-f_m(x)|+\e.\]
 Then, taking $\limsup_{n\to\infty}$ on the both-hand sides, we get
 \[\limsup_{n\to\infty}|f(x_n)-f(x)|\le\e+0+\e=2\e.\]
 Since $\e>0$ has been arbitrarily taken,
 \[\lim_{n\to\infty}|f(x_n)-f(x)|=0.\]
+
+(b)
+
 \end{pf}
 
 \section{Arzela-Ascoli theorem}

@@ -332,7 +332,7 @@ No, the translation $\R\leftarrow\Q$.
 
 \begin{prop}
 Let $X$ be a right $G$-space which is free.
-The quotient map $\pi:X\to X/G$ defines a principal $G$-bundle if and only if $X\curvearrowright G$ strongly freely(i.e. $X\times X\to G:(x,xg)\mapsto g$ is continuous) and there is a local trivialization for some $y\in X/G$.
+The quotient map $\pi:X\to X/G$ defines a principal $G$-bundle if and only if $X\curvearrowright G$ strongly freely(i.e. $X\times X\to G:(x,xg)\mapsto g$ is continuous) and there is a local section for some $y\in X/G$.
 \end{prop}
 \begin{pf}
 ($\Rightarrow$) Clear.
@@ -510,7 +510,7 @@ E_1\ar{rr}\ar{dr}&&f^*E_2\ar{dl}\ar{rr}&\qquad&E_2\ar{d}\\
 &B_1\ar{rrr}{f}&&&B_2
 \end{cd}
 \end{pf}
-\begin{exe*}6.
+\begin{exe*}[6]\,
 \begin{enumerate}[(1)]
 \item Check that $f^*\eta$ over $B_1$ is an $F$-bundle which have $G$ as the structure group.
 \item Fill the gap of the above proof of Lemma 3.1.
@@ -520,6 +520,12 @@ E_1\ar{rr}\ar{dr}&&f^*E_2\ar{dl}\ar{rr}&\qquad&E_2\ar{d}\\
 Let $\xi=(F\to E\to B,G)$ be a bundle and $A$ be a paracompact space.
 If there is a homotopy $F:A\times I\to B:(x,t)\mapsto f_t(x)$, then $f_0^*\xi\cong f_1^*\xi$ over $B_1$.
 \end{thm*}
+\begin{pf}
+Consider the maps $\e_i:A\to A\times\{i\}$ for $i\in\{0,1\}$.
+Since $\e_1=r\circ \e_0$, we have
+\[\e_1^*\xi=(r\e_0)^*\xi=r^*\e_0^*\xi=\e_0^*\xi,\]
+by Step 3(see below).
+\end{pf}
 \begin{cor*}
 Let $A,B$ be paracompact homotopy equivalent spaces.
 Then, there is a one-to-one correspondence between the sets of equivalence classes of bundles with fiber $F$ and structure group $G$ over $A$ and $B$ respectively.
@@ -530,26 +536,157 @@ In the following lemmas, let $\xi=(F\to E\to A\times I,G)$ and $A$ a paracompact
 If $\xi|_{A\times[a,b]}$ and $\xi|_{A\times[b,c]}$ are trivial, then $\xi|_{A\times[a,c]}$ is also trivial, where $0\le a<b<c\le1$.
 \end{lem*}
 \begin{pf}
-	
+Let $\f_1:E_{A\times[a,b]}\to(A\times[a,b])\times F$ and $\f_2:E_{A\times[b,c]}\to(A\times[b,c])\times F$ be trivializations.
+The transition $g_{21}:A\to G\subset\Homeo(F)$ is continuous, where
+\[(A\times\{b\})\times F\xrightarrow{\f_1^{-1}}E|_{A\times\{b\}}\xrightarrow{\f_2}(A\times\{b\})\times F\]
+maps $((x,b),v)$ to $((x,b),g_{21}(x)(v))$.
+Then, the map $w:(A\times[a,c])\times F\to E|_{A\times[a,c]}$ given by
+\[w((x,t),v):=\begin{cases}\f_1^{-1}((x,t),v)&,t\le b\\\f_2^{-1}((x,t),g_{21}(x)(v))&,t\ge b\end{cases}\]
+is well-defined, hence a bundle isomorphism.
 \end{pf}
 
 \begin{lem*}[Step 2 of 3.2]
 Each point $a\in A$ has an open neighborhood $U$ of $a$ such that $\xi|_{U\times I}$ is trivial.
 \end{lem*}
 \begin{pf}
-	
+If we cover $\{a\}\times I$ with $U_t\times(a_t,b_t)$ for each $t\in I$, then by compactness we can define an open $U:=\bigcap U_t$ by choosing finite numbers of $t$.
+By Step 1, $\xi$ is trivial on $U\times I$.
 \end{pf}
 
 \begin{lem*}[Step 3 of 3.2]
-If we define $r:A\times I\to A\times I:(a,t)\mapsto(a,1)$, then $\xi\cong r^*\xi$.
+Suppose $A$ is paracompact.
+If we define $r:A\times I\to A\times I$ by $r(a,t)=(a,1)$, then $\xi\cong r^*\xi$.
 \end{lem*}
 \begin{pf}
-	
+Step 2 implies that we have an open cover $\{V_\alpha\times I\}_\alpha$ of $A\times I$ such that $\xi$ is trivial on $V_\alpha\times I$.
+Since $A$ is paracompact, we may assume $V_\alpha$ is locally finite.
+Take a partition of unity $w_\alpha$ which subordinates to $V_\alpha$.
+Define
+\[\cU_\alpha(x):=\frac{w_\alpha(x)}{\max_\gamma w_\gamma(x)}.\]
+
+Let $\f_\alpha:p^{-1}(V_\alpha\times I)\to(V_\alpha\times I)\times F$ be a local trivialization.
+Define $(\tilde f_\alpha,f_\alpha):\xi|_{V_\alpha\times I}\to\xi|_{V_\alpha\times I}$ as follows:
+$f_\alpha:V_\alpha\times I\to V_\alpha\times I$ and $\tilde f_\alpha:p^{-1}(V_\alpha\times I)\to p^{-1}(V_\alpha\times I)$ satisfy
+\[f_\alpha(a,t):=(a,\max(\cU_\alpha(a),t)),\qquad \tilde f_\alpha(\f_\alpha^{-1}((a,t),g)):=\f_\alpha^{-1}(a,\max\{\cU_\alpha(a),t\},g).\]
+Since $\supp\cU_\alpha\subset V_\alpha$, $\tilde f_\alpha$ is well-defined.
+
+Assign any linear order on the index set $S$ containing $\alpha$.
+With $(\tilde f_\alpha,f_\alpha)$, define $(\tilde f,f):\xi\to\xi$ as follows.
+For each $a\in A$, there is an open neighborhood $V(a)$ such that $V(\alpha)\cap V_\alpha\ne\varnothing$ for at most finite number of $\alpha$ because $V_\alpha$ is locally finite.
+Give the indices $\alpha$ their names $\alpha(1)<\cdots<\alpha(n)$ in order.
+Then, $r:A\times I\to A\times I$ has the equality
+\[r(a,t)=f_{\alpha(n)}\circ\cdots\circ f_{\alpha(1)}(a,t).\]
+Similarly we can define $\tilde r:E\to E$ such that
+\[\tilde r(x):=\tilde f_{\alpha(n)}\circ\cdots\circ\tilde f_{\alpha(1)}(x).\]
+By Lemma 3.1, we have $\xi\cong r^*\xi$.
 \end{pf}
+
+
+\begin{thm*}[3.4]
+Let $G$ be a topological group.
+Then, there is a principal $G$-bundle $\xi_G:=(G\to EG\to BG,G)$ such that there is a one-to-one correspondence between $[B,BG]$ and the equivalence classes of principal $G$-bundles, via $[f]\mapsto[f^*\xi_G]$.
+The space $BG$ is called the \emph{classifying space} and $\xi_G$ is called the \emph{universal principal $G$-bundle}.
+\end{thm*}
 
 
 \newpage
 \section{Day 7: May 22}
+
+\subsection*{Milnor's construction}
+
+Let $EG$ be the countable \emph{join}, i.e.
+\begin{align*}
+EG=G\circ\cdots\circ G:=\Bigl\{&((t_0,t_1,\cdots),(g_0,g_1,\cdots))\in[0,1]^\infty\times G^\infty:\\
+&\quad t_i=0\text{ but finitely many },\sum_{i=0}^\infty t_i=1\Bigr\}/\sim,
+\end{align*}
+where the equivalence relation is given by $((t_0,t_1,\cdots),(g_0,g_1,\cdots))\sim((t'_0,t'_1,\cdots),(g'_0,g'_1,\cdots))$ if and only if $t_n=t'_n$ for all $n$ and $g_n=g'_n$ for all $n$ satisfying $t_n=t'_n\ne0$.
+We will write the element $((t_0,t_1,\cdots),(g_0,g_1,\cdots))$ as $(t_0g_0,t_1g_1,\cdots)$.
+Endow the coarsest topology on $EG$ such that the maps $t_i:EG\to[0,1]$ and $g_i:t_i^{-1}(0,1]\to G$ are continuous.
+Consider the right action $EG\curvearrowright G$ given by
+\[(t_0g_0,t_1g_1,\cdots)\cdot g:=(t_0g_0g,t_1g_1g,\cdots).\]
+As the orbit space we define $BG:=EG/G$ with the quotient topology.
+
+\begin{lem*}[3.5]
+$p:EG\to BG$ is a principal $G$-bundle.
+\end{lem*}
+\begin{pf}
+We will check the conditions in Proposition 2.10.
+\begin{itemize}
+\item We can see the action $EG\times G\to EG$ is continuous and free.
+\item We can directly check $EG\times EG\to G:(x,xg)\mapsto g$ is continuous.
+\item Let $V_i:=p(t_i^{-1}(0,1])$ be an open set. Then, $s_i:V_i\to EG:p(t_0g_0,t_1g_1,\cdots)\mapsto(t_0g_0,t_1g_1,\cdots)$ is a local section.
+\end{itemize}
+\end{pf}
+
+
+\begin{lem*}[3.6]
+Let $B$ be a paracompact space and $\xi=(G\to E\to B,G)$ be a principal $G$-bundle.
+Then, there is a \emph{countable} partition of unity $\{v_n\}_{n=0}^\infty$ on $B$ such that $\xi|_{v_n^{-1}(0,1]}$ is trivial, $\{v_n^{-1}(0,1]\}_{n=0}^\infty$ is an open cover of $B$, and $\{v_n\}_{n=0}^\infty$ is locally finite.
+\end{lem*}
+\begin{pf}
+By the paracompactness, we have a possibly uncountable partition of unity $\{w_t\}_{t\in T}$ satisfying the three conditions in the statement.
+We can see that $S(b):=\{t\in T:w_t(b)>0\}$ is finite.
+For each finite set $S\in T$,
+\[\cU_S:B\to[0,1]:b\mapsto\max\{0,\min_{\substack{s\in S\\t\in T\setminus S}}\{w_s(b)-w_t(b)\}\}\]
+is a continuous function, and
+\[V(S):=\cU_S^{-1}((0,1])=\{b:w_s(b)-w_t(b)\text{ for }s\in S,\ t\in T\setminus S\}\]
+is an open set such that $V(S)\subset\bigcup_{s\in S}w_s^{-1}(0,1]$.
+If, in addition, $S,S'\subset T$ satisfy $|S|=|S'|<\infty$, then $S=S'$ or $V(S)\cap V(S')=\varnothing$.
+Here we can define a disjoint union $V_m:=\bigcup_{|S|=m}V(S)$ and a finite sum $u_m(b):=\sum_{|S|=m}\cU_S(b)$ so that we have $V_m=u_m^{-1}((0,1])$ for each $m$.
+Thus, $\{V_m\}_{m=0}^\infty$ is an open cover of $B$.
+Then, $\xi|_{V_m}$ is trivial since $\xi|_{V(S)}$ is trivial for each $S$, and $v_m(b):=u_m(b)/\sum_{n\ge0}u_n(b)$ provides our partition of unity.
+\end{pf}
+
+
+\begin{pf}[Proof of Theorem 3.4]
+We want to show $[B,BG]\to\mathrm{Prin}_G(B)$ is bijective.
+
+(Surjectivity)
+By Lemma 3.6, we have a countable partition of unity $v_m$ that subordinates to an open cover $V_m$, and local trivializations $\f_m:\pi^{-1}(V_m)\to V_m\times F$.
+With these, if we define
+\[\tilde f:E\to EG:z\mapsto(v_0(\pi(z))\pr_2(\f_0(z)),v_1(\pi(z))\pr_2(\f_1(z)),\cdots),\]
+where we set $v_m(\pi(z))=0$ and $\pr_2(\f_m(z))=e$ for $z\notin\pi^{-1}(V_m)$,
+then it induces a well-defined right $G$-equivariant $f:B\to BG$.
+Also $\tilde f$ is continuous according to the topology we have set on $EG$, so is $f$(\textbf{Exercise 7}).
+Since $(\tilde f,f):\xi\to \xi_G$ is now a bundle map, $\xi\cong f^*\xi_G$ over $B$.
+
+(Injectivity)
+We first claim that $\id_{BG}$ is homotopic to a continuous map $F_0^{odd}:BG\to BG$, which will be defined later, and satisfies that $F_0^{odd}(BG)=p(\{t_0g_0,t_1g_1,\cdots)$.
+Define
+\[\tilde F^{odd}:EG\times[0,1]\to EG:((t_0g_0,\cdots),s)\mapsto(t'_0g'_0,\cdots),\]
+where $t'_i$ and $g'_i$ are determined as follows: if $s\in[1-(\frac12)^n,1-(\frac12)^{n-1}]=:I_n$ for $n\ge0$, then we have
+\[t'_i:=\begin{cases}t_i&,0\le i\le n-1,\\\alpha_n(s)t_{n+j}&,i=n+2j\ (j\ge0),\\(1-\alpha_n(s))t_{n+j}&,i=n+2j+1\ (j\ge0),\end{cases}\qquad g'_i:=\begin{cases}g_i&,0\le i\le n-1,\\g_{n+j}&,i\in\{n+2j,n+2j+1\}\ (j\ge0),\end{cases}\]
+where $\alpha_n:I\to I$ is a continuous function such that $\alpha_n(0)=0$, $\alpha_n(1)=1$, $\alpha_n$ is constant outside $I_n$ and is linear on $I_n$, and if $s=1$, then $t'_i:=t_i$ and $g'_i=g_i$.
+Then, $\tilde F^{odd}$ is continuous.
+Since $\tilde F^{odd}$ is equivariant, it induces $F^{odd}:BG\times[0,1]\to BG$, which is a homotopy between $\id_{BG}$ and $F_0^{odd}:=F^{odd}(-,0)$.
+
+Now we prove the injectivity: if $f_0^*\xi\sim f_1^*\xi$, then $f_0\sim f_1$.
+Consider the pullback maps $\tilde f_0$ and $\tilde f_1$ of $\xi_G$.
+If $t_i$ and $g_i$ are given such that
+\[\tilde F_0^{even}\circ\tilde f_0=(t_0(x)g_0(x),0,t_2(x)g_2(x),0,\cdots),\quad\tilde F_0^{odd}\circ\tilde f_1=(0,t_1(x)g_1(x),0,t_3(x)g_3(x),\cdots),\]
+then
+\[\tilde F(x,s):=(st_0(x)g_0(x),(1-s)t_1(x)g_1(x),st_2(x)g_2(x),(1-s)t_3(x)g_3(x),\cdots)\]
+is right $G$-equivariant, which induces a homotopy $F:BG\times[0,1]\to BG$ between $F_0^{even}\circ f_0$ and $F_0^{odd}\circ f_1$.
+It implies
+\[f_0\sim F_0^{even}\circ f_0\sim F_0^{odd}\circ f_1\sim f_1.\qedhere\]
+\end{pf}
+
+\begin{ex*}
+If $G=S^1=\SO(2)=\rU(1)$, the Hopf bundle can be described by the pullback
+\[\begin{tikzcd}
+S^{2n+1} \ar{r}{\tilde f_n}\ar{d} & ES^1 \ar{d}\\
+\CP^n \ar{r}{f_n} & BS^1
+\end{tikzcd}\]
+where $\tilde f_n(z_0,\cdots,z_n)\mapsto(|z_0|^2\frac{z_0}{|z_0|},|z_1|^2\frac{z_1}{|z_1|},\cdots)$.
+By taking limit, we have a commutative diagram
+\[\begin{tikzcd}
+S^\infty \ar{r}{\tilde f}\ar{d} & ES^1 \ar{d}\\
+\CP^\infty \ar{r}{f} & BS^1
+\end{tikzcd}\]
+and $\tilde f$ has the inverse $(t_0g_0,t_1g_1,\cdots)\mapsto(\sqrt{t_0}g_0,\sqrt{t_1}g_1,\cdots)$.
+Therefore, $\xi_{S^1}=(S^1\to S^\infty\to\CP^\infty,S^1)$.
+\end{ex*}
+
 
 \newpage
 \section{Day 8: June 5}
@@ -945,5 +1082,159 @@ The Euler class is a characteristic class for oriented real vector bundles.
 The naturality of $H^n(E,E_0)\to H^n(B)$.
 The pullback of the Thom class, preseves fibers.
 \end{pf}
+
+
+
+
+\newpage
+\section{Day 11: June 26}
+
+\begin{prop*}[4.10]
+Let $\xi=(\R^m\to E\to X)$, $\xi':(\R^n\to E'\to Y)$ be oriented real vector bundles and $t_\xi$, $t_{\xi'}$ be their Thom classes.
+Define
+\[\xi\times\xi':=(\R^{m+n}\to E\times E'\to X\times Y).\]
+\begin{parts}
+\item With the orientation naturally induced on $\xi\times\xi'$, we have $t_{\xi\times\xi'}=t_\xi\times t_{\xi'}\in H^{m+n}(E\times E',(E\times E')_0)$.
+\item $e(\xi\times\xi')=e(\xi)\times e(\xi')\in H^{m+n}(X\times Y)$.
+\item If $X=Y$, then the Euler class of the Whitney sum(pullback of $\xi\times\xi'$ along the diagonal map) is $e(\xi\oplus\xi')=e(\xi)\smile e(\xi')\in H^{m+n}(X)$.
+\end{parts}
+\end{prop*}
+\begin{pf}
+If we show (a), then the rest easily follows.
+If we restrict to each fiber $(E\times E')_{(x,y)}=E_x\times E'_y$, then
+\[H^{m+n}(E_x\times E'_y,(E_x\times E_y)_0)\cong H^m(E_x,E_{x,0})\otimes H^n(E'_y,E'_{y,0}),\]
+where $u_{(x,y)}$ maps from $u_x\otimes u_y$.
+\end{pf}
+
+\begin{cor*}[4.11]
+If $\xi=(\R^n\to E\to B,\GL^+(n,\R)$ admits a nowhere vanishing section, then $e(\xi)=0$.
+\end{cor*}
+\begin{pf}
+The existence of nowhere vanishing section implies that $\xi$ admits a trivial line subbundle.
+Then, $e(\xi)=e(\R\otimes\xi/\R)=e(\R)\smile e(\xi/\R)=0\smile e(\xi/\R)=0$.
+\end{pf}
+
+\begin{exe*}[11]
+Let $\eta=(\R^{2n+1}\to E\to B,\GL^+(2n+1,\R))$.
+Show that $2e(\eta)=0\in H^{2n+1}(B)$.	
+\end{exe*}
+
+\subsubsection*{Gysin sequence}
+Let $\xi=(\R^n\to E\to B,\GL^+(n,\R))$.
+Then, there is a long exact sequence of cohomology:
+\[\cdots\to H^{q-1}(E_0)\to H^q(E,E_0)\to H^q(E)\to H^q(E_0)\to H^{q+1}(E,E_0)\to\cdots.\]
+Note that there are isomorphisms
+\[H^{q-n}(B)\xrightarrow{p^*,\sim}H^{q-n}(E)\xrightarrow{\cdot\smile t,\sim}H^q(E,E_0)\quad\text{ and }\quad H^q(B)\xrightarrow{p^*,\sim}H^q(E),\]
+so the long exact sequence becomes
+\[\cdots\to H^{q-1}(E_0)\xrightarrow{\cdot\smile e(\xi)} H^{q-n}(B)\to H^q(B)\to H^q(E_0)\to H^{q-n+1}(B)\to\cdots.\]
+This sequence is called the \emph{Gysin sequence}.
+
+\begin{ex*}\,
+\begin{parts}
+\item
+Consdier the cohomology ring $H^*(\RP^n)=H^*(\RP^n,\Z/2\Z)$.
+Let $\gamma_1=(\R\to E\to\RP^\infty)$ be the universal real line bundle.
+Note that $\RP^\infty=K(\Z/2\Z,1)=B\Z/2\Z$ and $E=S^\infty\times_{\Z/2\Z}\R$ because the associated principal bundle is given by $\Z/2\Z\to S^\infty\to\RP^\infty$.
+From the Gysin sequence
+\[H^{q-1}(E_0)\to H^{q-1}(\RP^\infty)\xrightarrow{\cdot\smile e(\gamma_1)}H^q(\RP^\infty)\to H^q(E_0)\]
+with $E_0\simeq S^\infty\simeq\{*\}$, we have an isomorphism
+\[\Z/2\Z\cong H^{q-1}(\RP^\infty)\xrightarrow{\cdot\smile e(\gamma_1)}H^q(\RP^\infty)\cong\Z/2\Z\]
+for $q\ge2$.
+Therefore $e(\gamma_1)$ is nonzero in $H^1(\RP^\infty)$, so it coincides with the Stiefel-Whitney class $w_1$.
+Also we have
+\[H^{-1}(\RP^\infty)\to H^0(\RP^\infty)\to H^0(E_0)\to H^0(\RP^\infty)\xrightarrow{\cdot\smile w_1}H^1(\RP^\infty)\to0,\]
+which gives
+\[0\to\Z/2\Z\to\Z/2\Z\to\Z/2\Z\to\Z/2\Z\to0.\]
+Hence we have a ring isomorphism $H^*(\RP^\infty,\Z/2\Z)\cong\Z/2\Z[w_1]$ to a polynomial ring.
+
+\item
+Consider the cohomology ring $H^*(\CP^\infty)=H^*(\CP^\infty,\Z)$.
+A complex vector bundle has a natural orientation as a real vector bundle(\textbf{Exercise 12}; If $(z_j)_j$ is an ordered $\C$-basis, then $(z_j,iz_j)_j$ is an ordered $\R$-basis.).
+Consider the universal line bundle $\gamma_1=(\C\to S^\infty\times_{\rU(1)}\C\to\CP^\infty)$.
+Similarly as (a), we have an isomorphism
+\[\cdot\smile e(\gamma_1):H^{q-2}(\CP^\infty)\to H^q(\CP^\infty)\]
+for $q\ge2$.
+Combining with $H^0(\CP^\infty)\cong\Z$ and $H^1(\CP^\infty)=0$, we have $H^*(\CP^\infty)\cong\Z[e(\gamma_1)]$, where $e(\gamma_1)\in H^2(\CP^\infty)\cong\Z$.
+\end{parts}
+\end{ex*}
+
+\begin{thm*}[4.13]
+Suppose $\CP^\infty=e^0\cup e^2\cup e^4\cup\cdots$ be the canonical cell decomposition.
+If we give an orientation on $e^2$ via $e^2\cong\CP^1$, then $\<e(\gamma_1),e^2\>=-1$.
+In other words,
+\[e(\gamma_1)=c_1(\gamma_1)=-1\in H^2(\CP^\infty)\cong\Z.\]
+\end{thm*}
+\begin{pf}
+Let $i:\CP^1\hookrightarrow\CP^\infty$ be the embedding as the 2-skeleton.
+Since $\<i^*(e(\gamma_1)),e^2\>=\<e(i^*\gamma_1),e^2\>$, we are enough only to consider the case on $\CP^1$.
+Precisely, we have $i^*\gamma_1=(\C\to S^3\times_{\rU(1)}\xrightarrow{p}\CP^1)$.
+For convenience, fix a section $\tilde s:\CP^1\to S^3\times_{\rU(1)}\C$ given by
+\[\tilde s([\lambda:\mu]):=\left(\left(\frac{\lambda}{\sqrt{|\lambda|^2+|\mu|^2}},\frac{\mu}{\sqrt{|\lambda|^2+|\mu|^2}}\right),\frac{\bar\lambda}{\sqrt{|\lambda|^2+|\mu|^2}}\right).\]
+
+Identify the 2-cell $e^2$ as the image of $\C\mapsto\CP^1:z\mapsto[z:1]$.
+We have a local trivialization on $e^2$:
+\[p^{-1}(e^2)\to e^2\times\C:[(z_1,z_2),w]\mapsto([z_1:z_2],\frac{z_2w}{|z_2|}\]
+such that
+\[[(z_1\alpha,z_2\alpha),\alpha^{-1}w]=[(z_1,z_2),w]\quad\text{ and }\quad([z_1\alpha:z_2\alpha],\frac{z_2\alpha\alpha^{-1}w}{|z_2\alpha|}\]
+with the inverse
+\[([z_1:z_2],w)\mapsto[\frac{|z_2|}{z_2\sqrt{|z_1|^2+|z_2|^2}}(z_1,z_2),w].\]
+Then, see the picture...
+%\[\begin{tikzcd}
+
+%\end{tikzcd}\]
+\end{pf}
+
+
+\begin{thm*}[4.14, Chern class and Stiefel-Whitney class]\,
+\begin{parts}
+\item We have ring isomorphisms
+\[H^*(B\rU(n))\cong H^*(B\GL(n,\C))\cong H^*(\mathrm{Gr}_n(\C^\infty))\cong\Z[c_1,c_2,\cdots,c_n]\]
+with the polynomial ring, where $c_i\in H^{2i}(\mathrm{Gr}_n(\C^\infty))$.
+\item We have ring isomorphisms
+\[H^*(B\rO(n),\Z/2\Z)\cong H^*(B\GL(n,\R),\Z/2\Z)\cong H^*(\mathrm{Gr}_n(\R^\infty),\Z/2\Z)\cong\Z/2\Z[w_1,w_2,\cdots,w_n]\]
+with the polynomial ring, where $w_i\in H^{i}(\mathrm{Gr}_n(\R^\infty),\Z/2\Z)$.
+\end{parts}
+\end{thm*}
+\begin{pf}
+(a)
+Consider the universal principal $\rU(1)$-bundle
+\[\xi_{\rU(1)}=(\rU(n)\to V_n^U(\C^\infty)\to\Gr_n(\C^\infty),\rU(n)).\]
+Then, with an embedding $A\mapsto\mat{1&0\\0&A}:\rU(n-1)\to\rU(n)$,
+\[(\rU(n-1)\to V_n^U(\C^\infty)\to V_n^U(\C^\infty)/\rU(n-1),\rU(n-1))\]
+is a universal principal $\rU(n-1)$-bundle.
+Let $\iota:B\rU(n-1)=V_n^U(\C^\infty)/\rU(n-1)\to\Gr_n(\C^\infty)=B\rU(n)$.
+Now we have a bundle
+\[(\rU(n)/\rU(n-1)\to B\rU(n-1)\xrightarrow{\iota}B\rU(n),\rU(n))\]
+with fiber $S^{2n-1}$.
+For the universal $n$-dimensional complex vector bundle
+\[\gamma_n=(\C^n\to E=V_n^U(\C^\infty)\times_{\rU(1)}\C^n\to\Gr_n(\C^\infty)),\]
+we have
+\begin{align*}
+E_0
+&=V_n^U(\C^\infty)\times_{\rU(n)}(\C^n\setminus\{0\})\\
+&\sim V_n^U(\C^\infty)\times_{\rU(n)}S^{2n-1}\\
+&\cong V_n^U(\C^\infty)/\rU(n-1)\\
+&=B\rU(n-1).
+\end{align*}
+Here the notation $\cong$ means the bundle isomorphism with fibers $S^{2n-1}$ over $B\rU(n)$.
+The Gysin sequnce with respect to $\gamma_n$ gives then
+\[H^{q-1}(B\rU(n-1))\to H^{q-2n}(B\rU(n))\xrightarrow{\cdot\smile e(\gamma_n)}H^q(B\rU(n))\xrightarrow{\iota^*}H^q(B\rU(n-1))\to H^{q-2n+1}(B\rU(n))\]
+For $n=1$, we have $H^*(B\rU(1))=H^*(\CP^\infty)=\Z[c_1]$.
+As an induction hypothesis, assume $H^*(B\rU(n-1))=\Z[c_1,\cdots,c_{n-1}]$.
+
+If $q-2n+1\le1$ with $q=2k$, then since
+\[\iota^*:H^q(B\rU(n))\to H^q(B\rU(n-1)):c_k\mapsto c_k\]
+is an isomoprhism, we have that $H^*(B\rU(n))\to H^q(B\rU(n-1))$ is surjective ring isomorphism.
+Therefore, we have a short exact sequence
+\[0\to H^{*-2n}(B\rU(n))\xrightarrow{\cdot\smile e(\gamma_n)}H^q(B\rU(n))\xrightarrow{\iota^*}H^q(B\rU(n-1))\to0.\]
+Hence if we let $c_n=e(\gamma_n)$, then
+\[0\to H^{*-2n}(B\rU(n))\xrightarrow{\cdot\smile c_n}H^*(B\rU(n))\xrightarrow{\iota^*}H^*(B\rU(n-1))\to0\]
+is exact so that $H^*(B\rU(n))\cong\Z[c_1,\cdots,c_n]$.
+\end{pf}
+\begin{defn*}[4.15]
+The element $c_i\in H^{2i}(B\rU(n))$ that has appeared in the proof of 4.14 is called the \emph{$i$th Chern class}.
+Similarly, $w_i\in H^i(B\rO(n),\Z/2\Z)$ is called the \emph{$i$th Stiefel-Whitney class}.
+In general, if $\xi=(\C^n\to E\to B)$ is an $n$-dimensional vector bundle and $f:B\to B\rU(n)$ is the classifying map of $\xi$, then we define the Chern class as $c_k(\xi)=f^*c_k$ if $1\le k\le n$, then $0$ if $k\ge n+1$.
+\end{defn*}
 
 \end{document}

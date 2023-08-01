@@ -1,6 +1,8 @@
 \documentclass{../../../small}
 \usepackage{../../../ikhanchoi}
 
+\DeclareMathOperator{\Int}{Int}
+
 \begin{document}
 \title{Three-dimensional Topology}
 \author{Ikhan Choi\\Lectured by Takahiro Kitayama\\University of Tokyo, Spring 2023}
@@ -1128,4 +1130,130 @@ Since $\chi(O)=\chi(A)=0$, $O\approx\Sigma_{0,2},\ N_{1,1}$, or $D^2(2,2)$, so $
 Since we have $\Sigma_{0,2}\times S^1\approx[0,1]\times S^1\times S^1$ and $N_{1,1}\tilde\times S^1\approx M(D^2;(2,1),(2,1))$ with different Seifert fibrations, $A$ becomes a vertical subsurface if we swap Seifert fibrations of $M$.
 \end{pf}
 
+
+\newpage
+\setcounter{section}{9}
+\section{Day 10: June 27}
+\setcounter{section}{8}
+
+\subsection*{8. Geometrization conjecture}
+
+\subsection{Hyperbolic manifolds}
+Suppose $M$ is a three-manifold with $\partial M=\varnothing$ or $\coprod T^2$.
+We say $M$ is \emph{hyperbolic} if the interior $\Int M$ admits a complete finite-volume Riemannian metric such that it is locally isometric to $\H^3$, or equivalently, there is a discrete subgroup $\Gamma$ of $\PSL(2,\C)$ such that $\Int M\approx\H^3/\Gamma$ with finite volume.
+
+\begin{thm}[Thurston]
+For the figure-eight knot, the Dehn surgery is hyperbolic if and only if $r\ne0,\pm1,\pm2,\pm3,\pm4$.
+\end{thm}
+
+Alexander's theorem(Thm 3.1) and Prop 3.6 imply:
+\begin{prop}
+Every hyperbolic manifold is irreducible.
+\end{prop}
+
+\begin{prop}
+If $M$ is hyperbolic such that $\pi_1(M)$ has a subgroup $\pi'$ isomorphic to $\Z^2$, then there are a torus component $T\subset\partial M$ and a loop $\gamma\in\pi_1(M)$ such that $\gamma\pi'\gamma^{-1}$ is a subgroup of the image of $\pi_1(T)\to\pi_1(M)$.
+\end{prop}
+Note that if $\Gamma<\PSL(2,\C)$ is isomorphic to $\Z^2$, then $\Gamma$ is conjugate to $\mat{\pm1&\Z+\omega\Z\\0&\pm1}$ for some $\omega\in\C\setminus\R$, and $\H^3/\Gamma\approx\C/(\Z+\omega\Z)\times(0,\infty)\approx T^2\times\R$.
+
+\begin{cor}
+Every hyperbolic manifold is atoroidal.
+\end{cor}
+
+\begin{thm}[Rigidity, Mostow-Prasad]
+Let $M,N$ be hyperbolic three-manifolds.
+Then, every isomorphism $\pi_1(M)\to\pi_1(N)$ is induced by a unique isometry $M\to N$.
+\end{thm}
+The rigidity implies that every geometric invariant(e.g.~volume) is a topological invariant.
+
+\begin{prop}
+The fundamental group of every hyperbolic three-manifold is linear over $\C$.
+\end{prop}
+\begin{pf}
+Consider $\pi_1(M)$ as a subgroup of $\PSL(2,\C)$, whose adjoint action gives rise to an embedding $\PSL(2,\C)\hookrightarrow\SL(3,\C)$.
+\end{pf}
+Mal'cev's theorem(Theorem 1.9) implies:
+\begin{cor}
+The fundamental group of every hyperbolic three-manifold is residually finite.
+\end{cor}
+
+
+\subsection{Geometrization conjecture}
+\begin{thm}[Geometrization conjecture, Perelman 02,03]
+Each component of the JSJ decomposition is either hyperbolic or Seifert.
+\end{thm}
+
+Ricci flow with surgery:
+\[\frac{\partial g(t)}{\partial t}=-2\mathrm{Ric}(g(t)).\]
+If the conjecture holds for sufficiently large $t$, then it holds for every $t$.
+For large $t$, we can do the thick-thin decomposition of $M$.
+The thick part, which always exists, has a hyperbolic structure, and the boundary of the decomposition is essential.
+If there is a thin part, then $M$ is Haken, for which the conjecture is true from the result by Thurston in 1982.
+
+Let $X$ be a simply connected homogeneous Riemannian manifold.
+We say $M$ is said to have a \emph{geometric structure} modeled on $X$ if $\Int M$ admits a complete finite-volume Riemannian metric such that it is locally isometric to $X$.
+
+$S^3,\R^3,\H^3,S^2\times\R,\H^2\times\R$.
+\[Nil:=\{\mat{1&x&y\\0&1&z\\0&0&1}:x,y,z\in\R\},\quad ds^2=dx^2+dy^2+(dz-xdy)^2.\]
+\[Sol:=\R^2\rtimes\R\text{ with }\R\curvearrowleft\R^2\ \mat{e^z&0\\0&e^{-z}}\text{ for }z\in\R,\quad ds^2=e^{2z}dx^2+e^{-2z}dy^2+dz^2.\]
+\[\tilde{\SL(2,\R)}=\tilde{UT\H^2}=\tilde{\PSL(2,\R)}\text{ as Riemannian manifolds.}\]
+
+
+\begin{thm}[Geometrization conjecture]
+There is an (possibly empty) essential surface $S\subset M$ consisting of tori such that each component of $M\setminus\nu(S)$ has a geometric structure modeled on one of the eight model geometries.
+Moreover, such $S$ with minimal $\#\pi_0(S)$ is unique up to isotopy.
+\end{thm}
+\begin{rmk*}
+There is a $Sol$-manifold admitting a nontrivial JSJ decomposition.
+\end{rmk*}
+\begin{prop}
+If $M$ has a geometric structure modeled on except $\H^3$ and $Sol$, then $M$ is Seifert.
+\end{prop}
+\begin{prop}
+Every $Sol$-manifold $M$ is finitely covered by a $T^2$-bundle over $S^1$ with Anosov monodromy $\mat{\lambda&0\\0&\lambda^{-1}}$ for $\lambda\in\R\setminus\{\pm1\}$.
+\end{prop}
+
+\subsection{Some results}
+\begin{thm}[Elliptization conjecture]
+Every closed three-manifold with finite $\pi_1$ is spherical.
+\end{thm}
+\begin{pf}
+It follows from the geometrization conjecture and the analysis of Seifert manifolds.
+\end{pf}
+\begin{thm}[Poincar\'e conjecture]
+Every simply connected closed 3-manifold is diffeomorphic to $S^3$.
+\end{thm}
+\begin{thm}[Hyperbolization conjecture]
+Every closed irreducible atoroidal three-manifold with infinite $\pi_1$ is hyperbolic.
+\end{thm}
+\begin{thm}
+Two closed prime three-manifolds with isomorphic $\pi_1$ are diffeomorphic, or both are lens spaces.
+\end{thm}
+\begin{pf}
+Let $M,M'$ be such three-manifolds.
+By the geometrization conjecture, it suffices to consider the following three cases:
+\begin{parts}
+\item $M$ and $M'$ are hyperbolic.
+\item $M$ or $M'$ is Seifert.
+\item $M$ or $M'$ contains an essential torus(it has a non-trivial JSJ decomposition).
+\end{parts}
+
+For the case (a), the theorem follows from Mostow's rigidity theorem.
+
+For the case (b), if $\pi_1$ is finite, then $M$ and $M'$ are irreducible atoroidal so that they are Seifert, and if $\pi_1$ is infinite, then it has a normal infinite cyclic subgroup so that they are Seifert.
+Then, the theorem follows from Theorem 6.11.
+
+For the case (c), we may assume $M$ and $M'$ are not Seifert by (b).
+Since it has $\Z^2$ as a subgroup, by Proposition 8.3, $M$ and $M'$ are not hyperbolic.
+By the geometrization conjecture, $M$ and $M'$ are Haken.
+Then, the theorem follows from Waldhausen's theorem(Theorem 5.10).
+\end{pf}
+
+\begin{thm}
+The fundamental group of every three-manifold is residually finite.
+\end{thm}
+The fact that surface groups are residually finite, and we have its generalization to Seifert manifolds, and Corollary 8.7 with the geometrization conjecture imply the theorem.
+
+
+Next lecture: Virtually Haken conjecture.
 \end{document}

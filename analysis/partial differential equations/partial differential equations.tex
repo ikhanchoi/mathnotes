@@ -252,6 +252,18 @@ Then, $u=a_\alpha\pd^\alpha\Phi$.
 \section{Variational methods}
 
 \section{Lax-Milgram theorem}
+\begin{prb}
+Let $L:H\to H$ be a densely defined linear operator.
+If there is a Hilbert space $V$ containing $\dom L$ and densely embedded in $H$ such that $(u,v)\mapsto\<Lu,v\>_H$ defines a coercive bilinear form on $V$, then $L$ is admits a surjective closure.
+\end{prb}
+\begin{pf}
+For $f\in H$, there is $v\in V$ such that $\<f,\f\>_H=\<v,\f\>_V$ for all $\f\in V$.
+If we let $u:=A^{-1}v$, where $A\in B(V)$ is defined such that $\<L-,-\>_H=\<A-,-\>_V$.
+Then,
+\[\<Lu,\f\>_H=\<Au,\f\>_V=\<v,\f\>_V=\<f,\f\>_H\]
+implies $Lu=f$.
+\end{pf}
+
 \begin{prb}[Poisson equation]
 Let $\Omega$ be a bounded open subset of $\R^d$.
 Consider the problem

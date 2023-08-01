@@ -1,6 +1,14 @@
 \documentclass{../../large}
 \usepackage{../../ikhanchoi}
 
+\newcommand{\Set}{\mathbf{Set}}
+\newcommand{\Mon}{\mathbf{Mon}}
+\newcommand{\CMon}{\mathbf{CMon}}
+\newcommand{\Grp}{\mathbf{Grp}}
+\newcommand{\Ab}{\mathbf{Ab}}
+\newcommand{\Ring}{\mathbf{Ring}}
+\newcommand{\Mod}{\mathbf{Mod}}
+\newcommand{\Top}{\mathbf{Top}}
 
 \begin{document}
 \title{Category Theory}
@@ -42,17 +50,109 @@ functoriality
 \chapter{Monoidal categories}
 closed, symmetric, cartesian
 coherence theorem, closure theorem
+
 \section{Enriched categories}
 
+\begin{prb}[Pointed category]
+A \emph{pointed category} is a category with a zero object.
+\begin{parts}
+\item A category is $\Set_*$-enriched if and only if it admits a zero morphism.
+\item Every pointed category is $\Set_*$-enriched.
+\end{parts}
+\end{prb}
 
 \chapter{Abelian categories}
 \section{Regular and exact categories}
-\section{Additive categories}
-zeros, enrichment
-Freyd-Mitchell embedding
+
+split, regular, strong
+effective, normal, strict
+
+A kernel pair of a morphism $f$ is the pullback of $(f,f)$.
+
+A category is called \emph{regular} if every kernel pair admits a coequalizer.
+
+\begin{prb}
+A regular category is called \emph{exact} if every equivalence relation is given by a kernel pair.
+\begin{parts}
+\end{parts}
+\end{prb}
+
+The category $\Grp$ is regular but not coregular, since there is a monomorphism which is not regular.
+
+
+\section{Additive and abelian categories}
+
+\begin{prb}[Pre-additive categories]
+A \emph{pre-additive category} is another name of $\Ab$-enriched category.
+\begin{parts}
+\item a
+\end{parts}
+\end{prb}
+
+\begin{prb}[Semi-additive cateogries]
+A \emph{semi-additive category} is a category with binary biproducts.
+\begin{parts}
+\item A category is semiadditive if and only if it is pointed $\CMon$-enriched.
+\end{parts}
+\end{prb}
+
+
+\begin{prb}[Additive categories]
+\begin{parts}
+\item additive completion by formally adjoining finite biproducts.
+\item additive structures on a semi-additive category is unique.
+\end{parts}
+\end{prb}
+
+The notion of kernels and cokernels can be defined in a $\Set_*$-enriched category.
+
+
+\begin{prb}[Pre-abelian categories]
+A \emph{pre-abelian category} is an additive category in which every morphism has the kernel and cokernel.
+Equivalently, it is a finitely bicomplete pre-additive category.
+\begin{parts}
+\item 
+\end{parts}
+\end{prb}
+
+\begin{prb}[Semi-abelian categories in the sense of Jenelidze-M\'arkin-Tholen]
+A pointed, Baar-exact, protomodular, with binary coproudcts.
+\begin{parts}
+\item short five lemma, $3\times3$ lemma, snake lemma, noehter isomorphism hold.
+\item long exact homology sequence
+\item Every semi-abelian category is exact.
+\item Every semi-abelian category is finitely bicomplete.
+\item In general, a semi-abelian category is not pre-additive nor semi-additive.
+\end{parts}
+\end{prb}
+
+\begin{prb}[Abelian categories]
+We say $\cC$ is \emph{abelian} if every morphism has the kernel and cokernel, and every mono and epi is normal.
+\begin{parts}
+\item A category is abelian if and only if it is additive and exact.
+\end{parts}
+\end{prb}
+
+
+\begin{prb}[Freyd-Mitchell embedding]
+\end{prb}
+
+
+\[\begin{tikzcd}[math mode=false]
+abelian\ar{r}\ar{d} & pre-abelian \ar{r} & additive \ar{r}\ar{d} & pre-additive\\
+semi-abelian (JMT) && semi-additive & \,
+\end{tikzcd}\]
+\begin{itemize}
+\item Pre-abelian: abelian topological groups, Banach spaces, Fr\'echet spaces.
+\item Semi-abelian: groups, non-unital algebras, Lie algebras, C$^*$-algebras, compact Hausdorff (profinite) spaces.
+\item Additive: projective modules
+\end{itemize}
+
+
 
 \chapter{}
 site, topos
+$(\infty,1)$-category
 
 
 \end{document}

@@ -18,18 +18,17 @@
 	
 \end{prb}
 
-\chapter{Quadratic residue}
 
-\section{Legendre symbol}
-\begin{prb}[Supplental cases of Legendre symbol]
-Let $p$ be an odd prime.
-\begin{parts}
-\item $\left(\frac{-1}p\right)=(-1)^{\frac{p-1}2}$.
-\item $\left(\frac2p\right)=1$ if and only if $p\equiv\pm1\pmod8$.
-\item $\left(\frac3p\right)=1$ if and only if $p\equiv\pm1\pmod{12}$.
-\item $\left(\frac5p\right)=1$ if and only if $p\equiv\pm1\pmod5.$
-\end{parts}
+\begin{prb}[Fermat's little theorem]
+and Euler theorem
+\[a^p\equiv a\pmod p.\qquad a^{\f(n)}\equiv1\pmod n.\]
 \end{prb}
+
+Wilson's theorem $(n-1)!\equiv-1\pmod n$.
+
+
+\section{Quadratic residue}
+
 \begin{prb}
 \[x^2\equiv0,1\pmod{3,4}\]
 \[x^2\equiv0,1,4\pmod{5,8}\]
@@ -39,39 +38,62 @@ Let $p$ be an odd prime.
 \[x^2\equiv0,1,4,9\pmod{12}\]
 \end{prb}
 
-\begin{prb}[Euler's criterion]
+\begin{prb}[Supplental laws]
+Let $p$ be an odd prime.
+\begin{parts}
+\item $\left(\frac{-1}p\right)=(-1)^{\frac{p-1}2}$.
+\item $\left(\frac2p\right)=1$ if and only if $p\equiv\pm1\pmod8$.
+\item $\left(\frac3p\right)=1$ if and only if $p\equiv\pm1\pmod{12}$.
+\item $\left(\frac5p\right)=1$ if and only if $p\equiv\pm1\pmod5.$
+\end{parts}
 \end{prb}
 
-
-\section{Quadratic reciprocity}
-
-\begin{prb}
-Let $q$ be a prime relatively prime to $p$.
-\begin{parts}
-\item There is a unique non-trivial group homomorphism $(\Z/p\Z)^\times\to\{\pm1\}$.
-\item $\left(\frac qp\right)=1$ if and only if $q$ belongs to the kernel of $(\Z/p\Z)^\times\to\{\pm1\}$.
-\end{parts}
-
+\begin{prb}[Euler's criterion]
+\[\left(\frac ap\right)\equiv a^{\frac{p-1}2}\pmod p.\]
 \end{prb}
 
 \begin{prb}[Quadratic Gauss sum]
-Let $p$ be an odd prime and $a$ an integer.
+Let $p$ be an odd prime.
 The \emph{quadratic Gauss sum} is
-\[g(a;p):=\sum_{n=0}^{p-1}\zeta_p^{an^2},\]
-where $\zeta_p:=e^{2\pi i/p}$ is a primitive $p$th root of unity.
+\[\tau_p:=\sum_{n=0}^{p-1}\zeta_p^{n^2},\]
+where $\zeta_p:=e^{2\pi i/p}$ is a primitive $p$th root of unity in any field.
 Define $p^*:=(-1)^{\frac{p-1}2}p$.
 \begin{parts}
-\item $g(1,p)=\sqrt{p^*}$. (Eisenstein's proof?)
-\item $\Q(\sqrt{p^*})<\Q(\zeta_p)$.
+\item We have
+\[\tau_p=\sum_{a=0}^{p-1}\left(\frac ap\right)\zeta_p^a.\]
+\item We have
+\[\tau_p^2=p^*.\]
 \end{parts}
 \end{prb}
 
-
-\begin{prb}
+\begin{prb}[Quadratic reciprocity]
+Let $p$ and $q$ be distinct odd primes.
+Let $L$ be the splitting field of $x^p-1$ over $\F_q$.
+Let $\zeta_p\in L$ be a primitive $p$-th root of unity.
+Define $p^*:=(-1)^{\frac{p-1}2}p$ and write
+\[\sqrt{p^*}:=\sum_{n=0}^{p-1}\zeta_p^{n^2}\in L.\]
+Note that $\sigma_q:L\to L:x\mapsto x^q$ is a field automorphism.
 \begin{parts}
-\item 
+\item From the Gauss sum, we have
+\[\sigma_q(\sqrt{p^*})=\left(\frac qp\right)\sqrt{p^*}.\]
+\item From the Euler criterion, we have
+\[\sigma_q(\sqrt{p^*})=\left(\frac{p^*}q\right)\sqrt{p^*}.\]
 \end{parts}
 \end{prb}
+\begin{pf}
+(a)
+We have
+\[\sigma_q(\sqrt{p^*})
+=\sigma_q\left(\sum_{a=0}^{p-1}\left(\frac ap\right)\zeta_p^a\right)
+=\sum_{a=0}^{p-1}\left(\frac ap\right)\zeta_p^{aq}
+=\sum_{a=0}^{p-1}\left(\frac qp\right)\left(\frac{aq}p\right)\zeta_p^{aq}
+=\left(\frac qp\right)\sqrt{p^*}\]
+
+(b)
+By the Euler criterion, we have
+\[\sigma_q(\sqrt{p^*})=(p^*)^{\frac{q-1}2}\sqrt{p^*}=\left(\frac{p^*}q\right)\sqrt{p^*}.\]
+
+\end{pf}
 
 
 
@@ -105,7 +127,7 @@ Quantratic sides: Every prime divisor of $f$ must satisfy a congruence (e.g. $4k
 \item There is no non-trivial integral solution of $x^4-y^4=z^2$.
 \end{enumerate}
 
-
+\chapter{}
 
 
 \chapter{Binary quadratic forms}
@@ -121,19 +143,42 @@ There are only nine numbers
 
 \section*{Exercises}
 \begin{prb}[Mordell equation with no solutions]
+$k=7,-5,-6,45,6,46,-24,-3,-9,-12$.
 \begin{parts}
 \item $y^2=x^3+7$ has no integral solutions.
 \end{parts}
 \end{prb}
+\begin{pf}
+(a)
+Taking mod 8, $x$ is odd and $y$ is even.
+The factorization
+\[y^2+1=(x+2)((x-1)^2+3),\]
+implies the existence of a prime factor $p=4k+3$ of $y^2+1$, which is impossible, so the equation has no solutions.
+\end{pf}
 
 \begin{prb}[Mordell equation with solutions]
 \begin{parts}
 \item $y^2=x^3-2$ has only two solutions.
 \end{parts}
 \end{prb}
+\begin{pf}
+(a)
+Taking mod 8, $x$ and $y$ are odd.
+Consider a ring of algebraic integers $\Z[\sqrt{-2}]$.
+Write $N=N_{\Q(\sqrt{-2})/\Q}$.
+The equation is factorized into
+\[x^3=(y-\sqrt{-2})(y+\sqrt{-2}).\]
+Let $\delta$ be a common divisor of $y\pm\sqrt{-2}$.
+Then $\delta\mid 2\sqrt{-2}$ implies $N(\delta)\mid N(2\sqrt{-2})=8$, and since $N(\delta)\mid N(y-\sqrt{-2})=x^3$ is odd, we have $N(\delta)=1$ and $\delta$ is a unit.
+It means that $y\pm\sqrt{-2}$ are relatively prime.
+Since the units in $\Z[\sqrt{-2}]$ are $\pm1$, which are all cubes, $y\pm\sqrt{-2}$ are cubes in $\Z[\sqrt{-2}]$.
 
-
-
+Let
+\[y+\sqrt{-2}=(a+b\sqrt{-2})^3=a(a^2-6b^2)+b(3a^2-2b^2)\sqrt{-2},\]
+so that $1=b(3a^2-2b^2)$.
+We can conclude $b=\pm1$.
+The possible solutions are $(x,y)=(3,\pm5)$, which are in fact solutions.
+\end{pf}
 
 
 
@@ -153,17 +198,157 @@ There are only nine numbers
 \section{Continued fraction}
 Diophantine approximation, Thue theorem
 
+\section{}
+Ellipse is reduced by finitely many computations.
+
+
+Especially for hyperbola, here is a strategy to use infinite descent.
+\begin{parts}
+\item Let midpoint to be origin.
+\item Find the subgroup of $\SL_2(\Z)$ preserving the image of hyperbola(which would be isomorphic to $\Z$).
+\item Find an impossible region.
+\item Assume a solution and reduce it to the either impossible region or the ground solution.
+\end{parts}
+
+\begin{ex}[Pell's equation]
+Consider\[x^2-2y^2=1.\]
+A generator of hyperbola generating group is $g=\begin{pmatrix}3&4\\2&3\end{pmatrix}$.
+It has a ground solution $(1,0)$ and impossible region $1<x<3$.
+If $(a,b)$ is a solution with $a>0$, then we can find $n$ such that $g^n(a,b)$ is in the region $[1,3)$.
+The possible case is $g^n(a,b)=(1,0)$.
+\end{ex}
+\begin{ex}[IMO 1988, the last problem]
+Consider a family of equations\[x^2+y^2-kxy-k=0.\]
+By the vieta jumping, a generator is $g:(a,b)\mapsto(b,kb-a)$.
+It has an impossible region $xy<0$ : $x^2+y^2-kxy-k\ge x^2+y^2>0$.
+If $(a,b)$ is a solution with $a>b$, then we can find $n$ such that $g^n(a,b)$ is in the region $xy\le0$.
+Only possible case is $g^n(a,b)=(\sqrt k,0)$ or $g^n(a,b)=(0,-\sqrt k)$.
+In ohter words, the equation has a solution iff $k$ is a perfect square.
+
+In general, the transformation $(x,y)\mapsto(y,ky-x)$ preserving the image of hyperbola is not easy to find.
+A strategy to find it in this problem is called the \emph{Vieta jumping} or \emph{root flipping}.
+It gets the name by the following reason:
+If $(a,b)$ is a solution with $a>b$, then a quadratic equation \[x^2-kbx+b^2-k=0\] has a root $a$, and the other root is $kb-a$ so that $(b,kb-a)$ is also a solution.
+The last problem is from the International Mathematical Olympiad 1988, and the Vieta jumping technique was firstly used to solve it.
+\end{ex}
+
+
 \chapter{$p$-adic numbers}
 \section{Hensel lemma}
 
+Let $p\in\Z$ be a prime.
+The ring of the $p$-adic integers $\Z_p$ is defined by the inverse limit:
+\[
+\Z_p:=\lim\limits_{\substack{\longleftarrow\\n\in\N}}\Z/p^n\Z\to\cdots\to\Z/p^2\Z\to\Z/p\Z.
+\]
+
+We may define the local field $\Q_p$ as $\Frac\Z_p$, or by the completion of $\Q$ with respect to $|\cdot|_p$, where $|\cdot|_p$ is an absolute value on $\Q$ such that $|p^ma|_p=\frac1{p^m}$.
+Then,
+$\Z_p:=\{x\in\Q_p:|x|_p\le1\}$.
+
+\begin{ex}
+Let $p=5$.
+Observe
+\begin{align*}
+3^{-1}&\equiv2_5\pmod5\\
+&\equiv32_5\pmod{5^2}\\
+&\equiv132_5\pmod{5^3}\\
+&\quad\vdots\\
+&\equiv1313132_5\pmod{5^7}.
+\end{align*}
+Therefore, we can write
+\[3^{-1}=\overline{13}2_5=2+3p+p^2+3p^3+p^4+\cdots.\]
+Since there is no term of negative power of $5$, the number $3^{-1}$ is a $5$-adic integer.
+\end{ex}
+\begin{ex}
+Let $p=3$.
+\begin{align*}
+7&\equiv1_3^2\pmod3\\
+&\equiv111_3^2\pmod{3^3}\\
+&\equiv20111_3^2\pmod{3^5}\\
+&\equiv120020111_3^2\pmod{3^9}\cdots.
+\end{align*}
+Therefore, we can write
+\[\sqrt7=\cdots120020111_3=1+p+p^2+2p^4+2p^7+p^8+\cdots.\]
+Since there is no term of negative power of $2$, $\sqrt7$ is a $3$-adic integer.
+\end{ex}
+
+\begin{prb}
+\begin{parts}
+\item
+The absolute value $|\cdot|_p$ is nonarchimedean: it satisfies $|x+y|_p\le\max\{|x|_p,|y|_p\}$.
+\item
+Every triangle in $\Q_p$ is isosceles.
+\item
+$\Z_p$ is a discrete valuation ring: it is local PID.
+\item
+$\Z_p$ is open and compact.
+Hence $\Q_p$ is locally compact Hausdorff.
+\end{parts}
+\end{prb}
+\begin{pf}
+$\Z_p$ is open clearly.
+Let us show limit point compactness.
+Let $A\subset\Z_p$ be infinite.
+Since $\Z_p$ is a finite union of cosets $p\Z_p$, there is $\alpha_0$ such that $A\cap(\alpha_0+p\Z_p)$ is infinite.
+Inductively, since
+\[\alpha_n+p^{n+1}\Z_p=\bigcup_{1\le x<p}(\alpha_n+xp^{n+1}+p^{n+2}\Z_p),\]
+we can choose $\alpha_{n+1}$ such that $\alpha_n\equiv\alpha_{n+1}\pmod{p^{n+1}}$ and $A\cap(\alpha_{n+1}+p^{n+2}\Z_p)$ is infinite.
+The sequence $\{\alpha_n\}$ is Cauchy, and the limit is clearly in $\Z_p$.
+\end{pf}
+
+
 \chapter{Local-global principle}
 \section{Hasse-Minkowski theorem}
+
+\begin{thm}[Sum of two squares]
+A positive integer $m$ can be written as a sum of two squares if and only if $v_p(m)$ is even for all primes $p\equiv3\pmod4$.
+
+Let $p$ be a prime with $p\equiv1\pmod4$.
+Every $p$-adic integer is a sum of two squares of $p$-adic integers.
+\end{thm}
+
 
 
 
 
 \part{Elliptic curves}
 \chapter{Elliptic curves over $\C$}
+
+
+\textbf{Step 1.}
+The Riemann-Roch theorem proves that every curve of genus 1 with a specified base point can be described by the first kind of Weierstrass equation.
+Explicitly, the first form of Weierstrass equation is
+\[y^2+a_1xy+a_3y=x^3+a_2x^2+a_4x+a_6.\]
+\[b_2:=a_1^2+4a_2,\quad b_4=a_1a_3+2a_4,\quad b_6=a_3^2+4a_6.\]
+\[y\mapsto y-\frac12(a_1x+a_3).\]
+\[y^2=x^3+\frac14b_2x^2+\frac12b_4x+\frac14b_6.\]
+\[c_4:=b_2^2-24b_4,\quad c_6:=-b_2^3+36b_2b_4-216b_6.\]
+\[x\mapsto x-\frac1{12}b_2.\]
+\[y^2=x^3-\frac1{48}c_4x-\frac1{864}c_6.\]
+\[b_8:=a_1^2a_6-a_1a_3a_4+4a_2a_6+a_2a_3^2-a_4^2=\frac{b_2b_6-b_4^2}4.\]
+\[\Delta:=-b_2^2b_8-8b_4^3-27b_6^2+9b_2b_4b_6=\frac{c_4^3-c_6^2}{1728},\quad j:=c_4^3/\Delta.\]
+
+
+\begin{thm}
+Let
+\[E:y^2=x^3-Ax-B.\]
+TFAE:
+\begin{parts}
+\item A point $(x,y)$ is a singular point of $E$.
+\item $y=0$ and $x$ is a double root of $x^3-Ax-B$.
+\item $\Delta=0$.
+\end{parts}
+\end{thm}
+\begin{pf}
+(1)$\Rightarrow$(2)
+$\pd_yf=0$ implies $y=0$. $f=\pd_xf=0$ implies $x$ is a double root of $x^3-Ax-B$.
+$A$ determines whether $x$ is either cusp of node.
+\end{pf}
+
+
+
+
 \chapter{Elliptic curves over $\Q$}
 \section{Finitely generatedness}
 Mordell-Weil, Mazur torsion

@@ -1,0 +1,448 @@
+\documentclass{../../large}
+\usepackage{../../ikhanchoi}
+
+\DeclareMathOperator{\Mor}{Mor}
+
+\begin{document}
+\title{C$^*$-Algebras}
+\author{Ikhan Choi}
+\maketitle
+\tableofcontents
+
+\part{Constructions}
+
+\chapter{Operator systems and spaces}
+\section{Completely positive maps}
+
+$|\f(a)|^2\le\|\f\|\f(|a|^2)\le\|\f\|^2\|a\|^2$.
+If $\omega$ is a state, then
+$|\omega(a)|^2\le\omega(|a|^2)\le\|a\|^2$.
+
+category of operator systems
+
+\begin{prb}[Choi-Effros characterization]
+\end{prb}
+
+\begin{prb}[Stinespring dilation]
+\end{prb}
+
+tensor product of c.p.~maps (minimal and maximal)
+
+\begin{prb}[Arveson extension]
+Trick
+\end{prb}
+
+\section{Completely bounded maps}
+
+
+
+\section{Subalgebras}
+
+
+\begin{prb}[Hereditary C$^*$-subalgebra]
+state extension, representation extension(not ideal?)
+\end{prb}
+
+\begin{prb}[Conditional expectation]
+\end{prb}
+
+\begin{prb}[Ideals]
+\end{prb}
+
+
+\begin{prb}[Enveloping C$^*$-algeberas]
+Let $A$ be a $*$-algebra.
+A \emph{C$^*$-norm} is an submultiplicative norm satisfying the C$^*$-identity.
+Does $A$ have enough $*$-representations?
+\begin{parts}
+\item A complete C$^*$-norm is unique if it exists.
+\item For every C$^*$-norm $\alpha$ on $A$, there is a $*$-isometry $\pi:A\to B(H)$.
+\item For maximal C$^*$-norm, there is a universal property. The maximal C$^*$-norm can be obtained by running through cyclic representations.
+\end{parts}
+\end{prb}
+
+
+\section{Tensor products}
+
+\begin{prb}[Maximal tensor products]
+Let $A$ and $B$ be C$^*$-algebras.
+\begin{parts}
+\item A commuting pair of $*$-homomorphisms $\pi:A\to B(H)$ and $\pi':B\to B(H)$ corresponds to a $*$-homomorphism $\Pi:A\odot B\to B(H)$ via the relation $\Pi(a\otimes b)=\pi(a)\pi'(b)$.
+\item $A\odot B$ admits a $*$-representation and every norms induced from these $*$-representations are uniformly bounded. So, we can define a maximal tensor norm on $A\odot B$.
+\item $a\otimes-:B\to A\odot B$ is bounded for each $a\in A$ with respect to any C$^*$-norm on $A\odot B$. [BO, 3.2.5]
+\end{parts}
+\end{prb}
+
+
+\begin{prb}[Minimal tensor product]
+spatiality
+\end{prb}
+\begin{prb}[Takesaki theorem]
+\end{prb}
+
+Tensors with $M_n(\C)$, $C_0(X)$.
+
+
+\begin{prb}[Haagerup tensor product]
+\end{prb}
+
+
+\section*{Exercises}
+\begin{prb}
+Let $B$ be a hereditary C$^*$-subalgebra of a C$^*$-algebra $A$.
+Let $a\in A_+$.
+If for any $\e>0$ there is $b\in B_+$ such that $a-\e\le b$, then $a\in B_+$.
+\end{prb}
+\begin{pf}
+To catch the idea, suppose $A$ is abelian.
+We want to approximate $a$ by the elements of $B$ in norm.
+To do this, for each $\e>0$, we want to construct $b'\in B_+$ such that $a-\e\le b'\le a+\e$ using $b$.
+Taking $b'=\min\{a,b\}$ is impossible in non-abelian case, but we can put $b'=\frac a{b+\e}b$.
+For a simpler proof, $b'=(\frac{\sqrt{ab}}{\sqrt b+\sqrt\e})^2$ is a better choice.
+
+Define
+\[b':=\frac{\sqrt b}{\sqrt b+\sqrt\e}a\frac{\sqrt b}{\sqrt b+\sqrt\e}.\]
+Then,
+\[\|\sqrt a-\sqrt a\frac{\sqrt b}{\sqrt b+\sqrt\e}\|^2=\|\frac{\sqrt\e}{\sqrt b+\sqrt\e}a\frac{\sqrt\e}{\sqrt b+\sqrt\e}\|\le\e\]
+implies
+\[\lim_{\e\to0}b'=\lim_{\e\to0}\frac{\sqrt b}{\sqrt b+\sqrt\e}\sqrt a\cdot\sqrt a\frac{\sqrt b}{\sqrt b+\sqrt\e}=\sqrt a\cdot\sqrt a=a.\]
+\end{pf}
+
+
+
+\chapter{Hilbert C$^*$-modules}
+
+\section{}
+
+right $A$ convention: to make it commute with the action by adjointable operators.
+
+constructions:
+direct sum, tensor product, localization
+
+examples:
+A itself
+
+
+\section{Multiplier algebras}
+\begin{prb}[Double centralizer characterization]
+Let $A$ be a C$^*$-algebra.
+A \emph{double centralizer} of $A$ is a pair $(L,R)$ of bounded linear maps on $A$ such that $aL(b)=R(a)b$ for all $a,b\in A$.
+The \emph{multiplier algebra} $M(A)$ of $A$ is defined to be the set of all double centralizers of $A$.
+There is another characterization $M(A):=L_A(A)$, the set of adjointable operators to itself.
+\end{prb}
+\begin{prb}[Cohen factorization theorem]
+\end{prb}
+\begin{prb}[Strict topology]
+\begin{parts}
+\item $\|\pi(a-e_\alpha a)\xi\|^2$
+\end{parts}
+\end{prb}
+\begin{prb}[Essential ideals]
+\begin{parts}
+\item Hilbert C$^*$-module description
+\end{parts}
+\end{prb}
+
+
+\begin{prb}[Examples of multiplier algebras]
+\begin{parts}
+\item $M(K(H))\cong B(H)$.
+\item $M(C_0(\Omega))\cong C_b(\Omega)$.
+\end{parts}
+\end{prb}
+\begin{pf}
+(a)
+
+(b)
+First we claim $C_0(\Omega)$ is an essential ideal of $C_b(\Omega)$.
+Since $C_b(\Omega)\cong C(\beta\Omega)$, and since closed ideals of $C(\beta\Omega)$ are corresponded to open subsets of $\beta\Omega$, $C_0(\Omega)\cap J$ is not trivial for every closed ideal $J$ of $C_b(\Omega)$.
+
+Now we have an injective $*$-homomorphism $C_b(\Omega)\to M(C_0(\Omega))$, for which we want to show the surjectivity.
+Let $g\in M(C_0(\Omega))_+$.
+\end{pf}
+
+
+
+\section{C$^*$-correspondences}
+
+as a morphism
+sub and quotient, direct sum, tensor product,
+
+Toeplitz-Cuntz
+Toeplitz-Pimsner
+Cuntz-Pimsner
+Cuntz-Krieger
+
+C$^*$-dynamical systems
+graph algebras
+
+
+
+Coactions and Fell bundles
+
+
+
+Induced representations and Morita equivalence
+KK-theory
+C$^*$-algebraic quantum groups
+
+
+
+
+
+
+
+
+
+
+
+\chapter{Groups and actions}
+
+
+
+\section{Group C$^*$ algebras}
+type I, subhomogeneous
+
+
+crystallographic
+discrete heisenberg
+free groups
+projectionless of $C_r^*(F_2)$
+
+
+\section{Crossed products}
+
+\section{Pimsner algebras}
+graph algebras
+
+
+
+
+
+
+
+
+\part{Properties}
+\chapter{Approximation properties}
+\section{Nuclearity and exactness}
+
+finite dimensional[BO, 3.3.2], abelian
+permanence properties
+completely positive approximation property
+
+$M_n(\C)$, $K(H)$, $C_0(X)$.
+
+a separable C$^*$-algebra is nuclear if and only if every factor representation is hyperfinite.
+
+
+
+quotients of nuclear
+local reflexivity
+
+
+
+Extension properties
+weak expectation property
+relatively weakly injective
+maximal tensor product inclusion problem
+
+
+\section{Quasi-diagonality}
+Voiculescu theorem
+
+
+\begin{prb}
+An operator $x\in B(H)$ is called \emph{quasi-diagonal} if there is a net of projections $p_i\in B(H)$ such that $[p_i,x]$ and $p-\id_H$ converge strongly to zero.
+A C$^*$-algebra is called \emph{quasi-diagonal} if it admits a faithful representation whose image is quasi-diagonal.
+\end{prb}
+
+faithful non-degenerate essential representations of a quasi-diagonal C$^*$-algebra are all quasi-diagonal
+
+\section{AF-embeddability}
+
+
+
+
+
+
+\chapter{Amenability}
+
+
+\section{Amenable groups}
+
+
+\section{Amenable actions}
+crossed products
+$Z_2$-grading
+Connes-Feldman-Weiss
+Anantharaman-Delaroche
+Gromov boundaries
+approximately central structure?
+dynamical Kirchberg-Phillips
+
+stably finite
+dynamical Elliott program
+
+Ornstein-Weiss-Rokhlin lemma
+
+\section{Exact groups}
+Exact groups
+
+\section{Other properties}
+Kazdahn property (T)
+factorization property
+Haagerrup property
+
+
+Kaplansky conjecture
+
+
+
+\chapter{Simplicity}
+
+\section{Examples from groups}
+
+\section{Elliott program}
+successful in Kirchberg algebras
+
+
+https://arxiv.org/pdf/2307.06480.pdf
+
+Elliott classification problem
+Kirchberg-Phillipes theorem
+
+operator K-theory and its pairing with traces
+
+$\cZ$-stability, Rosenberg-Schochet universal coefficient theorem
+
+Connes-Haagerup classification of injective factors
+
+Kirchberg: unital simple separable $\cZ$-stable algebra is either purely infinte or stably finite.
+Haagerup, Blackadar, Handelman: unital simple stably finite algebra has a trace.
+
+Glimm: uniformly hyperfinite algebras
+Murray-von Neumann: hyperfinite II$_1$ factors
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\part{Invariants}
+\chapter{Operator K-theory}
+
+\section{Homotopy of C$^*$-algebras}
+
+\begin{prb}[Homotopy of $*$-homomorphisms]
+Let $A,B$ be C$^*$-algebras.
+Two $*$-homomorphisms in $\Mor(A,B)$ are said to be \emph{homotopic} if they are connected by a path in $\Mor(A,B)$ that is continuous with the point-norm topology.
+\begin{parts}
+\item For pointed compact Hausdorff spaces $(X,x_0),(Y,y_0)$, two pointed maps $\f_0,\f_1:X\to Y$ are homotopic if and only if $\f_0^*,\f_1^*:C_0(Y\setminus\{y_0\})\to C_0(X\setminus\{x_0\})$ are homotopic.
+\end{parts}
+\end{prb}
+\begin{pf}
+(a)
+Suppose $\f_0$ and $\f_1$ are connected by a homotopy $\f_t$.
+Fixing $g\in C_0(Y)$ and $t_0\in I$, we want to show
+\[\lim_{t\to t_0}\sup_{x\in X}|g(\f_t(x))-g(\f_{t_0}(x))|=0.\]
+Since the function $g$ is uniformly continuous, with respect to an arbitrarily chosen uniformity on $Y$, so that there is an entourage $E\subset Y\times Y$ such that $(y,y')\in E\circ E$ implies $|g(y)-g(y')|<\e$.
+Using compactness we have a finite sequence $(y_i)_{i=1}^n\subset Y$ such that for every $y$ there is $y_i$ satisfying $(y,y')\in E$.
+Then, $\f^{-1}(E[y_i])$ is a finite open cover of $X\times I$, so we have $\delta$ such that $|t-t_0|<\delta$ implies for any $x\in X$ the existence of $i$ satisfying $(\f_t(x),y_i)\in E$ and $(\f_{t_0}(x),y_i)\in E$, which deduces the desired inequality.
+
+Conversely, suppose $\f_0^*$ and $\f_1^*$ are connected by a homotopy $\f_t^*$.
+By taking dual, we can induce $\f_t:X\to Y$ such that $g(\f_t(x))=(\f_t^*g)(x)$ for each $g\in C(Y)$ from $\f_t^*$ via the embedding $X\to M(X)$ by Dirac measures.
+Let $V$ be an open neighborhood of $\f_{t_0}(x_0)$ and take $g\in C(Y)$ such that $g(\f_{t_0}(x_0))=1$ and $g(y)=0$ for $y\notin V$.
+Now we have an open neighborhood $U$ of $x_0$ such that $x\in U$ implies $|(\f_{t_0}^*g)(x)-(\f_{t_0}^*g)(x_0)|<\frac12$.
+Also we have $\delta>0$ such that $|t-t_0|<\delta$ implies $\|\f_t^*g-\f_{t_0}^*g\|<\frac12$.
+Therefore, $(x,t)\in U\times(t_0-\delta,t_0+\delta)$ implies $g(\f_t(x))>0$, hence $\f_t(x)\in V$, which means $X\times I\to Y:(x,t)\mapsto\f_t(x)$ is continuous.
+\end{pf}
+
+We have $\tilde K^n(X,x_0)=K_n(C_0(X\setminus\{x_0\}))$ for a pointed compact Hausdorff space $X$.
+Now then since the inclusion $\{x_0\}\to X$ induces the section so that
+\[0\to K_0(C_0(X\setminus\{x_0\}))\to K_0(C(X))\to K_0(\{x_0\})\to0\]
+splits, we have
+\[K^0(X)=\tilde K^0(X,x_0)\oplus\Z=K_0(C_0(X\setminus\{x_0\}))\oplus K_0(\{x_0\})=K_0(C(X))\]
+for a compact connected Hausdorff space $X$.
+The additivity of $K_0$ and $K^0$ removes the connectedness condition.
+
+\[K_0(\C)=\Z,\quad K_0(C_0(\R))=0,\quad K_1(C_0(\R))=K_0(C_0(\R^2))=\Z\]
+\[K^0(*)=\Z,\quad K^0(S^1)=\Z,\quad K^1(S^1)=K^0(S^2)=\Z[x]/(x-1)^2\]
+
+
+
+
+
+\section{Brown-Douglas-Fillmore theory}
+\begin{prb}[Haagerup property]
+\end{prb}
+
+Baum-Connes conjecture
+Non-commutative geometry
+Elliott theorem
+
+
+
+
+\section{Approximately finite algebras}
+Elliott conjecture: amenable simple separable C$^*$-algerbas are classified by K-theory.
+Brattelli diagram
+
+
+
+\section{Fredholm theory of Mishchenko and Fomenko}
+
+
+
+
+\section{Dixmier-Douady theory}
+
+
+\begin{prb}[Banach bundle]
+A \emph{Banach bundle}, introduced by Fell, is a continuous open surjection $\pi:E\to X$ between topological spaces together with Banach space structure on each fiber $\pi^{-1}(x)$ such that:
+\begin{enumerate}[(i)]
+\item the addition $\{(e,e'):\pi(e)=\pi(e')\}\subset E\times E\to E:(e,e')\mapsto e+e'$ is continuous,
+\item the scalar multiplication $\C\times E\to E:(\lambda,e)\mapsto\lambda e$ is continuous,
+\item the norm $E\to\R_{\ge0}:e\mapsto\|e\|$ is continuous,
+\item the family of subsets $\{e\in B:\pi(e)\in U,\ \|e\|<r\}$ parametrized by open neighborhood $U\subset X$ of $x$ and positive $r\in\R$ forms a neighborhood basis of $0\in\pi^{-1}(x)$ in $E$.
+\end{enumerate}
+The forth condition is equivalent to that if $\|e_i\|\to0$ and $\pi(e_i)\to x$ then $e_i\to 0_x\in\pi^{-1}(x)$.
+If the norm satisfies the parallelogram law, then we call the Banach bundle a \emph{Hilbert bundle}.
+\begin{parts}
+\item For a Banach bundle $E\to X$, if $X$ is locally compact Hausdorff and every fiber $E_x$ shares a same finite dimension, then the bundle is locally trivial.
+\end{parts}
+\end{prb}
+
+
+\begin{prb}[Continuous fields of Banach spaces]
+\end{prb}
+
+
+\begin{prb}[Banach $C_0(X)$-module]
+Let $E\to X$ be a Banach bundle.
+\end{prb}
+
+
+
+Fell's condition
+
+A C$^*$-algebra $A$ is called \emph{continuous trace} if the set of all $a\in\cA$ such that $\hat A\to\R_{\ge0}:\pi\mapsto\tr(\pi(a^*a))$ is continuous is dense in $A$.
+
+
+
+
+
+
+
+\end{document}

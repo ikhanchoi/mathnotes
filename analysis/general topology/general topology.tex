@@ -1,6 +1,7 @@
 \documentclass{../../large}
 \usepackage{../../ikhanchoi}
 
+\DeclareMathOperator{\Map}{Map}
 
 \begin{document}
 \title{General Topology}
@@ -608,14 +609,28 @@ A uniformity is pseudometrizable if and only if it admits a countable fundamenta
 
 \section{Topology by convergence}
 
+\begin{prb}[Compact-open topology]
+Let $X,Y$, and $Z$ be topological spaces.
+Consider
+\[\alpha:\Map(X\times Y,Z)\to\Map(X,\Map(Y,Z)),\]
+where all mapping spaces carry the compact-open topology.
+\begin{parts}
+\item $\alpha$ is well-defined.
+\item $\alpha$ is continuous if $X$ is Hausdorff.
+\item $\alpha$ is surjective if $Y$ is locally compact.
+\item $\alpha$ is an embedding if $X$ and $Y$ are Hausdorff.
+\item The evaluation $X\times\Map(X,Y)\to Y$ is continuous if $X$ is locally compact.
+\item The composition $\Map(X,Y)\times\Map(Y,Z)\to\Map(X,Z)$ is continuous if $X$ and $Y$ are locally compact.
+\end{parts}
+\end{prb}
+
+
 Topologies on $C_c(X)$ for LCH $X$: weaker to stronger
 \begin{parts}
 \item Topology of compact convergence: $\bar{C_c(X)}=C(X)$.
 \item Topology of uniform convergence: $\bar{C_c(X)}=C_0(X)$.
 \item Inductive topology: $\bar{C_c(X)}=C_c(X)$.
 \end{parts}
-
-
 
 
 
@@ -627,6 +642,52 @@ Birkhoff-Kakutani
 metrizability
 
 \section{Transformation groups}
+
+\begin{prb}
+Let $G$ be a topological group and $X$ be a topological space.
+A \emph{left action} of $G$ on $X$ is a continuous map $G\times X\to X:(g,x)\to gx$ such that $g(hx)=(gh)x$ and $ex=x$.
+A \emph{left $G$-space} is a topological space $X$ together with a left action of $G$.
+In this case, we say $G$ is a \emph{transformation group}.
+We may define right actions and right $G$-spaces similarly.
+The left orbit space $G\backslash X$ is topologized with the quotient topology induced by the canonical surjection.
+
+
+$G$-equivariant map and $G$-homeomorphism
+$G$-homotopy is a $G$-equivariant map $h:X\times[0,1]\to Y$ such that $h(x,i)=f_i(x)$ for $i\in\{0,1\}$.
+\end{prb}
+
+\begin{prb}
+Suppose $\rho:G\times X\to X$ is a left action, and $\bar\rho:G\to\Homeo(X)$ is its adjoint map, where $\Homeo(X)$ carries the compact-open topology.
+\begin{parts}
+\item If $\rho$ is continuous, then $\bar\rho$ is continuous.
+\item If $\bar\rho$ is continuous and $X$ is locally compact, then $\rho$ is continuous.
+\item If $X$ is locally compact, then $X$ is a $\Homeo(X)$-space.
+\item If $X$ is locally compact, $\Hoemo(X)\times\Homeo(X)\to\Homeo(X):(f,g)\mapsto g\circ f$ is continuous.
+\item If $X$ is locally compact, locally connected, and Hausdorff, then $\Homeo(X)\to\Homeo(X):f\mapsto f^{-1}$ is continuous, hence $\Homeo(X)$ is a topological group.
+In particular, $\Homeo(X)$ is a topological group if $X$ is compact Hausdorff.
+\end{parts}
+\end{prb}
+
+
+The isometry group of a locally compact metric space with finite components is locally compact.
+
+
+\begin{prb}
+Let $H$ be a subgroup of a locally compact group $G$.
+Then, $H$ is closed if and only if $H$ is locally compact.
+(We always assume a topological group is Hausdorff.)
+\end{prb}
+
+\begin{itemize}
+\item free action of a discrete group: the theory of covering spaces
+\item transitive action: the theory of homogeneous spaces
+\end{itemize}
+
+classification of homogeneous space realization of spheres by compact connected Lie groups: Montgomery-Samuelson, Borel.
+
+
+
+
 
 \begin{prb}[Proper actions]
 \end{prb}
@@ -691,6 +752,9 @@ Let $X$ be a locally compact Hausdorff space.
 \item $\sigma$-compact metrizable $\Leftrightarrow$ $C_0(X)$ is separable $\Leftrightarrow$ second countable $\Leftrightarrow$ Polish.
 \end{parts}
 \end{prb}
+
+For a compact Hausdorff space $X$, $C(X)$ is separable if and only if $X$ is metrizable.
+For a locally compact Hausdorff space $X$, $C_0(X)$ is separable if and only if $X$ is second countable.
 
 
 \begin{prb}[Paracompact spaces (1)]

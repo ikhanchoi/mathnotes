@@ -129,6 +129,19 @@ general, special
 
 \section{Representations}
 
+Let $G$ be a group and $X$ be a set.
+A \emph{left action} of $G$ on $X$ is a function $G\times X\to X:(g,x)\to gx$ such that $g(hx)=(gh)x$ and $ex=x$.
+A \emph{left $G$-set} is a set $X$ together with a left action of $G$ on $X$.
+We may define right actions and right $G$-sets similarly.
+
+effective, free, transitive actions.
+The orbit spaces of a left $G$-set $X$ is a set $G\backslash$ of orbits.
+When we do not have to emphasize the $G$-space is left, that is we do not deal with both left and right actions simultaneously, we often write the orbit space just by $X/G$.
+
+Let $H$ be a subgroup of $G$.
+A left coset is an element of the orbit space of the right action $G\times H\to G$ of $H$ on $G$ given by the right multiplication.
+Here we can define a left multiplication action of $G$ on $G/H$, which is transitive.
+
 \section{Orbits and stabilizers}
 Invariants on orbit space.
 
@@ -202,18 +215,17 @@ K normalizes H : K -> NG(H) -> Aut(H)  with ker = CG(H)
 \chapter{Ideals}
 \section{Definitions of rings and ideals}
 \begin{prb}[Definition of rings]
-A \emph{ring} is an additive abelian group $R$ together with a \emph{multiplication} $\times:R\times R\to R$ which defines an \emph{abelian monoid} structure, such that the following compatibility condition holds: the \emph{distributive law}: for every $r,s,t\in R$, we have
-\[r\times(s+t)=(r\times s)+(r\times t).\]
-The additive and multiplicative identities are usually denoted by $0$ and $1$ and called the \emph{zero} and the \emph{unity} respectively.
+A \emph{ring} is an abelian group $R=(R,+)$ together with a \emph{multiplication} $\times:R\times R\to R$ which satisfies the associativity law, such that the following compatibility condition holds: the \emph{distributive laws}:
+\[r\times(s+t)=(r\times s)+(r\times t),\qquad(s+t)\times r=(s\times r)+(t\times r),\qquad r,s,t\in R.\]
+We usually omit the cross symbol to write $r\times s$ as $rs$.
 
-We are only concerned with \emph{commutative} rings with \emph{unity} when mentioning rings, so we specified the multiplication to be an abelian monoid.
-In particular, rings for which the multiplication is not necessarily commutative or the multiplicative identity does not necessarily exist will be called as \emph{non-commutative rings} or \emph{non-unital rings}, respectively.
-The theory of such non-commutative or non-unital rings, however, is usually covered in the theory of \emph{algebras}.
+We are usually concerned with \emph{commutative unital} rings, that is, rings whose multiplication is commutative and admits a multiplicative identity.
+The additive and multiplicative identities are usually denoted by $0$ and $1$ and called the \emph{zero} and the \emph{unity} respectively.
 \end{prb}
 
 
 \begin{prb}[Definition of ideals]
-Let $R$ be a ring.
+Let $R$ be a commutative unital ring.
 \end{prb}
 
 \begin{prb}[Quotient rings]
@@ -307,11 +319,10 @@ maximal ideals and monic irreducibles
 \section{Modules}
 
 \begin{prb}[Definition of modules]
-Let $R$ be a non-commutative ring.
-An (left) \emph{$R$-module} is an additive abelian group $M$ together with a \emph{scalar multiplication} $\cdot:R\times M\to M$ which defines an \emph{left action} on $M$, i.e. for every $r,s\in R$ and $m\in M$, we have
-\[r\cdot(s\cdot m)=(rs)\cdot m\quad\text{ and }\quad1\cdot m=m,\]
-such that the following compatibility condition holds: the \emph{distributive laws} hold: for every $r,s\in R$ and $m,n\in M$, we have
-\[r\cdot (m+n)=r\cdot m+r\cdot n\quad\text{ and }\quad(r+s)\cdot m=r\cdot m+s\cdot m.\]
+Let $R$ be a possibly non-commutative unital ring.
+A \emph{left $R$-module} is an abelian group $(M,+)$ together with a unital ring homomorphism $\alpha:R\to\End_\Z(M)$, where $\End_\Z(M)$ denotes the group endomorphisms on $M$.
+The homomorphism $\alpha$ is called the \emph{left action} and the operation $\cdot:R\times M\to M$ defined by $r\cdot m:=\alpha(r)(m)$ is called the \emph{scalar multiplication}.
+We usually omit the dot to denote it by $rm$.
 \begin{parts}
 \item If $R$ is commutative, then
 \end{parts}
@@ -324,20 +335,12 @@ isomorphism theorems
 
 \section{Algebras}
 \begin{prb}[Definition of algebras]
-Let $R$ be a ring.
-An (associative) \emph{$R$-algebra} is an $R$-module $A$ together with a \emph{multiplication} $\times:A\times A\to A$ which is associative, such that the following compatibility conditions hold:
-\begin{enumerate}[(i)]
-\item the \emph{distributive laws} hold: for every $a,b,c\in A$, we have
-\[a\times(b+c)=a\times b+a\times c\quad\text{ and }\quad(a+b)\times c=a\times c+b\times c,\]
-\item the \emph{compatibility with scalars}: for every $r,s\in R$ and $a,b\in A$, we have
-\[(rs)\cdot(a\times b)=(r\cdot a)\times(s\cdot b).\]
-\end{enumerate}
-If the multiplication is commutative or admits an identity, then we say the $R$-algebra is \emph{commutative} or \emph{unital} respectively.
-Although there are examples of \emph{non-associative} algebras in which the multiplication is not associative, we will always mean \emph{associative} $R$-algebras by $R$-algebras if any modifier is not attached.
+Let $R$ be a commutative unital ring.
+An \emph{associative $R$-algebra} is a possibly non-commutative and possibly non-unital ring $A$ together with a unital ring homomoprhism $\alpha:R\to(Z(A),\id_A)$, where $Z(A)$ denotes the center of $A$, which is considered as a subring of $\End_\Z(A)$ so that an $R$-algebra is an $R$-module.
+Although there are some important examples of \emph{non-associative} algebras in which the associativity of multiplication is dropped, in most cases we will assume that an $R$-algebra is associative.
 \begin{parts}
 \item The set of matrices $M_n(R)$ over a ring $R$ is a unital $R$-algebra.
 \item The set of quaternions $\H$ is an $\R$-algebra.
-\item There is a one-to-one correspondence between rings and commutative unital $\Z$-algebras.
 \end{parts}
 \end{prb}
 

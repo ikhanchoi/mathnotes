@@ -1258,29 +1258,36 @@ for $q,r\in A[x]$.
 
 \begin{prb}[Traces and norms]
 Let $L/K$ be a field extension.
-The \emph{trace} is a $K$-linear functional $\Tr_{L/K}:L\to K$ defined by
+For each $\alpha\in L$ we can define a $K$-linear endomorphism $M_\alpha:L\to L$ by $M_\alpha(\beta):=\alpha\beta$.
+Then, the \emph{trace} is a $K$-linear functional $\Tr_{L/K}:L\to K$ defined by
 \[\Tr_{L/K}(\alpha):=\Tr(M_\alpha),\]
 and the \emph{norm} is a multiplicative group homomorphism $N_{L/K}:L^\times\to K^\times$ defined by
 \[N_{L/K}(\alpha):=\det(M_\alpha)\]
-for $\alpha\in L$, where $M_\alpha:L\to L$ is a $K$-linear endomorphism such that
-\[M_\alpha(\beta):=\alpha\beta.\]
+for $\alpha\in L$.
 \begin{parts}
 \item If $L/K$ is separable, then the characteristic polynomial $\chi_\alpha\in K[x]$ of $M_\alpha$ is given by
 \[\chi_\alpha(x)=\prod_{\sigma\in\Hom_K(L,\bar K)}(x-\sigma(\alpha)).\]
 \item Let $M/L$ be another field extension. Then,
 \[\Tr_{L/K}\circ\Tr_{M/L}=\Tr_{M/K},\qquad N_{L/K}\circ N_{M/L}=N_{M/K}.\]
 \item A $K$-bilinear form $L\times L\to K:(\alpha,\beta)\mapsto\Tr_{L/K}(\alpha\beta)$ is nondegenerate.
+\item For $\alpha\in L$, $Tr_{L/K}(\alpha)\in\cO_K$ if $\alpha\in\cO_L$.
+\item For $\alpha\in L$, $N_{L/K}(\alpha)\in\cO_K$ if and only if $\alpha\in\cO_L$.
 \end{parts}
 \end{prb}
 
 \begin{prb}[Integral bases]
 An \emph{integral basis} of a number field $K$ is a basis of $\cO_K$ over $\Z$.
+Let $\{\omega_1,\cdots,\omega_n\}$ be a basis of $K$ over $\Q$.
+
+If $\Delta(\omega_1,\cdots,\omega_n)$ is square-free, then $\{\omega_1,\cdots,\omega_n\}$ is an integral basis.
+Let $\{\omega_1,\cdots,\omega_n\}$ be a basis of $K$ over $\Q$ consisting of algebraic integers.
+
+If $p^2\mid\Delta$ and it is not an integral basis, then there is a nonzero algebraic integer of the form
+\[\frac1p\sum_{i=1}^n\lambda_i\omega_i.\]
 \end{prb}
 
 \begin{prb}[Dedekind domains]
 \end{prb}
-
-
 
 
 Consider a $AKLB$-setting and let $\alpha\in L$.
@@ -1291,10 +1298,6 @@ Consider a $AKLB$-setting and let $\alpha\in L$.
 \section{Ramification theory}
 
 \section{The Dedekind theorem}
-
-
-
-
 
 
 \section*{Exercises}
@@ -1313,6 +1316,33 @@ Computation of a generator of $\F_{p^n}^\times$.
 
 \begin{prb}[Berlekamp algorithm]
 \end{prb}
+
+
+
+\begin{prb}[Quadratic integers]
+Every quadratic field is of the form $\Q(\sqrt d)$ for a square-free $d\in\Z$.
+Let $d$ be a square-free.
+\[\cO_{\Q(\sqrt d)}=\begin{cases}\Z[\sqrt d]&,d\equiv2,3\pmod4\\\Z[\tfrac{1+\sqrt d}2]&,d\equiv1\pmod4\end{cases}\]
+\[\Delta_{\Q(\sqrt d)}=\begin{cases}4d&,d\equiv2,3\pmod4\\ d&,d\equiv1\pmod4\end{cases}\]
+\end{prb}
+
+\begin{prb}[Cubic integers]
+\begin{parts}
+\item
+Let $\theta^3=hk^2$ for $h,k$ square-free's.
+\[\cO_{\Q(\theta)}=\begin{cases}\Z+\theta\Z+\frac{\theta^2}k\Z&,m\not\equiv\pm1\pmod9\\
+\Z+\theta\Z+\frac{\theta^2\pm\theta k+k^2}{3k}\Z&,m\equiv\pm1\pmod9\end{cases}\]
+\item
+If $\theta^3$ is a square free integer, then
+\[\cO_{\Q(\theta)}=\Z[\theta].\]
+\end{parts}
+\end{prb}
+
+
+
+
+
+
 
 \section*{Problems}
 

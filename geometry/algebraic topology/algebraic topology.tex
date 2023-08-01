@@ -52,6 +52,35 @@ universal coefficient theorem
 
 
 
+\part{Homotopy}
+
+\chapter{Homotopy groups}
+
+
+
+
+\chapter{Fibration}
+\section{Homotopy lifting property}
+
+
+Locally trivial bundles
+
+pullback bundles: universal property, functoriality, restriction,
+section prolongation
+
+\section{Obstruction theory}
+\section{Hurewicz theorem}
+$H_\bullet(\Omega S_n)$ and $H_\bullet(U(n))$
+Spin, Spin$_\C$ structure
+
+
+
+\chapter{Spectral sequences}
+\section{Serre spectral sequence}
+	(Lyndon-Hochschild-Serre)
+\section{Adams spectral sequence}
+
+
 
 
 
@@ -266,15 +295,18 @@ Then, the continuous map $(\tilde f,\id_B)$ preserves fibers and defines a right
 Let $H$ be a closed subgroup of $G$.
 Then, there is a map $\check H^1(B,H)\to\check H^1(B,G)$, which is neither in general injective nor surjective.
 If a $G$-bundle $\xi$ is contained in the image of $\check H^1(B,H)$ through the correspondence $\mathrm{Bun}_F(B)\twoheadrightarrow\check H^1(B,G)$, then we may give a $H$-bundle structure on $\xi$.
+
+A \emph{reduction} of $G$ to $H$ is a $H$-structure on a principal $G$-bundle.
 \end{prb}
 
 \section{Classifying spaces}
 
 Let $\mathrm{Prin}_G(B)$ be the set of isomorphism classes of principal $G$-bundles.
 Then, we have a contravariant functor
-\[\mathrm{Prin}_G:\mathbf{hTop}_{\mathrm{para}}\to\mathbf{Set}\]
-such that there is a natural isomorphism between contravariant functors
-\[[-,BG]\to\mathrm{Prin}_G.\]
+\[\mathrm{Prin}_G:\mathbf{Top}\to\mathbf{Set}\]
+such that there is a natural transformation between contravariant functors
+\[[-,BG]\to\mathrm{Prin}_G,\]
+which is an isomorphism on paracompact spaces.
 
 
 \begin{prb}[Homotopy properteis]
@@ -319,7 +351,55 @@ Riemannian and Hermitian metrics
 
 \section*{Exercises}
 
-group quotient gives a principal G-bundle.
+\begin{prb}
+Let $G$ be a topological group, and $X$ be a free right $G$-space.
+\begin{parts}
+\item If the action is proper and the projection $X\to X/G$ admits local sections, then $X\to X/G$ is a principal $G$-bundle.
+\end{parts}
+\end{prb}
+
+\begin{prb}
+Suppose $F\to E\to B$ is a principal 
+\begin{parts}
+\item If $X$ is contractible, then $X\to$
+\end{parts}
+\end{prb}
+
+\begin{prb}[Group quotients]
+Sufficient conditions for principal bundles.
+Let $G$ be a Lie group and, $X$ be a free right smooth $G$-manifold.
+\begin{parts}
+\item If $G$ is compact, then $X\to X/G$ is a principal $G$-bundle. (Gleason)
+\item The irrational slope provides a counterexample if $G$ is not compact.
+\item Suppose $X$ is a Lie group.
+If $G$ is a closed subgroup of $X$, then $X/\to X/G$ is a principal $G$-bundle. (Samelson) In particular, if $M$ is a transitive left smooth $X$-manifold such that $G$ is the isotropy group, then $X\to M$ is a principal $G$-bundle.
+\end{parts}
+\end{prb}
+
+\begin{prb}[Homogeneous spaces]
+They are all principal bundles.
+\begin{alignat*}{2}
+\rO(n-k)\to\rO(n)\to V_k(\R^n),&&\qquad\qquad\qquad\rU(n-k)\to\rU(n)\to V_k(\C^n),&\\
+\rO(n-k)\times\rO(k)\to\rO(n)\to G_k(\R^n),&&\rU(n-k)\times\rU(k)\to\rU(n)\to G_k(\C^n),&\\
+T(n)\cap\rO(n)\to\rO(n)\to F(\R^n),&&T(n)\cap\rU(n)\to\rU(n)\to F(\C^n),&\\
+&&T(n)\to\GL(n,\C)\to F(\C^n),&
+\end{alignat*}
+where $T(n)$ is the group of invertible upper triangular matrices.
+\[\SO(n)\to\SO^+(1,n)\to\H^n,\qquad\PSO(2)\to\PSL(2,\R)\to\H^2,\qquad ??\to\PSL(2,\C)\to\H^3,\]
+where $\PSL(2,\R)\cong\SO(1,2)^+$ is the modular group and $\PSL(2,\C)\cong\SO(1,3)^+$ is the restricted Lorentz group, also called the M\"obius group.
+\end{prb}
+
+\begin{prb}[Hopf fibration]
+A principal $S^1$-bundle $S^1\to S^3\to S^2$, where we see $S^1$ as the circle group.
+The Hopf fibrations are used in describing universal principal bundles off orthogonal or unitary groups.
+We have principal bundles:
+\begin{parts}
+\item The quaternionic construction gives $S^3\to S^7\to S^4$ and the octonianic construction gives $S^7\to S^{15}\to S^8$. Adams' theorem.
+\item $\rO(k)\to V_k(\R^n)\to G_k(\R^n)$. In particular, $\Z/2\Z\to S^n\to\RP^n$ for $k=1$.
+\item $\rU(k)\to V_k(\C^n)\to G_k(\C^n)$. In particular, $S^1\to S^{2n+1}\to\CP^n$ for $k=1$.
+\end{parts}
+\end{prb}
+
 
 Hopf fibration(real, complex, quaternionic, but not octonianic)
 
@@ -339,6 +419,7 @@ can be given in a more simple way.
 \chapter{Characteristic classes}
 
 
+
 \chapter{K-theory}
 
 bott periodicity
@@ -349,41 +430,53 @@ Hopf invariant
 
 
 
-\part{Homotopy}
-
-\chapter{Homotopy groups}
-
-
-
-
-\chapter{Fibration}
-\section{Homotopy lifting property}
-
-
-Locally trivial bundles
-
-pullback bundles: universal property, functoriality, restriction,
-section prolongation
-
-\section{Obstruction theory}
-\section{Hurewicz theorem}
-$H_\bullet(\Omega S_n)$ and $H_\bullet(U(n))$
-Spin, Spin$_\C$ structure
-
-
-
-\chapter{Spectral sequences}
-\section{Serre spectral sequence}
-	(Lyndon-Hochschild-Serre)
-\section{Adams spectral sequence}
-
-
 
 
 
 
 
 \part{Stable homotopy theory}
+
+
+\chapter{}
+\section{Generalized homology theory}
+
+A \emph{generalized reduced cohomology theory on pointed CW complexes} is a sequence of functors $\tilde E_q:\mathbf{hCW}_*\to\mathbf{Ab}$ for $q\in\Z$ which is exact and additive, and satisfies the suspension axiom.
+
+\begin{prb}
+Let $X$ and $Y$ be pointed CW complexes.
+\begin{parts}
+\item Suppose $Y$ is $(n-1)$-connected with non-degenerate base point for some $n$. Then, $[X,Y]\to[\Sigma X,\Sigma Y]$ is surjective if $\dim X\le 2n-1$, and bijective if $\dim X\le2n-2$.
+\end{parts}
+\end{prb}
+
+
+\begin{prb}
+A \emph{spectrum} is a sequence $E:=(E_n)_n$ of pointed spaces together with structure maps, either $\sigma_n:\Sigma E_n\to E_{n+1}$ or $\sigma'_n:E_n\to\Omega E_{n+1}$.
+We have
+\[[X,E_n]\xrightarrow{\sigma'_n}[X,\Omega E_{n+1}]=[\Sigma X,E_{n+1}].\]
+\end{prb}
+
+\begin{prb}[Properties of spectra]
+A spectrum $E=(E_n)_n$ is called an \emph{$\Omega$-spectrum} if $\sigma'_n:E_n\to\Omega E_{n+1}$ is a weak homotopy equivalence.
+A \emph{ring spectrum} is a spectrum together with a 
+\begin{parts}
+\item $E$ is an $\Omega$-spectrum if and only if $[-,E_n]$ defines a generalized reduced cohomology theory on based CW complexes.
+\end{parts}
+\end{prb}
+
+
+Sphere spectra, Suspension spectra
+Eilenberg-MacLane spectra(ordinary cohomology theories), K-theory spectra(K-theories), Thom spectra(cobordism theories)
+
+
+
+Let $E^*$ be a (generalized) cohomology theory.
+Then, the computation of $\Nat([-,BO(n)],E^*)\cong E^*(BO(n))$ determines all characteristic classes of real vector bundles.
+
+
+
+
 equivariant topology
 chromatic homotopy theory
 spectral sequences
