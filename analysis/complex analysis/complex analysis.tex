@@ -15,42 +15,121 @@
 \chapter{Cauchy theory}
 \section{Complex differentiability}
 
+\begin{prb}[Holomorphic functions]
+We call a connected open subset of $\C$ as a \emph{domain}.
+definition as a multi-variable calculus, chain rule
+\end{prb}
 
 \begin{prb}[Cauchy-Riemann equation]
+Cauchy-Riemann equation can be interpreted as several ways: the matrix representation of $df$ corresponds to a complex number via $x+iy\mapsto\mat{x&-y\\y&x}$, the closedness of the 1-form $f(z)\,dz$, 
 \begin{parts}
-\item For $f\in C^1(\Omega,\R^2)$, $f$ is holomorphic if and only if it satisfies the Cauchy-Riemann equation. (Is the $C^1$ condition necessary?)
+\item For $f\in C^1(\Omega,\R^2)$, $f$ is holomorphic if and only if it satisfies the Cauchy-Riemann equation in $\Omega$. (Is the $C^1$ condition necessary?)
 \end{parts}
 \end{prb}
 
 
-\section{Contour integral}
-
-\begin{prb}[Definition of contour integral]
-Let $\Omega\subset\C$ be a domain.
-Let $f\in C(\Omega)$ and let $\gamma:[a,b]\to\Omega$ be a $C^1$ curve.
-Then, the \emph{contour integral} of $f$ along the curve $\gamma$ is defined by
+\begin{prb}[Contour integral]
+Let $f:\Omega\to\C$ be a continuous function on a domain $\Omega\subset\C$ and let $\gamma:[a,b]\to\Omega$ be a $C^1$ curve.
+The \emph{contour integral} of $f$ along the curve $\gamma$ is defined by
 \[\int_\gamma f(z)\,dz:=\int_a^bf(\gamma(t))\gamma'(t)\,dt.\]
 In the language of differential geometry, it is a special case of integration with the pullback form $\gamma^*(f(z)\,dz)$.
-We can extend the definition of contour integral to \emph{piecewise $C^1$ curves}, which will be meant by \emph{contours}.
-\end{prb}
-ML lemma
+We can extend the definition of contour integral to \emph{piecewise $C^1$ curves} by considering it as a formal sum of $C^1$ curves, which will be meant by \emph{contours}.
+\begin{parts}
+\item The contour integral is independent of the choice of $\Omega$.
+\item
 \[\int_\gamma f'(z)\,dz=f(\gamma(b))-f(\gamma(a)).\]
+\item
 \[\int_{|z|=1}z^n\,dz=\begin{cases}2\pi i&\text{ if }n=-1,\\0&\text{ otherwise }.\end{cases}\]
+\end{parts}
+\end{prb}
 
 \begin{prb}[Cauchy theorem]
-We will describe the idea with the notion of homotopy.
-Stokes theorem(or Green's formula) and the proof by homotopy triangulation.
+The Cauchy integral is independent of the contour up to homotopy.
 \end{prb}
+\begin{pf}
+The assumption $\gamma_0$ and $\gamma_1$ are homotopic means that $\gamma_0-\gamma_1$ is a boundary of a 2-chain.
+We have to choose the homotopy on $[0,1]^2$ carefully so that it becomes $C^1$ except on the finite number of vertical and horizontal lines.
+It can be realized if a continuous(!) homotopy of curves is contained in a simply connected domain, but I don't know how to approximate $C^1$ homotopy...
+Then, the claim follows from the Stokes theorem.
+The triangulation technique is used in the proof of the Stokes theorem.
+\end{pf}
+
 
 \begin{prb}[Cauchy integral formula]
 Remind the proof of the mean value property for harmonic functions.
-The proof essentially have a shrinking process and boundedness of the difference quotient.
-Higher order version: can be prove before the analyticity?
+The proof essentially have a shrinking process and uses the boundedness of the difference quotient.
+Higher order version: we can prove before the analyticity by interchange of diff and int.
 \end{prb}
 
 
 
-\begin{prb}[Estimation of polynomials]
+
+\begin{prb}[Cauchy estimates]
+\begin{parts}
+\item If an entire function $f$ satisfies $|f(x)|\lesssim1+|x|^n$, then $f$ is a polynomial of degree at most $n$. In particular, the \emph{Liouville theorem} follows; a bounded entire function is constant.
+\end{parts}
+\end{prb}
+
+
+
+\section{Power series}
+
+\begin{prb}[Analyticity of holomorphic functions]
+A real function on $I\subset\R$ is analytic iff it has an analytic extension on an open neighborhood $\Omega$ of $I$ in $\C$.
+\[\sup_{x\in K}\left|\frac{f^{(k)}(x)}{k!}\right|^{\frac1{k+1}}<\infty.\]
+\end{prb}
+
+
+
+
+
+
+
+normal form
+and analogue of harmonic functions
+
+\begin{prb}[Identity theorem]
+\end{prb}
+identity theorem for harmonic: on an open set, but not on the real line, e.g.~$0$ and $y$
+
+\begin{prb}[Open mapping theorem]
+\end{prb}
+inverse function if $n=1$
+open mapping if $n\ge1$
+Maximum principle
+Schwarz lemma and description of automorphisms of the disk
+
+
+
+
+\begin{prb}[Morera and Goursat theorem]
+The $C^1$ condition in the definition of holomorphic functions is necessary to apply the Stokes theorem when we prove the Cauchy theorem.
+However, the $C^1$ condition can be dropped and the pointwise complex differentiability is sufficient to check a function is holomorphic.
+
+Suppose $f:\Omega\to\C$ be a continuous function on a domain $\Omega$.
+If for every point $z_0\in\Omega$ there is an open neighborhood of $z_0$ in $\Omega$ in which every triangle $T$ satisfies $\oint_{\partial T}f(z)\,dz=0$. (Morera)
+\end{prb}
+\begin{pf}
+If we define
+\[F(z):=\int_0^zf(\zeta)\,d\zeta,\]
+then by the triangle condition, we have
+\[F(z+h)-F(z)=\int_z^{z+h}f(\zeta)\,d\zeta.\]
+We can show $F'(z)=f(z)$ by the continuity of $f$, and therefore $f$ is holomorphic because it also has the power series representation as well as $F$.
+\end{pf}
+
+
+
+\section*{Exercises}
+\begin{prb}[Wirtinger derivatives]
+\end{prb}
+\begin{prb}[Branch of logarithm and $n$th root]
+on simply connected domain
+\end{prb}
+\begin{prb}[Log$r$ on $\C\setminus\{0\}$]
+harmonic function wihtout harmonic conjugate?
+\end{prb}
+
+\begin{prb}[Fundamental theorem of algebra]
 Let $p\in\C[z]$ be a polynomial of degree $n$ such that
 \[p(z)=\sum_{k=0}^na_kz^k,\quad a_n\ne0.\]
 \begin{parts}
@@ -69,59 +148,10 @@ which implies
 \end{pf}
 
 
-\begin{prb}[Cauchy estimates]
-\begin{parts}
-\item If an entire function $f$ satisfies $|f(x)|\lesssim1+|x|^n$, then $f$ is a polynomial of degree at most $n$. In particular, the \emph{Liouville theorem} follows; a bounded entire function is constant.
-\end{parts}
-\end{prb}
-
-\begin{prb}[Morera theorem]
-antiderivative
-\end{prb}
-
-\begin{prb}[Goursat theorem]
-The $C^1$ condition in the definition of holomorphic functions is necessary to apply the Stokes theorem when we prove the Cauchy theorem.
-However, the $C^1$ condition can be dropped and the pointwise complex differentiability is sufficient to check a function is holomorphic.
-\end{prb}
-
-
-\section{Power series}
-\begin{prb}[Analyticity of holomorphic functions]
-One direction is direct, the other direction requires the Cauchy integral formula.
-\end{prb}
-
-\begin{prb}[Laurent series]
-\end{prb}
-
-
-local geometry, branch points?
-
-\begin{prb}[Open mapping theorem]
-\end{prb}
-Maximum principle
-Schwarz lemma
-
-\begin{prb}[Identity theorem]
-\end{prb}
-inverse function
-
-
-
-\section*{Exercises}
-\begin{prb}[Wirtinger derivatives]
-\end{prb}
-\begin{prb}[Branch of logarithm]
-on simply connected domain.
-and nth root.
-\end{prb}
-\begin{prb}[Log$r$ on $\C\setminus\{0\}$]
-\end{prb}
-
-
 \section*{Problems}
 
 \begin{enumerate}
-\item If a holomorphic function has positive real parts on the open unit disk then $|f'(0)|<2\Re f(0)$.
+\item If a holomorphic function has positive real parts on the open unit disk then $|f'(0)|\le2\Re f(0)$.
 \item If at least one coefficient in the power series of a holomorphic function at each point is 0 then the function is a polynomial.
 \item If a holomorphic function on a domain containing the closed unit disk is injective on the unit circle, then so is on the disk.
 \item For a holomorphic function $f$ and every $z_0$ in the domain, there are $z_1\ne z_2$ such that $\frac{f(z_1)-f(z_2)}{z_1-z_2}=f'(z_0)$.
@@ -131,7 +161,12 @@ and nth root.
 \item If the set of points in a domain $U\subset\C$ at which a sequence of bounded holomorphic functions converges has a limit point, then it compactly converges.
 \item Find all entire functions $f$ satisfying $f(z)^2=f(z^2)$.
 \item An entire function maps every unbounded sequence to an unbounded sequence is a polynomial.
+\item If a holomorphic function satisfies $\Re f(z)\le1+|z|^2$, then $f$ is a polynomial at most degree two.
 \end{enumerate}
+
+
+
+
 
 
 
@@ -151,7 +186,7 @@ and nth root.
 Riemann sphere and meromorphic functions?
 
 \section{Residue theorem}
-\begin{prb}
+\begin{prb}[Residue theorem]
 
 \end{prb}
 
@@ -162,38 +197,34 @@ Riemann sphere and meromorphic functions?
 
 
 
-\section{Contour integrals}
-
-
 \begin{prb}[Semicircular contour]
 We want to justify the following definite integral:
 \[\int_0^\infty\frac{\cos x}{x^2+1}\,dx=\frac\pi{2e}.\]
 This can be viewed as a special value of the characteristic function of the \emph{Cauchy distribution} in probability theory.
-Define $f:\C\setminus\{\pm i\}\to\C$ be such that
-\[f(z)=\frac{e^{iz}}{z^2+1},\]
-and for $R>0$ consider a \emph{semicircular contour} $C_1+C_2$ defined by
-\[\left\{
+Define $f:\C\setminus\{\pm i\}\to\C$ and the \emph{semicircular contour} for $R>0$ as follows:
+\[f(z)=\frac{e^{iz}}{z^2+1},\qquad
+\left\{
 \begin{alignedat}{2}
-C_1&:x\mapsto x,&\quad&x\in[-R,R],\\
-C_2&:\theta\mapsto Re^{i\theta},&&\theta\in[0,\pi].
+\gamma_1&:x\mapsto x,&\quad&x\in[-R,R],\\
+\gamma_2&:\theta\mapsto Re^{i\theta},&&\theta\in[0,\pi].
 \end{alignedat}
 \right.\]
 \begin{parts}
-\item Let $h$ be a holomorphic function on a domain containing the arcs $C_2$ for every large $R>0$.
+\item Let $h$ be a holomorphic function on a domain containing the arcs $\gamma_2$ for every large $R>0$.
 If $h$ vanishes at infinity, then
-\[\lim_{R\to\infty}\int_{C_2}e^{iz}h(z)\,dz=0.\]
+\[\lim_{R\to\infty}\int_{\gamma_2}e^{iz}h(z)\,dz=0.\]
 This is called the \emph{Jordan lemma}.
 \item
-\[\lim_{R\to\infty}\int_Cf(z)\,dz=\begin{cases}
-\frac\pi e&\text{ if }C=C_1+C_2\\
-2\int_0^\infty\frac{\cos x}{x^2+1}\,dx&\text{ if }C=C_1\\
-0&\text{ if }C=C_2
+\[\lim_{R\to\infty}\int_\gammaf(z)\,dz=\begin{cases}
+\frac\pi e&\text{ if }\gamma=\gamma_1+\gamma_2\\
+2\int_0^\infty\frac{\cos x}{x^2+1}\,dx&\text{ if }\gamma=\gamma_1\\
+0&\text{ if }\gamma=\gamma_2
 \end{cases}\]
 \end{parts}
 \end{prb}
 \begin{pf}
 (a)
-Let $M_R=\max_{z\in C_2}|h(z)|$.
+Let $M_R=\max_{z\in \gamma_2}|h(z)|$.
 Since $\sin\theta\ge\frac2\pi\theta$ for $0\le\theta\le\frac\pi2$, we have
 \begin{align*}
 \Bigl|\int_{C_2}e^{iz}h(z)\,dz\Bigr|
@@ -201,45 +232,46 @@ Since $\sin\theta\ge\frac2\pi\theta$ for $0\le\theta\le\frac\pi2$, we have
 &\le M_RR\int_0^\pi e^{-R\sin\theta}\,d\theta\\
 &=2M_RR\int_0^{\frac\pi2}e^{-R\sin\theta}\,d\theta\\
 &\le2M_RR\int_0^{\frac\pi2}e^{-R\frac2\pi\theta}\,d\theta\\\
-&=M_R\pi(1-e^{-R}).
+&=\pi M_R(1-e^{-R}).
 \end{align*}
 So we are done because $\lim_{R\to\infty}M_R=0$.
 
 (b)
-For $C=C_1+C_2$, note that for sufficiently large $R$, the function $f$ has only one pole at $z=i$ in the interior of $C$, which is simple; define $g:\operatorname{int}C\to\C$ such that
+For $\gamma=\gamma_1+\gamma_2$, note that for sufficiently large $R$, the function $f$ has only one pole at $z=i$ in the interior of $C$, which is simple; define $g:\operatorname{int}\gamma\to\C$ such that
 \[f(z)=:\frac{g(z)}{(z-i)}=\frac{g(i)}{z-i}+\frac{g(z)-g(i)}{z-i}.\]
 Then, by the residue theorem, we obtain
-\[\int_Cf(z)\,dz=\int_C\frac{g(z)}{z-i}\,dz=2\pi i\cdot g(i)=\frac\pi e\]
+\[\int_\gammaf(z)\,dz=\int_\gamma\frac{g(z)}{z-i}\,dz=2\pi i\cdot g(i)=\frac\pi e\]
 for large $R$.
 
-For $C=C_1$, we have
-\[\lim_{R\to\infty}\int_{C_1}f(z)\,dz=\lim_{R\to\infty}\int_{-R}^Rf(x)\,dx=2\int_0^\infty f(x)\,dx\]
+For $\gamma=\gamma_1$, we have
+\[\lim_{R\to\infty}\int_{\gamma_1}f(z)\,dz=\lim_{R\to\infty}\int_{-R}^Rf(x)\,dx=2\int_0^\infty f(x)\,dx\]
 by the definition of improper integrals.
 
-For $C=C_2$, it clearly follows from the aprt (a).
+For $\gamma=\gamma_2$, it clearly follows from the aprt (a).
 \end{pf}
 
 \begin{prb}[Indented contour]
-We want to justify the \emph{Dirichlet integral}:
+Indented contour is often used to compute the principal value of integrals.
+Here we want to justify the \emph{Dirichlet integral} as an example:
 \[\int_0^\infty\frac{\sin x}x\,dx=\frac\pi2.\]
-Define $f:\C\setminus\{0\}\to\C$ such that
-\[f(z)=\frac{e^{iz}}z,\]
-and for $r,R>0$ let $C$ be a \emph{indented contour} defined by
-\[\left\{
+Define $f:\C\setminus\{0\}\to\C$ and the \emph{indented contour} for $r,R>0$ as follows:
+\[f(z)=\frac{e^{iz}}z,\qquad
+\left\{
 \begin{alignedat}{2}
-C_1&:x\mapsto x,&\quad&x\in[r,R],\\
-C_2&:\theta\mapsto Re^{i\theta},&&\theta\in[0,\pi],\\
-C_3&:x\mapsto x,&&x\in[-R,-r],\\
-C_4&:\theta\mapsto re^{\pi-\theta},&&\theta\in[0,\pi].
+\gamma_1&:x\mapsto x,&\quad&x\in[r,R],\\
+\gamma_2&:\theta\mapsto Re^{i\theta},&&\theta\in[0,\pi],\\
+\gamma_3&:x\mapsto x,&&x\in[-R,-r],\\
+\gamma_4&:\theta\mapsto re^{\pi-\theta},&&\theta\in[0,\pi].
 \end{alignedat}
 \right.\]
 The indented contour is effective when $f$ has a simple pole at zero.
 \begin{parts}
 \item
 \[\lim_{\substack{R\to\infty\\r\to0}}\int_Cf(z)\,dz=\begin{cases}
-2i\int_0^\infty\frac{\sin x}x\,dx&\text{ if }C=C_1+C_3\\
-0&\text{ if }C=C_2\\
--\pi i&\text{ if }C=C_4.
+0&\text{ if }\gamma=\gamma_1+\gamma_2+\gamma_3+\gamma_4\\
+2i\int_0^\infty\frac{\sin x}x\,dx&\text{ if }\gamma=\gamma_1+\gamma_3\\
+0&\text{ if }\gamma=\gamma_2\\
+-\pi i&\text{ if }\gamma=\gamma_4.
 \end{cases}\]
 \end{parts}
 \end{prb}
@@ -248,24 +280,24 @@ The indented contour is effective when $f$ has a simple pole at zero.
 It follows from the Jordan lemma.
 
 
-For $C=C_4$, since we have a partial fraction decomposition
+For $\gamma=\gamma_4$, since we have a partial fraction decomposition
 \[f(z)=\frac1z+h(z),\qquad h(z):=\frac{e^{iz}-1}z,\]
 where $h$ has a removable singularity at zero,
-\[\int_{C_4}f(z)\,dz=\int_{C_4}\frac{dz}z+\int_{C_4}h(z)\,dz\to-\pi i+0\]
+\[\int_{\gamma_4}f(z)\,dz=\int_{\gamma_4}\frac{dz}z+\int_{\gamma_4}h(z)\,dz\to-\pi i+0\]
 as $r\to\infty$.
 \end{pf}
 
 \begin{prb}[Sector contour]
 We want to justify the \emph{Fresnel integral}:
-\[\int_0^\infty\cos x^2\,dx=\sqrt{\frac\pi8}\]
-Define $f:\C\setminus\{0\}\to\C$ such that
-\[f(z)=e^{iz^2},\]
-and for $R>0$ let $C$ be a \emph{circular sector contour} defined by
-\[\left\{
+\[\int_0^\infty\cos x^2\,dx=\sqrt{\frac\pi8}.\]
+Sector contour is also used to compute the Fourier transform of Gaussian function, which also contains a nonlinear polynomial in a exponential term.
+Define $f:\C\setminus\{0\}\to\C$ and the \emph{circular sector contour} for $R>0$ as follows:
+\[f(z)=e^{iz^2},\qquad
+\left\{
 \begin{alignedat}{2}
-C_1&:x\mapsto x,&\quad&x\in[0,R],\\
-C_2&:\theta\mapsto Re^{i\theta},&&\theta\in[0,\tfrac\pi4],\\
-C_3&:x\mapsto(R-x)e^{\frac\pi4i},&&x\in[0,R].
+\gamma_1&:x\mapsto x,&\quad&x\in[0,R],\\
+\gamma_2&:\theta\mapsto Re^{i\theta},&&\theta\in[0,\tfrac\pi4],\\
+\gamma_3&:x\mapsto(R-x)e^{\frac\pi4i},&&x\in[0,R].
 \end{alignedat}
 \right.\]
 \begin{parts}
@@ -277,19 +309,18 @@ C_3&:x\mapsto(R-x)e^{\frac\pi4i},&&x\in[0,R].
 
 \end{pf}
 
+\begin{prb}[Rectangular contour]
+A rectangular contour is used for the Fourier transform of functions periodic along imaginary direction.
+\[\int_0^\infty\frac{\sin x}{e^x-1}\,dx,\qquad\int_0^\infty\frac{\cos x}{\cosh x}\,dx\]
+\end{prb}
+
 \begin{prb}[Keyhole contour]
 the \emph{keyhole contour} or the \emph{Hankel contour}
 
-\[\int_0^\infty\frac{x^{a-1}}{1+x}=\frac\pi{\sin\pi a}\quad(0<a<1),\quad\int_1^\infty\frac{dx}{x\sqrt{x^2-1}}\]
+\[\int_0^\infty\frac{x^{a-1}}{1+x}=\frac\pi{\sin\pi a}\quad(0<a<1),\qquad\int_1^\infty\frac{dx}{x\sqrt{x^2-1}}\]
 $\log z$ trick
 \[\int_0^\infty\frac{dx}{1+x^3}\]
 \end{prb}
-
-\begin{prb}[Rectangular contour]
-Fourier integral?
-\[\int_0^\infty\frac{\sin x}{e^x-1}\,dx,\quad\int_0^\infty\frac{\cos x}{\cosh x}\,dx\]
-\end{prb}
-
 
 
 
@@ -297,16 +328,16 @@ Fourier integral?
 
 
 \section{Zeros and poles}
-\begin{prb}[Argument principle]
+\begin{prb}[Argument principle]\,
 \begin{parts}
-\item $f$ has either a zero or a pole at $a$ if and only if $f'(z)/f(z)$ has a simple pole at $a$. 
 \item We have a partial fraction decomposition
 \[\frac{f'(z)}{f(z)}=\frac{\ord_a(f)}{z-a}+h(z),\]
 where $h$ is holomorphic at $a$.
+In particular, $f$ has either a zero or a pole at $a$ if and only if $f'(z)/f(z)$ has a simple pole at $a$.
 \item
-\[\int_C\frac{f'(z)}{f(z)}\,dz=2\pi i(\text{number of zeros}-\text{number of poles}).\]
+\[\int_\gamma\frac{f'(z)}{f(z)}\,dz=2\pi i(\text{number of zeros}-\text{number of poles}).\]
 \item
-\[\int_C\frac{f'(z)}{f(z)}h(z)\,dz=2\pi i\sum_a\ord_a(f)h(a).\]
+\[\int_\gamma\frac{f'(z)}{f(z)}g(z)\,dz=2\pi i\sum_a\ord_a(f)g(a).\]
 \item Winding number
 \end{parts}
 \end{prb}
@@ -321,9 +352,9 @@ Let $f$ be a meromorphic function on $\Omega$.
 \begin{parts}
 \item
 If $h:[0,1]\times\Omega\to\C$ is continuous, then 
-\[\int_C\frac{f'(z)}{f(z)}\,dz=\int_C\frac{g'(z)}{g(z)}\,dz.\]
-In particular, if $|g(z)|<|f(z)|$ on $z\in C$, then
-\[\int_C\frac{f'(z)}{f(z)}\,dz=\int_C\frac{f'(z)+g'(z)}{f(z)+g(z)}\,dz.\]
+\[\int_\gamma\frac{f'(z)}{f(z)}\,dz=\int_\gamma\frac{g'(z)}{g(z)}\,dz.\]
+In particular, if $|g(z)|<|f(z)|$ on $z\in\gamma$, then
+\[\int_\gamma\frac{f'(z)}{f(z)}\,dz=\int_\gamma\frac{f'(z)+g'(z)}{f(z)+g(z)}\,dz.\]
 \end{parts}
 \end{prb}
 
@@ -332,13 +363,8 @@ In particular, if $|g(z)|<|f(z)|$ on $z\in C$, then
 
 
 \section*{Exercises}
-\begin{prb}[Fundamental theorem of algebra]
-proof by the Liouville theorem, and proof by the Rouch\'e theorem.
-\end{prb}
-\begin{prb}[Computation of Fourier transforms]
-Cauchy distribution,
-sector and Gaussian integral,
-rectangular integral
+\begin{prb}[The second proof of the fundamental theorem of algebra]
+by Rouch\'e.
 \end{prb}
 \begin{prb}[Laplace transforms]
 \end{prb}
@@ -398,6 +424,7 @@ Mergelyan
 \chapter{Conformal mappings}
 \section{Riemann sphere and open unit disk}
 \begin{prb}[Conformality of holomorphic maps]
+$f'\ne0$ and $f'$ satisfies the Cauchy-Riemann
 \end{prb}
 \begin{prb}[M\"obius transform]
 generators,
@@ -503,6 +530,9 @@ holomorphic functions and meromorphic functions $\cO_{\P^1}=0$, $\cM_{\P^1}=\C(z
 
 transformation rule? gluing rule?
 
+\begin{prb}[Riemann sphere]
+
+\end{prb}
 
 
 

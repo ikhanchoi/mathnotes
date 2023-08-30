@@ -11,6 +11,7 @@
 
 \part{Constructions}
 
+
 \chapter{Operator systems and spaces}
 \section{Completely positive maps}
 
@@ -110,11 +111,24 @@ implies
 
 
 
-\chapter{Hilbert C$^*$-modules}
 
-\section{}
 
-right $A$ convention: to make it commute with the action by adjointable operators.
+
+
+
+
+\chapter{Hilbert modules}
+
+\section{Hilbert modules}
+
+\begin{prb}
+A \emph{Hilbert $A$-module} is a complex linear space $\cE$ together with
+\begin{enumerate}[(i)]
+\item a ring homomorphism $A^{op}\to\End_\C(\cE)$,
+\item an $A$-valued inner product $\<\cdot,\cdot\>:\cE\times\cE\to A$, which is $A$-linear in second argument,
+\end{enumerate}
+which is complete with respect to the norm $\|\xi\|:=\|\<\xi,\xi\>\|^{\frac12}$.
+\end{prb}
 
 constructions:
 direct sum, tensor product, localization
@@ -163,28 +177,10 @@ Let $g\in M(C_0(\Omega))_+$.
 
 
 
-\section{C$^*$-correspondences}
-
-as a morphism
-sub and quotient, direct sum, tensor product,
-
-Toeplitz-Cuntz
-Toeplitz-Pimsner
-Cuntz-Pimsner
-Cuntz-Krieger
-
-C$^*$-dynamical systems
-graph algebras
-
-
-
-Coactions and Fell bundles
 
 
 
 Induced representations and Morita equivalence
-KK-theory
-C$^*$-algebraic quantum groups
 
 
 
@@ -192,15 +188,11 @@ C$^*$-algebraic quantum groups
 
 
 
+\chapter{Examples}
 
 
 
-
-\chapter{Groups and actions}
-
-
-
-\section{Group C$^*$ algebras}
+\section{Group algebras}
 type I, subhomogeneous
 
 
@@ -210,12 +202,123 @@ free groups
 projectionless of $C_r^*(F_2)$
 
 
+
+
 \section{Crossed products}
 
+\begin{prb}[C$^*$-dynamical system]
+A \emph{C$^*$-dynamical system} is a triple $(A,G,\alpha)$ consisting of a C$^*$-algebra $A$, a locally compact group $G$, and group homomorphism $\alpha:G\to\Aut(A)$ that is continuous in the point-norm topology.
+\begin{parts}
+\item For fixed $G$, there is an equivalence between categories of locally compact transformation groups and C$^*$-dynamical system on abelian C$^*$-algebras.
+\end{parts}
+\end{prb}
+
+
+On $U(H)$, the strict topology and the strong operator topology are equal.
+Therefore, we have three topologies to consider: strong, weak, and $\sigma$-weak.
+
+\begin{prb}
+Let $G$ be a locally compact group.
+A unitary representation $u:G\to B(H)$ induces a C$^*$-dynamical system $(B(H),G,\Ad)$ by $\Ad:G\to\Aut(B(H))$.
+
+A \emph{covariant representation} of a C$^*$-dynamical system is an equivariant $*$-homomorphism $(A,G,\alpha)\to(B(H),G,\Ad)$.
+\end{prb}
+
+Note that we have a homeomorphism $\Aut(K(H))\cong PU(H)$ between the point-norm topology and the strong operator topology.
+
+$\Z$-action, $\Homeo$-action, left multiplication of subgroup
+induced representation
+regular representation $(C_0(G),G,lt)\to(B(L^2(G)),G,\lambda)$.
+
+
+commutative case
+
+group algebra: completion of $C_c(G)$ with reps,
+crossed product: completion of $C_c(G,A)$ with cov reps,
+
+
+
+
+\section{Groupoid algebras}
+
+
+
+
+
+
+\section{Graph algebras}
+
+
+
+
+
 \section{Pimsner algebras}
-graph algebras
 
 
+\begin{prb}[C$^*$-correspondences]
+Let $A$ be a C$^*$-algebra.
+A \emph{C$^*$-correspondence} over $A$ is a right Hilbert $A$-module $\cE$ together with a $*$-homomorphism $\f:A\to B(\cE)$, called the \emph{left action}.
+We say $\cE$ is \emph{faithful} or \emph{non-degenerate} if $\f$ is faithful or non-degenerate, respectively.
+\begin{parts}
+\item If $\f:A\to M(B)$ is a unital completely positive map, then we can construct a natural $A$-$B$-correspondence $\cE$ by mimicking the GNS construction on $A\odot B$.
+\item If $\f:A\to M(B)$ is a non-degenerate $*$-homomorphism, $\f\in\Mor(A,B)$ in other words, then we can associate a canonical $A$-$B$-correspondence $B$ such that the left action is realized with $\f$.
+More precisely, $\iota:\cE\to B:a\otimes b\mapsto\f(a)b$ provides a well-defined linear isomorphism (surjectivity follows from the density of $\f(A)B$ in $B$ and the Cohen factorization theorem) and the two actions on $\cE$ is described by $\iota(a\xi b)=\f(a)\iota(\xi)b$.
+\end{parts}
+\end{prb}
+
+
+\begin{prb}
+Let $\cE$ be a C$^*$-correspondence over a C$^*$-algebra $A$.
+Let $B$ be a C$^*$-algebra and see it as a trivial C$^*$-correspondence over $B$.
+A \emph{representation} of $\cE$ on $B$ is a pair $(\pi,\tau)$ of a $*$-homomorphism $\pi:A\to B$ and a linear map $\tau:\cE\to B$ such that
+\[\pi(\<\xi,\eta\>)=\tau(\xi)^*\tau(\eta),\qquad\tau(\f(a)\xi)=\pi(a)\tau(\xi).\]
+We define an ideal
+\[J(\cE):=\f^{-1}(K(\cE))\cap\f^{-1}(0)^\perp.\]
+
+A \emph{covariant representation} is a representation of $\cE$ such that
+\[\psi(\f(a))=\pi(a),\qquad a\in J(\cE).\]
+\begin{parts}
+\item
+Let $(A,\Z,\alpha)$ be a C$^*$-dynamical system and consider the canonical C$^*$-correspondence $A$ over $A$ with the left action $\f:=\alpha_1\in\Aut(A)\subset\Mor(A)$.
+This correspondence is full, faithful, and non-degenerate.
+Note that also we have $J(A)=\f^{-1}(A)\cap A=A$.
+If $(\pi,\tau)$ is an any representation of this C$^*$-correspondence $A$ on $B$, then 
+\end{parts}
+\end{prb}
+
+How can we decribe representations of C$^*$-correspondence $A$ with left action $\f\in\Aut(A)$ in terms of covariant representations of the C$^*$-dynamical system $(A,\Z,\alpha)$ with $\alpha_n=\f^n$?
+
+
+
+as a morphism
+sub and quotient, direct sum, tensor product,
+
+Toeplitz-Cuntz
+Toeplitz-Pimsner
+Cuntz-Pimsner
+Cuntz-Krieger
+
+
+
+
+Let $\f\in\Aut(A)$.
+
+
+
+
+
+
+
+Coactions and Fell bundles
+
+
+
+KK-theory
+C$^*$-algebraic quantum groups
+
+
+
+\section{Free products}
 
 
 
@@ -300,28 +403,9 @@ Kaplansky conjecture
 
 \chapter{Simplicity}
 
-\section{Examples from groups}
 
-\section{Elliott program}
-successful in Kirchberg algebras
+Furstenburg boundary
 
-
-https://arxiv.org/pdf/2307.06480.pdf
-
-Elliott classification problem
-Kirchberg-Phillipes theorem
-
-operator K-theory and its pairing with traces
-
-$\cZ$-stability, Rosenberg-Schochet universal coefficient theorem
-
-Connes-Haagerup classification of injective factors
-
-Kirchberg: unital simple separable $\cZ$-stable algebra is either purely infinte or stably finite.
-Haagerup, Blackadar, Handelman: unital simple stably finite algebra has a trace.
-
-Glimm: uniformly hyperfinite algebras
-Murray-von Neumann: hyperfinite II$_1$ factors
 
 
 
@@ -406,19 +490,74 @@ Brattelli diagram
 
 
 
-\section{Dixmier-Douady theory}
 
 
-\begin{prb}[Banach bundle]
+
+
+
+
+
+
+
+
+
+
+
+
+\part{Classification}
+\chapter{Simple nuclear algebras}
+\section{Elliott invariant}
+
+\section{Classifiability}
+Jiang-Su stability
+Universal coefficient theorem
+
+Toms-Winter conjecture
+strongly self-absorbing
+nuclear dimension
+
+
+
+
+successful in Kirchberg algebras
+
+
+https://arxiv.org/pdf/2307.06480.pdf
+
+Elliott classification problem
+Kirchberg-Phillipes theorem
+
+operator K-theory and its pairing with traces
+
+$\cZ$-stability, Rosenberg-Schochet universal coefficient theorem
+
+Connes-Haagerup classification of injective factors
+
+Kirchberg: unital simple separable $\cZ$-stable algebra is either purely infinte or stably finite.
+Haagerup, Blackadar, Handelman: unital simple stably finite algebra has a trace.
+
+Glimm: uniformly hyperfinite algebras
+Murray-von Neumann: hyperfinite II$_1$ factors
+
+
+
+
+\chapter{Continuous fields}
+
+
+\section{Banach bundles}
+
+\begin{prb}[Banach bundles]
 A \emph{Banach bundle}, introduced by Fell, is a continuous open surjection $\pi:E\to X$ between topological spaces together with Banach space structure on each fiber $\pi^{-1}(x)$ such that:
 \begin{enumerate}[(i)]
 \item the addition $\{(e,e'):\pi(e)=\pi(e')\}\subset E\times E\to E:(e,e')\mapsto e+e'$ is continuous,
 \item the scalar multiplication $\C\times E\to E:(\lambda,e)\mapsto\lambda e$ is continuous,
 \item the norm $E\to\R_{\ge0}:e\mapsto\|e\|$ is continuous,
-\item the family of subsets $\{e\in B:\pi(e)\in U,\ \|e\|<r\}$ parametrized by open neighborhood $U\subset X$ of $x$ and positive $r\in\R$ forms a neighborhood basis of $0\in\pi^{-1}(x)$ in $E$.
+\item the family of subsets
+\[\{e\in B:\pi(e)\in U,\ \|e\|<r\}_{U\in N(x),r>0}\]
+forms a neighborhood basis of $0\in\pi^{-1}(x)$ in $E$.
 \end{enumerate}
 The forth condition is equivalent to that if $\|e_i\|\to0$ and $\pi(e_i)\to x$ then $e_i\to 0_x\in\pi^{-1}(x)$.
-If the norm satisfies the parallelogram law, then we call the Banach bundle a \emph{Hilbert bundle}.
 \begin{parts}
 \item For a Banach bundle $E\to X$, if $X$ is locally compact Hausdorff and every fiber $E_x$ shares a same finite dimension, then the bundle is locally trivial.
 \end{parts}
@@ -429,10 +568,18 @@ If the norm satisfies the parallelogram law, then we call the Banach bundle a \e
 \end{prb}
 
 
-\begin{prb}[Banach $C_0(X)$-module]
-Let $E\to X$ be a Banach bundle.
+
+\begin{prb}[Hilbert bundles]
+A \emph{Hilbert bundle} is a Banach bundle whose norm function satisfies the parallelogram law.
+
+\begin{parts}
+\item On a compact $X$, there is an equivalence between the category of Hilbert $C(X)$-modules and the category of Hilbert bundles over $X$.
+\item On a compact $X$, there is an equivalence between the category of algebraically finitely generated Hilbert $C(X)$-modules and the category of classical locally trivial finite-rank complex vector bundle over $X$.
+It is due to that finitely generatedness implies the projectivity and the Serre-Swan theorem.
+\end{parts}
 \end{prb}
 
+\section{Dixmier-Douady theory}
 
 
 Fell's condition
@@ -441,6 +588,7 @@ A C$^*$-algebra $A$ is called \emph{continuous trace} if the set of all $a\in\cA
 
 
 
+Dadarlat-Pennig theory
 
 
 

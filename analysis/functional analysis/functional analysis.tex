@@ -1,9 +1,6 @@
 \documentclass{../../large}
 \usepackage{../../ikhanchoi}
 
-\newcommand{\wk}{\text{\sc wk}}
-\newcommand{\wot}{{\text{\sc wot}}}
-\newcommand{\sot}{{\text{\sc sot}}}
 
 \begin{document}
 \title{Functional Analysis}
@@ -46,9 +43,7 @@ If $x^*\in X^*$ vanishes on $\bigcap_{i=1}^n\ker x_i^*$, then $x^*$ is a linear 
 
 
 
-\section{Hahn-Banach theorem}
-
-\begin{prb}[Hahn-Banach theorem]
+\begin{prb}[Hahn-Banach extension]
 Let $X$ be a real vector space.
 Suppose $V$ is a linear subspace of $X$ and $l:V\to\R$ is a linear functional dominated by a sublinear functional $q:X\to\R$, that is, $l(v)\le q(v)$ for all $v\in V$.
 \begin{parts}
@@ -108,7 +103,7 @@ Then,
 \end{pf}
 
 
-\begin{prb}[Applications of Hahn-Banach theorem]
+\begin{prb}[Hahn-Banach separation]
 \end{prb}
 
 
@@ -480,52 +475,12 @@ We can show $k$ is an isomorphism so that we have
 
 \part{Banach spaces}
 
-\chapter{Fr\'echet, Banach, Hilbert spaces}
-
-\section{Banach spaces}
-dual is Banach.
-Basis problem, Mazur' duck.
-
-\section{Hilbert spaces}
-Projections. Reducing subspaces.
-Hilbert space classification by cardinal.
-Riesz representation theorem.
-\begin{prb}
-\begin{parts}
-\item A Banach space $X$ is isometrically isomorphic to a Hilbert space if there is a bounded linear projection on every closed subspace of $X$.
-\end{parts}
-\end{prb}
-
-\begin{prb}[Riesz representation theorem]
-Let $H$ be a Hilbert space over a field $\F$, which is either $\R$ of $\C$.
-
-
-We use the bilinear form $\<-,-\>:X\times X^*\to\F$ of canonical duality.
-\emph{Dirac} notation $\<-|-\>$ for the inner product of a complex Hilbert spaces such that $\<x,y\>=\<y|x\>$.
-The Riesz representation theorem states that a continuous linear functional on a Hilbert space is represented by the inner product with a vector.
-\begin{parts}
-\item For each $x^*\in H^*$, there is a unique $x\in H$ such that $\<y,x^*\>=\<y,x\>$ for every $y\in H$.
-\item $H\to H^*:x\mapsto\<-,x\>$ is a natural linear and anti-linear isomorphism if $\F=\R$ and $\C$, respectively.
-\end{parts}
-\end{prb}
 
 
 
-\section*{Exercises}
+\chapter{Operators on Banach spaces}
 
-
-Let $H$ be a separable Hilbert space.
-Find a positive sequence $a_n$ such that every sequence $x_n$ of unit vectors of $H$ satisfying $|\<x_i,x_j\>|\le a_j$ for all $i<j$ converges weakly to zero.
-
-
-
-
-
-
-
-
-
-\chapter{Bounded linear operators}
+\section{Bounded operators}
 \begin{prb}[Bounded belowness in Banach spaces]
 Let $T\in B(X,Y)$ for Banach spaces $X$ and $Y$.
 The following statements are equivalent:
@@ -555,27 +510,6 @@ Let $T\in B(X,Y)$ for Banach spaces $X$ and $Y$.
 \end{parts}
 \end{prb}
 
-\begin{prb}[Normal operators]
-For $T\in B(H)$, we have an obvious fact $(\im T)^\perp=\ker T^*$.
-Suppose $T$ is normal.
-\begin{parts}
-\item $\ker T=\ker T^*$.
-\item $T$ is bounded below if and only if $T$ is invertible.
-\item If $T$ is surjective, then $T$ is invertible.
-\end{parts}
-\end{prb}
-
-\begin{prb}[Invariant and Reducing subsapces]
-Let $K$ be a closed subspace of $H$.
-\begin{parts}
-\item $K$ is reducing for $T$ if and only if $K$ is invariant for $T$ and $T^*$.
-\item $K$ is reducing for $T$ if and only if $TP=PT$, where $P$ is the orthogonal projection on $K$.
-\end{parts}
-\end{prb}
-% self adjoint operators
-% invariant but not reducing for unitary operators
-% eigenspaces
-% matrix representation
 
 
 
@@ -583,9 +517,7 @@ Let $K$ be a closed subspace of $H$.
 
 
 
-
-
-\chapter{Compact operators}
+\section{Compact operators}
 
 $K(X,Y)$ is closed in $B(X,Y)$.
 $K(X)$ is an ideal of $B(X)$.
@@ -593,7 +525,6 @@ adjoint is $K(X,Y)\to K(Y^*,X^*)$.
 integral operators are compact.
 riesz operator, quasi-nilpotent operator.
 
-\section{Finite-rank operators}
 \section{Fredholm operators}
 
 \begin{prb}
@@ -663,18 +594,89 @@ It means $g=0$, which contradicts to the assumption.
 
 
 
+\chapter{Geometry of Banach spaces}
+
+\section{Tensor products}
+
+\section{Approximation property}
+dual is Banach.
+Basis problem, Mazur' duck.
+
+\section*{Exercises}
+
+
+
+\chapter{}
+
+
+
+
 
 
 
 \part{Spectral theory}
 
+\chapter{Operators on Hilbert spaces}
 
-\chapter{Normal operators}
-\section{Spectral theorem for compact normal operators}
+\section{Hilbert spaces}
+Projections. Reducing subspaces.
+Hilbert space classification by cardinal.
+Riesz representation theorem.
+\begin{prb}
+\begin{parts}
+\item A Banach space $X$ is isometrically isomorphic to a Hilbert space if there is a bounded linear projection on every closed subspace of $X$.
+\end{parts}
+\end{prb}
+
+\begin{prb}[Riesz representation theorem]
+Let $H$ be a Hilbert space over a field $\F$, which is either $\R$ of $\C$.
+
+
+We use the bilinear form $\<-,-\>:X\times X^*\to\F$ of canonical duality.
+\emph{Dirac} notation $\<-|-\>$ for the inner product of a complex Hilbert spaces such that $\<x,y\>=\<y|x\>$.
+The Riesz representation theorem states that a continuous linear functional on a Hilbert space is represented by the inner product with a vector.
+\begin{parts}
+\item For each $x^*\in H^*$, there is a unique $x\in H$ such that $\<y,x^*\>=\<y,x\>$ for every $y\in H$.
+\item $H\to H^*:x\mapsto\<-,x\>$ is a natural linear and anti-linear isomorphism if $\F=\R$ and $\C$, respectively.
+\end{parts}
+\end{prb}
+
+
+
+Let $H$ be a separable Hilbert space.
+Find a positive sequence $a_n$ such that every sequence $x_n$ of unit vectors of $H$ satisfying $|\<x_i,x_j\>|\le a_j$ for all $i<j$ converges weakly to zero.
+
+
+
+\begin{prb}[Normal operators]
+For $T\in B(H)$, we have an obvious fact $(\im T)^\perp=\ker T^*$.
+Suppose $T$ is normal.
+\begin{parts}
+\item $\ker T=\ker T^*$.
+\item $T$ is bounded below if and only if $T$ is invertible.
+\item If $T$ is surjective, then $T$ is invertible.
+\end{parts}
+\end{prb}
+
+\begin{prb}[Invariant and Reducing subsapces]
+Let $K$ be a closed subspace of $H$.
+\begin{parts}
+\item $K$ is reducing for $T$ if and only if $K$ is invariant for $T$ and $T^*$.
+\item $K$ is reducing for $T$ if and only if $TP=PT$, where $P$ is the orthogonal projection on $K$.
+\end{parts}
+\end{prb}
+% self adjoint operators
+% invariant but not reducing for unitary operators
+% eigenspaces
+% matrix representation
+
+
+\section{Spectral theorem for normal operators}
+
+
 There is an orthonormal basis $E\subset H$ such that
 \[T=\sum_{e\in E}\lambda_e|e\>\<e|.\]
 
-\section{Spectral theorem for bounded normal operators}
 
 \begin{prb}[Spectral measure]
 Let $(\Omega,\cM)$ be a measurable space and $H$ a Hilbert space.
@@ -731,31 +733,61 @@ Two spectral theorems: Multiplication operator form(unitary equivalence), Projec
 \[\sigma=\sigma_p\sqcup\sigma_c\sqcup\sigma_r=\bar{\sigma_{pp}}\cup\sigma_{ac}\sigma_{sc}=\sigma_d\sqcup\sigma_{ess,5}.\]
 
 
+\section{Trace class and Hilbert-Schmidt operators}
+
+\begin{prb}[Trace class operators]
+An operator $K\in B(H)$ is
+\[K=\sum_i\lambda_i\theta_{\xi_i,\eta_i},\qquad\Tr(\cdot K)=\sum_i\lambda_i\omega_{\xi_i,\eta_i},\]
+for $(\lambda_i)\in\ell^1$ and orthonormal sequences $(\xi_i)_i$ and $(\eta_i)_i$
+\end{prb}
+
 \section{Operator topologies}
 
-
-\begin{prb}[Compact left multiplications and SOT]
-Let $T_n$ be a sequence of bounded linear operators on a Hilbert space that converges in SOT.
-For compact $K$, $T_n K$ converges in norm, but $KT_n$ generally does not unless $T$ is self-adjoint.
-\end{prb}
 
 \begin{prb}
 Let $f$ be a linear functional on $B(H)$ for a Hilbert space $H$.
 Then, TFAE:
 \begin{parts}
-\item $f$ is $\wot$-continuous,
-\item $f$ is $\sot$-continuous,
-\item $f(T)=\sum_{i=1}^n\<Tx_i,y_i\>$ for some $x_i,y_i$.
+\item $f$ is weakly continuous,
+\item $f$ is strongly continuous,
+\item $f=\sum_{i=1}^n\omega_{\xi_i,\eta_i}$ for some $\xi_i,\eta_i\in H$.
 \end{parts}
 \end{prb}
 \begin{pf}
 (2)$\impl$(3) is the only nontrivial implication.
-By the definition of $\sot$, there exists $v\in \cH^n$ such that
+By the definition of the strong operator topology, there exists $v\in \cH^n$ such that
 \[|f(T)|\le\|T^{\oplus n}v\|.\]
 The functional $f:\cA\to\C$ factors through $\cH^n$ such that
 \[\cA\to{v}\cH^n\to\C.\]
 \end{pf}
 
+\begin{prb}[Trace class operators]
+
+\end{prb}
+
+\section*{Exercises}
+
+\begin{prb}[Strong$^*$ operator topology]
+Let $H$ be a Hilbert space.
+We provides some conditions for a strongly convergent sequence to converge strongly$^*$.
+Let $(T_\alpha)_\alpha\subset B(H)$ and suppose $T_\alpha\to T$ strongly.
+\end{prb}
+
+\begin{prb}[Strict topology]
+Let $H$ be a Hilbert space.
+Let $(T_\alpha)_\alpha\subset B(H)$ and $K\in K(H)$.
+\begin{parts}
+\item The strong$^*$ topology and the strict topology agree on bounded sets of $B(H)$.
+\end{parts}
+\end{prb}
+
+\begin{prb}[Unitary group]
+Let $H$ be a Hilbert space.
+\begin{parts}
+\item The weak topology and the strict topology agree on $U(H)$.
+\item $U(H)$ is neither complete nor locally compact.
+\end{parts}
+\end{prb}
 
 
 
@@ -1208,7 +1240,7 @@ Banach $*$-algebra: $\|a^*\|=\|a\|$.
 \end{prb}
 
 
-\begin{prb}[C$^*$ identity]
+\begin{prb}[C$^*$-identity]
 % history
 A normed $*$-algebra $\cA$ is called a \emph{C$^*$-algebra} if
 \begin{parts}
@@ -1320,7 +1352,7 @@ Let $\f:\cA\to\cB$ be a $*$-homomorphism between C$^*$-algerbas.
 
 
 
-\section{Positivitiy in C$^*$-algebras}
+\section{Positive elements}
 
 
 \begin{prb}[Positive elements]
@@ -1335,6 +1367,19 @@ If we define a relation $a\le b$ as $b-a\ge0$, then we can see that it is a part
 \end{parts}
 \end{prb}
 \begin{pf}
+
+Let $b:=a^*a$.
+If we consider the case $\cA=B(H)$, then one of the properties characterizing $b$ is that $\<b\xi,\xi\>\ge0$ for all $\xi\in H$.
+Let $b=b_+-b_-$.
+Then,
+\[0\le\<bb_-\xi,b_-\xi\>=-\<b_-^3\xi,\xi\>\le0\]
+implies $b_-=0$.
+Now we assume $\cA$ is defined axiomatically.
+Then,
+\[(ab_-)^*(ab_-)=b_-bb_-=-b_-^3\le0\]
+implies $(ab_-)(ab_-)^*\le0$ and
+\[0\le(ab_-)^*(ab_-)+(ab_-)(ab_-)^*\le0.\]
+Thus we have $ab_-=0$ and $b_-^3=0$.
 
 \end{pf}
 
@@ -1475,6 +1520,9 @@ Let $\cA=C_0(\Omega)$ and $\mu$ be a state on $\cA$, a regular Borel probability
 \begin{prb}[Representations of $K(H)$]
 \end{prb}
 
+\begin{prb}[Automorphism group of $K(H)$ and $B(H)$]
+\end{prb}
+
 
 \begin{prb}[Approximate eigenvectors]
 \end{prb}
@@ -1552,8 +1600,8 @@ It means that $K$ reduces all $b\in\cA$, and then $bp=pb$ implies $ap=pa$, so $K
 Therefore, $aK\subset K$ proves $a\xi=\lim_\alpha e_\alpha a\xi\in K$, where $e_\alpha$ is an approximate identity of $\cA$.
 
 (e)
-Since $\bar\cA^\wot$ is closed convex, $\bar\cA^\sot=\bar\cA^\wot$.
-Also, $\cA''$ is weakly closed, $\bar\cA^\wot\subset\cA''$.
+Since $\bar\cA^w$ is closed convex, $\bar\cA^s=\bar\cA^w$.
+Also, $\cA''$ is weakly closed, $\bar\cA^s\subset\cA''$.
 \end{pf}
 
 
@@ -1576,6 +1624,8 @@ A \emph{conditional expectation} is a positive $\cB$-bimodule map $\f:\cA\to\cB$
 \begin{prb}[Sakai theorem]
 \end{prb}
 
+
+central projections
 
 \section*{Exercises}
 \begin{prb}[Extremally disconnected space]
