@@ -140,25 +140,25 @@
 %////////////////////////%
 
 \RequirePackage{tikz-cd,xparse}
-\NewDocumentEnvironment{cd}{}
-  {\[\begin{tikzcd}}
-  {\end{tikzcd}\]\ignorespacesafterend}
 \NewDocumentEnvironment{es}{}
   {
     %\renewcommand{\>}{\rar\&}
     \RenewDocumentCommand{\>}{g}{\IfNoValueTF{##1}{\rar\&}{\rar{##1}\&}}
     \tikzcdset{ampersand replacement=\&}
-    \begin{cd}[column sep=small] % possiblly tiny
+    \[\begin{tikzcd}
   }
-  {\end{cd}}
+  {\end{tikzcd}\]\ignorespacesafterend}
 \NewDocumentEnvironment{rd}{}
   {
     \tikzcdset{math mode=false,labels={font=\scriptsize}}
     \[\begin{tikzcd}
   }
   {\end{tikzcd}\]}
-\tikzcdset{arrow style=math font}
-%\tikzset{>={Straight Barb[scale=0.625]}}
+\tikzcdset{
+  mapsto/.code={\pgfsetarrows{Bar[width=+0pt 4.5]-tikzcd to}},
+  arrow style=tikz,
+  diagrams={>={Straight Barb[scale=0.625]}}
+}
 
 % for codes like: \rar[symbol=\subset]
 \tikzset{
@@ -478,7 +478,7 @@
 \newcommand{\argmin}{\operatorname*{arg\,min}}
 \newcommand{\Aut}{\operatorname{Aut}}
 \renewcommand{\char}{\operatorname{char}}
-\newcommand{\co}{\operatorname{co}}
+\newcommand{\conv}{\operatorname{conv}}
 \newcommand{\codim}{\operatorname{codim}}
 \newcommand{\coker}{\operatorname{coker}}
 \newcommand{\colim}{\operatorname*{colim}}
@@ -510,7 +510,9 @@
 \newcommand{\Iso}{\operatorname{Iso}}
 \newcommand{\Isom}{\operatorname{Isom}}
 \newcommand{\Lip}{\operatorname{Lip}}
+\newcommand{\Mor}{\operatorname{Mor}}
 \newcommand{\Nat}{\operatorname{Nat}}
+\newcommand{\Ob}{\operatorname{Ob}}
 \newcommand{\Orb}{\operatorname{Orb}}
 \newcommand{\ord}{\operatorname{ord}}
 \newcommand{\pr}{\operatorname{pr}}

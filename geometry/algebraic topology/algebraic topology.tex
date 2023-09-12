@@ -93,26 +93,45 @@ Spin, Spin$_\C$ structure
 
 \section{Principal bundles}
 
-\begin{prb}[Structure groups]
-Let $G$ be a topological group and $F$ be a left $G$-space, and $p:E\to B$ be a fiber bundle with fiber $F$.
-We say an atlas $\{\f_i:p^{-1}(U_i)\to U_i\times F\}_i$ is a \emph{$G$-atlas} if there is a set $\{g_{ij}:U_i\cap U_j\to G\}_{i,j}$ of maps such that the transition maps are given by
-\[\f_j\circ\f_i^{-1}(b,f)=(b,g_{ij}(b)f),
-\qquad b\in U_i\cap U_j,\ f\in F.\]
+\begin{prb}[Locally trivial bundles]
+A \emph{fiber bundle} is a map $p:E\to B$ such that $p^{-1}(b)$ is homeomorphic to $F$ for each $b\in B$, where $E,B,F$ are topological spaces called the \emph{total space}, \emph{base space}, and \emph{fiber}.
+We say a fiber bundle $\xi$ is \emph{locally trivial} if it admits an \emph{atlas} $\{\f_i\}$, a family of homeomorphisms $\f_i:p^{-1}(U_i)\to U_i\times F$ which indexed by an open cover $\{U_i\}$ of $B$ such that
+\[\begin{tikzcd}[column sep=small]
+p^{-1}(U_i) \ar[swap]{dr}{p}\ar{rr}{\f_i} & & U_i\times F \ar{dl}{\pr_1} \\
+& U_i &
+\end{tikzcd}\]
+commutes.
+In this note, we are only concerned with locally trivial bundles and every fiber bundle will be assumed to be locally trivial.
 
-A \emph{$G$-bundle} with fiber $F$ is a fiber bundle $p:E\to B$ that admits a $G$-atlas.
-In this case the group $G$ is called the \emph{structure group} of the fiber bundle.
-A \emph{$G$-bundle map} is a bundle map $(\tilde u,u):(E,B)\to(E',B')$ between $G$-bundles together with a set $\{h_{ij'}:U_i\cap u^{-1}(U'_{j'})\to G\}_{i,j'}$ such that
-\[\f'_{j'}\circ\tilde u\circ \f_i^{-1}(b,f)=(u(b),h_{ij'}(b)f),
-\qquad b\in U_i\cap u^{-1}(U'_{j'}),\ f\in F.\]
-If $B=B'$, a $G$-bundle map over $B$ is a $G$-bundle map $(\tilde u,u)$ such that $u=\id_B$.
-We denote by $\mathbf{Bun}_F(B)$ the category of $G$-bundles over $B$ with fiber $F$.
+A \emph{bundle map} between fiber bundles $p_1:E_1\to B_1$ and $p_2:E_2\to B_2$ is a map of pairs $(\tilde u,u):(E_1,B_1)\to(E_2,B_2)$ such that
+\[\begin{tikzcd}
+E_1 \ar[swap]{d}{p_1}\ar{r}{\tilde u} & E_2 \ar{d}{p_2} \\
+B_1 \ar{r}{u} & B_2
+\end{tikzcd}\]
+commutes.
 \begin{parts}
-\item If $F$ is a locally compact and locally connected Hausdorff space, then every fiber bundle with fiber $F$ is a $\Homeo(F)$-bundle, where $\Homeo(F)$ is the group of autohomeomorphism group with compact-open topology.
+\item $p$ is surjective and open.
+\end{parts}
+\end{prb}
+
+\begin{prb}[Structure groups]
+Let $F$ be a left $G$-space for a topological group $G$.
+A fiber bundle $p:E\to B$ with fiber $F$ is said to have a \emph{structure group} $G$ if it admits a \emph{$G$-atlas}, an atlas $\{\f_i\}$ that has a set $\{g_{ij}\}$ of maps $g_{ij}:U_i\cap U_j\to G$ such that the transition maps $\f_j\f_i^{-1}$ are given by
+\[\f_j\f_i^{-1}(b,f)=(b,g_{ij}(b)f),
+\qquad b\in U_i\cap U_j,\ f\in F.\]
+A \emph{$G$-bundle} with fiber $F$ is a fiber bundle $p:E\to B$ together with a \emph{$G$-structure}, a maximal $G$-atlas.
+
+A \emph{$G$-bundle map} is a bundle map $(\tilde u,u):(E_1,B_1)\to(E_2,B_2)$ between $G$-bundles such that there is a set $\{h_{ij}\}$ of maps $h_{ij}:U_{1,i}\cap u^{-1}(U_{2,j})\to G$ such that
+\[\f_{2,j}\tilde u\f_{1,i}^{-1}(b,f)=(u(b),h_{ij}(b)f),
+\qquad b\in U_{1,i}\cap u^{-1}(U_{2,j}),\ f\in F.\]
+
+
+\begin{parts}
+\item If $F$ is a locally connected locally compact Hausdorff space, then every fiber bundle with fiber $F$ has the structure group $\Homeo(F)$ with respect to the compact-open topology.
 \item A $G$-bundle map $(\tilde u,u)$ is an isomorphism if and only if $u$ is a homeomorphism.
-\item A bundle map $(\tilde u,\id_B):(E,B)\to(E',B)$ is a $G$-bundle map if and only if there is a set $\{h_i:U_i\to G\}_i$ such that
-\[\f_i'\circ\tilde u\circ\f_i^{-1}(b,f)=(b,h_i(b)f),
-\qquad b\in U_i,\ f\in F,\]
-where $\{U_i\}$ is an open cover over which both $E$ and $E'$ are trivialized.
+\item A bundle map $(\tilde u,\id_B):(E_1,B)\to(E_2,B)$ is a $G$-bundle map if and only if there is a set $\{h_i\}$ of maps $h_i:U_i\to G$ such that
+\[\f_{2,i}\tilde u\f_{1,i}^{-1}(b,f)=(b,h_i(b)f),
+\qquad b\in U_i,\ f\in F.\]
 \end{parts}
 \end{prb}
 \begin{pf}
@@ -124,8 +143,8 @@ Clear.
 
 ($\Leftarrow$)
 The total map $\tilde u$ is continuous bijection because $u$ is a bijection, so it suffices to show $\tilde u^{-1}$ is continuous.
-Fix $U_i\subset B$ and $U'_{j'}\subset B'$.
-By substitution of $b':=u(b)$, $f':=h_{ij'}(b)f$, we can write
+Fix $U_i\subset B$ and $U'_j\subset B'$.
+By substitution of $b':=u(b)$, $f':=h_{ij}(b)f$, we can write
 \[\f_i\circ\tilde u^{-1}\circ\f_{j'}'^{-1}(b',f')=(u^{-1}(b'),h_{ij'}(u^{-1}(b'))^{-1}f').\]
 Since the local trivializations, the inverse operation of $G$, and the inverse $u^{-1}$ are all continuous, $\tilde u^{-1}$ is also continuous.
 \end{pf}
@@ -133,33 +152,45 @@ Since the local trivializations, the inverse operation of $G$, and the inverse $
 
 
 \begin{prb}[Fiber bundle construction theorem]
-Let $\cU=\{U_i\}_i$ be an open cover of a topological space $B$, and $G$ be a topological group.
-A \emph{\v Cech 1-cocyle} on $\cU$ with coefficients in $G$ is a collection $\{g_{ij}:U_i\cap U_j\to G\}_{i,j}$ of maps such that the following \emph{cocycle condition} holds:
+Let $\{U_i\}_i$ be an open cover of a topological space $B$, and let $G$ be a topological group.
+Let $Z^1(\{U_i\},G)$ be the set of every \emph{\v Cech 1-cocyle} on $\{U_i\}$ with coefficients in $G$, a set $\{g_{ij}\}$ of maps $g_{ij}:U_i\cap U_j\to G$ satisfying the \emph{cocycle condition}:
 \[g_{ik}(b)=g_{jk}(b)g_{ij}(b),\qquad b\in U_i\cap U_j\cap U_k.\]
-The set of \v Cech 1-cocycles on $\cU$ with coeffients in $G$ is denoted by $\check Z^1(\cU,G)$.
+Also let $C^0(\{U_i\},G)$ be the set of every \emph{\v Cech 0-cochain} on $\{U_i\}$ with coefficients in $G$, a collection $\{h_i\}$ of maps $h_i:U_i\to G$ of maps without any conditions.
 
-We want to construct a map $\check Z^1(\cU,G)\to\mathrm{Bun}_F(B)$ for a left $G$-space $F$.
-Let $g\in\check Z^1(\cU,G)$ and define
-\[E:=\left(\coprod_i(U_i\times F)\right)/\sim,\]
-where $\sim$ is an equivalence relation generated by
-\[(b,f,i)\sim(b,g_{ij}(b)f,j),
-\qquad b\in U_i\cap U_j,\ f\in F.\]
-Also define $p:E\to B:[b,f,i]\mapsto b$ and $\f_i^{-1}:U_i\times F\to p^{-1}(U_i):(b,f)\mapsto[b,f,i]$, which are clearly continuous and surjective without the cocycle condition.
+The \emph{first \v Cech cohomology} $\check H^1(\{U_i\},G)$ of $\{U_i\}$ with coefficients in $G$ is defined to be the orbit space of an action $\check C^0(\{U_i\},G)\curvearrowleft\check Z^1(\{U_i\},G)$ defined as
+\[(\{h_i\}\{g_{ij}\})_{ij}(b):=h_j(b)g_{ij}(b)h_i(b)^{-1},
+\qquad b\in U_i\cap U_j.\]
+We define the \emph{first \v Cech cohomology} of $B$ with coefficients in $G$ as the direct limit of sets
+\[\check H^1(B,G):=\lim_{\substack{\longrightarrow\\\{U_i\}}}\check H^1(\{U_i\},G).\]
+
+Let $F$ be a left $G$-space, and let $\mathrm{Bun}_F(B)$ be the set of isomorphism classes of $G$-bundles over $B$ with fiber $F$.
 \begin{parts}
-\item $\f_i^{-1}$ is injective.
-\item $\f_i^{-1}$ is open.
-\item The transition maps of the $G$-atlas $\{\f_i\}$ coincides with the cocycle $\{g_{ij}\}$.
+\item $\mathrm{Bun}_F(B)\to\check H^1(B,G)$ is well-defined.
+\item $\mathrm{Bun}_F(B)\to\check H^1(B,G)$ is surjective.
+\item $\mathrm{Bun}_F(B)\to\check H^1(B,G/\ker\sigma)$ is injective, where $\sigma:G\to\Homeo(F)$.
 \end{parts}
 \end{prb}
 \begin{pf}
 (a)
-Suppose $\f_i^{-1}(b,f)=\f_i^{-1}(b',f')$.
-Since $(b,y,i)\sim(b',y',i)$, we have $b=b'$ and there is a sequence
-\[f'=g_{i_{n-1}i_n}(b)g_{i_{n-2}i_{n-1}}(b)\cdots g_{i_0i_1}(b)f,\]
-where $i_0=i_n=i$.
-By applying the cocycle condition inductively, we obtain $f=f'$, which implies the injectivity of $\f_i^{-1}$.
+Suppose $p_1:E_1\to B$ and $p_2:E_2\to B$ are isomorphic $G$-bundles with fiber $F$, and $\tilde u:E_1\to E_2$ is a $G$-bundle isomorphism.
+By considering the refinement, we can find an open cover $\{U_i\}$ of $B$ on which $E_1$ and $E_2$ are simultaneously locally trivialized.
 
 (b)
+Let $F$ be a left $G$-space and let $\{g_{ij}\}\in\check Z^1(B,G)$ that is defined on an open cover $\{U_i\}$.
+Define
+\[E:=\left(\coprod_i(U_i\times F)\right)/\sim,\]
+where $\sim$ is an equivalence relation generated by
+\[(i,b,f)\sim(j,b,g_{ij}(b)f),
+\qquad b\in U_i\cap U_j,\ f\in F.\]
+Also define $p:E\to B:[i,b,f]\mapsto b$ and $\f_i^{-1}:U_i\times F\to p^{-1}(U_i):(b,f)\mapsto[i,b,f]$, which are clearly continuous and surjective without the cocycle condition.
+
+We first claim that $\f_i^{-1}$ is injective.
+Suppose $\f_i^{-1}(b,f)=\f_i^{-1}(b',f')$.
+Since $(i,b,y)\sim(i,b',y')$, we have $b=b'$ and there is a sequence of open sets $U_{i_0},\cdots,U_{i_n}$ in $\{U_i\}$ such that $i_0=i_n=i$ and
+\[f'=g_{i_{n-1}i_n}(b)g_{i_{n-2}i_{n-1}}(b)\cdots g_{i_0i_1}(b)f.\]
+By applying the cocycle condition inductively, we obtain $f=f'$, which implies the injectivity of $\f_i^{-1}$.
+
+Next we claim that $\f_i^{-1}$ is open.
 The map $\f_i^{-1}$ factors through $\coprod_i(U_i\times F)$ such that
 \[\f_i^{-1}:U_i\times F\to\coprod_i(U_i\times F)\xrightarrow{\pi}p^{-1}(U_i).\]
 Since the canonical inclusion to disjoint union is open, it suffices to show the quotient map $\pi:\coprod_i(U_i\times F)\to E$ is open.
@@ -173,40 +204,7 @@ Therefore,
 \[\pi^{-1}\pi(V)=\bigcup_{i,j}\pi^{-1}\pi(V\cap(U_i\times F))\cap(U_j\times F)\]
 is open, hence the open $\pi$.
 
-(c)
-Clear by the cocycle condition.
-\end{pf}
-
-
-\begin{prb}[Cohomologous transitions]
-Let $\cU=\{U_i\}_i$ be an open cover of a topological space $B$, and $G$ be a topological group. 
-A \emph{\v Cech 0-cochain} on $\cU$ with coefficients in $G$ is a collection $\{h_i:U_i\to G\}_i$ of maps.
-The group of \v Cech 0-cochains on $\cU$ with coefficients in $G$ is denoted by $\check C^0(\cU,G)$.
-
-The \emph{first \v Cech cohomology} of $\cU$ with coefficients $G$ is the orbit space of an action on $\check Z^1(\cU,G)$ by $\check C^0(\cU,G)$ defined as follows:
-\[(hg)_{ij}(b):=h_j(b)g_{ij}(b)h_i(b)^{-1},
-\qquad b\in U_i\cap U_j,\]
-which is denoted by $\check H^1(\cU,G)$.
-We define the \emph{first \v Cech cohomology} of $B$ with coefficients in $G$ as the direct limit of sets
-\[\check H^1(B,G):=\lim_{\substack{\longrightarrow\\\cU}}\check H^1(\cU,G).\]
-
-Let $F$ be a left $G$-space, and let $\mathrm{Bun}_F(B)$ be the set of isomorphism classes of $G$-bundles over $B$ with fiber $F$.
-\begin{parts}
-\item $\mathrm{Bun}_F(B)\to\check H^1(B,G)$ is well-defined.
-\item $\mathrm{Bun}_F(B)\to\check H^1(B,G)$ is surjective.
-\item $\mathrm{Bun}_F(B)\to\check H^1(B,G/\ker\sigma)$ is injective, where $\sigma:G\to\Homeo(F)$.
-\end{parts}
-\end{prb}
-\begin{pf}
-(a)
-Suppose $p:E_1\to B$ and $p':E'\to B$ be isomorphic $G$-bundles with fiber $F$.
-Let $u:E\to E'$ be a $G$-bundle isomorphism.
-By considering the refinement, we can find an open cover $\cU=\{U_i\}_i$ of $B$ on which $E$ and $E'$ are simultaneously locally trivialized.
-\[\{g_{ij}:U_i\cap U_j\to G\}.\]
-
-(b)
-
-(c)
+The transition maps of the $G$-atlas $\{\f_i\}$ coincides with the cocycle $\{g_{ij}\}$ by the cocycle condition.
 \end{pf}
 
 
@@ -301,13 +299,16 @@ A \emph{reduction} of $G$ to $H$ is a $H$-structure on a principal $G$-bundle.
 
 \section{Classifying spaces}
 
-Let $\mathrm{Prin}_G(B)$ be the set of isomorphism classes of principal $G$-bundles.
+Let $G$ be a topological group.
+Let $\mathrm{Prin}_G(B)$ be the set of isomorphism classes of principal $G$-bundles over a topological $B$.
 Then, we have a contravariant functor
-\[\mathrm{Prin}_G:\mathbf{Top}\to\mathbf{Set}\]
-such that there is a natural transformation between contravariant functors
-\[[-,BG]\to\mathrm{Prin}_G,\]
-which is an isomorphism on paracompact spaces.
-
+\[\mathrm{Prin}_G:\mathbf{Top}^{\mathrm{op}}\to\mathbf{Set}.\]
+On paracompact spaces:
+\begin{enumerate}
+\item The functor $\mathrm{Prin}_G$ is homotopy invariant.
+\item The functor $\mathrm{Prin}_G$ is representable.
+\item The universal elements can be computed using contractibility.
+\end{enumerate}
 
 \begin{prb}[Homotopy properteis]
 Let $p:E\to B$ be a vector bundle
@@ -317,9 +318,6 @@ Let $p:E\to B$ be a vector bundle
 \end{parts}
 \end{prb}
 
-\begin{prb}[Finite type]
-
-\end{prb}
 
 
 \section{Vector bundles}
@@ -347,7 +345,11 @@ If $f,g:B\to G_k(\F^n)$ such that $f^*(\gamma_{k^n})\cong g^*(\gamma_{k^n})$, th
 
 \begin{prb}
 Riemannian and Hermitian metrics
+spin structures
 \end{prb}
+
+
+
 
 \section*{Exercises}
 
@@ -356,6 +358,10 @@ Let $G$ be a topological group, and $X$ be a free right $G$-space.
 \begin{parts}
 \item If the action is proper and the projection $X\to X/G$ admits local sections, then $X\to X/G$ is a principal $G$-bundle.
 \end{parts}
+\end{prb}
+
+\begin{prb}[Clutching functions]
+	
 \end{prb}
 
 \begin{prb}
@@ -417,6 +423,29 @@ can be given in a more simple way.
 
 
 \chapter{Characteristic classes}
+
+
+A characteristic class is a natural transformation $\mathrm{Prin}_G=[-,BG]\to H^n(-,A)$ for some $n$.
+They are always can be given by the pullback of classes in $H^n(BG,A)$ by the Yoneda lemma.
+\begin{enumerate}
+\item $G=\GL(1,\R)$. $\mathrm{Prin}_G:\mathbf{Para}^{\mathrm{op}}\to\mathbf{Grp}$. $BG=G_1(\R^\infty)=\RP^\infty=K(\Z/2\Z,1)$.
+\[(\mathrm{Prin}_G,\otimes)\cong(H^1(-,\Z/2\Z),+).\]
+\item $G=\GL(1,\C)$. $\mathrm{Prin}_G:\mathbf{Para}^{\mathrm{op}}\to\mathbf{Grp}$. $BG=G_1(\C^\infty)=\CP^\infty=K(\Z,2)$.
+\[(\mathrm{Prin}_G,\otimes)\cong(H^2(-,\Z),+).\]
+\item $G=\GL(n,\R)$. $\mathrm{Prin}_G:\mathbf{Para}^{\mathrm{op}}\to\mathbf{Set}$. $BG=G_n(\R^\infty)$. By Thom and Gysin,
+\[H^*(BG,\Z/2\Z)\cong\Z/2\Z[w_1,\cdots,w_n].\]
+\end{enumerate}
+
+
+
+Since there is a special class in $H^n(K(A,n))$ so that the inducing map provides an isomorphism $[X,K(A,n)]=H^n(X,A)$, we have $H^n(B\GL(n,\C))\to H^n(X,A)$.
+
+
+
+\section*{Exercises}
+
+characteristic class of projective spaces
+
 
 
 

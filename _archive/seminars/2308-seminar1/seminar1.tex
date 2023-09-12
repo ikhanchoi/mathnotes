@@ -763,7 +763,7 @@ For $\otimes_{\max}$, it is justified by applying Proposition 3.4 twice, and for
 \begin{prop}[Representation extensioin]
 Let $\cA$ be a closed ideal of a C$^*$-algebra $\cB$.
 For a representation $\pi:\cA\to B(H)$, there is a representation $\tilde\pi:\cB\to B(H)$ which extends $\pi$.
-If $\pi$ is non-degenerate, the extension is unique.
+If $\pi$ is non-degenerate, the extension is unique and $\pi(e_\alpha b)\to\tilde\pi(b)$ and $\pi(be_\alpha)\to\tilde\pi(b)$ strongly for $b\in\cB$, where $e_\alpha$ is an approximate unit of $\cA$.
 \end{prop}
 \begin{pf}
 Let $K:=(\pi(\cA)H)^-$.
@@ -805,22 +805,17 @@ and
 \[\|\f(a)\|=\|\tilde\f(a)\|\le\|\tilde\f\|\|a\|.\]
 
 (c)
-Let $\pi:\cA\to B(\hat H)$ be the Stinespring representation of $\f$.
-Since $\cA$ is a closed ideal of $\tilde\cA$, we can apply the representation extension for $\pi$ to get $\tilde\pi$ as follows:
+Let $\pi:\cA\to B(\hat H)$ be the minimal and hence non-degenerate Stinespring representation of $\f$.
+Since $\cA$ is a closed ideal of $\cB=\tilde\cA$, we can apply the representation extension for $\pi$ to get $\tilde\pi$ as follows:
 \begin{cd}
 \tilde\cA\ar{dr}{\tilde\pi}&\\
 \cA\ar{u}\ar{r}{\pi}&B(\hat H)\ar{d}{V^*\cdot V}\\
 \cA\ar[equal]{u}\ar{r}{\f}&B(H).
 \end{cd}
-Then, the c.p.~extension is given by $a\mapsto V^*\tilde\pi(a)V$.
-To check the norm is preserved, take an approximate unit $e_\alpha$ of $\cA$ so that the net $\f(e_\alpha^2)=V^*\pi(e_\alpha^2)V$ converges to $V^*\tilde\pi(1)V$ strongly and weakly.
-For any $\xi\in H$, we have
-\[\|\f(ae_\alpha)\xi\|^2
-=\<\f(ae_\alpha)^*\f(ae_\alpha)\xi,\xi\>
-\le\<\f(e_\alpha a^*ae_\alpha)\xi,\xi\>
-\le\|a\|^2\<\f(e_\alpha^2)\xi,\xi\>\le\|a\|^2\|\f\|^2\|\xi\|^2.\]
-Taking $\lim_\alpha$, $\sup_{\|\xi\|=1}$, and $\sup_{\|a\|=1}$, we obtain
-\[\|\f\|^2\le\|V^*\tilde\pi(1)V\|^2\le\|\f\|^2.\]
+Then, the c.p.~extension is given by $\tilde\f(b):=V^*\tilde\pi(b)V$ for $b\in\cB$.
+To check the norm is preserved, take an approximate unit $e_\alpha$ of $\cA$ so that the net $\f(e_\alpha b)=V^*\pi(e_\alpha b)V$ converges to $\tilde\f(b)=V^*\tilde\pi(b)V$ strongly and weakly, which implies
+\[\|\tilde\f(1)\xi\|=\lim_\alpha\|\f(e_\alpha)\xi\|\le\|\f\|\|\xi\|.\]
+Hence $\|\tilde\f\|\le\|\f\|$.
 
 (d)
 By the part (c), we may assume $\cB$ is unital.

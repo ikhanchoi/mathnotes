@@ -269,6 +269,24 @@ Therefore,
 \[\|1+T\|\ge\|f_1+Tf_1\|\ge f_1(t_0)+Tf_1(t_0)\le1+\|T\|-\e.\]
 \end{pf}
 
+\begin{prb}[Bartle-Graves theorem]
+Let $E$ be a Banach space and $N$ a closed subspace.
+For $\e>0$, there is a continuous homogeneous map $\rho:E/N\to E$ such that $\pi\rho(y)=y$ and $\|\rho(y)\|\le(1+\e)\|y\|$ for all $y\in E/N$.
+\end{prb}
+\begin{pf}
+We want to construct a continuous map $\psi:S_{E/N}\to E$ with $\|\psi(y)\|\le1+\e$ for all $y\in S_{E/N}$.
+If then, $\rho$ can be made from $\psi$.
+
+For each $y_0\in S_{E/N}$, choose $x_0\in\pi^{-1}(y_0)\cap B_{1+\e}$.
+There is a neighborhood $V_{y_0}\subset S_{E/N}$ of $y_0$ such that $y\in V_{y_0}$ implies $x_0$ belongs to $(\pi^{-1}(y)\cap B_{1+\e})+U_{2^{-1}}$, which is convex.
+With a locally finite subcover $V_{y_\alpha}$ and a partition of unity $\eta_\alpha(y)$, define $\psi_1(y)=\sum_\alpha\eta_\alpha(y)x_\alpha$.
+Then, $\psi_1(y)\in(\pi^{-1}(y)\cap B_{1+\e})+U_{2^{-1}}$.
+
+For $i\le2$, choose for each $y_0$ the element $x_0$ in $\pi^{-1}(y_0)\cap B_{1+\e}\cap(\psi_{i-1}(y_0)+U_{2^{-{i-1}}})$.
+Then, we obtain
+\[\psi_i(y)\in\Bigl(\pi^{-1}(y)\cap B_{1+\e}\cap(\psi_{i-1}(y_0)+U_{2^{-{i-1}}})\Bigr)+U_{2^{-i}}.\]
+Therefore, $\|\psi_i(y)-\psi_{i-1}(y)\|<2^{-{i-2}}$, so it converges uniformly to $\psi$ such that $\psi(y)\in\pi^{-1}(y)\cap B_{1+\e}$.
+\end{pf}
 
 \section*{Problems}
 \begin{prb}
@@ -443,10 +461,10 @@ Then we can show
 \[j^*:Z^*\subset X^{**}\to Y\]
 coincides with $i$ on $X\cap Z^*$.
 From the existence of $X_*$ we have $X^{**}\to X$, which is restricted to define a map $k:Z^*\to X$.
-\begin{cd}
+\[\begin{tikzcd}
 &X\ar{r}{i}&Y\\
 X^{**}\ar{ur}\ar{r}&Z^*\ar{u}{k}\ar{ur}{j}&
-\end{cd}
+\end{tikzcd}\]
 We can show $k$ is an isomorphism so that we have
 \[X_*\cong Y_*/Y_*\cap\ker(i^*).\]
 \end{prb}
@@ -525,6 +543,9 @@ adjoint is $K(X,Y)\to K(Y^*,X^*)$.
 integral operators are compact.
 riesz operator, quasi-nilpotent operator.
 
+
+
+
 \section{Fredholm operators}
 
 \begin{prb}
@@ -602,7 +623,35 @@ It means $g=0$, which contradicts to the assumption.
 dual is Banach.
 Basis problem, Mazur' duck.
 
+
+\begin{prb}[Approximation property]
+Every compact operator is a limit of finite-rank operators.
+\begin{parts}
+\item An Hilbert space has the AP.
+\item
+\end{parts}
+\end{prb}
+\begin{pf}
+(a)
+Let $H$ be a Hilbert space and $K\in K(H)$.
+Since $\bar{KB_H}$ is a compact metric space, it is separable, which means $\bar{KH}$ is separable.
+Let $(e_i)_{i=1}^\infty$ be an orthonormal basis of $\bar{KH}$, and let $P_n$ be the orthogonal projection on the space spanned by $(e_i)_{i=1}^n$.
+If we let $K_n:=P_nK$, then $K_n\to K$ strongly and $K_n$ has finite rank.
+Take any $\e>0$ and find, using the totally boundedness of $KB_H$, a finite subset $\{x_j\}\subset B_H$ such that for any $x\in B_H$ there is $x_j$ satisfying $\|Kx-Kx_j\|<\frac\e2$.
+Then,
+\begin{align*}
+\|Kx-K_nx\|
+&\le\|Kx-Kx_j\|+\|Kx_j-K_nx_j\|+\|P_n(Kx_j-Kx)\|\\
+&\le\frac\e2+\|Kx_j-K_nx_j\|+\frac\e2.
+\end{align*}
+By taking the supremum on $x\in B_H$, we have
+\[\|K-K_n\|\le\max_j\|Kx_j-K_nx_j\|+\e,\]
+which deduces $K_n\to K$ in norm.
+
+\end{pf}
+
 \section*{Exercises}
+Tingley problem
 
 
 
@@ -629,15 +678,14 @@ Riesz representation theorem.
 \end{prb}
 
 \begin{prb}[Riesz representation theorem]
-Let $H$ be a Hilbert space over a field $\F$, which is either $\R$ of $\C$.
+Let $H$ be a Hilbert space over a field $\K$, which is either $\R$ of $\C$.
 
 
-We use the bilinear form $\<-,-\>:X\times X^*\to\F$ of canonical duality.
-\emph{Dirac} notation $\<-|-\>$ for the inner product of a complex Hilbert spaces such that $\<x,y\>=\<y|x\>$.
+We use the bilinear form $\<-,-\>:X\times X^*\to\K$ of canonical duality.
 The Riesz representation theorem states that a continuous linear functional on a Hilbert space is represented by the inner product with a vector.
 \begin{parts}
 \item For each $x^*\in H^*$, there is a unique $x\in H$ such that $\<y,x^*\>=\<y,x\>$ for every $y\in H$.
-\item $H\to H^*:x\mapsto\<-,x\>$ is a natural linear and anti-linear isomorphism if $\F=\R$ and $\C$, respectively.
+\item $H\to H^*:x\mapsto\<-,x\>$ is a natural linear and anti-linear isomorphism if $\K=\R$ and $\C$, respectively.
 \end{parts}
 \end{prb}
 
@@ -673,17 +721,12 @@ Let $K$ be a closed subspace of $H$.
 
 \section{Spectral theorem for normal operators}
 
-
-There is an orthonormal basis $E\subset H$ such that
-\[T=\sum_{e\in E}\lambda_e|e\>\<e|.\]
-
-
 \begin{prb}[Spectral measure]
-Let $(\Omega,\cM)$ be a measurable space and $H$ a Hilbert space.
-A \emph{projection-valued measure} on $\Omega$ for $H$ is a map $E:\cM\to B(H)$ with $E(\varnothing)=0$ such that $E(A)$ is a projection for every $A\in\cM$, and one of the following equivalent conditions hold:
+Let $(\Omega,\cA)$ be a measurable space and $H$ a Hilbert space.
+A \emph{projection-valued measure} on $\Omega$ for $H$ is a map $E:\cA\to B(H)$ with $E(\varnothing)=0$ such that $E(A)$ is a projection for every $A\in\cA$, and one of the following equivalent conditions hold:
 \begin{enumerate}[(i)]
-\item the set function $E_{\xi,\eta}:\cM\to\C:A\mapsto\<E(A)\xi,\eta\>$ is a complex measure on $\Omega$ for each $\xi,\eta\in H$.
-\item the countable additivity holds, i.e.~$E(\bigsqcup_{i=1}^\infty A_i)=\sum_{i=1}^\infty E(A_i)$ in the strong operator topology of $B(H)$ for $\{A_i\}_{i=1}^\infty\subset\cM$.
+\item the set function $E_{x,y}:\cA\to\C:A\mapsto\<E(A)x,y\>$ is a complex measure on $\Omega$ for each $x,y\in H$.
+\item the countable additivity holds, i.e.~$E(\bigsqcup_{i=1}^\infty A_i)=\sum_{i=1}^\infty E(A_i)$ in the strong operator topology of $B(H)$ for $(A_i)_{i=1}^\infty\subset\cM$.
 \end{enumerate}
 \begin{parts}
 \item $E(A\cap B)=E(A)E(B)$ for $A,B\in\cM$.
@@ -736,10 +779,27 @@ Two spectral theorems: Multiplication operator form(unitary equivalence), Projec
 \section{Trace class and Hilbert-Schmidt operators}
 
 \begin{prb}[Trace class operators]
-An operator $K\in B(H)$ is
-\[K=\sum_i\lambda_i\theta_{\xi_i,\eta_i},\qquad\Tr(\cdot K)=\sum_i\lambda_i\omega_{\xi_i,\eta_i},\]
-for $(\lambda_i)\in\ell^1$ and orthonormal sequences $(\xi_i)_i$ and $(\eta_i)_i$
+Let $K\in B(H)$
+The \emph{trace} of $K$ is
+\[\Tr(K):=\sum_i\<Ke_i,e_i\>,\]
+where $(e_i)\subset H$ is an orthonormal basis.
+The operator $K$ is said to be in the \emph{trace-class} if $\Tr(|K|)<\infty$.
+\begin{parts}
+\item
+The trace does not depend on the choice of $(e_i)$.
+\item
+$K$ is a trace class if and only if $K=\sum_{i=1}^\infty\lambda_i\theta_{x_i,y_i}$ for some $(\lambda_i)_{i=1}^\infty\subset\ell^1(\N)$ and orthogonal sequences $(x_i)_{i=1}^\infty,(y_i)_{i=1}^\infty\subset H$.
+\item
+$B(H)\to L^1(H)^*:T\mapsto\Tr(T\cdot)$ is an isometric isomorphism.
+\end{parts}
 \end{prb}
+\begin{pf}
+(b)
+Conversely, we can check the diagonalization $K^*K=\sum_{i=1}^\infty|\lambda_i|^2\theta_{y_i}$, which implies $|K|=\sum_{i=1}^\infty|\lambda_i|\theta_{y_i}$.
+Thus,
+\[Tr(|K|)=\sum_{j=1}^\infty\<|K|y_j,y_j\>=\sum_{i=1}^\infty|\lambda_i|<\infty.\]
+
+\end{pf}
 
 \section{Operator topologies}
 
@@ -749,8 +809,8 @@ Let $f$ be a linear functional on $B(H)$ for a Hilbert space $H$.
 Then, TFAE:
 \begin{parts}
 \item $f$ is weakly continuous,
-\item $f$ is strongly continuous,
-\item $f=\sum_{i=1}^n\omega_{\xi_i,\eta_i}$ for some $\xi_i,\eta_i\in H$.
+\item $f$ is strongly$*$ continuous,
+\item $f=\sum_{i=1}^n\omega_{x_i,y_i}$ for some $(x_i)_{i=1}^n,(y_i)_{i=1}^n\subset H$.
 \end{parts}
 \end{prb}
 \begin{pf}
@@ -761,21 +821,21 @@ The functional $f:\cA\to\C$ factors through $\cH^n$ such that
 \[\cA\to{v}\cH^n\to\C.\]
 \end{pf}
 
-\begin{prb}[Trace class operators]
 
-\end{prb}
+For $(x_i)_{i=1}^\infty,(y_i)_{i=1}^\infty\subset H$ such that $\sum_i\|x_i\|^2<\infty$ and $\sum_i\|y_i\|^2<\infty$,
+\[\left(\sum_i\|Tx_i\|^2+\|T^*x_i\|^2\right)^{\frac12}\qquad\left(\sum_i\|Tx_i\|^2\right)^{\frac12}\qquad\left|\sum_i\<Tx_i,y_i\>\right|\]
 
 \section*{Exercises}
 
 \begin{prb}[Strong$^*$ operator topology]
 Let $H$ be a Hilbert space.
 We provides some conditions for a strongly convergent sequence to converge strongly$^*$.
-Let $(T_\alpha)_\alpha\subset B(H)$ and suppose $T_\alpha\to T$ strongly.
+Let $(T_\alpha)\subset B(H)$ and suppose $T_\alpha\to T$ strongly.
 \end{prb}
 
 \begin{prb}[Strict topology]
 Let $H$ be a Hilbert space.
-Let $(T_\alpha)_\alpha\subset B(H)$ and $K\in K(H)$.
+Let $(T_\alpha)\subset B(H)$ and $K\in K(H)$.
 \begin{parts}
 \item The strong$^*$ topology and the strict topology agree on bounded sets of $B(H)$.
 \end{parts}
@@ -892,10 +952,13 @@ Kato-Rellich theorem
 analytic vector theorem
 
 
-\chapter{Toeplitz operators}
+\chapter{Operator theory}
+\section{Toeplitz operators}
 
-
-
+invariant subspace problem
+Beurling theorem
+Hardy and Bergman and Bloch spaces
+JB* triple
 
 
 
@@ -907,13 +970,13 @@ analytic vector theorem
 \section{Spectral theory of unital Banach algebras}
 
 \begin{prb}[Banach algebras]
-For a Banach algebra $\cA$ with multiplicative unit, there is a complete renorming such that $\|1\|=1$, i.e. we can always assume $\|1\|=1$.
+For a Banach algebra $A$ with multiplicative unit, there is a complete renorming such that $\|1\|=1$, i.e. we can always assume $\|1\|=1$.
 
-Let $\cA$ be a unital Banach algebra.
+Let $A$ be a unital Banach algebra.
 \begin{parts}
-\item If $\|a\|<1$, then $1-a$ is invertible. So $\cA^\times$ is open.
-\item $\cA^\times\to\cA^\times:a\mapsto a^{-1}$ is continuous.
-\item $\cA^\times\to\cA^\times:a\mapsto a^{-1}$ is differentiable.
+\item If $\|a\|<1$, then $1-a$ is invertible. So $A^\times$ is open.
+\item $A^\times\to A^\times:a\mapsto a^{-1}$ is continuous.
+\item $A^\times\to A^\times:a\mapsto a^{-1}$ is differentiable.
 \end{parts}
 \end{prb}
 \begin{pf}
@@ -936,17 +999,17 @@ Clear from
 
 
 \begin{prb}[Spectrum and resolvent]
-Let $a$ be an element of a unital Banach algebra $\cA$.
-The \emph{spectrum} of $a$ in $\cA$ is defined to be the set
-\[\sigma_\cA(a):=\{\lambda\in\C:\lambda-a\text{ is not invertible in }\cA\},\]
-and the \emph{resolvent} of $a$ in $\cA$ is defined to be its complement $\rho_\cA(a):=\C\setminus\sigma_\cA(a)$.
-We can now define the \emph{resolvent map} $R:\rho_\cA(a)\to\cA$ such that
+Let $a$ be an element of a unital Banach algebra $A$.
+The \emph{spectrum} of $a$ in $A$ is defined to be the set
+\[\sigma_A(a):=\{\lambda\in\C:\lambda-a\text{ is not invertible in }A\},\]
+and the \emph{resolvent} of $a$ in $A$ is defined to be its complement $\rho_A(a):=\C\setminus\sigma_A(a)$.
+We can now define the \emph{resolvent map} $R:\rho_A(a)\to A$ such that
 \[R(\lambda)=R(\lambda;a):=(\lambda-a)^{-1}.\]
-If $\cA$ is clear in its context, we omit it to just write $\sigma(a)$ and $\rho(a)$.
+If $A$ is clear in its context, we omit it to just write $\sigma(a)$ and $\rho(a)$.
 \begin{parts}
 \item $\sigma(a)$ is compact.
 \item $\sigma(a)$ is non-empty.
-\item If $\cA$ is a division ring, then $\cA\cong\C$. This result is called the \emph{Gelfand-Mazur theorem}.
+\item If $A$ is a division ring, then $A\cong\C$. This result is called the \emph{Gelfand-Mazur theorem}.
 \end{parts}
 \end{prb}
 \begin{pf}
@@ -955,26 +1018,26 @@ If $|\lambda|>\|a\|$, then $\lambda-a$ is always invertible, so the spectrum is 
 Closedness follows from the fact that the set of invertibles is open.
 
 (b)
-Suppose the spectrum $\sigma(a)=\varnothing$ so that the resolvent function $R:\C\to\cA$ is well-defined on the entire $\C$.
+Suppose the spectrum $\sigma(a)=\varnothing$ so that the resolvent function $R:\C\to A$ is well-defined on the entire $\C$.
 Note that $a\ne0$.
 Since $R$ is continuous and since
 \[\|(\lambda-a)^{-1}\|=\|\lambda^{-1}(1-\lambda^{-1}a)^{-1}\|
 =\Bigl\|\lambda^{-1}\sum_{k=0}^\infty(\lambda^{-1}a)^k\Bigr\|
 <(2\|a\|)^{-1}\sum_{k=0}^\infty2^{-k}=\|a\|^{-1}\]
 on $\{\lambda\in\C:|\lambda|>2\|a\|\}$, the function $R$ is bounded.
-Also, for every $l\in\cA^*$ we have that the function $\C\to\C:\lambda\mapsto\<R(\lambda),l\>$ is holomorphic since $a\mapsto a^{-1}$ is differentiable.
+Also, for every $l\in A^*$ we have that the function $\C\to\C:\lambda\mapsto\<R(\lambda),l\>$ is holomorphic since $a\mapsto a^{-1}$ is differentiable.
 
-Therefore, by the Liouville theorem, the bounded entire function $\lambda\mapsto\<R(\lambda),l\>$ is constant for all $l\in\cA^*$.
-Because $\cA^*$ separates points of $\cA$, the function $R$ is constant, which implies $a\in\C$ and contradicts to $\sigma(a)=\varnothing$.
+Therefore, by the Liouville theorem, the bounded entire function $\lambda\mapsto\<R(\lambda),l\>$ is constant for all $l\in A^*$.
+Because $A^*$ separates points of $A$, the function $R$ is constant, which implies $a\in\C$ and contradicts to $\sigma(a)=\varnothing$.
 
 (c)
-For any $a\in\cA$, by the part (b), there must be $\lambda$ such that $\lambda-a$ is not invertible.
+For any $a\in A$, by the part (b), there must be $\lambda$ such that $\lambda-a$ is not invertible.
 In a division ring, zero is the only non-invertible element, so $\lambda=a$.
 \end{pf}
 
 \begin{prb}[Spectral radius]
-Let $a$ be an element of a unital Banach algebra $\cA$.
-The \emph{spectral radius} of $a$ in $\cA$ is defined to be
+Let $a$ be an element of a unital Banach algebra $A$.
+The \emph{spectral radius} of $a$ in $A$ is defined to be
 \[r(a):=\sup_{\lambda\in\sigma(a)}|\lambda|.\]
 \begin{parts}
 \item $r(a)\le\inf_n\|a^n\|^{\frac1n}$.
@@ -991,7 +1054,7 @@ and it proves $r(a)\le\inf_n\|a^n\|^{\frac1n}$.
 (b)
 Consider a holomorphic function
 \[f:\{\lambda\in\C:|\lambda|>r(a)\}\to\C:\lambda\mapsto\<R(\lambda),l\>\]
-for each $l\in\cA^*$.
+for each $l\in A^*$.
 Since on a smaller domain $\{\lambda\in\C:|\lambda|>\|a\|\}$, the function $f$ can be given by
 \[f(\lambda)=\Bigl\<\lambda^{-1}\sum_{k=0}^\infty(\lambda^{-1}a)^k,l\Bigr\>,\]
 we can determine the coefficients of the Laurent series of $f$ at infinity as
@@ -1008,10 +1071,10 @@ If we limit $|\lambda|\downarrow r(a)$, we are done.
 
 \begin{prb}[Spectrum in closed subalgebras]
 For fixed element, smaller the ambient algebra, less ``holes'' in the spectrum.
-Let $\cB\subset\cA$ be a closed subalgebra containing $1_\cA$.
-Note that $\cB$ may be unital even for $1_\cA\notin\cB$.
+Let $A\subset B$ be a closed subalgebra containing $1_A$.
+Note that $A$ may be unital even for $1_B\notin A$.
 \begin{parts}
-\item $\cB^\times$ is clopen in $\cA^\times\cap\cB$.
+\item $B^\times$ is clopen in $A^\times\cap B$.
 \end{parts}
 \end{prb}
 
@@ -1022,15 +1085,15 @@ Note that $\cB$ may be unital even for $1_\cA\notin\cB$.
 \section{Ideals}
 \begin{prb}[Ideals]
 \begin{parts}
-\item If $I$ is a left ideal, then $\cA/I$ is a left $\cA$-module.
+\item If $I$ is a left ideal, then $A/I$ is a left $A$-module.
 \end{parts}
 \end{prb}
 
 \begin{prb}[Modular left ideals]
-A left ideal $I$ is called \emph{modular} if there is $e\in\cA$ such that $a-ae\in I$ for all $a\in\cA$.
+A left ideal $I$ is called \emph{modular} if there is $e\in\cA$ such that $a-ae\in I$ for all $a\in A$.
 The element $e$ is called a \emph{right modular unit} for $I$.
 \begin{parts}
-\item $I$ is modular if and only if $\cA/I$ is unital(?).
+\item $I$ is modular if and only if $A/I$ is unital(?).
 \item A proper modular left ideal is contained in a maximal left ideal.
 \item $I$ is a maximal modular left ideal if and only if $I$ is a modular maximal left ideal.
 \item There is a non-modular maximal ideal in the disk algebra.
@@ -1046,42 +1109,42 @@ The element $e$ is called a \emph{right modular unit} for $I$.
 
 
 \begin{prb}[Unitization]
-Let $\cA$ be an algebra.
+Let $A$ be an algebra.
 Recall that we always assume algebras are associative.
-Consider an embedding $\cA\to B(\cA):a\mapsto L_a$, where $L_a(b)=ab$.
+Consider an embedding $A\to B(A):a\mapsto L_a$, where $L_a(b)=ab$.
 Define
-\[\tilde\cA:=\{\,L_a+\lambda\id_{B(\cA)}:a\in\cA,\lambda\in\C\,\}.\]
-Note that this construction is available even for unital $\cA$.
+\[\tilde A:=\{\,L_a+\lambda\id_{B(A)}:a\in A,\lambda\in\C\,\}.\]
+Note that this construction is available even for unital $A$.
 \begin{parts}
-\item If $\cA$ is normed, then $\tilde\cA$ is a normed algebra such that there is an isometric embedding $\cA\to\tilde\cA$.
-\item If $\cA$ is Banach, then $\tilde\cA$ is a Banach algebra.
-\item $\cA\oplus\C$ is topologically isomorphic to $\tilde\cA$ as normed spaces.
+\item If $A$ is normed, then $\tilde A$ is a normed algebra such that there is an isometric embedding $A\to\tilde A$.
+\item If $A$ is Banach, then $\tilde A$ is a Banach algebra.
+\item $A\oplus\C$ is topologically isomorphic to $\tilde A$ as normed spaces.
 \end{parts}
 \end{prb}
 \begin{pf}
 (a)
-The space of bounded operators $B(\cA)$ is a normd algebra.
-Then, $\tilde\cA$ is a normed $*$-algebra with induced norm
-\[\|L_a+\lambda\id_{B(\cA)}\|=\sup_{b\in\cA}\frac{\|ab+\lambda b\|}{\|b\|}\]
-Then, $\cA$ is a normed $*$-subalgebra of $\tilde\cA$ because the norm and involution of $\cA$ agree with $\tilde\cA$.
+The space of bounded operators $B(A)$ is a normd algebra.
+Then, $\tilde A$ is a normed $*$-algebra with induced norm
+\[\|L_a+\lambda\id_{B(A)}\|=\sup_{b\in A}\frac{\|ab+\lambda b\|}{\|b\|}\]
+Then, $A$ is a normed $*$-subalgebra of $\tilde A$ because the norm and involution of $A$ agree with $\tilde A$.
 
 (b)
-Suppose $(x_n,\lambda_n)$ is Cauchy in $\tilde\cA$.
-Since $\cA$ is complete so that it is closed in $\tilde\cA$, we can induce a norm on the quotient $\tilde\cA/\cA$ so that the canonical projection is (uniformly) continuous so that $\lambda_n$ is Cauchy.
-Also, the inequality $\|x\|\le\|(x,\lambda)\|+|\lambda|$ shows that $x_n$ is Cauchy in $\cA$.
+Suppose $(x_n,\lambda_n)$ is Cauchy in $\tilde A$.
+Since $A$ is complete so that it is closed in $\tilde A$, we can induce a norm on the quotient $\tilde A/A$ so that the canonical projection is (uniformly) continuous so that $\lambda_n$ is Cauchy.
+Also, the inequality $\|x\|\le\|(x,\lambda)\|+|\lambda|$ shows that $x_n$ is Cauchy in $A$.
 
-Since a finite dimensional normed space is always Banach and $\cA$ is Banach, $\lambda_n$ and $x_n$ converge.
+Since a finite dimensional normed space is always Banach and $A$ is Banach, $\lambda_n$ and $x_n$ converge.
 Finally, the inequality $\|(x,\lambda)\|\le\|x\|+|\lambda|$ implies that $(x_n,\lambda_n)$ converges.
 
 (c)
-Check the topology on $\cA\oplus\C$ in detail...
+Check the topology on $A\oplus\C$ in detail...
 \end{pf}
 
 
 
 unitization, homomorphisms, category(direct sum, product, etc.)
 
-$B(\C^n)$ is simple, but $B(X)$ is not simple.
+$B(\C^n)=M_n(\C)$ is simple, but $B(H)$ is not simple.
 
 % approximate identity, norm of left multiplication
 
@@ -1089,19 +1152,19 @@ $B(\C^n)$ is simple, but $B(X)$ is not simple.
 \section{Holomorphic functional calculus}
 
 \begin{prb}
-Let $a$ be an element of a unital Banach algebra $\cA$.
+Let $a$ be an element of a unital Banach algebra $A$.
 Let $f$ be a holomorphic function on a neighborhood $U$ of $\sigma(a)$.
 Let $C$ be a positively oriented smooth simple closed curve in $U$ enclosing $\sigma(a)$.
-Define $f(a)\in\cA^{**}$ as the Dunford integral
-\[\<f(a),l\>:=\int_Cf(\lambda)\<R(\lambda),l\>\,d\lambda,\qquad l\in\cA^*.\]
+Define $f(a)\in A^{**}$ as the Dunford integral
+\[\<f(a),l\>:=\int_Cf(\lambda)\<R(\lambda),l\>\,d\lambda,\qquad l\in A^*.\]
 
 Let $\Hol(\sigma(a))$ be the space of all holomorphic functions on a neighborhood of $\sigma(a)$ endowed with the topology of compact convergence.
 Note that $\Hol(\sigma(a))$ is not Banach.
 We define the \emph{holomorphic functional calculus} by the map
-\[\Hol(\sigma(a))\to\cA:f\mapsto f(a).\]
+\[\Hol(\sigma(a))\to A:f\mapsto f(a).\]
 It is also called the Riesz or the Riesz-Dunford functional calculus.
 \begin{parts}
-\item $f(a)\in\cA$, i.e. $f(a)$ is given by the Pettis integral.
+\item $f(a)\in A$, i.e. $f(a)$ is given by the Pettis integral.
 \item $f(a)$ is independent of the choice of $C$.
 \item The functional calculus is an algebra homomorphism.
 \item The functional calculus is bounded.
@@ -1130,29 +1193,29 @@ Banach algebra of single generator
 semisimplicity and symmetricity
 
 \begin{prb}[Spectrum of a Banach algebra]
-Let $\cA$ be a commutative Banach algbera.
-A \emph{character} of $\cA$ is a non-zero algebra homomorphism $\f:\cA\to\C$.
-Denote by $\sigma(\cA)$ the set of all characters of $\cA$.
+Let $A$ be a commutative Banach algbera.
+A \emph{character} of $A$ is a non-trivial algebra homomorphism $\f:A\to\C$.
+Denote by $\sigma(A)$ the set of all characters of $A$.
 We will show that all characters are bounded.
-Then, endow with the weak$^*$ topology on $\sigma(\cA)$ from the inclusion $\sigma(\cA)\subset\cA^*$.
-We call this space as the \emph{spectrum} of $\cA$.
-Let $\f\in\sigma(\cA)$.
+Then, endow with the weak$^*$ topology on $\sigma(A)$ from the inclusion $\sigma(A)\subset A^*$.
+We call this space as the \emph{spectrum} of $A$.
+Let $\f\in\sigma(A)$.
 \begin{parts}
 \item $\|\f\|=1$.
-\item If $\cA$ is unital, then $\sigma(\cA)$ is compact and Hausdorff.
-\item Even if $\cA$ is non-unital, $\sigma(\cA)$ is locally compact and Hausdorff.
+\item If $A$ is unital, then $\sigma(A)$ is compact and Hausdorff.
+\item Even if $A$ is non-unital, $\sigma(A)$ is locally compact and Hausdorff.
 \end{parts}
 \end{prb}
 
 
 \begin{prb}[Gelfand transform]
-Let $\cA$ be a commutative Banach algebra.
-\[\Gamma:\cA\to C_0(\sigma(\cA)).\]
+Let $A$ be a commutative Banach algebra.
+\[\Gamma:A\to C_0(\sigma(A)).\]
 \begin{parts}
-\item $\Gamma(\cA)$ separates points.
+\item $\Gamma(A)$ separates points.
 \item $\Gamma$ has closed range if
 \item $\Gamma$ is injective if
-\item $\Gamma$ is isometric if $r(a)=\|a\|$ for all $a\in\cA$.
+\item $\Gamma$ is isometric if $r(a)=\|a\|$ for all $a\in A$.
 \end{parts}
 \end{prb}
 
@@ -1162,7 +1225,7 @@ Let $\cA$ be a commutative Banach algebra.
 
 \section*{Exercises}
 \begin{prb}[Basic properties of spectrum]
-Let $\cA$ be a unital algebra.
+Let $A$ be a unital algebra.
 \begin{parts}
 \item $\sigma(ab)\setminus\{0\}=\sigma(ba)\setminus\{0\}$.
 \item If $\sigma(a)$ is non-empty, then $\sigma(p(a))=p(\sigma(a))$.
@@ -1235,32 +1298,28 @@ where the series on the right hand side converges absolutely and uniformly on an
 
 \section{C$^*$ identity}
 % normal elements, real/imaginary part
-\begin{prb}[Involutive Banach algebras]
-Banach $*$-algebra: $\|a^*\|=\|a\|$.
+\begin{prb}[$*$-algebras]
+normed?
 \end{prb}
 
 
 \begin{prb}[C$^*$-identity]
-% history
-A normed $*$-algebra $\cA$ is called a \emph{C$^*$-algebra} if
-\begin{parts}
-\item $\cA$ is Banach,
-\item $\cA$ satisfies the C$^*$-identity: $\|x^*x\|=\|x\|^2$.
-\end{parts}
+%history
+A \emph{C$^*$-algebra} is a Banach $*$-algebra $A$ satisfying the C$^*$-identity $\|a^*a\|=\|a\|^2$ for all $a\in A$.
 \end{prb}
 
 
-\begin{prb}[Unitization of C$^*$-algebras]
-\[(L_a+\lambda\id_{B(\cA)})^*=L_{a^*}+\bar\lambda\id_{B(\cA)}.\]
+\begin{prb}[Unitization]
+\[(L_a+\lambda\id_{B(A)})^*=L_{a^*}+\bar\lambda\id_{B(A)}.\]
 \end{prb}
 \begin{pf}
 The C$^*$-identity easily follows from the following inequality:
 \begin{align*}
-\|(x,\lambda)\|^2&=\sup_{\|y\|=1}\|xy+\lambda y\|^2\\
-&=\sup_{\|y\|=1}\|(xy+\lambda y)^*(xy+\lambda y)\|\\
-&=\sup_{\|y\|=1}\|y^*((x^*x+\lambda x^*+\bar\lambda x)y+|\lambda|^2y)\|\\
-&\le\sup_{\|y\|=1}\|(x^*x+\lambda x^*+\bar\lambda x)y+|\lambda|^2y\|\\
-&=\|(x,\lambda)^*(x,\lambda)\|.\qedhere
+\|(a,\lambda)\|^2&=\sup_{\|b\|=1}\|ab+\lambda b\|^2\\
+&=\sup_{\|b\|=1}\|(ab+\lambda b)^*(ab+\lambda b)\|\\
+&=\sup_{\|b\|=1}\|b^*((a^*a+\lambda a^*+\bar\lambda a)b+|\lambda|^2y)\|\\
+&\le\sup_{\|b\|=1}\|(a^*a+\lambda a^*+\bar\lambda a)b+|\lambda|^2b\|\\
+&=\|(a,\lambda)^*(a,\lambda)\|.\qedhere
 \end{align*}
 \end{pf}
 
@@ -1271,7 +1330,7 @@ The C$^*$-identity easily follows from the following inequality:
 \section{Continuous functional calculus}
 
 \begin{prb}[Gelfand-Naimark representation for C$^*$-algebras]
-For a commutative unital C$^*$-algebra $\cA$, consider the Gelfand transform $\Gamma:\cA\to C(\sigma(\cA))$.
+For a commutative unital C$^*$-algebra $A$, consider the Gelfand transform $\Gamma:A\to C(\sigma(A))$.
 \begin{parts}
 \item $\Gamma$ is a $*$-homomorphism.
 \item $\Gamma$ is an isometry.
@@ -1283,16 +1342,16 @@ For a commutative unital C$^*$-algebra $\cA$, consider the Gelfand transform $\G
 
 (b)
 Note that we have
-\[\|\Gamma a\|=\sup_{\f\in\sigma(\cA)}|\Gamma a(\f)|=\sup_{\f\in\sigma(\cA)}|\f(a)|=r(a)\]
-for all $a\in\cA$.
+\[\|\Gamma a\|=\sup_{\f\in\sigma(A)}|\Gamma a(\f)|=\sup_{\f\in\sigma(A)}|\f(a)|=r(a)\]
+for all $a\in A$.
 If we assume $a$ is self-adjoint, then since $\|a\|^2=\|a^*a\|=\|a^2\|$, the spectral radius coincides with the norm by the Beurling formula for spectral radius in Banach algebras:
 \[\|\Gamma a\|=r(a)=\lim_{n\to\infty}\|a^{2^n}\|^{1/2^n}=\|a\|.\]
-Hence we have for all $a\in\cA$ that
-\[\|a\|^2=\|a^*a\|=\|\Gamma(a^*a)\|=\|(\Gamma a)^*\Gamma a\|=\|\Gamma a\|^2.\]
+Hence we have for all $a\in A$ that
+\[\|a\|^2=\|a^*a\|=\|\Gamma(a^*a)\|=\|(\Gamma a)^*(\Gamma a)\|=\|\Gamma a\|^2.\]
 
 (c)
-By the part (a) and (b), the image $\Gamma(\cA)$ is a closed unital $*$-subalgebra of $C(\sigma(\cA))$, and it separates points by definition.
-Then, $\Gamma(\cA)$ is dense in $C(\sigma(\cA))$ by the Stone-Weierstrass theorem, which implies $\Gamma(\cA)=C(\sigma(\cA)$.
+By the part (a) and (b), the image $\Gamma(A)$ is a closed unital $*$-subalgebra of $C(\sigma(A))$, and it separates points by definition.
+Then, $\Gamma(A)$ is dense in $C(\sigma(A))$ by the Stone-Weierstrass theorem, which implies $\Gamma(A)=C(\sigma(A)$.
 \end{pf}
 
 
@@ -1303,9 +1362,9 @@ joint spectrum.
 
 
 \begin{prb}[Continuous functional calculus]
-Let $\cA$ be a C$^*$-algebra, and $a\in\cA$ a normal element.
+Let $A$ be a C$^*$-algebra, and $a\in A$ a normal element.
 Then, we have an isometric $*$-homomorphism
-\[C(\sigma(a))\to\cA\]
+\[C(\sigma(a))\to A\]
 defined by the inverse of the Gelfand transform, which we call the \emph{continuous functional calculus}.
 \begin{parts}
 \item $\id\mapsto a$.
@@ -1317,7 +1376,7 @@ defined by the inverse of the Gelfand transform, which we call the \emph{continu
 
 
 \begin{prb}[Normal elements]
-Let $a$ be an element of a unital C$^*$-algebra $\cA$.
+Let $a$ be an element of a unital C$^*$-algebra $A$.
 We say $a$ is \emph{normal}, \emph{unitary}, and \emph{self-adjoint} if $a^*a=aa^*$, $a^*a=aa^*=e$, and $a^*=a$ respectively.
 For normality and self-adjointness, the definitions can be extended to non-unital C$^*$-algebras.
 \begin{parts}
@@ -1329,24 +1388,24 @@ For normality and self-adjointness, the definitions can be extended to non-unita
 (a)
 
 (b)
-We may assume $\cA$ is unital.
+We may assume $A$ is unital.
 By the holomorphic functional calculus, we have
-\[e^{ia}=\sum_{n=1}^\infty\frac{(ia)^n}{n!}\in\cA,\]
+\[e^{ia}=\sum_{n=1}^\infty\frac{(ia)^n}{n!}\in A,\]
 and the inverse of $e^{ia}$ is $e^{-ia}$.
-Since the involution $^*:\cA\to\cA$ is continuous, we can check $e^{ia}$ is unitary by
+Since the involution on $A$ is continuous, we can check $e^{ia}$ is unitary by
 \[(e^{ia})^*=\sum_{n=1}^\infty\frac{(-ia)^n}{n!}=e^{-ia}.\]
-For every $\f\in\sigma(\cA)$, then by the part (a) the equality
+For every $\f\in\sigma(A)$, then by the part (a) the equality
 \[e^{-\Im\f(a)}=|e^{i\f(a)}|=|\f(e^{ia})|=1\]
 proves $\f(a)\in\R$, hence $\sigma(a)\subset\R$.
 \end{pf}
 
 \begin{prb}[$*$-homomorphism]
-Let $\f:\cA\to\cB$ be a $*$-homomorphism between C$^*$-algerbas.
+Let $\f:A\to B$ be a $*$-homomorphism between C$^*$-algerbas.
 \begin{parts}
 \item $\f$ is determined by self-adjoint elements.
-\item $\f$ is contractive.
+\item $\|\f\|=1$ if $\f$ is non-trivial.
 \item The iamge of $\f$ is closed.
-\item The induced map $\cA/\ker\f\to\cB$ is an isometry.
+\item The induced map $A/\ker\f\to B$ is an isometry.
 \end{parts}
 \end{prb}
 
@@ -1356,30 +1415,23 @@ Let $\f:\cA\to\cB$ be a $*$-homomorphism between C$^*$-algerbas.
 
 
 \begin{prb}[Positive elements]
-Let $a,b$ be elements of a C$^*$-algebra $\cA$.
+Let $a,b$ be elements of a C$^*$-algebra $A$.
 We say $a$ is \emph{positive} and write $a\ge0$ if it is normal and $\sigma(a)\subset\R_{\ge0}$.
-If we define a relation $a\le b$ as $b-a\ge0$, then we can see that it is a partial order on $\cA$.
+If we define a relation $a\le b$ as $b-a\ge0$, then we can see that it is a partial order on $A$.
 \begin{parts}
 \item $a\ge0$ if and only if $\|\lambda-a\|\le\lambda$ for some $\lambda\ge\|a\|$.
 \item If $a\ge0$ and $\sigma(b)\subset\R_{\ge0}$, then $\sigma(a+b)\subset\R_{\ge0}$.
-\item If $a^*a\le0$, then $a=0$.
-\item $a\ge0$ if and only if $a=b^*b$ for some $b\in\cA$.
+\item $a\ge0$ if and only if $a=b^*b$ for some $b\in A$.
 \end{parts}
 \end{prb}
 \begin{pf}
 
-Let $b:=a^*a$.
-If we consider the case $\cA=B(H)$, then one of the properties characterizing $b$ is that $\<b\xi,\xi\>\ge0$ for all $\xi\in H$.
-Let $b=b_+-b_-$.
-Then,
-\[0\le\<bb_-\xi,b_-\xi\>=-\<b_-^3\xi,\xi\>\le0\]
-implies $b_-=0$.
-Now we assume $\cA$ is defined axiomatically.
-Then,
-\[(ab_-)^*(ab_-)=b_-bb_-=-b_-^3\le0\]
-implies $(ab_-)(ab_-)^*\le0$ and
-\[0\le(ab_-)^*(ab_-)+(ab_-)(ab_-)^*\le0.\]
-Thus we have $ab_-=0$ and $b_-^3=0$.
+
+Let $a:=b^*b$.
+Let $a=a_+-a_-$.
+Then we have $(ba_-)^*(ba_-)=a_-aa_-=-a_-^3\le0$, which also implies $(ba_-)(ba_-)^*\le0$ and
+\[0\le(ba_-)^*(ba_-)+(ba_-)(ba_-)^*\le0.\]
+Thus we have $ba_-=0$ and $a_-^3=0$.
 
 \end{pf}
 
@@ -1403,7 +1455,7 @@ Thus we have $ab_-=0$ and $b_-^3=0$.
 
 \begin{prb}[Approximate identity]
 separable
-Let $e_\alpha$ be an approximate identity of $\cA$.
+Let $e_\alpha$ be an approximate identity of $A$.
 \begin{parts}
 \item For a positive linear functional $\omega$, we have $\lim_\alpha\omega(e_\alpha)=\|\omega\|$.
 \item 
@@ -1418,22 +1470,22 @@ Let $e_\alpha$ be an approximate identity of $\cA$.
 
 
 \begin{prb}[Representation of C$^*$-algebras]
-Let $\cA$ be a C$^*$-algebra.
-A \emph{representation} of $\cA$ is a $*$-homomorphism $\pi:\cA\to B(H)$ for a Hilbert space $H$.
-We say a representation $\pi:\cA\to B(H)$ is \emph{non-degenerate} if $\pi(\cA)H$ is dense in $H$, \emph{cyclic} if there is $\psi\in H$ such that $\cA\psi$ is dense in $H$, and \emph{irreducible} if there is no proper closed subspace $K\subset H$ such that $\pi(\cA)K\subset K$.
+Let $A$ be a C$^*$-algebra.
+A \emph{representation} of $A$ is a $*$-homomorphism $\pi:A\to B(H)$ for a Hilbert space $H$.
+We say a representation $\pi:A\to B(H)$ is \emph{non-degenerate} if $\pi(A)H$ is dense in $H$, \emph{cyclic} if there is $\psi\in H$ such that $A\psi$ is dense in $H$, and \emph{irreducible} if there is no proper closed subspace $K\subset H$ such that $\pi(A)K\subset K$.
 \begin{parts}
 \item The following statements are equivalent:
 \begin{enumerate}[(i)]
 \item $\pi$ is non-degenerate.
-\item For each $\xi\in H$ there is $a\in\cA$ such that $\pi(a)\xi\ne0$.
-\item $\pi(e_\alpha)\to\id_H$ strongly for an approximate identity $e_\alpha$ of $\cA$.
+\item For each $\xi\in H$ there is $a\in A$ such that $\pi(a)\xi\ne0$.
+\item $\pi(e_\alpha)\to\id_H$ strongly for an approximate identity $e_\alpha$ of $A$.
 \end{enumerate}
 
 \item The following statements are equivalent:
 \begin{enumerate}[(i)]
 \item $\pi$ is irreducible
-\item $\pi(\cA)'=\C\id_H$.
-\item $\pi(\cA)$ is strongly dense in $B(H)$.
+\item $\pi(A)'=\C\id_H$.
+\item $\pi(A)$ is strongly dense in $B(H)$.
 \item Every non-zero vector is cyclic.
 \end{enumerate}
 \end{parts}
@@ -1441,14 +1493,14 @@ We say a representation $\pi:\cA\to B(H)$ is \emph{non-degenerate} if $\pi(\cA)H
 
 
 \begin{prb}[Gelfand-Naimark-Segal representation]
-Let $\cA$ be a C$^*$-algebra, and $\rho$ be a state on $\cA$.
-The \emph{left kernel} of $\rho$ is defined to be
-\[L_\rho:=\{a\in\cA:\rho(a^*a)=0\}.\]
+Let $A$ be a C$^*$-algebra, and $\omega$ be a state on $A$.
+The \emph{left kernel} of $\omega$ is defined to be
+\[N_\omega:=\{a\in A:\omega(a^*a)=0\}.\]
 \begin{parts}
-\item $L_\rho$ is a left ideal of $\cA$.
-\item $\<a+L,b+L\>:=\rho(b^*a)$ is an inner product on $\cA/L_\rho$.
-\item There is a unique representation $\pi_\rho:\cA\to B(H_\rho)$ such that $\pi_\rho(a)(b+L):=ab+L$ for $a,b\in\cA$.
-\item $\pi_\rho:\cA\to B(H_\rho)$ is a cyclic representation.
+\item $N_\omega$ is a left ideal of $A$.
+\item $\<a+N,b+N\>:=\omega(b^*a)$ is an inner product on $A/N_\omega$.
+\item There is a unique representation $\pi_\omega:A\to B(H_\omega)$ such that $\pi_\omega(a)(b+N_\omega):=ab+N_\omega$ for $a,b\in A$.
+\item $\pi_\omega:A\to B(H_\omega)$ is a cyclic representation.
 \end{parts}
 \end{prb}
 
@@ -1459,9 +1511,11 @@ The \emph{left kernel} of $\rho$ is defined to be
 \end{prb}
 
 \begin{prb}[Primitive ideals]
+\[PS(A)\to\hat A\to\operatorname{Prim}(A).\]
 \end{prb}
 
 \begin{prb}[Hull-kernel topology]
+
 \end{prb}
 
 
@@ -1475,9 +1529,9 @@ The \emph{left kernel} of $\rho$ is defined to be
 
 
 \begin{prb}[Operator monotone square]
-Let $\cA$ be a C$^*$-algebra in which the square function is operator monotone, that is, $0\le a\le b$ implies $a^2\le b^2$ for any positive elements $a$ and $b$ in $\cA$.
-We are going to show that $\cA$ is necessarily commutative.
-Let $a$ and $b$ denote arbitrary positive elements of $\cA$.
+Let $A$ be a C$^*$-algebra in which the square function is operator monotone, that is, $0\le a\le b$ implies $a^2\le b^2$ for any positive elements $a$ and $b$ in $A$.
+We are going to show that $A$ is necessarily commutative.
+Let $a$ and $b$ denote arbitrary positive elements of $A$.
 \begin{parts}
 \item
 Show that $ab+ba\ge0$.
@@ -1492,14 +1546,14 @@ Show that $\lambda(cd+dc)^2\le(c^2-d^2)^2$.
 \item
 Show that $\sqrt{\lambda^2+2\lambda-1}\cdot d^2\le c^2$ and deduce $d=0$.
 \item
-Extend the result for general exponent: $\cA$ is commitative if $f(x)=x^\beta$ is operator monotone for $\beta>1$.
+Extend the result for general exponent: $A$ is commitative if $f(x)=x^\beta$ is operator monotone for $\beta>1$.
 \end{parts}
 \end{prb}
 
 
 \begin{prb}[States on unitization]
-Let $\cA$ and $\tilde\cA=\cA\oplus\C$ be a C$^*$-algebra and its unitization respectively.
-Let $\tilde\rho=\rho\oplus\lambda$ be a bounded linear functional on $\tilde\cA$, where $\rho\in\cA^*$ and $\lambda\in\C^*=\C$.
+Let $A$ be a non-unital C$^*$-algebra and $\tilde A$ be its unitization.
+Let $\tilde\rho=\rho\oplus\lambda$ be a bounded linear functional on $\tilde A$, where $\rho\in A^*$ and $\lambda\in\C^*=\C$.
 \begin{parts}
 \item $\tilde\rho$ is positive if and only if $\lambda\ge0$ and $0\le\rho\le\lambda$.
 \item $\tilde\rho$ is a state if and only if $\lambda=1$ and $\rho$ is positive with $\|\rho\|\le1$.
@@ -1508,12 +1562,12 @@ Let $\tilde\rho=\rho\oplus\lambda$ be a bounded linear functional on $\tilde\cA$
 \end{prb}
 
 
-\begin{prb}[Representations of $C_0(\Omega)$]
-Let $\cA=C_0(\Omega)$ and $\mu$ be a state on $\cA$, a regular Borel probability measure on $\Omega$.
+\begin{prb}[Representations of $C_0(X)$]
+Let $A=C_0(X)$ and $\mu$ be a state on $A$, a regular Borel probability measure on a locally compact Hausdorff space $X$.
 \begin{parts}
-\item The left kernel of $\mu$ is $L_\mu=\{\,f\in\cA:f|_{\supp\mu}=0\,\}$.
-\item The quotient is $\cA/L_\mu\cong C(\supp\mu)$ so that $H_\mu=L^2(\supp\mu,\mu)$.
-\item The canonical cyclic vector is the unity function.
+\item The left kernel of $\mu$ is $N_\mu=\{\,f\in A:f|_{\supp\mu}=0\,\}$.
+\item $H_\mu=L^2(X,\mu)$.
+\item The canonical cyclic vector is the unity function on $X$.
 \end{parts}
 \end{prb}
 
@@ -1542,12 +1596,18 @@ Let $\cA=C_0(\Omega)$ and $\mu$ be a state on $\cA$, a regular Borel probability
 \end{enumerate}
 
 
+
+
+
+
+
 \chapter{Von Neumann algebras}
 
 \section{Borel functional calculus}
 
 \begin{prb}[Von Neumann algebras]
-A C$^*$-algebra $\cA$ is called a \emph{von Neumann algebra} if there is a isometric $*$-homomorphism $\cA\to B(H)$ for a Hilbert space $H$ whose image is closed in the weak operator topology.
+Let $H$ be a Hilbert space.
+A $*$-subalgebra $M$ of $B(H)$ is called a \emph{von Neumann algebra} if it is closed weakly.
 \end{prb}
 
 \begin{prb}[Vigier theorem]
@@ -1559,11 +1619,11 @@ The boundedness is important because we have to construct a bounded sesquilinear
 
 
 \begin{prb}[Borel functional calculus]
-Let $\cA$ be a von Neumann algebra.
-\[B^\infty(\sigma(a))\to\cA.\]
+Let $M\subset B(H)$ be a von Neumann algebra.
+\[B^\infty(\sigma(a))\to M.\]
 \begin{parts}
 \item The Borel functional calculus is in general not injective.
-\item If we endow the topology of pointwise convergence on $B^\infty(\sigma(a))$ and the strong operator topology on $\cA$, then the Borel functional calculus is continuous.
+\item If we endow the topology of pointwise convergence on $B^\infty(\sigma(a))$ and the strong operator topology on $M$, then the Borel functional calculus is continuous.
 \item not isometric, even if it is injective.
 \item Every von Neumann algebra is the closed span of projections.
 \end{parts}
@@ -1582,26 +1642,41 @@ This is because $\sigma(a)\subset\C$ is compact so that it is separable and metr
 
 \section{Density theorems}
 
-\begin{prb}[Bicommutant theorem]
-Let $\cA$ be a non-degenerate C$^*$-subalgebra of $B(H)$.
+\begin{prb}[Double commutant theorem]
+Let $A$ be a non-degenerate $*$-subalgebra of $B(H)$.
 \begin{parts}
-\item $\cA'$ and $\cA''$ are weakly closed.
-\item For $a\in\cA''$ and $\xi\in H$, there is a sequence $a_n\in\cA$ such that $a_n(\xi)\to a(\xi)$.
-\item For $a\in\cA''$ and $\xi_1,\cdots,\xi_m\in H$, there is a sequence $a_n\in\cA$ such that $a_n(\xi_i)\to a(\xi_i)$ for all $i$.
-\item $\cA$ is von Neumann algebra if and only if $\cA=\cA''$.
+\item $\bar A^{\sigma s^*}\subset\bar A^w\subset A''$.
+\item If $x\in A''$, for any $\e>0$ and $\xi\in H$ there is $a\in A$ such that $\|(x-a)\xi\|<\e$.\\
+(If we can find such $a\in A$ for any \emph{finite subset} $F\subset H$ not only for a single $\xi$, then we can construct a net $a_\alpha$ that converges to $x$ strongly, i.e.~$\bar A^s=A''$. We will show, more strongly, that we can do this for any \emph{square-summable countable subset} $F$ in the part (c))
+\item For $\bar A^{\sigma s^*}= A''$.
 \end{parts}
 \end{prb}
 \begin{pf}
 (b)
-Let $K:=\bar{\cA\xi}$ be the cyclic subspace of $\xi$ in $H$ and $p$ its orthogonal projection.
-We claim $a\xi\in K$.
-For every $b\in\cA$, we have $bK\subset K$ because the multiplication by $b$ is continuous on $H$, and $b^*K\subset K$ because $\cA$ is self-adjoint.
-It means that $K$ reduces all $b\in\cA$, and then $bp=pb$ implies $ap=pa$, so $K$ also reduces $a$.
-Therefore, $aK\subset K$ proves $a\xi=\lim_\alpha e_\alpha a\xi\in K$, where $e_\alpha$ is an approximate identity of $\cA$.
+We claim $x\xi\in\bar{A\xi}$ for each $\xi\in H$.
+Let $p$ be the projection onto $\bar{A\xi}$.
+Then, the image $apH$ is contained in $\bar{A\xi}$, we have $pap=ap$ and $pa^*p=a^*p$ for all $a\in A$ by the self-adjointness of $\cA$.
+It implies $ap=pa$, which deduces $p\in A'$ so $xp=px$.
+Observe that $a(1-p)\xi=(1-p)a\xi=0$ for all $a\in A$.
+Then, $\<(1-p)\xi,\eta\>$ for any $\eta\in H=\bar{AH}$, so $p\xi=\xi$.
+Hence $x\xi=xp\xi=px\xi$ so that $x\xi\in\bar{A\xi}$.
 
-(e)
-Since $\bar\cA^w$ is closed convex, $\bar\cA^s=\bar\cA^w$.
-Also, $\cA''$ is weakly closed, $\bar\cA^s\subset\cA''$.
+(c)
+We suffices to show $A''\subset\bar A^{\sigma s}$ because $A$ is self-adjoint.
+Take a finite set $\{(\xi_{ij})_{j=1}^\infty\subset H\}_{i=1}^n$ of sequences such that $\sum_{j=1}^\infty\|\xi_{ij}\|^2<\infty$ for each $i$.
+Then, $x\mapsto\left(\sum_{j=1}^\infty\|x\xi_{ij}\|^2\right)^{\frac12}$ defines a finite set of seminorms indexed by $i$ which makes a base element of the $\sigma$-strong topology.
+Consider the diagonal map $\Delta:B(H)\to B(H^{\oplus\infty})$ and let $\bar\xi:=(\xi_{ij})_{i,j}\in(H^{\oplus\infty})^{\oplus n}=H^{\oplus\infty}$.
+Then, the seminorm for $\sigma$-strong topology on $H$ factor through the seminorm defined by $\xi$ on $H^{\oplus\infty}$ as follows:
+\[\begin{tikzcd}[column sep=huge]
+B(H) \ar[swap]{d}{\Delta} \ar{dr}{x\mapsto\left(\sum_{i,j}\|x\xi_{ij}\|^2\right)^{\frac12}} & \\
+B(H^{\oplus\infty}) \ar[swap]{r}{\bar x\mapsto\|\bar x\bar\xi\|} & \R_{\ge0}.
+\end{tikzcd}\]
+
+Suppose $x\in A''$.
+Since $\Delta(x)\in\Delta(A)''$ and $\Delta(A)$ is a non-degnerate $*$-subalgebra of $B(H^{\oplus\infty})$, by the part (b), there is $\Delta(a)\in\Delta(A)$ such that
+\[\|(\Delta(x)-\Delta(a))\bar\xi\|=\left(\sum_{i,j}\|(x-a)\xi_{ij}\|^2\right)^{\frac12}<\e.\]
+Thus
+\[\Delta(A'')\subset\Delta(A)''\subset\Delta(\bar A^{\sigma s}).\]
 \end{pf}
 
 
@@ -1611,21 +1686,131 @@ Also, $\cA''$ is weakly closed, $\bar\cA^s\subset\cA''$.
 
 
 \section{Envelpoing von Neumann algebra}
+
 \begin{prb}[Sherman-Takeda theorem]
-\end{prb}
-\begin{prb}[Conditional expectations]
-Let $\cB$ be a closed subalgebra of a C$^*$-algebra $\cA$ with $1_\cA\in\cB$.
-A \emph{conditional expectation} is a positive $\cB$-bimodule map $\f:\cA\to\cB$.
+Let $A$ be a C$^*$-algebra.
+Define $M(\pi):=\pi(A)''$ for $\pi:A\to B(H)$ a representation.
+Let $\pi_u:A\to B(H_u)$ be the universal representation of $A$, the direct sum of all the GNS-representations of states of $A$.
+Consider the following three maps
+\[\pi_u:A\to(M(\pi_u),\sigma w),\qquad\pi_u^*:M(\pi_u)_*\to A^*,\qquad\pi_u^{**}:A^{**}\to M(\pi_u),\]
+constructed by adjoints, where $M(\pi_u)_*$ denotes the set of normal linear functionals on $M(\pi_u)$.
 \begin{parts}
-\item
-\item Tomiyama theorem: contractive idempotent linear map $\cA\to\cB$ is a conditional expectation.
+\item $\pi_u^*$ is isometric.
+\item $\pi_u^*$ is surjective.
+\item $\pi_u^{**}$ is an isometric isomorhpism with respect to norms, and is an homeomorphism with respect to weak$^*$-topologies.
+\item $A^{**}$ enjoys a universal property in the sense that for every $*$-homomorphism $\f:A\to M$ to a von Neumann algebra $M$, there exists a unique normal extension $\tilde\f:A^{**}\to M$ of $\f$.
 \end{parts}
 \end{prb}
-\begin{prb}[Sakai theorem]
+\begin{pf}
+(a)
+It holds for any representation of $\pi:A\to B(H)$.
+For each $l\in M(\pi)_*$ we have
+\[\|\pi^*(l)\|=\sup_{\substack{\|a\|\le1\\a\in A}}|l(\pi(a))|=\sup_{\substack{\|x\|\le1\\x\in M(\pi)}}|l(x)|=\|l\|\] by the Kaplansky density theorem and the $\sigma$-weak continuity of $l$.
+
+(b)
+The injective $*$-homomorphism $\pi_u$ is isometric so that its dual $M(\pi_u)^*\to A^*$ is surjective by the Hahn-Banach extension, however, it does not guarantee that the extended linear functional is normal.
+We claim that every state of $A$ has a normal extension on $M(\pi_u)$.
+If the claim is true, then the Jordan decomposition can be applied to show that every bounded linear functional has a normal extension.
+
+Let $\omega$ be a state of $A$.
+If we let $\psi$ be the canonical cyclic vector of the GNS representation $\pi_\omega:A\to B(H_\omega)$, then the state $\omega$ can be represented as a vector state $\omega_\psi$ in $B(H)$.
+Since $\pi_\omega$ is a subrepresentation of $\pi_u$, the unit vector $\psi$ can be seen as an element of $H_u$, and it defines a normal state of $M(\pi_u)$.
+
+(c)
+It is is clear from (a) and (b).
+
+(d)
+We can define $\tilde\f$ as the bitranspose of $\f:A\to(M,\sigma w)$, and it is a unique extension because $A$ is $\sigma$-weakly dense in $A^{**}$.
+\end{pf}
+\begin{rmk}
+The bidual $A^{**}$ is frequently viewed as a von Neumann algebra, and we call it the \emph{enveloping von Neumann algebra} of a C$^*$-algebra $A$.
+By the universal property, we have a normal $*$-homomorphism $M(\pi_u)\to M(\pi)$ that is in fact surjective for every representation $\pi$ of $A$, and it fails to be injective even if $\pi$ is faithful.
+\end{rmk}
+
+
+\begin{prb}[Conditional expectations]
+Let $A$ be a closed subalgebra of a C$^*$-algebra $B$ with $1_B\in A$.
+A \emph{conditional expectation} is a positive $A$-bimodule map $\f:B\to A$.
+\begin{parts}
+\item
+\item (Tomiyama theorem) contractive idempotent linear map $\f:B\to A$ is an $A$-bimodule map.
+\item $\f$ is completely positive.
+\end{parts}
 \end{prb}
 
+\begin{pf}
+Since each conclusion of (a) and (b) still holds for restriction, we may assume $\cA$ and $\cB$ are von Neumann algebras by thinking of the bitranspose $\f^{**}:\cA^{**}\to\cB^{**}$.
 
-central projections
+(a)
+Since the linear span of projections is $\sigma$-weakly dense in a von Neumann algebra, we are enough to show $p\f(a)=\f(pa)$ and $\f(ap)=\f(a)p$ for any projection $p\in\cB$.
+
+Let $p\in\cB$ be a projection and let $a\in\cA$.
+Note that we have
+\[p\f(a)=pp\f(a)=p\f(p\f(a))\]
+and
+\[(a-pa)^*(p\f(a-pa))=(p\f(a-pa))^*(a-pa)=0.\]
+Then,
+\begin{align*}
+(1+t)^2\|p\f(a-pa)\|^2
+&=\|p\f(a-pa)+tp\f(a-pa)\|^2\\
+&=\|p\f((a-pa)+tp\f(a-pa))\|^2\\
+&\le\|(a-pa)+tp\f(a-pa)\|^2\\
+&=\|a-pa\|^2+t^2\|p\f(a-pa)\|^2
+\end{align*}
+implies $p\f(a-pa)=0$ by letting $t\to\infty$.
+Putting $1_\cB-p$ and $1_\cB$ instead of $p$, we obtain $(1_\cB-p)\f(a-1_\cB a+pa)=0$ and $\f(a-1_\cB a)=0$, so
+\[p\f(a)=p\f(pa)=\f(pa).\]
+Similarly, we can show $\f(a-ap)p=0$ and $\f(ap)(1-p)=0$, we are done.
+
+(b)
+Let $[a_{ij}]\in M_n(\cA)_+$.
+Let $\pi:\cB\to B(H)$ be a cyclic representation with a cyclic vector $\psi$.
+Then, $[\xi_i]\in H^n$ can be replaced to $[\pi(b_i)\psi]$, so we can check the positivity of inflations $\f_n$ as
+\[\sum_{i,j}\<\pi(\f(a_{ij}))\pi(b_j)\psi,\pi(b_i)\psi\>=\<\pi(\f(\sum_{i,j}b_i^*a_{ij}b_j))\psi,\psi\>\ge0,\]
+because it follows $\sum_{i,j}b_i^*a_{ij}b_j\ge0$ by the positivity of $a_{ij}$ from
+\[\<\pi_\cA(\sum_{i,j}b_i^*a_{ij}b_j)\xi,\xi\>=\sum_{i,j}\<\pi_\cA(a_{ij})\pi_\cA(b_j)\xi,\pi_\cA(b_i)\xi\>\ge0,\]
+where $\pi_\cA$ is any representation of $\cA$.
+\end{pf}
+
+
+
+\begin{prb}[Sakai theorem]
+Suppose $A$ is a C$^*$-algebra which admits a predual $F$.
+\begin{parts}
+\item There is an injective $*$-homomorphism $\pi:A\to A^{**}$ with weakly$^*$ closed image.
+\item $\pi$ is a topological embedding with respect to $\sigma(A,F)$ and $\sigma(A^{**},A^*)$.
+\item The predual $F$ is unique in $A^*$.
+\end{parts}
+In particular, there is a faithful representation $A\to B(H)$ whose image is ($\sigma$-)weakly closed.
+\end{prb}
+\begin{pf}
+(a)
+By taking the adjoint for the inclusion $i:F\hookrightarrow A^*$, we have a conditional expectation $\e:A^{**}\twoheadrightarrow A$.
+Its kernel is a $A$-bimodule, and by the $\sigma$-weak density of $A$ in $A^{**}$ and the continuity of $\e$ between weak$^*$ topologies, so it is in fact a $A^{**}$-bimodule, which means it is a $\sigma$-weakly closed ideal of $A^{**}$.
+Thus we have a central projection $z\in A^{**}$ such that $\ker\e=(1-z)A^{**}$.
+
+Define $\pi:A\to A^{**}$ such that $\pi(a):=za$.
+It is clearly a $*$-homomorphism.
+The injectivity follows from $a=\e(a)=\e(za)$ for $a\in A$.
+The image is weakly$^*$ closed because $\e(x-\e(x))=0$ implies $z(x-\e(x))=0$ for $x\in A^{**}$ so that $zA^{**}=zA$.
+
+(b)
+Since $\<a,f\>=\<\e(za),f\>=\<za,f\>$ for $a\in A$ and $f\in F$, in which the second equality holds by the definition of $\e$, it is enough to show $\sigma(zA,A^*)=\sigma(zA,F)$.
+
+For $l\in A^*$, we claim there exists $f$ such that $\<za,l\>=\<za,f\>$.
+Define $\tilde l\in A^*$ such that $\<x,\tilde l\>:=\<zx,l\>$ for $x\in A^{**}$.
+Then, $\<zx,l\>=\<z^2x,l\>=\<zx,\tilde l\>$ for $x\in A^{**}$.
+Suppose $\tilde l\notin F$.
+Because $F$ is closed in $A^*$, there is $x\in A^{**}$ such that $\<x,\tilde l\>\ne0$ and $\<x,f\>=0$ for all $f\in F$ by the Hahn-Banach separation.
+Then, $0=\<x,f\>=\<x,i(f)\>=\<\e(x),f\>$ implies $\e(x)=0$ so that $zx=0$, which leads a contradiction $\<x,\tilde l\>=\<zx,l\>=0$, so we have $\tilde l\in F$.
+
+(c)
+If closed subspaces $F_1$ and $F_2$ of $A^*$ are preduals of $A$, then $\sigma(A,F_1)=\sigma(A,F_2)$ by the part (b).
+If $l\in F_1$, which is obviously continuous on $\sigma(A,F_1)$, and the continuity in $\sigma(A,F_2)$ implies that $l$ is contained in a linear span of some finitely many elements of $F_2$, hence $F_1\subset F_2$.
+\end{pf}
+
+
+
 
 \section*{Exercises}
 \begin{prb}[Extremally disconnected space]

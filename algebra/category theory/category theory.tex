@@ -10,6 +10,8 @@
 \newcommand{\Mod}{\mathbf{Mod}}
 \newcommand{\Top}{\mathbf{Top}}
 
+\newcommand{\op}{\mathrm{op}}
+
 \begin{document}
 \title{Category Theory}
 \author{Ikhan Choi}
@@ -19,7 +21,7 @@
 
 \part{}
 
-\chapter{}
+\chapter{Categories}
 set theoretical issues
 duality
 morphisms
@@ -30,13 +32,73 @@ natural transformations and equivalence
 2-category
 
 
-\chapter{Universal properties}
+
+
+
+
+\chapter{Universal property}
+
+\section{Construction}
 products, equalizers, pullbacks
-representability and yoneda
+
+\section{Representable functors}
+
+\begin{prb}[Yoneda lemma]
+Let $F:\cC\to\Set$ be a functor from a locally small category $\cC$.
+Fix $c\in\Ob(\cC)$.
+ we can define a function
+\[\Nat(\Hom(c,-),F)\to F(c).\]
+
+A \emph{representation} of $F$ is a pair $(c,\eta)$ of an object $c\in\cC$ and a natural isomorphism $\eta:\Hom(c,-)\to F$.
+
+A \emph{universal element} of $F$ is a pair $(c,x)$ with $x\in F(c)$ such that for any pair $(d,y)$ with $y\in F(d)$ there is a unique morphism $f\in\Hom(c,d)$ satisfying $F(f):x\mapsto y$.
+
+\begin{parts}
+\item
+\end{parts}
+\end{prb}
+
+
+\begin{pf}
+(a)
+Consider the diagram
+\[\begin{tikzcd}[row sep=small, column sep=small]
+\Hom(c,c) \ar{rrrr}{\eta_c} \ar{dddd} &&&& F(c) \ar{dddd}{F(f)}  \\
+& \id_c \ar[symbol=\in]{ul} \ar[mapsto]{rr} \ar[mapsto]{dd} && x:=\eta_c(\id_c) \ar[symbol=\in]{ur} \ar[mapsto]{dd} & \\
+\,&\,&\,&\,&\,\\
+& f \ar[symbol=\in]{dl} \ar[mapsto]{rr} && \eta_d(f):=F(f)(x) \ar[symbol=\in]{dr} & \\
+\Hom(c,d) \ar[swap]{rrrr}{\eta_d} &&&& F(d).
+\end{tikzcd}\]
+For a natural transformation $\eta:\Hom(c,-)\to F$, define $x:=\eta_c(\id_c)$ in $F(c)$.
+For $x\in F(c)$, conversely, define a $\eta_d:\Hom(c,d)\to F(d)$ by $\eta_d(f):=F(f)(x)$ for $d\in\Ob(\cC)$ and $f\in\Hom(c,d)$.
+Then, the collection $\eta=\{\eta_d:d\in\Ob(\cC)\}$ provides a natural transformation because for each $g\in\Hom(d,e)$ we can check the diagram
+\[\begin{tikzcd}
+\Hom(c,d) \ar{r}{\eta_d}\ar[swap]{d}{g\circ-} & F(d) \ar{d}{F(g)} \\
+\Hom(c,e) \ar{r}{\eta_e} & F(e)
+\end{tikzcd}\]
+commutes from
+\[F(g)(\eta_d(f))=F(g)(F(f)(x))=F(g\circ f)(x)=\eta_e(g\circ f),\qquad f\in\Hom(c,d).\]
+The correspondences $\eta\mapsto x$ and $x\mapsto\eta$ are inverses of each other, hence the bijection.
+\end{pf}
+
+
+
+
 \chapter{Limits}
 preservation, reflection, creation
 completeness
 functoriality
+
+
+
+
+
+
+
+
+
+\part{}
+
 
 \chapter{}
 \section{Adjunctions}
@@ -74,6 +136,7 @@ A category is called \emph{regular} if every kernel pair admits a coequalizer.
 \begin{prb}
 A regular category is called \emph{exact} if every equivalence relation is given by a kernel pair.
 \begin{parts}
+\item
 \end{parts}
 \end{prb}
 

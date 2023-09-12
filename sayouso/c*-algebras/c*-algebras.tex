@@ -1,7 +1,6 @@
 \documentclass{../../large}
 \usepackage{../../ikhanchoi}
 
-\DeclareMathOperator{\Mor}{Mor}
 
 \begin{document}
 \title{C$^*$-Algebras}
@@ -12,55 +11,134 @@
 \part{Constructions}
 
 
-\chapter{Operator systems and spaces}
-\section{Completely positive maps}
+\chapter{Completely positive maps}
+\section{Operator systems and spaces}
 
-$|\f(a)|^2\le\|\f\|\f(|a|^2)\le\|\f\|^2\|a\|^2$.
-If $\omega$ is a state, then
-$|\omega(a)|^2\le\omega(|a|^2)\le\|a\|^2$.
-
-category of operator systems
 
 \begin{prb}[Choi-Effros characterization]
+
 \end{prb}
+
+\begin{prb}[Von Neumann inequality]
+\end{prb}
+
+\begin{prb}[$n$-positive maps]
+Let $S$ be an operator system.
+Let $A$ and $B$ be C$^*$-algebras.
+\begin{parts}
+\item (Cauchy-Schwarz inequality)
+Let $\f:A\to B$ be a 2-positive map.
+Then,
+\[\f(a)^*\f(a)\le\lim_\alpha\|\f(e_\alpha)\|\f(a^*a)\] for all $a\in A$, where $e_\alpha$ be an approximate unit of $A$.
+In particular, $\lim_\alpha\|\f(e_\alpha)\|=\|\f\|$.
+\item (Multiplicative domain)
+Let $\f:A\to B$ be a 4-positive map with $\|\f\|=1$.
+If $a\in A$ satisfies $\f(a)^*\f(a)=\f(a^*a)$, then $\f(b)\f(a)=\f(ba)$ for all $b\in A$.
+In particular, if $\f:B\to C$ is an extension of a $*$-homomorphism $\pi:A\to C$, then $\f(ab)=\pi(a)\f(b)$ and $\f(ba)=\f(b)\pi(a)$ for $a\in A$ and $b\in B$.
+\end{parts}
+\end{prb}
+\begin{pf}
+(a)
+Consider $B$ to act on a Hilbert space $H$ non-degenerately and faithfully.
+The 2-positivity of $\f$ and
+\[\mat{e_\alpha^2&e_\alpha a\\a^*e_\alpha&a^*a}=\mat{e_\alpha&a\\0&0}^*\mat{e_\alpha&a\\0&0}\ge0\]
+implies
+\[\mat{\f(e_\alpha^2)&\f(e_\alpha a)\\\f(a^*e_\alpha)&\f(a^*a)}\ge0,\]
+which is equivalent to have
+\[\<\f(e_\alpha^2)\xi,\xi\>+2\Re\<\f(e_\alpha a)\eta,\xi\>+\<\f(a^*a)\eta,\eta\>\ge0\]
+for any $\xi,\eta\in H$.
+We put $\xi:=-(\|\f(e_\alpha)\|+\e)^{-1}\f(e_\alpha a)\eta$ for $\e>0$ to get
+\begin{align*}
+(\|\f(e_\alpha)\|+\e)\f(a^*a)
+&\ge\f(e_\alpha a)^*(2-(\|\f(e_\alpha)\|+\e)^{-1}\f(e_\alpha^2))\f(e_\alpha a)\\
+&\ge\f(e_\alpha a)^*\f(e_\alpha a).
+\end{align*}
+We have the desired inequality by taking limits for $\alpha$ and $\e$.
+
+(b)
+The 2-positivity of $\f_2$ gives
+\[\f_2\left(\mat{a&b\\0&0}\right)^*\f_2\left(\mat{a&b\\0&0}\right)\le\f_2\left(\mat{a^*a&a^*b\\b^*a&b^*b}\right),\]
+so
+\[\mat{0&\f(a^*b)-\f(a^*)\f(b)\\\f(b^*a)-\f(b^*)\f(a)&\f(b^*b)-\f(b^*)\f(b)}\ge0,\]
+which implies $\f(b^*a)-\f(b^*)\f(a)=0$ for any $b\in A$.
+
+Note that $\|\pi\|=1$ if $\pi$ is not trivial.
+Using the above argument for $a$ and $a^*$, we are done.
+\end{pf}
+
+
+
+
+\begin{prb}[Russo-Dye theorem]
+If $C(X)\to B$ is positive, then it is completely positive.
+\end{prb}
+
+
+\begin{prb}[Completely positive maps for matrix algebras]
+Let $A$ be a C$^*$-algebra.
+\begin{parts}
+\item Choi matrix
+\item
+There is a one-to-one correspondence
+\[\mathrm{CP}(M_n(\C),A)\to M_n(A)_+:\f\mapsto[\f(e_{ij})].\]
+\item
+Let $A$ be unital.
+There is a one-to-one correspondence
+\[\mathrm{CP}(A,M_n(\C))\to M_n(A)^*_+:\f\mapsto(s_\f:[a_{ij}]\mapsto\sum_{i,j}\<\f(a_{ij})e_j,e_i\>).\]
+\item The above correspondences are (maybe?) isometric if we endow the complete norm on $\mathrm{CP}$.
+\end{parts}
+\end{prb}
+\begin{pf}
+(b)
+
+
+\end{pf}
+
+\section{Dilations and Extensions}
 
 \begin{prb}[Stinespring dilation]
+Let $A$ be a C$^*$-algebra and $\f:A\to B(H)$ is a completely positive map.
+There exist a representation $\pi:A\to B(K)$ and a bounded linear operator $V:H\to K$ such that $\f(a)=V^*\pi(a)V$ for $a\in A$.
+\[\begin{tikzcd}
+B(K) \ar{dr}{V^*\cdot V} &\\
+A \ar[swap]{r}{\f} \ar{u}{\pi} & B(H)
+\end{tikzcd}\]
+\begin{parts}
+\item If $\|\f\|=1$, then $V$ is an isometry.
+\item 
+\item We can take $\pi$ to be minimal in the sense that $\bar{\pi(A)VH}=K$.
+\end{parts}
 \end{prb}
+\begin{pf}
 
-tensor product of c.p.~maps (minimal and maximal)
+\end{pf}
+
+
 
 \begin{prb}[Arveson extension]
-Trick
+Let $A\subset B$ be C$^*$-algebras.
+Let $\f:A\to B(H)$ be a completely positive map and consider the following diagram:
+\[\begin{tikzcd}
+B\ar[dashed]{dr}{\tilde\f}&\\
+A\ar{u}\ar[swap]{r}{\f}&B(H).
+\end{tikzcd}\]
+\begin{parts}
+\item The norm preserving completely positive extension $\tilde\f$ of $\f$ exists if $B$ is unital and $1_B\in A$.
+\item The norm preserving completely positive extension $\tilde\f$ of $\f$ exists if $\cA$ is unital and $B=A\oplus\C$.
+\item The norm preserving completely positive extension $\tilde\f$ of $\f$ exists if $\cA$ is non-unital and $B=\tilde\cA$.
+\item The norm preserving completely positive extension $\tilde\f$ of $\f$ always exists.
+\end{parts}
 \end{prb}
+
+extension of representations for ideals
+
+unique extension of c.p.~maps for hereditary subalgebras.
+
+
 
 \section{Completely bounded maps}
 
 
-
-\section{Subalgebras}
-
-
-\begin{prb}[Hereditary C$^*$-subalgebra]
-state extension, representation extension(not ideal?)
-\end{prb}
-
-\begin{prb}[Conditional expectation]
-\end{prb}
-
-\begin{prb}[Ideals]
-\end{prb}
-
-
-\begin{prb}[Enveloping C$^*$-algeberas]
-Let $A$ be a $*$-algebra.
-A \emph{C$^*$-norm} is an submultiplicative norm satisfying the C$^*$-identity.
-Does $A$ have enough $*$-representations?
-\begin{parts}
-\item A complete C$^*$-norm is unique if it exists.
-\item For every C$^*$-norm $\alpha$ on $A$, there is a $*$-isometry $\pi:A\to B(H)$.
-\item For maximal C$^*$-norm, there is a universal property. The maximal C$^*$-norm can be obtained by running through cyclic representations.
-\end{parts}
-\end{prb}
 
 
 \section{Tensor products}
@@ -70,7 +148,7 @@ Let $A$ and $B$ be C$^*$-algebras.
 \begin{parts}
 \item A commuting pair of $*$-homomorphisms $\pi:A\to B(H)$ and $\pi':B\to B(H)$ corresponds to a $*$-homomorphism $\Pi:A\odot B\to B(H)$ via the relation $\Pi(a\otimes b)=\pi(a)\pi'(b)$.
 \item $A\odot B$ admits a $*$-representation and every norms induced from these $*$-representations are uniformly bounded. So, we can define a maximal tensor norm on $A\odot B$.
-\item $a\otimes-:B\to A\odot B$ is bounded for each $a\in A$ with respect to any C$^*$-norm on $A\odot B$. [BO, 3.2.5]
+\item $a\otimes-:B\to A\odot B$ is a bounded linear map for each $a\in A$ with respect to any C$^*$-norm on $A\odot B$. [BO, 3.2.5]
 \end{parts}
 \end{prb}
 
@@ -87,26 +165,19 @@ Tensors with $M_n(\C)$, $C_0(X)$.
 \begin{prb}[Haagerup tensor product]
 \end{prb}
 
+Trick
 
 \section*{Exercises}
 \begin{prb}
-Let $B$ be a hereditary C$^*$-subalgebra of a C$^*$-algebra $A$.
-Let $a\in A_+$.
-If for any $\e>0$ there is $b\in B_+$ such that $a-\e\le b$, then $a\in B_+$.
+Let $A$ be a hereditary C$^*$-subalgebra of a C$^*$-algebra $B$ and let $b\in B_+$.
+If for any $\e>0$ there is $a\in A_+$ such that $b-a\le\e$, then $b\in A$.
 \end{prb}
 \begin{pf}
-To catch the idea, suppose $A$ is abelian.
-We want to approximate $a$ by the elements of $B$ in norm.
-To do this, for each $\e>0$, we want to construct $b'\in B_+$ such that $a-\e\le b'\le a+\e$ using $b$.
-Taking $b'=\min\{a,b\}$ is impossible in non-abelian case, but we can put $b'=\frac a{b+\e}b$.
-For a simpler proof, $b'=(\frac{\sqrt{ab}}{\sqrt b+\sqrt\e})^2$ is a better choice.
-
-Define
-\[b':=\frac{\sqrt b}{\sqrt b+\sqrt\e}a\frac{\sqrt b}{\sqrt b+\sqrt\e}.\]
-Then,
-\[\|\sqrt a-\sqrt a\frac{\sqrt b}{\sqrt b+\sqrt\e}\|^2=\|\frac{\sqrt\e}{\sqrt b+\sqrt\e}a\frac{\sqrt\e}{\sqrt b+\sqrt\e}\|\le\e\]
-implies
-\[\lim_{\e\to0}b'=\lim_{\e\to0}\frac{\sqrt b}{\sqrt b+\sqrt\e}\sqrt a\cdot\sqrt a\frac{\sqrt b}{\sqrt b+\sqrt\e}=\sqrt a\cdot\sqrt a=a.\]
+For $a\in A_+$ satisfying $b\le a+\e\le(a^{\frac12}+\e^{\frac12})^2$, define
+\[a_\e:=a^{\frac12}(a^{\frac12}+\e^{\frac12})^{-1}ba^{\frac12}(a^{\frac12}+\e^{\frac12})^{-1}\in A.\]
+Then, 
+\[\|b^{\frac12}-b^{\frac12}a^{\frac12}(a^{\frac12}+\e^{\frac12})^{-1}\|^2=\e\|(a^{\frac12}+\e^{\frac12})^{-1}b(a^{\frac12}+\e^{\frac12})^{-1}\|\le\e.\]
+Thus $a_\e\to b$ in norm as $\e\to0$.
 \end{pf}
 
 
@@ -121,14 +192,54 @@ implies
 
 \section{Hilbert modules}
 
-\begin{prb}
-A \emph{Hilbert $A$-module} is a complex linear space $\cE$ together with
+\begin{prb}[Banach modules]
+Let $A$ be a Banach algebra.
+A \emph{Banach $A$-module} is a Banach space $\cE$ which is a $A$-module such that the action is bounded.
+\begin{parts}
+\item (Cohen factorization theorem) If $A$ has a left approximate unit, then $A\cE$ is closed in $\cE$.
+\end{parts}
+\end{prb}
+\begin{pf}
+Suppose $\xi$ belongs to the closure of $A\cE$ and take $\e>0$.
+We will construct a decreasing sequence $a_n$ in the unitization $\tilde A$ such that $a_n^{-1}\xi$ and $a_n$ are both Cauchy.
+In order to do this, we first need to check $a_n^{-1}\in\tilde A\setminus A$ can act on $\cE$, which is easy anyway.
+
+Let $a_0=1$ and suppose we have defined $a_n\ge 2^{-n}$.
+Take $b\in A$ and $\eta$ such that $\|\xi-b\eta\|<\e2^{-(2n+1)}$.
+Take $e\in A$ such that $\|a_n^{-1}b-ea_n^{-1}b\|\|\eta\|<\e2^{-(n+1)}$.
+Now inductively define
+\[a_{n+1}:=a_n-2^{-(n+1)}(1-e)\in\tilde A\]
+so that $a_{n+1}\ge2^{-(n+1)}$ is invertible.
+
+Then, we can check $a_n$ is Cauchy whose limit point belongs to $A$, and
+$a_n^{-1}\xi$ is Cauchy because by the identity
+\[a_{n+1}^{-1}-a_n^{-1}=a_{n+1}^{-1}(a_n-a_{n+1})a_n^{-1}=a_{n+1}^{-1}2^{-(n+1)}(1-e)a_n^{-1}\]
+we get
+\begin{align*}
+\|a_{n+1}^{-1}\xi-a_n^{-1}\xi\|
+&\le\|a_{n+1}^{-1}-a_n^{-1}\|\|\xi-b\eta\|+\|(a_{n+1}^{-1}-a_n^{-1})b\|\|\eta\|\\
+&\le2^n\cdot\e2^{-(2n+1)}+\e2^{-(n+1)}=\e2^{-n}.
+\end{align*}
+\end{pf}
+
+\begin{prb}[Finsler modules]
+Let $A$ be a C$^*$-algebra.
+\end{prb}
+
+\begin{prb}[Hilbert modules]
+Let $A$ be a C$^*$-algebra.
+A \emph{Hilbert $A$-module} is a complex linear space $\cE$ which is a right $A$-module together with a
 \begin{enumerate}[(i)]
 \item a ring homomorphism $A^{op}\to\End_\C(\cE)$,
-\item an $A$-valued inner product $\<\cdot,\cdot\>:\cE\times\cE\to A$, which is $A$-linear in second argument,
+\item an $A$-valued inner product $\<\cdot,\cdot\>:\cE\times\cE\to A$ which is $A$-linear in second argument,
 \end{enumerate}
 which is complete with respect to the norm $\|\xi\|:=\|\<\xi,\xi\>\|^{\frac12}$.
+\begin{parts}
+\item
+\end{parts}
 \end{prb}
+
+
 
 constructions:
 direct sum, tensor product, localization
@@ -144,13 +255,20 @@ A \emph{double centralizer} of $A$ is a pair $(L,R)$ of bounded linear maps on $
 The \emph{multiplier algebra} $M(A)$ of $A$ is defined to be the set of all double centralizers of $A$.
 There is another characterization $M(A):=L_A(A)$, the set of adjointable operators to itself.
 \end{prb}
+
 \begin{prb}[Cohen factorization theorem]
+Let $A$ be a non-unital C$^*$-algebra and $\cE$ be a left Banach $A$-module, i.e.~a 
+Then, 
+
+This theorem is generalized to a non-unital Banach algebra $A$ with a bounded left approximate unit.
 \end{prb}
+
 \begin{prb}[Strict topology]
 \begin{parts}
 \item $\|\pi(a-e_\alpha a)\xi\|^2$
 \end{parts}
 \end{prb}
+
 \begin{prb}[Essential ideals]
 \begin{parts}
 \item Hilbert C$^*$-module description
@@ -177,81 +295,6 @@ Let $g\in M(C_0(\Omega))_+$.
 
 
 
-
-
-
-Induced representations and Morita equivalence
-
-
-
-
-
-
-
-\chapter{Examples}
-
-
-
-\section{Group algebras}
-type I, subhomogeneous
-
-
-crystallographic
-discrete heisenberg
-free groups
-projectionless of $C_r^*(F_2)$
-
-
-
-
-\section{Crossed products}
-
-\begin{prb}[C$^*$-dynamical system]
-A \emph{C$^*$-dynamical system} is a triple $(A,G,\alpha)$ consisting of a C$^*$-algebra $A$, a locally compact group $G$, and group homomorphism $\alpha:G\to\Aut(A)$ that is continuous in the point-norm topology.
-\begin{parts}
-\item For fixed $G$, there is an equivalence between categories of locally compact transformation groups and C$^*$-dynamical system on abelian C$^*$-algebras.
-\end{parts}
-\end{prb}
-
-
-On $U(H)$, the strict topology and the strong operator topology are equal.
-Therefore, we have three topologies to consider: strong, weak, and $\sigma$-weak.
-
-\begin{prb}
-Let $G$ be a locally compact group.
-A unitary representation $u:G\to B(H)$ induces a C$^*$-dynamical system $(B(H),G,\Ad)$ by $\Ad:G\to\Aut(B(H))$.
-
-A \emph{covariant representation} of a C$^*$-dynamical system is an equivariant $*$-homomorphism $(A,G,\alpha)\to(B(H),G,\Ad)$.
-\end{prb}
-
-Note that we have a homeomorphism $\Aut(K(H))\cong PU(H)$ between the point-norm topology and the strong operator topology.
-
-$\Z$-action, $\Homeo$-action, left multiplication of subgroup
-induced representation
-regular representation $(C_0(G),G,lt)\to(B(L^2(G)),G,\lambda)$.
-
-
-commutative case
-
-group algebra: completion of $C_c(G)$ with reps,
-crossed product: completion of $C_c(G,A)$ with cov reps,
-
-
-
-
-\section{Groupoid algebras}
-
-
-
-
-
-
-\section{Graph algebras}
-
-
-
-
-
 \section{Pimsner algebras}
 
 
@@ -272,7 +315,7 @@ Let $\cE$ be a C$^*$-correspondence over a C$^*$-algebra $A$.
 Let $B$ be a C$^*$-algebra and see it as a trivial C$^*$-correspondence over $B$.
 A \emph{representation} of $\cE$ on $B$ is a pair $(\pi,\tau)$ of a $*$-homomorphism $\pi:A\to B$ and a linear map $\tau:\cE\to B$ such that
 \[\pi(\<\xi,\eta\>)=\tau(\xi)^*\tau(\eta),\qquad\tau(\f(a)\xi)=\pi(a)\tau(\xi).\]
-We define an ideal
+We define the \emph{Katsura ideal}
 \[J(\cE):=\f^{-1}(K(\cE))\cap\f^{-1}(0)^\perp.\]
 
 A \emph{covariant representation} is a representation of $\cE$ such that
@@ -300,21 +343,110 @@ Cuntz-Krieger
 
 
 
-
-Let $\f\in\Aut(A)$.
-
-
-
-
-
-
-
 Coactions and Fell bundles
 
 
+\section{Mortia equivalence}
 
-KK-theory
-C$^*$-algebraic quantum groups
+
+
+Induced representations?
+
+
+
+
+
+
+
+\chapter{Examples}
+
+
+
+\section{Crossed products}
+
+
+\begin{prb}[Group algebras]
+\end{prb}
+
+
+
+type I, subhomogeneous
+
+
+crystallographic
+discrete heisenberg
+free groups
+projectionless of $C_r^*(F_2)$
+
+
+
+\begin{prb}[Enveloping C$^*$-algeberas]
+Let $A$ be a $*$-algebra.
+A \emph{C$^*$-norm} is an submultiplicative norm satisfying the C$^*$-identity.
+Does $A$ have enough $*$-representations?
+\begin{parts}
+\item A complete C$^*$-norm is unique if it exists.
+\item For every C$^*$-norm $\alpha$ on $A$, there is a $*$-isometry $\pi:A\to B(H)$.
+\item For maximal C$^*$-norm, there is a universal property. The maximal C$^*$-norm can be obtained by running through cyclic representations.
+\end{parts}
+\end{prb}
+
+
+
+
+\begin{prb}[C$^*$-dynamical system]
+Let $G$ be a locally compact group.
+A \emph{C$^*$-dynamical system} or a \emph{$G$-C$^*$-algebra} is a C$^*$-algebra $A$ together with a group homomorphism $\alpha:G\to\Aut(A)$ that is continuous in the point-norm topology.
+We will often write a triple $(A,G,\alpha)$ instead of $A$ to refer a C$^*$-dynamical system.
+\begin{parts}
+\item There is an equivalence between categories of locally compact transformation groups and C$^*$-dynamical system on abelian C$^*$-algebras.
+\end{parts}
+\end{prb}
+
+
+On $U(H)$, the strict topology and the strong operator topology are equal.
+Therefore, we have three topologies to consider: strong, weak, and $\sigma$-weak.
+
+\begin{prb}[Covariant representation]
+Let $G$ be a locally compact group.
+
+A \emph{covariant representation} of a C$^*$-dynamical system $(A,G,\alpha)$ is a $G$-equivariant $*$-homomorphism $\pi:(A,G,\alpha)\to(B(H),G,\beta)$ for a C$^*$-dynamical system $(B(H),G,\beta)$, where a Hilbert space $H$.
+\begin{parts}
+\item
+There exists a unitary representation $u:G\to B(H)$ such that $\pi(\alpha_sa)=u_s\pi(a)u_s^*$.
+\item (Integrated form)
+There is a one-to-one correspondence between covariant representations of $(A,G,\alpha)$ and $*$-representations of $L^1(G,A)$. (non-degenerate)
+\end{parts}
+\end{prb}
+
+Note that we have a homeomorphism $\Aut(K(H))\cong PU(H)$ between the point-norm topology and the strong operator topology.
+
+$\Z$-action, $\Homeo$-action, left multiplication of subgroup
+induced representation
+regular representation $(C_0(G),G,\lambda)\to(B(L^2(G)),G,\lambda)$.
+
+
+commutative case
+
+
+
+
+\section{Graph algebras}
+
+
+
+
+
+
+\section{Groupoid algebras}
+
+
+
+
+
+
+
+
 
 
 
@@ -329,13 +461,61 @@ C$^*$-algebraic quantum groups
 \chapter{Approximation properties}
 \section{Nuclearity and exactness}
 
-finite dimensional[BO, 3.3.2], abelian
+finite dimensional[BO, 3.3.2], abelian, AF
 permanence properties
-completely positive approximation property
 
-$M_n(\C)$, $K(H)$, $C_0(X)$.
 
-a separable C$^*$-algebra is nuclear if and only if every factor representation is hyperfinite.
+\begin{prb}[Completely positive approximation property]
+Let $A$ be a C$^*$-algebra.
+\begin{parts}
+\item If $A$ has the CPAP, then $A$ is nuclear.
+\item If $A$ is nuclear, then $A$ has the CPAP.
+\end{parts}
+\end{prb}
+\begin{pf}
+
+(b)
+
+
+
+Let $E\subset A$ and $F\subset A^*$ be finite subsets and fix $\e>0$.
+We want to find completely positive contractions $\f:A\to M_n(\C)$ and $\psi:M_n(\C)\to A$ such that
+\[|l(a)-l(\psi\circ\f(a))|<\e\]
+for $a\in E$ and $l\in F$.
+To implement the approximation, we would like to regard a bounded linear operator on $A$ as a state of a tensor product of C$^*$-algebras, which maps $\theta\in B(A)$ to the linear functional characterized by $a\otimes l\mapsto l(\theta(a))$.
+However, since $A^*$ is not a C$^*$-algebra, we embed $A^*$ locally in $B(H)$ through the Radon-Nikodym type result.
+Let $\pi:A\to B(H)$ be the cyclic representation obtained from a positive linear functional that dominates $F$ and $\Omega$ the cyclic vector such that there is a linear map $\pi':F\to\pi(A)'$ satisfying
+\[l(a)=\omega_\Omega(\pi(a)\pi'(l))=\<\pi(a)\pi'(l)\Omega,\Omega\>\]
+for $a\in E$ and $l\in F$.
+
+Since $A$ is nuclear, we have a well-defined representation
+\[\pi\times i:A\otimes_{\min}\pi(A)'\to B(H).\]
+If we take any faithful representation $\rho:A\to B(K)$, then we obtain a fathful representation
+\[\rho\otimes i:A\otimes_{\min}\pi(A)'\to B(K\otimes H).\]
+By the Hahn-Banach separation, the state $\omega_\Omega\circ(\pi\times i)$ on $A\otimes_{\min}\pi(A)'$ can be approximated weakly$^*$ by convex combinations of vector states in $B(K\otimes H)$.
+In particular, by the density of $\pi(A)\Omega$ in $H$, we have algebraic tensors $(\tau_k)_{k=1}^m\subset K\odot\pi(A)\Omega$ such that
+\[\Bigl|\omega_\Omega((\pi\times i)(a\otimes\pi'(l)))-\sum_{k=1}^m\lambda_k\omega_{\tau_k}((\rho\otimes i)(a\otimes\pi'(l)))\Bigr|<\e\tag{\dagger}\]
+for all $a\in E$ and $l\in F$, where $\lambda_k\ge0$, $\sum_{k=1}^m\lambda=1$.
+
+If we write each element $\tau\in K\odot\pi(\cA)\Omega$ as
+\[\tau=\sum_{i=1}^n\eta_i\otimes\pi(b_i)\Omega,\]
+then
+\begin{align*}
+\omega_\tau((\rho\otimes i)(a\otimes\pi'(l)))
+&=\left\<(\rho(a)\otimes\pi'(l))\Bigl(\sum_{j=1}^n\eta_j\otimes\pi(b_j)\Omega\Bigr),\Bigl(\sum_{i=1}^n\eta_i\otimes\pi(b_i)\Omega\Bigr)\right\>\\
+&=\sum_{i,j=1}^n\<\rho(a)\eta_j,\eta_i\>\<\pi'(l)\pi(b_i^*b_j)\Omega,\Omega\>\\
+&=l\Bigl(\sum_{i,j=1}^n\<\rho(a)\eta_j,\eta_i\>b_i^*b_j\Bigr).
+\end{align*}
+If we define completely positive contractions $\f:A\to M_n(\C)$ and $\psi:M_n(\C)\to A$ for each $\tau$ such that
+\[\f(a):=[\<\rho(a)\eta_j,\eta_i\>],\quad\psi([e_{ij}]):=b_i^*b_j,\]
+then we have $\omega_\tau(a\otimes\pi'(l))=l(\psi\circ\f(a))$.
+
+Since $\mu(a\otimes\pi'(l))=l(a)$ and since the completely positive contractions which factor through a matrix algebra form a convex set, we have completely positive contractions $\f:A\to M_n(\C)$ and $\psi:M_n(\C)\to A$ such that the inequality (\dagger) is rewritten as
+\[|l(a)-l(\psi\circ\f(a))|<\e,\]
+so we are done.
+\end{pf}
+
+
 
 
 
@@ -343,6 +523,7 @@ quotients of nuclear
 local reflexivity
 
 
+a separable C$^*$-algebra is nuclear if and only if every factor representation is hyperfinite.
 
 Extension properties
 weak expectation property
@@ -350,18 +531,38 @@ relatively weakly injective
 maximal tensor product inclusion problem
 
 
+
+
 \section{Quasi-diagonality}
-Voiculescu theorem
+
+\begin{prb}[Weyl-von Neumann theorem]
+A self-adjoint bounded operator is quasi-diagonal.
+\end{prb}
+
+\begin{prb}[Glimm lemma]
+\end{prb}
+
+\begin{prb}[Voiculescu theorem]
+\end{prb}
 
 
-\begin{prb}
-An operator $x\in B(H)$ is called \emph{quasi-diagonal} if there is a net of projections $p_i\in B(H)$ such that $[p_i,x]$ and $p-\id_H$ converge strongly to zero.
+\begin{prb}[Quasi-diagonal algebras]
+An operator $a\in B(H)$ is called \emph{quasi-diagonal} if there is a net of projections $p_i\in B(H)$ such that $[p_i,a]\to0$ in norm and $p_i\uparrow\id_H$ strongly.
 A C$^*$-algebra is called \emph{quasi-diagonal} if it admits a faithful representation whose image is quasi-diagonal.
 \end{prb}
 
 faithful non-degenerate essential representations of a quasi-diagonal C$^*$-algebra are all quasi-diagonal
 
+locally quasi-diagonal
+
 \section{AF-embeddability}
+
+
+
+
+
+
+
 
 
 
@@ -398,6 +599,15 @@ Haagerrup property
 
 
 Kaplansky conjecture
+
+
+
+
+
+
+
+
+
 
 
 
@@ -472,20 +682,6 @@ The additivity of $K_0$ and $K^0$ removes the connectedness condition.
 \begin{prb}[Haagerup property]
 \end{prb}
 
-Baum-Connes conjecture
-Non-commutative geometry
-Elliott theorem
-
-
-
-
-\section{Approximately finite algebras}
-Elliott conjecture: amenable simple separable C$^*$-algerbas are classified by K-theory.
-Brattelli diagram
-
-
-
-\section{Fredholm theory of Mishchenko and Fomenko}
 
 
 
@@ -493,6 +689,20 @@ Brattelli diagram
 
 
 
+
+
+\chapter{KK-theory}
+
+\section{Cuntz pairs}
+
+\section{Kasparov modules}
+
+
+
+
+
+
+\chapter{Cuntz semigroup}
 
 
 
@@ -506,7 +716,11 @@ Brattelli diagram
 
 \part{Classification}
 \chapter{Simple nuclear algebras}
+\section{AF-algebras}
+
 \section{Elliott invariant}
+
+\section{Kirchberg-Phillips theorem}
 
 \section{Classifiability}
 Jiang-Su stability
@@ -538,6 +752,16 @@ Haagerup, Blackadar, Handelman: unital simple stably finite algebra has a trace.
 
 Glimm: uniformly hyperfinite algebras
 Murray-von Neumann: hyperfinite II$_1$ factors
+
+
+
+
+
+
+
+
+
+
 
 
 
