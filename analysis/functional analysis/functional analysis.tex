@@ -1,6 +1,7 @@
 \documentclass{../../large}
 \usepackage{../../ikhanchoi}
 
+\newcommand{\Prim}{\operatorname{Prim}}
 
 \begin{document}
 \title{Functional Analysis}
@@ -719,7 +720,44 @@ Let $K$ be a closed subspace of $H$.
 % matrix representation
 
 
-\section{Spectral theorem for normal operators}
+% direct sum and tensor product of hilbert spaces
+
+\begin{prb}[Trace class operators]
+Let $K\in B(H)$
+The \emph{trace} of $K$ is
+\[\Tr(K):=\sum_i\<Ke_i,e_i\>,\]
+where $(e_i)\subset H$ is an orthonormal basis.
+The operator $K$ is said to be in the \emph{trace-class} if $\Tr(|K|)<\infty$.
+\begin{parts}
+\item
+The trace does not depend on the choice of $(e_i)$.
+\item
+$K$ is a trace class if and only if $K=\sum_{i=1}^\infty\lambda_i\theta_{x_i,y_i}$ for some $(\lambda_i)_{i=1}^\infty\subset\ell^1(\N)$ and orthogonal sequences $(x_i)_{i=1}^\infty,(y_i)_{i=1}^\infty\subset H$.
+\item
+$B(H)\to L^1(H)^*:T\mapsto\Tr(T\cdot)$ is an isometric isomorphism.
+\end{parts}
+\end{prb}
+\begin{pf}
+(b)
+Conversely, we can check the diagonalization $K^*K=\sum_{i=1}^\infty|\lambda_i|^2\theta_{y_i}$, which implies $|K|=\sum_{i=1}^\infty|\lambda_i|\theta_{y_i}$.
+Thus,
+\[Tr(|K|)=\sum_{j=1}^\infty\<|K|y_j,y_j\>=\sum_{i=1}^\infty|\lambda_i|<\infty.\]
+
+\end{pf}
+
+
+
+
+
+
+
+
+\section{Spectral theorems}
+
+
+
+
+
 
 \begin{prb}[Spectral measure]
 Let $(\Omega,\cA)$ be a measurable space and $H$ a Hilbert space.
@@ -776,54 +814,50 @@ Two spectral theorems: Multiplication operator form(unitary equivalence), Projec
 \[\sigma=\sigma_p\sqcup\sigma_c\sqcup\sigma_r=\bar{\sigma_{pp}}\cup\sigma_{ac}\sigma_{sc}=\sigma_d\sqcup\sigma_{ess,5}.\]
 
 
-\section{Trace class and Hilbert-Schmidt operators}
-
-\begin{prb}[Trace class operators]
-Let $K\in B(H)$
-The \emph{trace} of $K$ is
-\[\Tr(K):=\sum_i\<Ke_i,e_i\>,\]
-where $(e_i)\subset H$ is an orthonormal basis.
-The operator $K$ is said to be in the \emph{trace-class} if $\Tr(|K|)<\infty$.
-\begin{parts}
-\item
-The trace does not depend on the choice of $(e_i)$.
-\item
-$K$ is a trace class if and only if $K=\sum_{i=1}^\infty\lambda_i\theta_{x_i,y_i}$ for some $(\lambda_i)_{i=1}^\infty\subset\ell^1(\N)$ and orthogonal sequences $(x_i)_{i=1}^\infty,(y_i)_{i=1}^\infty\subset H$.
-\item
-$B(H)\to L^1(H)^*:T\mapsto\Tr(T\cdot)$ is an isometric isomorphism.
-\end{parts}
-\end{prb}
-\begin{pf}
-(b)
-Conversely, we can check the diagonalization $K^*K=\sum_{i=1}^\infty|\lambda_i|^2\theta_{y_i}$, which implies $|K|=\sum_{i=1}^\infty|\lambda_i|\theta_{y_i}$.
-Thus,
-\[Tr(|K|)=\sum_{j=1}^\infty\<|K|y_j,y_j\>=\sum_{i=1}^\infty|\lambda_i|<\infty.\]
-
-\end{pf}
-
 \section{Operator topologies}
 
-
 \begin{prb}
-Let $f$ be a linear functional on $B(H)$ for a Hilbert space $H$.
-Then, TFAE:
 \begin{parts}
-\item $f$ is weakly continuous,
-\item $f$ is strongly$*$ continuous,
-\item $f=\sum_{i=1}^n\omega_{x_i,y_i}$ for some $(x_i)_{i=1}^n,(y_i)_{i=1}^n\subset H$.
+\item
+A net $T_\alpha$ converges to $T$ strongly in $B(H)$ if and only if $\|(T_\alpha-T)^{\oplus n}\bar\xi\|\to0$ for all $\bar\xi\in H^{\oplus n}$.
+\item
+A net $T_\alpha$ converges to $T$ $\sigma$-strongly in $B(H)$ if and only if $\|(T_\alpha-T)^{\oplus\infty}\bar\xi\|\to0$ for all $\bar\xi\in H^{\oplus\infty}$.
+\end{parts}
+\end{prb}
+
+
+\begin{prb}[Continuity of linear functionals]
+Let $f$ be a linear functional on $B(H)$ for a Hilbert space $H$.
+\begin{parts}
+\item
+$f$ is weakly continuous if and only if it is strongly continuous, and in this case we have $f=\sum_{i=1}^n\omega_{x_i,y_i}$ for some $(x_i)_{i=1}^n,(y_i)_{i=1}^n\subset H$.
 \end{parts}
 \end{prb}
 \begin{pf}
-(2)$\impl$(3) is the only nontrivial implication.
-By the definition of the strong operator topology, there exists $v\in \cH^n$ such that
-\[|f(T)|\le\|T^{\oplus n}v\|.\]
-The functional $f:\cA\to\C$ factors through $\cH^n$ such that
-\[\cA\to{v}\cH^n\to\C.\]
+Suppose $f$ is strongly continuous.
+There exists $\bar x\in H^{\oplus n}$ such that
+\[|f(T)|\le\|T^{\oplus n}\bar x\|.\]
+The functional $f:A\to\C$ factors through $H^{\oplus n}$ such that
+\[A\xrightarrow{\bar x}H^{\oplus n}\to\C.\]
+\end{pf}
+
+\begin{prb}[Vigier theorem]
+Let $T_\alpha$ be a net of bounded self-adjoint operators on $H$ which is increasing and bounded above.
+Then, $T_\alpha$ converges strongly.
+\end{prb}
+\begin{pf}
+Define $T$ such that
+\[\<Tx,y\>:=\lim_\alpha\sum_{k=0}^3i^k\<T_\alpha(x+i^ky),x+i^ky\>.\]
+The convergence is due to the monotone convergence in $\R$.
+We can check it is a well-defined bounded linear operator by considering the bounded sesquilinear form.
+Then, $T_\alpha\to T$ weakly by definition, and strongly by because the net is increasing.
 \end{pf}
 
 
 For $(x_i)_{i=1}^\infty,(y_i)_{i=1}^\infty\subset H$ such that $\sum_i\|x_i\|^2<\infty$ and $\sum_i\|y_i\|^2<\infty$,
-\[\left(\sum_i\|Tx_i\|^2+\|T^*x_i\|^2\right)^{\frac12}\qquad\left(\sum_i\|Tx_i\|^2\right)^{\frac12}\qquad\left|\sum_i\<Tx_i,y_i\>\right|\]
+\[p_{\bar x}^{\sigma s*}(T)=\left(\sum_i\|Tx_i\|^2+\|T^*x_i\|^2\right)^{\frac12}\qquad
+p_{\bar x}^{\sigma s}(T)=\left(\sum_i\|Tx_i\|^2\right)^{\frac12}\qquad
+p_{\bar x,\bar y}^{\sigma w}(T)=\left|\sum_i\<Tx_i,y_i\>\right|\]
 
 \section*{Exercises}
 
@@ -845,7 +879,6 @@ Let $(T_\alpha)\subset B(H)$ and $K\in K(H)$.
 Let $H$ be a Hilbert space.
 \begin{parts}
 \item The weak topology and the strict topology agree on $U(H)$.
-\item $U(H)$ is neither complete nor locally compact.
 \end{parts}
 \end{prb}
 
@@ -967,10 +1000,11 @@ JB* triple
 \part{Operator algebras}
 \chapter{Banach algebras}
 
-\section{Spectral theory of unital Banach algebras}
+\section{Spectra of elements}
 
 \begin{prb}[Banach algebras]
 For a Banach algebra $A$ with multiplicative unit, there is a complete renorming such that $\|1\|=1$, i.e. we can always assume $\|1\|=1$.
+It provides a definition of \emph{unital Banach algebra}.
 
 Let $A$ be a unital Banach algebra.
 \begin{parts}
@@ -1169,7 +1203,7 @@ It is also called the Riesz or the Riesz-Dunford functional calculus.
 \item The functional calculus is an algebra homomorphism.
 \item The functional calculus is bounded.
 \item injective.
-\item unital, $\id_\C\mapsto a$.
+\item unital and $\id_\C\mapsto a$.
 \item spectral mapping.
 \item power series.
 \end{parts}
@@ -1179,9 +1213,6 @@ It is also called the Riesz or the Riesz-Dunford functional calculus.
 
 
 \end{pf}
-
-lin map > alg hom > star hom > cts
-
 
 
 
@@ -1194,28 +1225,28 @@ semisimplicity and symmetricity
 
 \begin{prb}[Spectrum of a Banach algebra]
 Let $A$ be a commutative Banach algbera.
-A \emph{character} of $A$ is a non-trivial algebra homomorphism $\f:A\to\C$.
-Denote by $\sigma(A)$ the set of all characters of $A$.
-We will show that all characters are bounded.
-Then, endow with the weak$^*$ topology on $\sigma(A)$ from the inclusion $\sigma(A)\subset A^*$.
+A \emph{character} of $A$ is a non-trivial algebra homomorphism $\pi:A\to\C$.
+Denote by $\sigma(A)$ the set of all characters of $A$ and endow with the weak$^*$ topology on $\sigma(A)\subset A^*$.
 We call this space as the \emph{spectrum} of $A$.
-Let $\f\in\sigma(A)$.
 \begin{parts}
-\item $\|\f\|=1$.
-\item If $A$ is unital, then $\sigma(A)$ is compact and Hausdorff.
-\item Even if $A$ is non-unital, $\sigma(A)$ is locally compact and Hausdorff.
+\item If $A$ is unital, $\sigma(A)$ is contained in the unit sphere of $A^*$.
+\item $\sigma(A)$ is locally compact and Hausdorff.
 \end{parts}
 \end{prb}
+\begin{pf}
+
+\end{pf}
 
 
 \begin{prb}[Gelfand transform]
 Let $A$ be a commutative Banach algebra.
-\[\Gamma:A\to C_0(\sigma(A)).\]
+The \emph{Gelfand transform} or the \emph{Gelfand representation} is the following algebra homomorphism
+\[\Gamma:A\to C_0(\sigma(A)):a\mapsto(\pi\mapsto\pi(a)).\]
 \begin{parts}
-\item $\Gamma(A)$ separates points.
-\item $\Gamma$ has closed range if
-\item $\Gamma$ is injective if
-\item $\Gamma$ is isometric if $r(a)=\|a\|$ for all $a\in A$.
+\item $\Gamma$ has the image separating points by definition.
+\item $\Gamma$ has closed range if $A$ is a symmetric Banach $*$-algebra.
+\item $\Gamma$ is injective if and only if $A$ is semisimple.
+\item $\Gamma$ is isometric if and only if $r(a)=\|a\|$ for all $a\in A$.
 \end{parts}
 \end{prb}
 
@@ -1330,7 +1361,7 @@ The C$^*$-identity easily follows from the following inequality:
 \section{Continuous functional calculus}
 
 \begin{prb}[Gelfand-Naimark representation for C$^*$-algebras]
-For a commutative unital C$^*$-algebra $A$, consider the Gelfand transform $\Gamma:A\to C(\sigma(A))$.
+For a commutative C$^*$-algebra $A$, consider the Gelfand transform $\Gamma:A\to C_0(\sigma(A))$.
 \begin{parts}
 \item $\Gamma$ is a $*$-homomorphism.
 \item $\Gamma$ is an isometry.
@@ -1362,16 +1393,16 @@ joint spectrum.
 
 
 \begin{prb}[Continuous functional calculus]
-Let $A$ be a C$^*$-algebra, and $a\in A$ a normal element.
-Then, we have an isometric $*$-homomorphism
-\[C(\sigma(a))\to A\]
+Let $A$ be a unital C$^*$-algebra, and $a\in A$ a normal element.
+Then, we have a $*$-isomorphism
+\[C(\sigma(a))\to\tilde C^*(1,a):\id_{\sigma(a)}\mapsto a\]
 defined by the inverse of the Gelfand transform, which we call the \emph{continuous functional calculus}.
+
 \begin{parts}
-\item $\id\mapsto a$.
-\item $(f+g)(a)=f(a)+g(a)$ and $(fg)(a)$.
-\item $(f\circ g)(a)=f(g(a))$.
+\item spectral mapping: $\lambda\in\sigma_p(a)$ implies $f(\lambda)\in\sigma_p(f(a))$, $\lambda\in\sigma(a)$ iff $f(\lambda)\in\sigma(f(a))$, composition, ...
 \end{parts}
 \end{prb}
+
 
 
 
@@ -1447,9 +1478,17 @@ Thus we have $ba_-=0$ and $a_-^3=0$.
 \end{prb}
 
 \begin{prb}[Positive linear functionals]
-
-
+\begin{parts}
+\item
+Jordan decomposition: A self-adjoint linear functional is the difference of two positive linear functional.
+\end{parts}
 \end{prb}
+\begin{pf}
+
+\[\{\omega\in A^*:\omega(a^*)=\bar{\omega(a)},\ \|\omega\|\le1\}=\conv(S(A)\cup-S(A)).\]
+Krein-Milman
+
+\end{pf}
 
 
 
@@ -1507,16 +1546,7 @@ The \emph{left kernel} of $\omega$ is defined to be
 
 
 
-\begin{prb}[Left ideals]
-\end{prb}
 
-\begin{prb}[Primitive ideals]
-\[PS(A)\to\hat A\to\operatorname{Prim}(A).\]
-\end{prb}
-
-\begin{prb}[Hull-kernel topology]
-
-\end{prb}
 
 
 
@@ -1553,11 +1583,14 @@ Extend the result for general exponent: $A$ is commitative if $f(x)=x^\beta$ is 
 
 \begin{prb}[States on unitization]
 Let $A$ be a non-unital C$^*$-algebra and $\tilde A$ be its unitization.
-Let $\tilde\rho=\rho\oplus\lambda$ be a bounded linear functional on $\tilde A$, where $\rho\in A^*$ and $\lambda\in\C^*=\C$.
+Let $\tilde\omega=\omega\oplus\lambda$ be a bounded linear functional on $\tilde A$, where $\omega\in A^*$ and $\lambda\in\C^*=\C$.
+
+Since $A$ is hereditary in $\tilde A$, the extension defines a well-defined injective map $S(A)\to S(\tilde A)$.
+We can identify $PS(A)$ as a subset of $PS(\tilde A)$ whose complement is a singleton.
 \begin{parts}
 \item $\tilde\rho$ is positive if and only if $\lambda\ge0$ and $0\le\rho\le\lambda$.
-\item $\tilde\rho$ is a state if and only if $\lambda=1$ and $\rho$ is positive with $\|\rho\|\le1$.
-\item $\tilde\rho$ is a pure state if and only if $\lambda=1$ and $\rho$ is either a pure state or zero.
+\item $\tilde\omega$ is a state if and only if $\lambda=1$ and $0\le\omega\le1$.
+\item $\tilde\omega$ is a pure state if and only if $\lambda=1$ and $\omega$ is either a pure state or zero.
 \end{parts}
 \end{prb}
 
@@ -1588,6 +1621,14 @@ Let $A=C_0(X)$ and $\mu$ be a state on $A$, a regular Borel probability measure 
 \begin{prb}[Hereditary C$^*$-algebras]
 \end{prb}
 
+\begin{prb}[Extreme points of the ball]
+Let $A$ be a C$^*$-algebra and let $B_A$ be the closed unit ball of $A$.
+\begin{parts}
+\item Extreme points of $A_+\cap B_A$ is the projections in $A$.
+\item Extreme points of $A_{sa}\cap B_A$ is the self-adjoint unitaries in $A$.
+\item Every extreme point of $B_A$ is a partial isometry.
+\end{parts}
+\end{prb}
 
 \section*{Problems}
 \begin{enumerate}
@@ -1603,44 +1644,14 @@ Let $A=C_0(X)$ and $\mu$ be a state on $A$, a regular Borel probability measure 
 
 \chapter{Von Neumann algebras}
 
-\section{Borel functional calculus}
+
+\section{Density theorems}
+
 
 \begin{prb}[Von Neumann algebras]
 Let $H$ be a Hilbert space.
 A $*$-subalgebra $M$ of $B(H)$ is called a \emph{von Neumann algebra} if it is closed weakly.
 \end{prb}
-
-\begin{prb}[Vigier theorem]
-Increasing bounded net is convergent in strong operator topology.
-The boundedness is important because we have to construct a bounded sesquilinear form using the monotone convergence in $\R$.
-\end{prb}
-
-
-
-
-\begin{prb}[Borel functional calculus]
-Let $M\subset B(H)$ be a von Neumann algebra.
-\[B^\infty(\sigma(a))\to M.\]
-\begin{parts}
-\item The Borel functional calculus is in general not injective.
-\item If we endow the topology of pointwise convergence on $B^\infty(\sigma(a))$ and the strong operator topology on $M$, then the Borel functional calculus is continuous.
-\item not isometric, even if it is injective.
-\item Every von Neumann algebra is the closed span of projections.
-\end{parts}
-\end{prb}
-\begin{prb}
-
-(b)
-By the bounded convergence theorem.
-
-(d)
-This is because $\sigma(a)\subset\C$ is compact so that it is separable and metrizable; every bounded measurable function is a pointwise limit of simple functions.
-
-\end{prb}
-
-
-
-\section{Density theorems}
 
 \begin{prb}[Double commutant theorem]
 Let $A$ be a non-degenerate $*$-subalgebra of $B(H)$.
@@ -1655,10 +1666,10 @@ Let $A$ be a non-degenerate $*$-subalgebra of $B(H)$.
 (b)
 We claim $x\xi\in\bar{A\xi}$ for each $\xi\in H$.
 Let $p$ be the projection onto $\bar{A\xi}$.
-Then, the image $apH$ is contained in $\bar{A\xi}$, we have $pap=ap$ and $pa^*p=a^*p$ for all $a\in A$ by the self-adjointness of $\cA$.
+Then, the image of $ap$ is contained in $\bar{A\xi}$, we have $pap=ap$ and $pa^*p=a^*p$ for all $a\in A$ by the self-adjointness of $A$.
 It implies $ap=pa$, which deduces $p\in A'$ so $xp=px$.
 Observe that $a(1-p)\xi=(1-p)a\xi=0$ for all $a\in A$.
-Then, $\<(1-p)\xi,\eta\>$ for any $\eta\in H=\bar{AH}$, so $p\xi=\xi$.
+Then, $\<(1-p)\xi,\eta\>=0$ for any $\eta\in H=\bar{AH}$ by the non-degeneracy, so $p\xi=\xi$.
 Hence $x\xi=xp\xi=px\xi$ so that $x\xi\in\bar{A\xi}$.
 
 (c)
@@ -1685,7 +1696,28 @@ Thus
 
 
 
-\section{Envelpoing von Neumann algebra}
+
+\begin{prb}[Vigier theorem]
+Increasing bounded net is convergent in strong operator topology.
+The boundedness is important because we have to construct a bounded sesquilinear form using the monotone convergence in $\R$.
+\end{prb}
+\begin{pf}
+Existence of range projections.
+Let $x\in M$.
+Since $\im x=\im(xx^*)^{\frac12}$, we may assume $0\le x\le1$.
+Then, $x^{2^{-n}}$ is an increasing sequence in $M$ bounded by one, so it converges strongly to some $p\in M_+$.
+We can check $p^2=p$ by...
+We can check $p$ is the range projection of $x$ by...
+\end{pf}
+
+
+every von neumann algebra is unital: also can be proved by Krein-Milman
+
+polar decomposition
+
+normal linear functionals form a predual of $M$.
+
+\section{Borel functional calculus}
 
 \begin{prb}[Sherman-Takeda theorem]
 Let $A$ be a C$^*$-algebra.
@@ -1728,48 +1760,94 @@ By the universal property, we have a normal $*$-homomorphism $M(\pi_u)\to M(\pi)
 \end{rmk}
 
 
-\begin{prb}[Conditional expectations]
-Let $A$ be a closed subalgebra of a C$^*$-algebra $B$ with $1_B\in A$.
-A \emph{conditional expectation} is a positive $A$-bimodule map $\f:B\to A$.
+\begin{prb}[Bounded Borel functions]
+Let $X$ be a compact Hausdorff space and denote by $B^\infty(X)$ the space of bounded Borel functions on $X$.
+The linear combinations of projections in $B^\infty(X)$ are called \emph{simple functions}.
+(Stonean and hyperstonean spaces?)
 \begin{parts}
-\item
-\item (Tomiyama theorem) contractive idempotent linear map $\f:B\to A$ is an $A$-bimodule map.
+\item There are natural inclusions $C(X)\subset B^\infty(X)\subset C(X)^{**}$ among C$^*$-algebras.
+\item $B^\infty(X)$ is the norm closure of simple functions.
+\item $B^\infty(X)$ factors through all $L^\infty(X,\mu):=M(\pi_\mu)$ for GNS-representations $\pi_\mu$ of $C(X)$.
+\end{parts}
+\end{prb}
+
+\begin{prb}[Borel functional calculus]
+Let $x\in B(H)$ be a normal operator.
+Consider
+\[B^\infty(\sigma(x))\subset C(\sigma(x))^{**}\to W^*(x)\subset B(H).\]
+\begin{parts}
+\item If we endow the topology of pointwise convergence on $B^\infty(\sigma(a))$ and the strong operator topology on $M$, then the Borel functional calculus is continuous.
+\item Every von Neumann algebra is the norm closed span of projections.
+\end{parts}
+\end{prb}
+\begin{pf}
+(a)
+By the bounded convergence theorem.
+
+(b)
+This is because $\sigma(a)\subset\C$ is compact so that it is separable and metrizable; every bounded measurable function is a pointwise limit of simple functions.
+
+\end{pf}
+
+
+
+For normal $a\in B(H)$, the continuous functional calculus for $a$ is just a non-degenerate representation
+\[C(\sigma(a))\to B(H)\]
+which maps $\id_{\sigma(a)}$ to $a$.
+Also, a projection valued-measure on a compact Hausdorff space $X$ is just a non-degenerate representation
+\[C(X)\to B(H).\]
+To show this, note that a projection-valued measure defines a ``normal'' unital $*$-homomorphism
+\[\spn P(B^\infty(X))\to B(H).\]
+Then, mimick the definition of Lebesgue integral to construct a unital $*$-homomorphism $C(X)\to B(H)$.
+
+
+
+
+\section{Predual}
+
+
+
+\begin{prb}[Conditional expectations]
+Let $A$ be a closed subalgebra of a C$^*$-algebra $B$.
+Let $\f:B\to A$ be a contractive idempotent surjective linear map.
+Such a map is called a \emph{conditional expectation}.
+\begin{parts}
+\item $\f$ is an $A$-bimodule map.
 \item $\f$ is completely positive.
 \end{parts}
 \end{prb}
 
 \begin{pf}
-Since each conclusion of (a) and (b) still holds for restriction, we may assume $\cA$ and $\cB$ are von Neumann algebras by thinking of the bitranspose $\f^{**}:\cA^{**}\to\cB^{**}$.
+Since each conclusion of (a) and (b) still holds for restriction, we may assume $A$ and $B$ are von Neumann algebras by thinking of the bitranspose $\f^{**}:B^{**}\to A^{**}$.
 
 (a)
-Since the linear span of projections is $\sigma$-weakly dense in a von Neumann algebra, we are enough to show $p\f(a)=\f(pa)$ and $\f(ap)=\f(a)p$ for any projection $p\in\cB$.
+Since the linear span of projections is $\sigma$-weakly dense in a von Neumann algebra, we are enough to show $p\f(b)=\f(pb)$ and $\f(bp)=\f(b)p$ for any projection $p\in A$.
 
-Let $p\in\cB$ be a projection and let $a\in\cA$.
-Note that we have
-\[p\f(a)=pp\f(a)=p\f(p\f(a))\]
-and
-\[(a-pa)^*(p\f(a-pa))=(p\f(a-pa))^*(a-pa)=0.\]
-Then,
+Let $p\in A$ be a projection and let $b\in B$.
+Note that the surjectivity of $\f$ implies that $p\f$ is also idempotent.
+Then, where $1=1_B$,
 \begin{align*}
-(1+t)^2\|p\f(a-pa)\|^2
-&=\|p\f(a-pa)+tp\f(a-pa)\|^2\\
-&=\|p\f((a-pa)+tp\f(a-pa))\|^2\\
-&\le\|(a-pa)+tp\f(a-pa)\|^2\\
-&=\|a-pa\|^2+t^2\|p\f(a-pa)\|^2
+(1+t)^2\|p\f((1-p)b)\|^2
+&=\|p\f((1-p)b)+tp\f(p\f((1-p)b))\|^2\\
+&\le\|(1-p)b+tp\f((1-p)b)\|^2\\
+&=\|(1-p)b\|^2+t^2\|p\f((1-p)b)\|^2
 \end{align*}
-implies $p\f(a-pa)=0$ by letting $t\to\infty$.
-Putting $1_\cB-p$ and $1_\cB$ instead of $p$, we obtain $(1_\cB-p)\f(a-1_\cB a+pa)=0$ and $\f(a-1_\cB a)=0$, so
-\[p\f(a)=p\f(pa)=\f(pa).\]
-Similarly, we can show $\f(a-ap)p=0$ and $\f(ap)(1-p)=0$, we are done.
+implies $p\f((1-p)b)=0$ by letting $t\to\infty$.
+Putting $1_A-p$ and $1_A$ instead of $p$, we obtain
+\[(1-p)\f((1-1_A+p)b)=0,\qquad\f((1-1_A)b)=0\]
+respectively, which imply $(1-p)\f(pb)=0$.
+Hence for any $b\in B$ we have
+\[p\f(b)=p\f(pb)=\f(pb).\]
+Similarly we can show $\f(b(1-p))p=0$ and $\f(bp)(1-p)=0$ for $b\in B$, we are done.
 
 (b)
-Let $[a_{ij}]\in M_n(\cA)_+$.
-Let $\pi:\cB\to B(H)$ be a cyclic representation with a cyclic vector $\psi$.
-Then, $[\xi_i]\in H^n$ can be replaced to $[\pi(b_i)\psi]$, so we can check the positivity of inflations $\f_n$ as
-\[\sum_{i,j}\<\pi(\f(a_{ij}))\pi(b_j)\psi,\pi(b_i)\psi\>=\<\pi(\f(\sum_{i,j}b_i^*a_{ij}b_j))\psi,\psi\>\ge0,\]
-because it follows $\sum_{i,j}b_i^*a_{ij}b_j\ge0$ by the positivity of $a_{ij}$ from
-\[\<\pi_\cA(\sum_{i,j}b_i^*a_{ij}b_j)\xi,\xi\>=\sum_{i,j}\<\pi_\cA(a_{ij})\pi_\cA(b_j)\xi,\pi_\cA(b_i)\xi\>\ge0,\]
-where $\pi_\cA$ is any representation of $\cA$.
+Let $[b_{ij}]\in M_n(B)_+$.
+Let $\pi:A\to B(H)$ be a cyclic representation with a cyclic vector $\psi$.
+Then, $[\xi_i]\in H^n$ can be replaced to $[\pi(a_i)\psi]$, so we can check the positivity of inflations $\f_n$ as
+\[\sum_{i,j}\<\pi(\f(b_{ij}))\pi(a_j)\psi,\pi(a_i)\psi\>=\<\pi(\f(\sum_{i,j}a_i^*b_{ij}a_j))\psi,\psi\>\ge0,\]
+because it follows $\sum_{i,j}a_i^*b_{ij}a_j\ge0$ by the positivity of $b_{ij}$ from
+\[\<\pi_B(\sum_{i,j}a_i^*b_{ij}a_j)\xi,\xi\>=\sum_{i,j}\<\pi_B(b_{ij})\pi_B(a_j)\xi,\pi_B(a_i)\xi\>\ge0,\]
+where $\pi_B$ is any representation of $B$.
 \end{pf}
 
 
@@ -1812,6 +1890,13 @@ If $l\in F_1$, which is obviously continuous on $\sigma(A,F_1)$, and the continu
 
 
 
+
+
+
+
+
+
+
 \section*{Exercises}
 \begin{prb}[Extremally disconnected space]
 $\sigma(B^\infty(\Omega))$ is extremally disconnected.
@@ -1820,5 +1905,15 @@ $\sigma(B^\infty(\Omega))$ is extremally disconnected.
 resolution of identity
 normal operator theories: multiplicity, invariant subspaces
 $L^\infty$ representation
+
+
+$\sigma$-weakly closed left ideal has the form $Mp$. II.3.12
+
+Let $\fm$ be an algebraic ideal of a von Neumann algebra $M$, and $\bar\fm$ be its $\sigma$-weak closure.
+If $x\in(\bar\fm)_+$, then there is an increasing net $(x_i)\subset\fm$ converges to $x$ strongly. II.3.13
+
+
+
+binary expansion and hereditary subalgebras
 
 \end{document}

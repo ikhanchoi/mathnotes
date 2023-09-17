@@ -1,6 +1,7 @@
 \documentclass{../../large}
 \usepackage{../../ikhanchoi}
 
+\newcommand{\Prim}{\operatorname{Prim}}
 
 \begin{document}
 \title{C$^*$-Algebras}
@@ -21,6 +22,8 @@
 
 \begin{prb}[Von Neumann inequality]
 \end{prb}
+
+
 
 \begin{prb}[$n$-positive maps]
 Let $S$ be an operator system.
@@ -70,7 +73,7 @@ Using the above argument for $a$ and $a^*$, we are done.
 
 
 \begin{prb}[Russo-Dye theorem]
-If $C(X)\to B$ is positive, then it is completely positive.
+If $C(X)\to B$ is positive, then it is c.p.
 \end{prb}
 
 
@@ -97,7 +100,7 @@ There is a one-to-one correspondence
 \section{Dilations and Extensions}
 
 \begin{prb}[Stinespring dilation]
-Let $A$ be a C$^*$-algebra and $\f:A\to B(H)$ is a completely positive map.
+Let $A$ be a C$^*$-algebra and $\f:A\to B(H)$ is a c.p.~map.
 There exist a representation $\pi:A\to B(K)$ and a bounded linear operator $V:H\to K$ such that $\f(a)=V^*\pi(a)V$ for $a\in A$.
 \[\begin{tikzcd}
 B(K) \ar{dr}{V^*\cdot V} &\\
@@ -117,18 +120,36 @@ A \ar[swap]{r}{\f} \ar{u}{\pi} & B(H)
 
 \begin{prb}[Arveson extension]
 Let $A\subset B$ be C$^*$-algebras.
-Let $\f:A\to B(H)$ be a completely positive map and consider the following diagram:
+Let $\f:A\to B(H)$ be a c.p.~map and consider the following diagram:
 \[\begin{tikzcd}
 B\ar[dashed]{dr}{\tilde\f}&\\
 A\ar{u}\ar[swap]{r}{\f}&B(H).
 \end{tikzcd}\]
 \begin{parts}
-\item The norm preserving completely positive extension $\tilde\f$ of $\f$ exists if $B$ is unital and $1_B\in A$.
-\item The norm preserving completely positive extension $\tilde\f$ of $\f$ exists if $\cA$ is unital and $B=A\oplus\C$.
-\item The norm preserving completely positive extension $\tilde\f$ of $\f$ exists if $\cA$ is non-unital and $B=\tilde\cA$.
-\item The norm preserving completely positive extension $\tilde\f$ of $\f$ always exists.
+\item The norm preserving c.p.~extension $\tilde\f$ of $\f$ exists if $B$ is unital and $1_B\in A$.
+\item The norm preserving c.p.~extension $\tilde\f$ of $\f$ exists if $\cA$ is unital and $B=A\oplus\C$.
+\item The norm preserving c.p.~extension $\tilde\f$ of $\f$ exists if $\cA$ is non-unital and $B=\tilde\cA$.
+\item The norm preserving c.p.~extension $\tilde\f$ of $\f$ always exists.
 \end{parts}
 \end{prb}
+
+\begin{prb}[Representation extension]
+Let $I$ be a closed ideal of a C$^*$-algebra $B$.
+For a representation $\pi:I\to B(H)$, there is a representation $\tilde\pi:B\to B(H)$ which extends $\pi$.
+If $\pi$ is non-degenerate, the extension is unique and $\pi(e_\alpha b)\to\tilde\pi(b)$ and $\pi(be_\alpha)\to\tilde\pi(b)$ strongly for $b\in B$, where $e_\alpha$ is an approximate unit of $I$.
+\end{prb}
+\begin{pf}
+We may assume $\pi$ is non-degenerate by replacing $H$ to $\bar{\pi(I)H}$.
+Define $\tilde\pi:B\to B(H)$ such that
+\[\tilde\pi(b)(\pi(a)\xi):=\pi(ba)\xi,\qquad a\in I,\ \xi\in H.\]
+The well-definedness is from
+\[\|\pi(ba)\xi\|^2=\<\pi(a^*b^*ba)\xi,\xi\>\le\|b\|^2\<\pi(a^*a)\xi,\xi\>=\|b\|^2\|\pi(a)\xi\|^2.\]
+It is clearly a $*$-homomorphism and extends $\pi$.
+
+For the uniqueness, if $\pi$ is non-degenerate and $\tilde\pi$ is a $*$-homomorphism which extends $\pi$, then
+\[\tilde\pi(b)(\pi(a)\xi)=\tilde\pi(b)\tilde\pi(a)\xi=\tilde\pi(ba)\xi=\pi(ba)\xi,\]
+which is unique by the density of $\pi(I)H$ in $H$.
+\end{pf}
 
 extension of representations for ideals
 
@@ -146,7 +167,7 @@ unique extension of c.p.~maps for hereditary subalgebras.
 \begin{prb}[Maximal tensor products]
 Let $A$ and $B$ be C$^*$-algebras.
 \begin{parts}
-\item A commuting pair of $*$-homomorphisms $\pi:A\to B(H)$ and $\pi':B\to B(H)$ corresponds to a $*$-homomorphism $\Pi:A\odot B\to B(H)$ via the relation $\Pi(a\otimes b)=\pi(a)\pi'(b)$.
+\item (restrictions) A commuting pair of $*$-homomorphisms $\pi:A\to B(H)$ and $\pi':B\to B(H)$ corresponds to a $*$-homomorphism $\Pi:A\odot B\to B(H)$ via the relation $\Pi(a\otimes b)=\pi(a)\pi'(b)$.
 \item $A\odot B$ admits a $*$-representation and every norms induced from these $*$-representations are uniformly bounded. So, we can define a maximal tensor norm on $A\odot B$.
 \item $a\otimes-:B\to A\odot B$ is a bounded linear map for each $a\in A$ with respect to any C$^*$-norm on $A\odot B$. [BO, 3.2.5]
 \end{parts}
@@ -190,7 +211,7 @@ Thus $a_\e\to b$ in norm as $\e\to0$.
 
 \chapter{Hilbert modules}
 
-\section{Hilbert modules}
+\section{Operator algebraic modules}
 
 \begin{prb}[Banach modules]
 Let $A$ be a Banach algebra.
@@ -256,16 +277,13 @@ The \emph{multiplier algebra} $M(A)$ of $A$ is defined to be the set of all doub
 There is another characterization $M(A):=L_A(A)$, the set of adjointable operators to itself.
 \end{prb}
 
-\begin{prb}[Cohen factorization theorem]
-Let $A$ be a non-unital C$^*$-algebra and $\cE$ be a left Banach $A$-module, i.e.~a 
-Then, 
-
-This theorem is generalized to a non-unital Banach algebra $A$ with a bounded left approximate unit.
-\end{prb}
 
 \begin{prb}[Strict topology]
+Let $a_\alpha$ be a net in $M(A)$
 \begin{parts}
 \item $\|\pi(a-e_\alpha a)\xi\|^2$
+\item If $a_\alpha$ are unitary, the convergences in the strict topology and the weak topology(how to define this?) coincide.
+\item If $a_\alpha$ are increasing, the convergences in the strict topology and the weak topology(how to define this?) coincide.
 \end{parts}
 \end{prb}
 
@@ -292,6 +310,31 @@ Since $C_b(\Omega)\cong C(\beta\Omega)$, and since closed ideals of $C(\beta\Ome
 Now we have an injective $*$-homomorphism $C_b(\Omega)\to M(C_0(\Omega))$, for which we want to show the surjectivity.
 Let $g\in M(C_0(\Omega))_+$.
 \end{pf}
+
+
+\begin{prb}[Morphisms]
+Let $A$ and $B$ be C$^*$-algebras.
+A \emph{morphism} from $A$ to $B$ is defined to be a non-degenerate $*$-homomorphism $A\to M(B)$.
+\begin{parts}
+\item The inclusion of a proper closed ideal is never a morphism. A surjective $*$-homomorphism $A\to B$ is always a morphism.
+\end{parts}
+\end{prb}
+
+
+Every morphism $A\to M(B)$ induces the following?:
+\[\begin{tikzcd}
+PS(B) \rar[->>]\dar & \hat B \rar[->>]\dar & \Prim(B) \dar \\
+PS(A) \rar[->>] & \hat A \rar[->>] & \Prim(A).
+\end{tikzcd}\]
+
+For a short exact sequence
+\[\begin{tikzcd}[column sep=small]0\rar&I\rar&A\rar&B\rar&0\end{tikzcd},\]
+we have
+\[\begin{tikzcd}[row sep=small]
+PS(I) \dar[->>]\rar[hook] & PS(A) \dar[->>] & PS(B) \dar[->>]\lar[hook'] \\
+\hat I \dar[->>]\rar[hook,shorten >= 10, shorten <= 10] & \hat A \dar[->>] & \hat B \dar[->>]\lar[hook',shorten >= 10, shorten <= 10] \\
+\Prim(I) \rar[hook,swap]{\text{open}} & \Prim(A) & \Prim(B) \lar[hook']{\text{closed}}
+\end{tikzcd}\]
 
 
 
@@ -343,10 +386,10 @@ Cuntz-Krieger
 
 
 
-Coactions and Fell bundles
+Subproduct systems
 
 
-\section{Mortia equivalence}
+\section{Morita equivalence}
 
 
 
@@ -444,12 +487,6 @@ commutative case
 
 
 
-
-
-
-
-
-
 \section{Free products}
 
 
@@ -540,6 +577,7 @@ A self-adjoint bounded operator is quasi-diagonal.
 \end{prb}
 
 \begin{prb}[Glimm lemma]
+If a state $\omega$ of $B(H)$ vanishes on $K(H)$, then it is a weak$^*$ limit of vector states.
 \end{prb}
 
 \begin{prb}[Voiculescu theorem]
@@ -637,6 +675,7 @@ Furstenburg boundary
 \part{Invariants}
 \chapter{Operator K-theory}
 
+
 \section{Homotopy of C$^*$-algebras}
 
 \begin{prb}[Homotopy of $*$-homomorphisms]
@@ -674,19 +713,26 @@ The additivity of $K_0$ and $K^0$ removes the connectedness condition.
 \[K_0(\C)=\Z,\quad K_0(C_0(\R))=0,\quad K_1(C_0(\R))=K_0(C_0(\R^2))=\Z\]
 \[K^0(*)=\Z,\quad K^0(S^1)=\Z,\quad K^1(S^1)=K^0(S^2)=\Z[x]/(x-1)^2\]
 
+\section{$K_0$ groups}
+
+local Banach algebras
+
+homotopy invariance
+relative, reduced theory
+partially ordered abelian group
 
 
+\section{$K_1$ groups}
+
+unitary
+Bott periodicity
+six-term exact sequence
 
 
-\section{Brown-Douglas-Fillmore theory}
-\begin{prb}[Haagerup property]
+\section{Equivariant K-theory}
+\begin{prb}[Pimsner-Voiculescu exact sequence]
 \end{prb}
-
-
-
-
-
-
+Connes' Thom isomorphism
 
 
 
@@ -704,6 +750,7 @@ The additivity of $K_0$ and $K^0$ removes the connectedness condition.
 
 \chapter{Cuntz semigroup}
 
+nuclear dimension
 
 
 
@@ -716,9 +763,16 @@ The additivity of $K_0$ and $K^0$ removes the connectedness condition.
 
 \part{Classification}
 \chapter{Simple nuclear algebras}
+
+
 \section{AF-algebras}
 
-\section{Elliott invariant}
+Glimm's classification of UHF algebras
+Bratteli diagram
+Elliott's intertwining argument
+
+Separable AF-algebras are classified by pointed ordered $K_0$.
+
 
 \section{Kirchberg-Phillips theorem}
 
@@ -756,6 +810,7 @@ Murray-von Neumann: hyperfinite II$_1$ factors
 
 
 
+\section{Inclusions}
 
 
 
@@ -803,6 +858,35 @@ It is due to that finitely generatedness implies the projectivity and the Serre-
 \end{parts}
 \end{prb}
 
+
+\section{Primitive ideal space}
+
+\begin{prb}[Left ideals]
+\end{prb}
+
+\begin{prb}[Primitive ideals]
+hull kernel topology
+\[PS(A)\cong\{(\pi,\psi)\}/\sim_u,\qquad\hat A\cong\{\pi\}/\sim_u.\]
+
+\[\begin{array}{c|ccc}
+A & PS(A) & \hat A & \Prim(A) \\\hline
+C(X) & X & X & X \\
+K(H) & PH & * & * \\
+\tilde K(H) & ? & ? & \{0,K(H)\} \\
+B(H) &&&
+\end{array}\]
+\begin{parts}
+\item $\Prim(A)$ is locally compact T$_0$ space.
+\item Two maps $PS(A)\to\hat A\to\Prim(A)$ are continuous surjective open maps
+\item If $A$ is type I, then $\hat A\to\Prim(A)$ is an homeomorphism.
+\end{parts}
+
+\end{prb}
+
+\begin{prb}[Dauns-Hoffman theorem]
+\end{prb}
+
+
 \section{Dixmier-Douady theory}
 
 
@@ -813,6 +897,9 @@ A C$^*$-algebra $A$ is called \emph{continuous trace} if the set of all $a\in\cA
 
 
 Dadarlat-Pennig theory
+
+
+Coactions and Fell bundles
 
 
 

@@ -619,6 +619,7 @@ $\sigma$-finite measures
 
 \section{Continuous functions on metric spaces}
 
+partition of unity.
 Urysohn and Tietze.
 
 
@@ -692,6 +693,35 @@ Then, $f$ is continuous on $A$, and of course on $F$.
 
 
 
+\begin{prop}
+A $\sigma$-finite Radon measure is regular.
+\end{prop}
+\begin{pf}
+First we approximate Borel sets of finite measure, with compact sets.
+Let $E$ be a Borel set with $\mu(E)<\infty$ and $U$ be an open set containing $E$.
+By outer regularity, there is an open set $V\supset U-E$ such that
+\[\mu(V)<\mu(U-E)+\frac\e2.\]
+By inner regularity, there is a compact set $K\subset U$ such that
+\[\mu(K)>\mu(U)-\frac\e2.\]
+Then, we have a compact set $K-V\subset K-(U-E)\subset E$ such that
+\begin{align*}
+\mu(K-V)&\ge\mu(K)-\mu(V)\\
+&>\left(\mu(U)-\frac\e2\right)-\left(\mu(U-E)+\frac\e2\right)\\
+&\ge\mu(E)-\e.
+\end{align*}
+It implies that a Radon measure is inner regular on Borel sets of finite measures.
+
+Suppose $E$ is a $\sigma$-finite Borel set so that $E=\bigcup_{n=1}^\infty E_n$ with $\mu(E_n)<\infty$.
+We may assume $E_n$ are pairwise disjoint.
+Let $K_n$ be a compact subset of $E_n$ such that
+\[\mu(K_n)>\mu(E_n)-\frac\e{2^n},\]
+and define $K=\bigcup_{n=1}^\infty K_n\subset E$.
+Then,
+\[\mu(K)=\sum_{n=1}^\infty\mu(K_n)>\sum_{n=1}^\infty\left(\mu(E_n)-\frac\e{2^n}\right)=\mu(E)-\e.\]
+Therefore, a Radon measure is inner regular on all $\sigma$-finite Borel sets.
+\end{pf}
+
+
 \section{Locally compact spaces}
 
 
@@ -745,100 +775,111 @@ History of Bourbaki's text.
 % 이제 증명들이 어느 정도 수준에서 가능한 지를 보자
 % C_c version
 
+\begin{prb}[Radon measures]
+Let $X$ be a locally compact metric space.
+A \emph{Radon measure} is a Borel measure $\mu$ on $X$ such that
+\begin{enumerate}[(i)]
+\item $\mu$ is outer regular for every Borel set: $\mu(E)=\inf\{\mu(U):E\subset U,\,U\text{ open}\}$ for Borel $E\subset X$,
+\item $\mu$ is inner regular for every open set: $\mu(U)=\sup\{\mu(K):K\subset U,\,K\text{ compact}\}$ for open $U\subset X$,
+\item $\mu$ is locally finite.
+\end{enumerate}
+\begin{parts}
+\item A $\sigma$-finite Radon measure is regular.
+\item If every open subset of $X$ is $\sigma$-compact, then a locally finite Borel measure is Radon.
+\item $C_c(X)$ is dense in $L^p(\mu)$ for $1\le p<\infty$.
+\end{parts}
+\end{prb}
 
-\begin{prb}[Riesz-Markov-Kakutani representation theorem for $C_0$]
+\begin{prb}[Riesz-Markov-Kakutani representation theorem for $C_0(X)$]
 Let $X$ be a locally compact metric space.
 We want to establish the following one-to-one correspondence:
 \[\begin{array}{ccc}
-\{\text{finite Borel measures on $X$}\} & \xrightarrow{\sim} & \{\text{positive linear functionals on $C_0(X)$}\}\\
+\{\text{finite Radon measures on $X$}\} & \xrightarrow{\sim} & \{\text{positive linear functionals on $C_0(X)$}\}\\
 \mu & \mapsto & (f\mapsto\int f\,d\mu).
 \end{array}\]
 Let $I$ a positive linear functional on $C_0(X)$.
-Let $\cT$ be the set of all open subsets of $X$ and $\rho:\cT\to[0,\infty]$ a set function such that
-\[\rho(U):=\sup\,\{\,I(f):f\in C_c(U,[0,1])\,\}\]
-for open $U$.
-Let $\mu^*:\cP(X)\to[0,\infty]$ be the associated outer measure defined from $\rho$, and $\mu:=\mu^*|_\cA$ the Carath\'eodory measure, where $\cA$ is the $\sigma$-algebra of Carath\'eodory measurable subsets relative to $\mu^*$, and $\cB$ is the Borel $\sigma$-algebra of $X$.
+Let $\cT$ be the set of all open subsets of $X$ and $\mu_0:\cT\to[0,\infty]$ a set function defined such that
+\[\mu_0(U):=\sup\{I(f):f\in C_c(U,[0,1])\},\qquad U\in\cT.\]
+Let $\mu^*:\cP(X)\to[0,\infty]$ be the associated outer measure defined by
+\[\mu^*(S):=\inf\left\{\sum_{i=1}^\infty\mu_0(U_i):S\subset\bigcup_{i=1}^\infty U_i,\ U_i\in\cT\right\},\qquad S\in\cP(X),\]
+and let $\mu:=\mu^*|_\cA$ be the restriction, where $\cA$ is the $\sigma$-algebra of Carath\'eodory measurable subsets relative to $\mu^*$.
 \begin{parts}
-\item $\mu^*|_\cT=\rho$.
-\item $\cB\subset\cA$.
-\item $I(f)=\int f\,d\mu$ for $f\in C(X)$, i.e. the map given above is surjective.
-\item The map given above is injective.
+\item $\mu^*$ extends $\mu_0$.
+\item $\mu$ extends $\mu_0$.
+\item $\mu$ is a finite Radon measure.
+\item The correspondence is surjective.
+\item The correspondence is injective.
 \end{parts}
 \end{prb}
 \begin{pf}
 (a)
-It suffices to show that $\rho$ satisfies monotonically countably subadditive.
-Take an open set $U$ and a countable open cover $\{U_i\}_{i=1}^\infty$ of $U$.
-Take any $f\in C_c(U,[0,1])$ and let $K:=\supp f$.
-Since $K$ is compact, there is a finite subcover $\{U_j\}_{j=1}^n$ of $K$, and since $K$ is paracompact Hausdorff, there is a partition of unitiy $\{\chi_j\}_j$ on $K$ subordinate to the open cover $\{U_j\cap K\}_j$.
-Note that $\supp\chi_j\subset U_j\cap K$ for each $j$.
+It suffices to show that $\mu_0$ satisfies monotonically countably subadditive.
+For an open set $U$ and a countable open cover $\{U_i\}_{i=1}^\infty$ of $U$ we claim that $\rho(U)\le\sum_{i=1}^\infty\rho(U_i)$.
 
-The set $\supp(f\chi_j)$ is closed in $K$ so the compactness, and we also have the inclusion $\supp(f\chi_j)\subset\supp\chi_j\subset U_j$.
-For every $0<a\le 1$, since $(f\chi_j)^{-1}((a,1])$ is open in the interior of $K$ and $(f\chi_j)^{-1}([a,1])$ is closed in $K$, $f\chi_j$ is continuous on $U_j$.
-Now we have checked $f\chi_j\in C_c(U_j,[0,1])$.
-
-Then, because $I$ is linear so that it preserves finite sum, we have
-\[I(f)=I\left(\sum_{j=1}^n f\chi_j\right)=\sum_{j=1}^n I(f\chi_j)\le\sum_{j=1}^n\rho(U_j)\le\sum_{i=1}^\infty\rho(U_i).\]
-Since $f$ is arbitrary, we get $\rho(U)\le\sum_{i=1}^\infty\rho(U_i)$.
+Take any $f\in C_c(U,[0,1])$ and find a finite subcover $\{U_{i_k}\}_{k=1}^n$ of $\{U_i\}$ together with a partition of unitiy $\{\chi_{i_k}\}$ subordinate to the open cover $\{U_{i_k}\cap\supp f\}_k$.
+Now we have $f\chi_{i_k}\in C_c(U_{i_k},[0,1])$ for each $k$, because then $I$ is linear so that it preserves finite sum, we have
+\[I(f)=\sum_{k=1}^n I(f\chi_{i_k})\le\sum_{k=1}^n\mu_0(U_{i_k})\le\sum_{i=1}^\infty\mu_0(U_i).\]
+Since $f$ is arbitrary, we are done.
 
 (b)
-It suffices to show $\cT\subset\cA$.
-Clearly $\mu^*(E)\le\mu^*(E\cap U)+\mu^*(E\setminus U)$ for any measurable $E$ and open $U$.
-For the opposite direction, take $\e>0$.
-Note that we may assume $\mu^*(E)<\infty$.
-There are open $U_i$ such that $E\subset\bigcup_{i=1}^\infty U_i$ and
-\[\mu^*(E)+\frac\e3>\sum_{i=1}^\infty\rho(U_i).\]
+We claim $\cT\subset\cA$.
+It suffices to show $\mu^*(E\cap U)+\mu^*(E\setminus U)\le\mu^*(E)$ for any measurable $E$ and open $U$.
+Take $\e>0$.
+Since we may assume $\mu^*(E)<\infty$, there is a countable open cover $\{U_i\}_{i=1}^\infty$ of $E$ such that
+\[\sum_{i=1}^\infty\mu_0(U_i)<\mu^*(E)+\frac\e3.\]
 Take $f_i\in C_c(U_i\cap U,[0,1])$ such that
-\[\rho(U_i\cap U)-\frac13\cdot\frac\e{2^i}<I(f_i),\]
+\[\mu_0(U_i\cap U)<I(f_i)+\frac13\cdot\frac\e{2^i},\]
 and take $g_i\in C_c(U_i\setminus\supp f_i,[0,1])$ such that
-\[\rho(U_i\setminus\supp f_i)-\frac13\cdot\frac\e{2^i}<I(g_i).\]
+\[\mu_0(U_i\setminus\supp f_i)<I(g_i)+\frac13\cdot\frac\e{2^i}.\]
 Then, since $f_i+g_i\in C_c(U_i,[0,1])$, we have
 \begin{align*}
-\rho(U_i)\ge I(f_i+g_i)
-&>\rho(U_i\cap U)+\rho(U_i\setminus\supp f_i)-\frac23\cdot\frac\e{2^i}\\
-&\ge\rho(U_i\cap U)+\rho(U_i\setminus U)-\frac23\cdot\frac\e{2^i}.
+\mu^*(E\cap U)+\mu^*(E\setminus U)
+&\le\sum_{i=1}^\infty\mu_0(U_i\cap U)+\sum_{i=1}^\infty\mu_0(U_i\setminus U)\\
+&<\sum_{i=1}^\infty I(f_i+g_i)+\frac\e3+\frac\e3\\
+&<\sum_{i=1}^\infty\mu_0(U_i)+\frac23\e\\
+&\le\mu^*(E)+\e.
 \end{align*}
-It implies
-\[\mu^*(E)+\e>\sum_{i=1}^\infty\rho(U_i\cap U)+\sum_{i=1}^\infty\rho(U_i\setminus U))\ge\mu^*(E\cap U)+\mu^*(E\setminus U)\]
-because $E\cap U\subset\bigcup_{i=1}^\infty U_i\cap U$ and $E\setminus U\subset\bigcup_{i=1}^\infty U_i\setminus U$.
-
+Limiting $\e\to0$, we get the desired inequality.
 
 (c)
-Note that we have
-\[\rho(U)=\sup_{f\in C_c(U,[0,1])}I(f),\qquad\mu(E)=\inf_{\substack{E\subset U\\U\text{ open}}}\rho(U).\]
-We first claim that for $g\in C_c(X,[0,1])$, if $K$ and $K'$ are compact sets such that $g|_K=1$ and $g|_{K'^c}=0$ respectively, then we have
-\[\mu(K)\le I(g)\le\mu(K').\]
-The one inequality directly follows from
-\[I(g)\le\inf_{K'\subset U}\rho(U)=\mu(K').\]
-For the other, take sufficiently small $\e>0$ such that $U:=g^{-1}((1-\e,1])$ satisfies $K\subset U\subset\supp g$.
-For any $h\in C_c(U,[0,1])$, the inequality $(1-\e)h\le g$ implies $I(h)\le(1-\e)^{-1}I(g)$, so
-\[\mu(K)\le\rho(U)\le I(h)\le(1-\e)^{-1}I(g).\]
-By limiting $\e\to0$, we get $\mu(K)\le I(g)$, the claim proved.
+Since $\mu$ is a countably additive and $\cT$ is closed under union, we can rewrite
+\[\mu^*(S)=\inf\{\mu_0(U):S\subset U\in\cT\},\qquad S\in\cP(X),\]
+hence $\mu$ is outer regular.
+Here now we claim for $f\in C_c(X,[0,1])$ and $0<a<1$ that
+\[a\mu(f^{-1}((a,1]))\le I(f)\le\mu(\supp f).\]
+If it is true, then the right inequality implies the inner regularity, and the left inequality together with the Urysohn lemma implies the local finiteness.
 
-
-Since $C_c(X)$ is the linear span of $C_c(X,[0,1])$, it is enough to show $I(f)=\int f\,d\mu$ for $f\in C_c(X,[0,1])$.
-For a fixed positive integer $n$ and for each index $1\le i\le n$, let $K_i:=f^{-1}([i/n,1])$ and define
-\[f_i(x):=\begin{cases}0&\text{ if }x\in K_{i-1}^c,\\f(x)-\frac{i-1}n&\text{ if }x\in K_{i-1}\setminus K_i,\\\frac1n&\text{ if }x\in K_i,\end{cases}\]
-where $K_0:=\supp f$.
-Note that $nf_i\in C_c(X,[0,1])$ and $f=\sum_{i=1}^nf_i$.
-For $1\le i\le n$ we have $\mu(K_i)<\infty$ because $K_i$ is compact subsets contained in a locally compact Hausdorff space $U:=f^{-1}((0,1])$, but $\mu(K_0)$ is possibly infinite.
-By the previous claim and the property of integral, we have
-\[\frac{\mu(K_i)}n\le I(f_i),\qquad\frac{\mu(K_i)}n\le\int f_i\,d\mu\]
-for $1\le i\le n$ and
-\[I(f_i)\le\frac{\mu(K_{i-1})}n,\qquad\int f_i\,d\mu\le\frac{\mu(K_{i-1})}n\]
-for $2\le i\le n$.
-Then, using the above inequalities and $\mu(K_n)\ge0$, we have
-\[I(f)\le I(f_1)+\int f\,d\mu\quad\text{and}\quad\int f\,d\mu\le\int f_1\,d\mu+I(f).\]
-Note that $f_1=\min\{f,1/n\}$ is a sequence of functions indexed by $n$.
-By the monotone convergence theorem, $\int f_1\,d\mu\to0$ as $n\to\infty$.
-We now show $I(f_1)$ converges to zero.
+The right inequality directly follows from the definition of $\mu_0$ and the outer regularity
+\[I(f)\le\inf\{\mu_0(U):\supp f\subset U\in\cT\}=\mu(\supp f).\]
+For the left, if $h\in C_c(f^{-1}((a,1]),[0,1])$, then the inequality $ah\le f$ implies
+\[a\mu(f^{-1}((a,1]))=a\mu_0(f^{-1}((a,1]))\le aI(h)\le I(f).\]
 
 (d)
-Let $\mu$ and $\nu$ be finite Borel measures on $X$ such that
+We will show $I(f)=\int f\,d\mu$ for $f\in C_c(X)$.
+Since $C_c(X)$ is the linear span of $C_c(X,[0,1])$, we may assume $f\in C_c(X,[0,1])$.
+For a fixed positive integer $n$ and for each index $1\le i\le n$, let $K_i:=f^{-1}([i/n,1])$ and define
+\[f_i(x):=\begin{cases}\frac1n&\text{ if }x\in K_i,\\f(x)-\frac{i-1}n&\text{ if }x\in K_{i-1}\setminus K_i,\\0&\text{ if }x\in X\setminus K_{i-1},\end{cases}\]
+where $K_0:=\supp f$.
+Note that $f_i\in C_c(X,[0,n^{-1}])$ and $f=\sum_{i=1}^nf_i$.
+For $1\le i\le n$ we have $\mu(K_i)<\infty$ because $K_i$ is compact subsets contained in a locally compact Hausdorff space $U:=f^{-1}((0,1])$.
+By the previous claim and the property of integral, we have
+\[\frac{\mu(K_i)}n\le I(f_i),\qquad\frac{\mu(K_i)}n\le\int f_i\,d\mu,\qquad1\le i\le n\]
+and
+\[I(f_i)\le\frac{\mu(K_{i-1})}n,\qquad\int f_i\,d\mu\le\frac{\mu(K_{i-1})}n,\qquad2\le i\le n.\]
+Then, using the above inequalities and $\mu(K_n)\ge0$, we have
+\[I(f)\le I(f_1)+\int f\,d\mu\quad\text{and}\quad\int f\,d\mu\le\int f_1\,d\mu+I(f).\]
+Note that $f_1=\min\{f,n^{-1}\}$ is a sequence of functions indexed by $n$.
+By the monotone convergence theorem, $\int f_1\,d\mu\to0$ as $n\to\infty$.
+We now show $I(f_1)$ converges to zero.
+If we let $U:=f^{-1}((0,1])$, then $U$ is locally compact and $f_1\in C_0(U)\subset C_c(X)$, and since a positive linear functional on $C_0(U)$ is bounded, we have $I(f_1)\le n^{-1}\|I\|\to0$ as $n\to\infty$.
+($\mu(K_0)$ is possibly infinite if $X$ is not locally compact so that $\mu$ is not locally finite.)
+
+(e)
+Let $\mu$ and $\nu$ be finite Radon measures on $X$ such that
 \[\int g\,d\mu=\int g\,d\nu\]
 for all $g\in C(X)$.
 Let $E$ be any measurable set.
-Since $\mu+\nu$ is a finite Borel measure, it is regular, and by the Luzin theorem, we have a closed set $F$ and $g\in C(X)$ with $0\le g\le1$ such that $\1_E|_F=g|_F$ and $(\mu+\nu)(X\setminus F)<\e/2$.
+Since $\mu+\nu$ is a finite Radon measure, and by the Luzin theorem, we have a closed set $F$ and $g\in C(X)$ with $0\le g\le1$ such that $\1_E|_F=g|_F$ and $(\mu+\nu)(X\setminus F)<\e/2$.
 Then,
 \begin{align*}
 |\mu(E)-\nu(E)|&=|\int\1_E\,d\mu-\int\1_E\,d\nu\,|\\
