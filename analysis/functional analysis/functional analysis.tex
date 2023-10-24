@@ -387,37 +387,17 @@ so $l$ is contained in the range.
 \section{Weak density}
 Bishop-Phelps theorem
 
-\begin{prb}[Goldstine's theorem]
-Let $X$ be a Banach space and $J:X\to X^{**}$ the canonical embedding.
-Our claim is that $\bar B$ is weak$^*$-dense in $\bar B_{X^{**}}$.
-Let $x_0^{**}\in X^{**}$ with $\|x_0^{**}\|\le1$, and let
-\[\bigcap_{i=1}^m\,\{\,x^{**}\in X^{**}:|\<x^{**}-x_0^{**},x_i^*\>|<\e\,\}\]
-be an open weak$^*$-neighborhood of zero in $X^{**}$ with $\|x_i^*\|\le1$ and $\e>0$.
-Let
-\[S:=\bigcap_{i=1}^m\,\{\,x\in X:\<x,x_i^*\>=\<x_0^{**},x_i^*\>\,\}.\]
-\begin{parts}
-\item $S$ is not empty.
-\item $S\cap(1+\e)\bar B_X$ is not empty for all $\e>0$.
-\item $\bar B_X$ is weak$^*$-dense in $\bar B_{X^{**}}$
-\end{parts}
+\begin{prb}[Goldstine theorem]
+Let $X$ be a Banach space.
+Then, $B_X$ is weakly$^*$ dense in $B_{X^{**}}$.
 \end{prb}
 \begin{pf}
-(a)
-
-(b)
-From the part (a), we have $x\in S$.
-Suppose $S$ does not intersect $(1+\e)\bar B_X$.
-By the Hahn-Banach theorem, there is $y^*\in X^*$ such that
-\[y^*|_{S-x}=0,\quad\<x,y^*\>>1+\e,\quad\text{ and }\quad\|y^*\|=1.\]
-Since $S-x=\bigcap_{i=1}^m\ker x_i^*$, the linear functional $y^*$ is a linear combination of $x_1^*,\cdots,x_m^*$, so we have
-\[1+\e<\<x,y^*\>=\<x_0^{**},y^*\>\le\|x_0^{**}\|\|y^*\|\le1.\]
-
-(c)
-Take $\e>0$ such that $\e\max_{1\le i\le m}\|x_i^*\|<1$.
-By the part (b), there is $y\in X$ such that $\|y\|\le1+\e$ and $\<y,x_i^*\>=\<x^{**},x_i^*\>$.
-If we let $x:=(1+\e)^{-1}y$, then $x\in\bar B_X$ so that
-\[|\<x-x_0^{**},x_i^*\>|=|\<x-y,x_i^*\>|=|\<\e x,x_i^*\>|\le\e\|x\|\|x_i^*\|<\e\]
-for all $i$.
+Take $x^{**}\in B_{X^{**}}\setminus\bar{B_X}^{w*}$.
+By the Hahn-Banach separation, there are $x^*\in X^*$ and $r\in\R$ such that
+\[\Re\<x,x^*\>\le r<\Re\<x^{**},x^*\>\]
+for every $x\in B_X$.
+Since the left hand side can approximate $\|x^*\|$, we have $\|x^*\|\le r$ and obtain a contradiction
+\[r<\Re\<x^{**},x^*\>\le\|x^*\|\le r.\qedhere\]
 \end{pf}
 
 
@@ -436,39 +416,25 @@ Mackey-Arens
 not reflexive but isometrically isomorphic to bidual
 \end{prb}
 
-
-\begin{prb}[Predual correspondence]
+\begin{prb}[Preduals]
 Let $X$ be a Banach space.
-Let
-\[\{\,(Y,\f)\mid\f:X\to Y^*\text{ is an isometric isorphism}\,\}\]
-and
-\[\{\,Z\le X^*\mid\bar{B_X}\text{ is compact Hausdorff in }(X,\sigma(X,Z))\,\}.\]
-
-\[(Y,\f)\mapsto\im\f^*|_{J(Y)}\]
-
+A \emph{predual} of $X$ is a Banach space $F$ together with an isometric isomorphism $\f:X\to F^*$.
+Two preduals $\f_1:X\to F_1^*$ and $\f_2:X\to F_2^*$ are said to be equivalent if there is an isometric isomorphism $\theta:F_1\to F_2$ such that $\theta^*=\f_1\f_2^{-1}$.
 \begin{parts}
-\item The map is well-defined.
-\item The map is surjective. (by Goldstein)
-\item The map is injective up to isomorphism for $Y$.
+\item There is a one-to-one correspondence between the equivalence class of preduals of $X$ and the set of closed subspaces $X_*$ of $X^*$ such that $B_X$ is compact and Hausdorff in $(X,\sigma(X,X_*))$.
+Such a subspace $X_*$ is also called a predual of $X$.
+\item If $X$ admits a predual $X_*\subset X^*$, then a $\sigma(X,X_*)$-closed subspace $V$ of $X$ also admits a predual $X_*|_V$.
 \end{parts}
 \end{prb}
+\begin{pf}
+(a) Goldstine theorem for surjectivity.
 
-\begin{prb}
-Let $X$ be a closed subspace of a Banach space $Y$ and \[i:X\to Y\] the inclusion.
-Suppose $X$ and $Y$ have preduals $X_*$ and $Y_*$ respectively.
-Let \[j:=i^*|_{Y_*}:Y_*\to Z\subset X^*,\]
-where $Z:=i^*(Y_*)^-$.
-Then we can show
-\[j^*:Z^*\subset X^{**}\to Y\]
-coincides with $i$ on $X\cap Z^*$.
-From the existence of $X_*$ we have $X^{**}\to X$, which is restricted to define a map $k:Z^*\to X$.
-\[\begin{tikzcd}
-&X\ar{r}{i}&Y\\
-X^{**}\ar{ur}\ar{r}&Z^*\ar{u}{k}\ar{ur}{j}&
-\end{tikzcd}\]
-We can show $k$ is an isomorphism so that we have
-\[X_*\cong Y_*/Y_*\cap\ker(i^*).\]
-\end{prb}
+(b)
+It is easy if we apply the part (a).
+We can show more directly.
+If we let $V_*:=X_*|_V$ the image of $X_*$ under the map $X^*\to V^*$, then we have isometric injections $V\to(V_*)^*\to X$.
+We can show $V$ is $\sigma(X,X_*)$ dense in $(V_*)^*$, hence the closedness proves the bijectivity of $V\to(V_*)^*$.
+\end{pf}
 
 \begin{prb}[Mazur's lemma]
 
@@ -825,12 +791,19 @@ A net $T_\alpha$ converges to $T$ $\sigma$-strongly in $B(H)$ if and only if $\|
 \end{parts}
 \end{prb}
 
+\begin{prb}[Strong$^*$ operator topology]
+Let $H$ be a Hilbert space.
+We provides some conditions for a strongly convergent sequence to converge strongly$^*$.
+Let $(T_\alpha)\subset B(H)$ and suppose $T_\alpha\to T$ strongly.
+\end{prb}
 
 \begin{prb}[Continuity of linear functionals]
 Let $f$ be a linear functional on $B(H)$ for a Hilbert space $H$.
 \begin{parts}
 \item
-$f$ is weakly continuous if and only if it is strongly continuous, and in this case we have $f=\sum_{i=1}^n\omega_{x_i,y_i}$ for some $(x_i)_{i=1}^n,(y_i)_{i=1}^n\subset H$.
+$f$ is weakly continuous if and only if it is strongly$^*$ continuous, and in this case we have $f=\sum_i\omega_{x_i,y_i}$ for some $(x_i),(y_i)\in c_c(\N,H)$.
+\item
+$f$ is $\sigma$-weakly continuous if and only if it is $\sigma$-strongly$^*$ continuous, and in this case we have $f=\sum_i\omega_{x_i,y_i}$ for some $(x_i),(y_i)\in\ell^2(\N,H)$.
 \end{parts}
 \end{prb}
 \begin{pf}
@@ -841,31 +814,14 @@ The functional $f:A\to\C$ factors through $H^{\oplus n}$ such that
 \[A\xrightarrow{\bar x}H^{\oplus n}\to\C.\]
 \end{pf}
 
-\begin{prb}[Vigier theorem]
-Let $T_\alpha$ be a net of bounded self-adjoint operators on $H$ which is increasing and bounded above.
-Then, $T_\alpha$ converges strongly.
-\end{prb}
-\begin{pf}
-Define $T$ such that
-\[\<Tx,y\>:=\lim_\alpha\sum_{k=0}^3i^k\<T_\alpha(x+i^ky),x+i^ky\>.\]
-The convergence is due to the monotone convergence in $\R$.
-We can check it is a well-defined bounded linear operator by considering the bounded sesquilinear form.
-Then, $T_\alpha\to T$ weakly by definition, and strongly by because the net is increasing.
-\end{pf}
 
-
-For $(x_i)_{i=1}^\infty,(y_i)_{i=1}^\infty\subset H$ such that $\sum_i\|x_i\|^2<\infty$ and $\sum_i\|y_i\|^2<\infty$,
+For $\bar x=(x_i)\in\ell^2(\N,H)$,
 \[p_{\bar x}^{\sigma s*}(T)=\left(\sum_i\|Tx_i\|^2+\|T^*x_i\|^2\right)^{\frac12}\qquad
 p_{\bar x}^{\sigma s}(T)=\left(\sum_i\|Tx_i\|^2\right)^{\frac12}\qquad
-p_{\bar x,\bar y}^{\sigma w}(T)=\left|\sum_i\<Tx_i,y_i\>\right|\]
+p_{\bar x}^{\sigma w}(T)=\left|\sum_i\<Tx_i,x_i\>\right|\]
 
 \section*{Exercises}
 
-\begin{prb}[Strong$^*$ operator topology]
-Let $H$ be a Hilbert space.
-We provides some conditions for a strongly convergent sequence to converge strongly$^*$.
-Let $(T_\alpha)\subset B(H)$ and suppose $T_\alpha\to T$ strongly.
-\end{prb}
 
 \begin{prb}[Strict topology]
 Let $H$ be a Hilbert space.
@@ -883,13 +839,27 @@ Let $H$ be a Hilbert space.
 \end{prb}
 
 
+\begin{prb}[Bounded increasing nets]
+Let $T_\alpha$ be a bounded increasing net of bounded self-adjoint operators on $H$.
+\begin{parts}
+\item $T_\alpha$ converges strictly. In particular, $T_\alpha\to T$ strictly iff $T_\alpha\to T$ weakly.
+\end{parts}
+\end{prb}
+\begin{pf}
+Define $T$ such that
+\[\<Tx,y\>:=\lim_\alpha\sum_{k=0}^3i^k\<T_\alpha(x+i^ky),x+i^ky\>.\]
+The convergence is due to the monotone convergence in $\R$.
+We can check it is a well-defined bounded linear operator by considering the bounded sesquilinear form.
+Then, $T_\alpha\to T$ weakly by definition, and $\sigma$-strongly because the net is increasing.
+\end{pf}
+
 
 
 
 \chapter{Unbounded operators}
 
 
-\section{}
+\section{Closed operators}
 
 \begin{prb}[Closed operators]
 \end{prb}
@@ -919,7 +889,7 @@ Here is a routine to find a closure.
 \end{enumerate}
 
 
-\begin{prb}
+\begin{prb}[Adjoint of an unbounded operator]
 Let $T:X\to Y$ be a densely defined closed operator between Banach spaces.
 \begin{parts}
 \item $T^*$ is injective if and only if $T$ has dense range.
@@ -957,15 +927,35 @@ An unbounded operator $T:H\to H$ is called \emph{symmetric} if
 \item If $T$ is symmetric, then it has a maximal symmetric extension. Note that $T^*$ is not symmetric in general.
 \item A maximal symmetric operator is closed since the closure of a .
 \item A self-adjoint operator is maximal.
-\item A densely defined symmetric operator is essentially self-adjoint if and only if it has a unique self adjoint extension.
-\item A densely defined symmetric operator may have no or many self-adjoint extensions.
+\item A densely defined closed symmetric operator is essentially self-adjoint if and only if it is indeed the unique self-adjoint extension if and only if the adjoint is symmetric.
 \end{parts}
 \end{prb}
 
 \begin{prb}[Cayley transform]
 \end{prb}
 
-\section{Spectral theorem}
+There is a one-to-one correspondence between the unitary operators from $K_+$ to $K_-$, the deficiency subspaces.
+
+Let $A$ be a symmetric operator on a Hilbert space $H$.
+We will always assume that $A$ is densely defined and closed.
+We want to ask the following questions:
+Is $A$ self-adjoint?
+If not, does $A$ admit self-adjoint extensions?
+Which self-adjoint extension generate the appropriate quantum dynamics?
+
+Let $T:=i\,d/dx$ on $L^2([0,1])$ with
+\[\dom T=\{f\in H^1([0,1]):f(0)=f(1)=0\}.\]
+Then,
+\[\dom T^*=H^1([0,1])\]
+and the set of self-adjoint extensions is $\{T_\alpha:\alpha\in\T\}$, where
+\[\dom T_\alpha=\{f\in H^1([0,1]:\alpha f(0)=f(1)\}.\]
+
+The orbital comes from the diagonalization of the Laplace-Beltrami operator on the unit sphere.
+
+The periodic Schr\"odinger operator is diagonalized to the direct integral of elliptic operators defined on the Brillouin torus.
+
+
+\section{Spectral theorems}
 
 A self-adjoint operator must be a densely defined and closed.
 
@@ -983,6 +973,40 @@ Let $T:H\to H$ be a
 Kato-Rellich theorem
 
 analytic vector theorem
+
+
+\section{Decomposition of spectrum}
+
+\begin{align*}
+\sigma
+&=\sigma_p\cup\sigma_c\cup\sigma_r\\
+&=\sigma_{ess}\cup\sigma_d\\
+&=\bar{\sigma_{pp}}\cup\sigma_{ac}\cup\sigma_{sc}.
+\end{align*}
+
+
+
+
+
+For $V\in L^\infty(\R^d)$, the operator
+\[H\psi(x):=-\frac{\hbar^2}{2m}\Delta\psi(x)-V(x)\psi(x),\qquad x\in\R^d\]
+is called the \emph{Schr\"odinger operator.}
+The eigenvectors associated to the discrete spectrum is called \emph{bound states}.
+
+
+
+
+\section*{Exercises}
+
+\begin{prb}[Hydrogen atom]
+Consider the Hamiltonian operator $H$ on $L^2(\R^3)$ given by
+\[H\psi(x):=-\Delta\psi(x)-|x|^{-1}\psi(x),\qquad x\in\R^3.\]
+We want to investigate the spectral decomposition of $H$ by diagonalization.
+\begin{parts}
+\item $H$ is self-adjoint.
+\item $\sigma_d(H)=\{\}$
+\end{parts}
+\end{prb}
 
 
 \chapter{Operator theory}
@@ -1477,25 +1501,40 @@ Thus we have $ba_-=0$ and $a_-^3=0$.
 \end{parts}
 \end{prb}
 
+
+
 \begin{prb}[Positive linear functionals]
+Let $A$ be a C$^*$-algebra.
+A \emph{state} of $A$ is a positive linear functional $\omega$ such that $\|\omega\|=1$.
 \begin{parts}
-\item
-Jordan decomposition: A self-adjoint linear functional is the difference of two positive linear functional.
+\item For a normal element $a\in A$ there is a state $\omega$ such that $|\omega(a)|=\|a\|$.
+\item A self-adjoint linear functional is the difference of two positive linear functional. It is called the \emph{Jordan decomposition}.
 \end{parts}
 \end{prb}
 \begin{pf}
+(b)
+We first show the real dual $(A^{sa})^*$ can be identified with the self adjoint part $(A^*)^{sa}$ of the complex dual.
+By this identification, we can describe the weak$^*$ topology on $(A^*)^{sa}$ as $\sigma((A^*)^{sa},A^{sa})$.
 
-\[\{\omega\in A^*:\omega(a^*)=\bar{\omega(a)},\ \|\omega\|\le1\}=\conv(S(A)\cup-S(A)).\]
-Krein-Milman
+We may assume $A$ is unital.
+The closed unit ball of the real Banach space $(A^*)^{sa}$ is weakly$^*$ compact.
+We are enough to show
+\[(A^*)^{sa}_1=\bar\conv(S(A)\cup-S(A)),\]
+where the closure is taken in the weak$^*$ topology, because $S(A)$ and $-S(A)$ are weakly$^*$ compact and convex due to the unit of $A$, the closure on the right-hand side is not necessary.
+Suppose not and take $l\in(A^*)^{sa}_1$ which is not approximated weakly$^*$ by $\conv(S(A)\cup-S(A))$.
+By the Hahn-Banach separation, there is $a\in A^{sa}$ such that
+\[\sup_{\omega\in S(A)\cup-S(A)}\omega(a)<l(a).\]
+If we take $\omega\in S(A)\cup-S(A)$ such that $\omega(a)=\|a\|$ using the part (a), then we get a contradiction to the bound $\|l\|\le1$.
+
 
 \end{pf}
 
 
 
 \begin{prb}[Approximate identity]
-separable
 Let $e_\alpha$ be an approximate identity of $A$.
 \begin{parts}
+\item Exists.
 \item For a positive linear functional $\omega$, we have $\lim_\alpha\omega(e_\alpha)=\|\omega\|$.
 \item 
 \item separable.
@@ -1508,26 +1547,36 @@ Let $e_\alpha$ be an approximate identity of $A$.
 \section{Representations of C$^*$-algebras}
 
 
-\begin{prb}[Representation of C$^*$-algebras]
+\begin{prb}[Non-degenerate representations]
 Let $A$ be a C$^*$-algebra.
-A \emph{representation} of $A$ is a $*$-homomorphism $\pi:A\to B(H)$ for a Hilbert space $H$.
-We say a representation $\pi:A\to B(H)$ is \emph{non-degenerate} if $\pi(A)H$ is dense in $H$, \emph{cyclic} if there is $\psi\in H$ such that $A\psi$ is dense in $H$, and \emph{irreducible} if there is no proper closed subspace $K\subset H$ such that $\pi(A)K\subset K$.
+A \emph{representation} of $A$ on a Hilbert space $H$ is a $*$-homomorphism $\pi:A\to B(H)$.
+We say a representation $\pi:A\to B(H)$ is \emph{non-degenerate} if $\pi(A)H$ is dense in $H$.
 \begin{parts}
+\item Every representation has a unique non-degenerate subrepresentation.
 \item The following statements are equivalent:
 \begin{enumerate}[(i)]
 \item $\pi$ is non-degenerate.
 \item For each $\xi\in H$ there is $a\in A$ such that $\pi(a)\xi\ne0$.
 \item $\pi(e_\alpha)\to\id_H$ strongly for an approximate identity $e_\alpha$ of $A$.
 \end{enumerate}
+\end{parts}
+\end{prb}
 
-\item The following statements are equivalent:
+\begin{prb}[Cyclic representations]
+\emph{cyclic} if there is a vector $\psi\in H$ such that $A\psi$ is dense in $H$.
+Cyclic decomposition
+\end{prb}
+
+
+\begin{prb}[Irreducible representations]
+\emph{irreducible} if there is no proper closed subspace $K\subset H$ such that $\pi(A)K\subset K$.
+The following statements are equivalent:
 \begin{enumerate}[(i)]
-\item $\pi$ is irreducible
+\item $\pi$ is irreducible.
 \item $\pi(A)'=\C\id_H$.
 \item $\pi(A)$ is strongly dense in $B(H)$.
-\item Every non-zero vector is cyclic.
+\item Every non-zero vector in $H$ is cyclic.
 \end{enumerate}
-\end{parts}
 \end{prb}
 
 
@@ -1557,6 +1606,20 @@ The \emph{left kernel} of $\omega$ is defined to be
 %  M_n(\C)
 %  B(H), K(H), Q(H)
 
+% Schroder-Burnstein thm of representations
+
+
+\begin{prb}[Projections in $M_2(\C)$]
+The space of self-adjoint elements in $M_2(\C)$ is a real vector space spanned by
+\[1=\begin{pmatrix}1&0\\0&1\end{pmatrix},\qquad p:=\begin{pmatrix}1&0\\0&0\end{pmatrix},\qquad q:=\frac12\begin{pmatrix}1&1\\1&1\end{pmatrix}.\]
+\begin{parts}
+\item $(p-q)^2=\frac12$.
+\item If we let $\lambda_\pm$ be the eigenvalues of $ap+bq$, then $\lambda_++\lambda_-=a+b$ and $\lambda_+-\lambda_-=\sqrt{a^2+b^2}$.
+\item Every functional calculus $f(x)$ of self-adjoint $x$ is a linear combination of $x$ and 1.
+\item $ap+bq+c\ge0$ if and only if $a+b+2c\ge\sqrt{a^2+b^2}$.
+\item Every projection of rank one is given by $ap+bq+(1-a-b)/2$ for $a^2+b^2=1$.
+\end{parts}
+\end{prb}
 
 \begin{prb}[Operator monotone square]
 Let $A$ be a C$^*$-algebra in which the square function is operator monotone, that is, $0\le a\le b$ implies $a^2\le b^2$ for any positive elements $a$ and $b$ in $A$.
@@ -1649,45 +1712,57 @@ Let $A$ be a C$^*$-algebra and let $B_A$ be the closed unit ball of $A$.
 
 
 \begin{prb}[Von Neumann algebras]
-Let $H$ be a Hilbert space.
-A $*$-subalgebra $M$ of $B(H)$ is called a \emph{von Neumann algebra} if it is closed weakly.
+A \emph{von Neumann algebra} on a Hilbert space $H$ is a $\sigma$-weakly closed $*$-subalgebra of $B(H)$ including $\id_H$.
+A positive linear map $\f$ between von Neumann algebras is said to be \emph{normal} if $\f(\sup_\alpha x_\alpha)=\sup_\alpha\f(x_\alpha)$ for any bounded increasing net $x_\alpha$ of positive elements.
+\begin{parts}
+\item A positive map $\f$ is normal if and only if it is continuous between $\sigma$-weak topologies.
+\end{parts}
+\end{prb}
+
+\begin{prb}[Normal states]
+Let $N\subset M\subset B(H)$ be von Neumann algebras.
+The space of $\sigma$-weakly continuous linear functionals on $M$ is denoted by $M_*$.
+\begin{parts}
+\item $M_*$ is a predual of $M$.
+\item The restriction of a normal state of $M$ on $N$ is normal.
+\item A normal state of $N$ is extended to a normal state of $M$.
+\item A state $\omega$ of $M$ is normal if and only if $\omega(x)=\sum_{i=1}^\infty\<x\xi_i,\xi_i\>$ for some $(\xi_i)\in\ell^2(\N,H)$.
+\item The GNS representation of a normal state is normal.
+\end{parts}
 \end{prb}
 
 \begin{prb}[Double commutant theorem]
-Let $A$ be a non-degenerate $*$-subalgebra of $B(H)$.
+The \emph{commutant} of a subset $A\subset B(H)$, denoted by $A'$, is the set of all elements of $B(H)$ that commute every $a\in A$.
+Suppose $A$ is a non-degenerate $*$-subalgebra of $B(H)$.
+One can describe the von Neumann algebra generated by $A$ in $B(H)$ purely algebraically in terms of commutants.
 \begin{parts}
-\item $\bar A^{\sigma s^*}\subset\bar A^w\subset A''$.
-\item If $x\in A''$, for any $\e>0$ and $\xi\in H$ there is $a\in A$ such that $\|(x-a)\xi\|<\e$.\\
-(If we can find such $a\in A$ for any \emph{finite subset} $F\subset H$ not only for a single $\xi$, then we can construct a net $a_\alpha$ that converges to $x$ strongly, i.e.~$\bar A^s=A''$. We will show, more strongly, that we can do this for any \emph{square-summable countable subset} $F$ in the part (c))
-\item For $\bar A^{\sigma s^*}= A''$.
+\item $A''$ is weakly closed $*$-algebra.
+\item If $x\in A''$, for any $\e>0$ and $\xi\in H$ there is $a\in A$ such that $\|(x-a)\xi\|<\e$.
+\item $A$ is $\sigma$-strongly$^*$ dense in $A''$.
 \end{parts}
 \end{prb}
 \begin{pf}
+(a)
+Suppose a net $x_\alpha\in A''$ weakly converges to $x\in B(H)$.
+For any $y\in A'$,
+\[\<xy\xi,\eta\>=\lim_\alpha\<x_\alpha y\xi,\eta\>=\lim_\alpha\<yx_\alpha\xi,\eta\>=\<yx\xi,\eta\>,\qquad \xi,\eta\in H.\]
+Hence $x\in A''$.
+
 (b)
 We claim $x\xi\in\bar{A\xi}$ for each $\xi\in H$.
 Let $p$ be the projection onto $\bar{A\xi}$.
-Then, the image of $ap$ is contained in $\bar{A\xi}$, we have $pap=ap$ and $pa^*p=a^*p$ for all $a\in A$ by the self-adjointness of $A$.
-It implies $ap=pa$, which deduces $p\in A'$ so $xp=px$.
-Observe that $a(1-p)\xi=(1-p)a\xi=0$ for all $a\in A$.
+For any $a\in A$, the operator $ap$ ranges into $\bar{A\xi}$ so that $pap=ap$, and we also have $pa^*p=a^*p$ by the self-adjointness of $A$.
+It implies $ap=pa$, which deduces $p\in A'$.
+Thus $xp=px$ for $x\in A''$.
+On the other hand, observe that $a(1-p)\xi=(1-p)a\xi=0$ for all $a\in A$.
 Then, $\<(1-p)\xi,\eta\>=0$ for any $\eta\in H=\bar{AH}$ by the non-degeneracy, so $p\xi=\xi$.
-Hence $x\xi=xp\xi=px\xi$ so that $x\xi\in\bar{A\xi}$.
+Combining $xp=px$ and $p\xi=\xi$, we obtain $x\xi=xp\xi=px\xi$ so that $x\xi\in\bar{A\xi}$.
 
 (c)
-We suffices to show $A''\subset\bar A^{\sigma s}$ because $A$ is self-adjoint.
-Take a finite set $\{(\xi_{ij})_{j=1}^\infty\subset H\}_{i=1}^n$ of sequences such that $\sum_{j=1}^\infty\|\xi_{ij}\|^2<\infty$ for each $i$.
-Then, $x\mapsto\left(\sum_{j=1}^\infty\|x\xi_{ij}\|^2\right)^{\frac12}$ defines a finite set of seminorms indexed by $i$ which makes a base element of the $\sigma$-strong topology.
-Consider the diagonal map $\Delta:B(H)\to B(H^{\oplus\infty})$ and let $\bar\xi:=(\xi_{ij})_{i,j}\in(H^{\oplus\infty})^{\oplus n}=H^{\oplus\infty}$.
-Then, the seminorm for $\sigma$-strong topology on $H$ factor through the seminorm defined by $\xi$ on $H^{\oplus\infty}$ as follows:
-\[\begin{tikzcd}[column sep=huge]
-B(H) \ar[swap]{d}{\Delta} \ar{dr}{x\mapsto\left(\sum_{i,j}\|x\xi_{ij}\|^2\right)^{\frac12}} & \\
-B(H^{\oplus\infty}) \ar[swap]{r}{\bar x\mapsto\|\bar x\bar\xi\|} & \R_{\ge0}.
-\end{tikzcd}\]
-
-Suppose $x\in A''$.
-Since $\Delta(x)\in\Delta(A)''$ and $\Delta(A)$ is a non-degnerate $*$-subalgebra of $B(H^{\oplus\infty})$, by the part (b), there is $\Delta(a)\in\Delta(A)$ such that
-\[\|(\Delta(x)-\Delta(a))\bar\xi\|=\left(\sum_{i,j}\|(x-a)\xi_{ij}\|^2\right)^{\frac12}<\e.\]
-Thus
-\[\Delta(A'')\subset\Delta(A)''\subset\Delta(\bar A^{\sigma s}).\]
+It suffices to show $A$ is $\sigma$-strongly dense in $A''$ because $A$ is self-adjoint.
+Consider $A$ as the non-degenerate $*$-subalgebra of $B(\ell^2(\N,H))$ via the diagonal map $B(H)\to B(\ell^2(\N,H))$, which is a injective normal unital $*$-homomorphism.
+We can check that $A''$ does not change if we replace $B(H)$ to $B(\ell^2(\N,H))$.
+By applying the part (b) for arbitrary $\xi\in\ell^2(\N,H)$, we deduce the desired result.
 \end{pf}
 
 
@@ -1697,25 +1772,8 @@ Thus
 
 
 
-\begin{prb}[Vigier theorem]
-Increasing bounded net is convergent in strong operator topology.
-The boundedness is important because we have to construct a bounded sesquilinear form using the monotone convergence in $\R$.
-\end{prb}
-\begin{pf}
-Existence of range projections.
-Let $x\in M$.
-Since $\im x=\im(xx^*)^{\frac12}$, we may assume $0\le x\le1$.
-Then, $x^{2^{-n}}$ is an increasing sequence in $M$ bounded by one, so it converges strongly to some $p\in M_+$.
-We can check $p^2=p$ by...
-We can check $p$ is the range projection of $x$ by...
-\end{pf}
 
 
-every von neumann algebra is unital: also can be proved by Krein-Milman
-
-polar decomposition
-
-normal linear functionals form a predual of $M$.
 
 \section{Borel functional calculus}
 
@@ -1725,12 +1783,12 @@ Define $M(\pi):=\pi(A)''$ for $\pi:A\to B(H)$ a representation.
 Let $\pi_u:A\to B(H_u)$ be the universal representation of $A$, the direct sum of all the GNS-representations of states of $A$.
 Consider the following three maps
 \[\pi_u:A\to(M(\pi_u),\sigma w),\qquad\pi_u^*:M(\pi_u)_*\to A^*,\qquad\pi_u^{**}:A^{**}\to M(\pi_u),\]
-constructed by adjoints, where $M(\pi_u)_*$ denotes the set of normal linear functionals on $M(\pi_u)$.
+constructed by adjoints.
 \begin{parts}
 \item $\pi_u^*$ is isometric.
 \item $\pi_u^*$ is surjective.
-\item $\pi_u^{**}$ is an isometric isomorhpism with respect to norms, and is an homeomorphism with respect to weak$^*$-topologies.
-\item $A^{**}$ enjoys a universal property in the sense that for every $*$-homomorphism $\f:A\to M$ to a von Neumann algebra $M$, there exists a unique normal extension $\tilde\f:A^{**}\to M$ of $\f$.
+In particular, $\pi_u^{**}$ is a normal $*$-isomorphsim.
+\item $A^{**}$ enjoys a universal property in the sense that every $*$-homomorphism $\f:A\to M$ to a von Neumann algebra $M$ has a unique normal extension $\tilde\f:A^{**}\to M$ of $\f$.
 \end{parts}
 \end{prb}
 \begin{pf}
@@ -1740,18 +1798,12 @@ For each $l\in M(\pi)_*$ we have
 \[\|\pi^*(l)\|=\sup_{\substack{\|a\|\le1\\a\in A}}|l(\pi(a))|=\sup_{\substack{\|x\|\le1\\x\in M(\pi)}}|l(x)|=\|l\|\] by the Kaplansky density theorem and the $\sigma$-weak continuity of $l$.
 
 (b)
-The injective $*$-homomorphism $\pi_u$ is isometric so that its dual $M(\pi_u)^*\to A^*$ is surjective by the Hahn-Banach extension, however, it does not guarantee that the extended linear functional is normal.
-We claim that every state of $A$ has a normal extension on $M(\pi_u)$.
-If the claim is true, then the Jordan decomposition can be applied to show that every bounded linear functional has a normal extension.
-
 Let $\omega$ be a state of $A$.
-If we let $\psi$ be the canonical cyclic vector of the GNS representation $\pi_\omega:A\to B(H_\omega)$, then the state $\omega$ can be represented as a vector state $\omega_\psi$ in $B(H)$.
-Since $\pi_\omega$ is a subrepresentation of $\pi_u$, the unit vector $\psi$ can be seen as an element of $H_u$, and it defines a normal state of $M(\pi_u)$.
+Since the universal representation $\pi_u$ has the GNS representation of $\omega$ as a subrepresentation, $\omega$ is given by a vector state in $\pi_u$.
+By restriction of this vector state, we have a normal state of $M(\pi_u)$, which extends $\omega$.
+Now the Jordan decomposition can be applied to verify that every bounded linear functional of $A$ has a $\sigma$-weakly continuous extension on $M(\pi_u)$.
 
 (c)
-It is is clear from (a) and (b).
-
-(d)
 We can define $\tilde\f$ as the bitranspose of $\f:A\to(M,\sigma w)$, and it is a unique extension because $A$ is $\sigma$-weakly dense in $A^{**}$.
 \end{pf}
 \begin{rmk}
@@ -1859,7 +1911,7 @@ Suppose $A$ is a C$^*$-algebra which admits a predual $F$.
 \item $\pi$ is a topological embedding with respect to $\sigma(A,F)$ and $\sigma(A^{**},A^*)$.
 \item The predual $F$ is unique in $A^*$.
 \end{parts}
-In particular, there is a faithful representation $A\to B(H)$ whose image is ($\sigma$-)weakly closed.
+In particular, since $A^{**}$ admits a faithful normal representation, so does $A$.
 \end{prb}
 \begin{pf}
 (a)

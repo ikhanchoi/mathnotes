@@ -215,7 +215,7 @@ If $h$ vanishes at infinity, then
 \[\lim_{R\to\infty}\int_{\gamma_2}e^{iz}h(z)\,dz=0.\]
 This is called the \emph{Jordan lemma}.
 \item
-\[\lim_{R\to\infty}\int_\gammaf(z)\,dz=\begin{cases}
+\[\lim_{R\to\infty}\int_\gamma f(z)\,dz=\begin{cases}
 \frac\pi e&\text{ if }\gamma=\gamma_1+\gamma_2\\
 2\int_0^\infty\frac{\cos x}{x^2+1}\,dx&\text{ if }\gamma=\gamma_1\\
 0&\text{ if }\gamma=\gamma_2
@@ -240,7 +240,7 @@ So we are done because $\lim_{R\to\infty}M_R=0$.
 For $\gamma=\gamma_1+\gamma_2$, note that for sufficiently large $R$, the function $f$ has only one pole at $z=i$ in the interior of $C$, which is simple; define $g:\operatorname{int}\gamma\to\C$ such that
 \[f(z)=:\frac{g(z)}{(z-i)}=\frac{g(i)}{z-i}+\frac{g(z)-g(i)}{z-i}.\]
 Then, by the residue theorem, we obtain
-\[\int_\gammaf(z)\,dz=\int_\gamma\frac{g(z)}{z-i}\,dz=2\pi i\cdot g(i)=\frac\pi e\]
+\[\int_\gamma f(z)\,dz=\int_\gamma\frac{g(z)}{z-i}\,dz=2\pi i\cdot g(i)=\frac\pi e\]
 for large $R$.
 
 For $\gamma=\gamma_1$, we have
@@ -561,6 +561,75 @@ Then, $f(z)$ is a branch of $1/\sqrt{z^2-1}$.
 
 
 \part{Several complex variables}
+
+\chapter{}
+
+\section{}
+Cousin problems:
+\begin{enumerate}
+\item 
+\item
+\item
+\end{enumerate}
+
+Four coherence theorems:
+\begin{enumerate}
+\item 
+\item
+\item
+\item
+\end{enumerate}
+
+
+\section{}
+
+\begin{prb}[Sheaves and \'etale spaces]
+A sheaf is a presheaf(contravariant functor) satisfying locality and gluing axiom.
+However, there is an \'etale space characterization by Serre.
+(stalks are Noetherian, regular local, and a UFD?
+See the Weierstrass preparation theorem later.)
+\end{prb}
+
+\begin{prb}[Ringed spaces]
+Let $(X,\cO_X)$ be a ringed space, a topological space $X$ together with a sheaf $\cO_X$ of rings.
+We will also denote by $\cO_X$ the \'etale space of the sheaf $\cO_X$.
+A sheaf $\cF_X$ of $\cO_X$-modules is called \emph{locally finite} or \emph{finite type} if there is an open cover $\{U_i\}$ of $X$ together with surjective ring homomorphisms $\cO_X(U_i)\twoheadrightarrow\cF_X(U_i)$ for all $i$.
+The section space $\Gamma(U,\cO_X)$ will be also denoted by $\cO_X(U)$.
+\end{prb}
+
+\begin{prb}[Analytic sets and local model spaces]
+For a domain $X\subset\C^d$, we have a canonical ringed space $(X,\cO_X)$ of holomorphic functions.
+For an analytic set $A\subset X$, we can consider an exact sequence of sheaves of rings
+\[0\to\cI_{(X,A)}\to\cO_X\to\cO_A\to0,\]
+which can be admitted as the definition of $\cO_A$.
+We can distinguish this exact sequence from the two ring homomorphisms given by the sheaf theoretic restriction
+\[\cO_X(U)\leftarrow\cO_X(X)\to\cO_X(A),\]
+where $\cO_X(A)$ is defined as the colimit by open neighborhoods of $A$.
+By taking $\cI_{(X,A)}$ as an arbitrary ideal sheaf of finite type, we may define a complex model space as the quotient sheaf $\cO_X/\cI_{(X,A)}$, in which open subsets of a complex model space, also called local model spaces, coincide what we call analytic subsets of a domain, i.e.~we can recover the subset $A$ from $\cI_{(X,A)}$.
+\end{prb}
+
+\begin{prb}[Coherent sheaves]
+Consider a quasi-coherent sheaf with an exact sequence of $\cO_X$-modules
+\[\cO_X^m\to\cO_X^n\to\cF_X\to0.\]
+The \emph{generating system} is the basis of $\cO_X^n$, and the \emph{relation sheaf} is the kernel of $\cO_X^n\to\cF_X$.
+We say $\cF_X$ is \emph{coherent} if $\cF_X$ is of finite type and the relation sheaf is also of finite type.
+\end{prb}
+
+
+Prop 1: For an subsheaf of an coherent sheaf is coherent if and only if it is of finite type.
+
+Prop 2: Finite direct sum of a coherent sheaf is coherent.
+
+
+\begin{thm*}[2.2.12]
+Let $X$ be a domain and $A\subset X$ is closed.
+If the ideal sheaf $\cI_{(X,A)}$ is of finite type if and only if $A$ is analytic.
+\end{thm*}
+\begin{thm*}[2.2.17]
+If $S$ is smooth analytic in a domain $X$, then the ideal sheaf $\cI_{X,S}$ is coherent. (2nd Oka coherence for smooth sets)
+\end{thm*}
+
+
 
 
 \end{document}

@@ -1,0 +1,185 @@
+\documentclass{../../../small}
+\usepackage{../../../ikhanchoi}
+
+\begin{document}
+
+\title{Homological Algebra}
+\author{Ikhan Choi}
+\maketitle
+
+\renewcommand{\theprb}{\arabic{prb}}
+
+\begin{prb}
+Show that if $n\ge2$ is an integer which is not a power of a prime, then there is a projective $\Z/n\Z$-module which is not free.
+\end{prb}
+\begin{sol}
+Suppose $p$ and $q$ are distinct prime divisors of $n$ so that we can write $n=p^aq^bm$.
+Since $p^a$ divides $n$, $\Z/p^a\Z$ is a $\Z/n\Z$-module.
+Then, the decomposition $\Z/n\Z\cong\Z/p^a\Z\oplus\Z/q^b\Z\oplus\Z/m\Z$ implies that $\Z/p^a\Z$ is a direct summand of a free $\Z/n\Z$-module, which means that $\Z/p^a\Z$ is projective.
+However, $\Z/p^a\Z$ is not free because its cardinality $p^a$ cannot be the power of $n=|\Z/n\Z|$.
+\end{sol}
+
+\begin{prb}
+Show that if $n$ is a power of prime, then every projective $\Z/n\Z$-module is free.
+\end{prb}
+\begin{sol}
+Note that $R:=\Z/p^a\Z$ is a local ring with the unqie maximal ideal $(p)$.
+Write $F:=\Z/p\Z$.
+We claim that every projective module is free over a local ring.
+Suppose first $M$ is a finitely generated projective $R$-module.
+Find the minimal number of generators $(m_i)_{i=1}^n$ such that they form a basis of $F$-module $M/pM$, a vector space over $F$.
+Then we have a split short exact sequence
+\[0\to N\to R^n\to M\to0.\]
+By taking $\otimes_RF$ on $R^n\cong M\oplus N$, we have an isomorphism $F^n\cong M/pM\oplus N/pN$ between vector spaces over $F$, and the dimension counting implies that $N/pN=0$.
+This means $N=pN$, which deduces that $N=0$.
+Thus $M$ is free.
+\end{sol}
+
+\begin{prb}
+Let $p$ be a prime and $M_i$ are abelian groups, where $i\in\{1,2,3\}$.
+Suppose that $f:M_1\to M_2$ and $g:M_2\to M_3$ are group homomorphisms satisfying $g\circ f=0$, and that the homomorphisms $M_i\to M_i:x\mapsto px$ are injective for all $i$.
+Consider a sequence
+\[0\to M_1/p^nM_1\xrightarrow{f_n}M_2/p^nM_2\xrightarrow{g_n}M_3/p^nM_3\to0,\]
+where $f_n$ and $g_n$ are homomorphisms naturally induced from $f$ and $g$.
+Show that the following statements are equivalent:
+\begin{enumerate}[(i)]
+\item The above sequence is exact for an integer $n\ge1$.
+\item The above sequence is exact for all integer $n\ge1$.
+\end{enumerate}
+\end{prb}
+\begin{sol}
+\end{sol}
+
+\begin{prb}
+Let $R:=\Z/n\Z$ for an integer $n\ge2$.
+\begin{enumerate}[(1)]
+\item Show that an $R$-module $M$ is injective if and only if for every $a\in M\setminus\{0\}$ there exist $b\in M$ and $m\mid n$ such that the order of $a$ is $n/m$ and $a=mb$.
+\item Let $m$ and $l$ be divisors of $n$. Using an injective resolution of $\Z/m\Z$ in the category of $R$-modules, compute $\Ext_R^i(\Z/l\Z,\Z/m\Z)$.
+\end{enumerate}
+\end{prb}
+\begin{sol}
+(1)
+Note that $R$ is not an integral domain, but every ideal of $R$ is principal because $\Z$ is a PID.
+
+(2)
+
+\end{sol}
+
+\begin{prb}
+Let $R=\C[x,y]$.
+\begin{enumerate}[(1)]
+\item Compute $\Ext_R^i(R/(x,y),R)$.
+\item Are $\C(x,y)$ and $\C(x,y)/\C[x,y]$ injective $R$-modules?
+\end{enumerate}
+\end{prb}
+\begin{sol}
+(1)
+We have a projective resolution
+\[0\to R\xrightarrow{x\choose -y} R\oplus R\xrightarrow{(y\ x)}R\to R/(x,y)\to0.\]
+We compute the cohomology of
+\[0\to\Hom_R(R,R)\to\Hom_R(R^2,R)\to\Hom_R(R,R)\to0.\]
+For the first cohomology, an element belongs to the kernel is equivalent to that $x$ and $y$ are mapped to zero, so the $R$-morphism is determined by the value at constants.
+Therefore $\Ext^1(R/(x,y),R)=H^1=R$.
+
+\end{sol}
+
+\begin{prb}
+For a prime $p$, is the ideal $(p,x)$ of $\Z[x]$ a flat $\Z[x]$-module?
+\end{prb}
+\begin{sol}
+No.
+Consider a short exact sequence
+\[0\to(p,x)\to\Z[x]\to\Z/p\Z\to0\]
+provides the long exact sequence
+\[0=\Tor_2^{\Z[x]}(\Z[x],\Z/p\Z)\to\Tor_2^{\Z[x]}(\Z/p\Z,\Z/p\Z)\to\Tor_1^{\Z[x]}((p,z),\Z/p\Z)\to\Tor_1^{\Z[x]}(\Z[x],\Z/p\Z)=0,\]
+so we have $\Tor_2^{\Z[x]}(\Z/p\Z,\Z/p\Z)\cong\Tor_1^{\Z[x]}((p,x),\Z/p\Z)$.
+For a free resolution
+\[0\to\Z[x]\xrightarrow{x\choose -p}\Z[x]\oplus\Z[x]\xrightarrow{(p\ x)}\Z[x]\to\Z/p\Z\to0\]
+of $\Z/p\Z$ as $\Z[x]$-modules, we can compute $\Tor_2^{\Z[x]}(\Z/p\Z,\Z/p\Z)$ by the second homology of
+\[0\to\Z/p\Z[x]\xrightarrow{x\choose 0}\Z/p\Z[x]\oplus\Z/p\Z[x]\xrightarrow{(0\ x)}\Z/p\Z[x]\to\Z/p\Z\to0,\]
+which is isomorphic to $\Z/p\Z$.
+Therefore, $\Tor_1^{\Z[x]}((p,x),\Z/p\Z)\ne0$ and $(p,x)$ is not flat.
+\end{sol}
+
+\begin{prb}
+Let $A$ be a commutative ring and $B$ be a commutative $A$-algebra.
+Let $d$ be a positive integer and suppose an $A$-module $M$ satisfies $\Tor^A_n(B,M)=0$ for $0<n\le d$.
+Show that for any $B$-module $N$ we have $\Ext_B^m(B\otimes_ AM,N)\cong\Ext_A^m(M,N)$ for $0\le m\le d$.
+\end{prb}
+\begin{sol}
+Let
+\[\cdots\to P_2\to P_1\to P_0\to M\]
+be a projective resolution of an $A$-modules $M$.
+Since $P\oplus Q\cong A^{\oplus I}$ implies $B\otimes_AP\oplus B\otimes_AQ\cong B^{\oplus I}$, and since the vanishing of $\Tor_n^A(B,M)$ implies that the sequence
+\[\cdots\to B\otimes_AP_2\to B\otimes_AP_1\to B\otimes_AP_0\to B\otimes_AM\]
+is exact, this sequence is a projective resolution of $B\otimes_AM$ up to $n\le d$.
+Recall that $\Ext_A(M,N)$ is the cohomology of
+\[0\to\Hom_A(P_0,N)\to\Hom_A(P_1,N)\to\cdots\]
+and $\Ext_B(B\otimes_AM,N)$ is the cohomology of
+\[0\to\Hom_B(B\otimes_AP_0,N)\to\Hom_B(B\otimes_AP_1,N)\to\cdots,\]
+so the desired statement follows from the natural isomorphism $\Hom_A(P,N)\cong\Hom_B(B\otimes_AP,N)$ for $A$-modules $P$.
+\end{sol}
+
+\begin{prb}
+Let $L_\bullet$ be a chain complex of finitely generated free abelian groups.
+Here we do not assume $L$ is bounded below.
+For a prime $p$ and an integer $n$, define $r_{n,p}:=\dim_{\F_p}H_n(L_\bullet\otimes_\Z\F_p)$.
+Show that the following are equivalent:
+\begin{enumerate}[(i)]
+\item The integer $r_{n,p}$ does not depend on $p$ for all $n$.
+\item The homology group $H_n(L_\bullet)$ is free for all $n$.
+\end{enumerate}
+\end{prb}
+\begin{sol}
+\end{sol}
+
+\begin{prb}
+Define a category $\cC$ as follows: an object is a tuple $\cM=(M_0,M_1,f_0,f_1)$ of abelian groups $M_0,M_1$ and homomorphisms $f_i:M_0\to M_1$ with $i\in\{0,1\}$, and a morphism between $\cM=(M_0,M_1,f_0,f_1)$ and $\cM'=(M_0',M_1',f_0',f_1')$ is a pair $\f=(\f_0,\f_1)$ of homomorphisms $\f_i:M_i\to M_i'$ such that $\f_1\circ f_j=f_j'\circ\f_0$ for $i,j\in\{0,1\}$.
+\begin{enumerate}[(1)]
+\item Show that $\cC$ is abelian.
+\item For an abelian group $N$, define objects $r_0(N):=(N,0,0,0)$ and $r_1(N):=(N\otimes N,N,\pr_0,\pr_1)$ in $\cC$. Show that for any object $\cM=(M_0,M_1,f_0,f_1)$ in $\cC$ there are natural isomorphisms
+\[\Hom_\cC(\cM,r_0(N))\cong\Hom(M_0,N),\qquad\Hom_\cC(\cM,r_1(N))\cong\Hom(M_1,N).\]
+\item Show that $\cC$ has enough injective objects.
+\item Define a functor $F:\cC\to\mathbf{Ab}$ such that $F(\cM):=\{m\in M_0:f_0(m)=f_1(m)\}$. Show that $R^1F(\cM)=\coker(f_0-f_1)$ and $R^iF=0$ for $i\ge2$, where $R^iF$ denotes the right derived functor.
+\end{enumerate}
+\end{prb}
+\begin{sol}
+\end{sol}
+
+\begin{prb}
+Let $\cA$ be an abelian category with enough injective objects.
+Let $C^{\ge0}(\cA)$ be an abelian category of cochain complexes $K^\bullet$ such that $K^n=0$ for $n<0$.
+\begin{enumerate}[(1)]
+\item For an integer $n\ge0$, find the right adjoint functor of the functor $e_n^*:C^{\ge0}(\cA)\to\cA:K^\bullet\mapsto K^n$.
+\item Show that $C^{\ge0}(\cA)$ has enough injective objects.
+\item Show that the right derived functor of the left exact functor $H^0:C^{\ge0}(\cA)\to\cA:K^\bullet\mapsto H^0(K^\bullet)$ is given by $H^n:C^{\ge0}(\cA)\to\cA:K^\bullet\mapsto H^n(K^\bullet)$ for $n\ge0$.
+\end{enumerate}
+\end{prb}
+\begin{sol}
+
+\end{sol}
+
+\begin{prb}
+Give an example of an abelian category in which the direct product exists and the direct product does not preserve right exact sequences.
+\end{prb}
+\begin{sol}
+Consider the category of sheaves over the Hawaiian earring $M$.
+Let $A$ and $B$ be the set of $\R$ and $S^1$-valued continuous functions on $M$.
+\end{sol}
+
+\begin{prb}
+Give an example of an additive category $\cC$ with kernels and cokernels in which a morphism $f:A\to B$ such that $\operatorname{coim}f\to\im f$ is not epi exists.
+\end{prb}
+\begin{sol}
+Let $\cC$ be the category of filtered real vector spaces with the indexing set $\Z$.
+More precisely, an object of $\cC$ is a real vector space $V$ together with an non-decreasing sequence $(V_n)_{n=-\infty}^\infty$ of subspaces of $V$, and a morphism from $(V,(V_n))$ to $(W,(W_n))$ is a pair $(f,(f_n))$ of a linear map $f:V\to W$ and a sequence of linear maps $f_n:V_n\to W_n$ such that for every $m<n$ the restriction of $f_n$ on $V_m$ is equal to $f_m$, where we write $f=f_\infty$ by convention.
+The category $\cC$ has kernel $(\ker f,(\ker f\cap V_n))$ and cokernel $(\coker f,(\pi(W_n)))$, where $\pi:W\to\coker f$.
+
+Let $V:=W:=\R$, $f:V\to W$ with $f(v)=v$, $f_n:V_n\to W_n$, and
+\[V_n:=\begin{cases}0&\text{ if }n\le0\\\R&\text{ if }n\ge1\end{cases},\qquad W_n:=\begin{cases}0&\text{ if }n\le-1\\\R&\text{ if }n\ge0\end{cases},\qquad f_n:=\begin{cases}0&\text{ if }n\le0\\\id_\R&\text{ if }n\ge1\end{cases}.\]
+Since the kernel and cokernel of $(f,(f_n))$ are trivial, we have $\operatorname{coim}=\coker\ker=V$ and $\im=\ker\coker=W$, and the morphism $\operatorname{coim}f\to\im f$ is just $f$, which is not epi.
+
+The category of topological vector spaces also provieds a counterexample.
+\end{sol}
+
+\end{document}

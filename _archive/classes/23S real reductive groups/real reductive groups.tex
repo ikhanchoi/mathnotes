@@ -1,0 +1,195 @@
+\documentclass{../../small}
+\usepackage{../../ikhanchoi}
+
+\begin{document}
+\title{Real Reductive Groups}
+\author{Ikhan Choi\\Lectured by Yoshiki Oshima\\University of Tokyo, Spring 2023}
+\maketitle
+\tableofcontents
+
+\newpage
+\section{Day 1: April 5}
+
+We know the finite dimensional representations of complex reductive Lie groups, which has a 1-1 correspondence with finite dimensional(unitary) reps of compact Lie groups via unitarian trick.
+For example, $\GL(n,\C)$ and $\SL(n,\C)$ belong to former, and $\rU(n)$ and $\SU(n)$ are in the latter.
+
+For the construction and classification of irreducible reps (highest weight theory) of complex reductive Lie groups, we have several methods:
+\begin{itemize}
+\item as quotients of a Verma module,
+\item as holomorphic sections of line bundles on a flag varieity (Borel-Weil theory).
+\end{itemize}
+
+For infinite dim reps of a real reductive Lie groups such as
+\[\SL(n,\R),\quad\GL(n,\R),\quad\rO(p,q)=\{g\in M_{p+q}(\R):^tg\rI_{p,q}g=\rI_{p,q}\}\ (\rI_{p,q}:=I_p\oplus(-I_q)),\]
+\begin{itemize}
+\item asymptotic behaviors of matrix elements, quotients of principal series representations (Langlands)
+\item D-modules over flag variety (Beilinson-Bernstein, Brylinski-Kashiwara)
+\item minimal K-type (Vogar)
+\end{itemize}
+
+Classification of infinite-dimensional unitary reps is still unsolved.
+
+\bigskip
+
+\begin{defn}
+A Lie group is informally both a manifold and a group.
+A $C^\infty$ (complex) manifold is a Hausdorff second countable space that is locally homeomorphic to open sets in $\R^n$ ($\C^n$), such that the transition maps are $C^\infty$ (holomorphic).
+
+A Lie group is a group with a structure of $C^\infty$ manifolds such that maps from the group structures $G\times G\to G:(g,g')\mapsto gg'$ and $G\to G:g\mapsto g^{-1}$ are $C^\infty$.
+We can do same for complex Lie groups.
+\end{defn}
+
+\begin{ex}[Lie groups]
+$(\R,+)$, $(\R^\times,\times)$, $\GL(n,\R)$ ($C^\infty$ structure is induced from $\R^{n^2}$ as an open subset), $\SL(n,\R)$ (preimage theorem from) are Lie groups.
+\end{ex}
+\begin{ex}[Complex Lie groups]
+$(\C^n,+)$, $(\C^\times,\times)$, $\GL(n,\C)$, $\SL(n,\C)$ are complex Lie groups.
+$U(n)$ is not complex.
+\end{ex}
+
+\textbf{Exercise.} Check that the above examples.
+
+
+\bigskip
+
+
+
+The definitions of representations differ in references.
+In this lecture, we follow:
+\begin{defn}[(Finite dimensional) Representation]
+Let $G$ be a Lie group, $V$ a finite-dimensional vector space over $\C$.
+A (finite-dimensional) representation is a Lie group homomoprphism $\pi:G\to GL_\C(V)$.
+We can do same for holomorphic representations.
+\end{defn}
+\begin{rmk}
+For a group homomorphism $\pi:G\to\GL(V)$ from a Lie group $G$, TFAE:
+\begin{parts}
+	\item $\pi$ is $C^\infty$
+	\item $\pi$ is continuous
+	\item $G\times V\to V$ is continuous.
+\end{parts}
+\end{rmk}
+
+
+\begin{ex}
+$(\det,\C)$ and $(\id_{\GL(n,\C)},\C^n)$ are holomorphic representations of $\GL(n,\C)$.
+If we define $\mu^m:\C^\times\to\C^\times:z\mapsto z^m$, then $(\mu^m,\C)$ is a holomorphic representation of both $\C^\times$ and $\rU(1)$.
+\end{ex}
+
+
+
+\begin{defn}
+For two reps $(\pi,V)$, $(\pi',V')$ of $G$, we say thery are equivalent if there is a linear isomorphism $i:V\to V'$ such that $\pi(g)i=i\pi'(g)$ for all $g\in G$.
+For a subspace $W\subset V$, if $\pi(g)(W)\subset W$ for $g\in G$, then we say a representation $(\pi_W,W)$ is a subrepresentation of $(\pi,V)$.
+Irreducible representations are representations having only two subrepresentations.
+They are ``minimal units'' of representations.
+
+For reps $(\pi_1,V_1),\cdots,(\pi_n,V_n)$ of $G$, we define the direct sum as a representation on $V_1\oplus\cdots\oplus V_n$ with
+\[(\pi_1\oplus\cdots\oplus\pi_n)(g)(v_1,\cdots,v_n):=(\pi_1(g)v_1,\cdots,\pi_n(g)v_n).\]
+\end{defn}
+\begin{prop}[Holomorphic representations of $\C^\times$ and $U(1)$]\,
+\begin{parts}
+\item If $(\pi,V)$ is a holomorphic representation of $\C^\times$, then there is $m_1,\cdots,m_n\in\Z$ such that
+\[\pi\sim\mu^{m_1}\oplus\cdots\oplus\mu^{m_n}.\]
+\item If $(\pi,V)$ is a holomorphic representation of $\rU(1)$, then there is $m_1,\cdots,m_n\in\Z$ such that
+\[\pi\sim\mu^{m_1}\oplus\cdots\oplus\mu^{m_n}.\]
+\end{parts}
+In other words, every finite-dimensional holomorphic representations of $\GL(1,\C)=\C^\times$ and $\SL(1,\C)=\rU(1)$ are completely reducible, and the sequence $(\mu^m)_{m=-\infty}^\infty$ provides a complete list of irreducible($=$one-dimensional, on abelian groups) holomorphic representations.
+\end{prop} 
+\begin{pf}
+We first show the following lemma: 
+If $(\pi,\C^n)$ is a representation of a Lie group $(\R,+)$, then there is $X\in M_n(\C)$ such that $\pi(t)=\exp(tX)$ for $t\in\R$, i.e. $\pi$ factors through $\R\to M_n(\C):t\mapsto tX$.
+
+Proof of the lemma:
+If we take a small open ball $U$ of $M_n(\C)$ centered at the origin, then $\exp:U\to\GL(n,\C)$ is injective, so we can take $t_0$ small enough so that $\pi([-t_0,t_0])\subset\exp(\frac12U)$.
+Let $Y\in U,Z\in\frac12U$ such that $\pi(t_0)=\exp(Y)$, $\pi(\frac{t_0}2)=\exp(Z)$.
+Then, $\pi(t_0)=\exp(2Z)$, so $Y=2Z$.
+Repeating this, $\pi(\frac{t_0}{2^N})=\exp(\frac{Y}{2^N})$ for all $N$.
+Since $\{\frac{M}{2^N}t_0\}$ is dense in $\R$ and $\pi$ is continuous, $\pi(at_0)=\exp(aY)$ $\forall a\in\R$.
+Thus we have $X=t_0^{-1}Y$ which satisfies the lemma.
+(Remark: we only have used the continuity of $\pi$, not the smoothness)
+Then we back to the proof of the proposition.
+
+(b)
+By composition of $e:\R\to U(1):t\mapsto e^{2\pi it}$, we have a representation $(\pi\circ e,V)$ of $\R$.
+By the lemma, $\pi\circ e(t)=\exp(tX)$ for some $X\in M_n(\C)$, and it satisfies $\exp(X)=\pi\circ e(1)=\pi(1)=\rI_n$.
+Since $X$ is diagonalizable, we have
+\[X\sim2\pi i\mat{m_1&&0\\&\ddots&\\0&&m_n}\quad\Rightarrow\quad\pi(z)=\mat{z^{m_1}&&0\\&\ddots&\\0&&z^{m_n}}.\]
+
+(a)
+$U(1)\to\C^\times\to\GL(V)$.
+By the identity theorem from complex analysis, we have
+\[\pi(z)=\mat{z^{m_1}&&0\\&\ddots&\\0&&z^{m_n}}.\]
+\end{pf}
+
+\section{Day 2: April 19}
+Reference: Kobayashi-Oshima, Carter-Segal-Macdonald, Warner
+
+
+\begin{rmk}
+From the above proposition, we have
+\[\begin{array}{ccc}
+\left\{\begin{tabular}{c}representations of $U(1)$\end{tabular}\right\}
+&\xrightarrow{\sim}&
+\left\{\begin{tabular}{c}holomorphic\\representations of $\GL(1,\C)$\end{tabular}\right\}.
+\end{array}\]
+More generally, Weyl's unitarian trick states
+\[\begin{array}{ccc}
+\left\{\begin{tabular}{c}representations of $U(n)$\end{tabular}\right\}
+&\xrightarrow{\sim}&
+\left\{\begin{tabular}{c}holomorphic\\representations of $\GL(n,\C)$\end{tabular}\right\}
+\end{array}\]
+and
+\[\begin{array}{ccc}
+\left\{\begin{tabular}{c}representations of\\a compact Lie group\end{tabular}\right\}
+&\xrightarrow{\sim}&
+\left\{\begin{tabular}{c}holomorphic representations of\\a complex reductive Lie group\end{tabular}\right\}.
+\end{array}\]
+\end{rmk}
+\begin{rmk}
+In particular, a holomorphic representation of $\C^\times$ is the direct sum of irreducible representations.
+However, a holomorphic representation of $\C$ may not be the direct sum of irreducible representations, i.e. not completely reducible.
+We have a counterexample
+\[\C\to\GL(2,\C):t\mapsto\mat{1&t\\0&1}.\]
+Every finite-dimensional representation of $\GL(n,\C)$ is completely reducible.
+\end{rmk}
+
+\subsubsection*{Borel-Weil theory}
+
+Let $G=\GL(n,\C)$ or $\SL(n,\C)$.
+Let $X$ be a flag variety(we have not defined yet).
+For each $\lambda=(\lambda_i)\in\Z^n$, a holomorphic line bundle $L_\lambda$ over $X$ is determined.
+\begin{thm}
+$\Gamma(X,L_\lambda)\ne0$ if and only if $\lambda_1\ge\cdots\ge\lambda_n$.
+\end{thm}
+
+\begin{ex}[$n=2$]
+We have $X=\CP^1$.
+
+Then, $\Gamma$
+
+The natural action $G=\GL(2,\C)$ on $V=\C^2$ induces an action of $G$ on $\P^1$, which also induces an action of $G$ on $\Gamma(\P^1,L_{\cO(k)})$.
+
+
+\end{ex}
+
+\begin{align*}
+\Gamma(U_1,L_{\cO(k)})&\cong&\{\text{holomorphic functions on $\C$}\}\\
+[z_1:z_2]\mapsto([z_1:z_2],f_1(z_1/z_2))&\mapsto&f.
+\end{align*}
+
+
+every integral weight corresponds to a holomorphic line bundle
+
+\newpage
+\section{Day 3: April 26}
+
+When we write $\hat G$ as the set of equivalence classes of irreducible holomorphic representations of $G$, then we have shown that there is a one-to-one correspondence $\hat{\GL(1,\C)}\leftrightarrow\Z$.
+In this case, $X=\{*\}$.
+
+
+
+
+
+
+\end{document}

@@ -1,0 +1,1029 @@
+\documentclass{../../../small}
+\usepackage{../../../ikhanchoi}
+\DeclareMathOperator{\Tot}{Tot}
+
+\begin{document}
+\title{Homological Algebra}
+\author{Ikhan Choi\\Lectured by Takeshi Tsuji\\University of Tokyo, Spring 2023}
+\maketitle
+\tableofcontents
+
+\newpage
+\section{Day 1: April 6}
+
+\section*{1. Modules}
+
+References: Atsushi Shiho, Yukiyoshi Kawada
+
+\subsection*{1.1. $R$-modules}
+\begin{defn}
+Let $R$ be a ring with 1.
+A (left) $R$-module is an abelian group $M$ with a map $R\times M\to M:(a,x)\mapsto ax$ satisfying $a(x+y)=ax+ay$, $(a+b)x=ax+bx$, $(ab)x=a(bx)$, $1x=x$.
+\end{defn}
+\begin{ex}
+\begin{parts}
+\item Every abelian group is a $\Z$-module. The $R$-module structures on an abelian group $M$ has 1-1 correspondence with the ring homomorphisms $R\to\End_\Z(M)$.
+\item $M=C^\infty(\R)$, $R=\R[T]$ a polynomial ring, $R\times M\to M:(P(T),f(x))\mapsto P(\dd{x})f(x)$.
+\end{parts}
+\end{ex}
+
+\begin{defn}
+A (left) $R$-submodule of $M$ is a subgroup $N\subset M$ such that $ax\in N$ for $a\in R$, $x\in N$.
+A (left) $R$-homomorphism is a group homomorphism $M\to N$ which preserves the action of $R$.
+\end{defn}
+\begin{ex}
+\begin{parts}
+\item $M=C^\infty(\R)$, $R=\R[T]$, then $\f:M\to M:f(x)\mapsto f(x+1)$ is an $R$-homomorphism.
+\end{parts}
+\end{ex}
+
+\begin{defn}
+Let $f:M\to N$ be an $R$-homomorphism.
+The kernel of $f$ is $\ker f:=\{x\in M:f(x)=0\}\xrightarrow{i}M$, and the cokernel of $f$ is $N\xrightarrow{p}\coker f:=N/\im f$, where the image is $\im f:=\{f(x)\in N:x\in M\}\xrightarrow{j}N$.
+\begin{cd}
+\ker f \ar{r}{i}& M \ar{rr}{f}\ar{dr}{f}&& N \ar{r}{p}& \coker{f}\\
+&&\im f \ar{ur}{j}&&
+\end{cd}
+On each of them, there is a unique $R$-module structure such that the each map $i,j,p$ becomes an $R$-homomorphism respectively.
+\end{defn}
+
+\begin{thm}[Universal property]
+For the above setting, note that $fi=0$ and $pf=0$.
+If an $R$-homomorphism $g:M'\to M$ satisfies $fg=0$, then there is a unique $R$-homomorphism $h:M'\to\ker f$ such that $g=ih$.
+If an $R$-homomorphism $g:N\to N'$ satisfies $gf=0$, then there is a unique $R$-homomorphism $h:\coker f\to N'$ such that $g=hp$.
+\end{thm}
+
+\subsection{Commutative diagrams and exact sequences}
+
+\begin{defn}[Diagram]
+Among some $R$-modules suppose we have $R$-homomorphisms as the following diagram:
+\begin{cd}
+M_1\ar{r}{f_1}\ar[swap]{d}{f_3} & M_2 \ar[swap]{ld}{f_2} \ar{d}{g_1}\\
+M_3\ar{r}{g_2}&M_4\qquad.
+\end{cd}
+Then, if the compositions sharing each source and target coincide, then we say the diagram is commutative.
+For example, we say the triangle formed by $M_2,M_3,M_4$ is commutative iff $g_1=g_2f_2$.
+\end{defn}
+
+\begin{defn}[Sequence]
+A sequence is a diagram of $R$-modules placed linearly as
+\begin{es}
+\cdots\>M_n\>{f_n} M_{n+1}\>{f_{n+1}} M_{n+2} \>\cdots.
+\end{es}
+If $\im f_n=\ker f_{n+1}$ for all $n$, then we say the sequence is exact.
+\end{defn}
+
+\begin{ex}
+\begin{parts}
+\item $f:M\to N$ is injective iff $0\to M\xrightarrow{f}N$ is exact. $f:M\to N$ is surjective iff $M\xrightarrow{f}N\to0$ is exact.
+\item
+\begin{es}
+	0 \> \ker f \>{i} M \>{f} N \>{p} \coker f \> 0
+\end{es}
+is exact.
+\item
+\begin{es}
+	0 \> \Z \>{n} \Z \> \Z/n\Z \> 0
+\end{es}
+is exact.
+\item 
+\begin{es}
+	0 \> \R\cos x\oplus\R\sin x \>{n} C^\infty(\R) \>{\dd[2]{x}+1} C^\infty(\R) \> 0
+\end{es}
+is exact.
+\end{parts}
+\end{ex}
+
+\begin{prop}[Five lemma]
+Suppose each row is exact in the folloing commutative diagram:
+\begin{cd}
+M_1 \ar{r}{f_1}\ar{d}{h_1} & M_2 \ar{r}{f_2}\ar{d}{h_2} & M_3 \ar{r}{f_3}\ar{d}{h_3} & M_4 \ar{r}{f_4}\ar{d}{h_4} & M_5 \ar{d}{h_5}\\
+N_1 \ar{r}{g_1} & N_2 \ar{r}{g_2} & N_3 \ar{r}{g_3} & N_4 \ar{r}{g_4} & N_5 .
+\end{cd}
+Then,
+\begin{parts}
+\item
+\begin{cd}
+\,\ar[two heads]{d} & \,\ar[hook]{d} & \,\ar[hook,dashed]{d} & \,\ar[hook]{d} & \, \\ \,&\,&\,&\,&\,
+\end{cd}
+\item
+\begin{cd}
+\, & \, \ar[two heads]{d} & \, \ar[two heads,dashed]{d} & \, \ar[two heads]{d} & \, \ar[hook]{d}\\ \,&\,&\,&\,&\,
+\end{cd}
+\item
+\begin{cd}
+\, \ar[two heads]{d} & \, \ar{d}{\sim} & \, \ar[dashed]{d}{\sim} & \, \ar{d}{\sim} & \, \ar[hook]{d}\\ \,&\,&\,&\,&\,
+\end{cd}
+\end{parts}
+\end{prop}
+\begin{pf}
+(a)
+We will show $x\in\ker h_3$ is in the image of $f_2f_1$:
+$h_3(x)=0\implies f_3(x)=0\implies x=f_2(y)\implies g_2h_2(y)=0\implies h_2(y)=g_1(z)\implies z=h_1(u)\implies f_1(u)=y$. Then, $x=f_2(y)=f_2f_1=0$.
+
+(b)
+Similar.
+
+(c)
+Clear.
+\end{pf}
+
+\begin{prop}[Snake lemma]
+Suppose the second and the third rows are exact in the following commutative diagram:
+\begin{cd}
+&\ker h_1&\ker h_2&\ker h_3&\\
+&M_1&M_2&M_3&0\\
+0&N_1&N_2&N_3&\\
+&\coker h_1&\coker h_2&\coker 3&\\
+\end{cd}
+\begin{parts}
+\item There is $\delta:\ker h_3\to\coker h_1$ such that
+\begin{es}
+\ker h_1 \>{k_1} \ker h_2 \>{k_2} \ker h_3 \>{\delta} \coker h_1 \>{l_1} \coker h_2 \>{l_2} \coker 3
+\end{es}
+is exact.
+Here $k_1,k_2,l_1,l_2$ are induced from $f_1,f_2,g_1,g_2$, respectively.
+The element $\delta(x)$ is determined by $u$ such that $x=f_2(y)$, $z=h_2(y)$, $z=g_1(u)$, and we can check that $u$ does not depend on the choice of $y$.
+\item
+\end{parts}
+\end{prop}
+\begin{pf}
+(a)
+We have to show the well-definedness of $\delta$, $\ker\subset\im$, and $\im\subset \ker$.
+Skip.
+\end{pf}
+
+In the general abelian cateogies, the five lemma and the snake lemma hold but the proofs become more complicated.
+
+
+\subsection{Direct sum, direct product, inductive limit, direct limit}
+
+\begin{defn}
+Let $M_\lambda$ be a family of $R$-modules.
+The direct product is
+\[\prod_\lambda M_\lambda:=\{(x_\lambda):x_\lambda\in M_\lambda\}\twoheadrightarrow M_\lambda,\]
+and the direct sum is the submodule of the direct product such that
+\[\bigoplus_\lambda M_\lambda:=\{(x_\lambda):x_\lambda=0\text{ but finitely many}\}\hookleftarrow M_\lambda\]
+\end{defn}
+\begin{prop}[Universal property]
+\begin{parts}
+\item For $f_\mu:M_\mu\to N$ there is unique $f:\bigoplus_\lambda M_\lambda\to N$ such that $fi_\mu=f_\mu$.
+\item For $g_\mu:N\to M_\mu$ there is unique $g:N\to\prod_\lambda M_\lambda$ such that $p_\mu g=g_\mu$.
+\end{parts}
+\end{prop}
+\begin{rmk}
+\begin{parts}
+\item The direct sum and direct product is unique up to isomorphism by the universal property.
+\item For $R$-homomorphisms $f_\lambda:M_\lambda\to N_\lambda$ we can induce $\prod_\lambda f_\lambda:\prod_\lambda M_\lambda\to\prod_\lambda N_\lambda$ and $\bigoplus_\lambda f_\lambda:\bigoplus_\lambda M_\lambda\to\bigoplus_\lambda N_\lambda$.
+\item In the category of modules, even for infinite indices, direct product and sum commute with the kernel, cokernel, and image. In an abelian category, we may not have infinie direct product/sum.
+\item exactness also preserved under products and sums
+\end{parts}
+\end{rmk}
+
+
+\newpage
+\section{Day 2: April 13}
+
+Let $(\Lambda,\prec)$ be a totally ordered set.
+By a direct system, we refer the family of $R$-modules $M_\lambda$ for each $\lambda\in\Lambda$ and the family of $R$-homomorphisms $\tau_{\mu\lambda}:M_\lambda\to M_\mu$ for $\lambda\prec\mu$ such that $\tau_{\lambda\lambda}=\id_{M_\lambda}$ and $\tau_{\kappa\lambda}=\tau_{\kappa\mu}\tau_{\mu\lambda}$ for $\lambda\prec\mu\prec\kappa$.
+
+\begin{ex*}\hspace{-5pt}\textbf{1.3.3.}\,
+\begin{parts}
+\item Let $\Lambda=\N$ and $n\prec m\Leftrightarrow n\mid m$, $M_n=\Z$ and $\tau_{mn}(z):M_n\to M_m:z\mapsto(m/n)z$.
+\item Let $M$ be a $R$-module, $\{M_\lambda\}$ are finitely generated $R$-submodules of $M$, and $\lambda\prec\mu\Leftrightarrow M_\lambda\subset M_\mu$, with $\tau_{\mu\lambda}$ inclusions.
+\end{parts}
+\end{ex*}
+
+\begin{defn*}
+\[\lim_{\longrightarrow}M_\lambda=\lim_{\longrightarrow}(M_\lambda,\tau_{\mu\lambda}):=\coker(\bigoplus_{\substack{(\lambda,\mu)\in\Lambda\\\lambda\prec\mu}} M_\lambda\xrightarrow{\Phi}\bigoplus_{\lambda\in\Lambda}M_{\lambda}),\]
+where $\Phi((x_{\lambda\mu}))=\sum_{\lambda\prec\mu}\iota_\mu\tau_{\mu\lambda}(x_{\lambda\mu})-\iota_\lambda(x_{\lambda\mu})$, and $\iota_\lambda:M_\lambda\to\bigoplus_\lambda M_\lambda$ is a componentwise embedding.
+That is, we want to identify $x\in M_\lambda$ and $\tau_{\mu\lambda}(x)\in M_\mu$ with the map $\Phi$.
+\end{defn*}
+\begin{prop*}\hspace{-5pt}\emph{\textbf{1.3.4.}}\,
+Let $\tau_\mu:M_\mu\xrightarrow{\iota_\mu}\bigoplus_\lambda M_\lambda\twoheadrightarrow\lim_{\longrightarrow}M_\lambda$.
+\begin{parts}
+\item $\tau_\mu=\tau_\kappa\tau_{\kappa\mu}$.
+\item $M_\mu\xrightarrow{f_\mu} N$ for $\mu\in\Lambda$ are $R$-homomorphisms, and they satisfy $f_\mu=f_\kappa\tau_{\kappa\mu}$. Then, there is a unique $f:\lim_{\longrightarrow}M_\lambda\to N$ such that $f_\mu=f\tau_\mu$
+\end{parts}
+\end{prop*}
+
+For each example in 1.3.3, $\Q$ and $M$ are the direct limits because it satisfies the universal property (1.3.4(b))
+
+\begin{rmk*}
+(1) The direct limit is unique by the universal property up to isomorphism.
+
+(2) If $f_\lambda:M_\lambda\to M_\lambda'$ are $R$-homomorphism such that
+\begin{cd}
+M_\lambda \ar{r}{f_\lambda} \ar{d} & M\lambda' \ar{d}\\
+M_\mu \ar{r}{f_\mu} & M_\mu'
+\end{cd}
+commutes for all $\lambda\prec\mu$,
+then there is a unique $f$ such that
+\begin{cd}
+\bigoplus_{\lambda\prec\mu}M_\lambda \ar{r}\ar{d}
+&\bigoplus_{\lambda}M_\lambda \ar{r}\ar{d}
+&\lim_{\longrightarrow}M_\lambda \ar{d}{\exists!f} \ar{r}
+&0\ar{d}\\
+\bigoplus_{\lambda\prec\mu}M_\lambda' \ar{r}
+&\bigoplus_{\lambda}M_\lambda' \ar{r}
+&\lim_{\longrightarrow}M_\lambda'\ar{r}
+&0
+\end{cd}
+commutes, and $f$ is denoted by $\lim_{\longrightarrow}f_\lambda$.
+It is by the universal property of cokernel.
+\end{rmk*}
+
+\begin{defn*}\hspace{-5pt}\textbf{1.3.6.}\,
+A preordered set $\Lambda$ is a directed set if $\forall\lambda,\lambda'\in\Lambda$, there is $\mu\in\Lambda$ such that $\lambda,\lambda'\prec\mu$.
+\end{defn*}
+\begin{prop*}
+If $\Lambda$ is a directed set, then there is a 1-1 correspondence
+\[(\coprod_\lambda M_\lambda)/\sim\to\lim_{\longrightarrow}M_\lambda:[x_\lambda]\mapsto\tau_\lambda(x_\lambda),\]
+where $x_\lambda\sim y_{\lambda'}$ iff there is $\mu\succ\lambda,\lambda'$ such that $\tau_{\mu\lambda}(x_\lambda)=\tau_{\mu\lambda'}(y_{\lambda'})$.
+\end{prop*}
+
+\begin{prop*}
+If
+\begin{es}
+L_\lambda \>{f_\lambda} M_\lambda \>{g_\lambda} N_\lambda \> 0
+\end{es}
+is exact, then
+\begin{es}
+\colim L_\lambda \> \colim M_\lambda \> \colim N_\lambda \> 0
+\end{es}
+is exact.
+\end{prop*}
+\begin{pf}
+The only non-trivial part is the exactness at $\colim M_\lambda$.
+We can prove it by diagram chasing.
+\end{pf}
+
+\begin{ex*}
+Examples of inverse limit
+\begin{parts}
+\item projection $\Z/p^m\Z\twoheadrightarrow\Z/p^n\Z$ for $m>n$.
+\item restriction $C^\infty((-r,r))\to C^\infty((-r',r')$ for $r'>r$.
+\end{parts}
+\end{ex*}
+
+
+\newpage
+\section{Day 3: April 20}
+\begin{ex*}
+Limit preserves injectivity, but not surjectivity: although the diagram
+\begin{cd}
+\Z\ar{r}\ar{d} & \cdots\ar{r} & \Z \ar{r}{\id}\ar[two heads]{d} & \Z \ar[two heads]{d}\\
+\Z_p \ar{r} & \cdots\ar{r} & \Z/p^2\Z \ar{r} & \Z/p\Z
+\end{cd}
+commutes, but  the induced map $\Z\to\Z_p:=\lim_n\Z/p^n\Z$ is not surjective because we have an element $x\in\Z_p$ such that for $\pi_n:\Z_p\to\Z/p^n\Z$ we have $\pi_n(x)\equiv1\pmod{p^n}$ for all $n$.
+\end{ex*}
+\begin{lem*}[Mittag-Leffler condition]
+Let
+\[0\to M_n\to N_n\to L_n\to0\]
+be a sequence of exact sequences.
+Suppose $(M_n)$ satisfies that for each $n$ we have a eventually constant monotonically decreasing sequence
+\[M_n\supset\pi_{n,n+1}(M_{n+1})\supset\pi_{n,n+2}(M_{n+2})\supset\cdots\]
+of submodules of $M_n$.
+Then,
+\[0\to \lim M_n\to \lim N_n\to \lim L_n\to 0.\]
+\end{lem*}
+
+Note that when we consider the seuqence of kernels $p^n\Z$ of the maps $\Z\to\Z/p^n\Z$ in the above example, we can check the sequence does not satisfy the Mittag-Leffler condition.
+
+\subsection*{1.4. Properties of Hom}
+
+From now on, we always let $R$ be a commutative ring and $M,N$ be a $R$-modules.
+Define
+\[\Hom_R(M,N):=\{f:M\to N\text{, $R$-homomorphism}\}.\]
+It is an $R$-module, which is not the case if $R$ is not commutative.
+If $\f:N_1\to N_2$ is an $R$-homomorphism, then
+\[\Hom_R(M,N_1)\to\Hom_R(M,N_2):f\mapsto\f\circ f\]
+is an $R$-homomorphism.
+If $\psi:M_1\to M_2$ is an $R$-homomorphism, then
+\[\Hom_R(M_2,N)\to\Hom_R(M_1,N):f\mapsto f\circ\psi\]
+is an $R$-homomorphism.
+\begin{prop*}\hspace{-5pt}\emph{\textbf{1.4.1.}}
+\begin{parts}
+\item If
+\[0\to N_1\to N_2\to N_3\]
+is exact, then
+\[0\to\Hom_R(M,N_1)\to\Hom_R(M,N_2)\to\Hom_R(M,N_3)\]
+is exact.
+\item If
+\[M_1\to M_2\to M_3\to0\]
+is exact, then
+\[0\to\Hom_R(M_3,N)\to\Hom_R(M_2,N)\to\Hom_R(M_1,N)\]
+is exact.
+\end{parts}
+\end{prop*}
+\begin{pf}
+(a)
+If $f_2\in\Hom_R(M,N_2)$ satisfies $\f_2\circ f_2=0$, then by the universal property there exists unique $f_1:M\to N_1$ such that the diagram
+\begin{cd}
+&&M\ar[dashed,swap]{dl}{\exists!\,f_1}\ar{d}{f_2}\ar{dr}&\\
+0\ar{r}&N_1\ar{r}&N_2\ar{r}{\f_2}&N_3
+\end{cd}
+commutes.
+
+(b)
+Similar.
+\end{pf}
+
+\begin{ex*}
+For
+\[0\to\Z\xrightarrow{\cdot n}\Z\to\Z/n\Z\to0,\]
+The maps
+\[0\cong\Hom(\Z/n\Z,\Z)\to\Hom(\Z/n\Z,\Z/n\Z)\cong\Z/n\Z\]
+and
+\[\Z\cong\Hom(\Z,\Z)\xrightarrow{\circ(\cdot n)}\Hom(\Z,\Z)\cong\Z\]
+are not surjective.
+\end{ex*}
+
+\subsection*{1.5. Projective modules}
+
+\begin{defn*}\hspace{-5pt}\textbf{1.5.1.}
+An $R$-module is said to be \emph{projective} if for every surjective $\f:N_1\twoheadrightarrow N_2$ and for every $f:M\to N_2$, there is a map $\tilde f:M\to N_1$ such that
+\begin{cd}
+\, & M \ar{d}{f}\ar[dashed,swap]{dl}{\tilde f}\\
+N_1 \ar[two heads]{r} & N_2
+\end{cd}
+commutes, equivalently,
+\[\Hom_R(M,N_1)\to\Hom_R(M,N_2)\to0\]
+is exact for every exact $N_1\to N_2\to0$.
+\end{defn*}
+
+\begin{prop*}\hspace{-5pt}\emph{\textbf{1.5.2.}}\,
+If $M$ is a projective module, then $\Hom_R(M,-)$ is an exact functor.
+\end{prop*}
+\begin{prop*}\hspace{-5pt}\emph{\textbf{1.5.3.}}\,
+A direct sum of $R$-modules is projective iff its summands are all projective.
+In particular, a free $R$-module is projective.
+\end{prop*}
+
+\begin{cor*}\hspace{-5pt}1.5.4.\,
+As a corollary, a module $M$ is projective if and only if there is another module $N$ such that $M\oplus N$ is free.
+\end{cor*}
+\begin{pf}
+($\Rightarrow$)
+Take generators of $\{e_\lambda\}_\lambda$ of $M$.
+Then, for
+\[f:\bigoplus_\lambda R\twoheadrightarrow M:(a_\lambda)\mapsto \sum_\lambda a_\lambda e_\lambda,\]
+we have an exact sequence
+\[0\to\ker f\to\bigoplus_\lambda R\to M\to0,\]
+which is right split by applying the definition of projective modules to extend the codomain of $\id_M:M\to M$.
+
+($\Leftarrow$)
+Clear from Proposition 1.5.3.
+\end{pf}
+\begin{cor*}\hspace{-5pt}1.5.5.
+Let $R$ be a PID.
+Then, since a submodule of a free module is free, so a module is projective if and only if it is free.
+\end{cor*}
+
+\subsection*{1.6. Injective modules}
+
+\begin{defn*}\hspace{-5pt}\textbf{1.6.1.}
+An $R$-module is said to be injective if for every injective $\f:N_1\hookrightarrow N_2$ and for every $g:N_1\to M$, there is a map $\tilde g:N_2\to M$ such that
+\begin{cd}
+N_1 \ar{d}{g} \ar[hook]{r}{\f} & N_2 \ar[dashed]{dl}{\tilde g}\\
+M  & \,
+\end{cd}
+commutes, equivalently,
+\[\Hom_R(N_2,M)\to\Hom_R(N_1,M)\to0\]
+is exact for every exact $0\to N_1\to N_2$.
+\end{defn*}
+
+
+\begin{prop*}\hspace{-5pt}\textbf{\emph{1.6.3.}}
+An $R$-module $M$ is injective iff the restriction $\Hom(R,M)\to\Hom(I,M)$ is surjective for every ideal $I$ of $R$.
+\end{prop*}
+\begin{pf}
+($\Rightarrow$) Clear.
+($\Leftarrow$) Suppose there is $x\in N_2$ such that $N_2=N_1+Rx$.
+Define an ideal $I$ of $R$ such that there is an exact sequence
+\[0 \to I \to N_1\oplus R \to N_2 \to 0,\]
+in which the first map sends $b$ to $(-bx,b)$ and the second map sends $(y,a)$ to $y+ax$.
+Define $h:I\to M$ by $h(b):=g(bx)$ and extend it to $\tilde h:R\to M$.
+Define $\tilde g:N_2\to M$ by $\tilde g(y+ax):=g(y)+\tilde h(a)$.
+We can check it is well-defined from the exactness of the above defining sequence of $I$.
+(To be continued..)
+\end{pf}
+
+\begin{cor*}\hspace{-5pt}\textbf{\emph{1.6.4.}}
+If $R$ is a PID, then an $R$-module $M$ is injective iff for all $0\ne a\in R$ the map $M\xrightarrow{\cdot a}M$ is surjective.
+\end{cor*}
+\begin{pf}
+Let $I$ be an ideal.
+If $I=0$, then clear.
+If not, we have $I=aR$ for some $0\ne a\in R$.
+Then, the restriction $\Hom(R,M)\to\Hom(I,R)$ is surjective if and only if
+\[\begin{array}{ccccccc}
+M&\xrightarrow{\sim}&\Hom(R,M)&\to&\Hom(aR,M)&\xrightarrow{\sim}&aM\\
+m&\mapsto&(1\mapsto m)&\mapsto&(a\mapsto am)&\mapsto&am
+\end{array}\]
+is surjective.
+\end{pf}
+
+\begin{ex*}
+If $R=\Z$, then $\Q$ and $\Q/\Z$ are injective, and $\Z$ and $\Z/n\Z$ are not injective.
+\end{ex*}
+
+
+
+\newpage
+\section{Day 4: April 27}
+
+\begin{pf}[Proof of 1.6.3.]
+Let $\cS$ be the set of all pairs $(N,h)$ such that $N_1\subset N\subset N_2$ and
+\begin{cd}
+N_1 \ar[hook]{r}\ar{d} & N\ar{dl}\\
+M
+\end{cd}
+commutes, and define a partial order $\prec$ such that $(N,h)\prec(N',h')$ if ando only if
+\begin{cd}
+N \ar[hook]{r}\ar{d} & N'\ar{dl}\\
+M
+\end{cd}
+commutes.
+Since the union of a chain belongs to $\cS$, $\cS$ has a maximal element $(N_0,h_0)$ by Zorn's lemma.
+If $N_0\subsetneq N_2$, then by taking $x\in N_2\setminus N_0$, we can show $N_0$ is not maximal, so $N_0=N_2$.
+\end{pf}
+
+\begin{prop*}\hspace{-5pt}\textbf{\emph{1.6.5.}}
+Let $M_\lambda$ be $R$-modules, and $M$ be their product.
+Then, $M$ is injective if and only if every $M_\lambda$ is injective.
+\end{prop*}
+\begin{pf}
+Apply the definition on the following diagram to show the first row is surjective:
+\begin{cd}
+\Hom_R(N_2,\prod_\lambda M_\lambda)\ar{r}\ar{d}{=}
+&\Hom_R(N_1,\prod_\lambda M_\lambda)\ar{d}{=}\\
+\prod_\lambda\Hom_R(N_2,M_\lambda)\ar{r}
+&\prod_\lambda\Hom_R(N_1,M_\lambda).
+\end{cd}
+\end{pf}
+
+\begin{prop*}\hspace{-5pt}\textbf{\emph{1.6.6.}}
+If $M$ is injective $Z$-module, then $\Hom_\Z(R,M)$ is an injective $R$-module.
+\end{prop*}
+\begin{lem*}\hspace{-5pt}\textbf{\emph{1.6.7.}}
+Let $N$ be an $R$-module and $M$ be a $\Z$-module.
+Then, $\Hom_\Z(R,M)$ is an $R$-module, and there is a bijection
+\[\Hom_R(N,\Hom_\Z(R,M))\cong\Hom_\Z(N,M).\]
+\end{lem*}
+\begin{pf}[Proof of Proposition 1.6.6.]
+Apply Lemma 1.6.7 to show the first row is surjective:
+\begin{cd}
+\Hom_R(N_2,\Hom_\Z(R,M)) \ar{r} \ar{d}{=}
+&\Hom_R(N_1,\Hom_\Z(R,M)) \ar{d}{=} \\
+\Hom_\Z(N_2,M) \ar{r} & \Hom_\Z(N_1,M).
+\end{cd}
+\end{pf}
+
+\begin{thm*}\hspace{-5pt}\textbf{\emph{1.6.8.}}
+Every $R$-module $M$ is embedded in an injective $R$-module.
+\end{thm*}
+\begin{pf}
+Suppose $R=\Z$.
+The surjectivity of
+\[\bigoplus_\lambda\Z\twoheadrightarrow\Hom_\Z(M,\Q/\Z)\]
+implies
+\[\Hom_\Z(\Hom_\Z(M,\Q/\Z),\Q/\Z)\hookrightarrow\Hom_\Z(\bigoplus_\lambda\Z,\Q/\Z)=\prod_\lambda\Q/\Z.\]
+Then, it suffices to prove the canonical map
+\[M\to\Hom_\Z(\Hom_\Z(M,\Q/\Z),\Q/\Z))\]
+is injective.
+For non-zero $x\in M$, by the injectivity of $\Q/\Z$, we can extend a $\Z$-homomorphism $f:\Z x\to\Q/\Z$ satisfying $f(x)\ne0$ to a $\Z$-homomorphism $\tilde f:M\to\Q/\Z$ satisfying $\tilde f(x)=f(x)\ne0$.
+Threrfore, we are done.
+
+Now let $R$ be arbitrary commutative ring.
+Consider an $R$-homomorphism
+\[\Phi:M\hookrightarrow\Hom_\Z(R,M):x\mapsto(a\mapsto ax),\]
+which is easily checked to be injective by putting $a=1$.
+Let $M'$ be an injective $\Z$-module with an injective $\Z$-homomorphism $M\to M'$, and it induces
+\[M\hookrightarrow\Hom_\Z(R,M)\hookrightarrow\Hom_\Z(R,M').\qedhere\]
+\end{pf}
+
+\subsection*{1.7. Tensor products}
+
+\begin{defn*}\hspace{-5pt}\textbf{{1.7.1.}}
+Let $R$ be a commutative ring, and $M_1,M_2,N$ be $R$-modules.
+Let $\Phi:M_1\times M_2\to N$ be an $R$-bilinear map.
+If $R$ is non-commutative, then $M_1$ and $M_2$ are set to be right and left $R$-modules resepctively, and $\Phi$ is just a $\Z$-bilinear map but required to satisfy an additional condition $\Phi(-a,-)=\Phi(-,a-)$.
+Such $\Phi$ is called a balanced product.
+
+There is an $R$-module such that the following universal property holds: for every balanced product $\Phi:M_1\to M_2\to N$, there is a unique $R$-homomorphism
+\begin{cd}
+M_1\times M_2 \ar{r}{\otimes} & M\\
+& N
+\end{cd}
+Then, $M$ is called the tensor product of $M_1$ and $M_2$.
+\end{defn*}
+
+
+\begin{pf}
+Let $\tilde M$ be a free $R$-module generated by $M_1\times M_2$.
+Let $\tilde M_0$ be a $R$-subodule of $\tilde M$ generated by
+\begin{gather*}
+(p+p',q)-(p,q)-(p',q),\quad (p,q+q')-(p,q)-(p,q'),\\
+(ap,q)-a(p,q),\qquad\qquad\quad (p,aq)-a(p,q).
+\end{gather*}
+Let $M:=\tilde M/\tilde M_0$.
+Then, it satisfies the universal property(Exercise!).
+\end{pf}
+
+\begin{rmk}\hspace{-5pt}\emph{1.7.2.}
+\begin{parts}
+\item The tensor product is unique.
+\item $M_1\otimes M_2$ is an $R$-module.
+\item For $f_1:M_1\to M_1'$ and $f_2:M_2\to M_2'$, we have an $R$-homomorphism $f_1\otimes f_2:M_1\otimes M_2\to M_1'\otimes M_2'$ defined by
+\begin{cd}
+M_1\times M_2 \ar{r}{\otimes}\ar{d} & M_1\otimes_RM_2 \ar[dashed]{d}{\exists!\,f_1\otimes f_2}\\
+M_1'\times M_2'\ar{r}{\otimes} & M_1'\otimes_RM_2'.
+\end{cd}
+\end{parts}
+\end{rmk}
+
+\begin{prop}\hspace{-5pt}\textbf{\emph{1.7.3.}}
+\begin{parts}
+\item $R\otimes_RM\cong M$.
+\item $M\otimes_RR\cong M$.
+\item $(\bigoplus_\lambda M_\lambda)\otimes_RN\cong\bigoplus_\lambda(M_\lambda\otimes_RN)$.
+\item $N\otimes_R(\bigoplus_\lambda M_\lambda)\cong\bigoplus_\lambda(N\otimes_RM_\lambda)$.
+\end{parts}
+\end{prop}
+\begin{pf}
+Use the universal properties for the right-hand sides.
+\end{pf}
+\begin{prop}\hspace{-5pt}\textbf{\emph{1.7.4.}}
+Let $R$ be commutative.
+\begin{parts}
+\item $(M_1\otimes_RM_2)\otimes_RM_3\cong M_1\otimes_R(M_2\otimes_RM_3)$.
+\item $M_1\otimes_RM_2\cong M_2\otimes_RM_1$.
+\end{parts}
+\end{prop}
+\begin{pf}
+(a) Use the universal property.
+
+(b) Omitted.
+\end{pf}
+
+\begin{prop}\hspace{-5pt}\textbf{\emph{1.7.5.}}
+If
+\[M_1\xrightarrow{f} M_2\to M_3\to0\]
+is exact, then
+\[N\otimes_RM_1\to N\otimes_RM_2\to N\otimes_RM_3\to0\]
+is exact.
+\end{prop}
+\begin{pf}
+We can construct a unique $\Psi$ by the universal property of $N\otimes M_2$ so that the following diagram commutes.
+\begin{cd}
+N\otimes_RM_1 \ar{r} & N\otimes_RM_2 \ar{r} & \coker(\id_N\otimes f) \ar{r} & 0\\
+N\times M_1 \ar{r}\ar{u}{\otimes} & N\times M_2 \ar[two heads]{r}\ar{u}{\otimes} & N\times M_3 \ar[dashed]{u}{\exists!\,\Psi}&
+\end{cd}
+Therefore, we can check $\coker(\id_N\otimes f)$ satisfies the universal property.
+\end{pf}
+
+\begin{ex*}
+We have
+\[M/IM\cong(R\otimes M)/(I\otimes M)\cong(R/I)\otimes M.\]
+If $M=R/I$, then
+\[I/I^2\to R/I\to(R/I)^{\otimes2}\to0\]
+is exact, and the first map is not injective.
+\end{ex*}
+
+Direct limit.
+\[(\colim_\lambda N_\lambda)\otimes_RM\cong\colim_\lambda (N_\lambda\otimes_R M).\]
+\begin{pf}
+\begin{cd}
+(\bigoplus_{\lambda<\mu}N_\lambda)\otimes_RM \ar{r} & (\bigoplus_{\lambda}N_\lambda)\otimes_RM \ar{r} & \coker \ar{r} & 0\\
+\bigoplus_{\lambda<\mu}(N_\lambda\otimes_RM) \ar{r}\ar{u}{\otimes} & \bigoplus_{\lambda}(N_\lambda\otimes_RM) \ar[two heads]{r}\ar{u}{\otimes} & \colim_{\lambda}(N_\lambda\otimes_RM) \ar[dashed]{u}{\exists!\,\Psi}&
+\end{cd}
+\end{pf}
+
+% 보족: 사진 참고
+
+\newpage
+\section{Day 5: May 11}
+
+\subsection*{1.8. Flat modules}
+\begin{defn*}[1.8.1]
+Let $R$ be a commutative ring and $M$ be an $R$-module.
+We say $M$ is flat if $\id\otimes f:M\otimes N_1\to M\otimes N_2$ is injective for every injective $f:N_1\hookrightarrow N_2$.
+If $R$ is noncommutative, consider $-\otimes M$ and $M\otimes-$ for left and right modules $M$ respectively.
+\end{defn*}
+
+\begin{ex*}\,
+\begin{parts}
+\item A free $R$-module is flat since tensor product and direct sum satisfy the distribution law.
+\item A direct limit of flat modules is flat. For example, $\Q=\colim\frac1n\Z$ is flat.
+\end{parts}
+\end{ex*}
+
+\begin{prop*}[1.8.2]
+If $M$ is flat, then $M\otimes_R-$ is an exact functor.
+\end{prop*}
+
+\begin{prop*}[1.8.3]
+Let $M$ be a left $R$-module.
+Then, we can give $\Hom_\Z(M,\Q/\Z)$ a right $R$-module structure by $(fa)(x)=f(ax)$ for $a\in R$ and $x\in M$.
+For an injective right $R$-homomorphism $N_1\hookrightarrow N_2$ between right $R$-modules, $N_1\otimes M\to N_2\otimes M$ is injective if and only if
+\[\Hom_R(N_2,\Hom_\Z(M,\Q/\Z))\xrightarrow{-\circ f}\Hom_R(N_1,\Hom(M,\Q/\Z))\]
+is surjective.
+\end{prop*}
+\begin{pf}
+We first observe that
+\[\Hom_\Z(N\otimes M,\Q/\Z)\cong\Hom_R(N,\Hom_\Z(M,\Q/\Z)).\]
+Also we have the following from the fact that $\Q/\Z$ is injective: for $\Z$-module homomorphism $f:L_1\to L_2$, $f$ is injective if and only if $\Hom_\Z(L_1,\Q/\Z)\to\Hom_\Z(L_2,\Q/\Z)$ is surjective.
+\end{pf}
+\begin{rmk*}
+If $N\curvearrowright R\curvearrowleft M\curvearrowright S$ and $L\curvearrowright S$, then $\Hom_S(N\otimes_RM,L)\cong\Hom_R(N,\Hom_S(M,L))$.
+\end{rmk*}
+
+\begin{cor*}[1.8.4]
+For a left $R$-module $M$, $M$ is flat if and only if $\Hom(M,\Q/\Z)$ is injective.
+\end{cor*}
+
+\begin{cor*}[1.8.5]
+For a right $R$-module $M$, $M$ is flat if and only if $I\otimes_RM\to R\otimes_RM=M$ is injective for every right ideal $I\subset R$
+\end{cor*}
+
+\begin{cor*}[1.8.6]
+Let $R$ be a PID.
+Then, $M$ is flat if and only if $M\xrightarrow{\cdot a}M$ is injective for every $a\in R$.
+\end{cor*}
+\begin{pf}
+\[M=R\otimes M\cong I\otimes M\hookrightarrow R\otimes M=M.\]
+\end{pf}
+
+
+\subsection*{2. Complexes}
+
+\subsubsection*{2.1. Definitions}
+
+\begin{defn*}[2.1.1]
+A chain complex is a pair of a (bilateral) sequence of $R$-modules $C_n$ and a (bilateral) sequence of $R$-homomorphisms $\partial_n:C_n\to C_{n-1}$ such that $\partial_{n-1}\circ\partial_n=0$.
+
+A cochain complex is a pair of a (bilateral) sequence of $R$-modules $C^n$ and a (bilateral) sequence of $R$-homomorphisms $d^n:C^n\to C^{n+1}$ such that $d^{n+1}\circ d^n=0$.
+\end{defn*}
+\begin{ex*}[2.1.2]
+The simplicial homology and the de Rham cohomology.
+\end{ex*}
+\begin{rmk*}
+It is frequently assumed to be $C_n=0$ and $C_n=0$ for negative $n$.
+\end{rmk*}
+\begin{defn*}[2.1.3]
+Let $C_\bullet$ be a chain complex.
+Then, $Z_n(C_\bullet):=\ker\partial_n$, $B_n(C_\bullet):=\im\partial_{n+1}$, and $H_n(C_\bullet):=Z_n(C_\bullet)/B_n(C_\bullet)$.
+For cochain complexes, we can do the same thing. 
+
+A chain map between two chain complexes $C_\bullet$ and $C'_\bullet$ is a sequence $f_\bullet=(f_n:C_n\to C'_n)$ such that $\partial'_{n-1}\circ f_n=f_{n-1}\circ\partial_n$.
+Then, we can check it induces $H_n(f_\bullet):H_n(C_\bullet)\to H_n(C'_\bullet)$.
+
+A short sequence of chain complexes is said to be exact if the short sequence at each $n$ is exact.
+\end{defn*}
+\begin{thm*}[2.1.4]
+If
+\[0\to C_\bullet\to C'_\bullet\to C''_\bullet\to0\]
+is exact, then there is a exact sequence
+\[\cdots\to H_n(C_\bullet)\to H_n(C'_\bullet)\to H_n(C''_\bullet)\xrightarrow{\delta_n}H_{n-1}(C_\bullet)\to\cdots.\]
+\end{thm*}	
+\begin{pf}
+\begin{cd}
+0 \ar{r}\ar{d} & Z_n \ar{r}\ar{d} & Z'_n \ar{r}\ar{d} & Z''_n \ar{d} & \,\\
+0 \ar{r}\ar{d} & C_n \ar{r}\ar{d} & C'_n \ar{r}\ar{d} & C''_n \ar{r}\ar{d} & 0 \ar{d}\\
+0 \ar{r} & C_{n-1} \ar{r}\ar{d} & C'_{n-1} \ar{r}\ar{d} & C''_{n-1} \ar{r}\ar{d} & 0 \ar{d}\\
+\, & C_{n-1}/B_{n-1} \ar{r} & C'_{n-1}/B'_{n-1} \ar{r} & C''_{n-1}/B''_{n-1} \ar{r} & 0
+\end{cd}
+The snake lemma implies the exactness of the first and fourth rows.
+\begin{cd}
+\, & H_n \ar{r}\ar{d} & H'_n \ar{r}\ar{d} & H''_n \ar{d} & \,\\
+\, & C_n/B_n \ar{r}\ar{d} & C'_n/B'_n \ar{r}\ar{d} & C''_n/B''_n \ar{r}\ar{d} & 0\\
+0 \ar{r} & Z_{n-1} \ar{r}\ar{d} & Z'_{n-1} \ar{r}\ar{d} & Z''_{n-1} \ar{d} & \,\\
+\, & H_{n-1} \ar{r} & H'_{n-1} \ar{r} & H''_{n-1} & \,
+\end{cd}
+The snake lemma implies the desired boundary map $\delta_n$.
+\end{pf}
+
+\subsubsection*{2.2. Homotopy}
+
+\begin{defn*}[2.2.1]
+Let $f,g:C\to C'$ be chain maps.
+A sequence $k=k_\bullet=(k_n:C_n\to C'_{n+1})$ of $R$-homomorphisms such that $f_n-g_n=k_{n-1}\circ\partial_n+\partial'_{n+1}\circ k_n$ is called a homotopy between $f$ and $g$.
+\end{defn*}
+\begin{prop*}[2.2.2]
+If $f,g:C_\bullet\to C'_\bullet$ are homotopic, then $H_n(f)=H_n(g)$.
+\end{prop*}
+\begin{ex*}\,
+\begin{parts}
+\item
+Let $K$ be an algebraic extension over $\Q$.
+\begin{cd}
+0 \ar{r} & K \ar{r}\ar{dl} & K[x] \ar{r}{\frac d{dx}}\ar[swap]{dl}{k^0} & K[x] \ar{r}\ar[swap]{dl}{k^1} & 0\ar{dl}\\
+0 \ar{r} & K \ar{r} & K[x] \ar{r}{\frac d{dx}} & K[x] \ar{r} & 0
+\end{cd}
+Define
+\[k^0(\sum_{n\ge0}a_nx^n):=a_0,\qquad k^1(\sum_{n\ge0}a_nx^n):=\sum_{n\ge0}(n+1)^{-1}a_{n+1}x^{n+1}.\]
+Then, $k$ is a homotopy between the zero and the identity, so the cohomology groups are all trivial.
+(cohomology groups of a exact cochain complex are trivial..?)
+
+\item
+Let $S$ be a set and $C^n:=\mathrm{Map}(S^{n+1},M)$ for $R$-module $M$.
+\[(d^nf)(x_0,\cdots,x_{n+1})=\sum_{i=0}^n(-1)^if(x_0,\cdots,\check x_i,\cdots, x_n).\]
+then, $\id$ and $0$ are homotopic.
+\end{parts}
+\end{ex*}
+
+
+
+\newpage
+\section{Day 6: May 18}
+
+\subsubsection*{2.3. Double complexes}
+
+\begin{defn*}
+A double complex is a family of $R$-modules $\{C_{p,q}\}$ indexed by $(p,q)\in\Z^2$ together with $R$-homomorphisms $\partial_{p,q}^I:C_{p,q}\to C_{p-1,q}$ and $\partial_{p,q}^{II}:C_{p,q}\to C_{p,q-1}$ such that
+\begin{enumerate}[(i)]
+\item  $(C_{\bullet,q},\partial_{\bullet,q}^I)$ and $(C_{p,\bullet},\partial_{p,\bullet}^{II})$ are chain complexes,
+\item $\partial^{II}\circ\partial^I+\partial^I\circ\partial^{II}=0$. (anticommuting squares convention, convenient in defining the total complex)
+\end{enumerate}
+For a double complex, we can define total complex by
+\[T_n:=\oplus_{p+q=n} C_{p,q},\qquad\partial_n:T_n\to T_{n-1}:(a_{p,q})_{p+q=n}\mapsto(\partial^I(a_{p,q}))+(\partial^{II}(a_{p,q})),\]
+and it satisfies the axiom of chain complex; $\partial^2=0$.
+The total complex is denoted by $\mathrm{Tot}^\oplus(C)$.
+We can also define with $\times$ instead of $\oplus$ to get $\mathrm{Tot}^\Pi(C)$.
+If $\mathrm{Tot}^\oplus=\mathrm{Tot}^\Pi$, then we write it as $\mathrm{Tot}$.
+\end{defn*}
+\begin{ex*}
+Let $C_\bullet$ and $C'_\bullet$ be chain complexes of right and left $R$-modules(resp.) for a commutative ring $R$.
+Then, $D_{p,q}:=C_p\otimes_RC_q$ and $\partial_{p,q}^I=\partial_p\otimes\id$, $\partial_{p,q}^{II}=(-1)^p\id\otimes\partial_q$ define a double complex, and its total complex is denoted by $C\otimes_RC'$.
+\end{ex*}
+
+\begin{ex*}
+Let $C_\bullet$ and $C'^\bullet$ be chain and cochain complexes $R$-modules for a commutative ring $R$.
+Then, $D_{p,q}:=\Hom(C_p,C'^q)$ and $d_{p,q}^I=-\circ\partial_{p+1}$, $d_{p,q}^{II}=(-1)^{p+q+1}d^q\circ-$ define a double (cochain) complex, and its total complex is denoted by $\Hom(C,C')$.
+\end{ex*}
+
+\begin{prop*}[2.3.1]\,
+\begin{parts}
+\item
+Let $f:C_{\bullet,\bullet}\to C'_{\bullet,\bullet}$; $f_{p,q}:C_{p,q}\to C'_{p,q}$ commutes with $\partial^I$ and $\partial^{II}$.
+Suppose there is $N\in\Z$ such that $p<N$ or $q<N$ imply $C_{p,q}=0$ and $C'_{p,q}=0$.
+Suppose also that $H_n(C_{\bullet,q},\partial^I)\cong H_n(C'_{\bullet,q},\partial^I)$ for each $n\in\Z$ and $q\in\Z$.
+Then, $H_n(\mathrm{Tot}(C))\cong H_n(\Tot(C'))$.
+
+\item
+Let $f:C^{\bullet,\bullet}\to C'^{\bullet,\bullet}$.
+Suppose there is $N\in\Z$ such that $p<N$ or $q<N$ imply $C^{p,q}=0$ and $C'^{p,q}=0$.
+If $H^n(C^{\bullet,q})\cong H^n(C'^{\bullet,q})$ for each $n\in\Z$ and $q\in\Z$, then $H^n(\mathrm{Tot}(C))\cong H^n(\Tot(C'))$.
+\end{parts}
+\end{prop*}
+
+\begin{pf}
+\[C_{p,q}^{\le r}=\begin{cases}0&q>r\\C_{p,q}&q\le r\end{cases}\]
+is a subcomplex of $C$.
+Then, we have an exact sequence
+\[0\to C^{\le r-1}\to C^{\le r}\to C^{(r)}\to0\]
+of double complexes.
+Taking $\Tot$, we have
+\begin{cd}
+\,\ar{r}&H_n(\Tot(C^{\le r-1}))\ar{r}\ar{d}&H_n(\Tot(C^{\le r}))\ar{r}\ar{d}&H_n(\Tot(C_{p,q}^{(r)}))\ar{r}\ar{d}{\sim}&\,\\
+\,\ar{r}&H_n(\Tot(C^{\le r-1}))\ar{r}&H_n(\Tot(C^{\le r}))\ar{r}&H_n(\Tot(C^{(r)}))\ar{r}&\,.
+\end{cd}
+Note that $H_n(\Tot(C^{(r)}))=H_{n-r}(C_{\bullet,r})$ gives the isomorphism at the third column.
+Then, use the five lemma inductively.
+\end{pf}
+
+\subsubsection*{2.4. Ext and Tor}
+
+Let $C$ be a chain complex of $R$-modules and $M$ be an $R$-module.
+Then, $C\otimes M$ is a chain complex and $\Hom(C,M)$ is a cochain complex.
+In this case, we have:
+\begin{enumerate}[(i)]
+\item If $M$ is flat, then $H_n(C\otimes_RM)\cong H_n(C)\otimes_RM$.
+\item If $M$ is injective, then $H_n(\Hom_R(C,M))\cong\Hom_R(H^n(C),M)$.
+\end{enumerate}
+We want to measure the failure of this.
+
+\begin{defn*}[2.4.1]
+Let $M$ be an $R$-module.
+\begin{parts}
+\item A \emph{projective resolution} is an exact sequence
+\[0\leftarrow M\xleftarrow{\e} P_0\xleftarrow{\partial_1} P_1\xleftarrow{\partial_2} P_2\leftarrow\cdots,\]
+where $P_n$ is a projective for each $n$.
+\item A \emph{injective resolution} is an exact sequence
+\[0\to M\xrightarrow{} I^0\xrightarrow{} I^1\xrightarrow{} I^2\rightarrow\cdots,\]
+where $I^n$ is a injective for each $n$.
+\end{parts}
+\end{defn*}
+
+\begin{prop*}[2.4.2]
+Every $R$-module admits a projective resolution and an injective resolution.
+\end{prop*}
+\begin{pf}
+Every module has a surjection(injection) from(to) a free(injective) module.
+Then, for the kernel(cokernel) we can do same thing.
+\end{pf}
+\begin{prop*}[2.4.3]
+Let $f:M\to M'$ be an $R$-homomorphism.
+\begin{parts}
+\item If $(P_\bullet)$ and $(P'_\bullet)$ are projective resolutions, then there is a chain map $g:P\to P'$. If $g$ and $g'$ are two chain maps between $P$ and $P'$, then $g$ and $g'$ are homotopic.
+\item Same for injective resolution.
+\end{parts}
+\end{prop*}
+\begin{pf}
+(a) Lift $f$ to get $g_0$. Restrict to kernel and lift $g_0$ to get $g_1$, and so on.
+
+Restrict to kernel and lift $g_0-g_0'$ to get $h_0$
+\end{pf}
+
+For an injective resolution $I$ of $N$, we define $\Ext_R^n(M,N):=H^n(\Hom_R(M,I^\bullet))$.
+
+For a projective resolution $P$ of $M$, we define $\Tor_n^R(M,N):=H_n(P_\bullet\otimes_RN)$.
+
+(For a flat resolution $F$ of $M$, we define $\Tor_n^R(M,N):=H_n(F_\bullet\otimes_RN)$).
+
+They do not depend on the choice of resolutions.
+
+For $f:M_1\to M_2$, we have an induced homomorphism $\Ext_R^n(M_2,N)\to\Ext_R^n(M_1,N)$.
+
+For $f:N_1\to N_2$, we have an induced homomorphism $\Tor_n^R(M,N_1)\to\Tor_n^R(M,N_2)$.
+
+functoriality.
+
+
+\newpage
+\section{Day 7: June 8}
+
+\begin{thm*}[2.4.4]
+Let $0\to M_1\to M_2\to M_3\to0$ be an exact sequence of $R$-modules and $N$ be an $R$-module.
+Then, there exist long exact sequences
+\begin{parts}
+\item
+\begin{align*}
+0&\to\Hom_R(M_3,N)\to\Hom_R(M_2,N)\to\Hom_R(M_1,N)\\
+&\to\Ext_R^1(M_3,N)\to\Ext_R^1(M_2,N)\to\Ext_R^1(M_1,N)\\
+&\to\Ext_R^2(M_3,N)\to\Ext_R^2(M_2,N)\to\Ext_R^2(M_1,N)\to\cdots.
+\end{align*}
+\item
+\begin{align*}
+0&\to\Hom_R(N,M_1)\to\Hom_R(N,M_2)\to\Hom_R(N,M_3)\\
+&\to\Ext_R^1(N,M_1)\to\Ext_R^1(N,M_2)\to\Ext_R^1(N,M_3)\\
+&\to\Ext_R^2(N,M_1)\to\Ext_R^2(N,M_2)\to\Ext_R^2(N,M_3)\to\cdots.
+\end{align*}
+\item
+\begin{align*}
+\cdots\to\Tor^R_2(M_1,N)\to\Tor^R_2(M_2,N)\to\Tor^R_2(M_3,N)&\to\\
+\Tor^R_1(M_1,N)\to\Tor^R_1(M_2,N)\to\Tor^R_1(M_3,N)&\to\\
+M_1\otimes_RN\quad\to\quad M_2\otimes_RN\quad\to\quad M_3\otimes_RN&\to0.
+\end{align*}
+\item
+\begin{align*}
+\cdots\to\Tor^R_2(N,M_1)\to\Tor^R_2(N,M_2)\to\Tor^R_2(N,M_3)&\to\\
+\Tor^R_1(N,M_1)\to\Tor^R_1(N,M_2)\to\Tor^R_1(N,M_3)&\to\\
+N\otimes_RM_1\quad\to\quad N\otimes_RM_2\quad\to\quad N\otimes_RM_3&\to0.
+\end{align*}
+\end{parts}
+\end{thm*}
+\begin{pf}
+(a)
+For $N\to I^\bullet$ an injective resolution, we have a short exact sequence of cochain complexes
+\[0\to\Hom_R(M_3,I^\bullet)\to\Hom_R(M_2,I^\bullet)\to\Hom_R(M_1,I^\bullet)\to0.\]
+
+(d)
+For $P_\bullet\to N$ a projective resolution, since a projective module is flat, we have a short exact sequence of chain complexes
+\[0\to P_\bullet\otimes_RM_1\to P_\bullet\otimes_RM_2\to P_\bullet\otimes_RM_3\to0.\qedhere\]
+\end{pf}
+
+
+\begin{thm*}[2.4.5]
+We have a natural isomorphism $\Ext_R^n(M,N)=H^n(\Hom_R(P_\bullet,N))$ for any projective resolution $P_\bullet\to M$.
+\end{thm*}
+
+Recall that we have to see $\Hom_R(P_\bullet,N)$ as a cochain complex, although the index is placed at lower.
+The existence of the short exact sequence of cochain complexes
+\[0\to\Hom_R(P_\bullet,M_1)\to\Hom_R(P_\bullet,M_2)\to\Hom_R(P_\bullet,M_3)\to0\]
+implies that $H^n(\Hom_R(P_\bullet,M_i))$ enjoys a long exact sequence.
+
+Let $C^{\bullet,\bullet}$ and $D^{\bullet,\bullet}$ be double complexes bounded below with respect to both directions, i.e. there is $N$ such that if $p\le-N$ or $q\le-N$ then $C^{p,q}=D^{p,q}=0$, and that $H^p(C^{\bullet,q})\xrightarrow{\sim}H^p(D^{\bullet,q})$ for all $p$ and $q$.
+Then, we have shown that $H^n(\Tot(C^{\bullet,\bullet}))\xrightarrow{\sim}H^n(\Tot(D^{\bullet,\bullet}))$ for every $n$.
+
+\begin{prop*}\,
+\begin{parts}
+\item
+Let $C^{\bullet,\bullet}$ be a double complex with $C^{p,\bullet}=0$ for $p<0$.
+Let $A^\bullet$ be a cochian complex.
+Assume $A^\bullet$ and $C^{p,\bullet}$ are bounded below for every $p$.
+Suppose $\e:A^\bullet\to C^{0,\bullet}$ is a cochain map such that
+\[A^q\to C^{0,q}\to C^{1,q}\to\cdots\]
+is a resolution for every $q$.
+Then, $H^n(A^\bullet)\xrightarrow{\sim} H^n(\Tot(C^{\bullet,\bullet}))$.
+\item
+Let $C^{\bullet,\bullet}$ be a double complex with $C^{\bullet,q}=0$ for $q<0$.
+Let $B^\bullet$ be a cochian complex.
+Assume $B^\bullet$ and $C^{\bullet,q}$ are bounded below for every $q$.
+Suppose $\e:B^\bullet\to C^{\bullet,0}$ is a cochain map such that
+\[B^p\to C^{p,0}\to C^{p,1}\to\cdots\]
+is a resolution for every $p$.
+Then, $H^n(A^\bullet)\xrightarrow{\sim} H^n(\Tot(C^{\bullet,\bullet}))$.
+\item
+Let $C_{\bullet,\bullet}$ be a double complex with $C_{p,\bullet}=0$ for $p<0$.
+Let $A_\bullet$ be a chian complex.
+Assume $A_\bullet$ and $C_{p,\bullet}$ are bounded below for every $p$.
+Suppose $\e:C_{0,\bullet}\to A_\bullet$ is a chain map such that
+\[\cdots\to C_{1,q}\to C_{0,q}\to A_q\]
+is a resolution for every $q$.
+Then, $H_n(A_\bullet)\xleftarrow{\sim} H_n(\Tot(C_{\bullet,\bullet}))$.
+\item
+Let $C_{\bullet,\bullet}$ be a double complex with $C_{\bullet,q}=0$ for $q<0$.
+Let $B_\bullet$ be a chian complex.
+Assume $B_\bullet$ and $C_{\bullet,q}$ are bounded below for every $q$.
+Suppose $\e:C_{\bullet,0}\to B_\bullet$ is a chain map such that
+\[\cdots\to C_{p,1}\to C_{p,0}\to B_p\]
+is a resolution for every $p$.
+Then, $H_n(A_\bullet)\xleftarrow{\sim} H_n(\Tot(C_{\bullet,\bullet}))$.
+\end{parts}
+\end{prop*}
+\begin{pf}
+Inflate $A^\bullet$ to construct $A^{\bullet,\bullet}$.
+\end{pf}
+
+\begin{pf}[Proof of Theorem 2.4.5]
+Let $P_\bullet\to M$ and $N\to I^\bullet$ be a projective and an injective resolution respectively.
+Let $A^q:=\Hom_R(M,I^q)$, $B^p:=\Hom_R(P_p,N)$, and $C^{p,q}:=\Hom_R(P_p,I^q)$.
+Since $H^n(A^\bullet)=\Ext_R^n(M,N)$, enough to show $H^n(A^\bullet)=H^n(B^\bullet)$.
+We can define $\e:A^\bullet\to C^{0,\bullet}$ and $\delta:B^\bullet\to C^{\bullet,0}$.
+Apply the above proposition to obtain $H^n(A^\bullet)=H^n(\Tot(C^{\bullet,\bullet}))=H^n(B^\bullet)$.
+\end{pf}
+
+\begin{prop*}[2.4.6]
+Let $M$ be an $R$-module.
+\begin{parts}
+\item $M$ is projective $\Leftrightarrow$ $\Ext_R^n(M,N)=0$ $\forall n$ $\forall N$ $\Leftrightarrow$ $\Ext_R^1(M,N)=0$ $\forall N$.
+\item $M$ is injective $\Leftrightarrow$ $\Ext_R^n(N,M)=0$ $\forall n$ $\forall N$ $\Leftrightarrow$ $\Ext_R^1(N,M)=0$ $\forall N$.
+\item $M$ is flat $\Leftrightarrow$ $\Tor^R_n(M,N)=0$ $\forall n$ $\forall N$ $\Leftrightarrow$ $\Tor^R_1(M,N)=0$ $\forall N$.
+\end{parts}
+\end{prop*}
+\begin{pf}
+(a) For (1)$\Rightarrow$(2), use 2.4.5. For (3)$\Rightarrow$(1), use 2.4.4.
+\end{pf}
+
+
+\begin{lem*}\,
+\begin{parts}
+\item $\Ext_R^n(\bigoplus_\lambda M_\lambda,N)=\prod_\lambda\Ext_R^n(M_\lambda,N)$.
+\item $\Ext_R^n(M,\prod_\lambda N_\lambda)=\prod_\lambda\Ext_R^n(M,N_\lambda)$.
+\item $\Tor^R_n(\bigoplus_\lambda M_\lambda,N)=\bigoplus_\lambda\Tor^R_n(M_\lambda,N)$.
+\item $\Tor^R_n(M,\bigoplus_\lambda N_\lambda)=\bigoplus_\lambda\Tor^R_n(M,N_\lambda)$.
+\end{parts}
+\end{lem*}
+
+\begin{prop*}[2.4.8]
+If $R$ is PID, then $\Ext_R^n=\Tor^R_n=0$ for $n\ge2$.
+\end{prop*}
+\begin{pf}
+($\Ext=0$)
+Embed $N\hookrightarrow I_0$ into an injective.
+Then, $N\to I_0\to I_1\to0$ is an injective resolution because the cokernel $I_1$ is also injective by the $a$-times map.
+
+($\Tor=0$)
+Consider $P_0\twoheadrightarrow M$ from a free module.
+Then, $P_0$ is torsion-free, $P_1$ is also torsion-free, so the kernel $P_1$ is flat.
+(Or, recall that in PID a module is projective iff free, and that a submodule of a free module is free.)
+\end{pf}
+\begin{ex*}\,
+\begin{parts}
+\item $0\to\Z\to\Z\to\Z/m\Z\to0$ is a projective resolution of $\Z/m\Z$.
+Then, taking $\Hom_\Z(-,N)$, we have $N\xrightarrow{m}N\to0$.
+Thus $\Ext_\Z^n(\Z/m\Z)=H^n(N\xrightarrow{m}N\xrightarrow{0}N)$, $\Ext_\Z^1(\Z/m\Z)=N/mN$.
+\item 
+$\Tor_n^\Z(\Z,N)=0$, $\Tor_n^\Z(\Z/m,N)=?$
+\item
+Let $R=\Z/p^2\Z$.
+Then we have a projective resolution
+\[\xrightarrow{p}\Z/p^2\xrightarrow{p}\Z/p^2\xrightarrow{p}\Z/p^2\to\Z/p^2\to0.\]
+Thus $\Tor_n^{\Z/p^2}(\Z/p,\Z/p)\cong\Z/p$ for $n\ge0$.
+Then, $\Ext_{\Z/p^2}^n(\Z/p,\Z/p)=?$
+\item
+Let $R=k[x,y]$ and $N=R/(x,y)$.
+Then,
+\[0\to R\xrightarrow{h\mapsto(yh,-xh)}R^{\oplus2}\xrightarrow{(f,g)\mapsto xf-yg}R\to N\to 0\]
+is a projective resolution,
+\[\Ext_R^n(N,N)=\begin{cases}N&n=0\\N^{\oplus2}&n=1\\N&n=2\\0&n\ge3.\end{cases}\]
+\end{parts}
+\end{ex*}
+
+
+
+\newpage
+\setcounter{section}{8}
+\section{Day 9: June 22}
+
+
+five lemma, snake lemma
+long exact sequences
+
+injective object
+
+
+
+\end{document}

@@ -26,32 +26,26 @@
 \section{Probability distributions}
 
 \begin{prb}[Sample space]
-Mathematically, a \emph{sample space} is defined as a measure space $(\Omega,\cF,P)$ with $P(\Omega)=1$.
+A \emph{sample space} is a probability space, that is, a measure space $(\Omega,\cF,P)$ with $P(\Omega)=1$.
 Elements and measurable subsets of a sample space are called \emph{outcomes} and \emph{events}, respectively.
 Let $\Omega$ be a fixed sample space.
-Then, a \emph{random element} is a measurable function $X:\Omega\to S$ to a measurable space $S$, called the \emph{state space}. 
-If the state space $S$ is the set of real numbers $\R$ together with the Borel $\sigma$-algebra, we call the random element $X$ as a \emph{random variable}.
+Then, a \emph{random element} is a measurable function $X:\Omega\to S$ to a measurable space $S$, called the \emph{state space}.
+The state space $S$ is usally taken to be a Polish space together with its Borel $\sigma$-algebra.
+If $S=\R$ or $\R^d$, then we call the random element $X$ as a \emph{random variable} or $\emph{random vector}$ respectively.
 
-Consider a statistical study of ages of people in the earth.
-For the study, we set the \emph{population} $\cP=\{\text{ people in the earth }\}$ and the age function $a:\cP\to\Z_{\ge0}$.
-In probability theory and statistics, we are interested in the estimation of the size of $a^{-1}(k)$ for each $k\in\Z_{\ge0}$, not in the exact description of the age function $a$.
-
-Let us say that we conducted an experiment in which $n$ people are randomly chosen with replacement, to verify a hypothesis.
-If we denote by $p_i$ the $i$th person, then 
-
-Then a reasonable choice for the domain of the functions $X_i$ is $\Omega=\cP^n$.
-
-Believing the fatalism, an experiment can be seen as a process of revealing a pre-determined fate $\omega$, which is what we call sample or outcome.
-
-
-\begin{parts}
-\item 
-\end{parts}
+Consider a statistical study of ages of people in the earth at a time.
+We conduct an experiment in which $n$ people are randomly chosen with replacement in order to verify a hypothesis.
+We set the \emph{population} $\cP$ be the set of all people in the earth and the age function $a:\cP\to\Z_{\ge0}$.
+If we denote by $X_i$ the age of $i$th person, then the reasonable choice for the domain of the random variables $X_i$ is $\Omega=\cP^n$, since the independence of $X_i$ and $X_j$ for $i\ne j$ can be easily realized by defining $X_i(p_1,p_2,\cdots):=a(p_i)$ by the product measure.
+In probability theory and statistics, we are interested in the distribution of age, that is, the estimation of the size of $a^{-1}(k)$ for each $k\in\Z_{\ge0}$, not in the exact description of the age function $a$, and it is expected to be achieved approximately as $n$ tends to infinity.
+Believing the determinism, an experiment is in fact recognized as an operation of revealing a pre-determined fate $\omega$ in the universal space $\Omega$ of possible world lines.
+The sample space $\Omega$ can be sufficiently enlarged when we require a finer domain of discourse such as the case $n\to\infty$, and we do not care of any concrete description of $\Omega$ except when discussing the mathematical existence issues.
 \end{prb}
+
 \begin{prb}[Probability distribution]
-Let $X:\Omega\to\R$ be a random variable.
+Let $X:\Omega\to S$ be a random element, where $S$ is a topological space.
 The (probability) \emph{distribution} of $X$ is the pushforward measure $X_*P$ on $\R$.
-The right continuous increasing function $F$ corresponded to $X_*P$ is called the (cumulative) \emph{distribution function}.
+The right continuous non-decreasing function $F$ corresponded to $X_*P$ is called the (cumulative) \emph{distribution function}.
 
 If the distribution has discrete support, then we say $X$ is \emph{discrete}.
 Since a probability measure of discrete support is a countable convex combination of Dirac measures, we can define the (probability) \emph{mass function} $p:\supp(X_*P)\to[0,1]$.
@@ -59,9 +53,12 @@ If the distribution is absolutely continuous with respect to the Lebesgue measur
 By the Radon-Nikodym theorem, we can define the (probability) \emph{density function} $f\in L^1(\R)$.
 The mass and density functions are effective ways to describe distributions of random variables in most applications.
 \begin{parts}
-\item
+\item Every single probability Borel measure on $S$ is regular if $S$ is perfectly normal. (inner approximation by closed sets)
+\item Every single probability Borel measure is tight if $S$ is Polish. (inner approximation by compact sets)
 \end{parts}
 \end{prb}
+
+
 \begin{prb}[Expectation and moments]
 Chebyshev's inequality
 \end{prb}
@@ -71,28 +68,10 @@ Chebyshev's inequality
 transformation, function
 \end{prb}
 
+
 \section{Discrete distributions}
 
 \section{Continuous distributions}
-
-\section{Independence}
-
-\begin{prb}[Dynkin's $\pi$-$\lambda$ lemma]
-Let $\cP$ be a $\pi$-system and $\cL$ a $\lambda$-system respectively.
-Denote by $\ell(\cP)$ the smallest $\lambda$-system containing $\cP$.
-\begin{parts}
-\item If $A\in\ell(\cP)$, then $\cG_A:=\{B:A\cap B\in\ell(\cP)\}$ is a $\lambda$-system.
-\item $\ell(\cP)$ is a $\pi$-system.
-\item If a $\lambda$-system is a $\pi$-system, then it is a $\sigma$-algebra.
-\item If $\cP\subset\cL$, then $\sigma(\cP)\subset\cL$.
-\end{parts}
-\end{prb}
-
-\begin{prb}[Monotone class lemma]
-
-\end{prb}
-
-
 
 
 
@@ -110,7 +89,65 @@ equally likely outcomes
 
 
 
-\chapter{Conditional probablity}
+\chapter{Independence}
+
+
+\begin{prb}[Dynkin's $\pi$-$\lambda$ lemma]
+Let $\cP$ be a $\pi$-system and $\cL$ a $\lambda$-system respectively.
+Denote by $\ell(\cP)$ the smallest $\lambda$-system containing $\cP$.
+\begin{parts}
+\item If $A\in\ell(\cP)$, then $\cG_A:=\{B:A\cap B\in\ell(\cP)\}$ is a $\lambda$-system.
+\item $\ell(\cP)$ is a $\pi$-system.
+\item If a $\lambda$-system is a $\pi$-system, then it is a $\sigma$-algebra.
+\item If $\cP\subset\cL$, then $\sigma(\cP)\subset\cL$.
+\end{parts}
+\end{prb}
+
+\begin{prb}[Monotone class lemma]
+
+\end{prb}
+
+\begin{prb}[Kolmogorov extension theorem]
+Let $\{S_i\}_{i\in I}$ be a family of Polish spaces and 
+consider the product $S=\prod_{i\in I}S_i$ with projections $\pi_i:S\to S_i$ and $\pi_J:S\to\prod_{j\in J}S_j$ for finite $J\subset I$.
+A \emph{cylinder set} is a set of the form $\pi_J^{-1}(A)\subset S$ for a measurable $A\in S_J$.
+Let $\cA$ be the semi-algebra containing $\varnothing$ and all cylinders in $S_I$.
+Let $(\mu_J)_J$ be a net of probability measures on $S_I$ satisfying $\sigma(\mu_J)\subset\sigma(\pi_J)$ and the \emph{consistency condition}.
+Define a set function $\mu_0:\cA\to[0,\infty]$ by $\mu_0(A)=\mu_n(A^*)$ and $\mu_0(\varnothing)=0$.
+\begin{parts}
+\item $\mu_0$ is well-defined.
+\item $\mu_0$ is finitely additive.
+\item $\mu_0$ is countably additive if $\mu_0(B_n)\to0$ for cylinders $B_n\downarrow\varnothing$ as $n\to\infty$.
+\item If $\mu_0(B_n)\ge\delta$, then we can find decreasing $D_n\subset B_n$ such that $\mu_0(D_n)\ge\frac\delta2$ and $D_n=D_n^*\times\R^\N$ for a compact rectangle $D_n^*$.
+
+\end{parts}
+\end{prb}
+\begin{pf}
+
+
+(d)
+Let $B_n=B_n^*\times\R^\N$ for a rectangle $B_n^*\subset\R^{r(n)}$.
+By the inner regularity of $\mu_{r(n)}$, there is a compact rectangle $C_n^*\subset B_n^*$ such that
+\[\mu_0(B_n\setminus C_n)=\mu_{r(n)}(B_n^*\setminus C_n^*)<\frac\delta{2^{n+1}}.\]
+Let $C_n:=C_n^*\times\R^\N$ and define $D_n:=\bigcap_{i=1}^nC_i=D_n^*\times\R^\N$.
+Then,
+\[\mu_0(B_n\setminus D_n)\le\mu_0(\bigcup_{i=1}^nB_n\setminus C_i)\le\mu_0(\bigcup_{i=1}^nB_i\setminus C_i)<\frac\delta2,\]
+which implies $\mu_0(D_n)\ge\frac\delta2$.
+
+Take any sequence $(\omega_n)_n$ in $\R^\N$ such that $\omega_n\in D_n$.
+Since each $D_n^*\subset\R^{r(n)}$ is compact and non-empty, by diagonal argument, we have a subsequence $(\omega_k)_k$ such that $\omega_k$ is pointwise convergent, and its limit is contained in $\bigcap_{i=1}^\infty D_i\subset\bigcap_{i=1}^\infty B_n=\varnothing$, which is a contradiction that leads $\mu_0(B_n)\to0$.
+\end{pf}
+
+
+\section{Conditional probability}
+filtered probability space
+disintegration
+
+
+
+
+
+
 
 \section*{Exercises}
 
@@ -133,7 +170,7 @@ Then, $P(A)=P(B)=P(C)=1/3$, and
 \[P(X|A)=\frac12,\quad P(X|B)=0,\quad P(X|C)=1.\]
 Therefore,
 \begin{align*}
-P(C|X)&=\frac{P(X\cap C)}{P(X)}\\
+P(C|X)=\frac{P(X\cap C)}{P(X)}
 &=\frac{P(X|C)P(C)}{P(X|A)P(A)+P(X|B)P(B)+P(X|C)P(C)}\\
 &=\frac{1\cdot \frac13}{\frac12\cdot\frac13+0\cdot\frac13+1\cdot\frac13}=\frac23.
 \end{align*}
@@ -149,62 +186,21 @@ Similarly, $P(A|X)=\frac13$ and $P(B|X)=0$.
 
 
 
-\chapter{Convergence of probability measures}
-
-
-\section{Weak convergence in $\R$}
-\begin{prb}[Portemanteau theorem]
-Let $F_n$ and $F$ be distribution functions $\R\to[0,1]$.
-We will define the \emph{weak convergence} as follows: $F_n$ converges weakly to $F$ if $F_n(x)\to F(x)$ for every continuity point $x$ of $F(x)$.
-\begin{parts}
-\item $F_n(x)\to F(x)$ for all continuity points $x$ of $F$.
-\end{parts}
-\end{prb}
-
-\begin{prb}[Skorokhod representation theorem]
-\end{prb}
-
-\begin{prb}[Continuous mapping theorem]
-\end{prb}
-
-\begin{prb}[Slutsky's theorem]
-\end{prb}
-
-\begin{prb}[Helly's selection theorem]
-\begin{parts}
-\item Monotonically increasing functions $F_n:\R\to[0,1]$ has a pointwise convergent subsequence.
-\item If $(F_n)_n$ is tight, then
-\end{parts}
-\end{prb}
+\chapter{Convergence of distributions}
 
 
 
 
 
 
-\begin{prb}[Properties of probability Borel measures]
-Let $S$ be a topological space.
-\begin{parts}
-\item Every single probability Borel measure is regular if $S$ is perfectly normal. (inner approximateion by closed sets)
-\item Every single probability Borel measure is tight if $S$ is Polish. (inner approximation by compact sets)
-\end{parts}
-\end{prb}
 
 
 
 
 
-\section{Weak topology in the space of probability measures}
+\section{Convergence in distribution}
 
 
-\begin{prb}[Local limit theorems]
-Suppose $f_n$ and $f$ are density functions.
-\begin{parts}
-\item If $f_n\to f$ a.s., then $f_n\to f$ in $L^1$.\hfill(Scheff\'e's theorem)
-\item $f_n\to f$ in $L^1$ if and only if in total variation.
-\item If $f_n\to f$ in total variation, then $f_n\to f$ weakly.
-\end{parts}
-\end{prb}
 
 
 % pi system that generates sigma alg is separating
@@ -214,17 +210,16 @@ Suppose $f_n$ and $f$ are density functions.
 
 
 \begin{prb}[Portmanteau theorem]
-Let $S$ be a normal space and, $\mu_\alpha$ be a net in $\Prob(S)$.
-We define the \emph{weak convergence} as follows: $\mu_\alpha$ converges weakly to $\mu$ if
-\[\int f\,d\mu_\alpha\to\int f\,d\mu\]
-for every $f\in C_b(S)$.
+Let $S$ be a normal space.
+We say a net $\mu_\alpha$ in $\Prob(S)$ \emph{converges in distribution} or \emph{weakly} to $\mu$ if
+\[\int f\,d\mu_\alpha\to\int f\,d\mu,\qquad f\in C_b(S).\]
 The following statements are all equivalent.
 \begin{parts}
-\item $\mu_\alpha\Rightarrow\mu$
+\item $\mu_\alpha\to\mu$ in distribution.
 \item $\mu_\alpha(g)\to\mu(g)$ for every uniformly continuous $g\in C_b(S)$.
-\item $\limsup_\alpha\mu_\alpha(F)\le\mu(F)$ for every closed $F$.
-\item $\liminf_\alpha\mu_\alpha(U)\ge\mu(U)$ for every open $U$.
-\item $\lim_\alpha\mu_\alpha(A)=\mu(A)$ for every Borel $A$ such that $\mu(\partial A)=0$.
+\item $\limsup_\alpha\mu_\alpha(F)\le\mu(F)$ for every closed $F\subset S$.
+\item $\liminf_\alpha\mu_\alpha(U)\ge\mu(U)$ for every open $U\subset S$.
+\item $\lim_\alpha\mu_\alpha(A)=\mu(A)$ for every Borel $A\subset S$ such that $\mu(\partial A)=0$.
 \end{parts}
 \end{prb}
 \begin{pf}
@@ -261,32 +256,15 @@ Since $\e$ is arbitrary, we are done.
 
 
 
-\begin{prb}[Embedding by Dirac measures]
-Let $S$ be a normal space.
-\begin{parts}
-\item $S\to\Prob(S)$ is an embedding.
-\item $S\subset\Prob(S)$ is sequentially closed.
-\item % If a metric is given, then completeness?
-\end{parts}
-\end{prb}
-\begin{pf}
-(a)
-It uses Urysohn.
-
-(b)
-It uses (b)=>(c) of Portmanteau.
-\end{pf}
-
-
 \begin{prb}[L\'evy-Prokhorov metric]
 Let $S$ be a metric space, and $\Prob(S)$ be the set of probability (regular) Borel measures on $S$.
 Define $\pi:\Prob(S)\times\Prob(S)\to[0,\infty)$ such that
-\[\pi(\mu,\nu):=\inf\{\,\alpha>0:\mu(A)\le\nu(A^\alpha)+\alpha,\ \nu(A)\le\mu(A^\alpha)+\alpha,\ \forall A\in\cB(S)\,\},\]
-where $A^\alpha$ is the $\alpha$-neighborhood of $a$.
+\[\pi(\mu,\nu):=\inf\{\,r>0:\mu(A)\le\nu(B(A,r))+r,\ \nu(A)\le\mu(B(A,r))+r,\ \forall A\in\cB(S)\,\},\]
+where $B(A,r):=\bigcup_{a\in A}B(a,r)$.
 \begin{parts}
 \item $\pi$ is a metric.
-\item $\mu_n\to\mu$ in $\pi$ implies $\mu_n\Rightarrow\mu$.
-\item $\mu_\alpha\Rightarrow\mu$ implies $\mu_\alpha\to\mu$ in $\pi$, if $S$ is separable.
+\item If $\mu_n\to\mu$ in $\pi$, then $\mu_n\to\mu$ in distribution.
+\item If $\mu_\alpha\to\mu$ in distribution, then $\mu_\alpha\to\mu$ in $\pi$, if $S$ is separable.
 \item $(S,d)$ is separable if and only if $(\Prob(S),\pi)$ is separable.
 \item $(S,d)$ is compact if and only if $(\Prob(S),\pi)$ is compact
 \item $(S,d)$ is complete if and only if $(\Prob(S),\pi)$ is complete.
@@ -298,111 +276,93 @@ where $A^\alpha$ is the $\alpha$-neighborhood of $a$.
 
 
 
-
-\begin{prb}[Direct direction of Prokhorov's theorem]
+\begin{prb}[Prokhorov theorem]
 Let $S$ be a Polish space.
-Let $\Prob(S)$ be the space of probability measures on $S$ endowed with the topology of weak convergence.
-Prokhorov's theorem states that a subset of $\Prob(S)$ is relatively compact if and only if it is tight.
-We prove one direction, in which the construction of a sufficiently large compact set is a main issue.
-
-Let $\mu\in\Prob(S)$ and let $M$ be a relatively compact subset of $\Prob(S)$.
-\begin{parts}
-\item Every open cover $\{B_\alpha\}_\alpha$ of $S$ has a finite subcollection $\{B_i\}_i$ for each $\e>0$ such that
-\[\mu\Bigl(\bigcup_iB_i\Bigr)>1-\e.\]
-\item Every open cover $\{B_\alpha\}_\alpha$ of $S$ has a finite subcollection $\{B_i\}_i$ for each $\e>0$ such that
-\[\inf_{\mu\in M}\mu\Bigl(\bigcup_iB_i\Bigr)>1-\e.\]
-\item $M$ is tight: there is a compact $K\subset S$ for each $\e>0$ such that
+Let $\Prob(S)$ be the space of probability measures on $S$ endowed with the topology of convergence in distribution.
+Let $M\subset\Prob(S)$.
+We say $M$ is \emph{tight} if for each $\e>0$ there is compact $K\subset S$ such that
 \[\inf_{\mu\in M}\mu(K)>1-\e.\]
+\begin{parts}
+\item If $M$ is relatively compact, then it is tight.
+\item If $M$ is tight, then it is relatively compact.
 \end{parts}
 \end{prb}
 \begin{pf}
 (a)
-Since a separable metric space is Lindel\"of, we may assume $\{B_\alpha\}_\alpha=\{B_i\}_{i=1}^\infty$ is countable.
-Then, we can deduce the conclusion from the continuity from below and the fact $\mu_0(S)=1$.
+Fix $\e>0$.
+We first claim as a lemma that for an open cover $\{B_i\}_{i\in I}$ of $S$ we have
+\[\sup_J\inf_{\mu\in M}\mu(B_J)=1,\]
+where $B_J:=\bigcup_{j\in J}B_j$ and $J$ runs through all finite subsets of $I$.
+Suppose the claim is false so that there are $\e>0$ and a net $(\mu_J)$ in $M$ such that $\mu_J(B_J)\le1-\e$.
+Because $\bar M$ is compact, we have a subnet $\mu_{J_\alpha}$ of $\mu_J$ that converges to $\mu\in\bar M$ in distribution, then by the Portmanteau theorem we have for any finite $J\subset I$ that
+\[\mu(B_J)\le\liminf_\alpha\mu_{J_\alpha}(B_J)\le\liminf_\alpha\mu_\alpha(B_{J_\alpha})\le1-\e.\]
+By limiting $J\uparrow I$, we lead a contradiction, so the claim is verified.
 
-(b)
-Suppose that the conclusion is not true so that there are $\e>0$ and a sequence $\mu_n\in M$ such that
-\[\mu_n\Bigl(\bigcup_{i=1}^nB_i\Bigr)\le1-\e.\]
-If we take a subsequence $(\mu_{n_k})_k$ that converges weakly to $\mu\in\bar M$ using the compactness of $\bar M$, then by the Portmanteau theorem we have for any $n$ that
-\[\mu\Bigl(\bigcup_{i=1}^nB_i\Bigr)\le\liminf_{k\to\infty}\mu_{n_k}\Bigl(\bigcup_{i=1}^nB_i\Bigr)\le\liminf_{k\to\infty}\mu_{n_k}\Bigl(\bigcup_{i=1}^{n_k}B_i\Bigr)\le1-\e.\]
-By taking $n$ sufficiently large, we lead a contradiction to the part (a).
-
-(c)
-Here we need metrizability, which leads to the exitence of countable fundamental system of uniformity for $\frac\e{2^m}$ argument.
-Also we need the completeness to change the total boundedness to compactness.
-
+Now we use that $S$ is Polish.
 Let $\{x_i\}_{i=1}^\infty$ be a dense set in $S$.
-Then, since $\{B(x_i,\frac1m)\}_{i=1}^\infty$ is a countable open cover of $S$ for each integer $m>0$, there is a finite $n_m>0$ such that
-\[\inf_{\mu\in M}\mu\Bigl(\bigcup_{i=1}^{n_m}B(x_i,\tfrac1m)\Bigr)>1-\frac\e{2^m}.\]
+Fix a metric $d$ on $S$ and consider the family of open covers of balls $\{B(x_i,m^{-1})\}$ parametrized by integers $m$.
+By the above claim, there is a finite $n_m>0$ such that
+\[\inf_{\mu\in M}\mu\Bigl(\bigcup_{i=1}^{n_m}B(x_i,m^{-1})\Bigr)>1-\frac\e{2^m}.\]
 Define
-\[K:=\bigcap_{m=1}^\infty\bigcup_{i=1}^{n_m}\bar{B(x_i,\tfrac1m)}.\]
-It is closed and totally bounded in a complete metric space $S$, so $K$ is compact.
+\[K:=\bigcap_{m=1}^\infty\bigcup_{i=1}^{n_m}\bar{B(x_i,m^{-1})},\]
+which compact since $S$ is complete in $d$ and it is closed and totally bounded.
 Moreover, we can verify
 \[1-\mu(K)=\mu\Bigl(\bigcup_{m=1}^\infty\bigcap_{i=1}^{n_m}\bar{B(x_i,\tfrac1m)}^c\Bigr)\le\sum_{m=1}^\infty\left(1-\mu\Bigl(\bigcup_{i=1}^{n_m}B(x_i,\tfrac1m)\Bigr)\right)<\e\]
 for every $\mu\in M$, so $M$ is tight.
-\end{pf}
 
-\begin{prb}[Converse direction of Prokhorov's theorem]
-The ``converse'' direction of Prokhorov's theorem is related to a construction of measure and considered to be more difficult.
-However, it holds in a general setting.
-
-Let $S$ be a normal space.
-Let $\Prob(S)$ be the space of probability measures on $S$ endowed with the topology of weak convergence.
-Let $M$ be a tight subset of $\Prob(S)$ and let $(\mu_\alpha)_\alpha\subset M$ be a net.
-We want to show that it has a convergent subnet in $\Prob(S)$.
-\begin{parts}
-\item $M$ is relatively compact.
-\end{parts}
-\end{prb}
-\begin{pf}
-Let $\beta S$ be the Stone-\v Cech compactification of $S$.
-The inclusion $\iota:S\to\beta S$ is a topological embedding because $S$ is completely regular.
-Pushforward the measures $\mu_\alpha$ to make them probability Borel measures $\nu_\alpha:=\iota_*\mu_\alpha$ on $\beta S$.
-We want to take a convergent subnet of $\nu_\alpha\in\Prob(\beta S)$, and to show the limit is in fact contained in $\Prob(S)$.
-
-Our first claim is that the measure $\nu_\alpha$ is regular for each $\alpha$, that is, $\nu_\alpha\in\Prob(\beta S)$.
-For any Borel $E\subset\beta S$ and any $\e>0$, there is $F\subset E\cap S$ that is closed in $S$ such that $\mu_\alpha(E\cap S)<\mu_\alpha(F)+\e/2$ by inner regularity, and there is $K$ that is compact in $S$ such that $\mu_\alpha(S\setminus K)<\e/2$ by tightness.
+(b)
+We first prove that we have a natural embedding $i_*:\Prob(S)\to\Prob(\beta S)$ with respect to the topology of convergence in distribution, where $\beta S$ is the Stone-\v Cech compactification and the map $i_*$ is the pushforward of the natural embedding $i:S\to\beta S$ taken thanks to that $S$ is completely regular.
+Be cautious that the space $\Prob(\beta S)$ is defined to be the space of probability regular Borel measures on $\beta S$ because $\beta S$ is no more metrizable.
+Let $\mu\in\Prob(S)$ and $\nu:=i_*\mu$.
+Since $\nu$ is cleary a probability Borel measure on $\beta S$, so we prove it is regular.
+For any Borel $E\subset\beta S$ and any $\e>0$, there is relatively closed $F\subset E\cap S$ in $S$ such that $\mu(E\cap S)<\mu(F)+\e/2$ by the inner regularity of $\mu$, and there is $K$ that is compact in $S$ such that $\mu(S\setminus K)<\e/2$ by the tightness of $\mu$.
 Then, the inequality
-\[\nu_\alpha(E)=\mu_\alpha(E\cap S)<\mu_\alpha(F)+\frac\e2<\mu_\alpha(F\cap K)+\e=\nu_\alpha(F\cap K)+\e\]
-proves the regularity of $\nu_\alpha$ since $F\cap K$ is compact in both $S$ and $\beta S$ with $F\cap K\subset E$.
-The space $\Prob(\beta S)$ is compact by the Banach-Alaoglu theorem and the Riesz-Markov-Kakutani representation theorem.
-Therefore, $\nu_\alpha$ has a subnet $\nu_\beta$ that converges to $\nu\in\Prob(\beta S)$.
+\[\nu(E)=\mu(E\cap S)<\mu(F)+\frac\e2<\mu(F\cap K)+\e=\nu(F\cap K)+\e\]
+proves that $\nu$ is regular since $F\cap K$ is closed in $\beta S$ by compactness and satisfies $F\cap K\subset E$.
+Now we prove that for a net $(\mu_\alpha)$ in $\Prob(S)$, if $\nu_\alpha:=i_*\mu_\alpha\to\nu:=i_*\mu$ in distribution, then $\mu_\alpha\to\mu$ in distribution.
+By assumption, we have
+\[\int_{\beta S}f\,d\nu_\alpha\to\int_{\beta S}f\,d\nu,\qquad f\in C(\beta S).\]
+Since $\nu_\alpha(\beta S\setminus S)=\nu(\beta S\setminus S)=0$ and the restriction $C(\beta S)\to C_b(S)$ is an isomorphism due to the universal property of $\beta S$, we have
+\[\int_Sf\,d\mu_\alpha\to\int_Sf\,d\mu,\qquad f\in C_b(S),\] so $\mu_\alpha\to\mu$ in distribution.
+Hence, we have the embedding $i_*:\Prob(S)\to\Prob(\beta S)$.
 
-Recall that $\mu_\beta$ is tight.
-For each $\e>0$, there is a compact $K\subset S$ such that $\nu_\beta(K)=\mu_\beta(K)\ge1-\e$ for all $\beta$.
+Let $M$ be a tight subset of $\Prob(S)$.
+Let $(\mu_\alpha)$ be a net in $M$.
+Because the topology of convergence in distribution on $\Prob(\beta S)$ is compact by the Banach-Alaoglu theorem and the Riesz-Markov-Kakutani representation theorem, the net of regular Borel measures $\nu_\alpha:=i_*\mu_\alpha$ has a subnet $\nu_\beta$ that converges to $\nu\in\Prob(\beta S)$ in distribution.
+By the tightness of $\{\mu_\beta\}$, for each $\e>0$, there is compact $K\subset S$ such that $\nu_\beta(K)=\mu_\beta(K)\ge1-\e$ for all $\beta$.
 Then, by the Portmanteau theorem, we have
 \[\nu(S)\ge\nu(K)\ge\limsup_\beta\nu_\beta(K)\ge1-\e.\]
-Since $\e$ is arbitrary, $\nu$ is concentrated on $S$, i.e. $\nu(S)=1$.
-Now we restrict $\nu$ to $S$ in order to obtain $\mu$, which is a probability Borel measure on $S$.
-
-From the definition of weak convergence we have
-\[\int_{\beta S}f\,d\nu_\beta\to\int_{\beta S}f\,d\nu\]
-for all $f\in C(\beta S)$.
-Since $\nu_\beta(\beta S\setminus S)=\nu(\beta S\setminus S)=0$ and the restriction $C(\beta S)\to C_b(S)$ is an isomorphism due to the universal property of $\beta S$,
-\[\int_Sf\,d\mu_\beta\to\int_Sf\,d\mu\]
-for all $f\in C_b(S)$, so $\mu_\beta$ converges weakly to $\mu\in\Prob(S)$.
+Since $\e$ is arbitrary, $\nu$ is concentrated on $S$, i.e.~$\nu(S)=1$, which means that $\nu$ is contained the image of $\Prob(S)$.
+By restriction $\nu$ on $S$ we obtain $\mu$, the limit of $\mu_\beta$.
 \end{pf}
 
 
+\begin{prb}[Skorokhod representation theorem]
+\end{prb}
 
 
+\begin{prb}[Continuous mapping theorem]
+\end{prb}
 
+
+\begin{prb}[Slutsky theorem]
+\end{prb}
 
 
 \section{Characteristic functions}
 
 \begin{prb}[Characteristic functions]
-Let $\mu$ be a probability measure on $\R$.
-Then, the \emph{characteristic function} of $\mu$ is defined by
+Let $\mu$ be a probability Borel measure on $\R$.
+Then, the \emph{characteristic function} of $\mu$ is a function $\f:\R\to\C$ defined by
 \[\f(t):=Ee^{itX}=\int e^{itx}\,d\mu(x).\]
-Note that $\f(t)=\hat\mu(-t)$ where $\hat\mu$ is the Fourier transform of $\mu\in\cS'(\R)$.
+Note that $\f(t)=\hat\mu(-t)$ where $\hat\mu$ is the Fourier transform of $\mu\in\Prob(S)\subset\cS'(\R)$.
 \begin{parts}
 \item $\f\in C_b(\R)$.
 \end{parts}
 \end{prb}
 
 \begin{prb}[Inversion formula]
-Let $\mu$ be a probability measure on $\R$ and $\f$ its characteristic function.
+Let $\mu$ be a probability Borel measure on $\R$ and $\f$ its characteristic function.
 \begin{parts}
 \item For $a<b$, we have
 \[\mu((a,b))+\frac12\mu(\{a,b\})=\lim_{T\to\infty}\frac1{2\pi}\int_{-T}^T\frac{e^{-ita}-e^{-itb}}{it}\f(t)\,dt.\]
@@ -418,8 +378,8 @@ in $C_0(\R)\cap L^1(\R)$.
 The continuity theorem provides with a tool to verify the weak convergence in terms of characteristic functions.
 Let $\mu_n$ and $\mu$ be probability distributions on $\R$ with characteristic functions $\f_n$ and $\f$.
 \begin{parts}
-\item If $\mu_n\to\mu$ weakly, then $\f_n\to\f$ pointwise.
-\item If $\f_n\to\f$ pointwise and $\f$ is continuous at zero, then $(\mu_n)_n$ is tight and $\mu_n\to\mu$ weakly.
+\item If $\mu_n\to\mu$ in distribution, then $\f_n\to\f$ pointwise.
+\item If $\f_n\to\f$ pointwise and $\f$ is continuous at zero, then $(\mu_n)$ is tight and $\mu_n\to\mu$ in distribution.
 \end{parts}
 \end{prb}
 \begin{pf}
@@ -452,6 +412,44 @@ moment generating function defined on $|t|<\delta$
 
 
 \section*{Exercises}
+
+
+\begin{prb}[Local limit theorems]
+Suppose $f_n$ and $f$ are density functions.
+\begin{parts}
+\item If $f_n\to f$ a.e., then $f_n\to f$ in $L^1$.\hfill(Scheff\'e's theorem)
+\item $f_n\to f$ in $L^1$ if and only if in total variation.
+\item If $f_n\to f$ in total variation, then $f_n\to f$ in distribution.
+\end{parts}
+\end{prb}
+
+\begin{prb}[Convergence on real line]\,
+\begin{parts}
+\item Portmanteau: 
+$F_n(x)\to F(x)$ for every continuity point $x$ of $F$.
+\item Easy proof of the Skorokhod representation
+\item Easy proof of continuous mapping theorem
+\item Easy proof of the Slutsky theorem
+\item Helly selection theorem, which uses $S^1$ instead of $\beta\R$.
+\end{parts}
+\end{prb}
+
+\begin{prb}[Embedding by Dirac measures]
+Let $S$ be a normal space.
+\begin{parts}
+\item $S\to\Prob(S)$ is a topological embedding.
+\item $S\subset\Prob(S)$ is sequentially closed.
+\item % If a metric is given, then completeness?
+\end{parts}
+\end{prb}
+\begin{pf}
+(a)
+It uses Urysohn.
+
+(b)
+It uses (b)=>(c) of Portmanteau.
+\end{pf}
+
 \begin{prb}
 Let $\f_n$ be characteristic functions of probability measures $\mu_n$ on $\R$.
 If there is a continuous function $\f$ such that $\f_n=\f$ on $n^{-1}\Z$, then $\mu_n$ converges weakly.
@@ -487,7 +485,7 @@ Let $S$ be a locally compact Hausdorff space.
 
 
 
-\part{Discrete stochastic process}
+\part{Stochastic processes}
 
 
 \chapter{Limit theorems}
@@ -495,32 +493,28 @@ Let $S$ be a locally compact Hausdorff space.
 \section{Laws of large numbers}
 
 
-Our purpose is to find appropriate $a_n$ and slowly growing $b_n$ such that $(S_n-a_n)/b_n\to0$ in probability or almost surely.
-
-
-\begin{prb}[Kolmogorov-Feller theorem]
-Let $X_i$ be an uncorrelated sequence of random variables such that
-\[\lim_{x\to\infty}\sup_ixP(|X_i|>x)=0.\]
-This condition is called the \emph{Kolmogorov-Feller} condition.
-Let $Y_{n,i}:=X_i\1_{|X_i|\le c_n}$.
+\begin{prb}[Weak law of large numbers]
+Let $(X_i)$ be an uncorrelated sequence of random variables, that is, $E(X_iX_j)=EX_iEX_j$ for all $i,j$.
+Define
+\[g(x):=\sup_ixP(|X_i|>x).\]
+Note that for any $\e>0$, $\sup_iE|X_i|<\infty$ implies $\sup_xg(x)<\infty$, which implies $\sup_iE|X_i|^{1-\e}<\infty$.
+In particular, the condition $\lim_{x\to\infty}g(x)=0$ is called the Kolmogorov-Feller condition.
+Consider the truncation $Y_{n,i}:=X_i\1_{|X_i|\le c_n}$.
 \begin{parts}
-\item We have
-\[\lim_{n\to\infty}P(S_n\ne T_n)=0\]
-if $n\lesssim c_n$.
-\item We have
-\[\lim_{n\to\infty}P\left(\left|\frac{T_n-ET_n}{b_n}\right|>\e\right)=0\]
-if $nc_n\lesssim b_n^2$.
-\item We have
-\[\frac{S_n-ET_n}n\to0\]
-in probability.
+\item If $(n/c_n)g(c_n)\to0$, then
+\[P(S_n\ne T_n)\to0.\]
+\item If $(nc_n/b_n^2)\int_0^\infty g(c_nx)\,dx\to0$, then
+\[P\left(\left|\frac{T_n-ET_n}{b_n}\right|>\e\right)\to0.\]
+\item If the above two conditions are satisfied and $a_n\sim ET_n$, then
+\[\frac{S_n-a_n}{b_n}\to0\qquad\text{in probability}.\]
 \end{parts}
 \end{prb}
 \begin{pf}
-Write $g(x):=\sup_ixP(|X_i|>x)$ so that $g(x)\to0$ as $x\to\infty$.
-
 (a)
+Write $g(x):=\sup_ixP(|X_i|>x)$ so that $g(x)\to0$ as $x\to\infty$.
 It follows from
-\[P(S_n\ne T_n)\le\sum_{i=1}^nP(|X_i|>c_n)\le\sum_{i=1}^n\frac1{c_n}g(c_n)\lesssim g(c_n).\]
+\[P(S_n\ne T_n)\le\sum_{i=1}^nP(|X_i|>c_n)\le\sum_{i=1}^n\frac1{c_n}g(c_n)=\frac{ng(c_n)}{c_n}\to0.\]
+If the Kolmogorov-Feller condition holds, then we may let $c_n\sim n$.
 
 (b)
 We write
@@ -531,64 +525,51 @@ P\left(\left|\frac{T_n-ET_n}{b_n}\right|>\e\right)
 &\le\frac1{\e^2b_n^2}\sum_{i=1}^nE|X_i\1_{|X_i|\le c_n}|^2\\
 &=\frac1{\e^2b_n^2}\sum_{i=1}^n\int_0^{c_n}2xP(|X_i|>x)\,dx\\
 &\le\frac{2n}{\e^2b_n^2}\int_0^{c_n}g(x)\,dx\\
-&=\frac{2nc_n}{\e^2b_n^2}\int_0^1g(c_nx)\,dx\\
-&\lesssim\int_0^1g(c_nx)\,dx.
+&=\frac{2nc_n}{\e^2b_n^2}\int_0^1g(c_nx)\,dx.
 \end{align*}
-Since $g(x)\le x$ and $g(x)\to0$ as $x\to\infty$, the function $g$ is bounded.
-By the bounded convergence theorem, we get $\int_0^1g(c_nx)\,dx\to0$ as $n\to\infty$.
+We are done.
+If the Kolmogorov-Feller condition holds, then we may let $nc_n\sim b_n^2$ by the bounded convergence theorem.
+
+(c)
+From the part (a) and (b) we have
+\[P\left(\left|\frac{S_n-ET_n}n\right|>\e\right)\le P(S_n\ne T_n)+P\left(\left|\frac{T_n-ET_n}{b_n}\right|>\e\right)\to0.\qedhere\]
 \end{pf}
-
-
-\begin{prb}[St. Petersburg paradox]
-We want see the asymptotic behavior of the partial sums $S_n$ of i.i.d. random variables $X_i$ such that $E|X_i|=\infty$.
-Let
-\[P(X_n=2^m)=2^{-m}\quad\text{ for }m\ge1.\]
-Let $Y_{n,i}:=X_i\1_{|X_i|\le c_n}$.
-\begin{parts}
-\item We have
-\[\lim_{n\to\infty}P(S_n\ne T_n)=0\]
-if $n\ll c_n$.
-\item We have
-\[\lim_{n\to\infty}P\left(\left|\frac{T_n-ET_n}{b_n}\right|>\e\right)=0\]
-if $nc_n\ll b_n^2$.
-\item We have
-\[\frac{S_n-n\log_2n}{n^{1+\e}}\to0\]
-in probability for every $\e>0$.
-\end{parts}
-\end{prb}
-\begin{pf}
-(a)
-It follows from
-\[P(S_n\ne T_n)
-\le\sum_{i=1}^nP(X_i\ne Y_{n,i})
-=\sum_{i=1}^nP(|X_i|>c_n)
-\le\sum_{i=1}^n\frac2{c_n}=\frac{2n}{c_n}.\]
-
-(b)
-It follows from
-\begin{align*}
-P\left(\left|\frac{T_n-ET_n}{b_n}\right|>\e\right)
-&\le\frac1{\e^2b_n^2}E|T_n-ET_n|^2\\
-&=\frac1{\e^2b_n^2}\sum_{i=1}^nE|Y_{n,i}-EY_{n,i}|^2\\
-&\le\frac1{\e^2b_n^2}\sum_{i=1}^nE|X_i\1_{|X_i|\le c_n}|^2\\
-&\le\frac1{\e^2b_n^2}n\cdot2c_n
-\end{align*}
-
-\end{pf}
-
 
 
 \begin{prb}[Borel-Cantelli lemmas]
 \end{prb}
 
-\begin{prb}[Head runs]
+
+\begin{prb}[Kolmogorov maximal inequality]
+If $(X_i)$ is the sequence of independent random variables such that $EX_i=0$ and $VX_i<\infty$, then
+\[P(S^*_n>\e)\le\frac1{\e^2}VS_n,\]
+where $S^*_n:=\max_{i\le n}|S_i|$.
+We can prove it by construction of a linear martingale $S_{\tau\wedge n}$ with a stopping time to hit $\e$: independence and zero mean are necessary.
+This is a special case of the Doob maximal inequality for $S_{\tau\wedge n}^2$.
 \end{prb}
 
-\begin{prb}[Strong laws of large numbers for $L^1$]
-Proof by Etemadi
+
+\begin{prb}[Kolmogorov three series theorem]
+Let $(X_i)$ be a sequence of independent random variables.
+Suppose for a constant $c>0$ and $Y_i:=X_i\1_{|X_i|\le c}$  that the following three series are convergent:
+\[\sum_{i=1}^\infty P(|X_i|>c),\qquad\sum_{i=1}^\infty EY_i,\qquad\sum_{i=1}^\infty VY_i.\]
 \end{prb}
 
-Random series proof
+\begin{prb}[Strong laws of large numbers]
+Let $(X_i)$ be a sequence of independent random variables.
+The Kolmogorov condition:
+\[\sum_{n=1}^\infty\frac{E|Y_n|^2}{b_n^2}<\infty.\]
+It is satisfied when $E|X_i|<\infty$.
+Kronecker lemma
+\end{prb}
+
+
+\begin{prb}[Etemadi theorem]
+Extend the theorem for pairwise independent.
+But for pairwise uncorrelated, we need a lower bound.
+By extracting a exponentially fast but sparse subsequence, prove the a.s.~convergence.
+And as we do in renewel theory, we may assume the sequence is non-decreasing and apply the squeeze.
+\end{prb}
 
 \section{Renewal theory}
 
@@ -684,6 +665,12 @@ $E(T_n)\sim n\log n$
 \end{prb}
 \begin{prb}[An occupancy problem]
 \end{prb}
+\begin{prb}[St.~Peterburg paradox]
+For $P(X_n=2^m)=2^{-m}$, $g\le1$ so that $(S_n-n\log_2n)/n^{1+\e}\to0$ in probability.
+\end{prb}
+
+\begin{prb}[Head runs]
+\end{prb}
 
 \begin{prb}
 Find the probability that arbitrarily chosen positive integers are coprime.
@@ -698,84 +685,125 @@ Poisson convergence, law of rare events, or weak law of small numbers (a single 
 
 
 
-\chapter{Martingales}
-\section{Submartingales}
-\section{Martingale convergence theorem}
-\begin{prb}[Doob's upcrossing inequality]
-\begin{parts}
-\item
-\end{parts}
-\end{prb}
+\chapter{Discrete stochastic processes}
 
-\begin{prb}[Martingale convergence theorems]
-\begin{parts}
-\item
-\end{parts}
-\end{prb}
+\section{Martingales}
 
 \begin{prb}
 \begin{parts}
+\item If $EX_n=0$, then $S_n$ is a martingale.
+\item If $EX_n=0$ and $VX_n=\sigma^2$, then $S_n^2-n\sigma^2$ is a martingale.
+\item If $EX_n=1$ and $X_n\ge0$, then $M_n:=\prod_{i=1}^nX_i$ is a martingale.
+\item If $X_n$ is a martingel and $\f$ is convex, then $\f(X_n)$ is a submartingale.
+\item If $X_n$ is a submartingale and $\f$ is non-decreasing convex, then $\f(X_n)$ is a submartingale.
+\item If $H_n\ge0$ is predictable and $X_n$ is a (super/sub)martingale, then the \emph{(super/sub)martingale transform}
+\[(H\cdot X)_n:=H_1X_1+\sum_{i=2}^nH_i(X_i-X_{i-1})\]
+is a (super/sub)martingale.
+For a martingale, the condition $H_n\ge0$ is not required.
+\end{parts}
+\end{prb}
+
+
+\begin{prb}[Martingale convergence theorems]
+Let $(X_n)$ be a submartingale of random variables and let $a<b$.
+Let $\tau^0<\tau_1<\tau^1<\tau_2<\cdots$ be a sequence of hitting times inductively defined by $\tau^0:=0$ and
+\[\tau_k:=\min\{n>\tau^{k-1}:X_n\le a\},\qquad\tau^k:=\min\{n>\tau_k:X_n\ge b\},\qquad k\ge1.\]
+Let $u_n:=\max\{k:\tau^k\le n\}$ be the number of upcrossing completed by time $n$.
+\begin{parts}
+\item We have
+\[(b-a)Eu_n\le E(X_n-a)^+,\qquad n\ge1.\]
+It is called the \emph{upcrossing inequality} by Doob.
+\item If $\sup_nEX_n^+<\infty$, then $X_n$ converges a.s.~to a random variable $X$ such that $E|X|<\infty$.
+\end{parts}
+\end{prb}
+\begin{pf}
+(a)
+Let $Y_n:=(X_n-a)^+$.
+Note that $\tau^{u_n}\le n<\tau^{u_n+1}$.
+Define a predictable sequence
+\[H_n:=\sum_{k=1}^\infty\1_{\{\tau_k<n\le\tau^k\}}=\1_{\{\tau_{u_n+1}<n<\tau^{u_n+1}\}}+\1_{\{n=\tau^{u_n}\}}.\]
+Since $Y_{\tau_k}=0$ for any $k\ge1$, we have
+\[(H\cdot Y)_n-(H\cdot Y)_{\tau^{u_n}}=\sum_{i=\tau^{u_n}+1}^nH_i(Y_i-Y_{i-1})=\1_{\{\tau_{u_n+1}<n<\tau^{u_n+1}\}}\cdot(Y_n-Y_{\tau_{u_n+1}})\ge0,\]
+so
+\[(b-a)u_n=\sum_{k=1}^{u_n}(b-a)\le\sum_{k=1}^{u_n}(Y_{\tau^k}-Y_{\tau_k})=(H\cdot Y)_{\tau_{u_n}}\le(H\cdot Y)_n.\]
+Since $(Y_n)$ is also a submartingale and $1-H_n\ge0$, we have
+\[E((1-H)\cdot Y)_n\ge E((1-H)\cdot Y)_1=E((1-H_1)Y_1)\ge0,\]
+hence
+\[(b-a)Eu_n\le E(H\cdot Y)_n\le E(1\cdot Y)_n=EY_n-EY_1\le EY_n.\]
+
+(b)
+The condition $\sup_nEX_n^+<\infty$ implies that $\sup_nEu_n<\infty$ by the upcrossing inequality, so the increasing sequence $u_n$ converges a.s.
+It means that
+\[P\Bigl(\bigcup_{a,b\in\Q}\{\liminf_nX_n<a<b<\limsup_nX_n\}\Bigr)=0,\]
+in other words, the limit $\lim_nX_n$ exists a.s.~in $[-\infty,\infty]$.
+By the Fatou lemma,
+\[E(\lim_n|X_n|)\le\liminf_nE|X_n|\le\liminf_n(2EX_n^+-EX_1)<\infty\]
+implies $\lim_nX_n\in(-\infty,\infty)$ a.s.
+\end{pf}
+
+\begin{prb}
+If $H_n:=\1_{n\le\tau}$, then $(H\cdot X)_n=X_{\tau\wedge n}$.
+\begin{parts}
 \item
 \end{parts}
 \end{prb}
 
-\section{Uniform integrability}
+If $(X_n)$ is a non-negative submartingale, then we have the following Doob's maximal inequality.
+\[P(X^*_n>\e)\le\frac1\e EX_n.\]
+For $p>1$, if $\sup_nE|X_n|^p<\infty$, then $X_n$ converges a.s.~and in $L^p$.
 
-\section{Optional stopping}
+
+
+square integrable martingale
+
+We say a set of random variables $\{X_i\}$ is \emph{uniformly integrable} if
+\[\lim_{c\to\infty}\sup_iE(|X_i|\1_{|X_i|>c})=0.\]
+Wald equations
+
+optional stopping
+
+
 
 \section{Markov chains}
 
 
+Random walks
 
-\chapter{Ergodic theory}
+Poisson process
 
+Ornstein-Uhlenbeck
 
-
-
-
-
-
-\part{Continuous stochastic processes}
+\section{Ergodic theory}
 
 
 
+\section*{Exercises}
 
 
-\chapter{Brownian motion}
-\section{Kolomogorov extension}
 
-\begin{prb}[Kolmogorov extension theorem]
-A \emph{rectangle} is a finite product $\prod_{i=1}^nA_i\subset\R^n$ of measurable $A_i\subset\R$, and \emph{cylinder} is a product $A^*\times\R^\N$ where $A^*$ is a rectangle.
-Let $\cA$ be the semi-algebra containing $\varnothing$ and all cylinders in $\R^\N$.
-Let $(\mu_n)_n$ be a sequence of probability measures on $\R^n$ that satisfies \emph{consistency condition}
-\[\mu_{n+1}(A^*\times\R)=\mu_n(A^*)\]
-for any rectangles $A^*\subset\R^n$, and define a set function $\mu_0:\cA\to[0,\infty]$ by $\mu_0(A)=\mu_n(A^*)$ and $\mu_0(\varnothing)=0$.
-\begin{parts}
-\item $\mu_0$ is well-defined.
-\item $\mu_0$ is finitely additive.
-\item $\mu_0$ is countably additive if $\mu_0(B_n)\to0$ for cylinders $B_n\downarrow\varnothing$ as $n\to\infty$.
-\item If $\mu_0(B_n)\ge\delta$, then we can find decreasing $D_n\subset B_n$ such that $\mu_0(D_n)\ge\frac\delta2$ and $D_n=D_n^*\times\R^\N$ for a compact rectangle $D_n^*$.
-\item If $\mu_0(B_n)\ge\delta$, then $\bigcap_{i=1}^\infty B_i$ is non-empty.
-\end{parts}
-\end{prb}
-\begin{pf}
-(d)
-Let $B_n=B_n^*\times\R^\N$ for a rectangle $B_n^*\subset\R^{r(n)}$.
-By the inner regularity of $\mu_{r(n)}$, there is a compact rectangle $C_n^*\subset B_n^*$ such that
-\[\mu_0(B_n\setminus C_n)=\mu_{r(n)}(B_n^*\setminus C_n^*)<\frac\delta{2^{n+1}}.\]
-Let $C_n:=C_n^*\times\R^\N$ and define $D_n:=\bigcap_{i=1}^nC_i=D_n^*\times\R^\N$.
-Then,
-\[\mu_0(B_n\setminus D_n)\le\mu_0(\bigcup_{i=1}^nB_n\setminus C_i)\le\mu_0(\bigcup_{i=1}^nB_i\setminus C_i)<\frac\delta2,\]
-which implies $\mu_0(D_n)\ge\frac\delta2$.
+\chapter{Continuous stochastic processes}
 
-(e)
-Take any sequence $(\omega_n)_n$ in $\R^\N$ such that $\omega_n\in D_n$.
-Since each $D_n^*\subset\R^{r(n)}$ is compact and non-empty, by diagonal argument, we have a subsequence $(\omega_k)_k$ such that $\omega_k$ is pointwise convergent, and its limit is contained in $\bigcap_{i=1}^\infty D_i\subset\bigcap_{i=1}^\infty B_n=\varnothing$, which is a contradiction that leads $\mu_0(B_n)\to0$.
-\end{pf}
+\section{Brownian motion}
+
+continuous martingales
+
+\section{Wiener spaces}
+Cameron-Martin
+centered Gaussian law
+Ornstein-Uhlenbeck
 
 
 
 
 \part{Stochastic analysis}
+
+\chapter{Stochastic integral}
+
+
+
+\part{Stochastic models}
+
+phase transition, percolation
+
 
 \end{document}

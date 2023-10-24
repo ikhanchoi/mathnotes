@@ -3,6 +3,8 @@
 
 \newcommand{\Prim}{\operatorname{Prim}}
 
+
+
 \begin{document}
 \title{C$^*$-Algebras}
 \author{Ikhan Choi}
@@ -23,6 +25,10 @@
 \begin{prb}[Von Neumann inequality]
 \end{prb}
 
+
+The set $M_n(A)_+$ is linearly spanned by elements of the form $[a_i^*a_j]\in M_n(A)$ for $[a_i]\in A^n$.
+A linear map $\f:A\to B$ is completely positive if
+\[\f(a_i^*a_j)\]
 
 
 \begin{prb}[$n$-positive maps]
@@ -327,14 +333,10 @@ PS(B) \rar[->>]\dar & \hat B \rar[->>]\dar & \Prim(B) \dar \\
 PS(A) \rar[->>] & \hat A \rar[->>] & \Prim(A).
 \end{tikzcd}\]
 
-For a short exact sequence
-\[\begin{tikzcd}[column sep=small]0\rar&I\rar&A\rar&B\rar&0\end{tikzcd},\]
-we have
-\[\begin{tikzcd}[row sep=small]
-PS(I) \dar[->>]\rar[hook] & PS(A) \dar[->>] & PS(B) \dar[->>]\lar[hook'] \\
-\hat I \dar[->>]\rar[hook,shorten >= 10, shorten <= 10] & \hat A \dar[->>] & \hat B \dar[->>]\lar[hook',shorten >= 10, shorten <= 10] \\
-\Prim(I) \rar[hook,swap]{\text{open}} & \Prim(A) & \Prim(B) \lar[hook']{\text{closed}}
-\end{tikzcd}\]
+
+
+
+
 
 
 
@@ -524,28 +526,30 @@ However, since $A^*$ is not a C$^*$-algebra, we embed $A^*$ locally in $B(H)$ th
 Let $\pi:A\to B(H)$ be the cyclic representation obtained from a positive linear functional that dominates $F$ and $\Omega$ the cyclic vector such that there is a linear map $\pi':F\to\pi(A)'$ satisfying
 \[l(a)=\omega_\Omega(\pi(a)\pi'(l))=\<\pi(a)\pi'(l)\Omega,\Omega\>\]
 for $a\in E$ and $l\in F$.
+Now the duality of $A$ and $F$ is embodied in the tensor product representation
+\[\pi\times i:A\otimes_{\max}\pi(A)'\to B(H)\]
+together with a cyclic vector $\Omega\in H$.
+Here the nuclearity is used to write $A\otimes_{\max}\pi(A)'=A\otimes_{\min}\pi(A)'$.
 
-Since $A$ is nuclear, we have a well-defined representation
-\[\pi\times i:A\otimes_{\min}\pi(A)'\to B(H).\]
 If we take any faithful representation $\rho:A\to B(K)$, then we obtain a fathful representation
 \[\rho\otimes i:A\otimes_{\min}\pi(A)'\to B(K\otimes H).\]
-By the Hahn-Banach separation, the state $\omega_\Omega\circ(\pi\times i)$ on $A\otimes_{\min}\pi(A)'$ can be approximated weakly$^*$ by convex combinations of vector states in $B(K\otimes H)$.
-In particular, by the density of $\pi(A)\Omega$ in $H$, we have algebraic tensors $(\tau_k)_{k=1}^m\subset K\odot\pi(A)\Omega$ such that
-\[\Bigl|\omega_\Omega((\pi\times i)(a\otimes\pi'(l)))-\sum_{k=1}^m\lambda_k\omega_{\tau_k}((\rho\otimes i)(a\otimes\pi'(l)))\Bigr|<\e\tag{\dagger}\]
+By the Hahn-Banach separation, the state $(\pi\times i)^*\omega_\Omega$ on $A\otimes_{\min}\pi(A)'$ can be approximated weakly$^*$ by convex combinations of vector states in $B(K\otimes H)$.
+In particular, by the density of $\pi(A)\Omega$ in $H$, we have algebraic tensors $(t_k)_{k=1}^m\subset K\odot\pi(A)\Omega$ such that
+\[\Bigl|\omega_\Omega((\pi\times i)(a\otimes\pi'(l)))-\sum_{k=1}^m\lambda_k\omega_{t_k}((\rho\otimes i)(a\otimes\pi'(l)))\Bigr|<\e\tag{\dagger}\]
 for all $a\in E$ and $l\in F$, where $\lambda_k\ge0$, $\sum_{k=1}^m\lambda=1$.
 
-If we write each element $\tau\in K\odot\pi(\cA)\Omega$ as
-\[\tau=\sum_{i=1}^n\eta_i\otimes\pi(b_i)\Omega,\]
+If we write each element $t\in K\odot\pi(A)\Omega$ as
+\[t=\sum_{i=1}^n\eta_i\otimes\pi(b_i)\Omega,\qquad\eta_i\in K,\ b_i\in A,\]
 then
 \begin{align*}
-\omega_\tau((\rho\otimes i)(a\otimes\pi'(l)))
+\omega_t((\rho\otimes i)(a\otimes\pi'(l)))
 &=\left\<(\rho(a)\otimes\pi'(l))\Bigl(\sum_{j=1}^n\eta_j\otimes\pi(b_j)\Omega\Bigr),\Bigl(\sum_{i=1}^n\eta_i\otimes\pi(b_i)\Omega\Bigr)\right\>\\
 &=\sum_{i,j=1}^n\<\rho(a)\eta_j,\eta_i\>\<\pi'(l)\pi(b_i^*b_j)\Omega,\Omega\>\\
 &=l\Bigl(\sum_{i,j=1}^n\<\rho(a)\eta_j,\eta_i\>b_i^*b_j\Bigr).
 \end{align*}
 If we define completely positive contractions $\f:A\to M_n(\C)$ and $\psi:M_n(\C)\to A$ for each $\tau$ such that
 \[\f(a):=[\<\rho(a)\eta_j,\eta_i\>],\quad\psi([e_{ij}]):=b_i^*b_j,\]
-then we have $\omega_\tau(a\otimes\pi'(l))=l(\psi\circ\f(a))$.
+then we have $\omega_t(a\otimes\pi'(l))=l(\psi\circ\f(a))$.
 
 Since $\mu(a\otimes\pi'(l))=l(a)$ and since the completely positive contractions which factor through a matrix algebra form a convex set, we have completely positive contractions $\f:A\to M_n(\C)$ and $\psi:M_n(\C)\to A$ such that the inequality (\dagger) is rewritten as
 \[|l(a)-l(\psi\circ\f(a))|<\e,\]
@@ -569,6 +573,7 @@ maximal tensor product inclusion problem
 
 
 
+excision: Akemann-Anderson-Pedersen
 
 \section{Quasi-diagonality}
 
@@ -861,7 +866,28 @@ It is due to that finitely generatedness implies the projectivity and the Serre-
 
 \section{Primitive ideal space}
 
-\begin{prb}[Left ideals]
+For a short exact sequence
+\[\begin{tikzcd}[column sep=small]0\rar&I\rar&A\rar&B\rar&0\end{tikzcd},\]
+we have
+\[\begin{tikzcd}[row sep=small]
+PS(I) \dar[->>]\rar[hook] & PS(A) \dar[->>] & PS(B) \dar[->>]\lar[hook'] \\
+\hat I \dar[->>]\rar[hook,shorten >= 10, shorten <= 10] & \hat A \dar[->>] & \hat B \dar[->>]\lar[hook',shorten >= 10, shorten <= 10] \\
+\Prim(I) \rar[hook,swap]{\text{open}} & \Prim(A) & \Prim(B) \lar[hook']{\text{closed}}
+\end{tikzcd}\]
+
+We have to understand C$^*$-algebras in the context of homotopy theory, so the pointed topological spaces must be considered.
+An open set $U$ of a locally compact Hausdorff space $X$ should be recognized as the quotient space $(X,x)/(A,x)$, where $x\notin U=A^c$, hence the ideal $A(U)$ corresponds and the restriction $A(X)\to A(U)$ does not make sense.
+In other words, \textbf{$A(U)$ is not an analogue of $\cO_X(U)$, but of $\cI_{(X,X\setminus U)}$}.
+It is fortunate that the kernel of the restriction, an ideal, can be recognized as the function algebra of the complement, which is not the case in algebraic geometry...? (Can define the quotient $X/A$ for an analytic subset of a complex space $X$?)
+
+Then, how can we understand the sheaf theoretic restriction on an open set in operator algebras?
+How about Banach or Fr\'echet algebras?
+Can we consider a ``rigid'' Zariksi topology on the spectrum? (Closed sets in C$^*$-context are too flaccid)
+
+
+
+
+\begin{prb}[Modular maximal left ideals]
 \end{prb}
 
 \begin{prb}[Primitive ideals]

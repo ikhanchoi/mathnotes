@@ -1,0 +1,285 @@
+\documentclass{../../../small}
+\usepackage{../../../ikhanchoi}
+
+\DeclareMathOperator{\Int}{Int}
+
+\begin{document}
+\title{Integrable Systems}
+\author{Ikhan Choi\\Lectured by Ralph Willox\\University of Tokyo, Autumn 2023}
+\maketitle
+\tableofcontents
+
+\newpage
+\section{Day 1: October 9}
+
+Every linear system will be considered to be solvable.
+
+Two mainstreams: 1+1-dimensional, 2+1-dimensional (Russia, Japan)
+
+Sato theory
+
+Hirota: relation to discrete systems
+
+\subsection*{KdV equation}
+Consider $u=u(x,t)\in C^\infty(\R^2)$ which is Schwarz in the sense that $\lim_{x\to\pm\infty}u_{px,qt}=0$ for all $p,q$.
+The KdV equation is
+\[u_t+u_{3x}+6uu_x=0.\]
+One of the form of the discrete KdV equation(dKdv) by Hirota is
+\[\frac1{u_{n+1}^{t+1}}-\frac1{u_n^t}=\delta(u_n^{t+1}-u_{n+1}^t)\]
+for $u:\Z^2\to\C$ and $\delta\in\C\setminus\{0\}$.
+
+There is a continuous limit(?) deduces KdV from dKdV.
+Using the Darboux transformation(?) we can construct dKdV from KdV, preserving some additive formulas(such as sine and cosine?), but it seems to be impossible to reconstruct by numberical schemes.
+
+There is an ultradiscrete limit which derives udKdV equation.
+($\delta=e^{-1/\e}$ and $u=e^{U/\e}$ with $\e\to0$.
+\[\e\log(\frac1{u_{j+1}^{t+1}}+\delta u_{j+1}^t)=\e\log(\delta u_j^{t+1}+\frac1{u_j^t})\]
+\[\max[-U_{j+1}^{t+1},U_{j+1}^t-1]=\max[U_j^{t+1}-1,-U_j^t].\]
+Toda equation
+\[(\Theta_j)_{xy}=e^{-\Theta_{j+1}}-2e^{-2\Theta_j}+e^{-\Theta_{j-1}}.\]
+)
+The multiplication and addition are transformed to the addition and $\max$(or $\min$) respectively.
+One of the form of the ultradiscrete KdV equation(udKdV) is
+\[U_n^{t+1}=\min\left[1-U_n^t,\sum_{k=-\infty}^{n-1}(U_k^t-U_k^{t+1})\right].\]
+If $U_n^0\in\{0,1\}$ for all $n$, then it is the Box and Ball system.
+
+\subsection*{Properties that must be satisfied by integrable systems}
+
+\begin{enumerate}
+\item There are special solutions descrbing interactions of $\forall N$-soliton.
+\item There exists a corresponding Hirota bilinear form.
+\item There exists a Lax pair. (for udKdV, there are four equations for the Lax ``pair'', so it is not a Lax pair rigorously)
+\item There are infinitely many invariants. (for udKdV there are some combinatoral arguments with Young tableaux) (for dKdV it is an open problem. For example, $\prod_ju_j^t$ is conserved, but only three? or four quantities are known.)
+\item There are infinitely many symmetries. (Nobody has shown that there is no conserved quantity which does not come from a symmetry in the sense of Noether's theorem)
+\item There is a Hamiltonian structure: the continuous KdV only have this property. (dKdV and udKdV admit Poisson structures)
+\end{enumerate}
+
+\subsection*{$N$-soliton of KdV}
+
+Let $u(x,t)=U(x-ct)=U(\zeta)\not\equiv0$ with $c>0$ as an ansatz.
+Then, $u_t=-cU'$ and $u_x=U'$ so that the KdV becomes
+\[-cU'=U'''+6UU'.\]
+This process generating an ODE is called a reduction.
+We can integrate the equation to get
+\[-cU=U''+3U^2+a\]
+and
+\[-\frac c2U^2=\frac12(U')^2+U^3+aU+b.\]
+Thus we have a general solution of $U$ with the Weierstrass $\wp$ such that $(\wp')^2=4\wp^3-g_2\wp-g_3$ that
+\[u=\frac c6-2\wp(\zeta),\]
+where 
+\[g_2=a+\frac{c^2}12,\qquad g_3=-(\frac{c^3}{216}+\frac{ac}{12}+\frac bc).\]
+The general means that every transmitting solution has this form.
+The Weierstrass $\sigma$ function satisfies $\wp(\zeta)=-\frac d{d\zeta^2}\log\sigma(\zeta)$.
+Then we have
+\[u(x,t)=2\partial_\zeta^2\log[\sigma(\zeta)e^{\frac c{24}\zeta^2}].\]
+The function $\sigma(\zeta)e^{\frac c{24}\zeta^2}$ is a prototype of $\tau$ functions of Hirota and Sato.
+If $a=b=0$, then the pole of $\sigma$ disappears in the sense that
+\[u(x,t)=2\partial_x^2\log[1+e^{\theta(x,t)}],\qquad\theta(x,t)=k(x-k^2t+\delta),\quad k,\delta\in\R.\]
+Here $c=k^2>0$.
+This solution is the 1-soliton parametrized by $k$ and $\delta$.
+
+\subsection*{Hirota bilinear form}
+If we define $\tau:=1+e^\theta$ so that $u=2\partial_x^2\log\tau$, then
+\[u_t+u_{3x}+uu_x=(2\log\tau)_{xxt}+(u_{2x}+3u^2)_x=2\left[\frac{\tau_{xt}\tau-\tau_x\tau_t+\tau_{4x}\tau-4\tau_{3x}\tau_x+3\tau_{2x}^2}{\tau^2}\right]_x.\]
+One of the miracles is the denominator is $\tau^2$, not $\tau^3$.
+For the case $\tau=1+e^{\theta(x,t)}$ we have the numerator zero:
+\[\tau_{xt}\tau-\tau_x\tau_t+\tau_{4x}\tau-4\tau_{3x}\tau_x+3\tau_{2x}^2=0.\]
+
+Define a differential operator $\cD$ such that
+\[\cD_x^p\cD_t^qf\cdot g:=\partial_\e^p\partial_\eta^qf(x+\e,t+\eta)g(x-\e,t-\eta)|_{\e=\eta=0}.\]
+For example,
+\begin{gather*}
+\cD_x^pf\cdot g=\sum_{n=0}^p{p\choose n}(-1)^{p-n}f_{nx}g_{(p-n)x},\\
+\cD_x\cD_tf\cdot g=f_{xt}g-f_xg_t-f_tg_x+fg_{xt},\\
+\cD_x^4f\cdot g=f_{4x}g-4f_{3x}g_x+6f_{2x}g_{2x}-4f_xg_{3x}+fg_{4x}.
+\end{gather*}
+In fact, $(\cD_x\cD_t+\cD_x^4)\tau\cdot\tau=0$.
+
+We have some properties
+\begin{parts}
+\item $\cD_x^p\cD_t^qf\cdot g=(-1)^{p+q}\cD_x^p\cD_t^qg\cdot f$
+\item $\cD_x^p\cD_t^q(\lambda_1f+\lambda_2f_2)\cdot(\mu_1g_1+\mu_2g_2)=\cdots$ (bilinearity)
+\item $\cD_x^p\cD_t^qe^{k_1x+\omega_1t}\cdot e^{k_2x\omega_2k}=(k_1-k_2)^p(\omega_1-\omega_2)^qe^{(k_1+k_2)x+(\omega_1+\omega_2)t}$.
+\end{parts}
+We can compute
+\[(\cD_x\cD_t+\cD_x^4)(1+e^\theta)\cdot(1+e^\theta)=-2k^4e^\theta+2k^4e^\theta=0.\]
+
+Let $u=2\partial_x^2\log\tau_2$, where
+\[\tau_2:=1+e^{\theta_1}+e^{\theta_2}+A_{12}e^{\theta_1+\theta_2},\]
+$\theta_j=k_j(x-k_j^2t+\delta_j)$, $A_{12}=((k_1-k_2)/(k_1+k_2))^2\notin\{0,\infty\}$.
+Let $k_1>k_2>0$.
+After interaction, the 1-solitons $u\sim2\partial_x^2\log(1+e^{\theta_1})$ and $u\sim2\partial_x^2\log(1+e^{\theta_2})$ is slightly translated with $\delta_1'=\delta_1+\frac1{k_1}\log A_{12}$ and $\delta_2'=\delta_2-\frac1{k_2}\log A_{12}$.
+The fastest particle propagates because $\delta_1'<\delta_1$.
+
+For 3-soliton,
+\[\tau_3=1+e^{\theta_1}+e^{\theta_2}+e^{\theta_3}+A_{12}e^{\theta_1+\theta_2}+A_{13}e^{\theta_1+\theta_3}+A_{23}e^{\theta_2+\theta_3}+A_{12}A_{13}A_{23}e^{\theta_1+\theta_2+\theta_3}\]
+with $A_{ij}=((k_i-k_j)/(k_i+k_j))^2$.
+
+Then, $\delta_1\to\delta_1'=\delta_1+\frac1{k_1}(\log A_{12}+\log A_{13})$.
+The three-body problem is chaotic and not integrable, so it is not surprising that integrable systems do not include three-body interactions.
+
+The modified KdV(mKdV) equation is
+\[V_t+V_{3x}-6V^2V_x=0.\]
+If we put $u=\pm V_x-V^2$, then
+\[u_t+u_{3x}+6uu_x=(\pm\partial_x-2V)(V_t+V_{3x}-6V^2V_x).\]
+It implies that if we have a solution $V$ of mKdV, then we can construct a pair of solutions of KdV.
+It is called the Miura transformation.
+The inverse transformation is also abtained by solving the ODE: if we let $V=\partial_x\log\psi$, then
+\[V_x-V^2=\psi^{-1}\psi_{xx}.\]
+The Miura transformation is very close to the Lax pair.
+
+The nonlinear Schr\"odinger equation, which describes photon soliton in optical LAN, is
+\[i\psi_t+\psi_{2x}+\sigma|\psi|^2\psi=0.\]
+The sine-Gordon equation is
+\[\omega_{xt}=\sin\omega,\]
+whose discrete version is virtually equivalent to the one of mKdV.
+
+\newpage
+\section{Day 2: October 16}
+\subsection*{Lax pair}
+For a function $u$, define operators
+\[L(u):=\partial_x^2+u,\qquad M(u):=-4\partial_x^3-3(u\partial_x+\partial_xu)=-4\partial_x^3-6u\partial_x-3u_x.\]
+If $u$ satisfies the continuous KdV $u_t+u_{3x}+6uu_x=0$, then we have as operators
+\[L_t-[M,L]=u_t+u_{3x}+6uu_x=0,\]
+where $L_t$ is just the multiplication operator by $u_t$ as the differential operator $\partial_x^2$ vanishes by $\partial_t$.
+
+For any function $u$ and $\lambda\in\C$, consider the following ``Lax pair equation''
+\begin{align*}
+&L(u)\psi=\lambda^2\psi\\
+&\psi_t=-M(u)\psi.
+\end{align*}
+It is important to note that this equation is linear.
+If a non-trivial (for all $t$) $\psi$ satisfies the above equation for some $\lambda$, then the computation
+\[((\lambda^2-u)\psi)_t=(-4M(u)\psi)_{xx}\quad\Leftrightarrow\quad(u_t+u_{3x}+6uu_x)\psi=0\]
+implies $u$ satisfies KdV.
+In other words, by solving the ``Lax pair equation'', we obtain the solutions of KdV equation.
+
+A reference: Peter Lax (1968) ``Integrals of nonlinear equations of evolution and solitary waves'' Comm Pure Applied Math 21, 467-490.
+
+We can see some similar structure to $L_t=[M,L]$ in seversal situations, especially in physics.
+Recall the Hamilton equation $\dot f=\{f,H\}$ in the Hamiltonian mechanics.
+Also in quantum mechanics if we let $U(t):=e^{-\frac i\hbar Ht}$, then
+\[A_t=(A(t))_t=(U(t)^*AU(t))_t|_{t=0}=-\frac i\hbar[A,H]\]
+
+\[*\qquad*\qquad*\]
+\smallskip
+
+Every transpose of operator will respect the \emph{real} inner product
+\[\<A,B\>:=\int_\R A(x)B(x)\,dx.\]
+
+Let $M(t)$ be such that $M(t)+M(t)^t=0$ and let $L(0)$ be some operator, like $\partial_x^2+u_0$.
+If we define $U(t)$ such that $U(0)=\id$ and $U_t(t)=M(t)U(t)$ so that
+\[U(t)=\id+\int_0^tM(u(s))U(s)\,ds,\]
+whence $(U^tU)_t=(UU^t)_t=0$ so that the unitarity of $U(0)$ implies the unitarity of $U(t)$.
+($U(t)$ commutes with $\partial_x^2$?)
+For this $U(t)$ defined by $M(t)$, if we define $L(t):=U(t)L(0)U(t)^t$, then we automatically have $L_t(t)=[M(t),L(t)]$.
+
+For example, let
+\[M_1(t)\equiv-\partial_x,\qquad L(0):=\partial_x^2+u_0.\]
+Then, $L(t)=\partial_x^2+u(t)$, where $u(t)$ is the solution of $u(0)=u_0$ and
+\[0=L_t(t)-[M_1(t),L(t)]=u_t+u_x.\]
+
+For another example, for any function $u(t)$, let
+\[M_3(t):=-4[\partial_x^3+\frac34(u(t)\partial_x+\partial_xu(t))],\qquad L(0):=\partial_x^2+u_0.\]
+Then, similarly, if we consider $U(t)$ we obtain $L(t)=\partial_x^2+u(t)$, where $u$ satisfies the KdV equation because
+\[0=L_t(t)-[M_3(t),L(t)]=u_t+u_{3x}+6uu_x.\]
+
+Under the condition that $M(t)$ is skew symmetric, once we have a non-trivial solution for the first ``Lax pair equation'' $L(0)\psi_0=\lambda^2\psi_0$ only at $t=0$, then we can deduce the solution $\psi(t)$ of $\psi_t(t)=M(t)\psi(t)$ is always non-trivial for all $t>0$ because $\psi(t)$ is given by the unitary transformation of $\psi_0$.
+It implies that the existence of $\psi_0$ gives the existence of $u(t)$!
+
+An exmplae of this kind of linearization: the logistic map $x_{n+1}=4x_n(1-x_n)$ with $[0,1]\to[0,1]:x_n\mapsto x_{n+1}$ is a solvable chaos in which the solution is given by $x_n=\sin^2\theta_n$, where $\theta_{n+1}=2\theta_n$.
+The $\theta_{n+1}=2\theta_n$ is linear chaos.
+
+\[*\qquad*\qquad*\]
+\smallskip
+
+Let $M_1(t):\equiv-\partial_x$, $M_3(t):=-4\partial_x^3-6u\partial_x-3u_x$, and $L(0)=\partial_x^2+u_0$.
+We want to define $U_{13}(t_1,t_3)$ such that
+\[U_{13}(0,0)=\id,\qquad (U_{13})_{t_1}=M_1(t)U_{13}(t),\qquad (U_{13})_{t_3}=M_3(t)U_{13}(t).\]
+For $U_{13}$ to exist, we need to satisfy the consistency
+\[(M_1)_{t_3}-(M_3)_{t_1}=[M_3,M_1],\]
+implying
+\[2(u_{t_1}+u_x)\partial_x+(u_{t_1}+u_x)_x=0.\]
+
+KdV hierarchy
+$L:=\partial_x^2+u(x,t_1,t_3,t_5,\cdots)$,
+\[L_{t_j}=M_jL-LM_j\quad\Leftrightarrow\quad u_{t_j}+u_{jx}+\cdots=0,\]
+\[u_{t_1}+u_x=0,\]
+\[u_{t_3}+u_{3x}+6uu_x=0,\]
+\[u_{t_5}+u_{5x}+(10uu_{2x}+5u_x^2+10u^3)_x=0,\cdots\]
+
+
+
+\newpage
+\section{Day 3: October 23}
+
+Every $u$ is supposed to be in Schwartz class.
+If $u$ is a solution of the KdV
+\[u_t=u_{3x}+6uu_x,\]
+then
+\[\int u\,dx,\qquad\int\frac12u^2\,dx,\qquad\int(u^3-\frac12u_x^2)\,dx\]
+are invariants as time flows, called the mass, momentum, and energy, respectively.
+In fact, there are infinitely many invariants.
+They follow not from the symmetry of KdV equation, but from the symmetry of action.
+
+The symmetry of KdV: If $u(x,t)$ is a solution of KdV, then
+\begin{enumerate}
+\item so is $u(x+\e,t)$,
+\item so is $u(x,t+\e)$,
+\item so is $\lambda^2u(\lambda x,\lambda^3t)$, (scaling)
+\item so is $u(x-6\e t,t)+\e\notin\cS$. (Galilean boost)
+\end{enumerate}
+For example, there is no corresponding invariant to the scaling symmetry of KdV, but Galilean boost is related to an invariant.
+These (local) symmetries come from the one-parameter transformations
+\begin{enumerate}
+\item $X=x+\e$, $T=t$, $U=u$,
+\item $X=x$, $T=t+\e$, $U=u$,
+\item $X=e^{-\e}x$, $T=e^{-3\e}t$, $U=e^{2\e}u$,
+\item $X=x+6\e t$, $T=t$, $U=u+\e$.
+\end{enumerate}
+They are invertible in sufficiently small $\e$.
+For $u$ satisfying KdV, we want for
+\[U((X,T)^{-1}(x,t;\e),u((X,T)^{-1}(x,t;\e));\e)\]
+to satisfy KdV.
+Differentiating along $\e$ at $\e=0$, define
+\begin{align*}
+\sigma:&=\frac{\partial U}{\partial(x,t)}\frac{\partial(X,T)^{-1}}{\partial\e}+\frac{\partial U}{\partial u}\frac{\partial u}{\partial (x,t)}\frac{\partial(X,T)^{-1}}{\partial\e}\\
+&=(U_x,U_t)\cdot\frac{\partial(X,T)^{-1}}{\partial\e}+U_u(u_x,u_t)\cdot\frac{\partial(X,T)^{-1}}{\partial\e}\\
+&=(U_x+U_uu_x,\ U_t+U_uu_t)\cdot(-X_\e,-T_\e)\ (?)\\
+&=-(U_x+U_uu_x)X_\e-(U_t+U_uu_t)T_\e
+\end{align*}
+
+Let $K(u):=-(u_{3x}+6uu_x)$, that is, $K$ is a differential polynomial.
+Then, for multi-indices $J=(j_t,j_x)$, by considering Fr\'echet derivative $K'$ of $K$, we have
+\begin{align*}
+u_t+\e\sigma_t+o(\e)
+&=K(u)+\e K'(u)[\sigma]+o(\e)\\
+&=K(u)+\e\sum_J\frac{\partial K}{\partial u_J}\sigma_J+o(\e)\\
+&=K(u)+\e(\sigma_{3x}+6u\sigma_x+6u_x\sigma)+o(\e).
+\end{align*}
+We say $\sigma=\sigma(t,u)$ is a \emph{symmetry} of $K$ if it satisfies
+\[\sigma(t,u)_t=K'(u)[\sigma(t,u)]\quad\Leftrightarrow\quad\frac{\partial\sigma}{\partial t}(t,u)+\sigma'(t,u)[u_t]=K'(u)[\sigma(t,u)]\quad\Leftrightarrow\quad\frac{\partial\sigma}{\partial t}=K'[\sigma]-\sigma'[K].\]
+We use the notation $\sigma'=\partial\sigma/\partial u$.
+
+Here is the fifth symmetry
+\[\sigma(u)=u_{5x}+10uu_{3x}+20u_xu_{2x}+30u^2u_x.\]
+It satisfies $\partial\sigma/\partial t=0$ and $\sigma'[K]=K'[\sigma]$.
+
+
+\bigskip
+Let $\rho$ be a differential polynomial with respect only to $x$.
+If we let $I(u):=\int\rho(u)\,dx$, then
+\[\frac{dI}{dt}=\int(\frac{\partial\rho}{\partial t}+\rho'(u)[u_t])\,dx=\frac{\partial I}{\partial t}+\int\rho'(u)[u_t]\,dx.\]
+If we try to compute the gradient of $I$ as in the calculus of variations,
+\[I'(u)[v]=\<\rho'(u)^T[1],v\>_{L^2(\R_x)}=:\<(\grad I)(u),v\>_{L^2(\R_x)}.\]
+We can apply the integration by parts to compute the transpose.
+For examples,
+\begin{enumerate}
+\item If $\rho(u)=u$, then $\grad I=1$.
+\item If $\rho(u)=u^2$, then $\grad I=2u$.
+\item If $\rho(u)=u^3-\frac12u_x^2$, then $\grad I=u_{2x}+3u^2$.
+\end{enumerate}
+
+Olver
+
+\end{document}

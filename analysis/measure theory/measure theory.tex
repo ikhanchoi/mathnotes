@@ -527,31 +527,41 @@ By the definition of the Lebesgue integral, we have a simple function $s$ such t
 \[\beta(\tint_Ef)-\beta(\tint_Es)<\e,\]
 whether or not $\int_Ef$ diverges.
 Then,
-\begin{alignat*}{4}
+\begin{align*}
 \beta(\tint_Ef)-\beta(\tint_{E_n}f)
 &=[\beta(\tint_Ef)-\beta(\tint_Es)]
-&&+[\beta(\tint_Es)-\beta(\tint_{E_n}s)]
-&&+[\beta(\tint_{E_n}s)-\beta(\tint_{E_n}f)]\\
-&\ccol{<}{\e}
-&&+[\beta(\tint_Es)-\beta(\tint_{E_n}s)]
-&&\ccol{+}{0}\\
-&\xrightarrow{n\to\infty}\e
-\end{alignat*}
++[\beta(\tint_Es)-\beta(\tint_{E_n}s)]
++[\beta(\tint_{E_n}s)-\beta(\tint_{E_n}f)]\\
+&<\e+[\beta(\tint_Es)-\beta(\tint_{E_n}s)]+0
+\xrightarrow{n\to\infty}\e
+\end{align*}
+%\begin{alignat*}{4}
+%\beta(\tint_Ef)-\beta(\tint_{E_n}f)
+%&=[\beta(\tint_Ef)-\beta(\tint_Es)]
+%&&+[\beta(\tint_Es)-\beta(\tint_{E_n}s)]
+%&&+[\beta(\tint_{E_n}s)-\beta(\tint_{E_n}f)]\\
+%&\ccol{<}{\e}
+%&&+[\beta(\tint_Es)-\beta(\tint_{E_n}s)]
+%&&\ccol{+}{0}\\
+%&\xrightarrow{n\to\infty}\e
+%\end{alignat*}
 by the part (a).
 We are done by letting $\e\to0$.
 
 (c)
-Define $E_n:=\{x:f(x)<(1+\e)f_n(x)\}$,
-which converges to a full set because $f_n\to f$ a.e.
+For any $\e>0$ let $E_n:=\{x:f(x)<(1+\e)f_n(x)\}$, which converges to a full set because $f_n\to f$ a.e.
 Since $f$ is a measure, we can choose $N$ such that
 \[\beta(\tint_Ef)-\beta(\tint_{E_N}f)<\e.\]
 With this $N$, we have
-\[\beta(\tint_{E_N}f)-\beta(\tint_{E_N}f_n)\le\frac{\tint_{E_N}f-\tint_{E_N}f_n}{(1+\tint_{E_N}f)(1+\tint_{E_N}f_n)}<\e,\qquad n\ge N.\]
+\[\beta(\tint_{E_N}f)
+\le\beta((1+\e)\tint_{E_N}f_n)
+\le(1+\e)\beta(\tint_{E_N}f_n)
+\le\beta(\tint_{E_N}f_n)+\e,\qquad n\ge N.\]
 Then, we have for $n\ge N$ that
 \begin{align*}
 \beta(\tint_Ef)-\beta(\tint_Ef_n)
 &=[\beta(\tint_Ef)-\beta(\tint_{E_N}f)]+[\beta(\tint_{E_N}f)-\beta(\tint_{E_N}f_n)]+[\beta(\tint_{E_N}f_n)-\beta(\tint_{E}f_n)]\\
-&<0+\e+\e,
+&<\e+\e+0,
 \end{align*}
 so we are done by letting $n\to\infty$ and $\e\to0$.
 \end{pf}

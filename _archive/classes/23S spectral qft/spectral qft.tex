@@ -1,0 +1,253 @@
+\documentclass{../../../small}
+\usepackage{../../../ikhanchoi}
+
+\begin{document}
+
+\title{Introduction to Spectral Analysis of Quantum Fields}
+\author{Ikhan Choi}
+\maketitle
+
+\renewcommand{\theprb}{\arabic{prb}}
+\setcounter{prb}{104}
+
+
+\begin{prb}
+Let $S_n$ be the symmetrization operator.
+Show the followings:
+\begin{parts}
+\item $U_\tau S_n=S_n$ for $\tau\in\fS_n$
+\item $S_n^2=S_n$
+\item $S_n^*=S_n$
+\end{parts}
+\end{prb}
+\begin{sol}
+(a)
+\[U_\tau S_n=\frac1{n!}\sum_{\sigma\in\fS_n}U_\tau U_\sigma=\frac1{n!}\sum_{\sigma\in\fS_n}U_{\tau\sigma}=S_n.\]
+
+(b)
+\[S_n^2=\frac1{(n!)^2}\sum_{\sigma,\tau\in\fS_n}U_{\sigma\tau}=\frac1{(n!)^2}\sum_{\sigma,\tau\in\fS_n}U_{\sigma}=\frac1{(n!)^2}n!\sum_{\sigma\in\fS_n}U_{\sigma}=S_n.\]
+
+(c)
+\[S_n^*=\frac1{n!}\sum_{\sigma\in\fS_n}U_\sigma^*=\frac1{n!}\sum_{\sigma\in\fS_n}U_{\sigma^{-1}}=S_n.\qedhere\]
+\end{sol}
+
+\begin{prb}
+Let $f_1,f_2,g_1,g_2\in\cH$.
+Using CCR, compute
+\[\<A^*(f_1)A^*(f_2)\Omega,A^*(g_1)A^*(g_2)\Omega\>.\]
+\end{prb}
+\begin{sol}
+Since $A(f)A^*(g)=A^*(g)A(f)+\<f,g\>$, $A^*(f)\Omega=f$, and $A(f)\Omega=0$, we have
+\begin{align*}
+&\hspace{-2em}\<A^*(f_1)A^*(f_2)\Omega,A^*(g_1)A^*(g_2)\Omega\>\\
+&=\<A^*(f_2)\Omega,A(f_1)A^*(g_1)A^*(g_2)\Omega\>\\
+&=\<A^*(f_2)\Omega,A^*(g_1)A(f_1)A^*(g_2)\Omega\>+\<f_1,g_1\>\<A^*(f_2)\Omega,A^*(g_2)\Omega\>\\
+&=\<A^*(f_2)\Omega,A^*(g_1)A^*(g_2)A(f_1)\Omega\>+\<f_1,g_2\>\<A^*(f_2)\Omega,A^*(g_1)\Omega\>+\<f_1,g_1\>\<A^*(f_2)\Omega,A^*(g_2)\Omega\>\\
+&=0+\<f_1,g_2\>\<f_2,g_1\>+\<f_1,g_1\>\<f_2,g_2\>.\qedhere
+\end{align*}
+\end{sol}
+
+\begin{prb}
+Let $f_j,g_j\in\cH$.
+Show that
+\[\<A^*(f_1)\cdots A^*(f_n)\Omega,A^*(g_1)\cdots A^*(g_n)\Omega\>=\sum_{\sigma\in\fS_n}\<f_1,g_{\sigma(1)}\>\cdots\<f_n,g_{\sigma(n)}\>.\]
+\end{prb}
+\begin{sol}
+The case $n=2$ follows from the problem 106.
+As the induction hypothesis, suppose the claim is true for $n-1$.
+Denote by $(1\ k)\in\fS_n$ the transposition which swaps $1$ and $k$, and identify $\fS_{n-1}$ with the subgroup of $\fS_n$ fixing $1$.
+Then, the coset $(1\ k)\fS_{n-1}$ can be characterized as the set of permutations such that $\sigma(\{2,\cdots,n\})=\{1,\cdots,n\}\setminus\{k\}$.
+Then we have
+\begin{align*}
+&\hspace{-2em}\<A^*(f_1)\cdots A^*(f_n)\Omega,A^*(g_1)\cdots A^*(g_n)\Omega\>\\
+&=\<A^*(f_2)\cdots A^*(f_n)\Omega,A(f_1)A^*(g_1)\cdots A^*(g_n)\Omega\>\\
+&=\<A^*(f_2)\cdots A^*(f_n)\Omega,A^*(g_1)A(f_1)A^*(g_2)\cdots A^*(g_n)\Omega\>\\
+&\qquad+\<f_1,g_1\>\<A^*(f_2)\cdots A^*(f_n)\Omega,A^*(g_2)\cdots A^*(g_n)\Omega\>\\
+&=\<A^*(f_2)\cdots A^*(f_n)\Omega,A^*(g_1)A^*(g_2)A(f_1)A^*(g_3)\cdots A^*(g_n)\Omega\>\\
+&\qquad+\<f_1,g_1\>\<A^*(f_2)\cdots A^*(f_n)\Omega,A^*(g_2)\cdots A^*(g_n)\Omega\>\\
+&\qquad+\<f_1,g_2\>\<A^*(f_2)\cdots A^*(f_n)\Omega,A^*(g_1)A^*(g_3)\cdots A^*(g_n)\Omega\>\\
+&=\cdots\\
+&=0+\sum_{k=1}^n\<f_1,g_k\>\<A^*(f_2)\cdots A^*(f_n)\Omega,A^*(g_1)\cdots A^*(g_{k-1})A^*(g_{k+1})\cdots A^*(g_n)\>\\
+&=\sum_{k=1}^n\sum_{\sigma\in(1\ k)\fS_{n-1}}\<f_1,g_k\>\<f_2,g_{\sigma(2)}\>\cdots\<f_n,g_{\sigma(n)}\>\\
+&=\sum_{\sigma\in\fS_n}\<f_1,g_{\sigma(1)}\>\cdots\<f_n,g_{\sigma(n)}\>.
+\end{align*}
+\end{sol}
+
+\begin{prb}
+Let $f\in\cH$.
+We call
+\[\exp f:=\sum_{n=0}^\infty\frac{A^*(f)^n}{n!}\Omega\]
+the \emph{coherent vector}.
+Let $g\in\cH$.
+\begin{parts}
+\item Compute $\<\exp f,\exp g\>$.
+\item Show that $A(g)\exp f=\<g,f\>\exp f$.
+\end{parts}
+\end{prb}
+\begin{sol}
+(a)
+Note that
+\[\<A^*(f_1)\cdots A^*(f_m)\Omega,A^*(g_1)\cdots A^*(g_n)\Omega\>=0\]
+for $m\ne n$, then by the problem 107 we have
+\[\<A^*(f)^n\Omega,A^*(g)^n\Omega\>=n!\<f,g\>^n,\]
+so that
+\begin{align*}
+\<\exp f,\exp g\>
+&=\sum_{n=0}^\infty\frac1{(n!)^2}\<A^*(f)^n\Omega,A^*(g)^n\Omega\>\\
+&=\sum_{n=0}^\infty\frac1{(n!)^2}\<A^*(f)^n\Omega,A^*(g)^n\Omega\>\\
+&=\sum_{n=0}^\infty\frac1{n!}\<f,g\>^n\\
+&=\exp\<f,g\>.
+\end{align*}
+
+(b)
+Since
+\begin{align*}
+A(g)A^*(f)^n
+&=A^*(f)A(g)A^*(f)^{n-1}+\<g,f\>A^*(f)^{n-1}\\
+&=A^*(f)^2A(g)A^*(f)^{n-2}+2\<g,f\>A^*(f)^{n-1}\\
+&=A^*(f)^nA(g)+n\<g,f\>A^*(f)^{n-1},
+\end{align*}
+and since $A(g)\Omega=0$, we have
+\begin{align*}
+A(g)\exp f
+&=\sum_{n=0}^\infty\frac1{n!}A(g)A^*(f)^n\Omega\\
+&=0+\sum_{n=1}^\infty\frac1{n!}n\<g,f\>A^*(f)^{n-1}\Omega\\
+&=\sum_{n=0}^\infty\frac1{n!}\<g,f\>A^*(f)^n\Omega\\
+&=\<g,f\>\exp f.\qedhere
+\end{align*}
+\end{sol}
+
+\begin{prb}
+Let $z\in\C$ and $f,g\in\cH$.
+Show that
+\[e^{z\Phi_S(f)}\Omega\]
+is an eigenvector of $A(g)$.
+What is the eigenvalue?
+\end{prb}
+\begin{sol}
+We first consider an equality
+\[A(g)(A(f)+A^*(f))^n=(A(f)+A^*(f))^nA(g)+n\<g,f\>(A(f)+A^*(f))^{n-1},\]
+which can be proved by induction
+\begin{align*}
+A(g)(A(f)+A^*(f))^n
+&=A(g)(A(f)+A^*(f))^{n-1}(A(f)+A^*(f))\\
+&=[(A(f)+A^*(f))^{n-1}A(g)+(n-1)\<g,f\>(A(f)+A^*(f))^{n-2}](A(f)+A^*(f))\\
+&=(A(f)+A^*(f))^{n-1}A(g)A(f)+(A(f)+A^*(f))^{n-1}A(g)A^*(f)\\
+&\qquad+(n-1)\<g,f\>(A(f)+A^*(f))^{n-1}\\
+&=(A(f)+A^*(f))^{n-1}A(f)A(g)+(A(f)+A^*(f))^{n-1}A^*(f)A(g)\\
+&\qquad+n\<g,f\>(A(f)+A^*(f))^{n-1}\\
+&=(A(f)+A^*(f))^nA(g)+n\<g,f\>(A(f)+A^*(f))^{n-1}.
+\end{align*}
+Now then we can compute
+\begin{align*}
+A(g)e^{z\Phi_S(f)}\Omega
+&=A(g)\sum_{n=0}^\infty\frac{(z/\sqrt2)^n}{n!}(A(f)+A^*(f))^n\Omega\\
+&=0+\sum_{n=1}^\infty\frac{(z/\sqrt2)^n}{n!}n\<g,f\>(A(f)+A^*(f))^{n-1}\Omega\\
+&=\frac z{\sqrt2}\<g,f\>\sum_{n=0}^\infty\frac{(z/\sqrt2)^n}{n!}(A(f)+A^*(f))^n\Omega\\
+&=\frac z{\sqrt2}\<g,f\>e^{z\Phi_S(f)}\Omega.
+\end{align*}
+The eigenvalue is $\frac z{\sqrt2}\<g,f\>$.
+\end{sol}
+
+\begin{prb}
+Let $z\in\C$ and $f\in\cH$.
+Let 
+\[F(z):=e^{cz^2}e^{z\Phi_S(f)}\Omega,\]
+where $c\in\R$.
+\begin{parts}
+\item Determine $c$ which satisfies $F'(z)=\frac1{\sqrt2}A^*(f)F(z)$.
+\item Compute $F^{(n)}(0)$.
+\item Rewrite $e^{z\Phi_S(f)}\Omega$ in the coherent vector form, that is, find a constant $C$ and $g$ such that $e^{z\Phi_S(f)}\Omega=C\exp g$.
+\end{parts}
+\end{prb}
+\begin{sol}
+(a)
+For the left-hand side, by interpreting the derivative in the weak limit, we can justify
+\[F'(z)=(2cz+\Phi_S(f))F(z).\]
+For the right-hand side, since we have similarly to the problem 109 that
+\begin{align*}
+A^*(f)e^{z\Phi_S(f)}\Omega
+&=A^*(f)\sum_{n=0}^\infty\frac{(z/\sqrt2)^n}{n!}(A(f)+A^*(f))^n\Omega\\
+&=\sum_{n=0}^\infty\frac{(z/\sqrt2)^n}{n!}(A(f)+A^*(f))^nA^*(f)\Omega
+-\sum_{n=1}^\infty\frac{(z/\sqrt2)^n}{n!}n\<f,f\>(A(f)+A^*(f))^{n-1}\Omega\\
+&=e^{z\Phi_S(f)}A^*(f)\Omega-\frac z{\sqrt2}\<f,f\>e^{z\Phi_S(f)}\Omega\\
+&=e^{z\Phi_S(f)}\left(A^*(f)-\frac z{\sqrt2}\<f,f\>\right)\Omega,
+\end{align*}
+we obtain
+\[\left(2cz+\frac1{\sqrt2}(A(f)+A^*(f))\right)\Omega=\left(\frac1{\sqrt2}A^*(f)-\frac z2\<f,f\>\right)\Omega.\]
+Thus we have $c=-\<f,f\>/4$.
+
+(b)
+\[F^{(n)}(0)=\left(\frac1{\sqrt2}A^*(f)\right)^nF(0)=\left(\frac1{\sqrt2}A^*(f)\right)^n\Omega.\]
+
+(c)
+Since
+\[F(z)=\sum_{n=0}^\infty\frac{z^n}{n!}F^{(n)}(0)=\sum_{n=0}^\infty\frac1{n!}\left(\frac z{\sqrt2}A^*(f)\right)^n\Omega=\exp\frac z{\sqrt2}f,\]
+we have $C=e^{-cz^2}$ and $g=\frac z{\sqrt2}f$.
+The infinite series in the Taylor expansion is justified in the weak sense.
+\end{sol}
+
+\begin{prb}
+Let $f,g\in\cH$.
+Show that we have
+\[e^{i\Phi_S(f)}e^{i\Phi_S(g)}=ce^{i\Phi_S(f+g)}\]
+for some constant $c$.
+What is the value of $c$?
+\end{prb}
+\begin{sol}
+We can apply the special case of the Baker-Campbell-Hausdorff formula to obtain
+\[e^{i\Phi_S(f)}e^{i\Phi_S(g)}=e^{i\Phi_S(f)+i\Phi_S(g)+\frac12[i\Phi_S(f),i\Phi_S(g)]}=e^{i\Phi_S(f+g)-\frac i2\Im\<f,g\>},\]
+so we have $c=e^{-\frac i2\Im\<f,g\>}$.
+\end{sol}
+
+\begin{prb}
+For a linear subspace $\cD\subset\cH$, show the following is a $*$-algebra:
+\[\cA:=\cL\{e^{i\Phi_S(f)}:f\in\cD\}.\]
+\end{prb}
+\begin{sol}
+We need to show $\cA$ is closed under (1) addition, (2) scalar multiplication, (3) multiplication, (4) involution.
+(1) and (2) are clear and (3) follows from the problem 111.
+(4) is also clear since $(e^{i\Phi_S(f)})^*=e^{i\Phi_S(-f)}$.
+\end{sol}
+
+\begin{prb}
+Consider the momentum operator $p=-id/dx$ defined on $L^2(\R)$.
+For $f\in C_0^\infty(\R)\setminus\{0\}$, show the Taylor expansion
+\[(e^{iap}f)(x)=\sum_{n=0}^\infty\frac{(ia)^n}{n!}(p^nf)(x),\qquad x\in\R\]
+does not hold, where $a\in\R$.
+\end{prb}
+\begin{sol}
+\end{sol}
+
+\begin{prb}
+For an arbitrary self-adjoint operator $T$ on $\cH$ and an arbitrary $g\in\cH$, show that there is a conjugation $J$ on $\cH$ such that
+\[JTJ=T,\qquad Jg=g.\]
+\end{prb}
+\begin{sol}
+By the spectral theorem(VIII.4 in [Reed-Simon I]), we have a finite measure space $(M,\mu)$ and a unitary operator $U:\cH\to L^2(M,\mu)$ such that $UTU^*=M_\f$ for a real-valued function $\f$ on $M$ and $f\in\dom T$ if and only if $M_\f Uf\in L^2(M,\mu)$, where $M_\f$ denotes the multiplication operator.
+Consider the polar decomposition $Ug=ru$, where $r(x)\ge0$ and $|u(x)|=1$ for a.e.~$x\in M$.
+Define $J:\cH\to\cH$ such that $Jf:=U^*M_{u^2}\bar{Uf}$ for $f\in\cH$.
+Then, $J$ is a conjugation, an antilinear isometric involution.
+We can check for $f\in\dom T$ that
+\begin{align*}
+JTJf
+&=JU^*UTU^*UJf\\
+&=JU^*M_\f M_{u^2}\bar{Uf}\\
+&=JU^*M_{u^2}M_\f\bar{Uf}\\
+&=JU^*M_{u^2}\bar{M_\f Uf}\\
+&=JU^*M_{u^2}\bar{UTf}\\
+&=JJTf\\
+&=Tf
+\end{align*}
+and
+\[Jg=U^*M_{u^2}\bar{Ug}=U^*M_{u^2}\bar{ru}=U^*M_{u^2}ru^{-1}=U^*ru=g.\qedhere\]
+\end{sol}
+
+\begin{prb}
+Prove Lemma 97.
+\end{prb}
+\begin{sol}
+\end{sol}
+
+
+\end{document}

@@ -1,0 +1,396 @@
+\documentclass{../../../small}
+\usepackage{../../../ikhanchoi}
+
+\begin{document}
+\title{Stochastic Analysis}
+\author{Ikhan Choi\\Lectured by Shigeki Aida\\University of Tokyo, Autumn 2023}
+\maketitle
+\tableofcontents
+
+\newpage
+\section{Day 1: October 5}
+
+For each $\omega\in\Omega$ the map $t\mapsto B_t(\omega)$ is continuous, but possibly not differentiable.
+
+The meaning of the equation
+\[dX(t)=\sigma(X(t))\,dB_t+b(X_t)\,dt\]
+is more clarified by the integral equation
+\[X(t)=x+\int_0^t\sigma(X(s))\,dB_s+\int_0^tb(x(s))\,ds.\]
+
+\subsection*{Stochastic processes}
+\begin{defn}[Filtrated probability space]
+Let $\T\in\{[0,\infty),[0,T],\Z_{\ge0}:0<T<\infty\}$.
+A \emph{filtered probability space} is a tuple $(\Omega,\cF,P,\{\cF_t\}_{t\in\T})$ such that $(\Omega,\cF,P)$ is a probability space, $\cF_t\subset\cF$ is a $\sigma$-subfield, and $\cF_s\subset\cF_t$ if $s<t$.
+We say, when $\T$ is continuous, that $\{\cF_t\}$ is right continuous if
+\[\cF_t=\bigcap_{\e>0}\cF_{t+\e}=:\cF_{t+},\qquad t\in\T.\]
+\end{defn}
+
+\begin{defn}[Usual condition]
+A filtered probability space $(\Omega,\cF,P,\{\cF_t\}_{t\in\T})$ is said to satisfy the \emph{usual condition} if $(\Omega,\cF,P)$ is complete, $\cN=\{A\in\cF:P(A)=0\}$ is a subset of $\cF_0$, and $\{\cF_t\}$ is right continuous.
+\end{defn}
+
+\begin{defn}[Measurability of stochastic processes]
+Let $(\Omega,\cF,P,\{\cF_t\}_{t\in\T})$ be a filtrated probability space.
+A family of random variables $\{X_t\}_{t\in\T}$ is called a \emph{stochastic process} or a \emph{random process}.
+From now on, we will consider random \emph{vectors} with $X_t(\omega)\in\R^d$ for each $t,\omega$.
+\begin{parts}
+\item $\{X_t\}$ is called \emph{$\{\cF_t\}$-adapted} if $X_t$ is $\cF_t$-measurable for each $t\in\T$.
+\item $\{X_t\}$ is called \emph{measurable} if $X:\T\times\Omega\to\R^d$ is $\cB(\T)\otimes\cF$-measurable.
+\item For $\T$ continuous, $\{X_t\}$ is called \emph{right or left continuous} if for each $\omega$ the \emph{sample path} $t\mapsto X_t(\omega)$ is right or left continuous respectively.
+\item For $\T$ continuous, $\{X_t\}$ is called \emph{$\{\cF_t\}$-progressively measurable} if for each $t\in\T$ the map $X:[0,t]\times\Omega\to\R^d$ is $\cB(\T)\otimes\cF_t$-measurable.
+\item For $\T$ continuous, the \emph{predictable $\sigma$-field} is the minimal $\sigma$-subfield of $(\T\times\Omega,\cB(\T)\otimes\cF)$ such that every real-valued left continuous $\{\cF_t\}$-adapted process is measurable.
+\item For $\T$ continuous, a \emph{predictable process} is a stochastic process that is measurable with respect to the predictable $\sigma$-field.
+\end{parts}
+\end{defn}
+\begin{rmk*}
+In other words, stochastic process is a random element on $(S^\T,\cB(S^\T))$, which is not standard if $\T$ is uncountable.
+Also, a continuous stochastic process is a random element on $(C(\T,S),\cB(C(\T,S)))$ because the Borel $\sigma$-algebra coincides with the induced $\sigma$-algebra from $S^\T$!
+\end{rmk*}
+
+
+If $\{\cF_t\}$-progressive measurable, then measurable and $\{\cF_t\}$-adapted.
+\setcounter{thm}{4}
+\begin{prop}
+If $\{X_t\}$ is left or right continuous and $\{\cF_t\}$-adapted, then $\{X_t\}$ is progressively measurable.
+\end{prop}
+\begin{pf}
+Suppose $\{X_t\}$ is right $\{\cF_t\}$-adapted and fix $t\in\T$.
+Let $I_k:=[\frac{k-1}nt,\frac{kt}n)$, $1\le k\le n-1$, and let $I_n:=[\frac{n-1}nt,t]$.
+Let
+\[X_s^n(\omega):=\begin{cases}X_{\frac knt}(\omega)&,s\in I_k,\ k\le n-1\\X_t(\omega)&,s\in I_n\end{cases}.\]
+Then, for every Borel set $A\in\cB(\R^d)$,
+\[(X^n)^{-1}(A)=\bigcup_{k=1}^n(I_k\times X_{\frac knt}^{-1}(A))\in\cB([0,t])\otimes\cF_t.\]
+Thus $X^n$ is $\cB([0,t])\otimes\cF_t$-measurable, and we are done because
+\[X(s,\omega)=\lim_{n\to\infty}X^n(s,\omega),\qquad(s,\omega)\in[0,t]\times\Omega.\qedhere\]
+\end{pf}
+
+\begin{prop}
+\,
+\begin{parts}
+\item Let $\T=[0,\infty)$.
+If
+\[I:=\{A\times(s,t]:A\in\cF_s,\ 0<s<t\}\cup\{A\times[0,t]:A\in\cF_0\},\]
+then $I$ is a $\pi$-system, which generates the predictable $\sigma$-field.
+\item A predictable process is progressively measurable.
+\end{parts}
+\end{prop}
+
+\begin{defn}[Stopping times]
+Let $(\Omega,\cF,\{\cF_t\}_{t\in\T})$ be a filtrated measurable space.
+\begin{parts}
+\item
+A random variable $\tau:\Omega\to\T\cup\{+\infty\}$ is called a \emph{$\{\cF_t\}$-stopping time} if for every $t\in\T$ we have $\{\tau\le t\}\in\cF_t$.
+\item
+For $\{\cF_t\}$-stopping time $\tau$,
+\[\cF_\tau:=\{A\in\cF:A\cap\{\tau\le t\}\in\cF_t,\ \forall t\in\T\}.\]
+\end{parts}
+\end{defn}
+
+\begin{rmk}
+\,\begin{parts}
+\item For $t_0\in\T$, $\tau\equiv t_0$ is a $\{\cF_t\}$-stopping time.
+\item For $\{X_t\}$ an $\R^d$-valued $\{\cF_t\}$-adapted process, then for any Borel $E\in\R^d$ the function
+\[\sigma_E(\omega):=\inf\{t:X_t(\omega)\in E\},\]
+where $\inf\varnothing=\infty$, is a $\{\cF_t\}$-stopping time called the \emph{hitting time}.
+\end{parts}
+\end{rmk}
+
+\begin{prop}
+Let $\tau$ be a $\{\cF_t\}$-stopping time.
+\begin{parts}
+\item $\cF_\tau$ is a $\sigma$-field and $\tau$ is $\cF_\tau$-measurable.
+\item Let $\T=[0,\infty)$, and let $\{\cF_t\}$ be right continuous.
+Then, $\tau$ is a $\{\cF_t\}$-stopping time if and only if $\{\tau<t\}\in\cF_t$ for all $t\in\T$.
+If $\tau$ is a $\{\cF_t\}$-stopping time, then $A\in\cF_\tau$ if and only if $A\cap\{\tau<t\}\in\cF_t$ for all $t\in\T$.
+\item Let $\T=[0,\infty)$.
+If $\{X_t\}$ is a $\{\cF_t\}$-progressively measurable and $\tau$ is $\{\cF_t\}$-stopping time, then $X_\tau\1_{\tau<\infty}$ is $\cF_\tau$-measurable.
+\end{parts}
+\end{prop}
+\begin{pf}
+(a)
+If $A\in\cF_\tau$, then for every $t$ we have $A\cap\{\tau\le t\}\in\cF_t$, so $A^c\cap\{\tau\le t\}=\{\tau\le t\}\setminus(A\cap\{\tau\le t\})\in\cF_t$, which implies $A^c\in\cF_\tau$.
+For countable union, if $(A_n)_{n=1}^\infty\subset\cF_\tau$, then $(\bigcup A_n)\cap\{\tau\le t\}\in\cF_t$ is clear.
+
+For $a>0$, we can show $\{\tau\le a\}\in\cF_\tau$ since
+\[\{\tau\le a\}\cap\{\tau\le t\}=\{\tau\le a\wedge t\}\in\cF_{a\wedge t}\subset\cF_t.\]
+
+(b)
+($\Rightarrow$)
+$\{\tau<t\}=\bigcup_{n=1}^\infty\{\tau\le t-\frac1n\}\in\cF_t$.
+
+($\Leftarrow$)
+$\{\tau\le t\}=\bigcap_{n=N}^\infty\{\tau\le t+\frac1n\}\in\cF_{t+\frac1N}$, so $\{\tau\le t\}\in\cF_t$.
+
+(c)
+For $A\in\cB(\R^d)$ and $t\in\T$, it suffices to show $\{X_\tau\in A\}\cap\{\tau\le t\}\in\cF_t$.
+Maps
+\[\Phi:\{\tau\le t\}\to[0,t]\times\Omega:\omega\mapsto(\tau(\omega),\omega)\]
+and
+\[X:[0,t]\times\Omega\to\R^d:(t,\omega)\mapsto X_t(\omega)\] are measurable with respect to $\cF_t$, $\cB([0,t])\otimes\cF_t$, $\cB(\R^d)$, because $\Phi^{-1}([a,b]\times B)=\{\tau\le b\}\cap\{\tau<a\}^c\cap B\in\cF_t$, and because of the definition of progressive measurability.
+\end{pf}
+
+\begin{prop}
+Let $\T=[0,\infty)$ and $\{X_t\}$ be a $\{\cF_t\}$-progressively measurable process.
+For Borel $E\subset\R^d$, let $\sigma_E$ be the hitting time of $\{X_t\}$.
+\begin{parts}
+\item If $\{X_t\}$ and $\{\cF_t\}$ are right continuous, and if $E$ is open, then $\sigma_E$ is $\{\cF_t\}$-stopping time.
+\item If $\{X_t\}$ is continuous and $E$ is closed, then $\sigma_E$ is $\{\cF_t\}$-stopping time.
+\end{parts}
+\end{prop}
+\begin{pf}
+(a)
+Let $t>0$. Then,
+\[\{\sigma_E<t\}=\bigcup_{s\in[0,t)\cap\Q}\{X_s\in E\}\in\cF_t.\]
+
+(b)
+We show $\{\sigma_E\le t\}\in\cF_t$ for each $t>0$.
+If we introduce $f_E(x):=d(x,E)=\inf\{|x-y|:y\in E\}$, then $f_E$ is continuous and $f_E(x)=0$ is equivalent to $x\in E$.
+Now we can write
+\[\{\sigma_E\le t\}=\{\min_{s\in[0,t]}f_E(X_s)=0\}=\{\inf_{s\in[0,t]\cap\Q}f_E(X_s)=0\}\in\cF_t.\qedhere\]
+\end{pf}
+
+
+\newpage
+\section{Day 2: October 12}
+
+\begin{defn}
+Let $(\Omega,\cF,P)$ be a probability space.
+A stochastic process $\{B_t\}_{t\ge0}$ on $\Omega$ is called a $d$-dimensional \emph{standard Brownian motion} if
+\begin{enumerate}[(i)]
+\item it is continuous, i.e.~each sample path for $\omega$ is continuous,
+\item $B_t-B_s\sim N(0,(t-s)I)$ for $0\le s<t$
+\item $B_{t_{i+1}}-B_{t_i}$ are independent for $0=t_0<t_1<\cdots<t_n<\infty$.
+\end{enumerate}
+\end{defn}
+\begin{rmk*}
+If we write $B_t=(B_t^1,\cdots,B_t^d)$, then
+\[E[(B_t^i-B_s^i)(B_t^j-B_s^j)]=\delta_{ij}(t-s).\]
+If $B_0\equiv x$ for a vector $x\in\R^d$, then we say $\{B_t\}$ is a Brownian motion starts from $x$, and if $B_0\equiv\nu$ for a distribution $\nu$ on $\R^d$, then we say $\nu$ is the initial distribution of $\{B_t\}$.
+\end{rmk*}
+
+\begin{prop}
+Let $\{B_t\}$ be a standatd Brownian motion with initial distribution $\nu$.
+For $0=t_0<t_1<\cdots<t_n<\infty$ and $A_0,\cdots,A_n\in\cB(\R^d)$, we have
+\begin{align*}
+P(B_{t_0}\in A_0,\cdots,B_{t_n}\in A_n)=\int&\1_{A_0}(x_0)\cdots\1_{A_n}(x_n)\\&g_d(t_1-t_0,x_0,x_1)\cdots g_d(t_n-t_{n-1},x_{n-1},x_n)\,d\nu(x_0)\,dx_1\cdots dx_n,
+\end{align*}
+where
+\[g_d(t,x,y):=\frac1{\sqrt{2\pi t}^d}e^{-\frac{|x-y|^2}{2t}}.\]
+\end{prop}
+\begin{pf}
+\begin{align*}
+P(B_{t_0}\in A_0,\cdots,B_{t_n}\in A_n)
+&=P(B_{t_0}\in A_0,\cdots,B_{t_0}+\sum_{i=1}^n(B_{t_i}-B_{t_{i-1}})\in A_n)\\
+&=\int\1_{A_0}(y_0)\,d\nu(y_0)\int\1_{A_1}(y_0+y_1)g_d(t_1-t_0,0,y_1)\,dy_1
+\\&\cdots\int\1_{A_n}(y_0+\sum_{i=1}^ny_i)g_d(t_n-t_{n-1},0,y_n)\,dy_n.
+\end{align*}
+Here the matrix of coordinate change $x_0=y_0$, $x_i=y_0+\sum_{k=1}^iy_k$ has determinant one.
+Then we are done.
+\end{pf}
+
+\begin{thm}
+For a $d$-dimensional stochastic process $\{B_t\}$, TFAE:
+\begin{enumerate}[(1)]
+\item $\{B_t\}$ is a standard Brownian motion starting from zero.
+\item $\{B_t^i\}$ are mutually independent standard Brownian motions starting from zero.
+\end{enumerate}
+In particular, for its construction the one-dimensional Brownian motion is sufficient.
+\end{thm}
+\begin{rmk*}
+For stochastic processes $\{X_t\}$ and $\{Y_t\}$ are said to be independent if and only if for an arbitrarily long sequence $0=t_0<\cdots<t_M<\infty$ with $A_0,\cdots A_M$ and $B_0,\cdots, B_M$, we have
+\begin{align*}
+&P(X_{t_0}\in A_0,\cdots,X_{t_M}\in A_M,\quad Y_{t_0}\in B_0,\cdots,Y_{t_M}\in B_M)\\
+&\qquad=P(X_{t_0}\in A_0,\cdots,X_{t_M}\in A_M)P(Y_{t_0}\in B_0,\cdots,Y_{t_M}\in B_M).
+\end{align*}
+\end{rmk*}
+
+\begin{defn}[Modification]
+A stochastic process $\{X_t\}$ is called a \emph{modification} of $\{Y_t\}$ if $P(X_t=Y_t)=1$ for all $t\ge0$.
+We say $\{X_t\}$ and $\{Y_t\}$ are \emph{indistinguishable} if $P(X_t=Y_t:t\ge0)=1$.
+\end{defn}
+\begin{prop}
+If $\{X_t\}$ and $\{Y_t\}$ are right continuous modifications of each other, then they are indistinguishable.
+\end{prop}
+\begin{pf}
+By the definition of modifications, the following set is full:
+\[\tilde\Omega:=\{\omega\in\Omega:X_t(\omega)=Y_t(\omega),\ \forall t\in\Q_{\ge0}\}.\]
+Then, by the right continuity, $\tilde\Omega\subset\{X_t=Y_t:t\ge0\}$.
+\end{pf}
+
+Let $\Omega:=(\R^d)^{[0,\infty)}$, and $\cF:=\sigma(\{\pi_t\})$ be the Borel $\sigma$-algebra.
+It is not a standard Borel space.
+We will construct a probability measure $P$ on $(\Omega,\cF)$ such that $\pi_t\sim B_t$ for all $t$ (it means the $\pi_t$ satisfies the conditions for the Brownian motion only in distribution) and we will find a continuous modification of $\{\pi_t\}$.
+
+Let $\cT$ be the set of all strictly increasing finite nonnegative real sequences $(t_i)$ such that $t_0=0$.
+For $\bar t=(t_0,\cdots,t_n)\in\cT$, consider $\cF_{\bar t}$ and $\pi_{\bar t}:\Omega\to(\R^d)^{n+1}$.
+\begin{thm}[Kolmogorov extension]
+Suppose a probability measure $P_{\bar t}$ is given on $(\Omega,\cF_{\bar t})$ for every $\bar t\in\cT$.
+Then, TFAE:
+\begin{enumerate}[(1)]
+\item There is a probability measure $P$ on $(\Omega,\cF)$ such that $P|_{\cF_{\bar t}}=P_{\bar t}$ for all $\bar t\in\cT$.
+\item If $\bar t\subset\bar t'$, then $P_{\bar t'}|_{\cF_{\bar t}}=P_{\bar t}$.
+\end{enumerate}
+\end{thm}
+\begin{rmk*}
+(2) in the above is equivalent to the following:
+If $\bar t=(t_0,t_1,\cdots,t_{i-1},t_i,t_{i+1},\cdots,t_n)$ and $\bar t_i=(t_0,t_1,\cdots,t_{i-1},t_{i+1},\cdots,t_n)$, for $A\in\cB((\R^d)^i)$ and $B\in\cB((\R^d){n-i})$, we have
+\[P_{\bar t}(\pi_{\bar t}^{-1}(A\times\R^d\times B))=P_{\bar t_i}(\pi_{\bar t_i}^{-1}(A\times B)).\]
+\end{rmk*}
+\begin{rmk*}
+The consistency condition is equivalent to
+\[g_d(t_i-t_{i-1},x_{i-1},x_i)g_d(t_{i+1}-t_i,x_i,x_{i+1})\,dx_i=g_d(t_{i+1}-t_{i-1},x_{i-1},x_{i+1}).\]
+It is called the Chapman-Kolmogorov equation.
+\end{rmk*}
+
+In fact, we have stronger estimate $E[e^{\e\|B\|_\gamma^2}]<\infty$.
+
+\begin{thm}
+Let $\{X_t\}_{t\in[0,T]}$ be a stochastic process on $\R^d$.
+If there is $\alpha,\beta,C>0$ such that
+\[E[|X_t-X_s|^\alpha]\le C|t-s|^{1+\beta},\qquad 0\le s<t\le T,\]
+then there is a modification $\{\tilde X_t\}$ of $\{X_t\}$ such that there is a $\cF$-measurable random variable $C(\omega)<\infty$ for each $\omega\in\Omega$ and there is $\gamma\in(0,\frac\beta\alpha)$ satisfying
+\[|\tilde X_t(\omega)-\tilde X_s(\omega)|\le C(\omega)|t-s|^\gamma,\qquad 0\le s<t\le T.\]
+In other words, there is a $\gamma$-H\"older continuous modification.
+\end{thm}
+\begin{pf}
+Suppose $d=T=1$.
+Fix $n\in\N$.
+Then, for $r>0$ and $k=1,\cdots,2^n$,
+\begin{align*}
+P(|X_{k2^{-n}}-X_{(k-1)2^{-n}}|\ge2^{-nr})\le C2^{-n(1+\beta-r\alpha)}
+\end{align*}
+so that
+\begin{align*}
+P(\bigcup_{k=1}^{2^n}\{|X_{k2^{-n}}-X_{(k-1)2^{-n}}|\ge2^{-nr}\})\le C2^{-n(\beta-r\alpha)}.
+\end{align*}
+If we let $r=\gamma<\beta/\alpha$, then $A_n:=\bigcup_{k=1}^{2^n}\{|X_{k2^{-n}}-X_{(k-1)2^{-n}}|\ge2^{-nr}\}$ satisfies $\sum_{n=1}^\infty P(A_n)<\infty$, which implies $P(\limsup_{n\to\infty}A_n)=0$ and $P(\liminf_{n\to\infty}A_n^c)=1$ by the Borel-Cantelli.
+Let $\tilde\Omega:=\liminf_{n\to\infty}A_n^c$.
+If we let $N(\omega):=\inf\{n:\omega\in\bigcap_{k=n}^\infty A_k^c\}$, then $\tilde\Omega=\{N<\infty\}$.
+
+We claim that if 2-adic rational number $0\le s<t\le1$ satisfies $|t-s|<2^{-N(\omega)}$, then
+\[|X_t(\omega)-X_s(\omega)|\le\frac2{1-2^{-\gamma}}|t-s|^\gamma.\]
+Assume that the claim is true.
+Consider a sequence $s=t_0<\cdots<t_l=t$ such that $t_i-t_{i-1}=2^{-(N(\omega)+1)}$ for $1\le i\le l-1$ and $t_l-t_{l-1}\le2^{-(N(\omega)+1)}$.
+Then, $l\le 2^{N(\omega)+1}+1$, and we can estimate as follows: for $\omega\in\tilde\Omega$,
+\begin{align*}
+|X_t(\omega)-X_s(\omega)|
+&\le\sum_{i=1}^l|X_{t_i}(\omega)-X_{t_{i-1}}(\omega)|\\
+&\le\sum_{i=1}^l\frac2{1-2^{-\gamma}}|t_i-t_{i-1}|^\gamma\\
+&\le\frac{2(2^{N(\omega)+1}+1)}{1-2^{-\gamma}}|t_i-t_{i-1}|^\gamma\\
+&=:C(\omega)|t_i-t_{i-1}|^\gamma.
+\end{align*}
+Let $\tilde X(\omega):=0$ for $\omega\notin\tilde\Omega$ and $\tilde X(\omega)=\lim_{t_n\to t}X_{t_n}(\omega)$ for $\omega\in\tilde\Omega$, where $t_n$ runs through 2-adic rationals.
+The assumption $E[|X_t-X_s|^\alpha]\le C|t-s|^{1+\beta}$ implies that $X_{t_n}\to X_t$ in probability as $t_n\to t$, we have $P(\tilde X_t=X_t)=1$ for each $t$.
+\end{pf}
+
+
+
+\newpage
+\section{Day 3: October 19}
+
+\textbf{Claim.}
+Let $\tilde\Omega\subset\Omega$, $P(\tilde\Omega)=1$ with $N(\omega)<\infty$ for all $\omega\in\tilde\Omega$.
+Then, for 2-adic rationals $0\le s<t\le1$, we have
+\[|X_t(\omega)-X_s(\omega)|<\frac2{1-s^{-\gamma}}|t-s|^\gamma.\]
+\begin{pf}
+Suppose first $|t-s|<2^{N(\omega)}$.
+Then, there is $m\ge N(\omega)$ such that $2^{-m+1}\le t-s<2^{-m}$.
+There are two cases:
+\[k2^{-m}<s<(k+1)2^{-m}<t<(k+2)2^{-m}\]
+or
+\[k2^{-m}<s<t\le(k+1)2^{-m}\]
+for some $k$.
+See the note.
+\end{pf}
+
+
+
+$\sigma$-subalgebra provides the von Neumann subalgebra together with a conditional expectation.
+
+
+\begin{prop}
+Let $\f:\R\to\R$ be convex.
+If $X,\f(X)\in L^1$, then $E(\f(X)|\cG)\ge\f(E(X|\cG))$.
+In particular, $E(-|\cG)$ is $L^p$-bounded.
+\end{prop}
+\begin{defn}
+Let $(\Omega,\cF,P,\{\cF_t\})$ be a filtered probability space.
+A stochastic process $\{X_t\}$ is called a $\{\cF_t\}$-submartingale if it is $\{\cF_t\}$-adapted, $X_t\in L^1$ for each $t$, and $E(X_t|\cF_s)\ge X_s$ for each $s<t$.
+\end{defn}
+
+\begin{prop}
+Let $\f:\R\to\R$ be convex.
+\begin{parts}
+\item If $\{X_t\}$ is a martingale and $\f(X_t)\in L^1$ for all $t$, then $\{\f(X_t)\}$ is a submartingale.
+\item If $\{X_t\}$ is a submartingale and $\f(X_t)\in L^1$ for all $t$, and if $\f$ is non-decreasing, then $\{\f(X_t)\}$ is a submartingale.
+\end{parts}
+For example,
+\begin{itemize}
+\item $\{X_t\}$ is a martingale, then $\{|X_t|\}$ is a submartingale,
+\item $\{X_t\}$ is a non-negative martingale with $X_t\in L^p$, then $\{X_t^p\}$ is a submartingale,
+\
+\item $\{B_t\}$ is a $\{\sigma(\{B_s\}:s\le t)\}$-martingale. Because it is not right continuous, so we need to do something.
+\end{itemize}
+\end{prop}
+
+\begin{thm}[Doob's inequality]
+Let $\{X_t\}$ be a non-negative right continuous $\{\cF_t\}$-submartingale.
+\begin{parts}
+\item For $a>0$ and $t>0$,
+\[P(\sup_{s\le t}X_s\ge a)\le\frac1aE(X_t|\sup_{s\le t}X_s\ge a).\]
+\item For $p>1$ let $X_t\in L^p$. Then,
+\[P(\sup_{s\le t}X_s\ge a)\le\frac1{a^p}E(X_t^p)\]
+and
+\[E((\sup_{s\le t}X_s)^p)\le(\frac p{p-1})^pE(X_t^p).\]
+\item If $\{X_t\}$ is a right continuous $\{\cF_t\}$-martingale with $X_T\in L^p$ for some $p>1$, then
+\[E(\sup_{t\le T}|X_t|^p)\le(\frac p{p-1})^pE(|X_T|^p)\]
+\end{parts}
+\end{thm}
+\begin{pf}
+(a)
+Use the discrete version.
+\[P(A_n)\le\frac1aE(X_t|\sup_{s\le t}X_s\ge a)\]
+and $\{\sup_{s\le t}X_s>a\}\subset\liminf_nA_n$ implies by Fatou
+\[P(\{\sup_{s\le t}X_s>a\})\le P(\liminf_nA_n)\le\frac1aE(X_t|\sup_{s\le t}X_s\ge a).\]
+Using the right continuity, we can limit
+\[P(\{\sup_{s\le t}X_s>a\})\to P(\{\sup_{s\le t}X_s\ge a\}).\]
+
+(b)
+Let $X_t^*:=\sup_{s\le t}X_s$.
+\begin{align*}
+E((X_t^*)^p)
+&=\int_0^\infty px^{p-1}P(X_t^*>x)\,dx\\
+&=\int_0^\infty px^{p-2}E(X_t:X_t^*>x)\,dx\\
+&=pE(X_t\frac{(X_t^*)^{p-1}}{p-1})\\
+&=\frac p{p-1}E(X_t(X_t^*)^{p-1})\\
+&\le\frac p{p-1}E(X_t^p)^{\frac1p}E(((X_t^*)^{p-1})^{\frac p{p-1}})^{\frac{p-1}p}.
+\end{align*}
+
+(c)
+Corollary.
+\end{pf}
+
+\begin{lem}
+Let $(\Omega,\cF,P,\{\cF_t\})$ be a filtered probability space.
+Let $\sigma,\tau$ be $\{\cF_t\}$-stopping times such that $\sigma\le\tau$.
+Then, $\cF_\sigma\subset\cF_\tau$.
+\end{lem}
+
+\begin{thm}[Doob's optional sampling theorem]
+Let $\T=[0,\infty)$.
+Let $\{X_t\}$ be a right continuous $\{\cF_t\}$-submartingale and let $\sigma\le\tau$ be bounded $\{\cF_t\}$-stopping times.
+Then, $E(X_\tau|F_\sigma)\ge X_\sigma$.
+\end{thm}
+\begin{pf}
+\[\sigma_\Delta(\omega):=\inf\{t:\sigma(\omega)\le t,\ t\in\Delta\}.\]
+\end{pf}
+
+
+
+
+
+\newpage
+
+
+
+\end{document}
