@@ -1,0 +1,132 @@
+\documentclass{../../../small}
+\usepackage{../../../ikhanchoi}
+\usepackage{luatexja}
+\renewcommand{\theprb}{問\arabic{prb}}
+\renewcommand{\H}{\mathbb{H}}
+
+\begin{document}
+
+\title{複素解析学I演習2023年}
+\date{}
+\maketitle
+
+
+\begin{prb}[フックス群としてのモジュラー群]
+複素数体$\C$の部分環$A$に対して、成分$a,b,c,d$が$A$の元で$ad-bc=1$を満たす一次分数変換$f(z)=(az+b)/(cz+d)$の集合を$\PSL(2,A)$と書く．
+特に$\PSL(2,\Z)$を\emph{モジュラー群}と呼ぶ．
+上半平面$\H:=\{z\in\C:\Im z>0\}$の部分集合$D:=\{z\in\H:|z|>1,\ |\Re z|<\frac12\}$を定義する．
+\begin{enumerate}[(1)]
+\item $\PSL(2,\R)$の元$f$は全単射写像$\H\to\H$を定義することを示せ．
+\item $\PSL(2,\Z)$は$S(z):=-1/z$と$T(z):=z+1$によって生成されることを示せ．つまり、全ての元が$S^{\pm1}$と$T^{\pm1}$の有限回の合成として表されることを示せ．
+\item 集合$D$は$\PSL(2,\Z)$の\emph{基本領域}であることを示せ．つまり、次の二つが成り立つことを示せ：
+\begin{parts}
+\item 任意の点$z\in\H$に対して$f(z)\in\bar D$を満たす$f\in\PSL(2,\Z)$が少なくとも一つ存在する．
+\item 任意の点$z\in\H$に対して$f(z)\in D$を満たす$f\in\PSL(2,\Z)$が多くとも一つ存在する．
+\end{parts}
+\item $\PSL(2,\Z)$は$\H$に\emph{真性不連続に作用}することを示せ．つまり、任意の点$z\in\H$に対して軌道$\{f(z):f\in\PSL(2,\Z)\}$が離散集合であることを示せ．
+\end{enumerate}
+\end{prb}
+
+
+\begin{prb}[カラテオドリ級関数集合の極点]
+開単位円板上で定義された正則関数$f$が$f(0)=1$を満たすとする．
+もし任意の$|z|<1$を満たす複素数$z$に対して$\Re f(z)>0$ならば、$f$を\emph{カラテオドリ級}の関数という．
+関数$f$が冪級数展開$f(z)=1+2\sum_{k=1}^\infty c_kz^k$を持つとする．
+\begin{enumerate}[(1)]
+\item 正の整数$k$と実数$0<r<1$に対して次の式を示せ：
+\[c_kr^k=\frac1{2\pi}\int_0^{2\pi}\Re f(re^{i\theta})e^{-ik\theta}\,d\theta.\]
+\item 次の二つの条件が同値であることを示せ：
+\begin{parts}
+\item 関数$f$がカラテオドリ級である．
+\item 任意の正の整数$n$に対して点$(c_1,\cdots,c_n)\in\C^n$は$\theta\in[0,2\pi)$によって媒介変数表示された曲線$(e^{-i\theta},\cdots,e^{-in\theta})\in\C^n$の凸包絡の元である．
+\end{parts}
+\end{enumerate}
+\end{prb}
+
+\begin{prb}[ネヴァンリンナ個数関数の評価]
+複素平面全体上で定義された正則関数$f:\C\to\C$がある$\lambda>0$に対して不等式$|f(z)|\le e^{|z|^\lambda},\ (z\in\C)$を満たすとする．
+半径$r>0$の円板$B(0,r)$にある$f$の零点の数$N(r)$はある定数$C>0$が存在して評価$N(r)\le Cr^\lambda$を持つことを示せ．
+\end{prb}
+
+
+\begin{prb}[]
+\end{prb}
+
+
+\begin{prb}[四分円上のディリクレ問題]
+領域$\Omega:=\{(x,y)\in\R^2:x^2+y^2<1,\ x>0,\ y>0\}$上に定義された調和関数$u\in C^2(\Omega,\R)$が次の境界値条件を満たすとする：
+各点$(x_0,y_0)\in\partial\Omega$に対して
+\[\lim_{(x,y)\to(x_0,y_0)}u(x,y)=\begin{cases}
+0&\text{ if }y_0>0,\\
+1&\text{ if }y_0=0\text{ and }0<x_0<1.
+\end{cases}\]
+\begin{enumerate}[(1)]
+\item 反射原理を用いて$u$は領域$\tilde\Omega:=\{(x,y)\in\R^2:x^2+y^2<1,\ x>0\}$上の調和関数$\tilde u\in C^2(\tilde\Omega,\R)$に拡張されることを示せ．
+\item 実平面$\R^2$を複素平面$\C$とみなす．領域$\tilde\Omega$を上半平面$\H:=\{z\in\C:\Im z>0\}$に移し、$1,-i,0$を$1,0,-1$へ送る共形変換$\f$を求めよ．
+\item ポアソン積分と共形変換$\f$を用いて$u$を求めよ．
+\end{enumerate}
+\end{prb}
+
+
+\newpage
+
+\begin{pf}[Solution of 1]
+
+(3)
+Let $z_0\in\H$.
+We may assume $\Re z_0\in[-\frac12,\frac12)$.
+For $z\in\H$ satisfying $\Re z\in[-\frac12,\frac12)$, if we define $f_z:=T^{-\lfloor\Re Sz+\frac12\rfloor}S$, then $\Re f_z(z)\in[-\frac12,\frac12)$.
+Define a sequence $z_n$ inductively by $z_n:=f_{z_{n-1}}(z_{n-1})$ for $n\ge1$.
+Then, $\Re z_n\in[-\frac12,\frac12)$ for all $n$.
+Since
+\[\Im z_n=\frac{\Im z_{n-1}}{(\Re z_{n-1})^2+(\Im z_{n-1})^2}\ge g(\Im z_{n-1}),\]
+where $g(y):=4y/(1+4y^2)$, since $g^n(y)\uparrow\frac{\sqrt3}2$ for $0<y<\frac{\sqrt3}2$, so there is $n$ such that
+\[-\frac12\le\Re z_n<\frac12,\qquad\Im z_n>\frac{\sqrt3}4.\]
+If $|z_n|\ge1$, then we are done, so assume $|z_n|<1$.
+Now we have three possibilities: $|z_n-1|<1$, $|z_n+1|<1$, or $\min\{|z_n-1|,|z_n+1|\}\ge1$.
+For each case, we can check that $T^{-1}Sz_n$, $TSz_n$, $Sz_n$ is contained in $D$, respectively.
+
+For injectivity, let $w=(az+b)/(cz+d)$.
+It suffices to show $c=0$.
+Suppose $c\ne0$.
+Let $n$ be an integer such that $|n-\frac ac|\le\frac12$.
+Note that $|z-m|>1$ and $|w-m|>1$ for every integer $m$.
+Write
+\[1<|w-n|=\left|\frac{az+b}{cz+d}-n\right|\le\left|\frac1{c(cz+d)}\right|+\left|n-\frac ac\right|.\]
+If $|c|\ge2$, then $|c(cz+d)|\ge4\Im z>2\sqrt3$
+leads a contradiction.
+If $|c|=1$, say $c=1$, then $|n-a|\le\frac12$ implies $|n-\frac ac|=0$ and $|c(cz+d)|=|z+d|>1$ leads a contradiction.
+Thus, $c=0$, and we are done.
+
+(4)
+Clear from (3).
+\end{pf}
+
+\begin{pf}[Solution of 5]
+(1)
+$(x_0,y_0)\in\partial\tilde\Omega$
+\[\lim_{(x,y)\to(x_0,y_0)}\tilde u(x,y)=\begin{cases}
+0&\text{ if }y_0>0,\\
+2&\text{ if }y_0<0.
+\end{cases}\]
+
+(2)
+$\tilde\Omega$ is conformally mapped onto the upper half plane by
+\[\f:z\mapsto\left(\frac{z+i}{iz+1}\right)^2.\]
+
+(3)
+We can compute
+\[|\f(x+iy)|^2=\left(\frac{x^2+(y+1)^2}{x^2+(y-1)^2}\right)^2,\qquad\Im\f(x+iy)=\frac{4x(1-x^2-y^2)}{(x^2+(y-1)^2)^2}.\]
+For $x^2+y^2>1$ the Poisson kernel gives that
+\begin{align*}
+U(x,y)
+&=\frac2\pi\int_{-1}^1\frac y{(x-t)^2+y^2}\,dt\\
+&=\frac2\pi\left(\tan^{-1}\frac{1-x}y+\tan^{-1}\frac{1+x}y\right)\\
+&=\frac2\pi\tan^{-1}\frac{2y}{x^2+y^2-1}.
+\end{align*}
+\[u(x,y)=U(\Re\f(x+iy),\Im\f(x+iy)).\]
+Thus we have
+\[u(x,y)=\frac2\pi\tan^{-1}\frac{x(1-x^2-y^2)}{y(1+x^2+y^2)}.\]
+\end{pf}
+
+\end{document}

@@ -11,224 +11,101 @@
 \iffalse
 injectivity
 Connes embeddability
-Existentially closed II$_1$ factors
 property Gamma
 Connes' bicentralizer problem
 Shlyakhtenko semicircular system
-free probability
 group stability
-
-Direct integral!
-Types!
-Traces!
+bimodule
 
 \fi
 
 
-\part{}
+\part{Fundamentals}
 
 
-\chapter{Projections}
+\chapter{}
 
 \section{}
-Existence of range projections(=left support projection).
-A projection $p\in M$ is called the \emph{range} projection of $x\in M$ if $x^*yx=0$ if and only if $p^*yp=0$ for every $y\in M$
+
+
+\begin{prb}[Support projections of operators]
+Let $x$ be an element of a von Neumenna algebra $M$.
+The \emph{left support projection} of $x$ is the minimal projection $p\in M$ such that $x=px$, denoted by $s_l(x)$.
+The \emph{right support projection} of $x$ is defined as the left support projection of $x^*$.
+The projections $s_l(x)$ and $1-s_r(x)$ are also called the \emph{range} and \emph{kernel} projections of $x$, respectively.
+\begin{parts}
+\item Support projections of $x$ uniquely exist.
+\item $x^*yx=0$ if and only if $s_l(x)ys_l(x)=0$ for every $y\in M$.
+\item We have $s_r(x)=s_r(x^*x)=s_r(|x|)$. In particular, $s_l(x)=s_r(x)$ if $x$ is normal.
+\item If $x^*x\le y^*y$, then there is a unique $v\in M$ such that $x=vy$ and $s_r(v)\le s_l(y)$.
+\item There is unique $v\in M$ such that the polar decomposition $x=v|x|$ holds and that $s_r(x)=v^*v$. Moreover, $x^*=v^*|x^*|$ and $s_l(x)=vv^*$. In particular, $s_l(x)$ and $s_r(x)$ are Murray-von Neumann equivalent.
+\end{parts}
+\end{prb}
 \begin{pf}
-(Existence)
+(a)
 Let $x\in M$.
 Since $\im x=\im(xx^*)^{\frac12}$, we may assume $0\le x\le1$.
 Then, $x^{2^{-n}}$ is an increasing sequence in $M$ bounded by one, so it converges strongly to some $p\in M_+$.
 We can check $p^2=p$ by...
 We can check $p$ is the range projection of $x$ by...
-\end{pf}
 
-\begin{prb}[Polar decomposition]
-Let $M$ be a von Neumann algebra and let $x\in M$.
-Let $p$ and $q$ be the range projections of $x$ and $|x|$ respectively.
-Then, there is $v\in M$ such that
-\begin{parts}
-\item $x=v|x|$ and $v=vq$,
-\item $q=v^*v$ and $|x|=v^*x$,
-\item $v^*=v^*p$
-\item $p=vv^*$.
-\item $q$ is the range projection of $x^*$.
-\item $x^*=v^*|x^*|$.
-\end{parts}
-\end{prb}
-\begin{pf}
-Since $x^*x\le|x|^*|x|$, there is a unique $v\in M$ such that $x=v|x|$ and $v=vq$.
-
-(b)
-Then,
-\[q-v^*v=q(1-v^*v)q=0\]
-since
-\[|x|(1-v^*v)|x|=|x|^2-|x|^2=0\]
-So we have
-\[|x|=q|x|=v^*v|x|=v^*x.\]
-
-(c)
-Also,
-\[|(1-p)v|^2=q(1-v^*pv)q=0\]
-since
-\[|x|(1-v^*pv)|x|=|x|^2-|x|^2=0.\]
-Thus $v=pv$.
-
-(d)
-Now,
-\[p-vv^*=p(1-vv^*)p=0\]
-since
-\[x^*(1-vv^*)x=|x|^2-|x|^2=0.\]
 
 (e)
-We have
-\[xyx^*=0\quad\Leftrightarrow\quad |x|y|x|=0.\]
-Therefore, $q$ is the range projection of $x^*$, and the right support projection of $x$.
-
-(f)
-
+Since $x^*x\le|x|^*|x|$, there is a unique $v\in M$ such that $x=v|x|$ and $v=vs_l(|x|)=vs_r(x)$.
+Then, $s_r(x)-v^*v=s_r(x)(1-v^*v)s_r(x)=0$ from $|x|(1-v^*v)|x|=|x|^2-|x|^2=0$, and $s_l(x)-vv^*=s_l(x)(1-vv^*)s_l(x)=0$ from $x^*(1-vv^*)x=|x|^2-|x|^2=0$.
+The partial isometry $v$ is unique since $s_r(x)=v^*v$ implies $s_r(v)=s_r(v^*v)=s_r(s_r(x))=s_r(x)$.
+Similarly, $s_l(v)=s_l(x)$.
+The equality $xv^*=|x^*|$ follows from $xv^*=v|x|v^*\ge0$ and $|xv^*|^2=vx^*xv^*=v|x|^2v^*=xx^*=|x^*|^2$.
 \end{pf}
 
 
-support projections of states
 
-
-
-
-\section{Types}
-
-finite, infinite, purely infinite, properly infinite, abelian projections
-
-
-
-
-
-
-\bigskip
-Type I factors.
-It possess a minimal projection.
-It is isomorphic to the whole $B(H)$ for some Hilbert space.
-Therefore, it is classified by the cardinality of $H$.
-
-Type II factors.
-No minimal projection, but there are non-zero finite projections so that every projection can be ``halved'' by two Murray-von Neumann equivalent projections.
-
-In type II$_1$ factors, the identity is a finite projection
-Also, Murray and von Neumann showed there is a unique finite tracial state and the set of traces of projections is $[0,1]$.
-Examples of II$_1$ factors include crossed product, tensor product, free product, ultraproduct.
-Free probability theory attacks the free groups factors, which are type II$_1$.
-
-In type II$_\infty$ factors.
-There is a unique semifinite tracial state up to rescaling and the set of traces of projections is $[0,\infty]$.
-
-In type III factors no non-zero finite projections exists.
-Classified the $\lambda\in[0,1]$ appeared in its Connes spectrum, they are denoted by III$_\lambda$.
-Tomita-Takesaki theory.
-It is represented as the crossed product of a type II$_\infty$ factor and $\R$.
-
-Amenability, equivalently hyperfiniteness is a very nice condition in von Neumann algebra theory.
-Group-measure space construction can construct them.
-There are unique hyperfinite type II$_1$ and II$_\infty$ factors, and their property is well-known.
-Fundamental groups of type II factors, discrete group theory, Kazhdan's property (T) are used.
-
-Tensor product factors such as Araki-Woods factors and Powers factors.
-
-
-
-
-
-\section{Commutative von Neumann algebras}
-
-\begin{prb}[Enhanced measurable spaces]
-An \emph{enhanced measurable space} is a measurable space $(X,M)$ together with a $\sigma$-ideal $N$ of $M$.
-A morphism between enhanced measurable spaces is a partial function $f:X_1\to X_2$ on a conegligible set such that $f^*$ induces a ring homomorphism $M_2/N_2\to M_1/N_1$.
-\begin{parts}
-\item Maharam's theoem: every enhanced measurable space is isomorphic to the disjoint union of $\{0,1\}^I$, where $I$ is an aribitrary cardinality...?
-\item A $\sigma$-finite enhanced measurable space is isomorphic to a enhenced measurable space induced from a standard probability space...?
-\item For $\sigma$-finite enhanced measurable spaces, a $*$-homomorphism $L^\infty(X_2)\to L^\infty(X_1)$ induces a morphism $X_1\to X_2$...?
-\end{parts}
+\begin{prb}[Support projections of states]
 \end{prb}
 
-\begin{prb}
-Noncommutative $L^p$ spaces for a general weight?
-\begin{parts}
-\item For $1\le p<\infty$, $C_0(X)\to L^p(X,\mu)$ is a bounded linear maps of dense range.
-\item $L^\infty(X,\mu)$ is a m.a.s.a.~of $B(L^2(X,\mu))$.
-\end{parts}
-\end{prb}
-\begin{pf}
-We will show bounded linear maps $L^\infty(X,\mu)'\to M(X)$ and $L^\infty(X,\mu)\to M(X)$ have the same image.
-Let $y\in L^\infty(X,\mu)'$ and define $\mu_y\in M(X)$ by
-\[\mu_y(a):=\<\pi_\mu(a)y\psi_\mu,\psi_\mu\>.\]
-We claim that $\mu_y$ factors through $L^1(X,\mu)$.
-\end{pf}
-
-Monotone convergence theorem states that a measure on a countably decomposable(?) enhanced measurable space $X$ uniquely defines a `countably' normal weight on the space of all measurable functions.
-Note that a `countably' normal weight is normal on a countably decomposable von Neumann algebra.
-
-
-
-\begin{prb}[Maximal commutative subalgebras]
-A commutative von Neumann algebra $M$ is m.a.s.a.~if and only if it admits a cyclic vector.
-In this case, $M$ is spatially isomorphic to some $L^\infty$(if separable?).
-\end{prb}
-\begin{pf}
-\end{pf}
-
-separable commutative von Neumann algebra is generated by one self-adjoint element.
-
-hyperstonean sapces
-
-
-
-
-
-\chapter{Weights}
-
-\section{Normal weights}
 
 \begin{prb}[Cyclic and separating vectors]
-\end{prb}
-
 A vector state is separating iff it is faithful.
 
 If $M\subset B(H)$ admits a separating vector, then every normal state is a vector state. (T:V.1.12, J:7.1.4?)
+\end{prb}
 
 
 
-\begin{prb}[Countably decomposable von Neumann algebras]
+\begin{prb}[Countable decomposable von Neumann algebras]
 Let $M$ be a von Neumann algebra.
 A projection $p\in M$ is called \emph{countably decomposable} if mutually orthogonal nonzero projections majorized by $p$ are at most countable, and we say $M$ is \emph{countably decomposable} if the identity is.
 The followings are all equivalent.
 \begin{parts}
 \item $M$ is countably decomposable.
 \item $M$ admits a faithful normal state.
-\item $M$ admits a  with a cyclic and separating vector.
-\item The unit ball of $M$ is metrizable in strong topology.
+\item $M$ admits a module with a cyclic and separating vector.
+\item The unit ball of $M$ is metrizable in the $\sigma$-strong topology.
 \end{parts}
 \end{prb}
 \begin{pf}
-
-
 \end{pf}
 
-\begin{prb}[Separable predual]
+\begin{prb}[Separable von Neumann algebras]
 Let $M$ be a von Neumann algebra.
 The followings are all equivalent.
 \begin{parts}
 \item $M$ has the separable predual.
-\item $M$ faithfully acts on a separable Hilbert space.
+\item $M$ admits a faithful separable module.
 \item $M$ is countably decomposable and countably generated.
+\item The unit ball of $M$ is metrizable in the $\sigma$-weak topology.
 \end{parts}
 \end{prb}
 \begin{pf}
-
 \end{pf}
 
 
 
 
+\chapter{Modular theory}
 
 
+\section{Weights}
 
 
 \begin{prb}[Ideals associated to weights]
@@ -249,7 +126,6 @@ Consider a weight $\f$.
 \item A (it might require some condition here if $A$ is not W$^*$) weight on $A$ defines a semi-cyclic representation and vice versa?
 \item If $A=M$ is a von Neumann algebra, then we can let $\theta_*:\pi(M)'\to M_*$ to have $\theta^{**}=\theta$.
 \item $\theta^*$ is bijective onto the space of linear functionals on $\fm$ absolutely continuous with respect to $\f$. (bounded Radon-Nikodym)
-\item 
 \end{parts}
 \end{prb}
 
@@ -261,7 +137,7 @@ Let $\omega$ be a weight of $M$.
 \begin{parts}
 \item $\omega$ is normal.
 \item $\omega$ is $\sigma$-weakly lower semi-continuous.
-\item $\omega$ is the pointwise supremum of some set of normal positive linear functionals.
+\item $\omega$ is the supremum of a set of normal positive linear functionals.
 \end{parts}
 \end{prb}
 \begin{pf}
@@ -277,11 +153,6 @@ Suppose first $M$ is countably decomposable so that $B$ is metrizable.
 
 \end{pf}
 
-If we let $M_0$ be the union of all countably decomposable $\sigma$-weakly closed ideals of $M$, then $M_0$ is a $\sigma$-weakly sequentially closed ideal of $M$.
-
-If $M$ is countably decomposable, then every bounded increasing net has a bounded increasing subsequence of same supremum.
-
-
 
 
 
@@ -296,41 +167,8 @@ If an involution is an isometry, then it is also a right Hilbert algebra, which 
 
 \end{prb}
 
-For a locally compact group $G$, $A=C_c(G)$ together with a left Haar measure on $G$ is a left Hilbert algebra with
-\[(\xi\eta)(s):=\int_G\xi(t)\eta(t^{-1}s)\,dt,\]
-\[\<\xi,\eta\>:=\int\bar{\eta(s)}\xi(s)\,ds.\]
-\[S\xi(s):=\Delta(s^{-1})\bar{\xi(s^{-1})},\qquad F\xi(s)=\bar{\xi(s^{-1})},\]
-\[\Delta\xi(s)=\Delta(s)\xi(s),\qquad J\xi(s)=\Delta(s)^{-\frac12}\bar{\xi(s^{-1})},\]
-
-\[\<S\xi,\eta\>=\<F\eta,\xi\>\]
-
-Define $\Delta:=(CS)^*(CS)$, $J:=S\Delta^{\frac12}$.
-What are the domains of $S^{-1}$ and $S^*$? polar decomposition?
-Relation between $L^1(G,d\lambda)$ and $L^1(G,d\rho)$?
-What is $C_c(G)'$?
 
 
-
-Goal: $\Delta^{it}R_l(A)\Delta^{-it}=R_l(A)$ and $JR_l(A)J=R_l(A)'$.
-
-
-
-
-
-
-
-For a weight $\f$, we have a faithful semi-cyclic representation $(\pi,\psi)$.
-The map $\pi:M\to B(H)$ is always unital.
-
-The faithfulness of $\f$ is equivalent to the faithfulness of $\pi$.
-Define
-$A:=\psi(\fn\cap\fn^*)\subset H$, $\psi(x)\psi(y):=\psi(xy)$, $\psi(x)^*:=\psi(x)$, $\lambda(\psi(x)):=\pi(x)$.
-
-For a projection, $p\in\fn\cap\fn^*$, $p\in\fm^+$, $\f(p)<\infty$ are all equivalent.
-If $\f$ is semi-finite, then there is an increasing net of projections $p_\alpha$ in $\fn\cap\fn^*$ converges $\sigma$-strongly to the identity of $M$.
-It implies that $\lambda$ is non-degenerate.
-It also implies, $\psi(p_\alpha x)=\pi(p_\alpha)\psi(x)\to\psi(x)$ and $p_\alpha x\in fn^*$ implies that $\psi(\fn\cap\fn^*)$ is dense in $\psi(\fn)$, i.e.~$A$ is dense in $H$.
-I do not know how to deduce the density of $A$ in $H$ without semi-finiteness.
 
 
 
@@ -347,7 +185,6 @@ We say $M$ is \emph{semi-finite} if it admits a faithful normal semi-finite trac
 \item A factor is tracial if and only if it is type II$_1$.
 \end{parts}
 \end{prb}
-
 
 
 \begin{prb}[Semi-finite traces]
@@ -372,7 +209,11 @@ Let $A$ be a uniformly hyperfinite algebra.
 
 measurable operators,
 unbounded operators affilated with $M$,
-noncommutative $L^p$ spaces,
+noncommutative $L^p$ spaces for semi-finite con Neumann algebras,
+noncommutative $L^p$ space for general von Neumann algebras: by Haagerup(crossed product), and by Kosaki-Terp(complex interpolation).
+
+On semi-finite von Neumann algebras, measurable operators are affiliated.
+On a finite von Neumann algebras, affiliated operators are measurable.
 
 
 \begin{itemize}
@@ -387,7 +228,7 @@ noncommutative $L^p$ spaces,
 
 
 
-\section{Modular theory}
+\section{Modular automorphisms}
 
 
 \begin{prb}[Unitary group]
@@ -427,6 +268,62 @@ Let $\f$ be a \emph{completely additive} weight on a von Neumann algebra in the 
 
 \chapter{Direct integral}
 
+
+\section{Commutative von Neumann algebras}
+
+$\sigma$-field is a unital $\sigma$-ring.
+$\sigma$-ideal is an ideal of a $\sigma$-ring which is a $\sigma$-ring.
+$\sigma$-ideal is sometimes called the measure class because it corresponds to an equivalence class of measures up to absolute continuity.
+
+
+\begin{prb}[Enhanced measurable spaces]
+An \emph{enhanced measurable space} is a measurable space $(X,M)$ together with a $\sigma$-ideal $N$ of $M$.
+A morphism between enhanced measurable spaces is a partial function $f:X_1\to X_2$ on a conegligible set such that $f^*$ induces a ring homomorphism $M_2/N_2\to M_1/N_1$.
+\begin{parts}
+\item Maharam's theoem: every enhanced measurable space is isomorphic to the disjoint union of $\{0,1\}^I$, where $I$ is an aribitrary cardinality...?
+\item A $\sigma$-finite enhanced measurable space is isomorphic to a enhenced measurable space induced from a standard probability space...?
+\item For $\sigma$-finite enhanced measurable spaces, a $*$-homomorphism $L^\infty(X_2)\to L^\infty(X_1)$ induces a morphism $X_1\to X_2$...?
+\end{parts}
+\end{prb}
+
+\begin{prb}[Maharam classification]
+\end{prb}
+
+
+\begin{prb}
+Noncommutative $L^p$ spaces for a general weight?
+\begin{parts}
+\item For $1\le p<\infty$, $C_0(X)\to L^p(X,\mu)$ is a bounded linear maps of dense range.
+\item $L^\infty(X,\mu)$ is a m.a.s.a.~of $B(L^2(X,\mu))$.
+\end{parts}
+\end{prb}
+\begin{pf}
+We will show bounded linear maps $L^\infty(X,\mu)'\to M(X)$ and $L^\infty(X,\mu)\to M(X)$ have the same image.
+Let $y\in L^\infty(X,\mu)'$ and define $\mu_y\in M(X)$ by
+\[\mu_y(a):=\<\pi_\mu(a)y\psi_\mu,\psi_\mu\>.\]
+We claim that $\mu_y$ factors through $L^1(X,\mu)$.
+\end{pf}
+
+Monotone convergence theorem states that a measure on a countably decomposable(?) enhanced measurable space $X$ uniquely defines a `countably' normal weight on the space of all measurable functions.
+Note that a `countably' normal weight is normal on a countably decomposable von Neumann algebra.
+
+
+
+\begin{prb}[Maximal commutative subalgebras]
+A commutative von Neumann algebra $M$ is m.a.s.a.~if and only if it admits a cyclic vector.
+In this case, $M$ is spatially isomorphic to some $L^\infty$(if separable?).
+\end{prb}
+\begin{pf}
+\end{pf}
+
+separable commutative von Neumann algebra is generated by one self-adjoint element.
+
+hyperstonean sapces
+
+
+
+
+
 \section{Tensor products}
 
 $L^2(X,\mu,H)=L^2(X,\mu)\otimes H$
@@ -439,6 +336,45 @@ vector or operator-valued integrals
 
 \begin{prb}[Decomposition of states]
 \end{prb}
+
+
+\section{Types}
+
+finite, infinite, purely infinite, properly infinite, abelian projections
+
+
+
+
+\bigskip
+Type I factors.
+It possess a minimal projection.
+It is isomorphic to the whole $B(H)$ for some Hilbert space.
+Therefore, it is classified by the cardinality of $H$.
+
+Type II factors.
+No minimal projection, but there are non-zero finite projections so that every projection can be ``halved'' by two Murray-von Neumann equivalent projections.
+
+In type II$_1$ factors, the identity is a finite projection
+Also, Murray and von Neumann showed there is a unique finite tracial state and the set of traces of projections is $[0,1]$.
+Examples of II$_1$ factors include crossed product, tensor product, free product, ultraproduct.
+Free probability theory attacks the free groups factors, which are type II$_1$.
+
+In type II$_\infty$ factors.
+There is a unique semifinite tracial state up to rescaling and the set of traces of projections is $[0,\infty]$.
+
+In type III factors no non-zero finite projections exists.
+Classified the $\lambda\in[0,1]$ appeared in its Connes spectrum, they are denoted by III$_\lambda$.
+Tomita-Takesaki theory.
+It is represented as the crossed product of a type II$_\infty$ factor and $\R$.
+
+Amenability, equivalently hyperfiniteness is a very nice condition in von Neumann algebra theory.
+Group-measure space construction can construct them.
+There are unique hyperfinite type II$_1$ and II$_\infty$ factors, and their property is well-known.
+Fundamental groups of type II factors, discrete group theory, Kazhdan's property (T) are used.
+
+Tensor product factors such as Araki-Woods factors and Powers factors.
+
+
 
 
 
@@ -476,7 +412,16 @@ whose element $s\mapsto x_s$ is written in
 \end{parts}
 \end{prb}
 
-ergodic theory, rigidity theory
+
+\section{Ergodic theory}
+\section{Rigidity theory}
+\section{Free probability}
+\section{}
+Existentially closed II$_1$ factors
+
+
+
+
 
 \chapter{Type III factors}
 
@@ -503,6 +448,9 @@ Popa's $\lambda$-lattices
 Jones' planar algebras
 Quantum entropy
 
+
+
+\part{Noncommutative probability}
 
 
 

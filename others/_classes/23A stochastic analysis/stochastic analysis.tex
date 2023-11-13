@@ -206,7 +206,7 @@ For stochastic processes $\{X_t\}$ and $\{Y_t\}$ are said to be independent if a
 
 \begin{defn}[Modification]
 A stochastic process $\{X_t\}$ is called a \emph{modification} of $\{Y_t\}$ if $P(X_t=Y_t)=1$ for all $t\ge0$.
-We say $\{X_t\}$ and $\{Y_t\}$ are \emph{indistinguishable} if $P(X_t=Y_t:t\ge0)=1$.
+We say $\{X_t\}$ and $\{Y_t\}$ are \emph{indistinguishable} if $P(X_t=Y_t:\forall t\ge0)=1$.
 \end{defn}
 \begin{prop}
 If $\{X_t\}$ and $\{Y_t\}$ are right continuous modifications of each other, then they are indistinguishable.
@@ -390,7 +390,96 @@ Then, $E(X_\tau|F_\sigma)\ge X_\sigma$.
 
 
 \newpage
+\section{Day 4: October 26}
+
+\begin{lem}[Square integrable process spaces]
+The space $\cE^{2,(c)}([0,T])$ of square integrable (right) continuous $\{\cF_t\}$-adapted sotchastic processes with the norm
+\[\|X\|_{T,2}=\|\{X_t\}\|_{T,2}:=\|X^*_T\|_2=(E|X^*_T|^2)^{\frac12}\]
+is a Banach space up to indistinguishable processes, where $X^*_T:=\sup_{t\le T}|X_t|$ is the maximal process.
+Note that we may also write $\cE^{2,c}([0,T])=L^2(\Omega,C([0,T]))$.
+The same result holds for the space of right continuous processes.
+\end{lem}
+\begin{pf}
+We will write $X_t=X(t)$ for time $t$ to consider a Cauchy sequence of stochastic processes $(X_n)$.
+We may assume that $\|X_n-X_{n+1}\|_{T,2}\le n^{-3}$.
+If $A_n:=\{(X_n-X_{n+1})^*_T\ge n^{-2}\}$, then
+\[P(A_n)<n^4E|(X_n-X_{n+1})^*_T|^2\le n^{-2},\] so $P(\liminf_nA_n)=0$.
+....
+\end{pf}
+\begin{rmk}
+In the proof of the completeness of $L^1(\Omega)$, we may assume by taking a subsequence $\|f_n-f_{n+1}\|\le n^{-2}$, so we can write $\|f_m-f_n\|\le\sum_{k=n+1}^mk^{-2}$.
+The Fatou implies $\|f-f_n\|\le\sum_{k=n+1}^\infty k^{-2}$ and $\lim_n\|f-f_n\|=0$.
+We have to check the original sequence also converges to $f$.
+\end{rmk}
+
+\begin{lem}[Square integrable martingale spaces]
+The space $\cM_0^{2,(c)}$ of square integrable (right) continuous martingales starting from zero is a closed subspace of the space $\cE^{2,(c)}$ of square integrable (right) continuous processes.
+If we consider $\cM_0^{2,(c)}([0,T])$, then it is a Hilbert space with an inner product $\<M,N\>:=EM_TN_T$.
+Note that for martingales, the norms $(E|M_T^*|^2)^{\frac12}$ and $(E|M_T|^2)^{\frac12}$ are equivalent, and every time-wise s.i.r.c.~martingale belongs to $\cM_0^2$.
+\end{lem}
+
+\begin{thm}[Doob-Meyer decomposition]
+For a square integrable continuous martingale $\{M_t\}$, there is a unique non-decreasing integrable continuous process $\{A_t\}$ such that $M_t^2-A_t$ is a continuous martingale.
+We also write $A_t=\<M\>_t$ and is called the quadratic variation process of $M$.
+\end{thm}
+\begin{pf}
+
+\end{pf}
+
+\begin{ex}
+If $\{B_t\}$ is a Brownian motion for which $B_t-B_s$ is independent with respect to $\cF_s$ for $s<t$, then we can compute $E(B_t^2-t|\cF_s)=B_s^2-s$.
+Therefore, $\<B\>_t=t$.
+\end{ex}
 
 
+
+
+
+
+A function $f\in L_\loc^1([0,1])$ is called to be a function of bounded variation if $f'\in M([0,1])$.
+\[\|f\|_{BV}=|f(0)|+\|f'\|_M,\qquad\|f\|_{BVC}=\|f\|_\infty+\|f'\|_M.\]
+Maybe...?
+
+
+
+\newpage
+\section{Day 5: November 2}
+
+Convergence for partitions: $\Delta\to0$ and $|\Delta|\to0$, finite and infinite partitions.
+$C\subset D\subset RC$.
+
+\[\cM_0^p(X)\subset\cE^p(X):=L^p(\Omega,RC(X)),\qquad
+\cM_0^{p,c}(X)\subset\cE^{p,c}(X):=L^p(\Omega,C(X)).\]
+Here $\cM_0$ means the martingale starting from zero.
+They are Fr\'echet-space-valued $L^p$ spaces, hence Fr\'echet spaces.
+If $X=[0,\infty)$, then $X$ will be omitted.
+\begin{thm}[Doob-Meyer decomposition]
+Let $(M_t)\in\cM_0^{2,c}$.
+\begin{parts}
+\item There exists a unique $(A_t)\in\cE^{1,c}$ such that $(M_t^2-A_t)\in\cM_0^{1,c}$.
+\item $Q(M;\Delta)\to A$ in $\cE^{0,c}$ as $|\Delta|\to0$.
+\end{parts}
+\end{thm}
+\begin{pf}
+We first assume that $M_t\in L^\infty(\Omega,C_b([0,\infty))$.
+\end{pf}
+
+
+cross variation process $A_t:=\<M,N\>_t$.
+
+
+\subsection{Stochastic integration}
+
+If $(A_t)\in\cE^0$ is an increasing process starting from zero, then by the right continuity of $A$ we can consider $A$ as a random meausre $\nu_A:\Omega\to M_\loc([0,\infty))$ such that
+\[\nu_A((a,b]):=A_b-A_a.\]
+We may define the Riemann-Stieltjes integral with $A$ for fixed $\omega$.
+
+
+On Skorokhod space $D$.
+On Fr\'echet-valued-$L^p$ spaces.
+On monotone class lemma.
+
+A c\`adl\`ag function of locally bounded variation is decomposed into the difference of two non-decreasing c\`adl\`ag functions.
+A non-decreasing c\`adl\`ag function(=non-decreasing right continuous function) corresponds to a locally finite measure on the real line.
 
 \end{document}

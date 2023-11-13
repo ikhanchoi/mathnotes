@@ -183,6 +183,9 @@ For another example, for any function $u(t)$, let
 \[M_3(t):=-4[\partial_x^3+\frac34(u(t)\partial_x+\partial_xu(t))],\qquad L(0):=\partial_x^2+u_0.\]
 Then, similarly, if we consider $U(t)$ we obtain $L(t)=\partial_x^2+u(t)$, where $u$ satisfies the KdV equation because
 \[0=L_t(t)-[M_3(t),L(t)]=u_t+u_{3x}+6uu_x.\]
+More precisely, we can show that if $u$ satisfies KdV, then we can show
+\[\frac d{dt}[U(t)^*(\partial_x^2+u(t,x))U(t)]=0.\]
+
 
 Under the condition that $M(t)$ is skew symmetric, once we have a non-trivial solution for the first ``Lax pair equation'' $L(0)\psi_0=\lambda^2\psi_0$ only at $t=0$, then we can deduce the solution $\psi(t)$ of $\psi_t(t)=M(t)\psi(t)$ is always non-trivial for all $t>0$ because $\psi(t)$ is given by the unitary transformation of $\psi_0$.
 It implies that the existence of $\psi_0$ gives the existence of $u(t)$!
@@ -268,9 +271,9 @@ It satisfies $\partial\sigma/\partial t=0$ and $\sigma'[K]=K'[\sigma]$.
 
 \bigskip
 Let $\rho$ be a differential polynomial with respect only to $x$.
-If we let $I(u):=\int\rho(u)\,dx$, then
+If we let $I(u,t):=\int\rho(u,t)\,dx$ or $I(u):=\int\rho(u)\,dx$, then
 \[\frac{dI}{dt}=\int(\frac{\partial\rho}{\partial t}+\rho'(u)[u_t])\,dx=\frac{\partial I}{\partial t}+\int\rho'(u)[u_t]\,dx.\]
-If we try to compute the gradient of $I$ as in the calculus of variations,
+If $\partial\rho/\partial t=0$, then we try to compute the gradient of $I$ as in the calculus of variations,
 \[I'(u)[v]=\<\rho'(u)^T[1],v\>_{L^2(\R_x)}=:\<(\grad I)(u),v\>_{L^2(\R_x)}.\]
 We can apply the integration by parts to compute the transpose.
 For examples,
@@ -281,5 +284,228 @@ For examples,
 \end{enumerate}
 
 Olver
+
+
+
+\newpage
+\section{Day 4: October 30}
+
+Linear functionals in classical field theory, like action(time-space $dt\,dx$) or invariants(only spatial space $dx$), are defined by integrating a differential polynomial of a field.
+Let $\cD_x:=\cS(\R)$, $\cD_t:=C^\infty([0,\infty))$, and $\cD_{x,t}:=C^\infty([0,\infty),\cS(\R))$.
+For a linear functional $I:\cD_{x,t}\to\cD_t$, defined by the spatial integration a differential polynomial $\rho:\cD_{x,t}\to\cD_{x,t}$, its spatial gradient $\gamma=\grad I$ is given by a differential polynomial $\gamma:=\rho'(\cdot)^T[1]:\cD_{x,t}\to\cD_{x,t}$ such that
+\[I'(u)[v]=\<\gamma(u),v\>_{L^2(\R)},\qquad u\in\cD_{x,t},\ v\in\cD_x.\]
+We can recognize this by applying the chain rule on
+\[I:\cD_{x,t}\xrightarrow{\rho}\cD_{x,t}\xrightarrow{\int_\R}\cD_t.\]
+Note that $\rho'(u):\cD_x\to\cD_{x,t}$ and $\rho'(u)^T:\cD_x\to\cD_{x,t}$ and $\rho'(u)^T[1]\in\cD_{x,t}$.
+Then, the spatial Fr\'echet derivative $\gamma'(u)$ of a non-linear operator $\gamma:\cD_{x,t}\to\cD_{x,t}$ at $u$ also can be viewed as an operator
+\[\gamma'(u):=\sum_J\frac{\partial\gamma}{\partial u_J}(u)\partial_J.\]
+\begin{prop}
+Let $\gamma$ be the gradient of a linear functional $I$, defined by $I(u):=\int\rho(u)\,dx$.
+\begin{parts}
+\item $\gamma'(u)$ is a symmetric operator.
+\item Every differential polynomial $g$ whose Fr\'echet derivative $g'(u)$ defines a symmetric operator is the gradient of
+\[I(u):=\int u\int_0^1g(\lambda u)\,d\lambda\,dx.\]
+\item 
+If $\frac{\partial g}{\partial t}+g'[K]+K'^T[g]=0$ as differential polynomials, and if $K(0)=0$, then $I(u)=\int u\int_0^1g(\lambda u)\,d\lambda\,dx$ is an invariant of $u_t=K(u)$.
+\end{parts}
+\end{prop}
+\begin{pf}
+
+(b)
+\begin{align*}
+I'(u)[v]
+&=\int v\int_0^1g(\lambda u)\,d\lambda\,dx
++\int u\int_0^1\left.\sum_J\frac{\partial g}{\partial u_J}\partial_J\right|_{u\to\lambda u}\lambda v\,dx\\
+&=\left<\int_0^1(g(\lambda u)+\lambda g'(u)^T|_{\lambda u}[u])\,d\lambda,v\right>\\
+&=\left<\int_0^1\frac d{d\lambda}(\lambda g(\lambda u))\,d\lambda,v\right>\\
+&=\<g(u),v\>.
+\end{align*}
+
+(c)
+\begin{align*}
+\left(\frac{dI}{dt}\right)'[v]
+&=\left(\frac{\partial I}{\partial t}\right)'[v]
++\<\gamma'(u)[v],K(u)\>+\<\gamma(u),K'(u)[v]\>\\
+&=\<\frac{\partial\gamma}{\partial t},v\>+\<\gamma'(u)[K(u)],v\>+\<K'(u)^T[\gamma(u)],v\>
+\end{align*}
+\end{pf}
+
+\begin{ex}[Boussinesq equation]
+$u_{2t}+u_{4x}+(3u^2)_{2x}=0$ can be rewritten as
+\[(u,v)_t=(v,-(u_{2x}+3u^2)_{2x})=:K(u,v)\]
+if $v:=u_t$.
+\end{ex}
+
+
+
+\newpage
+\section{Day 5: November 6}
+
+
+\begin{lem}
+Let $p,q$ be differential polynomials.
+For a multi-index $J$, there is a vector field $V$ such that $p_Jq=(-1)^{|J|}pq_J+\div V$.
+For example,
+\[p_xq=-pq_x+\div(pq,0),\qquad p_{xt}q=pq_{xt}+\div(p_tq,-pq_x).\]
+\end{lem}
+\begin{pf}
+We can prove by induction.
+\end{pf}
+
+
+
+For a differential polynomial $L$,
+\[L'(u)[v]=\sum_Jv_J\frac{\partial L}{\partial u_J}=\sum_J(-1){|J|}\left(\frac{\partial L}{\partial u_J}\right)_Jv+\div V=v(L'(u)^T[1])+\div V.\]
+Therefore, the Euler-Lagrangian equation for the Lagrangian $L$ is $L'(u)^T[1]=0$.
+For example, if we define a Lagrangian $L(u):=\frac12(u_t^2-c^2u_x^2)$, then
+\begin{align*}
+L'(u)&=u_t\partial_t-c^2u_x\partial_x\\
+L'(u)^T&=-\partial_tu_t+c^2\partial_xu_x\\
+L'(u)^T[1]&=-u_{tt}+c^2u_{xx}.
+\end{align*}
+Conversely, we can reconstruct $L$ from the EL equation using the formula in the part (b) of Proposition 4.1.~if $E'(u)[\cdot]=E'(u)^T[\cdot]$ for $u$ satisfying $E(u)=0$.
+
+Is the KdV a Euler-Lagrange equation?
+No, because if we let $E(u):=u_t+u_{3x}+6uu_x=0$, then
+\[E'(u)=\partial_t+\partial_x^3+6u\partial_x+6u_x,\qquad E'(u)^T=-\partial_t-\partial_x^3-6u\partial_x\]
+are different.
+However, if we put $u=w_x$, then the potential KdV
+\[\tilde E(w)=w_{xt}+x_{4x}+6w_xw_{2x}\]
+is a Euler-Lagrange equation since
+\[\tilde E'(w)=\partial_{xt}+\partial_{4x}+6w_x\partial_x^2+6w_{2x}\partial_x=\tilde E'(w)^T.\]
+The Lagrangian can be determined by the following computation:
+\begin{align*}
+S(w)&=\iint w\int_0^1\tilde E(\lambda w)\,d\lambda\,dx\,dt\\
+&=\iint w\int_0^1\tilde E(\lambda w_{xt}+\lambda w_{4x}+\lambda^26w_xw_{2x})\,d\lambda\,dx\,dt\\
+&=\iint w(\frac12w_{xt}+\frac12w_{4x}+2w_xw_{2x})\,dx\,dt\\
+&=\frac12\iint\left[((-w_xw_t)+(ww_t)_x)+((ww_{3x})_x-(w_xw_{2x})_x+w_{2x}^2))+(2(ww_x^2)_x-2w_x^3)\right]\,dx\,dt\\
+&=\frac12\iint\left[-w_xw_t+w_{2x}^2-2w_x^3\right]\,dx\,dt,
+\end{align*}
+i.e.~we can define
+\[L(w):=\frac12(w_{2x}^2-w_xw_t-w_x^3).\]
+We can check
+\[L'(w)^T[1]=w_{xt}+w_{4x}+6w_xw_{2x}.\]
+
+
+For a symmetry $\sigma:\cD_{x,t}\to\cD_{x,t}$, i.e.~$(\partial\sigma/\partial t)(u)=K'(u)[\sigma(u)]-\sigma'(u)[K(u)]$, we have
+\[S(u')-S(u)=\iint(L'(u)[\sigma]+\div(\xi L,\tau L))\,dx\,dt+o(1),\qquad \e\to0,\]
+and
+\[L'(w)[\sigma]+\div(\xi L,\tau L)=(\tau L-\frac12\sigma w_x)_t+(\xi L-\frac12\sigma w_t-3\sigma w_x^2+\sigma_xw_{2x}-\sigma w_{3x})_x+\sigma(w_{xt}+w_{4x}+6w_xw_{2x})\]
+for potential KdV solution $w$ and potential KdV Lagrangian $L$.
+Here
+\[\rho(u):=\tau L-\frac12\sigma w_x,\]
+then $\rho$ defines an invariant $I$.
+
+\begin{ex}
+(i)
+If $\sigma=-w_x$, then
+
+(ii)
+
+(iii)
+
+(iv)
+\end{ex}
+
+
+variation symmetry and divergence symmetry...
+The power of Lagrangian is limited.
+
+\begin{rmk}
+The case (iii) in the above example gives an invariant of potential KdV, not of the original KdV.
+The scaling symmetry is not the symmetry of action, so does not come from Noether's theorem.
+Hamiltonian structrue of KdV(we will discuss in the next lecture) is not obtained from Lagrangian.
+\end{rmk}
+
+
+
+\newpage
+\section{Day 6: November 13}
+
+We say $u_t=K(u)$ admits a Poisson structure if there is $\Theta(u)$, which is
+\begin{enumerate}[(i)]
+\item a partial differential operators in $x$, where coefficients are differential polynomials of $u$, i.e.~$\Theta(u)=\sum_jc_j(u)\partial_x^j$,
+\item satisfies $\Theta^T=-\Theta$,
+\item such that for $\alpha,\beta,\gamma$ gradients ($\gamma'^T[\cdot]=\gamma'[\cdot]$),
+\[\<\alpha,\Theta'[\Theta\gamma]\beta\>+\<\beta,\Theta'[\Theta\alpha]\gamma\>+\<\gamma,\Theta'[\Theta\beta]\alpha\>.\]
+(For example of $\Theta'$, we have $\Theta(u)=\partial_x^2+u_x\partial_x+u$ if $\Theta'[\gamma]=\gamma_x\partial_x+\gamma$.)
+\end{enumerate}
+together with a differential polynomial $\gamma_H$ of $u$ which is a gradient such that $K(u)\equiv\Theta(u)\gamma_H$.
+Define
+\[H(u):=\int\int_0^1u(x)\gamma_H(\lambda u)(x)\,d\lambda\,dx,\qquad\{A,B\}_\Theta:=\<\gamma_A,\Theta\gamma_B\>,\]
+where $A$ and $B$ are functionals.
+Then, the bracket $\{,\}_\Theta$ satisfies the axioms of Poisson bracket except the Leibniz rule, i.e.~bilinearity, anti-commutativity, and the Jacobi identity.
+We exclude the Leibnize rule because we do not consider products of functionals.
+The Poisson structure is somtimes called the Hamiltonian structure in references.
+
+We can check
+\begin{align*}
+\frac{dA}{dt}&=\frac{\partial A}{\partial t}+A'(u)[u_t]=\frac{\partial A}{\partial t}+\<\gamma_A,u_t\>\\
+&=\frac{\partial A}{\partial t}+\<\gamma_A,K(u)\>=\frac{\partial A}{\partial t}+\<\gamma_A,\Theta\gamma_H\>=\frac{\partial A}{\partial t}+\{A,H\}_{\Theta}.
+\end{align*}
+
+Now we prove the Jacobi identity.
+Note that $\{B,C\}_{\Theta}(u)=\<\gamma_B(u),\Theta(u)\gamma_C(u)\>$ is a functional of $u$.
+If we define $\Theta'[v]\gamma_C=\Theta'(\gamma_C)[v]=:T_C[v]$, then
+\begin{align*}
+\{B,C\}_\Theta'[v]
+&=\<\gamma_B'[v],\Theta\gamma_C\>+\<\gamma_B,\Theta'[v]\gamma_C\>+\<\gamma_B,\Theta\gamma_C'[v]\>\\
+&=\<v,\gamma_B'[\Theta\gamma_C]\>+\<T_C^T[\gamma_B],v\>-\<\gamma'_C[\Theta\gamma_B],v\>\\
+&=\<\gamma'_B[\Theta\gamma_C]+T_C^T[\gamma_B]-\gamma'_C[\Theta\gamma_B],v\>,
+\end{align*}
+so $\gamma_{\{B,C\}_\Theta}=\gamma'_B[\Theta\gamma_C]+T_C^T[\gamma_B]-\gamma'_C[\Theta\gamma_B]$.
+Then,
+\begin{align*}
+\{A,\{B,C\}_\Theta\}_\Theta&+
+\{B,\{C,A\}_\Theta\}_\Theta+
+\{C,\{A,B\}_\Theta\}_\Theta\\
+&=\<\gamma_A,\Theta\gamma_{\{B,C\}_\Theta}\>+\<\gamma_B,\Theta\gamma_{\{C,A\}_\Theta}\>+\<\gamma_C,\Theta\gamma_{\{A,B\}_\Theta}\>\\
+&=\<\gamma_A,\Theta\gamma'_B[\Theta\gamma_C]\>+\<\gamma_A,\Theta T_C^T[\gamma_B]\>-\<\gamma_A,\Theta\gamma'_C[\Theta\gamma_B]\>\\
+&+\<\gamma_B,\Theta\gamma'_C[\Theta\gamma_A]\>+\<\gamma_B,\Theta T_A^T[\gamma_C]\>-\<\gamma_B,\Theta\gamma'_A[\Theta\gamma_C]\>\\
+&+\<\gamma_C,\Theta\gamma'_A[\Theta\gamma_B]\>+\<\gamma_C,\Theta T_B^T[\gamma_A]\>-\<\gamma_C,\Theta\gamma'_B[\Theta\gamma_A]\>\\
+&=\<\gamma_A,\Theta T_C^T[\gamma_B]\>+\<\gamma_B,\Theta T_A^T[\gamma_C]\>+\<\gamma_C,\Theta T_B^T[\gamma_A]\>\\
+&=-\<T_C[\Theta\gamma_A],\gamma_B\>-\cdots\\
+&=-[\<\gamma_B,\Theta'[\Theta\gamma_A]\gamma_C\>+\<\gamma_C,\Theta'[\Theta\gamma_B]\gamma_A\>+\<\gamma_A,\Theta'[\Theta\gamma_C]\gamma_B\>]=0.
+\end{align*}
+
+The KdV equation has infinitely many Poisson structures.
+Let
+\[\Theta_1(u):=-\partial_x,\qquad\Theta_2(u):=-(\partial_x^3+4u\partial_x+2u_x),\]
+and
+\[\gamma_0:=\frac12,\qquad\gamma_1:=u,\qquad\gamma_2:=u_{2x}+3u^2.\]
+The gradients $\gamma_i$ will define invariants
+\[I_0(u):=\frac12\int u\,dx,\qquad I_1(u):=\int\frac12u^2\,dx,\qquad I_2(u):=\int(u^3-\frac12u_x^2)\,dx,\cdots.\]
+They were mass$/2$, momentum, and energy.
+We can check, but with a lot of computations, that $\Theta_2$ satisfies the condition (iii).
+We also can check
+\[\Theta_1\cdot\gamma_1=\Theta_2\cdot\gamma_0,\qquad\Theta_1\cdot\gamma_2=\Theta_2\cdot\gamma_1,\qquad,\Theta_1\cdot\gamma_3=.\]
+Here, if we compute
+\begin{align*}
+\Theta_2\cdot\gamma_2&=-(\partial_x^3+4u\partial_x+2u_x)(u_2x+3u^2)\\
+&=\cdots\\
+&=-\partial_x[u_{4x}+10uu_{3x}+5u_x^2+10u^3],
+\end{align*}
+so we define $\gamma_3:=u_{4x}+10uu_{3x}+5u_x^2+10u^3$ such that $\partial\gamma_3/\partial t=0$ and $\Theta_2\cdot\gamma_2=\Theta_1\cdot\gamma_3$.
+It defines an invariant of the KdV
+\[I_3:=\frac12\int(u_{2x}^2-10uu_x^2+5u^4)\,dx,\]
+which is tough to have a nice physical interpretation.
+Inductively we can construct $\gamma_n$.
+We want to check $\gamma_n$ is a gradient, i.e.~$\gamma_n'^T=\gamma_n'$, and it provides infinitely many invariants of the KdV equation.
+In fact, $\sigma_n:=\Theta_1\cdot\gamma_n$ are all symmetry of the KdV.
+For example, we can compute $\sigma_1=-u_x$ and $\sigma_2=-u_t$.
+
+Here we show
+\[I_n:=\int(u\int_0^1\gamma_n(\lambda u)\,d\lambda\,dx)\]
+is an invariant, assuming $\gamma_n$ is a gradient.
+Since $\partial I_n/\partial t=0$, we have $\{I_0,I_1\}_{\Theta_1}=\{I_0,I_2\}_{\Theta_1}=0$.
+Also we have $\{I_0,I_0\}_{\Theta_1}=\{I_0,I_0\}_{\Theta_2}=0$.
+So
+\[\{I_m,I_n\}_{\Theta_1}=\<\gamma_m,\Theta_1\gamma_n\>=\<\gamma_m,\Theta_2\gamma_{n-1}\>=\{I_m,I_{n-1}\}_{\Theta_2},\]
+and
+\[\{I_m,I_n\}_{\Theta_2}=\<\gamma_m,\Theta_2\gamma_n\>=-\<\Theta_2\gamma_m,\gamma_n\>=-\<\Theta_1\gamma_{m+1},\gamma_n\>=\<\gamma_{m+1},\Theta\gamma_n\>=\<\gamma_{m+1},\Theta_2\gamma_{n-1}\>=\{I_{m+1},I_{n-1}\}_{\Theta_2}.\]
+Therefore, for $m,n\ge1$,
+\[\{I_m,I_n\}_{\Theta_2}=\cdots=\{I_{m+n-1},I_1\}_{\Theta_2}=\<\gamma_{m+n-1},\Theta_2\gamma_1\>=I'_{m+n-1}[u_t]=\frac{dI_{m+n-1}}{dt}.\]
+The left-hand side is skew-symmetric, but the right-hand side is symmetric.
+Therefore, $dI_n/dt=0$, and strongly, we have shown $\{I_m,I_n\}_{\Theta_1}=\{I_m,I_n\}_{\Theta_2}$=0.
 
 \end{document}

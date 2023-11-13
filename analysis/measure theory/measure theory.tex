@@ -8,18 +8,15 @@
 \maketitle
 \tableofcontents
 
-\part{}
+\part{Measures}
 
 
+\chapter{Measurable spaces}
 
 
+\section{Measurable algebras}
 
-\chapter{Measures}
-
-
-\section{Measures}
-
-\begin{prb}[$\sigma$-algebras]
+\begin{prb}[Boolean $\sigma$-algebras]
 Let $X$ be a set.
 A \emph{$\sigma$-algebra} of sets on $X$ is a collection $\cA\subset\cP(X)$ which is closed under countable unions and complements.
 \begin{parts}
@@ -29,11 +26,29 @@ A \emph{$\sigma$-algebra} of sets on $X$ is a collection $\cA\subset\cP(X)$ whic
 \end{parts}
 \end{prb}
 
-\begin{prb}[Measures]
+\begin{prb}[Measurable spaces]
 A \emph{measurable space} or a \emph{Borel space} is a pair $(X,\cA)$ of a set $X$ and a $\sigma$-algebra $\cA$ on $X$.
 Each element of $\cA$ is called \emph{measurable}.
 We often omit $\cA$ to just write $X$ for $(X,\cA)$ if there is no confusion.
+\end{prb}
 
+\section{Localizability}
+
+decomposable(strictly localizable), countably decomposable(sigma-finite)
+
+\section{Standard Borel spaces}
+
+descriptive set theory
+
+
+
+
+\chapter{Measure spaces}
+
+\section{Measures}
+sigma-finite, semi-finite measures
+
+\begin{prb}[Measure spaces]
 Let $(X,\cA)$ be a measurable space.
 A \emph{measure} on $(X,\cA)$ is a set function $\mu:\cA\to[0,\infty]:\varnothing\mapsto0$ that is \emph{countably additive}: we have
 \[\mu\Bigl(\bigsqcup_{i=1}^\infty E_i\Bigr)=\sum_{i=1}^\infty\mu(E_i),\qquad(E_i)_{i=1}^\infty\subset\cA.\]
@@ -57,6 +72,8 @@ A \emph{complete measure} is a measure such that every subset of a null set is m
 
 For a predicate $P$ of points $x\in X$, we say $P$ is true \emph{almost everywhere} or \emph{a.e.} on $X$ if there is a full set $F\subset X$ such that $P(x)$ is true for all $x\in F$.
 \end{prb}
+
+
 
 
 
@@ -201,8 +218,9 @@ for each $i$, so we have by the part (c) that
 
 
 
-\section{Measures on the real line}
+\section{Measures on Euclidean spaces}
 
+Cantor set
 
 \begin{prb}[Borel $\sigma$-algebra]
 \end{prb}
@@ -217,7 +235,9 @@ for each $i$, so we have by the part (c) that
 \end{prb}
 
 
+\section{Hausdorff measures}
 
+Hausdorff measure, surface measure, Brunn-Minkowski inequality
 
 \section*{Exercises}
 \begin{prb}[Boolean algebras and rings]
@@ -258,6 +278,9 @@ A collection $\cC\subset\cP(X)$ is called a \emph{monotone class} if it is close
 Let $H$ be a vector space closed under bounded monotone convergence.
 If $\spn\{\1_A:A\in\cA\}\subset H$ then $B^\infty(\sigma(\cA))\subset H$.
 \end{prb}
+
+
+
 
 
 
@@ -302,11 +325,14 @@ Therefore, there is $i$ such that $\alpha\lambda((a_i,b_i))<\lambda(E\cap(a_i,b_
 
 
 
-\chapter{Measurable functions}
+\chapter{Lebesgue integral}
 
 
 
-\section{Simple functions}
+\section{Measurable functions}
+
+simple function approximations, convergence in measure
+
 \begin{prb}[Measurability of pointwise limits]
 
 Conversely, every measurable extended real-valued function is a pointwise limit of simple functions.
@@ -318,7 +344,6 @@ Let $f(x)=\lim_{n\to\infty}s_n(x)$.
 \end{pf}
 
 
-\section{Almost everywhere convergence}
 
 \begin{prb}[Almost everywhere convergence]
 Let $(X,\mu)$ be a measure space and let $f_n:X\to\bar\R$ and $f:X\to\bar\R$ be measurable functions.
@@ -432,6 +457,116 @@ Since $n\ge n_m$ implies $K\subset E_{n_m}^m\subset E_n^m$, we have
 
 
 
+
+
+
+
+\section{Convergence theorems}
+
+% Stein: Egorov $\to$ BCT $\to$ Fatou $\to$ MCT $\to$ L1<M\\
+% Stein: BCT + L1<M $\to$ DCT\\
+% Folland: MCT $\to$ Fatou $\to$ DCT $\to$ BCT
+
+\begin{prb}[Lebesgue integral of non-negative functions]
+Let $(X,\mu)$ be a measure space.
+Let $f:X\to[0,\infty)$ be a measurable function.
+The \emph{Lebesgue integral} of $f$ is defined by
+\[\int f\,d\mu:=\sup\left\{\int s\,d\mu:0\le s\le f,\ \text{$s$ simple}\right\}\]
+\end{prb}
+
+\begin{prb}[Monotone convergence theorem]
+Let $(X,\mu)$ be a measure space.
+Let $(f_n)$ be a non-decreasing sequence of measurable functions $X\to[0,\infty)$.
+\begin{parts}
+\item $E\mapsto\int_Ef\,d\mu$ is a measure.
+\item $\int\sup_nf_n\,d\mu=\sup_n\int f_n\,d\mu$.
+\end{parts}
+\end{prb}
+\begin{pf}
+(a)
+The map $E\mapsto\int_Ef\,d\mu$ is a measure if $f$ is simple, from the linearity of the integral for simple functions.
+For $E_n\uparrow E$, we want to show the continuity from below, $\tint_{E_n}f\to\tint_Ef$.
+Take $\e>0$.
+We introduce a continuous bijection $\beta:[0,\infty]\to[0,1]:t\mapsto t/(1+t)$ to avoid dividing the cases for infinity.
+By the definition of the Lebesgue integral, we have a simple function $s$ such that $0\le s\le f$ and
+\[\beta(\tint_Ef)-\beta(\tint_Es)<\e,\]
+whether or not $\int_Ef$ diverges.
+Then,
+\begin{align*}
+\beta(\tint_Ef)-\beta(\tint_{E_n}f)
+&=[\beta(\tint_Ef)-\beta(\tint_Es)]
++[\beta(\tint_Es)-\beta(\tint_{E_n}s)]
++[\beta(\tint_{E_n}s)-\beta(\tint_{E_n}f)]\\
+&<\e+[\beta(\tint_Es)-\beta(\tint_{E_n}s)]+0
+\xrightarrow{n\to\infty}\e.
+\end{align*}
+%\begin{alignat*}{4}
+%\beta(\tint_Ef)-\beta(\tint_{E_n}f)
+%&=[\beta(\tint_Ef)-\beta(\tint_Es)]
+%&&+[\beta(\tint_Es)-\beta(\tint_{E_n}s)]
+%&&+[\beta(\tint_{E_n}s)-\beta(\tint_{E_n}f)]\\
+%&\ccol{<}{\e}
+%&&+[\beta(\tint_Es)-\beta(\tint_{E_n}s)]
+%&&\ccol{+}{0}\\
+%&\xrightarrow{n\to\infty}\e
+%\end{alignat*}
+We are done by letting $\e\to0$.
+
+(b)
+For any $\e>0$ let $E_n:=\{x:f(x)<(1+\e)f_n(x)\}$, which converges to a full set because $f_n\to f$ a.e.
+Since $f$ is a measure, we can choose $N$ such that
+\[\beta(\tint_Ef)-\beta(\tint_{E_N}f)<\e.\]
+With this $N$, we have
+\[\beta(\tint_{E_N}f)
+\le\beta((1+\e)\tint_{E_N}f_n)
+\le(1+\e)\beta(\tint_{E_N}f_n)
+\le\beta(\tint_{E_N}f_n)+\e,\qquad n\ge N.\]
+Then, we have for $n\ge N$ that
+\begin{align*}
+\beta(\tint_Ef)-\beta(\tint_Ef_n)
+&=[\beta(\tint_Ef)-\beta(\tint_{E_N}f)]+[\beta(\tint_{E_N}f)-\beta(\tint_{E_N}f_n)]+[\beta(\tint_{E_N}f_n)-\beta(\tint_{E}f_n)]\\
+&<\e+\e+0,
+\end{align*}
+so we are done by letting $n\to\infty$ and $\e\to0$.
+\end{pf}
+
+\begin{prb}[Corollaries of monotone convergence theorem]
+Fatou's lemma, linearity of the integral, $f\ge0$ and $\int f=0$ imply $f=0$ a.e.
+\end{prb}
+
+
+
+
+\begin{prb}[Lebesgue integral of complex-valued functions]
+\end{prb}
+
+\begin{prb}[Bounded convergence theorem]
+Semifinite measures
+\begin{parts}
+\item
+\[\sup_{g\le f}\int g\,d\mu=\int f\,d\mu\]
+where $g$ runs through bounded measurable functions.
+\item
+\end{parts}
+\end{prb}
+
+
+\section{Product measures}
+
+\begin{prb}[Fubini-Tonelli theorem]
+Lebesgue measure on Euclidean spaces
+\end{prb}
+
+
+Lipschitz and differentiable transformations
+
+
+
+\section{Integrals on Euclidean spaces}
+
+
+
+
 \section*{Exercises}
 \begin{prb}[Cauchy's functional equation]
 Let $f:\R\to\R$ be a function.
@@ -486,118 +621,6 @@ Another approach: mimicking Pettis measurability theorem.
 
 
 
-
-
-
-
-
-
-\chapter{Lebesgue integral}
-\section{Monotone convergence theorem}
-
-% Stein: Egorov $\to$ BCT $\to$ Fatou $\to$ MCT $\to$ L1<M\\
-% Stein: BCT + L1<M $\to$ DCT\\
-% Folland: MCT $\to$ Fatou $\to$ DCT $\to$ BCT
-
-\begin{prb}[Lebesgue integral of non-negative functions]
-Let $(X,\mu)$ be a measure space.
-Let $f:X\to\R_{\ge0}$ be a measurable function.
-The \emph{Lebesgue integral} of $f$ is defined by
-\[\int f\,d\mu:=\sup\left\{\int s\,d\mu:0\le s\le f,\ \text{$s$ simple}\right\}\]
-\end{prb}
-
-\begin{prb}[Monotone convergence theorem]
-Let $(X,\mu)$ be a measure space.
-Let $f_n$ and $f$ be measurable functions $X\to\R_{\ge0}$.
-\begin{parts}
-\item $E\mapsto\int_Ef\,d\mu$ is a measure if $f$ is simple.
-\item $E\mapsto\int_Ef\,d\mu$ is a measure even if $f$ is not simple.
-\item If $f_n\uparrow f$ a.e., then $\int f_n\to\int f$.
-\end{parts}
-\end{prb}
-\begin{pf}
-(a)
-Clear from the linearity of the integral for simple functions.
-
-(b)
-For $E_n\uparrow E$, we want to show the continuity from below, $\tint_{E_n}f\to\tint_Ef$.
-Take $\e>0$.
-We introduce a continuous bijection $\beta:[0,\infty]\to[0,1]:t\mapsto t/(1+t)$ to avoid dividing the cases for infinity.
-By the definition of the Lebesgue integral, we have a simple function $s$ such that $0\le s\le f$ and
-\[\beta(\tint_Ef)-\beta(\tint_Es)<\e,\]
-whether or not $\int_Ef$ diverges.
-Then,
-\begin{align*}
-\beta(\tint_Ef)-\beta(\tint_{E_n}f)
-&=[\beta(\tint_Ef)-\beta(\tint_Es)]
-+[\beta(\tint_Es)-\beta(\tint_{E_n}s)]
-+[\beta(\tint_{E_n}s)-\beta(\tint_{E_n}f)]\\
-&<\e+[\beta(\tint_Es)-\beta(\tint_{E_n}s)]+0
-\xrightarrow{n\to\infty}\e
-\end{align*}
-%\begin{alignat*}{4}
-%\beta(\tint_Ef)-\beta(\tint_{E_n}f)
-%&=[\beta(\tint_Ef)-\beta(\tint_Es)]
-%&&+[\beta(\tint_Es)-\beta(\tint_{E_n}s)]
-%&&+[\beta(\tint_{E_n}s)-\beta(\tint_{E_n}f)]\\
-%&\ccol{<}{\e}
-%&&+[\beta(\tint_Es)-\beta(\tint_{E_n}s)]
-%&&\ccol{+}{0}\\
-%&\xrightarrow{n\to\infty}\e
-%\end{alignat*}
-by the part (a).
-We are done by letting $\e\to0$.
-
-(c)
-For any $\e>0$ let $E_n:=\{x:f(x)<(1+\e)f_n(x)\}$, which converges to a full set because $f_n\to f$ a.e.
-Since $f$ is a measure, we can choose $N$ such that
-\[\beta(\tint_Ef)-\beta(\tint_{E_N}f)<\e.\]
-With this $N$, we have
-\[\beta(\tint_{E_N}f)
-\le\beta((1+\e)\tint_{E_N}f_n)
-\le(1+\e)\beta(\tint_{E_N}f_n)
-\le\beta(\tint_{E_N}f_n)+\e,\qquad n\ge N.\]
-Then, we have for $n\ge N$ that
-\begin{align*}
-\beta(\tint_Ef)-\beta(\tint_Ef_n)
-&=[\beta(\tint_Ef)-\beta(\tint_{E_N}f)]+[\beta(\tint_{E_N}f)-\beta(\tint_{E_N}f_n)]+[\beta(\tint_{E_N}f_n)-\beta(\tint_{E}f_n)]\\
-&<\e+\e+0,
-\end{align*}
-so we are done by letting $n\to\infty$ and $\e\to0$.
-\end{pf}
-
-\begin{prb}[Corollaries of monotone convergence theorem]
-Fatou's lemma, linearity of the integral, $f\ge0$ and $\int f=0$ imply $f=0$ a.e.
-\end{prb}
-
-
-\section{Dominated convergence theorem}
-
-
-\begin{prb}[Lebesgue integral of complex-valued functions]
-\end{prb}
-
-\begin{prb}[Bounded convergence theorem]
-Semifinite measures
-\begin{parts}
-\item
-\[\sup_{g\le f}\int g\,d\mu=\int f\,d\mu\]
-where $g$ runs through bounded measurable functions.
-\item
-\end{parts}
-\end{prb}
-
-
-\section{Product measures}
-
-\begin{prb}[Fubini-Tonelli theorem]
-Lebesgue measure on Euclidean spaces
-\end{prb}
-
-
-
-
-\section*{Exercises}
 \begin{prb}[Convergence of one-parameter family]
 \end{prb}
 
@@ -608,30 +631,187 @@ If $\|f_n\|_{L^2([0,1])}\le C$ and $f_n\to f$ almost everywhere, then $f_n\to f$
 \[\lim_{n\to\infty}\int_0^1n^3x^2(1-x)^n\,dx=2\ne0=\int_0^1\lim_{n\to\infty}n^3x^2(1-x)^n\,dx.\]
 \[\lim_{n\to\infty}\int_0^\infty n^2e^{-nx}\,dx=\infty\ne0=\int_0^\infty\lim_{n\to\infty}n^2e^{-nx}\,dx.\]
 
-\part{}
-
-
-\chapter{Signed measures}
 
 
 
 
-\section{Radon-Nikodym theorem}
-
-An integrable function as a measure
-$\sigma$-finite measures
 
 
 
-\chapter{Borel measures}
+
+
+\part{Function spaces}
+
+
+\chapter{Lebesgue spaces}
+\section{}
+
+\begin{prb}[H\"older inequality]
+\end{prb}
+\begin{pf}
+\[\int fg\le C^p\int\frac{|f|^p}p+\frac1{C^q}\int\frac{|g|^q}q\]
+Take $C$ such that
+\[C^p\int\frac{|f|^p}p=\frac1{C^q}\int\frac{|g|^q}q.\]
+Then,
+\[C^p\int\frac{|f|^p}p+\frac1{C^q}\int\frac{|g|^q}q=2p^{-\frac1p}q^{-\frac1q}\Bigl(\int|f|^p\Bigr)^{\frac1p}\Bigl(\int|g|^p\Bigr)^{\frac1q}.\]
+Note that we can show that $1\le2p^{-\frac1p}q^{-\frac1q}\le2$ and the minimum is attained only if $p=q=2$, so this method does not provide the sharpest constant.
+\end{pf}
 
 
 
-\section{Continuous functions on metric spaces}
+\section{Convolutions}
 
-partition of unity.
-Urysohn and Tietze.
+\begin{prb}[Convolution?]
+\end{prb}
+\begin{prb}[Approximate identity?]
+\end{prb}
+\begin{prb}[Continuity of translation?]
+\end{prb}
 
+
+
+\section{Interpolations}
+
+Lorentz spaces
+Weak $L^p$ spaces
+
+\begin{defn}
+Let $f$ be a measurable function on a measure space $(X,\mu)$.
+The \emph{distribution function} $\lambda_f:[0,\infty)\to [0,\infty)$ is defined as:
+\[\lambda_f(\alpha):=\mu(\{x:|f(x)|>\alpha\})=\mu(|f|>\alpha).\]
+\end{defn}
+
+Do not use $\mu(\{x:|f(x)|\ge\alpha\})$.
+The strict inequality implies the \emph{lower semi-continuity} of $\lambda_f$.
+
+
+For $p>0$,
+\begin{align*}
+\|f\|_{L^p}^p
+&=\int|f(x)|^p\,d\mu(x)\\
+&=\int\int_0^{|f(x)|}p\alpha^{p-1}\,d\alpha\,d\mu(x)\\
+&=\int_0^\infty\int_{|f(x)|>\alpha}p\alpha^{p-1}\,d\mu(x)\,d\alpha\\
+&=p\int_0^\infty\left[\alpha\cdot\mu(|f|>\alpha)^\frac1p\right]^p\,\frac{d\alpha}\alpha.
+\end{align*}
+
+\begin{defn}
+\[\|f\|_{L^{p,q}}^q:=p\int_0^\infty\left[\alpha\cdot\mu(|f|>\alpha)^\frac1p\right]^q\,\frac{d\alpha}\alpha.\]
+Also,
+\[\|f\|_{L^{p,\infty}}:=\sup_{0<\alpha<\infty}\left[\alpha\cdot\mu(|f|>\alpha)^\frac1p\right].\]
+\end{defn}
+\begin{thm}
+For $p\ge1$ we have $\|f\|_{p,\infty}\le\|f\|_p$.
+\end{thm}
+\begin{pf}
+By the Chebyshev inequality,
+\[\sup_{0<\alpha<\infty}\left[\alpha^p\cdot\mu(|f|>\alpha)\right]\le\int_0^\infty p\alpha^{p-1}\cdot\mu(|f|>\alpha)\,d\alpha=\|f\|_{L^p}^p.\]
+
+\end{pf}
+
+\begin{prb}[Marcinkiewicz interpolation]
+Let $X$ be a $\sigma$-finite measure space and $Y$ be a measure space.
+Let
+\[1<p_0<p<p_1<\infty.\]
+If a sublinear operator $T\colon L^{p_0}(X)+L^{p_1}(X)\to M(Y)$ has two weak-type estimates
+\[\|T\|_{L^{p_0}(X)\to L^{p_0,\infty}(Y)}<\infty\quad\text{and}\quad\|T\|_{L^{p_1}(X)\to L^{p_1,\infty}(Y)}<\infty,\]
+then it has a strong-type estimate
+\[\|T\|_{L^p(X)\to L^p(Y)}<\infty.\]
+\end{prb}
+\begin{pf}
+Let $f\in L^p(X)$ and denote $f_h=\chi_{|f|>\alpha}f$ and $f_l=\chi_{|f|\le\alpha}f$.
+It is easy to show $f_h\in L^{p_0}$ and $f_l\in L^{p_1}$.
+Then,
+\begin{align*} % 고치던 중
+\|Tf\|_{L^p(Y)}^p&\sim\int\alpha^p\cdot\mu(|Tf|>\alpha)\,\frac{d\alpha}\alpha\\
+&\lesssim\int\alpha^p\cdot\mu(|Tf_h|>\alpha)\,\frac{d\alpha}\alpha+\int\alpha^p\cdot\mu(|Tf_l|>\alpha)\,\frac{d\alpha}\alpha\\
+&\le\int\alpha^p\cdot\frac1{\alpha^{p_0}}\|Tf_h\|_{L^{p_0,\infty}}^{p_0}\,\frac{d\alpha}\alpha+\int\alpha^p\cdot\frac1{\alpha^{q_1}}\|Tf_l\|_{L^{p_1,\infty}}^{p_1}\,\frac{d\alpha}\alpha\\
+&\lesssim\int\alpha^{p-p_0}\|f_h\|_{p_0}^{p_0}\,\frac{d\alpha}\alpha+\int\alpha^{p-p_1}\|f_l\|_{p_1}^{p_1}\,\frac{d\alpha}\alpha\\
+&\sim\|f\|_p^p.
+\end{align*}
+by (1) Fubini, (2) Sublinearlity, (3) Chebyshev, (4) Boundedness, (5) Fubini.
+\end{pf}
+
+\begin{prb}[Hadamard's three line lemma]
+Let $f$ be a bounded holomorphic function on vertical unit strip $\{z:0<\Re z<1\}$ which is continuously extended to the boundary.
+Then, for $0<\theta<1$ we have
+\[\|f\|_{L^\infty(\Re=\theta)}\le\|f\|_{L^\infty(\Re=0)}^{1-\theta}\|f\|_{L^\infty(\Re=1)}^\theta.\]
+\end{prb}
+\begin{pf}
+Fix $n$ and define
+\[g_n(z):=\frac{f(z)}{\|f\|_{L^\infty(\Re=0)}^{1-z}\|f\|_{L^\infty(\Re=1)}^z}e^{-\frac{z(1-z)}n}.\]
+Then,
+\[|g_n(z)|\le e^{-\frac{(\Im z)^2}n}\]
+for $z$ in the strip.
+By the maximum principle,
+\[|f(z)|\le\|f\|_{L^\infty(\Re=0)}^{1-\theta}\|f\|_{L^\infty(\Re=1)}^\theta e^{\frac{y^2}n}.\]
+Letting $n\to\infty$, we are done.
+\end{pf}
+
+
+
+\begin{prb}[Riesz-Thorin interpolation]
+Let $X,Y$ be $\sigma$-finite measure spaces.
+Let
+\[\frac1{p_\theta}=(1-\theta)\frac1{p_0}+\theta\frac1{p_1},\qquad\frac1{q_\theta}=(1-\theta)\frac1{q_0}+\theta\frac1{q_1}.\]
+Then,
+\[\|T\|_{p_\theta\to q_\theta}\le\|T\|_{p_0\to q_0}^{1-\theta}\|T\|_{p_1\to q_1}^\theta.\]
+\end{prb}
+\begin{pf}
+Note that
+\[\|T\|_{p_\theta\to q_\theta}=\sup_f\frac{\|Tf\|_{q_\theta}}{\|f\|_{p_\theta}}=\sup_{f,g}\frac{|\<Tf,g\>|}{\|f\|_{p_\theta}\|g\|_{q'_\theta}}.\]
+Consider a holomorphic function
+\[z\mapsto\<Tf_z,g_z\>=\int\bar{g_z(y)}Tf_z(y)\,dy,\]
+where $f_z$ and $g_z$ are defined as
+\[f_z=|f|^{\frac{p_\theta}{p_0}(1-z)+\frac{p_\theta}{p_1}z}\frac f{|f|}\]
+so that we have $f_\theta=f$ and
+\[\|f\|_{p_\theta}^{p_\theta}=\|f_z\|_{p_x}^{p_x}\]
+for $\Re z=x$.
+
+Then,
+\[|\<Tf_z,g_z\>|\le\|T\|_{p_0\to q_0}\|f_z\|_{p_0}\|g_z\|_{q'_0}=\|T\|_{p_0\to q_0}\|f\|_{p_\theta}^{p_\theta/p_0}\|g\|_{q'_\theta}^{q'_\theta/q'_0}\]
+for $\Re z=0$, and
+\[|\<Tf_z,g_z\>|\le\|T\|_{p_1\to q_1}\|f_z\|_{p_1}\|g_z\|_{q'_1}=\|T\|_{p_1\to q_1}\|f\|_{p_\theta}^{p_\theta/p_1}\|g\|_{q'_\theta}^{q'_\theta/q'_1}\]
+for $\Re z=1$.
+By Hadamard's three line lemma, we have
+\[|\<Tf_z,g_z\>|\le\|T\|_{p_0\to q_0}^{1-\theta}\|T\|_{p_1\to q_1}^\theta\|f\|_{p_\theta}\|g\|_{q'_\theta}\]
+for $\Re z=\theta$.
+Putting $z=\theta$ in the last inequality, we get the desired result.
+\end{pf}
+
+
+
+
+
+
+\chapter{Topological measures}
+
+\section{Borel measures}
+
+
+
+\section{Locally compact spaces}
+
+
+
+\begin{prb}[One-point compactification]
+\end{prb}
+
+\section{Locally finite measures}
+
+\begin{prb}[Regular Borel measures on locally compact metric spaces]
+sss
+\begin{parts}
+\item $C_c(X)$ is dense in $L^p(\mu)$ for $1\le p<\infty$.
+\item If $\mu$ is $\sigma$-finite, then for any $\e>0$ there is compact $K\subset X$ and continuous $g:X\to\R$ such that $f|_K=g|_K$ and $\mu(X\setminus K)<\e$.
+\end{parts}
+\end{prb}
+
+
+\begin{prb}[Tightness and inner regularity]
+\begin{parts}
+\item
+\end{parts}
+\end{prb}
 
 \begin{prb}[Regular Borel measures on metric spaces]
 Let $\mu$ be a Borel measure on a metric space $X$.
@@ -731,44 +911,33 @@ Then,
 Therefore, a Radon measure is inner regular on all $\sigma$-finite Borel sets.
 \end{pf}
 
+\section{Continuous functions in $L^p$ spaces}
 
-\section{Locally compact spaces}
-
-
-compact  closed set not containing infty\\
-open     open not containing infty\\
-closed   closed set containing infty\\
-
-for a measure that ``vanishes at infty'' = tight\\
-two definitions of inner regularity is equivalent.\\
-
-inner regular on compact sets -> inner regular on closed sets\\
-inner regular on compact sets + sigma finite -> tight\\
-
-\begin{prb}[One-point compactification]
-\end{prb}
-
-\begin{prb}[Regular Borel measures on locally compact metric spaces]
-sss
-\begin{parts}
-\item $C_c(X)$ is dense in $L^p(\mu)$ for $1\le p<\infty$.
-\item If $\mu$ is $\sigma$-finite, then for any $\e>0$ there is compact $K\subset X$ and continuous $g:X\to\R$ such that $f|_K=g|_K$ and $\mu(X\setminus K)<\e$.
-\end{parts}
-\end{prb}
-
-
-\begin{prb}[Tightness and inner regularity]
-We have a similar but confusing concept called tightness; we say a Borel measure $\mu$ on a topological space $X$ is \emph{tight} if for any $\e>0$ there is a compact $K\subset X$ such that $\mu(X\setminus K)<\e$.
-
-History of Bourbaki's text.
-\begin{parts}
-\item
-\end{parts}
-\end{prb}
+Approximate identity
+density
 
 
 
 
+
+
+
+
+
+
+
+
+\chapter{Dual spaces}
+
+
+\section{Dual of Lebesgue spaces}
+
+
+
+Radon-Nikodym theorem
+
+An integrable function as a measure
+$\sigma$-finite measures
 
 \section{Riesz-Markov-Kakutani representation theorem}
 
@@ -784,6 +953,9 @@ History of Bourbaki's text.
 
 % 이제 증명들이 어느 정도 수준에서 가능한 지를 보자
 % C_c version
+
+locally finite tight measure.
+
 
 \begin{prb}[Radon measures]
 Let $X$ be a locally compact metric space.
@@ -905,48 +1077,70 @@ By limiting $\e\to0$, we have $\mu(E)=\nu(E)$.
 
 
 
-\section{Hausdorff measures}
+
+\section*{Fremlin}
 
 
-\section*{Exercises}
+Note that the inner regularity by Folland or Rudin is in fact the tightness, the inner regularity with respect to compact sets.
+
+\begin{itemize}
+\item A Fremlin-Radon measure is tight.
+\item A $\sigma$-finite Folland-Radon measure on a locally compact Hausdorff space is tight. Moreover, Folland-Radon and Fremlin-Radon coincides on $\sigma$-compact locally compact Hausdorff spaces.
+\item A locally finite Borel measure on a locally compact Hausdorff and second countable space is tight.
+\item A locally compact Hausdorff and second countable space is Polish.
+\item A tight measure on a topological space is always inner regular with respect to closed sets, and the converse is true on where???
+\end{itemize}
+
+Definitions
+\begin{itemize}
+\item A measurable algebra is called \emph{localizable} if the essential union exists even for uncountable family of measurable sets.
+\item A \emph{localizble measure} is a semi-finite measure on a localizable measurable algebra.
+\item A \emph{strictly localizable measure} or \emph{decomposable measure} is a measure which admits a partition $\{F_i\}$ of $X$, called the decomposition, such that $F_i$ are finite measurable and $E\cap F_i\in\Sigma$ for all $F_i$ implies $E\in\Sigma$ and $\mu(E)=\sum_{i\in J}\mu(E\cap F_i)$.
+\item A \emph{locally determined measure} is a semi-finite measure such that $E\cap F\in\Sigma$ for any $F\in\Sigma$ of finite measure implies $E\in\Sigma$.(I think it is more natural to say a enhanced measurable space is locally determined by a semi-finite measure)
+\end{itemize}
+
+Locally finite measures
+\begin{itemize}
+\item A $\sigma$-finite measure is strictly localizable.
+\item A strictly localizable measure is localizable and locally determined.
+\item A tight measure on a topological space is $\tau$-additive.
+\item A locally finite measure on a topological space is finite on compact sets.
+\item A locally finite measure on a Lindel\"of space is $\sigma$-finite.
+\item A locally finite and tight measure is effectively locally finite.
+\item A effectively locally finite(non-negligible set has an open set of finite measure whose intersection with it is non-negligible) measure on a topological space is semi-finite.
+\item
+\end{itemize}
+
+
+Radon and quasi-Radon measures:
+A \emph{quasi-Radon measure} on a Hausdorff space is a measure which is complete, locally determined, $\tau$-additive, inner regular with respect to closed sets, and effectively locally finite.
+A \emph{Radon measure} on a Hausdorff space is a measure which is complete, locally determined, locally finite, and tight.
+By the completeness condition, it is not Borel in general.
+\begin{itemize}
+\item 415A A quasi-Radon measure is strictly localizble.
+\item 416C For a locally finite quasi-Radon measure $\mu$, $\mu$ is Radon iff 
+\item 416F A Borel measure on a Hausdorff space has a Radon extension if and only if it is locally finite and tight, and in this case the extension is unique.
+\item 416G A locally finite quasi-Radon measure is Radon.
+\end{itemize}
 
 
 
 
-
-
-
-
-
-
-
-\chapter{Lebesgue spaces}
-\section{$L^p$ spaces}
-
-\begin{prb}[H\"older inequality]
-\end{prb}
+Riesz-Markov-Kakutani 436J and 436K
 \begin{pf}
-\[\int fg\le C^p\int\frac{|f|^p}p+\frac1{C^q}\int\frac{|g|^q}q\]
-Take $C$ such that
-\[C^p\int\frac{|f|^p}p=\frac1{C^q}\int\frac{|g|^q}q.\]
-Then,
-\[C^p\int\frac{|f|^p}p+\frac1{C^q}\int\frac{|g|^q}q=2p^{-\frac1p}q^{-\frac1q}\Bigl(\int|f|^p\Bigr)^{\frac1p}\Bigl(\int|g|^p\Bigr)^{\frac1q}.\]
-Note that we can show that $1\le2p^{-\frac1p}q^{-\frac1q}\le2$ and the minimum is attained only if $p=q=2$, so this method does not provide the sharpest constant.
+First we can show $I$ is smooth(I think it is equivalent to normality).
+Since $X$ is locally compact, it is the coarsest topology for which $C_c$ is continuous, i.e.~Baire$=$Borel.
+Also, $C_c$ is truncated Riesz subspace of $\R^X$.
+So 436H implies there is a quasi-Radon measure $\mu$ such that $I(f)=\int f\,d\mu$ for $f\in C_c$, which is clearly locally finite.
+By 416G, $\mu$ is Radon.
 \end{pf}
 
 
-\section{$L^1$ spaces}
 
-\begin{prb}[Convolution?]
-\end{prb}
-\begin{prb}[Approximate identity?]
-\end{prb}
-\begin{prb}[Continuity of translation?]
-\end{prb}
+\section{Dual of continuous function spaces}
 
-\section{$L^2$ spaces}
-
-\section{$L^\infty$ spaces}
+signed measure
+Hahn, Jordan decomposition
 
 
 
@@ -996,7 +1190,9 @@ Fej\'er, Poisson, box?
 
 \part{Fundamental theorem of calculus}
 
-\chapter{Absolute continuity}
+\chapter{}
+
+\section{Absolutely continuous functions}
 
 The space of weakly differentiable functions with respect to all variables $=W_\loc^{1,1}$.
 
@@ -1021,7 +1217,6 @@ We should understand like this: if $F$ is $C^2$ then the \emph{classical} partia
 
 
 
-\section{Absolutely continuity}
 
 \begin{parts}
 \item $f$ is $\Lip_\loc$ iff $f'$ is $L_\loc^\infty$
@@ -1039,117 +1234,9 @@ We should understand like this: if $F$ is $C^2$ then the \emph{classical} partia
 \begin{prb}[Absolute continuous functions]
 \end{prb}
 
-\begin{prb}[Functions of bounded variation]
-\end{prb}
 
 
-
-\section{Interpolations}
-weak Lp, marcinkiewicz
-
-\begin{defn}
-Let $f$ be a measurable function on a measure space $(X,\mu)$.
-The \emph{distribution function} $\lambda_f:[0,\infty)\to [0,\infty)$ is defined as:
-\[\lambda_f(\alpha):=\mu(\{x:|f(x)|>\alpha\})=\mu(|f|>\alpha).\]
-\end{defn}
-
-Do not use $\mu(\{x:|f(x)|\ge\alpha\})$.
-The strict inequality implies the \emph{lower semi-continuity} of $\lambda_f$.
-
-
-For $p>0$,
-\begin{align*}
-\|f\|_{L^p}^p
-&=\int|f(x)|^p\,d\mu(x)\\
-&=\int\int_0^{|f(x)|}p\alpha^{p-1}\,d\alpha\,d\mu(x)\\
-&=\int_0^\infty\int_{|f(x)|>\alpha}p\alpha^{p-1}\,d\mu(x)\,d\alpha\\
-&=p\int_0^\infty\left[\alpha\cdot\mu(|f|>\alpha)^\frac1p\right]^p\,\frac{d\alpha}\alpha.
-\end{align*}
-
-\begin{defn}
-\[\|f\|_{L^{p,q}}^q:=p\int_0^\infty\left[\alpha\cdot\mu(|f|>\alpha)^\frac1p\right]^q\,\frac{d\alpha}\alpha.\]
-Also,
-\[\|f\|_{L^{p,\infty}}:=\sup_{0<\alpha<\infty}\left[\alpha\cdot\mu(|f|>\alpha)^\frac1p\right].\]
-\end{defn}
-\begin{thm}
-For $p\ge1$ we have $\|f\|_{p,\infty}\le\|f\|_p$.
-\end{thm}
-\begin{pf}
-By the Chebyshev inequality,
-\[\sup_{0<\alpha<\infty}\left[\alpha^p\cdot\mu(|f|>\alpha)\right]\le\int_0^\infty p\alpha^{p-1}\cdot\mu(|f|>\alpha)\,d\alpha=\|f\|_{L^p}^p.\]
-
-\end{pf}
-
-\begin{prb}[Marcinkiewicz interpolation]
-Let $X$ be a $\sigma$-finite measure space and $Y$ be a measure space.
-Let
-\[1<p_0<p<p_1<\infty.\]
-If a sublinear operator $T\colon L^{p_0}(X)+L^{p_1}(X)\to M(Y)$ has two weak-type estimates
-\[\|T\|_{L^{p_0}(X)\to L^{p_0,\infty}(Y)}<\infty\quad\text{and}\quad\|T\|_{L^{p_1}(X)\to L^{p_1,\infty}(Y)}<\infty,\]
-then it has a strong-type estimate
-\[\|T\|_{L^p(X)\to L^p(Y)}<\infty.\]
-\end{prb}
-\begin{pf}
-Let $f\in L^p(X)$ and denote $f_h=\chi_{|f|>\alpha}f$ and $f_l=\chi_{|f|\le\alpha}f$.
-It is easy to show $f_h\in L^{p_0}$ and $f_l\in L^{p_1}$.
-Then,
-\begin{align*} % 고치던 중
-\|Tf\|_{L^p(Y)}^p&\sim\int\alpha^p\cdot\mu(|Tf|>\alpha)\,\frac{d\alpha}\alpha\\
-&\lesssim\int\alpha^p\cdot\mu(|Tf_h|>\alpha)\,\frac{d\alpha}\alpha+\int\alpha^p\cdot\mu(|Tf_l|>\alpha)\,\frac{d\alpha}\alpha\\
-&\le\int\alpha^p\cdot\frac1{\alpha^{p_0}}\|Tf_h\|_{L^{p_0,\infty}}^{p_0}\,\frac{d\alpha}\alpha+\int\alpha^p\cdot\frac1{\alpha^{q_1}}\|Tf_l\|_{L^{p_1,\infty}}^{p_1}\,\frac{d\alpha}\alpha\\
-&\lesssim\int\alpha^{p-p_0}\|f_h\|_{p_0}^{p_0}\,\frac{d\alpha}\alpha+\int\alpha^{p-p_1}\|f_l\|_{p_1}^{p_1}\,\frac{d\alpha}\alpha\\
-&\sim\|f\|_p^p.
-\end{align*}
-by (1) Fubini, (2) Sublinearlity, (3) Chebyshev, (4) Boundedness, (5) Fubini.
-\end{pf}
-
-\begin{prb}[Hadamard's three line lemma]
-Let $f$ be a bounded holomorphic function on vertical unit strip $\{z:0<\Re z<1\}$ which is continuously extended to the boundary.
-Then, for $0<\theta<1$ we have
-\[\|f\|_{L^\infty(\Re=\theta)}\le\|f\|_{L^\infty(\Re=0)}^{1-\theta}\|f\|_{L^\infty(\Re=1)}^\theta.\]
-\end{prb}
-\begin{pf}
-Fix $n$ and define
-\[g_n(z):=\frac{f(z)}{\|f\|_{L^\infty(\Re=0)}^{1-z}\|f\|_{L^\infty(\Re=1)}^z}e^{-\frac{z(1-z)}n}.\]
-Then,
-\[|g_n(z)|\le e^{-\frac{(\Im z)^2}n}\]
-for $z$ in the strip.
-By the maximum principle,
-\[|f(z)|\le\|f\|_{L^\infty(\Re=0)}^{1-\theta}\|f\|_{L^\infty(\Re=1)}^\theta e^{\frac{y^2}n}.\]
-Letting $n\to\infty$, we are done.
-\end{pf}
-
-
-
-\begin{prb}[Riesz-Thorin interpolation]
-Let $X,Y$ be $\sigma$-finite measure spaces.
-Let
-\[\frac1{p_\theta}=(1-\theta)\frac1{p_0}+\theta\frac1{p_1},\qquad\frac1{q_\theta}=(1-\theta)\frac1{q_0}+\theta\frac1{q_1}.\]
-Then,
-\[\|T\|_{p_\theta\to q_\theta}\le\|T\|_{p_0\to q_0}^{1-\theta}\|T\|_{p_1\to q_1}^\theta.\]
-\end{prb}
-\begin{pf}
-Note that
-\[\|T\|_{p_\theta\to q_\theta}=\sup_f\frac{\|Tf\|_{q_\theta}}{\|f\|_{p_\theta}}=\sup_{f,g}\frac{|\<Tf,g\>|}{\|f\|_{p_\theta}\|g\|_{q'_\theta}}.\]
-Consider a holomorphic function
-\[z\mapsto\<Tf_z,g_z\>=\int\bar{g_z(y)}Tf_z(y)\,dy,\]
-where $f_z$ and $g_z$ are defined as
-\[f_z=|f|^{\frac{p_\theta}{p_0}(1-z)+\frac{p_\theta}{p_1}z}\frac f{|f|}\]
-so that we have $f_\theta=f$ and
-\[\|f\|_{p_\theta}^{p_\theta}=\|f_z\|_{p_x}^{p_x}\]
-for $\Re z=x$.
-
-Then,
-\[|\<Tf_z,g_z\>|\le\|T\|_{p_0\to q_0}\|f_z\|_{p_0}\|g_z\|_{q'_0}=\|T\|_{p_0\to q_0}\|f\|_{p_\theta}^{p_\theta/p_0}\|g\|_{q'_\theta}^{q'_\theta/q'_0}\]
-for $\Re z=0$, and
-\[|\<Tf_z,g_z\>|\le\|T\|_{p_1\to q_1}\|f_z\|_{p_1}\|g_z\|_{q'_1}=\|T\|_{p_1\to q_1}\|f\|_{p_\theta}^{p_\theta/p_1}\|g\|_{q'_\theta}^{q'_\theta/q'_1}\]
-for $\Re z=1$.
-By Hadamard's three line lemma, we have
-\[|\<Tf_z,g_z\>|\le\|T\|_{p_0\to q_0}^{1-\theta}\|T\|_{p_1\to q_1}^\theta\|f\|_{p_\theta}\|g\|_{q'_\theta}\]
-for $\Re z=\theta$.
-Putting $z=\theta$ in the last inequality, we get the desired result.
-\end{pf}
-
+\section{Functions of bounded variation}
 
 
 

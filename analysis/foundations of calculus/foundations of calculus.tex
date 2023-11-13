@@ -172,7 +172,7 @@ root
 
 
 \begin{prb}[Abel transform]
-\[A_k(B_k-B_{k-1})+(A_k-A_{k-1})B_{k-1}=A_kB_k-A_{k-1}B_{k-1}\]
+\[A_n(B_n-B_{n-1})+(A_n-A_{n-1})B_{n-1}=A_nB_n-A_{n-1}B_{n-1}\]
 \[\sum_{m<k\le n}A_kb_k=A_nB_n-A_mB_m-\sum_{m<k\le n}a_kB_{k-1}.\]
 \end{prb}
 
@@ -183,32 +183,29 @@ abel test
 
 \begin{prb}[Mertens' theorem]
 If $\sum_{k=0}^\infty a_k$ converges to $A$ absolutely and $\sum_{k=0}^\infty b_k$ converges to $B$, then their Cauchy product $\sum_{k=0}^\infty c_k$ with $c_k:=\sum_{l=0}^ka_lb_{k-l}$ converges to $AB$.
-\begin{parts}
-\item We have
-\[\lim_{m\to\infty}\sup_n\sum_{k=m+1}^n\sum_{l=n-k+1}^na_kb_l=0.\]
-\item We have for each $m$ that
-\[\lim_{n\to\infty}\sum_{k=1}^m\sum_{l=n-k+1}^na_kb_l=0\]
-\end{parts}
-\end{prb}
-\begin{pf}
 Let
 \[A_n:=\sum_{k=0}^na_k,\ B_n:=\sum_{k=0}^nb_k,\quad\text{ and }\quad C_n:=\sum_{k=0}^nc_k.\]
+\end{prb}
+\begin{pf}
+Write
+\[|C_n-AB|\le|C_n-A_nB_n|+|A_nB_n-AB|.\]
+Since the limit of the second term $|A_nB_n-AB|\to0$ is clear, we claim $|C_n-A_nB_n|\to0$.
 
+Fix any $\e>0$.
+Note that $|B_n|$ is bounded by some $M>0$.
+Write for some $m$,
+\begin{align*}
+|C_n-A_nB_n|
+&=|\sum_{k=0}^na_k(B_n-B_{n-k})|\\
+&\le|\sum_{k=0}^ma_k(B_n-B_{n-k})|+|\sum_{k=m+1}^na_k(B_n-B_{n-k})|\\
+&\le\sum_{k=0}^m|a_k||B_n-B_{n-k}|+\sum_{k=m+1}^n|a_k|\cdot2M.
+\end{align*}
+Since $\sum_ka_k$ converges absolutely, we can take $m$ such that
+\[\sum_{k=m+1}^\infty|a_k|<\frac\e{2M}.\]
+By taking limit $n\to\infty$, we have
+\[\limsup_{n\to\infty}|C_n-A_nB_n|\le0+\e.\]
+Since $\e>0$ is arbitrary, we have $\lim_n|C_n-A_nB_n|=0$.
 
-As $m\to\infty$.
-\[\Bigl|\sum_{k=m+1}^n\sum_{l=n-k+1}^na_kb_l\Bigr|\le\sum_{k=m+1}^n|a_k|\Bigl|\sum_{l=n-k+1}^nb_l\Bigr|=\sum_{k=m+1}^n|a_k||B_n-B_{n-k}|\lesssim\sum_{k=m+1}^\infty|a_k|\to0.\]
-
-For fixed $m$, as $n\to\infty$,
-\[\Bigl|\sum_{k=0}^m\sum_{l=n-k+1}^na_kb_l\Bigr|\le\sum_{k=0}^m|a_k|\Bigl|\sum_{l=n-k+1}^nb_l\Bigr|=\sum_{k=0}^m|a_k||B_n-B_{n-k}|\to\sum_{k=0}^m|a_k||B-B|=0.\]
-
-We will prove
-\[A_nB_n-C_n=\sum_{k=0}^n\sum_{l=n-k+1}^na_kb_l\to0\]
-as $n\to\infty$.
-For $\e>0$, take $m$ such that
-\[|\sup_n\sum_{k=m+1}^n\sum_{l=n-k+1}^na_kb_l|<\e.\]
-Then for every $n$ we have
-\[|\sum_{k=0}^n\sum_{l=n-k+1}^na_kb_l|\le\e+|\sum_{k=0}^n\sum_{l=n-k+1}^na_kb_l|.\]
-Taking limits $n\to\infty$ and $\e\to0$ in order, we are done.
 \end{pf}
 
 
@@ -374,13 +371,13 @@ bounded compact support <-> lebesgue
 
 
 
-\part{Function spaces}
+\part{Functional sequences}
 
 \chapter{Continuous functions}
 \section{Uniform convergence}
 
 \begin{prb}
-Let $X$ be a compact space.
+Let $X$ be a compact metric space.
 \begin{parts}
 \item $C(X)$ is complete.
 \end{parts}
@@ -415,6 +412,18 @@ Since $\e>0$ has been arbitrarily taken,
 (b)
 
 \end{pf}
+
+
+\section{}
+
+\begin{prb}[Partition of unity]
+\end{prb}
+\begin{prb}[Urysohn lemma]
+\end{prb}
+\begin{prb}[Tietze extension]
+\end{prb}
+
+
 
 \section{Arzela-Ascoli theorem}
 

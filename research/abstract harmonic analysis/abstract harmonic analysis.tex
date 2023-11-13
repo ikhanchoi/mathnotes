@@ -1,0 +1,204 @@
+\documentclass{../../large}
+\usepackage{../../ikhanchoi}
+
+
+\begin{document}
+\title{Abstract Harmonic Analysis}
+\author{Ikhan Choi}
+\maketitle
+\tableofcontents
+
+
+
+\part{}
+
+\chapter{Locally compact groups}
+\section{Haar measures}
+
+\begin{prb}[Non-$\sigma$-finite measures]
+Following technical issues are important
+\begin{parts}
+\item The Fubini theorem
+\item The Radon-Nikodym theorem
+\item The dual space of $L^1$ space
+\end{parts}
+\end{prb}
+
+\begin{prb}[Existence of the Haar measure]
+\end{prb}
+
+\begin{prb}[Left and right uniformities]
+\end{prb}
+
+\begin{prb}[Modular functions]
+\end{prb}
+
+\begin{prb}[Uniformly continuous functions]
+$G$ acts on $C_{lu}(G)$ and $L^1(G)$ continuously with respect to the point-norm topology.
+A function on $G$ is left uniformly continuous if and only if it is written as $f*x$ for some $f\in L^1(G)$ and $x\in L^\infty(G)$.
+$g\in C_c(G)$ is two-sided uniformly continuous.
+\end{prb}
+
+\section{Group algebras}
+
+\begin{prb}[Convolution inequalities]
+\end{prb}
+
+Justification of the following?
+\[\lambda(f)=\int f(s)\lambda_s\,ds.\]
+
+\begin{prb}[Convolution action]
+Let $G$ be a locally compact group.
+\begin{parts}
+\item $L^1(G)$ has a two-sided approximate unit.
+\item $\alpha:G\to\Aut(L^1(G))$ is point-norm continuous.
+\item $\lambda:G\to U(L^2(G))$ and $\lambda:L^1(G)\to B(L^2(G))$ are strongly continuous.
+\end{parts}
+\begin{pf}
+Let $(U_\alpha)$ be a directed set of open neighborhoods of the identity $e$ of $G$.
+By Urysohn lemma, there is $e_\alpha\in C_c(U)^+$ such that $\|e_\alpha\|_1=1$ for each $\alpha$.
+We claim that $e_\alpha$ is a left approximate unit for $L^1(G)$.
+
+Suppose $g\in C_c(G)$, which is two-sided uniformly continuous.
+For any $\e>0$, take $\alpha_0$ such that $\|g-\lambda_sg\|<\e$ and $\|g-\rho_sg\|<\e$ for all $s\in U_\alpha$ for $\alpha\succ\alpha_0$.
+Then, we have
+\begin{align*}
+\|e_\alpha*g-g\|_1
+&=\int|e_\alpha*g(t)-g(t)|\,dt\le\iint e_\alpha(s)|g(s^{-1}t)-g(t)|\,ds\,dt\\
+&=\int e_\alpha(s)\|\lambda_sg-g\|_1\,ds<\e\int e_\alpha(s)\,ds\le\e,
+\end{align*}
+and
+\begin{align*}
+\|g*e_\alpha-g\|_1
+&=\int|g*e_\alpha(s)-g(s)|\,ds\le\iint|g(t)-g(s)|e_\alpha(t^{-1}s)\,dt\,ds\\
+&=\iint|g(t)-g(ts)|e_\alpha(s)\,dt\,ds=\int\|g-\rho_sg\|_1e_\alpha(s)\,ds<\e\int e_\alpha(s)\,ds\le\e,
+\end{align*}
+and they imply $\lim_\alpha\|e_\alpha*g-g\|_1=\lim_\alpha\|g*e_\alpha-g\|_1=0$.
+For general $f\in L^1(G)$, by taking $g\in C_c(G)$ such that $\|f-g\|_1<\e$, we have
+\[\|e_\alpha*f-f\|_1\le\|e_\alpha*(f-g)\|_1\]
+\end{pf}
+
+\end{prb}
+
+Note that we have
+\begin{align*}
+|\<\lambda(\xi)\eta,\zeta\>|^2
+&=|\iint\xi(t)\eta(t^{-1}s)\bar{\zeta(s)}\,ds\,dt|^2\\
+&\le\iint|\xi(t)||\eta(t^{-1}s)|^2\,ds\,dt\cdot\iint|\xi(t)||\zeta(s)|^2\,ds\,dt\\
+&=\|\xi\|_1^2\|\eta\|_2^2\|\zeta\|_2^2
+\end{align*}
+and
+\begin{align*}
+|\<\rho(\xi)\eta,\zeta\>|^2
+&=|\iint\eta(t)\xi(t^{-1}s)\bar{\zeta(s)}\,ds\,dt|^2\\
+&\le\iint|\xi(t^{-1}s)||\eta(t)|^2\,ds\,dt\cdot\iint|\xi(t^{-1}s)||\zeta(s)|^2\,ds\,dt\\
+&=\|\xi\|_1\|F\xi\|_1\|\eta\|_2^2\|\zeta\|_2^2
+\end{align*}
+imply
+\[\|\lambda(\xi)\|_{2\to2}\le\|\xi\|_1,\qquad\|\rho(\xi)\|_{2\to2}\le\sqrt{\|\xi\|_1\|F\xi\|_1}.\]
+The equalities do not hold, consider $\|\lambda(\xi)\|=\|\hat\xi\|_\infty$ if $G=\R$.
+
+\begin{prb}[Group algebras]
+\end{prb}
+\begin{prb}[Fell absorption principle]
+\end{prb}
+
+\begin{prb}[Fourier algebra]
+\end{prb}
+\begin{prb}[Fourier-Stieltjes algebra]
+positive definite functions, Bochner theorem
+\end{prb}
+\begin{prb}[GNS construction for locally compact groups]
+Let $G$ be a locally compact group.
+By a state of $C^*(G)$, we could construct the GNS representation of $G$.
+An analog of GNS construction for $L^1(G)$ without completion is doable, when given a function of positive type on $G$, instead of a state.
+\end{prb}
+
+
+\[\begin{tikzcd}
+G \ar{r} & M(G) & \, & \,\\
+L_1(G) \ar[hook]{ur}\ar[hook]{r}\ar[dashed]{d}{*} & C^*(G) \ar[two heads]{r}\ar[dashed]{d}{*} & C_r^*(G) \ar[hook]{r}\ar[dashed]{d}{*} & L(G) \ar[dashed]{d}{*\text{ with }\sigma w}\\
+L^\infty(G) & B(G) \ar[hook]{l} & C_r^*(G)^* \ar[hook]{l} & A(G) \ar[hook]{l}\\
+& C_0(G) \ar[hook]{ul} & &
+\end{tikzcd}\]
+
+
+
+
+
+\section{Pontryagin duality}
+
+\begin{prb}[Dual group]
+\end{prb}
+\begin{prb}[Fourier inversion theorem]
+\end{prb}
+\begin{prb}[Plancherel's theorem]
+\end{prb}
+
+
+\section{Structure theorems}
+
+
+
+\section{Spectral synthesis}
+
+
+
+
+
+
+
+
+\chapter{Representation theory}
+
+\begin{prb}[Schur's lemma]
+\end{prb}
+
+\begin{prb}[Operator-valued Fourier transform]
+\end{prb}
+
+
+
+Since it is not easy to introduce the quantum dual of $G$ for now, we cannot discuss $L^1(G)$ as the Fourier algebra, the predual of the quantum group von Neumann algebra.
+($A(G)=L(G)_*=L^1(\hat G)$ and also is the closed linear span of matrix coefficients of the left regular representation.)
+
+
+
+\chapter{Compact groups}
+\section{Peter-Weyl theorem}
+\section{Tannaka-Krein duality}
+\section{Example of compact Lie groups}
+
+\chapter{Mackey machine}
+\section{Example of non-compact Lie groups}
+Wigner classification
+
+
+
+
+
+
+
+
+\chapter{Kac algebras}
+
+
+
+
+\part{Topological quantum groups}
+\chapter{Compact quantum groups}
+\chapter{Locally compact quantum groups}
+\section{Multiplicative unitaries}
+
+
+\part{Tensor categories}
+
+
+\end{document}
+
+
+
+
+
+
+

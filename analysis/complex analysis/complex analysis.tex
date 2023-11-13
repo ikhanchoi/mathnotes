@@ -162,6 +162,7 @@ which implies
 \item Find all entire functions $f$ satisfying $f(z)^2=f(z^2)$.
 \item An entire function maps every unbounded sequence to an unbounded sequence is a polynomial.
 \item If a holomorphic function satisfies $\Re f(z)\le1+|z|^2$, then $f$ is a polynomial at most degree two.
+\item If $f(z)=\sum_{k=0}^\infty a_kz^k$ is a holomorphic function defined on the open unit disk satisfying $\sum_{k=2}^\infty k|a_k|\le|a_1|\ne0$, then $f$ is injective. (Grunsky coefficients)
 \end{enumerate}
 
 
@@ -382,8 +383,14 @@ Carlson's theorem
 
 \section*{Problems}
 \begin{enumerate}
-\item Show that $\int_0^{2\pi}\frac{d\theta}{1+\cos^2\theta}=\sqrt2\pi$.
+\item We have $\int_0^{2\pi}\frac{d\theta}{1+\cos^2\theta}=\sqrt2\pi$.
 \item Find the number of roots of $z^6+z+1=0$ in $\{x+iy\in\C:x>0,y>0\}$.
+\item Find the number of roots of $z-e^{-z}=2$ in the right half plane.
+\item If $f$ is an entire function such that $|f(z)|\le e^{|z|^\lambda}$, then $|\{z\in B(0,R):f(z)=0\}|\lesssim R^\lambda$.
+\item There is no holomorphic function $f:\D\to\C$ such that $|f(z)|\to\infty$ for all sequences $z_n\in\D$ with $|z_n|\to1$.
+\item If $f$ is a bounded holomorphic function defined on $\C\setminus E$, where $E\subset[0,1]$ is the Cantor set, then $f$ is constant.
+\item Suppose a sequence of nowhere vanishing holomorphic functions $f_n$ on a domain $\Omega$ converges to a non-constant function $f$ uniformly on compact sets.
+Then, $f$ is also nowhere vanishing. (Hurwitz)
 \end{enumerate}
 
 

@@ -544,8 +544,8 @@ From the part (a) and (b) we have
 If $(X_i)$ is the sequence of independent random variables such that $EX_i=0$ and $VX_i<\infty$, then
 \[P(S^*_n>\e)\le\frac1{\e^2}VS_n,\]
 where $S^*_n:=\max_{i\le n}|S_i|$.
-We can prove it by construction of a linear martingale $S_{\tau\wedge n}$ with a stopping time to hit $\e$: independence and zero mean are necessary.
-This is a special case of the Doob maximal inequality for $S_{\tau\wedge n}^2$.
+We can prove it by construction of a linear martingale $S_{n\wedge\tau}$ with a stopping time to hit $\e$: independence and zero mean are necessary.
+This is a special case of the Doob maximal inequality for $S_{n\wedge\tau}^2$.
 \end{prb}
 
 
@@ -721,9 +721,9 @@ It is called the \emph{upcrossing inequality} by Doob.
 Let $Y_n:=(X_n-a)^+$.
 Note that $\tau^{u_n}\le n<\tau^{u_n+1}$.
 Define a predictable sequence
-\[H_n:=\sum_{k=1}^\infty\1_{\{\tau_k<n\le\tau^k\}}=\1_{\{\tau_{u_n+1}<n<\tau^{u_n+1}\}}+\1_{\{n=\tau^{u_n}\}}.\]
+\[H_n:=\sum_{k=1}^\infty\1_{(\tau_k,\tau^k]}(n)=\1_{\{\tau^{u_n}\}}(n)+\1_{(\tau_{u_n+1},\tau^{u_n+1})}(n).\]
 Since $Y_{\tau_k}=0$ for any $k\ge1$, we have
-\[(H\cdot Y)_n-(H\cdot Y)_{\tau^{u_n}}=\sum_{i=\tau^{u_n}+1}^nH_i(Y_i-Y_{i-1})=\1_{\{\tau_{u_n+1}<n<\tau^{u_n+1}\}}\cdot(Y_n-Y_{\tau_{u_n+1}})\ge0,\]
+\[(H\cdot Y)_n-(H\cdot Y)_{\tau^{u_n}}=\sum_{i=\tau^{u_n}+1}^nH_i(Y_i-Y_{i-1})=\1_{(\tau_{u_n+1},\tau^{u_n+1})}(n)\cdot(Y_n-Y_{\tau_{u_n+1}})\ge0,\]
 so
 \[(b-a)u_n=\sum_{k=1}^{u_n}(b-a)\le\sum_{k=1}^{u_n}(Y_{\tau^k}-Y_{\tau_k})=(H\cdot Y)_{\tau_{u_n}}\le(H\cdot Y)_n.\]
 Since $(Y_n)$ is also a submartingale and $1-H_n\ge0$, we have
@@ -741,26 +741,27 @@ By the Fatou lemma,
 implies $\lim_nX_n\in(-\infty,\infty)$ a.s.
 \end{pf}
 
-\begin{prb}
-If $H_n:=\1_{n\le\tau}$, then $(H\cdot X)_n=X_{\tau\wedge n}$.
-\begin{parts}
-\item
-\end{parts}
-\end{prb}
 
-If $(X_n)$ is a non-negative submartingale, then we have the following Doob's maximal inequality.
+
+\begin{prb}[Doob inequality]
+If $(X_n)$ is a non-negative submartingale, then we have the following Doob's (maximal or submartingale) inequality
 \[P(X^*_n>\e)\le\frac1\e EX_n.\]
 For $p>1$, if $\sup_nE|X_n|^p<\infty$, then $X_n$ converges a.s.~and in $L^p$.
+\end{prb}
 
 
 
-square integrable martingale
 
+\begin{prb}[Uniform integrability]
 We say a set of random variables $\{X_i\}$ is \emph{uniformly integrable} if
 \[\lim_{c\to\infty}\sup_iE(|X_i|\1_{|X_i|>c})=0.\]
-Wald equations
+\end{prb}
 
-optional stopping
+
+\begin{prb}[Optional stopping theorem]
+If $H_n:=\1_{n\le\tau}$, then $(H\cdot X)_n=X_{n\wedge\tau}$.
+Wald equations
+\end{prb}
 
 
 
@@ -786,6 +787,9 @@ Ornstein-Uhlenbeck
 \section{Brownian motion}
 
 continuous martingales
+construction
+
+continuous version of doob inequality, optional stopping
 
 \section{Wiener spaces}
 Cameron-Martin
@@ -799,6 +803,8 @@ Ornstein-Uhlenbeck
 
 \chapter{Stochastic integral}
 
+square integrable martingale
+Doob-Meyer decomposition
 
 
 \part{Stochastic models}

@@ -1,0 +1,250 @@
+\documentclass{../../../small}
+\usepackage{../../../ikhanchoi}
+
+\newcommand{\GrAut}{\operatorname{GrAut}}
+\newcommand{\gldim}{\operatorname{gldim}}
+\renewcommand{\pd}{\operatorname{pd}}
+\begin{document}
+\title{Noncommutative Algebraic Geometry}
+\author{Ikhan Choi\\Lectured by Izuru Mori\\University of Tokyo, Autumn 2023}
+\maketitle
+
+\section{Algebras}
+
+
+\begin{itemize}
+\item 1987: Artin-Schelter, regular algebra.
+\item 1990: Artin-Tate-Bergh, three dimensional, geometrically classified.
+\item 1994: Artin-Zhang, noncommutative scheme, categorical perspective.
+\end{itemize}
+
+\subsection{}
+Let $k$ be an algebraically closed field of characteristic zero.
+Examples of $k$-algebras include the free algebra $T:=k\<x_1,\cdots,x_n\>$, which is noncommutative for $n\ge2$.
+It consists of linear combinations of monomials, and there are $2^n$ monomials of degree $n$ in $T$, and $T$ is $k$-isomorphic to the tensor algebra constructed from $n$-dimensional vector space $k^n$.
+Note that $(x+y)^2=x^2+xy+yx+y^2$ in $T$.
+An algebra $R$ is finitely generated if and only if $R\cong T/I$ for some $n$ and some ideal $I$ of $R$.
+If $n\ge2$, then $T$ is not right noetherian, $I=\sum_{i=0}^\infty x^iyR$ is a right ideal which is not finitely generated for exmaple(not easy to show finitely generatedness).
+Is $k\<x,y\>/(yx,y^2)$ noetherian?
+It is known that it is left notherian, but not right noetherian.
+
+
+
+\subsection{}
+Let $R$ be a ring and let $\sigma\in\Aut(R)$.
+An additive map $\delta:R\to R$ is called a \emph{$\sigma$-derivation} if $\delta(ab)=\sigma(a)\delta(b)+\delta(a)b$ for $a,b\in R$.
+We define a ring $R[x;\sigma,\delta]$, called the \emph{Ore extension}, as an additive group $R[x]$ together with multiplication defined by
+\[xa:=\sigma(a)x+\delta(a),\qquad a\in R.\]
+\begin{ex}\,
+\begin{parts}
+\item We can compute
+\begin{align*}
+(ax+b)(cx+d)
+&=axcx+axd+bcx+bd\\
+&=a(\sigma(c)x+\delta(c))x+a(\sigma(d)x+\delta(d))+bcx+bd\\
+&=a\sigma(c)x^2+(a\delta(c)+a\sigma(d)+bc)x+a\delta(d)+bd.
+\end{align*}
+\item We have $R[x;\id_R,0]\cong R[x]$ as rings.
+\item If $\sigma(f(x)):=f(\alpha x)$ for some non-zero $\alpha\in k$, then $k[x][y;\sigma,0]\cong k\<x,y\>/(\alpha xy-yx)$ since $yx=\sigma(x)y-\delta(x)=\alpha xy$.
+\item If $\delta(f(x)):=f'(x)$, then $k[x][y;\id_{k[x]},\delta]\cong k\<x,y\>/(xy-yx+1)$, called the \emph{Weyl algebra}, since $yx=\sigma(x)y+\delta(x)=xy+1$.
+\item How can we find a $k$-automorphism $\sigma$ of $k[x]$ and a $\sigma$-derivation $\delta$ such that $k\<x,y\>/(xy-yx+x^2)\cong k[x][y;\sigma,\delta]$? What should $\delta(x^i)$ be? One answer is $\sigma=\id_{k[x]}$ and $\delta(f(x))=x^2f'(x)$.
+\end{parts}
+\end{ex}
+\begin{thm}
+Let $R$ be a ring and $S:=R[x;\sigma,\delta]$ be an Ore extension.
+\begin{parts}
+\item If $R$ is right noetherian, then so is $S$.
+\item If $R$ is a domain, then so is $S$.
+\item If $R$ is of finite global dimension, then so is $S$.
+\end{parts}
+\end{thm}
+As examples, we have $k\<x,y\>/(\alpha xy-yx)$ and $\dim k\<x,y\>/(xy-yx+1)$ are noetherian domains of global dimensions 2 and 1, respectively.
+There is a result that left and right global dimensions coincide when $R$ is two-sided noetherian.
+
+
+
+
+
+\subsection{}
+\begin{thm}
+If $R$ is a $k$-algebra and $a_1,\cdots,a_n\in R$, then there is a unique $k$-algebra homomorphism $\f:k\<x_1,\cdots,x_n\>\to R$ such that $\f(x_i)=a_i$.
+If a $k$-algebra homomorphism $\f:S\to R$ satisfies $\f(I)=0$ for an ideal $I$ of $S$, then it factors through $S/I$.
+\end{thm}
+With the above theorem we can construct an $k$-algebra isomorphism $k[x]\cong k\<x,y\>/(x^2-y)$.
+As an another example, for $\char k\ne2$, then
+\[k\<x,y\>/(x^2+y^2,xy+yx)=k\<x+y,x-y\>/((x+y)^2,(x-y)^2)\cong k\<x,y\>/(x^2+y^2).\]
+
+
+
+
+
+
+
+
+\subsection{}
+We now consider grading, a direct sum decomposition over a monoid.
+The free $k$-algebra $T=k\<x_1,\cdots,x_n\>$ is $\N$-graded by degree.
+Let $A=\bigoplus A_i$ be a graded ring.
+We can define homogeneous ideals of $A$, and the quotient can be written as $A/I\cong\bigoplus A_i/I_i$, where $I_i:=I\cap A_i$.
+Also, graded homomorphisms between graded rings or graded modules are able to be introduced.
+Let $I$ and $J$ be homogeneous ideal of $T_n:=k\<x_1,\cdots,x_n\>$ and $T_m:=k\<y_1,\cdots,y_m\>$ such that $J_0=J_1=0$.
+Then, a graded algebra homomorphism $\f:T_n\to T_m$ is uniquely determined by $\f(x_i)=a_{ij}y_j$ for $(a_{ij})\in M_{nm}(k)$.
+Let $\GrAut(A)$ be the group of graded algebra automorphisms of $A$.
+Then,
+\[\GrAut(T_n)\cong\GrAut(k[x_1,\cdots,x_n])\cong\GL(n,k),\]
+and if $I$ is a homogeneous ideal of $T_n$ such that $I_0=I_1=0$, then $\GrAut(T_n/I)$ is a subgroup of $\GL(n,k)$.
+For example, we have
+\[\GrAut(k\<x,y\>/(x^2))\cong\left\{\mat{a&0\\c&d}:a,d\in k^\times\right\}\]
+and for $\alpha\ne\pm1$ we have
+\[\GrAut(k\<x,y\>/(\alpha xy-yx))\cong\left\{\mat{a&0\\0&d}:a,d\in k^\times\right\}\]
+since $\alpha\f(x)\f(y)-\f(y)\f(x)=(\alpha-1)(acx^2+bdy^2)+(\alpha^2-1)bcxy$.
+
+Fix $\theta\in\GrAut(A)$.
+Define an algebra $A^\theta:=A$ as sets and multiplication $a*b:=a\theta^i(b)$ on $A^\theta$ for $a\in A_i$ and $b\in A$.
+It is called the \emph{twist} of $A$ by $\theta$, and it is also graded.
+For example, if we let $A=k[x,y]$, then
+\[\text{If }\theta=\mat{\alpha&0\\0&1},\text{ then }\quad A^\theta\cong k\<x,y\>/(\alpha xy-yx)\]
+and
+\[\text{If }\theta=\mat{1&0\\-1&1},\text{ then }\quad A^\theta\cong k\<x,y\>/(xy-yx+x^2).\]
+Note that $\f(xy-yx)=(ad-bc)(xy-yx)$ if $\theta=\mat{a&b\\c&d}$.
+
+\begin{thm}
+Let $A$ be a graded ring and $\theta\in\GrAut(A)$.
+\begin{parts}
+\item If $A$ is right noetherian, then so is $A^\theta$.
+\item If $A$ is a domain, then so is $A^\theta$.
+\item If $A$ is of finite global dimension, then so is $A^\theta$.
+\end{parts}
+\end{thm}
+
+
+
+
+
+\newpage
+\section{Quantum polynomial algebras}
+
+\subsection{}
+
+Today, let $A:=k\<x_1,\cdots,x_n\>/I$ be a finitely generated graded algebra such that $I$ is a homogeneous ideal satisfying $I_0=I_1=0$, i.e.~$I$ is an admissible ideal.
+Let $M$ be a graded right $A$-module, $M_{\ge n}:=\bigoplus_{i\ge n}M_i$ be a graded submodule of $M$, and $M(n)$ be a graded module such that $M(n):=M$ as a set but $M(n)_i:=M_{n+i}$.
+With this notation, $\fm:=A_{\ge1}$ is the unique maximal homogeneous ideal of $A$.
+A \emph{free} graded right $A$-module is a graded right $A$-module of the form $\oplus_s A(n_s)$.
+A finitely generated graded right $A$-module is free if and only if projective. 
+A function $\f:A(l)\to A(m)$ is a graded right $A$-module homomorphism if and only if $\f=a\cdot$ for some $a\in A_{m-l}$.
+Therefore, between free right $A$-modules, $\f:\oplus A(l_s)\to\oplus A(m_t)$ is a graded right $A$-module homomorphism if and only if $\f=(a_{st})\cdot$, for some $a_{st}\in A_{m_t-l_s}$.
+A free resolution
+\[\cdots\to F^2\to F^1\to F^0\to M\to0\]
+is called \emph{minimal} if the map $\f_i:F^i\to F^{i-1}$ is given by the left multiplication of a matrix whose entries are in $A_1$.
+We can define the projective dimension of a module as the minimal length of free resolution, and the global dimension of $A$ as the supremum of the projective dimension of graded right $A$-modules.
+\begin{lem}$\gldim A=\pd(k)$.\end{lem}
+For example, $A=k\<x,y\>$, then $k=A/(xA+yA)$, so $\pd(k)=1$, hence $\gldim A=1$, and in generally $\gldim A=1$ for $I=0$.
+
+
+\subsection{}
+Let $M$ be a finitely generated graded right $A$-module.
+Suppose further $M$ is locally finite, i.e.~$\dim_kM_i<\infty$ for each $i$.
+Then,
+\[H_M(t):=\sum_{i\in\Z}(\dim_kM_i)t^i\in\Z[[t,t^{-1}]]\]
+is called the \emph{Hilbert series} of $M$.
+For example, letting $M=A$,
+\[H_{k[x_1,\cdots,x_n]}(t)=\sum_{i=0}^\infty{n+i-1 \choose n-1}t^i=(1-t)^{-n},\]
+and
+\[H_{k\<x_1,\cdots,x_n\>}(t)=\sum_{i=0}^\infty n^it^i=(1-nt)^{-1}.\]
+\begin{lem}
+Let $M$ be a finitely generated graded right $A$-module.
+\begin{parts}
+\item $H_{M^{\oplus r}}(t)=rH_M(t)$.
+\item $H_{M(n)}(t)=t^{-n}H_M(t)$.
+\item If $0\to M^r\to\cdots\to M^1\to M^0\to0$ is exact, then $\sum_{i=0}^r(-1)^iH_{M_i}(t)=0$.
+\end{parts}
+\end{lem}
+For example for (c), consider
+\[0\to A(-1)^{\oplus2}\to A\to k\to0.\]
+Then, we can check $H_A(t)=(1-2t)^{-1}$ from
+\[0=H_k(t)-H_A(t)+H_{A(-1)^{\oplus2}}(t)=1-H_A(t)+2tH_A(t).\]
+
+
+
+\subsection{}
+\begin{defn}[Artin-Schelter]
+We say $A$ is a $d$-dimensional \emph{quantum polynomial algebra}(QPA) if $\gldim A=d<\infty$, $H_A(t)=(1-t)^{-d}$, and $\Ext_A^i(k,A)=\delta_{di}\cdot k(d)$.
+The last condition is called the \emph{Gorenstein condition}.
+\end{defn}
+If a QPA is commutative, then it is isomorphic to the polynomial algebra.
+The above two conditions are equivalent to have the minimal free resolution of the graded right $A$-module $k$
+\[0\to A(-d)\to\oplus A(-d+1)\to\cdots\to\oplus A(-1)\to A\to k\to0,\]
+where $\phi^i:\oplus A(-i)\to\oplus A(-i+1)$ is the left multiplication of a matrix whose components are in $A_1$.
+The Gorenstein condition is equivalent to the transpose
+\[0\leftarrow k(d)\leftarrow\oplus A(d)\leftarrow\cdots\leftarrow\oplus A(1)\leftarrow A\leftarrow0\]
+is a minimal free resolution of left $A$-module $k(d)$, where the arrows are right multiplications of matrices whose compoenents are in $A_1$.
+Ranks of each free modules must be determined by the Hilbert series.
+
+For example, $A=k\<x,y\>/(\alpha xy-yx)$ is a 2-dimensional QPA for all non-zero $\alpha\in k$.
+The classification up to dimension two is easy:
+\begin{lem}
+Let $A$ be a QPA over an algebraically closed field $k$.
+\begin{parts}
+\item $\gldim A=0$ iff $A\cong k$,
+\item $\gldim A=1$ iff $A\cong k[x]$,
+\item $\gldim A=2$ iff $A\cong k[x,y]^\theta$ for some $\theta\in\GL(2,k)$.
+\end{parts}
+\end{lem}
+
+
+\subsection{}
+We can describe three-dimensional QPAs are classified in terms of derivation quotient algebras.
+\begin{defn}
+Let $V=k^n$ and let
+\[\f:V^{\otimes m}\to V^{\otimes m}:v_1\otimes\cdots\otimes v_m\mapsto v_2\otimes\cdots\otimes v_1.\]
+We say $w\in V^{\otimes m}$ is called a \emph{superpotential}(SP) if $\f(w)=w$, and a \emph{twisted superpotential}(TSP) if $(\sigma\otimes\id^{\otimes(m-1)})\f(w)=w$ for all $\sigma\in\GL(V)$.
+\end{defn}
+\begin{ex}
+Let $V=kx+ky$, and $w=\alpha x^2+\beta xy+\gamma yx+\delta y^2\in V^{\otimes 2}$.
+Then, $w$ is SP iff $\beta=\gamma$ and $SP^2(V)=kx^2+k(xy+yx)+ky^2\subset V^{\otimes2}$.
+\end{ex}
+\begin{defn}
+For $\dim_kV=n$ and $w\in V^{\otimes m}$, we can define $\partial_iw,w\partial_i\in V^{\otimes(m-1)}$ such that $w=\sum x_i\otimes\partial_iw=\sum w\partial_i\otimes x_i$.
+\emph{Derivation quotient algebras} are
+\[D_l(w):=k\<x_1,\cdots,x_n\>/(\partial_1w,\cdots,\partial_nw),\qquad D_r(w):=k\<x_1,\cdots,x_n\>/(w\partial_1,\cdots,w\partial_n).\]
+\end{defn}
+\begin{lem}
+\,
+\begin{parts}
+\item $w$ is SP iff $\partial_iw=w\partial_i$.
+\item $w$ is TSP iff $D_l(w)=D_r(w)=:D(w)$ (ideals quotiented are same as sets.)
+\end{parts}
+\end{lem}
+\begin{ex}
+If $V=kx+ky$, and $w=\alpha x^2+\beta xy+\gamma yx+\delta y^2\in V^{\otimes 2}$, then
+\[\partial_xw=\alpha x+\beta y,\qquad w\partial_x=\alpha x+\gamma y.\]
+\end{ex}
+
+\begin{thm}\,
+\begin{parts}
+\item If $\omega$ is TSP with $m=n=3$, then $D(w)$ is a three-dimensional QPA.
+\item The converse holds.
+\end{parts}
+\end{thm}
+
+
+\begin{ex}[Sklyanin algebra]
+For $\alpha,\beta,\gamma\in k$,
+\[w=\alpha(xyz+yzx+zxy)+\beta(xzy+yxz+zyx)+\gamma(x^3+y^3+z^3)\]
+is a superpotential.
+$D(w)$ is called the Sklyanin algebra.
+We can construct with $M=\mat{\gamma x&\beta z&\alpha y\\\alpha z&\gamma y&\beta x\\\beta y&\alpha x&\gamma z}$ the minimal free resolutions of $k$ and $k(3)$.
+\end{ex}
+
+
+There is $\theta\in\GrAut(k\<x,y\>/(\alpha xy-yx))$ such that
+\[(k\<x,y\>/(\alpha xy-yx))^\theta\cong k\<x,y\>/(xy-yx+x^2)\]
+if and only if $\alpha=1$.
+We can see this for $\alpha=-1$ by computing $\GrAut$.
+Note that
+\[(k\<x,y\>/(\alpha xy-yx))^\theta\cong k\<x,y\>/(\alpha\theta(x)y-\theta(y)x)\]
+If $\alpha\ne\pm1$....?
+
+
+
+\end{document}
