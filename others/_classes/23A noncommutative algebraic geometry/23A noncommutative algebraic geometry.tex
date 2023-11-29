@@ -4,12 +4,21 @@
 \newcommand{\GrAut}{\operatorname{GrAut}}
 \newcommand{\gldim}{\operatorname{gldim}}
 \renewcommand{\pd}{\operatorname{pd}}
+\newcommand{\GrMod}{\operatorname{GrMod}}
+\newcommand{\Tors}{\operatorname{Tors}}
+\newcommand{\Tails}{\operatorname{Tails}}
+\newcommand{\Proj}{\operatorname{Proj}}
+\newcommand{\grmod}{\operatorname{grmod}}
+\newcommand{\tors}{\operatorname{tors}}
+\newcommand{\tails}{\operatorname{tails}}
+\newcommand{\Pic}{\operatorname{Pic}}
 \begin{document}
 \title{Noncommutative Algebraic Geometry}
 \author{Ikhan Choi\\Lectured by Izuru Mori\\University of Tokyo, Autumn 2023}
 \maketitle
 
 \section{Algebras}
+
 
 
 \begin{itemize}
@@ -245,6 +254,223 @@ Note that
 \[(k\<x,y\>/(\alpha xy-yx))^\theta\cong k\<x,y\>/(\alpha\theta(x)y-\theta(y)x)\]
 If $\alpha\ne\pm1$....?
 
+
+\newpage
+\section{}
+
+Artin-Tate-van den Bergh classification of 3-dimensional QPA.
+
+Point varieties.
+
+
+\newpage
+\section{}
+
+\subsection{}
+
+\begin{defn}
+A \emph{noncommutative scheme} is a pair $X=(\Mod X,\cO_X)$ of an abelian category $\Mod X$ and an object $\cO_X$ in it.
+A \emph{morphism} between noncommutative schemes $X$ and $Y$ is an adjoint of pair of functors $f_*:\Mod X\to\Mod Y$ and $f^*:\Mod Y\to\Mod X$ such that $f^*\cO_Y=\cO_X$.
+\end{defn}
+
+For a scheme $X$, then $X$ can be considered as a noncommutative scheme by the pair of the category of quasi-coherent sheaves and the structure sheaf.
+
+Consider the noncommutative affine schemes.
+For a ring $R$, we define its noncommutative spectrum as $\Spec_{nc}R:=(\Mod R,R)$.
+Note that for a ring homomorphism $\f:R\to S$, $S$ can be seen as $R$-$S$-bimodule.
+Here the morphism $f:\Spec_{nc}R\to\Spec_{nc}S$ can be given as the pair of
+\[f^*:\Mod R\to\Mod S:M\mapsto M\otimes_RS,\qquad f_*:\Mod S\to\Mod R:N\mapsto\Hom_S(S,N),\]
+which we can check they are adjoint and $f^*S=R$.
+In general, an equivalence of the category of modules does not imply the isomorphism between rings.
+However, if two noncommutative schemes are isomorphic by $f:\Spec_{nc}R\to\Spec_{nc}S$, then
+\[R=\End_R(R)\cong\End_S(f^*(R))=\End_S(S)=S.\]
+
+\subsection{}
+For the rest of today, a graded ring is an $\N$-graded ring.
+Let $A$ be a graded ring.
+Let $\GrMod A$ be the category of graded right $A$-modules.
+A graded right $A$-module $M$ is called a torsion module if $mA$ is right bounded for all $m\in M$.
+We define $\Tails A:=\GrMod A/\Tors A$.
+For $M\in\GrMod A$, we will use somtimes $\cM=\pi(M)\in\Tails A$ to denote the image of $M$ under the projection functor $\pi:\GrMod A\to\Tails A$.
+
+\begin{thm}[Serre]
+Let $A$ be a commutative graded ring finitely generated in degree one.
+Then, $\Tails A\cong\Mod(\Proj A):\pi(A)\mapsto\cO_{\Proj A}$.
+\end{thm}
+\begin{defn}
+Let $A$ be a graded ring.
+We define $\Proj_{nc}(A):=(\Tails A,\pi(A))$.
+For $A$ an $n$-dimensional QPA, $\Proj_{nc}A$ is called the quantum $\P^{n-1}$.
+\end{defn}
+
+If $A$ is right noetherian graded ring, then we define $\grmod A$ as teh category of finitely generated modules.
+It is an abelian category.
+We may also define $\tors(A):=\Tors(A)\cap\grmod(A)$ and $\tails:=\grmod/\tors$.
+
+\begin{thm}
+Let $A$ be a connected graded right coherent algebra.
+Then,
+\[\Hom_{\tails A}(\cM,\cN)\cong\lim_{n\to\infty}\Hom_A(M_{\ge n},N).\]
+In particular, for \emph{finitely generated} $M$ and $N$, $\pi(M)\cong\pi(N)$ if there is $n$ such that $M_{\ge n}\cong N_{\ge n}$.
+\end{thm}
+
+
+\subsection{}
+Morita theory asks $\Mod R\cong\Mod R'$, and Artin-Zhang theory asks $\Mod A\cong\Mod A'$.
+\begin{thm}
+An abelian category $\cC$ is equivalent to $\Mod R$ if there is $\cO\in\Mod R$ such that
+\begin{enumerate}[(i)]
+\item $\Hom_\cC(\cO,-)$ preserves small coproducts,
+\item every $M\in\cC$ admits an epi $\oplus\cO\to M$,
+\item for epi $M\to N$, $\Hom_\cC(\cO,M)\to\Hom_\cC(\cO,N)$ is epi,
+\end{enumerate}
+and $\cC$ has small coproducts.
+In particular, the equivalence is given as $\Hom_\cC(\cO,-):\cC\to\Mod R$, where $R:=\End_\cC(\cO)$, and in this case, $\Spec_{nc}R\cong(\cC,\cO)$.
+The object $\cO$ is called the compact projective generator.
+\end{thm}
+compact? small coproducts?
+\begin{cor}
+$\Mod R\cong\Mod R'$ iff there is a finitely generated projective generator $P\in\Mod R$ such that $R'=\End_R(P)$.
+\end{cor}
+\begin{ex}
+Let $R$ be a ring.
+$R$ and $M_n(R)$ are Morita equivalent since $R^n$ is a finitely generated projective generator for $\Mod R$, but their schemes are not isomorphic in general.
+\end{ex}
+
+
+\begin{defn}[Twisting systems]
+Let $A$ be a graded ring.
+A twisting system is a family $\{\theta_i\}_{i\in\Z}$ such that $\theta_i:A\to A$ is a graded abelian group isomorphisms such that $\theta_i(a\theta_j(b))=\theta_i(a)\theta_{i+j}(b)$.
+We can define twists $A^{\{\theta_i\}}$ and $M^{\{\theta_i\}}$.
+\end{defn}
+\begin{thm}[Zhang]\,
+\begin{parts}
+\item $\GrMod A\cong\GrMod A^{\{\theta_i\}}$. In particular, $\Proj_{nc}(A)\cong\Proj_{nc}(A^{\{\theta_i\}})$.
+\item If $A,A'$ are finitely generated in degree one, and if $\GrMod A\cong\GrMod A'$, then there is a twisting system $\{\theta_i\}$ such that $A'\cong A^{\{\theta_i\}}$.
+\end{parts}
+\end{thm}
+
+Let $A_\alpha:=k\<x,y\>/(\alpha xy-yx)$ and $A_J:=k\<x,y\>/(xy-yx+x^2)$.
+Although we have seen that there is no twist $\theta\in\GrAut A_\alpha$ such that $A_\alpha^\theta\cong A_J$, but there is a twisting system $A_\alpha^{\{\theta_i\}}\cong A_J$.
+We do not exactly know how to construct $\{\theta_i\}$ in general, but we can give the concrete computation in this case:
+\[\theta_i:=\mat{\alpha&0\\0&1}^{-i}\mat{1&0\\-1&1}^i\]
+since $A_\alpha=k[x,y]^{\left(\mat[small]{\alpha&0\\0&1}\right)}$ and $A_J=k[x,y]^{\left(\mat[small]{1&0\\-1&1}\right)}$.
+Generalizing this, there is a theorem that if $\{\theta_i\}$ and $\{\theta_i'\}$ are twisting systems of $A$ and $A^{\{\theta_i\}}$ then there is a twisting system $\{\theta_i''\}$ such that $A^{\{\theta_i''\}}\cong(A^{\{\theta_i\}})^{\{\theta'_i\}}$.
+
+
+\subsection{}
+
+Consider an abelian category $\cC$, an object $\cO$ in $\cC$, and an autoequivalence $s$ of $\cC$.
+We call the triple as an algebraic triple here.
+Then,
+\[B(\cC,\cO,s):=\bigoplus_{i\in\Z}\Hom_\cC(\cO,s^i\cO).\]
+For example, if $X$ is a projective scheme, and $\cL\in\Pic$ is very ample, then we have a graded ring
+\[B:=B(\Mod X,\cO_X,-\otimes_X\cL)=\bigoplus\Gamma(X,\cL^{\otimes i}),\]
+gives $X=\Proj B$.
+In other words, $B$ is the homogeneous coordinate ring of $X$.
+\begin{defn}
+For an algebraic triple $(\cC,\cO,s)$, we say $(\cO,s)$ is ample for $\cC$ if
+\begin{enumerate}[(i)]
+\item for every $M\in\cC$, there is $\{p_i\}_{i=1}^m$ with $\oplus_is^{-p_i}\cO\twoheadrightarrow M$.
+\item for every epi $\cM\to\cN$ in $\cC$, there is an integer $n_0$ such that $\Hom_\cC(s^{-n}\cO,\cM)\to\Hom_\cC(s^{-n}\cO,\cN)$ is epi for $n\ge n_0$.
+\end{enumerate}
+\end{defn}
+
+
+\begin{thm}[Artin-Zhang]
+If $(\cO,s)$ is ample for $\cC$, then $\cC\cong\tails B(\cC,\cO,s):\cO\mapsto B$, i.e.~$(\cC,\cO)\cong\Proj_{nc}B$.
+\end{thm}
+\begin{cor}[Veronese algebra]
+If $A$ is finitely generated in degree one, then $\Proj_{nc} A^{(r)}\cong \Proj_{nc}A$.
+\end{cor}
+For examples, $A=k[x,y]$ with $\Proj A=\P^1$ and $A^{(2)}=k[x^2,xy,y^2]\cong k[s,t,u]/(su-t^2)$, we can check manually $\Proj k[s,t,u]/(su-t^2)\cong\P^1$.
+
+
+For a graded algebra $A$ and $B$, we can define the Segre product
+\[A\circ B:=\bigoplus_iA_i\otimes B_i.\]
+If $A,B$ are commutative and f.g.~in degree one, then $\Proj(A\circ B)\cong\Proj A\times\Proj B$.
+
+
+
+\begin{ex}
+We show that for $A:=k\<x,y\>/(x^2y-yx^2,xy^2-y^2x)$ that $\Proj_{nc}A\cong\P^1\times\P^1$.
+Note that the second Veronese algebra is
+\[A^{(2)}=k\<x^2,xy,yx,y^2\>/(x^2y-yx^2,xy^2-y^2x).\]
+By observing eight relations
+\[x(x^2y-yx^2)=0,\quad(x^2y-yx^2)x=0,\quad y(x^2y-yx^2)=0,\ \cdots\ (xy^2-y^2x)y=0,\]
+and by letting $s=x^2$, $t=xy$, $u=yx$, $v=y^2$, we can conclude the existence of a surjection
+\[B:=k[s,t,u,v]/(sv-tu)\twoheadrightarrow A^{(2)}.\]
+The monomaial of $(A^{(2)})_i$ can be reduced to an element of the form $y^a(xy)^bx^c$ up to scalar multiple, where $a+2b+c=2i$, so $\dim_k(A^{(2)})_i=(i+1)^2$.
+For $B$, if we count the dimension of the space spanned by monomials without $tu$, then we can see $\dim_kB_i=2\cdot{i+1\choose2}-{i+1\choose1}=(i+1)^2$.
+Thus $H_{A^{(2)}}(t)=H_B(t)$ implies $A^{(2)}\cong B$
+
+On the other hands, we also have for the Segre product
+\[B=k[s,t,u,v]/(sv-tu)\twoheadrightarrow k[x_1,y_1]\circ k[x_2,y_2]=:C.\]
+We can easily see that $H_C(t)=\sum_i(i+1)^2t^i$, so $B\cong C$.
+Consequently,
+\[\Proj_{nc}A\cong\Proj_{nc}A^{(2)}\cong\Proj A^{(2)}\cong\Proj C\cong\Proj k[x,y]\times\Proj k[x,y]\cong\P^1\times\P^1.\]
+\end{ex}
+
+
+\newpage
+\pagenumbering{gobble}
+\begin{center}
+{\large\textbf{Noncommutative algebraic geometry}}\\
+\bigskip
+University of Tokyo M1 Ikhan Choi\\
+November 28
+\end{center}
+
+\noindent
+\textbf{1.}
+Show that $A=k\<x,y\>/(yx,y^2)$ is left noetherian but not right noetherian.
+\begin{sol}
+Let $J$ be a left ideal of $k\<x,y\>$ containing $(yx,y^2)$, generated by $\{f_i\}_i\subset k\<x,y\>$ as a left $k\<x,y\>$-module.
+Since $k\<x,y\>=k[x]+k[x]y+(yx,y^2)$, there are $g_i,h_i\in k[x]$ such that $f_i(x,y)\equiv g_i(x)+h_i(x)y$ modulo $(yx,y^2)$ for each $i$.
+Then, we have
+\[J=\sum_ik\<x,y\>f_i=\sum_i(k\<x,y\>g_i+k\<x,y\>h_iy)=\sum_i(k[x]g_i+k[x]g_i(0)+k[x]h_iy)=J_1+J_2y,\]
+where $J_1$ and $J_2$ are ideals of $k[x]$ generated by $\{g_i,g_i(0)\}$ and $\{h_i\}$ respectively.
+Because $k[x]$ is noetherian, the ideals $J_1$ and $J_2$ are finitely generated over $k[x]$, so $J$ is finitely generated over $k\<x,y\>$.
+Thus, $A$ is left noetherian.
+
+Let $J_n:=\sum_{i=0}^nx^iyk+(yx,y^2)$.
+Since $x^iyk\<x,y\>=x^iyk+(yx,y^2)$, we can see that $J_n$ is an increasing sequence of right ideals of $k\<x,y\>$ containing $(yx,y^2)$ for all $n$.
+Because the sequence $J_n$ does not terminate, $A$ is not right noetherian.
+\end{sol}
+
+\bigskip
+\noindent
+\textbf{2.}
+Compute the Hilbert series of $A=k\<x,y\>/(x^2)$.
+\begin{sol}
+Note that $A_{i+2}=A_{i+1}y+A_iyx$ and $A_{i+1}y\cap A_iyx=0$ imply that the dimensions of the homogeneous modules satisfy the recurrence relation of Fibonacci sequence: $\dim_kA_{i+2}=\dim_kA_{i+1}+\dim_kA_i$ for all $i\ge0$.
+Since $\dim_kA_1=2$, $\dim_kA_0=1$, and $\dim_kA_i=0$ for $i<0$, we have with the generating function that
+\[H_A(t)=1+2t+3t^2+5t^3+8t^4+\cdots=\fbox{\displaystyle\frac{1+t}{1-t-t^2}}.\qedhere\]
+\end{sol}
+
+\bigskip
+\noindent
+\textbf{6.}
+Compute the point variety of $A=k\<x,y\>/(yx)$.
+\begin{sol}
+Note that $\Gamma_1=\P^1$.
+Suppose $((a_1,b_1),\cdots,(a_n,b_n))\in\Gamma_n$ for $n\ge2$.
+If $a_n=0$, then since $b_n\ne0$ we have $((a_1,b_1),\cdots,(a_{n-1},b_{n-1}))\in\Gamma_{n-1}$ because
+\[g((a_1,b_1),\cdots,(a_{n-1},b_{n-1}))b_n=f((a_1,b_1),\cdots,(a_n,b_n))=0\]
+implies $g((a_1,b_1),\cdots,(a_{n-1},b_{n-1}))=0$ for all $g\in(yx)_{n-1}$, where $f:=gy$ belongs to $(yx)_n$.
+If $a_n\ne0$, then since for each $1\le i<n$ we have $a_i\ne0$ or $b_i\ne0$, so $c_1c_2\cdots c_{n-1}a_n\ne0$, where $c_i\in\{a_i,b_i\}$.
+If $c_i=b_i$ for some $i$, then implies that there is $1\le i<n$ such that $b_ia_{i+1}\ne0$, which leads a contradiction to the definitioin of $\Gamma_n$, so $c_i=a_i\ne0$ and $b_i=0$ for all $1\le i<n$.
+Consequently, we have $\Gamma_n\subset(\Gamma_{n-1}\times\{0\})\cup(\{\infty\}^{\times(n-1)}\times\P^1)$.
+
+Conversely, if $((a_1,b_1),\cdots,(a_{n-1},b_{n-1}))\in\Gamma_{n-1}$ and $a_n=0$, then every monomial $f\in(yx)_n$ satisfies
+\[f((a_1,b_1),\cdots,(a_n,b_n))=g((a_1,b_1),\cdots,(a_n,b_n))c_n=0,\qquad c_n\in\{a_n,b_n\},\]
+so $((a_1,b_1),\cdots,(a_n,b_n))\in\Gamma_n$, and if $b_1=\cdots b_{n-1}=0$, then every monomial $f\in(yx)_n$ satisfies
+$f((a_1,b_1),\cdots,(a_n,b_n))=0$ clearly.
+Thus the inverse inclusion holds so that $\Gamma_n=(\Gamma_{n-1}\times\{0\})\cup(\{\infty\}^{\times(n-1)}\times\P^1)$ for all $n\ge2$.
+
+Therefore, the point variety of $A$ is
+\[\Gamma_A=\lim_{\substack{\longleftarrow\\N}}\Gamma_N=\lim_{\substack{\longleftarrow\\N}}\ \bigcup_{n=0}^N\ \{\infty\}^n\times\P^1\times\{0\}^{N-n-1}=\fbox{\displaystyle\bigcup_{n=0}^\infty\ \{\infty\}^n\times\P^1\times\{0\}^\infty}.\qedhere\]
+\end{sol}
 
 
 \end{document}

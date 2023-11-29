@@ -26,20 +26,18 @@
 \end{prb}
 
 
-The set $M_n(A)_+$ is linearly spanned by elements of the form $[a_i^*a_j]\in M_n(A)$ for $[a_i]\in A^n$.
+The set $M_n(A)^+$ is linearly spanned by elements of the form $[a_i^*a_j]\in M_n(A)$ for $[a_i]\in A^n$.
 A linear map $\f:A\to B$ is completely positive if
 \[\f(a_i^*a_j)\]
 
 
 \begin{prb}[$n$-positive maps]
-Let $S$ be an operator system.
+Let $S$ be an operator space.
 Let $A$ and $B$ be C$^*$-algebras.
 \begin{parts}
 \item (Cauchy-Schwarz inequality)
-Let $\f:A\to B$ be a 2-positive map.
-Then,
-\[\f(a)^*\f(a)\le\lim_\alpha\|\f(e_\alpha)\|\f(a^*a)\] for all $a\in A$, where $e_\alpha$ be an approximate unit of $A$.
-In particular, $\lim_\alpha\|\f(e_\alpha)\|=\|\f\|$.
+If $\f:A\to B$ is a 2-positive map, then $\lim_\alpha\|\f(e_\alpha)\|=\|\f\|$ for any approximate unit $(e_\alpha)$ of $A$, and
+\[\f(a)^*\f(a)\le\|\f\|\f(a^*a),\qquad a\in A.\]
 \item (Multiplicative domain)
 Let $\f:A\to B$ be a 4-positive map with $\|\f\|=1$.
 If $a\in A$ satisfies $\f(a)^*\f(a)=\f(a^*a)$, then $\f(b)\f(a)=\f(ba)$ for all $b\in A$.
@@ -48,25 +46,25 @@ In particular, if $\f:B\to C$ is an extension of a $*$-homomorphism $\pi:A\to C$
 \end{prb}
 \begin{pf}
 (a)
-Consider $B$ to act on a Hilbert space $H$ non-degenerately and faithfully.
-The 2-positivity of $\f$ and
-\[\mat{e_\alpha^2&e_\alpha a\\a^*e_\alpha&a^*a}=\mat{e_\alpha&a\\0&0}^*\mat{e_\alpha&a\\0&0}\ge0\]
-implies
-\[\mat{\f(e_\alpha^2)&\f(e_\alpha a)\\\f(a^*e_\alpha)&\f(a^*a)}\ge0,\]
-which is equivalent to have
-\[\<\f(e_\alpha^2)\xi,\xi\>+2\Re\<\f(e_\alpha a)\eta,\xi\>+\<\f(a^*a)\eta,\eta\>\ge0\]
-for any $\xi,\eta\in H$.
+It suffices to show
+\[\f(a)^*\f(a)\le\lim_\alpha\|\f(e_\alpha)\|\f(a^*a),\qquad a\in A,\]
+since
+\[\frac{\|\f(a)\|^2}{\|a\|^2}\le\lim_\alpha\|\f(e_\alpha)\|\frac{\|\f(a^*a)\|}{\|a^*a\|}\]
+implies $\|\f\|^2\le\lim_\alpha\|\f(e_\alpha)\|\|\f\|$.
+Suppose $B$ acts on a Hilbert space $H$ non-degenerately and faithfully.
+Since $\f$ is 2-positive, we have
+\[\mat{\f(e_\alpha^2)&\f(e_\alpha a)\\\f(a^*e_\alpha)&\f(a^*a)}=\f^{(2)}\left(\mat{e_\alpha^2&e_\alpha a\\a^*e_\alpha&a^*a}\right)=\f^{(2)}\left(\mat{e_\alpha&a\\0&0}^*\mat{e_\alpha&a\\0&0}\right)\ge0,\]
+and it is equivalent to
+\[\<\f(e_\alpha^2)\xi,\xi\>+2\Re\<\f(e_\alpha a)\eta,\xi\>+\<\f(a^*a)\eta,\eta\>\ge0,\qquad\xi,\eta\in H,\quad a\in A.\]
 We put $\xi:=-(\|\f(e_\alpha)\|+\e)^{-1}\f(e_\alpha a)\eta$ for $\e>0$ to get
-\begin{align*}
-(\|\f(e_\alpha)\|+\e)\f(a^*a)
-&\ge\f(e_\alpha a)^*(2-(\|\f(e_\alpha)\|+\e)^{-1}\f(e_\alpha^2))\f(e_\alpha a)\\
-&\ge\f(e_\alpha a)^*\f(e_\alpha a).
-\end{align*}
+\[\f(e_\alpha a)^*\f(e_\alpha a)
+\le\f(e_\alpha a)^*[2-(\|\f(e_\alpha)\|+\e)^{-1}\f(e_\alpha^2)]\f(e_\alpha a)
+\le(\|\f(e_\alpha)\|+\e)\f(a^*a)\]
 We have the desired inequality by taking limits for $\alpha$ and $\e$.
 
 (b)
-The 2-positivity of $\f_2$ gives
-\[\f_2\left(\mat{a&b\\0&0}\right)^*\f_2\left(\mat{a&b\\0&0}\right)\le\f_2\left(\mat{a^*a&a^*b\\b^*a&b^*b}\right),\]
+Since the second inflation $\f^{(2)}$ is 2-positive, we may write the Cauchy-Schwarz inequality
+\[\f^{(2)}\left(\mat{a&b\\0&0}\right)^*\f^{(2)}\left(\mat{a&b\\0&0}\right)\le\f^{(2)}\left(\mat{a^*a&a^*b\\b^*a&b^*b}\right),\]
 so
 \[\mat{0&\f(a^*b)-\f(a^*)\f(b)\\\f(b^*a)-\f(b^*)\f(a)&\f(b^*b)-\f(b^*)\f(b)}\ge0,\]
 which implies $\f(b^*a)-\f(b^*)\f(a)=0$ for any $b\in A$.
@@ -105,23 +103,77 @@ There is a one-to-one correspondence
 
 \section{Dilations and Extensions}
 
+A linear map $\f:A\to B(H)$ is completely positive if and only if
+\[\sum_{i,j}\<\f(a_i^*a_j)\xi_j,\xi_i\>\ge0,\qquad (a_i)\in A^n,\ (\xi_i)\in H^n.\]
+
 \begin{prb}[Stinespring dilation]
-Let $A$ be a C$^*$-algebra and $\f:A\to B(H)$ is a c.p.~map.
-There exist a representation $\pi:A\to B(K)$ and a bounded linear operator $V:H\to K$ such that $\f(a)=V^*\pi(a)V$ for $a\in A$.
+Let $A$ be a C$^*$-algebra and $\f:A\to B(H)$ be a c.p.~map.
+A \emph{Stinespring dilation} of $\f$ is a pair $(\pi,V)$ of a representation $\pi:A\to B(K)$ and a bounded linear operator $V:H\to K$ such that $\f(a)=V^*\pi(a)V$ for $a\in A$.
 \[\begin{tikzcd}
 B(K) \ar{dr}{V^*\cdot V} &\\
 A \ar[swap]{r}{\f} \ar{u}{\pi} & B(H)
 \end{tikzcd}\]
 \begin{parts}
-\item If $\|\f\|=1$, then $V$ is an isometry.
-\item 
-\item We can take $\pi$ to be minimal in the sense that $\bar{\pi(A)VH}=K$.
+\item $\f$ has a Stinespring dilation $(\pi,V)$ such that $\bar{\pi(A)VH}=K$.
+\item For a non-degenerate Stinespring dilation $(\pi,V)$ of $\f$, the operator $V$ is an isometry if and only if $\sup_\alpha\f(e_\alpha)=1$.
 \end{parts}
 \end{prb}
 \begin{pf}
+(a)
+As we have done in the construction of the GNS representation, define a sesquilinear form on the algebraic tensor product $A\odot H$ such that
+\[\<a\otimes\xi,b\otimes\eta\>:=\<\f(b^*a)\xi,\eta\>,\qquad a\otimes\xi,b\otimes\eta\in A\odot H.\]
+It is positive semi-definite since the complete positivity of $\f$ implies
+\[\<\sum_ja_j\otimes\xi_j,\sum_ia_i\otimes\xi_i\>=\sum_{i,j}\<\f(a_i^*a_j)\xi_j,\xi_i\>\ge0,\qquad a_i\otimes\xi_i\in A\odot H.\]
+Then, we obtain a Hilbert space $K:=\bar{A\odot H/N}$, where $N:=\{\eta\in A\odot H:\<\eta,\eta\>=0\}$.
+The above construction of a Hilbert space is sometimes called the separation and completion.
+
+Define $\pi:A\to B(K)$ such that
+\[\pi(a)(b\otimes\eta+N):=ab\otimes\eta+N,\qquad a\in A,\quad b\otimes\eta+N\in K,\]
+and $V:H\to K$ such that
+\[\<V\xi,b\otimes\eta+N\>:=\<\f(b^*)\xi,\eta\>,\qquad\xi\in H,\quad b\otimes\eta+N\in K.\]
+The operator $V$ is well-defined by the Cauchy-Schwarz inequality
+\begin{align*}
+|\<\f(b^*)\xi,\eta\>|^2&=|\<\xi,\f(b)\eta\>|^2\le\|\xi\|^2\<\f(b^*)\f(b)\eta,\eta\>\\
+&\le\|\xi\|^2\|\f\|\<\f(b^*b)\eta,\eta\>=\|\xi\|^2\|\f\|\|b\otimes\eta+N\|^2.
+\end{align*}
+Then, we can check $\pi(a)V\xi=a\otimes\xi+N$ for $a\in A$ and $\xi\in H$ from
+\begin{align*}
+\<\pi(a)V\xi,b\otimes\eta+N\>&=\<V\xi,a^*b\otimes\eta+N\>=\<\f(b^*a)\xi,\eta\>\\
+&=\<a\otimes\xi+N,b\otimes\eta+N\>,\qquad b\otimes\eta+N\in K,
+\end{align*}
+so it follows that $V^*\pi(a)V=\f(a)$ for $a\in A$ from
+\[\<V^*\pi(a)V\xi,\eta\>=\<V\xi,a^*\otimes\eta+N\>=\<\f(a)\xi,\eta\>,\qquad\xi,\eta\in H,\]
+and the condition $\bar{\pi(A)VH}=K$.
+
 
 \end{pf}
 
+
+\begin{prb}[Voiculescu theorem]
+Let $A$ be a unital C$^*$-algebra.
+Let $\pi:A\to B(K)$ be a faithful non-degenerate representation and $\f:A\to B(H)$ be a u.c.p.~map.
+Suppose further that $\f|_{\pi^{-1}(K(K))}=0$.
+
+When do we need the faithfulness of $\pi$?
+When do we need the unitality of $\f$?
+When do we need the separability of $A$?
+\begin{parts}
+\item $\f$ is weakly$^*$ approximated by vector states, if $H$ is one-dimensional. (Glimm)
+\item $\f$ is approximated by isometry conjugations in $B(A,B(H))$, if $H$ is finite-dimensional. (?)
+\item $\f$ is approximated by isometry conjugations in $\f+B(A,K(H))$, if $H,K$ are separable.
+\end{parts}
+\end{prb}
+\begin{pf}
+(a)
+Hahn-Banach separation and Weyl-von Neumann theorem.
+
+(b)
+correspondence for c.p.~maps to matrix algebras.
+
+(c)
+quasi-central approximate unit and block diagonal c.p.~maps.
+
+\end{pf}
 
 
 \begin{prb}[Arveson extension]
@@ -217,7 +269,7 @@ Thus $a_\e\to b$ in norm as $\e\to0$.
 
 \chapter{Hilbert modules}
 
-\section{Operator algebraic modules}
+\section{Hilbert modules}
 
 \begin{prb}[Banach modules]
 Let $A$ be a Banach algebra.
@@ -262,54 +314,31 @@ A \emph{Hilbert $A$-module} is a complex linear space $\cE$ which is a right $A$
 \end{enumerate}
 which is complete with respect to the norm $\|\xi\|:=\|\<\xi,\xi\>\|^{\frac12}$.
 \begin{parts}
-\item
+\item Examples: $A$ itself, $\ell^2(\N,A)$, etc.
+\item direct sum, tensor product, localization
 \end{parts}
 \end{prb}
 
 
 
-constructions:
-direct sum, tensor product, localization
 
-examples:
-A itself
-
-
-\section{Multiplier algebras}
-\begin{prb}[Double centralizer characterization]
+\begin{prb}[Multiplier algebra]
 Let $A$ be a C$^*$-algebra.
 A \emph{double centralizer} of $A$ is a pair $(L,R)$ of bounded linear maps on $A$ such that $aL(b)=R(a)b$ for all $a,b\in A$.
 The \emph{multiplier algebra} $M(A)$ of $A$ is defined to be the set of all double centralizers of $A$.
 There is another characterization $M(A):=L_A(A)$, the set of adjointable operators to itself.
-\end{prb}
 
-
-\begin{prb}[Strict topology]
-Let $a_\alpha$ be a net in $M(A)$
+double centralizers vs essential ideals,
+strict topology, 
 \begin{parts}
 \item $\|\pi(a-e_\alpha a)\xi\|^2$
 \item If $a_\alpha$ are unitary, the convergences in the strict topology and the weak topology(how to define this?) coincide.
 \item If $a_\alpha$ are increasing, the convergences in the strict topology and the weak topology(how to define this?) coincide.
-\end{parts}
-\end{prb}
-
-\begin{prb}[Essential ideals]
-\begin{parts}
-\item Hilbert C$^*$-module description
-\end{parts}
-\end{prb}
-
-
-\begin{prb}[Examples of multiplier algebras]
-\begin{parts}
 \item $M(K(H))\cong B(H)$.
 \item $M(C_0(\Omega))\cong C_b(\Omega)$.
 \end{parts}
 \end{prb}
 \begin{pf}
-(a)
-
-(b)
 First we claim $C_0(\Omega)$ is an essential ideal of $C_b(\Omega)$.
 Since $C_b(\Omega)\cong C(\beta\Omega)$, and since closed ideals of $C(\beta\Omega)$ are corresponded to open subsets of $\beta\Omega$, $C_0(\Omega)\cap J$ is not trivial for every closed ideal $J$ of $C_b(\Omega)$.
 
@@ -317,6 +346,9 @@ Now we have an injective $*$-homomorphism $C_b(\Omega)\to M(C_0(\Omega))$, for w
 Let $g\in M(C_0(\Omega))_+$.
 \end{pf}
 
+
+
+\section{Categorical aspects}
 
 \begin{prb}[Morphisms]
 Let $A$ and $B$ be C$^*$-algebras.
@@ -335,6 +367,51 @@ PS(A) \rar[->>] & \hat A \rar[->>] & \Prim(A).
 
 
 
+For a short exact sequence
+\[\begin{tikzcd}[column sep=small]0\rar&I\rar&A\rar&B\rar&0\end{tikzcd},\]
+we have
+\[\begin{tikzcd}[row sep=small]
+PS(I) \dar[->>]\rar[hook] & PS(A) \dar[->>] & PS(B) \dar[->>]\lar[hook'] \\
+\hat I \dar[->>]\rar[hook,shorten >= 10, shorten <= 10] & \hat A \dar[->>] & \hat B \dar[->>]\lar[hook',shorten >= 10, shorten <= 10] \\
+\Prim(I) \rar[hook,swap]{\text{open}} & \Prim(A) & \Prim(B) \lar[hook']{\text{closed}}
+\end{tikzcd}\]
+
+We have to understand C$^*$-algebras in the context of homotopy theory, so the pointed topological spaces must be considered.
+An open set $U$ of a locally compact Hausdorff space $X$ should be recognized as the quotient space $(X,x)/(A,x)$, where $x\notin U=A^c$, hence the ideal $A(U)$ corresponds and the restriction $A(X)\to A(U)$ does not make sense.
+In other words, \textbf{$A(U)$ is not an analogue of $\cO_X(U)$, but of $\cI_{(X,X\setminus U)}$}.
+It is fortunate that the kernel of the restriction, an ideal, can be recognized as the function algebra of the complement, which is not the case in algebraic geometry...? (Can define the quotient $X/A$ for an analytic subset of a complex space $X$?)
+
+Then, how can we understand the sheaf theoretic restriction on an open set in operator algebras?
+How about Banach or Fr\'echet algebras?
+Can we consider a ``rigid'' Zariksi topology on the spectrum? (Closed sets in C$^*$-context are too flaccid)
+
+
+
+
+\begin{prb}[Modular maximal left ideals]
+\end{prb}
+
+\begin{prb}[Primitive ideals]
+hull kernel topology
+\[PS(A)\cong\{(\pi,\psi)\}/\sim_u,\qquad\hat A\cong\{\pi\}/\sim_u.\]
+
+\[\begin{array}{c|ccc}
+A & PS(A) & \hat A & \Prim(A) \\\hline
+C(X) & X & X & X \\
+K(H) & PH & * & * \\
+\tilde K(H) & ? & ? & \{0,K(H)\} \\
+B(H) &&&
+\end{array}\]
+\begin{parts}
+\item $\Prim(A)$ is locally compact T$_0$ space.
+\item Two maps $PS(A)\to\hat A\to\Prim(A)$ are continuous surjective open maps
+\item If $A$ is type I, then $\hat A\to\Prim(A)$ is an homeomorphism.
+\end{parts}
+
+\end{prb}
+
+\begin{prb}[Dauns-Hoffman theorem]
+\end{prb}
 
 
 
@@ -403,8 +480,12 @@ Induced representations?
 
 
 
-\chapter{Examples}
+\chapter{Constructions}
 
+
+\section{Categorical constructions}
+
+direct limits, tensor products, free products
 
 
 \section{Crossed products}
@@ -487,9 +568,6 @@ commutative case
 
 
 
-
-
-\section{Free products}
 
 
 
@@ -718,7 +796,7 @@ The additivity of $K_0$ and $K^0$ removes the connectedness condition.
 \[K_0(\C)=\Z,\quad K_0(C_0(\R))=0,\quad K_1(C_0(\R))=K_0(C_0(\R^2))=\Z\]
 \[K^0(*)=\Z,\quad K^0(S^1)=\Z,\quad K^1(S^1)=K^0(S^2)=\Z[x]/(x-1)^2\]
 
-\section{$K_0$ groups}
+\section{$K_0$ and $K_1$ groups}
 
 local Banach algebras
 
@@ -726,8 +804,6 @@ homotopy invariance
 relative, reduced theory
 partially ordered abelian group
 
-
-\section{$K_1$ groups}
 
 unitary
 Bott periodicity
@@ -738,6 +814,11 @@ six-term exact sequence
 \begin{prb}[Pimsner-Voiculescu exact sequence]
 \end{prb}
 Connes' Thom isomorphism
+
+
+\section{Cuntz semigroup}
+
+nuclear dimension
 
 
 
@@ -753,11 +834,7 @@ Connes' Thom isomorphism
 
 
 
-\chapter{Cuntz semigroup}
-
-nuclear dimension
-
-
+\chapter{}
 
 
 
@@ -829,7 +906,7 @@ Murray-von Neumann: hyperfinite II$_1$ factors
 \chapter{Continuous fields}
 
 
-\section{Banach bundles}
+\section{Fell bundles}
 
 \begin{prb}[Banach bundles]
 A \emph{Banach bundle}, introduced by Fell, is a continuous open surjection $\pi:E\to X$ between topological spaces together with Banach space structure on each fiber $\pi^{-1}(x)$ such that:
@@ -863,54 +940,6 @@ It is due to that finitely generatedness implies the projectivity and the Serre-
 \end{parts}
 \end{prb}
 
-
-\section{Primitive ideal space}
-
-For a short exact sequence
-\[\begin{tikzcd}[column sep=small]0\rar&I\rar&A\rar&B\rar&0\end{tikzcd},\]
-we have
-\[\begin{tikzcd}[row sep=small]
-PS(I) \dar[->>]\rar[hook] & PS(A) \dar[->>] & PS(B) \dar[->>]\lar[hook'] \\
-\hat I \dar[->>]\rar[hook,shorten >= 10, shorten <= 10] & \hat A \dar[->>] & \hat B \dar[->>]\lar[hook',shorten >= 10, shorten <= 10] \\
-\Prim(I) \rar[hook,swap]{\text{open}} & \Prim(A) & \Prim(B) \lar[hook']{\text{closed}}
-\end{tikzcd}\]
-
-We have to understand C$^*$-algebras in the context of homotopy theory, so the pointed topological spaces must be considered.
-An open set $U$ of a locally compact Hausdorff space $X$ should be recognized as the quotient space $(X,x)/(A,x)$, where $x\notin U=A^c$, hence the ideal $A(U)$ corresponds and the restriction $A(X)\to A(U)$ does not make sense.
-In other words, \textbf{$A(U)$ is not an analogue of $\cO_X(U)$, but of $\cI_{(X,X\setminus U)}$}.
-It is fortunate that the kernel of the restriction, an ideal, can be recognized as the function algebra of the complement, which is not the case in algebraic geometry...? (Can define the quotient $X/A$ for an analytic subset of a complex space $X$?)
-
-Then, how can we understand the sheaf theoretic restriction on an open set in operator algebras?
-How about Banach or Fr\'echet algebras?
-Can we consider a ``rigid'' Zariksi topology on the spectrum? (Closed sets in C$^*$-context are too flaccid)
-
-
-
-
-\begin{prb}[Modular maximal left ideals]
-\end{prb}
-
-\begin{prb}[Primitive ideals]
-hull kernel topology
-\[PS(A)\cong\{(\pi,\psi)\}/\sim_u,\qquad\hat A\cong\{\pi\}/\sim_u.\]
-
-\[\begin{array}{c|ccc}
-A & PS(A) & \hat A & \Prim(A) \\\hline
-C(X) & X & X & X \\
-K(H) & PH & * & * \\
-\tilde K(H) & ? & ? & \{0,K(H)\} \\
-B(H) &&&
-\end{array}\]
-\begin{parts}
-\item $\Prim(A)$ is locally compact T$_0$ space.
-\item Two maps $PS(A)\to\hat A\to\Prim(A)$ are continuous surjective open maps
-\item If $A$ is type I, then $\hat A\to\Prim(A)$ is an homeomorphism.
-\end{parts}
-
-\end{prb}
-
-\begin{prb}[Dauns-Hoffman theorem]
-\end{prb}
 
 
 \section{Dixmier-Douady theory}

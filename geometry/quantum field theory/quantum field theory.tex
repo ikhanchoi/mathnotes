@@ -11,22 +11,26 @@
 
 \part{Quantum fields}
 
-\chapter{Free fields}
-\section{Canonical quantization}
-CCR, CAR, Heisenberg group, spin-statistics theorem
-Fock representation(universality)
-field equations
-particles and irreducible representations
-wave function
-\section{Path integral}
+\chapter{Formalism}
+\section{Hilbert space formalism}
+\section{Operator formalism}
+\section{Path integral formalism}
 functional integral
-\section{Correlation function}
+
+correlation function
 renormalization
 Feynman diagram
 
 
 
 \chapter{Relativistic fields}
+\section{Canonical quantization}
+CCR, CAR, Heisenberg group, spin-statistics theorem
+Fock representation(universality)
+field equations
+particles and irreducible representations
+wave function
+\section{Classical field theory}
 \section{Wigner classification}
 \section{Dirac equation}
 $\Spin(1,3)\cong\SL(2,\C)$
@@ -49,6 +53,63 @@ Conformal group is not compact so that the representations may not be given as t
 
 
 
+
+\section{}
+
+\begin{prb}
+Let $S$ be the Polyakov action
+\[S=\frac1{2\pi\alpha'}\int d^2z\,\partial X^\mu\bar\partial X_\mu.\]
+The path integral of the total derivate is zero,
+\[0=\int[dX]\frac\delta{\delta X_\mu(\sigma)}[e^{-S}\cF[X]].\]
+We will use this frequently.
+Note that
+\[\<\cF[X]\>=\int[dX]e^{-S}\cF[X].\]
+\begin{parts}
+\item By letting $\cF[X]=1$, we obtain the equation of motion from the Polyakov action is $\partial\bar\partial X^\mu(\sigma)=0$.
+So $X^\mu$ span a Riemann surface in the $D$-dimensional space-time.
+\item By letting $\cF[X]=X^\nu$, we obtain
+\[\frac1{\pi\alpha'}[\partial\bar\partial X^\mu(\sigma)]X^\nu(\sigma')=-\eta^{\mu\nu}\delta^2(\sigma-\sigma').\]
+We define the \emph{conformal normal ordering}, which differs from the \emph{creation-annihilation normal ordering}, such that
+\[:X^\mu(\sigma):=X^\mu(\sigma),\qquad:X^\mu(\sigma_1)X^\nu(\sigma_2):=X^\mu(\sigma_1)X^\nu(\sigma_2)+\frac{\alpha'}2\eta^{\mu\nu}\ln|z_1-z_2|^2.\]
+\end{parts}	
+\end{prb}
+
+
+\begin{prb}[Operator product expansion]
+\[A_i(\sigma')A_j(\sigma)=\sum_k c^k_{ij}(\sigma'-\sigma)A_k\cdot\]
+\end{prb}
+
+\begin{prb}
+We introduce an unknown $j^a$ such that the arbitrary local coordinate transform at $\sigma_0$
+\[\phi'_\alpha(\sigma)=\phi_\alpha(\sigma)+\rho(a)\delta\phi_\alpha(\sigma),\qquad \delta\sim\e\]
+leads to the first variation term of the functional measure
+\begin{align*}
+[d\phi']e^{-S[\phi']}
+&=[d\phi]e^{-S[\phi]}\left[1+\frac{i\e}{2\pi}\int d^2\sigma\sqrt gj^a(\sigma)\partial\rho(\sigma)+O(\e^2)\right]\\
+&=[d\phi]e^{-S[\phi]}\left[1-\frac{i\e}{2\pi}\int d^2\sigma\sqrt g\nabla_aj^a(\sigma)\rho(\sigma)+O(\e^2)\right]
+\end{align*}
+and
+leads to the first variation term of the local operator
+\[A'(\sigma_0)=A(\sigma_0)+\rho(a)\delta A(\sigma_0).\]
+
+By the integration by parts, in order for the above transformation for arbitrary $\rho$ to be a symmetry, we have $\nabla_aj^a=0$, where $a$ is the two-dimensional index.
+Considering $\rho=\1_R$ for some local region $R$, containing $\sigma_0$, and
+\[[d\phi']e^{-S[\phi']}A'(\sigma_0)\cdots=[d\phi]e^{-S[\phi]}\left[1-\frac{i\e}{2\pi}\int d^2\sigma\sqrt g\nabla_aj^a(\sigma)\rho(\sigma)+O(\e^2)\right](A(\sigma_0)+\rho(a)\delta A(\sigma_0))\cdots,\]
+where the insertion is outside the region $R$ so that the integration by parts is doable, we have the Ward identity by cancelling out $O(\e^2)$ or 
+\[\delta A=\frac{i\e}{2\pi}\int d^2\sigma\sqrt g\nabla_aj^a(\sigma)\rho(\sigma)A.\]
+Using the divergence and the residue theorem, we have another form of the Ward identity
+\[\]
+
+We apply this on space-time translation, the world-sheet translation, and the local conformal transformation(a kind of world-sheet rotation).
+
+\end{prb}
+
+If we consider the world-sheet translation, the Noether current is described by $T_{ab}$.
+$T_{ab}$ is trace-less and diagonal in the complex coordinates, we can describe the tensor as a holomorphic function $T(z)$.
+
+Conformal invariance puts strong constraints on the form of OPE involving $T(z)$.
+
+
 \part{Gauge theory}
 
 \chapter{Yang-Mills theory}
@@ -66,6 +127,8 @@ mass can be defined as the coefficient of potential term in the Lagrangian.
 \section{Higgs mechanism}
 
 \section{Quantum electrodynamics}
+
+
 
 
 
@@ -93,6 +156,34 @@ Quantum Hall effect,
 
 
 \part{}
+
+\chapter{}
+
+
+
+\section*{Open bosonic string}
+String field: quantum theory for world-sheet, classical theory for space-time.
+
+Free theory construction
+
+We first consider the boundary CFT, whose Fock space is constructed by bosonic operators $a_n^\mu$ and fermionic ghost operators $b_n,c_n$
+
+Using the BRST operator
+BPZ inner product is a symmetric bilinear form
+
+The nilpotency $Q_B^2=0$, which is equivalent to $D=26$, implies the gauge invariance of the action $S:=-\frac12\<\Psi,Q_B\Psi\>_{BPZ}$.
+
+
+
+\section*{CFT description of Witten's star product}
+
+Recall that a string field is a state in a boundary CFT.
+
+
+
+
+
+
 
 
 \end{document}

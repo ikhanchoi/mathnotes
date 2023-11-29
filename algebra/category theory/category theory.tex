@@ -7,10 +7,10 @@
 \newcommand{\Grp}{\mathbf{Grp}}
 \newcommand{\Ab}{\mathbf{Ab}}
 \newcommand{\Ring}{\mathbf{Ring}}
-\newcommand{\Mod}{\mathbf{Mod}}
 \newcommand{\Top}{\mathbf{Top}}
 
 \newcommand{\op}{\mathrm{op}}
+\newcommand{\coim}{\operatorname{coim}}
 
 \begin{document}
 \title{Category Theory}
@@ -191,6 +191,7 @@ A pointed, Baar-exact, protomodular, with binary coproudcts.
 
 \begin{prb}[Abelian categories]
 We say $\cC$ is \emph{abelian} if every morphism has the kernel and cokernel, and every mono and epi is normal.
+Roughly, an abelian category is a $\Ab$-enriched category such that it is finitely bicomplete and the first isomorphism holds.
 \begin{parts}
 \item A category is abelian if and only if it is additive and exact.
 \end{parts}
@@ -210,6 +211,21 @@ semi-abelian (JMT) && semi-additive & \,
 \item Semi-abelian: groups, non-unital algebras, Lie algebras, C$^*$-algebras, compact Hausdorff (profinite) spaces.
 \item Additive: projective modules
 \end{itemize}
+
+
+
+
+
+The first isomorphism theorem states that $\coim\to\im$ is an isomorphism.
+The normal subobjects and the first isomorphism theorem is generalized in the context of protomodular categories.
+The cokernel may not be defined.
+The category of unital rings is not semi-abelian but protomodular.
+\begin{itemize}
+\item A \emph{protomodular category}
+\item A \emph{homological category} is a pointed regular protomodular category. (five, nine, snake, long exact sequence, noether isomorphism)
+\item A \emph{semi-abelian category} is a homological category that is Barr-exact and finite coproducts(free products).
+\end{itemize}
+
 
 
 

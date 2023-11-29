@@ -1,6 +1,9 @@
 \documentclass{../../large}
 \usepackage{../../ikhanchoi}
 
+\newcommand{\Bun}{\operatorname{Bun}}
+\newcommand{\PSh}{\operatorname{PSh}}
+\newcommand{\Sh}{\operatorname{Sh}}
 
 \begin{document}
 \title{Complex Analysis}
@@ -9,64 +12,103 @@
 \tableofcontents
 
 
-\part{Holomorphic functions}
+\part{One complex variable}
 
 
-\chapter{Cauchy theory}
-\section{Complex differentiability}
+\chapter{Holomorphic functions}
+\section{Cauchy theory}
 
 \begin{prb}[Holomorphic functions]
-We call a connected open subset of $\C$ as a \emph{domain}.
-definition as a multi-variable calculus, chain rule
-\end{prb}
+A \emph{domain} in $\C$ means a connected open subset of the complex plane $\C$.
+A complex valued function $f$ defined on a domain $\Omega\subset\C$ is called \emph{holomorphic} if it is $C^1$ and complex differentiable, that is, the following limit exists for every $a\in\Omega$:
+\[f'(a):=\lim_{z\to a}\frac{f(z)-f(a)}{z-a}.\]
+The set of all holomorphic functions on $\Omega$ is denoted by $\Hol(\Omega)$ or $\cO(\Omega)$.
+Cauchy-Riemann equation can be interpreted as several ways: the matrix representation of $df$ corresponds to a complex number via $x+iy\mapsto\left(\mat[small]{x&-y\\y&x}\right)$, the closedness of the 1-form $f(z)\,dz$.
 
-\begin{prb}[Cauchy-Riemann equation]
-Cauchy-Riemann equation can be interpreted as several ways: the matrix representation of $df$ corresponds to a complex number via $x+iy\mapsto\mat{x&-y\\y&x}$, the closedness of the 1-form $f(z)\,dz$, 
+Let $f\in C^1(\Omega,\C)$ on a domain $\Omega\subset\C$.
+Write $z=x+iy$ and $f(z)=u(x,y)+iv(x,y)$.
 \begin{parts}
-\item For $f\in C^1(\Omega,\R^2)$, $f$ is holomorphic if and only if it satisfies the Cauchy-Riemann equation in $\Omega$. (Is the $C^1$ condition necessary?)
+\item $f$ is holomorphic if and only if it satisfies the Cauchy-Riemann equation in $\Omega$.
 \end{parts}
 \end{prb}
+\begin{pf}
+We may assume $a=0\in\Omega$.
+Since $f$ is $C^1$, we have the Taylor expansion
+\[f(z)-f(0)=u_x(0)x+u_y(0)y+i(v_x(0)x+v_y(0)y)+o(|z|),\qquad z\to0.\]
+
+($\Rightarrow$)
+Let $y=0$ so that $z=x$.
+Then,
+\[f(z)-f(0)=u_x(0)x+iv_x(0)x+o(|x|),\qquad x\to0\]
+implies $f'(0)=u_x(0)+iv_x(0)$.
+If we let $x=0$ so that $z=iy$, then
+\[f(z)-f(0)=u_y(0)(y)+iv_y(0)y+o(|y|),\qquad y\to0\]
+implies $f'(0)=-iu_y(0)+v_y(0)$.
+
+
+($\Leftarrow$)
+If the Cauchy-Riemann equation implies
+\[f(z)-f(0)=u_x(0)z+iv_x(0)z+o(|z|),\qquad z\to0.\]
+\end{pf}
 
 
 \begin{prb}[Contour integral]
-Let $f:\Omega\to\C$ be a continuous function on a domain $\Omega\subset\C$ and let $\gamma:[a,b]\to\Omega$ be a $C^1$ curve.
-The \emph{contour integral} of $f$ along the curve $\gamma$ is defined by
-\[\int_\gamma f(z)\,dz:=\int_a^bf(\gamma(t))\gamma'(t)\,dt.\]
-In the language of differential geometry, it is a special case of integration with the pullback form $\gamma^*(f(z)\,dz)$.
-We can extend the definition of contour integral to \emph{piecewise $C^1$ curves} by considering it as a formal sum of $C^1$ curves, which will be meant by \emph{contours}.
+We mean by a \emph{contour} on a domain $\Omega\subset\C$ is a formal sum $\gamma=\sum_{i=1}^n\gamma_i$ with $n\ge1$ of $C^1$ paths $\gamma_i:[a_i,b_i]\to\Omega$ such that $\gamma_i(b_i)=\gamma_{i+1}(a_{i+1})$ for all $1\le i<n$ and $\gamma_n(b_n)=\gamma_1(a_1)$, which we call the components of $\gamma$.
+In other words, a contour can just be regarded as a piecewise $C^1$ closed curve.
+A formal sum of contours on $\Omega$ whose components are all defined on the unit interval is called a \emph{$C^1$ singular 1-cycle} on $\Omega$.
+
+The \emph{contour integral} of $f\in\Hol(\Omega)$ along a contour $\gamma=\sum_{i=1}^n\gamma_i$ is defined by
+\[\int_\gamma f(z)\,dz:=\sum_{i=1}^n\int_{a_i}^{b_i}\gamma_i^*(f(z)\,dz)=\sum_{i=1}^n\int_{a_i}^{b_i}f(\gamma_i(t))\gamma_i'(t)\,dt.\]
 \begin{parts}
-\item The contour integral is independent of the choice of $\Omega$.
+\item The contour integral does not depend on the choice of $\Omega$ containing $\gamma$, and on the reparametrization of $\gamma$.
 \item
-\[\int_\gamma f'(z)\,dz=f(\gamma(b))-f(\gamma(a)).\]
-\item
+If we denote by $|z|=1$ the contour $\gamma(\theta):=e^{i\theta}$ with $\theta\in[0,2\pi]$, then for $n\in\Z$ we have
 \[\int_{|z|=1}z^n\,dz=\begin{cases}2\pi i&\text{ if }n=-1,\\0&\text{ otherwise }.\end{cases}\]
 \end{parts}
 \end{prb}
 
 \begin{prb}[Cauchy theorem]
-The Cauchy integral is independent of the contour up to homotopy.
+We mean by a \emph{triangle} in a domain $\Omega\subset\C$ a map $\sigma:\Delta\to\Omega$ that has a $C^1$ extension on a neighborhood of $\Delta$, where
+\[\Delta:=\{(x,y)\in\R^2:x\ge0,\ y\ge0,\ x+y\le1\}.\]
+The \emph{boundary} of a triangle $\sigma$ is a contour defined as $\partial\sigma=\gamma_1+\gamma_2+\gamma_3$, where
+\[\gamma_1(t):=\sigma(t,0),\quad\gamma_2(t):=\sigma(1-t,t),\quad\gamma_3(t):=\sigma(0,1-t),\qquad t\in[0,1],\]
+and a formal sum of the boundary of triangles is called a \emph{$C^1$ singular 1-boundary} on $\Omega$.
+\begin{parts}
+\item A contour on $\Omega$ whose components are defined on the unit interval is null-homotopic if and only if it is the sum of the boundary of some triangles in $\Omega$.
+\item $\Omega$ is contractible if and only if $\Omega$ is simply connected.
+\item If $\Omega$ is simply connected, then for a contour $\gamma$ and a holomorphic function $f$ on $\Omega$,
+\[\int_\gamma f(z)\,dz=0.\]
+\end{parts}
 \end{prb}
 \begin{pf}
-The assumption $\gamma_0$ and $\gamma_1$ are homotopic means that $\gamma_0-\gamma_1$ is a boundary of a 2-chain.
-We have to choose the homotopy on $[0,1]^2$ carefully so that it becomes $C^1$ except on the finite number of vertical and horizontal lines.
-It can be realized if a continuous(!) homotopy of curves is contained in a simply connected domain, but I don't know how to approximate $C^1$ homotopy...
-Then, the claim follows from the Stokes theorem.
-The triangulation technique is used in the proof of the Stokes theorem.
+(a)
+$C^1$ approximation...
+
+(c)
+Since $f$ is holomorphic, the 1-form $f(z)\,dz$ is closed.
+The Stokes theorem writes
+\[\int_{\partial\sigma}f(z)\,dz=\int_\sigma d(f(z)\,dz)=0\]
+for arbitrary triangle $\sigma:\Delta\to\Omega$.
 \end{pf}
 
 
 \begin{prb}[Cauchy integral formula]
+Let $f$ be a holomorphic function on a simply connected domain $\Omega\subset\C$.
+\[f(a)=\frac1{2\pi i}\int_\gamma\frac{f(z)}{z-a}\,dz.\]
 Remind the proof of the mean value property for harmonic functions.
-The proof essentially have a shrinking process and uses the boundedness of the difference quotient.
+The proof essentially have a shrinking process using the homotopy and uses the boundedness of the difference quotient.
 Higher order version: we can prove before the analyticity by interchange of diff and int.
 \end{prb}
+\begin{pf}
+
+\end{pf}
 
 
 
 
 \begin{prb}[Cauchy estimates]
 \begin{parts}
-\item If an entire function $f$ satisfies $|f(x)|\lesssim1+|x|^n$, then $f$ is a polynomial of degree at most $n$. In particular, the \emph{Liouville theorem} follows; a bounded entire function is constant.
+\item If an entire function $f$ satisfies $|f(z)|\lesssim1+|z|^n$, then $f$ is a polynomial of degree at most $n$. In particular, the \emph{Liouville theorem} follows; a bounded entire function is constant.
 \end{parts}
 \end{prb}
 
@@ -75,18 +117,15 @@ Higher order version: we can prove before the analyticity by interchange of diff
 \section{Power series}
 
 \begin{prb}[Analyticity of holomorphic functions]
-A real function on $I\subset\R$ is analytic iff it has an analytic extension on an open neighborhood $\Omega$ of $I$ in $\C$.
-\[\sup_{x\in K}\left|\frac{f^{(k)}(x)}{k!}\right|^{\frac1{k+1}}<\infty.\]
+\[\sup_{z\in K}\left|\frac{f^{(k)}(z)}{k!}\right|^{\frac1{k+1}}<\infty.\]
+\begin{parts}
+\item
+A real function on $I\subset\R$ is analytic if and only if it has an analytic extension on an open neighborhood $\Omega$ of $I$ in $\C$.
+\end{parts}
 \end{prb}
 
 
 
-
-
-
-
-normal form
-and analogue of harmonic functions
 
 \begin{prb}[Identity theorem]
 \end{prb}
@@ -102,20 +141,95 @@ Schwarz lemma and description of automorphisms of the disk
 
 
 
-\begin{prb}[Morera and Goursat theorem]
+\begin{prb}[Morera theorem]
 The $C^1$ condition in the definition of holomorphic functions is necessary to apply the Stokes theorem when we prove the Cauchy theorem.
 However, the $C^1$ condition can be dropped and the pointwise complex differentiability is sufficient to check a function is holomorphic.
-
-Suppose $f:\Omega\to\C$ be a continuous function on a domain $\Omega$.
-If for every point $z_0\in\Omega$ there is an open neighborhood of $z_0$ in $\Omega$ in which every triangle $T$ satisfies $\oint_{\partial T}f(z)\,dz=0$. (Morera)
+Let $f\in C(\Omega,\C)$ on a domain $\Omega\subset\C$.
+\begin{parts}
+\item If for every point $a\in\Omega$ there is an open neighborhood $U$ of $a$ in $\Omega$ in which every affine triangle $\sigma:\Delta\to U$ satisfies $\int_{\partial\sigma}f(z)\,dz=0$, then $f$ is holomorphic. (Morera)
+\item If $f$ is complex differentiable everywhere on $\Omega$, then it is holomorphic. (Goursat)
+\end{parts}
 \end{prb}
 \begin{pf}
+(a)
+Let $U=\{z\in\Omega:|z-a|<\e\}$ for sufficiently small $\e$ in which every triangle $\sigma:\Delta\to U$ is integrated out by $f$.
 If we define
-\[F(z):=\int_0^zf(\zeta)\,d\zeta,\]
+\[F(z):=\int_0^zf(\zeta)\,d\zeta,\qquad z\in U,\]
 then by the triangle condition, we have
 \[F(z+h)-F(z)=\int_z^{z+h}f(\zeta)\,d\zeta.\]
-We can show $F'(z)=f(z)$ by the continuity of $f$, and therefore $f$ is holomorphic because it also has the power series representation as well as $F$.
+We can show $F'(z)=f(z)$ by the continuity of $f$, so $F$ is holomorphic on $U$.
+Therefore $f$ is holomorphic because it also has the power series representation as well as $F$.
+
+(b)
+We prove $\int_{\partial\sigma}f(z)\,dz=0$ for all affine triangle $\sigma:\Delta\to\Omega$.
+Suppose not.
+Then, there is a triangle $\sigma:\Delta\to\Omega$ such that $\int_\sigma f(z)\,dz\ne0$.
+By subdivision, we have $\partial\sigma\simeq\sum_{i=1}^4\partial\sigma_i$ with $\diam\sigma_i\le\frac12\diam\sigma$, so there is $i$ such that
+\[|\int_{\partial\sigma_i}f(z)\,dz|\ge\frac14|\int_\sigma f(z)\,dz|.\]
+Then, we have a sequence of affine triangles $\sigma_n$ such that
+\[|\int_{\partial\sigma_n}f(z)\,dz|\ge\frac1{4^n}|\int_\sigma f(z)\,dz|.\]
+Take $a\in\Omega$ the limit point of the subdivision.
+By the assumption, there is $\delta>0$ such that
+\[|z-a|<\delta\quad\Rightarrow\quad\left|\frac{f(z)-f(a)}{z-a}-f'(a)\right|<\e,\]
+so we see that
+\[|\int_{\partial\sigma_n}f(z)\,dz|=|\int_{\partial\sigma_n}(f(z)-f(a)-f'(a)(z-a))\,dz|\le\e\sup_{z\in\partial\sigma_n}|z-a|\cdot\operatorname{length}(\partial\sigma_n)\lesssim\frac\e{4^n}.\]
+The limit $\e\to0$ leads to a contradiction.
 \end{pf}
+
+
+\section{Harmonic functions on two dimensions}
+Harmonic conjugate
+
+\begin{prb}[Mean value property]
+\[\frac1{2\pi}\int_0^{2\pi}f(re^{i\theta})(re^{i\theta})^{-k}\,d\theta
+=\begin{cases}0&\text{ if }k<0\\\dfrac{f^{(k)}(0)}{k!}&\text{ if }k\ge0\end{cases}\]
+for $r$ such that $f$ is defined on $\bar B_r$.
+\end{prb}
+\begin{prb}[Schwarz integral formula]
+Let $f$ be a holomorphic function on the open unit disk $\D$.
+If $h$ is another holomorphic function, then
+\[f(a)=\frac1{2\pi}\int_{|z|=r}f(z)\left(\frac z{z-a}+zh(z)\right)\,\frac{dz}{iz}\]
+for $0<r<1$.
+Schwarz integral formula
+\[f(a)=\frac1{2\pi}\int_0^{2\pi}\frac{re^{i\theta}+a}{re^{i\theta}-a}\Re f(re^{i\theta})\,d\theta+i\Im f(0).\]
+\begin{parts}
+\item Find the holomorhpic $h_a$ on an open neighborhood of $\D$ in terms of $a$ such that $|z|=1$ implies $\frac z{z-a}+zh_a(z)$ is real.
+\item Poisson kernel.
+\end{parts}
+\end{prb}
+\begin{pf}
+\[h_a(z)=\]
+\end{pf}
+
+
+
+
+Maximum principle; Lindelöf principle,
+
+
+\section{Polynomial approximatioin}
+
+Mittag-Leffler theorem
+\begin{prb}[Compact convergence of holomorphic functions]
+\begin{parts}
+\item injectivity preservation: Hurwitz theorem
+\end{parts}
+\end{prb}
+
+Principal part
+For a meromorphic function $f$, we say a polynomial $p$ without constant term is a \emph{principal part} of $f$ at $z_0$ if we have a partial fraction decomposition
+\[f(z)=p\left(\frac1{z-z_0}\right)+h(z),\]
+where $h(z)$ is holomorphic at $z_0$.
+It is unique.
+pre-assigned principal parts
+
+Weierstrass factorization theorem
+Infinite product
+
+Runge's approximation
+Mergelyan
+
+
 
 
 
@@ -131,7 +245,7 @@ harmonic function wihtout harmonic conjugate?
 
 \begin{prb}[Fundamental theorem of algebra]
 Let $p\in\C[z]$ be a polynomial of degree $n$ such that
-\[p(z)=\sum_{k=0}^na_kz^k,\quad a_n\ne0.\]
+\[p(z)=\sum_{k=0}^nc_kz^k,\quad ㅊ_n\ne0.\]
 \begin{parts}
 \item $|p(z)|\lesssim|z|^n$.
 \item There is $R>0$ such that $|p(z)|\gtrsim|z|^n$ for $|z|\ge R$.
@@ -139,13 +253,16 @@ Let $p\in\C[z]$ be a polynomial of degree $n$ such that
 \end{prb}
 \begin{pf}
 (b)
-We want to justify that the leading term $a_nz^n$ is dominant in the series $\sum_{k=0}^na_kz^k$ when $|z|$ is sufficiently large.
+We want to justify that the leading term $a_nz^n$ is dominant in the series $\sum_{k=0}^nc_kz^k$ when $|z|$ is sufficiently large.
 Let $\e>0$.
-Since $p(z)-a_nz^n$ is of degree at most $n-1$, we can take $R>0$ such that for $|z|\ge R$ we can control the relative error as
-\[\left|\frac{p(z)-a_nz^n}{a_nz^n}\right|<\e,\]
+Since $p(z)-c_nz^n$ is of degree at most $n-1$, we can take $R>0$ such that for $|z|\ge R$ we can control the relative error as
+\[\left|\frac{p(z)-c_nz^n}{c_nz^n}\right|<\e,\]
 which implies
-\[|p(z)|\ge(1-\e)|a_n||z^n|.\]
+\[|p(z)|\ge(1-\e)|c_n||z^n|.\]
 \end{pf}
+
+
+
 
 
 \section*{Problems}
@@ -162,29 +279,81 @@ which implies
 \item Find all entire functions $f$ satisfying $f(z)^2=f(z^2)$.
 \item An entire function maps every unbounded sequence to an unbounded sequence is a polynomial.
 \item If a holomorphic function satisfies $\Re f(z)\le1+|z|^2$, then $f$ is a polynomial at most degree two.
-\item If $f(z)=\sum_{k=0}^\infty a_kz^k$ is a holomorphic function defined on the open unit disk satisfying $\sum_{k=2}^\infty k|a_k|\le|a_1|\ne0$, then $f$ is injective. (Grunsky coefficients)
+\item If $f(z)=\sum_{k=0}^\infty c_kz^k$ is a holomorphic function defined on the open unit disk satisfying $\sum_{k=2}^\infty k|c_k|\le|c_1|\ne0$, then $f$ is injective. (Grunsky coefficients)
 \end{enumerate}
 
 
 
+\chapter{Analytic continuation}
+
+\section{Riemann surfaces}
+Three perspectives:
+We can see $\P^1$ as the moduli space of lines, $U_0\cup U_1$, and $\C\cup\{\infty\}$.
+
+
+Runge: $\C[z]$ is dense in $\cO(\Omega)$ if $\Omega$ is simply connected.
+
+Mergelyan: $\C[z]$ is dense in $\cA(\bar\Omega):=\cO(\Omega)\cap C(\bar\Omega)$.
+
+transformation rule? gluing rule?
+
+\begin{prb}[Riemann sphere]
+
+\end{prb}
+
+\begin{itemize}
+\item analytic continuation by functional equation
+\item analytic continuation by contour integral
+\end{itemize}
+
+\begin{prb}[Analytic continuation by contour integral]
+For a not necessarily closed contour $\gamma$ on $\Omega$,
+\[h(a):=\frac1{2\pi i}\int_\gamma\frac{f(z)}{z-a}\,dz,\qquad a\in\Omega\setminus\im\gamma\]
+is a holomorphic function on $\Omega\setminus\im\gamma$.
+For this, you can use either the power series or the Morera with Fubini.
+
+If $f$ is holomorphic on the complement of a zero-length set(can we describe it with rectifiability?) in $\Omega$, then it is holomorphic. (Painlev\'e)
+\end{prb}
+
+
+
+\begin{prb}[Branch cut]
+We can represent $f$ with any coordinate system(usually polar coordinates).
+
+Define $f:\{re^{i\theta}:r>0,-\pi<\theta<\pi\}\to\C$ such that
+\[f(re^{i\theta}):=\log r+i\theta.\]
+Then, $e^{f(z)}=z$.
+Define $f:\{x+iy:y\ne0\text{ or }-1<x<1\}\to\C$ such that
+\[f(z):=\frac1{\sqrt{r_+r_-}}e^{i\frac{\theta_++\theta_-}2},\]
+where $z-1=r_+e^{i\theta_+}$ and $z+1=r_-e^{i\theta_-}$.
+Then, $f(z)$ is a branch of $1/\sqrt{z^2-1}$.
+\end{prb}
+
+Monodromy
+Covering surfaces
+Algebraic functions
+Elliptic functions
+Uniformization
 
 
 
 
-\chapter{Singularities}
 
-\section{Classification of singularities}
+
+
+\chapter{Zeros and poles}
+
+\section{Isolated singularities}
 \begin{prb}[Isolated singularities]
+removable singularity, pole, essential singularity
 \end{prb}
-\begin{prb}[Riemann removable singularity theorem]
-\end{prb}
-\begin{prb}[Laurent expansion at an isolated singularity]
+\begin{prb}[Laurent series expansion]
 \end{prb}
 \begin{prb}[Casorati-Weierstrass theorem]
 \end{prb}
 \begin{prb}[Picard's theorems]
 \end{prb}
-Riemann sphere and meromorphic functions?
+
 
 \section{Residue theorem}
 \begin{prb}[Residue theorem]
@@ -202,25 +371,23 @@ Riemann sphere and meromorphic functions?
 We want to justify the following definite integral:
 \[\int_0^\infty\frac{\cos x}{x^2+1}\,dx=\frac\pi{2e}.\]
 This can be viewed as a special value of the characteristic function of the \emph{Cauchy distribution} in probability theory.
-Define $f:\C\setminus\{\pm i\}\to\C$ and the \emph{semicircular contour} for $R>0$ as follows:
-\[f(z)=\frac{e^{iz}}{z^2+1},\qquad
-\left\{
-\begin{alignedat}{2}
-\gamma_1&:x\mapsto x,&\quad&x\in[-R,R],\\
-\gamma_2&:\theta\mapsto Re^{i\theta},&&\theta\in[0,\pi].
-\end{alignedat}
-\right.\]
+Define $f:\C\setminus\{\pm i\}\to\C$ and the \emph{semicircular contour} $\gamma=\gamma_1+\gamma_2$ for $R>0$ as follows:
+\[f(z):=\frac{e^{iz}}{z^2+1},\qquad
+\begin{cases}
+\gamma_1(x):=x&\text{ for }x\in[-R,R],\\
+\gamma_2(\theta):=Re^{i\theta}&\text{ for }\theta\in[0,\pi].
+\end{cases}\]
 \begin{parts}
-\item Let $h$ be a holomorphic function on a domain containing the arcs $\gamma_2$ for every large $R>0$.
-If $h$ vanishes at infinity, then
-\[\lim_{R\to\infty}\int_{\gamma_2}e^{iz}h(z)\,dz=0.\]
+\item We have
+\[\sup_{R>0}\int_{\gamma_2}|e^{iz}|\,|dz|\le1.\]
 This is called the \emph{Jordan lemma}.
 \item
-\[\lim_{R\to\infty}\int_\gamma f(z)\,dz=\begin{cases}
-\frac\pi e&\text{ if }\gamma=\gamma_1+\gamma_2\\
-2\int_0^\infty\frac{\cos x}{x^2+1}\,dx&\text{ if }\gamma=\gamma_1\\
-0&\text{ if }\gamma=\gamma_2
+\[\lim_{R\to\infty}\int_{\gamma_i}f(z)\,dz=\begin{cases}
+2\int_0^\infty\frac{\cos x}{x^2+1}\,dx&\text{ if }i=1\\
+0&\text{ if }i=2
 \end{cases}\]
+\item
+\[\lim_{R\to\infty}\int_\gamma f(z)\,dz=\frac\pi e.\]
 \end{parts}
 \end{prb}
 \begin{pf}
@@ -228,7 +395,7 @@ This is called the \emph{Jordan lemma}.
 Let $M_R=\max_{z\in \gamma_2}|h(z)|$.
 Since $\sin\theta\ge\frac2\pi\theta$ for $0\le\theta\le\frac\pi2$, we have
 \begin{align*}
-\Bigl|\int_{C_2}e^{iz}h(z)\,dz\Bigr|
+\Bigl|\int_{\gamma_2}e^{iz}h(z)\,dz\Bigr|
 &=\Bigl|\int_0^\pi e^{iRe^{i\theta}}h(Re^{i\theta})\,iRe^{i\theta}\,d\theta\Bigr|\\
 &\le M_RR\int_0^\pi e^{-R\sin\theta}\,d\theta\\
 &=2M_RR\int_0^{\frac\pi2}e^{-R\sin\theta}\,d\theta\\
@@ -238,17 +405,17 @@ Since $\sin\theta\ge\frac2\pi\theta$ for $0\le\theta\le\frac\pi2$, we have
 So we are done because $\lim_{R\to\infty}M_R=0$.
 
 (b)
-For $\gamma=\gamma_1+\gamma_2$, note that for sufficiently large $R$, the function $f$ has only one pole at $z=i$ in the interior of $C$, which is simple; define $g:\operatorname{int}\gamma\to\C$ such that
-\[f(z)=:\frac{g(z)}{(z-i)}=\frac{g(i)}{z-i}+\frac{g(z)-g(i)}{z-i}.\]
-Then, by the residue theorem, we obtain
-\[\int_\gamma f(z)\,dz=\int_\gamma\frac{g(z)}{z-i}\,dz=2\pi i\cdot g(i)=\frac\pi e\]
-for large $R$.
-
-For $\gamma=\gamma_1$, we have
+For $i=1$, we have
 \[\lim_{R\to\infty}\int_{\gamma_1}f(z)\,dz=\lim_{R\to\infty}\int_{-R}^Rf(x)\,dx=2\int_0^\infty f(x)\,dx\]
 by the definition of improper integrals.
+For $i=2$, it clearly follows from the part (a).
 
-For $\gamma=\gamma_2$, it clearly follows from the aprt (a).
+(c)
+Note that for sufficiently large $R$, the function $f$ has only one pole at $z=i$ in the interior of $C$, which is simple; define $g:\operatorname{int}\gamma\to\C$ such that
+\[f(z)=:\frac{g(z)}{(z-i)}=\frac{g(i)}{z-i}+\frac{g(z)-g(i)}{z-i}.\]
+Then, by the residue theorem, we obtain
+\[\int_\gamma f(z)\,dz=2\pi i\Res(f,i)=\frac\pi e\]
+for sufficiently large $R$ such that $R>1$.
 \end{pf}
 
 \begin{prb}[Indented contour]
@@ -328,17 +495,15 @@ $\log z$ trick
 
 
 
-\section{Zeros and poles}
+\section{Argument principle}
+
 \begin{prb}[Argument principle]\,
 \begin{parts}
 \item We have a partial fraction decomposition
 \[\frac{f'(z)}{f(z)}=\frac{\ord_a(f)}{z-a}+h(z),\]
 where $h$ is holomorphic at $a$.
-In particular, $f$ has either a zero or a pole at $a$ if and only if $f'(z)/f(z)$ has a simple pole at $a$.
 \item
-\[\int_\gamma\frac{f'(z)}{f(z)}\,dz=2\pi i(\text{number of zeros}-\text{number of poles}).\]
-\item
-\[\int_\gamma\frac{f'(z)}{f(z)}g(z)\,dz=2\pi i\sum_a\ord_a(f)g(a).\]
+\[\frac1{2\pi i}\int_\gamma\frac{f'(z)}{f(z)}g(z)\,dz=\sum_a\ord_a(f)g(a).\]
 \item Winding number
 \end{parts}
 \end{prb}
@@ -359,9 +524,89 @@ In particular, if $|g(z)|<|f(z)|$ on $z\in\gamma$, then
 \end{parts}
 \end{prb}
 
+\section{Nevanlinna theory}
+
+\begin{prb}[Poisson-Jensen formula]
+\end{prb}
+
+\begin{prb}[Nevanlinna functions]
+Let $f$ be a meromorphic function on a neighborhood of the closed disk $\bar{B(0,r)}\subset\C$ and let $a\in\CP^1$.
+We count the number of poles in the region $|z|\le r$, counting multiplicity, with the following function
+\[n(r,a,f):=\sum_{|z|\le r}(\ord_z(f-a))^+,\qquad n(r,f):=n(r,\infty,f).\]
+Note that $n(r,a,f)=n(r,(f-a)^{-1})$ and $n(0,f^{-1})-n(0,f)=\ord_0f$.
+The \emph{Nevanlinna proximity function} is
+\[m(r,f):=\frac1{2\pi}\int_0^{2\pi}\log^+|f(re^{i\theta})|\,d\theta.\]
+The \emph{Nevanlinna counting function} is
+\[N(r,f):=\int_0^r(n(t,f)-n(0,f))\,\frac{dt}t+n(0,f)\log r.\]
+The \emph{Nevanlinna characteristic function} is
+\[T(r,f):=m(r,f)+N(r,f).\]
+\end{prb}
 
 
+\begin{prb}[First fundamental theorem]
+Jensen formula
+\end{prb}
 
+\begin{prb}[Second fundamental theorem]
+\end{prb}
+
+\begin{prb}[Ahlfors-Shimizu formulation]
+Let $f$ be a meromorphic function on $\C$.
+Consider the following uniform probability measure on the Riemann sphere
+\[d\rho(w):=\frac{du\,dv}{\pi(1+|w|^2)^2},\qquad w=u+iv.\]
+Define
+\[A(r,f):=\frac1\pi\int_{|z|\le r}f^\#(z)^2\,dx\,dy=\int_{|z|\le r}f^*d\rho,\qquad f^\#(z):=\frac{|f'(z)|}{1+|f(z)|^2}.\]
+The latter function $f^\#$ is called the \emph{spherical derivative} of $f$.
+The \emph{Ahlfors-Shimizu characteristic function} and \emph{proximity function} are defined by
+\[T_0(r,f):=\int_0^rA(t,f)\frac{dt}t,\qquad m_0(r,f):=\frac1{2\pi}\int_0^{2\pi}\log\sqrt{1+|f(re^{i\theta})|^2}\,d\theta.\]
+\begin{parts}
+\item $\int\log|f-w|\,d\rho(w)=\log\sqrt{1+|f|^2}$
+\item We have
+\[A(r,f)=\int n(r,a,f)\,d\rho(a)=n(r,f)+r\frac d{dr}m_0(r,f).\]
+\item We have $T_0(r,f)=T(r,f)+O(1)$ as $r\to\infty$.
+\end{parts}
+\end{prb}
+\begin{pf}
+(b)
+
+Let $F$ be the image of the set $\{z:|z|=r\}\cup\{z:f'(z)=0\}$ under $f$.
+Since $F$ and $f^{-1}(F)$ are of measure zero, so we may assume $f:U\to f(U)$ is locally biholomorphic, where $U:=\{z:|z|\le r\}\setminus f^{-1}(F)$.
+So we may define the degree of $f$, which is locally constant and coincides with $n(r,a,f)$.
+So the first equality follows from
+\[\int_{|z|\le r}f^*d\rho=\int_Uf^*d\rho=\int n(r,a,f)\,d\rho(a).\]
+
+
+By the argument principle,
+\[n(t,a,f)-n(t,f)=\frac1{2\pi i}\int_{|z|=t}\frac{f'(z)}{f(z)-a}\,dz,\]
+and by
+\[\frac1{2\pi}\int_0^{2\pi}\frac1{f(z)-re^{i\theta}}\,d\theta=\frac1{2\pi i}\int_{|w|=r}\frac1{f(z)}\left(\frac1{f(z)-w}+\frac1w\right)dw=\begin{cases}
+1/f(z)&\text{ if }r<|f(z)|,\\0&\text{ if }r>|f(z)|
+\end{cases}\]
+for fixed $f(z)\in\C$ and $r>0$, we have
+\begin{align*}
+\int n(t,a,f)\,d\rho(a)-n(t,f)
+&=\frac1{2\pi i}\int_{|z|=t}\int\frac{f'(z)}{f(z)-a}\,d\rho(a)\,dz\\
+&=\frac1{2\pi i}\int_{|z|=t}\int_0^\infty\int_0^{2\pi}\frac{f'(z)}{f(z)-re^{i\theta}}\frac r{\pi(1+r^2)^2}\,d\theta\,dr\,dz\\
+&=\frac1{2\pi i}\int_{|z|=t}\int_0^{|f(z)|}\frac{2\pi f'(z)}{f(z)}\frac r{\pi(1+r^2)^2}\,dr\,dz\\
+&=\frac1{2\pi i}\int_{|z|=t}\frac{f'(z)\bar{f(z)}}{1+|f(z)|^2}\,dz.
+\end{align*}
+Also,
+\begin{align*}
+t\frac d{dt}m_0(t,f)
+&=\frac t{2\pi}\int_0^{2\pi}\frac{d
+\log\sqrt{1+|f(te^{i\theta})|^2}}{dt}\,d\theta\\
+&=\frac t{2\pi}\int_0^{2\pi}\frac12\frac{f'(te^{i\theta})\bar{f(te^{i\theta})}+f(te^{i\theta})\bar{f'(te^{i\theta})}}{1+|f(te^{i\theta})|^2}e^i\theta\,d\theta\\
+&=\frac1{2\pi i}\int_{|z|=t}\frac{f'(z)\bar{f(z)}}{1+|f(z)|^2}\,dz.
+\end{align*}
+
+
+(c)
+Two solutions: one is $T_0(r,f)=N(r,f)+m_0(r,f)-m_0(0,f)$.
+Another is using $T_0(r,f)=\int N(r,a,f)\,d\rho(a)$ and the first fundamental theorem.
+\end{pf}
+
+Applications of second fundamental theorem?
+Borel directions and deficient values?
 
 \section*{Exercises}
 \begin{prb}[The second proof of the fundamental theorem of algebra]
@@ -396,40 +641,12 @@ Then, $f$ is also nowhere vanishing. (Hurwitz)
 
 
 
-\chapter{Polynomial approximation}
-\section{Mittag-Leffler theorem}
-\begin{prb}[Compact convergence of holomorphic functions]
-\begin{parts}
-\item injectivity preservation: Hurwitz theorem
-\end{parts}
-\end{prb}
-
-\begin{prb}[Principal part]
-For a meromorphic function $f$, we say a polynomial $p$ without constant term is a \emph{principal part} of $f$ at $z_0$ if we have a partial fraction decomposition
-\[f(z)=p\left(\frac1{z-z_0}\right)+h(z),\]
-where $h(z)$ is holomorphic at $z_0$.
-It is unique.
-pre-assigned principal parts
-\end{prb}
-
-\section{Weierstrass factorization theorem}
-Infinite product
-
-\section{Runge's approximation}
-Mergelyan
-
-
-
-
-
-
-
 
 
 \part{Geometric function theory}
 
-\chapter{Conformal mappings}
-\section{Riemann sphere and open unit disk}
+\chapter{}
+\section{Conformal mappings}
 \begin{prb}[Conformality of holomorphic maps]
 $f'\ne0$ and $f'$ satisfies the Cauchy-Riemann
 \end{prb}
@@ -439,9 +656,6 @@ fixed points
 \end{prb}
 \begin{prb}[Blaschke factors]
 \end{prb}
-
-\section{Riemann mapping theorem}
-
 
 \begin{prb}[Normal family]
 locally bounded, then compact (Montel)
@@ -478,36 +692,6 @@ Let $\Omega\subset\C$ be a simply connected domain such that $\Omega\ne\C$.
 
 \chapter{Univalent functions}
 \section{Bierbach conjecture}
-\section{Harmonic functions}
-harmonic conjugates
-conformal change
-
-\begin{prb}[Mean value property]
-\[\frac1{2\pi}\int_0^{2\pi}f(re^{i\theta})(re^{i\theta})^{-k}\,d\theta
-=\begin{cases}0&\text{ if }k<0\\\dfrac{f^{(k)}(0)}{k!}&\text{ if }k\ge0\end{cases}\]
-for $r$ such that $f$ is defined on $\bar B_r$.
-\end{prb}
-\begin{prb}[Poisson kernel]
-Let $f$ be a holomorphic function on the open unit disk $\D$.
-If $h$ is another holomorphic function, then
-\[f(a)=\frac1{2\pi}\int_{|z|=r}f(z)\left(\frac z{z-a}+zh(z)\right)\,\frac{dz}{iz}\]
-for $0<r<1$.
-\begin{parts}
-\item Find the holomorhpic $h$ on an open neighborhood of $\D$ in terms of $a$ such that $|z|=1$ implies $\frac z{z-a}+zh(z)$ is real.
-\end{parts}
-\end{prb}
-
-
-\section{Exercises}
-\begin{prb}[Carath\'eodory class]
-Let $f$ be a holomorphic function on the open unit disk $\D$ such that $\Re f(z)>0$ for $z\in\D$ and $f(0)=1$. Show that $|f'(0)|\ge2$.
-\end{prb}
-
-
-\chapter{}
-
-Maximum principle; Lindelöf principle,
-Nevanlinna theory?
 
 \section{Riemann-Hilbert problem}
 Hilbert transform
@@ -516,62 +700,65 @@ almost everywhere convergence, Hardy-Littlewood maximal function
 \section{Quasi-conformal mappings}
 Beltrami equations and Teichm\"uler theory?
 
-
-
-
-
-
-
-
-
-
-
-\part{Riemann surfaces}
-
-\chapter{Analytic continuation}
-\section{}
-Three perspectives:
-We can see $\CP^1$ with $\C^2\setminus\{(0,0)\}/\sim$ and $U_0\cup U_1$ and $\C\cup\{\infty\}$.
-
-holomorphic functions and meromorphic functions $\cO_{\P^1}=0$, $\cM_{\P^1}=\C(z)$, $\Aut(\P^1)=\PSL(2,\C)$, $\Hom(\P^1)=\C(z)\cup\{\infty\}$
-
-transformation rule? gluing rule?
-
-\begin{prb}[Riemann sphere]
-
+\section{Exercises}
+\begin{prb}[Carath\'eodory class]
+Let $f$ be a holomorphic function on the open unit disk $\D$ such that $\Re f(z)>0$ for $z\in\D$ and $f(0)=1$. Show that $|f'(0)|\ge2$.
 \end{prb}
 
 
 
-\section{Branch cuts}
-We can represent $f$ with any coordinate system(usually polar coordinates).
-
-Define $f:\{re^{i\theta}:r>0,-\pi<\theta<\pi\}\to\C$ such that
-\[f(re^{i\theta}):=\log r+i\theta.\]
-Then, $e^{f(z)}=z$.
-Define $f:\{x+iy:y\ne0\text{ or }-1<x<1\}\to\C$ such that
-\[f(z):=\frac1{\sqrt{r_+r_-}}e^{i\frac{\theta_++\theta_-}2},\]
-where $z-1=r_+e^{i\theta_+}$ and $z+1=r_-e^{i\theta_-}$.
-Then, $f(z)$ is a branch of $1/\sqrt{z^2-1}$.
 
 
-\section{Monodromy}
-\section{Covering surfaces}
-\section{Algebraic functions}
-\section{Elliptic curves}
 
-\chapter{Differential forms}
+\chapter{}
 
-\chapter{Uniformization theorem}
+
 
 
 
 
 \part{Several complex variables}
 
-\chapter{}
+\chapter{Complex analytic sheaves}
 
-\section{}
+
+\section{Analytic spaces}
+
+\begin{prb}[Complex model spaces]
+
+Let $(X,\cO_X)$ be a ringed space and $A$ is a subset of $X$ that is the support of a coherent sheaf on $X$.
+Then, we can show (really? I hope so.) that there exists a natural sheaf $\cO_A$ of rings on $X$ such that $A$ is the support of $\cO_A$ and there is locally an exact sequence of sheaves of rings on $X$
+\[\cO_U^q\to\cO_U\to\cO_A|_U\to0.\]
+The kernel of $\cO_X\to\cO_A$ is called the \emph{ideal sheaf} or the \emph{relation sheaf} of $A$ and denoted by $\cI_{(X,A)}$.
+
+Note that we have a canonical ringed space $(\C^n,\cO_{\C^n})$ of holomorphic functions.
+A \emph{complex model space} is a subset $A$ of some $\C^n$ that is the support of a coherent sheaf on $\C^n$.
+\end{prb}
+\begin{pf}
+
+\end{pf}
+
+
+\begin{prb}[Complex analytic spaces]
+Let $(X,\cO_X)$ be a ringed space.
+An \emph{analytic atlas} on $X$ is the family $\{\f_i\}$ of maps $\f_i:U_i\to\C^{n_i}$ which map open $U_i\subset X$ homeomorphically onto open $\f(U_i)\subset\C^{n_i}$, such that $\f_i$ and $\tau_{ij}=\f_j\f_i^{-1}$ induce the sheaf isomorphisms $\cO_{U_i}\to\cO_{\f(U_i)}$ and $\cO_{\f_i(U_i\cap U_j)}\to\cO_{\f_j(U_i\cap U_j)}$.
+A \emph{complex analytic space} or briefly a \emph{complex space} is a Hausdorff ringed space $(X,\cO_X)$ together with an analytic atlas $\{\f_i\}$.
+We do not have to assume the second countability of $X$ because the partition of unity does not play a role in complex analysis.
+An \emph{analytic set} in a complex space $X$ is a subset $A$ that is the support of a coherent sheaf on $X$.
+\end{prb}
+
+
+
+
+\section{Weierstrass theory}
+
+$\cO_{\P^1}(\P^1)=0$
+$\cM_{\P^1}(\P^1)=\C(z)$
+$\C[z]=\cO_{\P^1}(\C)\cap\cM_{\P^1}(\P^1)$
+$\Aut(\P^1)\cong\PSL(2,\C)$
+$\Hom(\P^1,\P^1)=\C(z)\cup\{\infty\}$.
+
+
 Cousin problems:
 \begin{enumerate}
 \item 
@@ -587,56 +774,64 @@ Four coherence theorems:
 \item
 \end{enumerate}
 
-
-\section{}
-
-\begin{prb}[Sheaves and \'etale spaces]
-A sheaf is a presheaf(contravariant functor) satisfying locality and gluing axiom.
-However, there is an \'etale space characterization by Serre.
-(stalks are Noetherian, regular local, and a UFD?
-See the Weierstrass preparation theorem later.)
+\begin{prb}
+smooth->normal(integrally closed)->irreducible(integral domain)->reduced(no nilpotents)
 \end{prb}
 
-\begin{prb}[Ringed spaces]
-Let $(X,\cO_X)$ be a ringed space, a topological space $X$ together with a sheaf $\cO_X$ of rings.
-We will also denote by $\cO_X$ the \'etale space of the sheaf $\cO_X$.
-A sheaf $\cF_X$ of $\cO_X$-modules is called \emph{locally finite} or \emph{finite type} if there is an open cover $\{U_i\}$ of $X$ together with surjective ring homomorphisms $\cO_X(U_i)\twoheadrightarrow\cF_X(U_i)$ for all $i$.
-The section space $\Gamma(U,\cO_X)$ will be also denoted by $\cO_X(U)$.
+\begin{prb}[Reduced points]
+R\"ucker nullstellensatz,
+every section is realized as a family of functions,
+sheaf map $f_*$ is uniquely lifted
 \end{prb}
 
-\begin{prb}[Analytic sets and local model spaces]
-For a domain $X\subset\C^d$, we have a canonical ringed space $(X,\cO_X)$ of holomorphic functions.
-For an analytic set $A\subset X$, we can consider an exact sequence of sheaves of rings
-\[0\to\cI_{(X,A)}\to\cO_X\to\cO_A\to0,\]
-which can be admitted as the definition of $\cO_A$.
-We can distinguish this exact sequence from the two ring homomorphisms given by the sheaf theoretic restriction
-\[\cO_X(U)\leftarrow\cO_X(X)\to\cO_X(A),\]
-where $\cO_X(A)$ is defined as the colimit by open neighborhoods of $A$.
-By taking $\cI_{(X,A)}$ as an arbitrary ideal sheaf of finite type, we may define a complex model space as the quotient sheaf $\cO_X/\cI_{(X,A)}$, in which open subsets of a complex model space, also called local model spaces, coincide what we call analytic subsets of a domain, i.e.~we can recover the subset $A$ from $\cI_{(X,A)}$.
+\begin{prb}[Weierstrass preparation theorem]
+Consider $\cO'_0\subset\cO'_0[z_n]\subset\cO_0$.
+Consider $B_\rho$, where $\rho=(\rho',\rho_n)\in\R_{>0}^n$.
+Note $\cO_0=\bigcup_\rho B_\rho$.
+
+A Weierstrass polynomial is a monic polynomial in $\cO'_0[z_n]$ such that $\frac{d^kw}{dz_n^k}(0,0)=0$ for all $k$.
+We use the convention that the degree and order are with respect to $z_n$ by letting $z'=0$.
+\begin{parts}
+\item If $f,g\in\cO_0$, then there are unique $q\in\cO_0$ and $r\in\cO'_0[z_n]$ such that $\deg r<\ord g$ and $f=qg+r$.
+\item If $g\in\cO_0$, then there is a unique Weierstrass polynomial $w\in\cO'_0[z_n]$ and $u\in\cO_0^\times$ such that $\deg w=\ord g$ and $g=uw$.
+\end{parts}
 \end{prb}
 
-\begin{prb}[Coherent sheaves]
-Consider a quasi-coherent sheaf with an exact sequence of $\cO_X$-modules
-\[\cO_X^m\to\cO_X^n\to\cF_X\to0.\]
-The \emph{generating system} is the basis of $\cO_X^n$, and the \emph{relation sheaf} is the kernel of $\cO_X^n\to\cF_X$.
-We say $\cF_X$ is \emph{coherent} if $\cF_X$ is of finite type and the relation sheaf is also of finite type.
+\begin{prb}[Weierstrass isomorphism theorem]
 \end{prb}
 
 
-Prop 1: For an subsheaf of an coherent sheaf is coherent if and only if it is of finite type.
+\begin{prb}[First Oka coherence theorem]\,
+Let $\cO:=\cO_{\C^n}$ and assume $\cO':=\cO_{\C^{n-1}}$ is coherent.
+We prove that $\cO$ is coherent at the origin.
+\begin{parts}
+\item Let $0\ne f_0\in\cO_0$. Then, there is an open neighborhood $U\subset\C^n$ of the origin such that $f\in\cO(U)$ and $\cO_U\to\cO_U/f\cO_U$ is a split epi over $\cO_U$.
+\item Let $0\ne f_0\in\cO_0$. Then, there is an open neighborhood $U\subset\C^n$ of the origin such that $f\in\cO(U)$ and $\cO_U/f\cO_U$ is coherent over $\cO_U$.
+\end{parts}
+\end{prb}
+\begin{pf}
+(a)
+Note that $\cO$ is locally irreducible and has Hausdorff \'etale.
 
-Prop 2: Finite direct sum of a coherent sheaf is coherent.
+(b)
+We may assume $f(0)=0$, i.e.~there is no constant term in the power series $f_0$, because otherwise it is clear from $\cO_U=f\cO_U$ for some $U$.
+We may assume $f_0(0,z_n)\ne0$, i.e.~there is a monomial of $z_n$ in the power series $f_0$ by coordinate transform.
+So, by the above assumptions, we have $\ord f_0>0$.
+By the Weierstrass preparation theorem, there is a Weierstrass polynomial $w_0\in\cO'_0[z_n]$ such that $\deg w=\ord f$ and $f_0\cO_0=w_0\cO_0$.
+
+Choose open $U'\subset\C^{n-1}$ such that $w_0$ has a representative $w\in\cO'(U')[z_n]$.
+Then, we use the Weierstrass isomorphism theorem and the extension principle.
 
 
-\begin{thm*}[2.2.12]
-Let $X$ be a domain and $A\subset X$ is closed.
-If the ideal sheaf $\cI_{(X,A)}$ is of finite type if and only if $A$ is analytic.
-\end{thm*}
-\begin{thm*}[2.2.17]
-If $S$ is smooth analytic in a domain $X$, then the ideal sheaf $\cI_{X,S}$ is coherent. (2nd Oka coherence for smooth sets)
-\end{thm*}
+\end{pf}
 
 
-
+\begin{prb}[Local rings on complex analytic spaces]\,
+\begin{parts}
+\item $\cO_{X,x}$ is isomorphic to a quotient of $\cO_{\C^n,0}$.
+\item $\cO_{X,x}$ is local, noetherian, and henselian.
+\item $\cO_{\C^n,0}$ is factorial.
+\end{parts}
+\end{prb}
 
 \end{document}

@@ -1,5 +1,5 @@
-\documentclass{../../../small}
-\usepackage{../../../ikhanchoi}
+\documentclass{../../small}
+\usepackage{../../ikhanchoi}
 
 \begin{document}
 \title{Operator Algebra Seminar Note I}
@@ -12,7 +12,7 @@
 This note has been written based on the first-year graduate seminar presented at the University of Tokyo in the 2023 Spring semester.
 Each seminar was delivered for 105 minutes.
 The main reference for this seminar was Brown-Ozawa, and detailed gaps were filled with the aids of other books such as Takesaki, Murphy, and Paulsen whenever required.
-I gratefully acknowledge advice of Prof. Yasuyuki Kawahigashi and support of my colleagues Futaba Sato, Yusuke Suzuki, Hiroto Nishikawa, %Hiroki Maeda.
+I gratefully acknowledge advice of Prof. Yasuyuki Kawahigashi and support of my colleagues Futaba Sato, Yusuke Suzuki, Hiroto Nishikawa, Taiki Maeda.
 
 
 
@@ -69,10 +69,10 @@ The former has an eigenvalues $\{2,0\}$, and the latter has $\{\pm1\}$.
 \begin{thm}[Stinespring dilation]
 Let $\cA$ be a unital C$^*$-algebra and $\f:\cA\to B(H)$ be a c.p.~map.
 Then, there is a representation $\pi:\cA\to B(\hat H)$ and a bounded linear operator $V:H\to\hat H$ such that the following diagram commutes:
-\begin{cd}
+\[\begin{tikzcd}
 \cA \ar{r}{\f} \ar[swap]{d}{\pi} & B(H) \\
 B(\hat H) \ar[swap]{ur}{V^*\cdot V} &
-\end{cd}
+\end{tikzcd}\]
 \end{thm}
 \begin{pf}
 Define a sesquilinear form on the algebraic tensor product $\cA\odot H$ as
@@ -389,10 +389,10 @@ where $B$ denotes the closed unit ball of $B(\cA,\cM)$.
 (a)
 Let $\cA\xrightarrow{\psi_i}M_{n_i}(\C)\xrightarrow{\f_i}\cB$ be c.c.p.~maps for $i\in\{0,1\}$.
 Then, for $t\in[0,1]$ we have a diagram
-\begin{cd}
+\[\begin{tikzcd}
 \cA \ar{rrr}{(1-t)\psi_0\circ\f_0+t\psi_1\circ\f_1}\ar{d}&&&\cB\\
 \cA\oplus\cA\ar[swap]{r}{\f_0\oplus\f_1}&M_{n_0}(\C)\oplus M_{n_1}(\C)\ar[swap]{rr}{((1-t)\psi_0)\oplus(t\psi_1)}&&\cB\oplus\cB\ar{u}
-\end{cd}
+\end{tikzcd}\]
 which is commutative, so we are done.
 
 (b), (c)
@@ -517,21 +517,21 @@ Let $\cA$ be a C$^*$-subalgebra.
 (a)$\Rightarrow$(b)
 Recall that every finite-dimensional C$^*$-algebra is nuclear.
 For any C$^*$-algebra $\cB$, we have (by Corollary 3.3) a diagram
-\begin{cd}[row sep=10pt]
+\[\begin{tikzcd}[row sep=10pt]
 \cA\otimes_{\max}\cB \ar{rr}\ar[dashed]{rd}\ar{dd} && \cA\otimes_{\max}\cB\\
 &M_{n_\alpha}(\C)\otimes_{\max}\cB \ar[dashed]{ru}\ar[dashed,leftrightarrow]{dd}&\\
 \cA\otimes_{\min}\cB \ar[dashed]{rd} &&\\
 &M_{n_\alpha}(\C)\otimes_{\min}\cB&
-\end{cd}
+\end{tikzcd}\]
 in which the square at lower left side algebraically commutes for each $\alpha$ and the upper triangle approximately commutes in the point-norm topology because
 \[\|a\otimes b-\psi_\alpha\circ\f_\alpha(a)\otimes b\|_{\max}=\|a-\psi_\alpha\circ\f_\alpha(a)\|\|b\|\to0\]
 for each $a\in\cA$, $b\in\cB$.
 Here the dashed arrows mean that they vary as $\alpha$ goes to limit.
 Hence we have an approximately commuting diagram
-\begin{cd}[row sep=10pt]
+\[\begin{tikzcd}[row sep=10pt]
 \cA\otimes_{\max}\cB \ar{rr}\ar{rd} && \cA\otimes_{\max}\cB\\
 &\cA\otimes_{\min}\cB \ar[dashed]{ur}&
-\end{cd}
+\end{tikzcd}\]
 so that we can verify the injectivity of $\cA\otimes_{\max}\cB\to\cA\otimes_{\max}\cB$ (because it is just the identity, so we do not have to take care of the failure of inclusion for maximal tensor products) implies the injectivity of $\cA\otimes_{\max}\cB\to\cA\otimes_{\min}\cB$.
 
 (b)$\Rightarrow$(c)
@@ -633,12 +633,12 @@ The vector $V\xi$ in $\hat H$ for each $\xi\in H$ is well-defined because
 For a c.p.~map $\f:\cA\to B(H)$, we can define a \emph{Stinespring dilation} of $\f$ as a triplet $(\pi,K,V)$, where $\pi:\cA\to K$ is a representation and $V:H\to K$ is a bounded linear operator, such that $\f(a)=V^*\pi(a)V$.
 For two Stinespring dilations $(\pi_1,K_1,V_1)$ and $(\pi_2,K_2,V_2)$ of $\f$, we can define morphisms by a bounded linear operator $U:K_2\to K_1$ such that $\pi_2(a)=U^*\pi_1(a)U$ and $V_2=UV_1$.
 The two conditions imply that the following diagram commutes:
-\begin{cd}
+\[\begin{tikzcd}
 \cA\ar{rr}{\f}\ar{dr}{\pi_2}\ar[swap]{dddr}{\pi_1}&&B(H)\\
 &B(K_2)\ar{ur}{V_2^*\cdot V_2}&\\
 &&\\
 &B(K_1)\ar[swap]{uuur}{V_1^*\cdot V_1}\ar{uu}[description]{U^*\cdot U}&
-\end{cd}
+\end{tikzcd}\]
 
 For arbitrary Stinespring dilation, we may always assume $\pi$ acts non-degenerately on the subspace $VH$ of $K$ by changing $V$ to $\lim_\alpha\pi(e_\alpha)V$ to make $\im V\subset(\pi(\cA)VH)^-$.
 Even we add this in the definition of a Stinespring dilation, the definition of morphisms still left unchanged.
@@ -724,10 +724,10 @@ Then, $\f\otimes i:\cA\otimes_{\max}\cC\to\cB\otimes_{\max}\cC$ is well-defined.
 First assume $\cB\otimes_{\max}\cC\subset B(H)$ by taking a faithful representation $b\otimes c\mapsto bc$.
 By restriction, $\cB$ and $\cC$ can be seen as commuting C$^*$-subalgebras of $B(H)$.
 Let $\pi:\cA\to B(\hat H)$ be the minimal Stinespring representation of the c.c.p. map $\f:\cA\to\cB\subset B(H)$.
-\begin{cd}
+\[\begin{tikzcd}
 \cA\ar{d}{\f}\ar{r}{\pi}&B(\hat H)\ar{d}{V^*\cdot V}&\cC\ar[equal]{d}\ar[dashed,swap]{l}{\rho}\\
 \cB\ar[hook]{r}&B(H)&\cC\ar[hook']{l}
-\end{cd}
+\end{tikzcd}\]
 Now we want to lift the inclusion $\cC\subset\cB'\subset B(H)$ to obtain a representation $\rho:\cC\to\pi(\cA)'\subset B(\hat H)$.
 
 Since $\pi(\cA)VH$ is dense in $\hat H$, we can try to define $\rho$ by
@@ -783,10 +783,10 @@ which is unique by the density of $\pi(\cA)H$ in $H$.
 \begin{thm}[Arveson extension]
 Let $\cA\subset\cB$ be C$^*$-algebras.
 Let $\f:\cA\to B(H)$ be a c.p.~map and consider the following diagram:
-\begin{cd}
+\[\begin{tikzcd}
 \cB\ar[dashed]{dr}{\tilde\f}&\\
 \cA\ar{u}\ar[swap]{r}{\f}&B(H).
-\end{cd}
+\end{tikzcd}\]
 \begin{parts}
 \item The n.p.c.p.(norm preserving c.p.)~extension $\tilde\f$ of $\f$ exists if $\cB$ is unital and $1_\cB\in\cA$.
 \item The n.p.c.p.~extension $\tilde\f$ of $\f$ exists if $\cA$ is unital and $\cB=\cA\oplus\C$.
@@ -807,11 +807,11 @@ and
 (c)
 Let $\pi:\cA\to B(\hat H)$ be the minimal and hence non-degenerate Stinespring representation of $\f$.
 Since $\cA$ is a closed ideal of $\cB=\tilde\cA$, we can apply the representation extension for $\pi$ to get $\tilde\pi$ as follows:
-\begin{cd}
+\[\begin{tikzcd}
 \tilde\cA\ar{dr}{\tilde\pi}&\\
 \cA\ar{u}\ar{r}{\pi}&B(\hat H)\ar{d}{V^*\cdot V}\\
 \cA\ar[equal]{u}\ar{r}{\f}&B(H).
-\end{cd}
+\end{tikzcd}\]
 Then, the c.p.~extension is given by $\tilde\f(b):=V^*\tilde\pi(b)V$ for $b\in\cB$.
 To check the norm is preserved, take an approximate unit $e_\alpha$ of $\cA$ so that the net $\f(e_\alpha b)=V^*\pi(e_\alpha b)V$ converges to $\tilde\f(b)=V^*\tilde\pi(b)V$ strongly and weakly, which implies
 \[\|\tilde\f(1)\xi\|=\lim_\alpha\|\f(e_\alpha)\xi\|\le\|\f\|\|\xi\|.\]
@@ -871,16 +871,16 @@ Let $\cA\subset\cB$ be C$^*$-algebras.
 Then, the following statements are all equivalent:
 \begin{parts}
 \item There is a c.c.p.~map $\f:\cB\to\cA^{**}$ such that
-\begin{cd}
+\[\begin{tikzcd}
 \cB\ar[dashed]{dr}{\f}&\\
 \cA\ar{u}\ar{r}&\cA^{**}
-\end{cd}
+\end{tikzcd}\]
 is commutative.
 \item There is a c.c.p.~map $\f:\cB\to\pi(\cA)''$ such that
-\begin{cd}
+\[\begin{tikzcd}
 \cB\ar[dashed]{dr}{\f}&\\
 \cA\ar{u}\ar{r}{\pi}&\pi(\cA)''
-\end{cd}
+\end{tikzcd}\]
 is commutative for every representation $\pi:\cA\to B(H)$.
 \item The map $\cA\otimes_{\max}\cC\to\cB\otimes_{\max}\cC$ is injective for every C$^*$-algebra $\cC$.
 \end{parts}
@@ -889,11 +889,11 @@ is commutative for every representation $\pi:\cA\to B(H)$.
 (a)$\Rightarrow$(b)
 For any representation $\pi:\cA\to B(H)$ admits a normal extension $\tilde\pi:\cA^{**}\to B(H)$ by the universal property of the enveloping von Neumann algebra.
 Then, our c.c.p.~map is $\tilde\pi\circ\f$, where $\f:\cB\to\cA^{**}$ is a c.c.p.~map constructed from the assumption (a), because the following diagram commutes:
-\begin{cd}
+\[\begin{tikzcd}
 \cB\ar[dashed]{dr}{\f}&\\
 \cA\ar{u}\ar{r}&\cA^{**}\ar{d}{\tilde\pi}\\
 \cA\ar[equal]{u}\ar{r}{\pi}&\pi(\cA)''.
-\end{cd}
+\end{tikzcd}\]
 
 (b)$\Rightarrow$(a)
 Clear.
@@ -901,10 +901,10 @@ Clear.
 (b)$\Rightarrow$(c)
 Taking any faithful representation of $\cA\otimes_{\max}\cC$ and by restriction, we may assume $\cA$, $\cC$, and $\cA\otimes_{\max}\cC$ are C$^*$-subalgebras of $B(H)$ such that $\cA\subset\cC'$.
 Then, by the assumption (b) we can define a c.c.p.~map $\f\otimes\id$ such that
-\begin{cd}
+\[\begin{tikzcd}
 \cB\otimes_{\max}\cC\ar[dashed]{dr}{\f\otimes\id}&\\
 \cA\otimes_{\max}\cC\ar{u}\ar{r}&\cA''\otimes_{\max}\cC\subset B(H).
-\end{cd}
+\end{tikzcd}\]
 commutes.
 Since the horizontal arrow is injective, the vertial arrow is also injective.
 

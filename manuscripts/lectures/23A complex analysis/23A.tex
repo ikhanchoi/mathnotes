@@ -1,8 +1,25 @@
-\documentclass{../../../small}
-\usepackage{../../../ikhanchoi}
+\documentclass[a4paper]{article}
+\usepackage{amsmath,amsthm,enumitem}
+\usepackage[margin=3cm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage[bitstream-charter,cal]{mathdesign}
+\linespread{1.15}
 \usepackage{luatexja}
+\theoremstyle{definition}
+\newtheorem{prb}{}
 \renewcommand{\theprb}{問\arabic{prb}}
+
+\renewcommand{\Re}{\operatorname{Re}}
+\renewcommand{\Im}{\operatorname{Im}}
 \renewcommand{\H}{\mathbb{H}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\e}{\varepsilon}
+\newcommand{\f}{\varphi}
+\newcommand{\PSL}{\operatorname{PSL}}
+\renewcommand{\tilde}{\widetilde}
+\renewcommand{\bar}{\overline}
 
 \begin{document}
 
@@ -12,17 +29,17 @@
 
 
 \begin{prb}[フックス群としてのモジュラー群]
-複素数体$\C$の部分環$A$に対して、成分$a,b,c,d$が$A$の元で$ad-bc=1$を満たす一次分数変換$f(z)=(az+b)/(cz+d)$の集合を$\PSL(2,A)$と書く．
+複素数体$\C$の部分集合$A$に対して、成分$a,b,c,d$が$A$の元で$ad-bc=1$を満たす一次分数変換$f(z)=(az+b)/(cz+d)$の集合を$\PSL(2,A)$と書く．
 特に$\PSL(2,\Z)$を\emph{モジュラー群}と呼ぶ．
 上半平面$\H:=\{z\in\C:\Im z>0\}$の部分集合$D:=\{z\in\H:|z|>1,\ |\Re z|<\frac12\}$を定義する．
-\begin{enumerate}[(1)]
+\begin{enumerate}[label=(\arabic*)]
 \item $\PSL(2,\R)$の元$f$は全単射写像$\H\to\H$を定義することを示せ．
-\item $\PSL(2,\Z)$は$S(z):=-1/z$と$T(z):=z+1$によって生成されることを示せ．つまり、全ての元が$S^{\pm1}$と$T^{\pm1}$の有限回の合成として表されることを示せ．
+\item $\PSL(2,\Z)$は$S(z):=-1/z$と$T(z):=z+1$によって生成されることを示せ．つまり、全ての元が$S^{\pm1}$と$T^{\pm1}$の有限回の合成として表れることを示せ．
 \item 集合$D$は$\PSL(2,\Z)$の\emph{基本領域}であることを示せ．つまり、次の二つが成り立つことを示せ：
-\begin{parts}
+\begin{enumerate}[label=(\alph*)]
 \item 任意の点$z\in\H$に対して$f(z)\in\bar D$を満たす$f\in\PSL(2,\Z)$が少なくとも一つ存在する．
 \item 任意の点$z\in\H$に対して$f(z)\in D$を満たす$f\in\PSL(2,\Z)$が多くとも一つ存在する．
-\end{parts}
+\end{enumerate}
 \item $\PSL(2,\Z)$は$\H$に\emph{真性不連続に作用}することを示せ．つまり、任意の点$z\in\H$に対して軌道$\{f(z):f\in\PSL(2,\Z)\}$が離散集合であることを示せ．
 \end{enumerate}
 \end{prb}
@@ -32,26 +49,34 @@
 開単位円板上で定義された正則関数$f$が$f(0)=1$を満たすとする．
 もし任意の$|z|<1$を満たす複素数$z$に対して$\Re f(z)>0$ならば、$f$を\emph{カラテオドリ級}の関数という．
 関数$f$が冪級数展開$f(z)=1+2\sum_{k=1}^\infty c_kz^k$を持つとする．
-\begin{enumerate}[(1)]
+\begin{enumerate}[label=(\arabic*)]
 \item 正の整数$k$と実数$0<r<1$に対して次の式を示せ：
 \[c_kr^k=\frac1{2\pi}\int_0^{2\pi}\Re f(re^{i\theta})e^{-ik\theta}\,d\theta.\]
 \item 次の二つの条件が同値であることを示せ：
-\begin{parts}
+\begin{enumerate}[label=(\alph*)]
 \item 関数$f$がカラテオドリ級である．
 \item 任意の正の整数$n$に対して点$(c_1,\cdots,c_n)\in\C^n$は$\theta\in[0,2\pi)$によって媒介変数表示された曲線$(e^{-i\theta},\cdots,e^{-in\theta})\in\C^n$の凸包絡の元である．
-\end{parts}
+\end{enumerate}
 \end{enumerate}
 \end{prb}
 
-\begin{prb}[ネヴァンリンナ個数関数の評価]
-複素平面全体上で定義された正則関数$f:\C\to\C$がある$\lambda>0$に対して不等式$|f(z)|\le e^{|z|^\lambda},\ (z\in\C)$を満たすとする．
-半径$r>0$の円板$B(0,r)$にある$f$の零点の数$N(r)$はある定数$C>0$が存在して評価$N(r)\le Cr^\lambda$を持つことを示せ．
+
+\begin{prb}[アールフォルス・清水標数]
+複素平面上の有理型関数$f$を考える．
+次のように$r\ge0$に対する関数$A(\cdot,f)$を定義する：
+\[A(r,f):=\frac1\pi\int_{\sqrt{x^2+y^2}\le r}f^\#(x+iy)^2\,dx\,dy,\qquad\text{ただし、}\ f^\#(z):=\frac{|f'(z)|}{1+|f(z)|^2},\quad z\in\C.\]
+関数$f^\#$を$f$の\emph{球面導関数}と呼ぶ．
+\begin{enumerate}[label=(\arabic*)]
+\item 任意の点$(x,y)\in\R^2$に対して、
+\[\frac1\pi\,f^\#(x+iy)^2=\frac{\partial Q}{\partial x}(x,y)-\frac{\partial P}{\partial y}(x,y)\]
+を満たす実平面$\R^2$上の実関数$P$と$Q$を求め、関数$K(x,y):=1+|f(x+iy)|^2$を用いて表せ．
+\item グリーンの定理と偏角の原理を用いて$r\ge0$に対して次の式が成り立つことを示せ：
+\[\int_0^rA(t,f)\frac{dt}t=\int_0^rn(t,f)\frac{dt}t+\frac1{2\pi}\int_0^{2\pi}\log\sqrt{1+|f(re^{i\theta})|^2}\,d\theta-\log\sqrt{1+|f(0)|^2}.\]
+ただし、$n(r,f)$は閉円板$\bar{B(0,r)}$内にある重複度を込めて数えた$f$の極の数である．
+左辺の関数を$f$の\emph{アールフォルス・清水標数}と呼ぶ．
+\item 球面導関数$f^\#$が有界ならば、ある定数$C>0$が存在して、全ての$z\in\C$に対して$|f(z)|\le Ce^{|z|^2}$であることを示せ．特に、$f$は$\C$全体上正則である．
+\end{enumerate}
 \end{prb}
-
-
-\begin{prb}[]
-\end{prb}
-
 
 \begin{prb}[四分円上のディリクレ問題]
 領域$\Omega:=\{(x,y)\in\R^2:x^2+y^2<1,\ x>0,\ y>0\}$上に定義された調和関数$u\in C^2(\Omega,\R)$が次の境界値条件を満たすとする：
@@ -60,19 +85,19 @@
 0&\text{ if }y_0>0,\\
 1&\text{ if }y_0=0\text{ and }0<x_0<1.
 \end{cases}\]
-\begin{enumerate}[(1)]
+\begin{enumerate}[label=(\arabic*)]
 \item 反射原理を用いて$u$は領域$\tilde\Omega:=\{(x,y)\in\R^2:x^2+y^2<1,\ x>0\}$上の調和関数$\tilde u\in C^2(\tilde\Omega,\R)$に拡張されることを示せ．
-\item 実平面$\R^2$を複素平面$\C$とみなす．領域$\tilde\Omega$を上半平面$\H:=\{z\in\C:\Im z>0\}$に移し、$1,-i,0$を$1,0,-1$へ送る共形変換$\f$を求めよ．
-\item ポアソン積分と共形変換$\f$を用いて$u$を求めよ．
+\item 適切な等角変換とポアソン積分を用いて$u$を求めよ．
 \end{enumerate}
 \end{prb}
 
 
 \newpage
 
-\begin{pf}[Solution of 1]
+\begin{proof}[Solution of 1]
 
 (3)
+(a)
 Let $z_0\in\H$.
 We may assume $\Re z_0\in[-\frac12,\frac12)$.
 For $z\in\H$ satisfying $\Re z\in[-\frac12,\frac12)$, if we define $f_z:=T^{-\lfloor\Re Sz+\frac12\rfloor}S$, then $\Re f_z(z)\in[-\frac12,\frac12)$.
@@ -86,7 +111,8 @@ If $|z_n|\ge1$, then we are done, so assume $|z_n|<1$.
 Now we have three possibilities: $|z_n-1|<1$, $|z_n+1|<1$, or $\min\{|z_n-1|,|z_n+1|\}\ge1$.
 For each case, we can check that $T^{-1}Sz_n$, $TSz_n$, $Sz_n$ is contained in $D$, respectively.
 
-For injectivity, let $w=(az+b)/(cz+d)$.
+(b)
+Let $w=(az+b)/(cz+d)$.
 It suffices to show $c=0$.
 Suppose $c\ne0$.
 Let $n$ be an integer such that $|n-\frac ac|\le\frac12$.
@@ -100,9 +126,119 @@ Thus, $c=0$, and we are done.
 
 (4)
 Clear from (3).
-\end{pf}
+\end{proof}
 
-\begin{pf}[Solution of 5]
+
+\newpage
+\begin{proof}[Solution of 2]
+(1)
+Suppose $k>0$ first.
+The Cauchy integral formula writes
+\begin{align*}
+2c_kk!=\pd[k]{f}{z}(0)=\frac{k!}{2\pi i}\int_{|z|=r}\frac{f(z)}{z^{k+1}}\,dz=\frac{k!}{2\pi}\int_0^{2\pi}\frac{f(re^{i\theta})}{(re^{i\theta})^k}\,d\theta,
+\end{align*}
+and it implies
+\[2c_kr^k=\frac1{2\pi}\int_0^{2\pi}f(re^{i\theta})e^{-ik\theta}\,d\theta.\]
+Since $f(z)\,z^k$ is analytic, the Cauchy theorem can be applied to get
+\[0=\frac1{2\pi i}\int_{|z|=r}f(z)\,z^k\,dz=\frac1{2\pi}\int_0^{2\pi}f(re^{i\theta})r^ke^{ik\theta}\,d\theta,\]
+and it implies
+\[0=\frac1{2\pi}\int_0^{2\pi}\bar{f(re^{i\theta})}e^{-ik\theta}\,d\theta.\]
+By combining the above two equations, we obtain the formula.
+For $k=0$, applying the Cauchy theorem for $f$, we have
+\[c_0=f(0)=\frac1{2\pi i}\int_{|z|=r}\frac{f(z)}z\,dz=\frac1{2\pi}\int_0^{2\pi}\Re f(re^{i\theta})\,d\theta.\]
+
+Alternatively, we can show the same result using the orthogonal relation of complex exponential functions.
+An easy computation shows the identity
+\begin{align*}
+\Re f(re^{i\theta})
+&=\frac12[f(re^{i\theta})+\bar{f(re^{i\theta})}]\\
+&=\frac12\left[\left(1+\sum_{k=1}^\infty2c_k(re^{i\theta})^k\right)+\bar{\left(1+\sum_{k=1}^\infty2c_k(re^{i\theta})^k\right)}\right]\\
+&=\frac12\left[\left(1+\sum_{k=1}^\infty2c_kr^ke^{ik\theta}\right)+\left(1+\sum_{k=1}^\infty2\bar{c_k}r^ke^{-ik\theta}\right)\right]\\
+&=\sum_{k=-\infty}^\infty c_kr^{|k|}e^{ik\theta}.
+\end{align*}
+From the uniform convergence of the power series on the compact set $\{z:|z|\le(r+1)/2\}$, it follows that
+\[\frac1{2\pi}\int_0^{2\pi}\Re f(re^{i\theta})e^{-ik\theta}\,d\theta=\sum_{l=-\infty}^{\infty}c_lr^{|l|}\frac1{2\pi}\int_0^{2\pi}e^{il\theta}e^{-ik\theta}\,d\theta=\sum_{l=-\infty}^{\infty}c_lr^{|l|}\delta_{kl}=c_kr^{|k|}.\]
+
+(2)
+(b)$\Rightarrow$(a)
+Denote by $K_n$ the convex hull of the curve $\theta\mapsto(e^{-i\theta},\cdots,e^{-in\theta})\in\C^n$.
+Suppose first that $(c_1,\cdots,c_n)\in K_n$.
+For each $n$, there exists a finite sequence of pairs $(\lambda_{n,j},\theta_{n,j})_j$ having the following convex combination
+\[(c_1,\cdots,c_n)=\sum_j\lambda_{n,j}(e^{-i\theta_{n,j}},\cdots,e^{-in\theta_{n,j}})\]
+with coefficients $\lambda_{n,j}\ge0$ such that $\sum_j\lambda_{n,j}=1$.
+Define
+\[f_n(z):=\sum_j\lambda_{n,j}\frac{e^{i\theta_{n,j}}+z}{e^{i\theta_{n,j}}-z},\]
+which has positive real part on $|z|<1$ because $\Re(e^{i\theta_{n,j}}+z)/(e^{i\theta_{n,j}}-z)>0$ for $|z|<1$.
+Then,
+\begin{align*}
+f_n(z)
+&=\sum_j\lambda_{n,j}(1+\sum_{k=1}^\infty2e^{-ik\theta_{n,j}}z^k)=1+\sum_{k=1}^n2c_kz^k+\sum_{k=n+1}^\infty\left(\sum_j2\lambda_{n,j}e^{-ik\theta_{n,j}}\right)z^k
+\end{align*}
+implies
+\begin{align*}
+|f_n(z)-f(z)|
+&=\left|\sum_{k=n+1}^\infty\left(\sum_j2\lambda_{n,j}e^{-ik\theta_{n,j}}\right)z^k-\sum_{k=n+1}^\infty2c_kz^k\right|\\
+&\le\sum_{k=n+1}^\infty\left|\left(\sum_j2\lambda_{n,j}e^{-ik\theta_{n,j}}\right)-2c_k\right||z|^k\le\sum_{k=n+1}^\infty4|z|^k
+\end{align*}
+converges to zero for $|z|<1$.
+Therefore, $f$ has a non-negative real part on the open unit disk.
+The non-negativity can be strengthened to positivity by the open mapping theorem so that $f$ belongs to the Carath\'eodory class.
+
+(a)$\Rightarrow$(b)
+Conversely, suppose that $f$ is in the Carath\'eodory class.
+Let $(\gamma_1,\cdots,\gamma_n)$ be any point on the surface $\partial K_n$ of $K_n$ and $S$ any supporting hyperplane of $K_n$ tangent at $(\gamma_1,\cdots,\gamma_n)$.
+Let $(u_1,\cdots,u_n)$ be the outward unit normal vector of the supporting hyperplane $S$.
+Note that this unit normal vector is uniquely determined for the hyperplane with respect to the induced real inner product structure on the real $2n$-dimensional space $\C^n$ given by
+\[\langle(z_1,\cdots,z_n),(w_1,\cdots,w_n)\rangle=\sum_{k=1}^n(\Re z_k\Re w_k+\Im z_k\Im w_k)=\Re\sum_{k=1}^nz_k\bar w_k.\]
+Then, $\sum_{k=1}^n|u_k|^2=1$ and further that the maximum
+\[M:=\max_{(x_1,\cdots,x_n)\in K_n}\ \Re\sum_{k=1}^nx_k\bar u_k>0\]
+is attained at $(\gamma_1,\cdots,\gamma_n)$.
+Our goal is to verify the bound
+\[\Re\sum_{k=1}^nc_k\bar u_k\le M,\]
+which implies that $(c_1,\cdots,c_n)$ is contained in every half space tangent to $K_n$ so that we finally obtain $(c_1,\cdots,c_n)\in K_n$.
+
+Since for any $\theta\in[0,2\pi)$ the point $(e^{-i\theta},\cdots,e^{-in\theta})$ is in $K_n$ so that
+\[\Re\sum_{k=1}^ne^{-ik\theta}\bar u_k\le M,\]
+we have for arbitrarily small $\e>0$ that
+\[\Re\sum_{k=1}^n\frac1{r^k}e^{-ik\theta}\bar u_k\le M+\e\]
+for any $0<r<1$ sufficiently close to $1$, thus we can write
+\begin{align*}
+\Re\sum_{k=1}^nc_k\bar u_k
+&=\Re\sum_{k=1}^n\frac1{2\pi r^k}\int_0^{2\pi}\Re f(re^{i\theta})e^{-ik\theta}\bar u_k\,d\theta\\
+&=\frac1{2\pi}\int_0^{2\pi}\Re f(re^{i\theta})\Re\sum_{k=1}^n\frac1{r^k}e^{-ik\theta}\bar u_k\,d\theta\\
+&\le\frac1{2\pi}\int_0^{2\pi}\Re f(re^{i\theta})\,d\theta\cdot(M+\e)\\
+&=M+\e
+\end{align*}
+thanks to the positivity of $\Re f$, and by limiting $r\to1$ from left we get the desired bound.
+\end{proof}
+
+
+\newpage
+\begin{proof}[Solution of 3]
+(1)
+\[\frac{du\wedge dv}{\pi(1+u^2+v^2)^2}=d\left(-\frac v{2\pi(1+u^2+v^2)}\,du+\frac u{2\pi(1+u^2+v^2)}\,dv\right)\]
+\[P=-\frac{K_y}{4\pi K},\qquad Q=\frac{K_x}{4\pi K}.\]
+
+(2)
+
+(3)
+Since every Taylor coefficient of the log function is real, we have
+\[\Re\log f(z)=\frac12(\log f(z)+\log\bar{f(z)})=\log|f(z)|.\]
+Take $a\in\C$ and let $r:=2|a|$.
+By the Schwarz integral formula,
+\begin{align*}
+\log|f(a)|=\Re\log f(a)&=\frac1{2\pi}\int_0^{2\pi}\Re\frac{re^{i\theta}+a}{re^{i\theta}-a}\Re\log f(re^{i\theta})\,d\theta\\
+&\le\frac1{2\pi}\int_0^{2\pi}\left|\frac{re^{i\theta}+a}{re^{i\theta}-a}\right|\log|f(re^{i\theta})|\,d\theta\\
+&\le\frac1{2\pi}\int_0^{2\pi}3\log\sqrt{1+|f(re^{i\theta})|^2}\,d\theta\\
+&\le\int_0^rA(t,f)\frac{dt}t\lesssim\int_0^rt^2\frac{dt}t\lesssim|a|^2.\qedhere
+\end{align*}
+
+
+\end{proof}
+
+
+\newpage
+\begin{proof}[Solution of 4]
 (1)
 $(x_0,y_0)\in\partial\tilde\Omega$
 \[\lim_{(x,y)\to(x_0,y_0)}\tilde u(x,y)=\begin{cases}
@@ -127,6 +263,6 @@ U(x,y)
 \[u(x,y)=U(\Re\f(x+iy),\Im\f(x+iy)).\]
 Thus we have
 \[u(x,y)=\frac2\pi\tan^{-1}\frac{x(1-x^2-y^2)}{y(1+x^2+y^2)}.\]
-\end{pf}
+\end{proof}
 
 \end{document}

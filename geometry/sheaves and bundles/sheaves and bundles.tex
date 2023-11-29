@@ -1,0 +1,479 @@
+\documentclass{../../large}
+\usepackage{../../ikhanchoi}
+
+
+\begin{document}
+\title{Sheaves and Bundles}
+\author{Ikhan Choi}
+\maketitle
+\tableofcontents
+
+
+
+\part{Bundles}
+
+\chapter{Fiber bundles}
+
+
+\section{Principal bundles}
+
+\begin{prb}[Locally trivial bundles]
+A \emph{fiber bundle} is a map $p:E\to B$ such that $p^{-1}(b)$ is homeomorphic to $F$ for each $b\in B$, where $E,B,F$ are topological spaces called the \emph{total space}, \emph{base space}, and \emph{fiber}.
+We say a fiber bundle $\xi$ is \emph{locally trivial} if it admits an \emph{atlas} $\{\f_i\}$, a family of homeomorphisms $\f_i:p^{-1}(U_i)\to U_i\times F$ which indexed by an open cover $\{U_i\}$ of $B$ such that
+\[\begin{tikzcd}[column sep=small]
+p^{-1}(U_i) \ar[swap]{dr}{p}\ar{rr}{\f_i} & & U_i\times F \ar{dl}{\pr_1} \\
+& U_i &
+\end{tikzcd}\]
+commutes.
+In this note, we are only concerned with locally trivial bundles and every fiber bundle will be assumed to be locally trivial.
+
+A \emph{bundle map} between fiber bundles $p_1:E_1\to B_1$ and $p_2:E_2\to B_2$ is a map of pairs $(\tilde u,u):(E_1,B_1)\to(E_2,B_2)$ such that
+\[\begin{tikzcd}
+E_1 \ar[swap]{d}{p_1}\ar{r}{\tilde u} & E_2 \ar{d}{p_2} \\
+B_1 \ar{r}{u} & B_2
+\end{tikzcd}\]
+commutes.
+\begin{parts}
+\item $p$ is surjective and open.
+\end{parts}
+\end{prb}
+
+\begin{prb}[Structure groups]
+Let $F$ be a left $G$-space for a topological group $G$.
+A fiber bundle $p:E\to B$ with fiber $F$ is said to have a \emph{structure group} $G$ if it admits a \emph{$G$-atlas}, an atlas $\{\f_i\}$ that has a set $\{g_{ij}\}$ of maps $g_{ij}:U_i\cap U_j\to G$ such that the transition maps $\f_j\f_i^{-1}$ are given by
+\[\f_j\f_i^{-1}(b,f)=(b,g_{ij}(b)f),
+\qquad b\in U_i\cap U_j,\ f\in F.\]
+A \emph{$G$-bundle} with fiber $F$ is a fiber bundle $p:E\to B$ together with a \emph{$G$-structure}, a maximal $G$-atlas.
+
+A \emph{$G$-bundle map} is a bundle map $(\tilde u,u):(E_1,B_1)\to(E_2,B_2)$ between $G$-bundles such that there is a set $\{h_{ij}\}$ of maps $h_{ij}:U_{1,i}\cap u^{-1}(U_{2,j})\to G$ such that
+\[\f_{2,j}\tilde u\f_{1,i}^{-1}(b,f)=(u(b),h_{ij}(b)f),
+\qquad b\in U_{1,i}\cap u^{-1}(U_{2,j}),\ f\in F.\]
+
+
+\begin{parts}
+\item If $F$ is a locally connected locally compact Hausdorff space, then every fiber bundle with fiber $F$ has the structure group $\Homeo(F)$ with respect to the compact-open topology.
+\item A $G$-bundle map $(\tilde u,u)$ is an isomorphism if and only if $u$ is a homeomorphism.
+\item A bundle map $(\tilde u,\id_B):(E_1,B)\to(E_2,B)$ is a $G$-bundle map if and only if there is a set $\{h_i\}$ of maps $h_i:U_i\to G$ such that
+\[\f_{2,i}\tilde u\f_{1,i}^{-1}(b,f)=(b,h_i(b)f),
+\qquad b\in U_i,\ f\in F.\]
+\end{parts}
+\end{prb}
+\begin{pf}
+(a)
+
+(b)
+($\Rightarrow$)
+Clear.
+
+($\Leftarrow$)
+The total map $\tilde u$ is continuous bijection because $u$ is a bijection, so it suffices to show $\tilde u^{-1}$ is continuous.
+Fix $U_i\subset B$ and $U'_j\subset B'$.
+By substitution of $b':=u(b)$, $f':=h_{ij}(b)f$, we can write
+\[\f_i\circ\tilde u^{-1}\circ\f_{j'}'^{-1}(b',f')=(u^{-1}(b'),h_{ij'}(u^{-1}(b'))^{-1}f').\]
+Since the local trivializations, the inverse operation of $G$, and the inverse $u^{-1}$ are all continuous, $\tilde u^{-1}$ is also continuous.
+\end{pf}
+
+
+
+\begin{prb}[Fiber bundle construction theorem]
+Let $\{U_i\}_i$ be an open cover of a topological space $B$, and let $G$ be a topological group.
+Let $Z^1(\{U_i\},G)$ be the set of every \emph{\v Cech 1-cocyle} on $\{U_i\}$ with coefficients in $G$, a set $\{g_{ij}\}$ of maps $g_{ij}:U_i\cap U_j\to G$ satisfying the \emph{cocycle condition}:
+\[g_{ik}(b)=g_{jk}(b)g_{ij}(b),\qquad b\in U_i\cap U_j\cap U_k.\]
+Also let $C^0(\{U_i\},G)$ be the set of every \emph{\v Cech 0-cochain} on $\{U_i\}$ with coefficients in $G$, a collection $\{h_i\}$ of maps $h_i:U_i\to G$ of maps without any conditions.
+
+The \emph{first \v Cech cohomology} $\check H^1(\{U_i\},G)$ of $\{U_i\}$ with coefficients in $G$ is defined to be the orbit space of an action $\check C^0(\{U_i\},G)\curvearrowleft\check Z^1(\{U_i\},G)$ defined as
+\[(\{h_i\}\{g_{ij}\})_{ij}(b):=h_j(b)g_{ij}(b)h_i(b)^{-1},
+\qquad b\in U_i\cap U_j.\]
+We define the \emph{first \v Cech cohomology} of $B$ with coefficients in $G$ as the direct limit of sets
+\[\check H^1(B,G):=\lim_{\substack{\longrightarrow\\\{U_i\}}}\check H^1(\{U_i\},G).\]
+
+Let $F$ be a left $G$-space, and let $\mathrm{Bun}_F(B)$ be the set of isomorphism classes of $G$-bundles over $B$ with fiber $F$.
+\begin{parts}
+\item $\mathrm{Bun}_F(B)\to\check H^1(B,G)$ is well-defined.
+\item $\mathrm{Bun}_F(B)\to\check H^1(B,G)$ is surjective.
+\item $\mathrm{Bun}_F(B)\to\check H^1(B,G/\ker\sigma)$ is injective, where $\sigma:G\to\Homeo(F)$.
+\end{parts}
+\end{prb}
+\begin{pf}
+(a)
+Suppose $p_1:E_1\to B$ and $p_2:E_2\to B$ are isomorphic $G$-bundles with fiber $F$, and $\tilde u:E_1\to E_2$ is a $G$-bundle isomorphism.
+By considering the refinement, we can find an open cover $\{U_i\}$ of $B$ on which $E_1$ and $E_2$ are simultaneously locally trivialized.
+
+(b)
+Let $F$ be a left $G$-space and let $\{g_{ij}\}\in\check Z^1(B,G)$ that is defined on an open cover $\{U_i\}$.
+Define
+\[E:=\left(\coprod_i(U_i\times F)\right)/\sim,\]
+where $\sim$ is an equivalence relation generated by
+\[(i,b,f)\sim(j,b,g_{ij}(b)f),
+\qquad b\in U_i\cap U_j,\ f\in F.\]
+Also define $p:E\to B:[i,b,f]\mapsto b$ and $\f_i^{-1}:U_i\times F\to p^{-1}(U_i):(b,f)\mapsto[i,b,f]$, which are clearly continuous and surjective without the cocycle condition.
+
+We first claim that $\f_i^{-1}$ is injective.
+Suppose $\f_i^{-1}(b,f)=\f_i^{-1}(b',f')$.
+Since $(i,b,y)\sim(i,b',y')$, we have $b=b'$ and there is a sequence of open sets $U_{i_0},\cdots,U_{i_n}$ in $\{U_i\}$ such that $i_0=i_n=i$ and
+\[f'=g_{i_{n-1}i_n}(b)g_{i_{n-2}i_{n-1}}(b)\cdots g_{i_0i_1}(b)f.\]
+By applying the cocycle condition inductively, we obtain $f=f'$, which implies the injectivity of $\f_i^{-1}$.
+
+Next we claim that $\f_i^{-1}$ is open.
+The map $\f_i^{-1}$ factors through $\coprod_i(U_i\times F)$ such that
+\[\f_i^{-1}:U_i\times F\to\coprod_i(U_i\times F)\xrightarrow{\pi}p^{-1}(U_i).\]
+Since the canonical inclusion to disjoint union is open, it suffices to show the quotient map $\pi:\coprod_i(U_i\times F)\to E$ is open.
+Let $V\subset\coprod_i(U_i\times F)$ be open.
+Observe that
+\[\pi^{-1}\pi(V\cap(U_i\times F))\cap(U_j\times F)\]
+is open for each pair of $i$ and $j$ because it is exactly same as the inverse image of the open set $V\cap(U_i\times F)$ under the map
+\[(U_i\cap U_j)\times F\subset U_j\times F\to U_i\times F:(b,f)\mapsto(b,g_{ij}(b)f).\]
+Here we used the cocycle condition of $\{g_{ij}\}$.
+Therefore,
+\[\pi^{-1}\pi(V)=\bigcup_{i,j}\pi^{-1}\pi(V\cap(U_i\times F))\cap(U_j\times F)\]
+is open, hence the open $\pi$.
+
+The transition maps of the $G$-atlas $\{\f_i\}$ coincides with the cocycle $\{g_{ij}\}$ by the cocycle condition.
+\end{pf}
+
+
+\begin{prb}[Principal bundles]
+Let $G$ be a topological group, and $X$ be a left \emph{principal homogeneous $G$-space}, i.e. a free and transitive left $G$-space such that the shear map $G\times X\to X\times X:(g,x)\mapsto(gx,x)$ is a homeomorphism.
+
+A \emph{principal $G$-bundle} is a $G$-bundle $p:P\to B$ with fiber $X$, often together with a fiber-preserving continuous right action $\rho:P\times G\to P$ such that each chart $\f_i:p^{-1}(U_i)\to U_i\times X$ induces a principal homogeneous right action on $\{b\}\times X\subset U_i\times X$ which commutes with the left action.
+The right action $\rho$ is called the \emph{principal right action} or \emph{(global) gauge transformation}.
+Note that for each $b\in B$ the \emph{fiber} $\{b\}\times X$ has commuting left and right actions, but the \emph{fiber} $p^{-1}(b)$ can admit only the principal right action.
+
+The category of principal $G$-bundles over $B$ is denoted by $\mathbf{Prin}_G(B)$, and the morphisms are usually defined as right $G$-equivariant maps with respect to the pricipal right actions.
+Then, we may consider the forgetful functor $\mathbf{Prin}_G(B)\to\mathbf{Bun}_X(B)$.
+\begin{parts}
+\item $\mathbf{Prin}_G(B)\to\mathbf{Bun}_X(B)$ is fully faithful, i.e. a bundle map $u:P\to P'$ over $B$ is a $G$-bundle map if and only if it is a right $G$-equivariant map. 
+\item $\mathbf{Prin}_G(B)\to\mathbf{Bun}_X(B)$ is surjective, i.e. every $G$-bundle with fiber $X$ has a principal right action.
+\item A principal bundle is trivial if it has a global section.
+\end{parts}
+\end{prb}
+\begin{pf}
+(a)
+($\Rightarrow$)
+Let $u:P\to P'$ be a $G$-bundle map over $B$ so that there is a set $\{h_i:U_i\to G\}_i$ of maps such that
+\[\f_i\circ u\circ\f_i^{-1}(b,x)=(b,h_i(b)x),
+\qquad b\in U_i,\ x\in X.\]
+If we write $\rho_s:P\to P:e\mapsto \rho(e,s)$ for $s\in G$, then the induced right action $\f_i\circ\rho_s\circ\f_i^{-1}$ commutes with the left action $\f_i\circ u\circ\f_i^{-1}$ on $U_i\times X$.
+Now for every $e\in P_1$, we have
+\begin{align*}
+\rho_s\circ u(e)
+&=\f_i^{-1}\circ(\f_i\circ\rho_s\circ\f_i^{-1})\circ(\f_i\circ u\circ\f_i^{-1})\circ\f_i(e)\\
+&=\f_i^{-1}\circ(\f_i\circ u\circ\f_i^{-1})\circ(\f_i\circ\rho_s\circ\f_i^{-1})\circ\f_i(e)\\
+&=u\circ\rho_s(e),
+\end{align*}
+therefore $u$ is right $G$-equivariant.
+
+($\Leftarrow$) let $u:P\to P'$ be a right $G$-equivariant map.
+By fixing $x_0\in X$ and using the fact that the left action is free and transitive, define $g_i:U_i\to G$ such that
+\[(b,g_i(b)x_0):=\f_i\circ u\circ\f_i^{-1}(b,x_0).\]
+The function $g_i$ is continuous since it factors as
+\[b\mapsto(b,x_0)\xmapsto{\f_i\circ u\circ\f_i^{-1}}(b,g_i(b)x_0)\mapsto g_i(b)x_0\mapsto g_i(b).\]
+The continuity of the last map is due to the assumption that the map $(g,x)\mapsto(gx,x)$ is a homeomorphism.
+
+Then, for every $(b,x)\in U_i\times X$ there is a unique $s\in G$ such that
+\[\f_i\circ\rho_s\circ\f_i^{-1}(b,x_0)=(b,x),\]
+so we have
+\begin{align*}
+\f_i\circ u\circ\f_i^{-1}(b,x)
+&=(\f_i\circ u\circ\f_i^{-1})\circ(\f_i\circ\rho_s\circ\f_i^{-1})(b,x_0)\\
+&=\f_i\circ u\circ\rho_s\circ\f_i^{-1}(b,x_0)\\
+&=\f_i\circ\rho_s\circ u\circ\f_i^{-1}(b,x_0)\\
+&=(\f_i\circ\rho_s\circ\f_i^{-1})\circ(\f_i\circ u\circ\f_i^{-1})(b,x_0)\\
+&=(\f_i\circ\rho_s\circ\f_i^{-1})g_i(b)(b,x_0)\\
+&=g_i(b)(\f_i\circ\rho_s\circ\f_i^{-1})(b,x_0)\\
+&=g_i(b)(b,x)\\
+&=(b,g_i(b)x).
+\end{align*}
+Hence, $u$ is a $G$-bundle map.
+
+(b)
+Fix $x_0\in X$ and consider the homeomorphism $G\to X:g\to gx_0$.
+Define a right action
+\[X\times G\to X:(gx_0,s)\mapsto gx_0s:=gsx_0.\]
+It defines a right principal homogeneous $X$ that commutes with the left action on $X$.
+
+Define $\rho:P\times G\to P$ such that
+\[\f_i\circ\rho_s\circ\f_i^{-1}(b,x)=(b,xs).\]
+It is well defined, fiber preserving, continuous.
+also for any $b$ and any chart $\f_j$ containing $b$, the action on $\{b\}\times X$ defines a principal homogeneous as we have seen.
+Therefore, $\rho$ is a gauge tranformation.
+
+(c)
+($\Rightarrow$)
+Clear.
+
+($\Leftarrow$)
+Let $s:B\to E$ be a global section and define
+\[\tilde u:B\times X\to E:(b,gx_0)\mapsto s(b)g\]
+for any fixed $x_0\in X$.
+Then, the continuous map $(\tilde f,\id_B)$ preserves fibers and defines a right $G$-equivariant isomorphism.
+\end{pf}
+
+\begin{prb}[Quotient principal bundles]
+
+\end{prb}
+
+\begin{prb}[Reduction of structure groups]
+Let $H$ be a closed subgroup of $G$.
+Then, there is a map $\check H^1(B,H)\to\check H^1(B,G)$, which is neither in general injective nor surjective.
+If a $G$-bundle $\xi$ is contained in the image of $\check H^1(B,H)$ through the correspondence $\mathrm{Bun}_F(B)\twoheadrightarrow\check H^1(B,G)$, then we may give a $H$-bundle structure on $\xi$.
+
+A \emph{reduction} of $G$ to $H$ is a $H$-structure on a principal $G$-bundle.
+\end{prb}
+
+\section{Classifying spaces}
+
+Let $G$ be a topological group.
+Let $\mathrm{Prin}_G(B)$ be the set of isomorphism classes of principal $G$-bundles over a topological $B$.
+Then, we have a contravariant functor
+\[\mathrm{Prin}_G:\mathbf{Top}^{\mathrm{op}}\to\mathbf{Set}.\]
+On paracompact spaces:
+\begin{enumerate}
+\item The functor $\mathrm{Prin}_G$ is homotopy invariant.
+\item The functor $\mathrm{Prin}_G$ is representable.
+\item The universal elements can be computed using contractibility.
+\end{enumerate}
+
+\begin{prb}[Homotopy properteis]
+Let $p:E\to B$ be a vector bundle
+\begin{parts}
+\item If $p:E\to B\times[0,\frac12]$ and $p':E'\to B\times[\frac12,1]$ are trivial, then 
+\item If $f,g:B'\to B$ are homotopic, then $f^*\xi\cong g^*\xi$.
+\end{parts}
+\end{prb}
+
+
+
+\section{Vector bundles}
+subbundles, quotient bundles, bundle maps,
+constant rank, then ker, im, coker bundles are locally trivial so that they are vector bundles.
+pullback: vector bundle structure
+
+vector fields(trivial subbundles), parallelizable
+bundle operations: sum, tensor, dual, hom, exterior
+
+reduction and metrics
+
+\begin{prb}[Vector bundles]
+Let $p:E\to B$ and $p:E'\to B$ be vector bundles.
+\begin{parts}
+\item A vector bundle map $u$ over $B$ is a vector bundle isomorphism if and only if it is a fiberwise linear isomorphism.
+\end{parts}
+\end{prb}
+
+
+
+Let $1\le n\le\infty$.
+If $f,g:B\to G_k(\F^n)$ such that $f^*(\gamma_{k^n})\cong g^*(\gamma_{k^n})$, then $jf\simeq jg$, where $j:G_k(\F^n)\to G_k(\F^{2n})$ is the natural inclusion.
+
+
+\begin{prb}
+Riemannian and Hermitian metrics
+spin structures
+\end{prb}
+
+
+
+
+\section*{Exercises}
+
+\begin{prb}
+Let $G$ be a topological group, and $X$ be a free right $G$-space.
+\begin{parts}
+\item If the action is proper and the projection $X\to X/G$ admits local sections, then $X\to X/G$ is a principal $G$-bundle.
+\end{parts}
+\end{prb}
+
+\begin{prb}[Clutching functions]
+	
+\end{prb}
+
+\begin{prb}
+Suppose $F\to E\to B$ is a principal 
+\begin{parts}
+\item If $X$ is contractible, then $X\to$
+\end{parts}
+\end{prb}
+
+\begin{prb}[Group quotients]
+Sufficient conditions for principal bundles.
+Let $G$ be a Lie group and, $X$ be a free right smooth $G$-manifold.
+\begin{parts}
+\item If $G$ is compact, then $X\to X/G$ is a principal $G$-bundle. (Gleason)
+\item The irrational slope provides a counterexample if $G$ is not compact.
+\item Suppose $X$ is a Lie group.
+If $G$ is a closed subgroup of $X$, then $X/\to X/G$ is a principal $G$-bundle. (Samelson) In particular, if $M$ is a transitive left smooth $X$-manifold such that $G$ is the isotropy group, then $X\to M$ is a principal $G$-bundle.
+\end{parts}
+\end{prb}
+
+\begin{prb}[Homogeneous spaces]
+They are all principal bundles.
+\begin{alignat*}{2}
+\rO(n-k)\to\rO(n)\to V_k(\R^n),&&\qquad\qquad\qquad\rU(n-k)\to\rU(n)\to V_k(\C^n),&\\
+\rO(n-k)\times\rO(k)\to\rO(n)\to G_k(\R^n),&&\rU(n-k)\times\rU(k)\to\rU(n)\to G_k(\C^n),&\\
+T(n)\cap\rO(n)\to\rO(n)\to F(\R^n),&&T(n)\cap\rU(n)\to\rU(n)\to F(\C^n),&\\
+&&T(n)\to\GL(n,\C)\to F(\C^n),&
+\end{alignat*}
+where $T(n)$ is the group of invertible upper triangular matrices.
+\[\SO(n)\to\SO^+(1,n)\to\H^n,\qquad\PSO(2)\to\PSL(2,\R)\to\H^2,\qquad ??\to\PSL(2,\C)\to\H^3,\]
+where $\PSL(2,\R)\cong\SO(1,2)^+$ is the modular group and $\PSL(2,\C)\cong\SO(1,3)^+$ is the restricted Lorentz group, also called the M\"obius group.
+\end{prb}
+
+\begin{prb}[Hopf fibration]
+A principal $S^1$-bundle $S^1\to S^3\to S^2$, where we see $S^1$ as the circle group.
+The Hopf fibrations are used in describing universal principal bundles off orthogonal or unitary groups.
+We have principal bundles:
+\begin{parts}
+\item The quaternionic construction gives $S^3\to S^7\to S^4$ and the octonianic construction gives $S^7\to S^{15}\to S^8$. Adams' theorem.
+\item $\rO(k)\to V_k(\R^n)\to G_k(\R^n)$. In particular, $\Z/2\Z\to S^n\to\RP^n$ for $k=1$.
+\item $\rU(k)\to V_k(\C^n)\to G_k(\C^n)$. In particular, $S^1\to S^{2n+1}\to\CP^n$ for $k=1$.
+\end{parts}
+\end{prb}
+
+
+Hopf fibration(real, complex, quaternionic, but not octonianic)
+
+In the category of smooth manifolds, if $f$ diffeomorphic, then $\tilde f$ diffeomorphic.
+
+
+\begin{prb}[Associated bundles]
+
+\[\mathrm{Prin}_G(B)\xrightarrow{\sim}\mathrm{Bun}_X(B)\xrightarrow{\sim}\check H^1(B,G)\hookrightarrow\mathrm{Bun}_F(B)\]
+can be given in a more simple way.
+
+\end{prb}
+
+
+
+\part{Sheaves}
+
+\chapter{General sheaf theory}
+
+
+\begin{prb}[\'Etale bundles]
+Let $X$ be a topological space.
+An \emph{\'etale bundle} over a $X$ is a local homeomorphism $p:E\to X$, where $E$ is a topological space.
+An \'etale bundle over $X$ is also often called a \emph{sheaf} on $X$, but we let this term be reserved for a different but equivalent notion to the \'etale bundles, which will be introduced later.
+\'Etale bundles over $X$ form a category, with morphisms defined as continuous maps $\f:E_1\to E_2$ satisfying $p_1=\f p_2$ for two sheaves $p_i:E_i\to X$ with $i\in\{1,2\}$.
+
+germs and stalks, section, basis of \'etale space
+\begin{parts}
+\item A subset $F\subset E$ is defines a subsheaf if and only if $F$ is open in $E$.
+\item A covering space is nothing but a locally constant sheaf of sets.
+\item
+\end{parts}
+\end{prb}
+\begin{pf}
+
+\end{pf}
+
+
+
+
+\begin{prb}[Presheaves]
+Let $X$ be a topological space.
+A \emph{presheaf} (of sets) on $X$ is a contravariant functor $\cF$ from the category of open sets of $X$ with inclusions as its morphisms to the category of sets.
+Presheaves on $X$ form a category with natural transformations as its morphisms.
+
+We construct a functor from the category of presheaves on $X$ to the category of \'etale bundles over $X$, sometimes called the \emph{\'etale space construction} or the \emph{sheafification}.
+For a presheaf $\cF$ on $X$, define
+\[\cF_x:=\lim_{\substack{\longrightarrow\\U\ni x}}\cF(U),\quad U\text{ open in }X,\qquad E(\cF):=\bigsqcup_{x\in X}\cF_x\]
+and let $p:E(\cF)\to X$ be such that $p(e):=x$ for $e\in\cF_x$.
+The set $\cF_x$ and its element are called the \emph{stalk} and a \emph{germ} at $x$ respectively, and the set $E(\cF)$ is called the \emph{\'etale space} of $\cF$.
+\begin{parts}
+\item There exists a unique natural topology on $E(\cF)$ such that $p:E\to X$ is a local homeomorphism.
+\item There exists a unique natural function $\cF(U)\to\Gamma(U,E(\cF))$ such that .. for open subsets $U\subset X$.
+\end{parts}
+\end{prb}
+\begin{pf}
+(a)
+We endow a topology on $E$ generated by a base $\{s(U):s\in\cF(U),\ U\text{ open}\}$.
+
+(b)
+For $x\in U$ and $s\in\cF(U)$, we define $s_x\in p^{-1}(x)$ by the image of $\cF(U)\to\cF_x$ at $s$, and it defines a morphism of presheaves $\cF\to\Gamma(E(\cF))$.
+\end{pf}
+
+
+
+\begin{prb}[Sheaves]
+Let $X$ be a topological space.
+A \emph{sheaf} (of sets) on $X$ is a presheaf on $X$ that satisfies the following two conditions:
+\begin{enumerate}[(i)]
+\item \hfill(Locality)
+\item \hfill(Gluing)
+\end{enumerate}
+The category of sheaves on $X$ is defined to be the full subcategory of the category of presheaves on $X$.
+\begin{parts}
+\item For an \'etale bundle $p:E\to X$ over $X$, the functor $\cF:U\mapsto\Gamma(U,E)$ defines a sheaf on $X$.
+\item The \'etale space construction defines an equivalence of the category of sheaves on $X$ and the category of \'etale bundles over $X$.
+\end{parts}
+\end{prb}
+
+\begin{prb}[Morphism of sheaves]
+epic and monic.
+The description for $\cF(U)$ and the description for $\cF_x$.
+\end{prb}
+
+
+\begin{prb}[Operations on sheaves]
+inverse image functor(restriction, pullback)
+direct image functor(pushforward)
+Whitney sum, constant sheaf, subsheaf
+
+\'etale space descriptions
+\begin{parts}
+\item
+\end{parts}
+\end{prb}
+
+
+\begin{prb}[Sheaves of rings]
+Let $X$ be a topological space.
+
+A \emph{ringed space} is a pair $(X,\cO_X)$ of a topological space $X$ and a sheaf $\cO_X$ of rings on $X$.
+
+\end{prb}
+
+\begin{prb}[Sheaves of module]
+Let $X$ be a topological space.
+
+A sheaf $\cF_X$ of $\cO_X$-modules is called \emph{locally finite} or \emph{finite type} if there is an open cover $\{U_i\}$ of $X$ together with surjective ring homomorphisms $\cO_X(U_i)\twoheadrightarrow\cF_X(U_i)$ for all $i$.
+The section space $\Gamma(U,\cO_X)$ will be also denoted by $\cO_X(U)$.
+\begin{parts}
+\item The category of sheaves of modules over $\cO_X$ is abelian.
+\end{parts}
+\end{prb}
+
+
+
+\begin{prb}[Coherent sheaves]
+Let $(X,\cO_X)$ be a ringed space.
+Consider a quasi-coherent sheaf with an exact sequence of $\cO_X$-modules
+\[\cO_U^q\to\cO_U^p\to\cF_U\to0.\]
+The \emph{generating system} is the basis of $\cO_X^p$, and the \emph{relation sheaf} is the kernel of $\cO_X^p\to\cF_X$.
+We say $\cF_X$ is \emph{coherent} if $\cF_X$ is of finite type and the relation sheaf is also of finite type.
+\begin{parts}
+\item If $\cO_X$ is itself a coherent module, then every locally finitely presented $\cO_X$-module is coherent.
+\end{parts}
+\end{prb}
+
+
+
+\begin{prb}[Yoga of coherent sheaves]\,
+\begin{parts}
+\item extension principle?
+\item If a ring $\cO$ has a split epi $\cO\to\cO'$ to a coherent $\cO'$, then $\cO$ is coherent.
+\end{parts}
+\end{prb}
+\begin{pf}
+Consider the following diagram in which every row is exact and $K$, $K_1$, $K_2$ are kernels:
+\[\begin{tikzcd}[sep=small]
+K \rar & \cO^p \rar\dar[equals] & \cO \rar\dar[two heads] & 0\\
+K_1 \rar & \cO^p \rar\dar[two heads] & \cO' \rar\dar[equals]\uar[hookrightarrow,bend right] & 0\\
+K_2 \rar & \cO'^p \rar & \cO' \rar & 0.
+\end{tikzcd}\]
+Then, $K_2$ is finitely generated by the coherence of $\cO'$, $K_1$ is finitely generated by the Schanuel lemma, and $K$ is finitely generated by the snake lemma.
+\end{pf}
+
+
+\end{document}

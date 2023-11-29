@@ -563,6 +563,23 @@ A Banach space $X$ is said to have the \emph{Dunford-Pettis property} if all wea
 \end{prb}
 
 
+\begin{prb}\,
+\begin{parts}
+\item (Mazur-Ulam, 1932) A surjective isometry $T:X\to Y$ between normed spaces is affine.
+\item (Mankiewicz, 1972) Let $U,V$ be open sets in $X,Y$, normed spaces. A surjective isometry $U\to V$ is uniquely extended to a surjective isometry $X\to Y$.
+\item (Mori) A surjective local isometry $T:X\to Y$ between Banach spaces is an isometry, if $X$ is separable. (Use the Baire category)
+\end{parts}
+\end{prb}
+\begin{sol}
+(a)
+$T$ is continuous.
+It is easy to see for continuous map $T$ that it is affine if and only if $T$ preserves the midpoint.
+For $x_1\ne x_2\in X$ let $x_0$ be the midpoint.
+Define inductively
+\[C_1:=\{x\in X:\|x-x_1\|=\|x-x_2\|=\frac12\|x_1-x_2\|\},\qquad C_k:=\{x\in C_{k-1}:\sup_{x'\in C_{k-1}}\|x-x'\|\le\frac12\diam C_{k-1}\}.\]
+Since $x_0\in C_{k-1}$ and $x'\in C_{k-1}$ imply $x_0\in C_k$ by $\|x_0-x'\|=\frac12\|(2x_0-x')-x'\|\le\frac12\diam C_{k-1}$, and since $\diam C_k\le\frac12\diam C_{k-1}$, we have $\{x_0\}=\bigcup_{k=1}^\infty C_k$.
+It follows that the midpoint can be detected from the metric structure of $X$, not depending on the linear structure of $X$.
+\end{sol}
 
 
 \section*{Problems}
