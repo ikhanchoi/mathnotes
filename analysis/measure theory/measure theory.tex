@@ -226,7 +226,20 @@ Cantor set
 \end{prb}
 
 \begin{prb}[Distribution functions]
+\begin{parts}
+\item Let $a<b\in\R_{\pm\infty}$. There is one-to-one correspondence between right continuous non-decreasing functions $F:[a,b]\to\R$ such that $F(a)=0$, $F(b)=1$, and the probability Borel measures on $[a,b]$.
+\item 
+\end{parts}
 \end{prb}
+\begin{pf}
+We may assume $a>-\infty$
+Suppose $(a,b]\subset\bigcup_{i=1}^\infty(a_i,b_i]$.
+Using the right-continuity of $F$, for arbitrary $\e>0$, take $\e_i$ such that $F(bi+\e_i)-F(b_i)<\e2^{-i}$ for each $i$.
+Then, by the Heine-Borel, there is $n$ such that $[a+\e,b]\subset\bigcup_{i=1}^n(a_i,b_i+\e_i)$, and we have
+\[F(b)-F(a+\e)\le\sum_{i=1}^n(F(b_i+\e_i)-F(a_i)).\]
+By limiting $\e\to0$, we have what we desired.
+
+\end{pf}
 
 \begin{prb}[Helly selection theorem]
 \end{prb}

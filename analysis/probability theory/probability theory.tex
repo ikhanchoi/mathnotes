@@ -8,6 +8,7 @@
 \newcommand{\Geo}{\mathrm{Geo}}
 \newcommand{\Exp}{\mathrm{Exp}}
 \newcommand{\Pois}{\mathrm{Pois}}
+\newcommand{\cadlag}{c\`adl\`ag }
 
 
 
@@ -688,6 +689,7 @@ Poisson convergence, law of rare events, or weak law of small numbers (a single 
 \chapter{Discrete stochastic processes}
 
 \section{Martingales}
+In this chapter we do not use the countability of the index set $\N$.
 
 \begin{prb}
 \begin{parts}
@@ -759,9 +761,37 @@ We say a set of random variables $\{X_i\}$ is \emph{uniformly integrable} if
 
 
 \begin{prb}[Optional stopping theorem]
-If $H_n:=\1_{n\le\tau}$, then $(H\cdot X)_n=X_{n\wedge\tau}$.
+For a process $X$, the process \emph{stopped at} a random time $\tau$ is the process $X^\tau$ defined by $X^\tau_n:=X_{t\wedge\tau}$.
+If $H_n:=\1_{n\le\tau}$, then $(H\cdot X)_n=X_{n\wedge\tau}$, so $X^\tau$ is a martingale if $X$ is martingale.
 Wald equations
 \end{prb}
+
+\begin{prb}[Stopping time $\sigma$-algebra]***
+Let $\tau$ be a stopping time, that is, $\{\tau\le t\}\in\cF_t$.
+\[\cF_\tau:=\{A\in\cF:A\cap\{\tau\le t\}\in\cF_t\ \forall t\}.\]
+\begin{parts}
+\item $\cF_{\sigma\wedge\tau}=\cF_\sigma\cap\cF_\tau$.
+\item D\'ebut theorem: for a \cadlag process $X$, the hitting time of a Borel set is a stopping time.
+\item If $X$ is a uniformly integrable martingale and $\tau$ is a stopping time, then so is the $X^\tau$.
+\end{parts}
+\end{prb}
+\begin{pf}
+Since $\tau:\{\tau\le t\}\to\R_{\ge0}$ is measurable with respect to $\cF_t$, for all $x\in\R$ we have $\{X_\tau\le x\}\in\cF_\tau$.
+
+(b)
+Difficult.
+
+(c)
+By the optional stopping, we have $X^\tau_t=E(X_\tau|\cF_{t\wedge\tau})$, and in fact since $X_\tau1_{\{\tau\le t\}}$ is $\cF_t$-measurable, we further have
+\begin{align*}
+X^\tau_t&=E(X_\tau1_{\{\tau\le t\}}+X_\tau1_{\{\tau>t\}}|\cF_{t\wedge\tau})\\
+&=X_\tau1_{\{\tau\le t\}}+E(X_\tau|\cF_{t\wedge\tau})1_{\{\tau>t\}}\\
+&=X_\tau1_{\{\tau\le t\}}+E(X_\tau|\cF_t)1_{\{\tau>t\}}\\
+&=E(X_\tau1_{\{\tau\le t\}}+X_\tau1_{\{\tau>t\}}|\cF_t)\\
+&=E(X_\tau|\cF_t).
+\end{align*}
+So we are done.
+\end{pf}
 
 
 
@@ -784,17 +814,62 @@ Ornstein-Uhlenbeck
 
 \chapter{Continuous stochastic processes}
 
-\section{Brownian motion}
+\section{}
+Kolmogorov extension
+Poisson process, Wiener process, L\'evy process, Feller process, Markov process
 
-continuous martingales
-construction
+Meyer's section theorems.
 
-continuous version of doob inequality, optional stopping
+
+\section{Semi-martingales}
+
+\begin{prb}[Filtrated proability space]
+Let $(\Omega,(\cF_t),P)$ be a filtrated probability space with the usual condition.
+We say a process $X$ is \emph{adapted} if $X_t\in\cF_t$ for all $t$.
+A $\R_{\ge0}$-valued random variable $\tau$ is called a \emph{stopping time} if $\{\tau\le t\}\in\cF_t$ for all $t$.
+\end{prb}
+
+
+\begin{prb}[C\`adl\`ag modifications]
+Two processes $X$ and $Y$ are called \emph{modifications} of each other if $X_t=Y_t$ a.s.~for each $t$, and \emph{indistinguishable} if $\sup_t|X_t-Y_t|=0$ a.s.
+
+jump process $\Delta X$ defined such that $\Delta X_t:=X_t-X_{t-}$.
+\begin{parts}
+\item If $X$ and $Y$ are right continuous, then they are indistinguishable if and only if they are modifications.
+\item For a submartingale $X$, $X$ has a \cadlag modification if and only if the non-decreasing function $t\mapsto EX_t$ is right continuous. The modification is unique. In particular, we can always assume a martingale is \cadlag because we assume the usual condition.
+\end{parts}
+\end{prb}
+
+doob inequality and optional stopping
+
+
+\begin{prb}[Local martingales]
+A process $X$ is called a \emph{local martingale} if there is a sequence of stopping times $\tau_n$ such that $\tau_n\to\infty$ a.s.~and $X^{\tau_n}$ is a uniformly integrable martingale for each $n$.
+When is a local martingale actually a martingale?
+Kazamaki-Novikov criteria.
+\end{prb}
+"P. A. Meyer (1973) showed that there are no local martingales in discrete time; they are a continuous time phenomenon."
+
+\begin{prb}[Semi-martingales]
+\end{prb}
+
+
+
+
+\begin{prb}[Doob-Meyer decomposition]
+\end{prb}
+
+Girsanov theorem
+
+
+
 
 \section{Wiener spaces}
 Cameron-Martin
 centered Gaussian law
-Ornstein-Uhlenbeck
+Ornstein-Uhlenbeck process
+radonifying
+martingale representation theorem, malliavin calculus
 
 
 
@@ -802,9 +877,19 @@ Ornstein-Uhlenbeck
 \part{Stochastic analysis}
 
 \chapter{Stochastic integral}
+\section{It\^o integral}
+Stieltjes integral for locally bounded variation processes
+square integrable martingale integral (by simple processes)
+local martingale integral
+Kunita-Watanabe inequality
+Ito formula and semi-martingale
 
-square integrable martingale
-Doob-Meyer decomposition
+\section{Stratonovich integral}
+
+
+\chapter{Stochastic differential equations}
+\chapter{}
+
 
 
 \part{Stochastic models}
