@@ -274,10 +274,13 @@
 \newcommand{\mat}[2][p]{%
   \begin{#1matrix}#2\end{#1matrix}
 } % option: b,B,v,V,small
-\newcommand\1{\mathbf{1}} % characteristic function
+\newcommand{\tab}[2][c]{
+  \begin{tabular}{#1}#2\end{tabular}
+}
 
 \newcommand\tint{{\textstyle\int}}
 \newcommand\loc{\mathrm{loc}}
+\newcommand\op{\mathrm{op}}
 
 \newcommand\ccol[2]{\omit${}#1\hfill#2\hfill$}
 

@@ -26,7 +26,7 @@
 
 \begin{document}
 
-\title{複素解析学I演習2023年}
+\title{複素解析学I演習2023年（チョイ）}
 \date{}
 \maketitle
 
@@ -41,7 +41,7 @@
 \item 集合$D$は$\PSL(2,\Z)$の\emph{基本領域}であることを示せ．つまり、次の二つが成り立つことを示せ：
 \begin{enumerate}[label=(\alph*)]
 \item 任意の点$z\in\H$に対して$f(z)\in\bar D$を満たす$f\in\PSL(2,\Z)$が少なくとも一つ存在する．
-\item 任意の点$z\in\H$に対して$f(z)\in D$を満たす$f\in\PSL(2,\Z)$が多くとも一つ存在する．
+\item 任意の点$z\in\H$に対して$f(z)\in D$を満たす$f\in\PSL(2,\Z)$が多くとも一つしか存在しない．
 \end{enumerate}
 \item $\PSL(2,\Z)$は$\H$に\emph{真性不連続に作用}することを示せ．つまり、任意の点$z\in\H$に対して軌道$\{f(z):f\in\PSL(2,\Z)\}$が離散集合であることを示せ．
 \end{enumerate}
@@ -89,7 +89,7 @@
 0&\text{ if }y_0=0\text{ and }0<x_0<1.
 \end{cases}\]
 \begin{enumerate}[label=(\arabic*)]
-\item 反射原理を用いて$v$は領域$\tilde\Omega:=\{(x,y)\in\R^2:x^2+y^2<1,\ x>0\}$上の調和関数$\tilde v\in C^2(\tilde\Omega,\R)$に拡張されることを示せ．
+\item シュワルツの鏡像の原理を用いて$v$は領域$\tilde\Omega:=\{(x,y)\in\R^2:x^2+y^2<1,\ x>0\}$上の調和関数$\tilde v\in C^2(\tilde\Omega,\R)$に拡張されることを示せ．
 \item 適切な等角変換とポアソン積分を用いて$v$を求めよ．
 \end{enumerate}
 \end{prb}
@@ -103,7 +103,7 @@ Let $f(z)=(az+b)/(cz+d)$ with $a,b,c,d\in\R$ such that $ad-bd=1$.
 Since it has the inverse transform $z\mapsto(dz-b)/(-cz+a)$ that is also an element of $\PSL(2,\R)$, it is enough to show the well-definedness $f(z)\in\H$ for $z\in\H$.
 Let $z=x+iy\in\H$ with $y>0$.
 Then,
-\[\Im f(z)=\Im\frac{ax+b+iay}{cx+d+icy}=\frac{ay(cx+d)-(ax+b)cy}{(cx+d)^2+(cy)^2}\frac y{(cx+d)^2+(cy)^2}>0,\]
+\[\Im f(z)=\Im\frac{ax+b+iay}{cx+d+icy}=\frac{ay(cx+d)-(ax+b)cy}{(cx+d)^2+(cy)^2}=\frac y{(cx+d)^2+(cy)^2}>0,\]
 so $f(z)\in\H$.
 
 (2)
@@ -149,13 +149,12 @@ Thus, $c=0$, and we are done.
 Suppose the orbit $\{f(z):f\in\PSL(2,\Z)\}$ is not discrete.
 Then, there is $z_0\in\H$ and a sequence $f_n\in\PSL(2,\Z)$ such that $f_n(z)\ne z_0$ for all $n$ and $f_n(z)\to z_0$ as $n\to\infty$.
 We may assume $z,z_0\in\bar D$ by the part (a) of (3).
-Note that there are only finitely many $f\in\PSL(2,\Z)$ such that $f(\bar D)\cap\bar D\ne\varnothing$.
-Let $P$ be the set of such $f$.
-
-
-If $z_0\in D$, then $f_n(z)$ eventually belongs to $D$, which is impossible by the part (b) of (3).
-If $z_0\in$
-
+Consider
+\[P:=\{I,T,TS,ST^{-1}S=TST,ST^{-1},S,ST,STS=T^{-1}ST^{-1},T^{-1}S,T^{-1}\}\subset\PSL(2,\Z).\]
+Then, we can check that $\bigcup_{f\in P}f(\bar D)$ contains an open neighborhood $U$ of $\bar D$.
+For every $n$ that is large enough, from $f_n(\bar D)\cap U\ne\varnothing$, it follows that $f_n(D)$ intersects $U\subset\bigcup_{f\in P}f(\bar D)$, that is, there is $f_0\in P$ such that $f_n(D)\cap f_0(\bar D)\ne\varnothing$, and easily $f_n(D)\cap f_0(D)\ne\varnothing$, because $f(D)$ is open and $f(\bar D)$ is closed for any $f\in\PSL(2,\Z)$.
+By the part (b) of (3), we can conclude that $f_n$ belongs eventually to $P$ as $n\to\infty$.
+Since $P$ is a finite set, $f_n(z)$ cannot converge to $z_0$ unless $f_n(z)=z_0$ for sufficiently large $n$, therefore the orbit is discrete.
 \end{proof}
 
 \begin{proof}[Remark]
@@ -171,7 +170,7 @@ It states that if there is a polygon in $\H$ satisfying two conditions called a 
 Suppose $k>0$ first.
 The Cauchy integral formula writes
 \begin{align*}
-2c_kk!=\pd[k]{f}{z}(0)=\frac{k!}{2\pi i}\int_{|z|=r}\frac{f(z)}{z^{k+1}}\,dz=\frac{k!}{2\pi}\int_0^{2\pi}\frac{f(re^{i\theta})}{(re^{i\theta})^k}\,d\theta,
+2c_kk!=\frac{\partial^kf}{\partial z^k}(0)=\frac{k!}{2\pi i}\int_{|z|=r}\frac{f(z)}{z^{k+1}}\,dz=\frac{k!}{2\pi}\int_0^{2\pi}\frac{f(re^{i\theta})}{(re^{i\theta})^k}\,d\theta,
 \end{align*}
 and it implies
 \[2c_kr^k=\frac1{2\pi}\int_0^{2\pi}f(re^{i\theta})e^{-ik\theta}\,d\theta.\]
@@ -253,14 +252,57 @@ thanks to the part (1) and the positivity of $\Re f$, and by limiting $r\to1$ fr
 \newpage
 \begin{proof}[Solution of 3]
 (1)
-\[\frac{du\wedge dv}{\pi(1+u^2+v^2)^2}=d\left(-\frac v{2\pi(1+u^2+v^2)}\,du+\frac u{2\pi(1+u^2+v^2)}\,dv\right)\]
-
-
+Write $f=u+iv$ for real-valued $u$ and $v$.
+Since
+\[d\left(P\,dx+Q\,dy\right)=\left[\frac{\partial Q}{\partial x}-\frac{\partial P}{\partial y}\right]\,dx\wedge dy=\frac1\pi f^{\#2}\,dx\wedge dy,\]
+and since
+\begin{align*}
+\frac1\pi f^{\#2}\,dx\wedge dy&=\frac{u_xv_y-u_yv_x}{\pi(1+u^2+v^2)^2}\,dx\wedge dy=\frac{du\wedge dv}{\pi(1+u^2+v^2)^2}\\
+&=d\left(-\frac v{2\pi(1+u^2+v^2)}\,du+\frac u{2\pi(1+u^2+v^2)}\,dv\right)\\
+&=d\left(-\frac v{2\pi(1+u^2+v^2)}(u_x\,dx+u_y\,dy)+\frac u{2\pi(1+u^2+v^2)}(v_x\,dx+v_y\,dy)\right)\\
+&=d\left(-\frac{vu_x-uv_x}{2\pi(1+u^2+v^2)}\,dx+\frac{uv_y-vu_y}{2\pi(1+u^2+v^2)}\,dy\right)\\
+&=d\left(-\frac{uu_y+vv_y}{2\pi(1+u^2+v^2)}\,dx+\frac{uu_x+vv_x}{2\pi(1+u^2+v^2)}\,dy\right),
+\end{align*}
+we can check the following satisfy the equation of the problem:
 \[P=-\frac{K_y}{4\pi K},\qquad Q=\frac{K_x}{4\pi K}.\]
+
 
 (2)
 Since the equation holds for $r=0$, it suffices to show the differentiated equation
-\[A(r,f)=n(r,f)+\frac r{2\pi}\frac d{dr}\int_0^{2\pi}\log\sqrt{1+|f(re^{i\theta})|^2}\,d\theta,\qquad r\ge0.\]
+\[A(r,f)=n(r,f)+\frac r{2\pi}\frac d{dr}\int_0^{2\pi}\log\sqrt{K(r,\theta)}\,d\theta\]
+for almost every $r>0$, where $K(r,\theta)=1+|f(re^{i\theta})|^2$.
+In particular, we will prove this equation for every $r$ such that $f$ does not have a pole $a$ with $|a|=r$.
+Fix such $r$ and let $\{a_i\}_{i=1}^n$ be poles of $f$ in the region $|z|<r$ with multiplicities $m_i$ for each $a_i$.
+Since
+\begin{align*}
+P\,dx+Q\,dy&=\frac1{2\pi}\frac{-K_y\,dx+K_x\,dy}{2K}=\frac1{2\pi i}\frac{-iK_y\,dx+K_x\,idy}{2K}\\
+&=\frac1{2\pi i}\frac{(K_x-iK_y)(dx+idy)}{2K}-\frac1{2\pi i}\frac{K_x\,dx+K_y\,dy}{2K}\\
+&=\frac1{2\pi i}\frac{uu_x+vv_x-iuu_y-ivv_y}{1+u^2+v^2}\,dz-\frac1{2\pi i}\frac{dK}{2K}\\
+&=\frac1{2\pi i}\frac{(u_x+iv_x)(u-iv)}{1+u^2+v^2}\,dz-\frac1{2\pi i}\frac{d\log K}2\\
+&=\frac1{2\pi i}\frac{f'(z)}{f(z)}\frac{|f(z)|^2}{1+|f(z)|^2}\,dz-\frac1{2\pi i}\frac{d\log K}2,
+\end{align*}
+we have
+\begin{align*}
+\frac r{2\pi}\frac d{dr}\int_0^{2\pi}\log\sqrt{K(r,\theta)}\,d\theta
+&=\frac r{2\pi}\int_0^{2\pi}\frac{K_r}{2K}\,d\theta=\frac r{2\pi}\int_0^{2\pi}\frac{uu_r+vv_r}{K}\,d\theta\\
+&=\frac r{2\pi}\int_0^{2\pi}\frac{u(\cos\theta u_x+\sin\theta u_y)+v(\cos\theta v_x+\sin\theta v_y)}{K}\,d\theta\\
+&=\frac r{2\pi}\int_0^{2\pi}\frac{\Re[(\cos\theta+i\sin\theta)(u_x+iv_x)(u-iv)]}{K}\,d\theta\\
+&=\Re\frac1{2\pi i}\int_0^{2\pi}\frac{rie^\theta f'\bar f}{1+|f|^2}\,d\theta=\Re\frac1{2\pi i}\int_{|z|=r}\frac{f'\bar f}{1+|f|^2}\,dz\\
+&=\Re\int_{|z|=r}(P\,dx+Q\,dy),
+\end{align*}
+and by the argument principle and $|f(z)|\to\infty$ near the pole $z\to a_i$,
+\begin{align*}
+\int_{|z-a_i|=\e}(P\,dx+Q\,dy)&=\frac1{2\pi i}\int_{|z-a_i|=\e}\frac{f'(z)}{f(z)}\frac{|f(z)|^2}{1+|f(z)|^2}\,dz\\
+&=-m_i-\frac1{2\pi i}\int_{|z-a_i|=\e}\frac{f'(z)}{f(z)}\frac1{1+|f(z)|^2}\,dz\to-m_i
+\end{align*}
+as $\e\to0$.
+Then, the Green theorem is applied to have
+\begin{align*}
+A(r,f)&=\lim_{\e\to0}\frac1\pi\int_{|z|\le r,\ \min_i|z-a_i|\ge\e}f^\#(x+iy)^2\,dx\,dy\\
+&=\int_{|z|=r}(P\,dx+Q\,dy)-\lim_{\e\to0}\sum_{i=1}^n\int_{|z-a_i|=\e}(P\,dx+Q\,dy)\\
+&=\frac r{2\pi}\frac d{dr}\int_0^{2\pi}\log\sqrt{K(r,\theta)}\,d\theta+i\Im\int_{|z|=r}(P\,dx+Q\,dy)+\sum_{i=1}^nm_i.
+\end{align*}
+Because $\sum_{i=1}^nm_i=n(r,f)$ by definition, and seeing the real part, we obtain the desired equation.
 
 (3)
 Since every Taylor coefficient of the logarithm is real, we have

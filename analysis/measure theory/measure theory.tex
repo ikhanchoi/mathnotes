@@ -289,7 +289,7 @@ A set function satisfying the above conditions are occasionally called a \emph{p
 A collection $\cC\subset\cP(X)$ is called a \emph{monotone class} if it is closed under countable increasing unions and countable decreasing intersections.
 
 Let $H$ be a vector space closed under bounded monotone convergence.
-If $\spn\{\1_A:A\in\cA\}\subset H$ then $B^\infty(\sigma(\cA))\subset H$.
+If $\spn\{1_A:A\in\cA\}\subset H$ then $B^\infty(\sigma(\cA))\subset H$.
 \end{prb}
 
 
@@ -865,7 +865,7 @@ Let $\e>0$ and suppose $E\subset X$ is measurable with $\mu(E)<\infty$.
 Since $E$ is $\sigma$-finite, we have open $U$ and closed $F$ such that $F\subset E\subset U$ and $\mu(U\setminus F)<\e/2$.
 By the Urysohn lemma, there is a continuous function $g:X\to[0,1]$ such that $g|_{U^c}=0$ and $g|_F=1$.
 Then,
-\[\int|\1_E-g|\,d\mu=\int_{U\setminus F}|\1_E-g|\,d\mu\le2\mu(U\setminus F)<\e.\]
+\[\int|1_E-g|\,d\mu=\int_{U\setminus F}|1_E-g|\,d\mu\le2\mu(U\setminus F)<\e.\]
 
 (b)
 Since $\R$ is second countable, we have a base $(V_n)_{n=1}^\infty$ of $\R$.
@@ -1074,11 +1074,11 @@ Let $\mu$ and $\nu$ be finite Radon measures on $X$ such that
 \[\int g\,d\mu=\int g\,d\nu\]
 for all $g\in C(X)$.
 Let $E$ be any measurable set.
-Since $\mu+\nu$ is a finite Radon measure, and by the Luzin theorem, we have a closed set $F$ and $g\in C(X)$ with $0\le g\le1$ such that $\1_E|_F=g|_F$ and $(\mu+\nu)(X\setminus F)<\e/2$.
+Since $\mu+\nu$ is a finite Radon measure, and by the Luzin theorem, we have a closed set $F$ and $g\in C(X)$ with $0\le g\le1$ such that $1_E|_F=g|_F$ and $(\mu+\nu)(X\setminus F)<\e/2$.
 Then,
 \begin{align*}
-|\mu(E)-\nu(E)|&=|\int\1_E\,d\mu-\int\1_E\,d\nu\,|\\
-&\le\int_{X\setminus F}|\1_E-g|\,d\mu+\int_{X\setminus F}|g-\1_E|\,d\nu\\
+|\mu(E)-\nu(E)|&=|\int1_E\,d\mu-\int1_E\,d\nu\,|\\
+&\le\int_{X\setminus F}|1_E-g|\,d\mu+\int_{X\setminus F}|g-1_E|\,d\nu\\
 &\le2\mu(X\setminus F)+2\nu(X\setminus F)<\e.
 \end{align*}
 By limiting $\e\to0$, we have $\mu(E)=\nu(E)$.
@@ -1093,8 +1093,12 @@ By limiting $\e\to0$, we have $\mu(E)=\nu(E)$.
 
 \section*{Fremlin}
 
+We do not consider inner regularity \emph{on} some special sets.
+The inner regularity will be applied for every measurable set.
 
 Note that the inner regularity by Folland or Rudin is in fact the tightness, the inner regularity with respect to compact sets.
+
+On a Tychonoff space $S$, $\Prob(S)$ is defined as the set of tight Borel probability measures so that there is an embedding $\Prob(S)\to\Prob(\beta S)$ defined as the pushforward.
 
 \begin{itemize}
 \item A Fremlin-Radon measure is tight.

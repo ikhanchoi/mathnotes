@@ -229,7 +229,7 @@ Clear.
 
 (b)$\Rightarrow$(c)
 Let $U$ be an open set such that $F\subset U$.
-There is uniformly continuous $g\in C_b(S)$ such that $\1_F\le g\le\1_U$.
+There is uniformly continuous $g\in C_b(S)$ such that $1_F\le g\le1_U$.
 Therefore,
 \[\limsup_\alpha\mu_\alpha(F)\le\limsup_\alpha\mu_\alpha(g)=\mu(g)\le\mu(U).\]
 By the outer regularity of $\mu$, we obtain $\limsup_\alpha\mu_\alpha(F)\le\mu(F)$.
@@ -244,7 +244,7 @@ It easily follows from
 (e)$\Rightarrow$(a)
 Let $g\in C_b(S)$ and $\e>0$.
 Since the pushforward measrue $g_*\mu$ has at most countably many mass points, there is a partition $(t_i)_{i=0}^n$ of an interval containing $[-\|g\|,\|g\|]$ such that $|t_{i+1}-t_i|<\e$ and $\mu(\{x:g(x)=t_i\})=0$ for each $i$.
-Let $(A_i)_{i=0}^{n-1}$ be a Borel decomposition of $S$ given by $A_i:=g^{-1}([t_i,t_{i+1}))$, and define $f_\e:=\sum_{i=0}^{n-1}t_i\1_{A_i}$ so that we have $\sup_{x\in S}|g_\e(x)-g(x)|\le\e$.
+Let $(A_i)_{i=0}^{n-1}$ be a Borel decomposition of $S$ given by $A_i:=g^{-1}([t_i,t_{i+1}))$, and define $f_\e:=\sum_{i=0}^{n-1}t_i1_{A_i}$ so that we have $\sup_{x\in S}|g_\e(x)-g(x)|\le\e$.
 From
 \begin{align*}
 |\mu_\alpha(g)-\mu(g)|&\le|\mu_\alpha(g-g_\e)|+|\mu_\alpha(g_\e)-\mu(g_\e)|+|\mu(g_\e-g)|\\
@@ -323,7 +323,7 @@ proves that $\nu$ is regular since $F\cap K$ is closed in $\beta S$ by compactne
 Now we prove that for a net $(\mu_\alpha)$ in $\Prob(S)$, if $\nu_\alpha:=i_*\mu_\alpha\to\nu:=i_*\mu$ in distribution, then $\mu_\alpha\to\mu$ in distribution.
 By assumption, we have
 \[\int_{\beta S}f\,d\nu_\alpha\to\int_{\beta S}f\,d\nu,\qquad f\in C(\beta S).\]
-Since $\nu_\alpha(\beta S\setminus S)=\nu(\beta S\setminus S)=0$ and the restriction $C(\beta S)\to C_b(S)$ is an isomorphism due to the universal property of $\beta S$, we have
+Since $\nu_\alpha(\beta S\setminus S)=\nu(\beta S\setminus S)=0$ (this expression is pretty bad because $S$ may not be Borel in $\beta S$) and the restriction $C(\beta S)\to C_b(S)$ is an isomorphism due to the universal property of $\beta S$, we have
 \[\int_Sf\,d\mu_\alpha\to\int_Sf\,d\mu,\qquad f\in C_b(S),\] so $\mu_\alpha\to\mu$ in distribution.
 Hence, we have the embedding $i_*:\Prob(S)\to\Prob(\beta S)$.
 
@@ -500,7 +500,7 @@ Define
 \[g(x):=\sup_ixP(|X_i|>x).\]
 Note that for any $\e>0$, $\sup_iE|X_i|<\infty$ implies $\sup_xg(x)<\infty$, which implies $\sup_iE|X_i|^{1-\e}<\infty$.
 In particular, the condition $\lim_{x\to\infty}g(x)=0$ is called the Kolmogorov-Feller condition.
-Consider the truncation $Y_{n,i}:=X_i\1_{|X_i|\le c_n}$.
+Consider the truncation $Y_{n,i}:=X_i1_{|X_i|\le c_n}$.
 \begin{parts}
 \item If $(n/c_n)g(c_n)\to0$, then
 \[P(S_n\ne T_n)\to0.\]
@@ -523,7 +523,7 @@ We write
 P\left(\left|\frac{T_n-ET_n}{b_n}\right|>\e\right)
 &\le\frac1{\e^2b_n^2}E|T_n-ET_n|^2\\
 &=\frac1{\e^2b_n^2}\sum_{i=1}^nE|Y_{n,i}-EY_{n,i}|^2\\
-&\le\frac1{\e^2b_n^2}\sum_{i=1}^nE|X_i\1_{|X_i|\le c_n}|^2\\
+&\le\frac1{\e^2b_n^2}\sum_{i=1}^nE|X_i1_{|X_i|\le c_n}|^2\\
 &=\frac1{\e^2b_n^2}\sum_{i=1}^n\int_0^{c_n}2xP(|X_i|>x)\,dx\\
 &\le\frac{2n}{\e^2b_n^2}\int_0^{c_n}g(x)\,dx\\
 &=\frac{2nc_n}{\e^2b_n^2}\int_0^1g(c_nx)\,dx.
@@ -552,7 +552,7 @@ This is a special case of the Doob maximal inequality for $S_{n\wedge\tau}^2$.
 
 \begin{prb}[Kolmogorov three series theorem]
 Let $(X_i)$ be a sequence of independent random variables.
-Suppose for a constant $c>0$ and $Y_i:=X_i\1_{|X_i|\le c}$  that the following three series are convergent:
+Suppose for a constant $c>0$ and $Y_i:=X_i1_{|X_i|\le c}$  that the following three series are convergent:
 \[\sum_{i=1}^\infty P(|X_i|>c),\qquad\sum_{i=1}^\infty EY_i,\qquad\sum_{i=1}^\infty VY_i.\]
 \end{prb}
 
@@ -586,18 +586,18 @@ Replacement method by Lindeman and Lyapunov
 
 \begin{prb}[Lindeberg-Feller theorem]
 Let $X_i$ be independent random variables such that for every $\e>0$ we have
-\[\lim_{n\to\infty}\frac1{s_n^2}\sum_{i=1}^nE|X_i-EX_i|^2\1_{|X_i-EX_i|>\e s_n}=0.\]
+\[\lim_{n\to\infty}\frac1{s_n^2}\sum_{i=1}^nE|X_i-EX_i|^21_{|X_i-EX_i|>\e s_n}=0.\]
 This condition is called the \emph{Lindeberg-Feller} condition.
 Let $Y_{n,i}:=\frac{X_i-EX_i}{s_n}$.
 \begin{parts}
 \item We have
 \[|Ee^{it(S_n-ES_n)/s_n}-e^{-\frac12t^2}|\le\sum_{i=1}^n|Ee^{itY_{n,i}}-e^{-\frac12E(tY_{n,i})^2}|.\]
 \item For any $\e>0$, we have an estimate
-\[\Bigl|Ee^{itY}-\bigl(1-\frac12E(tY)^2\bigr)\Bigr|\lesssim_t\e EY^2+EY^2\1_{|Y|>\e}\]
+\[\Bigl|Ee^{itY}-\bigl(1-\frac12E(tY)^2\bigr)\Bigr|\lesssim_t\e EY^2+EY^21_{|Y|>\e}\]
 for all random variables $Y$ such that $EY^2<\infty$.
 \item For any $\e>0$, we have an estimate
 \[\Bigl|e^{-\frac12E(tY)^2}-\bigl(1-\frac12E(tY)^2\bigr)\Bigr|
-\lesssim_tEY^2(\e^2+EY^2\1_{|Y|>\e}).\]
+\lesssim_tEY^2(\e^2+EY^21_{|Y|>\e}).\]
 for all random variables $Y$ such that $EY^2<\infty$.
 \item
 \end{parts}
@@ -615,8 +615,8 @@ for $x\in\R$, we have
 \Bigl|Ee^{itY}-\bigl(1-\frac12E(tY)^2\bigr)\Bigr|
 &\le E\Bigl|e^{itY}-\bigl(1-\frac12(tY)^2\bigr)\Bigr|\\
 &\lesssim_t E\min\{|Y|^3,Y^2\}\\
-&\le E|Y|^3\1_{|Y|\le\e}+EY^2\1_{|Y|>\e}\\
-&\le\e EY^2+EY^2\1_{|Y|>\e}.
+&\le E|Y|^31_{|Y|\le\e}+EY^21_{|Y|>\e}\\
+&\le\e EY^2+EY^21_{|Y|>\e}.
 \end{align*}
 
 (c)
@@ -624,7 +624,7 @@ Since
 \[|e^{-x}-(1-x)|=\Bigl|\int_0^x(x-y)e^{-y}\,dy\Bigr|\le\frac12x^2\]
 for $x\ge0$, we have
 \[\Bigl|e^{-\frac12E(tY)^2}-\bigl(1-\frac12E(tY)^2\bigr)\Bigr|
-\lesssim_t(EY^2)^2\le EY^2(\e^2+EY^2\1_{|Y|>\e}).\]
+\lesssim_t(EY^2)^2\le EY^2(\e^2+EY^21_{|Y|>\e}).\]
 \end{pf}
 
 \begin{prb}
@@ -723,9 +723,9 @@ It is called the \emph{upcrossing inequality} by Doob.
 Let $Y_n:=(X_n-a)^+$.
 Note that $\tau^{u_n}\le n<\tau^{u_n+1}$.
 Define a predictable sequence
-\[H_n:=\sum_{k=1}^\infty\1_{(\tau_k,\tau^k]}(n)=\1_{\{\tau^{u_n}\}}(n)+\1_{(\tau_{u_n+1},\tau^{u_n+1})}(n).\]
+\[H_n:=\sum_{k=1}^\infty1_{(\tau_k,\tau^k]}(n)=1_{\{\tau^{u_n}\}}(n)+1_{(\tau_{u_n+1},\tau^{u_n+1})}(n).\]
 Since $Y_{\tau_k}=0$ for any $k\ge1$, we have
-\[(H\cdot Y)_n-(H\cdot Y)_{\tau^{u_n}}=\sum_{i=\tau^{u_n}+1}^nH_i(Y_i-Y_{i-1})=\1_{(\tau_{u_n+1},\tau^{u_n+1})}(n)\cdot(Y_n-Y_{\tau_{u_n+1}})\ge0,\]
+\[(H\cdot Y)_n-(H\cdot Y)_{\tau^{u_n}}=\sum_{i=\tau^{u_n}+1}^nH_i(Y_i-Y_{i-1})=1_{(\tau_{u_n+1},\tau^{u_n+1})}(n)\cdot(Y_n-Y_{\tau_{u_n+1}})\ge0,\]
 so
 \[(b-a)u_n=\sum_{k=1}^{u_n}(b-a)\le\sum_{k=1}^{u_n}(Y_{\tau^k}-Y_{\tau_k})=(H\cdot Y)_{\tau_{u_n}}\le(H\cdot Y)_n.\]
 Since $(Y_n)$ is also a submartingale and $1-H_n\ge0$, we have
@@ -756,13 +756,13 @@ For $p>1$, if $\sup_nE|X_n|^p<\infty$, then $X_n$ converges a.s.~and in $L^p$.
 
 \begin{prb}[Uniform integrability]
 We say a set of random variables $\{X_i\}$ is \emph{uniformly integrable} if
-\[\lim_{c\to\infty}\sup_iE(|X_i|\1_{|X_i|>c})=0.\]
+\[\lim_{c\to\infty}\sup_iE(|X_i|1_{|X_i|>c})=0.\]
 \end{prb}
 
 
 \begin{prb}[Optional stopping theorem]
 For a process $X$, the process \emph{stopped at} a random time $\tau$ is the process $X^\tau$ defined by $X^\tau_n:=X_{t\wedge\tau}$.
-If $H_n:=\1_{n\le\tau}$, then $(H\cdot X)_n=X_{n\wedge\tau}$, so $X^\tau$ is a martingale if $X$ is martingale.
+If $H_n:=1_{n\le\tau}$, then $(H\cdot X)_n=X_{n\wedge\tau}$, so $X^\tau$ is a martingale if $X$ is martingale.
 Wald equations
 \end{prb}
 

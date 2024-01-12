@@ -24,7 +24,7 @@ K' \rar & A' \rar & B' \rar & 0\\
 \end{parts}
 
 
-\chapter{}
+\section{Embedding}
 
 A left $R$-module $P$ is projective if and only if the left exact functor $\Hom_R(P,-)$ is exact.
 
@@ -92,6 +92,29 @@ Universal coefficient theorem states that if $R$ is a PID, then the K\"unneth fo
 
 
 
+
+\chapter{Cohomology of algberas}
+
+\section{Group cohomology}
+
+The category of $G$-modules can be identified with the category of $\Z[G]$-modules, which is abelian.
+
+
+Let $M$ be a $G$-module.
+The \emph{invariant submodule} of $M$ is denoted by $M^G$.
+Sending $M$ to $M^G$ yields a functor $\mathrm{Grp}\to\mathrm{Ab}$, which is left exact but not right exact in general.
+Then we can consider the right derived functor to define cohomology groups.
+Let us do this concretely.
+
+
+Let $M$ be a $G$-module.
+Define $C^n(G,M)$ be the abelian group of all functions $G^n\to M$.
+The coboundary homomorphism $d:C^n(G,M)\to C^{n+1}(G,M)$ is defined such that
+\[d\f(g_1,\cdots,g_{n+1}):=g_1\f(g_2,\cdots,g_{n+1})+\sum_{i=1}^n(-1)^i\f(g_1,\cdots,g_{i-1},g_ig_{i+1},g_{i+2},\cdots,g_{n+1})+(-1)^{n+1}\f(g_1,\cdots,g_n).\]
+
+\[H^0(G,M)=M^G=\Hom_{\Z[G]}(\Z,M).\]
+For $x\in C^0(G,M)=M$, $dx(g)=gx-x$.
+For $\f\in C^1(G,M)$, $d\f(g,h)=g\f(h)-\f(gh)+\f(g)$.
 
 \end{document}
 

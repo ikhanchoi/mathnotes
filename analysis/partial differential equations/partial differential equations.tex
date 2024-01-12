@@ -184,41 +184,6 @@ and by the diagonal argument reducing $\delta$ to zero, we can construct the des
 \section{Fourier transform methods}
 \section{Almost everywhere differentiability}
 Lipschitz, Rademacher
-\section{Vector-valued functions}
-
-
-\begin{prb}[Pettis measurability theorem]
-Let $(\Omega,\mu)$ be a measure space and $X$ a Banach space.
-Let $f:\Omega\to X$ be a function.
-We say $f$ is \emph{strongly measurable} or \emph{Bochner measurable} if it is a pointwise limit of a sequence of simple functions.
-
-
-If $\mu$ is complete, then all the pointwise convergence discussed here can be relaxed to the almost everywhere convergence.
-
-\begin{parts}
-\item If $f$ is strongly measurable, then $f$ is Borel measurable.
-\item If $f$ is Borel measurable, then $f$ is weakly measurable.
-\item If $f$ is weakly measurable and separably valued, then $f$ is strongly measurable.
-\end{parts}
-\end{prb}
-
-\begin{prb}[Bochner and Pettis integrals]
-Let $(\Omega,\mu)$ be a measure space and $X$ a Banach space.
-Let $f:\Omega\to X$ be a strongly measurable function.
-The function $f$ is said to be \emph{Bochner integrable} if there is a net of simple functions $(s_\alpha)_{\alpha\in\cA}$ such that
-\[\int_\Omega\|f(\omega)-s_\alpha(\omega)\|\,d\mu(\omega)\to0\]
-for $\alpha\in\cA$.
-
-
-\begin{parts}
-\item $f$ is Bochner integrable if and only if $\int\|f(\omega)\|\,d\mu(\omega)<\infty$.
-\item If $f$ is Bochner integrable, then it is Pettis integrable and the integrals coincides.
-\end{parts}
-Bochner integrable => Pettis integrable => weakly(scalarly) integrable
-\end{prb}
-
-
-
 
 
 
@@ -391,6 +356,11 @@ Taking small $\e>0$, we are done.
 \chapter{Parabolic equations}
 \section{Galerkin approximation}
 \section{Semigroup theory}
+
+Hille-Yosida
+Lumer-Phillips
+
+$C_0$-semigroup, analytic semigroup
 
 \chapter{Hyperbolic equations}
 

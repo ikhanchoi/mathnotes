@@ -38,7 +38,7 @@ The injectivity of $\cF$ is not an easy problem, which comes from the inversion 
 
 \begin{prb}[Dirichlet kernel]
 The \emph{Dirichlet kernel} is a function $D_n\colon \bT\to\R$ defined by
-\[D_n=\hat{\1_{|k|\le n}},\quad\text{or equivalently,}\quad\hat{D_n}=\1_{|k|\le n}.\]
+\[D_n=\hat{1_{|k|\le n}},\quad\text{or equivalently,}\quad\hat{D_n}=1_{|k|\le n}.\]
 This is because they are invariant under inverse, in other words, they are even.
 \begin{parts}
 \item
@@ -181,13 +181,19 @@ Examples: $e^{-\frac12x^2}$, $e^{\frac i2x^2}$, $\pv\frac1x$, $\sgn(x)$, $1$, $\
 
 \section*{Exercises}
 \begin{prb}[Sampling theorem]
-\[\cF\1_{[-\frac12,\frac12]}(\xi)=\operatorname{sinc}(\xi/2)\]
+\[\cF1_{[-\frac12,\frac12]}(\xi)=\operatorname{sinc}(\xi/2)\]
 $\operatorname{sinc}\in L^{1+\e}(\R)$.
 \end{prb}
 \begin{prb}[Gausssian function]
 Gaussian function computation:
 differential equation method, contour integral method, imaginary shift
-\[\cF(e^{-\frac12xQx})=\frac{e^{\frac{i\pi}4\sgn(Q)}}{|\det Q|^{\frac12}}e^{-\frac12xQ^{-1}x}.\]
+\[\cF e^{-x^2}\]
+\[\cF e^{-\frac12xQx}=\frac{e^{\frac{i\pi}4\sgn(Q)}}{|\det Q|^{\frac12}}e^{-\frac12xQ^{-1}x}.\]
+\[\cF\operatorname{sech}{(2\pi)^{\frac12}\frac x2}=\operatorname{sech}{(2\pi)^{\frac12}\frac x2}.\]
+\end{prb}
+\begin{prb}
+\[\cF1=(2\pi)^{\frac12}\delta\]
+\[\cF x=(2\pi)^{\frac12}i\delta'\]
 \end{prb}
 \begin{prb}[Poisson summation formula]
 \end{prb}

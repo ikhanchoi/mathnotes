@@ -19,7 +19,7 @@
 \section{Cauchy theory}
 
 \begin{prb}[Holomorphic functions]
-A \emph{domain} in $\C$ means a connected open subset of the complex plane $\C$.
+A \emph{domain} in $\C$ means a non-empty connected open subset of the complex plane $\C$.
 A complex valued function $f$ defined on a domain $\Omega\subset\C$ is called \emph{holomorphic} if it is $C^1$ and complex differentiable, that is, the following limit exists for every $a\in\Omega$:
 \[f'(a):=\lim_{z\to a}\frac{f(z)-f(a)}{z-a}.\]
 The set of all holomorphic functions on $\Omega$ is denoted by $\Hol(\Omega)$ or $\cO(\Omega)$.
@@ -750,7 +750,7 @@ An \emph{analytic set} in a complex space $X$ is a subset $A$ that is the suppor
 
 
 
-\section{Weierstrass theory}
+\section{Oka coherence theorems}
 
 $\cO_{\P^1}(\P^1)=0$
 $\cM_{\P^1}(\P^1)=\C(z)$
@@ -759,12 +759,6 @@ $\Aut(\P^1)\cong\PSL(2,\C)$
 $\Hom(\P^1,\P^1)=\C(z)\cup\{\infty\}$.
 
 
-Cousin problems:
-\begin{enumerate}
-\item 
-\item
-\item
-\end{enumerate}
 
 Four coherence theorems:
 \begin{enumerate}
@@ -833,5 +827,79 @@ Then, we use the Weierstrass isomorphism theorem and the extension principle.
 \item $\cO_{\C^n,0}$ is factorial.
 \end{parts}
 \end{prb}
+
+
+\section{Levi problem}
+
+
+\begin{prb}[Domains of holomorphy]
+A domain $\Omega\subset\C^n$ is called a \emph{domain of holomorphy} if there is no domain $\tilde\Omega\subset\C^n$ such that $\Omega$ is a proper subset of $\tilde\Omega$ and $\cO(\tilde\Omega)\to\cO(\Omega)$ is surjective.
+\begin{parts}
+\item For a compact $K\subset\Omega$ such that $\Omega\setminus K$ is connected, $\cO(\Omega)\to\cO(\Omega\setminus K)$ is surjective. (Hartog extension theorem)
+\item The union of increasing sequence of domains of holomorphy is a domain of holomorphy (Behnke-Stein theorem)
+\end{parts}
+\end{prb}
+
+
+
+\begin{prb}[Holomorphically convex domains]
+Let $\Omega\subset\C^n$ be a domain.
+For compact $K\subset\Omega$, the \emph{holomorphically convex hull} in $\Omega$ is the set
+\[\hat K_\Omega:=\{z\in\Omega:|f(z)|\le\|f\|_{C(K)}\text{ for }f\in\cO(\Omega)\}.\]
+We say the domain $\Omega$ is \emph{holomorphically convex} if for every compact $K\subset\Omega$ the holomorphically convex hull $\hat K_\Omega$ is compact.
+\begin{parts}
+\item A polydisc, a convex domain is holomorphically convex.
+\item $\Omega$ is holomorphically convex if and only if it is a domain of holomorphy if and only if $d(K,\partial\Omega)=d(\hat K_\Omega,\partial\Omega)$ for every compact $K\subset\Omega$(Cartan-Thullen theorem)
+\end{parts}
+\end{prb}
+
+\begin{prb}[Plurisubharmonic functions]
+Let $X$ be a complex analytic space.
+An upper semi-continuous function $f:X\to\R\cup\{-\infty\}$ is said to be \emph{plurisubharmonic} if for every holomorphic $\f:\D\subset\C\to X$ the composition $f\circ\f$ is subharmonic.
+\begin{parts}
+\item If $\Omega$ is a domain of holomoprhy, then $-\log d$ is plurisubharmonic.
+\end{parts}
+\end{prb}
+
+\begin{prb}[Pseudo-convex domains]
+\end{prb}
+
+\begin{prb}[Levi problem]
+\end{prb}
+
+Oka lemma?
+
+\[\begin{tikzcd}[sep=small]
+& \tab{domain of\\holomorphy} \ar{dr}\ar[<->, dashed]{dd}{\scriptsize\tab[l]{in $\C^n$\\Cartan-Thullen}} &&&\\
+\text{Stein} \ar{ur}\ar{dr} && \tab{continuous\\exhaustive\\plurisubharmonic} \ar{rr} && \text{pseudo-convex} \\
+& \tab{holomorphically\\convex} \ar{ur} &&&
+\end{tikzcd}\]
+
+
+\section{Cartan theorem}
+
+Cartan's theorem B: if $\cF$ is a coherent sheaf on a Stein manifold $X$, then $H^p(X,\cF)=0$ for $p\ge1$.
+
+Cousin problems in terms of sheaf cohomologies:
+\begin{enumerate}
+\item Characterize the image of $H^0(X,\cM)\to H^0(X,\cM/\cO)$.\\
+It is a generalization of the Mittag-Leffler theorem for prescribed poles.
+Consider an exact sequence
+\[H^0(X,\cM)\to H^0(X,\cM/\cO)\to H^1(X,\cO)=0.\]
+Then, the first Cousin problem is solved when $X$ is a Stein manifold.
+\item Characterize the image of $H^0(X,\cM^\times)\to H^0(X,\cM^\times/\cO^\times)$.\\
+It is a generalization of the Weierstrass theorem for prescribed zeros.
+Consider an exact sequence
+\[H^0(X,\cM^\times)\to H^0(X,\cM^\times/\cO^\times)\to H^1(X,\cO^\times).\]
+The sheaf $\cM^\times/\cO^\times$ is the sheaf of Cariter divisors, and line bundles are classified by $H^1(X,\cO^\times)$.
+Considering the exponential exact sequence, we also have an exact sequence
+\[0=H^1(X,\cO)\to H^1(X,\cO^\times)\to H^2(X,\Z)\to H^2(X,\cO)=0.\]
+Then, the second Cousin problem is solved when $X$ is a Stein manifold such that $H^2(X,\Z)=0$.
+We can compute this by the first Chern class.
+\end{enumerate}
+
+
+
+
 
 \end{document}
