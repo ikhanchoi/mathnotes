@@ -1,0 +1,284 @@
+\documentclass{../../../small}
+\usepackage{../../../ikhanchoi}
+
+\begin{document}
+
+\title{Quantum Field Theory II}
+\author{Ikhan Choi}
+\maketitle
+
+\renewcommand{\theprb}{\arabic{prb}}
+\setcounter{prb}{0}
+
+\begin{prb}
+The BRST operator $Q_B$ is an integral of the BRST current $j_B(z)$:
+\[Q_B:=\oint\frac{dz}{2\pi i}j_B(z)\]
+with
+\[j_B(z):=cT^{(m)}(z)+:bc\partial c:(z)+\frac32\partial^2c(z),\]
+where $T^{(m)}(z)$ is the energy-momentum tensor in the matter sector whose central charge is given by $c^{(m)}=26$.
+\begin{enumerate}[(1)]
+\item Show that $Q_B\cdot cV^{(m)}=0$ for any primary field in the matter sector $V^{(m)}$ of weight 1.
+\item Show that $j_B(z)$ is a primary field of weight 1.
+\item Show that $Q_B^2=0$.
+\end{enumerate}
+\end{prb}
+\begin{pf}[Solution of (1)]
+Since
+\[Q_B\cdot cV^{(m)}(0)=\oint\frac{dz}{2\pi i}j_B(z)cV^{(m)}(0),\]
+we are going to compute the OPE of $j_B(z)cV^{(m)}(0)$ at zero up to regular terms.
+First,
+\begin{align*}
+cT^{(m)}(z)cV^{(m)}(0)
+&=[T^{(m)}(z)V^{(m)}(0)]c(z)c(0)\\
+&=\left[\frac1{z^2}V^{(m)}(0)+\frac1z\partial V^{(m)}(0)\right]c(z)c(0)\\
+&\sim\left[\frac1{z^2}V^{(m)}(0)+\frac1z\partial V^{(m)}(0)\right]\Bigl(c(0)+z\partial c(0)\Bigr)c(0)\\
+&\sim\boxed{-\frac1zc\partial cV^{(m)}(0)}.
+\end{align*}
+Next,
+\[:bc\partial c:(z)cV^{(m)}(0)
+\sim[b(z)c(0)]c\partial c(z)V^{(m)}(0)
+\sim\frac1zc\partial c(z)V^{(m)}(0)
+\sim\boxed{\frac1zc\partial cV^{(m)}(0)}.\]
+Finally, since matter and ghost sectors do not generate singular terms,
+\[\frac32\partial^2c(z)cV^{(m)}(0)\sim\boxed{0}.\]
+By combining the above three boxed terms, we obtain the desired conclusion.
+\end{pf}
+
+\begin{pf}[Solution of (2)]
+It suffices to show
+\[T(z)j_B(0)\sim\frac h{z^2}j_B(0)+\frac1z\partial j_B(0),\]
+where $h=1$.
+Recall that
+\begin{align*}
+T(z)&=T^{(m)}(z)+:(\partial b)c:(z)-2\partial(:bc:)(z),\\
+j_B(0)&=cT^{(m)}(0)+:bc\partial c:(0)+\frac32\partial^2c(0).
+\end{align*}
+We compute nine OPEs:
+
+\begin{enumerate}[(i)]
+\item
+By the TT OPE,
+\begin{align*}
+T^{(m)}(z)cT^{(m)}(0)
+&=[T^{(m)}(z)T^{(m)}(0)]c(0)\\
+&\sim\left[\frac{13}{z^4}+\frac2{z^2}T^{(m)}(0)+\frac1z\partial T^{(m)}(0)\right]c(0)\\
+&=\boxed{\frac{13}{z^4}c(0)+\frac2{z^2}cT^{(m)}(0)}.
+\end{align*}
+
+\item
+Since the product of the matter sector and the ghost sector does not generate singular terms, we have
+\[T^{(m)}(z):bc\partial c:(0)\sim\boxed{0}.\]
+
+\item
+Similarly,
+\[T^{(m)}(z)\frac32\partial^2c(0)\sim\boxed{0}.\]
+
+\item
+\begin{align*}
+:(\partial b)c:(z)cT^{(m)}(0)
+&\sim[\partial b(z)c(0)]c(z)T^{(m)}(0)\\
+&\sim\frac1{z^2}c(z)T^{(m)}(0)\\
+&\sim\frac1{z^2}\Bigl(c(0)+z\partial c(0)\Bigr)T^{(m)}(0)\\
+&=\boxed{\frac1{z^2}cT^{(m)}(0)+\frac1z(\partial c)T^{(m)}(0)}.
+\end{align*}
+
+\item
+\begin{align*}
+:(\partial b&)c:(z):bc\partial c:(0)\\
+&\sim[\partial b(z)c(0)]:c(z)b\partial c(0):-[\partial b(z)\partial c(0)]:c(z)bc(0):+[c(z)b(0)]:\partial b(z)c\partial c(0):\\
+&\quad+[\partial b(z)c(0)][c(z)b(0)]\partial c(0)+[\partial b(z)\partial c(0)][c(z)b(0)]c(0)\\
+&\sim-\frac1{z^2}:c(z)b\partial c(0):+\frac2{z^3}:c(z)bc(0):+\frac1z:\partial b(z)c\partial c(0):-\frac1{z^3}\partial c(0)+\frac2{z^4}c(0)\\
+&\sim-\frac1{z^2}\Bigl(-:bc\partial c:(0)-z:b(\partial c)^2:(0)\Bigr)+\frac2{z^3}\Bigl(z:bc\partial c:(0)+\frac{z^2}2:bc\partial^2 c:(0)\Bigr)\\
+&\quad+\frac1z:(\partial b)c\partial c:(0)-\frac1{z^3}\partial c(0)+\frac2{z^4}c(0)\\
+&=\boxed{\frac2{z^4}c(0)-\frac1{z^3}\partial c(0)+\frac3{z^2}:bc\partial c:(0)+\frac1z\partial(:bc\partial c:)(0)}.
+\end{align*}
+
+\item
+\begin{align*}
+:(\partial b)c:(z)\frac32\partial^2c(0)
+&\sim-\frac32[\partial b(z)\partial^2 c(0)]c(z)
+\sim\frac9{z^4}c(z)\\
+&\sim\frac9{z^4}\Bigl(c(0)+z\partial c(0)+\frac{z^2}2\partial^2c(0)+\frac{z^3}6\partial^3c(0)\Bigr)\\
+&=\boxed{\frac9{z^4}c(0)+\frac9{z^3}\partial c(0)+\frac9{2z^2}\partial^2c(0)+\frac3{2z}\partial^3c(0)}.
+\end{align*}
+
+
+\item
+The OPE
+\[:bc:(z)cT^{(m)}(0)
+\sim-[b(z)c(0)]c(z)T^{(m)}(0)
+\sim-\frac1zc(z)T^{(m)}(0)
+\sim-\frac1zcT^{(m)}(0)\]
+implies
+\[-2\partial(:bc:)(z)cT^{(m)}(0)
+\sim\boxed{-\frac2{z^2}cT^{(m)}(0)}.\]
+
+
+\item
+The OPE
+\begin{align*}
+:bc:(&z):bc\partial c:(0)\\
+&\sim[b(z)c(0)]:c(z)b\partial c(0):
+-[b(z)\partial c(0)]:c(z)bc(0):
++[c(z)b(0)]:b(z)c\partial c(0):\\
+&\quad+[b(z)c(0)][c(z)b(0)]\partial c(0)-[b(z)\partial c(0)][c(z)b(0)]c(0)\\
+&\sim\frac1z:c(z)b\partial c(0):
+-\frac1{z^2}:c(z)bc(0):
++\frac1z:b(z)c\partial c(0):
++\frac1{z^2}\partial c(0)-\frac1{z^3}c(0)\\
+&\sim-\frac1{z^2}(z:bc\partial c:)(0)+\frac1{z^2}\partial c(0)-\frac1{z^3}c(0)\\
+&\sim-\frac1{z^3}c(0)+\frac1{z^2}\partial c(0)-\frac1z:bc\partial c:(0)
+\end{align*}
+implies
+\[-2\partial(:bc:)(z):bc\partial c:(0)
+\sim\boxed{-\frac6{z^4}c(0)+\frac4{z^3}\partial c(0)-\frac2{z^2}:bc\partial c:(0)}.\]
+
+\item
+The OPE
+\begin{align*}
+:bc:(z)\partial^2 c(0)
+&\sim-[b(z)\partial^2c(0)]c(z)
+\sim-\frac2{z^3}c(z)\\
+&\sim-\frac2{z^3}(c(0)+z\partial c(0)+\frac{z^2}2\partial^2c(0))\\
+&=-\frac2{z^3}c(0)-\frac2{z^2}\partial c(0)-\frac1z\partial^2c(0)
+\end{align*}
+implies
+\[-2\partial(:bc:)(z)\frac32\partial^2c(0)
+\sim\boxed{-\frac{18}{z^4}c(0)-\frac{12}{z^3}\partial c(0)-\frac3{z^2}\partial^2c(0)}.\]
+\end{enumerate}
+By summing up the above boxed nine terms, we obtain
+\begin{align*}
+T(z)j_B(0)
+&\sim\frac1{z^4}(13+2+9-6-18)c(0)\\
+&\,+\frac1{z^3}(-1+9+4-12)\partial c(0)\\
+&\,+\frac1{z^2}\Bigl((2+1-2)cT^{(m)}(0)+(3-2):bc\partial c:(0)+(\frac92-3)\partial^2 c(0)\Bigr)\\
+&\,+\frac1z\Bigl(c\partial T(0)+(\partial c)T(0)+\partial:bc\partial c:(0)+\frac32\partial^3c(0)\Bigr)\\
+&=\frac1{z^2}j_B(0)+\frac1z\partial j_B(0).
+\end{align*}
+\end{pf}
+
+
+\begin{pf}[Solution of (3)]
+Write
+\begin{align*}
+2Q_B^2=\{Q_B,Q_B\}
+&=\oint_{|w|=1}\frac{dw}{2\pi i}j_B(w)\oint_{|z|=\frac12}\frac{dz}{2\pi i}j_B(z)+\oint_{|z|=\frac32}\frac{dz}{2\pi i}j_B(z)\oint_{|w|=1}\frac{dw}{2\pi i}j_B(w)\\
+&=\oint_{|w|=1}\frac{dw}{2\pi i}\oint_{|z-w|=\frac12}\frac{dz}{2\pi i}j_B(z)j_B(w)\\
+&=\Res_{w=0}\Res_{z=w}j_B(z)j_B(w).
+\end{align*}
+Since the compensated term $\frac32\partial^2c$ in the BRST current $j_B$ is a total derivative, to determine the OPE of the integrand $j_B(z)j_B(w)$ at $w$, it is enough to show
+\[\Res_{w=0}\Res_{z=w}\,\Bigl(cT^{(m)}(z)+:bc\partial c:(z)\Bigr)\Bigl(cT^{(m)}(w)+:bc\partial c:(w)\Bigr)=0.\tag{\dagger}\]
+Temporarily fix $w$ and consider the following residue computations at $z=w$:
+\begin{enumerate}[(i)]
+\item
+The TT OPE and the Taylor expansion
+\begin{align*}
+cT^{(m)}(z)cT^{(m)}(w)
+&=\Bigl[\frac{13}{(z-w)^4}+\frac2{(z-w)^2}T^{(m)}(w)+\frac1{z-w}\partial T^{(m)}+:T^{(m)}(z)T^{(m)}(w):\Bigr]\\
+&\ \ \cdot\Bigl[-(z-w)c\partial c(w)-\frac{(z-w)^2}2c\partial^2c(w)-\frac{(z-w)^3}6c\partial^3c(w)-\cdots\Bigr]
+\end{align*}
+implies
+\[\Res_{z=w}cT^{(m)}(z)cT^{(m)}(w)=\boxed{-2c\partial cT^{(m)}(w)-\frac{13}6c\partial^3c(w)}.\]
+
+\item
+We have
+\[\Res_{z=w}cT^{(m)}(z):bc\partial c:(w)=\boxed{c\partial cT^{(m)}(w)}\]
+from
+\[cT^{(m)}(z):bc\partial c:(w)\sim[c(z)b(w)]T^{(m)}(z)c\partial c(w)\sim\frac1{z-w}c\partial cT^{(m)}(w).\]
+
+\item
+We have
+\[\Res_{z=w}:bc\partial c:(z)cT^{(m)}(w)=\boxed{c\partial cT^{(m)}(w)}\]
+from
+\[:bc\partial c:(z)cT^{(m)}(w)\sim[b(z)c(w)]c\partial c(z)T^{(m)}(w)\sim\frac1{z-w}c\partial cT^{(m)}(w).\]
+
+\item
+Observe
+\begin{align*}
+:bc\partial c&:(z):bc\partial c:(w)\\
+\sim&-[b(z)c(w)]:c\partial c(z)b\partial c(w):
++[b(z)\partial c(w)]:c\partial c(z)bc(w):\\
+&-[c(z)b(w)]:b\partial c(z)c\partial c(w):
++[\partial c(z)b(w)]:bc(z)c\partial c(w):\\
+&+[b(z)c(w)][c(z)b(w)]\partial c(z)\partial c(w)
+-[b(z)c(w)][\partial c(z)b(w)]c(z)\partial c(w)\\
+&-[b(z)\partial c(w)][c(z)b(w)]\partial c(z)c(w)
++[b(z)\partial c(w)][\partial c(z)b(w)]c(z)c(w).
+\end{align*}
+If we only see the coefficient of $1/(z-w)$ to take the residue at $z=w$, then the computation for the sum of these eight terms can be summarized as
+\begin{align*}
+&\Res_{z=w}:bc\partial c:(z):bc\partial c:(w)\\
+&\qquad=(-1-1+1+1):bc(\partial c)^2:(w)+(-1-\frac12)(\partial c)(\partial^2c)(w)+(\frac12+\frac16)c\partial^3c(w)\\
+&\qquad=\boxed{-\frac32(\partial c)(\partial c^2)(w)+\frac23c\partial^3c(w)}.
+\end{align*}
+\end{enumerate}
+Summing up the boxed four terms, the left-hand side in (\dagger) at $w=0$ becomes
+\[\Res_{w=0}\,\Bigl(-\frac32(\partial c)(\partial^2 c)(w)+(-\frac{13}6+\frac23)c\partial^3c(w)\Bigr)=-\frac32\Res_{w=0}\partial(c\partial^2 c)(w)=0.\]
+Therefore, $Q_B^2=0$.
+\end{pf}
+
+\[*\qquad*\qquad*\]
+\smallskip
+
+\begin{prb}
+For the string field $\Psi$ given by
+\[\Psi=tc_1|0\>+uc_{-1}|0\>+vL_{-2}^{(m)}c_1|0\>,\]
+calculate the following quantity:
+\[\frac{V(t,u,v)}{T_{25}}=2\pi^2\left[\frac12\<\Psi,Q_B\Psi\>+\frac13\<\Psi,\Psi*\Psi\>\right]_{density}.\]
+\end{prb}
+\begin{sol}
+We will only compute the given function assuming
+$u=v=0$.
+Under the state-field correspondence, since the identity operator correponds to the vacuum state, we have the correspondences
+\[\Psi=tc_1|0\>=t\oint\frac{dz}{2\pi i}\frac1zc(z)|0\>\leadsto t\oint\frac{dz}{2\pi i}\frac1zc(z)=tc(0)\]
+and
+\[Q_B\Psi=t\oint\frac{dz}{2\pi i}j_B(z)c_1|0\>\leadsto t\oint\frac{dz}{2\pi i}j_B(z)c(0)=tc\partial c(0).\]
+The last equality follows from the OPEs
+\[cT^{(m)}(z)c(0)\sim0,\qquad:bc\partial c:(z)c(0)\sim\frac1zc\partial c(0),\qquad\frac32\partial^2c(z)c(0)\sim0.\]
+
+Now we compute the BPZ inner product $\<\Psi,Q_B\Psi\>$ using the conformal transformation of $c$ and $c\partial c$, which are primary fields of conformal weights $-1$.
+Introduce conformal transformations
+\[f_1(z)=\frac{z-1}{z+1},\qquad f_2(z)=-\frac{z+1}{z-1},\]
+whose derivatives are
+\[f_1'(z)=\frac2{(z+1)^2},\qquad f_2'(z)=\frac2{(z-1)^2}.\]
+Then, the conformal transformations of the fields are
+\begin{align*}
+c(0)&\to f_1\circ c(0)=f_1'(0)^{-1}c(f_1(0))=\frac12c(-1),\\
+c\partial c(0)&\to f_2\partial c(0)=f_2'(0)^{-1}c\partial c(f_2(0))=\frac12c\partial c(1).
+\end{align*}
+Thus, the first BPZ product can be given by
+\begin{align*}
+\<\Psi,Q_B\Psi\>
+&=t^2\<\,f_1\circ c(0)\quad f_2\circ c\partial c(0)\,\>_{\mathrm{UHP}}\\
+&=\frac{t^2}4\<\,c(-1)\quad c(1)\quad\partial c(1)\,\>_{\mathrm{UHP}}\\
+&=\frac{t^2}4\partial_{z_3}\<\,c(z_1)\quad c(z_2)\quad c(z_3)\,\>|_{z_1=-1,\ z_2=z_3=1}
+\end{align*}
+By normalizing with the space-time volume factor, we can compute the value of the uniquely determined correlation function
+\[\<\Psi,Q_B\Psi\>_{density}=-\frac{t^2}4\partial_{z_3}(z_1-z_2)(z_2-z_3)(z_3-z_1)|_{z_1=-1,\ z_2=z_3=1}=-t^2.\]
+
+For the second BPZ inner product $\<\Psi,\Psi*\Psi\>$, introduce
+\[f_1(z)=\tan\Bigl(\frac23(\arctan z-\frac\pi2)\Bigr),\qquad f_2(z)=\tan(\frac23\arctan z),\qquad f_3(z)=\tan\Bigl(\frac23(\arctan z+\frac\pi2)\Bigr)\]
+such that
+\[f_1'(0)=\frac83,\qquad f_2'(0)=\frac23,\qquad f_3'(0)=\frac83,\]
+which can be computed by assuming $|z|\ll1$.
+For example, using $\arctan z\approx z$, we can write
+\[f_1(z)\approx\tan(\frac23(z-\frac\pi2))=\tan(-\frac\pi3+\frac23 z)\approx\tan(-\frac\pi3)+\tan'(-\frac\pi3)\frac23z=-\sqrt3+\frac83z.\]
+Then the conformal transformations are
+\begin{align*}
+c(0)&\to f_1\circ c(0)=f_1'(0)^{-1}c(f_1(0))=\frac38c(-\sqrt3),\\
+c(0)&\to f_2\circ c(0)=f_2'(0)^{-1}c(f_2(0))=\frac32c(0),\\
+c(0)&\to f_3\circ c(0)=f_3'(0)^{-1}c(f_3(0))=\frac38c(\sqrt3),
+\end{align*}
+and hence we have
+\begin{align*}
+\<\Psi,\Psi*\Psi\>
+&=t^3\<\,f_1\circ c(0)\quad f_2\circ c(0)\quad f_3\circ c(0)\,\>_{\mathrm{UHP}}\\
+&=\frac{27}{128}t^3\<\,c(-\sqrt3)\quad c(0)\quad c(\sqrt3)\,\>_{\mathrm{UHP}}
+\end{align*}
+and the density
+\[\<\Psi,\Psi*\Psi\>_{density}=-\frac{27}{128}t^3(z_1-z_2)(z_2-z_3)(z_3-z_1)|_{z_1=-\sqrt3,\ z_2=0,\ z_3=\sqrt3}=-\frac{81\sqrt3}{64}t^3.\]
+Therefore,
+\[\frac{V(t)}{T_{25}}=2\pi^2\left[-\frac12t^2-\frac{27\sqrt3}{64}t^3\right].\qedhere\]
+\end{sol}
+
+\end{document}

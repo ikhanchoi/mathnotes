@@ -20,123 +20,15 @@ noncommutative probability
 \fi
 
 
-\part{Fundamentals}
+\part{Weights}
 
 
-\chapter{Weights}
-
-\section{Projections}
-
-
-finite, infinite, purely infinite, properly infinite, abelian projections
+\chapter{Projections}
 
 
 
 
-\bigskip
-Type I factors.
-It possess a minimal projection.
-It is isomorphic to the whole $B(H)$ for some Hilbert space.
-Therefore, it is classified by the cardinality of $H$.
-
-Type II factors.
-No minimal projection, but there are non-zero finite projections so that every projection can be ``halved'' by two Murray-von Neumann equivalent projections.
-
-In type II$_1$ factors, the identity is a finite projection
-Also, Murray and von Neumann showed there is a unique finite tracial state and the set of traces of projections is $[0,1]$.
-Examples of II$_1$ factors include crossed product, tensor product, free product, ultraproduct.
-Free probability theory attacks the free groups factors, which are type II$_1$.
-
-In type II$_\infty$ factors.
-There is a unique semifinite tracial state up to rescaling and the set of traces of projections is $[0,\infty]$.
-
-In type III factors no non-zero finite projections exists.
-Classified the $\lambda\in[0,1]$ appeared in its Connes spectrum, they are denoted by III$_\lambda$.
-Tomita-Takesaki theory.
-It is represented as the crossed product of a type II$_\infty$ factor and $\R$.
-
-\begin{itemize}
-\item Type III$0<\lambda<1$ factor: unique $N\rtimes_\alpha\Z$, $N$ II$_\infty$ factor,
-\item Type III$_1$ factor: unique $N\rtimes_\alpha\R$, $N$ II$_\infty$ factor,
-\item Type III$_0$ factor: one-to-one correpondence with nontransitive ergodic flows.
-\end{itemize}
-
-Amenability, equivalently hyperfiniteness is a very nice condition in von Neumann algebra theory.
-Group-measure space construction can construct them.
-There are unique hyperfinite type II$_1$ and II$_\infty$ factors, and their property is well-known.
-Fundamental groups of type II factors, discrete group theory, Kazhdan's property (T) are used.
-
-Tensor product factors such as Araki-Woods factors and Powers factors.
-
-
-
-
-
-
-
-
-cyclic group actions implies the classification of injective factors.
-
-\begin{itemize}
-\item cyclic groups: Connes (II, III$<1$), Haagerup (III$_1$),
-\item finite groups: Jones (II$_1$)
-\item discrete amenable groups: Ocneanu (II$_1$), 
-\item property T:
-\item one-parameter:
-\item compact abelian:
-\end{itemize}
-
-Type I:
-Every automorphism of type I factor is inner.
-Cocycle conjugacy classes of actions of $\Gamma$ on the injective type I factor $B(\ell^2)$ is correponded to $H^2(\Gamma,\T)$.
-
-
-
-
-
-
-
-
-
-
-\begin{prb}[Support projections of operators]
-Let $x$ be an element of a von Neumenna algebra $M$.
-The \emph{left support projection} of $x$ is the minimal projection $p\in M$ such that $x=px$, denoted by $s_l(x)$.
-The \emph{right support projection} of $x$ is defined as the left support projection of $x^*$.
-The projections $s_l(x)$ and $1-s_r(x)$ are also called the \emph{range} and \emph{kernel} projections of $x$, respectively.
-
-Riesz refinement?
-\begin{parts}
-\item Support projections of $x$ uniquely exist.
-\item $x^*yx=0$ if and only if $s_l(x)ys_l(x)=0$ for every $y\in M$.
-\item We have $s_r(x)=s_r(x^*x)=s_r(|x|)$. In particular, $s_l(x)=s_r(x)$ if $x$ is normal.
-\item If $x^*x\le y^*y$, then there is a unique $v\in M$ such that $x=vy$ and $s_r(v)\le s_l(y)$.
-\item There is unique $v\in M$ such that the polar decomposition $x=v|x|$ holds and that $s_r(x)=v^*v$. Moreover, $x^*=v^*|x^*|$ and $s_l(x)=vv^*$. In particular, $s_l(x)$ and $s_r(x)$ are Murray-von Neumann equivalent.
-\end{parts}
-\end{prb}
-\begin{pf}
-(a)
-Let $x\in M$.
-Since $\im x=\im(xx^*)^{\frac12}$, we may assume $0\le x\le1$.
-Then, $x^{2^{-n}}$ is an increasing sequence in $M$ bounded by one, so it converges strongly to some $p\in M_+$.
-We can check $p^2=p$ by...
-We can check $p$ is the range projection of $x$ by...
-
-
-(e)
-Since $x^*x\le|x|^*|x|$, there is a unique $v\in M$ such that $x=v|x|$ and $v=vs_l(|x|)=vs_r(x)$.
-Then, $s_r(x)-v^*v=s_r(x)(1-v^*v)s_r(x)=0$ from $|x|(1-v^*v)|x|=|x|^2-|x|^2=0$, and $s_l(x)-vv^*=s_l(x)(1-vv^*)s_l(x)=0$ from $x^*(1-vv^*)x=|x|^2-|x|^2=0$.
-The partial isometry $v$ is unique since $s_r(x)=v^*v$ implies $s_r(v)=s_r(v^*v)=s_r(s_r(x))=s_r(x)$.
-Similarly, $s_l(v)=s_l(x)$.
-The equality $xv^*=|x^*|$ follows from $xv^*=v|x|v^*\ge0$ and $|xv^*|^2=vx^*xv^*=v|x|^2v^*=xx^*=|x^*|^2$.
-\end{pf}
-
-
-
-\begin{prb}[Support projections of states]
-\end{prb}
-
-
+\section{Countability}
 
 
 \begin{prb}[Countable decomposability]
@@ -173,59 +65,6 @@ The followings are all equivalent.
 \end{prb}
 \begin{pf}
 \end{pf}
-
-
-
-\section{Normal weights}
-
-
-\begin{prb}[Ideals associated to weights]
-left ideal, definition ideal
-\end{prb}
-
-
-\begin{prb}[Semi-cyclic representations]
-Let $A$ be a C$^*$-algebra.
-A \emph{semi-cyclic representation} is a representation $\pi:A\to B(H)$ together with a linear map $\psi:\fn\to H$ from a left ideal $\fn$ of $A$ into $H$ with dense range, such that $\pi(x)\psi(y)=\psi(xy)$ for $x\in A$ and $y\in\fn$.
-
-For a semi-cyclic representation, if we denote $\fm:=\fn^*\fn$, then we have a bilinear form
-\[\Theta:\fm\times\pi(A)'\to\C:(y^*x,z)\mapsto\<z\psi(x),\psi(y)\>.\]
-With this, we can construct a linear map $\theta:\fm\to(\pi(A)')_*$ and its transpose $\theta^*:\pi(A)'\to\fm^\#$.
-
-Consider a weight $\f$.
-\begin{parts}
-\item A (it might require some condition here if $A$ is not W$^*$) weight on $A$ defines a semi-cyclic representation and vice versa?
-\item If $A=M$ is a von Neumann algebra, then we can let $\theta_*:\pi(M)'\to M_*$ to have $\theta^{**}=\theta$.
-\item $\theta^*$ is bijective onto the space of linear functionals on $\fm$ absolutely continuous with respect to $\f$. (bounded Radon-Nikodym)
-\end{parts}
-\end{prb}
-
-
-
-\begin{prb}[Normal weights]
-Let $M$ be a von Neumann algebra.
-Let $\omega$ be a weight of $M$.
-\begin{parts}
-\item $\omega$ is normal.
-\item $\omega$ is $\sigma$-weakly lower semi-continuous.
-\item $\omega$ is the supremum of a set of normal positive linear functionals.
-\end{parts}
-\end{prb}
-\begin{pf}
-(c)$\Rightarrow$(b)$\Rightarrow$(a) are clear.
-
-(a)$\Rightarrow$(b)
-
-
-Suppose first $M$ is countably decomposable so that $B$ is metrizable.
-
-
-\end{pf}
-
-
-
-
-
 
 
 \section{Commutative von Neumann algebras}
@@ -482,7 +321,8 @@ atomless ergodic measurable spaces are classified by infinite cardinals.
 $L^2(X,\mu,H)=L^2(X,\mu)\otimes H$
 vector or operator-valued integrals
 
-\section{Measurable fields}
+
+\section{Direct integrals}
 
 \begin{prb}[Effros Borel structure]
 \end{prb}
@@ -493,10 +333,46 @@ vector or operator-valued integrals
 
 
 
+\section{Types}
+
+
+finite, infinite, purely infinite, properly infinite, abelian projections
 
 
 
-\chapter{Actions}
+Type I factors.
+It possess a minimal projection.
+It is isomorphic to the whole $B(H)$ for some Hilbert space.
+Therefore, it is classified by the cardinality of $H$.
+
+Type II factors.
+No minimal projection, but there are non-zero finite projections so that every projection can be ``halved'' by two Murray-von Neumann equivalent projections.
+
+In type II$_1$ factors, the identity is a finite projection
+Also, Murray and von Neumann showed there is a unique finite tracial state and the set of traces of projections is $[0,1]$.
+Examples of II$_1$ factors include crossed product, tensor product, free product, ultraproduct.
+Free probability theory attacks the free groups factors, which are type II$_1$.
+
+In type II$_\infty$ factors.
+There is a unique semifinite tracial state up to rescaling and the set of traces of projections is $[0,\infty]$.
+
+In type III factors no non-zero finite projections exists.
+Classified the $\lambda\in[0,1]$ appeared in its Connes spectrum, they are denoted by III$_\lambda$.
+Tomita-Takesaki theory.
+It is represented as the crossed product of a type II$_\infty$ factor and $\R$.
+
+\begin{itemize}
+\item Type III$0<\lambda<1$ factor: unique $N\rtimes_\alpha\Z$, $N$ II$_\infty$ factor,
+\item Type III$_1$ factor: unique $N\rtimes_\alpha\R$, $N$ II$_\infty$ factor,
+\item Type III$_0$ factor: one-to-one correpondence with nontransitive ergodic flows.
+\end{itemize}
+
+Amenability, equivalently hyperfiniteness is a very nice condition in von Neumann algebra theory.
+Group-measure space construction can construct them.
+There are unique hyperfinite type II$_1$ and II$_\infty$ factors, and their property is well-known.
+Fundamental groups of type II factors, discrete group theory, Kazhdan's property (T) are used.
+
+Tensor product factors such as Araki-Woods factors and Powers factors.
 
 
 
@@ -505,25 +381,100 @@ vector or operator-valued integrals
 
 
 
-\chapter{Modular theory}
+cyclic group actions implies the classification of injective factors.
+
+\begin{itemize}
+\item cyclic groups: Connes (II, III$<1$), Haagerup (III$_1$),
+\item finite groups: Jones (II$_1$)
+\item discrete amenable groups: Ocneanu (II$_1$), 
+\item property T:
+\item one-parameter:
+\item compact abelian: Takesaki duality?
+\end{itemize}
+
+Type I:
+Every automorphism of type I factor is inner.
+Cocycle conjugacy classes of actions of $\Gamma$ on the injective type I factor $B(\ell^2)$ is correponded to $H^2(\Gamma,\T)$.
+
+approximately inner automorphisms
+centrally trivial automorphisms
+pointwise inner automorphisms
+
+minimal action
+
+
+
+
+
+
+
+
+
+
+
+
+\chapter{Weights}
+
+
+
+\section{Semi-cyclic representations}
+
+
+\begin{prb}[Ideals associated to weights]
+left ideal, definition ideal
+\end{prb}
+
+
+\begin{prb}[Semi-cyclic representations]
+Let $A$ be a C$^*$-algebra.
+A \emph{semi-cyclic representation} is a representation $\pi:A\to B(H)$ together with a linear map $\psi:\fN\to H$ from a left ideal $\fN$ of $A$ into $H$ with dense range, such that $\pi(x)\psi(y)=\psi(xy)$ for $x\in A$ and $y\in\fN$.
+
+For a semi-cyclic representation, if we denote $\fM:=\fN^*\fN$, then we have a bilinear form
+\[\Theta:\fM\times\pi(A)'\to\C:(y^*x,z)\mapsto\<z\psi(x),\psi(y)\>.\]
+With this, we can construct a linear map $\theta:\fM\to(\pi(A)')_*$ and its transpose $\theta^*:\pi(A)'\to\fM^\#$.
+
+Consider a weight $\f$.
+\begin{parts}
+\item A (it might require some condition here if $A$ is not W$^*$) weight on $A$ defines a semi-cyclic representation and vice versa?
+\item If $A=M$ is a von Neumann algebra, then we can let $\theta_*:\pi(M)'\to M_*$ to have $\theta^{**}=\theta$.
+\item $\theta^*$ is bijective onto the space of linear functionals on $\fM$ absolutely continuous with respect to $\f$. (bounded Radon-Nikodym)
+\end{parts}
+\end{prb}
+
+
+
+\begin{prb}[Normal weights]
+Let $M$ be a von Neumann algebra.
+Let $\omega$ be a weight of $M$.
+\begin{parts}
+\item $\omega$ is normal.
+\item $\omega$ is $\sigma$-weakly lower semi-continuous.
+\item $\omega$ is the supremum of a set of normal positive linear functionals.
+\end{parts}
+\end{prb}
+\begin{pf}
+(c)$\Rightarrow$(b)$\Rightarrow$(a) are clear.
+
+(a)$\Rightarrow$(b)
+
+
+Suppose first $M$ is countably decomposable so that $B$ is metrizable.
+
+
+\end{pf}
+
 
 \section{Hilbert algebras}
 
 
 
-\begin{prb}
-A \emph{left Hilbert algebra} is a $*$-algebra $A$ together with an inner product such that the left multiplication defines a nondegenerate $*$-homomorphism $\lambda:A\to B(H)$, where $H:=\bar A$, and the involution is a closable antilinear operator whose domain contains $A$.
-
-If an involution is an isometry, then it is also a right Hilbert algebra, which is the unimodular case.
-
-\end{prb}
 
 
 
+\chapter{Traces}
 
+\section{}
 
-
-\section{Traces}
 
 \begin{prb}[Semi-finite and tracial von Neumann algebras]
 Let $M$ be a von Neumann algebra.
@@ -578,27 +529,58 @@ On a finite von Neumann algebras, affiliated operators are measurable.
 
 
 
+\section{Noncommutative integration}
+
+
+
+
+
+
+
+
+
+
+\part{Actions}
+\chapter{}
+cyclic, discrete, abelian, flow
+
+kahzdahn property T, compact
+
+Rokhlin property
+
+(kazhdan T, some properties like pointwise inner, etc.)
+
+
+
+
+
+\chapter{Modular theory}
+
+
+
+
+
 
 \section{Modular automorphisms}
 
 \begin{rmk*}
 Let $H$ be a self-adjoint operator of bounded from below.
-Consider the modular operator as an analytic generator $\Delta=e^{-\beta H}$ of the modular automorphism $\sigma_t:=\Delta^{-i\frac t{\hbar\beta}}\cdot\Delta^{i\frac t{\hbar\beta}}=u_t^{-1}\cdot u_t$.
+Consider the modular operator as an analytic generator $\Delta=e^{-\beta H}$ of the modular automorphism $\sigma_t:=\Delta^{-i\frac t{\hbar\beta}}\cdot\Delta^{i\frac t{\hbar\beta}}=\Ad u_t$.
 Then, $\Delta$ is an invertible trace-class operator.
 The unitary operator
-\[u_t=\Delta^{i\frac t{\hbar\beta}}=e^{-i\frac t\hbar H}\]
+\[u_t^*=\Delta^{i\frac t{\hbar\beta}}=e^{-i\frac t\hbar H}\]
 is called the \emph{propagator}.
 
 
 The one-parameter automorphism $\sigma_t$ has the infinitesimal generator $i\frac1\hbar\ad_H=i\frac1\hbar[H,-]$.
 
-\[\sigma_t:=\Ad_{u_t^{-1}}=\Delta^{-i\frac t{\hbar\beta}}\cdot\Delta^{i\frac t{\hbar\beta}}=e^{i\frac t\hbar H}\cdot e^{-i\frac t\hbar H}=e^{i\frac t\hbar\ad_H}\]
+\[\sigma_t:=\Ad_{u_t}=\Delta^{-i\frac t{\hbar\beta}}\cdot\Delta^{i\frac t{\hbar\beta}}=e^{i\frac t\hbar H}\cdot e^{-i\frac t\hbar H}=e^{i\frac t\hbar\ad_H}\]
 
 \[\begin{tikzcd}[column sep={3.5em,between origins},row sep={2.5em,between origins}]
-&A\ar{rr}{\Delta^{it}=u_t^{-1}}&&A\ar{dd}{\lambda}\\
+&A\ar{rr}{u_t=\Delta^{it}}&&A\ar{dd}{\lambda}\\
 A'\ar[<->]{ur}{J}\ar[swap]{rr}{\Delta^{it}}\ar[swap]{dd}{\rho}&&A'\ar[<->,swap]{ur}{J}\ar{dd}{\rho}&\\
 &&&\lambda(A)\\
-\rho(A')\ar[swap]{rr}{\Delta^{it}\cdot\Delta^{-it}=\sigma_t}&&\rho(A')\ar[<->,swap]{ur}{J\cdot J}&.
+\rho(A')\ar[swap]{rr}{\sigma_t=\Ad\Delta^{it}}&&\rho(A')\ar[<->,swap]{ur}{\Ad J}&.
 \end{tikzcd}\]
 \end{rmk*}
 
@@ -639,11 +621,20 @@ Let $\f$ be a \emph{completely additive} weight on a von Neumann algebra in the 
 
 
 
+\chapter{Classifications}
+
 
 
 
 
 \part{Factors}
+
+
+\chapter{Type III factors}
+
+
+\chapter{Amenable factors}
+
 
 \chapter{Type II factors}
 
@@ -682,12 +673,6 @@ Existentially closed II$_1$ factors
 
 
 
-
-
-\chapter{Type III factors}
-
-
-\chapter{Amenable factors}
 
 
 

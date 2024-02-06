@@ -45,56 +45,44 @@ If $x^*\in X^*$ vanishes on $\bigcap_{i=1}^n\ker x_i^*$, then $x^*$ is a linear 
 
 
 \begin{prb}[Hahn-Banach extension]
-Let $X$ be a real vector space.
-Suppose $V$ is a linear subspace of $X$ and $l:V\to\R$ is a linear functional dominated by a sublinear functional $q:X\to\R$, that is, $l(v)\le q(v)$ for all $v\in V$.
+Let $Y\le X$ be real vector spaces.
+Suppose $l_0:Y\to\R$ is a linear functional dominated by a sublinear functional $q:X\to\R$ in the sense that $l_0(y)\le q(y)$ for $y\in Y$.
 \begin{parts}
-\item There is a linear functional $\tilde l:X\to\R$ that extends $l$.
-\item There is a linear functional $\tilde l:X\to\R$ that extends $l$ and is dominated by $q$ if $\dim X/V=1$.
-\item There is a linear functional $\tilde l:X\to\R$ that extends $l$ and is dominated by $q$.
+\item There is a linear functional $l:X\to\R$ that extends $l_0$ and is dominated by $q$ in the sense that $l\le q$ on $X$.
+\item There is a linear functional $l:X\to\C$ that extends $l_0$ and is dominated by $p$ in the sense that $|l|\le p$ on $X$.
+\item Let $X$ be a locally convex space and $l_0:Y\to\F$ be a bounded linear functional. Then, it admits a bounded linear extension $l:X\to\F$.
+If $X$ is normed, then we can take $\|l\|=\|l_0\|$.
 \end{parts}
 \end{prb}
 \begin{pf}
 (a)
-It can be done by the Hamel basis.
+Consider a partially ordered set of all linear functionals which extend $l_0$ and are dominated by $q$.
+Precisely, we consider
+\[\{l:V\to\R\mid
+Y\le V\le X,\ l_0=l|_Y,\ l\le q|_V\},\]
+on which the partial order is given such that for $l:V\to\R$ and $l':V'\to\R$ we have $l\prec l'$ if and only if $V\le V'$ and $l'|_V=l$.
+The nonemptyness and the chain condition is easily satisfied, so the partially ordered set has a maximal element $l:V\to\R$ by the Zorn lemma.
+
+Suppose $V\ne X$ and let $e\in X\setminus V$.
+The inequality
+\[l(v)+l(w)=l(v+w)\le q(v+w)\le q(v-e)+q(w+e),\qquad v,w\in V\]
+implies the existence of $r\in\R$ such that
+\[\sup_{v\in V}(l(v)-q(v-e))\le r\le\inf_{v\in V}(-l(v)+q(v+e)).\]
+If we define $\tilde V:=V+\R e$ and $\tilde l:\tilde V\to\R$ such that $\tilde l(v+te):=l(v)+tr$ for $t\in\R$, then $\tilde l(v)=l(v)$ and
+\[\tilde l(v+te)=l(v)+tr\le
+\begin{cases}l(v)+t(-l(t^{-1}v)+q(t^{-1}v+e))&,t\ge0\\l(v)+t(l(-t^{-1}v)-q(-t^{-1}v-e))&,t\le0
+\end{cases}
+=q(v+te)
+\]
+for $v\in V$ and $t\in\R$ lead a contradiction to the maximality of $l$, which concludes $V=X$.
 
 (b)
-Let $e\in X\setminus V$ so that every vector $x\in X$ can be uniquely written as $x=v+te$ with $v\in V$ and $t\in\R$.
-For $v_1,v_2\in V$,
-\[l(v_1)+l(v_2)=l(v_1+v_2)\le q(v_1+v_2)\le q(v_1-e)+q(v_2+e)\]
-implies
-\[l(v_1)-q(v_1-e)\le-l(v_2)+q(v_2+e).\]
-Define a linear functional $\tilde l:X\to\R$ such that $\tilde l(v)=v$ and
-\[l(v)-q(v-e)\le\tilde l(e)\le-l(v)+q(v+e)\]
-for all $v\in V$.
-Since
-\[\tilde l(v+te)=l(v)+t\tilde l(e)\le l(v)+t(-l(t^{-1}v)+q(t^{-1}v+e))=q(v+te)\]
-if $t\ge0$ and
-\[\tilde l(v+te)=l(v)+t\tilde l(e)\le l(v)+t(l(-t^{-1}v)-q(-t^{-1}v-e))=q(v+te)\]
-if $t\le0$, we have $\tilde l(x)\in q(x)$ for all $x\in X$.
-
-(c)
-With $X$ and $q$, Consider a partially ordered set
-\[\{(\tilde V,\tilde l)\mid
-V\le\tilde V\le X,\ \tilde l:\tilde V\to\R\text{ is a linear extension of $l$ dominated by $q$}\}\]
-such that $(V_1,l_1)\prec(V_2,l_2)$ if and only if $V_1\le V_2$ and $l_2|_{V_1}=l_1$.
-The nonemptyness and the chain condition is easily satisfied, so it has a maximal element $(\tilde V,\tilde l)$ by the Zorn lemma.
-By the part (b), we have $\tilde V=X$.
-\end{pf}
-
-\begin{prb}[Complex linear functionals]
-Let $X$ be a complex vector space.
+The real part map $\Re:\Hom_\C(X,\C)\to\Hom_\R(X,\R)$ is bijective.
 Let $p$ be a seminorm on $X$ and $l$ a complex linear functional on $X$.
-\begin{parts}
-\item The real part map $\Re:\Hom_\C(X,\C)\to\Hom_\R(X,\R)$ is bijective.
-\item $|l(x)|\le p(x)$ if and only if $|\Re l(x)|\le p(x)$.
-\end{parts}
-\end{prb}
-\begin{pf}
-(b)
-There is $\lambda$ such that $|\lambda|=1$ and $l(\lambda x)\ge0$.
-Then,
+We have $|l|\le p$ if and only if $\Re l\le p$ because for $\lambda$ such that $|\lambda|=1$ and $l(\lambda x)\ge0$ we have
 \[|l(x)|=|\lambda^{-1}l(\lambda x)|=l(\lambda x)=\Re l(\lambda x)\le p(\lambda x)=p(x).\]
 \end{pf}
+
 
 
 \begin{prb}[Hahn-Banach separation]
@@ -1083,7 +1071,7 @@ The restriction $B^\infty(\R)\to B(H)$ is the bounded Borel functional calculus 
 Let $f\in B^\infty(\R)$.
 \begin{parts}
 \item If $f=1_{\C\setminus\{0\}}$, then $f(T)=s(T)$.
-\item $f(T)$ is normly approximated by projections: an argument on $\<E(\lambda)\xi,\xi\>$ works.
+\item $f(T)$ is approximated in norm by projections: an argument on $\<E(\lambda)\xi,\xi\>$ works.
 \item $f(VTV^*)=Vf(T)V^*$ for $V^*Vs(T)=s(T)V^*V=s(T)$. It follows from the commutative diagram
 \[\begin{tikzcd}
 C_0(\R)\ar[equals]{d}\ar{r}{\pi_T} & B(H) \ar{d}{V\cdot V^*}\\
@@ -1123,6 +1111,50 @@ support projection
 
 \begin{prb}[Resolvent convergence]
 \end{prb}
+
+
+\section{Polar decomposition}
+
+\begin{prb}[Support projections of operators]
+Let $x$ be an element of a von Neumenna algebra $M$.
+The \emph{left support projection} of $x$ is the minimal projection $p\in M$ such that $x=px$, denoted by $s_l(x)$.
+The \emph{right support projection} of $x$ is defined as the left support projection of $x^*$.
+The projections $s_l(x)$ and $1-s_r(x)$ are also called the \emph{range} and \emph{kernel} projections of $x$, respectively.
+
+Riesz refinement?
+\begin{parts}
+\item Support projections of $x$ uniquely exist.
+\item $x^*yx=0$ if and only if $s_l(x)ys_l(x)=0$ for every $y\in M$.
+\item We have $s_r(x)=s_r(x^*x)=s_r(|x|)$. In particular, $s_l(x)=s_r(x)$ if $x$ is normal.
+\item If $x^*x\le y^*y$, then there is a unique $v\in M$ such that $x=vy$ and $s_r(v)\le s_l(y)$.
+\item There is unique $v\in M$ such that the polar decomposition $x=v|x|$ holds and that $s_r(x)=v^*v$. Moreover, $x^*=v^*|x^*|$ and $s_l(x)=vv^*$. In particular, $s_l(x)$ and $s_r(x)$ are Murray-von Neumann equivalent.
+\end{parts}
+\end{prb}
+\begin{pf}
+(a)
+Let $x\in M$.
+Since $\im x=\im(xx^*)^{\frac12}$, we may assume $0\le x\le1$.
+Then, $x^{2^{-n}}$ is an increasing sequence in $M$ bounded by one, so it converges strongly to some $p\in M_+$.
+We can check $p^2=p$ by...
+We can check $p$ is the range projection of $x$ by...
+
+(d)
+Suppose $\id_H\in M\subset B(H)$.
+The operator $v_0:\bar{yH}\to\bar{xH}:y\xi\mapsto x\xi$ is well defined because
+\[\|x\xi\|^2=\<x^*x\xi,\xi\>\le\<y^*y\xi,\xi\>=\|y\xi\|^2.\]
+Let $v:=v_0s_l(y)$.
+Then, $x\xi=vy\xi$ for all $\xi\in H$.
+If $v'\in B(H)$ satisfies $y=v'x$ and $v'=v's_l(y)$, then $y^*(v-v')^*(v-v')y=(x-x)^*(x-x)=0$ implies $0=s_l(y)(v-v')^*(v-v')s_l(y)=(v-v')^*(v-v')$, so $v$ is unique in $B(H)$.
+If $u\in M'$ is unitary, then $uvu^*$ satisfies the same property $y=uvu^*x$ and $uvu^*=uvu^*s_l(y)$, so $uvu^*=v$.
+Since unitaries span $M'$, we have $v\in M''=M$.
+
+(e)
+Since $x^*x\le|x|^*|x|$, there is a unique $v\in M$ such that $x=v|x|$ and $v=vs_l(|x|)=vs_r(x)$.
+Then, $s_r(x)-v^*v=s_r(x)(1-v^*v)s_r(x)=0$ from $|x|(1-v^*v)|x|=|x|^2-|x|^2=0$, and $s_l(x)-vv^*=s_l(x)(1-vv^*)s_l(x)=0$ from $x^*(1-vv^*)x=|x|^2-|x|^2=0$.
+The partial isometry $v$ is unique since $s_r(x)=v^*v$ implies $s_r(v)=s_r(v^*v)=s_r(s_r(x))=s_r(x)$.
+Similarly, $s_l(v)=s_l(x)$.
+The equality $xv^*=|x^*|$ follows from $xv^*=v|x|v^*\ge0$ and $|xv^*|^2=vx^*xv^*=v|x|^2v^*=xx^*=|x^*|^2$.
+\end{pf}
 
 
 
@@ -1321,7 +1353,7 @@ we can determine the coefficients of the Laurent series of $f$ at infinity as
 on $\{\lambda\in\C:|\lambda|>r(a)\}$.
 
 Take $\lambda$ such that $|\lambda|>r(a)$.
-Then, the sequence $(a^k\lambda^{-k-1})_k\in\cA$ is weakly bounded, hence is normly bounded by the uniform boundedness principle.
+Then, the sequence $(a^k\lambda^{-k-1})_k\in\cA$ is weakly bounded, hence is bounded in norm by the uniform boundedness principle.
 Let $\|a^n\|\le C_\lambda|\lambda^{n+1}|$ for all $n\ge1$.
 Then,
 \[\limsup_{n\to\infty}\|a^n\|^{\frac1n}\le\limsup_{n\to\infty}C_\lambda^{\frac1n}|\lambda^{n+1}|^{\frac1n}=|\lambda|.\]
@@ -1916,15 +1948,15 @@ Let $A$ be a C$^*$-algebra and let $B_A$ be the closed unit ball of $A$.
 
 \chapter{Von Neumann algebras}
 
-
-\section{Density theorems}
-
+\section{Normal states}
 
 \begin{prb}[Von Neumann algebras]
-A \emph{von Neumann algebra} on a Hilbert space $H$ is a $\sigma$-weakly closed $*$-subalgebra of $B(H)$ including $\id_H$.
-A positive linear map $\f$ between von Neumann algebras is said to be \emph{normal} if $\f(\sup_\alpha x_\alpha)=\sup_\alpha\f(x_\alpha)$ for any bounded increasing net $x_\alpha$ of positive elements.
+A \emph{von Neumann algebra} on a Hilbert space $H$ is a $\sigma$-weakly closed non-degenerate $*$-subalgebra $M$ of $B(H)$.
+Two von Neumann algebras $M_1$ and $M_2$ on $H_1$ and $H_2$ are said to be isomorphic if there is a $*$-isomorphism $M_1\to M_2$.
 \begin{parts}
-\item A positive map $\f$ is normal if and only if it is continuous between $\sigma$-weak topologies.
+\item Every von Neumann algebra contains the identity of $B(H)$.
+\item A positive map $\f$ between von Neumann algebras is order continuous if and only if it is continuous between $\sigma$-weak topologies.
+\item image of normal $*$-homomorphism is $\sigma$-weakly closed.
 \end{parts}
 \end{prb}
 
@@ -1936,18 +1968,54 @@ The space of $\sigma$-weakly continuous linear functionals on $M$ is denoted by 
 \item The restriction of a normal state of $M$ on $N$ is normal.
 \item A normal state of $N$ is extended to a normal state of $M$.
 \item A state $\omega$ of $M$ is normal if and only if $\omega(x)=\sum_{i=1}^\infty\<x\xi_i,\xi_i\>$ for some $(\xi_i)\in\ell^2(\N,H)$.
-\item The GNS representation of a normal state is normal.
+\item $M_*$ is a closed subspace of $M^*$.
 \end{parts}
 \end{prb}
 
+
+\begin{prb}[Support projections]
+$p$, $Mp$, $pM_*$.
+\begin{parts}
+\item projections of $M$, $\sigma$-closed left ideals of $M$, closed right invariant subspaces of $M_*$.
+\item For a normal state $\omega$ of $M$, its left hull kernel $\fn_\omega:=\{x\in M:\f(x^*x)=0\}$ is a $\sigma$-weakly closed left ideal of $M$, so there is a projection $s(\omega)$ such that $\fn_\omega=Ms(\omega)$. This projection is called the \emph{support} or the \emph{carrier} projection of $\omega$.
+\end{parts}
+\end{prb}
+\begin{pf}
+Let $\fn$ be a $\sigma$-strongly$^*$ closed left ideal of $M$.
+Then, $\fa:=\fn^*\cap\fn$ is a $\sigma$-strongly$^*$ closed $*$-subalgebra of $M$, whose unit is a projection $p\in M$.
+If $xp\in Mp$, since $p\in\fn$ and $\fn$ is a left ideal, we have $xp\in\fn$.
+Conversely, if $x\in\fn$, then $x^*x\in\fa$ implies $|x|\in\fa$ so that $|x|=|x|p$ since $p$ is the unit of $\fa$, and by the polar decomposition $x=v|x|$, we have $x=v|x|=v|x|p\in Mp$.
+Therefore, $\fn=Mp$.
+If two projections $p$ and $q$ in $M$ satisfy $Mp=Mq$, then since there is a unique unit in a $\sigma$-strongly$^*$ closed $*$-algebra $pMp=qMq$, hence $p=q$ and the uniqueness follows.
+
+\end{pf}
+
+
+
+\begin{prb}[Normal cyclic representations]
+\begin{parts}
+\item The GNS representation of a normal state is normal.
+\item faithful normal states
+\item closedness of $x\mapsto\Omega$?
+\item sufficiently large representation, dependence of weak and strong topologies
+\end{parts}
+\end{prb}
+
+
+An action admits a separating vector if and only if it admits a cyclic separating vector, which is equivalent to that the action can be realized as a cyclic representation associated to a faithful normal state, so every normal state is a vector state by the Connes cocycle.
+
+\section{Density theorems}
+
+
+
 \begin{prb}[Double commutant theorem]
-The \emph{commutant} of a subset $A\subset B(H)$, denoted by $A'$, is the set of all elements of $B(H)$ that commute every $a\in A$.
-Suppose $A$ is a non-degenerate $*$-subalgebra of $B(H)$.
+The \emph{commutant} of a subset $S\subset B(H)$ is the set $S'$ of all elements of $B(H)$ that commute every $a\in S$.
+Let $A$ be a non-degenerate $*$-subalgebra of $B(H)$.
 One can describe the von Neumann algebra generated by $A$ in $B(H)$ purely algebraically in terms of commutants.
 \begin{parts}
-\item $A''$ is weakly closed $*$-algebra.
+\item The double commutant $A''$ is weakly closed $*$-algebra.
 \item If $x\in A''$, for any $\e>0$ and $\xi\in H$ there is $a\in A$ such that $\|(x-a)\xi\|<\e$.
-\item $A$ is $\sigma$-strongly$^*$ dense in $A''$.
+\item $A$ is $\sigma$-strongly$^*$ dense in $A''$. In particular, if $A$ is $\sigma$-strongly$^*$ closed, then it is weakly closed.
 \end{parts}
 \end{prb}
 \begin{pf}
@@ -1976,11 +2044,19 @@ By applying the part (b) for arbitrary $\xi\in\ell^2(\N,H)$, we deduce the desir
 
 
 \begin{prb}[Kaplansky density theorem]
+
+We say a continuous function $f:F\to\C$ on a closed set $F\subset\C$ is \emph{strongly continuous} if the functional calculus $x\mapsto f(x)$ is 
+If $f$ is a 
+
+
+A $*$-isomorphism between von Neumann algebras is normal.
 \end{prb}
 
 
 
+\begin{prb}[Approximate identity]
 
+\end{prb}
 
 
 
@@ -1996,7 +2072,7 @@ constructed by adjoints.
 \begin{parts}
 \item $\pi_u^*$ is isometric.
 \item $\pi_u^*$ is surjective.
-In particular, $\pi_u^{**}$ is a normal $*$-isomorphsim.
+In particular, $\pi_u^{**}$ is a $*$-isomorphsim.
 \item $A^{**}$ enjoys a universal property in the sense that every $*$-homomorphism $\f:A\to M$ to a von Neumann algebra $M$ has a unique normal extension $\tilde\f:A^{**}\to M$ of $\f$.
 \end{parts}
 \end{prb}
@@ -2073,38 +2149,39 @@ where $\pi_B$ is any representation of $B$.
 
 
 \begin{prb}[Sakai theorem]
-Suppose $A$ is a C$^*$-algebra which admits a predual $F$.
+Let $A$ be a \emph{W$^*$-algebra} with a predual $F$, which means that $A$ is a C$^*$-algebra and $F$ is a norm closed subspace of $A^*$ such that the restriction map $A^{**}\to F^*:x\mapsto x|_F$ is restricted to an isometric isomorphism $A\to F^*$.
+Consider the canonical embedding $A\subset A^{**}$ and the embedding $A^{**}\subset B(H)$ by the universal representation in which every element of $A^*$ is a vector functional and every vector functional acts on $A^{**}$ as an element of $A^*$, by the Sherman-Takeda theorem.
 \begin{parts}
 \item There is an injective $*$-homomorphism $\pi:A\to A^{**}$ with weakly$^*$ closed image.
 \item $\pi$ is a topological embedding with respect to $\sigma(A,F)$ and $\sigma(A^{**},A^*)$.
 \item The predual $F$ is unique in $A^*$.
 \end{parts}
-In particular, since $A^{**}$ admits a faithful normal representation, so does $A$.
 \end{prb}
 \begin{pf}
 (a)
-By taking the adjoint for the inclusion $i:F\hookrightarrow A^*$, we have a conditional expectation $\e:A^{**}\twoheadrightarrow A$.
-Its kernel is a $A$-bimodule, and by the $\sigma$-weak density of $A$ in $A^{**}$ and the continuity of $\e$ between weak$^*$ topologies, so it is in fact a $A^{**}$-bimodule, which means it is a $\sigma$-weakly closed ideal of $A^{**}$.
-Thus we have a central projection $z\in A^{**}$ such that $\ker\e=(1-z)A^{**}$.
-
+By the definition of predual, we have a linear map $\e:A^{**}\to A$ defined by the restriction on $F$, and it is a contractive idempotent surjective map, and hence is a $A$-bimodule map.
+Since $A$ is dense in $\sigma(A^{**},A^*)$ by the Goldstine theorem, and since $\e$ is continuous between $\sigma(A^{**},A^*)$ and $\sigma(A,F)$, we can see that $\e$ is in fact a $A^{**}$-bimodule map, which means the kernel is a $\sigma$-weakly closed ideal of $A^{**}$.
+Thus, we have a central projection $z\in A^{**}$ such that $\ker\e=(1-z)A^{**}$.
 Define $\pi:A\to A^{**}$ such that $\pi(a):=za$.
-It is clearly a $*$-homomorphism.
-The injectivity follows from $a=\e(a)=\e(za)$ for $a\in A$.
-The image is weakly$^*$ closed because $\e(x-\e(x))=0$ implies $z(x-\e(x))=0$ for $x\in A^{**}$ so that $zA^{**}=zA$.
+It is a $*$-homomorphism because $z$ is central.
+The injectivity follows from $a=\e(a)=\e(za)=\e(\pi(a))$ for $a\in A$, and $x-\e(x)\in\ker\e$ implies $zx=z\e(x)\in zA$ for $x\in A^{**}$ so that the image $\pi(A)=zA=zA^{**}$ is $\sigma$-weakly closed in $B(H)$.
 
 (b)
-Since $\<a,f\>=\<\e(za),f\>=\<za,f\>$ for $a\in A$ and $f\in F$, in which the second equality holds by the definition of $\e$, it is enough to show $\sigma(zA,A^*)=\sigma(zA,F)$.
-
-For $l\in A^*$, we claim there exists $f$ such that $\<za,l\>=\<za,f\>$.
-Define $\tilde l\in A^*$ such that $\<x,\tilde l\>:=\<zx,l\>$ for $x\in A^{**}$.
-Then, $\<zx,l\>=\<z^2x,l\>=\<zx,\tilde l\>$ for $x\in A^{**}$.
-Suppose $\tilde l\notin F$.
-Because $F$ is closed in $A^*$, there is $x\in A^{**}$ such that $\<x,\tilde l\>\ne0$ and $\<x,f\>=0$ for all $f\in F$ by the Hahn-Banach separation.
-Then, $0=\<x,f\>=\<x,i(f)\>=\<\e(x),f\>$ implies $\e(x)=0$ so that $zx=0$, which leads a contradiction $\<x,\tilde l\>=\<zx,l\>=0$, so we have $\tilde l\in F$.
+Note that $\pi:A\to A^{**}$ is continuous with respect to the norm topology and $\sigma(A^{**},A^*)$ so that its adjoint can have the form $\pi^*:A^*\to A^*$.
+For $\pi$ to be an embedding, it suffices to prove the equality $\pi^*(A^*)=F$.
+First, suppose $l\in A^*$ satisfies $\pi^*(l)\in A^*\setminus F$.
+Because $F$ is norm closed in $A^*$, by the Hahn-Banach extension, there is $x\in A^{**}$ such that $\<x,\pi^*(l)\>\ne0$ and $\<x,f\>=0$ for all $f\in F$.
+Since $\<\e(x),f\>=\<x,f\>=0$ for every $f\in F$ from the definition of $\e$ and $F$ separates points $A$, we have $\e(x)=0$ and $x\in\ker\e$ implies $zx=0$.
+Take a net $a_\alpha\in A$ such that $a_\alpha\to x$ in $\sigma(A^{**},A^*)$.
+Then, if we take $\xi,\eta\in H$ such that $\<a,l\>=\<a\xi,\eta\>$, then we have
+\[\<x,\pi^*(l)\>=\lim_\alpha\<a_\alpha,\pi^*(l)\>=\lim_\alpha\<za_\alpha,l\>=\lim_\alpha\<za_\alpha\xi,\eta\>=\lim_\alpha\<a_\alpha\xi,z\eta\>=\<x\xi,z\eta\>=\<zx\xi,\eta\>=0,\]
+which is a contradiction, so we have $\pi^*(A^*)\subset F$.
+Conversely, if $f\in F$, then we have $\<a,\pi^*(f)\>=\<za,f\>=\<a,f\>$ because $(1-z)a\in\ker\e$ acts on $F$ trivially by definition of $\e$, so $f=\pi^*(f)\in\pi^*(A^*)$.
 
 (c)
-If closed subspaces $F_1$ and $F_2$ of $A^*$ are preduals of $A$, then $\sigma(A,F_1)=\sigma(A,F_2)$ by the part (b).
-If $l\in F_1$, which is obviously continuous on $\sigma(A,F_1)$, and the continuity in $\sigma(A,F_2)$ implies that $l$ is contained in a linear span of some finitely many elements of $F_2$, hence $F_1\subset F_2$.
+Suppose $F_1$ and $F_2$ are preduals of $A$.
+The identity $(A,\sigma(A,F_1))\to(A,\sigma(A,F_2))$ is a $*$-isomorphism between von Neumann algebras, which automatically has $\sigma$-weak continuity, so it induces the equality $\sigma(A,F_1)=\sigma(A,F_2)$ of topologies.
+By taking duals for the two weak$^*$ topologies, we get $F_1=F_2$.
 \end{pf}
 
 

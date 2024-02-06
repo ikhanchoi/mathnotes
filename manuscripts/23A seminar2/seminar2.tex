@@ -15,6 +15,13 @@ This note has been written based on the first-year graduate seminar presented at
 Each seminar was delivered for 105 minutes.
 I gratefully acknowledge advice of Prof. Yasuyuki Kawahigashi and support of my colleagues Futaba Sato, Yusuke Suzuki.
 
+TODO
+\begin{itemize}
+\item lower semi-continuous weights, Thomsen's Combes theorem
+\item normal stinespring dilation
+\item cocycle, commutant, central, spatial derivatives
+\item approximation techniques: $E_n,R_n$ for actions
+\end{itemize}
 
 
 \newpage
@@ -82,7 +89,7 @@ For a von Neumann algebra $M$, the followings are all equivalent.
 \end{prop}
 
 
-\subsection{Semi-cyclic representations}
+\subsection{Weights and semi-cyclic representations}
 
 
 \begin{defn}[Weights]
@@ -91,42 +98,18 @@ A \emph{weight} is a function $\f:M^+\to[0,\infty]$ such that
 \[\f(x+y)=\f(x)+\f(y),\qquad\f(\lambda x)=\lambda\f(x),\qquad x,y\in M^+,\ \lambda\ge0,\]
 where we use the convention $0\cdot\infty=0$.
 \end{defn}
-For a weight, we will show that the following properties are all equivalent:
-\begin{enumerate}[(i)]
-\item completely additive,
-\item order continuous,
-\item $\sigma$-weakly lower semi-continuous,
-\item supremum of normal positive linear functionals.
-\end{enumerate}
-A weight satisfying one of them is called \emph{normal}.
-Note that (iv)$\to$(iii)$\to$(ii)$\to$(i) is clear.
 
 \begin{defn}
 Let $\f$ be a weight on a von Neumann algebra $M$.
-Define a left ideal of $M$
-\[\fn:=\{x\in M:\f(x^*x)<\infty\},\]
-and a hereditary $*$-subalgebra of $M$
-\[\fm:=\fn^*\fn=\{\sum_{i=1}^ny_i^*x_i:(x_i),(y_i)\in\fn^n\}.\]
+Define
+\[\fn:=\{x\in M:\f(x^*x)<\infty\},\qquad\fa:=\fn^*\cap\fn,\qquad\fm:=\fn^*\fn.\]
+It easily follows that $\fn$ is a left ideal of $M$ with a sesquilinear form $\<,\>_\f:\fn\times\fn\to\C$ such that
+\[\<x,y\>_\f:=\f(y^*x),\qquad x,y\in\fn,\]
+$\fa$ is a $*$-subalgebra of $M$, and $\fm$ is a hereditary $*$-subalgebra of $M$ with a positive linear functional $\f:\fm\to\C$ such that
+\[\f(y^*x):=\sum_{k=0}^3i^k\f((x+i^ky)^*(x+i^ky)),\qquad x,y\in\fn,\]
+which extends the original $\f$.
 \end{defn}
 
-
-\begin{lem}
-If $x,y\in M$ satisfies $y^*y\le x^*x$, then there is a unique $s\in B(H)$ such that $y=sx$ and $s=sp$, where $p$ is the range projection of $x$, and $s\in M$.
-\end{lem}
-\begin{pf}
-Suppose $\id_H\in M\subset B(H)$.
-The operator $s_0:\bar{xH}\to\bar{yH}:x\xi\mapsto y\xi$ is well defined because
-\[\|y\xi\|^2=\<y^*y\xi,\xi\>\le\<x^*x\xi,\xi\>=\|x\xi\|^2.\]
-Let $p$ be the range projection of $x$ and let $s:=s_0p$.
-Then, $y\xi=sx\xi$ for all $\xi\in H$.
-If $y=s'x$ and $s'=s'p$, then
-\[x^*(s-s')^*(s-s')x=(y-y)^*(y-y)=0\]
-implies
-\[0=p(s-s')^*(s-s')p=(s-s')^*(s-s').\]
-Therefore, $s$ is unique in $B(H)$.
-If $u\in M'$ is unitary, then $usu^*$ satisfies the same property $y=usu^*x$ and $usu^*=usu^*p$, so $us=su$.
-Since the unitary span the whole C$^*$-algebra, we have $s\in M''=M$.
-\end{pf}
 
 \begin{prop}
 Let $\f$ be a weight on a von Neumann algebra $M$.
@@ -156,57 +139,46 @@ If we let $y:=\sum_{i=1}^ns_i^*y_i\in\fn$, then
 
 
 \begin{defn}[Semi-cyclic representations]
-Let $\f$ be a weight on a von Neumann algebra.
-Let $H$ be the Hilbert space defined by the separation and completion of a sesquilinear form
-\[\fn\times\fn\to\C:(x,y)\mapsto\f(y^*x)\]
-and let $\Lambda:\fn\to H$ be the canonical image map.
-The pair $(\pi,\Lambda)$ is called the \emph{semi-cyclic representation} associated to $\f$.
+Let $A$ be a C$^*$-algebra.
+A \emph{semi-cyclic representation} of $A$ is a pair $(\pi,\Lambda)$ of a representation $\pi:A\to B(H)$ and a linear map $\Lambda:\dom\Lambda\to H$ of dense image such that $\pi(a)\Lambda(b)=\Lambda(ab)$ for $x\in A$ and $b\in\dom\Lambda$, where $\dom\Lambda$ is a left ideal of $A$.
 \end{defn}
 
-
-\begin{prop}[Bounded Radon-Nikodym]
+\begin{prop}
 Let $\f$ be a weight on a von Neumann algebra and $(\pi,\Lambda)$ be the associated semi-cyclic representation to $\f$.
-Consider a map
-\[\Theta:\fm\times\pi(M)'\to\C:(y^*x,z)\mapsto\<z\Lambda(x),\Lambda(y)\>\]
-and define
-\[\theta:\fm\to\pi(M)'_*,\qquad\theta^*:\pi(M)'\to\fm^\#\]
-such that $\Theta(y^*x,z)=\theta(y^*x)(z)=\theta^*(z)(y^*x)$ for $x,y\in\fn$ and $z\in\pi(M)'$.
-\begin{parts}
-\item $\Theta$ is a well-defined bilinear form.
-\item $\theta^*$ is bijective onto the space of linear functionals on $\fm$ whose absolute value is majorized by $\f$.
-In particular, if $l\in\fm^\#$ satisfies $|l|\le C\f$ for some $C>0$, then there is $z\in\pi(M)'$ such that $\|z\|\le C$ and $l(y^*x)=\<z\Lambda(x),\Lambda(y)\>$ for $x,y\in\fn$.
-\end{parts}
+For $h\in\pi(M)'$, the linear functional $\fm\to\C:y^*x\mapsto\<h\Lambda(x),\Lambda(y)\>$ is well-defined.
 \end{prop}
 \begin{pf}
-(a)
-The linearity in the second argument is obvious.
-Fix $z\in\pi(M)'$.
 We first check the well-definedness on $\fm^+$.
 Let $x^*x=y^*y\in\fm^+$ for $x,y\in\fn$.
-Then, there is $s\in M$ such that $y=sx$ and $s=sp$, where $p$ is the range projection of $x$, so
-\[x^*(1-s^*s)x=x^*x-y^*y=0\]
-implies
-\[0=p(1-s^*s)p=p-s^*s\]
-and $x=px=s^*sx=s^*y$.
+Then, there is $s\in M$ such that $y=sx$ and $s=sp$, where $p$ is the range projection of $x$, so $x^*(1-s^*s)x=x^*x-y^*y=0$ implies $0=p(1-s^*s)p=p-s^*s$ and $x=px=s^*sx=s^*y$.
 The well-definedness follows from
-\[\Theta(x^*x,z)=\<z\Lambda(x),\Lambda(x)\>=\<\pi(s)z\pi(s^*)\Lambda(y),\Lambda(y)\>=\<z\Lambda(ss^*y),\Lambda(y)\>=\Theta(y^*y,z).\]
+\[\<z\Lambda(x),\Lambda(x)\>=\<\pi(s)z\pi(s^*)\Lambda(y),\Lambda(y)\>=\<z\Lambda(ss^*y),\Lambda(y)\>=\<z\Lambda(y),\Lambda(y)\>.\]
 
 The homogeneity is clear, so now we prove the addivitiy.
 Let $x^*x,y^*y\in\fm^+$ for some $x,y\in\fn$.
 Let $a:=(x^*x+y^*y)^{\frac12}$ and take $s,t\in M$ such that $x=sa$, $y=ta$, $s=sa$, and $t=ta$, where $p$ is the range projection of $a$.
-Then,
-\[a(1-s^*s-t^*t)a=a^*a-x^*x-y^*y=0\]
-implies
-\[p(1-s^*s-t^*t)p=p-s^*s-t^*t.\]
+Then, $a(1-s^*s-t^*t)a=a^*a-x^*x-y^*y=0$ implies $p(1-s^*s-t^*t)p=p-s^*s-t^*t$.
 It follows that
 \begin{align*}
-\Theta(x^*x+y^*y,z)
-&=\<z\Lambda(a),\Lambda(a)\>=\<z\pi(p)\Lambda(a),\Lambda(a)\>\\
+\<z\Lambda(a),\Lambda(a)\>
+&=\<z\pi(p)\Lambda(a),\Lambda(a)\>\\
 &=\<z\pi(s^*s)\Lambda(a),\Lambda(a)\>+\<z\pi(t^*t)\Lambda(a),\Lambda(a)\>\\
-&=\<z\Lambda(x),\Lambda(x)\>+\<z\Lambda(y),\Lambda(y)\>\\
-&=\Theta(x^*x,z)+\Theta(y^*y,z).
+&=\<z\Lambda(x),\Lambda(x)\>+\<z\Lambda(y),\Lambda(y)\>.
 \end{align*}
 Now the $\Theta(\cdot,z)$ is linearly extendable to $\fm$.
+\end{pf}
+
+\begin{prop}[Radon-Nikodym affiliated with commutant]
+Let $\f$ be a weight on a von Neumann algebra and $(\pi,\Lambda)$ be the associated semi-cyclic representation to $\f$.
+Let $\psi$ be a ...
+There is $h$ such that
+\[\psi(y^*x)=\<h\Lambda(x),\Lambda(y)\>\]
+
+
+In particular, if $l\in\fm^\#$ satisfies $|l|\le C\f$ for some $C>0$, then there is $h\in\pi(M)'$ such that $\|h\|\le C$ and $l(y^*x)=\<h\Lambda(x),\Lambda(y)\>$ for $x,y\in\fn$.
+\end{prop}
+\begin{pf}
+(a)
 
 (b)
 The linear map $\theta^*$ is injective since $\Lambda$ has dense range.
@@ -233,6 +205,127 @@ In particular, for $x\in\fn^+$ we have
 \[\|\theta(x^2)\|=\|\omega_{\Lambda(x)}\|=\|\Lambda(x)\|^2=\f(x^2).\]
 
 
+
+
+
+\subsection{Normal weights and normal semi-cyclic representations}
+
+
+
+
+\begin{defn}[Normal semi-cyclic representations]
+Let $M$ be a von Neumann algebra.
+We say a weight $\f$ on $M$ is \emph{normal} if it is the supremum of normal positive linear functionals.
+We say a semi-cyclic representation $(\pi,\Lambda)$ of $M$ is \emph{normal} if $\pi$ is normal and $\Lambda$ is closed with respect to $\sigma$-weak topology of $M$ and weak topology of $H$.
+\end{defn}
+
+\begin{prop}
+Let $\f$ be a weight on $M$.
+Let $H_\f$ be the Hilbert space defined by the separation and completion of a sesquilinear form $\fn_\f\times\fn_\f\to\C:(x,y)\mapsto\f_\f(y^*x)$, and let $\Lambda_\f:\fn_\f\to H_\f$ be the canonical map.
+
+Let $(\pi,\Lambda)$ be a semi-cyclic representation of $M$.
+Let
+\[\cF_\Lambda:=\{\omega\in M_*^+:\omega(x^*x)\le\|\Lambda(x)\|^2,\ x\in\dom\Lambda\}\]
+and $\f_\Lambda(x^*x):=\sup_{\omega\in\cF_\Lambda}\omega(x^*x)$ for $x\in M$.
+Then, it is clear that $\f_\Lambda$ is a weight.
+\begin{parts}
+\item If $\f$ is normal, then $(\pi_\f,\Lambda_\f)$ is a normal semi-cyclic representation such that $\f=\f_{(\pi_\f,\Lambda_\f)}$.
+\item If $(\pi,\Lambda)$ is normal, then $\f_\Lambda$ is a normal weight such that there is a unitary $u:H\to H_{\f_\Lambda}$ satisfying $\pi_{\f_\Lambda}=(\Ad u)\pi$ and $\Lambda_{\f_\Lambda}=u\Lambda$.
+\item For a normal $\f$, $\f$ is faithful if and only if $\Lambda$ is injective.
+\item For a normal $\f$, $\f$ is semi-finite if and only if $\Lambda$ is $\sigma$-weakly densely defined.
+\end{parts}
+\end{prop}
+\begin{pf}
+(a)
+We show $\pi_\f$ is normal.
+The proof is almost same as the normality of cyclic representation associated to normal states.
+Consider $\pi_\f^*:B(H)_*\to M^*$, which is bounded.
+Since
+\[\pi_\f^*(\omega_{\Lambda_\f(y)})(x)=\<\pi_\f(x)\Lambda_\f(y),\Lambda_\f(y)\>=\f(y^*xy),\qquad x\in M, y\in\fn_\f,\]
+and $\f$ is order continuous, we can see that $\pi_\f^*(\omega_{\Lambda_\f(y)})$ is also order continuous, so it is contained in $M_*$.
+Because the image of $\Lambda_\f$ is dense, the linear span of states of the form $\omega_{\Lambda_\f(y)}$ for $y\in\fn_\f$ is norm-dense in $B(H)_*$ by the inequality
+\[\|\omega_\xi-\omega_\eta\|\le\|\xi-\eta\|(\|\xi\|+\|\eta\|),\qquad\xi,\eta\in H.\]
+Since $M_*$ is norm-closed $M^*$, so $\pi_\f^*(B(H)_*)\to M_*$ and $\pi_\f$ is normal.
+
+For closedness of $\Lambda$,
+
+
+
+(b)
+First we show $\dom\Lambda=\fn_{\f_{(\pi,\Lambda)}}$.
+One direction $\dom\Lambda\subset\fn_{\f_{(\pi,\Lambda)}}$ is clear because $x\in\dom\Lambda$ implies $\f_{(\pi,\Lambda)}(x^*x)\le\|\Lambda(x)\|^2$ by definition of $\cF_{(\pi,\Lambda)}$ and $\f_{(\pi,\Lambda)}$.
+Conversely, we let $x\in\fn_{\f(\pi,\Lambda)}$ and claim $x\in\dom\Lambda$.
+We may assume $x\ge0$ and $\f_{(\pi,\Lambda)}(x^2)=1$.
+If we consider the $\sigma$-weak and weak topologies on $\dom\Lambda$ and $H$ respectively, then since the graph of $\Lambda$ is closed and the projection $\dom\Lambda\times H_1\to\dom\Lambda$ is a closed map due to the tube lemma, the set $\{y\in\dom\Lambda:\|\Lambda(y)\|\le1\}$ and its positive part is $\sigma$-weakly closed.
+Since the square root is strongly continuous, if we temporarily consider a sufficiently large representation of $M$ in which every normal state is a vector state so that a strong and $\sigma$-strong topology coincide on $M$, we can conclude that $C:=\{y^2:\|\Lambda(y)\|^2\le1,\ y\in(\dom\Lambda)^+\}$ is $\sigma$-weakly closed with its convexity.
+If $x^2\notin C$, then there is $\omega\in M_*^{sa}$ such that
+\[\sup_{y^2\in C}\omega(y^2)\le1<\omega(x^2)\]
+by the Hahn-Banach separation.
+Since all functional arguments in the above inequality are all positive, we may assume $\omega$ is positive.
+Then, for every $y\in\dom\Lambda$ we have
+\[\omega(y^*y)=\|\Lambda(y)\|^2\omega(\frac{y^*y}{\|\Lambda(y)\|^2})\le\|\Lambda(y)\|^2\]
+because $y^*y/\|\Lambda(y)\|^2\in C$, which means $\omega\in\cF_{(\pi,\Lambda)}$.
+Thus, $\omega(x^2)\le\f_{(\pi,\Lambda)}(x^2)=1$ by definition of $\f_{(\pi,\Lambda)}$, which leads a contradiction, so $x^2\in C$ and $x\in\dom\Lambda$.
+
+
+Next, fixing $x\in\dom\Lambda=\fn_{\f_{(\pi,\Lambda)}}$, we can check $\|\Lambda(x)\|^2=\f(x^*x)=\|\Lambda_{\f_{(\pi,\Lambda)}}(x)\|^2$.
+The rest is routine.
+
+(c)
+Suppose $\f$ is faithful.
+If $x\in\fn$ satisfies $\Lambda(x)=0$, then $\f(x^*x)=\|\Lambda(x)\|^2=0$ implies $x=0$, so $\Lambda$ is injective.
+
+Suppose $\Lambda$ is injective.
+Take a non-zero $x\in\fn$ so that $\|\Lambda(x)\|^2>0$.
+We claim $\f(x^*x)\ne0$.
+
+(d)
+Also clear.
+\end{pf}
+
+
+\begin{thm}
+Let $\f$ is a weight on a von Neumann algebra $M$.
+Then, $\f$ is normal if and only if $\f$ is $\sigma$-weakly lower semi-continuous.
+\end{thm}
+\begin{pf}
+($\Rightarrow$)
+Endow a partial order on the set of all weights.
+Then, every set of monotonically increasing subadditive homogeneous functions $\f:M^+\to[0,\infty]$ always have its supremum given by its pointwise supremum.
+Since if $\f$ is the supremum of $\sigma$-weakly lower semi-continuous $\f_i$, then
+\[\f^{-1}([0,1])=\bigcap_i\f_i^{-1}([0,1])\]
+implies the $\sigma$-weak lower semi-continuity of $\f$.
+Conversly, the following theorem holds.
+
+($\Leftarrow$)
+Let $F:=\f^{-1}([0,1])$.
+It is a hereditary closed convex subset of the real locally convex space $(M^{sa},\sigma w)$.
+Denote by the superscript circle the real polar set.
+Since
+\[\cF_\f=F^{\circ+}=\{\omega\in M_*^+:\omega\le\f\},\qquad
+F^{\circ+\circ+}=\{x\in M^+:\sup_{\omega\in\cF_\f}\omega(x)\le1\},\]
+it is enough to show $F^{\circ+\circ+}=F$.
+The positive part of the real polar of $F$ is generally written as
+\[F^{\circ+}=F^\circ\cap M_*^+=F^\circ\cap(-M^+)^\circ=(F\cup-M^+)^\circ=(F-M^+)^\circ.\]
+Consider a sequence of inclusions
+\[F\subset\bar F\subset\bar{(F-M^+)^+}\subset\bar{(F-M^+)}^+\subset(F-M^+)^{\circ\circ+}=F^{\circ+\circ+}.\]
+The first, second, and forth inclusions are in fact full because $F$ is closed, hereditary, and convex.
+The forth one uses the bipolar theorem.
+So we claim that the reverse of the third inclusion $\bar{(F-M^+)}^+\subset\bar{(F-M^+)^+}$.
+
+Let $x\in\bar{(F-M^+)}^+$.
+For arbitrary $\e>0$, it is enough to show $f_\e(x)\in F-M^+$ because $x\ge0$ implies $f_\e(x)\ge0$ and $f_\e(x)\uparrow x$ as $\e\to0$.
+Let $x_\alpha$ be a net in $F-M^+$ that converges to $x$ $\sigma$-strongly, which can be done by the convexity of $F-M^+$.
+Let $y_\alpha$ be a net in $F$ such that $f_{\e/2}(x_\alpha)\le y_\alpha$.
+Since $f_{\e/2}(y_\alpha)$ is a bounded net, we may assume it is $\sigma$-weakly convergent.
+By the $\sigma$-strong continuity of $f_\e$, the net $f_\e(x_\alpha)$ converges to $f_\e(x)$ $\sigma$-strongly, hence $\sigma$-weakly.
+Therefore, by the closedness of $F$,
+\[f_\e(x)=\lim_\alpha f_\e(x_\alpha)\le\lim_\alpha f_{\e/2}(y_\alpha)\in F,\]
+so we conclude $f_\e(x)\in F-M^+$.
+\end{pf}
+
+
+
 \begin{lem}
 Let 
 For $z\in\fm^{sa}$, we have
@@ -243,7 +336,7 @@ In particular, for $x,y\in\fn^+$ and for any $\e>0$ there is $a\in\fm^+$ such th
 \begin{pf}
 Denote by $p(z)$ the left-hand side of the inequality.
 Then, we can check $p:\fm^{sa}\to\R_{\ge0}$ is a semi-norm such that $p(z)=\f(z)$ for $z\ge0$.
-(If we take $p(z):=\f(z^+)$, then it seems to be dangerous when checking the sublinearity. I could not find the counterexample.)
+(If we take $p(z):=\f(z^+)$, then it seems to be dangerous when checking the sublinearity. I could not find the counterexample for $(z_1+z_2)^+\le z_1^++z_2^+$.)
 
 Fix any non-zero $z_0\in\fm^{sa}$.
 By the Hahn-Banach extension, there is an algebraic real linear functional $l:\fm^{sa}\to\R$ such that
@@ -256,102 +349,51 @@ Since $z_0\in\fm^{sa}$ is aribtrary, we are done.
 
 
 
-
-\subsection{$\sigma$-weak lower semi-continuity}
-
-
 \begin{thm}
-Let $M$ be a countably decomposable von Neumann algebra.
-Then, a completely additive weight on $M$ is $\sigma$-weakly lower semi-continuous.
+Let $\f$ is a weight on a von Neumann algebra $M$.
+Then, $\f$ is $\sigma$-weakly lower semi-continuous if and only if $\f$ is order continuous.
 \end{thm}
 \begin{pf}
-We first prove a completely additive weight $\f$ on $M$ is normal if $M$ is countably decomposable.
-Let $x_\alpha$ be a bounded increasing net in $M^+$ with $x:=\sup_\alpha x_\alpha$.
-Take any faithful normal state $\omega$ of $M$ and extract inductively an increasing subsequence $x_n$ of $x_\alpha$ such that $\omega(x_n)\to\omega(x)$.
-Then, $\omega(x_n)\le\omega(\sup_nx_n)\le\omega(x)$ implies $\omega(\sup_nx_n)=\omega(x)$, and since $\omega$ is faithful we have $\sup_nx_n=x$.
-By the complete additivity, we have
-\[\f(x)=\sum_{n=1}^\infty\f(x_{n+1}-x_n)\le\sup_n\f(x_n)\le\sup_\alpha\f(x_\alpha)\le\f(x),\]
-hence $\f$ is order continuous.
+($\Rightarrow$)
+Easy
+
+($\Leftarrow$)
+Let $\f$ be an order continuous weight on $M$.
+We first claim that the associated semi-cyclic representation $(\pi,\Lambda)$ to $\f$ is normal if $M$ is countably decomposable.
+
+Suppose a sequence $x_n\in\fn_1$ satisfies $x_n\to x$ $\sigma$-strongly in $M_1$ and $\Lambda(x_n)\to\xi$ in $H_1$.
+Since $\Lambda(x_n)$ is Cauchy and bounded, $\omega_{\Lambda(x_n)}$ is also Cauchy in the norm topology of $B(H)_*$, so we may assume $\|\omega_{\Lambda(x_{n+1})}-\omega_{\Lambda(x_n)}\|<\e2^{-n}$, for arbitrarily taken $\e>0$.
+In order to dominate $x_n$ with an monotone sequence, we take $a_n\in\fm^+$ such that $|x_{n+1}|^2-|x_n|^2\le a_n$ and $\f(a_n)<\e2^{-n}$ using the previous lemma.
+Since the limit of the increasing sequence $\sum_{k=1}^n a_k$ in $n\to\infty$ may not exist, we introduce the cutoff $f_\e(t):=t(1+\e t)^{-1}$.
+By taking the limit $\e\to0$ on the inequality
+\[\f(f_\e(|x|^2))=\f(\lim_{n\to\infty}f_\e(|x_n|^2))\le\f(\sup_nf_\e(|x_1|^2+\sum_{k=1}^na_k))=\sup_n\f(f_\e(|x_1|^2+\sum_{k=1}^na_k))<1+\e,\]
+we have $x\in(\fn_\f)_1$ and $\Lambda(x)\in H_1$.
+Next, since $\Lambda(x_n-x)$ is Cauchy, we may assume $\|\omega_{\Lambda(x_n-x)}-\omega_{\Lambda(x_{n+1}-x)}\|<2^{-n}$.
+Take $b_n\in\fm^+$ such that $|x_n-x|^2-|x_{n+1}-x|^2\le b_n$ and $\f(b_n)<2^{-n}$.
+As we did previously, by taking $\e\to0$ on the inequality
+\[\f(f_\e(|x_m-x|^2))=\f(\lim_{n\to\infty}f_\e(|x_m-x|^2-|x_n-x|^2))\le\f(\sup_nf_\e(\sum_{k=m}^nb_k))=\sup_n\f(f_\e(\sum_{k=m}^nb_k))<2^{-(m-1)},\]
+we have $\|\Lambda(x_n)-\Lambda(x)\|^2=\f(|x_n-x|^2)\to0$ and $\xi=\lim_{n\to\infty}\Lambda(x_n)=\Lambda(x)$.
+Thus $(\pi,\Lambda)$ is normal.
 
 
-Now, let $\f$ be an order continuous weight on $M$ and let $(\pi,\Lambda)$ be the associated semi-cyclic representation.
-In the spirit of the Krein-\v Smulian theorem, the $\sigma$-weak lower semi-continuity is equivalent to the $\sigma$-weak closedness of the intersection with the ball
+In the spirit of the Krein-\v Smulian theorem, the $\sigma$-weak lower semi-continuity is equivalent to the $\sigma$-weak closedness of the bounded part of the inverse image of the closed interval
 \begin{align*}
 \f^{-1}([0,1])_1
 &=\{x\in M^+:\f(x)\le1,\ \|x\|\le1\}\\
-&=\{x\in\fm^+:\|\Lambda(x^{\frac12})\|\le1,\ \|x^{\frac12}\|\le1\}.
+&=\{x^*x\in\fm^+:\|\Lambda(x)\|\le1,\ \|x\|\le1\}.
 \end{align*}
-Since that the $\sigma$-weak and $\sigma$-strong closedness of a convex set are equivalent and that the square root operation on $M^+_1$ is $\sigma$-strongly continuous, we are enough to show the set
-\[(\f^{-1}([0,1])_1)^{\frac12}=\{x\in\fn^+:\|\Lambda(x)\|\le1,\ \|x\|\le1\}\]
+Since the $\sigma$-weak and strong closedness of a bounded convex set are equivalent and that the square root operation is strongly continuous, we are enough to show the square root
+\[\f^{-1}([0,1])_1^{\frac12}=\{x\in\fn^+:\|\Lambda(x)\|\le1,\ \|x\|\le1\}\]
 is $\sigma$-weakly closed.
 This set, if we denote the graph of $\Lambda:\fn\to H$ by $\Gamma_\Lambda$, is exactly the image of the positive part of the unit ball
 \[(\Gamma_\Lambda)^+_1=\{(x,\Lambda(x))\in\fn^+\oplus_\infty H:\|\Lambda(x)\|\le1,\ \|x\|\le1\}\]
 under the projection $M\oplus_\infty H\to M$.
-Observing $M\oplus_\infty H\cong(M_*\oplus_1H)^*$, if we prove $(\Gamma_\Lambda)_1^+$ is weakly$^*$ closed, then we are done by its compactness.
-
-Consider a linear functional $l:M\oplus_\infty H\to\C$ that is continuous with respect to $(\sigma s,\|\cdot\|)$.
-If we define $l_1:M\to\C$ and $l_2:H\to\C$ such that $l_1(x):=l(x,0)$ and $l_2(\xi)=(0,\xi)$, then they satisfy $l(x,\xi)=l_1(x)+l_2(\xi)$, and are continuous in $\sigma$-strong and norm topologies, hence to $\sigma$-weak and weak topologies, respectively.
-Since a net $(x_\alpha,\xi_\alpha)$ converges to $(x,\xi)$ weakly$^*$ if and only if $x_\alpha\to x$ $\sigma$-weakly and $\xi_\alpha\to\xi$ weakly, $l$ is weakly$^*$ continuous.
-Because $(\Gamma_\Lambda)_1^+$ is convex, we will now show that $(\Gamma_\Lambda)^+_1$ is closed with respect to $(M,\sigma s)\times(H,\|\cdot\|)$.
-
-Note that the unit ball $M_1$ is metrizable in $\sigma$-strong topology since $M$ is countably decomposable.
-Suppose a sequence $x_n\in\fn^+_1$ satisfies $x_n\to x$ $\sigma$-strongly and $\Lambda(x_n)\to\xi$ in $H$.
-Then, it suffices to show the following two statements: $x\in\fn^+_1$ and $\Lambda(x)=\xi$.
-We first observe that since $\Lambda(x_n)$ is Cauchy, so is $\omega_{\Lambda(x_n)}$ in $\pi(M)'_*$.
-
-Consider for a while, a family of functions
-\[f_a(t):=\frac t{1+at},\qquad t\in(-a^{-1},\infty),\]
-parametrized by $a>0$.
-They have several properties.
-At first, they are operator monotone.
-Next, they are $\sigma$-strongly continuous on a closed subset of its domain due to the boundedness of $f_a$, as we can see in the proof of the Kaplansky density theorem.
-Finally, for each $x\in M_+$, the increasing limit $f_a(x)\uparrow x$ in norm as $a\to0$ implies that $\sup_af_a(x)=x$.
-
-First we show $x\in\fn^+_1$.
-It is clear that $x\in M^+_1$, so it is enough to show $\f(x^2)<\infty$.
-By taking a subsequence, we may assume $\|\omega_{\Lambda(x_{n+1})}-\omega_{\Lambda(x_n)}\|<\frac1{2^n}$.
-In order to dominate $x_n$ with an monotone sequence, find $a_n\in\fm^+$ such that
-\[x_{n+1}^2-x_n^2\le a_n,\qquad \f(a_n)<\frac1{2^n},\]
-using the previous lemma.
-Then, we can write
-\[x_{n+1}^2\le x_1^2+\sum_{k=1}^n(x_{k+1}^2-x_k^2)\le x_1+\sum_{k=1}^na_k.\]
-Here the right-hand side is non-decreasing but not a bounded sequence so we take $f_a$ to get the $\sigma$-strong limit
-\[f_a(x^2)\le\sup_nf_a(x_1^2+\sum_{k=1}^na_k).\]
-Then, by the normality of $\f$, we have
-\begin{align*}
-\f(f_a(x^2))
-&\le\sup_n\f(f_a(x_1^2+\sum_{k=1}^na_k))\\
-&\le\sup_n\f(x_1^2+\sum_{k=1}^na_k)\\
-&=\f(x_1^2)+\sum_{k=1}^\infty\f(a_k)\\
-&<\f(x_1^2)+1<\infty
-\end{align*}
-which implies by sending $a\to0$ that $\f(x^2)<\infty$, whence $x\in\fn$.
-
-Next we show $\Lambda(x)=\xi$.
-If we prove $\f((x_n-x)^2)\to0$, then
-\[\|\xi-\Lambda(x)\|\le\|\xi-\Lambda(x_n)\|+\|\Lambda(x_n)-\Lambda(x)\|=\|\xi-\Lambda(x_n)\|+\f((x_n-x)^2)^{\frac12}\to0\]
-deduces the desired result.
-By taking a subsequence, since $\Lambda(x_n-x)$ is Cauchy, we may assume
-\[\|\omega_{\Lambda(x_n-x)}-\omega_{\Lambda(x_{n+1}-x)}\|<\frac1{2^n}.\]
-Let $b_n\in\fm^+$ such that
-\[(x_n-x)^2-(x_{n+1}-x)^2\le b_n,\qquad\f(b_n)<\frac1{2^n}\]
-As we did previously, we have
-\[f_a((x_n-x)^2)\le f_a((x_{m+1}-x)^2)+f_a(\sum_{k=n}^mb_k)\to\sup_mf_a(\sum_{k=n}^mb_k)\]
-as $m\to\infty$ and
-\[\f(f_a((x_n-x)^2))
-\le\sup_m\f(f_a(\sum_{k=n}^mb_k))
-\le\sup_m\f(\sum_{k=n}^mb_k)<\frac1{2^{n-1}}.\]
-Therefore,
-\[\f((x_n-x)^2)\le\frac1{2^{n-1}}\to0.\qedhere\]
-\end{pf}
+Observe $(x_\alpha,\xi_\alpha)$ converges to $(x,\xi)$ weakly$^*$ in $M\oplus_\infty H\cong(M_*\oplus_1H)^*$ if and only if $x_\alpha\to x$ $\sigma$-weakly and $\xi_\alpha\to\xi$ weakly.
+Since the graph of $\Lambda$ and the closed ball in $M\oplus_\infty H$ is a closed with respect to the $\sigma$-weak topology of $\fn$ and the weak topology of $H$, their intersection $(\Gamma_\Lambda)_1^+$ is weakly$^*$ closed.
+Therefore, by its compactness, $\f$ is $\sigma$-wealy lower semi-continuous done provided $M$ is countably decomposable.
 
 
-\begin{thm}
-Let $M$ be an arbitrary von Neumann algebra.
-Then, a completely additive weight on $M$ is $\sigma$-weakly lower semi-continuous.
-\end{thm}
-\begin{pf}
-Let $\f$ be a completely additive weight of $M$.
+Now, let $M$ be an arbitrary von Neumann algebra, and let $\f$ be a order continuous weight on $M$.
 Let $\Sigma$ be the set of all countably decomposable projections of $M$ and let $M_0:=\bigcup_{p\in\Sigma}pMp$.
 The equivalent condition for $x\in M$ to belong to $M_0$ is that the left and right support projections of $x$ are countably decomposable.
 Since then the left support projection $p$ and the right support projection $q$ of $x$ are Murray-von Neumann equivalent so that there is a $*$-isomorphism between $pMp$ and $qMq$, the countable decomposability is equivalent for $p$ and $q$.
@@ -380,46 +422,6 @@ By the above claim,
 By the complete additivity of $\f$, we finally obtain
 \[x\in\f^{-1}([0,1])_1.\]
 Therefore, $\f^{-1}([0,1])_1$ is $\sigma$-weakly closed.
-\end{pf}
-
-
-\subsection{Supremum of normal positive linear functionals}
-
-Endow a partial order on the set of all weights.
-Then, every set of monotonically increasing subadditive homogeneous functions $\f:M^+\to[0,\infty]$ always have its supremum given by its pointwise supremum.
-Since if $\f$ is the supremum of $\sigma$-weakly lower semi-continuous $\f_i$, then
-\[\f^{-1}([0,1])=\bigcap_i\f_i^{-1}([0,1])\]
-implies the $\sigma$-weak lower semi-continuity of $\f$.
-Conversly, the following theorem holds.
-
-\begin{thm}
-Let $M$ be a von Neumann algebra.
-Then, a $\sigma$-weakly lower semi-continuous monotonically increasing additivie homogeneous function $\f:M^+\to[0,\infty]$ is given by the supremum of a set of normal positive linear functionals.
-\end{thm}
-\begin{pf}
-Let $F:=\f^{-1}([0,1])$.
-It is a hereditary closed convex subset of the real locally convex space $(M^{sa},\sigma w)$.
-Denote by the superscript circle the real polar set.
-Since
-\[F^{\circ+}=\{\omega\in M_*^+:\omega\le\f\},\qquad
-F^{\circ+\circ+}=\{x\in M^+:\sup_{\omega\le\f,\ \omega\in M_*^+}\omega(x)\le1\},\]
-it is enough to show $F^{\circ+\circ+}=F$.
-The positive part of the real polar of $F$ is generally written as
-\[F^{\circ+}=F^\circ\cap M_*^+=F^\circ\cap(-M^+)^\circ=(F\cup-M^+)^\circ=(F-M^+)^\circ.\]
-Consider a sequence of inclusions
-\[F\subset\bar F\subset\bar{(F-M^+)^+}\subset\bar{(F-M^+)}^+\subset(F-M^+)^{\circ\circ+}=F^{\circ+\circ+}.\]
-The first, second, and forth inclusions are in fact full because $F$ is closed, hereditary, and convex.
-So we claim that the reverse of the third inclusion $\bar{(F-M^+)}^+\subset\bar{(F-M^+)^+}$.
-
-Let $x\in\bar{(F-M^+)}^+$.
-For arbitrary $a>0$, it is enough to show $f_a(x)\in F-M^+$ because $x\ge0$ implies $f_a(x)\ge0$ and $f_a(x)\uparrow x$ as $a\to0$.
-Let $x_\alpha$ be a net in $F-M^+$ that converges to $x$ $\sigma$-strongly, which can be done by the convexity of $F-M^+$.
-Let $y_\alpha$ be a net in $F$ such that $f_{a/2}(x_\alpha)\le y_\alpha$.
-Since $f_{a/2}(y_\alpha)$ is a bounded net, we may assume it is $\sigma$-weakly convergent.
-By the $\sigma$-strong continuity of $f_a$, the net $f_a(x_\alpha)$ converges to $f_a(x)$ $\sigma$-strongly, hence $\sigma$-weakly.
-Therefore, by the closedness of $F$,
-\[f_a(x)=\lim_\alpha f_a(x_\alpha)\le\lim_\alpha f_{a/2}(y_\alpha)\in F,\]
-so we conclude $f_a(x)\in F-M^+$.
 \end{pf}
 
 
@@ -638,7 +640,7 @@ S\xi_1(\rho(\eta)^*\zeta)
 We have $\xi_1\in D$ by the density of $A'^2$ in $H$, so $\lambda(B)\cap\lambda(B)^*\subset\lambda(D)$, hence the second equality follows.
 
 From now in the rest of proof, we will always denote $y=\rho(\eta)$ and $z=\rho(\zeta)$ for $y,z\in\fn'$.
-The weight $\f$ is clearly faithful, and semi-finiteness is because $x\in M$ is approximated by a net $\lambda(\xi_\alpha)x\lambda(\xi_\alpha)\in\lambda(B)^*\lambda(B)=\fm$, where $\lambda(\xi_\alpha)\in\lambda(B)$ converges $\sigma$-weakly to $\id_H$.
+The weight $\f$ is clearly faithful, and semi-finiteness follows from the assumption $\fa''=\lambda(A)''=M$ that a net $e_\alpha$ in $\fa$ convergent $\sigma$-strongly/weakly to the identity has a $\sigma$-weak limit $x=\lim_\alpha e_\alpha xe_\alpha\in\fm''$ for $x\in M$.
 To verify the normality of $\f$, we will show
 \[\f(x^*x)=\sup_{y\in\fn'_1}\omega_{\eta}(x^*x),\qquad x\in\fn,\]
 where $\fn':=\rho(B')$.
@@ -679,21 +681,21 @@ The vector $\xi$ is left bounded by definition and $x=\lambda(\xi)\in\lambda(B)=
 
 \begin{thm}
 Let $M$ be a von Neumann algebra.
-If $\f$ is a faithful semi-finite normal weight on $M$ and $(\pi,\Lambda)$ is the associated semi-cyclic representation of $M$, then $A:=\Lambda(\fa)$ is a full left Hilbert algebra with
-\[\<\Lambda(x_1),\Lambda(x_2)\>:=\f(x_2^*x_1),\qquad \Lambda(x_1)\Lambda(x_2):=\Lambda(x_1x_2),\qquad\Lambda(x)^*:=\Lambda(x^*),\]
+If $\f$ is a faithful semi-finite normal weight on $M$ and $(\pi,\Lambda,H)$ is the associated semi-cyclic representation of $M$, then $A:=\Lambda(\fa)$ is a full left Hilbert algebra with
+\[\Lambda(x_1)\Lambda(x_2):=\Lambda(x_1x_2),\qquad\Lambda(x)^*:=\Lambda(x^*),\]
 such that $\lambda(A)''=\pi(M)$.
 \end{thm}
 \begin{pf}
-We use the notation $\pi(x)=x$.
+We use the notation $x=\pi(x)$.
 It does not make any confusion because the semi-cyclic representation $\pi:M\to B(H)$ is always unital and is faithful due to the assumption that $\f$ is faithful.
 We clearly see that $A$ is a $*$-algebra and the left multiplication provides a $*$-homomorphism $\lambda:A\to B(H)$.
 By the construction of the semi-cyclic representation associated to $\f$, $A$ is dense in $H$.
 We need to show the non-degeneracy of $\lambda$, the closability of the involution, and the fullness of $A$.
 
 (non-degeneracy)
-Since $\f$ is semi-finite, there is a net $x_\alpha$ in $(\fn\cap\fn^*)_1$ converges strongly to the identity of $M$ by the Kaplansky density theorem.
+Since $\f$ is semi-finite, there is a net $x_\alpha$ in $\fa_1$ converges strongly to the identity of $M$ by the Kaplansky density theorem.
 Then, it follows that $\lambda$ is non-degenerate from
-\[\lambda(\Lambda(x_\alpha))\Lambda(x)=\Lambda(x_\alpha)\Lambda(x)=\Lambda(x_\alpha x)=x_\alpha\Lambda(x)\to\Lambda(x),\qquad x\in\fn\cap\fn^*.\]
+\[\lambda(\Lambda(x_\alpha))\Lambda(x)=\Lambda(x_\alpha x)=x_\alpha\Lambda(x)\to\Lambda(x),\qquad x\in\fa.\]
 
 (closability)
 We need to prove the domain of the adjoint
@@ -708,12 +710,12 @@ Also, if we take a net $x_\alpha\in\fn_1$ that converges $\sigma$-strongly to th
 \[\lim_{\alpha,\beta}\|h_\omega^{\frac12}\Lambda(x_\alpha)-h_\omega^{\frac12}\Lambda(x_\beta)\|^2=\lim_{\alpha,\beta}\omega(|x_\alpha-x_\beta|^2)=0.\]
 Thus, the vector $\Lambda_\omega:=\lim_\alpha h_\omega^{\frac12}\Lambda(x_\alpha)$ can be defined, and in particular, we have $h_\omega^{\frac12}\Lambda(x)=x\Lambda_\omega$ for $x\in\fn$ and $\omega=\omega_{\Lambda_\omega}$.
 
-If $\eta=h_{\omega_2}^{\frac12}y\Lambda_{\omega_1}$ for some $y\in M'$ and $\omega_1,\omega_2\in\cG$, then
+If $\eta:=h_{\omega_2}^{\frac12}y\Lambda_{\omega_1}$ for some $y\in M'$ and $\omega_1,\omega_2\in\cG$, then
 \begin{align*}
 |\<\eta,\Lambda(x^*)\>|
 &=|\<h_{\omega_2}^{\frac12}y\Lambda_{\omega_1},\Lambda(x^*)\>|=|\<y\Lambda_{\omega_1},h_{\omega_2}^{\frac12}\Lambda(x^*)\>|=|\<y\Lambda_{\omega_1},x^*\Lambda_{\omega_2}\>|\\
 &=|\<yx\Lambda_\omega,\Lambda_{\omega_2}\>|=|\<yh_{\omega_1}^{\frac12}\Lambda(x),\Lambda_{\omega_2}\>|=|\<\Lambda(x),h_{\omega_1}^{\frac12}y^*\Lambda_{\omega_2}\>|\\
-&\le\|\Lambda(x)\|\|h_{\omega_1}^{\frac12}y^*\Lambda_{\omega_2}\|,\qquad x\in\fn\cap\fn^*,
+&\le\|\Lambda(x)\|\|h_{\omega_1}^{\frac12}y^*\Lambda_{\omega_2}\|,\qquad x\in\fa,
 \end{align*}
 which deduces that $\eta\in D'$.
 Therefore, it suffices to show the following space is dense in $H$:
@@ -721,7 +723,7 @@ Therefore, it suffices to show the following space is dense in $H$:
 Thanks to the normality of $\f$, we can write
 \begin{align*}
 \<\Lambda(x),\Lambda(x)\>&=\|\Lambda(x)\|^2=\f(x^*x)=\sup_{\omega\in\cG}\omega(x^*x)\\
-&=\sup_{\omega\in\cG}\|x\Lambda_\omega\|^2=\sup_{\omega\in\cG}\|h_\omega^{\frac12}\Lambda(x)\|^2=\sup_{\omega\in\cG}\<h_\omega\Lambda(x),\Lambda(x)\>,\qquad x\in\fn\cap\fn^*.
+&=\sup_{\omega\in\cG}\|x\Lambda_\omega\|^2=\sup_{\omega\in\cG}\|h_\omega^{\frac12}\Lambda(x)\|^2=\sup_{\omega\in\cG}\<h_\omega\Lambda(x),\Lambda(x)\>,\qquad x\in\fa.
 \end{align*}
 Because $A$ in $H$, for any $\xi\in H$ and $\e>0$ there is $x\in\fn\cap\fn^*$ such that $\|\xi-\Lambda(x)\|<\e$, so the inequality
 \[\<(1-h_\omega)\xi,\xi\>\le\e(\|\xi\|+\|\Lambda(x)\|)+\<(1-h_\omega)\Lambda(x),\Lambda(x)\>\]
@@ -777,10 +779,10 @@ Let $M$ be a von Neumann algebra and let $\{\omega_i\}_{i\in I}$ be a maximal fa
 Here, the support projection $s(\omega)$ of a normal state $\omega$ is the minimal projection $p$ such that $\omega(px)=\omega(x)=\omega(xp)$ for all $x\in M$.
 Since every countably decomposable projection $p$ is a support of a normal state, a faithful normal state on $pMp$, we have $\sum_ip_i=1$.
 Define a weight $\f$ by
-\[\f(x):=\sum_i\omega_i(x).\]
+\[\f(x):=\sum_{i\in I}\omega_i(x)=\sup_{J\Subset I}\sum_{i\in J}\omega_i(x).\]
 It is faithful because $\f(x)=0$ with $x\ge0$ means $\omega_i(x)=0$ and $p_ixsp_i=0$ for all $i$, and it implies
 \[x^{\frac12}=x^{\frac12}\sum_ip_i=\sum_ix^{\frac12}p_i=0.\]
-It is normal because it is completely additive.
+It is normal because it is the supremum of normal positive linear functionals $\omega_J=\sum_{i\in J}\omega_i$.
 It is semi-finite because $p_J\uparrow1$ with $\f(p_J)<\infty$ as $J\to I$, where $p_J:=\sum_{i\in J}p_i$ and $J$ runs through finite subsets of $I$.
 \end{pf}
 
@@ -833,8 +835,8 @@ Let $M$ be a countably decomposable von Neumann algebra and $\omega$ be a faithf
 If we consider the associated cyclic representation of $\omega$, then we have an action of $M$ on $H$ together with a cyclic separating vector $\Omega\in H$.
 Then, $A:=M\Omega$ has the following left Hilbert algebra structure:
 \[\<x\Omega,y\Omega\>\text{ is defined as it is},\qquad (x\Omega)(y\Omega):=xy\Omega,\qquad (x\Omega)^*:=x^*\Omega.\]
-There is no specific description of $\Delta$ and $J$ in general, but it is known that $B=H$ and
-\[A''=D=\{c\Omega:c\in C(H)\text{ affiliated with $M$ such that }\Omega\in\dom c\cap\dom c^*\}.\]
+There is no specific description of $\Delta$ and $J$ in general, but it is known that $\fn=\fa=\fm=M$ so that $A=B=M\Omega$ is full, and
+\[D=\{c\Omega:c\in C(H)\text{ affiliated with $M$ such that }\Omega\in\dom c\cap\dom c^*\}.\]
 \end{ex}
 
 
@@ -849,100 +851,135 @@ There is no specific description of $\Delta$ and $J$ in general, but it is known
 \newpage
 \section{December 20}
 
-\subsection{Review on Pettis integral}
+\subsection{Pettis integral}
 
 \begin{defn}[Properties of dual pairs]
 Let $(X,F)$ be a dual pair.
 For example, if $X$ is a topological vector space and $F$ is a linear subspace of $X^*$, then $(X,F)$ is a dual pair if and only if $F$ is weakly$^*$ dense in $X^*$.
-Conversely, every dual pair $(X,F)$ can be understood as $(X,X^*)$ by endowing with $\sigma(X,F)$ on $X$.
-
-We say $(X,F)$ has the \emph{Krein property} if the $\sigma(X,F)$-closed balanced convex hull of every $\sigma(X,F)$-compact subset of $X$ is $\sigma(X,F)$-compact.
-We say $(X,F)$ has the \emph{Goldstine property} if $X$ is $\beta(X,F_\beta)$-complete.
+Conversely, every dual pair $(X,F)$ can be understood as $(X,X^*)$ by endowing with the weak topology $\sigma(X,F)$ on $X$.
+Then, we say $(X,F)$ has the \emph{Krein property} if the closed balanced convex hull of a compact subset of $X$ is compact in the topology $\sigma(X,F)$, and say $(X,F)$ has the \emph{Goldstine property} if $X$ is $\beta(X,F_\beta)$-closed in the strong bidual $(F_\beta)^*_\beta$.
 \end{defn}
 \begin{rmk*}
-For a Banach space $X$, the choices $F=X^*$ and $F=X_*$, where $X_*$ is a Banach predual of $X$ if it exists, satisfy the two properties.
+Let $X$ a Banach space.
+The weak dual pair $(X,X^*)$ satisfies the Krein property by the Krein-\v Smulian theorem, and the Goldstine property by the closedness of $X$ in $X^{**}$.
+Suppose there is a predual $X_*$ of $X$, i.e.~a norm closed subspace $X_*$ of $X^*$ such that the restriction of $(X^*)^*\to(X_*)^*$ on $X$ gives rise to a isometric isomorphism.
+Then, the weak$^*$ dual pair $(X,X_*)$ satisfies the Krein property by the fact that the closed convex hull of a bounded set is bounded, and the Golstine property because the norm topology and $\beta(X,(X_*)_\beta)$ coincide by the Goldstine theorem.
+In particular, a dual pair $(X,F)$ with $F\subset X^*$ has the Goldstine property if and only if the closed unit ball $F_1=F\cap X^*_1$ is weakly$^*$ dense in the closed ball $X^*_1$.
 \end{rmk*}
 
-\begin{prop}[Dunford operator]
-Let $(\Omega,\mu)$ be a finite measure space.
-Let $X$ be a topological vector space and $F$ is a weakly$^*$ dense subspace of $X^*$.
-For a $\sigma(X,F)$-integrable map $x:\Omega\to X$, we can define a linear operator $\phi_x:L^\infty(\mu)\to F^\#$, defined such that
-\[\<\phi_x(p),x^*\>:=\int_\Omega p(s)\<x(s),x^*\>\,d\mu(s),\qquad p\in L^\infty(\mu),\ x^*\in F.\]
-The operator $\phi_x$ is called the \emph{Dunford operator}, and abusing the notation, we usually write as
-\[\phi_x(p)=\int_\Omega p(s)x(s)\,d\mu(s).\]
+\begin{prop}[Well-definedness of Pettis integral]
+Let $x:\Omega\to X$ be a $\sigma(X,F)$-bounded $\sigma(X,F)$-measurable function, where $(\Omega,\mu)$ is a $\sigma$-finite measure space and $(X,F)$ is a dual pair.
+Then, it determines a linear operator $F\to L^\infty(\mu)$ by definition.
+By the adjoint and restriction, we have a linear operator $\phi_x:L^1(\mu)\to F^\#$, which satisfies
+\[\<\phi_x(f),x^*\>:=\int_\Omega f(s)\<x(s),x^*\>\,d\mu(s),\qquad f\in L^1(\mu),\ x^*\in F.\]
+We usually write as
+\[\phi_x(f)=\int_\Omega f(s)x(s)\,d\mu(s).\]
 \begin{parts}
-\item $\phi_x$ is weak$^*$-$\sigma(F^\#,F)$-continuous and $\sigma(F^\#,F)$-compact.
+\item $\phi_x(L^1(\mu))\subset(F_\beta)^*$ and $\phi_x$ is always weak-$\sigma((F_\beta)^*,F)$-continuous.
 \item Suppose $(X,F)$ has the Krein property.
-If $x$ is $\sigma(X,F)$-compactly valued, then $\phi_x(L^\infty(\mu))\subset X$.
+If $x$ is $\sigma(X,F)$-compactly valued, then $\phi_x(L^1(\mu))\subset X$.
 \item Suppose $(X,F)$ has the Krein and Goldstine property.
-Suppose $\Omega$ is a topological space with tight Borel $\mu$.
-If $x$ is $\sigma(X,F)$-bounded and $\sigma(X,F)$-continuous, then then $\phi_x(L^\infty(\mu))\subset X$.
-\item Suppose we have $\phi_x(L^\infty(\mu))\subset X$. Let $Y$ be another topological vector space and $G$ is a weakly$^*$ dense subspace of $Y^*$. If $T:X\to Y$ is a $\sigma(X,F)$-$\sigma(Y,G)$-continuous linear operator, then $T\phi_x=\phi_{T\circ x}$. In other words,
-\[T\int_\Omega p(s)x(s)\,d\mu(s)=\int_\Omega p(s)Tx(s)\,d\mu(s),\qquad p\in L^\infty(\mu).\]
+Suppose $\Omega$ is a locally compact Hausdorff space with a Radon measure $\mu$.
+If $x$ is $\sigma(X,F)$-continuous, then $\phi_x(L^1(\mu))\subset X$.
+\item Suppose we have $\phi_x(L^1(\mu))\subset X$. Let $Y$ be another topological vector space and $G$ is a weakly$^*$ dense subspace of $Y^*$. If $T:X\to Y$ is a $\sigma(X,F)$-$\sigma(Y,G)$-continuous linear operator, then $T\phi_x=\phi_{T\circ x}$. In other words,
+\[T\int_\Omega f(s)x(s)\,d\mu(s)=\int_\Omega f(s)Tx(s)\,d\mu(s),\qquad f\in L^1(\mu).\]
+\item Suppose we have $\phi_x(L^1(\mu))\subset X$, $(X,F)$ has the Goldstine property, and $X$ is a Banach space. Then,
+\[\|\int f(s)x(s)\,d\mu(s)\|\le\int\|f(s)x(s)\|\,d\mu(s),\qquad f\in L^1(\mu).\]
 \end{parts}
 \end{prop}
 \begin{pf}
 (a)
-If $p_\alpha\in L^\infty(\mu)$ converges to zero weakly$^*$.
-Then,
-\[\<\phi_x(p_\alpha),x^*\>=\int_\Omega p(s)\<x(s),x^*\>\,d\mu(s)\to0,\qquad x^*\in F\]
-because $x$ is $\sigma(X,F)$-integrable so that $(s\mapsto\<x(s),x^*\>)\in L^1(\mu)$, so the continuity of $\phi_x$.
-Then, the compactness of $\phi_x$ easily follows the weak$^*$ compactness of the unit ball of $L^\infty(\mu)$.
+Let $B^*\subset F$ be a $\beta(F,X_\sigma)$-bounded set.
+For $x^*\in F$ we have an inequality
+\[|\<\phi_x(f),x^*\>|\le\int_\Omega |f(s)\<x(s),x^*\>|\,d\mu(s)\le\|f\|_{L^1}\sup_{y\in x(\Omega)}|\<y,x^*\>|,\]
+and a bound
+\[\sup_{x_*\in B^*}\sup_{y\in x(\Omega)}|\<y,x^*\>|<\infty\]
+due to the $\sigma(X,F)$-boundedness of $x(\Omega)$, so $\phi_x(f)\in(F_\beta)^*$.
+If $f_\alpha\in L^1(\mu)$ converges weakly to zero, then
+\[\<\phi_x(f_\alpha),x^*\>=\int_\Omega f(s)\<x(s),x^*\>\,d\mu(s)\to0,\qquad x^*\in F\]
+because $x$ is $\sigma(X,F)$-integrable so that $(s\mapsto\<x(s),x^*\>)\in L^\infty(\mu)$, so the continuity of $\phi_x$.
 
 (b)
 Fix $p\in L^\infty(\mu)$ and let $C$ be the $\sigma(X,F)$-closed balanced convex hull of $x(\Omega)\subset X$.
 Then $C$ is $\sigma(X,F)$-compact by the Krein property.
 Since for every $x^*\in F$ we have
-\[|\<\phi_x(p),x^*\>|=|\int_\Omega p(s)\<x(s),x^*\>\,d\mu(s)|
-\le\|\mu\|\|p\|_{L^\infty}\sup_{s\in\Omega}|\<x(s),x^*\>|\lesssim\sup_{y\in C}|\<y,x^*\>|,\]
-the linear functional $\phi_x(p)$ on $F$ is continuous with respect to the Mackey topology $\tau(F,X)$, which is a dual topology so that $\phi_x(p)$ can be naturally identified with a vector in $(F_\tau)^*=X$.
+\[|\<\phi_x(f),x^*\>|\le\int_\Omega|f(s)\<x(s),x^*\>|\,d\mu(s)\le\|f\|_{L^1}\sup_{y\in x(\Omega)}|\<y,x^*\>|\le\|f\|_{L^1}\sup_{y\in C}|\<y,x^*\>|,\]
+the linear functional $\phi_x(f)$ on $F$ is continuous with respect to the Mackey topology $\tau(F,X)$, which is a dual topology so that $\phi_x(f)$ can be naturally identified with a vector in $(F_\tau)^*=X$.
 
 (c)
-Fix $p\in L^\infty(\mu)$ and let $B$ be a $\sigma(X,F)$-bounded set containing the image $x(\Omega)\subset X$.
-By the tightness of $\mu$, there is a sequence of compact sets $K_n\subset\Omega$ such that $\mu(\Omega\setminus K_n)<n^{-1}$.
-Since for every $x^*\in F$ we have
-\[|\<\phi_x(p)-\phi_{x|_{K_n}}(p),x^*\>|=|\int_{\Omega\setminus K_n}p(s)\<x(s),x^*\>\,d\mu(s)|\le n^{-1}\|p\|_{L^\infty}\sup_{s\in\Omega}|\<x(s),x^*\>|\lesssim n^{-1}\sup_{y\in B}|\<y,x^*\>|,\]
-which implies that $\phi_{x|_{K_n}}(p)$ converges to $\phi_x(p)$ in $\beta(F^\#,F_\beta)$.
-Since $\phi_{x|_{K_n}}(p)\in X$ by the part (b) and $X$ is closed in $\beta(F^\#,F_\beta)$, we have $\phi_x(p)\in X$.
+Fix $f\in L^1(\mu)$.
+By the tightness of $\mu$, there is a sequence of compact sets $K_n\subset\Omega$ such that $\int_{\Omega\setminus K_n}|f(s)|\,d\mu(s)<n^{-1}$.
+Since for each $x^*\in F$ we have
+\[|\<\phi_x(f)-\phi_{x|_{K_n}}(f),x^*\>|\le\int_{\Omega\setminus K_n}|f(s)|\,d\mu(s)\cdot\sup_{s\in\Omega}|\<x(s),x^*\>|<n^{-1}\sup_{y\in x(\Omega)}|\<y,x^*\>|\]
+so that
+\[\sup_{x^*\in B^*}|\<\phi_x(f)-\phi_{x|_{K_n}}(f),x^*\>|\le n^{-1}\sup_{x_*\in B^*}\sup_{y\in x(\Omega)}|\<y,x^*\>|\to0,\qquad n\to\infty,\]
+which means that $\phi_{x|_{K_n}}(f)$ converges to $\phi_x(f)$ in $\beta((F_\beta)^*,F_\beta)$.
+Since $\phi_{x|_{K_n}}(f)\in X$ by the part (b) and $X$ is closed in $\beta((F_\beta)^*,F_\beta)$ by the Goldstine property, we have $\phi_x(f)\in X$.
 
 (d)
 By the continuity of $T$, the adjoint $T^*:G\to F$ is well-defined.
-The measurability of $T$ and the existence of the adjoint $T^*$ imply that the composition $T\circ x:\Omega\to Y$ is $\sigma(Y,G)$-integrable, so the Dunford operator $\phi_{T\circ x}:L^\infty(\mu)\to G^\#$ is well-defined.
+The measurability of $T$ and the existence of the adjoint $T^*$ imply that the composition $T\circ x:\Omega\to Y$ is $\sigma(Y,G)$-bounded and $\sigma(Y,G)$-measurable, so the operator $\phi_{T\circ x}:L^1(\mu)\to G^\#$ is well-defined.
 Then,
 \begin{align*}
-\<T\phi_x(p),y^*\>&=\<\phi_x(p),T^*y^*\>=\int_\Omega p(s)\<x(x),T^*y^*\>\,d\mu(s)\\
-&=\int_\Omega p(s)\<Tx(s),y^*\>\,d\mu(s)=\<\phi_{T\circ x}(p),y^*\>,\qquad p\in L^\infty(\mu),\ y^*\in G.
+\<T\phi_x(f),y^*\>&=\<\phi_x(f),T^*y^*\>=\int_\Omega f(s)\<x(x),T^*y^*\>\,d\mu(s)\\
+&=\int_\Omega f(s)\<Tx(s),y^*\>\,d\mu(s)=\<\phi_{T\circ x}(f),y^*\>,\qquad f\in L^1(\mu),\ y^*\in G.
 \end{align*}
-In particular, $\phi_{T\circ x}:L^\infty(\mu)\to Y$.
+In particular, $\phi_{T\circ x}:L^1(\mu)\to Y$.
+
+(e)
+By the Goldstine property,
+\begin{align*}
+\|\int f(s)x(s)\,d\mu(s)\|
+&=\sup_{x^*\in F_1}|\int f(s)x(s)\,d\mu(s)|
+\le\sup_{x^*\in F_1}\int|f(s)x(s)|\,d\mu(s)\\
+&\le\int\sup_{x^*\in F_1}|f(s)x(s)|\,d\mu(s)
+\le\int\|f(s)x(s)\|\,d\mu(s).\qedhere\\
+\end{align*}
 \end{pf}
 
 
-
-\begin{cor*}
-A weakly$^*$ holomorphic function $x:\Omega\subset\C\to X$ for a Banach space $X=(X_*)^*$ is strongly holomorphic.
-\end{cor*}
-\begin{pf}
-I guess it is true...
-\end{pf}
-
-
-
-\subsection{One-parameter group of isometries}
-Here are our settings in this section:
-Let $X$ be a Banach space and $F$ is a weakly$^*$ dense subspace of $X^*$ such that $(X,F)$ satisfies the Krein and Goldstine property.
-Let $G$ be a locally compact group.
-Let $\alpha:G\to\Isom(X)\subset B(X)$ be a $\sigma(X,F)$-continuous one-parameter group of $\sigma(X,F)$-continuous linear isometries.
-
-As a remark, we note that if we choose $X=A$ a C$^*$-algebra and $F=A^*$ its continuous dual, then an action $\alpha:G\to\Aut(A)$ which is continuous in the above sense is enhanced to the continuity with respect to the point-norm topology, because a weakly continuous semi-group on a Banach space is strongly continuous. (It can be shown by applying the uniform boundedness principle twice.)
 
 \begin{prop}
+Let $X$ be a Banach space together with a weakly$^*$ dense subspace $F$ of $X^*$ such that $(X,F)$ satisfies the Krein and Goldstine property.
+A $\sigma(X,F)$-holomorphic function $x:\Omega\subset\C\to X$ is holomorphic.
+\end{prop}
+\begin{pf}
+It may be false.
+\end{pf}
+
+
+\subsection{Isometric actions}
+
+From now on, we always let $G$ be a locally compact group, and let $X$ be a Banach space together with a weakly$^*$ dense subspace $F$ of $X^*$ such that $(X,F)$ satisfies the Krein and Goldstine property.
+
+
+
+\begin{defn}[Isometric group actions]
+By an \emph{isometric action} of $G$ on $(X,F)$, we mean a $\sigma(X,F)$-continuous group homomorphism $\alpha:G\to\Isom(X)\subset B(X)$ of $\sigma(X,F)$-continuous linear isometries.
+Let $A$ be a C$^*$-algebra.
+Then, we always consider an \emph{action} of $G$ on $A$ as an isometric action $\alpha:G\to\Aut(A)$ in the above sense, where $(X,F)=(A,A^*)$.
+Let $M$ be a von Neumann algebra.
+Then, we always consider an \emph{action} of $G$ on $M$ as an isometric action $\alpha:G\to\Aut(M)$ in the above sense, where $(X,F)=(M,M_*)$.
+\end{defn}
+
+\begin{rmk*}
+Suppose, for an isometric action $\alpha:G\to\Isom(X)$ on $(X,F)$, we want to justify the following integral:
+\[\int_G\alpha_s(x)\,d\mu(s),\qquad x\in X,\ \mu\in M(G).\]
+For actions on C$^*$-algebras, the point-weak continuity is in fact equivalent to the point-norm continuity because a weakly continuous semi-group on a Banach space is strongly continuous. (Not that easy.)
+It means that the function $G\to X:s\mapsto\alpha_s(a)$ is norm continuous for each $a\in A$ so that it is strongly measurable, which allows to use the Bochner integral to justify the above integral.
+However, for von Neumann algebras, the $\sigma$-weak continuity cannot imply the strong measurability in general, so we need to develop the Pettis integral.
+\end{rmk*}
+
+
+\begin{prop}[Representation of groups and measure algebras]
+Let $\alpha:G\to\Isom(X)$ be an isometric action of $G$ on $(X,F)$.
 There is a (faithful non-degenerate?) homomorphism $\pi_\alpha:M(G)\to B(X)$ defined by
-\[\pi_\alpha(\mu)x:=\int\alpha_s(x)\,d\mu(s),\]
+\[\pi_\alpha(\mu)x:=\int_G\alpha_s(x)\,d\mu(s),\]
 which is justified by the Pettis integral.
 \end{prop}
 \begin{pf}
-By (c) of the previous proposition, we can define
-\[\pi_\alpha(\mu)x:=\phi_x(1)=\int_G\alpha_s(x)\,d\mu(s).\]
+For each $x\in X$, since $G\to X:s\mapsto\alpha_s(x)$ is bounded and continuous with respect to $\sigma(X,F)$, by (c) of the previous proposition, we can define the Pettis integral
+\[\pi_\alpha(\mu)x:=\phi_{s\mapsto\alpha_s(x)}(1)=\int_G\alpha_s(x)\,d\mu(s),\qquad x\in X,\ \mu\in M(G).\]
 For $\mu,\nu\in M(G)$,
 \begin{align*}
 \pi_\alpha(\mu*\nu)x
@@ -951,11 +988,12 @@ For $\mu,\nu\in M(G)$,
 \end{align*}
 \end{pf}
 
-\begin{lem}
+\begin{prop}[Dual actions]
+Let $\alpha:G\to\Isom(X)$ be an isometric action of $G$ on $(X,F)$.
 For $\mu\in M(G)$, the linear map
 \[X\to X:x\mapsto\int\alpha_s(x)\,d\mu(s)\]
 is $\sigma(X,F)$-$\sigma(X,F)$-continuous.
-\end{lem}
+\end{prop}
 \begin{pf}
 Consider the dual one-parameter group $\alpha^*:G\to\Isom(F)$, which is $\sigma(F,X)$-continuous group of $\sigma(F,X)$-$\sigma(F,X)$-continuous linear isometries.
 Since it satisfies the conditions in (c) of the proposition at the first with the dual pair $(F,X)$, the Pettis integral
@@ -969,9 +1007,32 @@ Therefore, if a net $x_i$ converges to zero in $\sigma(X,F)$, then for $x^*\in F
 \end{pf}
 
 
-\begin{thm}[Analytic extensions]
-Let $G=\R$.
-Then, there is a family of densely defined closed operators $\{\alpha_z:z\in\C\}$ on $X$ which extends the original $\alpha$, such that
+
+
+
+\subsection{One-parameter group of isometries}
+
+If $G=\R$, then an isometric action is somtimes called a \emph{flow}.
+
+\begin{prop}[Smoothing operators]
+Let $\alpha:\R\to\Isom(X)$ be a flow on $(X,F)$.
+For each $n>0$, define a linear operator $R_n:X\to X$ such that
+\[R_n(x):=\sqrt{\frac n\pi}\int e^{-ns^2}\alpha_s(x)\,ds,\qquad x\in X.\]
+\begin{parts}
+\item $R_n$ is contractive.
+\item $R_n(x)\to x$ in $\sigma(X,F)$.
+\item $R_n(x)\to x$ in norm if $F=X^*$.
+\item $R_n(x)\to x$ $\sigma$-strongly$^*$ if $(X,F)=(M,M_*)$ for a von Neumann algebra $M$.
+\end{parts}
+\end{prop}
+\begin{pf}
+Relatively obvious.
+\end{pf}
+
+
+\begin{thm}[Analytic continuations]
+Let $\alpha:\R\to\Isom(X)$ be a flow on $(X,F)$.
+We have a family of densely defined closed operators $\{\alpha_z:z\in\C\}$ on $X$ which extends the original $\alpha$, such that
 \begin{enumerate}[(i)]
 \item $\alpha_z\alpha_t=\alpha_{z+s}=\alpha_s\alpha_z$ and $\alpha_z\alpha_w\subset\alpha_{z+w}$ for $s\in\R$ and $z,w\in\C$,
 \item $\alpha_z^{-1}=\alpha_{-z}$,
@@ -981,7 +1042,7 @@ Then, there is a family of densely defined closed operators $\{\alpha_z:z\in\C\}
 \end{thm}
 \begin{pf}
 Consider the set of regularized vectors
-\[X_0:=\Bigl\{\int_\R \frac n{\sqrt\pi}e^{-n^2s^2}\alpha_s(x)\,ds:n\in\N,\ x\in X\Bigr\}.\]
+\[\{R_n(x):n\in\N,\ x\in X\}.\]
 Now we define $\alpha_z:X_0\to X$ for $z\in\C$ such that
 \[\alpha_z\Bigl(\int_\R f(s)\alpha_s(x)\,ds\Bigr):=\int_\R f(s-z)\alpha_s(x)\,ds.\]
 It satisfies some properties:
@@ -992,20 +1053,22 @@ It satisfies some properties:
 \item $\alpha_z$ is closable for each $z\in\C$.
 \end{parts}
 (a) is clear by coordinate change, and (b) follows from the Fubini and the Morera after taking arbitrary elements of $E^*$.
-(c) is by an approximate identity $e_n$ of $L^1(\R)$ has $x=\lim_{n\to\infty}\int_\R e_n(t)\alpha_s(x)\,ds$.
+(c) is by an approximate identity $e_n$ of $L^1(\R)$ has $x=\lim_{n\to\infty}\int_\R e_n(s)\alpha_s(x)\,ds$.
 For (d), we have the adjoint $(\alpha_z)_0^*\supset(\alpha_{-\bar z})_0$, which is densely defined.
 Now we have a family of closed densely defined operators $\{\alpha_z:z\in\C\}$ on $E$ such that $\alpha_z\alpha_w\subset\alpha_{z+w}$ for all $z,w\in\C$.
 \end{pf}
 
+\begin{prop}
+\begin{parts}
+\item $R_n(x)\to x$
+\end{parts}
+\end{prop}
 
 \begin{defn}[Entire elements]
-entire elements from a $*$-subalgebra
-\end{defn}
-\begin{defn}[Tomita algebras]
-Let $A$ be a full left Hilbert algebra.
+The set of entire elements is $\bigcup_{z\in\C}\dom\alpha_z=\bigcup_{n\in\Z}\dom\alpha_{ni}$, which is dense.
+If $X$ is a von Neumann algebra, then it is a $*$-subalgebra of $M$.
 
 \end{defn}
-
 
 
 
@@ -1018,7 +1081,7 @@ We will use the following notations freely:
 \[H,M,S,\lambda,F,\rho,B,D,A',B',D',\Delta,J.\]
 Also note that
 \[\begin{tikzcd}
-\fm:=\fn^*\fn \rar[phantom,"\subset"] & \fa:=\fn\cap\fn^* \rar[phantom,"\subset"]\dar[shift left]{\Lambda} & \fn \rar[phantom,"\subset"]\dar[shift left]{\Lambda} & M\\
+\fm:=\fn^*\fn \rar[phantom,"\subset"] & \fa:=\fn^*\cap\fn \rar[phantom,"\subset"]\dar[shift left]{\Lambda} & \fn \rar[phantom,"\subset"]\dar[shift left]{\Lambda} & M\\
 & A \rar[phantom,"\subset"]\uar[shift left]{\lambda} & B \rar[phantom,"\subset"]\uar[shift left]{\lambda} & H.
 \end{tikzcd}\]
 
@@ -1027,7 +1090,7 @@ The goal of this section is to prove that there exists the following commutative
 &A\ar{rr}{\Delta^{it}}&&A\ar{dd}{\lambda}\\
 A'\ar[<->]{ur}{J}\ar[swap]{rr}{\Delta^{it}}\ar[swap]{dd}{\rho}&&A'\ar[<->,swap]{ur}{J}\ar{dd}{\rho}&\\
 &&&\lambda(A)\\
-\rho(A')\ar[swap]{rr}{\Ad_{\Delta^{it}}}&&\rho(A')\ar[<->,swap]{ur}{\Ad_J}&.
+\rho(A')\ar[swap]{rr}{\Ad\Delta^{it}}&&\rho(A')\ar[<->,swap]{ur}{\Ad J}&.
 \end{tikzcd}\]
 
 
@@ -1053,27 +1116,28 @@ We have $\Delta^{it}:D\to D$ for real $t$ since $\xi\in D$ implies that $S\Delta
 
 
 
-We need two lemmas.
+We need two critical lemmas.
 
 \begin{lem}[Fourier inversion of sech]
-Let $G=\R$ and fix $s\in\R$.
+Let $\alpha$ be a flow.
 Let $H$ be a Hilbert space.
 \begin{parts}
 \item We have a Pettis integral
 \[\int_\R(e^{-\frac s2}\alpha_{-\frac i2}+e^{\frac s2}\alpha_{\frac i2})\frac{e^{-ist}}{e^{\pi t}+e^{-\pi t}}\alpha_t(x)\,dt
 =x,\qquad x\in\dom\alpha_{-\frac i2}\cap\dom\alpha_{\frac i2}.\]
-\item If $\sigma:\R\to\Aut(B(H))$ such that $\sigma_t=\Ad_{\Delta^{it}}$ for a injective positive self-adjoint operator on $H$, then we have a $\sigma$-weak Pettis integral
-\[\int_\R\frac{e^{-ist}}{e^{\pi t}+e^{-\pi t}}\alpha_t(x)\,dt
-=(e^{-\frac s2}\alpha_{-\frac i2}+e^{\frac s2}\alpha_{\frac i2})^{-1}x,\qquad x\in B(H).\]
-\item If $u:\R\to U(H)$ such that $u_t=\Delta^{-it}$ for a injective positive self-adjoint operator on $H$, then we have a Pettis integral
-\[\int_\R\frac{e^{-ist}}{e^{\pi t}+e^{-\pi t}}\alpha_t(\xi)\,dt
-=(e^{-\frac s2}\alpha_{-\frac i2}+e^{\frac s2}\alpha_{\frac i2})^{-1}\xi,\qquad \xi\in H.\]
+\item If $\alpha=\sigma:\R\to\Aut(B(H))$ such that $\sigma_t=\Ad_{\Delta^{it}}$ for a injective positive self-adjoint operator $\Delta$ on $H$, then we have a $\sigma$-weak Pettis integral
+\[\int_\R\frac{e^{-ist}}{e^{\pi t}+e^{-\pi t}}\sigma_t(x)\,dt
+=(e^{-\frac s2}\sigma_{-\frac i2}+e^{\frac s2}\sigma_{\frac i2})^{-1}x,\qquad x\in B(H).\]
+\item If $\alpha=u^*:\R\to U(H)$ such that $u_t=\Delta^{it}$ for a injective positive self-adjoint operator $\Delta$ on $H$, then we have a Pettis integral
+\[\int_\R\frac{e^{-ist}}{e^{\pi t}+e^{-\pi t}}u_t^*(\xi)\,dt
+=(e^{-\frac s2}u_{\frac i2}+e^{\frac s2}u_{-\frac i2})^{-1}\xi,\qquad \xi\in H.\]
+The adjoint $u_t^*$ is called the propagator.
 \end{parts}
 \end{lem}
 \begin{rmk*}
 If we let $f(t):=(e^{\frac t2}+e^{-\frac t2})^{-1}$ and write $\alpha_t=e^{t\delta}$, then the equation in the lemma can be rewritten formally as the Fourier inversion
 \[\frac1{\sqrt{2\pi}}\int_\R e^{it(-i\delta-s)}\hat f(t)\,dt=f(-i\delta-s),\qquad s\in\R.\]
-However, this Fourier calculus in general setting using an unbounded holomorphic functional calculus for unbounded operators acting on Banach spaces is impossible, because even for a fairly normal example (e.g.~$\sigma_t=\Ad_{u_t^{-1}}$, $u_t$ is given by the translation on $L^2(\R)$) we have a counterexample having the entire spectrum of the analytic generator $\sigma(\sigma_{-i})=\C$.
+However, this Fourier calculus in general setting using an unbounded holomorphic functional calculus for unbounded operators acting on Banach spaces is impossible, because even for a fairly normal example (e.g.~$\sigma_t=\Ad u_t$, $u_t$ is given by the translation on $L^2(\R)$) we have a counterexample having the entire spectrum of the analytic generator $\sigma(\sigma_{-i})=\C$.
 \end{rmk*}
 \begin{pf}
 (a)
@@ -1095,22 +1159,20 @@ Then, by the residue theorem
 Extend for $x\in X$ using the boundedness.
 
 (b)
-Let $p:=1_{[-r,r]}(\Delta)$ for some $r>1$ and let $x\in B(H)$.
-Then, $\alpha_z$ acts on $pB(H)p=B(pH)$ as bounded invertible operators $\alpha_z(x)=\Delta^{iz}x\Delta^{-iz}$, which is $\sigma$-weakly continuous, so
+Let $A=(e^{-\frac s2}\sigma_{-\frac i2}+e^{\frac s2}\sigma_{\frac i2})$ be a densely defined operator on $B(H)$, and let $R$ be a bounded linear operator on $B(H)$ such that
+\[R(x):=\int\frac{e^{-ist}}{e^{\pi t}+e^{-\pi t}}\sigma_t(x)\,dt,\qquad x\in B(H).\]
+Fix $x\in B(H)$.
+If we let $e_n:=1_{[n^{-1},n]}(\Delta)$ for some $n>1$, then $\sigma_{\pm\frac i2}$ acts on the compression $e_nB(H)e_n$ as bounded invertible operators $e_nB(H)e_n\to e_nB(H)e_n$, which is continuous between $\sigma$-weak topologies.
+Thus, the part (a) and the commutation with integral imply
 \begin{align*}
-pxp&=\int_\R(e^{-\frac s2}\alpha_{-\frac i2}+e^{\frac s2}\alpha_{\frac i2})\frac{e^{-ist}}{e^{\pi t}+e^{-\pi t}}\alpha_t(pxp)\,dt\\
-&=\int_\R\frac{e^{-ist}}{e^{\pi t}+e^{-\pi t}}(e^{-\frac s2}\alpha_{t-\frac i2}+e^{\frac s2}\alpha_{t+\frac i2})(pxp)\,dt\\
-&=(e^{-\frac s2}\alpha_{t-\frac i2}+e^{\frac s2}\alpha_{t+\frac i2})\int_\R\frac{e^{-ist}}{e^{\pi t}+e^{-\pi t}}(pxp)\,dt\\
-&=(e^{-\frac s2}\alpha_{-\frac i2}+e^{\frac s2}\alpha_{\frac i2})\int_\R\frac{e^{-ist}}{e^{\pi t}+e^{-\pi t}}\alpha_t(pxp)\,dt.
+e_nxe_n=RA(e_nxe_n)=AR(e_nxe_n)=e^{-\frac s2}\Delta^{\frac12}R(e_nxe_n)\Delta^{-\frac12}+e^{\frac s2}\Delta^{-\frac12}R(e_nxe_n)\Delta^{\frac12}.
 \end{align*}
-Since $pxp\to x$ as $r\to\infty$ $\sigma$-weakly, by the previous lemma, we can take the limit as sesquilinear forms on a dense subspace $\dom\Delta^{\frac12}\cap\dom\Delta^{-\frac12}\subset H$ to obtain an equation of bounded operators
-\[x=(e^{-\frac s2}\alpha_{-\frac i2}+e^{\frac s2}\alpha_{\frac i2})\int_\R\frac{e^{-ist}}{e^{\pi t}+e^{-\pi t}}\alpha_t(x)\,dt.\]
-In particular, $(e^{-\frac s2}\alpha_{-\frac i2}+e^{\frac s2}\alpha_{\frac i2})$ is surjective.
-Since the injectivity follows from the part (a), we have
-\[(e^{-\frac s2}\alpha_{-\frac i2}+e^{\frac s2}\alpha_{\frac i2})^{-1}x=\int_\R\frac{e^{-ist}}{e^{\pi t}+e^{-\pi t}}\alpha_t(x)\,dt.\]
+Since $R$ is continuous in $\sigma$-weak topologies, we obtain by letting $n\to\infty$ an equation $x=AR(x)$ as sesquilinear forms on a dense subspace $\dom\Delta^{\frac12}\cap\dom\Delta^{-\frac12}$ of $H$, and hence as bounded operators because linear functionals given by vectors in a dense subspace of $H$ separate points of $B(H)$.
+In particular, $A$ is surjective.
+Since the injectivity of $A$ follows from the part (a), we have $A^{-1}=R$.
 
 (c)
-Similar to (b), but cut $\xi$ off into $p\xi$.
+Similar to (b), but cut $\xi$ off into $e_n\xi$.
 \end{pf}
 
 
@@ -1141,9 +1203,9 @@ Since
 =\<F\zeta,\rho(v^*\grave f(k)\xi)\xi\>\\
 &=\<F\zeta,\lambda(\xi)v^*\grave f(k)\xi\>
 =\<F\zeta,f(k)\xi\>
-=\<Sf(k)\xi,\zeta\>,\qquad\xi\in D,\ \zeta\in D'
+=\<Sf(k)\xi,\zeta\>,\qquad\xi\in D,\ \zeta\in D',
 \end{align*}
-for every $f\in C_c((0,\infty))^+$, we have
+we have
 \begin{align*}
 \|f(k)\eta\|^2
 &=\|f(k)(e^{-s}+\Delta)\xi\|^2\\
@@ -1174,9 +1236,9 @@ Then,
 \[\|\lambda(\xi)^*\zeta\|=\|p_0\lambda(\xi)^*\zeta\|=\|1_{[0,c]}(h)hv^*\zeta\|\le c\|v^*\zeta\|\le c\|\zeta\|,\qquad\zeta\in A'.\]
 Therefore, $S\xi\in B$, which implies $S\xi\in A$ and $\xi\in A$.
 
-For the density of $A\cap D'$, let $\zeta\in\dom\Delta$.
-Define a sequence $\eta_n\in A'$ such that $\lim_{n\to\infty}\eta_n=(1+\Delta)\zeta$.
-Then, since $(1+\Delta)^{-1}$ is bounded, we have $\zeta=\lim_{n\to\infty}(1+\Delta)^{-1}\eta_n\in\bar{A\cap D'}$.
+For the density of $A\cap D'$, we approximate $\zeta\in\dom\Delta$.
+Define a sequence $\eta_n\in A'$ such that $\eta_n\to(1+\Delta)\zeta$.
+Then, since $(1+\Delta)^{-1}$ is bounded, we have $(1+\Delta)^{-1}\eta_n\to\zeta\in\bar{A\cap D'}$.
 Since $\dom\Delta$ is dense in $H$, we are done.
 \end{pf}
 
@@ -1185,16 +1247,16 @@ Since $\dom\Delta$ is dense in $H$, we are done.
 Let $A$ be a left Hilbert algebra.
 Then, for every $t\in\R$, the following diagram commutes:
 \[\begin{tikzcd}[column sep={3.5em,between origins},row sep={2.5em,between origins}]
-&D\ar{rr}{u_t^{-1}=\Delta^{it}}&&D\ar{dd}{\lambda}\\
+&D\ar{rr}{u_t=\Delta^{it}}&&D\ar{dd}{\lambda}\\
 A'\ar{ur}{J}\ar[swap]{dd}{\rho}&&&\\
 &&&C(H).\\
-\rho(A')\ar[swap]{rr}{\sigma_t=\Ad_{\Delta^{it}}}&&B(H)\ar[swap]{ur}{\Ad_J}&
+\rho(A')\ar[swap]{rr}{\sigma_t=\Ad\Delta^{it}}&&B(H)\ar[swap]{ur}{\Ad J}&
 \end{tikzcd}\]
 \end{thm}
 \begin{pf}
 Fix $\eta\in A'$ and define
 \begin{align*}
-\xi:&=(e^{-\frac s2}u_{-\frac i2}+e^{\frac s2}u_{\frac i2})^{-1}J\eta
+\xi:&=(e^{-\frac s2}u_{\frac i2}+e^{\frac s2}u_{-\frac i2})^{-1}J\eta
 =(e^{-\frac s2}\Delta^{-\frac12}+e^{\frac s2}\Delta^{\frac12})^{-1}J\eta\\
 &=(e^{-\frac s2}\Delta^{-\frac12}+e^{\frac s2}\Delta^{\frac12})^{-1}\Delta^{-\frac12}F\eta
 =e^{-\frac s2}(e^{-s}+\Delta)^{-1}F\eta
@@ -1227,28 +1289,31 @@ the domains of $\rho(F\xi)$ and $\rho(S\xi)$ contain $A\cap D'$ and we have
 &=e^{-\frac s2}\rho(F\xi)+e^{\frac s2}\rho(S\xi)\\
 &=e^{-\frac s2}F\lambda(\xi)F+e^{\frac s2}S\lambda(\xi)S\\
 &=e^{-\frac s2}\Delta^{\frac12}J\lambda(\xi)J\Delta^{-\frac12}+e^{\frac s2}\Delta^{-\frac12}J\lambda(\xi)J\Delta^{\frac12}\\
-&=(e^{-\frac s2}\sigma_{-\frac i2}+e^{\frac s2}\sigma_{\frac i2})\Ad_J\lambda(\xi)
+&=(e^{-\frac s2}\sigma_{-\frac i2}+e^{\frac s2}\sigma_{\frac i2})(\Ad J)\lambda(\xi)
 \end{align*}
 as sesquilinear forms on $A\cap D'$.
 The conditions for $\xi$ and $\zeta_1$ to belong to $A\cap D'$ are necessary in the above computation.
 By the density of $A\cap D'$ in $H$, we have the bounded operators
-\[\Ad_J(e^{-\frac s2}\sigma_{-\frac i2}+e^{\frac s2}\sigma_{\frac i2})^{-1}\rho(\eta)=\lambda((e^{-\frac s2}u_{-\frac i2}+e^{\frac s2}u_{\frac i2})^{-1}J\eta).\]
+\[(\Ad J)(e^{-\frac s2}\sigma_{-\frac i2}+e^{\frac s2}\sigma_{\frac i2})^{-1}\rho(\eta)=\lambda((e^{-\frac s2}u_{\frac i2}+e^{\frac s2}u_{-\frac i2})^{-1}J\eta).\]
 
 
-Then, we get
-\[\Ad_J\Bigl(\int\frac{e^{-ist}}{e^{\pi t}+e^{-\pi t}}\sigma_t(\rho(\eta))\,dt\Bigr)
-=\lambda\Bigl(\int\frac{e^{-ist}}{e^{\pi t}+e^{-\pi t}}u_t(J\eta)\,dt\Bigr),\qquad s\in\R,\ \eta\in A',\]
-as bounded linear operators on $H$.
-For every $\zeta\in B'$, since $\Ad_J:B(H)\to B(H)$, $\cdot\zeta:B(H)\to H$, and $\rho(\zeta):H\to H$ are all continuous between weak$^*$ topologies, we have
+Then, we get the equation of bounded linear operators
+\[(\Ad J)\Bigl(\int\frac{e^{-ist}}{e^{\pi t}+e^{-\pi t}}\sigma_t(\rho(\eta))\,dt\Bigr)
+=\lambda\Bigl(\int\frac{e^{ist}}{e^{\pi t}+e^{-\pi t}}u_t(J\eta)\,dt\Bigr),\qquad s\in\R,\ \eta\in A',\]
+changing the variable using that the hyperbolic secant functions is even.
+For every $\zeta\in B'$, since $\Ad J:B(H)\to B(H)$, $\cdot\zeta:B(H)\to H$, and $\rho(\zeta):H\to H$ are all continuous between weak$^*$ topologies, we have
 \begin{align*}
-\int\frac{e^{ist}}{e^{\pi t}+e^{-\pi t}}\Ad_J\sigma_t(\rho(\eta))\zeta\,dt
-&=\Ad_J\Bigl(\int\frac{e^{-ist}}{e^{\pi t}+e^{-\pi t}}\sigma_t(\rho(\eta))\,dt\Bigr)\zeta\\
-&=\lambda\Bigl(\int\frac{e^{-ist}}{e^{\pi t}+e^{-\pi t}}u_t(J\eta)\,dt\Bigr)\zeta\\
-&=\rho(\zeta)\int\frac{e^{-ist}}{e^{\pi t}+e^{-\pi t}}u_t(J\eta)\,dt\\
-&=\int\frac{e^{-ist}}{e^{\pi t}+e^{-\pi t}}\rho(\zeta)u_t(J\eta)\,dt\\
-&=\int\frac{e^{ist}}{e^{\pi t}+e^{-\pi t}}\lambda(u_t^{-1}(J\eta))\zeta\,dt.
+\int\frac{e^{ist}}{e^{\pi t}+e^{-\pi t}}(\Ad J)\sigma_t(\rho(\eta))\zeta\,dt
+&=(\Ad J)\Bigl(\int\frac{e^{-ist}}{e^{\pi t}+e^{-\pi t}}\sigma_t(\rho(\eta))\,dt\Bigr)\zeta,
 \end{align*}
-Then, by taking arbitrary bounded linear functionals of $H$ on the above integral, and by the injectivity of the Fourier transform, we finally obtain $\Ad_J\circ\,\sigma_t\circ\rho=\lambda\circ u_t^{-1}\circ J$ on $A'$.
+which is equal to
+\begin{align*}
+\lambda\Bigl(\int\frac{e^{ist}}{e^{\pi t}+e^{-\pi t}}u_t(J\eta)\,dt\Bigr)\zeta
+&=\rho(\zeta)\int\frac{e^{ist}}{e^{\pi t}+e^{-\pi t}}u_t(J\eta)\,dt\\
+&=\int\frac{e^{ist}}{e^{\pi t}+e^{-\pi t}}\rho(\zeta)u_t(J\eta)\,dt\\
+&=\int\frac{e^{ist}}{e^{\pi t}+e^{-\pi t}}\lambda(u_t(J\eta))\zeta\,dt.
+\end{align*}
+Then, by taking arbitrary bounded linear functionals of $H$ on the above integral, and by the injectivity of the Fourier transform, we finally obtain $\Ad_J\circ\,\sigma_t\circ\rho=\lambda\circ u_t\circ J$ on $A'$.
 \end{pf}
 
 \begin{cor}
@@ -1270,6 +1335,24 @@ and $J$ is an anti-homomorphism, $\Delta^{it}$ is a $*$-homomorphism
 
 
 
+\begin{cor}[Flow on a Hilbert space]
+
+\[R_n(\xi):=\sqrt{\frac n\pi}\int e^{-ns^2}\Delta^{is}\xi\,ds.\]
+$R_n(\xi)-\xi\to0$ in norm, $\Delta^{\frac12}(R_n(\xi)-\xi)\to0$ in norm if $\xi\in D$, $\|\lambda(R_n(\xi))\|\le\|\lambda(\xi)\|$ if $\xi\in B$, $\lambda(R_n(\xi))\to\lambda(\xi)$ $\sigma$-strongly$^*$.
+Stone's theorem,
+Spectral truncation technique
+\end{cor}
+
+
+\begin{ex}[Flow on a von Neumann algebra]
+
+\[R_n(x):=\sqrt{\frac n\pi}\int e^{-ns^2}\sigma_s(x)\,ds.\]
+
+A \emph{Tomita algebra} is a left Hilbert algebra $A_0$ such that every element of $A_0$ is entire with respect to the associated modular automorphism group.
+
+Spectral truncation technique
+\end{ex}
+
 
 
 
@@ -1281,37 +1364,417 @@ and $J$ is an anti-homomorphism, $\Delta^{it}$ is a $*$-homomorphism
 \section{January 17}
 
 
-\subsection{Connes cocyle}
+
+\subsection{Cocycle conjugacy}
+
+\begin{defn*}[Actions and flows]
+Let $M$ be a von Neumann algebra and $G$ be a locally compact group.
+An \emph{action} of $G$ on $M$ is a $\sigma$-weakly continuous group homomorphism $\alpha:G\to\Aut(M)$.
+The triple $(M,G,\alpha)$ is called a \emph{W$^*$-dynamical system}.
+If $G=\R$, then an action is also called a \emph{flow}.
+A \emph{covariant representation} of a W$^*$-dynamical system $(M,G,\alpha)$ is a pair $(\pi,u,H)$ of a normal representation $\pi:M\to B(H)$ and a strongly continuous unitary representation $u:G\to U(H)$ such that $\alpha_s(x)=u_sxu_s^*$.
+\end{defn*}
+
+
+
+\begin{defn}[Cocycle conjugacy]
+Let $(M,G,\alpha)$ be a W$^*$-dynamical system.
+A \emph{$\alpha$-(one)-cocycle} of a strongly continuous map $u:G\to U(M)$ such that $u_{st}=u_s\alpha_s(u_t)$, and we denote by $Z_\alpha^1(G,U(M))$ the set of all $\alpha$-cocycles.
+\end{defn}
+
+
+\begin{thm}[Connes cocycle derivative]
+Let $\f$ and $\psi$ be faithful semi-finite normal weights on a von Neumann algebra $M$.
+\begin{parts}
+\item The representations $\pi_\f$ and $\psi_\psi$ are unitarily equivalent.
+In particular, every normal state is a vector state in a semi-cyclic reprsentation of a faithful semi-finite normal weight.
+\item The modular automorphism groups $\sigma_t^\f$ and $\sigma_t^\psi$ are conjugate up to cocycles.
+In other words, there is a canonical continuous group homomorphism $\R\to\operatorname{Out}(M)$ for $M$.
+\item 
+\end{parts}
+\end{thm}
+\begin{pf}
+\AtBeginEnvironment{bmatrix}{\setlength{\arraycolsep}{2pt}}
+Consider the \emph{balanced weight} $\f\oplus\psi$ on $M\otimes M_2(\C)=M_2(M)$.
+Then, it is also faithful, semi-finite, and normal.***
+
+We investigate the semi-cyclic representation and the left Hilbert algebra structure corresponding to $\f\oplus\psi$.
+First, we have
+\[\fn_{\f\oplus\psi}=\mat{\fn_\f&\fn_\psi\\\fn_\f&\fn_\psi},\qquad
+\fa_{\f\oplus\psi}=\mat{\fa_\f&\fn_\f^*\cap\fn_\psi\\\fn_\psi^*\cap\fn_\f&\fa_\psi},\qquad
+\fm_{\f\oplus\psi}=\mat{\fm_\f&\fn_\f^*\fn_\psi\\\fn_\psi^*\fn_\f&\fm_\psi}.
+\]
+The semi-cyclic representation of $\f\oplus\psi$ can be realized on the identification with the direct sum
+\[H_{\f\oplus\psi}=H_\f\oplus H_\f\oplus H_\psi\oplus H_\psi\]
+such that $\Lambda_{\f\oplus\psi}:\fn_{\f\oplus\psi}\to H_{\f\oplus\psi}$ and $\pi_{\f\oplus\psi}:M_2(M)\to B(H_{\f\oplus\psi})$ given by
+\[\Lambda_{\f\oplus\psi}\mat{x_{11}&x_{12}\\x_{21}&x_{22}}=\mat[b]{\Lambda_\f(x_{11})\\\Lambda_\f(x_{21})\\\Lambda_\psi(x_{12})\\\Lambda_\psi(x_{22})},\quad
+\pi_{\f\oplus\psi}\mat{x_{11}&x_{12}\\x_{21}&x_{22}}=\mat[b]{
+\pi_\f(x_{11})&\pi_\f(x_{12})&0&0\\
+\pi_\f(x_{21})&\pi_\f(x_{22})&0&0\\
+0&0&\pi_\psi(x_{11})&\pi_\psi(x_{12})\\
+0&0&\pi_\psi(x_{21})&\pi_\psi(x_{22})}.\]
+The Hilbert algebra structure $S_{\f\oplus\psi},\ \Delta_{\f\oplus\psi},\ J_{\f\oplus\psi}:A_{\f\oplus\psi}\to H_{\f\oplus\psi}$ on $A_{\f\oplus\psi}=\Lambda_{\f\oplus\psi}(\fa_{\f\oplus\psi})$ are computed as
+\[S_{\f\oplus\psi}=\mat[b]{
+S_\f&0&0&0\\
+0&0&S_{\f,\psi}&0\\
+0&S_{\psi,\f}&0&0\\
+0&0&0&S_\psi},\quad
+J_{\f\oplus\psi}=\mat[b]{
+J_\f&0&0&0\\
+0&0&J_{\f,\psi}&0\\
+0&J_{\psi,\f}&0&0\\
+0&0&0&J_\psi},\quad
+\Delta_{\f\oplus\psi}=\mat[b]{
+\Delta_\f&0&0&0\\
+0&\Delta_{\f,\f}&0&0\\
+0&0&\Delta_{\psi,\psi}&0\\
+0&0&0&\Delta_\psi}.\]
+
+
+
+
+(a)
+Since
+\[\pi_{\f\oplus\psi}\mat{x&0\\0&x}=\mat[b]{
+\pi_\f(x)&0&0&0\\
+0&\pi_\f(x)&0&0\\
+0&0&\pi_\psi(x)&0\\
+0&0&0&\pi_\psi(x)},\quad
+J\pi_{\f\oplus\psi}\mat{0&0\\1&0}J=\mat[b]{
+0&0&\ \ 0\ \ &\ \ 0\ \ \\
+0&0&0&0\\
+J_{\psi,\f}J_\f&0&0&0\\
+0&J_\psi J_{\psi,\f}&0&0}\]
+are commuting by the Tomita-Takesaki commutation theorem, we obtain
+\[\mat[b]{\pi_\psi(x)J_{\psi,\f}J_\f&0\\0&\pi_\psi(x)J_\psi J_{\psi,\f}}=\mat[b]{J_{\psi,\f}J_\f\pi_\f(x)&0\\0&J_\psi J_{\psi,\f}\pi_\f(x)},\]
+so if we define $u_{\psi,\f}:=J_{\psi,\f}J_\f=J_\psi J_{\psi,\f}:H_\f\to H_\psi$, then it is unitary such that $\pi_\psi(x)=u_{\psi,\f}\pi_\f(x)u_{\psi,\f}^*$ for all $x\in M$.
+Be cautious that $\Lambda_\psi(x)\ne u\Lambda_\f(x)$ unless $\f=\psi$ in general, so the two semi-cyclic representations are not unitarily equivalent in the full sense.
+
+(b)
+Define $\sigma_t^{\f,\psi}$ and $\sigma_t^{\psi,\f}$ such that
+\[\sigma_t^{\f\oplus\psi}\mat{x_{11}&x_{12}\\x_{21}&x_{22}}=:\mat{\sigma_t^\f(x_{11})&\sigma_t^{\f,\psi}(x_{12})\\\sigma_t^{\psi,\f}(x_{21})&\sigma_t^\psi(x_{22})}.\]
+
+\end{pf}
+
+
+
+\subsection{Commuting weights}
+
+
+\begin{defn}[Kubo-Martin-Schwinger weights]
+Let $M$ be a von Neumann algebra.
+Let $\alpha$ be a flow on $M$, and $\f$ be a faithful semi-finite normal weight on $M$.
+For $x,y\in M$, their \emph{two-point function} at inverse temperature $\beta\in\R$ is a bounded continuous function $f:\Im^{-1}([\beta,0]\cup[0,\beta])\to\C$ which is holomorphic on its interior such that
+\[f(t)=\f(y\sigma_t(x)),\qquad f(t+i\beta)=\f(\sigma_t(x)y),\qquad t\in\R.\]
+If $\f$ is invariant under $\sigma$ and every pair $x,y\in\fa$ admits a two-point function at $\beta$, then we say $\f$ is a \emph{Kubo-Martin-Schwinger weight} or \emph{KMS weight} for $\alpha$ at $\beta$.
+From now on, we always assume $\beta=-1$.
+\end{defn}
+
+\begin{rmk*}
+If $\f$ is a state, then for $\f$ to be a KMS state the invariance condition is superfluous: since $\fm=\fa=M$, we can put $y=1$ to show the invariance using the Liouville theorem and the Schwarz reflection principle.
+\end{rmk*}
+
+
+\begin{lem}[Action of entire elements]
+Let $\f$ be a faithful semi-finite normal weight on a von Neumann algebra $M$.
+If $x$ is entire with respect to $\sigma$, then $x\fm\cup\fm x\subset\fm$.
+\end{lem}
+\begin{pf}
+We first show $x\fa\cup\fa x\subset\fa$.
+Let $y\in\fa$.
+By symmetry, it suffices to show $xy\in\fa$.
+Since $\fn$ is a left ideal of $M$, $xy\in\fn$, which implies $\Lambda(xy)\in B$.
+Consider
+\[\xi(t):=\Delta^{it}\Lambda(xy)=\Delta^{it}x\Lambda(y)=\sigma_t(x)\Delta^{it}\Lambda(y).\]
+Since $\Lambda(y)\in D=\dom\Delta^{\frac12}$, the function $f$ is holomorphically extended to the strip $\Im^{-1}([-\frac12,0])$.
+It means that $\xi(0)=\Lambda(xy)\in\dom\Delta^{\frac12}$, so $\Lambda(xy)\in D$.
+Thus we have $\Lambda(xy)\in A$ and $xy\in\fa$.
+
+For the original claim, if $y\in\fm^+$, since $y^{\frac12}\in\fa$ and $xy^{\frac12}\in\fa$ as above, we have $xy=(xy^{\frac12})y^{\frac12}\in\fa^2=\fm$.
+The linear span and symmetry show $x\fm\cup\fm x\subset\fm$.
+\end{pf}
+
+
+\begin{lem}[Existence of two-point functions]
+Let $M$ be a von Neumann algebra.
+For $\sigma$ the associated modular automorphism group for a faithful semi-finite normal weight $\f$ on $M$, the followings hold.
+\begin{parts}
+\item If $x,y\in\fa$, then they admit a two-point function.
+\item If $x\in M$ is entire for $\sigma$ and $y\in\fm$, then they admit an entire two-point function.
+\item If $x\in M$ satisfies $x\fm\cup\fm x\subset\fm$ and $y\in\fa_0^*\fa_0$, then they admit an entire two-point function.
+\end{parts}
+\end{lem}
+\begin{pf}
+We may assume $x,y\ge0$.
+In this case, $\Delta^{\frac12}\Lambda(y)=JS\Lambda(y)=J\Lambda(y)$ for $y\in\fn^+$.
+
+(a)
+Define
+\[f(z):=\<\Delta^{i\frac z2}\Lambda(x),\Delta^{-i\frac{\bar z}2}\Lambda(y)\>.\]
+Since $\Lambda(x),\Lambda(y)\in A\subset\dom\Delta^{\frac12}$, the function $f$ is bounded and continuous on $\Im^{-1}([-1,0])$, and holomorphic on its interior.
+Also, for $t\in\R$
+\begin{align*}
+\f(y\sigma_t(x))
+&=\<\Delta^{it}\Lambda(x),\Lambda(y)\>
+=\<\Delta^{i\frac t2}\Lambda(x),\Delta^{-i\frac t2}\Lambda(y)\>
+=f(t),\\
+\f(\sigma_t(x)y)
+&=\<\Lambda(y),\Delta^{it}\Lambda(x)\>
+=\<\Lambda(y),J\Delta^{it}J\Lambda(x)\>
+=\<\Delta^{it}J\Lambda(x),J\Lambda(y)\>\\
+&=\<\Delta^{it}\Delta^{\frac12}\Lambda(x),\Delta^{\frac12}\Lambda(y)\>
+=\<\Delta^{i\frac{t-i}2}\Lambda(x),\Delta^{-i\frac{t+i}2}\Lambda(y)\>
+=f(t-i).
+\end{align*}
+
+(b)
+Since $\sigma_t$ sends entire elements to entire elements, we have $y\sigma_t(x),\sigma_t(x)y\in\fm$ by the previous lemma.
+Define
+\[f(z):=\<\sigma_{z+\frac i2}(x)\Delta^{\frac12}\Lambda(y^{\frac12}),\Delta^{\frac12}\Lambda(y^{\frac12})\>.\]
+Since $x$ is entire, the function $f$ is entire and bounded on the strip $\Im^{-1}([-1,0])$.
+Then, for $t\in\R$,
+\begin{align*}
+\f(y\sigma_t(x))
+&=\<\Delta^{\frac12}\Lambda(y^{\frac12}),\Delta^{\frac12}\sigma_t(x)\Lambda(y^\frac12)\>
+=\<\Delta^{\frac12}\Lambda(y^{\frac12}),\sigma_{t-\frac i2}(x)\Delta^{\frac12}\Lambda(y^\frac12)\>\\
+&=\<\sigma_{t+\frac i2}(x)\Delta^{\frac12}\Lambda(y^{\frac12}),\Delta^{\frac12}\Lambda(y^\frac12)\>=f(t),\\
+\f(\sigma_t(x)y)
+&=\<\Delta^{\frac12}\sigma_t(x)\Lambda(y^{\frac12}),\Delta^{\frac12}\Lambda(y^\frac12)\>
+=\<\sigma_{t-\frac i2}\Delta^{\frac12}\Lambda(y^{\frac12}),\Delta^{\frac12}\Lambda(y^\frac12)\>=f(t-i).
+\end{align*}
+
+(c)
+We may assume $y^{\frac12}\in\f_0$.
+Define
+\[f(z):=\<x\Delta^{-i(z+i)}\Lambda(y^{\frac12}),\Delta^{-i\bar z}\Lambda(y^{\frac12})\>.\]
+Since $\Lambda(y^{\frac12})\in A_0\subset\dom\Delta$, the function $f$ is bounded and continuous on $\Im^{-1}([-1,0])$, and holomorphic on its interior, and in fact it is entire.
+Then, for $t\in\R$,
+\begin{align*}
+\f(y\sigma_t(x))
+&=\<\Lambda(y^{\frac12}\sigma_t(x)),\Lambda(y^{\frac12})\>
+=\<J\Lambda(y^{\frac12}),J\Lambda(y^{\frac12}\sigma_t(x))\>\\
+&=\<\Delta^{\frac12}\Lambda(y^{\frac12}),\Delta^{\frac12}\Lambda(\sigma_t(x)y^{\frac12})\>
+=\<\Delta\Lambda(y^{\frac12}),\sigma_t(x)\Lambda(y^{\frac12})\>\\
+&=\<\Delta\Lambda(y^{\frac12}),\Delta^{it}x\Delta^{-it}\Lambda(y^{\frac12})\>
+=\<x\Delta^{-it+1}\Lambda(y^{\frac12}),\Delta^{-it}\Lambda(y^{\frac12})\>
+=f(t),\\
+\f(\sigma_t(y))
+&=\<\Lambda(y^{\frac12}),\Lambda(y^{\frac12}\sigma_t(x))\>
+=\<J\Lambda(y^{\frac12}\sigma_t(x)),J\Lambda(y^{\frac12})\>\\
+&=\<\Delta^{\frac12}\Lambda(\sigma_t(x)y^{\frac12}),\Delta^{\frac12}\Lambda(y^{\frac12})\>
+=\<\sigma_t(x)\Lambda(y^{\frac12}),\Delta\Lambda(y^{\frac12})\>\\
+&=\<\Delta^{it}x\Delta^{-it}\Lambda(y^{\frac12}),\Delta\Lambda(y^{\frac12})\>
+=\<x\Delta^{-it}\Lambda(y^{\frac12}),\Delta^{it+1}\Lambda(y^{\frac12})\>
+=f(t-i).\qedhere
+\end{align*}
+\end{pf}
+
+
+
+\begin{prop}[Centralizers]
+Let $\f$ be a faithful semi-finite normal weight on a von Neumann algebra $M$.
+For $x\in M$, the followings are all equivalent:
+\begin{parts}
+\item $\sigma_t(x)=x$ for all $t\in\R$,
+\item $x\fm\cup\fm x\subset\fm$ and $\f(xy)=\f(yx)$ for all $y\in\fm$.
+\end{parts}
+The set of all $x$ satisfying one of the above conditions is called the \emph{centralizer} or the \emph{fixed point algebra} of $\f$, and denoted by $M^\f$.
+\end{prop}
+\begin{pf}
+(a)$\Rightarrow$(b)
+Let $\sigma_t(x)=x$ and $y\in\fm$, then since the constant function is entire, we have $x\in M_0$.
+By (b) of the previous lemma, observing the two-point function $f$ is constant on the real line so that it is entirely constant by the identity principle, we can check that the KMS condition gives
+\[\f(yx)=\f(y\sigma_t(x))=f(t)=f(t-i)=\f(\sigma_t(x)y)=\f(xy).\]
+
+(b)$\Rightarrow$(a)
+Let $x\fm\cup\fm x\subset\fm$ and $y\in(\fa_0^*\fa_0)^+$.
+Then, $\sigma_t(y)\in\fa_0^*\fa_0$.
+By (c) of the previous lemma, we have a two-point function such that
+\[f(t)=\f(y\sigma_t(x))=\f(\sigma_{-t}(y)x)=\f(x\sigma_{-t}(y))=\f(\sigma_t(x)y)=f(t-i).\]
+By the Liouville theorem $f$ is constant, so we have
+\[0=\f(y\sigma_t(x))-\f(yx)=\<(\sigma_t(x)-x)\Lambda(y^{\frac12}),\Lambda(y^{\frac12})\>.\]
+Since $\Lambda(\fa_0^*\fa_0)=A_0^2$ is dense in $H$, we have $\sigma_t(x)=x$.
+\end{pf}
+
+
+
+
+
+\begin{prop}[Centrally perturbed weights]
+Let $\f$ be a faithful semi-finite normal weight on a von Neumann algebra $M$.
+Let $h$ be a non-negative self-adjoint operator affiliated with the centralizer $M^\f$.
+Then,
+\[\f_h(x):=\lim_{\e\to0}\f(h_\e^{\frac12}xh_\e^{\frac12}),\qquad x\in M^+\]
+is a semi-finite normal weight, where $h_\e=h(1+\e h)^{-1}$.
+The weight $\f$ is faithful if and only if $h$ is non-singular.
+\end{prop}
+\begin{pf}
+2.7, 2.8
+First assume $h,k\in M_*^+$.
+
+
+\end{pf}
+
+\iffalse
+
+\begin{prop}[Uniqueness of modular automorphism group]
+Let $\f$ be a faithful semi-finite normal weight on a von Neumann algebra $M$.
+For flow $\alpha$ on $M$, $\alpha$ is the modular automorphism group of $\f$ if and only if $\f$ is a KMS weight for $\alpha$.
+\end{prop}
+\begin{pf}
+($\Rightarrow$)
+Let $\alpha=\sigma$, where $\sigma=\Ad_{\Delta^{it}}$ is the modular automorphism group.
+By the Tomita-Takesaki commutation theorem, we have $\sigma_t(\fa)=\fa$ and $\Lambda(\sigma_t(x))=\Delta^{it}\Lambda(x)$ for all $t\in\R$.
+Then, the invariance follows as
+\begin{align*}
+\f(\sigma_t(y^*x))&=\f(\sigma_t(y)^*\sigma_t(x))=\<\Lambda(\sigma_t(x)),\Lambda(\sigma_t(y))\>\\
+&=\<\Delta^{it}\Lambda(x),\Delta^{it}\Lambda(y)\>=\<\Lambda(x),\Lambda(y)\>=\f(y^*x),\qquad x,y\in\fn.
+\end{align*}
+The part (a) in the previous lemma proves that the existence of the two-point function, so $\f$ is a KMS weight.
+
+($\Leftarrow$)
+The proof is much easier if we assume $\f$ is a state.
+Common core of the infinitesimal generator?
+\end{pf}
+\fi
+
+\begin{thm}[Commuting weights]
+Let $\f,\psi$ be a faithful semi-finite normal weights on a von Neumann algebra $M$.
+TFAE
+\begin{parts}
+\item $\psi=\f_h$.
+\item $\psi=\psi\circ\sigma_t^\f$.
+\end{parts}
+\end{thm}
+\begin{pf}
+(a)$\Rightarrow$(b)
+First we claim that:
+Let $h$ be a positive non-singular self-adjoint operator affiliated with $M^\f$.
+Then, the modular automorphism group of $\psi:=\f_h$ is given by
+\[\sigma_t^{\psi}(x)=h^{it}\sigma_t^\f(x)h^{-it}.\]
+Since $h^{it}\in M^\f$, we can show the invariance.
+
+First suppose $h\in M^{\f+}$ invertible.
+Since $h$ is entire, $\fm_\f=\fm_\psi$.
+By the uniqueness theorem, it is enough to show that $t\mapsto h^{it}\sigma_t^\f(x)h^{-it}$ satisfies the KMS condition.
+We will construct $f$.
+Take a sequence 
+
+For the general unbounded case, we skip.
+
+(b)$\Rightarrow$(a)
+\[\sigma_s^\f((D\psi:D\f)_t)=(D\psi\circ\sigma_{-s}^\f:D\f\circ\sigma_{-s}^\f)_t=(D\psi:D\f)_t.\]
+Stone's theorem, construct $h$.
+
+\end{pf}
+
+\begin{thm}[Semi-finiteness]
+Existence of trace vs inner modular automorphism
+\end{thm}
+\begin{pf}
+
+\end{pf}
+
+
+
+\iffalse
+
+\[*\quad*\quad*\]
+\begin{thm*}[KMS characterization of modular automorphism group]
+Let $\f$ be a faithful semi-finite normal weight on a von Neumann algebra $M$.
+Suppose $x:\R\to\fa$ is a $\sigma$-wealy continuous map that satisfies that
+\begin{enumerate}[(i)]
+\item $\sup_{t\in\R}\f(x_t^*x_t+x_tx_t^*)<\infty$,
+\item for each $y\in\fa$ there is a bounded continuous function $f:\Im^{-1}([-1,0])\to\C$ holomorphic on its interior such that
+\[f_{x,y}(t)=\f(yx_t),\qquad f_{x,y}(t-i)=\f(x_ty).\]
+Then, $x_t=\sigma_t(x_0)$.
+\end{enumerate}
+\end{thm*}
+\begin{pf}
+For each $y\in\fa$, if we let $\eta:=\Lambda(y)$ and $\xi_t:=\Lambda(x_t)$, then there is $F_\eta\in\cA(\Im^{-1}([-1,0]))$ such that
+\[F_\eta(t)=\f(yx_t)=\<\Delta^{\frac12}\eta,J\xi_t\>,\qquad F_\eta(t-i)=\f(x_ty)=\<\eta,J\Delta^{\frac12}\xi_t\>.\]
+
+
+The Phragmen-Lindel\"of theorem, 
+
+$D$ is a Hilbert space since $\Delta^{\frac12}$ is closed.
+By the Riesz representation theorem, there is $\zeta_z\in D$ such that
+\[F_\eta(z)=\<\eta,\zeta_z\>_D=\<\eta,\zeta_z\>+\<\Delta^{\frac12}\eta,\Delta^{\frac12}\zeta_z\>,\qquad\eta\in D.\]
+Then $\zeta_z$ is anti-holomorphic(?)
+Let $t\in\R$.
+Then,
+\begin{align*}
+\<\eta,\zeta_t\>_D&=F_\eta(t)=\<\Delta^{\frac12}\eta,J\xi_t\>=\<\eta,(\Delta^{-\frac12}+\Delta^{\frac12})^{-1}J\xi_t\>_D,\\
+\<\eta,\zeta_{t-i}\>_D&=F_\eta(t-i)=\<\eta,J\Delta^{\frac12}\xi_t\>=\<\eta,(1+\Delta)^{-1}J\Delta^{\frac12}\xi_t\>_D,
+\end{align*}
+so we get by the density of $A$ in $D$ that
+\[\zeta_t=(\Delta^{-\frac12}+\Delta^{\frac12})^{-1}J\xi_t,\qquad\zeta_{t-i}=(1+\Delta)^{-1}J\Delta^{\frac12}\xi_t,\]
+and in particular we have $\Delta\zeta_{t-i}=\zeta_t$.
+Define
+\[G_\eta(z):=\<\Delta^{i\frac z2}\eta,\Delta^{-i\frac{\bar z}2}\zeta_z\>,\]
+which is holomorphic in the open strip $\Im^{-1}((-1,0))$
+\[G_\eta(t-i)=\<\Delta^{it}\eta,\Delta\zeta_{t-i}\>=\<\Delta^{it}\eta,\zeta_t\>=G_\eta(t),\qquad t\in\R.\]
+Using the Morera and Fubini, $G_\eta$ can be extended to a bounded entire function, and the Liouville theorem is applied to deduce $G_\eta(z)$ is a constant function.
+
+
+\end{pf}
+\fi
 
 
 \subsection{Standard form}
 
-
-
-abelian group
-
-Chapter X: crossed product duality,
-
-Let $M$ be a von Neumann algebra and $G$ be a locally compact group.
-An \emph{action} of $G$ on $M$ is a $\sigma$-weakly continuous group homomorphism $\alpha:G\to\Aut(M)$.
-The triple $(M,G,\alpha)$ is called a \emph{W$^*$-dynamical system}.
-A \emph{covariant representation} of a W$^*$-dynamical system is a pair $(\pi,u)$ of a normal representation $\pi:M\to B(H)$ and a strongly continuous unitary representation $u:G\to U(H)$ such that $\alpha_s(x)=u_sxu_s^*$.
-
 If $(H,P,J)$ is a standard form of $M$, then there is a unique covariant representation of $(M,G,\alpha)$, called the \emph{standard covariant representation}.
 
-Let $(M,G,\alpha)$ be a W$^*$-dynamical system.
-A \emph{$\alpha$-(one)-cocycle} of a strongly continuous map $u:G\to U(M)$ such that $u_{st}=u_s\alpha_s(u_t)$, and we denote by $Z^1(M,G,\alpha)$ the set of all $\alpha$-cycles.
+
+By the Friedrichs extension (a non-negative densely defined symmetric operator admits a canonical non-negative self-adjoint extension)
 
 
 
+\subsection{Noncommutative integration}
 
-$T(M)$, $S(M)$
 
 \newpage
 \section{March 8}
 
-Type III
 
+\subsection{Takesaki duality}
+abelian group
+
+
+$T(M)$, $S(M)$
+
+
+Type III
+begin
+
+\newpage
+\section*{Appendix}
+
+\begin{prop}
+For positive elements
+\[x(1+\e x)^{-1}\]
+
+At first, they are operator monotone.
+Next, they are $\sigma$-strongly continuous on a closed subset of its domain due to the boundedness of $f_\e$, as we can see in the proof of the Kaplansky density theorem.
+Finally, for each $x\in M_+$, the increasing limit $f_\e(x)\uparrow x$ in norm as $\e\to0$ implies that $\sup_\e f_\e(x)=x$.
+\end{prop}
+Consider for a while, a family of functions
+\[f_\e(t):=t(1+\e t)^{-1},\qquad t\in(-\e^{-1},\infty),\]
+parametrized by $\e>0$.
+They have several properties.
+At first, they are operator monotone.
+Next, they are $\sigma$-strongly continuous on a closed subset of its domain due to the boundedness of $f_\e$, as we can see in the proof of the Kaplansky density theorem.
+Finally, for each $x\in M_+$, the increasing limit $f_\e(x)\uparrow x$ in norm as $\e\to0$ implies that $\sup_\e f_\e(x)=x$.
+
+
+
+\begin{prop}
+\[E_n(x):=1_{[n^{-1},n]}(\Delta)x1_{[n^{-1},n]}(\Delta),\qquad E_\e(\xi):=1_{[n^{-1},n]}(\Delta)\xi\]
+\end{prop}
+
+\begin{prop}
+\[R_n(x):=\sqrt{\frac n\pi}\int e^{-ns^2}\alpha_s(x)\,ds,\qquad R_n(\xi):=\sqrt{\frac n\pi}\int e^{-ns^2}\Delta^{is}(x)\,ds\]
+\end{prop}
 
 
 

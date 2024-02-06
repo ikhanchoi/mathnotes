@@ -95,7 +95,7 @@ For example,
 \cD_x\cD_tf\cdot g=f_{xt}g-f_xg_t-f_tg_x+fg_{xt},\\
 \cD_x^4f\cdot g=f_{4x}g-4f_{3x}g_x+6f_{2x}g_{2x}-4f_xg_{3x}+fg_{4x}.
 \end{gather*}
-In fact, $(\cD_x\cD_t+\cD_x^4)\tau\cdot\tau=0$.
+As we have seen, the numerator vanishes as $(\cD_x\cD_t+\cD_x^4)\tau\cdot\tau=0$.
 
 We have some properties
 \begin{parts}
@@ -699,7 +699,7 @@ Also,
 \end{align*}
 where $\chi_y$ is called the Schur functions and $\xi_y$ are Pl\"ucker coordinates which does not depend on $t_1,t_2,\cdots$.
 The $\tau$-function can be considered as an element of a homogeneous coordinate ring of $\Gr(m,\infty)$.
-It can be interpreted as a ``Taylor expansion'' of $\tau$ because
+The above computation can be interpreted as a ``Taylor expansion'' of $\tau$ because
 \[\xi_y=\chi_y(\tilde\partial)\tau(t_1,t_2,\cdots)|_{t_1=t_2=\cdots=0},\]
 where
 \[\tilde\partial_t:=(\partial_{t_1},\frac12\partial_{t_2},\frac13\partial_{t_3},\cdots)\]
@@ -739,8 +739,126 @@ We do not have to consider infinite-dimensional matrices, because $p_n(-\tilde\p
 
 
 
+\newpage
+\section{Day 11: January 15}
+
+\[\partial^{-1}f=f\partial^{-1}-f_x\partial^{-2}+f_{2x}\partial^{-3}-\cdots\]
+
+For $W=W_m\partial^{-m}=1+\sum_{j=1}^\infty w_j\partial^{-j}$with $w_j(t)=p_j(-\tilde\partial)\tau/\tau$ for $j\le m$, the inverse is uniquely determined and computed as
+\[W^{-1}=1-w_1\partial^{-1}+(w_1^2-w_2)\partial^{-2}+\cdots\]
+
+From the definition
+\[W_{t_n}+W\partial^n=:B_nW\]
+of $B_n$ as the quotient of the division algorithm, we may write $B_n=(W\partial^nW^{-1})_+$ since $(W_{t_n}W^{-1})_+=0$, hence we have $W_{t_n}=-(W\partial^n W^{-1})_-$.
+If we define
+\[L:=W\partial W^{-1},\] then $L^n=W\partial^n W^{-1}$ implies $W_{t_n}=-(L^n)_-$ and $B_n=(L^n)_+$, and the Lax equation is obtained as
+\begin{align*}
+L_{t_n}
+&=W_{t_n}\partial W^{-1}-W\partial W^{-1}W_{t_n}W^{-1}\\
+&=W_{t_n}W^{-1}L-LW_{t_n}W^{-1}\\
+&=(B_nW-W\partial^n)W^{-1}L-L(B_nW-W\partial^n)W^{-1}\\
+&=B_nL-LB_n,
+\end{align*}
+since $W_{t_n}W^{-1}+W(W^{-1})_{t_n}=(WW^{-1})_{t_n}=0$ implies $(W^{-1})_{t_n}=-W^{-1}W_{t_n}W^{-1}$.
+By
+\[(L^n)_{t_m}=[B_m,L]L^{n-1}+\cdots+L^{n-1}[B_n,L]=[B_m,L^n],\]
+we have
+\begin{align*}
+(B_n)_{t_m}-(B_m)_{t_n}-[B_m,B_n]
+&=((L^n)_{t_m}-(L^m)_{t_n}-[B_m,B_n])_+\\
+&=([B_m,L^n]-[B_n,L^m]-[B_m,B_n])_+\\
+&=([L^n-B_n,L^m-B_m])_+\\
+&=([(L^n)_-,(L^m)_-])_+=0.
+\end{align*}
+Then, we can prove $(L_{t_n})_{t_m}=(L_{t_m})_{t_n}$ by expanding
+\[(L_{t_n})_{t_m}=[B_n,L]_{t_m}=[(B_n)_{t_m},L]+[B_n,[B_m,L]]=\cdots\]
+with the Jacobi identity.
+
+Now we can define the wave function
+\[\psi(t,\lambda):=W(t,\lambda)e^{\xi(t,\lambda)}=(1+\sum_{j=1}^\infty w_j(t)\lambda^{-j})e^{\xi(t,\lambda)},\]
+where
+\[\xi(t,\lambda)=\sum_{n=1}^\infty t_n\lambda^n,\qquad e^{\xi(t,\lambda)}=\sum_{n=0}^\infty p_n(t)\lambda^n.\]
+The adjoint wave function
+\[\psi^*(t,\lambda):=(W^*)^{-1}(t,-\lambda)e^{-\xi(t,\lambda)},\]
+where we have a formal substitution
+\[(W^*)^{-1}(t,-\lambda)=(W(\partial)^*)^{-1}|_{\partial\to-\lambda}.\]
+Since $\partial=\partial_{t_1}$, we have a formal interpretation $W(t,\lambda)e^{\xi(t,\lambda)}\sim W(\partial)e^{\xi(t,\lambda)}$ by $\partial e^\xi=\lambda e^\xi$.
+
+\begin{align*}
+\psi(t,\lambda)
+&=(1+\sum_{j\ge1}w_j(t)\lambda^{-j})e^{\xi(t,\lambda)}\\
+&=(1+\sum_{j\ge1}\frac{p_j(-\tilde\partial)\tau}{\tau}\lambda^{-j})e^{\xi(t,\lambda)}\\
+&=\frac{\sum_{j\ge0}p_j(-\tilde\partial)\tau}\tau e^{\xi(t,\lambda)}\\
+&=\frac{\tau(t_1-\tfrac1\lambda,t_2-\tfrac1{2\lambda^2},t_3-\tfrac1{3\lambda^3},\cdots)}{\tau(t)}e^{\xi(t,\lambda)}
+\end{align*}
+
+After we show $L\psi=\lambda\psi$ and $\psi_{\psi_n}=B_n\psi$, the above computation implies the concrete construction of a solution of this simultaneous equation.
 
 
+\newpage
+\section{Day 12: January 22}
+
+\begin{enumerate}[1)]
+\item $W_{t_n}+W\partial^n=:B_nW$.
+\item $L:=W\partial W^{-1}$, then $B_n=(L^n)_+$.
+\item $(B_n)_{t_m}-(B_m)_{t_n}=[B_m,B_n]$, $L_{t_n}=[B_n,L]$.
+\item $\psi(t,\lambda)=W(t,\lambda)e^{\xi(t,\lambda)}$.
+\end{enumerate}
+
+(1) Formally, we can deduce
+\[L\psi=W\partial W^{-1}We^\xi=W\partial e^\xi=\lambda We^\xi=\lambda\psi,\]
+and
+\[\psi_{t_n}=W_{t_n}e^\xi+W\lambda^ne^\xi=(W_{t_n}+W\partial^n)e^\xi=B_nWe^\xi=B_n\psi.\]
+These formulas in fact can be rigorously justified, and we also have $L\psi^*=-\lambda\psi^*$, $\psi_{t_n}^*=-B_n^*\psi^*$.
+Furthermore,
+\[\Res_{\lambda=0}[\psi(t,\lambda)\psi^*(t',\lambda)]=0,\qquad\forall t,t'.\]
+
+(2)
+Conversely, if we define for a sequence $w_j(t)$
+\begin{align*}
+\psi(t,\lambda)&:=(1+\sum_{j\ge1}w_j(t)\lambda^{-j})e^{\xi(t,\lambda)},\\
+\psi^*(t,\lambda)&:=(1+\sum_{j\ge1}v_j(t)\lambda^{-j})e^{-\xi(t,\lambda)},
+\end{align*}
+and if they satisfy the \emph{bilinear identity of KP hierarchy}
+\[\Res_{\lambda=0}[\psi(t,\lambda)\psi^*(t',\lambda)]=0,\qquad\forall t,t',\]
+then $W=W(\partial)$ satisfies $W_{t_n}=-(W\partial^nW^{-1})_-W$ and $V(t,\lambda)=(W^*)^{-1}(t,-\lambda)$.
+Furthermore,
+\[\psi(t,\lambda)=(1+\sum_{n\ge1}\frac{p_n(-\tilde\partial)\tau}\tau \lambda^{-j})e^{\xi(t,\lambda)}=\frac{\tau(t-\e_\lambda)}{\tau(t)}e^{\xi(t,\lambda)},\qquad \psi^*(t,\lambda)=\frac{\tau(t+\e_\lambda)}{\tau(t)}e^{-\xi(t,\lambda)},\]
+where $\e_\lambda=(\lambda^{-1},2^{-1}\lambda^{-2},3^{-1}\lambda^{-3},\cdots)$.
+
+(3)
+Recall
+\[\cD_z^pf\cdot g:=\partial_\eta^pf(z+\eta)g(z-\eta)|_{\eta=0}.\]
+It is not $n$-th power of $\cD_z$.
+We use the notation
+\[e^{\cD_z}=\sum_{n\ge0}\frac{\cD_z^n}{n!}.\]
+The bilinear identity is written using
+\[e^{\e\cD_z}f(z)\cdot g(z)=f(z+\e)g(z-\e),\]
+
+
+Introduce $x$ and $y$ such that $t=x-y$ and $t'=x+y$.
+Then, the bilinear identity is transformed into
+\[\Res_{\lambda=0}[\tau(x-y-\e_\lambda)\tau(x+y+\e_\lambda)e^{-2\xi(t,\lambda)}]=0,\]
+and we get
+\[\Res_{\lambda=0}[(e^{\sum_{n\ge1}y_n\cD_n}e^{\sum_{j\ge1}\frac{\lambda^{-j}}{j!}\cD_{x_j}}\tau(x)\cdot\tau(x))]=0\]
+and
+\[e^{\sum_{n\ge1}y_n\cD_n}\sum_{j\ge0}p_j(-2y)p_{j+1}(\tilde\cD)\tau(x)\cdot\tau(x)=0.\]
+If we see the coefficient of the linear term $y_n$, then we obtain
+\[[\cD_{x_n}p_0(-2y)p_1(\tilde\cD)+1\cdot(-2)p_{n+1}(\tilde D)]\tau(x)\cdot\tau(x)=0.\]
+For example,
+\begin{itemize}
+\item $n=1$: $\cD_{x_2}\tau\cdot\tau=0$, which is trivial because the exponent of $\cD$ is odd.
+\item $n=2$: $(-\frac23\cD_{x_3}-\frac13\cD_{x_1}^3)\tau\cdot\tau=0$, which is also trivial.
+\item $n=3$: $(4\cD_{x_1}\cD_{x_3}-3\cD_{x_2}^2-\cD_{x_1}^4)\tau\cdot\tau=0$, which is called the bilinear form of KP equation.
+\item $n=4$: $(3\cD_{x_1}\cD_{x_4}-\cD_{x_2}\cD_{x_1}^3-2\cD_{x_2}\cD_{x_3})\tau\cdot\tau=0$.
+\end{itemize}
+
+
+Suppose $h_j=e^{\xi(x,p_j)}+c_je^{\xi(x,q_j)}$ is an $N$-soliton solution.
+
+
+KdV: even reduction vanishes.
+If we consider $k$-reduction, then the multiples of $k$ vanisehs.
 
 
 \newpage

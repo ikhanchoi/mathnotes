@@ -731,8 +731,8 @@ Then, we can show (really? I hope so.) that there exists a natural sheaf $\cO_A$
 \[\cO_U^q\to\cO_U\to\cO_A|_U\to0.\]
 The kernel of $\cO_X\to\cO_A$ is called the \emph{ideal sheaf} or the \emph{relation sheaf} of $A$ and denoted by $\cI_{(X,A)}$.
 
-Note that we have a canonical ringed space $(\C^n,\cO_{\C^n})$ of holomorphic functions.
-A \emph{complex model space} is a subset $A$ of some $\C^n$ that is the support of a coherent sheaf on $\C^n$.
+Note that we have a canonical ringed space $(\Omega,\cO_\Omega)$ of holomorphic functions on a domain $\Omega\subset\C^n$.
+A \emph{complex model space} is a subset $A$ of some $\Omega$ that is the support of a coherent sheaf on $\Omega$.
 \end{prb}
 \begin{pf}
 
@@ -742,7 +742,7 @@ A \emph{complex model space} is a subset $A$ of some $\C^n$ that is the support 
 \begin{prb}[Complex analytic spaces]
 Let $(X,\cO_X)$ be a ringed space.
 An \emph{analytic atlas} on $X$ is the family $\{\f_i\}$ of maps $\f_i:U_i\to\C^{n_i}$ which map open $U_i\subset X$ homeomorphically onto open $\f(U_i)\subset\C^{n_i}$, such that $\f_i$ and $\tau_{ij}=\f_j\f_i^{-1}$ induce the sheaf isomorphisms $\cO_{U_i}\to\cO_{\f(U_i)}$ and $\cO_{\f_i(U_i\cap U_j)}\to\cO_{\f_j(U_i\cap U_j)}$.
-A \emph{complex analytic space} or briefly a \emph{complex space} is a Hausdorff ringed space $(X,\cO_X)$ together with an analytic atlas $\{\f_i\}$.
+A \emph{complex analytic space} or briefly a \emph{complex space} is a ringed space $(X,\cO_X)$ together with an analytic atlas $\{\f_i\}$, satisfying an additional condition that $X$ is Hausdorff.
 We do not have to assume the second countability of $X$ because the partition of unity does not play a role in complex analysis.
 An \emph{analytic set} in a complex space $X$ is a subset $A$ that is the support of a coherent sheaf on $X$.
 \end{prb}
