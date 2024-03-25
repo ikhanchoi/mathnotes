@@ -302,6 +302,10 @@ By the induction, we have $c_n\in(a,b)$ such that $f^{(n)}(c)=0$.
 By applying Rolle's theorem (the part (a)) for $f^{(n)}$, we have $c_{n+1}\in(a,c_n)$ such that $f^{(n+1)}(c_{n+1})=0$.
 \end{pf}
 
+\begin{prb}[Mean value theorem]
+\[\frac{f(b)-f(a)}{b-a}=f'(c)\]
+\end{prb}
+
 \begin{prb}[Taylor theorem]
 \end{prb}
 
@@ -384,30 +388,39 @@ Let $X$ be a compact metric space.
 \end{prb}
 \begin{pf}
 (a)
-Suppose $f_m$ is a Cauchy sequence in $C(X)$.
-Since $f_m$ is Cauchy pointwise, we can define the pointwise limit $f$.
-We first claim that $f_m$ converges to $f$ uniformly.
+Suppose $f_n$ is a Cauchy sequence in $C(X)$.
+Since $f_n$ is pointwise Cauchy, we have a function $f$ on $X$ such that $f_n\to f$ pointwisely.
+We first claim that $f_n\to f$ uniformly.
 Fix $\e>0$.
 Write
-\[|f_m(x)-f(x)|\le\|f_m-f_{m'}\|+|f_{m'}(x)-f(x)|.\]
-Since $f_m$ is uniformly Cauchy, there is $m_0$ such that $m,m'>m_0$ implies
-\[|f_m(x)-f(x)|<\e+|f_{m'}(x)-f(x)|.\]
-Taking limit $m'\to\infty$, we have
-\[|f_m(x)-f(x)|\le\e+0.\]
-Taking the supremum over $x\in X$ and limit $m\to\infty$, we obtain
-\[\lim_{m\to\infty}\|f_m-f\|\le\e.\]
-Since $\e$ is arbitrary, we have the uniform limit $f_m\to f$.
+\begin{align*}
+|f_n(x)-f(x)|
+&\le|f_n(x)-f_m(x)|+|f_m(x)-f(x)|\\
+&\le\|f_n-f_m\|+|f_m(x)-f(x)|,\qquad n,m\ge0,\ x\in X.
+\end{align*}
+Since $f_n$ is uniformly Cauchy, there is $n_0$ such that
+\[|f_n(x)-f(x)|<\e+|f_m(x)-f(x)|,\qquad n,m>n_0,\ x\in X.\]
+Taking the pointwise limit $m\to\infty$, we have
+\[|f_n(x)-f(x)|\le\e,\qquad n>n_0,\ x\in X.\]
+Taking the supremum over $x\in X$ and limit superior $n\to\infty$, we obtain
+\[\limsup_{n\to\infty}\|f_n-f\|\le\e.\]
+Since $\e$ is arbitrary, we have the uniform limit $f_n\to f$.
 
 Now we claim $f$ is continuous.
-Let $x\in X$ and suppose $x_n$ converges to $x$.
+Let $a\in X$ and fix $\e>0$.
 Divide the error as
-\[|f(x_n)-f(x)|\le|f(x_n)-f_m(x_n)|+|f_m(x_n)-f_m(x)|+|f_m(x)-f(x)|.\]
-Using the uniform convergence, we can take sufficiently large $m$ such that $\|f_m-f\|<\e$, so we have
-\[|f(x_n)-f(x)|<\e+|f_m(x_n)-f_m(x)|+\e.\]
-Then, taking $\limsup_{n\to\infty}$ on the both-hand sides, we get
-\[\limsup_{n\to\infty}|f(x_n)-f(x)|\le\e+0+\e=2\e.\]
+\begin{align*}
+|f(x)-f(a)|
+&\le|f(x)-f_n(x)|+|f_n(x)-f_n(a)|+|f_n(a)-f(a)|\\
+&\le2\|f-f_n\|+|f_n(x)-f_n(a)|,\qquad n\ge0,\ x\in X.
+\end{align*}
+Using the uniform convergence $f_n\to f$, we can fix $n$ such that
+\[|f(x)-f(a)|<\e+|f_n(x)-f_n(a)|,\qquad x\in X.\]
+Then, taking limit superior $x\to a$ on the both-hand sides, we get
+\[\limsup_{x\to a}|f(x)-f(a)|\le\e.\]
 Since $\e>0$ has been arbitrarily taken,
-\[\lim_{n\to\infty}|f(x_n)-f(x)|=0.\]
+\[\lim_{x\to a}|f(x)-f(a)|=0,\]
+hence the continuity.
 
 (b)
 
@@ -508,7 +521,28 @@ Some examples
 
 \chapter{Differentiable functions}
 \section{Differentiable class}
-completeness
+
+$C^1$ is Banach:
+Let a sequence $f_n\in C^1$ satisfies $f_n\to f$ and $f_n'\to g$ uniformly.
+Write
+\begin{align*}
+\left|\frac{f(x)-f(a)}{x-a}-g(a)\right|
+&\le
+\left|\frac{f(x)-f(a)}{x-a}-\frac{f_n(x)-f_n(a)}{x-a}\right|
++\left|\frac{f_n(x)-f_n(a)}{x-a}-f_n'(a)\right|
++|f_n'(a)-g(a)|\\
+&\le\frac{2\|f_n-f\|}{|x-a|}
++\left|\frac{f_n(x)-f_n(a)}{x-a}-f_n'(a)\right|
++\|f_n'-g\|,\qquad n\ge0,\ x\ne a.
+\end{align*}
+For the second term, by the mean value theorem, there is $c\in[x,a]\cup[a,x]$ such that
+\[\left|\frac{f_n(x)-f_n(a)}{x-a}-f_n'(a)\right|=|f_n'(c)-f_n'(a)|\le2\|f_n'-g\|+|g(c)-g(a)|,\qquad n\ge0, x\ne a.\]
+Thus,
+\[\left|\frac{f(x)-f(a)}{x-a}-g(a)\right|\le\frac{2\|f_n-f\|}{|x-a|}+|g(c)-g(a)|+3\|f_n'-g\|,\qquad n\ge0, x\ne a.\]
+Taking limit superior $n\to\infty$ and $x\to a$, from the continuity of $g$ it follows that
+\[\lim_{x\to a}\left|\frac{f(x)-f(a)}{x-a}-g(a)\right|=0.\]
+Therefore, $f'=g$.
+
 \section{H\"older spaces}
 
 \section{Analytic functions}

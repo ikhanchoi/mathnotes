@@ -63,9 +63,7 @@ and is a commutative counital multiplier Hopf $*$-algebra by the group structure
 Since the image of the comultiplication does not belong to $C_c(G)\otimes C_c(G)$, we need to do something unless $G$ is finite.
 They satisfy a compatibility condition $\<fg,h\>=\<f,g^*h\>$.
 
-With the integral notation $f=\int f(s)\lambda_s\,ds$, we can write
-\[\]
-For multipliers, intuitively
+With the integral notation $\lambda(f)=\int f(s)\lambda_s\,ds$, we can write
 
 We start from this structures.
 
@@ -84,15 +82,27 @@ The multiplication representation $m$ is well-defined because for $f\in C_c(G)$ 
 \end{pf}
 
 
+
+
+
+
+
+
 \section{}
 
-\begin{prb}[Left convolution algebra $L^1(G)$]
+We use the notation $L^p(G)$ for the non-commutative $L^p$-spaces constructed with the left Haar measure on $G$, which is a faithful semi-finite normal weight of $L^\infty(G)$.
+The predual of $L^\infty(G)$ can be identified with $L^1(G)$.
+The regular representation on $L^2(G)$ is the Gelfand-Naimark-Segal representation associated with the left Haar measure.
+
+Density of $C_c(G)$?
+
+\begin{prb}[Convolution algebra]
 Let $G$ be a locally compact group.
-The representation $m$ defines the von Neumann algebra $m(C_c(G))''=:L^\infty(G)$ and its predual $L^1(G)$.
+Then, $L^1(G)$ is a hermitian Banach $*$-algebra such that
+\[(f*g)(x):=(f\otimes g)\Delta(x),\qquad f,g\in L^1(G),\ x\in L^\infty(G).\]
+Importance of $L^1$ instead of $C_c$: representation equivalence and predual.
 \begin{parts}
-\item There is a natural injection $C_c(G)\to L^1(G)$.
-\item There is a natural Banach $*$-algebra structure on $L^1(G)$ extended from the Hilbert algebra structure of $C_c(G)$.
-\item The Banach algebra $L^1(G)$ has a two-sided approximate unit.
+\item $L^1(G)$ has a two-sided approximate unit in $C_c(G)$.
 \item $\alpha:G\to\Aut(L^1(G))$ is point-norm continuous.
 \item $\lambda:G\to U(L^2(G))$ and $\lambda:L^1(G)\to B(L^2(G))$ are strongly continuous.
 \item Convolution inequalities.
@@ -100,7 +110,7 @@ The representation $m$ defines the von Neumann algebra $m(C_c(G))''=:L^\infty(G)
 \end{parts}
 \begin{pf}
 Let $(U_\alpha)$ be a directed set of open neighborhoods of the identity $e$ of $G$.
-By Urysohn lemma, there is $e_\alpha\in C_c(U)^+$ such that $\|e_\alpha\|_1=1$ for each $\alpha$.
+By the Urysohn lemma, there is $e_\alpha\in C_c(U)^+$ such that $\|e_\alpha\|_1=1$ for each $\alpha$.
 We claim that $e_\alpha$ is a two-sided approximate unit for $L^1(G)$.
 Suppose $g\in C_c(G)$, which is two-sided uniformly continuous.
 For any $\e>0$, take $\alpha_0$ such that $\|g-\lambda_sg\|<\e$ and $\|g-\rho_sg\|<\e$ for all $s\in U_\alpha$ for $\alpha\succ\alpha_0$.
@@ -143,24 +153,9 @@ The equalities do not hold, consider $\|\lambda(\xi)\|=\|\hat\xi\|_\infty$ if $G
 
 
 
-\begin{prb}[Group $C^*$-algebras]
-$\bar{\lambda(C_c(G))}=:C^*_r(G)$, $\bar{m(C_c(G))}=:C_0(G)$.
-\end{prb}
-\begin{prb}[Fell absorption principle]
-Structure operator
-\end{prb}
 
-\begin{prb}[Fourier algebra]
-The Fourier algebra is $H*SH=:A(G)$.
-\end{prb}
-\begin{prb}[Fourier-Stieltjes algebra]
-positive definite functions, Bochner theorem
-\end{prb}
-\begin{prb}[GNS construction for locally compact groups]
-Let $G$ be a locally compact group.
-By a state of $C^*(G)$, we could construct the GNS representation of $G$.
-An analog of GNS construction for $L^1(G)$ without completion is doable, when given a function of positive type on $G$, instead of a state.
-\end{prb}
+
+
 
 
 \[\begin{tikzcd}
@@ -172,26 +167,100 @@ L^\infty(G) & B(G) \ar[hook]{l} & C_r^*(G)^* \ar[hook]{l} & A(G) \ar[hook]{l}\\
 
 
 
+\section{}
+
+
+
+\begin{prb}[Plancherel theorem]
+With the left Haar measure on a Banach $*$-algebra $L^1(G)$ or $M(G)$, we want to construct a faithful semi-finite normal weight called the \emph{Planceherel weight}, and describe the corresponding semi-cyclic representation and left Hilbert algebra for $C^*_r(G)$ and $W^*_r(G)$.
+
+By analyze the decomposition of the canonical representation of $C_r^*(G)$ and $W_r^*(G)$ in $B(L^2(G))$....?
+Then, we can consider a unitary operator from $L^2(G)$ to the square integrable section space of a bundle on $\hat G$...
+
+\end{prb}
+\begin{pf}
+
+\end{pf}
+
+
+\begin{prb}[Fourier algebra]
+The Fourier algebra is the algebra $A(G)$ of matrix coefficients of the regular representation, i.e.~the space spanned by functions $s\mapsto\<\lambda(s)\xi,\xi\>$ for $\xi\in L^2(\hat G)$.
+
+It is a dense Banach subalgebra of $C_0(G)$ such that $A(G)\to W_r^*(G)_*:\eta^*\xi\mapsto\omega_{\xi,\eta}$ is an isometric isomorphism.
+
+positive definite functions
+
+
+\end{prb}
+\begin{pf}
+
+\end{pf}
 
 
 
 
-\section{Pontryagin duality}
+
+
 
 \begin{prb}[Locally compact abelian groups]
-Let $G$ be a locally compacy abelian group.
-Then, we can consider the intersection of $L^2$ and $L^\infty$ via $A'=:\cF^{-1}(L^2(G)\cap L^\infty(G))$.
-\end{prb}
+Let $G$ be a locally compact abelian group.
+Since every irreducible representation of a locally compact abelian group is one-dimensional, we introduce the notation $\<s,p\>=p_s\in\T$.
+The \emph{Fourier transform} of an integrable function $f\in L^1(\hat G)$ is defined as
+\[\cF f(p):=\int_G\bar{\<s,p\>}f(s)\,ds,\qquad ,\ p\in\hat G,\]
+and the \emph{Fourier-Stieltjes transform} of a finite complex measure $\mu\in M(G)$ is defined as
+\[\cF\mu(p):=\int_G\bar{\<s,p\>}\,d\mu(s),\qquad p\in\hat G.\]
 
-\begin{prb}[Dual group]
+\begin{parts}
+\item The compact open topology of $C(G)$ and the weak$^*$ topology of $L^\infty(G)$ coincide on $\hat G$, which provides a locally compact abelian group.
+\item The Fourier transform defines a $*$-homomorphism $\cF:L^1(G)\to C_0(\hat G)$ which is injective with norm dense image.
+\item The Fourier-Stieltjes transform defines a $*$-homomorphism $\cF:M(G)\to L^\infty(\hat G)$ which is weakly$^*$ continuous and injective with weakly$^*$ dense image in $C_b(\hat G)$.
+\item 
+The canonical homomorphism $\Phi:G\to\hhat G$ defined such that $\Phi(s)(p)=\<s,p\>$ for $s\in G$ and $p\in\hat G$ is a topological isomorphism.
+\item Fourier inversion..?
+\end{parts}
 \end{prb}
-\begin{prb}[Fourier inversion theorem]
-\end{prb}
-\begin{prb}[Plancherel's theorem]
-\end{prb}
+\begin{pf}
+(b)
+The Fourier transform is realized as the composition
+\[\cF:L^1(G)\to C_r^*(G)\to C^*(G)\to C_0(\hat G)\to C_0(\hat G).\]
+
+The first map is the extension of the regular representation $\lambda:C_c(G)\to B(L^2(G))$ using the inequality $\|\lambda(f)\|\le\|f\|_{L^1}$.
+It has dense image by the definition of $C_r^*(G)$, the norm closure of the image of $\lambda$.
+It is also injective because if $f\in L^1(G)$ satisfies $\<\lambda(f)\xi,\eta\>=0$ for all $\xi,\eta\in L^2(G)$, then it means that $\<f,a\>=0$ for every $a\in A(G)$ by definition of the Fourier algebra, which implies that $f=0$ because $L^1(G)\subset M(G)=C_0(G)^*$ and $A(G)$ is dense in $C_0(G)$.
+
+The second map is the inverse of the canonical map $C^*(G)\to C_r^*(G)$ taken thanks to the amenability of locally compact abelian groups.
+The third map is the Gelfand transform, which is a $*$-isomorphism for commutative C$^*$-algebras.
+The last map is the induced map from the inverse map of the domain $\hat G$, clearly a $*$-isomorphism.
+
+Therefore, the Fourier transform $\cF:L^1(G)\to C_0(\hat G)$ is an injective $*$-homomorphism with with dense image.
+
+(c)
+The Fourier-Stieltjes transform is realized as the composition
+\[\cF:M(G)\to W_r^*(G)\to L^\infty(\hat G).\]
+
+The first map is the weakly$^*$ continuous extension of the regular representation $\lambda:C_c(G)\to B(L^2(G))$, and the weak$^*$ continuity follows from the fact that the Fourier algebra $A(G)$ belong to $C_0(G)$.
+The injectivity follows from the density of $A(G)$ in $C_0(G)$ as we did in the part (b), and the weakly$^*$ dense image is also by the definition of $W_r^*(G)$.
+
+The second map is obtained by taking double commutant for the $*$-isomorphism $C_r^*(G)\to C_0(\hat G)$ composed from the last three maps described in the part (b), which is in fact the restriction the $*$-isomorphism $B(L^2(G))\to B(L^2(\hat G))$ defined by the Fourier transform $L^2(G)\to L^2(\hat G)$ in the Plancherel theorem and the reflection on the domain $\hat G$.
+
+Therefore, the Fourier-Stieltjes transform $\cF:M(G)\to L^\infty(\hat G)$ is an injective $*$-homomorphism with with weakly$^*$ dense image.
+The continuous and boundedness of $\cF(\mu)$ is because it is a multiplier of $C_0(\hat G)$.
+
+(d)
+Consider the inverse $\cF^{-1}:\cF(L^1(\hat G))\to L^1(\hat G)$ of the Fourier transform $\cF:L^1(\hat G)\to C_0(\hhat G)$ and the weak$^*$ transpose $\cF^t:L^1(\hat G)\to C_0(G)$
+of the Fourier-Stieltjes transform $\cF:M(G)\to L^\infty(\hat G)$.
+Their composition is equal to the restriction of the restriction map $C_0(\hhat G)\to C_0(G)$ along $\Phi$.
+
+isometry?
+\end{pf}
 
 
-\section{Structure theorems}
+\section{}
+
+\begin{prb}[Fell absorption principle]
+Structure operator $w\in U(L^2(G,G))$ such that $w\xi(s,t)=\xi(s,st)$ or $w\in L^\infty(G)\bar\otimes L(G)$ such that $w(\lambda_s\otimes\lambda_s)w^*=\lambda_s\otimes1$.
+If $w(x\otimes x)w^*=x\otimes1$, then $x=\lambda_s$ for some $s\in G$.
+\end{prb}
 
 
 
@@ -201,18 +270,6 @@ Then, we can consider the intersection of $L^2$ and $L^\infty$ via $A'=:\cF^{-1}
 
 
 
-
-
-
-\begin{prb}[Compact groups]
-Let $G$ be a compact group.
-Then, $C_c(G)=C(G)$ is a Hopf $C^*$-algebra.
-\end{prb}
-
-\begin{prb}[Discrete groups]
-Let $G$ be a discrete group.
-Then, $C_c(G)$ is a unital left Hilbert algebra.
-\end{prb}
 
 
 

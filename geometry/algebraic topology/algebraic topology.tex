@@ -1,6 +1,8 @@
 \documentclass{../../large}
 \usepackage{../../ikhanchoi}
 
+\newcommand{\Cof}{\mathrm{Cof}}
+\newcommand{\Fib}{\mathrm{Fib}}
 
 \begin{document}
 \title{Algebraic Topology}
@@ -9,88 +11,40 @@
 \tableofcontents
 
 
-\part{Homology}
+\part{}
+
+\chapter{Convenient categories}
+\section{Compactly generated weakly Hausdorff spaces}
+bicomplete cartesian closed monoidal category.
+Here, closed means that the right tensoring admits an adjoint called internal hom functor.
+braided and symmetric...?
 
 
-\chapter{Axiomatic homology}
+A pointed space is a pair of a space and a 0-cell.
+The smash product is the categorical product in the category of pointed space.
 
-\section{Singular homology}
 
+Let $\mathrm{Top}$ be the bicomplete cartesian closed monoidal category of CGWH spaces.
+\section{CW complexes}
+
+
+
+\section{Simplicial complexes}
+
+
+
+
+
+
+\chapter{Cohomology operations}
 \section{Eilenberg-Steenrod axioms}
-Mayer-Vietoris sequence
-
-
-
-
-\chapter{Homology groups}
-
-\section{Cellular homology}
-CW complex,
-equivalence,
-
-\section{Simplicial homology}
-geometric realization,
-equivalence,
-smith normal form,
-simplicial approximation,
-
-
-
-
-\chapter{Cohomology}
-
+cohomology
 cup product
 universal coefficient theorem
+Poincar\'e duality
 
 
-\section{Poincar\'e duality}
-
-
-
-
-
-
-
-
-\part{Homotopy}
-
-\chapter{Homotopy groups}
-
-
-
-
-\chapter{Fibration}
-\section{Homotopy lifting property}
-
-
-Locally trivial bundles
-
-pullback bundles: universal property, functoriality, restriction,
-section prolongation
-
-\section{Obstruction theory}
-\section{Hurewicz theorem}
-$H_\bullet(\Omega S_n)$ and $H_\bullet(U(n))$
-Spin, Spin$_\C$ structure
-
-
-
-\chapter{Spectral sequences}
-\section{Serre spectral sequence}
-	(Lyndon-Hochschild-Serre)
-\section{Adams spectral sequence}
-
-
-
-
-
-
-\part{}
-% Andrew Kobin
-\chapter
-
-
-\chapter{Characteristic classes}
+\section{Characteristic classes}
 
 
 A characteristic class is a natural transformation $\mathrm{Prin}_G=[-,BG]\to H^n(-,A)$ for some $n$.
@@ -109,10 +63,74 @@ They are always can be given by the pullback of classes in $H^n(BG,A)$ by the Yo
 Since there is a special class in $H^n(K(A,n))$ so that the inducing map provides an isomorphism $[X,K(A,n)]=H^n(X,A)$, we have $H^n(B\GL(n,\C))\to H^n(X,A)$.
 
 
-
 \section*{Exercises}
 
 characteristic class of projective spaces
+
+
+
+
+
+\chapter{Spectral sequences}
+\section{Serre spectral sequence}
+	(Lyndon-Hochschild-Serre)
+\section{Adams spectral sequence}
+
+
+
+
+
+
+\chapter{Fibrations}
+
+\section{Fiber bundles}
+Locally trivial bundles
+
+pullback bundles: universal property, functoriality, restriction,
+section prolongation
+
+\section{Obstruction theory}
+\section{Hurewicz theorem}
+$H_\bullet(\Omega S_n)$ and $H_\bullet(U(n))$
+Spin, Spin$_\C$ structure
+\section{Model categories}
+\begin{prb}[Model structures]
+Let $\cC$ be a category.
+A \emph{model structure} on $\cC$ is a triple $(W,\Cof,\Fib)$ of classes of morphisms of $\cC$ such that $W$ satisfies the two-out-of-three law, and $(\Cof\cap W,\Fib)$ and $(\Cof,\Fib\cap W)$ are weak factorization systems; lifting property and factorization property.
+
+A class $W$ of morphisms of $\cC$ is called a \emph{weak equivalences}.
+A morphism in $\Cof\cap W$ is called a \emph{acyclic cofibration}.
+\end{prb}
+
+
+Serre model structure and Hurewicz model structure on $\mathrm{Top}$.
+
+
+
+
+
+
+
+
+
+
+
+제가 
+하지만 만약 이런 좋은 환경에서 공부하지 못했더라면 이렇게 빨리 회의감을 느끼는 날이 오지는 못했을 것 같다는 생각이 듧니다.
+저는 다시 묻습니다. 무엇을 공부의 원동력으로 삼아야 할까요?
+과거의 제가 남을 이기기 위해 공부하기 시작했다면, 이제는 
+
+
+뛰어난 사람들과 뒤처지는 사람들을 나와 비교하지 않게 되고 싶다.
+많은 사람들을 사랑할 수 있게 되고 싶다.
+싫은 소리를 하는 방법에 대해 알게 되고 싶다.
+인생의 유의미하다고 생각되는 일을 같이 해나갈 소중한 사람들을 만나고 싶다.
+내 스스로가 어떤 위치에 있는지 자꾸 자기검열을 하게 된다.
+
+
+
+
+
 
 
 
@@ -123,8 +141,11 @@ bott periodicity
 Hopf invariant
 
 
+\chapter{Cobordisms}
 
 
+
+\chapter{Simplicial methods}
 
 
 
@@ -136,6 +157,43 @@ Hopf invariant
 
 
 \chapter{}
+\section{Homotopy groups of spheres}
+
+Freudenthal suspension theorem.
+Spanier-Whitehead category, does not contain reduced cohomology theory?
+Boardman's stable homotopy category, Lima's notion of spectra, Kan's semi-simplicial category, Whitehead's notion of spectra, and finally Adams's construction of stable homotopy category.
+Bousfield localization is a kind of a category of fractions and Adamas spectral sequence.
+It leads to the chromatic homotopy.
+
+A commutative monoidal point-set model for the stable homotopy category?
+Coordinate-free spectra by May, but commutative and associative only up to homotopy.
+$S$-modules in EKMM97, symmetric spectra in HSS00, which are shown Quillen equivalent in Sch01.
+They give closed symmetric monoidal model categories of spectra and model categories of ring spectra.
+HPS97 axiomatize the stable homotopy theories.
+
+
+
+\begin{prb}[Freudenthal suspension theorem]
+For each $r$, we have the suspension homomorphism
+\[E_n:\pi_{n+r}(S^n)\to\pi_{n+r+1}(S^{n+1}),\qquad n\ge0,\]
+which are isomorphisms if $n>r+1$.
+The \emph{stable homotopy groups of spheres} is $\lim_n\pi_{n+r}(S^n)$.
+
+For example, it is known that $\pi_{n+1}(S^n)\cong\pi_4(S^3)\cong\Z/2\Z$ for $n>2$.
+The computation $\pi_4(S^3)$ is a nice exercise which is done by Serre in his thesis.
+\end{prb}
+
+
+Note that $\pi_{n+r}(S^n)=[S^{n+r},S^n]$.
+Suspension $\Sigma:=S^1\wedge-$ is a functor, so it defines a function $S:[X,Y]\to[\Sigma X,\Sigma Y]$.
+
+
+Spanier-Whitehead and Adama category of spectra.
+Triangulatedness of the homotopy category of a stable model category.
+a symmetric monoidal smash product and an internal function object.
+
+
+
 \section{Generalized homology theory}
 
 A \emph{generalized reduced cohomology theory on pointed CW complexes} is a sequence of functors $\tilde E_q:\mathbf{hCW}_*\to\mathbf{Ab}$ for $q\in\Z$ which is exact and additive, and satisfies the suspension axiom.

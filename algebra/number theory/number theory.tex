@@ -315,6 +315,55 @@ Every $p$-adic integer is a sum of two squares of $p$-adic integers.
 \part{Elliptic curves}
 \chapter{Elliptic curves over $\C$}
 
+\section{$\P^2(\C)$}
+\begin{prb}[Weierstrass form]
+Let $K$ be a field.
+An \emph{elliptic curve} over $K$ is a smooth algebraic curve $E$ of genus one together with a specified base point $O$.
+There is an embedding $w:E\to\P^2$ such that $O$ is mapped to the infinity $(0:1:0)$ on the $y$-axis and $w(E)$ is the zero set of $y^2z-x^3+27c_4xz^2+54c_6z^3$.
+\end{prb}
+
+\begin{prb}[Legendre form]
+$E(\C)\to\P^1(\C)$ is a double cover ramified over the four points $0,1,\lambda,\infty\in\P^1(\C)$.
+\end{prb}
+
+\begin{prb}[Invariants of elliptic curves]
+discriminant, $j$-invariant.
+\end{prb}
+
+
+\begin{prb}[Group law]
+from tangent lines, from Picard group, from quotient of the complex plane,
+\end{prb}
+
+\begin{prb}[Isogenies]
+If a morphism $E_1\to E_2$ maps $O_1$ to $O_2$, then it is a group isomorphism.
+dual isogeny,
+\end{prb}
+
+\begin{prb}[Tate modules]
+Let $K$ be a field of characteristic $p$ and $E$ be an elliptic curve over $K$.
+The set $E[m]$ of points of order $m$ is isomorphic to $(\Z/m\Z)^2$, where $m$ is prime to the characteristic of $K$.
+For a prime $\ell\in\Z$ such that $p\ne0$, the \emph{$\ell$-adic Tate module} is the group $T_\ell(E):=\lim_{\leftarrow n}E[\ell^n]$.
+As a $\Z_\ell$-module, we have $T_\ell(E)\cong\Z_\ell^2$ and $T_p(E)\cong0$ or $\Z_p$ if $p>0$.
+Then, we can associated a representation $G_{\bar K/K}\to\GL_2(\Z_\ell)$ and $G_{\bar K/K}\to\GL_2(\Q_\ell)$ by tensoring with $\Q_\ell$.
+
+Let $\mu_{\ell^n}$ be the group of $\ell^n$-th roots of unity in $\bar K^\times$.
+Then, we can also define a Tate module $T_\ell(\mu)$ as the projective limit, and it is a multiplicative subgroup of $\bar K^\times$ such that $T_\ell(\mu)\cong\Z_\ell$.
+Thus the one-dimensional Galois representation $G_{\bar K/K}\to\Aut(\Z_\ell)=\Z_\ell^\times$, called the \emph{cyclotomic representation}.
+
+The group of torsion points are homology groups which admit Galois actions.
+($E[m]$ and $T_\ell(E)$ can be identified with $H_1(E,\Z/m\Z)$ and $H_1(E,\Z_\ell)$.)
+\end{prb}
+
+\begin{prb}[Weil pairing]
+\end{prb}
+\begin{prb}[Endomorphism rings]
+central simple algebras over $K$ is classified by the Brauer group $\mathrm{Br}(K)=H^2(G_{\bar K/K},\bar K^\times)$.
+\end{prb}
+\begin{prb}[Automorphism groups]
+The order of $\Aut(E)$ divides $24$.
+$\Aut(E)$ is isomorphic to $\Z/2\Z$, $\Z/4\Z$, or $\Z/6\Z$ over $\bar K$ of characteristic not $2$ or $3$.
+\end{prb}
 
 \textbf{Step 1.}
 The Riemann-Roch theorem proves that every curve of genus 1 with a specified base point can be described by the first kind of Weierstrass equation.
@@ -345,6 +394,24 @@ TFAE:
 $\pd_yf=0$ implies $y=0$. $f=\pd_xf=0$ implies $x$ is a double root of $x^3-Ax-B$.
 $A$ determines whether $x$ is either cusp of node.
 \end{pf}
+
+
+
+
+
+\section{$\C/\Lambda$}
+
+\begin{prb}[Invariant differential]
+The invariant differential $\omega$ is a one-form that is invariant under the translation, which is unique up to scalar.
+If we consider a projective embedding $E\to\P^2$ such that $E(\C)$ is given by the equation $y^2=f(x)$ for a cubic $f\in\C[x]$, then we can set $\omega=dx/y$.
+This implies that the second coordinate is equal to the first coordinate, the Weierstrass $\wp$-function, in the embedding. (Since $\phi:\C/\Lambda\to E(\C)$ is a group homomorphism and $dz$ is the invariant differential on $\C/\Lambda$, we have $dz=\phi^*(dx/y)$, so $(\wp(x):\wp'(z):1)$.)
+\end{prb}
+
+
+
+
+
+
 
 
 

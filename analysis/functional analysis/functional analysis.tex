@@ -15,25 +15,55 @@
 \chapter{Locally convex spaces}
 \section{Vector topologies}
 
+\begin{prb}[Topological vector spaces]
+We will define a \emph{topological vector space} as a vector space together with a Hausdorff vector topology.
+For every topological vector space, there is a balanced neighborhood system at zero.
+\end{prb}
 \begin{prb}[Canonical uniformity and bornology]
 \end{prb}
-\begin{prb}[Metrizability]
+\begin{prb}[Continuity and boundedness of linear operators]
+\end{prb}
+\begin{prb}[Metrizable topological vector spaces]
 Birkhoff-Kakutani
 \end{prb}
-\begin{prb}[Boundedness of linear operators]
+
+
+\begin{prb}[Continuous linear functionals]
+A linear functional $l:X\to\F$ is continuous if and only if $\ker l$ is closed, if and only if $|l|$ is continuous.
 \end{prb}
-
-
 
 
 \section{Seminorms and convex sets}
+\begin{prb}[Locally convex spaces]
+A topological vector space $X$ over $\F=\R$ or $\C$ is called a \emph{locally convex space} if there is a convex balanced neighborhood system at zero.
+
+\end{prb}
+
 \begin{prb}[Seminorms]
-\[\bigcap_{i=1}^m\{:p()<1\}\]
-Equivalent conditions on the continuity of seminorms
+Let $X$ be a vector space over $\F=\R$ or $\C$.
+A \emph{semi-norm} is a functional $p:X\to\R$ such that
+\[p(x)\ge0,\qquad p(\lambda x)=|\lambda|p(x),\qquad p(x+y)\le p(x)+p(y),\qquad x,y\in X,\ \lambda\in\C.\]
+
+
+For a convex balanced set $U$ such that $U-x$ is absorbing for every $x\in U$, there is a unique semi-norm $p$ on $X$ such that $U=\{x\in X:p(x)<1\}$.
+The semi-norm $p$ is called the \emph{Minkowski functional} of $U$.
+It is defined by
+\[p(x):=\inf\{t\ge0:x\in tU\}.\]
+
+In a given topological vector space, open convex sets correspond to continuous sublinear functionals, open convex balanced sets correspond to continuous semi-norms.
+
+Equivalent conditions on the continuity of seminorms,
+boundedness by seminorms,
+normability
 \end{prb}
 \begin{pf}
 \end{pf}
-boundedness by seminorms, normability
+
+\begin{prb}
+convex hulls
+\end{prb}
+
+
 
 \section{Continuous linear functionals}
 \begin{prb}
@@ -44,48 +74,59 @@ If $x^*\in X^*$ vanishes on $\bigcap_{i=1}^n\ker x_i^*$, then $x^*$ is a linear 
 
 
 
-\begin{prb}[Hahn-Banach extension]
-Let $Y\le X$ be real vector spaces.
-Suppose $l_0:Y\to\R$ is a linear functional dominated by a sublinear functional $q:X\to\R$ in the sense that $l_0(y)\le q(y)$ for $y\in Y$.
+\begin{prb}[Hahn-Banach extension theorem]
+Let $X_0\subset X$ be vector spaces over $\F=\R$ or $\C$.
+A real functional $q:X\to\R$ is said to be \emph{sublinear} if $q(x+y)\le q(x)+q(y)$ and $q(tx)=tq(x)$ for all $x,y\in X$ and $t\in\R$.
 \begin{parts}
-\item There is a linear functional $l:X\to\R$ that extends $l_0$ and is dominated by $q$ in the sense that $l\le q$ on $X$.
-\item There is a linear functional $l:X\to\C$ that extends $l_0$ and is dominated by $p$ in the sense that $|l|\le p$ on $X$.
-\item Let $X$ be a locally convex space and $l_0:Y\to\F$ be a bounded linear functional. Then, it admits a bounded linear extension $l:X\to\F$.
-If $X$ is normed, then we can take $\|l\|=\|l_0\|$.
+\item For $\F=\R$ and $q:X\to\R$ sublinear, any linear functional $l_0:X_0\to\R$ satisfying $l_0\le q$ on $X_0$ admits a linear extension $l:X\to\R$ satisfying $l\le q$.
+\item For $\F=\C$ and $p:X\to\R$ a semi-norm, any linear functional $l_0:X_0\to\R$ satisfying $|l_0|\le p$ on $X_0$ admits a linear extension $l:X\to\R$ satisfying $|l|\le p$.
+\item If $X$ is locally convex, then a bounded linear functional $l_0:X_0\to\F$ admits a bounded linear extension $l:X\to\F$.
+If $X$ is normed, we can take $l$ such that $\|l\|=\|l_0\|$.
 \end{parts}
 \end{prb}
 \begin{pf}
 (a)
-Consider a partially ordered set of all linear functionals which extend $l_0$ and are dominated by $q$.
-Precisely, we consider
-\[\{l:V\to\R\mid
-Y\le V\le X,\ l_0=l|_Y,\ l\le q|_V\},\]
-on which the partial order is given such that for $l:V\to\R$ and $l':V'\to\R$ we have $l\prec l'$ if and only if $V\le V'$ and $l'|_V=l$.
-The nonemptyness and the chain condition is easily satisfied, so the partially ordered set has a maximal element $l:V\to\R$ by the Zorn lemma.
+Consider a partially ordered set of all linear extensions of $l_0$ dominated by $q$.
+Precisely, we consider the set
+\[S:=\{l:V\to\R\mid
+X_0\subset V\subset X,\ l_0=l|_{X_0},\ l\le q\},\]
+on which the partial order $\subset$ is given such that for elements $l:V\to\R$ and $\tilde l:\tilde V\to\R$ of $S$ we have $l\subset\tilde l$ if and only if $\tilde l$ is an extension of $l$.
+The non-emptyness and the chain condition is easily satisfied, so the partially ordered set has a maximal element $l:V\to\R$ by the Zorn lemma.
 
 Suppose $V\ne X$ and let $e\in X\setminus V$.
+We want to assign an appropriate value to the vector $e$ to extend our maximal extension $l$.
 The inequality
 \[l(v)+l(w)=l(v+w)\le q(v+w)\le q(v-e)+q(w+e),\qquad v,w\in V\]
 implies the existence of $r\in\R$ such that
 \[\sup_{v\in V}(l(v)-q(v-e))\le r\le\inf_{v\in V}(-l(v)+q(v+e)).\]
-If we define $\tilde V:=V+\R e$ and $\tilde l:\tilde V\to\R$ such that $\tilde l(v+te):=l(v)+tr$ for $t\in\R$, then $\tilde l(v)=l(v)$ and
+If we define $\tilde V:=V+\R e$ and $\tilde l:\tilde V\to\R$ such that $\tilde l(v+te):=l(v)+tr$ for $t\in\R$, then $\tilde l$ extends $l$ and
 \[\tilde l(v+te)=l(v)+tr\le
 \begin{cases}l(v)+t(-l(t^{-1}v)+q(t^{-1}v+e))&,t\ge0\\l(v)+t(l(-t^{-1}v)-q(-t^{-1}v-e))&,t\le0
 \end{cases}
-=q(v+te)
+=q(v+te),\qquad v\in V,\ t\in\R,
 \]
-for $v\in V$ and $t\in\R$ lead a contradiction to the maximality of $l$, which concludes $V=X$.
+which leads a contradiction to the maximality of $l$.
+Therefore, we conclude $V=X$.
 
 (b)
-The real part map $\Re:\Hom_\C(X,\C)\to\Hom_\R(X,\R)$ is bijective.
-Let $p$ be a seminorm on $X$ and $l$ a complex linear functional on $X$.
-We have $|l|\le p$ if and only if $\Re l\le p$ because for $\lambda$ such that $|\lambda|=1$ and $l(\lambda x)\ge0$ we have
-\[|l(x)|=|\lambda^{-1}l(\lambda x)|=l(\lambda x)=\Re l(\lambda x)\le p(\lambda x)=p(x).\]
+Note that the real part map $\Re:\Hom_\C(X,\C)\to\Hom_\R(X,\R)$ is bijective.
+Note also that $|l|\le p$ if and only if $\Re l\le p$ for any complex linear functional $l:V\to\C$ on a complex vector space $V$.
+It is because $|l|\le p$ implies $\Re l\le|l|\le p$ and conversely $\Re l\le p$ implies $|l|\le p$ by the inequality
+\[|l(v)|^2=l(v)\bar{l(v)}=l(\bar{l(v)}v)=\Re l(\bar{l(v)}v)\le p(\bar{l(v)}v)=|l(v)|p(v),\qquad v\in V.\]
+
+Since $|l_0|\le p$, we have $\Re l_0\le p$.
+Using the part (a), there is a linear functional $l:X\to\C$ such that $\Re l_0=\Re l$ on $X_0$ and $\Re l\le p$.
+Then, we can deduce $l_0=l$ on $X_0$ and $|l|\le p$.
 \end{pf}
 
 
 
 \begin{prb}[Hahn-Banach separation]
+
+Let $X$ be a locally convex space over $\F=\R$ or $\C$.
+Let $C$ be a closed convex subset and $K$ be a compact convex subset which are disjoint.
+Then, there is a continuous linear functional $l:X\to\F$ such that
+\[\sup_{c\in C}\Re l(c)<\inf_{k\in K}\Re l(k).\]
 \end{prb}
 
 
@@ -104,21 +145,36 @@ We have $|l|\le p$ if and only if $\Re l\le p$ because for $\lambda$ such that $
 \section{Uniform boundedness principle}
 \begin{prb}[Barreled spaces]
 Let $X$ be a topological vector space.
-A \emph{barrel} is a balanced convex subset of $X$ which is absorbing and closed.
-A \emph{barreled space} is a topological space in which every barrel is a neighborhood of zero.
+We say a subset $B\subset X$ is \emph{absorbing} if for every $x\in X$ there is a sufficiently large $t>0$ such that $x\in tB$.
+A \emph{barrel} is a convex balanced subset of $X$ which is closed and absorbing.
+A \emph{barrelled space} is a topological vector space in which every barrel is a neighborhood of zero.
 \end{prb}
 
 % If a closed convex cone contains a dense subset of absorbing at a point, then it is entire?
 
 \begin{prb}[Uniform boundedness principle]
 Let $X$ and $Y$ be topological vector spaces.
-Let $\cF$ be a family of continuous linear operator from $X$ to $Y$.
-Suppose $\bigcup_{T\in\cF}Tx$ is bounded for each $x\in D$, where $D\subset X$.
+We say that a family $\{T_i\}$ of continuous linear operators from $X$ to $Y$ is \emph{pointwise bounded} or \emph{strongly bounded} if $\{T_ix\}\subset Y$ is bounded for each $x\in X$, and is \emph{uniformly bounded} or \emph{equicontinuous} if 
+
+The \emph{uniform boundedness principle} states that a pointwise bounded family is equicontinuous.
+It is also frequently called the \emph{Banach-Steinhaus theorem}.
 \begin{parts}
-\item If $D$ is dense in $X$, then $\bigcap_{T\in\cF}T^{-1}\bar U$ is absorbing.
-\item If $X$ is barreled, then $\cF$ is equicontinuous.
+\item If $X$ is barrelled and $Y$ is locally convex, then the uniform boundedness principle holds.
+\item If $X$ is complete and metrizable, then the uniform boundedness principle holds.
 \end{parts}
 \end{prb}
+\begin{pf}
+(a)
+Let $V$ be a convex balanced open neighborhood of zero in $Y$.
+Our goal is to construct an balanced open neighborhood $U$ of zero in $X$ such that $T_iU\subset V$ for all $i$.
+Take a convex balanced open neighborhood $V'$ of zero in $Y$ such that $\bar{V'}\subset V$.
+Define
+\[B:=\bigcap_iT_i^{-1}\bar{V'}.\]
+Then, $B$ is clearly convex, balanced, and closed.
+We can see it is also absorbing because for any $x\in X$, since $\{T_ix\}$ is bounded in $Y$, there is $t>0$ such that $\{T_ix\}\subset t\bar{V'}$, which implies $x\in tB$ by definition of $B$.
+Thus $B$ is a barrel in a barrelled space $X$, so it contains a convex balanced open neighborhood $U$ of zero.
+From $T_iU\subset\bar{V'}\subset V$ for every $i$, we have $\{T_i\}$ is equicontinuous.
+\end{pf}
 
 
 
@@ -127,7 +183,7 @@ Suppose $\bigcup_{T\in\cF}Tx$ is bounded for each $x\in D$, where $D\subset X$.
 \begin{prb}[Baire spaces]
 A topological space is called a \emph{Baire space} if the countable intersection of open dense subsets is always dense.
 \begin{parts}
-\item If a topological vector space is Baire, then it is barreled.
+\item If a topological vector space is Baire, then it is barrelled.
 \item A Baire space is second category in itself.
 \item A topological group that is second category in itself is Baire.
 \end{parts}
@@ -135,20 +191,15 @@ A topological space is called a \emph{Baire space} if the countable intersection
 
 
 
-\begin{prb}[Absorbing sets]
-Let $X$ be a topological vector space that is Baire.
-A subset $U\subset X$ is said to be \emph{absorbing} if for every $x\in X$ there is a sufficiently large $t>0$ such that $x\in tU$.
-Let $U\subset X$.
-\begin{parts}
-\item If $U$ is closed and absorbing, then $U$ has a non-empty open subset.
-\item If $U$ is closed and absorbing, then $U-U$ is a neighborhood of zero.
-\item If $U$ is closed, convex, and absorbing, then $U$ is a neighborhood of zero.
-\end{parts}
+\begin{prb}
+Let $B\subset X$ be a closed absorbing subset of a topological vector space $X$ that is Baire.
+Then, $B$ has a non-empty open subset, and $B-B$ is a neighborhood of zero.
+If $B$ is convex in addition, then $B$ is a neighborhood of zero.
 \end{prb}
 
 
 \begin{prb}[Baire category theorem]
-The Baire category theorem proves many exmples of topological vector space are Baire, in particular barreled.
+The Baire category theorem proves many exmples of topological vector space are Baire, in particular barrelled.
 \begin{parts}
 \item A complete metric space is Baire.
 \item A locally compact Hausdorff space is Baire.
@@ -161,35 +212,37 @@ The Baire category theorem proves many exmples of topological vector space are B
 \section{Open mapping theorem}
 
 \begin{prb}[Open mapping theorem]
-Let $X$ be a $F$-space and $Y$ a barreled space.
-Suppose $T:X\to Y$ is a continuous and surjective linear operator.
+Let $X$ and $Y$ be topological vector spaces.
+The \emph{open mapping theorem} states that continuous surjective linear operator $T:X\to Y$ is an open map.
 \begin{parts}
-\item $\bar{TU}$ is a neighborhood of zero.
-\item $TU$ is a neighborhood of zero.
+\item If $X$ is complete metrizable and $Y$ is Baire, the open mapping theorem holds.
+\item If $X$ is a Fr\'echet and $Y$ is barrelled, the open mapping theorem holds.
 \end{parts}
 \end{prb}
 
 \begin{pf}
 (a)
-Let $U'$ be a neighborhood of zero such that $U\supset U'-U'$.
-Because $T$ is surjective, the set $\bar{TU'}$ is a closed absorbing set, so it contains a non-empty open subset, since $Y$ is barreled.
-Thus, $\bar{TU}\supset\bar{TU'}-\bar{TU'}$ is a neighborhood of zero.
+Let $U$ be balanced open neighborhoods of zero in $X$.
+It is enough to prove $TU$ is a neighborhood of zero.
+We first claim the closure $\bar{TU}$ is a neighborhood of zero.
+Take an balanced open neighborhood $U'$ of zero in $X$ such that $U\supset U'-U'$.
+Because $U'$ is absorbing and $T$ is surjective, the set $\bar{TU'}$ is closed and absorbing in a Baire space $Y$ so that $\bar{TU'}-\bar{TU'}$ is a neighborhood of zero, hence the claim follows from $\bar{TU'}-\bar{TU'}\subset\bar{TU}$.
 
-(b)
-We claim $\bar{TU_{2^{-1}}}\subset TU_1$.
-Take $y_1\in\bar{TU_{2^{-1}}}$.
-
-Assume $y_n\in\bar{TU_{2^{-n}}}$.
-Since $\bar{TU_{2^{-(n+1)}}}$ is a neighborhood of zero, we have
-\[(y_n+\bar{TU_{2^{-(n+1)}}})\cap TU_{2^{-n}}\ne\varnothing.\]
-Then, there is $x_n\in U_{2^{-n}}$ such that $Tx_n\in y_n+\bar{TU_{2^{-(n+1)}}}$.
-Define
-\[y_{n+1}:=y_n-Tx_n.\]
-
-Then, $\sum_{n=1}^\infty x_n$ clearly converges to $x\in U_1$.
-Therefore,
-\[Tx=\sum_{n=1}^\infty Tx_n=\sum_{n=1}^\infty(y_n-y_{n+1})=y_1.\qedhere\]
+Since $X$ is metrizable, we have a countable balanced open neighborhood system $\{U_n\}_{n=1}^\infty$ of zero in $X$ such that $\bar{U_1+U_1}\subset U$ and $U_{n+1}+U_{n+1}\subset U_n$ for all $n$.
+It suffices to prove $\bar{TU_1}\subset TU$.
+Take arbitrary $y_1\in\bar{TU_1}$.
+We construct sequences $x_n\in U_n$ and $y_n\in\bar{TU_n}$ as follows:
+Assuming $y_n\in\bar{TU_n}$, since $\bar{TU_{n+1}}$ is a neighborhood of zero as we have shown above so that $y_n+\bar{TU_{n+1}}$ is a neighborhood of a limit point $y_n$ of $TU_n$, we have $Tx_n\in y_n+\bar{TU_{n+1}}$ for some $x_n\in U_n$, and we can let $y_{n+1}:=y_n-Tx_n\in\bar{TU_{n+1}}$.
+Then, the partial sum $\sum_{k=1}^nx_k$ is a Cauchy sequence because
+\[\sum_{k=m+1}^nx_k\in U_{m+1}+\cdots+U_n\subset U_m,\qquad n>m\ge1,\]
+and it converges to $x\in U$ by the completeness of $X$ and
+\[\sum_{k=1}^nx_n\in U_1+U_2+\cdots+U_n\subset U_1+U_1,\qquad n\ge1.\]
+With this $x$, we can check $Tx=y_1$ by taking limit on
+\[T\sum_{k=1}^nx_k=\sum_{k=1}^nTx_k=\sum_{k=1}^n(y_k-y_{k+1})=y_1-y_{n+1}.\qedhere\]
 \end{pf}
+
+A first countable topological vector space is metrizable.
+A locally complete metrizable topological vector space is complete metrizable.
 
 
 \section*{Exercises}
@@ -292,20 +345,31 @@ Then, $T^{-2}+\|T\|^{-2}$ is injective if it is surjective.
 
 
 \chapter{Weak topologies}
-\section{Polar topologies}
+\section{Dual pairs}
 
-\begin{prb}[Bidual]
+\begin{prb}[Dual pairs]
+A \emph{dual pair} is a pair $(X,F)$ of a vector space $X$ and a subspace $F$ of $X^\#$ which separates points of $X$.
+If $X$ is a topological vector space and $F$ is a linear subspace of $X^*$, then $(X,F)$ is a dual pair if and only if $F$ is weakly$^*$ dense in $X^*$ by the Hahn-Banach separation.
+Note that if $X$ is discrete, then $X^*=X^\#$.
+If $(X,F)$ is a dual pair, then $(F,X)$ is also a dual pair.
+A dual pair is never a topological notion.
+When we consider a canonical dual pair $(X,X^*)$, we forget the topologies on $X$ and $X^*$ after defining $X^*$ as the continuous dual.
+
 \end{prb}
+
+\begin{pf}
+For a linear subspace $V$ of a topological vector space $X$, $\bar V=V^{\perp\perp}$.
+If $x\in\bar V$, then for $x^*\in V^\perp$, we have $\<x,x^*\>=0$ by approximation, so $x\in V^{\perp\perp}$.
+Conversely, if $x\notin\bar V$, then the Hahn-Banach extension implies that there is $x^*$ such that $\<y,x^*\>=0<\<x,x^*\>$ for all $y\in V$, which means $x^*\in V^\perp$ and $x\notin V^{\perp\perp}$.
+
+\end{pf}
 
 \begin{prb}
 Let $X$ be a locally convex space.
-The \emph{weak topology} is the topology $w$ on $X$ defined by the family of seminorms $\{x\mapsto|\<x,\xi\>|\}_{\xi\in X^*}$.
-The \emph{weak$^*$ topology} is the topology $w^*$ on $X^*$ defined by the family of seminorms $\{\xi\mapsto|\<x,\xi\>|\}_{x\in X}$.
-Let $J:X\to X^{**}$ be the canonical embedding.
 \begin{parts}
-\item $(X,w)$ and $(X^*,w^*)$ are locally convex.
-\item $(X,w)^*=X^*$.
-\item $(X^*,w^*)^*=X$. Every locally convex space is a dual of a locally convex space.
+\item $X_\sigma$ and $X^*_\sigma$ are locally convex.
+\item $(X_\sigma)^*=X^*$.
+\item $(X^*_\sigma)^*=X$. Every locally convex space is a dual of a locally convex space.
 \end{parts}
 \end{prb}
 \begin{pf}
@@ -313,11 +377,10 @@ Let $J:X\to X^{**}$ be the canonical embedding.
 The Hahn-Banach theorem implies the Hausdorffness.
 
 (c)
-We will only show $(X^*,w^*)^*\subset X$.
-If $u\in(X^*,w^*)^*$, then there are $x_1,\cdots,x_m\in X$ such that
-\[|\<u,\xi\>|\le\sum_{i=1}^m|\<x_i,\xi\>|\]
-for all $\xi\in X^*$.
-If we let $\ker\vec x:=\bigcap_{i=1}^m\ker x_i$, then it is a closed subspace of $X^*$ such that $\ker\vec x\subset\ker u$, so we have $u\in\spn\vec x\subset X$.
+We will only show $(X^*_\sigma)^*\subset X$.
+If $x^{**}\in(X^*_\sigma)^*$, then there is a finite subset $\{x_i\}_{i\in J}$ of $X$ such that
+\[|\<x^{**},x^*\>|\le\sum_{i\in J}|\<x_i,x^*\>|,\qquad x^*\in X^*.\]
+Since $\bigcap_{i\in J}\ker x_i$ is a closed subspace of $\ker x^{**}$, we have $x^{**}\in\spn\{x_i\}_{i\in J}\subset X$.
 \end{pf}
 
 \begin{prb}
@@ -328,13 +391,6 @@ Hahn-Banach
 \end{pf}
 
 \begin{prb}[Polar topologies]
-A \emph{dual pair} is a pair $(X,F)$ of a vector space $X$ and a subspace $F$ of $X^\#$ which separates points of $X$.
-For a topological vector space $X$ and a subspace $F\subset X^*$, $(X,F)$ is a dual pair if and only if $F$ is weakly$^*$ dense in $X^*$, because the weak$^*$ density of $F$ is equivalent to that $F$ separates points of $X$ by the Hahn-Banach separation.
-Note that if $X$ is discrete, then $X^*=X^\#$.
-If $(X,F)$ is a dual pair, then $(F,X)$ is also a dual pair.
-A dual pair is never a topological notion.
-When we consider a canonical dual pair $(X,X^*)$, we forget the topologies on $X$ and $X^*$ after defining $X^*$ as the continuous dual.
-
 For a vector space $X$ and a subspace $X^*\subset X^\#$, the Mackey topology $\tau(X,X^*)$ on $X$ is the topology of uniform convergence on weakly$^*$ compact balanced convex subsets of $X^*$.
 We can show $X^*=(X_\tau)^*$, i.e.~$\tau$ is a dual topology.
 
@@ -345,7 +401,7 @@ $X_\sigma$, $X^*_\sigma$, $X_\tau$, $X^*_\tau$, $X_\beta$, $X^*_\beta$.
 $(X^*)_\sigma=:X^*_\sigma$, $(X_\sigma)^*=X^*$.
 
 \begin{parts}
-\item If a locally convex space $X$ is barreled or metrizable, then $X$ is Mackey, i.e.~$X_\tau=X_\beta$.
+\item If a locally convex space $X$ is barrelled or metrizable, then $X$ is Mackey, i.e.~$X_\tau=X_\beta$.
 \item The Mackey topology is the finest topology such that $(X_\tau)^*=X^*$.
 \end{parts}
 \end{prb}
@@ -354,7 +410,12 @@ Mackey-Arens
 
 boundedness, incompleteness
 
-\begin{prb}[Weak convergence by dense set]
+
+\begin{prb}[Strong bidual]
+
+\end{prb}
+
+\begin{prb}[Weak convergence of bounded nets]
 Let $X$ be a Banach space, $D^*$ a subset of $X^*$, and $\bar{D^*}$ the norm closure of $D^*$.
 For example, if $X$ has a predual $X_*\subset X^*$ and $D^*$ is dense in $X_*$, then $\sigma(X,\bar{D^*})$ is the weak$^*$ topology.
 \begin{parts}
@@ -371,10 +432,14 @@ Then,
 
 
 
-\section{Weak compactness}
-\begin{prb}[Banach-Alaoglu theorem]
+\begin{prb}[Alaoglu theorem]
+Let $X$ be a topological vector space and $U$ be a balanced open neighborhood of zero.
+The polar $U^\circ\subset X^*$ is weakly$^*$ compact.
 \end{prb}
 \begin{pf}
+The algebraic dual $(X^\#,\sigma(X^\#,X))$ with weak$^*$ topology is complete because $X^\#$ is embedded into the product space $\F^X$ as a closed subspace.
+Note that we have $X^*\subset X^\#$
+
 Consider
 \[B_{X^*}\to\prod_{x\in X}\|x\|B:l\mapsto(l(x))_{x\in X}.\]
 Since it is an embedding into a compact space, it suffices to show the closedness of image: for $l(x):=\lim_\alpha l_\alpha(x)$, we have
@@ -386,7 +451,16 @@ so $l$ is contained in the range.
 \begin{prb}[James' theorem]
 \end{prb}
 
-\section{Weak density}
+
+
+
+
+
+Two Krein-\v Smulian theorems
+
+
+
+
 Bishop-Phelps theorem
 
 \begin{prb}[Goldstine theorem]
@@ -406,7 +480,7 @@ Krein-Milman theorem
 Choquet theory
 
 
-
+\section{Pettis integral}
 
 
 
@@ -487,10 +561,10 @@ The following statements are equivalent:
 \end{prb}
 
 \begin{prb}[Injectivity and surjectivity of adjoint]
-Let $T\in B(X,Y)$ for Banach spaces $X$ and $Y$.
+Let $T:X\to Y$ be a continuous linear operator between locally convex spaces.
 \begin{parts}
 \item $T^*$ is injective if and only if $T$ has dense range.
-\item $T^*$ is surjective if and only if $T$ is bounded below.
+\item $T^*$ is surjective if and only if $T$ is an embedding.
 \end{parts}
 \end{prb}
 
@@ -924,7 +998,7 @@ B^\infty(\sigma(T))\uar[phantom,sloped,"\subset"]&&\\
 C(\sigma(T)) \ar{r}{\pi}\uar[phantom,sloped,"\subset"] & W^*(T)\rar[phantom,"\subset"]& B(H).
 \end{tikzcd}\]
 \begin{parts}
-\item If we endow the topology of pointwise convergence on $B^\infty(\sigma(a))$, then the Borel functional calculus $\tilde\pi:B^\infty(\sigma(T))\to B(H)$ is strongly continuous.
+\item If we endow the topology of pointwise bounded convergence on $B^\infty(\sigma(a))$, then the Borel functional calculus $\tilde\pi:B^\infty(\sigma(T))\to B(H)$ is strongly continuous.
 \item Every von Neumann algebra is the norm closed span of projections.
 \end{parts}
 \end{prb}
@@ -962,26 +1036,74 @@ Then, mimick the definition of Lebesgue integral to construct a unital $*$-homom
 
 \chapter{Unbounded operators}
 
-\section{Closed operators}
+\section{Densely defined and closed operators}
 
-\begin{prb}[Closed operators]
+
+We almost always consider the domain of an unbounded linear operator as the union of all subspaces on which a given operator is continuously well-defined.
+Between complete spaces, the subspaces may be assumed to be closed.
+
+Densely defined operators can be seen as increasing limits of partially defined continuous linear operators.
+
+
+For $X$ without condition and $Y$ normable, then the continuity of $T:X_\sigma\to Y_\sigma$ implies the boundedness of $T:X\to Y$ because if we have $x_i\to0$ and $Tx_i$ is not bounded, then the uniform boundedness principle on $Y^*$ proves $Tx_i$ does not coverges weakly to zero.
+
+
+We want to realize the graph $\Gamma(T)$ as the strict inductive limit of Fr\'echet spaces $\Gamma(T_i)$ with barrelled $X_i$.
+The topology on $\Gamma(T_i)$ may not come from the topology of $X_\sigma\times Y_\sigma$.
+If so, by the closed graph theorem, $T_i:X_i\to Y$ are everywhere defined continuous linear operators.
+
+
+Even if the weak topology on $X\times Y$ is not complete but its weakly closed subspace $\Gamma(T)$ can be seen as a Banach space.
+Which topology is natural on the graph?
+For closedness, weak topology is the most natural.
+
+
+I think the most natural setting for densely defined closed operators is the Fr\'echet space.
+
+\begin{prb}
+Let $X$ and $Y$ be topological vector spaces.
+A \emph{linear operator} from $X$ to $Y$ is a linear map $T:\dom T\to Y$, where $\dom T$ is a linear subspace of $X$.
+
+\end{prb}
+
+\begin{prb}
+Let $X$ and $Y$ be Fr\'echet spaces.
+For a closed operator $T:\dom T\subset X\to Y$, there is an increasing net $T_i:\dom T_i\subset X\to Y$ of closed operators such that $\dom T_i$ is closed and $\Gamma(T)=\bigcup_i\Gamma(T_i)$. (Consider the net of finite-dimensional subspaces)
+Conversely, 
+
 \begin{parts}
 \item a
 \end{parts}
 \end{prb}
 
 \begin{prb}[Adjoint operators]
-Let $T:\dom T\subset X\to Y$ be a densely defined linear operator between Banach spaces.
-Define an unbounded operator $T^*:\dom T^*\subset Y^*\to X^*$ such that $\<x,T^*y^*\>:=\<Tx,y^*\>$ for all $x\in\dom T$ and $y^*\in\dom T^*$, where
-\[\dom T^*:=\{y^*\in Y^*\mid \dom T\to\C:x\mapsto\<Tx,y^*\>\text{ is bounded}\}.\]
+Let $X$ and $Y$ be topological vector spaces.
+Let $T:\dom T\subset X\to Y$ be a densely defined linear operator.
+The \emph{adjoint} of $T$ is a linear operator $T^*:\dom T^*\subset Y^*_\sigma\to X^*_\sigma$ with domain
+\[\dom T^*:=\{y^*\in Y^*\mid \dom T\to\C:x\mapsto\<Tx,y^*\>\text{ is continuous}\}\]
+such that
+\[\<x,T^*y^*\>:=\<Tx,y^*\>,\qquad x\in\dom T,\ y^*\in\dom T^*.\]
 \begin{parts}
 \item If $T\subset S$, then $S^*\subset T^*$.
-\item $T^*$ is always closed.
-\item $T$ is closable if and only if $T^*$ is densely defined. If it is, then $T^{**}$ is the closure of $T$. (Only on reflexive spaces?)
-\item $T^*$ is injective if and only if $T$ has dense range, and surjective if and only if $T$ is bounded below.
+\item $T^*:\dom T^*\subset Y^*_\sigma\to X^*_\sigma$ is always closed.
+\item $T$ is closable if and only if $T^*$ is densely defined. If it is, then $T^{**}$ is the closure of $T$.
+\item $T^*$ is injective if and only if $T$ has dense range, and surjective if and only if $T$ is an embedding.
 \end{parts}
 \end{prb}
 \begin{pf}
+
+We claim that $\Gamma(T^*)^\op=\Gamma(-T)^\perp$, where $^\op:Y^*\times X^*\to X^*\times Y^*$ is the swapping map.
+One direction is clear by $\<(x,-Tx),(T^*y^*,y^*)\>=\<x,T^*y^*\>-\<Tx,y^*\>=0$ for all $x\in\dom T$ and $y^*\in\dom T^*$.
+Conversely, if $(x^*,y^*)$ is contained in the right-hand side, then the linear functional $\dom T\to\C:x\mapsto\<Tx,y^*\>=\<x,x^*\>$ is continuous, so we have $y^*\in\dom T^*$ and $x^*=Ty^*$ by definition of adjoint operators, hence the claim follows.
+
+(a) Clear from the claim.
+
+(b) It is because the complement $\Gamma(-T)^\perp$ is closed in $X^*_\sigma\times Y^*_\sigma$, and so is its swap image $\Gamma(T^*)$ by the claim.
+
+(c)
+Suppose $T$ is closable.
+If $y\in Y$ satisfies $\<y,y^*\>=0$ for every $y^*\in\dom T^*$, then the equation $\<(0,y),(-T^*y,y^*)\>=0$ implies $(0,y)\in\Gamma(-T^*)^{\op\perp}=\Gamma(T)^{\perp\perp}=\bar{\Gamma(T)}$, and the closability of $T$ says that $y=T0=0$, so $\dom T^*$ separates point of $Y$, which means that $\dom T^*$ is dense in $Y^*_\sigma$.
+Conversely, if $T^*$ is densely defined, then we can define the double adjoint $T^{**}:\dom T^{**}\subset X\to Y$, which has the graph $\Gamma(T^{**})=\Gamma(-T^*)^{\op\perp}=\Gamma(T)^{\perp\perp}=\bar{\Gamma(T)}$, so $T$ has the closure $T^{**}$.
 
 (d)
 Suppose $T$ is bounded below.
@@ -997,27 +1119,43 @@ Since for every $x^*\in X^*$ we have for some $y^*\in\dom T^*$ such that
 By the uniform boundedness principle, we have $\sup_{x\in F}(\|x\|+\|Tx\|)$ is bounded, we are done.
 \end{pf}
 
-\begin{prb}[Operations of unbounded operators]
-inverse, composition, addition
+\begin{prb}[Cores]
+\end{prb}
+
+\begin{prb}[Sum of unbounded operators]
+\end{prb}
+
+\begin{prb}[Composition of unbounded operators]
+\end{prb}
+
+\begin{prb}[Inverse of unbounded operators]
+Let $T:\dom T\subset X\to Y$ be an injective linear operator.
+\[\dom T^{-1}:=\ran T.\]
 \end{prb}
 
 
 
+\section{Symmetric and self-adjoint operators}
 
 
 \begin{prb}[Symmetric operators]
-A densely defined operator $T:\dom T\to H$ is called \emph{symmetric} if
+Let $H$ be a Hilbert space.
+A densely defined linear operator $T$ on $H$ is called \emph{symmetric} if $T\subset T^*$, equivalently,
 \[\<Tx,y\>=\<x,Ty\>,\qquad x,y\in\dom T.\]
-Let $T$ be a densely defined symmetric operator.
+Let $T$ be a symmetric operator.
+Since $\bar T=T^{**}\subset T^*$, we have no critical issue in taking closure.
 If the closure of $T$ is self-adjoint, then it is called \emph{essentially self-adjoint}.
+In general, instead of self-adjointness, it is easy to check a given linear operator is symmetric.
 \begin{parts}
-\item $T$ has the closed and densely defined closure.
-\item Every symmetric extension of $T$ is a restriction of $T^*$, which is not symmetric in general. In particular, $T$ has a maximal symmetric extension.
-\item A maximal symmetric operator is closed since the closure of a .
+\item Every symmetric extension of $T$ is a restriction of $T^*$. In particular, $T$ has a maximal symmetric extension.
+\item A maximal symmetric operator is closed.
 \item A self-adjoint operator is maximal.
-\item A densely defined closed symmetric operator is essentially self-adjoint if and only if it is indeed the unique self-adjoint extension if and only if the adjoint is symmetric.
+\item A symmetric operator is essentially self-adjoint if and only if it is indeed the unique self-adjoint extension if and only if the adjoint is symmetric.
 \end{parts}
 \end{prb}
+\begin{pf}
+(a) .
+\end{pf}
 
 
 \begin{prb}[Cayley transform]
@@ -1042,26 +1180,75 @@ If not, does $T$ admit self-adjoint extensions?
 Which self-adjoint extension generate the appropriate quantum dynamics?
 
 \begin{ex*}
-Let $T:=i\,d/dx$ on $L^2([0,1])$ with
-\[\dom T=H_0^1((0,1)).\]
-It is densely defined and closed.
-Then,
-\[\dom T^*=H^1((0,1))\subset C([0,1])\]
-and $T^*$ is not self-adjoint since...
-The set of self-adjoint extensions is $\{T_\alpha:\alpha\in\T\}$, where
-\[\dom T_\alpha=\{f\in H^1((0,1)):\alpha f(0)=f(1)\}.\]
+Let $T$ be a unbounded linear operator on $L^2([0,1])$ such that $Tf(x):=if'(x)$ for $f\in\dom T$, where
+\[\dom T=C_c^\infty((0,1)),\]
+which is symmetric.
+The closure has the domain
+\[\dom\bar T=H_0^1((0,1)),\]
+which gives a closed symmetric operator.
+The adjoint has the domain
+\[\dom T^*=H^1((0,1))\subset C([0,1]),\]
+which is not self-adjoint.
+The family of self-adjoint extensions $\{T_\lambda\}$ can be parametrized by $\lambda\in\T$, where
+\[\dom T_\lambda=\{f\in H^1((0,1)):\lambda f(0)=f(1)\}.\]
+
+
+
+The same operator $S$ in the sense that $Sf(x):=if'(x)$
+\[\dom S=\{f\in C^\infty((0,1)):\lim_{x\to0}f(x)=0\}\]
+has no self-adjoint extension because we have deficiency indices $n^+=1$ and $n^-=0$ (maybe).
 \end{ex*}
 
 
 
+
+
+
+
+
+\begin{prb}[Non-negative symmetric operators]
+Friedrichs extension.
+Let $T$ be a non-negative symmetric operator on a Hilbert space $H$.
+Consider an inner product $\<x,y\>_1:=\<(T+1)x,y\>$ on $\dom T$ and its completion $H_1$.
+The inclusion $\dom T\subset H$ is extended to a bounded linear operator $\iota:H_1\to H$.
+Since
+\[\<x,y\>_1=\<(T+1)x,y\>=\<(T+1)x,\iota y\>=\<\iota^*(T+1)x,y\>_1,\qquad x,y\in\dom T\]
+implies
+\[x=\iota^*(T+1)x,\qquad x\in\dom T,\]
+we have $\dom T=\ran(\iota^*(T+1))\subset\ran\iota^*$, so $\iota^*:H\to H_1$ has dense range and $\iota$ is injective.
+Since $\iota$ is injective with dense range, $\iota\iota^*:H\to H$ is a bounded self-adjoint operator which is injective with dense range because
+\[x=\iota x=\iota\iota^*(T+1)x,\qquad x\in\dom T,\] so we can define a self-adjoint operator $\tilde T:=(\iota\iota^*)^{-1}-1$ with $\dom\tilde T=\ran(\iota\iota^*)$.
+We can check $\tilde T$ extends $T$ as
+\[\tilde Tx=(\iota\iota^*)^{-1}x-x=(T+1)x-x=Tx,\qquad x\in\dom T.\]
+
+
+Krein characterization.
+\end{prb}
+
+
+
 \section{Spectral theorems}
-\begin{prb}[Borel functional calculus for self-adjoint operators]
-Let $T$ be a self-adjoint operator on $H$ and let $U:=(T-i)/(T+i)$ be its Cayley transform.
-Then, the continuous functional calculus for $U$ defines a faithful non-degenerate representation of $C_0(\R)$ by
-\[C_0(\R)\to C(\T)\to C(\sigma(U))\to B(H).\]
-The first map is $f\mapsto(s\mapsto f(i\frac{s+1}{s-1}))=f\circ C^{-1}$, and the second map is the restriction.
+
+\begin{prb}[Strongly commuting operators]
+\end{prb}
+
+
+
+\begin{prb}[Borel functional calculus for normal operators]
+Let $T$ be a normal unbounded operator on $H$.
+Let $g\in\C(z,\bar z)$ be such that $g:\sigma(T)\to\C$ is an embedding to a bounded set so that $g(T)\in B(H)$.
+For example, $g(z)=z/(1+|z|^2)$.
+The continuous functional calculus for $g(T)$ gives
+\[\Phi:C_0(\sigma(T))\to C(g(\sigma(T)))=C(\sigma(g(T)))\to B(H):f\mapsto f\circ g^{-1}\mapsto f\circ g^{-1}(g(T)).\]
+We want to show $\Phi$ is independent of the choice of $g$.
+
 Now obtain a normal extension of it to the universal von Neumann algebra of $C_0(\R)$, which contains $B^\infty(\R)$.
 The restriction $B^\infty(\R)\to B(H)$ is the bounded Borel functional calculus for $T$.
+
+For an unbounded Borel $f$ on $\sigma(T)$, there are two methods.
+One method is the spectral truncation using $f1_{|f|\le n}$.
+The other method is using $h\in\C(z,\bar z)$ be such that $h^{-1}:f(\sigma(T))\to\C$ is an embedding to a bounded set, $h(z)=z/(1-|z|^2)$ for example, and take the bounded Borel functional calculus with $h^{-1}\circ f$ and define $f(T):=h(h^{-1}\circ f(T))$.
+We want to show $f(T)$ is independent of the choice of $h$.
 \begin{parts}
 \item 
 \end{parts}
@@ -1080,30 +1267,18 @@ C_0(\R)\ar{r}{\pi_{VTV^*}} & B(H).
 \end{parts}
 \end{prb}
 
-\begin{prb}
-Let $T$ be a self-adjoint operator on $H$ and $U$ be its Cayley transform.
-\[U=C(T)=\frac{T-i}{T+i},\qquad T=C^{-1}(U)=i\frac{1+U}{1-U}.\]
-$e^{-it}=C(\cot(t/2))$.
-\begin{parts}
-\item Note that $C^{-1}:\T\setminus\{1\}\to\R$ is unbounded, and $C-1\in C_0(\R)$.
-\item unbounded functional calculus: even if $f$ is an unbounded real-valued Borel function on $\R$, the unbounded operator $f(T)$ can be defined by the Cayley transform $g(f(T)):=g\circ f\circ g^{-1}(U)$, because $g\circ f\circ g^{-1}$ is bounded Borel on $\T$.
-If $f$ is bounded, then it coincides the above bounded Borel functional calculus.
-\end{parts}
-\end{prb}
 
+\section{Infinitesimal generators}
 
-\begin{prb}[Polar decomposition]
-polar decomposition
-polar decomposition of symmetric operator?
-polar decomopsition changes spectrum or domains?
-
-support projection
-\end{prb}
 
 \begin{prb}[Stone theorem]
 \end{prb}
 
-\begin{prb}[Analytic vectors]
+Cores and invaraint spaces?
+
+
+\begin{prb}[Smooth and analytic vectors]
+Cores
 \begin{parts}
 \item If $T$ is symmetric and $D_0$ is dense, then $T|_{D_0}$ is essentially self-adjoint.
 \end{parts}
@@ -1111,6 +1286,9 @@ support projection
 
 \begin{prb}[Resolvent convergence]
 \end{prb}
+
+
+
 
 
 \section{Polar decomposition}
@@ -1156,6 +1334,14 @@ Similarly, $s_l(v)=s_l(x)$.
 The equality $xv^*=|x^*|$ follows from $xv^*=v|x|v^*\ge0$ and $|xv^*|^2=vx^*xv^*=v|x|^2v^*=xx^*=|x^*|^2$.
 \end{pf}
 
+
+\begin{prb}[Polar decomposition]
+polar decomposition
+polar decomposition of symmetric operator?
+polar decomopsition changes spectrum or domains?
+
+support projection
+\end{prb}
 
 
 
@@ -1824,11 +2010,11 @@ The following statements are equivalent:
 \begin{prb}[Gelfand-Naimark-Segal representation]
 Let $A$ be a C$^*$-algebra, and $\omega$ be a state on $A$.
 The \emph{left kernel} of $\omega$ is defined to be
-\[N_\omega:=\{a\in A:\omega(a^*a)=0\}.\]
+\[\fn_\omega:=\{a\in A:\omega(a^*a)=0\}.\]
 \begin{parts}
-\item $N_\omega$ is a left ideal of $A$.
-\item $\<a+N,b+N\>:=\omega(b^*a)$ is an inner product on $A/N_\omega$.
-\item There is a unique representation $\pi_\omega:A\to B(H_\omega)$ such that $\pi_\omega(a)(b+N_\omega):=ab+N_\omega$ for $a,b\in A$.
+\item $\fn_\omega$ is a left ideal of $A$.
+\item $\<a+\fn_\omega,b+\fn_\omega\>:=\omega(b^*a)$ is an inner product on $A/\fn_\omega$.
+\item There is a unique representation $\pi_\omega:A\to B(H_\omega)$ such that $\pi_\omega(a)(b+\fn_\omega):=ab+\fn_\omega$ for $a,b\in A$.
 \item $\pi_\omega:A\to B(H_\omega)$ is a cyclic representation.
 \end{parts}
 \end{prb}
@@ -1951,17 +2137,18 @@ Let $A$ be a C$^*$-algebra and let $B_A$ be the closed unit ball of $A$.
 \section{Normal states}
 
 \begin{prb}[Von Neumann algebras]
-A \emph{von Neumann algebra} on a Hilbert space $H$ is a $\sigma$-weakly closed non-degenerate $*$-subalgebra $M$ of $B(H)$.
-Two von Neumann algebras $M_1$ and $M_2$ on $H_1$ and $H_2$ are said to be isomorphic if there is a $*$-isomorphism $M_1\to M_2$.
+A \emph{von Neumann algebra} on a Hilbert space $H$ is a weakly closed $*$-subalgebra $M$ of $B(H)$ containing the identity operator.
+We will see later that a $*$-subalgebra of $B(H)$ is weakly closed if and only if it is $\sigma$-strongly$^*$ closed.
+A linear map between von Neumann algebras is called \emph{normal} if it is continuous between $\sigma$-weak topologies.
 \begin{parts}
-\item Every von Neumann algebra contains the identity of $B(H)$.
-\item A positive map $\f$ between von Neumann algebras is order continuous if and only if it is continuous between $\sigma$-weak topologies.
-\item image of normal $*$-homomorphism is $\sigma$-weakly closed.
+\item Every weakly closed $*$-subalgebra of $B(H)$ has a unit $p\in P(H)$.
+\item A positive map $\f$ between von Neumann algebras is order continuous if and only if it is normal
+\item The image of normal $*$-homomorphism is weakly closed.
 \end{parts}
 \end{prb}
 
 \begin{prb}[Normal states]
-Let $N\subset M\subset B(H)$ be von Neumann algebras.
+Let $N\subset M$ be von Neumann algebras on a Hilbert space $H$.
 The space of $\sigma$-weakly continuous linear functionals on $M$ is denoted by $M_*$.
 \begin{parts}
 \item $M_*$ is a predual of $M$.
@@ -1974,7 +2161,10 @@ The space of $\sigma$-weakly continuous linear functionals on $M$ is denoted by 
 
 
 \begin{prb}[Support projections]
+Let $M$ be a von Neumann algebra on a Hilbert space $H$.
 $p$, $Mp$, $pM_*$.
+
+
 \begin{parts}
 \item projections of $M$, $\sigma$-closed left ideals of $M$, closed right invariant subspaces of $M_*$.
 \item For a normal state $\omega$ of $M$, its left hull kernel $\fn_\omega:=\{x\in M:\f(x^*x)=0\}$ is a $\sigma$-weakly closed left ideal of $M$, so there is a projection $s(\omega)$ such that $\fn_\omega=Ms(\omega)$. This projection is called the \emph{support} or the \emph{carrier} projection of $\omega$.
@@ -1996,7 +2186,7 @@ If two projections $p$ and $q$ in $M$ satisfy $Mp=Mq$, then since there is a uni
 \begin{parts}
 \item The GNS representation of a normal state is normal.
 \item faithful normal states
-\item closedness of $x\mapsto\Omega$?
+\item Every normal state is a vector state.
 \item sufficiently large representation, dependence of weak and strong topologies
 \end{parts}
 \end{prb}
@@ -2009,37 +2199,31 @@ An action admits a separating vector if and only if it admits a cyclic separatin
 
 
 \begin{prb}[Double commutant theorem]
-The \emph{commutant} of a subset $S\subset B(H)$ is the set $S'$ of all elements of $B(H)$ that commute every $a\in S$.
+Let $H$ be a Hilbert space.
+The \emph{commutant} of a subset $A\subset B(H)$ is the von Neumann algebra $A'$ on $H$ consisting of all elements of $B(H)$ that commute every $a\in A$.
 Let $A$ be a non-degenerate $*$-subalgebra of $B(H)$.
-One can describe the von Neumann algebra generated by $A$ in $B(H)$ purely algebraically in terms of commutants.
+One can describe the von Neumann algebra generated by $A$ in $B(H)$ purely algebraically in terms of commutants as follows.
 \begin{parts}
-\item The double commutant $A''$ is weakly closed $*$-algebra.
 \item If $x\in A''$, for any $\e>0$ and $\xi\in H$ there is $a\in A$ such that $\|(x-a)\xi\|<\e$.
-\item $A$ is $\sigma$-strongly$^*$ dense in $A''$. In particular, if $A$ is $\sigma$-strongly$^*$ closed, then it is weakly closed.
+\item $A''$ is the $\sigma$-strong$^*$ closure of $A$.
 \end{parts}
 \end{prb}
 \begin{pf}
 (a)
-Suppose a net $x_\alpha\in A''$ weakly converges to $x\in B(H)$.
-For any $y\in A'$,
-\[\<xy\xi,\eta\>=\lim_\alpha\<x_\alpha y\xi,\eta\>=\lim_\alpha\<yx_\alpha\xi,\eta\>=\<yx\xi,\eta\>,\qquad \xi,\eta\in H.\]
-Hence $x\in A''$.
+Let $\xi\in H$ and let $p$ be the projection onto $\bar{A\xi}$.
+We claim $px\xi=x\xi$.
+For fixed $a\in A$, since $ap\eta$ and $a^*p\eta$ are in $\bar A\xi$ for any $\eta\in H$, we have $pap=ap$ and $pa^*p=a^*p$, which implies $ap=pap=(pa^*p)^*=(a^*p)^*=pa$, hence $p\in A'$.
+Thus $xp=px$ for $x\in A''$.
+On the other hand, observe that $a^*(1-p)\xi=(1-p)a^*\xi=a^*\xi-pa^*\xi=0$ for all $a\in A$.
+Then, $\<(1-p)\xi,a\eta\>=0$ for any $\eta\in H$, and the non-degeneracy of $A$ implies $p\xi=\xi$.
+Combining $xp=px$ and $p\xi=\xi$, we obtain $px\xi=xp\xi=x\xi$.
 
 (b)
-We claim $x\xi\in\bar{A\xi}$ for each $\xi\in H$.
-Let $p$ be the projection onto $\bar{A\xi}$.
-For any $a\in A$, the operator $ap$ ranges into $\bar{A\xi}$ so that $pap=ap$, and we also have $pa^*p=a^*p$ by the self-adjointness of $A$.
-It implies $ap=pa$, which deduces $p\in A'$.
-Thus $xp=px$ for $x\in A''$.
-On the other hand, observe that $a(1-p)\xi=(1-p)a\xi=0$ for all $a\in A$.
-Then, $\<(1-p)\xi,\eta\>=0$ for any $\eta\in H=\bar{AH}$ by the non-degeneracy, so $p\xi=\xi$.
-Combining $xp=px$ and $p\xi=\xi$, we obtain $x\xi=xp\xi=px\xi$ so that $x\xi\in\bar{A\xi}$.
-
-(c)
-It suffices to show $A$ is $\sigma$-strongly dense in $A''$ because $A$ is self-adjoint.
-Consider $A$ as the non-degenerate $*$-subalgebra of $B(\ell^2(\N,H))$ via the diagonal map $B(H)\to B(\ell^2(\N,H))$, which is a injective normal unital $*$-homomorphism.
-We can check that $A''$ does not change if we replace $B(H)$ to $B(\ell^2(\N,H))$.
-By applying the part (b) for arbitrary $\xi\in\ell^2(\N,H)$, we deduce the desired result.
+Since $A''$ is weakly closed and $A$ is self-adjoint, it suffices to show $A$ is $\sigma$-strongly dense in $A''$.
+Consider the diagonal map $\Delta:B(H)\to B(\ell^2(\N,H))$, which is a injective unital normal $*$-homomorphism.
+Then, $\Delta(A)$ is non-degenerate $*$-subalgebra of $B(\ell^2(\N,H))$.
+We can check that $\Delta(A'')=\Delta(A)''$.
+By applying the part (a) for arbitrary $\xi\in\ell^2(\N,H)$, we deduce the desired result.
 \end{pf}
 
 
@@ -2050,12 +2234,20 @@ If $f$ is a
 
 
 A $*$-isomorphism between von Neumann algebras is normal.
+
+Let $A$ be a $\sigma$-weakly dense $*$-subalgebra of $M$.
 \end{prb}
 
 
 
-\begin{prb}[Approximate identity]
-
+\begin{prb}[Approximate units for von Neumann algebras]
+Let $M$ be a von Neumann algebra on a Hilbert space $H$.
+Let $A$ be a $\sigma$-weakly dense $*$-subalgebra.
+\begin{parts}
+\item There is a net $e_i\in A_1^+$ such that $e_i\to1$ $\sigma$-strongly$^*$.
+\item If $A$ is hereditary, then there is a net $e_i\in A_1^+$ such that $e_i\uparrow1$.
+In particular, $x_i\in A$ such that $x_i\to x$ $\sigma$-strongly$^*$ for every $x\in M$.
+\end{parts}
 \end{prb}
 
 
@@ -2064,37 +2256,31 @@ A $*$-isomorphism between von Neumann algebras is normal.
 
 \begin{prb}[Sherman-Takeda theorem]
 Let $A$ be a C$^*$-algebra.
-Define $M(\pi):=\pi(A)''$ for $\pi:A\to B(H)$ a representation.
-Let $\pi_u:A\to B(H_u)$ be the universal representation of $A$, the direct sum of all the GNS-representations of states of $A$.
-Consider the following three maps
-\[\pi_u:A\to(M(\pi_u),\sigma w),\qquad\pi_u^*:M(\pi_u)_*\to A^*,\qquad\pi_u^{**}:A^{**}\to M(\pi_u),\]
-constructed by adjoints.
+Let $\pi_u:A\to B(H_u)$ be the universal representation of $A$ constructed as the direct sum of all the GNS-representations of states of $A$.
+Consider the following adjoint maps
+\[\pi_u:A\to(\pi_u(A)'',\sigma w),\qquad\pi_u^*:\pi_u(A)''_*\to A^*,\qquad\pi_u^{**}:A^{**}\to\pi_u(A)''.\]
+We will show $\pi_u^{**}$ is an isometric isomorphism.
+The bidual $A^{**}$ is frequently viewed as a von Neumann algebra on $H_u$, and we call it the \emph{enveloping von Neumann algebra} of a C$^*$-algebra $A$.
 \begin{parts}
-\item $\pi_u^*$ is isometric.
-\item $\pi_u^*$ is surjective.
+\item $\pi_u^*$ is an isometric isomorphism
 In particular, $\pi_u^{**}$ is a $*$-isomorphsim.
 \item $A^{**}$ enjoys a universal property in the sense that every $*$-homomorphism $\f:A\to M$ to a von Neumann algebra $M$ has a unique normal extension $\tilde\f:A^{**}\to M$ of $\f$.
 \end{parts}
 \end{prb}
 \begin{pf}
 (a)
-It holds for any representation of $\pi:A\to B(H)$.
-For each $l\in M(\pi)_*$ we have
-\[\|\pi^*(l)\|=\sup_{\substack{\|a\|\le1\\a\in A}}|l(\pi(a))|=\sup_{\substack{\|x\|\le1\\x\in M(\pi)}}|l(x)|=\|l\|\] by the Kaplansky density theorem and the $\sigma$-weak continuity of $l$.
+The isometric property of $\pi^*:\pi(A)''_*\to A^*$ holds for any non-degenerate representation $\pi:A\to B(H)$, verified as
+\[\|\pi^*(l)\|=\sup_{\substack{\|a\|\le1\\a\in A}}|l(\pi(a))|=\sup_{\substack{\|x\|\le1\\x\in\pi(A)''}}|l(x)|=\|l\|,\qquad l\in\pi(A)''_*\]
+by the Kaplansky density theorem and the $\sigma$-weak continuity of $l$.
+
+For surjectivity, let $\omega$ be a state of $A$.
+Since the universal representation $\pi_u$ has the GNS representation of $\omega$ as a subrepresentation, $\omega$ is given by a vector state in $\pi_u$.
+By restriction of this vector state, we have a normal state of $\pi_u(A)''$, which extends $\omega$.
+Now the Jordan decomposition can be applied to verify that every bounded linear functional of $A$ has a $\sigma$-weakly continuous extension on $\pi_u(A)''$.
 
 (b)
-Let $\omega$ be a state of $A$.
-Since the universal representation $\pi_u$ has the GNS representation of $\omega$ as a subrepresentation, $\omega$ is given by a vector state in $\pi_u$.
-By restriction of this vector state, we have a normal state of $M(\pi_u)$, which extends $\omega$.
-Now the Jordan decomposition can be applied to verify that every bounded linear functional of $A$ has a $\sigma$-weakly continuous extension on $M(\pi_u)$.
-
-(c)
 We can define $\tilde\f$ as the bitranspose of $\f:A\to(M,\sigma w)$, and it is a unique extension because $A$ is $\sigma$-weakly dense in $A^{**}$.
 \end{pf}
-\begin{rmk}
-The bidual $A^{**}$ is frequently viewed as a von Neumann algebra, and we call it the \emph{enveloping von Neumann algebra} of a C$^*$-algebra $A$.
-By the universal property, we have a normal $*$-homomorphism $M(\pi_u)\to M(\pi)$ that is in fact surjective for every representation $\pi$ of $A$, and it fails to be injective even if $\pi$ is faithful.
-\end{rmk}
 
 
 
@@ -2149,8 +2335,10 @@ where $\pi_B$ is any representation of $B$.
 
 
 \begin{prb}[Sakai theorem]
-Let $A$ be a \emph{W$^*$-algebra} with a predual $F$, which means that $A$ is a C$^*$-algebra and $F$ is a norm closed subspace of $A^*$ such that the restriction map $A^{**}\to F^*:x\mapsto x|_F$ is restricted to an isometric isomorphism $A\to F^*$.
-Consider the canonical embedding $A\subset A^{**}$ and the embedding $A^{**}\subset B(H)$ by the universal representation in which every element of $A^*$ is a vector functional and every vector functional acts on $A^{**}$ as an element of $A^*$, by the Sherman-Takeda theorem.
+Let $A$ be a \emph{W$^*$-algebra} or just a \emph{von Neumann algebra} in an intrinsic sense, that is, a C$^*$-algebra together with a predual $F\subset A^*$.
+Consider the canonical embedding $A\subset A^{**}$ and a faithful unital normal representation $\pi:A^{**}\to B(H)$, for example, constructed by the Sherman-Takeda theorem.
+We will show that every W$^*$-algebra $A$ is embedded in $A^{**}$ as a weakly$^*$ closed $*$-subalgebra, so that $A$ admits a faithful unital normal representation $\pi:A\to \pi(A)''\subset B(H)$.
+In this context, a von Neumann algebra on a Hilbert space can be interpreted as just a W$^*$-algebra with a choice of a faithful unital normal representation.
 \begin{parts}
 \item There is an injective $*$-homomorphism $\pi:A\to A^{**}$ with weakly$^*$ closed image.
 \item $\pi$ is a topological embedding with respect to $\sigma(A,F)$ and $\sigma(A^{**},A^*)$.
@@ -2172,9 +2360,9 @@ For $\pi$ to be an embedding, it suffices to prove the equality $\pi^*(A^*)=F$.
 First, suppose $l\in A^*$ satisfies $\pi^*(l)\in A^*\setminus F$.
 Because $F$ is norm closed in $A^*$, by the Hahn-Banach extension, there is $x\in A^{**}$ such that $\<x,\pi^*(l)\>\ne0$ and $\<x,f\>=0$ for all $f\in F$.
 Since $\<\e(x),f\>=\<x,f\>=0$ for every $f\in F$ from the definition of $\e$ and $F$ separates points $A$, we have $\e(x)=0$ and $x\in\ker\e$ implies $zx=0$.
-Take a net $a_\alpha\in A$ such that $a_\alpha\to x$ in $\sigma(A^{**},A^*)$.
+Take a net $a_i\in A$ such that $a_i\to x$ in $\sigma(A^{**},A^*)$.
 Then, if we take $\xi,\eta\in H$ such that $\<a,l\>=\<a\xi,\eta\>$, then we have
-\[\<x,\pi^*(l)\>=\lim_\alpha\<a_\alpha,\pi^*(l)\>=\lim_\alpha\<za_\alpha,l\>=\lim_\alpha\<za_\alpha\xi,\eta\>=\lim_\alpha\<a_\alpha\xi,z\eta\>=\<x\xi,z\eta\>=\<zx\xi,\eta\>=0,\]
+\[\<x,\pi^*(l)\>=\lim_i\<a_i,\pi^*(l)\>=\lim_i\<za_i,l\>=\lim_i\<za_i\xi,\eta\>=\lim_i\<a_i\xi,z\eta\>=\<x\xi,z\eta\>=\<zx\xi,\eta\>=0,\]
 which is a contradiction, so we have $\pi^*(A^*)\subset F$.
 Conversely, if $f\in F$, then we have $\<a,\pi^*(f)\>=\<za,f\>=\<a,f\>$ because $(1-z)a\in\ker\e$ acts on $F$ trivially by definition of $\e$, so $f=\pi^*(f)\in\pi^*(A^*)$.
 
