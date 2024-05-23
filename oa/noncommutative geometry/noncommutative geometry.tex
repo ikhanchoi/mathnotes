@@ -1,0 +1,125 @@
+\documentclass{../../large}
+\usepackage{../../ikhanchoi}
+
+
+\begin{document}
+\title{Noncommutative geometry}
+\author{Ikhan Choi}
+\maketitle
+\tableofcontents
+
+
+
+\part{Noncommutative topology}
+
+\chapter{Kasparov category}
+
+\section{}
+
+
+
+
+
+\part{Spectral triples}
+
+\chapter{Index theory}
+\section{Atiyah-Singer index}
+
+\begin{prb}
+Let $X$ be an $n$-dimensional compact smooth manifold.
+Let $E$ and $F$ be smooth complex vector bundles on $X$.
+A map $P:\Gamma(E)\to\Gamma(F)$ is called a \emph{linear partial differential operator} if it is locally a polynomial in the operators $\partial_i$ with smooth matrix-valued coefficients.
+A linear partial differential operator $P$ is called \emph{elliptic} if its symbol is invertible for all $x\in X$ and $\xi\in\R^n\setminus\{0\}$.
+\begin{parts}
+\item An elliptic operator $D:\Gamma(E)\to\Gamma(F)$ is Fredholm, and defines an element of the K-homology group $K_0(X)$ and an element of $K^0(T^*X,(T^*X)_0)$.
+\end{parts}
+\end{prb}
+
+For locally compact Hausdorff spaces, is the K-theory with compact supports equal to the representable K-theory?
+
+The Thom space of a vector bundle $E$ is just the one-point compactification $E_+$ of the total space $E$ if the base space is compact.
+
+An elliptic operator $D:\Gamma E\to\Gamma F$ defines a section $\sigma(D)\in\Hom(\pi^*E,\pi^*F)$ of a vector bundle over $T^*X$, and it gives an element of the K-theory of the Thom space $K(DT^*X,ST^*X)=K(T^*X,T^*X_0)$.
+Note that it is equal to $K(T^*X)$ if $X$ is compact.
+The analytic index is a map
+\[K(T^*X,T^*X_0)\to\Z.\]
+
+
+
+For an embedding $X\hookrightarrow Y=\R^{n+m}$, the topological index map is defined as the composition
+\[K(T^*X)\to K(T^*N)\to K(T^*Y)\cong K(\R^{2(n+m)})\cong \Z,\]
+where the first map is the Thom isomoprhism established because $T^*N$ can be given a complex vector bundle structure, and the second map is the induced map of the quotient map $(T^*Y_+,*)\to(T^*N_+,*)$.
+
+
+
+\section{Dirac operators}
+
+
+\begin{prb}[Unbounded Kasparov modules]
+Let $A$ and $B$ be C$^*$-algebras.
+An \emph{unbounded Kasparov module} is a super-correspondence $E$ from $A$ to $B$ together with a dense $*$-subalgebra $A^\infty\subset A$ and an odd self-adjoint regular operator $D$ on $E$ such that $[D,A^\infty]\subset B(E)$ and $(D+i)^{-1}A^\infty\subset K(E)$.
+
+On a oriented Riemannian manifold, we have the Hodge-Dirac operator $D:=d+d^*$ and the Laplace-de Rham operator $D^*D$.
+
+
+
+\end{prb}
+
+
+\section{Fredholm theory of Mishchenko and Fomenko}
+
+
+
+
+
+
+\chapter{Quantum metric spaces}
+
+
+
+
+
+
+
+\chapter{Coarse geometry}
+
+\section{Quantum Hall effect}
+A wave function is a section $\psi$ of a $\rU(1)$-line bundle $\cL\to M$, more generally, a section $\psi$ of a Hermitian $G$-vector bundle $\cV\to M$.
+Galilean invariant momentum operator?
+We fix a connection $\nabla$ on $\cV$, which can be forgotten if $M$ is contractible and no magnetic fields are considered.
+A $\rU(N)$-gauge fixing is just a choice of a local field of orthonormal frames on the intersection of two charts of $M$, making $\cV$ locally trivially $\C^N$ with the standard basis.
+After gauge fixing, the covariant derivative is represented locally as $\nabla_j\psi=(\partial_j-iA_j)\psi$, where $A=\sum_jA_jdx^j$ is a $\R=-i\fu(1)$-valued one-form.
+
+The connection $\nabla$ is independent
+If $M$ has non-trivial holonomy (the Aharonov-Bohm flux), then it comes into play.
+
+
+On $M=\R^2$ with a connection $\nabla$ such that the curvature form is $\cF^\nabla=b\cdot\vol_M$ for some $b\in\R\setminus\{0\}$, then the \emph{Landau operator}, which is a free Hamiltonian defined by the connection Laplacian or the Bochner Laplacian $H:=\nabla^*\nabla=-\tr(\nabla^2)\ge0$, its spectrum is known to be $\sigma(H)=(2\N+1)|b|$.
+This discreteness of the spectrum is called the \emph{Landau quantization}.
+
+
+We consider a spin manifold $M$ with the spinor bundle $\cS$, and the sections of $\cS\otimes\cV\to M$ represent the space of wave functions.
+curvature of a spin connection
+the Laplacians
+
+
+
+
+
+\chapter{Infinite dimensional manifolds}
+\section{}
+
+Loop spaces,
+Loop groups
+
+
+
+
+\end{document}
+
+
+
+
+
+
+

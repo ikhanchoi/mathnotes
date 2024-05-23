@@ -140,7 +140,7 @@ Then, there is a continuous linear functional $l:X\to\F$ such that
 
 
 
-\chapter{Barreled spaces}
+\chapter{Barrelled spaces}
 
 \section{Uniform boundedness principle}
 \begin{prb}[Barreled spaces]
@@ -348,13 +348,13 @@ Then, $T^{-2}+\|T\|^{-2}$ is injective if it is surjective.
 \section{Dual pairs}
 
 \begin{prb}[Dual pairs]
-A \emph{dual pair} is a pair $(X,F)$ of a vector space $X$ and a subspace $F$ of $X^\#$ which separates points of $X$.
-If $X$ is a topological vector space and $F$ is a linear subspace of $X^*$, then $(X,F)$ is a dual pair if and only if $F$ is weakly$^*$ dense in $X^*$ by the Hahn-Banach separation.
+A \emph{dual pair} is a pair $(X,F)$ of vector spaces over a field $\F$ together with a non-degenerate bilinear form $X\times F\to\F$.
+A pair $(X,F)$ of a vector space $X$ and a subspace $F$ of $X^\#$ is a natural dual pair if and only if $F$ separates points of $X$.
+For a topological vector space $X$, we consider $(X,X^*)$ as a canonical dual pair associated to $X$, and if $F$ is a linear subspace of $X^*$, then $(X,F)$ is a dual pair if and only if $F$ is weakly$^*$ dense in $X^*$ by the Hahn-Banach separation.
 Note that if $X$ is discrete, then $X^*=X^\#$.
 If $(X,F)$ is a dual pair, then $(F,X)$ is also a dual pair.
 A dual pair is never a topological notion.
 When we consider a canonical dual pair $(X,X^*)$, we forget the topologies on $X$ and $X^*$ after defining $X^*$ as the continuous dual.
-
 \end{prb}
 
 \begin{pf}
@@ -480,8 +480,6 @@ Krein-Milman theorem
 Choquet theory
 
 
-\section{Pettis integral}
-
 
 
 \section*{Exercises}
@@ -589,22 +587,50 @@ riesz operator, quasi-nilpotent operator.
 \section{Fredholm operators}
 
 \begin{prb}
-A bounded linear operator $T:X\to Y$ between Banach spaces is called a \emph{Fredholm} operator if its kernel is finite dimensional and its range is finite codimensional.
+Let $E$ and $F$ be Fr\'echet spaces.
+We say $T\in B(E,F)$ is \emph{Fredholm} if its kernel is finite-dimensional and its range is finite-codimensional.
 \begin{parts}
-\item A Fredholm operator $T$ has closed range.
+\item A Fredholm operator $T\in B(E,F)$ has closed range.
+\item If $K\in K(E)$, then $1-K$ is Fredholm.
 \end{parts}
 \end{prb}
 \begin{pf}
 (a)
-Let $C$ be a finite dimensional subsapce of $Y$ such that $\im T\oplus C=Y$.
-Let $\tilde T:X/\ker T\to Y$ be the induced operator of $T$.
-Define $S:(X/\ker T)\oplus C\to Y$ such that $S(x+\ker T,c):=\tilde T(x+\ker T)+c$.
-Then, $S$ is an topological isomorhpism between Banach spaces by the open mapping theorem, so $S(X/\ker T\oplus\{0\})=\im\tilde T=\im T$ is closed.
+For a Fredholm operator $T\in B(E,F)$, let $\ran T^\perp$ be a finite-dimensional subspace of $F$ such that there is the summation gives rise to a continuous bijection $\ran T\oplus\ran T^\perp\to F$, which is a topological isomorphism by the open mapping theorem.
+
+(b)
+Let $T:=1-K$.
+Since $K$ is a compact identity on the closed subspace $\ker T$, so it is finite-dimensional.
+Before we see $\ran T$ is finite-codimensional, we first show $\ran T$ is closed in $F$.
+Consider a continuous bijection $T_0:\ker T^\perp\to\ran T$, where $\ker T^\perp$ is a complement of $\ker T$ in $E$.
+Suppose that $T_0$ is not bounded below so that there is a sequence of unit vectors $x_n\in\ker T^\perp$ such that $Tx_n=x_n-Kx_n\to0$.
+We may assume $Kx_n\to x$ for some $x\in E$ by compactness of $K$, which implies $x_n\to x$ in the closed subspace $\ker T^\perp$.
+Since $Tx=x-Kx=0$, we have $x\in\ker T^\perp\cap\ker T=\{0\}$, so we obtain a contradiction $x_n\to0$.
+Thus, $T_0$ is bounded below, and $\ran T=\ran T_0$ is closed.
+Now we claim $(E/\ran T)^*$ is finite-dimensional.
+Since the adjoint $(E/\ran T)^*\to E^*$ of the canonical projection $E\to E/\ran T$ is bounded below with image contained in $\ker T^*$, and the compactness of $K^*$ implies that $T^*=1-K^*$ has finite-dimensional kernel, $\ran T$ is finite-codimensional.
 \end{pf}
 
-\begin{prb}[Atkinson's theorem]
-An operator $T\in B(X,Y)$ is Fredholm if and only if there is $S\in B(Y,X)$ such that $TS-I$ and $ST-I$ is finite rank.
+\begin{prb}[Atkinson theorem]
+Let $E$ and $F$ be Banach spaces.
+\begin{parts}
+\item An operator $T\in B(E,F)$ is Fredholm if and only if there is $S\in B(F,E)$ such that $1-ST$ and $1-TS$ is finite-rank.
+\item An operator $T\in B(E)$ is Fredholm if and only if $\pi(T)$ is invertible in $Q(E)$.
+\end{parts}
 \end{prb}
+\begin{pf}
+(a)
+Let $T\in B(E,F)$ be a Fredholm operator.
+Since a finite-dimensional subspace $\ker T\subset E$ and a finite-codimensional subspace $\ran T\subset F$ are complemented, we have closed subspaces $\ker T^\perp$ and $\ran T^\perp$ such that $\ker T^\perp\oplus\ker T=E$ and $\ran T\oplus\ran T^\perp=F$.
+By the open mapping theorem, the restriction $T_0:\ker T^\perp\to\ran T$ is a topological isomorphism.
+Let $S_0:\ran T\to\ker T^\perp$ be the inverse of $T_0$ and define $S:F\to E$ such that $S:=S_0\oplus0:F\to E$.
+Then, $1-ST$ and $1-TS$ are finite-rank.
+
+(b)
+By the part (a) for $E=F$, if $T\in B(E)$ is Fredholm, then $\pi(T)$ is invertible in $Q(E)$.
+Conversely, if $\pi(T)$ has an inverse $\pi(S)$ in $Q(E)$ for some $S\in B(E)$, then since $1-ST$ and $1-TS$ are compact, $ST$ and $TS$ are Fredholm.
+Then, $\ker(ST)\supset\ker T$ is finite-dimensional and $\ran(TS)\subset\ran T$ is finite-codimensional, so $T$ is Fredholm.
+\end{pf}
 
 \begin{prb}[Fredholm index]
 locally constant, in particular, continuous.
@@ -694,11 +720,15 @@ and a cross norm is \emph{reasonable} if the \emph{dual norm} $\alpha^*$ on $X^*
 \end{prb}
 
 \begin{prb}[Duals of tensor products]
-\[\cL(X\hat\otimes_\pi Y,Z)\cong\cB(X,Y,Z)=\cL(\cL(X,Y^*),Z).\]
-\[\cJ(X,Y)=(X\hat\otimes_\e Y)^*\hookrightarrow(X\hat\otimes_\pi Y)^*=\cB(X,Y).\]
 \[\cK(X,Y)\hookrightarrow X^*\hat\otimes_\e Y\leftarrow X^*\hat\otimes_\pi Y\twoheadrightarrow\cN(X,Y).\]
 	
 \end{prb}
+
+
+
+
+
+
 
 \section{Vector-valued integrals}
 
@@ -759,6 +789,10 @@ Bochner integrable => Pettis integrable => weakly(scalarly) integrable
 \begin{prb}[Vector measures]
 If an element of the Dunford integral $\cL(L^\infty,X^{**})$, or the Pettis integral $\cK(L^\infty,X_\sigma)$, defines a $\sigma$-weakly continuous linear operator $L^\infty\to X$, then it is called a vector measure?
 \end{prb}
+
+
+
+
 
 
 \section{Approximation property}
@@ -1091,19 +1125,19 @@ such that
 \end{parts}
 \end{prb}
 \begin{pf}
-
-We claim that $\Gamma(T^*)^\op=\Gamma(-T)^\perp$, where $^\op:Y^*\times X^*\to X^*\times Y^*$ is the swapping map.
-One direction is clear by $\<(x,-Tx),(T^*y^*,y^*)\>=\<x,T^*y^*\>-\<Tx,y^*\>=0$ for all $x\in\dom T$ and $y^*\in\dom T^*$.
-Conversely, if $(x^*,y^*)$ is contained in the right-hand side, then the linear functional $\dom T\to\C:x\mapsto\<Tx,y^*\>=\<x,x^*\>$ is continuous, so we have $y^*\in\dom T^*$ and $x^*=Ty^*$ by definition of adjoint operators, hence the claim follows.
+Consider the dual pair $(X_\sigma\times Y_\sigma,Y_\sigma^*\times X_\sigma^*)$.
+We claim that $\Gamma(T^*)=\Gamma(-T)^\perp$ with respect to this pairing.
+One direction is clear by $\<(x,-Tx),(y^*,T^*y^*)\>=\<x,T^*y^*\>-\<Tx,y^*\>=0$ for all $x\in\dom T$ and $y^*\in\dom T^*$.
+Conversely, if $(y^*,x^*)$ is contained in the right-hand side so that $0=\<(x,-Tx),(y^*,x^*)\>=\<x,x^*\>-\<Tx,y^*\>$, then the linear functional $\dom T\to\C:x\mapsto\<Tx,y^*\>$ is continuous by $\<Tx,y^*\>=\<x,x^*\>$, so we have $y^*\in\dom T^*$ and $x^*=Ty^*$ by definition of adjoint operators, hence the claim follows.
 
 (a) Clear from the claim.
 
-(b) It is because the complement $\Gamma(-T)^\perp$ is closed in $X^*_\sigma\times Y^*_\sigma$, and so is its swap image $\Gamma(T^*)$ by the claim.
+(b) It is because the complement $\Gamma(-T)^\perp$ is closed in $Y^*_\sigma\times X^*_\sigma$.
 
 (c)
 Suppose $T$ is closable.
-If $y\in Y$ satisfies $\<y,y^*\>=0$ for every $y^*\in\dom T^*$, then the equation $\<(0,y),(-T^*y,y^*)\>=0$ implies $(0,y)\in\Gamma(-T^*)^{\op\perp}=\Gamma(T)^{\perp\perp}=\bar{\Gamma(T)}$, and the closability of $T$ says that $y=T0=0$, so $\dom T^*$ separates point of $Y$, which means that $\dom T^*$ is dense in $Y^*_\sigma$.
-Conversely, if $T^*$ is densely defined, then we can define the double adjoint $T^{**}:\dom T^{**}\subset X\to Y$, which has the graph $\Gamma(T^{**})=\Gamma(-T^*)^{\op\perp}=\Gamma(T)^{\perp\perp}=\bar{\Gamma(T)}$, so $T$ has the closure $T^{**}$.
+If $y\in Y$ satisfies $\<y,y^*\>=0$ for every $y^*\in\dom T^*$, then the equation $\<(0,y),(y^*,-T^*y)\>=0$ implies $(0,y)\in\Gamma(-T^*)^\perp=\Gamma(T)^{\perp\perp}=\bar{\Gamma(T)}$, and the closability of $T$ says that $y=T0=0$, so $\dom T^*$ separates point of $Y$, which means that $\dom T^*$ is dense in $Y^*_\sigma$.
+Conversely, if $T^*$ is densely defined, then we can define the double adjoint $T^{**}:\dom T^{**}\subset X\to Y$, which has the graph $\Gamma(T^{**})=\Gamma(-T^*)^\perp=\Gamma(T)^{\perp\perp}=\bar{\Gamma(T)}$, so $T$ has the closure $T^{**}$.
 
 (d)
 Suppose $T$ is bounded below.
@@ -1230,6 +1264,9 @@ Krein characterization.
 \section{Spectral theorems}
 
 \begin{prb}[Strongly commuting operators]
+Let $M$ be a von Neumann algebra on a Hilbert space $H$.
+A closed densely defined operator $T$ on $H$ is said to be \emph{affiliated with} $M$ if 
+
 \end{prb}
 
 
@@ -1292,6 +1329,17 @@ Cores
 
 
 \section{Polar decomposition}
+
+If $T:H\to H$, then for $T=V|T|$, $V$ is a partial isometry which connects from the complement of the kernel to the closure of the range as a unitary.
+Same for unbounded operator.
+
+
+\[\begin{tikzcd}
+\coim T \rar{T} & \im T=\coim T^* \rar{T^*} & \im T^* \\
+\ker T & \coker T=\ker T^* & \coker T^*
+\end{tikzcd}\]
+
+$T$ is normal then $\coim T=\im T$.
 
 \begin{prb}[Support projections of operators]
 Let $x$ be an element of a von Neumenna algebra $M$.
@@ -1767,7 +1815,7 @@ where the series on the right hand side converges absolutely and uniformly on an
 
 \chapter{C$^*$-algebras}
 
-\section{C$^*$ identity}
+\section{Ccontinuous functional calculus}
 % normal elements, real/imaginary part
 \begin{prb}[$*$-algebras]
 normed?
@@ -1796,9 +1844,6 @@ The C$^*$-identity easily follows from the following inequality:
 
 
 
-
-
-\section{Continuous functional calculus}
 
 \begin{prb}[Gelfand-Naimark representation for C$^*$-algebras]
 For a commutative C$^*$-algebra $A$, consider the Gelfand transform $\Gamma:A\to C_0(\sigma(A))$.
@@ -1835,7 +1880,7 @@ joint spectrum.
 \begin{prb}[Continuous functional calculus]
 Let $A$ be a unital C$^*$-algebra, and $a\in A$ a normal element.
 Then, we have a $*$-isomorphism
-\[C(\sigma(a))\to\tilde C^*(1,a):\id_{\sigma(a)}\mapsto a\]
+\[C(\sigma(a))\to C^*(1,a):\id_{\sigma(a)}\mapsto a\]
 defined by the inverse of the Gelfand transform, which we call the \emph{continuous functional calculus}.
 
 \begin{parts}
@@ -1875,14 +1920,27 @@ Let $\f:A\to B$ be a $*$-homomorphism between C$^*$-algerbas.
 \begin{parts}
 \item $\f$ is determined by self-adjoint elements.
 \item $\|\f\|=1$ if $\f$ is non-trivial.
-\item The iamge of $\f$ is closed.
-\item The induced map $A/\ker\f\to B$ is an isometry.
+\item If $\f$ has dense range, then it is surjective.
+\item If $\f$ is injective, then it is an isometry.
 \end{parts}
 \end{prb}
 
+\begin{prb}[Category of commutative C$^*$-algebras]
+The following categories are equivalent:
+\begin{enumerate}[(i)]
+\item $\mathrm{CC^*Alg}^{\mathrm{op}}$ with morphisms as non-degenerate $*$-homomorphisms,
+\item $\mathrm{LCH}$ with morphisms as proper maps,
+\item $\mathrm{CH}_*$ with morphisms as pointed maps.
+\end{enumerate}
+The following categories are equivalent:
+\begin{enumerate}[(i)]
+\item $\mathrm{CC^*Alg}^{\mathrm{op}}$ with morphisms as non-degenerate $*$-homomorphisms to the multiplier,
+\item $\mathrm{LCH}$ with morphisms as continuous maps,
+\end{enumerate}
+The second equivalence can be extended to locally C$^*$-algebras.
+\end{prb}
 
-
-\section{Positive elements}
+\section{States}
 
 
 \begin{prb}[Positive elements]
@@ -1896,14 +1954,14 @@ If we define a relation $a\le b$ as $b-a\ge0$, then we can see that it is a part
 \end{parts}
 \end{prb}
 \begin{pf}
-
-
-Let $a:=b^*b$.
-Let $a=a_+-a_-$.
-Then we have $(ba_-)^*(ba_-)=a_-aa_-=-a_-^3\le0$, which also implies $(ba_-)(ba_-)^*\le0$ and
-\[0\le(ba_-)^*(ba_-)+(ba_-)(ba_-)^*\le0.\]
-Thus we have $ba_-=0$ and $a_-^3=0$.
-
+(c)
+If $a\ge0$, then let $b:=a^{\frac12}$.
+Conversely, we prove $b^*b\ge0$.
+Let $c:=b(b^*b)_-$.
+Observe that $c^*c=-(b^*b)_-^3\le0$.
+Since $\sigma(c^*c)=\sigma(cc^*)$, we have $cc^*\le0$ and $c^*c+cc^*\le0$.
+However, $c^*c+cc^*=2(\Re c)^2+2(\Im c)^2\ge0$.
+Thus we have $c=\Re c+i\Im c=0$, which implies $(b^*b)_-=-(c^*c)^{\frac13}=0$.
 \end{pf}
 
 % Absolute value of an operator
@@ -1921,8 +1979,16 @@ Thus we have $ba_-=0$ and $a_-^3=0$.
 
 
 
-\begin{prb}[Approximate identity]
-Let $e_\alpha$ be an approximate identity of $A$.
+\begin{prb}[Approximate units]
+Let $M(A)$
+
+
+Let $I:=\{a\in A^+:\|a\|<1\}$.
+Then,
+for $a\ge0$,
+\[\|ae_i-a\|^2=\|a(1-e_i)^2a\|^2\le\|a(1-e_i)a\|\]
+If we let $a_n:=na(1+na)^{-1}$, then there is $i$ such that $e_i\ge a_n$, so $\|a(1-a_n)a\|\le n^{-1}\|a\|\to0$ implies $\|ae_i-a\|^2\to0$.
+
 \begin{parts}
 \item Exists.
 \item 
@@ -1938,7 +2004,8 @@ Let $e_\alpha$ be an approximate identity of $A$.
 Let $A$ be a C$^*$-algebra.
 A \emph{state} of $A$ is a positive linear functional $\omega$ such that $\|\omega\|=1$.
 \begin{parts}
-\item For $\omega\in A^*$, $\omega$ is positive if and only if $\lim_\alpha\omega(e_\alpha)=\|\omega\|$.
+\item For $\omega\in A^*$, $\omega$ is positive if and only if $\omega(e_i)\to\|\omega\|$.
+\item If $\omega_0:V\to\C$ on a closed subspace $1\in V\subset A$ such that $\omega_0(1)=1$ and $\|\omega_0\|=1$, then $\omega_0$ is extended to a state of $A$.
 \item For a normal element $a\in A$ there is a state $\omega$ such that $|\omega(a)|=\|a\|$.
 \item A self-adjoint linear functional is the difference of two positive linear functional. It is called the \emph{Jordan decomposition}.
 \end{parts}
@@ -1949,6 +2016,8 @@ A \emph{state} of $A$ is a positive linear functional $\omega$ such that $\|\ome
 
 (b)
 We may assume $A$ is unital.
+If we have $\omega_0\in\spn\{1,a\}^*_1$ such that $\omega_0(1)=1$and $|\omega_0(a)|=\|a\|$, then the norm-preserving Hahn-Banach extension gives a desired state $\omega$.
+
 Since $\sigma(a)\cup\{0\}$ is compact, there is $\lambda\in\sigma(a)$ such that $|\lambda|=\|a\|$.
 The Dirac measure $\delta_\lambda$ induces a state $\omega_0$ of $C^*(1,a)$ such that $\omega_0(a)=\lambda$.
 By the Hahn-Banach extension, there is extension $\omega\in A^*$ of $\omega_0$ with $\|\omega\|=1$.
@@ -1971,7 +2040,12 @@ If we take $\omega\in S(A)$ such that $|\omega(a)|=\|a\|$ using the part (b), th
 
 \end{pf}
 
-\section{Representations of C$^*$-algebras}
+
+
+
+
+
+\section{Representations}
 
 
 \begin{prb}[Non-degenerate representations]
@@ -1984,7 +2058,7 @@ We say a representation $\pi:A\to B(H)$ is \emph{non-degenerate} if $\pi(A)H$ is
 \begin{enumerate}[(i)]
 \item $\pi$ is non-degenerate.
 \item For each $\xi\in H$ there is $a\in A$ such that $\pi(a)\xi\ne0$.
-\item $\pi(e_\alpha)\to\id_H$ strongly for an approximate identity $e_\alpha$ of $A$.
+\item $\pi(e_i)\to1$ strongly for an approximate identity $e_i$ of $A$.
 \end{enumerate}
 \end{parts}
 \end{prb}
@@ -2000,7 +2074,7 @@ Cyclic decomposition
 The following statements are equivalent:
 \begin{enumerate}[(i)]
 \item $\pi$ is irreducible.
-\item $\pi(A)'=\C\id_H$.
+\item $\pi(A)'=\C$.
 \item $\pi(A)$ is strongly dense in $B(H)$.
 \item Every non-zero vector in $H$ is cyclic.
 \end{enumerate}
@@ -2021,6 +2095,63 @@ The \emph{left kernel} of $\omega$ is defined to be
 
 
 
+
+\section{Ideals}
+
+pure states, irreducible representations, primitive ideals.
+\[(\mathrm{PS}(A),\hat A,\mathrm{Prim}(A))\]
+
+For a short exact sequence
+\[\begin{tikzcd}[column sep=small]0\rar&I\rar&A\rar&B\rar&0\end{tikzcd},\]
+we have
+\[\begin{tikzcd}[row sep=small]
+PS(I) \dar[->>]\rar[hook] & PS(A) \dar[->>] & PS(B) \dar[->>]\lar[hook'] \\
+\hat I \dar[->>]\rar[hook,shorten >= 10, shorten <= 10] & \hat A \dar[->>] & \hat B \dar[->>]\lar[hook',shorten >= 10, shorten <= 10] \\
+\Prim(I) \rar[hook,swap]{\text{open}} & \Prim(A) & \Prim(B) \lar[hook']{\text{closed}}
+\end{tikzcd}\]
+
+We have to understand C$^*$-algebras in the context of homotopy theory, so the pointed topological spaces must be considered.
+An open set $U$ of a locally compact Hausdorff space $X$ should be recognized as the quotient space $(X,x)/(A,x)$, where $x\notin U=A^c$, hence the ideal $A(U)$ corresponds and the restriction $A(X)\to A(U)$ does not make sense.
+In other words, \textbf{$A(U)$ is not an analogue of $\cO_X(U)$, but of $\cI_{(X,X\setminus U)}$}.
+It is fortunate that the kernel of the restriction, an ideal, can be recognized as the function algebra of the complement, which is not the case in algebraic geometry...? (Can define the quotient $X/A$ for an analytic subset of a complex space $X$?)
+
+Then, how can we understand the sheaf theoretic restriction on an open set in operator algebras?
+How about Banach or Fr\'echet algebras?
+Can we consider a ``rigid'' Zariksi topology on the spectrum? (Closed sets in C$^*$-context are too flaccid)
+
+
+
+
+\begin{prb}[Modular maximal left ideals]
+\end{prb}
+
+\begin{prb}[Primitive ideals]
+hull kernel topology
+\[PS(A)\cong\{(\pi,\psi)\}/\sim_u,\qquad\hat A\cong\{\pi\}/\sim_u.\]
+
+\[\begin{array}{c|ccc}
+A & PS(A) & \hat A & \Prim(A) \\\hline
+C(X) & X & X & X \\
+K(H) & PH & * & * \\
+\tilde K(H) & ? & ? & \{0,K(H)\} \\
+B(H) &&&
+\end{array}\]
+\begin{parts}
+\item $\Prim(A)$ is locally compact T$_0$ space.
+\item Two maps $PS(A)\to\hat A\to\Prim(A)$ are continuous surjective open maps
+\item If $A$ is type I, then $\hat A\to\Prim(A)$ is an homeomorphism.
+\end{parts}
+
+\end{prb}
+
+
+
+
+Every morphism $A\to M(B)$ induces the following?:
+\[\begin{tikzcd}
+PS(B) \rar[->>]\dar & \hat B \rar[->>]\dar & \Prim(B) \dar \\
+PS(A) \rar[->>] & \hat A \rar[->>] & \Prim(A).
+\end{tikzcd}\]
 
 
 
@@ -2235,7 +2366,6 @@ If $f$ is a
 
 A $*$-isomorphism between von Neumann algebras is normal.
 
-Let $A$ be a $\sigma$-weakly dense $*$-subalgebra of $M$.
 \end{prb}
 
 
@@ -2245,8 +2375,7 @@ Let $M$ be a von Neumann algebra on a Hilbert space $H$.
 Let $A$ be a $\sigma$-weakly dense $*$-subalgebra.
 \begin{parts}
 \item There is a net $e_i\in A_1^+$ such that $e_i\to1$ $\sigma$-strongly$^*$.
-\item If $A$ is hereditary, then there is a net $e_i\in A_1^+$ such that $e_i\uparrow1$.
-In particular, $x_i\in A$ such that $x_i\to x$ $\sigma$-strongly$^*$ for every $x\in M$.
+\item If either $A$ is hereditary in the sense that $AMA\subset A$ or $M$ is countably decomposable, then we may assume $e_i\uparrow1$.
 \end{parts}
 \end{prb}
 
@@ -2254,32 +2383,43 @@ In particular, $x_i\in A$ such that $x_i\to x$ $\sigma$-strongly$^*$ for every $
 
 \section{Borel functional calculus}
 
+Let $A$ be a C$^*$-algebra.
+For every weakly$^*$ dense subspace $F$ of $A^*$, we have a weakly$^*$-dense injection $A\to F^*$.
+When can the $*$-algebra structure be extended to $F^*$ using the weak$^*$ topology?
+This is related to that a von Neumann algebra has the $\sigma$-strong$^*$ topology.
+
+
+
+
 \begin{prb}[Sherman-Takeda theorem]
 Let $A$ be a C$^*$-algebra.
-Let $\pi_u:A\to B(H_u)$ be the universal representation of $A$ constructed as the direct sum of all the GNS-representations of states of $A$.
-Consider the following adjoint maps
-\[\pi_u:A\to(\pi_u(A)'',\sigma w),\qquad\pi_u^*:\pi_u(A)''_*\to A^*,\qquad\pi_u^{**}:A^{**}\to\pi_u(A)''.\]
-We will show $\pi_u^{**}$ is an isometric isomorphism.
-The bidual $A^{**}$ is frequently viewed as a von Neumann algebra on $H_u$, and we call it the \emph{enveloping von Neumann algebra} of a C$^*$-algebra $A$.
+The bidual $A^{**}$ is called the \emph{enveloping von Neumann algebra} of a C$^*$-algebra $A$.
 \begin{parts}
-\item $\pi_u^*$ is an isometric isomorphism
-In particular, $\pi_u^{**}$ is a $*$-isomorphsim.
-\item $A^{**}$ enjoys a universal property in the sense that every $*$-homomorphism $\f:A\to M$ to a von Neumann algebra $M$ has a unique normal extension $\tilde\f:A^{**}\to M$ of $\f$.
+\item $A^{**}$ is a von Neumann algebra on a Hilbert space such that the dual of the canonical embedding $A\to A^{**}$ is an isometric isomorphism $(A^{**})_*\to A^*$.
+Such a $*$-algebra is unique.
+\item $A^{**}$ enjoys a universal property in the sense that every $*$-homomorphism $\f:A\to N$ to a von Neumann algebra $N$ has a unique normal extension $\tilde\f:A^{**}\to N$ of $\f$.
 \end{parts}
 \end{prb}
 \begin{pf}
 (a)
-The isometric property of $\pi^*:\pi(A)''_*\to A^*$ holds for any non-degenerate representation $\pi:A\to B(H)$, verified as
-\[\|\pi^*(l)\|=\sup_{\substack{\|a\|\le1\\a\in A}}|l(\pi(a))|=\sup_{\substack{\|x\|\le1\\x\in\pi(A)''}}|l(x)|=\|l\|,\qquad l\in\pi(A)''_*\]
-by the Kaplansky density theorem and the $\sigma$-weak continuity of $l$.
+Let $\pi_u:A\to B(H_u)$ be the universal representation of $A$ constructed as the direct sum of all the GNS-representations of states of $A$, and let $M:=\pi_u(A)''$.
+Consider the following adjoint maps
+\[\pi_u:A\to M_{\sigma w},\qquad\pi_u^*:M_*\to A^*,\qquad\pi_u^{**}:A^{**}\to M.\]
 
-For surjectivity, let $\omega$ be a state of $A$.
-Since the universal representation $\pi_u$ has the GNS representation of $\omega$ as a subrepresentation, $\omega$ is given by a vector state in $\pi_u$.
-By restriction of this vector state, we have a normal state of $\pi_u(A)''$, which extends $\omega$.
-Now the Jordan decomposition can be applied to verify that every bounded linear functional of $A$ has a $\sigma$-weakly continuous extension on $\pi_u(A)''$.
+Since
+\[\|\pi_u^*(\omega)\|=\sup_{\substack{\|a\|\le1\\a\in A}}|\omega(\pi_u(a))|=\sup_{\substack{\|x\|\le1\\x\in M}}|\omega(x)|=\|\omega\|,\qquad \omega\in M_*\]
+by the Kaplansky density theorem and the normality of $\omega$, $\pi_u^*$ is an isometry.
+In fact, the same holds for any non-degenerate representations.
+
+Let $\omega$ be a state of $A$.
+Since the universal representation $\pi_u$ has the GNS representation of $\omega$ as a subrepresentation, $\omega$ is given by a vector state in $\pi_u$, which means that it gives rise to a normal state of $M$ which extends $\omega$ via $\pi_u$.
+Then, the Jordan decomposition can be applied to verify that every bounded linear functional of $A$ has a normal extension on $M$, so $\pi_u^*$ is surjective.
+
+Now the existence of a von Neumann algebra structure via the isometric isomorphism $\pi_u^{**}:A^{**}\to M$.
+The uniqueness $*$-algebra structure follows from the double commutant theorem and Kaplansky density.
 
 (b)
-We can define $\tilde\f$ as the bitranspose of $\f:A\to(M,\sigma w)$, and it is a unique extension because $A$ is $\sigma$-weakly dense in $A^{**}$.
+We can define $\tilde\f$ as the bitranspose of $\f:A\to N_{\sigma w}$, and it is a unique extension because $A$ is $\sigma$-weakly dense in $A^{**}$.
 \end{pf}
 
 

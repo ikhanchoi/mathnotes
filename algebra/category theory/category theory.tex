@@ -1,16 +1,10 @@
 \documentclass{../../large}
 \usepackage{../../ikhanchoi}
 
-\newcommand{\Set}{\mathbf{Set}}
-\newcommand{\Mon}{\mathbf{Mon}}
-\newcommand{\CMon}{\mathbf{CMon}}
-\newcommand{\Grp}{\mathbf{Grp}}
-\newcommand{\Ab}{\mathbf{Ab}}
-\newcommand{\Ring}{\mathbf{Ring}}
-\newcommand{\Top}{\mathbf{Top}}
+\newcommand{\Mon}{\mathrm{Mon}}
+\newcommand{\CMon}{\mathrm{CMon}}
+\newcommand{\Ring}{\mathrm{Ring}}
 
-\newcommand{\op}{\mathrm{op}}
-\newcommand{\coim}{\operatorname{coim}}
 
 \begin{document}
 \title{Category Theory}
@@ -23,16 +17,20 @@
 
 \chapter{Categories}
 set theoretical issues
-duality
 morphisms
 	monic
+
 \section{Functors}
-full, faithful
+fully faithful, essentially surjective
 natural transformations and equivalence
 2-category
 
 
-
+\section{Categorical constructions}
+opposite category
+product category
+disjoint union category
+comma category(slice category, morphism category)
 
 
 
@@ -42,6 +40,9 @@ natural transformations and equivalence
 products, equalizers, pullbacks
 
 \section{Representable functors}
+
+Yoneda embedding gives fully faithful functors $h:\cC\to\mathrm{PSh}(\cC)$ and $k:\cC^{\mathrm{op}}\to\mathrm{coPSh}(\cC)$.
+A presheaf $\cC^{\mathrm{op}}\to\mathrm{Set}$ is representable if and only if it is essentially contained in the image of the Yoneda embedding.
 
 \begin{prb}[Yoneda lemma]
 Let $F:\cC\to\Set$ be a functor from a locally small category $\cC$.
@@ -91,6 +92,12 @@ functoriality
 
 
 
+limit-preserving
+filtered limit-preserving
+product-preservig
+mono-preserving
+
+
 
 
 
@@ -108,20 +115,6 @@ functoriality
 \section{Kan extensions}
 
 
-
-\chapter{Monoidal categories}
-closed, symmetric, cartesian
-coherence theorem, closure theorem
-
-\section{Enriched categories}
-
-\begin{prb}[Pointed category]
-A \emph{pointed category} is a category with a zero object.
-\begin{parts}
-\item A category is $\Set_*$-enriched if and only if it admits a zero morphism.
-\item Every pointed category is $\Set_*$-enriched.
-\end{parts}
-\end{prb}
 
 \chapter{Abelian categories}
 \section{Regular and exact categories}
@@ -143,24 +136,28 @@ A regular category is called \emph{exact} if every equivalence relation is given
 The category $\Grp$ is regular but not coregular, since there is a monomorphism which is not regular.
 
 
+
+
+
+
+
+
 \section{Additive and abelian categories}
 
-\begin{prb}[Pre-additive categories]
-A \emph{pre-additive category} is another name of $\Ab$-enriched category.
-\begin{parts}
-\item a
-\end{parts}
-\end{prb}
-
-\begin{prb}[Semi-additive cateogries]
-A \emph{semi-additive category} is a category with binary biproducts.
-\begin{parts}
-\item A category is semiadditive if and only if it is pointed $\CMon$-enriched.
-\end{parts}
-\end{prb}
 
 
 \begin{prb}[Additive categories]
+A \emph{pre-additive category} is an $\Ab$-enriched category.
+A \emph{semi-additive category} is one of the followings:
+\begin{enumerate}[(i)]
+\item a pointed $\CMon$-enriched category.
+\item a category with finite biproducts.
+\end{enumerate}
+An \emph{additive category} is one of the followings:
+\begin{enumerate}[(i)]
+\item a pointed $\Ab$-enriched category.
+\item $\Ab$-enriched category with finite biproducts.
+\end{enumerate}
 \begin{parts}
 \item additive completion by formally adjoining finite biproducts.
 \item additive structures on a semi-additive category is unique.
@@ -168,11 +165,15 @@ A \emph{semi-additive category} is a category with binary biproducts.
 \end{prb}
 
 The notion of kernels and cokernels can be defined in a $\Set_*$-enriched category.
+In additive category, we have a natural $\Set_*$-enrichment.
 
 
 \begin{prb}[Pre-abelian categories]
-A \emph{pre-abelian category} is an additive category in which every morphism has the kernel and cokernel.
-Equivalently, it is a finitely bicomplete pre-additive category.
+A \emph{pre-abelian category} is one of the followings:
+\begin{enumerate}[(i)]
+\item an additive category in which every morphism has the kernel and cokernel.
+\item a finitely bicomplete pre-additive category.
+\end{enumerate}
 \begin{parts}
 \item 
 \end{parts}
@@ -190,8 +191,7 @@ A pointed, Baar-exact, protomodular, with binary coproudcts.
 \end{prb}
 
 \begin{prb}[Abelian categories]
-We say $\cC$ is \emph{abelian} if every morphism has the kernel and cokernel, and every mono and epi is normal.
-Roughly, an abelian category is a $\Ab$-enriched category such that it is finitely bicomplete and the first isomorphism holds.
+An \emph{abelian category} is a $\Ab$-enriched category which is finitely bicomplete and satisfies the first isomorphism theorem.
 \begin{parts}
 \item A category is abelian if and only if it is additive and exact.
 \end{parts}
@@ -229,9 +229,118 @@ The category of unital rings is not semi-abelian but protomodular.
 
 
 
-\chapter{}
-site, topos
-$(\infty,1)$-category
+
+
+
+
+\chapter{Tensor categories}
+
+
+
+\section{Monoidal categories}
+closed, symmetric, cartesian
+coherence theorem, closure theorem
+
+
+\begin{prb}[Monoidal categories]
+A \emph{monoidal category} is a category $\cC$ equipped with a bifunctor $\otimes:\cC\times\cC\to\cC$ such that
+\begin{enumerate}[(i)]
+\item for each triple $A,B,C\in\cC$ there is an isomorphism $\alpha_{A,B,C}:(A\otimes B)\otimes C\to A\otimes(B\otimes C)$ called the \emph{associator}, satisfying the pentagon identity
+\[\begin{tikzcd}
+((A\otimes B)\otimes C)\otimes D) \rar{\alpha_{A\otimes B,C,D}} \dar{\alpha_{A,B,C}\otimes\id_D} &
+(A\otimes B)\otimes(C\otimes D) \rar{\alpha_{A,B,C\otimes D}} &
+A\otimes(B\otimes(C\otimes D))\\
+(A\otimes(B\otimes C))\otimes D \ar{rr}{\alpha_{A,B\otimes C,D}} &&
+A\otimes((B\otimes C)\otimes D) \uar{\id_A\otimes\alpha_{B,C,D}}
+\end{tikzcd}\]
+commutes for each $A,B,C,D\in\cC$.
+\item there is a specified object $I\in\cC$ called the \emph{unit object}, and for each $A\in\cC$ there are isomorphisms $\lambda_A:I\otimes A\to A$ and $\rho_A:A\otimes I\to A$ called the \emph{left unitor} and the \emph{right unitor}, satisfying the triangle identity
+\[\begin{tikzcd}[column sep=tiny]
+(A\otimes I)\otimes B \ar{rr}{\alpha_{A,I,B}} \ar[swap]{dr}{\rho_A\otimes\id_B} &&
+A\otimes(I\otimes B) \ar{dl}{\id_A\otimes\lambda_B}\\
+& A\otimes B &
+\end{tikzcd}\]
+commutes for each $A,B\in\cC$.
+\end{enumerate}
+We say a monoidal category is \emph{strict} if the associators and unitors are all identity morphisms.
+A \emph{cartesian} monoidal category is a monoidal category whose monoidal structure $\otimes$ is given by the categorical product.
+\end{prb}
+
+
+\begin{prb}[Coherence theorem]
+Let $\cC$ be a monoidal category.
+\begin{parts}
+\item
+\[\begin{tikzcd}[column sep=tiny]
+(I\otimes A)\otimes B \ar{rr}{\alpha_{I,A,B}} \ar[swap]{dr}{\lambda_A\otimes\id_B} &&
+I\otimes(A\otimes B) \ar{dl}{\lambda_{A\otimes B}}\\
+& A\otimes B &
+\end{tikzcd}\]
+\item $\lambda_I=\rho_I$
+\item The endomorphism monoid $\End(I)$ is commutative.
+\item $I$ is unique up to unique isomoprhism.
+\end{parts}
+\end{prb}
+
+
+\begin{prb}[Monoidal functors]
+coherence maps
+lax, strong, strict
+\end{prb}
+
+
+
+
+\begin{prb}[Enriched categories]
+Let $\cM$ be a monoidal category.
+A category $\cC$ is said to be \emph{enriched} over $\cM$ if for each $A,B\in\cC$ there is $\Hom(A,B)\in\cM$ such that
+\begin{enumerate}[(i)]
+\item for each $A,B,C\in\cC$ there is a morphism $\circ_{A,B,C}:\Hom(A,B)\otimes\Hom(B,C)\to\Hom(A,C)$, satisfying
+\[\begin{tikzcd}[column sep=huge]
+\Hom(A,B)\otimes\Hom(B,C)\otimes\Hom(C,D) \rar{\id_{\Hom(A,B)}\otimes\circ_{B,C,D}} \dar[swap]{\circ_{A,B,C}\otimes\id_{\Hom(C,D)}} &
+\Hom(A,B)\otimes\Hom(B,D) \dar{\circ_{A,B,D}} \\
+\Hom(A,C)\otimes\Hom(C,D) \rar{\circ_{A,C,D}} &
+\Hom(A,D)
+\end{tikzcd}\]
+commutes for each $A,B,C,D\in\cC$.
+\item for each $A\in\cC$ there is a morphism $\id_A:I\to\Hom(A,A)$, satisfying
+\[\begin{tikzcd}
+I\otimes\Hom(A,B) \dar[swap]{\id_A\otimes\id_{\Hom_{A,B}}} \ar{dr}{\lambda_{\Hom(A,B)}} &&
+\Hom(A,B)\otimes I \ar[swap]{dl}{\rho_{\Hom(A,B)}} \dar{\id_{\Hom(A,B)}\otimes\id_B}\\
+\Hom(A,A)\otimes\Hom(A,B) \rar[swap]{\circ_{A,A,B}} &
+\Hom(A,B)  &
+\Hom(A,B)\otimes\Hom(B,B) \lar{\circ_{A,B,B}}
+\end{tikzcd}\]
+\end{enumerate}
+\end{prb}
+
+\begin{prb}[Pointed category]
+A \emph{pointed category} is a category with a zero object.
+\begin{parts}
+\item A category is $\Set_*$-enriched if and only if it admits a zero morphism.
+\item Every pointed category is $\Set_*$-enriched.
+\end{parts}
+\end{prb}
+
+rigid?
+
+\section{Braided and ribbon categories}
+
+
+
+
+
+\section{Internalization}
+
+
+\section{Tensor and fusion categories}
+
+
+
+
+
+
+
 
 
 \end{document}

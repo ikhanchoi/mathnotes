@@ -526,7 +526,7 @@ Now we have $f(k)\in\rho(B')$ since $f(k)$ is bounded and
 We also have $f(k)\eta\in B'$ since
 \[\rho(f(k)\eta)=f(k)\rho(\eta)=\acute f(k)v\]
 is bounded.
-Applying the above arguments for $f^{\frac13}\in C_c((0,\infty))$, 
+Applying the above arguments for $f^{\frac13}\in C_c((0,\infty))$,
 \[f(k)\eta=(f(k)^{\frac13})^3\eta\in\rho(B')^*\rho(B')\rho(B')^*B'.\]
 Because $\rho(B')^*B'\subset A'$ and $\rho(B')^*\rho(B)\subset\rho(A')$ by (iii) and (iv) in the part (a), we have $f(k)\eta\in\rho(A')A'$.
 
@@ -1994,15 +1994,15 @@ For $J\xi=\xi$ and $JMJ=M'$, $\xi$ is also cyclic.
 Now with any fixed cyclic separating vector $\xi$ taken as above, we construct a left Hilbert algebra $M\xi$ in $H$ and the associated standard form $(M,H,J_\xi,P_\xi)$.
 Note that $M\xi$ is a core of $F_\xi J$ and $JS_\xi$.
 Since
-\[F_\xi Jx\xi=F_\xi(JxJ)\xi=(JxJ)^*\xi=Jx^*J\xi=Jx^*\xi=JS_\xi x\xi,\qquad x\in M,\]
-we have $JS_\xi=F_\xi J=(JS_\xi)^*$, and
+\[(JS_\xi)^*x\xi=F_\xi Jx\xi=F_\xi(JxJ)\xi=(JxJ)^*\xi=Jx^*J\xi=Jx^*\xi=JS_\xi x\xi,\qquad x\in M\]
+and
 \[\<JS_\xi x\xi,x\xi\>=\<Jx\xi,S_\xi x\xi\>=\<JxJ\xi,x^*\xi\>=\<xJxJ\xi,\xi\>\ge0,\qquad x\in M\]
-from $xJxJP\subset P$, so $JS_\xi$ is a non-negative self-adjoint operator.
-By the uniqueness of the polar decomposition, we have $J=J_\xi$.
+from $xJxJP\subset P$, $JS_\xi$ is a non-negative self-adjoint operator.
+By the uniqueness of the polar decomposition for $S_\xi$, we have $J=J_\xi$.
 By definition of $P$ and $P_\xi$, we also have $P=P_\xi$.
 Therefore, for a countably decomposable von Neumann algebra on a fixed Hilbert space the standard form is uniquely determined as sets if it admits, so is the unitary $u:H\to\tilde H$.
 
-In general case, take an increasing net $(p_i)$ of countably decomposable projections of $M$ whose supremum is the unit.
+In general case, take an increasing net $p_i$ of countably decomposable projections of $M$ whose supremum is the unit.
 Define $q_i:=p_iJp_iJ$.
 Consider countably decomposable von Neumann algebras $q_iMq_i$ and projections $r_i\in\tilde M$ defined such that $\pi(q_iMq_i)=r_i\tilde Mr_i$.
 We can see that $q_i$ and $r_i$ also increase to the units.
@@ -2253,17 +2253,23 @@ Let $X$ be a Fr\'echet space.
 \begin{pf}
 (a)
 On a compact interval, by applying the uniform boundedness principle twice, we can show $s\mapsto\alpha_s$ is uniformly bounded.
+In detail, $s\mapsto\<\alpha_s(x),x^*\>\in\C$ is bounded for each $x\in X$ and $x^*\in X^*$, so $s\mapsto\alpha_s(x)\in X$ is bounded and $s\mapsto\alpha_s$ is bounded.
+If $\alpha$ is already bounded, then the above argument is not required.
+
 Let $S$ be the set of all $x\in X$ such that $\alpha_s(x)\to x$ strongly as $s\to0$.
-It is a strongly closed convex set, and weakly closed by the Hahn-Banach separation.
-By regularization, we can show $S$ is weakly dense in $X$, so we are done.
+By the boundedness of the action, $S$ is a closed convex subset of $X$, and weakly closed by the Hahn-Banach separation.
+By smoothing, we can show $S$ is weakly dense in $X$, so we get $S=X$.
 
 (b)
 Suppose $f:B(0,1+\e)\to X$ is weakly holomorphic such that $f(0)=0$.
-By the Pettis integral, we have
-\[\frac{f(z)}z=\frac1{2\pi i}\int_{|w|=1}\frac1{w-z}\frac{f(w)}w\,dw.\]
-Therefore, in $|z|\le\frac12$, we have
+By the Pettis integral in the weak topology of $X$, the integral
+\[\frac1{2\pi i}\int_{|w|=1}\frac{f(w)}{w^2}\,dw\]
+exists in $X$ and we have
+\[\frac{f(z)}z=\frac1{2\pi i}\int_{|w|=1}\frac1{w-z}\frac{f(w)}w\,dw,\qquad z\in B(0,1).\]
+Therefore, since the set $\{f(w):|w|=1\}$ is weakly bounded and hence strongly bounded by the uniform boundedness principle, we have for $z\in B(0,\frac12)$
 \[\Bigl\|\frac{f(z)}z-\frac1{2\pi i}\int_{|w|=1}\frac{f(w)}{w^2}\,dw\Bigr\|=\Bigl\|\frac z{2\pi i}\int_{|w|=1}\frac{f(w)}{w^2(w-z)}\,dw\Bigr\|\le2|z|\sup_{|w|=1}\|f(w)\|\to0,\qquad z\to0,\]
-since the set $\{f(w):|w|=1\}$ is weakly bounded and hence strongly bounded by the uniform boundedness principle.
+which means $f$ is strongly holomorphic at zero.
+
 \end{pf}
 
 \begin{prop}

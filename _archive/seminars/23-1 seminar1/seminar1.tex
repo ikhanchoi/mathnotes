@@ -34,6 +34,9 @@ For the positivity in matrix algebras, the following equivalent statements are u
 \item $\sum_{i,j}\<\pi(a_{ij})\xi_j,\xi_i\>_H\ge0$ for $[\xi_i]\in H^n$, for a faithful representation $\pi:A\to B(H)$.
 \item $\sum_{i,j}\<\pi(a_{ij})\xi_j,\xi_i\>_H\ge0$ for $[\xi_i]\in H^n$, for every representation $\pi:A\to B(H)$.
 \end{parts}
+Every positive element of $M_n(A)$ is the sum of elements of the form $[a_i^*a_j]$, so for $\f:A\to B$ to be completely positive, it is necessary and suffices to have
+\[\sum_{i,j}\<\f(a_i^*a_j)\xi_j,\xi_i\>\ge0,\qquad [a_i]\in A^n,\ [\xi_i]\in H^n,\]
+where $B$ is embedded in $B(H)$.
 \end{rmk}
 
 \begin{ex}\,
@@ -51,12 +54,15 @@ A $*$-homomorphism is positive, and its inflations are all $*$-homomorphisms.
 
 (b)
 Let $\rho:A\to\C$ be a state.
-If $[a_{ij}]=[\sum_kb_{ki}^*b_{kj}]\in M_n(A)_+$, then we have for $[x_i]\in\ell_2^n$ that
-\[\sum_{i,j}\<\rho(a_{ij})x_j,x_i\>_\C=\sum_{i,j}\bar{x_i}\rho(a_{ij})x_j=\rho(\sum_{i,j,k}\bar{x_i}b_{ki}^*b_{kj}x_j)=\sum_k\rho((\sum_ib_{ki}x_i)^*(\sum_jb_{kj}x_j))\ge0.\]
+Then, we have for $[c_i]\in\ell_2^n$ that
+\[\sum_{i,j}\<\rho(a_i^*a_j)c_j,c_i\>_\C
+=\rho(\sum_{i,j}\bar{c_i}a_i^*a_jc_j)
+=\rho((\sum_ic_ia_i)^*(\sum_jc_ja_j))\ge0.\]
 
 (c)
-If $[a_{ij}]=[\sum_kb_{ki}^*b_{kj}]\in M_n(B(\hat H))_+$, then we have for $[\xi_i]\in H^n$ that
-\[\sum_{i,j}\<V^*a_{ij}V\xi_j,\xi_i\>=\sum_{i,j,k}\<b_{kj}V\xi_j,b_{ki}V\xi_i\>=\sum_k\<\sum_jb_{kj}V\xi_j,\sum_ib_{ki}V\xi_i\>\ge0.\]
+We have for $[\xi_i]\in H^n$ that
+\[\sum_{i,j}\<V^*a_i^*a_jV\xi_j,\xi_i\>
+=\<\sum_ja_jV\xi_j,\sum_ia_iV\xi_i\>\ge0.\]
 
 (d)
 We have a counterexample for $M_2(M_2(\C))\to M_2(M_2(\C))$:
@@ -1446,8 +1452,8 @@ If we let $\|\xi\|=1$ and $a:=\<\xi,\eta\>$, then it is clear from
 If we let $\|\xi\|=1$, then $\<\xi a,\xi a\>\le a^*\<\xi,\xi\>a\le a^*a$.
 \end{pf}
 
-Therefore, a right Hilbert $A$-module is a right Banach $A$-module, i.e.~we have a $*$-homomorphism $A^{\mathrm{op}}\to B(E)$.
-Also, the right action $A^{\mathrm{op}}\to B(E)$ is always non-degenerate, and faithful if and only if $E$ is full, i.e.~$\<E,E\>$ is dense in $A$.
+Therefore, a right Hilbert $A$-module is a right Banach $A$-module, i.e.~we have a homomorphism $A^{\mathrm{op}}\to\cL(E)$.
+Also, the right action $A^{\mathrm{op}}\to\cL(E)$ is always non-degenerate, and faithful if and only if $E$ is full, i.e.~$\<E,E\>$ is dense in $A$.
 
 
 \begin{defn}[Adjointable operators]

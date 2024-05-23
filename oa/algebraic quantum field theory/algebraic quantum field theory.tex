@@ -1,0 +1,93 @@
+\documentclass{../../large}
+\usepackage{../../ikhanchoi}
+
+
+\begin{document}
+\title{Algebraic quantum field theory}
+\author{Ikhan Choi}
+\maketitle
+\tableofcontents
+
+
+
+\chapter{}
+
+Axiomatic: Osterwalder-Schrader, Wightman, Haag-Kastler
+
+CFT
+
+Statistical physics: Gibbs state by DLR equation, Lieb-Robinson bound, quantum theory
+
+
+\section{}
+
+\begin{prb}[Wightman axioms]
+Let $\R_x^{1,d-1}$ be the Minkowski space and $\cP_+^\uparrow$ the connected component of the Poincar\'e group.
+A \emph{Wightman field} is a linear map $\phi:\cS(\R_x^{1,d-1})\to\End(\cD)$, where $\cD$ is an inner product space with completion $\cH$, such that
+\begin{enumerate}[(i)]
+\item Covariance: there is a representation $U:\cP_+^\uparrow\to U(\cH)$ such that $\Ad U(\gamma)\phi(f)=\phi(\gamma^*f)$,
+\item Causality: if the supports of $f$ and $g$ are space-like separated, then $[\phi(f),\phi(g)]=0$ on $D$,
+\item Conicality: 
+\item Cyclicity: there is a Poincar\'e invaraint cyclic vector $\Omega$ in the sense that the span of the set $\{\phi(f_1)\cdots\phi(f_n)\Omega\}$ is dense in $\cD$.
+\end{enumerate}
+\end{prb}
+
+
+\begin{prb}[Free massive bosonic fields]
+Let $m>0$, called the mass of a scalar particle, and let $d=1+1$ be a positive integer, called the dimension.
+Note $\cP_+^\uparrow=\R^{1,1}\rtimes\R$.
+On the mass shell $H_m:=\{p\in\R^{1,1}_p:(p,p)=p_0^2-p_1^2=m^2,\ p_0>0\}$, the induced metric is Riemannian with the volume form $(p_1^2+m^2)^{-\frac12}dp_1$, so we can define $L^2(H_m)$.
+
+For $f\in\cS(\R^{1,1}_x)$, consider the restriction of the Fourier transform $\hat f\in L^2(H_m)$.
+\[\hat f(p)=\int_{\R^{1,1}}e^{i(x,p)}f(x)\,d^2x,\qquad p\in H_m,\]
+where $d^2x$ is the Lebesgue measure on $\R^{1,1}$, which is Lorentz invariant.
+Via the Bosonic Fock space construction $\cF^+(L^2(H_m))$, we define a operator-valued distribution
+\[\phi:f\mapsto a^\dagger(\hat f)+a(\hat f),\]
+$\phi(f)$ is defined densely on $\cF^+(L^2(H_m))$.
+
+
+\begin{parts}
+\item $\phi$ is covariant.
+\item $\phi$ is local.
+\item $\phi$ has positive energy.
+\item $\phi$ admits a vaccum.
+\item $\phi$ has linear energy bound. In particular, it defines a Araki-Haag-Kastler net.
+\end{parts}
+\end{prb}
+\begin{pf}
+(a)
+Consider a representation $U_m:\cP_+^\uparrow\to U(L^2(H_m))$ on $L^2(H_m)$, defined by
+\[(U_m(a,\Lambda)\Psi)(p):=e^{i(a,p)}\Psi(\Lambda^{-1}p),\qquad(a,\Lambda)\in\cP_+^\uparrow,\ \Psi\in L^2(H_m).\]
+The action $U_m:\cP_+^\uparrow\to U(L^2(H_m))$ is extended to $\Gamma(U_m):\cP_+^\uparrow\to U(\cF^+(L^2(H_m)))$, called the second quantization.
+Then, since $\cF(a,\Lambda)\cF^{-1}$ maps
+\[(p\mapsto\int e^{i(x,p)}f(x)\,d^2x)\quad\text{ to }\quad(p\mapsto\int e^{i(x,p)}f(\Lambda^{-1}(x-a))\,d^2x=e^{i(a,p)}\int e^{i(x,\Lambda^{-1}p)}f(x)\,d^2x),\]
+so it is covariant.
+
+(b)
+Define the left and right wedges
+\[W_L:=\{x\in\R^{1,1}:|x_0|\le-x_1\},\qquad W_R:=\{x\in\R^{1,1}:|x_0|\le x_1\}.\]
+Suppose $f$ and $g$ are Schwartz functions supported on $W_L$ and $W_R$ respectively.
+Write
+\[[\phi(f),\phi(g)]=[a^\dagger(\hat f),a(\hat g)]+[a(\hat f),a^\dagger(\hat g)].\]
+analytic continuation and residue theorem...
+If $f(x)\ne0$ and $g(y)\ne0$, then $x$ and $y$ are contained in the interior of $W_L$ and $W_R$, so $(x,y)>0$.
+
+\end{pf}
+
+
+What is the interactions?
+
+
+Conformal nets, vertex operator algebras, and Segal's picture.
+Factorization algebra?
+
+
+
+\end{document}
+
+
+
+
+
+
+

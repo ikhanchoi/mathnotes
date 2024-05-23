@@ -1,0 +1,283 @@
+\documentclass{../../../small}
+\usepackage{../../../ikhanchoi}
+
+\newcommand{\Ric}{\mathrm{Ric}}
+
+\begin{document}
+
+\title{Lie group representation theory}
+\author{Ikhan Choi\\Lectured by Toshiyuki Kobayashi\\University of Tokyo, Spring 2024}
+\maketitle
+\tableofcontents
+
+\newpage
+\section{Day 1: April 11}
+
+\begin{itemize}
+\item local properties: curvature, local homogeneous structure,
+\item global properties: compactness, finiteness of diameter, hausdorff
+\end{itemize}
+
+\begin{thm}[Bonnet-Meyers]
+Let $(X,g)$ be an $n$-dimensional complete Riemannian manifold whose Ricci curvature satisfies $\Ric(X,g)\ge(n-1)k$ for some $k>0$.
+Then, $X$ is compact with diameter $\le\pi/\sqrt k$.
+\end{thm}
+
+\begin{defn}[Pseudo-Riemannian manifolds]
+\end{defn}
+\begin{ex}
+The signature of a pseudo-Riemannian structure is locally constant.
+A pesudo-Riemannian manifold is called a Riemannian manifold if $q=0$ and a Lorentzian manifold if $q=1$, where $q$ is the negtive component of the signature.
+\end{ex}
+\begin{ex}
+$S^2$ does not, but $S^3$ admits a Lorentzian structure.
+\end{ex}
+
+On a pseudo-Riemannian manifold, one can define sectional curvature, geodesics, and the Levi-Civita connection.
+
+\begin{thm}
+The group of isometries $\Isom(X,g)$ is a Lie group for any pseudo-Riemannian manifold $(X,g)$.
+\end{thm}
+
+\begin{rmk}
+The group of biholomorphic maps of a complex manifold is not necessarily a Lie group.
+\end{rmk}
+\begin{ex}
+For example, biholomorphic maps for $\C^2$ gives rise to an infinite dimensional group.
+\end{ex}
+
+\begin{ex}[Examples of Lorentzian manifolds]
+(1) (Minkowski space)
+\[\R^{n,1}=(\R^{n+1},ds^2=dx_1^2+\cdots+dx_n^2-dx_{n+1}^2).\]
+
+(2) (De Sitter space)
+\[dS^{n,1}:=\{x\in\R^{n+1}:x_1^2+\cdots+x_n^2-x_{n+1}^2=1\}\]
+has a Lorentzian structure induced from $\R^{n,1}$.
+Its sectional curvature is identically equal to one.
+\end{ex}
+
+\begin{defn}
+A (geodesically) complete Lorentzian manifold is called a de Sitter manifold if its sectional curvature is constantly one.
+\end{defn}
+
+\begin{ex}
+The de Sitter space is an example of a de Sitter manifold.
+The de Sitter space is a model space in a sense of what we will explain later.
+\end{ex}
+
+\begin{thm}[Calabi-Marlcus phenomenon]
+Any de Sitter manifold is non-compact.
+\end{thm}
+
+Two key lemmas to prove Theorem 1.11.
+For simplicity, we consider the case that the dimension is $\ge3$.
+\begin{lem}
+Any de Sitter manifold is obtained as the quotient of the Sitter space by an isometric discontinuous group.
+\end{lem}
+\begin{lem}
+Any such a discontinuous group is finite.
+\end{lem}
+
+The uniformization theorem states that a connected Riemann surface is classified into three classes.
+
+
+classification of group actions: which groups act on which spaces?
+
+\newpage
+\subsection*{Basic notions for transformation on groups}
+\setcounter{section}{2}
+\setcounter{thm}{0}
+
+Let $L$ be a locally compact group, and $X$ a locally compact topological space.
+For $S\subset X$, let $L_S:=(S|S)=\{g\in L:gS\cap S\ne\varnothing\}$.
+
+\begin{defn}
+The $L$-action on $X$ is called \emph{free} if $\#L_{\{x\}}=1$ whenever $\#S=1$, \emph{properly discontinuous} if $\#L_S<\infty$ whenever $S$ is compact, and \emph{proper} if $L_S$ is compact whenever $S$ is compact.
+\end{defn}
+
+\begin{ex}
+Let $M$ be a manifold, and $X$ the universal covering.
+Then, the fundamental group $\Gamma:=\pi_1(M)$ acts on $X$ as the covering transformation also called the Deck transformation, and the action is free and properly discontinuous.
+The quotient space $\Gamma\setminus X$ is naturally diffeomorphic to $X$.
+\end{ex}
+
+\begin{exe}
+Let $X$ be a smooth manifold and $\Gamma$ a discrete group acting on $X$ freely and properly discontinuously.
+Show that the quotient space $\Gamma\setminus X$ is Hausdorff in the quotient topology.
+Show that $\Gamma\setminus X$ carries a smooth structure such that the quotient map is a smooth covering map.
+\end{exe}
+
+\begin{ex}
+$X=\R$, $\Gamma=\Z$, $\Gamma\setminus X\cong S^1$.
+\end{ex}
+\begin{ex}
+Let $M$ be a compact Riemann surface with genus $\ge2$.
+Then, $M$ is biholomorphic to $\Gamma\setminus\H$, where $\Gamma$ is a discrete subgroup of $\PSL(2,\R)$ acting on $\H$ by linear fractional transformations, and is isomorphic to $\pi_1(M)$.
+\end{ex}
+
+$\Gamma$ is called a discontinuous group for $X$ if the $\Gamma$-action on $X$ is free and properly discontinuous.
+
+
+
+
+\newpage
+\setcounter{section}{1}
+\section{Day 2: April 18}
+\setcounter{section}{2}
+
+\subsection*{Proper actions}
+Let $L$ be a locally compact (Hausdorff) group continuously acting on $X$ a locally compact Hausdorff space.
+
+
+
+\setcounter{thm}{2}
+
+\begin{thm}
+Suppose $L$ properly act on $X$.
+\begin{parts}
+\item $L\setminus X$ is Hausdorff.
+\item Every orbit is closed in $X$.
+\item Every isotropy group is compact.
+\end{parts}
+\end{thm}
+\begin{rmk}
+(b) and (c) are easily verified for actual cases.
+\end{rmk}
+
+\begin{thm}
+Suppose $(X,g)$ is a Riemannian manifold and $G$ be the group of isometries.
+Let $\Gamma$ be a subgroup of $G$.
+Then, $\Gamma$ acts on $G$ properly discontinuously if and only if $\Gamma$ is a discrete subgroup.
+This equivalence may fail if $X$ is pseudo-Riemannian.
+\end{thm}
+
+\begin{pf}
+($\Leftarrow$)
+Suppose $\Gamma$ acts on $X$ not properly discontinuous.
+Then, there eixst a compact subset $S$ of $X$ such that for some infinite sequences $\gamma_k$ in $\Gamma$ and $s_k$ in $S$ such that $\gamma_ks_k\in S$.
+We shall prove $\gamma_k$ is not discrete in $G$.
+Let $d$ denote the distance induced from the Riemannian manifold $X$.
+For $x\in X$, we set $M(x):=M_S(x):=\max_{a\in S}d(x,a)<\infty$.
+Then, $d(x,\gamma_kx)\le d(x,\gamma_ks_k)+d(\gamma_ks_k,\gamma_k,x)\le2M(x)$.
+This shows that $\{\gamma_kx\}$ is a bounded set, so it contains a convergent subsequence for each $x$ in $X$.
+
+Take a countable dense subset $x_j$ of $X$.
+By Cantor's diagonal argument, we may assume that $\gamma_kx_j$ converges as $k\to\infty$ for each $j$.
+For every compact $C$ of $X$, we show $\gamma_k:X\to X$ converges uniformly as $k\to\infty$ using the idea of the Arzela-Ascoli.
+(Fix $\e>0$ and take $N$ such that for any $x\in X$ there is $i$ satisfying $d(x,x_j)<\e/3$ for $j\le N$.
+Take $R>0$ such that $d(\gamma_kx_j,\gamma_{k'}x_j)<\e/3$ for $k,k'\ge R$.)
+
+Take an increasing sequence $C_1\subset C_2\subset\cdots$ of compact subsets in $X$ such that $C_j\uparrow X$.
+The above argument gives a family of maps $\gamma_{C_j}:C_j\to X$ such that $\gamma_{C_j}|_{C_i}=\gamma_{C_i}$ for $i<j$ by the uniqueness of convergence.
+This defines $\gamma:X\to X$ such that $\gamma_k$ converges to $\gamma$ compactly.
+We can check the resulting map $\gamma$ is an isometry.
+Moreover, if we do the same thing with $\gamma_k^{-1}$, then we can see that $\gamma$ is surjective.
+So $\gamma_k$ is not discrete in $G$.
+\end{pf}
+
+
+\newpage
+\setcounter{section}{2}
+\section{Day 3: April 25}
+\setcounter{section}{4}
+
+\textbf{Problem 4.1.} Find a criterion for the triple $(L,G,H)$ with locally compact groups $L\subset G\supset H$ such that the natural action on $G/H$ by $L$ is proper.
+
+\setcounter{thm}{1}
+
+\begin{ex}
+$L:=\{\diag(a,a^{-1}):a>0\}$, $G:=\SL(2,\R)$, $H:=\{\mat{1&z\\0&1}:z\in\R\}$.
+Then, $G/H$ is identified with $\R^2\setminus\{0\}$, via $gH\mapsto g(1,0)$, since $H$ is the stabilizer group of an action of $G$ on $\R^2\setminus\{0\}$.
+The induced action of $L$ on $\R^2\setminus$ is not proper.
+\end{ex}
+
+\begin{lem}
+Let $S$ be a compact subset of $G$.
+Then, $L_{\bar S}=L\cap SHS^{-1}$.
+\end{lem}
+\begin{prop}
+If at least one of $L$ on $H$ is compact, then the $L$-action on $G/H$ is proper.
+\end{prop}
+\begin{pf}
+$L_{\bar S}=L\cap SHS^{-1}$ is compact for any compact subset $S$ in $G$.
+\end{pf}
+
+\begin{thm}[von Neumann-Cartan]
+Suppose $G$ is a Lie group, and $H$ is a closed subgroup.
+Then, $H$ and $G/H$ carry a unique smooth structure such that the natural maps $H\hookrightarrow G\to G/H$ are smooth.
+\end{thm}
+\begin{ex}
+
+\end{ex}
+
+\begin{defn}
+The triple $(L,G,H)$ is of \emph{compact isotropy property} or \emph{CI property} if the isotropy subgroup $L_x$ is compact for any $x\in G/H$.
+\end{defn}
+\begin{prop}
+$(L,G,H)$ is of CI iff $(H,G,L)$ is of CI.
+If the $L$-action on $G/H$ is proper, then $(L,G,H)$ is of CI.
+\end{prop}
+
+\setcounter{thm}{9}
+\noindent\textbf{Conjecture 4.9.}(Lipsman's conjecture(1995)) Suppose $G$ is a simply connected nilpotent Lie group, and $H,L$ are connected closed subgroups.
+Then, $L$ acts on $G/H$ properly if and only if $(L,G,H)$ is of CI.
+
+\begin{defn}
+Let $\fg^{(k+1)}=[\fg,\fg^{(k)}]$.
+$\fg$ is nilpotent iff $g^{(k)}=\{0\}$ for some $k$.
+$\fg$ is $k$-step nilpotent iff $g^{(k)}=\{0\}$.
+$\fg$ is one-step nilpotent iff it is abelian.
+\end{defn}
+
+\begin{ex}[Heisenberg Lie algbera]
+The $(2n+1)$-dimensional Heisenberg Lie algebra $\fh_{2n+1}$ is two-step nilpotent.
+\[\fh_7\cong\{\mat[b]{0&*&*&*&*\\0&0&0&0&*\\0&0&0&0&*\\0&0&0&0&*\\0&0&0&0&0}\}\cong\spn_\R\{x_1,x_2,x_3,\partial_1,\partial_2,\partial_3,1\}.\]
+It is contained in the Weyl algebra $\R[x,\partial]$.
+\end{ex}
+
+Affirmative results to Lipsman's conjecture.
+Nasrin: 2-step, Yoshino: 3-step, Baklout et al: 3-step.
+But a counterexample was found by Yoshino (07?) for a 4-step nilpotent Lie group $G$.
+
+\setcounter{thm}{13}
+\begin{defn}
+For two subsets $L$ and $H$ in a locally compact group $G$, we write $L\pitchfork H$ if and only if $L\cap SHS^{-1}$ or equivalently $L\cap SHS$ is compact for any compact subset $S$ in $G$, and we write $L\sim H$ if and only if there is a compact $S\subset G$ such that $L\subset SHS$ and $H\subset SLS$.
+\end{defn}
+\begin{lem}
+$L\pitchfork H$ iff $H\pitchfork L$.
+\end{lem}
+\begin{prop}
+Assume that $H$ and $L$ are closed subgroups of $G$.
+Then, the $L$-action on $G/H$ is proper iff $L\pitchfork H$.
+\end{prop}
+\begin{cor}
+The $L$-action on $G/H$ is proper iff the $H$-action on $G/L$ is proper.
+\end{cor}
+
+In 4.2, the $H$-action on $G/L$, where $G/L$ is the 2-dimensional de Sitter space $\mathrm{dS}^2$, is not proper.
+
+
+
+\newpage
+\setcounter{section}{3}
+\section{Day 4: May 2}
+\setcounter{section}{5}
+\section*{Properness criterion - reductive case}
+
+Cartan decomposition (polar decomposition).
+We can view $\R^n$ as $(0,\infty)\times S^{n-1}$ with origin.
+
+
+\begin{thm*}[Cartan decomposition]
+Let $G:=\GL(n,\R)$ and $K:=\rO(n)$.
+Let $\fp$ be the set of symmetric matrices, $\fa$ be the set of diagonal matrices, and $\bar\fa_+$ be the diagonal matrices whose terms are non-increasing, in $M(n,\R)$.
+Then, one has a diffeomorphism $K\times\fp\tp G:(k,X)\mapsto ke^X$.
+Furthermore, one has a surjective map $K\times\fa\times K\to G:(k_1,X,k_2)\mapsto k_1e^Xk_2$, whose kernel includes the symmetric group $S_n$.
+Thus we have the Cartan projection $\mu:G\to\fa/S_n\cong\bar\fa_+$.
+\end{thm*}
+
+\begin{thm*}
+For closed subsets $L,H$ of $G=\GL(n,\R)$, $L\sim H$ iff $\mu(L)\sim\mu(H)$, and $L\pitchfork H$ iff $\mu(L)\pitchfork\mu(H)$.
+\end{thm*}
+
+\end{document}

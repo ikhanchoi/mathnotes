@@ -745,6 +745,17 @@ Aut(C(X))=Homeo(X) 왼쪽 ptnorm 오른쪽 co?
 
 \fi
 
+
+
+
+
+
+Let $X$ be a topological space and $Y$ be a uniform space. If $F\subset C(X,Y)$ is equicontinuous and relatively compact in the topology of pointwise convergence then it is relatively compact in the topology of compact convergence, the compact-open topology.
+
+
+
+
+
 \chapter{Topological groups}
 
 \section{Topological properties of groups}
@@ -753,6 +764,15 @@ Birkhoff-Kakutani
 metrizability
 
 \section{Transformation groups}
+
+Let $\cC$ be a cartesian category, i.e.~it has finite products.
+It has a terminal object $1$.
+
+A \emph{group object} or an \emph{internal group} 
+
+Note that $\mathrm{Top}\to\mathrm{Set}$ is product preserving.
+
+
 
 \begin{prb}
 Let $G$ be a topological group.
@@ -768,13 +788,13 @@ $G$-homotopy is a $G$-equivariant map $h:X\times[0,1]\to Y$ such that $h(x,i)=f_
 \end{prb}
 
 \begin{prb}
-Suppose $\rho:G\times X\to X$ is a continuous left action, and $\bar\rho:G\to\Homeo(X)$ is its adjoint map.
+Suppose $X$ is a $G$-space, and $\lambda:G\to\Homeo(X)$ is its adjoint map.
 Here we suppose $\Homeo(X)$ carries the compact-open topology.
 \begin{parts}
-\item The continuity of $\rho$ implies the continuity of $\bar\rho$, but the converse holds if $X$ is locally compact.
-\item If $X$ is locally compact, then $\Homeo(X)\times X\to X$ is continuous.
-\item If $X$ is locally compact, $\Homeo(X)\times\Homeo(X)\to\Homeo(X):(f,g)\mapsto g\circ f$ is continuous.
-\item If $X$ is locally compact, locally connected, and Hausdorff, then $\Homeo(X)\to\Homeo(X):f\mapsto f^{-1}$ is continuous, hence $\Homeo(X)$ is a topological group.
+\item The continuity of action implies the continuity of $\lambda$, but the converse holds if $X$ is locally compact.
+\item If $X$ is locally compact, then the evaluation $\Homeo(X)\times X\to X$ is continuous.
+\item If $X$ is locally compact, then the composition $\Homeo(X)\times\Homeo(X)\to\Homeo(X)$ is continuous.
+\item If $X$ is locally compact Hausdorff and locally connected, then the inverse $\Homeo(X)\to\Homeo(X)$ is continuous, hence $\Homeo(X)$ is a topological group.
 \end{parts}
 \end{prb}
 
@@ -800,8 +820,27 @@ classification of homogeneous space realization of spheres by compact connected 
 
 
 \begin{prb}[Proper actions]
+Let $G$ be a topological group and $X$ be a topological space.
+A \emph{proper} map $f:X\to Y$ is a closed map such that the pre-image of a compact is compact.
+We say an action $G\curvearrowleft X$ is \emph{Bourbaki proper} if the shear map $G\times X\to X\times X:(g,x)\mapsto(gx,x)$ is proper, and is \emph{Borel proper} if the set $(K|K):=\{g\in G:gK\cap K\ne\varnothing\}$ of transitions is compact if $K\subset X$ is compact.
+If $G$ is discrete, then a proper action is conventionally called \emph{properly discontinuous}.
+\begin{parts}
+\item If $X$ is Hausdorff and $Y$ is locally compact Hausdorff, then the closed map condition for $f:X\to Y$ to be proper becomes redundant.
+\item If $X$ is locally compact Hausdorff, then an action is Bourbaki proper if and only if it is Borel proper.
+\item orbit space is Hausdorff if $\f$ is closed and $X$ is locally compact, orbits are closed if $\f$ is closed and $X$ is T$_1$, isotropy subgroups are compact if $\f$ is Bourbaki proper.
+\end{parts}
 \end{prb}
+\begin{pf}
+(c)
 
+The diagonal set of $(G\setminus X)\times(G\setminus X)$ is the image of the composition of the shear map $\f:G\times X\to X\times X$ and the paralleled square $\pi\times\pi:X\times X\to(G\setminus X)\times(G\setminus X)$ of the quotient map.
+Using that $X$ is locally compact, we can show $\pi\times\pi$ is a closed map.
+By the closedness of $\f$ and $\pi\times\pi$, the diagonal is closed so that $G\setminus X$ is Hausdorff.
+
+Since $\f(G\times\{x\})=Gx\times\{x\}$, the orbit $Gx$ is closed in $X$ because $\f$ is closed and $X$ is T$_1$.
+
+The isotropy subgroup is $\f^{-1}(\{x\}\times\{x\})$, which is compact by the properness of $\f$.
+\end{pf}
 
 
 
@@ -857,7 +896,7 @@ Let $X$ be a locally compact Hausdorff space.
 \begin{parts}
 \item completely regular.
 \item metrizable $\Leftrightarrow$ completely metrizable.
-\item $\sigma$-compact $\Leftrightarrow$ Lindel\"of.\\
+\item $\sigma$-compact $\Leftrightarrow$ Lindel\"of $\Leftrightarrow$ separable\\
 (cf.~$\sigma$-compact $\Rightarrow$ Lindel\"of in general)
 \item $\sigma$-compact metrizable $\Leftrightarrow$ $C_0(X)$ is separable $\Leftrightarrow$ second countable $\Leftrightarrow$ Polish.
 \end{parts}

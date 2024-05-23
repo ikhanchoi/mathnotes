@@ -1,7 +1,8 @@
 \documentclass{../../large}
 \usepackage{../../ikhanchoi}
 
-\newcommand{\Ab}{\mathbf{Ab}}
+\newcommand{\Cof}{\mathrm{Cof}}
+\newcommand{\Fib}{\mathrm{Fib}}
 
 \begin{document}
 \title{Homological Algebra}
@@ -10,26 +11,46 @@
 \tableofcontents
 
 
-\part{}
-
-\chapter{Abelian categories}
-
-\[\begin{tikzcd}[sep=small]
-K \rar & A \rar\dar[->>] & B \rar\dar & 0\\
-K' \rar & A' \rar & B' \rar & 0\\
-\end{tikzcd}\]
-\begin{parts}
-\item If $A\to A'$ is monic, then $K\to K'$ is monic.
-\item If $B\to B'$ is monic, then $K\to K'$ is epic.
-\end{parts}
+\part{Abelian categories}
 
 
-\section{Embedding}
+
+
+
+\chapter{Category of modules}
 
 A left $R$-module $P$ is projective if and only if the left exact functor $\Hom_R(P,-)$ is exact.
 
 A left $R$-module $I$ is injective if and only if the left exact contravariant functor $\Hom_R(-,I)$ is exact.
 
+
+projective
+\begin{itemize}
+\item direct sum of projectives is projective
+    \\(lem) if free, then projective
+\item PID: projective iff free (note sub of free is free in PID)
+\item projective iff direct summand of a free
+\item every module is a quotient of a free module
+\end{itemize}
+
+injective
+\begin{itemize}
+\item direct product of injectives is injective
+    \\(lem) $M$ injective iff $\Hom_R(R,M)\to\Hom_R(I,M)$ surj
+\item PID: injective iff divisible ($\cdots a:M\to M$ surj)
+    \\(lem) $\Hom_Z(R,M)$ is injective if $M$ is injective $\Z$-module
+\item every module is embedded in injective
+\end{itemize}
+
+flat
+\begin{itemize}
+\item PID: flat iff ($\cdot a:M\to M$ inj)
+\item $M$ flat iff $\Hom(M,\Q/\Z)$ is injective
+\item $M$ flat iff $I\otimes M\to R\otimes M$ inj
+\item if projective, then flat
+\end{itemize}
+
+continuity of functors
 
 \begin{prb}[Tor functor]
 Let $R$ be a ring and $M$ be a left $R$-module.
@@ -90,7 +111,16 @@ Universal coefficient theorem states that if $R$ is a PID, then the K\"unneth fo
 
 
 
+\chapter{}
 
+\[\begin{tikzcd}[sep=small]
+K \rar & A \rar\dar[->>] & B \rar\dar & 0\\
+K' \rar & A' \rar & B' \rar & 0\\
+\end{tikzcd}\]
+\begin{parts}
+\item If $A\to A'$ is monic, then $K\to K'$ is monic.
+\item If $B\to B'$ is monic, then $K\to K'$ is epic.
+\end{parts}
 
 
 \chapter{Cohomology of algberas}
@@ -116,28 +146,166 @@ The coboundary homomorphism $d:C^n(G,M)\to C^{n+1}(G,M)$ is defined such that
 For $x\in C^0(G,M)=M$, $dx(g)=gx-x$.
 For $\f\in C^1(G,M)$, $d\f(g,h)=g\f(h)-\f(gh)+\f(g)$.
 
+
+
+\part{Derived categories}
+
+\chapter{Derived categories}
+
+\section{Differential graded categories}
+
+
+
+\begin{prb}
+Let $\cA$ and $\cB$ be abelian categories and suppose $\cA$ has enough injectives, that is, every object $A\in\cA$ admits a monomorphism $A\to I$ for an injective object $I$.
+Let $\cF:\cA\to\cB$ be a left-exact functor.
+
+\end{prb}
+
+
+derived category of differential graded category.
+
+
+
+\section{Triangulated categories}
+
+
+\begin{prb}[Triangulated categories]
+A \emph{triangulated category} is an additive functor $\cD$ together with a translation functor $\cD\to\cD:X\mapsto X[1]$, which is an equivalence of categories, and a collection of distinguished triangles 
+
+\end{prb}
+
+
+
+
+
+
+\part{Homotopical algebra}
+
+\chapter{Model categories}
+
+
+\begin{prb}[Model structures]
+Let $\cC$ be a category.
+Following the definition of Hovey, a \emph{model structure} on $\cC$ is a three subcategories of $\cC$ called \emph{weak equivalences}, \emph{cofibrations}, and \emph{fibrations} such that
+\begin{enumerate}[(i)]
+\item the weak equivalences satisfy the two-out-of-three law,
+\item cofibrations and acyclic fibrations form a functorial weak factorization system,
+\item acyclic cofibrations and fibrations form a functorial weak factorization system.
+\end{enumerate}
+We denote by $\cW$ the subcategory of weak equivalences is denoted by.
+\begin{parts}
+\item retract closedness
+\item
+\end{parts}
+\end{prb}
+
+
+Serre model structure and Hurewicz model structure on $\mathrm{Top}$.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\chapter{Infinity categories}
+\section{Simplicial sets}
+
+Two representative examples: nerves and Kan complexes
+
+infinity categories as simplicially enriched categories
+
+\begin{prb}[Nerves]
+For an ordinary category as a nerve, two morphisms are homotopic only if they are identical.
+\end{prb}
+
+\begin{prb}[Kan complexes]
+A geometric model for infinity groupoids.
+In a Kan complex, including Sing of a topological space, every morphism is invertible up to homotopy.
+
+Infinity groupoids are usually considered as ``spaces''.
+\end{prb}
+
+\begin{prb}[Dold-Kan correspondence]
+\[\begin{tikzcd}
+\mathrm{Top} \rar{\mathrm{Sing}} &
+\mathrm{sSet} \rar{\Z[\cdot]} &
+\mathrm{sAb} \rar{C_\bullet\text{ or }N_\bullet} &
+\mathrm{Ch}(\Z) \rar{H_n} &
+\mathrm{Ab}
+\end{tikzcd}\]
+
+Two descriptions for normalized Moore complexes:
+\[0\to N_\bullet(A)\to C_\bullet(A)\to D_\bullet(A)\to0.\]
+
+Eilenberg-Maclane functor $K:\mathrm{Ch}(\Z)\to\mathrm{sAb}$ as the right adjoint for the functor $N_\bullet$.
+\end{prb}
+
+
+
+
+
+\section{Kan complexes}
+
+The \emph{infinity category of spaces}, denoted by $\mathrm{Spc}$, is defined as the homotopy-coherent nerve of the category $\mathrm{Kan}$ of Kan complexes.
+
+\section{Stable infinity categories}
+
+examples of stable infinity category: the infinity category of spectra, the dervied category of an abelian category
+
+\begin{prb}
+A \emph{stable infinity category} is an infinity category such that
+\begin{enumerate}[(i)]
+\item there is a zero object,
+\item every morphism admits a fiber and cofiber,
+\item a triangle is a fiber sequence if and only if it is a cofiber sequence.
+\end{enumerate}
+It is known that its homotopy category is tricngulated.
+\end{prb}
+
+\begin{prb}[Triangulated categories]
+\end{prb}
+
+\begin{prb}[Differential graded category]
+\end{prb}
+
+
+
+
+
+
 \end{document}
 
 
 
-projective
-  direct sum of projectives is projective
-  	(lem) free => projective
-  PID: projective iff free (note sub of free is free in PID)
-  projective iff direct summand of a free
-  every module is a quotient of a free module
 
-injective
-  direct product of injectives is injective
-  	(lem) M injective iff Hom_R(R,M)->Hom_R(I,M) surj
-  PID: injective iff divisible (.a:M->M surj)
-  	(lem) Hom_Z(R,M) is injective if M is injective Z-module
-  every module is embedded in injective
 
-flat
-  PID: flat iff (.a:M->M inj)
-  M flat iff Hom(M,Q/Z) is injective
-  M flat iff I⊗M->R⊗M inj
-  if projective then flat
 
-continuity of functors
+
+
+
+
+
+
+
+제가 
+하지만 만약 이런 좋은 환경에서 공부하지 못했더라면 이렇게 빨리 회의감을 느끼는 날이 오지는 못했을 것 같다는 생각이 듧니다.
+저는 다시 묻습니다. 무엇을 공부의 원동력으로 삼아야 할까요?
+과거의 제가 남을 이기기 위해 공부하기 시작했다면, 이제는 
+
+
+뛰어난 사람들과 뒤처지는 사람들을 나와 비교하지 않게 되고 싶다.
+많은 사람들을 사랑할 수 있게 되고 싶다.
+싫은 소리를 하는 방법에 대해 알게 되고 싶다.
+인생의 유의미하다고 생각되는 일을 같이 해나갈 소중한 사람들을 만나고 싶다.
+내 스스로가 어떤 위치에 있는지 자꾸 자기검열을 하게 된다.

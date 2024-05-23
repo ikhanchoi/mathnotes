@@ -1,0 +1,653 @@
+\documentclass{../../../small}
+\usepackage{../../../ikhanchoi}
+
+\newcommand{\Et}{\mathrm{\acute Et}}
+
+\begin{document}
+
+\title{\'Etale cohomology}
+\author{Ikhan Choi\\Lectured by Shane Kelly\\University of Tokyo, Spring 2024}
+\maketitle
+
+\newpage
+\section{Day 1: April 11}
+\subsection{Counting points}
+
+Let $X$ be a smooth projective variety over $\F_q$.
+How many elements are in $X/\F_{q^n}=\hom_{\F_q}(\Spec\F_{q^n},X)$?
+Equivalently, if $f_i$ is a finite sequence of homogeneous polynomials in $\F_q[t_0,\cdots,t_p]$ defining $X$, how many solutions do $f_i$ have in $\F_{q^n}$?
+We are interested in the sequence of the numbers of points $\#X(\F_{q^n})$ indexed by $n$, and a power series is associated as
+\[Z(X,t):=\exp\left(\sum_{n=1}^\infty\#X(\F_{q^n})\frac{t^n}n\right)=\prod_{x\in X_{(0)}}(1-t^{\deg(x)})^{-1},\]
+where $X_{(0)}$ is the set of closed points of the scheme $X$, and $\deg(x)$ is the degree $[\kappa(x):\F_q]$ of the residue field.
+It is called the \emph{zeta function}.
+
+\begin{rmk*}
+The exponential function is recognized as a formal power series
+\[\exp(T)=\sum_{m=0}^\infty\frac{T^m}{m!}\in\C[[T]].\]
+The series $Z(X,t)$ is defined for any variety(not necessarily smooth or projective).
+If $W\to X$ is a closed immersion and $U:=X\setminus W$, then $Z(X,t)=Z(W,t)Z(U,t)$.
+\end{rmk*}
+\begin{exe*}
+Prove the identity in the definition of $Z(X,t)$.
+\end{exe*}
+
+Our question is to calculate $Z(X,t)$.
+
+\begin{ex*}
+Let $X=\A^d$.
+We have $X(\F_{q^n})=\F_{q^n}^d$, so $\#X(F_{q^n})=q^{dn}$, thus
+\[Z(\A^d,t)=(1-q^dt)^{-1}\in\Q(T)\subset\C((T)).\]
+\end{ex*}
+\begin{ex*}
+Let $X=\P^d$.
+We have a sequence of closed immersions $\P^0\subset\cdots\subset\P^d$ such that $\P^i/\P^{i-1}\cong\A^i$.
+So we get
+\[Z(\P^d,t)=\prod_{i=0}^dZ(\A^i,t)=(1-t)^{-1}(1-qt)^{-1}\cdots(1-q^dt)^{-1}.\]
+\end{ex*}
+\begin{ex*}
+Let $X$ be a elliptic curve.
+This has a multiplication map $X\times X\to X$, and we can iterate this and combine with the diagonal map to get a map $X\to X^m\to X:x\mapsto mx$.
+Define the Tate module
+\[T_\ell X:=\varprojlim_{n}\ker(X(\bar{\F_q})\xrightarrow{\ell^n}X(\bar{\F_q}))\in\Z_\ell\Mod.\]
+Consider the action of the Frobenius morphism $\mathrm{Frob}:X\to X$ on $T_\ell X$ and induce
+\[\mathrm{Frob}_\ell:T_\ell X\otimes_{\Z^\ell}\Q^\ell\to T_\ell X\otimes_{\Z^\ell}\Q^\ell.\]
+One can calculate, by counting fixed points of the Frobenius map and to make it to a matrix with base change, $\#X(\F_{q^n})=\deg(1-\mathrm{Frob}^n)=\det(1-\mathrm{Frob}_\ell^n)=1-\alpha^n-\beta^n+q^n$, where $\alpha,\beta\in\C$ are complex conjugates with absolute value $\sqrt q$.
+Using this one can show that
+\[Z(X,t)=\frac{(1-\alpha t)(1-\beta t)}{(1-t)(1-qt)}.\]
+For more details, see the chapter 5 of Silverman's book ``The arithmetic of elliptic curves''.
+\end{ex*}
+
+\begin{ex*}
+Let $X$ be a smooth projective curve of genus $g$.
+The zeta function can be written in terms of linear systems of divisors of line bundles using Riemann-Roch theorem for curves.
+One can calculate
+\[Z(X,t)=\frac{f(t)}{(1-t)(1-qt)},\]
+where $f(t)\in\Z[t]$ has degree $2g$.
+For more details, see Raskin's book ``The weil conjecture for curves''.
+\end{ex*}
+
+\begin{ex*}
+Let $X$ be a smooth hypersurface defined by an equation of the form $\sum_{i=0}^ra_ix_i^{n_i}$.
+Then,
+\[Z(X,t)=\frac1{(1-t)\cdots(1-q^{r-1}t)}\prod_\alpha(1-C(\alpha)t^{\mu(\alpha)})^{(-1)^n/\mu(\alpha)},\]
+where $\alpha\in(\F_q^\times)^{n+1}$, $\mu(\alpha)\in\N$, $C(\alpha)\in\C$ with $|C(\alpha)|=q^{\frac{(r-1)\mu(\alpha)}2}$.
+For more details, see Weil's ``Number of solutions of equations in finite fields''.
+\end{ex*}
+
+\begin{thm*}[Weil conjecture]
+Suppose $X$ is geometrically connected smooth projective variety over $\F_q$.
+Then, the zeta function of $X$ satisfies the following properties:
+\begin{enumerate}[(i)]
+\item (Rationality) $Z(X,t)\in\Q(t)$,
+\item (Functional equation) There is an integer $e$ such that $Z(X,q^{-m}t^{-1})=\pm q^{\frac{en}2}t^eZ(X,t)$,
+\item (Riemann hypothesis) We can write
+\[Z(X,t)=\frac{P_1(t)\cdots P_{2n-1}(t)}{P_0(t)\cdots P_{2n}(2t)},\]
+where $P_i(t)\in\Z[t]$ and all roots of $P_i(t)$ have absolute value $q^{-i/2}$.
+Moreover, $P_0(t)=1-t$ and $P_{2n}(t)=1-q^nt$.
+\item (Betti numbers) Suppose there is a number field $K/\Q$ with ring of integers $\cO_K$, and homogeneous polynomials $f_1,\cdots,f_c\in\cO_K[t_0,\cdots,t_d]$ such that $\F_q\cong\cO_K/\fq$ and $X$ is defined by $\bar f_1,\cdots,\bar f_c\in\F_q[t_0,\cdots,t_d]$ (defining homogeneous polynomials can be lifted to $\cO_K$-valued polynomials).
+Suppose further that for some embedding $K\subset\C$ the variety $X(\C)$ is still smooth.
+Consider $X(\C)\subset\P^d(\C)$ as a smooth complex manifold.
+Then, $\deg P_i(t)=\dim_\Q H^i_{\mathrm{Sing}}(X(\C),\Q)$.
+\end{enumerate}
+\end{thm*}
+
+
+\subsection{Counting points with cohomology}
+Suppose $M$ is an $n$-dimensional compact real manifold.
+We have associated vector spaces $H^i(M,\Q)$ with $i\ge0$.
+Heuristically, $H^i(M,\Q)$ counts $i$-dimensional holes in $M$.
+\begin{ex*}
+Let $M:=\C^m\setminus\{0\}$.
+Then,
+\[H^i(M,\Q)=\begin{cases}
+\Q&i\in\{0,2m-1\},\\
+0&\text{otherwise}.	
+\end{cases}\]
+\end{ex*}
+\begin{ex*}
+Let $M=\Sigma_g$ be a sphere with $g$ hands, or $M=X(\C)$ for $X$ smooth projective curve of genus $g$.
+Then,
+\[H^i(M,\Q)=\begin{cases}
+\Q&i=0,\\
+\Q^{2n}&i=1,\\
+\Q&i=2,\\
+0&i>2.
+\end{cases}\]
+\end{ex*}
+\begin{ex*}
+Let $M=\P^d(\C)$.
+Then,
+\[H^i(M,\Q)=\begin{cases}
+\Q&i\in\{0,2,\cdots,2n\},\\
+0&\text{otherwise}.	
+\end{cases}\]
+\end{ex*}
+
+In general, the cohomology groups of connected compact real manifolds satisfy
+\begin{enumerate}[(i)]
+\item (Finiteness) $H^i(M,\Q)$ is finite-dimensional over $\Q$ for all $i$, and moreover if $M=X(\C)$ is a smooth projective variety of real dimension $d$, then $H^i(M,\Q)=0$ for $i>2d$,
+\item (Functoriality) For any continuous map $\phi:M\to N$ there are linear transformations $H^i(\phi):H^i(N,\Q)\to H^i(M,\Q)$ compatible with compositions,
+\item (Poincar\'e duality) There is a canonical isomorphism $H^{\dim M}(M,\Q)\cong\Q$ and a natural non-degenerate bilinear form between
+\[H^i(M,\Q)\times H^{\dim M-i}(M,\Q)\to H^{\dim M}(M,\Q)\cong\Q.\]
+\item (Lefschetz trace formula) Suppose $\phi:M\to M$ is a continuous map with only simple isolated fixed points.
+Then, the number of fixed points is equal to an alternating sum
+\[\sum_{i=0}^{\dim M}(-1)^i\tr(H^i(\phi)).\]
+\end{enumerate}
+
+Now suppose we had cohomology groups defined for algebraic varieties over $\F_q$, satisfying the analogues of the above properties.
+Since $X(\F_{q^n})$ is the set of fixed points of
+\[\mathrm{Frob}^n:X(\bar\F_q)\to X(\bar\F_q):(a_0:\cdots:a_d)\mapsto(a_0^{q^n}:\cdots:a_d^{q^n}),\]
+an appropriate version of the Lefschetz trace formula would give
+\[\#X(\F_{q^n})=\sum_{i=0}^{2\dim X}(-1)^i\tr H^i(\mathrm{Frob}^m).\]
+Inserting this sum description of $Z(X,t)$, we have
+\[Z(X,t)=\exp\sum_{n=1}^\infty\left(\sum_{i=0}^{2\dim X}(-1)^i\tr H^i(\mathrm{Frob}^n))\frac{t^n}n\right)=\prod_{i=0}^{2\dim X}\exp\left(\sum_{n=1}^\infty\tr H^i(\mathrm{Frob}^n)\frac{t^n}n\right).\]
+Combine this with $\det(1-A)^{-1}=\exp\sum_{n=1}^\infty\tr A^n/n$, we get
+\[Z(X,t)=\prod_{i=0}^{2\dim X}\det(1-tH^i(\mathrm{Frob}))^{(-1)^{i+1}}.\]
+That is, we obtain the first conclusion of the Weil conjecture, the rationality.
+Moreover, an appropriate version of Poincar\'e duality would imply the second conlusion of the Weil conjecture, the functional equation.
+If the new cohomology groups are compatible with singular ones in an appropriate way, we get Berry numbers.
+Finally, this description suggests that the polynomials $P_i(t)$ are $\dim(1-tH^i(\mathrm{Frob}))$, and so the second part of the Riemann hypothesis can be formulated as: the eigenvalues of $H^i(\mathrm{Frob})$ have absolute value $q^{-i/2}$.
+
+How can we define a cohomology theory for algebraic varieties over $\F_q$?
+
+In part I, we define and study
+\[H_{\mathrm{\acute et}}^i(X,\Q_\ell):=(\varprojlim_nH_{\acute et}^i(X,\Z/\ell^n))\otimes_{\Z_\ell}\Q_\ell.\]
+In part II, we define and study
+\[H_{\mathrm{pro\acute et}}^i(X,\Q_\ell).\]
+
+
+\newpage
+\section{Day 2: April 18}
+
+Last week, we motivated the \'etale cohomology in the context of the Weil conjecture.
+We want a cohomology theory for varieties over $\F_q$ which behaves like $H_{\mathrm{Sing}}^\bullet(X(\C),\Q)$ for smooth varities $X$ over $\C$, where the topology of $X$ comes from $\C^n\cong\R^{2n}$.
+For ``nice'' topological spaces $M$, the cohomology $H_{\mathrm{Sing}}^1(M,\Q)$ can be defined in terms of local homeomorphisms.
+
+\subsection{Flatness}
+\begin{defn*}
+Let $A$ be a ring.
+An $A$-module $M$ is \emph{flat} if tensor functor $M\otimes_A-$ preserves monomorphisms in $A$-$\mathrm{Mod}$.
+An $A$-algebra $B$ is \emph{flat} when it is flat as an $A$-module.
+A homomorphism $A\to B$ is \emph{flat} if $B$ is flat over $A$.
+\end{defn*}
+\begin{exe*}
+Show that if $k$ is a field, then all $k$-modules are flat.
+\end{exe*}
+\begin{exe*}
+Show that if $A$ is a ring, and $S\subset A$ is a multiplicatively closed subset, then the localization $A[S^{-1}]$ is a flat $A$-algebra.
+\end{exe*}
+\begin{ex*}
+An $A$-module $M$ is flat if and only if $M_\fp$ is flat for every prime ideal $\fp\subset A$.
+\end{ex*}
+\begin{ex*}
+For any sequence $f_1,\cdots,f_n\in A$, the product of the localizations $\prod_{i=1}^nA[f_i^{-1}]$ is flat.
+\end{ex*}
+\begin{ex*}
+Neither of $k[x,y/x]$ and $k[x/y,y]$ are flat over $k[x,y]$.
+
+Intuition: flat modules mean that the dimension of fibers should be locally constant.
+They represent blow-ups over $\A^2$, where the origin has a fiber of different dimension compared to neighborhoods.
+As a more general principle, flatness is like a local uniformity condition.
+\end{ex*}
+
+\begin{exe*}
+Let $A$ be a ring and $I$ an ideal of $A$.
+Show that if $A/I$ is a flat $A$-algebra, then $I=I^2$.
+Show that if $I$ is finitely generated and $I=I^2$, then $A/I$ is flat.
+Give an exmample of an idela $I$ in $A$ such that $I=I^2$ but $A/I$ is not flat.
+
+Intuition: $A\to A/I$ is like a closed immersion $\Spec A/I\to\Spec A$.
+$\Spec A[f^{-1}]\to\Spec A$ is an open immersion (with multiple fibers if it is producted).
+\end{exe*}
+
+\begin{exe*}
+Show that if $A\to B$ and $B\to C$ are flat ring homomorphisms, then $A\to C$ is flat.
+Show that if $A\to B$ is flat, then $D\to D\otimes_AB$ is flat for $A\to D$ is any homomorphism.
+\end{exe*}
+
+\begin{defn*}
+Let $A$ be a ring.
+An $A$-module $M$ is \emph{faithfully flat} if it is flat and a morphism $\phi$ of $A$-modules is a monomorphism if $\id_M\otimes_A\phi$ is a monomorphism.
+\end{defn*}
+
+\begin{ex*}
+A homomorphism $A\to B$ is faithfully faithful if and only if it is flat and $\Spec B\to\Spec A$ is surjective.
+\end{ex*}
+\begin{exe*}
+Let $M$ be a flat $A$-module.
+Show that $M$ is faithfully flat if and only if for any $A$-module $N$ such that $M\otimes_AN\cong0$, we have $N\cong0$.
+Show that if $M$ faithfully flat, then given any morphism of $A$-modules $N\to N'$ such that $M\otimes_AN\to M\otimes_AN'$ is surjective, the morphism $N\to N'$ is also surjective.
+Deduce that if $M$ is faithfully flat, then a sequence of $A$-modules is exact if it is exact after applying $M\otimes_A-$.
+\end{exe*}
+
+\begin{thm*}[Milne, I.2.17]
+Suppose $f:A\to B$ is a faithfully flat homomorphism.
+Then,
+\[0\to A\to B\xrightarrow{d}B^{\otimes_A2}\xrightarrow{d}B^{\otimes_A3}\to\cdots\]
+is an exact sequence of $A$-modules, where $d:=\sum_{i=0}^r(-1)^ie_i$ for
+\[e_i:b_0\otimes\cdots\otimes b_{r-1}\mapsto b_0\otimes\cdots\otimes b_{i-1}\otimes1\otimes b_i\otimes\cdots\otimes b_{r-1}.\]
+\end{thm*}
+
+\begin{exe*}
+Show that $df=0$ and $d^2=0$.
+\end{exe*}
+
+\begin{pf}
+First suppose there is $r:B\to A$ with $rf=\id$.
+Define
+\[s:B^{\otimes_A(r+2)}\to B^{\otimes_A(r+1)}:b_0\otimes\cdots\otimes b_{r+1}\mapsto r(b_0)b_1\otimes\cdots\otimes b_{r+1}\]
+and check that $sd+fr=\id$ and $sd+ds=\id$.
+In other words, $s$ forms a chain complex homotopy between zero and the identity.
+Consequently, the sequence is exact.
+
+Now consider some $A$-algebra $A'$.
+Let $B':=A'\otimes_AB$ and $f'=A'\otimes_Af$.
+Since $A'\otimes_A(B\otimes_A\cdots\otimes_AB)=(A'\otimes_AB)\otimes_{A'}\cdots\otimes_{A'}(A'\otimes_AB)$, applying $A'\otimes_A-$ to the sequence for $f$ gives the sequence for $f'$.
+So if we can find a faithfully flat $A\to A'$ such that $A'\to B'$ has a retraction $B'\to A'$, we are done.
+Take $A'=B$ with $r:B\otimes_AB\to B:(b_1\otimes b)\mapsto b_1b_2$.
+\end{pf}
+
+
+\subsection{Unramified morphisms}
+Recall that if $\fp$ is a prime ideal of $A$, then one defines $k(\fp):=A_\fp/\fp A_\fp$.
+
+\begin{defn*}
+A morphism of rings $\phi:A\to B$ is \emph{unramified} at a prime $\fq\subset B$ if $k(\fp)\to k(\fq)$ is a finite separable field extension(hence $\fp=\phi^{-1}\fq$ and $\fq B_\fq=\phi(\fp)B_\fq$.
+It is \emph{unramified} if it is finitely presented and unramified at every prime $\fp\in B$.
+\end{defn*}
+
+\begin{ex*}
+$k[x]\to k[x,y]/(x^2-y^2)$ and $k[x]\to k[x]:x\mapsto x^2$ are unramified except at $\fq=(x,y)$ and $\fq=(x)$, respectively.
+\end{ex*}
+
+\begin{rmk*}
+A finitely presented morphism $A\to B$ is unramified if and only if $B\otimes_AB\to B$ is flat.
+\end{rmk*}
+
+\begin{exe*}
+Let $A\to B\to C$ and $A\to D$ be ring homomorphisms.
+Show that if $A\to B$ and $B\to C$ is unramified, then $A\to C$ is unramified.
+Show that blabla
+\end{exe*}
+
+\subsection{\'Etale morphisms}
+\begin{defn*}
+A morphism of finite presentation is \emph{\'etale} if it is flat and unramified.
+\end{defn*}
+\begin{rmk*}
+A morphism is \'etale if and only if it is smooth and relative dimension zero.
+\end{rmk*}
+\begin{ex*}
+Let $k$ be a field, and $k\to\A$ a finitely presented $k$-algebra.
+Then, $A$ is \'etale if and only if $A\cong L_1\times\cdots\times L_n$ for some finite separable field extensions $L_i/k$
+\end{ex*}
+
+\begin{exe*}
+Show that if $A\to B$ and $B\to C$ is \'etale, then so is $A\to C$.
+Show that if $A\to B$ is \'etale, so is $D\to D\otimes_AB$.
+\end{exe*}
+\begin{ex*}
+Suppose $Y\to X$ is a morphism of smooth affine complex varieties, and say $Y=\Spec B$ and $X=\Spec A$.
+Then, $A\to B$ is \'etale if and only if $Y(\C)\to X(\C)$ is a local homeomorphism between the analytic topologies.
+\end{ex*}
+
+\subsection{Hensel rings}
+\begin{defn*}
+A local ring $A$ with maximal ideal $\fm$ is \emph{henselian} if for every \'etale morphism $\phi:A\to B$ and for every prime $\fq\subset B$ such that $\phi^{-1}\fq=\fm$ and $k(\fq)=k(\fm)$, there is a ring homomorphism $\sigma:B\to A$ such that $\sigma^{-1}\fm=\fq$ and $\sigma\phi=\id$.
+
+It can be considered as a kind of the inverse function thorem
+\[\begin{tikzcd}
+\Spec k(\fq) \rar\dar[equal] & \Spec B\dar\\
+\Spec k(\fm) \rar & \Spec A\uar[bend left, dashed].
+\end{tikzcd}\]
+\end{defn*}
+
+\begin{ex*}
+A field is henselian.
+Any complete local ring is henselian, for example, $k[[t]]$.
+\end{ex*}
+\begin{prop*}
+For every local ring $A$, there exists a universal local morphism to a local henselian ring, that is, there exists a local morphism $A\to A^h$ to a local henselian ring $A^h$, such that for any other local homomorphism $A\to B$ to a local henselian ring $B$ there exists a unique factorization $A^h\to B$ of $A\to B$.
+\end{prop*}
+\begin{pf}
+Consider the category of factorizations $A\xrightarrow{\phi}B\to A/\fm$ such that $\phi$ is \'etale.
+Morphisms are naturally defined as commutative diagrams.
+This category has an initial object $A=A\to A/\fm$ and pushouts constructed by tensor products, so this is a filtered category.
+Define $A^h$ to be the colimit of $B$ with respect to this filtered category.
+Then, we can check $A^h$ is a local ring with the same residue field as $A$, $A^h$ is henselian, and it has the universal property.
+
+(Compare this procedure with the construction of an algebraic closure)
+\end{pf}
+
+\begin{rmk*}
+If $A$ is henselian local ring, then since its completion $\hat A=\varinjlim_n A/\fm^n$ is henselian, so there is a unique canonical factorization $A\to A^h\to \hat A$, and in particular, both morphisms are monomorphisms.
+\end{rmk*}
+\begin{rmk*}
+For normal integral $A$, $A^h\subset\mathrm{Frac}(A)^s$, the separable closure of the field of fractions.
+\end{rmk*}
+
+\begin{defn*}
+A local henselian ring is \emph{strictly local} if its residue fields $A/\fm$ is separably closed.
+\end{defn*}
+
+\begin{exe*}
+Show if $A$ is strictly local, then every faithfully flat \'etale morphism $A\to B$ admits a retraction $B\to A$.
+\end{exe*}
+
+\begin{prop*}
+If $A$ is a local ring, for $\phi:k(\fm)\to k(\fm)^s$, there is a universal local homeomorphism of local rings $A\to A^{sh}$ such that $A^{sh}$ is strictly local, and $\phi$ is equal to the map $A/\fm\to A^{sh}/\fm^{sh}$.
+\end{prop*}
+\begin{exe*}
+Let $\phi:A\to B$ be a finite \'etale morphism.
+Then, for every $\fp\subset A$ we have $A_\fp^{sh}\otimes_AB\cong\prod_{i=1}A_\fp^{sh}$.
+\end{exe*}
+
+
+\newpage
+\section{Day 3: April 25}
+
+\subsection{Sheaves}
+
+
+\begin{defn*}
+A \emph{Grothendieck topology} on a category $\cC$ is the data of: for every objects $U\in\cC$, we are given a collection of families of moprhisms $\{U_i\to U\}_i$.
+Each distinghuished family for $U$ is called the \emph{covering} of $U$, and a Grothendieck topology assigns a collection of coverings of $U$ for each object $U$.
+This data is required to satisfiy
+\begin{enumerate}
+\item $\{U\xrightarrow{\id}U\}$ is a covering of each object $U$,
+\item If $\{U_i\to U\}$ is a covering of $U$ and $V\to U$ is any morphisms, then the pullback $V\times_UU_i$ exists, and $\{V\times_UU_i\to V\}$ is a covering of $V$,
+\item If $\{U_i\to U\}$ is a covering of $U$ and for every $i$ the family $\{U_{ij}\to U_i\}_{j\in J_i}$ is a covering of $U_i$, then $\{U_{ij}\to U_i\to U\}_{i\in I,\ j\in J_i}$ is a covering of $U$.
+\end{enumerate}
+A category equipped with a topology is called a \emph{site}.
+\end{defn*}
+
+\begin{exe*}
+Let $X$ be a topological space.
+Show that the category $\cO(X)$ of open sets is canonically a site defined as follows:
+A family $\{U_i\to U\}_i$ is a covering if $\bigcup U_i=U$.
+\end{exe*}
+\begin{exe*}
+Let $X$ be a topological space.
+Define $LH(X)$ to be the category such that objects are local homeomorphisms from a topological space $Y$ to $X$ and morphisms are commutative triangles (if we restrict the locally homeomorphisms to finitely presented ones, then it is the category of \'etale bundles).
+Define coverings $\{f_i:Y_i\to Y\}_i$ such that $\bigcup f_i(Y_i)=Y$.
+Show that it defines a site.
+\end{exe*}
+\begin{exe*}
+Recall that a morphism of schemes $Y\to X$ is \'etale if it is locally of finite presentation and for every $y\in Y$, $\cO_{X,f(x)}\to\cO(Y,y)$ is \'etale.
+Define $\mathrm{\acute Et}(X)$ be the category of \'etale morphisms to $X$.
+Show that $\mathrm{\acute Et}(X)$ is a site.
+\end{exe*}
+\begin{exe*}
+Let $A$ be a ring.
+The coverings on $\mathrm{\acute Et}(X)$ are as follows: $\{B\to B_i\}_i$ such that there is finite $J$ such that $B\to\prod_jB_j$ is faithfully flat.
+\end{exe*}
+
+\begin{defn*}
+Let $\cC$ be a site.
+A presheaf $\cF$ on $\cC$ is a \emph{sheaf} if for every covering $\{U_i\to U\}_{i\in I}$ we have
+\[\cF(U)=\mathrm{eq}\left(\prod_{i\in I}\cF(U_i)\rightrightarrows\prod_{i,j\in I}\cF(U_i\times_UU_j)\right)=\{(s_i)_{i\in I}\in\prod\cF(U_i):\cF(\pr_1)(s_i)=\cF(\pr_2)(s_j)\}.\]
+\end{defn*}
+\begin{rmk*}
+If $A$ is a ring, write $\Et(A)=\Et(\Spec(A))$, $F(B)=F(\Spec B)$.
+\end{rmk*}
+\begin{ex*}
+Let $A$ be a ring.
+The followins are sheaves on $\mathrm{\acute Et}(A)$:
+\begin{enumerate}[1)]
+\item $\cO:B\to(B,+)$,
+\item $\cO^\times:B\to (B^\times,\times)$,
+\item $\mu_n:B\to\{b\in B:b^n=1\}$,
+\item $\Omega^n:B\to\Omega_B^n$.
+\end{enumerate}
+\end{ex*}
+
+\begin{rmk*}
+If a presheaf $\cF$ takes values in abelian groups, then the sheaf condition is equivalent to asking that
+\[0\to\cF(U)\to\prod_i\cF(U_i)\xrightarrow{\cF(p_1)-\cF(p_2)}\prod_{i,j}\cF(U_i\times_UU_k)\]
+is exact.
+\end{rmk*}
+
+\begin{exe*}
+Let $\Spec(L)\to\Spec(L')$ be a morphism in $\Et(k)$ for some field $k$ such that $L/L'$ is Galois with group $G=\Gal(L/L')$.
+Recalle that $L\otimes_L'L\cong\prod_{g\in G}L$ and the two morphisms $L\rightrightarrows L\otimes_L'\to L:a\mapsto(a\otimes1),(1\otimes a)$ corresponds to $L\rightrightarrows\prod_{f\in G}L:a\mapsto(a,a,a,a,a,)$.
+Show that if $\cF$ is a sheaf of $\Et(k)$, then $\cF(\prod_GL)\cong\prod_G\cF(L)$ and $\cF(L')=\cF(L)(=\{s\in\cF(L):\cF(g)(s)=s,\ g\in G\})$.
+Deduce that if $\cF_1\to\cF_2$ is a morhpism of \'etale sheaves such that $\cF_1(L)\cong\cF_2(L)$ for every Galois $L/k$, then $\cF_1\cong\cF_2$.
+\end{exe*}
+
+\begin{thm*}[Milne, II.1.9]
+Suppose that $k$ is a field with $G=\Gal(k^{sp}/k)$.
+Then, there is a canonical equivalence of categories $G$-Set and Sh(\'Et($k$)).
+\end{thm*}
+
+
+\subsection{Sheafification}
+
+\begin{defn*}
+A presheaf $\cF$ on a site is called \emph{separated} if $\cF(U)\to\prod_i\cF(U_i)$ is injective for every covering.
+Every sheaf is separated.
+\end{defn*}
+\begin{exe*}
+Suppose $U$ is an object of a site $\cC$ and a presheaf $\cF$ of abelian groups.
+Define $\cF^s(U):=\cF(U)/\bigcup_{\text{coverings}}\ker(\cF(U)\to\prod\cF(U_i))$.
+Show that $\cF^s$ is a separated presheaf, and if $\cF\to\cG$ is a morphism with $\cG$ a separated presheaf, then there is a unique factorization $\cF\to\cF^s\dashrightarrow\cG$.
+\end{exe*}
+
+\begin{prop*}
+Let $\cC$ be a site.
+For every presheaf $\cF$, there is a universal morphsim towards a sheaf.
+That is, a sheaf $\cF^a$, a morphism $\cF\to\cF^a$, such that for every $\cF\to\cG$, with $\cG$ sheaf, there exists a unique factorization $\cF\to\cF^a\dashrightarrow\cG$.
+\end{prop*}
+\begin{pf}
+By the previous exercise, it suffices to consider the case $\cF$ is separated.
+For $U\in\cC$ define
+\[\check H^0(U,\cF):=\colim_{\text{coverings}}\mathrm{eq}\left(\prod_I\cF(U_i)\rightrightarrows\prod_{I\times I}\cF(U_i\times_UU_j)\right).\]
+Then, $\cF(U)\to\check H^0(U,\cF)$ defines a morphism of presheaves.
+We get
+\[\begin{tikzcd}
+\cF \rar\dar & \check H^0(\cF) \dar\ar[dotted]{dl}\\
+\cG \rar[equal] & \check H^0(\cG).
+\end{tikzcd}\]
+So it is enough to show $\check H^0(\cF)$ is a sheaf.
+For simplicity, suppose $\cF$ is a presheaf of abelian groups.
+Let $\{V\to U\}$ be a covering with one element.
+We want to show
+\[0\to \check H^0(U,\cF)\to\check H^0(V,\cF)\to\check H^0(V\times_UV,\cF)\]
+is exact.
+
+\end{pf}
+
+\begin{cor*}
+Let $\cC$ be a small site.
+Then, the category $\mathrm{Sh}(\cC,\mathrm{Ab})$ is abelian.
+\end{cor*}
+
+\begin{rmk*}
+$\mathrm{Sh}(\cC,\mathrm{Ab})\to\mathrm{PSh}(\cC,\mathrm{Ab})$ is a right adjoint, so it preserves limits.
+It also preserves colimits.
+\end{rmk*}
+
+\subsection{Stalks}
+\begin{defn*}
+A \emph{geometric point} of a scheme is a morphism $\bar x\to X$ such that $\bar x=\Spec\Omega$ with $\Omega$ a separably closed field.
+\end{defn*}
+\begin{defn*}
+Take $\cF\in\mathrm{PSh}(\Et(X))$.
+The \emph{stalk} of $\cF$ at a geometric point $\bar x\to X$ is 
+\[\cF_{\bar x}=\varinjlim_{\bar x\to Y\to X}\cF(Y).\]
+\end{defn*}
+
+
+...
+\begin{prop*}
+Suppose $\cF$ is a sheaf of abelian groups on $\Et(X)$ for a scheme $X$, and $Y\in\Et(X)$, and $s\in\cF(Y)$.
+Then, $s=0$ iff $s_{\bar x}=0$ for all $\bar x\to Y$, where $s_{\bar x}$ is the image of $s$ under $\cF(Y)\to\cF_{\bar x}$.
+\end{prop*}
+
+\newpage
+\section{Day 4: May 2}
+
+\subsection{Intro}
+Let $\cA$ be an abelian site.
+For example, $\cA=\mathrm{Sh}_{\acute et}(X,\mathrm{Ab})$, $\mathrm{Ab}$, $R\mathrm{Mod}$, etc.
+
+Suppose $\Phi:\cA\to\cB$ is a finite limit preserving additive functor between abelian site.
+For example, $\Phi=\Gamma(X,-):\mathrm{Sh}_{\acute et}(X,\mathrm{Ab})\to\mathrm{Ab}$, or $\Phi=\mathrm{Hom_R}(M,-):R\mathrm{Mod}\to R\mathrm{Mod}$.
+We want to extend the exact sequence
+\[0\to\Phi(A)\to\Phi(B)\to\Phi(C)\]
+to the right.
+
+
+\subsection{Chain complexes}
+There is a unique colimit preserving functor $\cA\times\mathrm{Ab}\to\cA:(M,A)\mapsto M\otimes A$.
+
+We may consider $\cA$ as a subcategory of $\mathrm{Ch}(\cA)$, which again an abelian site.
+The bilimits, bikernels, direct sums, etc are all computed componentwise.
+
+In $\mathrm{Ch}(\mathrm{Ab})$, we have
+\[S^n:=[\cdots0\to\to0\to\Z\to0\to\cdots],\quad D^{n+1}:=[\cdots\to0\to\Z\to\Z\to0\to\cdots]\]
+($-n-2,-n-1,-n,-n+1$).
+We have an exact sequcne $0\to S^n\to D^{n+1}\to S^{n+1}\to0$.
+
+Extend $\otimes$ to $\mathrm{Ch}(\cA)\times\mathrm{Ch}(\mathrm{Ab})\to\mathrm{Ch}(\cA)$, where $C^\bullet\otimes A^\otimes)^n:=\bigoplus_{i+j=n}C^i\otimes A^j$ and $d(f\otimes g)=df\otimes g+(-1)^{|f|}f\otimes dg$.
+For $C^\bullet\in\mathrm{Ch}(\cA)$ and $j\in\Z$, $C^\bullet[j]:=C^\bullet\otimes S^j$.
+For $f:A^\bullet\to B^\bullet$ in $\mathrm{Ch}(\cA)$, the \emph{mapping cone} is the pushout
+\[\begin{tikzcd}
+A^\bullet\otimes S^0 \rar\dar & A^\bullet\otimes D^1 \dar\\
+B^\bullet\otimes S^0 \rar & \mathrm{Cone}(f).
+\end{tikzcd}\]
+For $A^\bullet,B^\bullet\in\mathrm{Ch}(\cA)$,
+\[\mathrm{Map}(A^\bullet,B^\bullet)^n:=\prod_{i\in\Z}\mathrm{Hom}_\cA(A^i,B^{i-n})\]
+and $df:=d_Bf-(-1)^nfd_A$ defines a complex $\mathrm{Map}(A^\bullet,B^\bullet)\in\mathrm{Ch}(\mathrm{Ab})$.
+
+
+\subsection{Quasi-isomorphisms}
+We can define cohomology functor $H:\mathrm{Ch}(\cA)\to\mathrm{grAb}$.
+
+If $R$ is a field or $\Z$, then every chain complex over $R$ is quasi-isomorphic to a chain complex with zero morphisms.
+If $R$ is $\Z/4\Z$ or $\Q[x,y]$, then there is a counterexample.
+
+
+\subsection{Fibrant replacement}
+A chain complex $Q^\bullet$ is called \emph{fibrant} if for every monomorphic quasi-isomorphism $A^\bullet\to B^\bullet$ and every morphism $A^\bullet\to Q^\bullet$, there exists a factorization $A^\bullet\to B^\bullet\dashrightarrow Q^\bullet$.
+
+Suppose $\Phi:\cA\to\cB$ is a limit preserving functor between abelian site.
+The \emph{derived functors} of $\Phi$ are the cohomology $R^n\Phi(A):=H^n(\Phi(Q_A^\bullet))$, where $A\hookrightarrow Q_A^\bullet$ is any monomorphic quasi-isomorphism towards a fibrant $Q_A^\bullet$.
+In particular, given $F\in\mathrm{Sh}(X,\mathrm{Ab})$,
+
+Claim:
+\begin{enumerate}
+\item $R^n\Phi(A)$ exist and are functorial in $A\in\cA$,
+\item $R^n\Phi(A)$ are independent of the choice of $Q_A$ (up to canonical natural isomorphism),
+\item $R^n\Phi(A)$ send short exact sequences to long exact sequences.
+\end{enumerate}
+
+\subsection{Functorial fibrant replacement}
+\begin{thm*}
+Let $\cA$ be an abelian site.
+There exists a functor $Q:\mathrm{Ch}(\cA)\to\mathrm{Ch}(\cA)$ and a natural isomorphism $\id\Rightarrow Q$ such that for each $C^\bullet\in\mathrm{Ch}(\cA)$, $QC^\bullet$ is fibrant and $C^\bullet\to QC^\bullet$ is a monomorphic quasi-isomorphism.
+\end{thm*}
+
+
+
+We can write $\cA\cong\mathrm{Ind}_\kappa(\cA^\kappa)$ for some small $\cA^\kappa$ and regular cardial $\kappa$.
+For example, if $\cA=\mathrm{Ab}$, and $\kappa=\aleph_0$, then $\mathrm{Ab}^\kappa$ only includes finitely generated abelian groups.
+
+small object argument
+
+
+
+
+\newpage
+\section{Day 5: May 9}
+
+\subsection{The homotopy category}
+Define
+\[\Delta^1:=\{\cdots\to0\to\Z\xrightarrow{f}\Z\oplus\Z\to0\to\cdots\},\qquad\Delta^0:=\Z=\{\cdots\to0\to\Z\to0\to\cdots\},\]
+where $f:\Delta^1_{-1}\to\Delta^1_0:n\mapsto(n,n)$.
+In $\mathrm{Ch}(\mathrm{Ab})$ we have
+\[\begin{tikzcd}
+\Z \dar[hook]{\iota_0} & \\
+\Delta^1 \rar{\pi} & \Z \ar[equal]{lu}\ar[equal]{ld}, \\
+\Z \uar[hook]{\iota_1} &
+\end{tikzcd}\]
+where $\iota_0:n\mapsto(n,0)$, $\iota_1:n\mapsto(0,-n)$, $\pi:(m,n)\mapsto m-n$, the face maps and degeneracy maps.
+It is an anlogy of
+\[\begin{tikzcd}
+\{0\}\dar[hook] & \\
+[0,1] \rar & \{*\} \ar[equal]{lu}\ar[equal]{ld}. \\
+\{1\} \uar[hook] &
+\end{tikzcd}\]
+For $f,g:A^\bullet\rightrightarrows B^\bullet$ in $\mathrm{Ch}(\cA)$, a \emph{chain homotopy} from $f$ to $g$ is a morphism $h:A^\bullet\otimes\Delta^1\to B^\bullet$ such that $h(1\otimes\iota_0)=f$ and $h(1\otimes\iota_1)=g$.
+
+
+$\mathrm{Ch}(\mathrm{Ab})$ is like something simplicial, $\mathrm{Ch}(\cA)$ is like the category of topological spaces, the algebraic homotopy category $K(\cA)$ is like the homotopy category of topological spaces.
+Quasi-isomorphisms and fibrant complexes are the analogies of weak equivalences and CW complexes.
+The fibrant replacement $A^\bullet\mapsto QA^\bullet$ is the analogy of the geometric realization $X\mapsto|\mathrm{Sing}_*X|$.
+
+
+\subsection{Derived category}
+
+Given a morphism $f$ in $\mathrm{Ch}(\cA)$, $f$ is a quasi-isomoprhism if $f$ is an isomorphism in $K(\cA)$, but not is the case for the converse.
+We want to find a small category than $K(\cA)$ in which the isomorphisms are exactly given by quasi-isomorphisms.
+
+An object $Q^\bullet$ of $K(\cA)$ is called \emph{quasi-isomorphism local} if for every quasi-isomorphism $f:A^\bullet\to B^\bullet$ the induced morphism $\Hom(B^\bullet,Q^\bullet)\to\Hom(A^\bullet,Q^\bullet)$ is an isomorphism in $K(\cA)$.
+The full subcategory of quasi-isomorphism local objects is denoted by $\cD(\cA)\subset K(\cA)$, and called the \emph{derived category} of $\cA$.
+There are many other ways of defining $\cD(\cA)$.
+
+
+\begin{prop*}
+Every fibrant complex is quasi-isomoprhism local.
+\end{prop*}
+
+Reduce the case to monics, monic quasi-isomorphisms, and to the final case.
+
+
+\begin{cor*}
+Any choice of fibrant replacement $Q:\mathrm{Ch}(\cA)\to\mathrm{Ch}(\cA)$ induces a left adjoint $L:K(\cA)\to\cD(\cA)$ to inclusion $K(\cA)\leftarrow\cD(\cA):\iota$.
+In particular, the derived functor $R^n\Phi$ are independent of the cohice of $Q$.
+\end{cor*}
+
+
+
+\subsection{Identifying the zeroth derived functor}
+\begin{prop*}
+If $A\in\cA$ and $\Phi:\cA\to\cB$ is additive, then $R^n\Phi(\cA)=0$ for $n<0$.
+If $\Phi$ preserves finite limits, then $R^0\Phi(A)=\Phi(A)$.
+\end{prop*}
+
+
+\subsection{Exact sequences}
+
+
+\begin{prop*}
+If $0\to A\to B\to C\to0$ is exact in $\cA$ and $\Phi:\cA\to\cB$ is additive, then $R\Phi A\to R\Phi B\to R\Phi C$ is a cofiber sequence in $K(\cB)$.
+If $\Phi$ preserves finite limits, we get a long exact sequence $0\to\Phi A\to\Phi B\to\Phi C\to R^1\Phi A\to\cdots$.
+\end{prop*}
+
+
+
+A \emph{differential graded category} is a category $\cC$ enriched over the monoidal category $\Ch(\Ab)$.
+It means that there is a functor $\mathrm{Map}:\cC^\op\times\cC\to\Ch(\Ab)$ such that
+
+An \emph{infinite categorical differential graded category} is an infinite category associated to $\cD(\cA)$ with the $\mathrm{Map}$ as mapping complexes...? objects are fibrant?
+
+
+
+
+\bigskip
+
+Differential graded:
+
+Abelian categories?
+The category of cochain complexes forms a differential graded category.
+Its nerve is an infinite category, but not of infinite groupoids.
+
+The category of cochain complexes defines its derived category.
+
+The nerve of the simplicial category of Kan complexes?
+
+derived functor of $\Phi$: compute the cohomology after seding through $\Phi$ (with fibrant replacement)
+
+
+
+\end{document}

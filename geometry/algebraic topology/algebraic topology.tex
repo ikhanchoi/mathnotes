@@ -1,8 +1,6 @@
 \documentclass{../../large}
 \usepackage{../../ikhanchoi}
 
-\newcommand{\Cof}{\mathrm{Cof}}
-\newcommand{\Fib}{\mathrm{Fib}}
 
 \begin{document}
 \title{Algebraic Topology}
@@ -44,23 +42,8 @@ universal coefficient theorem
 Poincar\'e duality
 
 
-\section{Characteristic classes}
 
 
-A characteristic class is a natural transformation $\mathrm{Prin}_G=[-,BG]\to H^n(-,A)$ for some $n$.
-They are always can be given by the pullback of classes in $H^n(BG,A)$ by the Yoneda lemma.
-\begin{enumerate}
-\item $G=\GL(1,\R)$. $\mathrm{Prin}_G:\mathbf{Para}^{\mathrm{op}}\to\mathbf{Grp}$. $BG=G_1(\R^\infty)=\RP^\infty=K(\Z/2\Z,1)$.
-\[(\mathrm{Prin}_G,\otimes)\cong(H^1(-,\Z/2\Z),+).\]
-\item $G=\GL(1,\C)$. $\mathrm{Prin}_G:\mathbf{Para}^{\mathrm{op}}\to\mathbf{Grp}$. $BG=G_1(\C^\infty)=\CP^\infty=K(\Z,2)$.
-\[(\mathrm{Prin}_G,\otimes)\cong(H^2(-,\Z),+).\]
-\item $G=\GL(n,\R)$. $\mathrm{Prin}_G:\mathbf{Para}^{\mathrm{op}}\to\mathbf{Set}$. $BG=G_n(\R^\infty)$. By Thom and Gysin,
-\[H^*(BG,\Z/2\Z)\cong\Z/2\Z[w_1,\cdots,w_n].\]
-\end{enumerate}
-
-
-
-Since there is a special class in $H^n(K(A,n))$ so that the inducing map provides an isomorphism $[X,K(A,n)]=H^n(X,A)$, we have $H^n(B\GL(n,\C))\to H^n(X,A)$.
 
 
 \section*{Exercises}
@@ -81,71 +64,426 @@ characteristic class of projective spaces
 
 
 
-\chapter{Fibrations}
+\chapter{Fiber bundles}
 
-\section{Fiber bundles}
-Locally trivial bundles
+
+\section{Principal bundles}
+
+\begin{prb}[Locally trivial fiber bundles]
+Let $p:E\to B$ be a map and $F$ a space.
+An \emph{atlas} or \emph{local trivialization} for $p$ with respect to $F$ is a family $\{\f_\alpha\}$ of homeomorphisms $\f_\alpha:p^{-1}(U_\alpha)\to U_\alpha\times F$ satisfying $p=\pr_{U_\alpha}\f_\alpha$ as maps $p^{-1}(U_\alpha)\to U_\alpha$, indexed by an open cover $\{U_\alpha\}$ of $B$: 
+\[\begin{tikzcd}[column sep=tiny]
+p^{-1}(U_\alpha) \ar[swap]{dr}{p}\ar{rr}{\f_\alpha} & \, & U_\alpha\times F \ar{dl} \\
+& U_\alpha \uar[phantom]{\circlearrowleft} &.
+\end{tikzcd}\]
+A \emph{locally trivial fiber bundle}, or just a \emph{fiber bundle}, is a map $p:E\to B$ together with an equivalence class of atlases $\{\f_\alpha\}$ for $p$ with respect to $F$.
+The spaces $F,E,B$ are called the \emph{fiber space}, \emph{total space}, and \emph{base space} of the fiber bundle $p$.
+A \emph{bundle map} between fiber bundles $p_i:E_i\to B_i$ with fiber space $F_i$ for $i\in\{1,2\}$ is a map of pairs $(u,f):(E_1,B_1)\to(E_2,B_2)$ such that
+\[\begin{tikzcd}
+E_1 \ar[swap]{d}{p_1}\ar{r}{u}\ar[phantom]{dr}{\circlearrowleft} & E_2 \ar{d}{p_2} \\
+B_1 \ar[swap]{r}{f} & B_2.
+\end{tikzcd}\]
+The category $\mathrm{Bun}_F(B)$ is defined such that objects are fiber bundles over a base space $B$ with fiber space $F$, and morphisms are commutative squares.
+\begin{parts}
+\item $p$ is surjective and open.
+\end{parts}
+\end{prb}
+
+\begin{prb}[Structure groups]
+Let $p:E\to B$ be a fiber bundle whose fiber space $F$ is an effective left $G$-space for a topological group $G$.
+An atlas $\{\f_\alpha\}$ for $p$ is called a \emph{$G$-atlas} if there is a family $\{g_{\alpha\beta}\}$, which is unique if it exists by effectiveness of $F$, of maps $g_{\alpha\beta}:U_\alpha\cap U_\beta\to G$ such that
+\[\f_\beta\f_\alpha^{-1}(b,v)=(b,g_{\alpha\beta}(b)v),
+\qquad b\in U_\alpha\cap U_\beta,\ v\in F.\]
+A \emph{$G$-bundle} is a fiber bundle $p$ whose fiber space is an effective left $G$-space together with an equivalence class of $G$-atlases $\{\f_\alpha\}$ for $p$.
+
+A bundle map $(u,f):(E_1,B_1)\to(E_2,B_2)$ between $G$-bundles $p_i:E_i\to B_i$ with a common fiber space $F$ for $i\in\{1,2\}$ is called a \emph{$G$-bundle map} if there is a family $\{h_{\alpha\beta}\}$, which is unique if it exists also by effectiveness of $F$, of maps $h_{\alpha\beta}:U_{1\alpha}\cap f^{-1}(U_{2\beta})\to G$ such that
+\[\f_{2\beta}u\f_{1\alpha}^{-1}(b,v)=(f(b),h_{\alpha\beta}(b)v),\qquad b\in U_{1\alpha}\cap f^{-1}(U_{2\beta}),\ v\in F,\]
+where $\{\f_{i\alpha}\}$ is a $G$-atlas for $p_i$.
+Note that the definition of $G$-bundle maps does not depend on the choice of $G$-atlases of $p_i$.
+\begin{parts}
+\item A $G$-bundle map $(u,f)$ is an isomorphism if and only if $u$ is a homeomorphism. In particular, the category of $G$-bundles over $B$ with fiber space $F$ is a groupoid.
+\item A bundle map $(u,\id_B):(E_1,B)\to(E_2,B)$ is a $G$-bundle map if and only if there is a family $\{h_\alpha\}$ of maps $h_\alpha:U_\alpha\to G$ such that
+\[\f_{2\alpha}u\f_{1\alpha}^{-1}(b,v)=(b,h_\alpha(b)v),
+\qquad b\in U_\alpha,\ v\in F,\]
+where $\{\f_{i\alpha}\}$ is a $G$-atlas for $p_i$ defined on a common open cover $\{U_\alpha\}$ of $B$.
+\end{parts}
+\end{prb}
+\begin{pf}
+\end{pf}
+
+
+
+\begin{prb}[Fiber bundle construction theorem]
+Let $\{U_\alpha\}$ be an open cover of a space $B$, and $G$ a topological group.
+A \emph{\v Cech 1-cocyle} on $\{U_\alpha\}$ with coefficients in $G$ is a family $\{g_{\alpha\beta}\}$ of maps $g_{\alpha\beta}:U_\alpha\cap U_\beta\to G$ satisfying the \emph{cocycle condition}:
+\[g_{\alpha\gamma}(b)=g_{\beta\gamma}(b)g_{\alpha\beta}(b),\qquad b\in U_\alpha\cap U_\beta\cap U_\gamma.\]
+A \emph{\v Cech 0-cochain} on $\{U_\alpha\}$ with coefficients in $G$ is a family $\{h_\alpha\}$ of maps $h_\alpha:U_\alpha\to G$ of maps without any conditions.
+The set of \v Cech 1-cocycles and \v Cech 0-cochains on $\{U_\alpha\}$ with coefficients in $G$ are denoted by $\check Z^1(\{U_\alpha\},G)$ and $\check C^0(\{U_\alpha\},G)$ repspectively.
+The \emph{first \v Cech cohomology} $\check H^1(\{U_\alpha\},G)$ of $\{U_\alpha\}$ with coefficients in $G$ is defined to be the orbit space of an action of $\check C^0(\{U_\alpha\},G)$ on $\check Z^1(\{U_\alpha\},G)$ defined as
+\[(\{h_\alpha\}\{g_{\alpha\beta}\})_{\alpha\beta}(b):=h_\beta(b)g_{\alpha\beta}(b)h_\alpha(b)^{-1},
+\qquad b\in U_\alpha\cap U_\beta.\]
+We define the \emph{first \v Cech cohomology} of $B$ with coefficients in $G$ as the direct limit of sets
+\[\check H^1(B,G):=\varinjlim_{\{U_\alpha\}}\check H^1(\{U_\alpha\},G).\]
+Let $F$ be an effective left $G$-space.
+Let $\mathrm{Bun}_F(B)$ be the set of all isomorphism classes of $G$-bundles over $B$ with fiber space $F$.
+\begin{parts}
+\item $\mathrm{Bun}_F(B)\to\check H^1(B,G)$ is well-defined and sujective.
+\item $\mathrm{Bun}_F(B)\to\check H^1(B,G)$ is injective.
+\end{parts}
+\end{prb}
+\begin{pf}
+(a)
+Suppose $p_i:E_i\to B$ are isomorphic $G$-bundles with fiber space $F$, and $u:E_1\to E_2$ is a $G$-bundle isomorphism.
+Considering the refinement, we fix an open cover $\{U_\alpha\}$ of $B$ on which $E_i$ are simultaneously locally trivialized.
+
+Let $\{g_{\alpha\beta}\}\in\check Z^1(\{U_\alpha\},G)$.
+Define
+\[E:=\Bigl(\bigsqcup_\alpha(U_\alpha\times F)\Bigr)/\sim,\]
+where $\sim$ is an equivalence relation generated by
+\[(b,v)_\alpha\sim(b,g_{\alpha\beta}(b)v)_\beta,
+\qquad b\in U_\alpha\cap U_\beta,\ v\in F.\]
+Define $p:E\to B$ and $\f_\alpha^{-1}:U_\alpha\times F\to p^{-1}(U_\alpha)$ such that
+\[p([(b,v)_\alpha]):=b,\qquad\f_\alpha^{-1}(b,v):=[(b,v)_\alpha],\qquad b\in U_\alpha,\ v\in F.\]
+They are clearly continuous and surjective.
+We need to show $\f_\alpha^{-1}$ is a hoemomorphism.
+
+We first claim that $\f_\alpha^{-1}$ is injective.
+Assume $\f_\alpha^{-1}(b,v)=\f_\alpha^{-1}(b',v')$, which means $(b,v)_\alpha\sim(b',v')_\alpha$.
+Then, we have $b=b'$ and there is a finite sequence $(\alpha_i)_{i=0}^n$ such that $\alpha_0=\alpha_n=\alpha$ and
+\[v'=g_{\alpha_{n-1}\alpha_n}(b)g_{\alpha_{n-2}\alpha_{n-1}}(b)\cdots g_{\alpha_0\alpha_1}(b)v.\]
+Applying the cocycle condition inductively, we obtain $v=v'$, which implies the injectivity of $\f_\alpha^{-1}$.
+
+Next we claim that $\f_\alpha^{-1}$ is open.
+The map $\f_\alpha^{-1}$ is given by the composition
+\[\f_\alpha^{-1}:U_\alpha\times F\xrightarrow{\iota}\bigsqcup_\alpha U_\alpha\times F\xrightarrow{\pi}E,\]
+where $\iota$ and $\pi$ are the canonical inclusion and the canonical projection.
+Since $\iota$ is clearly open, it suffices to show $\pi$ is open.
+Suppose $V\subset\bigsqcup_\alpha U_\alpha\times F$ is open so that we have $V=\bigsqcup_\alpha V_\alpha\times F$ for open subsets $V_\alpha\subset U_\alpha$.
+Observe that for each $\beta$ we have $(b,v)_\beta\in\pi^{-1}\pi(V_\alpha\times F)$ if and only if $(b,v)_\beta\sim(b',v')_\alpha$ for some $(b',v')\in V_\alpha\times F$.
+It is equivalent to that $b=b'$ and 
+\[v'=g_{\alpha_{n-1}\alpha_n}(b)g_{\alpha_{n-2}\alpha_{n-1}}(b)\cdots g_{\alpha_0\alpha_1}(b)v,\]
+where $(\alpha_i)_{i=0}^n$ is a finite sequence such that $\alpha_0=\beta$ and $\alpha_n=\alpha$.
+Applying the cocycle condition inductively, we can see that it is just $g_{\alpha\beta}(b)v'=v$.
+Thus, the set $\pi^{-1}\pi(V_\alpha\times F)\cap(U_\beta\times F)$ is exactly the same as the inverse image of the open set $V_\alpha\times F$ under the map
+\[(U_\alpha\cap U_\beta)\times F\to U_\alpha\times F:(b,v)\mapsto(b,g_{\alpha\beta}(b)v).\]
+It concludes that
+\[\pi^{-1}\pi(V)=\bigcup_{\alpha,\beta}\pi^{-1}\pi(V_\alpha\times F)\cap(U_\beta\times F)\]
+is open, so $\pi(V)$ is open.
+Therefore, $\pi$ is open.
+
+Finally, it obviously follows that the transition maps of the $G$-atlas $\{\f_\alpha\}$ constructed as above coincides with the cocycle $\{g_{\alpha\beta}\}$ up to 0-cochain by the cocycle condition, hence the surjectivity.
+
+(b)
+\end{pf}
+
+
+\begin{prb}[Principal bundles]
+Let $G$ be a topological group.
+A \emph{principal $G$-bundle} is a fiber bundle $\pi:P\to B$ together with a continuous right action of $G$ on $P$ such that $\pi^{-1}(b)$ is a right principal homogeneous $G$-space for each $b\in B$.
+The right action $\rho$ is called the \emph{principal right action} or \emph{(global) gauge transformation}.
+Having right $G$-equivariant maps as morphisms, let $\mathrm{Prin}_G(B)$ be the isomorphism classes of principal $G$-bundles over $B$.
+
+Let $F$ be an effective left $G$-space.
+For a principal $G$-bundle $\pi:P\to B$, define $p:E\to B$ by
+\[E:=P\times_GF=P\times F/\sim,\qquad p([u,v]):=\pi(u),\]
+where the equivalence relation $\sim$ is generated by
+\[(ug,v)\sim(u,gv),\qquad u\in P,\ g\in G,\ v\in F.\]
+The $G$-bundle $p$ with fiber space $F$ is called the \emph{associated bundle} to the principal bundle $\pi$.
+The associated bundles gives rise to a natural function $\mathrm{Prin}_G(B)\to\mathrm{Bun}_F(B)$.
+\begin{parts}
+\item $\mathrm{Prin}_G(B)\to\mathrm{Bun}_F(B)$ is well-defined.
+\item $\mathrm{Prin}_G(B)\to\mathrm{Bun}_F(B)$ is injective.
+\item $\mathrm{Prin}_G(B)\to\mathrm{Bun}_F(B)$ is surjective.
+\item A principal bundle is trivial if it has a global section.
+\end{parts}
+\end{prb}
+\begin{pf}
+(a)
+Let $u:P\to P'$ be a right $G$-equivariant map.
+By fixing $x_0\in X$ and using the fact that the left action is free and transitive, define $g_i:U_i\to G$ such that
+\[(b,g_i(b)x_0):=\f_i\circ u\circ\f_i^{-1}(b,x_0).\]
+The function $g_i$ is continuous since it factors as
+\[b\mapsto(b,x_0)\xmapsto{\f_i\circ u\circ\f_i^{-1}}(b,g_i(b)x_0)\mapsto g_i(b)x_0\mapsto g_i(b).\]
+The continuity of the last map is due to the assumption that the map $(g,x)\mapsto(gx,x)$ is a homeomorphism.
+
+Then, for every $(b,x)\in U_i\times X$ there is a unique $s\in G$ such that
+\[\f_i\circ\rho_s\circ\f_i^{-1}(b,x_0)=(b,x),\]
+so we have
+\begin{align*}
+\f_i\circ u\circ\f_i^{-1}(b,x)
+&=(\f_i\circ u\circ\f_i^{-1})\circ(\f_i\circ\rho_s\circ\f_i^{-1})(b,x_0)\\
+&=\f_i\circ u\circ\rho_s\circ\f_i^{-1}(b,x_0)\\
+&=\f_i\circ\rho_s\circ u\circ\f_i^{-1}(b,x_0)\\
+&=(\f_i\circ\rho_s\circ\f_i^{-1})\circ(\f_i\circ u\circ\f_i^{-1})(b,x_0)\\
+&=(\f_i\circ\rho_s\circ\f_i^{-1})g_i(b)(b,x_0)\\
+&=g_i(b)(\f_i\circ\rho_s\circ\f_i^{-1})(b,x_0)\\
+&=g_i(b)(b,x)\\
+&=(b,g_i(b)x).
+\end{align*}
+Hence, $u$ is a $G$-bundle map.
+
+(b)
+Let $u:P\to P'$ be a $G$-bundle map over $B$ so that there is a set $\{h_i:U_i\to G\}_i$ of maps such that
+\[\f_i\circ u\circ\f_i^{-1}(b,x)=(b,h_i(b)x),
+\qquad b\in U_i,\ x\in X.\]
+If we write $\rho_s:P\to P:e\mapsto \rho(e,s)$ for $s\in G$, then the induced right action $\f_i\circ\rho_s\circ\f_i^{-1}$ commutes with the left action $\f_i\circ u\circ\f_i^{-1}$ on $U_i\times X$.
+Now for every $e\in P_1$, we have
+\begin{align*}
+\rho_s\circ u(e)
+&=\f_i^{-1}\circ(\f_i\circ\rho_s\circ\f_i^{-1})\circ(\f_i\circ u\circ\f_i^{-1})\circ\f_i(e)\\
+&=\f_i^{-1}\circ(\f_i\circ u\circ\f_i^{-1})\circ(\f_i\circ\rho_s\circ\f_i^{-1})\circ\f_i(e)\\
+&=u\circ\rho_s(e),
+\end{align*}
+therefore $u$ is right $G$-equivariant.
+
+
+(c)
+Fix $x_0\in X$ and consider the homeomorphism $G\to X:g\to gx_0$.
+Define a right action
+\[X\times G\to X:(gx_0,s)\mapsto gx_0s:=gsx_0.\]
+It defines a right principal homogeneous $X$ that commutes with the left action on $X$.
+
+Define $\rho:P\times G\to P$ such that
+\[\f_i\circ\rho_s\circ\f_i^{-1}(b,x)=(b,xs).\]
+It is well defined, fiber preserving, continuous.
+also for any $b$ and any chart $\f_j$ containing $b$, the action on $\{b\}\times X$ defines a principal homogeneous as we have seen.
+Therefore, $\rho$ is a gauge tranformation.
+
+(d)
+($\Rightarrow$)
+Clear.
+
+($\Leftarrow$)
+Let $s:B\to E$ be a global section and define
+\[\tilde u:B\times X\to E:(b,gx_0)\mapsto s(b)g\]
+for any fixed $x_0\in X$.
+Then, the continuous map $(\tilde f,\id_B)$ preserves fibers and defines a right $G$-equivariant isomorphism.
+\end{pf}
+
+\begin{prb}[Quotient principal bundles]
+
+\end{prb}
+
+
+\begin{prb}[Reduction of structure groups]
+Let $H$ be a closed subgroup of $G$.
+Then, there is a function $\check H^1(B,H)\to\check H^1(B,G)$, which is neither in general injective nor surjective.
+If a $G$-bundle $p$ is contained in the image of $\check H^1(B,H)$ through the correspondence $\mathrm{Bun}_F(B)\twoheadrightarrow\check H^1(B,G)$, then we may give a $H$-bundle structure on $p$.
+
+A \emph{reduction} of $G$ to $H$ is a $H$-structure on a principal $G$-bundle.
+\end{prb}
+
+
+
+
+
+
+\section{Vector bundles}
+subbundles, quotient bundles, bundle maps,
+constant rank, then ker, im, coker bundles are locally trivial so that they are vector bundles.
+pullback: vector bundle structure
+
+vector fields(trivial subbundles), parallelizable
+bundle operations: sum, tensor, dual, hom, exterior
+
+reduction and metrics
+
+
+\[\mathrm{Bun}_{\GL(n,\F)}(B)\to\mathrm{Vect}_n^\F(B)\]
+is a faithful essentially surjective functor.
+If we drop the non-invertible morphisms in $\mathrm{Vect}_n(B)$, then the functor becomes an equivalence.
+
+\[\Spin(n)\to\SO(n)\to\GL(n,\R)\]
+
+\begin{prb}[Vector bundles]
+Let $p:E\to B$ and $p:E'\to B$ be vector bundles.
+\begin{parts}
+\item A vector bundle map $u$ over $B$ is a vector bundle isomorphism if and only if it is a fiberwise linear isomorphism.
+\end{parts}
+\end{prb}
+
+
+
+Let $1\le n\le\infty$.
+If $f,g:B\to G_k(\F^n)$ such that $f^*(\gamma_{k^n})\cong g^*(\gamma_{k^n})$, then $jf\simeq jg$, where $j:G_k(\F^n)\to G_k(\F^{2n})$ is the natural inclusion.
+
+
+\begin{prb}
+Riemannian and Hermitian metrics
+spin structures
+\end{prb}
+
+\section{Classifying spaces}
+
+In this section(?), our goal is to construct $BG$ and prove the natural isomorphism $\mathrm{Prin}_G\to[-,BG]$.
 
 pullback bundles: universal property, functoriality, restriction,
 section prolongation
+
+\begin{prb}[Pullback bundles]
+Let $p:E\to B$ be a $G$-bundle with fiber space $F$.
+\begin{parts}
+\item If $A$ is paracompact and $f_0,f_1:A\to B$ are homotopic, then $G$-bundles $f_0^*p$ and $f_1^*p$ are isomorphic.
+\end{parts}
+\end{prb}
+\begin{pf}
+
+If $p:E\to B\times[0,\frac12]$ and $p':E'\to B\times[\frac12,1]$ are trivial, then 
+
+
+If $f,g:B'\to B$ are homotopic, then $f^*\xi\cong g^*\xi$.
+\end{pf}
+
+
+\begin{prb}[Universal principal bundles]
+Representability of
+\[\mathrm{Prin}_G:\mathrm{Top}^{\mathrm{op}}\to\mathrm{Set}.\]
+Milnor construction.
+
+\begin{prb}
+\item If $EG\to BG$ is universal and $BG$ is paracompact, then $BG$ is unique up to homotopy.
+\item If $EG$ is contractible and $BG$ is paracompact, then $EG\to BG$ is universal.
+\end{prb}
+\end{prb}
+
+
+
+
+\section{Characteristic classes}
+
+\begin{prb}
+Let $G$ be a topological group.
+Let $A$ be an abelian group and $n$ a positive integer.
+A \emph{characteristic class} is a cohomology class on the classifying space, i.e.~an element of $H^n(BG,A)$.
+A characteristic class $c\in H^n(BG,A)$ gives rise to a natural transformation $c:\mathrm{Prin}_G\to H^n(-,A)$ via the Brown representation and the Yoneda lemma.
+Explicitly, for each $X\in\mathrm{Top}$, we have $c:\mathrm{Prin}_G(X)\to H^n(X,A):E\mapsto f^*c$, where $E\cong f^*(EG)$.
+Using the Thom isomorphism and Gysin sequences, we can compute the cohomology of classifying spaces, which makes the classification of principal bundles
+
+Suppose we have $BG=K(A,n)$.
+Take $c\in H^n(BG,A)$ which corresponds to the identity of $\End(A)$ in the isomorphism
+\[H^n(BG,A)=H^n(K(A,n),A)\cong\Hom(H_n(K(A,n),\Z),A)=\Hom(\pi_n(K(A,n)),A)=\Hom(A,A)=\End(A),\]
+which follows from the Hurewicz theorem.
+Then, we can show that $c$ defines a natural isomorphism $c:\mathrm{Prin}_G\to H^n(-,A)$.
+In this case, we can say $c$ is the \emph{characteristic class} for $G$-bundles.
+\end{prb}
+
+\begin{enumerate}
+\item Real line bundles are classified by the first Stiefel-Whitney class $w_1\in H^1(BG,A)\cong Aw_1$, where
+\[G:=\GL(1,\R)=\Z/2\Z,\qquad A:=\Z/2\Z,\qquad BG=\RP^\infty=K(A,1).\]
+\item Complex line bundles are classified by the first Chern class $c_1\in H^2(BG,A)\cong Ac_1$, where
+\[G:=\GL(1,\C)=\T,\qquad A:=\Z,\qquad BG=\CP^\infty=K(A,2).\]
+\item Real vector bundles.
+\[G:=\GL(r,\R),\qquad A:=\Z/2\Z,\qquad BG=\mathrm{Gr}_r(\R^\infty).\]
+By Thom and Gysin, we can compute the cohomology ring
+\[H^*(BG,A)\cong A[w_1,\cdots,w_r].\]
+\end{enumerate}
+
+\begin{prb}[Thom isomorphism]
+Let $E$ be a real vector bundle of rank $r$ over a paracompact arc-connected space $B$.
+Let $A$ be a principal ideal domain.
+Then, there is unique $t(E)\in H^r(E,E_0,A)$ whose image under $H^r(E,E_0,A)\to H^r(E_b,(E_b)_0,A)\cong A$ is the unit for each $b\in B$.
+With this $t$, we have an isomorphism
+\[\cdot\smile t(E):H^i(E)\to H^{i+r}(E,E_0),\qquad i\ge0.\]
+The Euler class can be defined from Thom class.
+\end{prb}
+
+\section*{Exercises}
+
+\begin{prb}
+Let $G$ be a topological group, and $X$ be a free right $G$-space.
+\begin{parts}
+\item If the action is proper and the projection $X\to X/G$ admits local sections, then $X\to X/G$ is a principal $G$-bundle.
+\end{parts}
+\end{prb}
+
+\begin{prb}[Clutching functions]
+	
+\end{prb}
+
+\begin{prb}
+Suppose $F\to E\to B$ is a principal 
+\begin{parts}
+\item If $X$ is contractible, then $X\to$
+\end{parts}
+\end{prb}
+
+\begin{prb}[Group quotients]
+Sufficient conditions for principal bundles.
+Let $G$ be a Lie group and $M$ be a free right smooth $G$-manifold.
+\begin{parts}
+\item If $G$ is compact, then $M\to M/G$ is a principal $G$-bundle. (Gleason)
+\item The irrational slope provides a counterexample if $G$ is not compact.
+\item Suppose $M$ is a Lie group.
+If $G$ is a closed subgroup of $M$, then $M\to M/G$ is a principal $G$-bundle. (Samelson) In particular, if $N$ is a transitive left smooth $M$-manifold such that $G$ is the isotropy group, then $M\to N$ is a principal $G$-bundle.
+\end{parts}
+\end{prb}
+\begin{pf}
+(a) We need to check the local triviality from smoothness and the properness from compactness.
+\end{pf}
+
+\begin{prb}[Homogeneous spaces]
+They are all principal bundles.
+\begin{alignat*}{2}
+\rO(n-k)\to\rO(n)\to V_k(\R^n),&&\qquad\qquad\qquad\rU(n-k)\to\rU(n)\to V_k(\C^n),&\\
+\rO(n-k)\times\rO(k)\to\rO(n)\to G_k(\R^n),&&\rU(n-k)\times\rU(k)\to\rU(n)\to G_k(\C^n),&\\
+T(n)\cap\rO(n)\to\rO(n)\to F(\R^n),&&T(n)\cap\rU(n)\to\rU(n)\to F(\C^n),&\\
+&&T(n)\to\GL(n,\C)\to F(\C^n),&
+\end{alignat*}
+where $T(n)$ is the group of invertible upper triangular matrices.
+\[\SO(n)\to\SO^+(1,n)\to\H^n,\qquad\PSO(2)\to\PSL(2,\R)\to\H^2,\qquad ??\to\PSL(2,\C)\to\H^3,\]
+where $\PSL(2,\R)\cong\SO(1,2)^+$ is the modular group and $\PSL(2,\C)\cong\SO(1,3)^+$ is the restricted Lorentz group, also called the M\"obius group.
+\end{prb}
+
+\begin{prb}[Hopf fibration]
+A principal $S^1$-bundle $S^1\to S^3\to S^2$, where we see $S^1$ as the circle group.
+The Hopf fibrations are used in describing universal principal bundles off orthogonal or unitary groups.
+We have principal bundles:
+\begin{parts}
+\item The quaternionic construction gives $S^3\to S^7\to S^4$ and the octonianic construction gives $S^7\to S^{15}\to S^8$. Adams' theorem.
+\item $\rO(k)\to V_k(\R^n)\to G_k(\R^n)$. In particular, $\Z/2\Z\to S^n\to\RP^n$ for $k=1$.
+\item $\rU(k)\to V_k(\C^n)\to G_k(\C^n)$. In particular, $S^1\to S^{2n+1}\to\CP^n$ for $k=1$.
+\end{parts}
+\end{prb}
+
+
+Hopf fibration(real, complex, quaternionic, but not octonianic)
+
+In the category of smooth manifolds, if $f$ diffeomorphic, then $\tilde f$ diffeomorphic.
+
+
+
+\begin{prb}
+\begin{parts}
+\item $\R\to S^1$ for $\Z$.
+\item $S^\infty\to\CP^\infty$ for $\rU(1)$.
+\item $?\to(S^1)^{\vee n}$ for $F_n$.
+\item $S^\infty\to\RP^\infty$ for $\Z/2\Z$.
+\item $V_n(\R^\infty)\to\mathrm{Gr}_n(\R^\infty)$ for $\rO(n)$.
+\end{parts}
+\end{prb}
+
+
+
+
+
+\chapter{}
 
 \section{Obstruction theory}
 \section{Hurewicz theorem}
 $H_\bullet(\Omega S_n)$ and $H_\bullet(U(n))$
 Spin, Spin$_\C$ structure
-\section{Model categories}
-\begin{prb}[Model structures]
-Let $\cC$ be a category.
-A \emph{model structure} on $\cC$ is a triple $(W,\Cof,\Fib)$ of classes of morphisms of $\cC$ such that $W$ satisfies the two-out-of-three law, and $(\Cof\cap W,\Fib)$ and $(\Cof,\Fib\cap W)$ are weak factorization systems; lifting property and factorization property.
 
-A class $W$ of morphisms of $\cC$ is called a \emph{weak equivalences}.
-A morphism in $\Cof\cap W$ is called a \emph{acyclic cofibration}.
-\end{prb}
-
-
-Serre model structure and Hurewicz model structure on $\mathrm{Top}$.
-
-
-
-
-
-
-
-
-
-
-
-제가 
-하지만 만약 이런 좋은 환경에서 공부하지 못했더라면 이렇게 빨리 회의감을 느끼는 날이 오지는 못했을 것 같다는 생각이 듧니다.
-저는 다시 묻습니다. 무엇을 공부의 원동력으로 삼아야 할까요?
-과거의 제가 남을 이기기 위해 공부하기 시작했다면, 이제는 
-
-
-뛰어난 사람들과 뒤처지는 사람들을 나와 비교하지 않게 되고 싶다.
-많은 사람들을 사랑할 수 있게 되고 싶다.
-싫은 소리를 하는 방법에 대해 알게 되고 싶다.
-인생의 유의미하다고 생각되는 일을 같이 해나갈 소중한 사람들을 만나고 싶다.
-내 스스로가 어떤 위치에 있는지 자꾸 자기검열을 하게 된다.
-
-
-
-
-
-
-
-
-
-\chapter{K-theory}
-
-bott periodicity
-Hopf invariant
-
-
-\chapter{Cobordisms}
 
 
 
 \chapter{Simplicial methods}
+
+
+
+
+
+
+
 
 
 
@@ -194,9 +532,40 @@ a symmetric monoidal smash product and an internal function object.
 
 
 
-\section{Generalized homology theory}
 
-A \emph{generalized reduced cohomology theory on pointed CW complexes} is a sequence of functors $\tilde E_q:\mathbf{hCW}_*\to\mathbf{Ab}$ for $q\in\Z$ which is exact and additive, and satisfies the suspension axiom.
+\part{Generalized cohomology theories}
+
+
+\chapter{}
+\begin{prb}
+
+Note that $\mathrm{hSpc}=\mathrm{hKan}=\mathrm{hCW}$ is triangulated.
+
+
+\end{prb}
+\begin{prb}[Generalized cohomology theories]
+A \emph{generalized cohomology theory}, or simply a \emph{cohomology theory}, is defines as a homotopy invariant product-preserving contravariant functor $E^\bullet:\mathrm{Spc}_*^\mathrm{op}\to\mathrm{grAb}$, such that
+\begin{enumerate}[(i)]
+\item a cofiber sequence is mapped to an exact sequence,\hfill(half-exact)
+\item a natural isomorphism $\sigma:E^{\bullet+1}\circ\Sigma\to E^\bullet$ exists, called the \emph{suspension isomorphism}.\hfill(long exact)
+\end{enumerate}
+A cohomology theory is called \emph{multiplicative} if....
+
+$E^1(\Sigma X)=E^0(X)$.
+
+$K_0(\Sigma A)=K_1(A)$.
+\end{prb}
+
+
+
+
+
+Two motivations for spectra:
+\begin{itemize}
+\item representation of cohomology theories
+\item suspension stabilization
+\end{itemize}
+
 
 \begin{prb}
 Let $X$ and $Y$ be pointed CW complexes.
@@ -204,6 +573,7 @@ Let $X$ and $Y$ be pointed CW complexes.
 \item Suppose $Y$ is $(n-1)$-connected with non-degenerate base point for some $n$. Then, $[X,Y]\to[\Sigma X,\Sigma Y]$ is surjective if $\dim X\le 2n-1$, and bijective if $\dim X\le2n-2$.
 \end{parts}
 \end{prb}
+
 
 
 \begin{prb}
@@ -219,6 +589,8 @@ A \emph{ring spectrum} is a spectrum together with a
 \item $E$ is an $\Omega$-spectrum if and only if $[-,E_n]$ defines a generalized reduced cohomology theory on based CW complexes.
 \end{parts}
 \end{prb}
+
+
 
 
 Sphere spectra, Suspension spectra
@@ -238,5 +610,26 @@ spectral sequences
 orthogonal spectra
 abstract homotopy theory
 Kervaire invariant problem
+
+
+
+
+
+
+\chapter{K-theory}
+
+
+\begin{prb}[K-theory of locally compact Hausdorff spaces]
+compactly supported?
+one-point compactification?
+representability?
+
+What relations do we have?
+\end{prb}
+
+\chapter{Cobordisms}
+
+
+
 
 \end{document}

@@ -136,6 +136,24 @@ Let $\eta_\e$ be a standard mollifier.
 \item If $\frac ld-\frac1q<\frac kd-\frac1p$, then the embedding $W^{k,p}(\Omega)\hookrightarrow W^{l,q}(\Omega)$ is a compact.
 \end{parts}
 \end{prb}
+\begin{pf}[Sketch]
+Take an approximate unit $e_n\in C_c^1(\R^d)$ of $L^1(\R^d)$ and let $T_n:=e_n*-$.
+First we prove
+\[T_n:L^1(\R^d)\to C_0(\R^d)\]
+is compact for each $n$ using the Arzela-Ascoli theorem.
+Then, the composition
+\[W^{1,1}(\R^d)\to L^1(\R^d)\xrightarrow{T_n}C_0(\R^d)\to C_0(\Omega)\]
+is also compact.
+Since $\Omega$ is bounded, we have $C_0(\Omega)\to L^1(\Omega)$.
+Now we have
+\[T_n:W^{1,1}(\R^d)\to L^1(\Omega)\]
+that is compact for each $n$.
+We can show that it converges to the embedding in norm by some estimates, so the restriction $W^{1,1}(\R^d)\to L^1(\Omega)$ is compact.
+Since $\Omega$ has the Lipschitz boundary, we have $W^{1,1}(\Omega)\to W^{1,1}(\R^d)$.
+Therefore, the embedding $W^{1,1}(\Omega)\to L^1(\Omega)$ is compact.
+\end{pf}
+
+
 \begin{pf}
 (a)
 The sequence $(\eta_\e*u_n)_n$ is pointwise bounded from
@@ -147,14 +165,14 @@ By the Arzela-Ascoli theorem, since $\bar\Omega$ is compact, there is a subseque
 (b)
 Write
 \begin{align*}
-\eta_\e*u_n(x)-u_n(x)
-&=\int\e^{-d}\eta(\e^{-1}(x-y))(u_n(y)-u_n(x))\,dy\\
-&=\int\eta(y)(u_n(x-\e y)-u_n(x))\,dy\\
-&=\int\eta(y)\int_0^1\dd{t}(u_n(x-t\e y))\,dt\,dy\\
-&=\int\eta(y)\int_0^1(-\e y)\cdot\nabla u_n(x-t\e y)\,dt\,dy.
+\eta_\e*u(x)-u(x)
+&=\int\e^{-d}\eta(\e^{-1}(x-y))(u(y)-u(x))\,dy\\
+&=\int\eta(y)(u(x-\e y)-u(x))\,dy\\
+&=\int\eta(y)\int_0^1\dd{t}(u(x-t\e y))\,dt\,dy\\
+&=-\int\e y\eta(y)\int_0^1\nabla u(x-t\e y)\,dt\,dy.
 \end{align*}
-Then, since $|y|\ge1$ if $\eta(y)>0$,
-\[\|\eta_\e*u_n-u_n\|_{L^1(\R^d)}\le\e\int\eta(y)\int_0^1\int|\nabla u_n(x-t\e y)|\,dx\,dt\,dy=\e\|\nabla u_n\|_{L^1(\R^d)}.\]
+Then, since $|y|\le1$ if $\eta(y)>0$,
+\[\|\eta_\e*u-u\|_{L^1(\Omega)}\le\e\int\eta(y)\int_0^1\int|\nabla u(x-t\e y)|\,dx\,dt\,dy=\e\|\nabla u\|_{L^1(\R^d)}.\]
 
 (c)
 Consider the interpolation

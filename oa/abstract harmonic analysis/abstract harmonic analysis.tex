@@ -1,0 +1,420 @@
+\documentclass{../../large}
+\usepackage{../../ikhanchoi}
+
+
+\begin{document}
+\title{Abstract Harmonic Analysis}
+\author{Ikhan Choi}
+\maketitle
+\tableofcontents
+
+
+
+\part{}
+
+
+
+
+\chapter{Locally compact groups}
+
+
+\section{}
+
+\begin{prb}[Non-$\sigma$-finite measures]
+Following technical issues are important
+\begin{parts}
+\item The Fubini theorem
+\item The Radon-Nikodym theorem
+\item The dual space of $L^1$ space
+\end{parts}
+\end{prb}
+
+\begin{prb}[Existence of the Haar measure]
+\end{prb}
+
+\begin{prb}[Left and right uniformities]
+\end{prb}
+
+\begin{prb}[Modular functions]
+\end{prb}
+
+\begin{prb}[Uniformly continuous functions]
+$G$ acts on $C_{lu}(G)$ and $L^1(G)$ continuously with respect to the point-norm topology.
+A function on $G$ is left uniformly continuous if and only if it is written as $f*x$ for some $f\in L^1(G)$ and $x\in L^\infty(G)$.
+$g\in C_c(G)$ is two-sided uniformly continuous.
+\end{prb}
+
+
+\begin{prb}[Convolution Hilbert algebra]
+Let $G$ be a locally compact group.
+Since $G$ is a locally compact Hausdorff space and the left Haar measure is a faithful semi-finite lower semi-continuous weight on the commutative C$^*$-algebra $C_0(G)$, we have a corresponding semi-cyclic representation $m:C_0(G)\to B(L^2(G))$ which is normally extended to a von Neumann algebra $L^\infty(G)$ with $m(L^\infty(G))=m(C_0(G))''$, and $L^1(G)$ is identified with the predual $L^\infty(G)_*$.
+
+By the left Haar measure, $C_c(G)$ has a natural non-commutative left Hilbert algebra structure
+\[(f*g)(s):=\int f(t)g(t^{-1}s)\,dt,\qquad\<f,g\>:=\int\bar{g(s)}f(s)\,ds,\qquad f^\sharp(s):=\nabla(s^{-1})\bar{f(s^{-1})},\]
+where $\nabla$ is the modular function for $G$, and it induces the regular representation $\lambda:C_c(G)\to B(L^2(G))$.
+By the group structure of $G$, the Hilbert algbera $C_c(G)$ is also a commutative counital multiplier Hopf $*$-algebra 
+\[(fg)(s):=f(s)g(s),\qquad\Delta f(s,t)=f(st),\qquad f^*(s):=\bar{f(s)},\qquad\kappa f(s)=f(s^{-1}).\]
+We start from this structures.
+
+
+They satisfy a compatibility condition $\<fg,h\>=\<f,g^*h\>$.
+
+With the integral notation $\lambda(f)=\int\lambda_sf(s)\,ds$, we can write
+
+From now on, we are going to exclude any measure theory and the theory of non-commutative $L^p$ spaces.
+First, we have the completion $H=:L^2(G)$.
+Consider two representations
+\[\lambda:(C_c(G),*,^\sharp)\to B(L^2(G)),\qquad m:(C_c(G),\cdot,^*)\to B(L^2(G)).\]
+\begin{parts}
+\item $\lambda$ is well-defined.
+\item $m$ is well-defined.
+\end{parts}
+\end{prb}
+\begin{pf}
+The multiplication representation $m$ is well-defined because for $f\in C_c(G)$ we have $f^*f\in C_c(G)\subset L^2(G)$ so
+\[\|m(f)g\|^2=\<fg,fg\>=\<f^*fg,g\>,\qquad g\in C_c(G).\]
+\end{pf}
+
+
+
+
+
+
+
+
+\section{}
+
+We use the notation $L^p(G)$ for the non-commutative $L^p$-spaces constructed with the left Haar measure on $G$, which is a faithful semi-finite normal weight of $L^\infty(G)$.
+The predual of $L^\infty(G)$ can be identified with $L^1(G)$.
+The regular representation on $L^2(G)$ is the Gelfand-Naimark-Segal representation associated with the left Haar measure.
+
+Density of $C_c(G)$?
+
+\begin{prb}[Convolution algebra]
+Let $G$ be a locally compact group.
+Then, $L^1(G)$ is a hermitian Banach $*$-algebra such that
+\[(f*g)(x):=(f\otimes g)\Delta(x),\qquad f,g\in L^1(G),\ x\in L^\infty(G).\]
+Importance of $L^1$ instead of $C_c$: representation equivalence and predual.
+\begin{parts}
+\item $L^1(G)$ has a two-sided approximate unit in $C_c(G)$.
+\item $\alpha:G\to\Aut(L^1(G))$ is point-norm continuous.
+\item $\lambda:G\to U(L^2(G))$ and $\lambda:L^1(G)\to B(L^2(G))$ are strongly continuous.
+\item Convolution inequalities.
+\item Representation theory equivalence.
+\end{parts}
+\begin{pf}
+Let $(U_\alpha)$ be a directed set of open neighborhoods of the identity $e$ of $G$.
+By the Urysohn lemma, there is $e_\alpha\in C_c(U)^+$ such that $\|e_\alpha\|_1=1$ for each $\alpha$.
+We claim that $e_\alpha$ is a two-sided approximate unit for $L^1(G)$.
+Suppose $g\in C_c(G)$, which is two-sided uniformly continuous.
+For any $\e>0$, take $\alpha_0$ such that $\|g-\lambda_sg\|<\e$ and $\|g-\rho_sg\|<\e$ for all $s\in U_\alpha$ for $\alpha\succ\alpha_0$.
+Then, we have
+\begin{align*}
+\|e_\alpha*g-g\|_1
+&=\int|e_\alpha*g(t)-g(t)|\,dt\le\iint e_\alpha(s)|g(s^{-1}t)-g(t)|\,ds\,dt\\
+&=\int_{U_\alpha}e_\alpha(s)\|\lambda_sg-g\|_1\,ds<\e\int e_\alpha(s)\,ds\le\e,
+\end{align*}
+and
+\begin{align*}
+\|g*e_\alpha-g\|_1
+&=\int|g*e_\alpha(s)-g(s)|\,ds\le\iint|g(t)-g(s)|e_\alpha(t^{-1}s)\,dt\,ds\\
+&=\iint|g(t)-g(ts)|e_\alpha(s)\,dt\,ds=\int\|g-\rho_sg\|_1e_\alpha(s)\,ds<\e\int e_\alpha(s)\,ds\le\e,
+\end{align*}
+and they imply $\lim_\alpha\|e_\alpha*g-g\|_1=\lim_\alpha\|g*e_\alpha-g\|_1=0$.
+We can approximate $f\in L^1(G)$ with compactly supported continuous functions by the $\e/3$ argument.
+\end{pf}
+
+\end{prb}
+
+Note that we have
+\begin{align*}
+|\<\lambda(\xi)\eta,\zeta\>|^2
+&=|\iint\xi(t)\eta(t^{-1}s)\bar{\zeta(s)}\,ds\,dt|^2\\
+&\le\iint|\xi(t)||\eta(t^{-1}s)|^2\,ds\,dt\cdot\iint|\xi(t)||\zeta(s)|^2\,ds\,dt\\
+&=\|\xi\|_1^2\|\eta\|_2^2\|\zeta\|_2^2
+\end{align*}
+and
+\begin{align*}
+|\<\rho(\xi)\eta,\zeta\>|^2
+&=|\iint\eta(t)\xi(t^{-1}s)\bar{\zeta(s)}\,ds\,dt|^2\\
+&\le\iint|\xi(t^{-1}s)||\eta(t)|^2\,ds\,dt\cdot\iint|\xi(t^{-1}s)||\zeta(s)|^2\,ds\,dt\\
+&=\|\xi\|_1\|F\xi\|_1\|\eta\|_2^2\|\zeta\|_2^2
+\end{align*}
+imply
+\[\|\lambda(\xi)\|_{2\to2}\le\|\xi\|_1,\qquad\|\rho(\xi)\|_{2\to2}\le\sqrt{\|\xi\|_1\|F\xi\|_1}.\]
+The equalities do not hold, consider $\|\lambda(\xi)\|=\|\hat\xi\|_\infty$ if $G=\R$.
+
+
+
+
+
+\begin{prb}[Riemann sum approximation]
+$\lambda(\delta_s)=\lambda_s$, $\<\delta_s^{\frac12},\delta_t^{\frac12}\>=\delta_{s,t}$
+
+For $f\in L^1(G)$,
+\[f=\int_G\delta_sf(s)\,ds,\qquad \lambda(f)=\int_G\lambda_sf(s)\,ds.\]
+
+For $\xi\in L^2(G)$,
+\[\xi=\int_G\delta_s^{\frac12}\xi(s)\,ds,\qquad\<\xi,\eta\>=\iint_{G^2}\bar{\eta(t)}\xi(s)\<\delta_s^{\frac12},\delta_t^{\frac12}\>\,ds\,dt.\]
+\end{prb}
+
+
+
+\section{}
+
+
+
+\begin{prb}[Regular representation]
+Let $G$ be a locally compact group.
+Associated to the Hilbert algebra $C_c(G)$, we have a standard form $(W_r^*(G),L^2(G),J,P)$, where $W_r^*(G):=\lambda(C_c(G))''\subset B(L^2(G))$ is called the \emph{group von Neumann algebra} of $G$.
+
+\[\begin{tikzcd}
+M(G) \ar{r}{\lambda} & W_r^*(G) \\
+L^1(G) \ar{r}{\lambda}\ar{u} & C_r^*(G) \ar{u}.
+\end{tikzcd}\]
+\begin{parts}
+\item
+\end{parts}
+\end{prb}
+\begin{pf}
+
+\end{pf}
+
+
+\begin{prb}[Fourier algebras]
+Let $G$ be a locally compact group.
+The \emph{Fourier algebra} is the algebra $A(G)$ of \emph{matrix coefficients} of the regular representation $\lambda:G\to U(L^2(G))$, that is, the linear span of functions $s\mapsto\<\lambda(s)\xi,\xi\>$ for $\xi\in L^2(G)$.
+Since every normal state of $W_r^*(G)$ is a vector state in the regular representation, the Fourier algebra also can be defined as the image of the adjoint $\lambda^*:W_r^*(G)_*\to C_0(G)$.
+\[\begin{tikzcd}
+A(G) \ar{r}\ar{d} & C_0(G) \ar{d}\\
+C_r^*(G)^* \ar{r}{\lambda^*} & L^\infty(G).
+\end{tikzcd}\]
+\begin{parts}
+\item $A(G)$ is a dense Banach subalgebra of $C_0(G)$ such that $A(G)\to W_r^*(G)_*:\eta^*\xi\mapsto\omega_{\xi,\eta}$ is an isometric isomorphism.
+\end{parts}
+\end{prb}
+\begin{pf}
+
+\end{pf}
+
+
+\begin{prb}[Fourier-Stieltjes algebras]
+Let $G$ be a locally compact group.
+\begin{parts}
+\item On $B(G)_1$, the compact open topology is stronger than the weak$^*$ topology.
+\item On $B(G)_1$, the strict topology with respect to $A(G)$ is equivalent to the weak$^*$ topology.
+\end{parts}
+\end{prb}
+\begin{pf}
+
+\end{pf}
+
+
+\begin{prb}[Plancherel theorem]
+With the left Haar measure on a Banach $*$-algebra $L^1(G)$ or $M(G)$, we want to construct a faithful semi-finite normal weight called the \emph{Planceherel weight}, and describe the corresponding semi-cyclic representation and left Hilbert algebra for $C^*_r(G)$ and $W^*_r(G)$.
+
+By analyze the decomposition of the canonical representation of $C_r^*(G)$ and $W_r^*(G)$ in $B(L^2(G))$....?
+Then, we can consider a unitary operator from $L^2(G)$ to the square integrable section space of a bundle on $\hat G$...
+
+\end{prb}
+\begin{pf}
+
+\end{pf}
+
+\begin{prb}[Locally compact abelian groups]
+Let $G$ be a locally compact abelian group.
+Since every irreducible representation of a locally compact abelian group is one-dimensional, we introduce the notation $\<s,p\>=p_{s^{-1}}\in\T$.
+The \emph{Fourier transform} of an integrable function $f\in L^1(\hat G)$ is defined as
+\[\cF f(p):=\int_G\bar{\<s,p\>}f(s)\,ds,\qquad p\in\hat G,\]
+and the \emph{Fourier-Stieltjes transform} of a finite complex measure $\mu\in M(G)$ is defined as
+\[\cF\mu(p):=\int_G\bar{\<s,p\>}\,d\mu(s),\qquad p\in\hat G.\]
+
+\begin{parts}
+\item The compact open topology of $C(G)$ and the weak$^*$ topology of $L^\infty(G)$ coincide on $\hat G$, which provides a locally compact abelian group.
+\item The canonical homomorphism $\Phi:G\to\hhat G$ defined such that $\Phi(s)(p)=\<s,p\>$ for $s\in G$ and $p\in\hat G$ is a topological isomorphism.
+\end{parts}
+\end{prb}
+\begin{pf}
+
+(b)
+Consider a commutative diagram of topological $*$-algebras
+\[\begin{tikzcd}
+M(G) \rar & W_r^*(G) \rar{(3)} & L^\infty(\hat G) \\
+L^1(G) \rar\uar & C_r^*(G) \rar{(2)}\uar & C_0(\hat G) \uar \\
+L^1(G) \rar\uar[equal] & C^*(G) \rar{(1)}\uar & C_0(\hat G) \uar[equal]
+\end{tikzcd}\]
+of injective densely valued $*$-homomorphisms.
+The bijectivity of (1) follows from the equivalence between representation theories of $G$ and $C^*(G)$ and the Gelfand duality.
+The existence of (2) follows from the amenability of $G$.
+The isomorphism (3) is constructed by taking double commutant in the Plancherel isomorphism $B(L^2(G))\to B(L^2(\hat G))$.
+Note that the third and first rows are respectively the Fourier transform and Fourier-Stieltjes transform.
+
+Putting $\hat G$ instead of $G$ on the third row and taking the dual for the first row, we have tow injective densely valued $*$-homomorphisms
+\[L^1(\hat G)\to C_0(\hhat G),\qquad L^1(\hat G)\to C_0(G).\]
+Then, the restriction map $C_0(\hhat G)\to C_0(G)$ along $\Phi:G\to\hhat G$ is obtained.
+The surjectivity is clear because it is a $*$-homomorphism between C$^*$-algebras with dense range.
+Since $L^1(G)$ is dense in $C_0(\hat G)$ via Fourier transform, and $C_0(\hat G)$ is weakly $^*$ dense in $B(\hat G)$, so $M(G)$ is weakly$^*$ dense in $M(\hhat G)\cong B(\hat G)$, which means that $C_0(\hhat G)\to C_0(G)$ is injective.
+\end{pf}
+
+
+
+
+
+\begin{prb}[Absorption principle]
+Let $G$ be a locally compact group.
+
+\[w:\]
+
+
+The \emph{structure operator} of $G$
+ is an oeprator $w\in U(L^2(G\times G))$ defined such that $w\xi(s,t):=\xi(s,st)$, or $w\in L^\infty(G)\bar\otimes W_r^*(G)$ such that $\Ad w(\lambda_s\otimes\lambda_s):=\lambda_s\otimes1$.
+If $w(x\otimes x)w^*=x\otimes1$, then $x=\lambda_s$ for some $s\in G$.
+\begin{parts}
+\item $\lambda\otimes u$ and $\lambda\otimes1$ are unitarily equivalent. It is called the \emph{Fell absorption principle}.
+\end{parts}
+\end{prb}
+\begin{pf}
+
+The Fell absorption principle states that the composition of equivariant operators
+\[\begin{tikzcd}[row sep=tiny]
+L^2(G)\otimes H \rar{\Delta\otimes1} & L^2(G)\otimes L^2(G)\otimes H \rar{1\otimes?} & L^2(G)\otimes H\\
+\lambda\otimes 1 \rar[mapsto] & \lambda\otimes\lambda\otimes1 \rar[mapsto] & \lambda\otimes u
+\end{tikzcd}\]
+is unitary.
+
+The structure operator is a special case of the Fell absorption operator
+\[\begin{tikzcd}[row sep=tiny]
+L^2(G)\otimes L^2(G) \rar{\Delta\otimes1} & L^2(G)\otimes L^2(G)\otimes L^2(G) \rar{1\otimes?} & L^2(G)\otimes L^2(G)\\
+\lambda\otimes1 \rar[mapsto] & \lambda\otimes\lambda\otimes1 \rar[mapsto] & \lambda\otimes\lambda
+\end{tikzcd}\]
+\end{pf}
+
+
+
+\chapter{}
+
+
+\section{Spectral synthesis}
+
+
+\chapter{}
+
+
+
+\part{Topological quantum groups}
+
+
+\chapter{Bialgebras}
+\section{}
+Multiplier Hopf $*$-algebras
+
+Algebraic quantum groups
+
+
+idempotent ring assumption
+
+\section{}
+\begin{prb}
+A \emph{counital coalgebra} is a vector space $A$ over a field equipped with
+\begin{enumerate}[(i)]
+\item a unital homomorphism $\delta:A\to A\otimes A$ called the \emph{comultiplication} such that $(\delta\otimes\id)\Delta=(\id\otimes\delta)\Delta$,
+\item a homomorphism $\e:A\to\C$ called the \emph{counit} such that $(\e\otimes\id)\Delta=(\id\otimes\e)\Delta$.
+\end{enumerate}
+
+A \emph{bialgebra} if comultiplication is an algebra homomorphism.
+
+
+A \emph{Hopf algebra} is a biunital bialgebra $A$ over a field together with a linear map $S:A\to A$, called the \emph{antipode}, satisfying
+\[\nabla(S\otimes\id)\Delta=\eta\e=\nabla(\id\otimes S)\Delta.\]
+A morphism between Hopf algebras is a linear map preserving multiplication, unit, comultiplication, counit, and antipode.
+
+The convolution algebra is a bialgebra for a monoid, and is a Hopf algebra for a group.
+\end{prb}
+
+matrix coefficients, coordinate algebra.
+universal enveloping algebra.
+$q$-deformations of the coordinate Hopf algebras $\cO(G)$ of a semi-simple complex Lie group, and the universal enveloping algebra $U(\fg)$ of a semi-simple complex Lie algebra.
+
+If $A$ is a coalgebra and $B$ is an algebra, then $\Hom_\C(A,B)$ becomes an algebra with convolution.
+If $A$ is a coalgebra, then $A^*$ is an algebra.
+If $A$ is a bialgebra, then $A$ is a bimodule over $A^*$.
+
+Duality for finite-dimensional Hopf ($*$-)algebras.
+dual pairing
+
+
+
+
+
+matrix coefficients for compact groups
+regular functions for affine algebraic groups
+
+
+
+
+
+\chapter{Compact quantum groups}
+
+\begin{prb}[Compact quantum groups]
+A \emph{compact quantum group} $\G=(C(\G),\Delta)$ is a bisimplifiable C$^*$-bialgebra $C(\G)$.
+It is not in general a Hopf algebra.
+\end{prb}
+
+
+\[C_0(G),\quad L^\infty(G),\qquad C^*(G),\quad C_r^*(F),\quad W_r^*(G)\]
+\[A(G), B(G)\]
+
+For a compact group $G$, $C(G)$ has a coalgebra structure induced from $C(G)\subset L^1(G)$.
+
+
+\begin{prb}
+A \emph{compact algebraic quantum group} is a Hopf $*$-algebra with a positive integral.
+For a compact quantum group $\G$, the subspace $\C(\G)$ spanned by the matrix coefficients of corepresentations is an algebraic quantum group.
+\end{prb}
+
+
+A \emph{locally compact quantum group} is a von Neumann bialgebra admitting left-invariant and right-invariant faithful semi-finite normal weights.
+A \emph{reduced locally compact quantum group} is a C$^*$-bialgebra such that 8.1.17.
+
+
+Probably, a Hopf-von Neumann algebra in Enock-Schwartz is just a von Neumann bialgebra in Timmerman, a coinvolutive Hopf-von Neumann algebra in Enock-Schwartz is just a Hopf-von Neumann algebra in Timmerman.
+Since a locally compact quantum group has counit and antipode as unbounded operators, I do not know if I can say there is a Hopf algebra structure.
+
+
+\section{Kac algebras}
+
+
+
+
+\chapter{Locally compact quantum groups}
+\section{Multiplicative unitaries}
+
+
+
+
+
+
+
+
+
+
+\part{Representation categories}
+
+
+\chapter{Representations of compact groups}
+\section{Peter-Weyl theorem}
+\section{Tannaka-Krein duality}
+\section{Mackey machine}
+Example of non-compact Lie groups,
+Wigner classification
+
+
+
+\end{document}
+
+
+
+
+
+
+
