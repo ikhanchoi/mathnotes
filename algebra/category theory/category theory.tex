@@ -33,12 +33,6 @@ disjoint union category
 comma category(slice category, morphism category)
 
 
-
-\chapter{Universal property}
-
-\section{Construction}
-products, equalizers, pullbacks
-
 \section{Representable functors}
 
 Yoneda embedding gives fully faithful functors $h:\cC\to\mathrm{PSh}(\cC)$ and $k:\cC^{\mathrm{op}}\to\mathrm{coPSh}(\cC)$.
@@ -84,8 +78,13 @@ The correspondences $\eta\mapsto x$ and $x\mapsto\eta$ are inverses of each othe
 
 
 
-
 \chapter{Limits}
+
+\section{Construction}
+products, equalizers, pullbacks
+
+
+
 preservation, reflection, creation
 completeness
 functoriality
@@ -98,13 +97,7 @@ product-preservig
 mono-preserving
 
 
-
-
-
-
-
-
-\part{}
+filtered limits
 
 
 \chapter{}
@@ -113,6 +106,12 @@ mono-preserving
 \section{Monads}
 
 \section{Kan extensions}
+
+
+\part{}
+
+
+\chapter{}
 
 
 
@@ -192,6 +191,8 @@ A pointed, Baar-exact, protomodular, with binary coproudcts.
 
 \begin{prb}[Abelian categories]
 An \emph{abelian category} is a $\Ab$-enriched category which is finitely bicomplete and satisfies the first isomorphism theorem.
+
+PULLBACK/PUSHOUT, ZERO, EXACT!
 \begin{parts}
 \item A category is abelian if and only if it is additive and exact.
 \end{parts}
@@ -229,7 +230,28 @@ The category of unital rings is not semi-abelian but protomodular.
 
 
 
+\section{}
 
+How to manipulate triangles and squares!
+We use the following definitions: a triangle is a complex of two morphisms, and a square is a commutative square.
+A square is just a triangle $A\to B\oplus C\to D$.
+
+taking kernels
+
+taking pullbacks
+
+commutativity and exactness are stable under epi-mono factorization.
+
+\[\begin{tikzcd}[sep=small]
+&& B\rar\dar & C \rar & 0\\
+0 \rar & A' \rar & B' &&
+\end{tikzcd}\]
+
+\[\begin{tikzcd}[sep=small]
+&&& KC \dar &\\
+&& B\rar\dar & C \rar & 0\\
+0 \rar & A' \rar & B' &&
+\end{tikzcd}\]
 
 
 

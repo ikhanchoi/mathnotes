@@ -168,6 +168,30 @@ For an abelian normal subgroup $A$ of $G$, a homomorphism $G/C_G(A)\to\Aut(A)$ f
 If it has trivial image, then $A$ is central.
 \end{prb}
 
+
+
+\subsection*{Group cohomology}
+
+The category of $G$-modules can be identified with the category of $\Z[G]$-modules, which is abelian.
+
+
+Let $M$ be a $G$-module.
+The \emph{invariant submodule} of $M$ is denoted by $M^G$.
+Sending $M$ to $M^G$ yields a functor $\mathrm{Grp}\to\mathrm{Ab}$, which is left exact but not right exact in general.
+Then we can consider the right derived functor to define cohomology groups.
+Let us do this concretely.
+
+
+Let $M$ be a $G$-module.
+Define $C^n(G,M)$ be the abelian group of all functions $G^n\to M$.
+The coboundary homomorphism $d:C^n(G,M)\to C^{n+1}(G,M)$ is defined such that
+\[d\f(g_1,\cdots,g_{n+1}):=g_1\f(g_2,\cdots,g_{n+1})+\sum_{i=1}^n(-1)^i\f(g_1,\cdots,g_{i-1},g_ig_{i+1},g_{i+2},\cdots,g_{n+1})+(-1)^{n+1}\f(g_1,\cdots,g_n).\]
+
+\[H^0(G,M)=M^G=\Hom_{\Z[G]}(\Z,M).\]
+For $x\in C^0(G,M)=M$, $dx(g)=gx-x$.
+For $\f\in C^1(G,M)$, $d\f(g,h)=g\f(h)-\f(gh)+\f(g)$.
+
+
 \section{Subnormal series}
 
 Holder program
@@ -472,118 +496,60 @@ $\#$ of groups&51&52&267\\
 
 
 
-\part{Field extentsions}
+\part{Field theory}
 
-\chapter{Algebraic extensions}
+\chapter{Field extensions}
 
-\section{Fields}
-\begin{prb}[Field homomorphisms]
-\end{prb}
-\begin{prb}[Vector space structures and degree]
-\end{prb}
-\begin{prb}[Finite extensions]
-\end{prb}
-\begin{prb}[Simple extensions]
-\end{prb}
+
+
+\section{Algebraic extensions}
+
+\begin{prb}[Field extensions]
+Vector space structures and degree,
+Finite extensions,
+Simple extensions,
 straightedge and compass construction
+\end{prb}
 
-
-
-\section{Algebraic elements}
 \begin{prb}[Algebraic elements]
-Let $E/F$ be a field extension.
-An element $\alpha\in E$ is called \emph{algebraic} over $F$ if there is a non-zero polynomial $f\in F[x]$ such that $f(\alpha)=0$.
-If $\alpha$ is not algebraic over $F$, we call it \emph{transcendental} over $F$.
-For $\alpha\in E$, the following statements are all equivalent:
+Let $E/F$ be a field extension and let $\alpha\in E$.
+Let $I(\alpha)$ be the set of all $f\in F[x]$ such that $f(\alpha)=0$.
+It is equal to the kernel of the evaluation homomorphism $\ev_\alpha:F[x]\to F[\alpha]:f\mapsto f(\alpha)$, which is surjective.
+We say $\alpha$ is \emph{algebraic} over $F$ if $I(\alpha)$ contains a non-zero polynomial, and call it \emph{transcendental} over $F$ if it is not.
+
+If $\alpha$ is algebraic over $F$, then since the quotient $F[x]/I(\alpha)\cong F[\alpha]$ is an integral domain and $F[x]$ is a principal ideal domain, the non-zero prime ideal $I(\alpha)$ is maximal so that it has a unique monic irreducible generator $\mu_{\alpha,F}\in F[x]$, called the \emph{minimal polynomial} of $\alpha$ over $F$.
+
+Two algebraic elements $\alpha,\beta\in E$ over $F$ are said to be \emph{conjugate} over $F$ if they share the common minimal polynomial.
 \begin{parts}
-\item The element $\alpha$ is algebraic over $F$.
-\item The ring $F[\alpha]$ is a field.
-\item The equality $F(\alpha)=F[\alpha]$ holds.
-\item The simple extension $F(\alpha)/F$ is finite.
-\end{parts}
-\end{prb}
-\begin{pf}
-(a)$\impl$(b)
-Note $F[\alpha]=F$ is a field if $\alpha=0$.
-Let $\alpha\ne0$.
-Define a ring homomorphism
-\[\eval_\alpha:F[x]\to F[\alpha]:f(x)\mapsto f(\alpha),\]
-which is called \emph{evaluation}.
-The kernel of $\eval_\alpha$ contains $\alpha$, hence is non-zero, and it is a prime ideal because the quotient
-\[F[x]/\ker(\eval_\alpha)\cong\im(\eval_\alpha)=F[\alpha]\]
-is an integral domain.
-Since $F[x]$ is a principal ideal domain so that every non-zero prime ideal is maximal, the quotient $F[\alpha]$ is a field.
-
-(b)$\impl$(c)
-We clearly have $F[\alpha]\subset F(\alpha)$.
-Since $F(\alpha)$ is defined as the intersection of all subfields of $E$ containing $F$ and $\alpha$, $F(\alpha)\subset F[\alpha]$.
-
-(c)$\impl$(a)
-There is $g\in F[x]$ such that $\alpha^{-1}=g(\alpha)$.
-Then, $f\in F[x]$ defined by $f(x)=xg(x)-1$ satisfies $f(\alpha)=0$.
-
-(a),(c)$\impl$(d)
-Let $f\in F[x]$ be non-zero with $f(\alpha)=0$.
-For an element $g(\alpha)$ of $F(\alpha)=F[\alpha]$ for some $g\in F[x]$, there are $q,r\in F[x]$ such that $g=qf+r$ and $\deg r<\deg f$ by the Euclidean algorithm, so $g(\alpha)=r(\alpha)$.
-Since $r(\alpha)$ is a linear combination of $\{1,\alpha,\cdots,\alpha^{\deg f-1}\}$ over $F$, we get $[F(\alpha):F]\le\deg f$.
-
-(d)$\impl$(a)
-Since $[F(\alpha):F]<\infty$, we can find a linearly dependent finite subset of a set $\{1,\alpha,\alpha^2,\cdots\}\subset F(\alpha)$ over $F$.
-The coefficients on the linear dependency relation construct the polynomial.
-\end{pf}
-
-\begin{prb}[Minimal polynomial]
-Let $E/F$ be a field extension and $\alpha\in E$ is algebraic.
-A monic irreducible polynomial $\mu_{\alpha,F}\in F[x]$ satisfying 
-\[\mu_{\alpha,F}(\alpha)=0\]
-is called the \emph{minimal polynomial of $\alpha$ over $F$}.
-\begin{parts}
-\item The minimal polynomial is unique.
-\item $F(\alpha)\cong F[x]/(\mu_{\alpha,F})$.
-\item $[F(\alpha):F]=\deg\mu_{\alpha,F}$.
-\end{parts}
-\end{prb}
-\begin{pf}
-(b)
-The kernel of $\eval_\alpha:F[x]\to F(\alpha)$ is characterized as the principal ideal generated by $\mu_{\alpha,F}$, so we find the isomorphism $F[x]/(\mu_{\alpha,F})\cong F(\alpha)$.
-
-Now we claim the dimension of $F[x]/(f)$ over $F$ is the degree of $f\in F[x]$.
-It is enough to show $\{1,x,\cdots,x^{d-1}\}$ is a basis where $d=\deg f$.
-We can check this with the Euclidean algorithm.
-\end{pf}
-
-
-
-\begin{prb}[Conjugate elements]
-Let $E/F$ be a field extension and $\alpha,\beta\in E$ be algebraic over $F$.
-They are said to be \emph{conjugate over $F$} if they share a common minimal polynomial over $F$.
-\begin{parts}
-\item $\alpha,\beta\in E$ are conjugate over $F$ if and only if there is a field isomorphism $\phi:F(\alpha)\to F(\beta)$ such that $\phi(\alpha)=\beta$ and $\phi|_F=\id_F$.
-\item $\pm\sqrt2$ are conjugate over $\Q$, but not over $\C$.
-\item There are two, one, two field automorphisms of $\Q(\sqrt2)$, $\Q(\sqrt[3]2)$, $\Q(\sqrt[4]2)$, respectively.
+\item $\alpha$ is algebraic over $F$ if and only if the simple extension $F(\alpha)/F$ is finite, and moreover we  have the degree formula $[F(\alpha):F]=\deg\mu_{\alpha,F}$.
+\item $\alpha,\beta\in E$ are conjugate over $F$ if and only if there is a (unique) field isomorphism $\phi:F(\alpha)\to F(\beta)$ such that $\phi(\alpha)=\beta$ and $\phi$ fixes $F$.
 \end{parts}
 \end{prb}
 \begin{pf}
 (a)
-($\Rightarrow$)
-Let $\mu\in F[x]$ be the common minimal polynomial of $\alpha$ and $\beta$ over $F$ and define a map
-\[\phi:F(\alpha)\stackrel\sim\to F[x]/(\mu)\stackrel\sim\to F(\beta):\alpha\mapsto x+(\mu)\mapsto\beta.\]
-Since it is clearly a field homomorphism and we can define the inverse in the same manner, so is an isomorphism.
-It is easy to check $\phi(\alpha)=\beta$ and $\phi|_F=\id_F$.
-In particular, the two conditions uniquely determine $\phi$.
+If $\alpha$ is algebraic over $F$, then since $I(\alpha)$ is maximal in $F[x]$, the quotient $F[\alpha]$ is a field, and hence $F[\alpha]=F(\alpha)$.
+Fix any non-zero $f\in I(\alpha)$.
+If we take an arbitrary element $g(\alpha)\in F(\alpha)=F[\alpha]$ for some $g\in F[x]$, then by the Euclidean algorithm in $F[x]$, there exist $q,r\in F[x]$ such that $g=qf+r$ and $\deg r<\deg f$, so $g(\alpha)=q(\alpha)f(\alpha)+r(\alpha)=r(\alpha)$ is a linear combination of $\{1,\alpha,\cdots,\alpha^{\deg f-1}\}$ over $F$.
+Thus we have $[F(\alpha):F]\le\deg f$.
 
-($\Leftarrow$)
-Suppose $\phi:F(\alpha)\to F(\beta):\alpha\mapsto\beta$ is a field homomorphism fixing $F$.
+Conversely, if $[F(\alpha):F]<\infty$, then there is a linearly dependent finite subset over $F$ of an infinite set $\{1,\alpha,\alpha^2,\cdots\}\subset F(\alpha)$.
+The coefficients on the linear dependency relation construct a non-zero polynomial in $I(\alpha)$.
+
+For the degrees, since $F[x]/(\mu_{\alpha,F})\cong F(\alpha)$, the claim follows from that $\{1,x,\cdots,x^{\deg\mu_{\alpha,F}-1}\}$ is a basis, which can be checked with the Euclidean algorithm.
+
+(b)
+Let $\mu\in F[x]$ be the common minimal polynomial of $\alpha$ and $\beta$ over $F$ and consider a field isomorphism
+\[\phi:F(\alpha)\to F[x]/(\mu)\to F(\beta):\alpha\mapsto x+(\mu)\mapsto\beta.\]
+It is easy to check that $\phi(\alpha)=\beta$ and $\phi$ fixes $F$.
+The uniqueness is clear.
+
+Conversely, suppose $\phi:F(\alpha)\to F(\beta):\alpha\mapsto\beta$ is a field isomomorphism fixing $F$.
 Then, $\phi$ commutes with a polynomial function with coefficients in $F$.
 From
 \[\mu_{\alpha,F}(\beta)=\mu_{\alpha,F}(\phi(\alpha))=\phi(\mu_{\alpha,F}(\alpha))=\phi(0)=0,\]
 we get $\mu_{\beta,F}\mid\mu_{\alpha,F}$.
 The irreducibility of $\mu_{\alpha,F}$ implies $\mu_{\alpha,F}=\mu_{\beta,F}$.
 \end{pf}
-
-
-
-\section{Algebraic extensions}
 
 \begin{prb}[Algebraic extensions]
 A field extension $E/F$ is called \emph{algebraic} if every element of $E$ is algebraic over $F$.
@@ -616,21 +582,6 @@ An element is algebraic over $F$ if and only if it is contained in a finite exte
 
 
 
-\begin{ex}
-For a transcendental number such as $\pi$, the extension $\Q(\pi)/\Q$ is not algebraic since it contains an element that is not algebraic.
-It is also because a simple extension is algebraic if and only if it is finite but $[\Q(\pi):\Q]=\infty$.
-\end{ex}
-
-\begin{ex}
-Finite extensions are not only the algebraic extensions.
-For examples,
-\[\Q(\sqrt2,\sqrt[4]2,\sqrt[8]2,\cdots),\quad\Q(\sqrt2,\sqrt3,\sqrt5,\sqrt7,\cdots)\]
-are infinite algebraic extensions.
-\end{ex}
-
-
-
-
 
 
 
@@ -641,9 +592,7 @@ are infinite algebraic extensions.
 An \emph{algebraically closed} field is a field that has no proper algebraic extension.
 For a field $F$, the following statements are all equivalent, and in particular, a field isomorphic to an algebraically closed field is algebraiclly closed:
 \begin{parts}
-\item $F$ is algebraically closed.
-\item Every polynomial in $F[x]$ has a root in $F$.
-\item Every polynomial in $F[x]$ is linearly factorized in $F$. In other words, every root is in $F$.
+\item $F$ is algebraically closed if and only if every polynomial in $F[x]$ has a root in $F$, or equivalently, every polynomial in $F[x]$ is linearly factorized in $F$. In other words, every root is in $F$.
 \end{parts}
 \end{prb}
 \begin{pf}
@@ -679,13 +628,6 @@ Since both $\bar F(\alpha)/\bar F$ and $\bar F/F$ are algebraic, $\alpha$ is alg
 Thus we have $\alpha\in\bar F$, and by the previous proposition, $\bar F$ is algebraically closed.
 \end{pf}
 
-\begin{prb}[Algebraic closure of $\Q$]
-It is well-known fact that the set of all complex numbers $\C$ is an algebraically closed field; it is the fundamental theorem of algebra.
-The set of all algebraic numbers over $\Q$ is an algebraically closed subfield of $\C$.
-\begin{parts}
-\item $\bar\Q$ is countable.
-\end{parts}
-\end{prb}
 
 \begin{prb}[Relations of algebraic extensions]
 Let $E/F$ be a field extension.
@@ -734,11 +676,11 @@ Let $E/F$ be an algebraic extension.
 Let $\phi:F\cong F'$ be a field isomorphism.
 Let $\bar F'$ be an algebraic closure of $F'$.
 Then, there is an embedding $\tilde\phi:E\to\bar F'$ which extends $\phi$.
-\begin{cd}
+\[\begin{tikzcd}
 &\bar F' \ar{dd}\\
 E\ar{r}{\tilde\phi}\dar[dashed]&\quad\\
 F\ar{r}{\phi}&F'
-\end{cd}
+\end{tikzcd}\]
 \end{prb}
 \begin{pf}
 Let $S$ be the set of all pairs $(K,\psi)$ of a subfield $K\le E$ and a field homomorphism $\psi:K\to\bar F'$ which extends $\phi$.
@@ -755,20 +697,20 @@ Therefore, $K=E$.
 \end{pf}
 
 
-\begin{prb}[Uniqueness of algebraic closure]
-Algebraic closure is unique up to isomorphism.
+\begin{prb}[Algebraic closures]
+\begin{parts}
+\item An algebraic closure is unique up to isomorphism.
+\item Every field has an algebraic closure.
+\end{parts}
 \end{prb}
 \begin{pf}
+(a)
 Suppose there are two algebraic closures $\bar F_1, \bar F_2$ of a field $F$.
 By the isomorphism extension theorem, we have a field homomorphism $\phi:\bar F_1\to\bar F_2$ which extends the identitiy map on $F$.
 Since the image $\phi(F_1)$ is also algebraically closed and the field extension $F_2/\phi(F_1)$ is algebraic, we must have $\phi(F_1)=F_2$ by the definition of algebraically closedness.
 Thus, $\phi$ is surjective so that it is an isomorphism.
-\end{pf}
 
-\begin{prb}[Existence of algebraic closure]
-Every field has an algebraic closure.
-\end{prb}
-\begin{pf}
+(b)
 Let $F$ be a field.
 
 Construct an algebraically closed field containing $F$:
@@ -788,52 +730,55 @@ Then, $K$ is easily checked to be algebraically closed.
 Construct the algebraic closure of $F$:
 Let $\bar F$ be the set of all algebraic elements of $K$ over $F$.
 Then, this is an algebraic closure.
+
+
+As a remark, in fact, this $K_1$ is already algebraically closed.
+Since it is difficult to prove directly, so we constructed an algebraically closed field $K$ in another way.
 \end{pf}
-\begin{rmk}
-In fact, this $K_1$ is already algebraically closed, but it is hard to prove directly, so we are going to construct another algebraically closed field, $K$.
-\end{rmk}
 
 
-\section{Straightedge and compass construction}
-\begin{prb}[Regular $n$-gon]
+
+
+\section{Finite fields}
+\begin{prb}[Finite field as a splitting field]
+Let $E$ be a finite field of characteristic $p$.
+Clearly $p>0$ so that $E$ has a subfield $F$ of size $p$ generated by $1\in E$.
+Since $E/F$ is finite, $E$ is isomorphic to a subfield of $\bar{\F_p}$ by the isomorphism extension theorem.
+There we assume $E$ is a subfield of a fixed algebraic closure $\bar{\F_p}$.
+Let $\alpha\in\bar{\F_p}$ and $n$ the degree of $E/F$.
 \begin{parts}
-\item The regular heptagon is not constructible.
+\item If $\alpha\in E$, then $\alpha^{p^n}-\alpha=0$.
+\item If $\alpha^{p^n}-\alpha=0$, then $\alpha\in E$.
+\item For each $m\in\N$, in $\bar{\F_p}$ is a unique field $E$ of size $p^m$.
+\end{parts}
+\end{prb}
+
+
+\begin{prb}[Cyclic groups in finite fields]
+\begin{parts}
+\item The number of elements of order $d$ in a cyclic group of order $n$ is $\phi(d)$ when $d\mid n$.
+\item The group of units $(\F_{p^n})^\times$ is cyclic.
+\item The Galois group $\Gal(\F_{p^n}/\F_p)$ is cyclic.*
 \end{parts}
 \end{prb}
 \begin{pf}
-Let $\zeta=\zeta_7$.
-Then, $\zeta+\zeta^{-1}$ has the minimal polynomial $x^3+x^2-2x-1$.
+(b)
+We partition the elements of $G:=(\F_{p^n})^\times$ by their orders.
+Let
+\[A_d:=\{\,\alpha\in G:\ord(\alpha)=d\,\}\]
+for $d\mid p^n-1$.
+It is contained in the subgroup $H:=\{x\in\F_{p^n}:x^d=1\}$, of which the order is $|H|=d$ because $x^d-1$ is separable.
+
+If $|A_d|\ne0$, then any element of $A_d$ is a generator of $H$, so $H$ is cyclic.
+Since the number of elements of order $d$ in a cyclic group is given by the Euler totient function $\phi(d)$, as a result we have $|A_d|\in\{0,\phi(d)\}$.
+Then,
+\[|G|=\sum_{d\mid p^n-1}|A_d|\le\sum_{d\mid p^n-1}\phi(d)=p^n-1\]
+implies $|A_{p^n-1}|\ne0$, $G$ is hence cyclic.
 \end{pf}
 
-\begin{prb}[Gauss-Wantzel theorem]
-
-\end{prb}
-
-\section*{Exercises}
-\begin{prb}[Minimal polynomials in a simple extension]
-Let $F(\alpha)/F$ be a finite simple extension of a field $F$ and let $\beta\in F(\alpha)$.
-In light of elementary linear algebra,
-\end{prb}
-
-\begin{prb}
-$\Q[x]/(x^2-2)\cong\Q[x]/(x^2-2x-1)$.
-\end{prb}
-
-\begin{prb}[Dimension argument]
-We can compute the degree of a field extension by finding minimal polynomial.
-Since the minimal polynomial $\sqrt2+\sqrt3$ over $\Q$ is
-\[\mu_{\sqrt2+\sqrt3,\Q}(x)=x^4-10x^2+1,\]
-we have
-\[[\Q(\sqrt2+\sqrt3):\Q]=\deg(x^4-10x^2+1)=4.\]
-
-On the other hand, we have
-\[[\Q(\sqrt2,\sqrt3):\Q]=[\Q(\sqrt2,\sqrt3):\Q(\sqrt2)]\cdot[\Q(\sqrt2):\Q]=2\cdot2=4.\]
-Since $\sqrt2+\sqrt3\in\Q(\sqrt2,\sqrt3)$ implies $\Q(\sqrt2+\sqrt3)\le\Q(\sqrt2,\sqrt3)$ and the dimensions as vector spaces are equal, we get $\Q(\sqrt2+\sqrt3)=\Q(\sqrt2,\sqrt3)$.
-We can also directly check
-\[\sqrt2=\frac12\left(\alpha-\frac1\alpha\right)\quad\text{and}\quad\sqrt3=\frac12\left(\alpha+\frac1\alpha\right),\]
-where $\alpha=\sqrt2+\sqrt3$.
-This kind of \emph{dimension argument} is one of powerful tools to attack field theory.
-It will be discovered later that the dimension argument has an analogy with computation of group orders in finite group theory.
+\begin{prb}[Degree of an element in finite fields]
+Let $\alpha\in\bar{\F_p}$.
+The degree of $\alpha$ is computed by the order of $p$ in $(\Z/\ord(\alpha)\Z)^\times$
 \end{prb}
 
 
@@ -843,19 +788,16 @@ It will be discovered later that the dimension argument has an analogy with comp
 
 
 
+\section{Separable extensions}
 
 
-
-\chapter{Separable extensions}
-
-\section{Separable polynomials}
-\begin{defn}
+\begin{prb}[Separable polynomials]
 Let $F$ be a field.
 A polynomial $f\in F[x]$ is called \emph{separable} if it is square-free in $\bar F[x]$.
 An element $\alpha\in\bar F$ is called \emph{separable} over $F$ if its minimal polynomial $\mu_{\alpha,F}$ is separable.
-\end{defn}
+\end{prb}
 
-The separability of a polynomial does not depend on coefficient fields, but their characteristic.
+The separability of a polynomial does not depend on base fields, but their characteristic.
 We can consider the algebraic closure of the smallest field containing coefficients of the polynomial and its characteristic when we check separability of a polynomial.
 
 \begin{prb}[Formal derivatives]
@@ -911,10 +853,10 @@ The coefficients of $g$ are $p$-powers of elements of $F$, so there is $h\in F[x
 It is a contradiction to the irreducibility of $f$.
 \end{pf}
 
-\begin{prop}
+\begin{prb}
 Let $F$ be a field of characteristic $p>0$.
 For an irreducible $f\in F[x]$, there is a unique separable irreducible $f_\sep\in F[x]$ such that $f(x)=f_\sep(x^{p^k})$ for some $k$.
-\end{prop}
+\end{prb}
 
 \begin{ex}
 The Frobenius endomorphism is not surjective in the field of rational functions $\F_p(t)$, where $t$ is not algebraic over $\F_p$.
@@ -924,57 +866,38 @@ Then, the polynomial $x^p-t\in\F_p(t)[x]$ is inseparable irreducible since it is
 in $\bar{\F_p(t)}[x]$.
 \end{ex}
 
-\section{Separable extensions}
-\begin{defn}
+
+\begin{prb}[Separable extensions]
 A field extension $E/F$ is called \emph{separable} if all elements in $E$ is separable over $F$.
-\end{defn}
+\end{prb}
 
-\begin{thm}[Primitive element theorem]
+\begin{prb}[Primitive element theorem]
 A finite separable extension is simple.
-\end{thm}
+\end{prb}
 
 
 
 
+\begin{prb}
 
-\section{Separable closures}
-
-
-
-\begin{defn}
 Let $E/F$ be a field extension.
 The \emph{separable degree} of $E/F$ is the number $[\bar F^{\sep}:F]$.
-\end{defn}
 
-
-
-\begin{thm}
+\begin{parts}
+\item
 The separable degree of a field extension $E/F$ is the number of field embeddings $E\emb\bar F$ fixing $F$.
-\end{thm}
-
-\begin{lem}
+\item
 All roots of an irreducible polynomial has same multiplicity.
-\end{lem}
-\begin{pf}
-%%%
-\end{pf}
-
-\begin{thm}
+\item
 Let $K$ be an intermediate field of a finite extension $E/F$.
 Then,
 \[[E:F]_\sep\mid[E:F]\]
-\end{thm}
-\begin{pf}
-%%%
-\end{pf}
-
-\begin{thm}
+\item
 A finite field extension $E/F$ is separable if and only if
 \[[E:F]_\sep=[E:F].\]
-\end{thm}
-\begin{pf}
-%%%
-\end{pf}
+\end{parts}
+\end{prb}
+
 
 
 multiplcation formula
@@ -997,11 +920,10 @@ multiplcation formula
 
 
 
-\chapter{Normal extensions}
+\section{Normal extensions}
 
-\section{Splitting fields}
-
-\section{Galois correspondence}
+\begin{prb}[Splitting fields]
+\end{prb}
 
 \begin{prb}[Automorphism groups]
 
@@ -1043,7 +965,6 @@ K&\mapsto&\Aut(E/K)
 \end{prb}
 
 
-\section{Generators of Galois groups}
 
 
 reducible polynomials
@@ -1076,11 +997,83 @@ number of imaginary roots=2n: composition of n transpositions
 
 
 
-
 \section*{Exercises}
 
-$x^6+x^3+1$,
 
+
+
+
+\begin{ex}
+For a transcendental number such as $\pi$, the extension $\Q(\pi)/\Q$ is not algebraic since it contains an element that is not algebraic.
+It is also because a simple extension is algebraic if and only if it is finite but $[\Q(\pi):\Q]=\infty$.
+\end{ex}
+
+\begin{ex}
+Finite extensions are not only the algebraic extensions.
+For examples,
+\[\Q(\sqrt2,\sqrt[4]2,\sqrt[8]2,\cdots),\quad\Q(\sqrt2,\sqrt3,\sqrt5,\sqrt7,\cdots)\]
+are infinite algebraic extensions.
+\end{ex}
+
+\begin{ex}
+$\pm\sqrt2$ are conjugate over $\Q$, but not over $\C$.
+
+There are two, one, two field automorphisms of $\Q(\sqrt2)$, $\Q(\sqrt[3]2)$, $\Q(\sqrt[4]2)$, respectively.
+\end{ex}
+
+
+
+\begin{prb}[Straightedge and compass construction]
+Regular $n$-gon
+Gauss-Wantzel theorem
+\begin{parts}
+\item The regular heptagon is not constructible.
+\end{parts}
+\end{prb}
+\begin{pf}
+Let $\zeta=\zeta_7$.
+Then, $\zeta+\zeta^{-1}$ has the minimal polynomial $x^3+x^2-2x-1$.
+\end{pf}
+
+
+
+\begin{prb}[Minimal polynomials in a simple extension]
+Let $F(\alpha)/F$ be a finite simple extension of a field $F$ and let $\beta\in F(\alpha)$.
+In light of elementary linear algebra,
+\end{prb}
+
+\begin{prb}
+$\Q[x]/(x^2-2)\cong\Q[x]/(x^2-2x-1)$.
+\end{prb}
+
+\begin{prb}[Dimension argument]
+We can compute the degree of a field extension by finding minimal polynomial.
+Since the minimal polynomial $\sqrt2+\sqrt3$ over $\Q$ is
+\[\mu_{\sqrt2+\sqrt3,\Q}(x)=x^4-10x^2+1,\]
+we have
+\[[\Q(\sqrt2+\sqrt3):\Q]=\deg(x^4-10x^2+1)=4.\]
+
+On the other hand, we have
+\[[\Q(\sqrt2,\sqrt3):\Q]=[\Q(\sqrt2,\sqrt3):\Q(\sqrt2)]\cdot[\Q(\sqrt2):\Q]=2\cdot2=4.\]
+Since $\sqrt2+\sqrt3\in\Q(\sqrt2,\sqrt3)$ implies $\Q(\sqrt2+\sqrt3)\le\Q(\sqrt2,\sqrt3)$ and the dimensions as vector spaces are equal, we get $\Q(\sqrt2+\sqrt3)=\Q(\sqrt2,\sqrt3)$.
+We can also directly check
+\[\sqrt2=\frac12\left(\alpha-\frac1\alpha\right)\quad\text{and}\quad\sqrt3=\frac12\left(\alpha+\frac1\alpha\right),\]
+where $\alpha=\sqrt2+\sqrt3$.
+This kind of \emph{dimension argument} is one of powerful tools to attack field theory.
+It will be discovered later that the dimension argument has an analogy with computation of group orders in finite group theory.
+\end{prb}
+
+
+\begin{prb}[Algebraic closure of $\Q$]
+It is well-known fact that the set of all complex numbers $\C$ is an algebraically closed field; it is the fundamental theorem of algebra.
+The set of all algebraic numbers over $\Q$ is an algebraically closed subfield of $\C$.
+\begin{parts}
+\item $\bar\Q$ is countable.
+\end{parts}
+\end{prb}
+
+
+$x^6+x^3+1$,
 
 
 \section*{Problems}
@@ -1096,19 +1089,19 @@ $x^6+x^3+1$,
 
 
 
-\part{Galois groups}
+\chapter{Galois groups}
 
 
-\chapter{Galois descent}
+\section{Galois descent}
 
 
 
 
-\chapter{Invariants of Galois groups}
+\section{Invariants of Galois groups}
 
-\section{Resultants}
+Resultants
 
-\section{Resolvent polynomials}
+Resolvent polynomials
 
 \begin{prb}[Transitive subgroups of symmetric groups]
 \end{prb}
@@ -1163,72 +1156,21 @@ We have
 
 If $f$ is reducible over $K$, then $\Gal(E/K)$ is no more a transitive subgroup of $S_4$ so that $H\ne V_4$ and $G\cong C_4$.
 \end{pf}
-\begin{cd}
+\[\begin{tikzcd}
 E \ar[rrrr,dashed] &&&& 1 \dar{2} &\\
 &&&& C_2 \dlar[swap]{2}\drar{2}&\\
 K\ar[uu] &&& V_4 \dlar[swap]{3}\drar{2} && C_4 \dlar{2}\\
 F \uar\rar[dashed]& ? & A_4 \drar[swap]{2} && D_4 \dlar{3} &\\
 &&&S_4&&
-\end{cd}
-
-\section*{Problems}
-\begin{enumerate}
-\item Let $f$ be a quintic irreducible polynomial over a field $F$ such that its splitting field has degree sixty over $F$. Show that if $\alpha$ is a root of $f$, then there is no proper intermediate field of $F(\alpha)/F$.
-\end{enumerate}
+\end{tikzcd}\]
 
 
 
 
 
+\section{Reduction of Galois groups}
 
-
-
-\chapter{Reduction of Galois groups}
-
-\section{Finite fields}
-\begin{prb}[Finite field as a splitting field]
-Let $E$ be a finite field of characteristic $p$.
-Clearly $p>0$ so that $E$ has a subfield $F$ of size $p$ generated by $1\in E$.
-Since $E/F$ is finite, $E$ is isomorphic to a subfield of $\bar{\F_p}$ by the isomorphism extension theorem.
-There we assume $E$ is a subfield of a fixed algebraic closure $\bar{\F_p}$.
-Let $\alpha\in\bar{\F_p}$ and $n$ the degree of $E/F$.
-\begin{parts}
-\item If $\alpha\in E$, then $\alpha^{p^n}-\alpha=0$.
-\item If $\alpha^{p^n}-\alpha=0$, then $\alpha\in E$.
-\item For each $m\in\N$, in $\bar{\F_p}$ is a unique field $E$ of size $p^m$.
-\end{parts}
-\end{prb}
-
-
-\begin{prb}[Cyclic groups in finite fields]
-\begin{parts}
-\item The number of elements of order $d$ in a cyclic group of order $n$ is $\phi(d)$ when $d\mid n$.
-\item The group of units $(\F_{p^n})^\times$ is cyclic.
-\item The Galois group $\Gal(\F_{p^n}/\F_p)$ is cyclic.*
-\end{parts}
-\end{prb}
-\begin{pf}
-(b)
-We partition the elements of $G:=(\F_{p^n})^\times$ by their orders.
-Let
-\[A_d:=\{\,\alpha\in G:\ord(\alpha)=d\,\}\]
-for $d\mid p^n-1$.
-It is contained in the subgroup $H:=\{x\in\F_{p^n}:x^d=1\}$, of which the order is $|H|=d$ because $x^d-1$ is separable.
-
-If $|A_d|\ne0$, then any element of $A_d$ is a generator of $H$, so $H$ is cyclic.
-Since the number of elements of order $d$ in a cyclic group is given by the Euler totient function $\phi(d)$, as a result we have $|A_d|\in\{0,\phi(d)\}$.
-Then,
-\[|G|=\sum_{d\mid p^n-1}|A_d|\le\sum_{d\mid p^n-1}\phi(d)=p^n-1\]
-implies $|A_{p^n-1}|\ne0$, $G$ is hence cyclic.
-\end{pf}
-
-\begin{prb}[Degree of an element in finite fields]
-Let $\alpha\in\bar{\F_p}$.
-The degree of $\alpha$ is computed by the order of $p$ in $(\Z/\ord(\alpha)\Z)^\times$
-\end{prb}
-
-
-\section{Integral extensions}
+{Integral extensions}
 
 \begin{prb}[Algebraic integers]
 A (algebraic) \emph{number field} is a finite extension $K$ of $\Q$.
@@ -1295,9 +1237,13 @@ Consider a $AKLB$-setting and let $\alpha\in L$.
 \item $\alpha\in B$ if and only if $\mu_\alpha\in A[x]$.
 \item $\alpha\in B^\times$ if and only if $N_{L/K}(\alpha)\in A^\times$, if $L/K$ is separable and $A$ integrally closed.
 \end{parts}
-\section{Ramification theory}
 
-\section{The Dedekind theorem}
+
+
+
+{Ramification theory}
+
+{The Dedekind theorem}
 
 
 \section*{Exercises}
@@ -1347,6 +1293,13 @@ If $\theta^3$ is a square free integer, then
 \section*{Problems}
 
 \begin{enumerate}
+\item Let $f$ be a quintic irreducible polynomial over a field $F$ such that its splitting field has degree sixty over $F$. Show that if $\alpha$ is a root of $f$, then there is no proper intermediate field of $F(\alpha)/F$.
+\end{enumerate}
+
+
+
+
+\begin{enumerate}
 \item Find the number of $a\in\SL(2,\F_p)$ such that $a^{p-1}=1$.
 \end{enumerate}
 
@@ -1362,15 +1315,14 @@ If $\theta^3$ is a square free integer, then
 
 
 
-\part{Insolvability of the quintic}
+\chapter{Insolvability of the quintic}
 
 
-\chapter{Cyclic extensions}
+\section{Cyclic extensions}
 
 
-\section{Kummer theory}
 
-\begin{prb}
+\begin{prb}[Kummer theory]
 A field extension $L/K$ is called a \emph{Kummer extension} if $\zeta_n\in K$ and $\Gal(L/K)$ is abelian group of exponent $n$..??
 \begin{parts}
 \item If $\zeta_n\in K$, 
@@ -1384,8 +1336,7 @@ Then,
 It means that $\alpha^n$ is fixed by all elements of $\Gal(L/K)$.
 
 
-\chapter{Cyclotomic extensions}
-\section{Cyclotomic polynomials}
+\section{Cyclotomic extensions}
 
 \begin{prb}[Cyclotomic polynomials]
 Let $\zeta$ be a primitive $n$th root of unity.
@@ -1416,7 +1367,7 @@ We first prove $\zeta^p$ are all conjugates for any prime $p$ not dividing $n$.
 
 
 
-\chapter{Radical extensions}
+\section{Radical extensions}
 
 
 

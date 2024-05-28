@@ -1,7 +1,9 @@
 \documentclass{../../large}
 \usepackage{../../ikhanchoi}
 
-\DeclareMathOperator{\Frob}{Frob}
+\newcommand{\Frob}{\mathrm{Frob}}
+\newcommand{\ab}{\mathrm{ab}}
+\newcommand{\Nm}{\mathrm{Nm}}
 
 \begin{document}
 \title{Algebraic Number Theory}
@@ -27,10 +29,23 @@ Non-archimedean
 \end{prb}
 
 \begin{prb}[Local fields]
-A \emph{local field} is a field with an absolute value with the induced topology that is locally compact.
-\end{prb}
+A \emph{local field} is a locally compact field with a non-trivial absolute value.
+The Ostrowski theorem states that a local field is one of the followings:
+\begin{enumerate}[(i)]
+\item a finite extension of $\Q_p$ for a rational prime $p$,
+\item a finite extension of $\F_p((T))$ for a rational prime $p$,
+\item $\R$ or $\C$.
+\end{enumerate}
+Let $K$ be a non-archimedian local field.
+Then, the ring of integers $\cO_K$ is a discrete valuation ring, and a generator $\pi$ of the principal maximal ideal $\fm_K$ is called the \emph{prime element} or the \emph{uniformizer}.
 
-\begin{prb}[Ostrowski theorem]
+Local reciprocity law: there is a unique homomoprhism
+\[\phi_K:K^\times\to\Gal(K^\ab/K)=\varprojlim_L\Gal(L/K)\]
+such that
+\begin{enumerate}
+\item for each finite unramified extension $L$ over $K$, which is automatically cyclic, $\phi_{L/K}(\pi)$ is the Frobenius element in $\Gal(L/K)$,
+\item for each finite abelian extension $L$ over $K$, it induces an isomorphism $\phi_{L/K}:K^\times/\Nm_{L/K}(L^\times)\to\Gal(L/K)$.
+\end{enumerate}
 \end{prb}
 
 \begin{prb}[Places]

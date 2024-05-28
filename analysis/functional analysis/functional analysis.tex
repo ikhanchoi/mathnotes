@@ -1829,6 +1829,7 @@ A \emph{C$^*$-algebra} is a Banach $*$-algebra $A$ satisfying the C$^*$-identity
 
 
 \begin{prb}[Unitization]
+The \emph{unitization} or the \emph{Dorroh extension} of a C$^*$-algebra $A$ is...
 \[(L_a+\lambda\id_{B(A)})^*=L_{a^*}+\bar\lambda\id_{B(A)}.\]
 \end{prb}
 \begin{pf}
@@ -1925,20 +1926,25 @@ Let $\f:A\to B$ be a $*$-homomorphism between C$^*$-algerbas.
 \end{parts}
 \end{prb}
 
+
 \begin{prb}[Category of commutative C$^*$-algebras]
-The following categories are equivalent:
-\begin{enumerate}[(i)]
-\item $\mathrm{CC^*Alg}^{\mathrm{op}}$ with morphisms as non-degenerate $*$-homomorphisms,
-\item $\mathrm{LCH}$ with morphisms as proper maps,
-\item $\mathrm{CH}_*$ with morphisms as pointed maps.
-\end{enumerate}
-The following categories are equivalent:
-\begin{enumerate}[(i)]
-\item $\mathrm{CC^*Alg}^{\mathrm{op}}$ with morphisms as non-degenerate $*$-homomorphisms to the multiplier,
-\item $\mathrm{LCH}$ with morphisms as continuous maps,
-\end{enumerate}
-The second equivalence can be extended to locally C$^*$-algebras.
+\[\begin{tikzcd}
+& \mathrm{CH} \rar\dar[shift right, swap]{\text{disjoint base}} &
+\mathrm{LCH} \rar &
+\mathrm{cpltH} \\
+\mathrm{LCH}_{\mathrm{prop}} \rar &
+\mathrm{CH}_* \uar[shift right,swap]{\text{forgetful}} \uar[phantom]{\scriptscriptstyle\boldsymbol{\dashv}}
+\end{tikzcd}\]
+
+\[\begin{tikzcd}
+& \mathrm{uCC^*Alg}_{\mathrm{unital}} \rar\dar[shift right, swap]{\text{inclusion}} &
+\mathrm{CC^*Alg}_{\mathrm{mor}} \rar &
+\mathrm{locCC^*Alg} \\
+\mathrm{CC^*Alg}_{\mathrm{nondeg}} \rar &
+\mathrm{CC^*Alg} \uar[shift right,swap]{\text{unitization}} \uar[phantom]{\scriptscriptstyle\boldsymbol{\vdash}}
+\end{tikzcd}\]
 \end{prb}
+
 
 \section{States}
 

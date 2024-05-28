@@ -8,11 +8,11 @@
 \maketitle
 \tableofcontents
 
-\part{Quadratic reciprocity}
+\part{Elementary number theory}
 
-\chapter{Congruence}
+\chapter{Quadratic reciprocity}
 
-\section{}
+\section{Congruence}
 
 \begin{prb}[Computation with binomial theorem]
 	
@@ -67,33 +67,52 @@ Define $p^*:=(-1)^{\frac{p-1}2}p$.
 \end{prb}
 
 \begin{prb}[Quadratic reciprocity]
-Let $p$ and $q$ be distinct odd primes.
-Let $L$ be the splitting field of $x^p-1$ over $\F_q$.
-Let $\zeta_p\in L$ be a primitive $p$-th root of unity.
-Define $p^*:=(-1)^{\frac{p-1}2}p$ and write
-\[\sqrt{p^*}:=\sum_{n=0}^{p-1}\zeta_p^{n^2}\in L.\]
-Note that $\sigma_q:L\to L:x\mapsto x^q$ is a field automorphism.
+Let $\ell$ be an odd prime and consider field extensions $\Q(\zeta_\ell)/\Q(\tau_\ell)$.
+Here $L:=\Q(\tau_\ell)$ and $K:=\Q$.
+
+Let $p$ be an odd prime with $p\ne\ell$.
+Then, $L_p$ is an unramified extension of $K_p$.(maybe)
+We are interested in a criterion for $p$ to split in $\Q(\tau_\ell)$.
+Note that $p$ splits in $\Q(\tau_\ell)$ if and only if the Frobenius homomorphism in $\Gal(l_p/k_p)$ is the identity.
+
+Note that the residue field $k_p=\F_p$ of the local field $K_p=\Q_p$ has $q=p$ elements.
+Note that $\sigma_q:x\mapsto x^q$ gives rise to a field automorphism of $\Gal(\Q(\tau_\ell)/\Q)$, called the \emph{Frobenius automorphism}.
 \begin{parts}
 \item From the Gauss sum, we have
-\[\sigma_q(\sqrt{p^*})=\left(\frac qp\right)\sqrt{p^*}.\]
+\[\sigma_p(\tau_\ell)=\left(\frac p\ell\right)\tau_\ell.\]
 \item From the Euler criterion, we have
-\[\sigma_q(\sqrt{p^*})=\left(\frac{p^*}q\right)\sqrt{p^*}.\]
+\[\sigma_p(\tau_\ell)=\left(\frac{\ell^*}p\right)\tau_\ell.\]
 \end{parts}
 \end{prb}
 \begin{pf}
 (a)
 We have
-\[\sigma_q(\sqrt{p^*})
-=\sigma_q\left(\sum_{a=0}^{p-1}\left(\frac ap\right)\zeta_p^a\right)
-=\sum_{a=0}^{p-1}\left(\frac ap\right)\zeta_p^{aq}
-=\sum_{a=0}^{p-1}\left(\frac qp\right)\left(\frac{aq}p\right)\zeta_p^{aq}
-=\left(\frac qp\right)\sqrt{p^*}\]
+\[\sigma_p(\tau_\ell)
+=\sigma_p\left(\sum_{a=0}^{\ell-1}\left(\frac a\ell\right)\zeta_\ell^a\right)
+=\sum_{a=0}^{\ell-1}\left(\frac a\ell\right)\zeta_\ell^{ap}
+=\sum_{a=0}^{\ell-1}\left(\frac p\ell\right)\left(\frac{ap}\ell\right)\zeta_\ell^{ap}
+=\left(\frac p\ell\right)\tau_\ell\]
 
 (b)
 By the Euler criterion, we have
-\[\sigma_q(\sqrt{p^*})=(p^*)^{\frac{q-1}2}\sqrt{p^*}=\left(\frac{p^*}q\right)\sqrt{p^*}.\]
+\[\sigma_p(\tau_\ell)=\tau_\ell^p=(\ell^*)^{\frac{p-1}2}\tau_\ell=\left(\frac{\ell^*}p\right)\tau_\ell.\]
 
 \end{pf}
+
+
+
+
+
+\section{Binary quadratic forms}
+{Reduced forms}
+{Indefinite forms}
+
+{Ideal class group}
+
+\begin{prb}[Heegner number]
+There are only nine numbers
+\[-1,-2,-3,-7,-11,-19,-43,-67,-163.\]
+\end{prb}
 
 
 
@@ -120,26 +139,21 @@ Quantratic sides: Every prime divisor of $f$ must satisfy a congruence (e.g. $4k
 
 
 
-\section*{Problems}
-
-\begin{enumerate}
-\item Show that if $\frac{x^2+y^2+z^2}{xy+yz+zx}$ is an integer, then it is not divided by three.
-\item There is no non-trivial integral solution of $x^4-y^4=z^2$.
-\end{enumerate}
-
-\chapter{}
 
 
-\chapter{Binary quadratic forms}
-\section{Reduced forms}
-\section{Indefinite forms}
 
-\section{Ideal class group}
 
-\begin{prb}[Heegner number]
-There are only nine numbers
-\[-1,-2,-3,-7,-11,-19,-43,-67,-163.\]
-\end{prb}
+\chapter{Multiplicative number theory}
+\section{Arithmetic functions}
+\section{Dirichlet theorem}
+\section{Prime number theorem}
+
+
+
+\chapter{Algebraic numbers}
+
+
+
 
 \section*{Exercises}
 \begin{prb}[Mordell equation with no solutions]
@@ -182,19 +196,25 @@ The possible solutions are $(x,y)=(3,\pm5)$, which are in fact solutions.
 
 
 
+\section*{Problems}
+
+\begin{enumerate}
+\item Show that if $(x^2+y^2+z^2)/(xy+yz+zx)$ is a well-defined integer for integers $x,y,z$, then it is not divided by three.
+\item There is no non-trivial integral solution of $x^4-y^4=z^2$.
+\end{enumerate}
 
 
 
-\part{Multiplicative number theory}
-\chapter{Arithmetic functions}
-\chapter{Dirichlet's theorem}
-\chapter{Prime number theorem}
 
 
 
 
-\part{Quadratic Diophantine equations}
-\chapter{Pell's equation}
+
+
+
+
+\part{Diophantine equations}
+\chapter{Pell equation}
 \section{Continued fraction}
 Diophantine approximation, Thue theorem
 
@@ -233,8 +253,15 @@ The last problem is from the International Mathematical Olympiad 1988, and the V
 \end{ex}
 
 
-\chapter{$p$-adic numbers}
-\section{Hensel lemma}
+
+
+
+
+
+
+\chapter{Local-global principle}
+
+\section{$p$-adic numbers}
 
 Let $p\in\Z$ be a prime.
 The ring of the $p$-adic integers $\Z_p$ is defined by the inverse limit:
@@ -298,7 +325,6 @@ The sequence $\{\alpha_n\}$ is Cauchy, and the limit is clearly in $\Z_p$.
 \end{pf}
 
 
-\chapter{Local-global principle}
 \section{Hasse-Minkowski theorem}
 
 \begin{thm}[Sum of two squares]
@@ -312,10 +338,10 @@ Every $p$-adic integer is a sum of two squares of $p$-adic integers.
 
 
 
-\part{Elliptic curves}
-\chapter{Elliptic curves over $\C$}
+\chapter{Elliptic curves}
+\section{Elliptic curves over $\C$}
 
-\section{$\P^2(\C)$}
+$\P^2(\C)$
 \begin{prb}[Weierstrass form]
 Let $K$ be a field.
 An \emph{elliptic curve} over $K$ is a smooth algebraic curve $E$ of genus one together with a specified base point $O$.
@@ -399,7 +425,7 @@ $A$ determines whether $x$ is either cusp of node.
 
 
 
-\section{$\C/\Lambda$}
+$\C/\Lambda$
 
 \begin{prb}[Invariant differential]
 The invariant differential $\omega$ is a one-form that is invariant under the translation, which is unique up to scalar.
@@ -416,11 +442,9 @@ This implies that the second coordinate is equal to the first coordinate, the We
 
 
 
-\chapter{Elliptic curves over $\Q$}
-\section{Finitely generatedness}
-Mordell-Weil, Mazur torsion
-\section{Integral solutions}
-Nagell-Lutz, Siegel, Baker's bound
-\chapter{Elliptic curves over $\F_p$}
+\section{Elliptic curves over $\Q$}
+Finitely generatedness:Mordell-Weil, Mazur torsion
+Integral solutions:Nagell-Lutz, Siegel, Baker's bound
+\section{Elliptic curves over $\F_p$}
 
 \end{document}

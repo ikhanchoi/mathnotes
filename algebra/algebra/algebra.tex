@@ -56,9 +56,9 @@ how to construct
 
 \section{Peano axioms}
 
-\section{Integers}
+\section{Integers and rational numbers}
 
-\section{Rational numbers}
+\section{Divisibility}
 
 
 
@@ -337,19 +337,6 @@ quotient modules
 isomorphism theorems
 
 
-\section{Algebras}
-\begin{prb}[Definition of algebras]
-Let $R$ be a commutative unital ring.
-An (associative) \emph{algebra} over $R$ or \emph{$R$-algebra} is a ring $A$ together with a unital ring homomoprhism $\alpha:R\to Z(\tilde A)\subset\End_\Z(A)$.
-Although there are some important examples of \emph{non-associative} algebras in which the associativity of multiplication is dropped, we will assume that an $R$-algebra is associative if no mention.
-\begin{parts}
-\item The set of matrices $M_n(R)$ over a ring $R$ is a unital $R$-algebra.
-\item The set of quaternions $\H$ is an $\R$-algebra.
-\end{parts}
-\end{prb}
-
-
-
 
 \section{Free modules}
 generators, cyclic
@@ -374,12 +361,113 @@ endomorphism algebra
 Tor and Ext
 
 
+A left $R$-module $P$ is projective if and only if the left exact functor $\Hom_R(P,-)$ is exact.
+
+A left $R$-module $I$ is injective if and only if the left exact contravariant functor $\Hom_R(-,I)$ is exact.
+
+
+projective
+\begin{itemize}
+\item direct sum of projectives is projective
+    \\(lem) if free, then projective
+\item PID: projective iff free (note sub of free is free in PID)
+\item projective iff direct summand of a free
+\item every module is a quotient of a free module
+\end{itemize}
+
+injective
+\begin{itemize}
+\item direct product of injectives is injective
+    \\(lem) $M$ injective iff $\Hom_R(R,M)\to\Hom_R(I,M)$ surj
+\item PID: injective iff divisible ($\cdots a:M\to M$ surj)
+    \\(lem) $\Hom_Z(R,M)$ is injective if $M$ is injective $\Z$-module
+\item every module is embedded in injective
+\end{itemize}
+
+flat
+\begin{itemize}
+\item PID: flat iff ($\cdot a:M\to M$ inj)
+\item $M$ flat iff $\Hom(M,\Q/\Z)$ is injective
+\item $M$ flat iff $I\otimes M\to R\otimes M$ inj
+\item if projective, then flat
+\end{itemize}
+
+continuity of functors
+
+\begin{prb}[Tor functor]
+Let $R$ be a ring and $M$ be a left $R$-module.
+We define the \emph{Tor functor} as the left derived functor of the right exact functor $-\otimes_RM:\Mod\text{-}R\to\Ab$
+\[\Tor_n^R(N,M):=H_n(P_\bullet\otimes_RM),\]
+where $P_\bullet$ is a projective resolution of a right $R$-module $N$.
+\begin{parts}
+\item In fact, the Tor functor may be defined by the left derived functor of the right exact functor $M\otimes_R-:R\text{-}\Mod\to\Ab$ for a right $R$-module $M$.
+\item In fact, only for Tor functors, we may only assume $P_\bullet$ is a flat resolution. (Flat resolution lemma)
+\end{parts}
+\end{prb}
+
+\begin{prb}[Ext functor]
+Let $R$ be a ring and $M$ be a left $R$-module.
+We define the \emph{Ext functor} as the right derived functor of left exact functor $\Hom_R(M,-)$
+\[\Ext_R^n(M,N):=H^n(M,I^\bullet),\]
+where $I^\bullet$ is an injective resolution of $N$.
+\begin{parts}
+\item In fact, the Ext functor may be defined by the right derived functor of the left exact contravariant functor $\Hom(-,M)$.
+\end{parts}
+\end{prb}
+
+long exact seuqence
+
+
+\begin{prb}[Universal coefficient theorem]
+Let $R$ be a ring.
+Let $C_\bullet$ be a chain complex of flat right $R$-modules and $M$ be a left $R$-module.
+\end{prb}
+\begin{pf}
+We first prove the K\"unneth formula.
+Note that modules in $Z_\bullet$ and $B_\bullet$ are also flat.
+We start from that we have a short exact sequence of chain complexes
+\[0\to Z_\bullet\to C_\bullet\to B_{\bullet-1}\to0.\]
+We have a short exact sequence of chain complexes
+\[\Tor_1^R(B_{\bullet-1},M)\to Z_\bullet\otimes_RM\to C_\bullet\otimes_RM\to B_{\bullet-1}\otimes_RM\to0.\]
+Since modules in $B_{\bullet-1}$ are flat so that $\Tor_1^R(B_{\bullet-1},M)=0$, we have a short exact sequence of chain complexes
+\[0\to Z_\bullet\otimes_RM\to C_\bullet\otimes_RM\to B_{\bullet-1}\otimes_RM\to0.\]
+Since $H_n(C_{\bullet-1})=H_{n-1}(C_\bullet)$ for any chain complex $C$, we have a long exact sequence
+\[H_n(B_\bullet\otimes_RM)\to H_n(Z_\bullet\otimes_RM)\to H_n(C_\bullet\otimes_RM)\to H_{n-1}(B_\bullet\otimes_RM)\to H_{n-1}(Z_\bullet\otimes_RM).\]
+Since every morphism in $B_\bullet$ and $Z_\bullet$ is zero, we have an exact sequence
+\[B_n\otimes_RM\xrightarrow{f_n}Z_n\otimes_RM\to H_n(C_\bullet\otimes_RM)\to B_{n-1}\otimes_RM\xrightarrow{f_{n-1}}Z_{n-1}\otimes_RM.\]
+Therefore, we have a short exact sequence
+\[0\to\coker f_n\to H_n(C_\bullet\otimes_RM)\to\ker f_{n-1}\to0.\]
+
+Since
+\[0\to B_n\to Z_n\to H_n(C_\bullet)\to0\]
+is a flat resolution of $H_n(C_\bullet)$, by the flat resolution lemma, we have a long exact sequence
+\[\Tor_1^R(Z_n,M)\to\Tor_1^R(H_n(C_\bullet),M)\to B_n\otimes_RM\xrightarrow{f_n}Z_n\otimes_RM\to H_n(C_\bullet)\otimes_RM\to0.\]
+Since $Z_n$ is flat so that $\Tor_1^R(Z_n,M)=0$, we have
+\[\coker f_n=H_n(C_\bullet)\otimes_RM,\quad\ker f_n=\Tor_1^R(H_n(C_\bullet),M).\]
+Therefore, we have an exact sequence
+\[0\to H_n(C_\bullet)\otimes_RM\to H_n(C_\bullet\otimes_RM)\to\Tor_1^R(H_{n-1}(C_\bullet),M)\to0.\]
+
+Universal coefficient theorem states that if $R$ is a PID, then the K\"unneth formula splits non-canonically.
+\end{pf}
 
 
 
 
-\chapter{Modules over principal ideal domains}
-\section{Structure theorem of finitely generated modules}
+\[\begin{tikzcd}[sep=small]
+K \rar & A \rar\dar[->>] & B \rar\dar & 0\\
+K' \rar & A' \rar & B' \rar & 0\\
+\end{tikzcd}\]
+\begin{parts}
+\item If $A\to A'$ is monic, then $K\to K'$ is monic.
+\item If $B\to B'$ is monic, then $K\to K'$ is epic.
+\end{parts}
+
+
+
+
+
+\chapter{Linear algebra}
+\section{Modules over principal ideal domains}
 
 \begin{prb}[Torsion modules]
 Let $R$ be a commutative unital ring.
@@ -434,17 +522,17 @@ $p\setminus e$ & 1 & 2 & 3 & 4 \\\hline
 
 
 
-\part{Vector spaces}
+\section{Vector spaces}
 
+\begin{prb}[Fields]
+homomorphisms
+\end{prb}
 
-\chapter{Duality}
-\section{Linear functionals}
-
-\begin{prb}[Double dual space]
+\begin{prb}[Dual spaces]
+Double dual
 \end{prb}
 
 
-\section{Bilinear and sesquilinear forms}
 
 \begin{prb}[Polarization identity]
 \begin{parts}
@@ -468,7 +556,6 @@ Let $\<-,-\>$ be a non-degenerate bilinear form
 \end{prb}
 
 
-\section{Adjoint}
 \begin{prb}[Adjoint linear transforms]
 \end{prb}
 
@@ -479,8 +566,7 @@ Let $\<-,-\>$ be a non-degenerate bilinear form
 
 
 
-\chapter{Normal forms}
-\section{Rational canonical form}
+\section{Normal forms}
 \begin{prb}[Rational canonical form]
 Let $F$ be a field.
 Invariant factor form
@@ -497,15 +583,16 @@ For each invariant factor $a_i$, we can construct a companion matrix with its co
 
 
 
-\section{Jordan normal form}
+\begin{prb}[Jordan normal form]
+\end{prb}
 
 
-\section{Conjugation action}
+
 
 \begin{prb}[Commuting matrices]
 \end{prb}
 
-\section{Spectral theorems}
+spectral theorems
 
 \section*{Exercises}
 
@@ -531,8 +618,23 @@ There are eight types of invariant factors:
 Show that a square matrix $A$ over $\F_p$ satisfying $A^p=A$ is diagonalizable.
 
 
+\part{Algebras}
 
 \chapter{Tensor algebras}
+
+\section{Algebras}
+\begin{prb}[Definition of algebras]
+Let $R$ be a commutative unital ring.
+An (associative) \emph{algebra} over $R$ or \emph{$R$-algebra} is a ring $A$ together with a unital ring homomoprhism $\alpha:R\to Z(\tilde A)\subset\End_\Z(A)$.
+Although there are some important examples of \emph{non-associative} algebras in which the associativity of multiplication is dropped, we will assume that an $R$-algebra is associative if no mention.
+\begin{parts}
+\item The set of matrices $M_n(R)$ over a ring $R$ is a unital $R$-algebra.
+\item The set of quaternions $\H$ is an $\R$-algebra.
+\end{parts}
+\end{prb}
+
+
+
 \section{Graded and filtered algebras}
 \section{Exterior algebras}
 \begin{prb}[Determinants]

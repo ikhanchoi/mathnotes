@@ -371,6 +371,11 @@ The \emph{strict topology} refers to the strong$^*$ operator topology of $B(E)$.
 On the trivial Hilbert $B$-module $B$, $b_i\to0$ strictly iff $b_i,b_i^*\to0$ weakly.
 If $B$ is unital, the strict topology on $B$ and the norm topology coincide.
 An adjointable operator is weakly continuous.
+
+
+
+
+
 \end{prb}
 
 
@@ -378,7 +383,7 @@ An adjointable operator is weakly continuous.
 On Hilbert modules:
 \begin{itemize}
 \item polarization identity? OK,
-\[\<\eta,\xi\>=\frac14\sum_{k=0}^3i^k\<\xi+i^k\eta,\xi+i^k\eta\>\]
+\[\<\eta,\xi\>=\frac14\sum_{k=0}^3i^k\<\xi+i^k\eta,\xi+i^k\eta\>,\qquad \xi,\eta\in E.\]
 \item unbounded adjointable operators and spectral theory?
 \item polar decomposition? especially for unbounded adjointable operators?
 \item bounded sesquilinear form?
@@ -457,23 +462,7 @@ C$^*$-algebras together with a non-degenerate representation $C_0(X)\to Z(M(A))$
 \end{prb}
 
 
-\begin{prb}
-\,
-\begin{parts}
-\item $\mathrm{LCH}_{\mathrm{prop}}$ is equivalent to $\mathrm{CC^*Alg}_{\mathrm{nondeg}}$.
-\item $\mathrm{CH}_*$ is equivalent to $\mathrm{CC^*Alg}$.
-\item $\mathrm{LCH}$ is equivalent to $\mathrm{CC^*Alg}_{\mathrm{mor}}$.
-\end{parts}
-\end{prb}
 
-
-부분적 결과에 대한 인용?
-위상적 구조를 가지지 않은 통상의 벡터공간을 공역으로 하는 인자화대수로부터 적절한 조건에서 정점대수를 도출할 수 있다는 것을 보였다
-예상의 의미가 잘 안 와닿아서 여러번 읽었다...(장의 집합이라든가)
-본 문제 혹은 예상의 테크니컬한 어려움은 무엇이며 그것을 어떻게 해결하고자 하는가
-연구2: 게이지변환을 이용한 컨포멀 벡터의 구성방법이 적혀있으나, 어디까지가 알려진 거고 어디부터가 본인이 하려고 하는 부분인지.. 있는 거 같긴 한데 분명하지는 않은 듯?
-
-難航するが같은 표현은 부정적인 이미지를 줄 수 있을 것 같음
 
 
 \section{C$^*$-correspondences}
@@ -1101,7 +1090,7 @@ nuclear dimension
 \item Kasparov technical theorem
 \end{itemize}
 
-\begin{prb}[Group equivariant correspondences]
+\begin{prb}[Equivariant correspondences]
 Let $G$ be a locally compact group.
 Let $(A,\alpha)$ and $(B,\beta)$ be $G$-C$^*$-algebras.
 An \emph{equivariant correspondence} from $(A,\alpha)$ to $(B,\beta)$ is a correspondence $E$ from $A$ to $B$ together with a strongly continiuous map $u:G\to L(E)$ satisfying
@@ -1132,7 +1121,7 @@ Then, for $f\otimes\xi_0\in C_c(G)\otimes E$,
 implies $f(e)\otimes(a\xi_0)=0$ by putting $t=e$, so $a\xi_0=0$ and $a=0$.
 
 (Fullness)
-Because the a Hilbert module is full iff the right action is faithful, we can prove it in a similar way to faithfulness of the left action.
+Because a Hilbert module is full iff the right action is faithful, we can prove it in a similar way to faithfulness of the left action.
 
 (Non-degeneracy)
 If $e_i\in A$ is a quasi-central approximate unit such that $\alpha_t(e_i)-e_i\to0$ in $A$ compactly on $G$ (it can be shown whithout the condition that $A$ is $\sigma$-unital, Lemma 2.12 of Ozawa), then
@@ -1152,7 +1141,24 @@ taking compact set outside which we have $\|\xi\|<\e$.
 Let $X$ be a locally compact Hausdorff space.
 Let $A$ and $B$ be $C_0(X)$-C$^*$-algebras.
 
+
 For equivariant versions, we do not require the compatibility of $G$ and $C_0(X)$ on $E$, which is satisfied automatically.
+
+
+Define $B[0,1]:=B\otimes C([0,1])$ and $E[0,1]:=E\otimes_BB[0,1]$.
+Then, we have the followings:
+\begin{parts}
+\item $C([0,1],B)=B[0,1]$ as $G$-C$^*$-algebras.
+\item $C([0,1],E)=E[0,1]$ as $G$-C$^*$-algebras.
+\item $C([0,1],K(E))=K(E[0,1])$ as $G$-C$^*$-algebras.
+\item $C([0,1],B(E)_{\mathrm{strict}})=B(E[0,1])$ as sets.
+\item If $F\in C([0,1],B(E)_{\mathrm{norm}})$ and $F_t$ is $G$-continuous for each $t\in[0,1]$, then $F$ is $G$-continuous in $B(E[0,1])$.
+\item The evaluation maps are all well-defined.
+\end{parts}
+
+The evaluation map for $E[0,1]$ is well-defined because the right action is non-degenerate and
+\[\|\xi\otimes b\|^2\le\cdots\le\|\xi(b\otimes1)\|^2,\]
+
 \begin{parts}
 \item 
 \item For a $C_0(X)$-C$^*$-algebra $A$, there exists a faithful non-degenerate correspondence $E$ from $A$ to some $C_0(X)$-W$^*$-algebra $B$.
@@ -1172,6 +1178,120 @@ If $a\in A$ acts trivially on $E$, which means $\f(a^*a)=0$ and $\omega(a^*a)=0$
 Thus $A$ acts failfully on $E$.
 
 \end{pf}
+
+\begin{prb}[Kasparov cycles]
+Let $(A,\alpha)$ and $(B,\alpha)$ be $G$-$C_0(X)$-C$^*$-algebras, where $G$ is a locally compact group and $X$ is a locally compact Hausdorff space.
+A \emph{Kasparov cycle} or \emph{Kasparov module} from $(A,\alpha)$ to $(B,\beta)$ is a pair of
+\begin{enumerate}[(i)]
+\item a countably generated super-correspondence $(E,u)$ from $(A,\alpha)$ to $(B,\beta)$, which is $G$-equivariant over $C_0(X)$,
+\item an odd adjointable operator $F\in B(E)$ such that
+\[[F,a],\quad(F-F^*)a,\quad(F^2-1)a\in K(E),\qquad a\in A,\]
+with $Fa\in B(E)$ is $G$-continuous and $\Ad u_s(F)-F\in K(E)$ for $a\in A$ and $s\in G$.
+\end{enumerate}
+\begin{parts}
+\item from $\C$ to $\C$
+\item from $\C$ to $B$
+\item from $A$ to $\C$
+\item from $A$ to $A$
+\end{parts}
+\end{prb}
+
+
+
+\begin{prb}[Homotopies of Kasparov cycles]
+Let $(E,F)$ be a Kasparov cycle from $(A,\alpha)$ to $(B[0,1],\beta\otimes\id)$.
+For each $t\in[0,1]$, we can restrict it to another Kasparov cycle $(E,F)_t:=(E_t,F_t):=(E\otimes_{\id\otimes\delta_t}B,F\otimes1)$ from $(A,\alpha)$ to $(B,\beta)$, since the two-sided actions and inner product on $E_t$ given by
+\[a(\xi(t))b=(a\xi b)(t),\qquad\<\eta(t),\xi(t)\>=\<\eta,\xi\>(t),\qquad F(t)\xi(t)=(F\xi)(t)\]
+makes $E_t$ a super-correspondence from $A$ to $B$, and since $F_t$ satisfies
+\[[F_t,a],\quad (F_t-F_t^*)a,\quad (F_t^2-1)a,\qquad a\in A\]
+and the group action continuity.
+A \emph{homotopy} between $(E_0,F_0)$ and $(E_1,F_1)$ is a Kasparov cycle $(E,F)$ from $(A,\alpha)$ to $(B[0,1],\beta\otimes\id)$ such that $(E,F)_0=(E_0,F_0)$ and $(E,F)_1=(E_1,F_1)$.
+
+\begin{parts}
+\item compact perturbation
+\item operator homotopy
+\item degenerate
+\item positivity condition implies operator homotopy
+\end{parts}
+\end{prb}
+\begin{pf}
+
+(c)
+Let $(E_0,F_0)$ be a degenerate Kasparov cycle from $A$ to $B$.
+Define a Kasparov cycle $(E,F)$ from $A$ to $B[0,1]$ such that $E:=E_0[0,1)$
+
+($C_b([0,1),K(E_0))\not\subset K(E_0[0,1))$ in general.)
+
+(d)
+
+
+\end{pf}
+
+
+
+\begin{prb}[Homological properties of KK-functor]
+The set of homotopy classes of Kasparov cycles is denoted by $KK^G(A,B)$, where the actions $\alpha$ and $\beta$ are usually omitted in notation.
+The set theoretic issue does not occur because we only consider countably generated correspondences.
+
+\begin{parts}
+\item $KK^G(A,B)$ is an abelian group given by direct sum.
+\item $KK^G$ is a homotopy invariant bivariant functor.
+\item $KK^G$ preserves finite products. (infinite direct sum for the first argument after introduction of connections)
+\end{parts}
+\end{prb}
+\begin{pf}
+(a)
+well-definedness
+
+associativity: clear
+
+identity: clear
+
+inverse: two homotopies; rotation from the sum with opposite to degenerate, trivial homotopy from degenerate to zero.
+
+Let $(E,F)$ be a Kasparov cycle from $A$ to $B$.
+We prove that $-(E,F):=(-E,-UFU)$ is the inverse.
+Consider $\bar E:=(E\oplus-E)[0,1]$ and
+\[\bar F(t):=\mat{\cos\frac\pi2t\ F&\sin\frac\pi2t\ U\\\sin\frac\pi2t\ U&-\cos\frac\pi2t\ UFU}\in B(E\oplus-E),\qquad t\in[0,1],\]
+with an identification $\bar F\in B(\bar E)$ obtained from the norm continuity of $\bar F:[0,1]\to B(E\oplus-E)$.
+If we prove $(\bar E,\bar F)$ is a Kasparov cycle from $A$ to $B[0,1]$, then it becomes an operator homotopy between $(E\oplus-E,F\oplus-UFU)$ and a degenerate Kasparov cycle.
+Since $\bar E$ is clearly a countably generated super-correspondence, it suffices to check $\bar F$ satisfies the conditions in the definition of Kasparov cycles.
+
+(b)
+
+Suppose $\f_0,\f_1:A\rightrightarrows A'$ are homotopic.
+We calim $\f_0^*,\f_1^*:KK^G(A',B)\rightrightarrows KK^G(A,B)$ are equal.
+
+Suppose $\psi_0,\psi_1: B\rightrightarrows B'$ are homotopic.
+We will show $\psi_{0*},\psi_{1*}:KK^G(A,B)\rightrightarrows KK^G(A,B')$.
+
+
+(c)
+The only non-trivial part is the injectivity of
+\[KK^G(A_1\oplus A_2,B)\to KK^G(A_1,B)\oplus KK^G(A_2,B).\]
+Let $(E_0,F_0)\in KK^G(A_1\oplus A_2,B)$.
+Define a Kasparov cycle $(E,F)$ from $A_1\oplus A_2$ to $B[0,1]$ such that $E:=E_0\otimes_BBV$ with $V:=([0,1]\times\{0\})\cup(\{0\}\times[0,1])$ and $F:=F_0\otimes1$, where the correspondnece structure on $E$ is given by
+\[((a_1,a_2)\xi b)(s,t):=\begin{cases}
+(a_1,(1-s)a_2)\xi(s,0)b(s)&\text{ if }s\ne0,\\
+(a_1,a_2)\xi(0,0)b(0)&\text{ if }(s,t)=(0,0),\\
+((1-t)a_1,a_2)\xi(0,t)b(t)&\text{ if }t\ne0,
+\end{cases}
+\qquad
+\begin{gathered}
+(a_1,a_2)\in A_1\oplus A_2,\ b\in B[0,1],\\
+\xi\in E,\ (s,t)\in V.
+\end{gathered}\]
+and
+\[\<\eta,\xi\>(t):=\begin{cases}
+\<\eta(0,0),\xi(0,0)\>&\text{ if }t=0,\\
+\frac{1+t}2(\<\eta(t,0),\xi(t,0)\>+\<\eta(0,t),\xi(0,t)\>)&\text{ if }t\ne0,
+\end{cases}
+\qquad \xi,\eta\in E,\ t\in[0,1].\]
+Then, $(E,F)$ is a homotopy between $(E_0,F_0)$ and $((_{A_1}E_0)\oplus(_{A_2}E_0),F_0\oplus F_0)$, so we are done.
+\end{pf}
+
+
+
 
 \begin{prb}[Kasparov stabilization theorem]
 Let $G$ be a locally compact group.
@@ -1223,6 +1343,26 @@ Therefore,
 \[H_B=H_E\oplus H_B=E\oplus H_E\oplus H_B=E\oplus H_B.\]
 \end{pf}
 
+\begin{prb}[Connections]
+Let $E_1$ be a super-Hilbert module over $B$, and $E_2$ be a super-correspondence from $B$ to $C$, with $E_{12}:=E_1\otimes_B E_2$.
+For $F_2\in B(E_2)$, we say $F_{12}\in B(E_{12})$ satisfies the \emph{connection property} with respect to $F_2$ for $E_1$ if
+\[F_{12}T_{\xi_1}-T_{\xi_1}F_2,\quad F_{12}^*T_{\xi_1}-T_{\xi_1}F_2^*\in K(E_2,E_{12}),\qquad\xi_1\in E_1.\]
+(How about $G$-$C_0(X)$-equivariant version?)
+\begin{parts}
+\item existence of odd connection (stabilization is used)
+\item some operations on connections
+\item Kasparov properties of $F_{12}$ from $F_2$
+\item connections on homotopy?
+\item non-degenerate correpondence assumption
+\end{parts}
+\end{prb}
+\begin{pf}
+(a)
+
+
+
+\end{pf}
+
 \begin{prb}[Quasi-central approximate units]
 Let $A$ be a $\sigma$-unital C$^*$-algebra.
 Let $Y$ be a locally compact $\sigma$-compact Hausdorff subset contained in a faithful representation $B(H)$ of $A$.
@@ -1264,120 +1404,32 @@ Then, there is $M_2\in M(J)$ with $0\le M\le1$ such that $(1-M_2)A_1\subset J$ a
 \end{prb}
 \begin{pf}
 
-
-
-
 \end{pf}
 
-
-If $G$ acts on a C$^*$-algebra $A$, then $\alpha_s^{**}:A^{**}\to A^{**}$ satisfies $\alpha_s^{**}L^\infty(\omega)=L^\infty(\alpha_s^*\omega)$.
-We can construct a unitary $u_s:L^2(\omega)\to L^2(\alpha_s^*\omega)$?
-Radon-Nikodym derivatives are mapped by this unitary?
-
-
-\begin{prb}[Kasparov cycles]
-Let $G$ be a locally compact $\sigma$-compact group and $X$ a locally compact $\sigma$-compact Hausdorff space.
-Let $(A,\alpha)$ and $(B,\alpha)$ be $\sigma$-unital $G$-$C_0(X)$-C$^*$-algebras.
-A \emph{Kasparov cycle} or \emph{Kasparov module} from $(A,\alpha)$ to $(B,\beta)$ is a countably generated super-correspondence $(E,u)$ from $(A,\alpha)$ to $(B,\beta)$ which is $G$-equivariant over $C_0(X)$, together with an odd adjointable operator $F\in B(E)$ such that
+\begin{prb}[Kasparov product]
+Let $(A,\alpha)$, $(B,\beta)$, and $(C,\gamma)$ be $G$-C$^*$-algebras.
+Let $(E_1,F_1)$ and $(E_2,F_2)$ be Kasparov cycles from $(A,\alpha)$ to $(B,\beta)$ and from $(B,\beta)$ to $(C,\gamma)$, and let $E_{12}:=E_1\otimes_BE_2$.
+We say a Kasparov cycle $(E_{12},F_{12})$ from $(A,\alpha)$ to $(C,\gamma)$ is a \emph{Kasparov product} if
 \begin{enumerate}[(i)]
-\item $[F,A]\subset K(E)$ and $FA\subset B(E)$ is $G$-continuous,
-\item $(F-F^*)A\cup(F^2-1)A\subset K(E)$ and $GF-F\subset K(E)$.
+\item $F_{12}$ satisfies the connection property with respect to $F_2$ for $E_1$,
+\item $a^*[F_1\otimes1,F_{12}]a\ge0$ in $Q(E_{12})$ for all $a\in A$.
 \end{enumerate}
-The sets of unitary equivalence classes of Kasparov cycles and the unitary equivalence classes of degenerate Kasparov cycles are denoted by $E^G(A,B)$ and $D^G(A,B)$, where the $G$-$C_0(X)$-structures are usually omitted in notation.
 \begin{parts}
-\item $E^G(\C,\C)$
-\item $E^G(\C,B)$,
-\item $E^G(A,\C)$, Fredholm module
-\end{parts}
-\end{prb}
-
-
-\begin{prb}[KK-groups]
-Let $(E,F)$ be a Kasparov cycle from $(A,\alpha)$ to $(B\otimes C([0,1]),\beta\otimes\id)$.
-Then, for each $t\in[0,1]$, we can restrict it to a Kasparov cycle $(E_t,F_t):=(E\otimes_{B\otimes C([0,1])}B,F\otimes1)$ from $(A,\alpha)$ to $(B,\beta)$ as follows.
-First, we check that $E_t$ is a countably generated super-correspondence over $G$ and $C_0(X)$.
-If we introduce the evaluation maps
-\begin{gather*}
-\mathrm{ev}_t:=\id\otimes\delta_t:B\otimes C([0,1])\to B,\\
-\mathrm{ev}_t:E\to E_t:\xi(b\otimes1)\mapsto\xi b,\qquad\mathrm{ev}_t:B(E)\to B(E_t):T\mapsto T\otimes1,
-\end{gather*}
-which all commute the structures given by $G$ and $C_0(X)$, then the first defines the left action used in the interior tensor product $E_t=E\otimes_{B\otimes C([0,1])}B$, the second is well-defined because the right action is non-degenerate and
-\[\|\xi\otimes b\|^2\le\cdots\le\|\xi(b\otimes1)\|^2,\]
-and the third maps compact operators to compact operators.
-Then, the two-sided actions and inner product is given by
-\[a(\xi(t))b=(a\xi b)(t),\qquad\<\eta(t),\xi(t)\>=\<\eta,\xi\>(t),\qquad T(t)\xi(t)=(T\xi)(t),\]
-hence $E_t$ is a super-correspondence from $A$ to $B$.
-Second, we check that $F_t$ is a Fredholm operator.
-
-\[[F_t,a],\quad (F_t-F_t^*)a,\quad (F_t^2-1)a\]
-and group action continuity.
-
-Then, $(E,F)$ is called a \emph{homotopy} between $(E_0,F_0)$ and $(E_1,F_1)$.
-
-
-compact perturbation, 
-
-
-
-
-The set of homotopy classes of Kasparov cycles is denoted by $KK^G(A,B)$, where the actions $\alpha$ and $\beta$ are usually omitted in notation.
-The set theoretic issue does not occur because we only consider countably generated correspondences.
-
-\begin{parts}
-\item $KK^G(A,B)$ is an abelian group given by direct sum.
-\item $KK^G$ is a homotopy invariant bivariant functor.
-\item $KK^G$ preserves finite products. (infinite direct sum for the first argument)
+\item For $A$ separable and $B,C$ $\sigma$-unital, the well-definedness of the Kasparov product up to homotopy (technical lemma is used in existence)
+\item associativity (techinal lemma is used)
 \end{parts}
 \end{prb}
 \begin{pf}
-(a)
-well-definedness
 
-associativity: clear
 
-identity: clear
-
-inverse: two homotopies; rotation from the sum with opposite to degenerate, trivial homotopy from degenerate to zero.
-
-$C([0,1],B)\subset B\otimes C([0,1])$
-
-$C([0,1],(E\oplus-E)\otimes_BB)\subset (E\oplus-E)\otimes_B(B\otimes C([0,1]))$
-
-$C([0,1],B((E\oplus-E)\otimes_BB))\subset B((E\oplus-E)\otimes_B(B\otimes C([0,1])))$
-
-We need to check the rotational matrix satisfies the Fredholm conditions
-
-commutativity: clear
-
-(b)
-
-(c)
-
-Suppose $\f_0,\f_1:A\rightrightarrows A'$ are homotopic.
-We calim $\f_0^*,\f_1^*:KK^G(A',B)\rightrightarrows KK^G(A,B)$ are equal.
-
-Suppose $\psi_0,\psi_1: B\rightrightarrows B'$ are homotopic.
-We will show $\psi_{0*},\psi_{1*}:KK^G(A,B)\rightrightarrows KK^G(A,B')$.
-
+\[F_{12}:=M_1^{\frac12}(F_1\otimes1)+M_2^{\frac12}\tilde F_{12}\]
 \end{pf}
 
+\begin{prb}[Monoidality]
+\end{prb}
 
 
-
-\begin{prb}[Kasparov product]
-Let $E_1$ be a Hilbert module over $B$, and $E_2$ be a super-correspondence from $B$ to $C$.
-Let $E_{12}:=E_1\otimes_B E_2$.
-For $F_2\in B(E_2)$, we say $F_{12}\in B(E_{12})$ is a \emph{$F_2$-connection} for $E_1$ if
-\[F_{12}T_{\xi_1}-T_{\xi_1}F_2\in K(E_2\oplus E_{12}),\quad
-T_{\xi_1}^*F_{12}-F_2T_{\xi_1}^*\in K(E_{12}\oplus E_2),\qquad\xi_1\in E_1.\]
-(How about $G$-$C_0(X)$-equivariant version?)
-
-Let $(A,\alpha)$, $(B,\beta)$, and $(C,\gamma)$ be $G$-C$^*$-algebras.
-Let $(E_1,F_1)$ and $(E_2,F_2)$ be Kasparov cycles from $(A,\alpha)$ to $(B,\beta)$ and from $(B,\beta)$ to $(C,\gamma)$, and let $E_{12}:=E_1\otimes_BE_2$.
-We say a Kasparov cycle $(E_{12},F_{12})$ is a \emph{Kasparov product} if $F_{12}$ is a $F_2$-connection for $E_1$ and $a^*[1\otimes F_2,F_{12}]a\ge0$ in $Q(E_{12})$ for all $a\in A$.
-\begin{parts}
-\item 
-\end{parts}
+\begin{prb}[$\K$-stability]
 \end{prb}
 
 
@@ -1411,7 +1463,7 @@ K-homology: dual algebras, extension theory.
 
 \begin{prb}[Weyl-von Neumann theorem]
 Let $A$ be a C$^*$-algebra.
-We say $a,b\in A$ are called \emph{approximately unitarily equivalent}, denoted $a\sim_ab$, if $\Ad U(A)(a)$ and $\Ad U(A)(b)$ have same closures.
+We say $a,b\in A$ are called \emph{approximately unitarily equivalent}, denoted $a\sim_ab$, if $\Ad U(A)(a)$ and $\Ad U(A)(b)$ have same closures, where $U(A)$ denotes the group of unitaries in $A$.
 
 
 

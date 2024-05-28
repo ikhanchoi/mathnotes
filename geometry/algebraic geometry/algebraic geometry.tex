@@ -16,6 +16,98 @@
 
 \chapter{Schemes}
 
+\begin{prb}
+schemes and points
+\end{prb}
+Every ring will be commutative and unital if not mentioned.
+For a ring $A$, $\Spec A$ is a ringed space defined by the set of all prime ideals of $A$, together with a sheaf of rings.
+A subset of $\Spec A$ is defined to be \emph{closed} if it is given by the zero set $\Spec A/\fa=\{\fp\in\Spec A:\fa\subset\fp\}$ for some ideal $\fa\subset A$.
+An ideal $\fa$ of $A$ is proper if and only if the corresponding zero set $\Spec A/\fa$ is non-empty.
+A \emph{generic} point of a topological space is a point whose closure is the whole space.
+specialization and generalization..
+
+\[\Spec\Z=\{(p):p\in\Z\text{ prime}\}\cup\{0\}.\]
+\[\Spec\R[x]=\A^1_\R=\{(x-a):a\in\R\}\cup\{(f):f\in\R[x]\text{ irreducible quadratic}\}\cup\{0\}.\]
+\[\Spec\Q[x]=\A^1_\Q\]
+\[\Spec\F_p[x]=\A^1_{\F_p}=\{(f):f\in\F_p[x]\text{ irreducible}\}\cup\{0\}.\]
+\[\Spec\C[x,y]=\A^2_\C=\{(x-a,y-b):(a,b)\in\C^2\}\cup\{(f):f\in\C[x,y]\text{ irreducible}\}\cup\{(0)\}.\]
+
+Nulstellensatz states that the set of closed points of $\A^n_\C$ is exactly $\C^n$.
+It connects the theory of classical algebraic geometry to scheme theory.
+Zariski lemma, somtimes called the Nullstellensatz, states that for a field $k$ the residue field of a maximal ideal of $k[x_1,\cdots,x_n]$ is a finite extension of $k$.
+In other words, for a field extension $K/k$, $K$ is finitely generated as $k$-modules if $K$ is finitely generated as $k$-algebras.
+
+
+\begin{prb}[Quotients and localizations]
+\end{prb}
+
+For an ideal $\fa\subset A$, the spectrum of the quotient $\Spec A/\fa$ gives a closed subset of $\Spec A$.
+For an element $f\in A$, the spectrum of the localization $\Spec A_f$ gives a distinguished open subset of $\Spec A$, which generate a topological base.
+For a prime ideal $\fp\subset A$, the spectrum of the localization $\Spec A_\fp$, which is a local ring, gives the set of prime ideals $\Spec A$ containing $\fp$.
+
+
+\[\Spec\C[x]_x=\Spec\C[x]\setminus\Spec\C[x]/(x)=\{(x-a):a\in\C\setminus\{0\}\}\cup\{(0)\}\]
+
+\[\Spec\C[x]_{(x)}=\{(x)\}\cup\{(0)\}.\]
+\[\Spec\C[x,y]_{(x)}=\{(x,y-b):b\in\C\}\cup\{(x)\}\cup\{(0)\}\]
+\[\Spec\Z[x]\text{ over }\Spec\Z\]
+
+
+
+\begin{prb}[Integral schemes]
+Let $X$ be a scheme.
+We say $X$ is \emph{reduced} if every stalk is reduced, that is, it has no non-zero nilpotents, i.e.~``A function is zero if it is zero at every point''.
+We say $X$ is \emph{irreducible} if every two open subsets intersects.
+It is an algebro-geometric analogue of connectedness.
+We say $X$ is \emph{integral} if it is non-empty and every non-empty affine open subset is isomorphic to the spectrum of an integral domain.
+\begin{parts}
+\item A scheme is integral if and only if it is reduced and irreducible.
+\item An integral scheme has a unique generic point $\eta$.
+\item The stalk $\cO_{X,\eta}$ at the generic point is naturally identified with the field $K(A)$ of fractions, where $\Spec A$ is any non-empty affine open subset of an integral scheme $X$. So, we can define ``rational functions'' on integral schemes.
+\end{parts}
+\end{prb}
+
+\begin{prb}[Separated schemes]
+\emph{quasi-separated} if the intersection of any two quasi-compact open subsets is quasi-compact.
+\end{prb}
+
+
+\begin{prb}[Schemes of finite type]
+Let $X$ be a scheme.
+We say $X$ is \emph{quasi-compact} if it the Zariski topology is compact, \emph{locally noetherian} if it is covered by the spectrum of noetherian rings, and \emph{locally of finite type} (over a ring $A$) if it is covered by the spectrum of finitely generated algebras (over $A$).
+A \emph{notherian} scheme is a quasi-compact locally notherian scheme, and a scheme of \emph{finite type} is a quasi-compact scheme of locally finite type.
+\begin{parts}
+\item A notherian scheme is automatically quasi-separated.
+\item A noetherian scheme is integral if and only if it is non-empty connected and every stalk is an integral domain.
+\item A scheme of finite type over a noetherian ring is noetherian.
+\end{parts}
+\end{prb}
+
+
+\begin{prb}[Normal and factorial schemes]
+\end{prb}
+
+
+\section{Constructions for schemes}
+
+
+
+\begin{prb}[Projective schemes]
+We say a variety is \emph{projective} if it is isomorphic to a closed subvariety of $\P^n$ for some $n$.
+
+For a fixed a base ring $A$, let $S$ be a $\Z_{\ge0}$-graded ring such that $S_0=A$, and define the \emph{irrelavent ideal} $S_+:=\bigoplus_{i\ge1}S_i$ of $S$.
+The \emph{Proj construction} of $S$ is a scheme $\Proj S$ constructed as follows.
+The set $\Proj S$ consists of all homogeneous prime ideals of $S$ not containing $S_+$, the topology is determined by setting $V(\fa):=\{\fp\in\Proj S:\fa\subset\fp\}$ as closed sets where $\fa$ runs through the homogeneous ideals of $S$, and the structure sheaf defined such that $\cO_{\Proj S}(D(f)):=S_{((f))}$ for homogeneous $f\in S_+$, where $S_{(\fp)}:=(S_\fp)_0$ denotes the zeroth graded piece of localized $\Z$-graded rings $S_\fp$, and the set $D(f):=\Proj S\setminus V(f)$ is called a \emph{standard open} of $\Proj S$, which can be shown to be affine.
+
+There is a canonical $\Z$-graded $\cO_{\Proj S}$-modules, of which the graded pieces $\cO(i)$ are line bundles called the \emph{Serre twisting sheaves}.
+\end{prb}
+
+A quasi-projective scheme $X$ over $A$ is of finite type of $A$.
+If $A$ is furthermore noetherian, then $X$ is noetherian.
+
+
+
+
 
 \chapter{Morphisms}
 
@@ -29,28 +121,6 @@ direct image, inverse image
 
 
 
-\begin{prb}[Integral schemes]
-A scheme $X$ is said to be \emph{integral} if it is non-empty and every non-empty affine open is isomorphic to the spectrum of an integral domain.
-A \emph{generic point} of a topological space is a point whose closure is the whole space.
-\begin{parts}
-\item A scheme is integral if and only if it is reduced and irreducible.
-\item An integral scheme has a unique generic point.
-\end{parts}
-\end{prb}
-
-
-\begin{prb}[Projective schemes]
-We say a variety is \emph{projective} if it is isomorphic to a closed subvariety of $\P^n$ for some $n$.
-
-For a fixed a base ring $A$, let $S$ be a $\Z_{\ge0}$-graded ring such that $S_0=A$, and define the \emph{irrelavent ideal} $S_+:=\bigoplus_{i\ge1}S_i$ of $S$.
-The \emph{Proj construction} of $S$ is a scheme $\Proj S$ constructed as follows.
-The set $\Proj S$ consists of all homogeneous prime ideals of $S$ not containing $S_+$, the topology is determined by setting $V(\fa):=\{\fp\in\Proj S:\fa\subset\fp\}$ as closed sets where $\fa$ runs through the homogeneous ideals of $S$, and the structure sheaf defined such that $\cO_{\Proj S}(D(f)):=S_{((f))}$ for homogeneous $f\in S_+$, where $S_{(\fp)}:=(S_\fp)_0$ denotes the zeroth graded piece of localized $\Z$-graded rings $S_\fp$, and the set $D(f):=\Proj S\setminus V(f)$ is called a \emph{standard open} of $\Proj S$, which can be shown to be affine.
-
-There is a canonical $\Z$-graded $\cO_{\Proj S}$-modules, of which the graded pieces $\cO(i)$ are line bundles called the \emph{Serre twisting sheaves}.
-\end{prb}
-
-Some analysis of line bundles construct projective embeddings
-
 
 \chapter{Quasi-coherent sheaves}
 
@@ -59,7 +129,7 @@ Some analysis of line bundles construct projective embeddings
 \chapter{Curves}
 
 
-In general, a variety over $k$ is meant by an integral(=reduced+irreducible) scheme which is separated and of finite type.
+In general, a variety over $k$ is meant by a scheme which is integral, separated, and of finite type.
 We wan to classify 
 \begin{itemize}
 \item Hartshorne: integral scheme of dimension 1 which is proper and regular.
