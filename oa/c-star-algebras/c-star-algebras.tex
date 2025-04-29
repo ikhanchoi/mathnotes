@@ -11,11 +11,457 @@
 \maketitle
 \tableofcontents
 
-\part{Constructions}
+\part{}
 
 
-\chapter{Completely positive maps}
+
+\chapter{Hilbert modules}
+
+\section{Hilbert modules}
+
+\begin{prb}[Banach modules]
+Recall that the category of Banach spaces with contractive linear operators as its morphisms is a bicomplete symmetric monoidal category, with respect to the projective tensor product.
+A Banach algebra is an internal semi-group in this category.
+A \emph{Banach module} over a Banach algebra $A$ is a Banach space $E$ equipped with a contractive linear operator $A\mathrel{\hat\otimes_\pi} E\to E$.
+\begin{parts}
+\item (Cohen factorization theorem) If $A$ has a bounded left approximate unit, then $AE$ is closed in $E$.
+\end{parts}
+\end{prb}
+\begin{pf}
+It is clear if $A$ is unital, so assume $A$ is not unital.
+Suppose $\xi\in\bar{AE}$.
+We will construct a sequence $a_n\in\tilde A^\times$ of invertible elements of the unitization $\tilde A:=A\oplus_1\C$ with $\ell^1$-norm, which is not equal to the C$^*$-norm even if $A$ is a C$^*$-algebra, such that $a_n\to a\in A$ in $\tilde A$ and $a_n^{-1}\xi\to\eta$ in $E$.
+If such a sequence exists, then since $a_n$ is bounded by its norm convergence, we can deduce $\xi=a\eta$ by
+\[\|\xi-a\eta\|\le\|a_n\|\|a_n^{-1}\xi-\eta\|+\|a_n-a\|\|\eta\|\to0,\qquad n\to\infty.\]
+
+Take $0<r\le4^{-1}(1+\sup_i\|e_i\|)^{-1}$, where $e_i$ is a bounded approximate unit of $A$.
+Inductively define a sequence $a_n\in\tilde A$ such that
+\[a_0:=1,\qquad a_{n+1}:=a_n-r(1-r)^n(1-e_n),\qquad n\ge0,\]
+where $e_n\in A$ is also inductively chosen in the net $e_i$ such that
+\[\|(1-e_n)4r((1-r)^n-a_n)\|\|a_n^{-1}\|\le1,\qquad4r(1-r)^n\|a_n^{-1}\|\|\eta_n\|\|(1-e_n)a_n^{-1}b_n\|<2^{-n},\]
+and $b_n\in A$ and $\eta_n\in E$ are chosen such that
+\[(1-r)^n\|a_n^{-1}\|^2\|\xi-b_n\eta_n\|<2^{-n}.\]
+
+To verify that the choices of $e_n$ and $b_n\eta_n$ are possible, we need to show $a_n\in\tilde A^\times$, $(1-r)^n-a_n\in A$, and $a_n^{-1}b_n\in A$ for each step on $n$.
+The third one is clear after shown that $a_n$ is invertible.
+The first two can be checked inductively as follows.
+First, observe that $a_0\in\tilde A^\times$ and $(1-r)^0a_0\in A$.
+For $n\ge1$, the invertibility of $a_n$ follows from that $a_{n-1}$ is invertible and
+\begin{align*}
+\|1-a_na_{n-1}^{-1}\|
+&=\|(a_{n-1}-a_n)a_{n-1}^{-1}\|\\
+&=\|(1-e_{n-1})r(1-r)^{n-1}a_{n-1}^{-1}\|\\
+&\le \|(1-e_{n-1})r((1-r)^{n-1}-a_{n-1})\|\|a_{n-1}^{-1}\|+\|(1-e_{n-1})r\|\\
+&\le4^{-1}+4^{-1}=2^{-1}
+\end{align*}
+with a bound
+\[\|a_n^{-1}\|\le\|a_{n-1}^{-1}\|\|a_{n-1}a_n^{-1}\|\le\|a_{n-1}^{-1}\|(1-2^{-1})^{-1}=2\|a_{n-1}^{-1}\|,\]
+and we can also easily see that $(1-r)^{n-1}-a_{n-1}\in A$ and $e_{n-1}\in A$ imply that
+\begin{align*}
+(1-r)^n-a_n
+&=(1-r)^n+r(1-r)^{n-1}(1-e_{n-1})-a_{n-1}\\
+&=(1-r)^{n-1}-r(1-r)^{n-1}e_{n-1}-a_{n-1}
+\end{align*}
+belongs to $A$.
+Therefore, the sequence $a_n$ is well-defined.
+
+Then, $a_n$ converges to an element of $A$ by
+\[a_n=a_0+\sum_{k=0}^{n-1}(a_{k+1}-a_k)=1+\sum_{k=0}^{n-1}r(1-r)^k(e_k-1)\to\sum_{k=0}^\infty r(1-r)^ke_k,\qquad n\to\infty.\]
+We can also check that the sequence $a_n^{-1}\xi$ is Cauchy in $E$ because
+\begin{align*}
+\|(a_{n+1}^{-1}-a_n^{-1})\xi\|
+&=\|a_{n+1}^{-1}(a_n-a_{n+1})a_n^{-1}\xi\|
+=r(1-r)^n\|a_{n+1}^{-1}(1-e_n)a_n^{-1}\xi\|\\
+&\le 2r(1-r)^n\|a_n^{-1}\|\|(1-e_n)a_n^{-1}\xi\|
+\end{align*}
+and
+\begin{align*}
+\|(1-e_n)a_n^{-1}\xi\|
+&\le\|(1-e_n)a_n^{-1}(\xi-b_n\eta_n)\|+\|(1-e_n)a_n^{-1}b_n\eta_n\|\\
+&\le(4r)^{-1}\|a_n^{-1}\|\|\xi-b_n\eta_n\|+\|(1-e_n)a_n^{-1}b_n\|\|\eta_n\|
+\end{align*}
+imply $\|(a_{n+1}^{-1}-a_n^{-1})\xi\|<2^{-n}$ for all $n\ge0$.
+This completes the proof.
+\end{pf}
+
+\begin{prb}[Finsler modules]
+Let $E$ be a right module over a C$^*$-algebra $B$.
+A \emph{right norm} on $E$ is a map $|\cdot|:E\to B^+$ such that
+\begin{enumerate}[(i)]
+\item $|\xi|=0$ if and only if $\xi=0$,
+\item $\||\xi+\eta|\|\|\le\||\xi|\|+\||\eta|\|$, for $\xi,\eta\in E$,
+\item $|\xi b|^2=b^*|\xi|^2b$, for $\xi\in E$ and $b\in B$.
+\end{enumerate}
+There exists a unique Finsler structure on a Banach module if it exists.
+\end{prb}
+
+
+\begin{prb}[Hilbert modules]
+Let $E$ be a right module over a C$^*$-algebra $B$.
+A \emph{right inner product} on $E$ is a complex sesquilinear map $\<-,-\>:E\times E\to B$ such that
+\begin{enumerate}[(i)]
+\item we always have $\<\xi,\xi\>\ge0$, and $\<\xi,\xi\>=0$ if and only if $\xi=0$, for $\xi\in E$,
+\item $\<\eta,\xi b\>=\<\eta,\xi\>b$, for $\xi,\eta\in E$ and $b\in B$,
+\item $\<\eta,\xi\>^*=\<\xi,\eta\>$, for $\xi,\eta\in E$.
+\end{enumerate}
+The map $\<-,-\>$ is called the \emph{$B$-valued right inner product}.
+It is a non-commutative analogue of Hermitian bundles.
+Even though the complex scalars act on $E$ from right in the rigorous sense, we will frequently write the scalar multiplication at left.
+When the ideal $\<E,E\>$ of $B$ is dense in $B$, we say $E$ is \emph{full}.
+On a Banach module $E$ over $B$, the right inner product is unique if it exists.
+\begin{parts}
+\item The right action by $b$ is bounded and the operator norm is coincides with $B$, but does not preserve the involution and is not adjointable in general.
+\item The right action is always non-degenerate, but is faithful if and only if $E$ is full.
+\item Examples: $B$ itself, $B^n$, $\ell^2(\N,B)$, etc.
+\item direct sum, tensor product, localization
+\end{parts}
+\end{prb}
+\begin{pf}
+
+(b)
+The non-degeneracy of the right action is because $\xi e_i\to\xi$ in $E$ for each $\xi\in E$, where $e_i$ is an approximate unit $e_i$ of $\<E,E\>$.
+\end{pf}
+
+\begin{prb}[Adjointable and compact operators]
+Let $E$ and $F$ be Hilbert $B$-modules over a C$^*$-algebra $B$.
+An operator $T:E\to F$ is called an \emph{adjointable operator} if there is an operator $T^*:F\to E$ such that $\<\eta,T\xi\>=\<T^*\eta,\xi\>$ for all $\xi\in F$ and $\eta\in E$, and called \emph{compact} if it is a norm limit of the linear combination of adjointable operators of the form $\theta_{\xi,\eta}:E\to F$ with $\xi\in F$ and $\eta\in E$, where $\theta_{\xi,\eta}:=\xi\<\eta,-\>$, which has an adjoint $\theta_{\eta,\xi}$
+The Banach spaces of all adjointable and compact operators $E\to F$ are denoted by $B(E,F)$ and $K(E,F)$ respectively, and these will not be used in the sense of Banach spaces.
+\begin{parts}
+\item An adjointable operator is a bounded $B$-module map.
+\item $K(E)$ is a closed essential ideal of a C$^*$-algebra $B(E)$.
+\item
+\end{parts}
+\end{prb}
+\begin{pf}
+The $B$-linearity is clear.
+
+Let $E$ and $F$ be right Hilbert $A$-modules and let $x\in B(E,F)$ be an $A$-adjointable operator.
+Consider a conjugate-linear map $F\to L(F,A):\eta\mapsto\<-,\eta\>$, and we can check it is an isometry by considering $\eta(|\eta|+\e)^{-1}$.
+For each $\eta'\in F$, we have
+\[|\<\eta',x\xi\>|=|\<x^*\eta',\xi\>|\le\|x^*\eta'\|\]
+whenever $\xi\in E$ satisfies $\|\xi\|\le1$, so the set $\{x\xi:\xi\in E,\ \|\xi\|\le1\}\subset F$ is bounded in $L(F,A)$ by the uniform boundedness principle, and it implies the boundedness in $F$.
+
+\end{pf}
+
+The closed range condition becomes more differentiated for an adjointable operator.
+Consider a C$^*$-algebra $B:=C([-1,1])$ and its right Hilbert modules
+\[E_1:=C([-1,0]\cup[\tfrac12,1]),\qquad E_2:=C([-1,-\tfrac12]\cup[0,1]),\qquad E_3:=C([-1,1]).\]
+We can consider a self-adjoint(really?) adjointable operator $T_i\in B(E_i)$ on each $E_i$ by the multiplication of the ramp function $t\mapsto\max\{0,t\}$.
+Then,
+\begin{gather*}
+\ker T_1=C([-1,0]),\qquad\overline\ran\,T_1=C([\tfrac12,1])\\
+\ker T_2=C([-1,-\tfrac12]),\qquad\overline\ran\,T_2=C_0((0,1])\\
+\ker T_3=C_0([-1,0)),\qquad\overline\ran\,T_3=C_0((0,1]).
+\end{gather*}
+In general for an adjointable operator $T$, the closedness of $\ran T$ implies the complementedness of $\ran T$ and $\ran T^*$, and the complementedness of $\overline\ran\,T$ implies the completementedness of $\ker T^*$.
+
+The completementedness is corresponded to continuity, and the closedness is corresponded to upper semi-continuity.
+
+$(\ran T)^{\perp\perp}=\overline\ran\,T$ (really?) may not be complemented.
+
+
+When does an adjointable operator have complemented range?
+
+
+\begin{prb}[Complemented submodules]
+\end{prb}
+
+\begin{prb}[Weak topologies for Hilbert modules]
+Let $E$ and $F$ be Hilbert $B$-modules for a C$^*$-algebra $B$.
+The \emph{strict topology} refers to the strong$^*$ operator topology of $B(E)$.
+
+
+
+On the trivial Hilbert $B$-module $B$, $b_i\to0$ strictly iff $b_i,b_i^*\to0$ weakly.
+If $B$ is unital, the strict topology on $B$ and the norm topology coincide.
+An adjointable operator is weakly continuous.
+
+
+
+
+
+\end{prb}
+
+
+
+On Hilbert modules:
+\begin{itemize}
+\item polarization identity? OK,
+\[\<\eta,\xi\>=\frac14\sum_{k=0}^3i^k\<\xi+i^k\eta,\xi+i^k\eta\>,\qquad \xi,\eta\in E.\]
+\item bounded sesquilinear form?
+\item Riesz representation? OK for adjointable operator $l:E\to B$, there is $\eta:=l^*1$ if $B$ is unital.
+\item alaoglu? the strict topology is complete. for compactness criterion, we need more. functional calculus for strictly compact functions?
+\item uniform boundedness principle?
+\item 
+\item unbounded adjointable operators and spectral theory?
+\item polar decomposition? especially for unbounded adjointable operators?
+\end{itemize}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\begin{prb}[Multiplier algebra]
+Four descriptions for a multiplier algebra:
+double centralizers vs essential ideal vs multipliers in von Neumann algebra vs Hilbert module
+
+1.
+Let $B$ be a C$^*$-algebra.
+A \emph{double centralizer} of $B$ is a pair $(L,R)$ of bounded linear maps on $A$ such that $aL(b)=R(a)b$ for all $a,b\in B$.
+The \emph{multiplier algebra} $M(B)$ of $B$ is defined to be the set of all double centralizers of $B$.
+There is another characterization of $M(B)$ as the set of adjointable operators to itself.
+Even if the notation $B(B)$ may cause confusion, we can write $M(B)$ to avoid this.
+
+2.
+An ideal $I$ of $B$ is called an \emph{essential} if it is a full Hilbert $B$-submodule of $B$, or equivalently $B$ faithfully acts on $I$.
+
+
+
+Every C$^*$-algebra $A$ is a correspondence over $M(A)$.
+
+There is a characterization in an inclusion into a von Neumann algebra.
+
+relations between Hilbert $B(H)$-modules and representations?
+
+
+\begin{parts}
+\item $\|\pi(a-e_ia)\xi\|^2$
+\item If $u_i$ are unitary, the convergences in the strict topology and the weak topology(how to define this?) coincide.
+\item If $a_i$ are increasing, the convergences in the strict topology and the weak topology(how to define this?) coincide.
+\item $M(K(E))\cong B(E)$.
+\item $M(C_0(\Omega))\cong C_b(\Omega)$.
+\end{parts}
+\end{prb}
+\begin{pf}
+First we claim $C_0(\Omega)$ is an essential ideal of $C_b(\Omega)$.
+Since $C_b(\Omega)\cong C(\beta\Omega)$, and since closed ideals of $C(\beta\Omega)$ are corresponded to open subsets of $\beta\Omega$, $C_0(\Omega)\cap J$ is not trivial for every closed ideal $J$ of $C_b(\Omega)$.
+
+Now we have an injective $*$-homomorphism $C_b(\Omega)\to M(C_0(\Omega))$, for which we want to show the surjectivity.
+Let $g\in M(C_0(\Omega))_+$.
+
+
+\end{pf}
+
+polar decomposition in the multiplier algebra? yes if ranges of $x$ and $x^*$ are complemented.
+
+If $v\in M(A)$ satisfies $v^*v\in A$, then $v\in A$ since
+\begin{align*}
+\|v-v(v^*v)^{\frac1n}\|^2
+&=\|(v^*-(v^*v)^{\frac1n}v^*)(v-v(v^*v)^{\frac1n})\|\\
+&=\|v^*v-2(v^*v)^{\frac1n+1}+(v^*v)^{\frac2n+1}\|=\|v^*v(1-(v^*v)^{\frac1n})^2\|\to0,\qquad n\to\infty,
+\end{align*}
+assuming $\|v\|\le1$.
+
+
+
+
+\begin{prb}
+Let $A$ and $B$ be C$^*$-algebras, and $E$ be a right Hilbert $A$-module.
+A linear map $B\to B(E)$ is called \emph{strict} if it is strictly continuous on bounded parts.
+\begin{parts}
+\item $K(E)$ is strictly dense in $B(E)$ by approximate unit.
+\item Let $\f:B\to B(E)$ be a $*$-homomorphism, that is, $E$ be a right Hilbert bimodule over $(B,A)$. If $BE$ is complemented in $E$, then $\f$ is strictly continuously extended to $\f:M(B)\to B(E)$.
+\item The strict topology is complete.
+\item $M(K(E))=B(E)$, and the strict topologies with respect to $K(E)$ and $E$ coincide on bounded parts.
+\item $\cK\otimes B=K(\ell^2\otimes B)$.
+\end{parts}
+\end{prb}
+
+\begin{pf}
+(a)
+Clear.
+
+(b)
+Note that $BE$ is closed by the Cohen factorization.
+Suppose $BE=pE$ for a projection $p\in B(E)$.
+Then,
+\[\|[p,b]\xi\|^2=\|b(1-p)\xi\|^2=\<(1-p)\xi,b^*b(1-p)\xi\>=\<(1-p)\xi,pb^*b(1-p)\xi\>=0,\qquad\xi\in E\]
+implies $[b,p]=0$ for all $b\in B$.
+If $b_i$ is a net in $M(B)$ such that $b_i\to0$ strictly in $M(B)$, then for each $\xi\in E$ we have $b\eta\in BE$ such that $p\xi=b\eta$, the limit for $i$
+\[\|b_i\xi\|=\|pb_i\xi\|=\|b_ip\xi\|=\|b_ib\eta\|\le\|b_ib\|\|\eta\|\to0\]
+implies that $b_i\to0$ strictly in $B(E)$.
+(if $\overline{BE}$ is complemented, then we only have that $M(B)\to B(E)$ is strictly continuous on bounded parts)
+
+Conversely, take a projection $p:=\f(1)\in B(E)$
+
+
+(c)
+If $x_i$ is a net in $B(E)$ which is strictly Cauchy.
+Then, $x_i\xi$ and $x_i^*\xi$ converges in $E$.
+If we define $x$ such that $x\xi:=\lim_ix_i\xi$ for $\xi\in E$, then the convergence of $x_i^*\xi$ implies that $x$ admits an adjoint $x^*$ given by $x^*\eta:=\lim_ix_i^*\eta$ for $\eta\in E$.
+
+(d)
+Since $\overline{K(E)E}=E$ is complemented in $E$, by the part (b), we have a $*$-homomorphism $M(K(E))\to B(E)$ that is strictly continuous on bounded parts.
+In fact, $K(E)E$ is itself complemented so that the $*$-homomorphism is strictly continuous on the whole space, but it is not important in here.
+To show the bijectivity, we will show the two strict topologies coincide on the unit ball of a common strictly dense $*$-subalgebra $K(E)$.
+Suppose $k_i$ is a bounded net in $K(E)$ such that $k_i\to0$ strictly in $B(E)$.
+For each $k\in K(E)$, by approximating $k$ with finite-rank operators, we can see $k_i\to0$ strictly in $M(K(E))$.
+The converse is clear in the sense that the topology of $M(K(E))$ is clearly stronger than of $B(E)$.
+
+
+(e)
+The nuclearity of $\cK$.
+\end{pf}
+
+
+
+
+\begin{prb}
+non-degenerate means that it is strict and extended to a unital.
+
+every completely positive map $B\to B(H)$ is strict.
+\end{prb}
+
+
+
+
+\section{Morita equivalence}
+
+
+
+Induced representations?
+
+
+
+
+\section{Kasparov-Stinespring}
+We define normality as the strict continuity on bounded parts?
+
+We first consider normal completely positive maps $\f:A\to M(B)$.
+By the separation and completion of $A\odot B$, we obtain a right Hilbert bimodule $E$ over $(A,B)$ together with the cocyclic data $v\in B(E,B)$ such that $\f=\Ad v$ on $B$.
+Then, we have a normal left $A$-module map of strictly dense range $\Lambda_\f:A\to B(B,E)$ defined such that $\Lambda_\f(a):=av^*$.
+
+(We did not check the normality and strict density of $\Lambda_\f$)
+
+stabilization?
+
+
+
+
+
+
+Contrary to von Neumann algebras in which polar decompositions are possible, we do not have the equivalence between the left ideals $\fN$ and hereditary $*$-subalgebras $\fM$.
+
+
+\begin{prb}[C$^*$-valued weight]
+Let $A$ and $B$ be C$^*$-algebras.
+Recall that a subalgebra of $A$ is called \emph{hereditary} if its positive cone is hereditary in the positive cone of $A$.
+A \emph{C$^*$-valued weight} is a partially defined completely positive map $\f:\dom\f\subset A\to M(B)$ on a hereditary $*$-subalgebra of $A$.
+We use the notation $\fM_\f:=\dom\f$ and $\fN_\f:=\{x\in M:x^*x\in\fM_\f\}$, and $\fN_\f$ is then a left ideal of $M$.
+
+
+A \emph{semi-cyclic representation} of $A$ over $B$ is a right Hilbert bimodule $E$ over $(A,B)$ together with a partially defined linear operator $\Lambda:\dom\Lambda\subset A\to B(B,E)$ such that 
+\begin{enumerate}[(i)]
+\item $\dom\Lambda$ is a left ideal of $A$ and $\Lambda$ is left $A$-linear,
+\item $\ran\Lambda$ is strictly dense in $B(B,E)$.
+\end{enumerate}
+\emph{associated} if $\dom\Lambda=\fN_\f$ and $\f(a^*a)=|\Lambda(a)|^2\in M(B)$ for $a\in\dom\fN_\f$.
+
+\begin{parts}
+\item always non-degenerate so that $M(A)$ acts on $E$.
+\item If $a\in\fN_\f$ satisfies $\f(a^*a)\in B$, then $\Lambda_\f(a)\in K(B,E)=E$. In particular, if $\f:\fM_\f\to B\subset M(B)$, then $\Lambda_\f:\fN_\f\to K(B,E)=E\subset B(B,E)$.
+\item Commutant Radon-Nikodym: Let $\rho:A\to B(E)$ be an everywhere defined completely positivie map.
+\end{parts}
+
+\end{prb}
+
+\begin{prb}
+Lower semi-continuity of partially defined completely positive map on a hereditary $*$-subalgebra.
+closedness
+\end{prb}
+
+
+
+
+
+
+\chapter{Operator spaces}
 \section{Operator spaces}
+
+\begin{prb}
+Let $E$ be an operator space.
+\begin{parts}
+\item If $\f:E\to A$ is a completely bounded linear map to a C$^*$-algebra, then $\|\f\|_{cb}=\|\f\|$.
+\end{parts}
+\end{prb}
+
+\begin{prb}[Ruan characterization]
+Let $E$ be an operator space.
+\begin{parts}
+\item Let $(E,E^*)$ be a real dual pair. Let $P$ be a convex cone in $E$ and $K^*$ be a compact convex subset of $E^*$.
+If for every $x\in P$ there is $x^*\in K^*$ such that $\<x,x^*\>\ge0$, then there is $x^*\in K^*$ such that for every $x\in P$ we have $\<x,x^*\>\ge0$.
+\item For $\xi^*\in(\cK\otimes E)^*$ with $\|\xi^*\|=1$, there exist states $\rho_1$ and $\rho_2$ of $\cK$ such that
+\[|\xi^*(a_1^*\eta a_2)|\le\rho_1(a_1^*a_1)^{\frac12}\|\eta\|\rho_2(a_2^*a_2)^{\frac12},\qquad a_1,a_2\in\cK,\ \eta\in \cK\otimes E.\]
+\item For $\xi\in\cK\otimes E$, there is a complete contraction $\f:E\to B(H)$ such that $\|\f(\xi)\|=\|\xi\|$.
+\end{parts}
+\end{prb}
+\begin{pf}
+(a)
+Let $K^*_x:=\{x^*\in K^*:\<x,x^*\>\ge0\}$ for $x\in P$, which is non-empty by assumption.
+It suffices to show the intersection is non-empty.
+To this end, we prove that they have the finite intersection property.
+Let $(x_j)_{j=1}^n$ be a finite sequence in $P$ and assume $\bigcap_jK^*_{x_j}=\varnothing$.
+It means that
+\[\{(\<x_1,x^*\>,\cdots,\<x_n,x^*\>):x^*\in K\}\cap(\R^n)^+=\varnothing.\]
+Find a positive linear functional $l$ on $\R^n$ separating the above two disjoint sets, and represent $l$ as a row vector $(l_1,\cdots,l_n)$.
+Then, $x:=\sum_{j=1}^nl_jx_j$ is contained in $P$ and satisfies $K^*_x=\varnothing$ by
+\[\<x,x^*\>=\sum_{j=1}^nl_j\<x_j,x^*\>=l(\<x_1,x^*\>,\cdots,\<x_n,x^*\>)<0\qquad x^*\in K^*,\]
+which is a contradiction.
+Therefore, the finite intersection property follows.
+
+
+(b)
+Rotating the scalar phase of $a_1$ and adjusting the positive scalar multiples of $a_1$ and $a_2$ to have $\rho_1(a_1^*a_1)=\rho_2(a_2^*a_2)$, it suffices to prove the existence of states $\rho_1$ and $\rho_2$ of $\cK$ satisfying
+\[2\Re\xi^*(a_1^*\eta a_2)\le\rho_1(a_1^*a_1)+\rho_2(a_2^*a_2),\qquad a_1,a_2\in\cK,\ \eta\in E\otimes\cK,\ \|\eta\|=1.\]
+Let $K^*:=S(\tilde\cK)\times S(\tilde\cK)\subset(\tilde\cK\oplus\tilde\cK)^*$ be a weakly$^*$ compact set by the unitality of $\tilde\cK$, and let
+\[P:=\{(a_1^*a_1-\Re\xi^*(a_1^*\eta a_2),a_2^*a_2-\Re\xi^*(a_1^*\eta a_2)):a_1,a_2\in\cK,\ \eta\in\cK\otimes E,\ \|\eta\|=1\}\]
+be a convex cone in $\tilde\cK\oplus\tilde\cK$, which follows from $\|\eta\oplus\eta'\|=\max\{\|\eta\|,\|\eta'\|\}$ for $\eta,\eta'\in\cK\otimes E$.
+For each $a_1,a_2\in\cK$ and $\eta\in\cK\otimes E$ with $\|\eta\|=1$, if we select $(\rho_1,\rho_2)\in K^*$ such that $\rho_1(a_1^*a_1)=\|a_1^*a_1\|$ and $\rho_2(a_2^*a_2)=\|a_2^*a_2\|$, then the inequality
+\[2\Re\xi^*(a_1^*\eta a_2)\le2\|a_1\|\|a_2\|\le\|a_1\|^2+\|a_2\|^2=\rho_1(a_1^*a_1)+\rho_2(a_2^*a_2)\]
+implies the assumption of the part (a), hence there is $(\rho_1,\rho_2)\in K^*$ satisfying the desired inequality.
+
+Finally we need to show the states $\rho_1$ and $\rho_2$ of $\tilde\cK$ are indeed states of $\cK$.
+If we choose an approximate $e_i$ of $\cK$ and a vector $\xi\in\cK\otimes E$ such that $|\xi^*(\xi)|>1-\e$ with $\|\xi\|=1$, then our inequality
+\[|\xi^*(e_i^{\frac12}\xi e_i^{\frac12})|\le\rho_1(e_i)^{\frac12}\rho_2(e_i)^{\frac12}\le1\]
+proves the limits $\rho_1(e_i)\to1$ and $\rho_2(e_i)\to1$ by $\e\to0$, so the states $\rho_1$ and $\rho_2$ are reduced to states of $\cK$.
+
+(c)
+Let $\xi^*\in(\cK\otimes E)^*$ with $\|\xi^*\|\le1$.
+Choose states $\rho_1$ and $\rho_2$ of $\cK$ using the part (b) such that
+\[|\xi^*(a_1^*\eta a_2)|\le\rho_1(a_1^*a_1)^{\frac12}\|\eta\|\rho_2(a_2^*a_2)^{\frac12},\qquad a_1,a_2\in\cK,\ \eta\in\cK\otimes E.\]
+Let $\pi_1:\cK\to B(H_1)$ and $\pi_2:\cK\to B(H_2)$ be the cyclic representations associated to $\rho_1$ and $\rho_2$ together with the canonical cyclic vectors $\Omega_1$ and $\Omega_2$ respectively.
+Then, the inequality is written as
+\[|\xi^*(a_1^*\eta a_2)|\le\|\pi_1(a_1)\Omega_1\|\|\eta\|\|\|\pi_2(a_2)\Omega_2\|,\qquad a_1,a_2\in\cK,\ \eta\in\cK\otimes E.\]
+This implies, considering a bounded sesquilinear form, that every element $\xi^*\in(\cK\otimes E)^*$ with $\|\xi^*\|\le1$ defines a contraction $\psi:\cK\otimes E\to B(H_2,H_1)$ such that
+\[\xi^*(a_1^*\eta a_2)=\<\psi(\eta)\pi_2(a_2)\Omega_2,\pi_1(a_1)\Omega_1\>,\qquad a_1,a_2\in\cK,\ \eta\in\cK\otimes E.\]
+
+
+
+We may assume $\|\xi\|=1$.
+By the Hahn-Banach extension, there is $\xi^*\in(\cK\otimes E)^*$ such that $\|\xi^*\|=1$ and $\xi^*(\xi)=1$.
+
+If we induce $\f:E\to B(H)$ from $\psi$ via the complete isometric inclusions $E\subset\cK\otimes E$ and $B(H_2,H_1)\subset B(H)$, where $H:=H_1\oplus H_2$, then it is clearly a complete contraction.
+We also have $\|\f(\xi)\|$ because
+
+
+
+
+Do we have $E\subset M(\cK\otimes E)$?
+\end{pf}
+
+
+
 
 \section{Operator systems}
 
@@ -27,9 +473,7 @@
 \end{prb}
 
 
-The set $M_n(A)^+$ is linearly spanned by elements of the form $[a_i^*a_j]\in M_n(A)$ for $[a_i]\in A^n$.
-A linear map $\f:A\to B$ is completely positive if
-\[\f(a_i^*a_j)\]
+The set $M_n(A)^+$ is linearly spanned by the rank-one projections $[a_i^*a_j]\in M_n(A)$ for $[a_i^*]\in A^n$, so a linear map $\f:A\to B$ is completely positive if and only if $[\f(a_i^*a_j)]\ge0$ in $M_n(A)$ for $[a_i]\in A^n$.
 
 
 \begin{prb}[$n$-positive maps]
@@ -37,7 +481,7 @@ Let $S$ be an operator space.
 Let $A$ and $B$ be C$^*$-algebras.
 \begin{parts}
 \item (Cauchy-Schwarz inequality)
-If $\f:A\to B$ is a 2-positive map, then $\lim_\alpha\|\f(e_\alpha)\|=\|\f\|$ for any approximate unit $(e_\alpha)$ of $A$, and
+If $\f:A\to B$ is a 2-positive map, then $\lim_i\|\f(e_i)\|=\|\f\|$ for any approximate unit $e_i$ of $A$, and
 \[\f(a)^*\f(a)\le\|\f\|\f(a^*a),\qquad a\in A.\]
 \item (Multiplicative domain)
 Let $\f:A\to B$ be a 4-positive map with $\|\f\|=1$.
@@ -54,7 +498,7 @@ since
 implies $\|\f\|^2\le\lim_\alpha\|\f(e_\alpha)\|\|\f\|$.
 Suppose $B$ acts on a Hilbert space $H$ non-degenerately and faithfully.
 Since $\f$ is 2-positive, we have
-\[\mat{\f(e_\alpha^2)&\f(e_\alpha a)\\\f(a^*e_\alpha)&\f(a^*a)}=\f^{(2)}\left(\mat{e_\alpha^2&e_\alpha a\\a^*e_\alpha&a^*a}\right)=\f^{(2)}\left(\mat{e_\alpha&a\\0&0}^*\mat{e_\alpha&a\\0&0}\right)\ge0,\]
+\[\mat[b]{\f(e_\alpha^2)&\f(e_\alpha a)\\\f(a^*e_\alpha)&\f(a^*a)}=\f^{(2)}\left(\mat[b]{e_\alpha^2&e_\alpha a\\a^*e_\alpha&a^*a}\right)=\f^{(2)}\left(\mat[b]{e_\alpha&a\\0&0}^*\mat[b]{e_\alpha&a\\0&0}\right)\ge0,\]
 and it is equivalent to
 \[\<\f(e_\alpha^2)\xi,\xi\>+2\Re\<\f(e_\alpha a)\eta,\xi\>+\<\f(a^*a)\eta,\eta\>\ge0,\qquad\xi,\eta\in H,\quad a\in A.\]
 We put $\xi:=-(\|\f(e_\alpha)\|+\e)^{-1}\f(e_\alpha a)\eta$ for $\e>0$ to get
@@ -65,9 +509,9 @@ We have the desired inequality by taking limits for $\alpha$ and $\e$.
 
 (b)
 Since the second inflation $\f^{(2)}$ is 2-positive, we may write the Cauchy-Schwarz inequality
-\[\f^{(2)}\left(\mat{a&b\\0&0}\right)^*\f^{(2)}\left(\mat{a&b\\0&0}\right)\le\f^{(2)}\left(\mat{a^*a&a^*b\\b^*a&b^*b}\right),\]
+\[\f^{(2)}\left(\mat[b]{a&b\\0&0}\right)^*\f^{(2)}\left(\mat[b]{a&b\\0&0}\right)\le\f^{(2)}\left(\mat[b]{a^*a&a^*b\\b^*a&b^*b}\right),\]
 so
-\[\mat{0&\f(a^*b)-\f(a^*)\f(b)\\\f(b^*a)-\f(b^*)\f(a)&\f(b^*b)-\f(b^*)\f(b)}\ge0,\]
+\[\mat[b]{0&\f(a^*b)-\f(a^*)\f(b)\\\f(b^*a)-\f(b^*)\f(a)&\f(b^*b)-\f(b^*)\f(b)}\ge0,\]
 which implies $\f(b^*a)-\f(b^*)\f(a)=0$ for any $b\in A$.
 
 Note that $\|\pi\|=1$ if $\pi$ is not trivial.
@@ -105,82 +549,53 @@ There is a one-to-one correspondence
 \section{Dilations and Extensions}
 
 A linear map $\f:A\to B(H)$ is completely positive if and only if
-\[\sum_{i,j}\<\f(a_i^*a_j)\xi_j,\xi_i\>\ge0,\qquad (a_i)\in A^n,\ (\xi_i)\in H^n.\]
+\[\sum_{i,j}\<\f(a_i^*a_j)\xi_j,\xi_i\>\ge0,\qquad [a_i]\in A^n,\ [\xi_i]\in H^n.\]
 
 \begin{prb}[Stinespring dilation]
-Let $A$ be a C$^*$-algebra and $\f:A\to B(H)$ be a c.p.~map.
-A \emph{Stinespring dilation} of $\f$ is a pair $(\pi,V)$ of a representation $\pi:A\to B(K)$ and a bounded linear operator $V:H\to K$ such that $\f(a)=V^*\pi(a)V$ for $a\in A$.
-\[\begin{tikzcd}
-B(K) \ar{dr}{V^*\cdot V} &\\
-A \ar[swap]{r}{\f} \ar{u}{\pi} & B(H)
+Let $A$ be a C$^*$-algebra and $\f:A\to B(H)$ be a completely positive linear map.
+A \emph{Stinespring dilation} of $\f$ is a representation $\pi:A\to B(K)$ together with a bounded linear operator $v:K\to H$ such that $\f=(\Ad v)\pi$.
+\[\begin{tikzcd}[row sep=small]
+A \rar{\f}\dar[swap]{\pi} & B(H) \dar[equals]\\
+B(K) \rar{\Ad v} & B(H)
 \end{tikzcd}\]
 \begin{parts}
-\item $\f$ has a Stinespring dilation $(\pi,V)$ such that $\bar{\pi(A)VH}=K$.
-\item For a non-degenerate Stinespring dilation $(\pi,V)$ of $\f$, the operator $V$ is an isometry if and only if $\sup_\alpha\f(e_\alpha)=1$.
+\item $\f$ has a Stinespring dilation $(\pi,v)$ such that $\bar{\pi(A)v^*H}=K$.
+\item For a non-degenerate Stinespring dilation $(\pi,v)$ of $\f$, the operator $v$ is a coisometry if and only if $\sup_i\f(e_i)=1$.
 \end{parts}
 \end{prb}
 \begin{pf}
 (a)
 As we have done in the construction of the GNS representation, define a sesquilinear form on the algebraic tensor product $A\odot H$ such that
-\[\<a\otimes\xi,b\otimes\eta\>:=\<\f(b^*a)\xi,\eta\>,\qquad a\otimes\xi,b\otimes\eta\in A\odot H.\]
+\[\<a_2\otimes\xi_2,a_1\otimes\xi_1\>:=\<\f(a_1^*a_2)\xi_2,\xi_1\>,\qquad a_1\otimes\xi_1,a_2\otimes\xi_2\in A\odot H.\]
 It is positive semi-definite since the complete positivity of $\f$ implies
 \[\<\sum_ja_j\otimes\xi_j,\sum_ia_i\otimes\xi_i\>=\sum_{i,j}\<\f(a_i^*a_j)\xi_j,\xi_i\>\ge0,\qquad a_i\otimes\xi_i\in A\odot H.\]
-Then, we obtain a Hilbert space $K:=\bar{A\odot H/N}$, where $N:=\{\eta\in A\odot H:\<\eta,\eta\>=0\}$.
-The above construction of a Hilbert space is sometimes called the separation and completion.
+Then, we obtain a Hilbert space $K:=\bar{(A\odot H)/\{\xi\in A\odot H:\<\xi,\xi\>=0\}}$.
+This kind of construction of a Hilbert space is sometimes called the separation and completion.
 
 Define $\pi:A\to B(K)$ such that
-\[\pi(a)(b\otimes\eta+N):=ab\otimes\eta+N,\qquad a\in A,\quad b\otimes\eta+N\in K,\]
-and $V:H\to K$ such that
-\[\<V\xi,b\otimes\eta+N\>:=\<\f(b^*)\xi,\eta\>,\qquad\xi\in H,\quad b\otimes\eta+N\in K.\]
-The operator $V$ is well-defined by the Cauchy-Schwarz inequality
+\[\pi(a)(b\dot\otimes\eta):=ab\dot\otimes\eta,\qquad a\in A,\quad b\dot\otimes\eta\in K,\]
+and $v:K\to H$ such that
+\[v(b\dot\otimes\eta):=\f(b)\eta,\qquad b\dot\otimes\eta\in K,\]
+which is well-defined since the Cauchy-Schwarz inequality $|\f(b)|^2\le\|\f\|\f(b^*b)$ implies that
+\[\|\f(b)\eta\|^2=\<|\f(b)|^2\eta,\eta\>\le\|\f\|\<\f(b^*b)\eta,\eta\>=\|\f\|\|b\dot\otimes\eta\|,\qquad b\dot\otimes\eta\in K.\]
+
+Then, we can check $\pi(a)v^*\xi=a\dot\otimes\xi$ for $a\in A$ and $\xi\in H$ from
 \begin{align*}
-|\<\f(b^*)\xi,\eta\>|^2&=|\<\xi,\f(b)\eta\>|^2\le\|\xi\|^2\<\f(b^*)\f(b)\eta,\eta\>\\
-&\le\|\xi\|^2\|\f\|\<\f(b^*b)\eta,\eta\>=\|\xi\|^2\|\f\|\|b\otimes\eta+N\|^2.
+\<\pi(a)v^*\xi,b\dot\otimes\eta\>&=\<v^*\xi,a^*b\dot\otimes\eta\>=\<\f(b^*a)\xi,\eta\>=\<a\dot\otimes\xi,b\dot\otimes\eta\>,
 \end{align*}
-Then, we can check $\pi(a)V\xi=a\otimes\xi+N$ for $a\in A$ and $\xi\in H$ from
-\begin{align*}
-\<\pi(a)V\xi,b\otimes\eta+N\>&=\<V\xi,a^*b\otimes\eta+N\>=\<\f(b^*a)\xi,\eta\>\\
-&=\<a\otimes\xi+N,b\otimes\eta+N\>,\qquad b\otimes\eta+N\in K,
-\end{align*}
-so it follows that $V^*\pi(a)V=\f(a)$ for $a\in A$ from
-\[\<V^*\pi(a)V\xi,\eta\>=\<V\xi,a^*\otimes\eta+N\>=\<\f(a)\xi,\eta\>,\qquad\xi,\eta\in H,\]
-and the condition $\bar{\pi(A)VH}=K$.
+so it follows that $v\pi(a)v^*=\f(a)$ for $a\in A$ from
+\[\<v\pi(a)v^*\xi,\eta\>=\<v^*\xi,a^*\dot\otimes\eta\>=\<\f(a)\xi,\eta\>,\qquad\xi,\eta\in H,\]
+and the condition $\bar{\pi(A)v^*H}=K$.
 
 
 \end{pf}
 
-
-\begin{prb}[Voiculescu theorem]
-Let $A$ be a unital C$^*$-algebra.
-Let $\pi:A\to B(K)$ be a faithful non-degenerate representation and $\f:A\to B(H)$ be a u.c.p.~map.
-Suppose further that $\f|_{\pi^{-1}(K(K))}=0$.
-
-When do we need the faithfulness of $\pi$?
-When do we need the unitality of $\f$?
-When do we need the separability of $A$?
-\begin{parts}
-\item $\f$ is weakly$^*$ approximated by vector states, if $H$ is one-dimensional. (Glimm)
-\item $\f$ is approximated by isometry conjugations in $L(A,B(H))$, if $H$ is finite-dimensional. (?)
-\item $\f$ is approximated by isometry conjugations in $\f+L(A,K(H))$, if $H,K$ are separable.
-\end{parts}
-\end{prb}
-\begin{pf}
-(a)
-Hahn-Banach separation and Weyl-von Neumann theorem.
-
-(b)
-correspondence for c.p.~maps to matrix algebras.
-
-(c)
-quasi-central approximate unit and block diagonal c.p.~maps.
-
-\end{pf}
 
 
 \begin{prb}[Arveson extension]
 Let $A\subset B$ be C$^*$-algebras.
 Let $\f:A\to B(H)$ be a c.p.~map and consider the following diagram:
-\[\begin{tikzcd}
+\[\begin{tikzcd}[sep=small]
 B\ar[dashed]{dr}{\tilde\f}&\\
 A\ar{u}\ar[swap]{r}{\f}&B(H).
 \end{tikzcd}\]
@@ -222,26 +637,6 @@ unique extension of c.p.~maps for hereditary subalgebras.
 
 
 
-\section{Tensor products}
-
-\begin{prb}[Maximal tensor products]
-Let $A$ and $B$ be C$^*$-algebras.
-\begin{parts}
-\item (restrictions) A commuting pair of $*$-homomorphisms $\pi:A\to B(H)$ and $\pi':B\to B(H)$ corresponds to a $*$-homomorphism $\Pi:A\odot B\to B(H)$ via the relation $\Pi(a\otimes b)=\pi(a)\pi'(b)$.
-\item $A\odot B$ admits a $*$-representation and every norms induced from these $*$-representations are uniformly bounded. So, we can define a maximal tensor norm on $A\odot B$.
-\item $a\otimes-:B\to A\odot B$ is a bounded linear map for each $a\in A$ with respect to any C$^*$-norm on $A\odot B$. [BO, 3.2.5]
-\end{parts}
-\end{prb}
-
-
-\begin{prb}[Minimal tensor product]
-spatiality
-\end{prb}
-\begin{prb}[Takesaki theorem]
-\end{prb}
-
-Tensors with $M_n(\C)$, $C_0(X)$.
-
 
 \begin{prb}[Haagerup tensor product]
 \end{prb}
@@ -251,7 +646,7 @@ Trick
 \section*{Exercises}
 \begin{prb}
 Let $A$ be a hereditary C$^*$-subalgebra of a C$^*$-algebra $B$ and let $b\in B_+$.
-If for any $\e>0$ there is $a\in A_+$ such that $b-a\le\e$, then $b\in A$.
+If for any $\e>0$ there is $a\in A_+$ such that $b\le a+\e$, then $b\in A$.
 \end{prb}
 \begin{pf}
 For $a\in A_+$ satisfying $b\le a+\e\le(a^{\frac12}+\e^{\frac12})^2$, define
@@ -269,235 +664,264 @@ Thus $a_\e\to b$ in norm as $\e\to0$.
 
 
 
-\chapter{Hilbert modules}
 
-\section{Hilbert modules}
 
-\begin{prb}[Banach modules]
-Let $A$ be a Banach algebra.
-A \emph{Banach $A$-module} is a Banach space $E$ which is a $A$-module such that the action is bounded.
+
+\chapter{Categorical constructions}
+
+
+
+inverse limits: direct sum, direct product, restricted direct sum, locally C$^*$-algebras.
+
+Infinite direct sums and direct products are ill-behaved in the category of C$^*$-algebras.
+An infinite direct sum must be interpreted as complete Hausdorff spaces, not a pointed compact Hausdorff space.
+For example, after adding a base point, the spectrum of $\bigoplus_{i=1}^\infty C_0(\R)$ corresponds to the Hawaiian earing, and the spectrum of $\prod_{i=1}^\infty C_0(\R)$ corresponds to the Stone-\v Cech compactification of the infinite wedge of circles.
+We cannot describe the infinite wedge of circles in terms of C$^*$-algebras, so we need locally C$^*$-algebras.
+
+
+\begin{prb}[Locally C$^*$-algebras]
+A \emph{locally C$^*$-algebra} is a complete topological $*$-algebra whose topology is generated by C$^*$-semi-norms.
+We adopt the convention that a \emph{homomorphism} between locally C$^*$-algebras means a continuous $*$-homomorphism.
 \begin{parts}
-\item (Cohen factorization theorem) If $A$ has a left approximate unit, then $AE$ is closed in $E$.
+\item A topological $*$-algebra is a locally C$^*$-algebra if and only if it is an inverse limit of unital C$^*$-algebras.
 \end{parts}
 \end{prb}
 \begin{pf}
-Suppose $\xi\in\bar{AE}$.
-We will construct a sequence $a_n$ in the unitization $\tilde A$ such that $a_n^{-1}\xi$ and $a_n$ are both Cauchy in $E$ and $\tilde A$ respectively, but the limit of $a_n$ is in $A$.
-In order for this, we first need to check $a_n^{-1}\in\tilde A\setminus A$ can act on $E$, which is easy anyway.
-
-Let $a_0=1\in\tilde A$ and suppose we have defined $a_n\in\tilde A$ such that $\|1-a_n\|\le1-2^{-n}$.
-Since $\xi\in\bar{AE}$, we have $b\eta\in AE$ such that $\|\xi-b\eta\|<2^{-(3n+1)}$.
-Since $A$ has an approximate unit, we have $e_n\in A$ such that $\|e_n\|\le1$, $\|1-e_n\|\le1$ (really?), and $\|(1-e_n)a_n^{-1}b\|\|\eta\|<2^{-(2n+1)}$.
-Now inductively define
-\[a_{n+1}:=a_n-2^{-(n+1)}(1-e_n)\in\tilde A.\]
-Since $\|1-a_{n+1}\|\le1-2^{-(n+1)}$, every term in the sequence $a_n$ is invertible such that $\|a_n^{-1}\|\le2^n$.
-
-Then, we can check $a_n$ converges to an element of $A$ because
-\[a_n=a_0+\sum_{k=1}^n2^{-k}(1-e_{k-1})\to\sum_{k=1}^\infty2^{-k}e_{k-1}.\]
-We can also check that $a_n^{-1}\xi$ is Cauchy because the identity
-\[a_{n+1}^{-1}-a_n^{-1}=a_{n+1}^{-1}(a_n-a_{n+1})a_n^{-1}=2^{-(n+1)}a_{n+1}^{-1}(1-e)a_n^{-1}\]
-is applied to get
-\begin{align*}
-\|(a_{n+1}^{-1}-a_n^{-1})\xi\|
-&\le\|a_{n+1}^{-1}-a_n^{-1}\|\|\xi-b\eta\|+\|(a_{n+1}^{-1}-a_n^{-1})b\|\|\eta\|\\
-&\le2^{-(n+1)}\|a_{n+1}^{-1}\|\|a_n^{-1}\|\|\xi-b\eta\|+2^{-(n+1)}\|a_{n+1}^{-1}\|\|(1-e)a_n^{-1}b\|\|\eta\|\\
-&\le2^{-(n+1)}\cdot2^{n+1}\cdot2^n\cdot2^{-(3n+1)}+2^{-(n+1)}\cdot2^{n+1}\cdot2^{-(2n+1)}\\
-&\le2^{-(2n+1)}+2^{-(2n+1)}=2^{-2n}.
-\end{align*}
-It implies that there is $\zeta\in E$ such that $a_n^{-1}\xi\to\zeta$ and $\|a_n^{-1}\xi-\zeta\|\le2^{-(2n-1)}$.
-
-Then,
-\[\|\xi-a\zeta\|\le\|a_n\|\|a_n^{-1}\xi-\zeta\|+\|a_n-a\|\|\zeta\|\le2^{-(n-1)}+2^{-n}\|\zeta\|\]
-deduces that $\xi=a\zeta$.
+(a)
+Let $A$ be a locally C$^*$-algebra.
+The set of continuous C$^*$-seminorms on $A$ is a directed set.
+Construct an inverse system...
+Since every C$^*$-algebra is a maximal ideal of a unital C$^*$-algebra of codimension one, we may assume that the objects in this inverse system is unital...
+Also, elements of $A$ are represented by coherent sequences.
 \end{pf}
 
-\begin{prb}[Finsler modules]
+
+
+\section{Tensor products}
+
+
+
+
+\begin{prb}[Maximal tensor products]
+Let $A$ and $B$ be C$^*$-algebras.
+\[\|\sum_ia_i\otimes b_i\|_{\max}:=\sup_\Pi\|\sum_i\Pi(a_i\otimes b_i)\|,\]
+where $\Pi:A\odot B\to B(H)$ run over all representations.
+\begin{parts}
+\item (restrictions) A commuting pair of $*$-homomorphisms $\pi:A\to B(H)$ and $\pi':B\to B(H)$ corresponds to a $*$-homomorphism $\Pi:A\odot B\to B(H)$ via the relation $\Pi(a\otimes b)=\pi(a)\pi'(b)$.
+\item $A\odot B$ admits a $*$-representation and every norms induced from these $*$-representations are uniformly bounded. So, we can define a maximal tensor norm on $A\odot B$.
+\item $a\otimes-:B\to A\odot B$ is a bounded linear map for each $a\in A$ with respect to any C$^*$-norm on $A\odot B$. [BO, 3.2.5]
+\end{parts}
+\end{prb}
+
+
+\begin{prb}[Minimal tensor product]
+\[\|\sum_ia_i\otimes b_i\|_{\min}:=\sup_{\pi,\pi'}\|\sum_i\pi(a_i)\otimes\pi'(b_i)\|,\]
+where $\pi:A\to B(H)$ and $\pi':B\to B(H')$ run over all representations.
+If $\pi$ and $\pi'$ are cyclic with cyclic vectors $\Omega$ and $\Omega'$, then since $\pi(A)\Omega\odot\pi'(B)\Omega'$ is dense in $H\otimes H'$, we have
+\[\|\pi(a_i)\otimes\pi'(b_i)\|=\sup_{a,b}\frac{\<(\pi(a_i)\otimes\pi'(b'))(\pi(a)\Omega\otimes\pi'(b)\Omega'),(\pi(a)\Omega\otimes\pi'(b)\Omega')\>}{\<(\pi(a)\Omega\otimes\pi'(b)\Omega'),(\pi(a)\Omega\otimes\pi'(b)\Omega')\>}.\]
+
+\begin{parts}
+\item $B(H)\odot B(K)\to B(H\otimes K)$ is injective.
+\item If $\pi$ and $\pi'$ are any faithful representations, then $\|\sum_ia_i\otimes b_i\|_{\min}=\|\sum_i\pi(a_i)\otimes\pi'(b_i)\|$.
+\end{parts}
+\end{prb}
+\begin{prb}[Takesaki theorem]
+\end{prb}
+
+Tensors with $M_n(\C)$, $C_0(X)$.
+
+
+
+finite dimensional[BO, 3.3.2], abelian, AF
+permanence properties
+
+
+\begin{prb}[Completely positive approximation property]
 Let $A$ be a C$^*$-algebra.
-\end{prb}
-
-
-
-
-\begin{prb}[Hilbert modules]
-Let $B$ be a C$^*$-algebra.
-A \emph{right Hilbert $B$-module} or simply a \emph{Hilbert $B$-module} is a right module $E$ over the complex algebra $B$ which is not involutive, together with a map $\<-,-\>:E\times E\to B$ such that for $\xi,\eta\in E$ and $b\in B$ we have
-\begin{enumerate}[(i)]
-\item $\<\xi,\xi\>\ge0$ and $\<\xi,\xi\>=0$ if and only if $\xi=0$,
-\item $\<\eta,\xi b\>=\<\eta,\xi\>b$,
-\item $\<\eta,\xi\>^*=\<\xi,\eta\>$,
-\end{enumerate}
-and $E$ is Banach with respect to the norm $\|\xi\|:=\|\<\xi,\xi\>\|^{\frac12}$.
-The map $\<-,-\>$ is called the \emph{$B$-valued inner product}.
-It is a non-commutative analogue of Hermitian bundles.
-Even though the complex scalars act on $E$ from right in the rigorous sense, we will frequently write the scalar multiplication at left.
+We say $A$ has the \emph{completely positive approximation property} if the identity is contained in the point-norm, or equivalently the point-weak closure of $\cF$ in $L(A)$.
 \begin{parts}
-\item The right action by $b$ is bounded and the norm is coincides with $B$. It does not preserve the involutions and is not adjointable in general.
-\item The right action is always non-degenerate. In particular, it follows that $\xi1=\xi$ for $\xi\in E$ if $A$ is unital.
-\item The right action is faithful if and only if $E$ is full, i.e.~the ideal $\<E,E\>$ of $A$ is dense in $A$.
-\item Examples: $B$ itself, $B^n$, $\ell^2(\N,B)$, etc.
-\item direct sum, tensor product, localization
+\item If $A$ has the completely positive approximation property, then $A$ is nuclear.
+\item If $A$ is nuclear, then $A$ has the completely positive approximation property.
 \end{parts}
 \end{prb}
 \begin{pf}
 
-(c)
-Consider the approximate unit $e_i$ of $\<E,E\>$.
-Then, we can show $\xi e_i\to\xi$ in $E$ for each $\xi\in E$, so $EB$ is dense in $E$.
-\end{pf}
+(b)
+For finite sequences $a_k$ in $A$ and $\omega_k$ in $A^*$, we want to construct completely positive contractions $\f:A\to M_n(\C)$ and $\psi:M_n(\C)\to A$ such that
+\[|\omega_k(a_k)-\omega_k(\psi\circ\f(a_k))|<\e,\qquad k\ge0.\]
+If we consider a representation $\pi_2:A\to B(H_2)$ with a unit cyclic vector $\Omega\in H$ such that $\omega_k$ admits the commutant Radon-Nikodym derivative $h_k$ for each $k$, then the composition can be written as
+\[\omega_k(a_k)=\<h_k\pi_2(a_k)\Omega,\Omega\>,\qquad k\ge0.\]
+It suggest to consider a state on $\tilde\omega:A\otimes_{\max}\pi_2(A)'$ defined such that
+\[\tilde\omega(a\otimes h)=\<h\pi_2(a)\Omega,\Omega\>,\qquad a\in A,\ h\in\pi_2(A)'.\]
 
-\begin{prb}[Adjointable and compact operators]
-Let $E$ and $F$ be Hilbert $B$-modules over a C$^*$-algebra $B$.
-An operator $T:E\to F$ is called an \emph{adjointable operator} if there is an operator $T^*:F\to E$ such that $\<T\xi,\eta\>=\<\xi,T^*\eta\>$ for all $\xi\in E$ and $\eta\in F$, and called \emph{compact} if it is a norm limit of adjointable operators of the form $\theta_{\eta,\xi}:E\to F$ with $\xi\in E$ and $\eta\in F$, where $\theta_{\eta,\xi}:=\eta\<\xi,-\>$, which has an adjoint $\theta_{\xi,\eta}$
-The Banach spaces of all adjointable and compact operators $E\to F$ are denoted by $B(E,F)$ and $K(E,F)$ respectively, and these will not be used in the sense of Banach spaces.
-\begin{parts}
-\item An adjointable operator is a bounded $B$-module map.
-\item $K(E)$ is a closed essential ideal of a C$^*$-algebra $B(E)$.
-\item
-\end{parts}
-\end{prb}
-\begin{pf}
-The $B$-linearity is clear.
-The boundedness follows from the uniform boundedness principle.
-
-\end{pf}
-
-
-\begin{prb}[Weak topologies for Hilbert modules]
-Let $E$ and $F$ be Hilbert $B$-modules for a C$^*$-algebra $B$.
-The \emph{strict topology} refers to the strong$^*$ operator topology of $B(E)$.
-
-
-
-On the trivial Hilbert $B$-module $B$, $b_i\to0$ strictly iff $b_i,b_i^*\to0$ weakly.
-If $B$ is unital, the strict topology on $B$ and the norm topology coincide.
-An adjointable operator is weakly continuous.
-
-
-
-
-
-\end{prb}
-
-
-
-On Hilbert modules:
-\begin{itemize}
-\item polarization identity? OK,
-\[\<\eta,\xi\>=\frac14\sum_{k=0}^3i^k\<\xi+i^k\eta,\xi+i^k\eta\>,\qquad \xi,\eta\in E.\]
-\item unbounded adjointable operators and spectral theory?
-\item polar decomposition? especially for unbounded adjointable operators?
-\item bounded sesquilinear form?
-\item Riesz representation? OK for adjointable operator $l:E\to B$, there is $\eta:=l^*1$ (The classical Riesz representation states that every bounded linear functional is automatically adjointable in the sense of Hilbert $\C$-modules)
-\item alaoglu?
-\item uniform boundedness principle?
-\item 
-\end{itemize}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-\begin{prb}[Multiplier algebra]
-Four descriptions for a multiplier algebra:
-double centralizers vs essential ideal vs multipliers in von Neumann algebra vs Hilbert module
-
-1.
-Let $B$ be a C$^*$-algebra.
-A \emph{double centralizer} of $B$ is a pair $(L,R)$ of bounded linear maps on $A$ such that $aL(b)=R(a)b$ for all $a,b\in B$.
-The \emph{multiplier algebra} $M(B)$ of $B$ is defined to be the set of all double centralizers of $B$.
-There is another characterization of $M(B)$ as the set of adjointable operators to itself.
-Even if the notation $B(B)$ may cause confusion, we can write $M(B)$ to avoid this.
-
-2.
-An ideal $I$ of $B$ is called an \emph{essential} if it is a full Hilbert $B$-submodule of $B$.
-
-
-
-Every C$^*$-algebra $A$ is a correspondence over $M(A)$.
-
-\begin{parts}
-\item $\|\pi(a-e_\alpha a)\xi\|^2$
-\item If $a_\alpha$ are unitary, the convergences in the strict topology and the weak topology(how to define this?) coincide.
-\item If $a_\alpha$ are increasing, the convergences in the strict topology and the weak topology(how to define this?) coincide.
-\item $M(K(E))\cong B(E)$.
-\item $M(C_0(\Omega))\cong C_b(\Omega)$.
-\end{parts}
-\end{prb}
-\begin{pf}
-First we claim $C_0(\Omega)$ is an essential ideal of $C_b(\Omega)$.
-Since $C_b(\Omega)\cong C(\beta\Omega)$, and since closed ideals of $C(\beta\Omega)$ are corresponded to open subsets of $\beta\Omega$, $C_0(\Omega)\cap J$ is not trivial for every closed ideal $J$ of $C_b(\Omega)$.
-
-Now we have an injective $*$-homomorphism $C_b(\Omega)\to M(C_0(\Omega))$, for which we want to show the surjectivity.
-Let $g\in M(C_0(\Omega))_+$.
-
+With a faithful representation $\pi_1:A\to B(H_1)$, consider the faithful representation $\pi_1\otimes\id:A\otimes_{\min}\pi_2(A)'\to B(H_1\otimes H_2)$.
+If
+\[\sum_{i,j=1}^n\<(-)(\eta_j\otimes\pi(b_j)\Omega),\eta_i\otimes\pi(b_i)\Omega\>\]
+is a vector state of $B(H_1\otimes H_2)$ for finite sequences $\eta_j$ in $H_1$ and $\pi_2(b_j)\Omega$ in $H_2$ with index $1\le j\le n$, and if we define $\f:A\to M_n(\C)$ and $\psi:M_n(\C)\to A$ by
+\[\f(a):=(\<\pi_1(a)\eta_j,\eta_i\>),\qquad\psi((\delta_{ii'}\delta_{jj'})):=b_{i'}^*b_{j'}^*,\qquad a\in A,\]
+then
+\begin{align*}
+\<((\pi_1\otimes\id)(a\otimes h))(\eta_j\otimes\pi(b_j)\Omega),\eta_i\otimes\pi(b_i)\Omega\>
+&=\<\pi_1(a)\eta_j\otimes h\pi_2(b_j)\Omega,\eta_i\otimes\pi(b_i)\Omega\>\\
+&=\<\pi_1(a)\eta_j,\eta_i\>\<h\pi_2(b_i^*b_j)\Omega,\Omega\>\\
+&=\<h\pi_2(\<\pi_1(a)\eta_j,\eta_i\>b_i^*b_j)\Omega,\Omega\>\\
+&=\<h\pi_2(\psi\circ\f(a))\Omega,\Omega\>\\
+&=\tilde\omega(\psi\circ\f(a)\otimes h),
+\end{align*}
+where the sum $\sum_{i,j}$ is omitted.
+Since such states induced from vector states of $B(H_1\otimes H_2)$ via $\pi_1\otimes\id$ approximates the state space of $A\otimes_{\min}\pi_2(A)'$ by the Hahn-Banach separation, and since factorable maps form a convex set, we are done.
 
 \end{pf}
 
-characterization in an inclusion into a von Neumann algebra.
+The set $\cF$ of factorable maps is a convex set of $L(A)$.
+Note that we have an embedding
+\[L(A)\hookrightarrow L(A,A^{**})=\lim_{\substack{\longleftarrow\\F}}L(A,F^*).\]
+We have a continuous bijection
+\[(A\hat\otimes_\pi F)^*\to L(A,F^*).\]
+If we let $M:=\pi(A)''\subset B(H)$ be the GNS representation for $F$, then the Radon-Nikodym theorem on commutant gives rise to a continuous map
+\[(A\mathrel{\hat\otimes}_\pi M')^*\to(A\mathrel{\hat\otimes}_\pi F)^*.\]
 
-relations between Hilbert $B(H)$-modules and representations
 
 
+
+quotients of nuclear
+local reflexivity
 
 
 
 \begin{prb}
-C$^*$-algebras together with a non-degenerate representation $C_0(X)\to Z(M(A))$.
+A C$^*$-algebra $C$ is called \emph{injective} every completely positive map $\f:A\to C$ from a C$^*$-subalgebra $A$ of a C$^*$-algebra $B$ is extended to a completely positive map $\tilde\f:B\to C$.
+A von Neumann algebra is called injective if it is injective as a C$^*$-algebra.
+(operator subsystem? unital?)
+
+The C$^*$-algebra $B(H)$ is injective, and its image of completely positive idempotent is injective.
+A von Neumann algebra on $M$ on $H$ is injective if and only if there is a conditional expectation $B(H)\to M$.
+
 \end{prb}
 
 
 
-\begin{prb}[Dauns-Hoffman theorem]
+$A^{**}$ semi-discrete -> $A$ nuclear is done by four step approximation
+
+The reverse implication follows from $A$ is nuclear -> $A'$ is injective -> $A''$ is injective -> $A''$ is semi-discrete.
+
+
+Let $A$ be nuclear.
+Note $A^{**}=I^{**}\oplus(A/I)^{**}$.
+Since $A^{**}$ is semi-discrete, $(A/I)^{**}$ is semi-discrete.
+Therefore, $A/I$ is nuclear.
+
+
+
+
+
+
+
+
+a separable C$^*$-algebra is nuclear if and only if every factor representation is hyperfinite.
+
+Extension properties
+weak expectation property
+relatively weakly injective
+maximal tensor product inclusion problem
+
+
+
+excision: Akemann-Anderson-Pedersen
+
+
+
+
+
+
+
+\section{Free products}
+
+amalgamated
+
+
+\section{Colimits}
+
+\begin{prb}[Uniformly hyper-finite algebras]
+\end{prb}
+
+\begin{prb}[Approximately finite algebras]
+\end{prb}
+
+
+AF embeddability
+
+
+\begin{prb}[Fermion algebra]
+
 \end{prb}
 
 
 
 
 
-\section{C$^*$-correspondences}
+
+
+
+
+\section{Universal algebras}
+
+\begin{prb}[Cuntz algebras]
+\end{prb}
+\begin{prb}[Cuntz-Krieger algebras]
+\end{prb}
+\begin{prb}[Graph algebras]
+\end{prb}
+
+
 
 
 \begin{prb}[C$^*$-correspondences]
 Let $A$ and $B$ be C$^*$-algebras.
-A \emph{C$^*$-correspondence}, \emph{C$^*$-bimodule}, or just simply a \emph{correspondence} over $A$ and $B$, or from $A$ to $B$, is a Hilbert $B$-module $E$ together with a $*$-homomorphism $\f:A\to B(E)$, called the \emph{left action}.
+A \emph{correspondence} or a \emph{right Hilbert bimodule} over $(A,B)$ is a Hilbert $B$-module $E$ together with a $*$-homomorphism $\f:A\to B(E)$.
 We say $E$ is \emph{faithful} or \emph{non-degenerate} if the left action is faithful or non-degenerate, respectively.
 \begin{parts}
-\item If $\f:A\to M(B)$ is a unital completely positive map, then we can construct a natural correspondence $E$ from $A$ to $B$ by mimicking the GNS construction on $A\odot B$.
-\item If $\f:A\to M(B)$ is a non-degenerate $*$-homomorphism, $\f\in\Mor(A,B)$ in other words, then we can associate a canonical $A$-$B$-correspondence $B$ such that the left action is realized with $\f$.
-More precisely, $\iota:E\to B:a\otimes b\mapsto\f(a)b$ provides a well-defined linear isomorphism (surjectivity follows from the density of $\f(A)B$ in $B$ and the Cohen factorization theorem) and the two actions on $E$ is described by $\iota(a\xi b)=\f(a)\iota(\xi)b$.
+\item If $\f:A\to M(B)$ is a non-degenerate completely positive map, then we can construct a natural correspondence $E$ from $A$ to $B$ by mimicking the GNS construction on $A\odot B$.
+\item If $\f:A\to M(B)$ is a non-degenerate $*$-homomorphism, $\f\in\Mor(A,B)$ in other words, then we can associate a canonical right Hilbert bimodule $E:=B$ over $(A,B)$ such that the left action is realized with $\f$.
 \end{parts}
 \end{prb}
 
 
 \begin{prb}[Pimsner construction]
-C$^*$-correspondences over $A$ can be interpreted as a generalized automorphism on $A$, and the Pimsner construction defines a new C$^*$-algebra generated by the generalized cyclic action provided by a C$^*$-correspondence.
-Let $E$ be a C$^*$-correspondence over a C$^*$-algebra $A$.
-Let $B$ be a C$^*$-algebra and see it as a trivial C$^*$-correspondence over $B$.
-A \emph{Toeplitz representation} of $E$ on $B$ is a pair $(\pi,\tau)$ of a $*$-homomorphism $\pi:A\to B$ and a linear map $\tau:E\to B$ such that
-\[\pi(\<\xi,\eta\>)=\tau(\xi)^*\tau(\eta),\qquad\tau(\f(a)\xi)=\pi(a)\tau(\xi).\]
-We define the \emph{Katsura ideal}
-\[J(E):=\f^{-1}(K(E))\cap\f^{-1}(0)^\perp.\]
+Let $A$ and $B$ be C$^*$-algebras.
+Let $E$ be a right Hilbert bimodule over $(A,A)$.
+A \emph{representation} of $E$ on $B$ is a pair $(\pi,\tau)$ of a $*$-homomorphism $\pi:A\to B$ and a linear map $\tau:E\to B$ such that
+\[\pi(\<\eta,\xi\>)=\tau(\eta)^*\tau(\xi),\qquad\tau(\f(a)\xi)=\pi(a)\tau(\xi),\qquad\xi,\eta\in E,\ a\in A.\]
+We automatically have $\tau(\xi a)=\tau(\xi)\pi(a)$ by computing the norm of their difference.
 
+Given a representation $(\pi,\tau)$ of $E$ on $B$, we have a canonical $*$-homomorphism $\psi:K(E)\to C^*(\pi,\tau):\theta_{\xi,\eta}\mapsto\tau(\xi)\tau(\eta)^*$.
+We define the \emph{Katsura ideal}
+\[J(E):=\f^{-1}(K(E))\cap\f^{-1}(0)^\perp,\]
+where $\f:A\to B(E)$ denotes the left action.
 We say a Toeplitz representation of $E$ is \emph{covariant} if
 \[\psi(\f(a))=\pi(a),\qquad a\in J(E).\]
+
+The \emph{Toeplitz-Pimsner algebra} is the C$^*$-algebra generated by the universal representation, and the \emph{Cuntz-Pimsner algebra} is the C$^*$-algebra generated by the universal covariant representation.
 \begin{parts}
 \item
-Let $(A,\Z,\alpha)$ be a C$^*$-dynamical system and consider the canonical C$^*$-correspondence $A$ over $A$ with the left action $\f:=\alpha_1\in\Aut(A)\subset\Mor(A)$.
+Let $(A,\Z,\alpha)$ be a C$^*$-dynamical system and consider the canonical C$^*$-correspondence $E=A$ over $(A,A)$ with the left action $\f:=\alpha_1\in\Aut(A)\subset\Mor(A)$.
 This correspondence is full, faithful, and non-degenerate.
-Note that also we have $J(A)=\f^{-1}(A)\cap A=A$.
-If $(\pi,\tau)$ is an any representation of this C$^*$-correspondence $A$ on $B$, then 
+Note that also we have $J(A)=A$.
+
+A covariant representation of the dynamical system is a representation $\pi:A\to B(H)$ together with a unitary $u\in U(H)$ such that $\pi(\f(a))=u\pi(a)u^*$.
+If $(\pi,\tau)$ is an any representation of this C$^*$-correspondence $E$ on $B$, then the most natrual choice of $\tau$ and the associated $\psi$ is
+\[\tau(a):=u^*\pi(a),\qquad\psi(a):=u^*\pi(a)u.\]
+
+
 \end{parts}
+\end{prb}
+
+\begin{pf}
+
+We also have extended linear maps $\tau^n:E^{\otimes n}\to C^*(\pi,\tau)$ and $*$-homomorphisms $\psi^n:K(E^{\otimes n})\to C^*(\pi,\tau)$.
+\end{pf}
+
+\begin{prb}[Gauge invariant uniqueness theorem]
 \end{prb}
 
 How can we decribe representations of C$^*$-correspondence $A$ with left action $\f\in\Aut(A)$ in terms of covariant representations of the C$^*$-dynamical system $(A,\Z,\alpha)$ with $\alpha_n=\f^n$?
@@ -517,11 +941,6 @@ Cuntz-Krieger
 Subproduct systems
 
 
-\section{Morita equivalence}
-
-
-
-Induced representations?
 
 
 
@@ -529,39 +948,67 @@ Induced representations?
 
 
 
-\chapter{Constructions}
-
-
-\section{Categorical constructions}
-
-inverse limits: direct sum, direct product, restricted direct sum, locally C$^*$-algebras.
-
-Infinite direct sums and direct products are ill-behaved in the category of C$^*$-algebras.
-An infinite direct sum must be interpreted as complete Hausdorff spaces, not a pointed compact Hausdorff space.
-For example, after adding a base point, the spectrum of $\bigoplus_{i=1}^\infty C_0(\R)$ corresponds to the Hawaiian earing, and the spectrum of $\prod_{i=1}^\infty C_0(\R)$ corresponds to the Stone-\v Cech compactification of the infinite wedge of circles.
-We cannot describe the infinite wedge of circles in terms of C$^*$-algebras, so we need locally C$^*$-algebras.
-
-
-direct limits: filtered limits, tensor products, free products, amalgamated free products.
 
 
 
 
-\begin{prb}[Locally C$^*$-algebras]
-A \emph{locally C$^*$-algebra} is a complete topological $*$-algebra whose topology is generated by C$^*$-semi-norms.
-We adopt the convention that a \emph{homomorphism} between locally C$^*$-algebras means a continuous $*$-homomorphism.
-\begin{parts}
-\item A topological $*$-algebra is a locally C$^*$-algebra if and only if it is an inverse limit of unital C$^*$-algebras.
-\end{parts}
-\end{prb}
-\begin{pf}
-(a)
-Let $A$ be a locally C$^*$-algebra.
-The set of continuous C$^*$-seminorms on $A$ is a directed set.
-Construct an inverse system...
-Since every C$^*$-algebra is a maximal ideal of a unital C$^*$-algebra of codimension one, we may assume that the objects in this inverse system is unital...
-Also, elements of $A$ are represented by coherent sequences.
-\end{pf}
+
+
+
+
+
+
+
+\part{Dynamics}
+
+
+
+
+
+
+\chapter{Group actions}
+
+\section{Amenability}
+
+
+
+crossed products
+$Z_2$-grading
+Connes-Feldman-Weiss
+Anantharaman-Delaroche
+Gromov boundaries
+approximately central structure?
+dynamical Kirchberg-Phillips
+
+stably finite
+dynamical Elliott program
+
+Ornstein-Weiss-Rokhlin lemma
+
+
+
+Exact groups
+
+
+Other properties:
+Kazdahn property (T)
+factorization property
+Haagerrup property
+
+
+Kaplansky conjecture
+
+
+
+
+A state $\tau$ on $A$ is called an \emph{amenable trace} if there is a state $\omega$ of $B(H)$ such that $\omega$ extends $\tau$ and $\omega(uxu^*)=\omega(x)$ for $x\in B(H)$ and $u\in U(A)$.
+It is automatically tracial.
+The amenability of a trace does not depend on the choice of faithful representation of $A$, using the Arveson extension and the multiplicaitve domain.
+
+For a discrete group $\Gamma$, $C^*_r(\Gamma)$ is amenable if and only if has an amenable tracial state.
+Note that a mean is a state of $\ell^\infty(\Gamma)$, which may not be normal.
+
+
 
 
 
@@ -636,129 +1083,509 @@ commutative case
 
 
 
-\section{Graph algebras}
+\chapter{Groupoid algebras}
+
+\section{}
+
+groupoid models for C$^*$-algebras (non-commutative spaces)
+
+\begin{prb}[Action groupoids]
+$G\ltimes C_0(X)$ and $C^*(G\ltimes X)$..?
+\end{prb}
+
+\begin{prb}[Deaconu-Renault groupoids]
+\end{prb}
+
+\section{Fell bundles}
 
 
 
 
 
 
-\section{Groupoid algebras}
 
 
 
 
 
+\chapter{Continuous fields}
 
 
+\section{Upper semi-continuous fields}
+
+\begin{prb}[Fields of C$^*$-algebras]
+Let $X$ be a locally compact Hausdorff space.
 
 
-\part{Properties}
-\chapter{Approximation properties}
-\section{Nuclearity and exactness}
-
-finite dimensional[BO, 3.3.2], abelian, AF
-permanence properties
-
-
-\begin{prb}[Completely positive approximation property]
-Let $A$ be a C$^*$-algebra.
-We say $A$ has the \emph{completely positive approximation property} if the identity is contained in the point-norm, or equivalently the point-weak closure of $\cF$ in $L(A)$.
+There are one-to-one correspondences among
 \begin{parts}
-\item If $A$ has the completely positive approximation property, then $A$ is nuclear.
-\item If $A$ is nuclear, then $A$ has the completely positive approximation property.
+\item non-degenerate $*$-homomorphisms $C_0(X)\to Z(M(A))$,
+\item continuous maps $\mathrm{Prim}(A)\to X$,
+\item upper semi-continuous fields of C$^*$-algebras over $X$, also called (H)-bundles.
+\end{parts}
+and among
+\begin{parts}
+\item continuous open maps $\mathrm{Prim}(A)\to X$,
+\item continuous fields of C$^*$-algebras over $X$, also called (F)-bundles.
+\end{parts}
+
+The Dauns-Hoffman theorem states that there is a natural $*$-isomorphism
+\[Z(M(A))\to C_b(\mathrm{Prim}(A)).\]
+
+tensor products?
+\end{prb}
+
+
+
+\begin{prb}[Upper semi-continuous fields of C$^*$-algebras]
+Let $X$ be a locally compact Hausdorff space.
+Let $\{A(x)\}$ be a \emph{field of C$^*$-algebras} over $X$, which is just a family of C$^*$-algebras parametrized by $x\in X$.
+The field $\{A(x)\}$ is called \emph{upper semi-continuous} if the total space $E:=\coprod_{x\in X}A(x)$ admits a topology such that
+\begin{enumerate}[(i)]
+\item $+:E\times_XE\to E$ is continuous,
+\item $\cdot:\C\times E\to E$ is continuous,
+\item $\|\cdot\|:E\to\R_{\ge0}$ is upper semi-continuous,
+\item $A(x)\to E$ is a topological embedding for each $x\in X$,
+\item $E\to X$ is an open quotient map.
+\end{enumerate}
+(Which conditions are redundant?)
+Let $A$ be the set of continuous sections $X\to E$ vanishing at infinity with respect to the canonical proejction $E\to X$.
+We want to show $A$ is a C$^*$-algebra together with a natural non-degenerate $*$-homomorphism $C_0(X)\to Z(M(A))$.
+\begin{parts}
+\item The topology on $E$ is uniquely determined....?
 \end{parts}
 \end{prb}
 \begin{pf}
 
-(b)
+
+Define a norm on $A$ such that $\|a\|=\sup_{x\in X}\|a(x)\|$ for each $a\in A$.
 
 
-
-Let $E\subset A$ and $F\subset A^*$ be finite subsets and fix $\e>0$.
-We want to find completely positive contractions $\f:A\to M_n(\C)$ and $\psi:M_n(\C)\to A$ such that
-\[|l(a)-l(\psi\circ\f(a))|<\e,\qquad a\in E,\ l\in F.\]
-To implement the approximation, we would like to regard a bounded linear operator on $A$ as a state of a tensor product of C$^*$-algebras, which maps $\theta\in L(A)$ to the linear functional characterized by $a\otimes l\mapsto l(\theta(a))$.
-However, since $A^*$ is not a C$^*$-algebra, we embed $A^*$ locally in $B(H)$ through the Radon-Nikodym type result.
-Let $\pi:A\to B(H)$ be the cyclic representation obtained from a positive linear functional that dominates $F$ and $\Omega$ the cyclic vector such that there is a linear map $\pi':F\to\pi(A)'$ satisfying
-\[l(a)=\<\pi(a)\pi'(l)\Omega,\Omega\>,\qquad a\in E,\ l\in F.\]
-Now the duality of $A$ and $F$ is embodied in the tensor product representation
-\[\pi\times i:A\otimes_{\max}\pi(A)'\to B(H)\]
-together with a cyclic vector $\Omega\in H$.
-Here the nuclearity is used to write $A\otimes_{\max}\pi(A)'=A\otimes_{\min}\pi(A)'$.
-
-If we take any faithful representation $\rho:A\to B(K)$, then we obtain a faithful representation
-\[\rho\otimes i:A\otimes_{\min}\pi(A)'\to B(K\otimes H).\]
-By the Hahn-Banach separation, the state $(\pi\times i)^*\omega_\Omega$ on $A\otimes_{\min}\pi(A)'$ can be approximated weakly$^*$ by convex combinations of vector states in $B(K\otimes H)$.
-In particular, by the density of $\pi(A)\Omega$ in $H$, we have algebraic tensors $(t_k)_{k=1}^m\subset K\odot\pi(A)\Omega$ such that
-\[\Bigl|\omega_\Omega((\pi\times i)(a\otimes\pi'(l)))-\sum_{k=1}^m\lambda_k\omega_{t_k}((\rho\otimes i)(a\otimes\pi'(l)))\Bigr|<\e\tag{\dagger}\]
-for all $a\in E$ and $l\in F$, where $\lambda_k\ge0$, $\sum_{k=1}^m\lambda=1$.
-
-If we write each element $t\in K\odot\pi(A)\Omega$ as
-\[t=\sum_{i=1}^n\eta_i\otimes\pi(b_i)\Omega,\qquad\eta_i\in K,\ b_i\in A,\]
-then
-\begin{align*}
-\omega_t((\rho\otimes i)(a\otimes\pi'(l)))
-&=\left\<(\rho(a)\otimes\pi'(l))\Bigl(\sum_{j=1}^n\eta_j\otimes\pi(b_j)\Omega\Bigr),\Bigl(\sum_{i=1}^n\eta_i\otimes\pi(b_i)\Omega\Bigr)\right\>\\
-&=\sum_{i,j=1}^n\<\rho(a)\eta_j,\eta_i\>\<\pi'(l)\pi(b_i^*b_j)\Omega,\Omega\>\\
-&=l\Bigl(\sum_{i,j=1}^n\<\rho(a)\eta_j,\eta_i\>b_i^*b_j\Bigr).
-\end{align*}
-If we define completely positive maps $\f:A\to M_n(\C)$ and $\psi:M_n(\C)\to A$ for each $\tau$ such that
-\[\f(a):=[\<\rho(a)\eta_j,\eta_i\>],\quad\psi([\delta_{ik}\delta_{jl}]):=b_k^*b_l,\]
-then we have $\omega_t(a\otimes\pi'(l))=l(\psi\circ\f(a))$.
-We may assume $\f$ and $\psi$ are contractive by adjusting their norms.
-
-Since $\mu(a\otimes\pi'(l))=l(a)$ and since the completely positive contractions which factor through a matrix algebra form a convex set, we have completely positive contractions $\f:A\to M_n(\C)$ and $\psi:M_n(\C)\to A$ such that the inequality (\dagger) is rewritten as
-\[|l(a)-l(\psi\circ\f(a))|<\e,\]
-so we are done.
+$\Gamma_0(\coprod_{x\in X}A(x))$ is a $C_0(X)$-module.
 \end{pf}
 
-The set $\cF$ of factorable maps is a convex set of $L(A)$.
-Note that we have an embedding
-\[L(A)\hookrightarrow L(A,A^{**})=\lim_{\substack{\longleftarrow\\F}}L(A,F^*).\]
-We have a continuous bijection
-\[(A\hat\otimes_\pi F)^*\to L(A,F^*).\]
-If we let $M:=\pi(A)''\subset B(H)$ be the GNS representation for $F$, then the Radon-Nikodym theorem on commutant gives rise to a continuous map
-\[(A\mathrel{\hat\otimes}_\pi M')^*\to(A\mathrel{\hat\otimes}_\pi F)^*.\]
-
-\[\begin{tikzcd}
-B(K\otimes\pi(A)\Omega)^* \dar[->>] & B(\pi(A)\Omega)^* \dar[->>] &\\
-(A\otimes_{\min}M')^*\rar[>->]
-&(A\otimes_{\max}M')^*\rar[>->]
-&(A\mathrel{\hat\otimes}_\pi M')^*
-\end{tikzcd}\]
-The first map is in fact surjective by the nuclearity.
 
 
-
-
-
-quotients of nuclear
-local reflexivity
 
 
 
 \begin{prb}
-A C$^*$-algebra $C$ is called \emph{injective} every completely positive map $\f:A\to C$ from a C$^*$-subalgebra $A$ of a C$^*$-algebra $B$ is extended to a completely positive map $\tilde\f:B\to C$.
-A von Neumann algebra is called injective if it is injective as a C$^*$-algebra.
-(operator subsystem? unital?)
+Let $X$ be a locally compact Hausdorff space.
 
-The C$^*$-algebra $B(H)$ is injective, and its image of completely positive idempotent is injective.
-A von Neumann algebra on $M$ on $H$ is injective if and only if there is a conditional expectation $B(H)\to M$.
+\begin{parts}
+\item If $\{A(x)\}$ is an upper semi-continuous field of C$^*$-algebras over $X$, then the space of sections $A$ vanishing at infinity is a C$^*$-algebra together with a natural non-degenerate $*$-homomorphism $C_0(X)\to Z(M(A))$.
+\item If $A$ is a C$^*$-algbera and together with a non-degenerate $*$-homomorphism $C_0(X)\to Z(M(A))$, then there is an upper semi-continuous field of C$^*$-algebras over $X$ such that $A$ is $*$-isomorphic to the space of sections vanishing at infinity.
+\item If fibers $A(x)$ are all $*$-isomorphic, then the field is continuous and $\Gamma_0\cong C_0(X,A(x))$ for any $x\in X$.
+\end{parts}
+\end{prb}
+\begin{pf}
+
+
+(b)
+For each $x\in X$, since $AC_0(X\setminus\{x\})$ is a closed ideal with Cohen factorization, the fiber $A(x):=A/AC_0(X\setminus\{x\})$ of $A$ is a well-defined C$^*$-algebra.
+Denote by $a(x)\in A(x)$ the image of $a\in A$ under the quotient $*$-homomorphism $A\to A(x)$.
+Define the total space $E:=\coprod_{x\in X}A(x)$ with the quotient topology induced from the evaluation map $A\times X\to E$, and let $\Gamma_0$ be the set of continuous sections $a:X\to E$ of the projection map $\pi:E\to X:a(x)\mapsto x$ vanishing at infinity.
+We claim that $\{A(x)\}$ is an upper semi-continuous field over $X$ and there is a natural $*$-isomorphism $A\to\Gamma_0$.
+
+---
+
+As a first step, we prove the evaluation map $A\times X\to E$ is open.
+It suffices to prove that the cylindrical open set $\{(a,x):\|a\|<1,\ x\in U\}$ in $A\times X$ is mapped onto the open set $\{\xi:\|\xi\|<1,\ \pi(\xi)\in U\}$ in $E$ under the evaluation map, where $U$ is an open subset of $X$.
+Suppose $\xi\in E$ satisfies $\|\xi\|<1$ and $\pi(\xi)\in U$.
+Take $(a_0,x_0)\in A\times U$ satisfying $a_0(x_0)=\xi$.
+Since $x\mapsto\|a_0(x)\|$ is upper semi-continuous, we can take a decreasing sequence $(U_n)_{n=0}^\infty$ of open neighborhoods of $x_0$ in $X$ such that $\|a_0(x)\|<(1+2^{-n})\|a_0(x_0)\|$ on $x\in U_n$.
+For each $n$, construct $f_n\in C_0(X)$ such that $\supp f_n\subset U_n$ and $0\le f_n(x)\le f_n(x_0)=2^{-n}$ on $x\in X$.
+If we define $f(x):=\sum_{k=1}^\infty f_k(x)$, then $fa_0$ satisfies $(fa_0)(x_0)=f(x_0)a_0(x_0)=a_0(x_0)$ and $\|fa_0\|\le\|a_0(x_0)\|<1$ since
+\[\|(fa_0)(x)\|\le\sum_{k=1}^nf_k(x)\|a_0(x)\|<\sum_{k=1}^n2^{-k}(1+2^{-(n+1)})\|a_0(x_0)\|\le\|a_0(x_0)\|,\qquad x\in U_{n+1}\setminus U_n.\]
+Therefore, the evaluation map is open.
+
+Before proceeding the argument, we check that $\Gamma_0$ is closed under addition.
+Let $a,b\in\Gamma_0$ and let $(x_i)_{i\in I}$ be a net in $X$ such that $x_i\to x$, which has $a(x_i)\to a(x)$ by continuity of $a$.
+Although we do not have $a,b\in A$ yet, but we can take $a_0,b_0\in A$ such that $a(x)=a_0(x)$ and $b(x)=b_0(x)$.
+Let $\cU$ be the filtered set of open neighborhoods of $(a_0,x)$ in $A\times X$, and let $K:=I\times\cU$ be the product directed set reversing the order of $\cU$.
+Take a subnet $x_k$ of $x_i$ by defining a cofinal map $K\to I:(i,U)\mapsto i'$ such that $i'\succ i$ and $a(x_{i'})\in\ev(U)$, which can be done because the evaluation is an open map and the convergence $a(x_i)\to a_0(x)$.
+Choosing $a_k\in U$ for each $k\in K$ such that $\ev(a_k,x_k)=a(x_k)$, we have $a_k\to a_0$ in $A$ and $a_k(x_k)=a(x_k)$ in $E$.
+By doing the same for $b$, we may also assume that there is a net $b_k\in A$ such that $b_k\to b_0$ and $b_k(x_k)=b(x_k)$.
+From $a_k+b_k\to a_0+b_0$ in $A$, we have the limit for $k$
+\[a(x_k)+b(x_k)=a_k(x_k)+b_k(x_k)=(a_k+b_k)(x_k)\to(a_0+b_0)(x)=a_0(x)+b_0(x)=a(x)+b(x).\]
+Since $a(x_i)$ and $b(x_i)$ are Cauchy, we have $a(x_i)+b(x_i)\to a(x)+b(x)$, so $a+b\in\Gamma_0$.
+
+
+---
+
+Now we prove the $*$-isomorphism.
+If $a\in A$ satsfies $a(x)=0$ for each $x\in X$, meaning that we have a factorization $a=a_xf_x\in AC_0(X)$ such that $f_x(x)=0$, then since every pure state $\delta$ of $A$ is restricted to a point measure $\delta_x$ on $X$ so that $\delta(a)=\delta(a_xf_x)=\delta(a_x)\delta_x(f_x)=0$, we have $a=0$.
+To show that $A\to\Gamma_0$ has dense image,
+partition of unity.
+
+(c)
+By the quotient topology on the total space, we have a commutative diagram
+\[\begin{tikzcd}[sep=small]
+A\times X \rar\dar\ar{dr} & A(x)\\
+X & E \uar\lar
+\end{tikzcd}\]
+of natural contiinuous maps.
+The composition with $E\to A(x)$ gives rise to a map $\Gamma_0\to C_0(X,A(x))$, and the inverse is taken by the lift using the universality of coproduct, so we are done.
+\end{pf}
+
+
+
+
+\begin{prb}[Continuous fields of Banach spaces]
+Let $X$ be a locally compact Hausdorff space.
+A \emph{continuous field of Banach spaces} over $X$ is a family $\{V(x)\}$ of Banach spaces parametrized by $x\in X$ such that the total space $E:=\coprod_{x\in X}E(x)$ admits a topology such that
+\begin{enumerate}[(i)]
+\item $+:E\times_XE\to E$ is continuous,
+\item $\cdot:\C\times E\to E$ is continuous,
+\item $\|\cdot\|:E\times\R_{\ge0}$ is continuous,
+\item $V(x)\to E$ is a topological embedding,
+\item $E\to X$ is an open quotient map.
+\end{enumerate}
+(Which conditions are redundant?)
+Let $\Gamma_0$ be the set of continuous sections $X\to E$ vanishing at infinity with respect to the canonical proejction $\pi:E\to X$.
+\begin{parts}
+\item If $\{V(x)\}$ is a continuous field of Banach spaces over $X$, then $\Gamma_0$ is a Banach module over $C_0(X)$.
+\item If $V$ is a Banach module over $C_0(X)$, then it has a structure of continuous field of Banach spaces.
+\end{parts}
+\end{prb}
+\begin{pf}
+(a)
+
+
+(b)
+
+
+\end{pf}
+
+
+\begin{prb}[Continuous fields of Hilbert modules]
+Let $X$ be a locally compact Hausdorff space.
+
+
+
+
+
+
+\begin{parts}
+\item There is an equivalence between the category of Hilbert modules over $X$ and the category of coontinuous fields of Hilbert spaces over $C_0(X)$.
+\end{parts}
+\end{prb}
+
+
+\begin{prb}[Vector bundles]
+Let $X$ be a compact Hausdorff space.
+Let $E$ be a finitely generated projective module over $C(X)$.
+The rank is defined on each connected component, and it is uniformly bounded.
+A ($C(X)$-linear continuous) group action on $E$ is corresponded to (fiber-preserving continuous) group action on $V$.
+Where does the local triviality of principal $G$-bundles come from?
+
+
+manifold structure on total space
+
+some constructions like duals, tensors, symmetric, and exterior algebras, can it be interpreted as the module operations? and projectivity is preserved?
+how about submodules, kernels, and images for the projectivity? how can their topologies on total spaces be described?
+
+paracompactness? existence of metrics and isomorphism with duals? The section space of the tangent bundle of the long line is not an algebraically finitely generated projective module. (which condition is failed?)
+
+\begin{parts}
+\item There is an equivalence between the category of algebraically finitely generated projective Hilbert modules over $C(X)$ and the category of locally trivial finite-rank complex vector bundles over $X$. (Serre-Swan with Hermitian metric)
+\end{parts}
+\end{prb}
+
+\begin{pf}
+If $E$ if a algebraically finitely generated projective module so that $E$ is a complemented Hilbert submodule of $C(X)^n$, then we can identify $E$ as a continuous function $p:X\to M_n(\C)$ such that $p(x)$ is a projection for all $x\in X$.
+Since the rank function on $M_n(\C)$ is lower semi-continuous, two integer-valued functions $\rk p$ and $\rk(1-p)=n-\rk p$ on $X$ are lower semi-continuous, which means that $\rk p:X\to\Z_{\ge0}$ is locally constant.
+Therefore, $E$ is locally trivial.
+
+\end{pf}
+
+
+
+
+
+
+
+A $C(X)$-linear operator (Fr\'echet modules) and a $C(X)$-adjointable operator (Hilbert modules)?
+
+
+span of $a[D,b]$
+completion of the span of the gradient of test functions,
+dual of Borel time-dependent vector field,
+
+For discussion of tangent vectors as in optimal transport theory:
+sufficiently many absolutely continuous curves?
+
+
+
+
+\section{Dixmier-Douady theory}
+
+\begin{prb}[Dixmier-Douady theory]
+	
+\end{prb}
+
+
+Fell's condition
+
+A C$^*$-algebra $A$ is called \emph{continuous trace} if the set of all $a\in\cA$ such that $\hat A\to\R_{\ge0}:\pi\mapsto\tr(\pi(a^*a))$ is continuous is dense in $A$.
+
+
+
+Dadarlat-Pennig theory
+
+
+
+
+
+
+
+\section{Fell bundles}
+
+
+
+Coactions and Fell bundles
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\part{Classification}
+\chapter{Operator K-theory}
+
+\section{Zeroth K-groups}
+
+\begin{itemize}
+\item functoriality
+\item homotopy invariance
+\item filtered cocontinuity and opertor stability
+\item half-exactness, split-exactness
+\item long exact sequence -> section 3
+\end{itemize}
+
+with additional properties
+\begin{itemize}
+\item lax symmetric monoidal functor
+\item partial order
+\item ring axioms for $K_0$ only on commutatives
+\end{itemize}
+
+
+
+
+\begin{prb}[Zeroth K-group of unital algebras]
+Let $A$ be a unital C$^*$-algebra.
+We define $K_0(A)$ by the algebraic K-theory of a unital ring $A$, the Grothendieck group of the category of algebraically finitely generated projective right $A$-modules.
+Equivalently, if we define $V(A):=P(M_\infty(A))/\sim$, then it gives a functor $V$ from the category of unital C$^*$-algebras to the category of ordered abelian monoid with cancellation property, so we can define $K_0(A):=G(V(A))$, the Grothendieck group of the monoid $V(A)$.
+Its elements can be described by $[p]-[q]$ for projections $p$ and $q$ in $M_n(A)$ for some $n\ge0$.
+\begin{parts}
+\item $V(M_n(\C))\cong\Z_{\ge0}$ because two projections are equivalent iff they have same range dimensions, so $K_0(M_n(\C))\cong\Z$.
+\item $K_0(B(H))\cong K_0(Q(H))\cong0$ if $H$ is infinite-dimensional, since
+\[V(K(H))\cong\Z_{\ge0}=\mathrm{Card}_{<\omega},\qquad V(B(H))\cong\mathrm{Card}_{\le\dim H},\qquad V(Q(H))\cong\{0\}\cup(\mathrm{Card}_{\ge\omega}\cap\mathrm{Card}_{\le\dim H}).\]
+The corner map $P(A)\to K_0(A)$ is sometimes called the \emph{dimension function} of a C$^*$-algebra $A$.
+\item $K_0(C(S^2))\cong\Z^2$.
+\item For a II$_1$ factor $M$, $K_0(M)\cong\R$.
+\item $K_0(\cO_n)\cong\Z/(n-1)\Z$.
+\end{parts}
+\end{prb}
+
+
+\begin{prb}[Zeroth K-group of non-unital algebras]
+We want to discuss the exactness of K-theory.
+For this, we have to consider pairs of C$^*$-algebras.
+We define a \emph{pair} of C$^*$-algebras as a surjective $*$-homomorphism between unital C$^*$-algebras.
+Let $\pi:A\to B$ is a pair of C$^*$-algebras.
+Then, $K_0(A,B)$ can be concretely described or defined by the set of equivalence classes of $(p,q,v)$, where $p$ and $q$ are projections in $\cK\otimes A$ and $v\in M(\cK\otimes A)$ satisfies $\pi(p)=\pi(v^*v)$ and $\pi(q)=\pi(vv^*)$.
+In fact, we can show $K_0(A,B)$ only depends on the kernel $I:=\ker\pi$.
+It is called the excision theorem.
+
+
+
+For a general non-unital C$^*$-algebra $I$, it is well-defined that
+\[K_0(I):=K_0(A,A/I),\]
+where $A$ is any unitization of $I$.
+We can show that if $I$ is unital, then it is naturally isomorphic to the original without-base-point definition of K-theory.(for example, $K_0(A)\cong K_0(A\oplus\C,\C)$ for unital $A$)
+In particular, since $K_1(\C)=0$, the six-term exact sequence implies that $K_0(I)\cong\ker(K_0(\tilde I)\to K_0(\C))$, and since $0\to I\to\tilde I\to\C\to0$ splits, we have $K_0(I)\oplus\Z\cong K_0(\tilde I)$.
+A generally non-unital C$^*$-algebra is the non-commutative analogue of the pointed quotient of compact pairs.
+
+
+Even if $A$ and $B$ are non-unital, one can check the followings are exact:
+\[K_0(I)\to K_0(A)\to K_0(B)\]
+$[p,q,v]\mapsto[p]-[q]\mapsto$...
+
+We do not have to introduce the notation $\tilde K$, because we basically consider the unital algebra $C(X)$ not as a pointed space $(X,x_0)$ (like in topology), but as $(X\cup*,*)$, i.e.~$K(C_0(X))=\tilde K(X\cup*,*)$ for compact or non-compact $X$.
+\end{prb}
+
+
+
+
+\begin{prb}[Equivalences of projections]
+Let $A$ be a C$^*$-algebra.
+Denote by $P(A)$ and $U(A)$ the set of all projections and unitaries in $A$ respectively.
+Let $p$ and $q$ be projections of $A$.
+Recall that they are called
+\begin{enumerate}[(i)]
+\item \emph{Murray-von Neumann equivalent}, denoted $p\sim q$, if $p=v^*v$ and $q=vv^*$ for some $v\in A$,
+\item \emph{unitarily equivalent}, denoted by $p\sim_uq$, if $upu^*=q$ for some unitary $u$ in $\tilde A$,
+\item \emph{homotopic}, denoted by $p\sim_hq$, if there is a norm continuous path of projections in $A$ connecting them.
+\end{enumerate}
+\begin{parts}
+\item $p\sim_uq$ implies $p\sim q$, and $p\sim q$ implies $p\oplus0\sim_uq\oplus0$ in $M_2(A)$.
+\item $p\sim_hq$ implies $p\sim_uq$, and $p\sim_uq$ implies $p\oplus0\sim_hq\oplus0$ in $M_2(A)$.
+\end{parts}
+\end{prb}
+
+
+
+\begin{pf}
+
+We give some lemmas.
+First, if $a\in A$ satisfies $0\le a\le1$ and $\|a-a^2\|<\e\le4^{-1}$, then $p:=1_{(\frac12,1]}(a)$ defines a projection in $A$ such that $\|a-p\|<2\e$, because $\sigma(a)\subset[0,\frac{1-\sqrt{1-4\e}}2)\cup(\frac{1+\sqrt{1-4\e}}2,1]$.
+
+Second, if two projections $p$ and $q$ of $A$ satisfy $\|p-q\|<1$, then they are homotopic.
+To prove this, with the complement of the non-commutative symmetric difference $v:=1-p-q+2qp$ in the standard unitization $\tilde A$, which satisfies $vp=qp=qv$, define a path $v_t:=(1-t)+tv$ connecting the unit and $v$ in $\tilde A^\times$, which is because
+\[\|1-v_t\|=t\|1-v\|\le\|1-v\|=\|p+q-2qp\|=\|(1-2q)(p-q)\|\le\|p-q\|<1.\]
+The polar decomposition for invertibles defines a path of unitaries $u_t:=v_t|v_t|^{-1}$ in $\tilde A$ from the unit to $u:=u_1$ such that $v^*vp=v^*qv=pv^*v$ implies $|v_t|p=p|v_t|$ and $upu^*=q$, and the norm continuity of the functional calculus on the annulus $\{\lambda\in\C:1-\|p-q\|\le|\lambda|\le2\}$ where the function $\lambda\mapsto\lambda|\lambda|^{-1}$ is uniformly approximated by polynomials implies that $u_t$ is a norm continuous path, so $p$ and $q$ are homotopic through the path $u_tpu_t^*$ of projections in $A$.
+
+
+Third, if $p\in A=\colim_i A_i$ is a projection, then $\|p_i-p\|<\e$ for some $p_i\in A_i$.
+
+
+
+(a)
+If $p\sim_u q$, then there is a unitary $u$ such that $upu^*=q$, so $v:=up$ satisfies $p=v^*v$ and $q=vv^*$.
+
+
+(b)
+If $p\sim_h q$, then there is a norm-continuous path $p_t$ of projections such $p_0=p$ and $p_1=q$, so 
+
+\end{pf}
+
+\begin{prb}
+We consider the following three categories.
+$I(M_\infty(A))$, $P(M_\infty(A))$, $P(\cK\otimes A)$
+
+Skolem-Noether theorem!! every automorphism of a matrix ring is inner, so we have a unique isomorphism $M_n(M_\infty(R))\to M_\infty(R)$ up to equivalence.
+
+Why should we consider projection picture for C$^*$-algebras instead of idempotents?
+Morphisms between projections are bounded.
+Easily constructed by the functional calculus.
+
+Why can we consider projection picture for C$^*$-algebras instead of idempotents?
+If $e\in I(M_n(A))$, then $s_l(e)\in P(M_n(A))$, for unital $A$?
+Polar decomposition?
+
+
+
+\begin{enumerate}[(i)]
+\item The category $P(M_\infty(A))$ of projections of $\cK\otimes A$ such that a morphism from $p$ to $q$ is defined by an element of $q(\cK\otimes A)p$.
+\item The category $\mathrm{Hilb}_{\mathrm{proj,fg}}(A)$ of algebraically finitely generated projective Hilbert $A$-modules such that a morphism is defined by a $A$-adjointable operator.
+\end{enumerate}
+The forgetful functor from the category of algebraically finitely generated projective Hilbert $A$-modules to the category of algebraically finitely generated projective $A$-modules preserves isomorphic classes.
+
+(In the category $P(\cK\otimes A)$, two projections are isomorphic if and only if they are Murray-von Neumann equivalent in $\cK\otimes A$.
+Suppose two projections $p$ and $q$ in $\cK\otimes A$ have $x\in q(\cK\otimes A)p$ and $y\in p(\cK\otimes A)q$ such that $yx=p$ and $xy=q$.
+Since $s_r(x)=s_r(xp)\le s_r(p)=s_r(yx)\le s_r(x)$ and $s_l(x)=s_l(qx)\le s_l(q)=s_l(xy)\le s_l(x)$ give $s_r(x)=p$ and $s_l(x)=q$, and it implies that $x$ and its adjoint in $B(\ell^2\otimes A)$ have complemented ranges because $s_l(x),s_r(x)\in M(\cK\otimes A)$, so the polar decomposition theorem for adjointable operators proves that $s_l(x)$ and $s_r(x)$ are von Neumann equivalent by a multiplier $v\in M(\cK\otimes A)$, where $v^*v=s_r(x)$ and $vv^*=s_l(x)$, but we automatically have $v\in\cK\otimes A$ since $v^*v=p\in\cK\otimes A$.
+Conversely, a Murray-von Neumann equivalent projections of $\cK\otimes A$ are isomorphic in the category $P(\cK\otimes A)$ since if $p=v^*v$ and $q=vv^*$ for some $v\in\cK\otimes A$, then $(1-p)v^*v(1-p)=0$ implies $vp=v$ and similarly $v=qv$.)
+
+We want to show a functor $p\mapsto p(\ell^2\otimes A)$ is an equivalence.
+
+First, we prove the well-definedness.
+Functoriality is clear.
+Let $p\in\cK\otimes A$ be a projection.
+We show that $p(\ell^2\otimes A)$ is a finitely generated projective algebraic right $A$-module.
+For $\e\le12^{-1}$, fix a projection $q\in\cK\otimes\C1\subset\cK\otimes A$ such that $\|p-qpq\|<\e$ by considering the usual approximate unit consisting of finite-dimensional projections in $\cK$.
+Since $0\le qpq\le1$ and $\|qpq-(qpq)^2\|<3\e\le4^{-1}$, there is a projection $r:=1_{(\frac12,1]}(qpq)\in\cK\otimes A$ such that $\|qpq-r\|<6\e$.
+Then, $\|p-r\|<7\e\le1$ implies the existence of unitary $u\in M(\cK\otimes A)$ such that $p\sim uru^*$.
+Thus, $p(\ell^2\otimes A)$ is isomorphic to $r(\ell^2\otimes A)$ as $A$-modules.
+Since $r\le qpq\le q$, we have a direct sum decomposition $r(\ell^2\otimes A)\oplus(q-r)(\ell^2\otimes A)=q(\ell^2\otimes A)$ of a finitely generated free $A$-module, so $r(\ell^2\otimes A)$ and hence $p(\ell^2\otimes A)$ is a finitely generated projective $A$-module.
+We can choose the inner product as the one naturally induced from $\ell^2\otimes A$.
+
+Next, we prove the essential surjectivity.
+Let $P$ be an algebraically finitely generated projective $A$-module.
+Find a $A$-module $Q$ and $n\in\Z_{\ge0}$ such that $P\oplus Q\cong A^n$ as $A$-modules.
+Take an idempotent $A$-module map $e$ on $A^n$ onto the image of $P$, and regard it as an element of $M_n(A)\subset B(A^n)$.
+Then, $eA^n$ is isomorphic to $P$ as $B$-modules, and the idempotency of $e$ implies the closed range, so we can apply the polar decomposition of $e$ in the algebra of adjointable operators $B(A^n)$ to find a projection $p\in M_n(A)$ such that the ranges of $e$ and $p$ are equal.
+Therefore, $P$ is isomorphic to $p(\ell^2\otimes A)$ as $A$-modules.
+
+Finally, we prove the full faithfulness.
+For projections $p,q\in\cK\otimes A$, since $x\in\cK\otimes A$ such that $xp=x=qx$ defines an $A$-adjointable operator $p(\ell^2\otimes A)\to q(\ell^2\otimes A)$, and a $A$-adjointable operator $p(\ell^2\otimes A)\to q(\ell^2\otimes A)$ gives rise to an element $x\in B(\ell^2\otimes A)=M(\cK\otimes A)$ such that $xp=x=qx$.
+\end{prb}
+
+
+
+
+\begin{prb}[Homotopy invariance]
+Let $A$ and $B$ be C$^*$-algebras.
+Two $*$-homomorphisms in $A\to B$ are said to be \emph{homotopic} if they are connected by a point-norm continuous path of $*$-homomorphisms $A\to B$.
+\begin{parts}
+\item For pointed compact Hausdorff spaces $(X,x_0),(Y,y_0)$, two pointed maps $f_0,f_1:X\to Y$ are homotopic if and only if $f_0^*,f_1^*:C_0(Y\setminus\{y_0\})\to C_0(X\setminus\{x_0\})$ are homotopic.
+\item $A\to IA$ induces isomorphisms?
+\end{parts}
+\end{prb}
+\begin{pf}
+(a)
+Suppose $f_0$ and $f_1$ are connected by a homotopy $f_t$.
+Fixing $g\in C_0(Y\setminus\{y_0\})$ and $t_0\in I$, we want to show
+\[\lim_{t\to t_0}\sup_{x\in X}|g(f_t(x))-g(f_{t_0}(x))|=0.\]
+Since the function $g$ is uniformly continuous, with respect to an arbitrarily chosen uniformity on $Y$, so that there is an entourage $E\subset Y\times Y$ such that $(y,y')\in E\circ E$ implies $|g(y)-g(y')|<\e$.
+Using compactness we have a finite sequence $(y_i)_{i=1}^n\subset Y$ such that for every $y$ there is $y_i$ satisfying $(y,y')\in E$.
+Then, $f^{-1}(E[y_i])$ is a finite open cover of $X\times I$, so we have $\delta$ such that $|t-t_0|<\delta$ implies for any $x\in X$ the existence of $i$ satisfying $(f_t(x),y_i)\in E$ and $(f_{t_0}(x),y_i)\in E$, which deduces the desired inequality.
+
+Conversely, suppose $f_0^*$ and $f_1^*$ are connected by a homotopy $f_t^*$.
+By taking dual, we can induce $f_t:X\to Y$ such that $g(f_t(x))=(f_t^*g)(x)$ for each $g\in C(Y)$ from $f_t^*$ via the embedding $X\to M(X)$ by Dirac measures.
+Let $V$ be an open neighborhood of $f_{t_0}(x_0)$ and take $g\in C(Y)$ such that $g(\f_{t_0}(x_0))=1$ and $g(y)=0$ for $y\notin V$.
+Now we have an open neighborhood $U$ of $x_0$ such that $x\in U$ implies $|(f_{t_0}^*g)(x)-(f_{t_0}^*g)(x_0)|<\frac12$.
+Also we have $\delta>0$ such that $|t-t_0|<\delta$ implies $\|f_t^*g-f_{t_0}^*g\|<\frac12$.
+Therefore, $(x,t)\in U\times(t_0-\delta,t_0+\delta)$ implies $g(f_t(x))>0$, hence $f_t(x)\in V$, which means $X\times I\to Y:(x,t)\mapsto f_t(x)$ is continuous.
+\end{pf}
+
+
+\[K_0(\C)=\Z,\quad K_0(C_0(\R))=0,\quad K_1(C_0(\R))=K_0(C_0(\R^2))=\Z\]
+\[K^0(*)=\Z,\quad K^0(S^1)=\Z,\quad K^1(S^1)=K^0(S^2)=\Z[x]/(x-1)^2\]
+
+
+
+
+The K-theory with compact supports has
+\[K_0(X)=K_0(X_+,*)=\tilde K_0(X_+)=K^0(C_0(X))...\]
+
+
+
+\begin{prb}[Filtered cocontinuity and operator stability]
+
+Since the Gronthendieck group completion is a left adjoint functor so that it is cocontinuous, we only need to show that the functor $V$ is filtered cocontinuous.
+
+We need projection and unitary approximation in $M_n(A)$ by $M_n(A_i)$.
 
 \end{prb}
 
 
 
-$A^{**}$ semi-discrete -> $A$ nuclear is done by four step approximation
+\begin{prb}[Half-exactness and split-exactness]
 
-The reverse implication follows from $A$ is nuclear -> $A'$ is injective -> $A''$ is injective -> $A''$ is semi-discrete.
-
-
-Let $A$ be nuclear.
-Note $A^{**}=I^{**}\oplus(A/I)^{**}$.
-Since $A^{**}$ is semi-discrete, $(A/I)^{**}$ is semi-discrete.
-Therefore, $A/I$ is nuclear.
+\end{prb}
 
 
 
@@ -767,18 +1594,204 @@ Therefore, $A/I$ is nuclear.
 
 
 
-a separable C$^*$-algebra is nuclear if and only if every factor representation is hyperfinite.
-
-Extension properties
-weak expectation property
-relatively weakly injective
-maximal tensor product inclusion problem
 
 
 
-excision: Akemann-Anderson-Pedersen
 
-\section{Quasi-diagonality}
+
+\section{First K-groups}
+
+As the Whitehead group $K_1(A):=GL_\infty(A)/[GL_\infty(A),GL_\infty(A)]$.
+
+relative
+
+
+
+\section{Six-term exact sequences}
+
+
+$\cK(\ell^2(\N))$, $\cI:=C([0,1])$, $\cS:=C_0(\R)$, $\cC:=C_0(\R_{\ge0})$
+
+$K_{-n}(A):=K_0(\Sigma^nA)$.
+
+How can we define $K_2$?
+
+
+\begin{prb}[Index map]
+In the theory of C$^*$-algebras, the connecting homomorphism $K_1(A/I)\to K_0(I)$ is usually called the index map.
+Mayer-Vietoris
+\end{prb}
+
+\begin{prb}[Bott periodicty]
+
+suspension picture $K_0\to K_1\Sigma$
+
+Bott periodicity $K_1\to K_0\Sigma$
+
+\end{prb}
+
+
+$K(\C)\cong\Z[\beta^{\pm1}]$ as rings.
+
+The suspension can defined by an exact sequence
+\[0\to\Sigma B\to CB\to B\to0,\]
+or alternatively by the pullback
+\[\begin{tikzcd}[sep=small]
+\Sigma B\rar\dar\pullback & CB\dar{b\mapsto b(1)} \\
+CB \rar & B.
+\end{tikzcd}\]
+
+For $\f:A\to B$,
+\[\cone(\f):=\{(a,b)\in A\oplus C_0((0,1],B):b(1)=\f(a)\},\qquad\cyl(\f):=\{(a,b)\in A\oplus C_0([0,1],B):b(1)=\f(a)\}.\]
+The mapping cone is a homotopy cokernel geometrically and is a homotopy kernel algebraically.
+The mapping cylinder is a fibrant? cofibrant? replacement.
+The mapping cone can be defined by an exact sequence of C$^*$-algebras
+\[0\to \cone(\f)\to \cyl(\f)\to B\to0,\]
+or alternatively by the pullback
+\[\begin{tikzcd}[sep=small]
+\cone(\f)\rar\dar\pullback & CB\dar{b\mapsto b(1)} \\
+A \rar & B.
+\end{tikzcd}\]
+
+
+We can see that $CB$ is contractible, and $\Sigma B$ is homotopic to the pullback $\cone(\f)\oplus_ACA$.
+
+distinguished triangle
+\[\Sigma B\to \cone(\f)\to A\xrightarrow{\f}B\]
+
+Do not forget to describe the induced maps for K-groups!
+
+
+
+
+
+
+
+
+local Banach algebras
+
+
+
+\begin{prb}[Pimsner-Voiculescu exact sequence]
+\end{prb}
+Connes-Thom isomorphism
+
+
+\section{Cuntz semigroup}
+
+nuclear dimension
+
+
+
+
+
+\begin{prb}[Ordered K-theory]
+In operator K-theory, an \emph{ordered abelian group} usually means a directed partially ordered abelian group, which is equivalent to an abelian group $K$ with a subset $P\subset K$ such that
+\[P-P=K,\qquad P\cap-P=\{0\},\qquad P+P\subset P.\]
+For a partially ordered abelian group $K$ with an order unit $e$, a \emph{state} on $K$ is a positive homomorphism $K\to\R$ which maps $e$ to one.
+The set of states is endowed with the product topology which is compact and convex.
+
+only for stably finite unitals?
+\end{prb}
+
+
+
+
+\chapter{Elliott program}
+
+
+\section{Elliott invariant}
+Let $A$ be a unital C$^*$-algebra.
+\[(K_0(A),K_1(A),T(A),[1]_0,T(A)\times K_0(A)\to\R)\]
+\begin{itemize}
+\item $T(A)$ is the compact convex set of tracial states endowed with the weak$^*$ topology,
+\item $[1]_0$ is the K$_0$-class of the unit
+\item $T(A)\to S(K_0(A))$ is the evaluation, which is known to be surjective if $A$ is unital and exact.
+\end{itemize}
+
+Glimm's classification of UHF algebras
+Bratteli diagram
+Elliott's intertwining argument
+
+
+\begin{prb}
+Let $A$ be a C$^*$-algebra.
+We say a projection is
+\begin{enumerate}[(i)]
+\item \emph{infinite} if it is Murray-von Neumann equivalent to a proper subprojection,
+\item \emph{finite} if it is not infinite,
+\item \emph{properly infinite} if every non-zero quotient projection is infinite,
+\item \emph{purely infinite} if every non-zero subprojection is infinite.
+\end{enumerate}
+Here, a quotient projection refers to the image of a projection in a quotient.
+These definitions do not change in the unitization $\tilde A$ when $A$ is non-unital.
+
+Suppose $A$ is unital.
+We say $A$ is \emph{stably finite} if every projection of $A\otimes\cK$ is finite. (II$_1$)
+If $A$ is stably finite, then $T(A)\ne\varnothing$ so that we have $K_0(A)$ a pointed directed partially ordered abelian group.
+
+stable rank one, real rank zero
+
+\begin{parts}
+\item $p$ is properly infinite if and only if $p$ has two orthogonal subprojections Murray-von Neumann equivalent to $p$.
+\item Every unital properly infinite C$^*$-algebra does not admit a tracial state.
+\item Every unital stably finite exact C$^*$-algebra admits a tracial state. (Blackadar-Handelman-Haagerup)
+\end{parts}
+\end{prb}
+
+\begin{prb}[AF-algebras]
+An \emph{AF-algebra} or an \emph{approximately finite-dimensional C$^*$-algebra} is a C$^*$-algebra given by the filtered colimit of finite-dimensional C$^*$-algebras.
+
+A \emph{Bratelli diagram} is a sequence of finite bipartite multi-graphs $(V_n,V_{n+1})$.
+Bratelli proved that an equivalence class of Bratelli diagrams is a complete invariant of separable unital AF-algebras.
+
+A \emph{UHF-algebra} or a \emph{uniformly hyperfinite algebra} is a separable unital AF-algebra described by a linear Bratelli diagram.
+Glimm proved that a super-natural number is a complete invariant of UHF-algebras.
+
+Let $A$ be a C$^*$-algebra.
+We say $A$ has the \emph{cancellation property} if the monoid $V(A)=P(\cK\otimes A)/\sim$ is cancellative.
+
+The image of the dimension function $P(A)\to K_0(A)$ is called the \emph{dimension range} of $A$.
+\begin{parts}
+\item For a separable AF-algebra $A$, there is an increasing sequence of finite-dimensional unital C$^*$-subalgebras whose union is dense.
+\item It is known that every AF-algebras has stable rank one and real rank zero.
+\item permanence properties
+
+\item Let $F$ and $B$ be C$^*$-algebras such that $F$ is finite-dimensional and $B$ is unital with the cancellation property. If a group homomorphism $K_0(F)\to K_0(B)$ preserves dimension ranges, then 
+
+If $A$ is unital AF, then the dimension range is the set of positive elements majorized by $[1]$, so unital AF-algebras
+\end{parts}
+\end{prb}
+\begin{pf}
+\end{pf}
+
+
+
+
+locally finite-dimensional:
+there is a net of (contractive) linear maps $A\to A$ whose image is contained in a finite-dimensional C$^*$-subalgebra of $A$ convergent to the identity map in the point-norm topology.
+
+locally nulcear:
+there is a net of (contractive) linear maps $A\to A$ whose image is contained in a nuclear C$^*$-subalgebra of $A$ convergent to the identity map in the point-norm topology.
+
+Q. can we assume the maps are c.p.? difference between nuclearity and exactness?
+
+principle of local reflexivity
+there is a net of (contractive) linear maps $X^{**}\to X^{**}$ whose image is contained in $X$ convergent to the identity map in the point-weak$^*$ topology.
+
+locally reflexive:
+there is a net of contractive completely positive maps $F\subset A^{**}\to A^{**}$ whose image is contained in $A$ convergent to the inclusion in the point-weak$^*$ topology.
+
+for every finite-dimensional subspace $F$, the inclusion is approximated by maps with some property in $L(F,A)$?
+
+independent of the choice of $A\subset B(H)$ or $A^{**}\subset B(H)$?
+
+
+
+
+\section{Universal coefficient theorem}
+
+Quasi-diagonality
 
 \begin{prb}[Weyl-von Neumann theorem]
 A self-adjoint bounded operator is quasi-diagonal.
@@ -801,721 +1814,16 @@ faithful non-degenerate essential representations of a quasi-diagonal C$^*$-alge
 
 locally quasi-diagonal
 
-\section{AF-embeddability}
 
 
 
 
-
-
-
-
-
-
-
-
-
-\chapter{Amenability}
-
-
-\section{Amenable groups}
-
-
-\section{Amenable actions}
-crossed products
-$Z_2$-grading
-Connes-Feldman-Weiss
-Anantharaman-Delaroche
-Gromov boundaries
-approximately central structure?
-dynamical Kirchberg-Phillips
-
-stably finite
-dynamical Elliott program
-
-Ornstein-Weiss-Rokhlin lemma
-
-\section{Exact groups}
-Exact groups
-
-\section{Other properties}
-Kazdahn property (T)
-factorization property
-Haagerrup property
-
-
-Kaplansky conjecture
-
-
-
-
-A state $\tau$ on $A$ is called an \emph{amenable trace} if there is a state $\omega$ of $B(H)$ such that $\omega$ extends $\tau$ and $\omega(uxu^*)=\omega(x)$ for $x\in B(H)$ and $u\in U(A)$.
-It is automatically tracial.
-The amenability of a trace does not depend on the choice of faithful representation of $A$, using the Arveson extension and the multiplicaitve domain.
-
-For a discrete group $\Gamma$, $C^*_r(\Gamma)$ is amenable if and only if has an amenable tracial state.
-Note that a mean is a state of $\ell^\infty(\Gamma)$, which may not be normal.
-
-
-
-
-
-\chapter{Simplicity}
-
-
-Furstenburg boundary
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-\part{Invariants}
-\chapter{Operator K-theory}
-
-\section{Zeroth K-groups}
-Three pictures: projections of $M_n(A)$(standard), projections of $A\otimes K(H)$(recall that $K(H)$ is AF and hence nuclear), algebraically finitely generated projective Hilbert modules over $A$.
-
-
-\begin{prb}[Equivalences of projections]
-Let $A$ be a unital C$^*$-algebra.
-Let $p$ and $q$ be projections in $A$.
-Recall that they are called \emph{Murray-von Neumann equivalent} or just equivalent, denoted $p\sim q$, if $p=v^*v$ and $q=vv^*$ for some $v\in A$, \emph{unitarily equivalent}, denoted by $p\sim_uq$, if $p=u^*qu$ for some $u\in U(A)$, and \emph{homotopic}, denoted by $p\sim_hq$, if there is a continuous path in $P(A)$ connecting them.
-\begin{parts}
-\item If $p\sim_hq$, then $p\sim_uq$, and if $p\sim_uq$, then $p\sim q$.
-\item If $p\sim q$, then $p\oplus0\sim_uq\oplus0$ in $M_2(A)$.
-\item If $p\sim_uq$, then $p\oplus0\sim_hq\oplus0$ in $M_2(A)$.
-\end{parts}
-\end{prb}
-
-
-Almost projection: if $\|a^2-a\|<\e$, then $\|p-a\|<2\e$ for some $p\in A$.
-
-If $p\in A=\colim_i A_i$, then $\|p_i-p\|<\e$ for some $p_i\in A_i$.
-
-
-\begin{prb}[Properties of $K(H)$]
-Let $H$ be a separable Hilbert space.
-
-
-\end{prb}
-
-\begin{prb}[Definition of zeroth K-group]
-Let $A$ be a unital C$^*$-algebra.
-Define $V(A):=\bigcup_{n=1}^\infty P(M_n(A))/\sim$.
-It gives a functor from the category of unital C$^*$-algebras to the category of ordered abelian monoid with cancellation property.
-If $A$ is unital, we define $K_0(A):=G(V(A))$, the Grothendieck group of the monoid $V(A)$.
-Its elements can be described by $[p]-[p_n]$.
-\begin{parts}
-\item $V(M_n(\C))\cong\Z_{\ge0}$ because two projections are equivalent iff they have same range dimensions, so $K_0(M_n(\C))\cong\Z$.
-\item $V(K(H))\cong\Z_{\ge0}=\mathrm{Card}_{<\omega}$, $V(B(H))\cong\mathrm{Card}_{\le\dim H}$, $V(Q(H))\cong\{0\}\cup(\mathrm{Card}_{\ge\omega}\cap\mathrm{Card}_{\le\dim H})$, so $K_0(B(H))\cong K_0(Q(H))\cong0$. (Weyl-von Neumann theorem: self-adjoint elements of $Q(H)$ with same spectrum are unitarily equivalent)
-\item $K_0(C(S^2))\cong\Z^2$.
-\item For a II$_1$ factor $M$, $K_0(M)\cong\R$.
-\item $K_0(\cO_n)\cong\Z/(n-1)\Z$.
-\end{parts}
-\end{prb}
-
-
-\begin{prb}[Relative K-theory]
-We want to discuss the exactness of K-theory.
-For this, we have to consider pairs of C$^*$-algebras.
-We define a \emph{pair} of C$^*$-algebras as a surjective $*$-homomorphism between unital C$^*$-algebras.
-Let $\pi:A\to B$ is a pair of C$^*$-algebras.
-Then, $K_0(A,B)$ can be concretely described or defined by the set of equivalence classes of $(p,q,v)$, where $p$ and $q$ are projections in $M_\infty(A)$ and $v\in M_\infty(A)$ satisfies $\pi(p)=\pi(v^*v)$ and $\pi(q)=\pi(vv^*)$.
-In fact, we can show $K_0(A,B)$ only depends on the kernel $I:=\ker\pi$.
-It is called the excision theorem.
-For a general non-unital C$^*$-algebra $I$, it is well-defined that
-\[K_0(I):=K_0(A,A/I),\]
-where $A$ is any unitization of $I$.
-We can show that if $I$ is unital, then it is naturally isomorphic to the original without-base-point definition of K-theory.(for example, $K_0(A)\cong K_0(A\oplus\C,\C)$ for unital $A$)
-In particular, since $K_1(\C)=0$, the six-term exact sequence implies that $K_0(I)\cong\ker(K_0(\tilde I)\to K_0(\C))$, and since $0\to I\to\tilde I\to\C\to0$ splits, we have $K_0(I)\oplus\Z\cong K_0(\tilde I)$.
-A generally non-unital C$^*$-algebra is the non-commutative analogue of the pointed quotient of compact pairs.
-
-
-Even if $A$ and $B$ are non-unital, one can check the followings are exact:
-\[K_0(I)\to K_0(A)\to K_0(B)\]
-$[p,q,v]\mapsto[p]-[q]\mapsto$...
-
-When we consider exact sequences, we may think every algebra $A$ in K-theory as a pair $(B,C)$ such that $B/C\cong A$!
-If the algebra $A$ is unital, then it is also possible to think it as a space without base point, as in the definition of $K_0(A)$.
-The basic way to think is to consider non-unital C$^*$-algebras $A$ and $K_0(A)$ as the paired or pointed version.
-But we do not need the tilde.
-
-\[\{\text{pair of spaces}\}\twoheadrightarrow\{\text{pointed spaces}\}\hookleftarrow\{\text{spaces}\}\]
-\[\{\text{pair of C$^*$-algebras}\}\twoheadrightarrow\{\text{C$^*$-algebras}\}\hookleftarrow\{\text{unital C$^*$-algebras}\}\]
-The first map is quotient.
-The second map is adjoining a new point for space, the inclusion for algebras.
-The first two categories are indistinguishable in generalized cohomology theoreis or homotopy theories.
-We do not have to introduce the notation $\tilde K$, because we basically consider the unital algebra $C(X)$ not as a pointed space $(X,x_0)$ (like in topology), but as $(X\cup*,*)$, i.e.~$K(C_0(X))=\tilde K(X\cup*,*)$ for compact or non-compact $X$.
-\end{prb}
-
-As $K_0:\mathrm{C^*Alg}\to\mathrm{grAb}$, $K_0$ satisfies the axioms for cohomology theories
-\begin{itemize}
-\item functoriality
-\item homotopy invariance
-\item FINITE product-preserving$^*$
-\item half-exactness
-\item long exactness
-\end{itemize}
-with additional properties
-\begin{itemize}
-\item lax symmetric monoidal functor
-\item filtered colimit-preserving
-\item $\K$-stable
-\item partial order
-\item ring axioms for $K_0$ only on commutatives
-\end{itemize}
-
-$^*$Here we only consider finite product-preserving because the infinite direct product does not mean the infinite wedge sum in the category of C$^*$-algebras.
-We need to consider locally C$^*$-algebras.
-
-
-
-\begin{prb}[Homotopy of $*$-homomorphisms]
-Let $A,B$ be C$^*$-algebras.
-Two $*$-homomorphisms in $\Mor(A,B)$ are said to be \emph{homotopic} if they are connected by a path in $\Mor(A,B)$ that is continuous with the point-norm topology.
-\begin{parts}
-\item For pointed compact Hausdorff spaces $(X,x_0),(Y,y_0)$, two pointed maps $\f_0,\f_1:X\to Y$ are homotopic if and only if $\f_0^*,\f_1^*:C_0(Y\setminus\{y_0\})\to C_0(X\setminus\{x_0\})$ are homotopic.
-\end{parts}
-\end{prb}
-\begin{pf}
-(a)
-Suppose $\f_0$ and $\f_1$ are connected by a homotopy $\f_t$.
-Fixing $g\in C_0(Y)$ and $t_0\in I$, we want to show
-\[\lim_{t\to t_0}\sup_{x\in X}|g(\f_t(x))-g(\f_{t_0}(x))|=0.\]
-Since the function $g$ is uniformly continuous, with respect to an arbitrarily chosen uniformity on $Y$, so that there is an entourage $E\subset Y\times Y$ such that $(y,y')\in E\circ E$ implies $|g(y)-g(y')|<\e$.
-Using compactness we have a finite sequence $(y_i)_{i=1}^n\subset Y$ such that for every $y$ there is $y_i$ satisfying $(y,y')\in E$.
-Then, $\f^{-1}(E[y_i])$ is a finite open cover of $X\times I$, so we have $\delta$ such that $|t-t_0|<\delta$ implies for any $x\in X$ the existence of $i$ satisfying $(\f_t(x),y_i)\in E$ and $(\f_{t_0}(x),y_i)\in E$, which deduces the desired inequality.
-
-Conversely, suppose $\f_0^*$ and $\f_1^*$ are connected by a homotopy $\f_t^*$.
-By taking dual, we can induce $\f_t:X\to Y$ such that $g(\f_t(x))=(\f_t^*g)(x)$ for each $g\in C(Y)$ from $\f_t^*$ via the embedding $X\to M(X)$ by Dirac measures.
-Let $V$ be an open neighborhood of $\f_{t_0}(x_0)$ and take $g\in C(Y)$ such that $g(\f_{t_0}(x_0))=1$ and $g(y)=0$ for $y\notin V$.
-Now we have an open neighborhood $U$ of $x_0$ such that $x\in U$ implies $|(\f_{t_0}^*g)(x)-(\f_{t_0}^*g)(x_0)|<\frac12$.
-Also we have $\delta>0$ such that $|t-t_0|<\delta$ implies $\|\f_t^*g-\f_{t_0}^*g\|<\frac12$.
-Therefore, $(x,t)\in U\times(t_0-\delta,t_0+\delta)$ implies $g(\f_t(x))>0$, hence $\f_t(x)\in V$, which means $X\times I\to Y:(x,t)\mapsto\f_t(x)$ is continuous.
-\end{pf}
-
-
-\[K_0(\C)=\Z,\quad K_0(C_0(\R))=0,\quad K_1(C_0(\R))=K_0(C_0(\R^2))=\Z\]
-\[K^0(*)=\Z,\quad K^0(S^1)=\Z,\quad K^1(S^1)=K^0(S^2)=\Z[x]/(x-1)^2\]
-
-
-Let $X$ be a locally compact Hausdorff space, and $(X_+,*)=(X\sqcup\{*\},*)$ be the associated pointed compact Hausdorff space.
-Then, the K-theory with compact supports has
-\[K_0(X)=K_0(X_+,*)=\tilde K_0(X_+)=K^0(C_0(X)).\]
-
-
-
-\section{First K-groups}
-
-
-$K_1$ satisfies
-long exactness(triangulated structure), bott periodicity, ring structure?
-
-$K(\C)\cong\Z[\beta^{\pm1}]$.
-
-\[CB:=\{f\in B\otimes C([0,1]):f(0)=0\},\qquad C_\f:=\{(a,f)\in A\oplus CB:f(1)=\f(a)\}.\]
-
-The mapping cone can be defined by an exact sequence
-\[0\to C_\f\to M_\f\to B\to0,\]
-or alternatively by the pullback
-\[\begin{tikzcd}
-C_\f\rar\dar\ar[dr, phantom, "\lrcorner", very near start] & CB\dar{f\mapsto f(1)} \\
-A \rar & B.
-\end{tikzcd}\]
-
-The suspension can defined by an exact sequence
-\[0\to\Sigma B\to CB\to B\to0,\]
-or alternatively by the pullback
-\[\begin{tikzcd}
-\Sigma B\rar\dar\ar[dr, phantom, "\lrcorner", very near start] & CB\dar{f\mapsto f(1)} \\
-CB \rar & B.
-\end{tikzcd}\]
-
-We can see that $CB$ is contractible, and $\Sigma B$ is homotopic to the pullback $C_\f\oplus_ACA$.
-
-distinguished triangle
-\[\Sigma B\to C_\f\to A\xrightarrow{\f}B\]
-
-Do not forget to describe the induced maps for K-groups!
-
-
-
-$K_{-1}(A):=K_0(\Sigma A)$.
-
-
-
-
-
-local Banach algebras
-
-
-
-\begin{prb}[Pimsner-Voiculescu exact sequence]
-\end{prb}
-Connes-Thom isomorphism
-
-
-\section{Cuntz semigroup}
-
+\section{Jiang-Su stability}
 nuclear dimension
 
-
-
-
-\chapter{KK-theory}
-
-
-
-\section{Kasparov picture}
-
-\begin{itemize}
-\item Kasparov stabilization theorem
-\item Kasparov-Stinespring theorem
-\item Kasparov-Voiculescu theorem
-\item Kasparov-Weyl-von Neumann theorem
-\item Kasparov technical theorem
-\end{itemize}
-
-\begin{prb}[Equivariant correspondences]
-Let $G$ be a locally compact group.
-Let $(A,\alpha)$ and $(B,\beta)$ be $G$-C$^*$-algebras.
-An \emph{equivariant correspondence} from $(A,\alpha)$ to $(B,\beta)$ is a correspondence $E$ from $A$ to $B$ together with a strongly continiuous map $u:G\to L(E)$ satisfying
-\[u_s(a\xi b)=\alpha_s(a)u_s(\xi)\beta_s(b),\qquad\beta_s(\<\eta,\xi\>)=\<u_s\eta,u_s\xi\>,\]
-for $a\in A$, $b\in B$, $s\in G$, and $\xi,\eta\in E$.
-It generalizes covariant representations of $A$ and equivariant Hilbert modules over $B$.
-The map $u$ is called a \emph{group action} on $E$ of $G$, and it is not in general $B$-linear unless the action $\beta$ on $B$ is trivial.
-For an equivariant correspondence $(E,u)$ from $(A,\alpha)$ to $(B,\beta)$, the adjoint action $\Ad u$ acts continuously on $K(E)$ and strictly continuously on $B(E)$.
-\begin{parts}
-\item If $E$ is a super-correspondence from $A$ to $B$, then $(L^2(G)\otimes E,\lambda\otimes1)$ is naturally an equivariant super-correspondence from $(A,\alpha)$ to $(B,\beta)$.
-If $E$ is faithful, non-degenerate, and full, then so is $L^2(G)\otimes E$, respectively.
-\item interior tensor product and coalgebra structure from the group...
-\end{parts}
-\end{prb}
-\begin{pf}
-(a)
-Define the super-correspondence $L^2(G)\otimes E$ from $A$ to $B$ with the natural grading, such that the left action of $A$, the right action of $B$, and the $B$-valued inner product is defined by
-\[(a\xi b)(t):=\alpha_t^{-1}(a)\xi(t)\beta_t^{-1}(b),\qquad\<\eta,\xi\>:=\int_G\beta_t(\<\eta(t),\xi(t)\>)\,dt,\]
-for $a\in A$, $b\in B$, $t\in G$, and $\xi,\eta\in C_c(G,E)$.
-The group action on $L^2(G)\otimes E$ by $G$ is given by $\lambda\otimes1$.
-
-We can check the above three structures preserve the grading and are all equivariant.
-
-(Faithfulness)
-Suppose $a\xi=0$ for all $\xi\in L^2(G)\otimes E$.
-Then, for $f\otimes\xi_0\in C_c(G)\otimes E$,
-\[0=(a(f\otimes\xi_0))(t)=f(t)\otimes(\alpha_t^{-1}(a)\xi_0)\]
-implies $f(e)\otimes(a\xi_0)=0$ by putting $t=e$, so $a\xi_0=0$ and $a=0$.
-
-(Fullness)
-Because a Hilbert module is full iff the right action is faithful, we can prove it in a similar way to faithfulness of the left action.
-
-(Non-degeneracy)
-If $e_i\in A$ is a quasi-central approximate unit such that $\alpha_t(e_i)-e_i\to0$ in $A$ compactly on $G$ (it can be shown whithout the condition that $A$ is $\sigma$-unital, Lemma 2.12 of Ozawa), then
-\[(e_i\xi-\xi)(t)=(\alpha_t^{-1}(e_i)-1)\xi(t)=(\alpha_t^{-1}(e_i)-e_i)\xi(t)+(e_i-1)\xi(t)\]
-\begin{align*}
-|\xi-e_i\xi|^2
-&=\int_G\beta_t(|((1-e_i)\xi)(t)|^2)\,dt\\
-&=\int_G\beta_t(|(1-\alpha_t^{-1}(e_i))\xi(t)|^2)\,dt\\
-&\le2\int_G\beta_t(|(1-e_i)\xi(t)|^2+|(e_i-\alpha_t^{-1}(e_i))\xi(t)|^2)\,dt\to0
-\end{align*}
-taking compact set outside which we have $\|\xi\|<\e$.
-
-\end{pf}
-
-
-\begin{prb}[Correspondences over commutative C$^*$-algebras]
-Let $X$ be a locally compact Hausdorff space.
-Let $A$ and $B$ be $C_0(X)$-C$^*$-algebras.
-
-
-For equivariant versions, we do not require the compatibility of $G$ and $C_0(X)$ on $E$, which is satisfied automatically.
-
-
-Define $B[0,1]:=B\otimes C([0,1])$ and $E[0,1]:=E\otimes_BB[0,1]$.
-Then, we have the followings:
-\begin{parts}
-\item $C([0,1],B)=B[0,1]$ as $G$-C$^*$-algebras.
-\item $C([0,1],E)=E[0,1]$ as $G$-C$^*$-algebras.
-\item $C([0,1],K(E))=K(E[0,1])$ as $G$-C$^*$-algebras.
-\item $C([0,1],B(E)_{\mathrm{strict}})=B(E[0,1])$ as sets.
-\item If $F\in C([0,1],B(E)_{\mathrm{norm}})$ and $F_t$ is $G$-continuous for each $t\in[0,1]$, then $F$ is $G$-continuous in $B(E[0,1])$.
-\item The evaluation maps are all well-defined.
-\end{parts}
-
-The evaluation map for $E[0,1]$ is well-defined because the right action is non-degenerate and
-\[\|\xi\otimes b\|^2\le\cdots\le\|\xi(b\otimes1)\|^2,\]
-
-\begin{parts}
-\item 
-\item For a $C_0(X)$-C$^*$-algebra $A$, there exists a faithful non-degenerate correspondence $E$ from $A$ to some $C_0(X)$-W$^*$-algebra $B$.
-\item tensor products of $G$-C$^*$-algebras
-\end{parts}
-\end{prb}
-\begin{pf}
-
-
-(b)
-We will choose $B=C_0(X)^{**}$. ($C_0(X)^{**}$ is not a $C_0(X)$-algebra...)
-Fix a state $\omega$ on $A$.
-Since $C_0(X)^{**}\subset Z(A^{**})$, there is a conditional expectation $\f:A^{**}\to C_0(X)^{**}$, which factors through $\omega^{**}=\omega^{**}\f$ because $C_0(X)^{**}\subset Z(A^{**})$ is unital.
-Since $\f$ is completely positive, the Stinespring construction on $A\odot C_0(X)$ gives rise to a C$^*$-correspondence $E_\omega$ from $A$ to $C_0(X)^{**}$.
-Define $E:=\bigoplus_{\omega\in S(A)}E_\omega$.
-If $a\in A$ acts trivially on $E$, which means $\f(a^*a)=0$ and $\omega(a^*a)=0$.
-Thus $A$ acts failfully on $E$.
-
-\end{pf}
-
-\begin{prb}[Kasparov cycles]
-Let $(A,\alpha)$ and $(B,\alpha)$ be $G$-$C_0(X)$-C$^*$-algebras, where $G$ is a locally compact group and $X$ is a locally compact Hausdorff space.
-A \emph{Kasparov cycle} or \emph{Kasparov module} from $(A,\alpha)$ to $(B,\beta)$ is a pair of
-\begin{enumerate}[(i)]
-\item a countably generated super-correspondence $(E,u)$ from $(A,\alpha)$ to $(B,\beta)$, which is $G$-equivariant over $C_0(X)$,
-\item an odd adjointable operator $F\in B(E)$ such that
-\[[F,a],\quad(F-F^*)a,\quad(F^2-1)a\in K(E),\qquad a\in A,\]
-with $Fa\in B(E)$ is $G$-continuous and $\Ad u_s(F)-F\in K(E)$ for $a\in A$ and $s\in G$.
-\end{enumerate}
-\begin{parts}
-\item from $\C$ to $\C$
-\item from $\C$ to $B$
-\item from $A$ to $\C$
-\item from $A$ to $A$
-\end{parts}
-\end{prb}
-
-
-
-\begin{prb}[Homotopies of Kasparov cycles]
-Let $(E,F)$ be a Kasparov cycle from $(A,\alpha)$ to $(B[0,1],\beta\otimes\id)$.
-For each $t\in[0,1]$, we can restrict it to another Kasparov cycle $(E,F)_t:=(E_t,F_t):=(E\otimes_{\id\otimes\delta_t}B,F\otimes1)$ from $(A,\alpha)$ to $(B,\beta)$, since the two-sided actions and inner product on $E_t$ given by
-\[a(\xi(t))b=(a\xi b)(t),\qquad\<\eta(t),\xi(t)\>=\<\eta,\xi\>(t),\qquad F(t)\xi(t)=(F\xi)(t)\]
-makes $E_t$ a super-correspondence from $A$ to $B$, and since $F_t$ satisfies
-\[[F_t,a],\quad (F_t-F_t^*)a,\quad (F_t^2-1)a,\qquad a\in A\]
-and the group action continuity.
-A \emph{homotopy} between $(E_0,F_0)$ and $(E_1,F_1)$ is a Kasparov cycle $(E,F)$ from $(A,\alpha)$ to $(B[0,1],\beta\otimes\id)$ such that $(E,F)_0=(E_0,F_0)$ and $(E,F)_1=(E_1,F_1)$.
-
-\begin{parts}
-\item compact perturbation
-\item operator homotopy
-\item degenerate
-\item positivity condition implies operator homotopy
-\end{parts}
-\end{prb}
-\begin{pf}
-
-(c)
-Let $(E_0,F_0)$ be a degenerate Kasparov cycle from $A$ to $B$.
-Define a Kasparov cycle $(E,F)$ from $A$ to $B[0,1]$ such that $E:=E_0[0,1)$
-
-($C_b([0,1),K(E_0))\not\subset K(E_0[0,1))$ in general.)
-
-(d)
-
-
-\end{pf}
-
-
-
-\begin{prb}[Homological properties of KK-functor]
-The set of homotopy classes of Kasparov cycles is denoted by $KK^G(A,B)$, where the actions $\alpha$ and $\beta$ are usually omitted in notation.
-The set theoretic issue does not occur because we only consider countably generated correspondences.
-
-\begin{parts}
-\item $KK^G(A,B)$ is an abelian group given by direct sum.
-\item $KK^G$ is a homotopy invariant bivariant functor.
-\item $KK^G$ preserves finite products. (infinite direct sum for the first argument after introduction of connections)
-\end{parts}
-\end{prb}
-\begin{pf}
-(a)
-well-definedness
-
-associativity: clear
-
-identity: clear
-
-inverse: two homotopies; rotation from the sum with opposite to degenerate, trivial homotopy from degenerate to zero.
-
-Let $(E,F)$ be a Kasparov cycle from $A$ to $B$.
-We prove that $-(E,F):=(-E,-UFU)$ is the inverse.
-Consider $\bar E:=(E\oplus-E)[0,1]$ and
-\[\bar F(t):=\mat{\cos\frac\pi2t\ F&\sin\frac\pi2t\ U\\\sin\frac\pi2t\ U&-\cos\frac\pi2t\ UFU}\in B(E\oplus-E),\qquad t\in[0,1],\]
-with an identification $\bar F\in B(\bar E)$ obtained from the norm continuity of $\bar F:[0,1]\to B(E\oplus-E)$.
-If we prove $(\bar E,\bar F)$ is a Kasparov cycle from $A$ to $B[0,1]$, then it becomes an operator homotopy between $(E\oplus-E,F\oplus-UFU)$ and a degenerate Kasparov cycle.
-Since $\bar E$ is clearly a countably generated super-correspondence, it suffices to check $\bar F$ satisfies the conditions in the definition of Kasparov cycles.
-
-(b)
-
-Suppose $\f_0,\f_1:A\rightrightarrows A'$ are homotopic.
-We calim $\f_0^*,\f_1^*:KK^G(A',B)\rightrightarrows KK^G(A,B)$ are equal.
-
-Suppose $\psi_0,\psi_1: B\rightrightarrows B'$ are homotopic.
-We will show $\psi_{0*},\psi_{1*}:KK^G(A,B)\rightrightarrows KK^G(A,B')$.
-
-
-(c)
-The only non-trivial part is the injectivity of
-\[KK^G(A_1\oplus A_2,B)\to KK^G(A_1,B)\oplus KK^G(A_2,B).\]
-Let $(E_0,F_0)\in KK^G(A_1\oplus A_2,B)$.
-Define a Kasparov cycle $(E,F)$ from $A_1\oplus A_2$ to $B[0,1]$ such that $E:=E_0\otimes_BBV$ with $V:=([0,1]\times\{0\})\cup(\{0\}\times[0,1])$ and $F:=F_0\otimes1$, where the correspondnece structure on $E$ is given by
-\[((a_1,a_2)\xi b)(s,t):=\begin{cases}
-(a_1,(1-s)a_2)\xi(s,0)b(s)&\text{ if }s\ne0,\\
-(a_1,a_2)\xi(0,0)b(0)&\text{ if }(s,t)=(0,0),\\
-((1-t)a_1,a_2)\xi(0,t)b(t)&\text{ if }t\ne0,
-\end{cases}
-\qquad
-\begin{gathered}
-(a_1,a_2)\in A_1\oplus A_2,\ b\in B[0,1],\\
-\xi\in E,\ (s,t)\in V.
-\end{gathered}\]
-and
-\[\<\eta,\xi\>(t):=\begin{cases}
-\<\eta(0,0),\xi(0,0)\>&\text{ if }t=0,\\
-\frac{1+t}2(\<\eta(t,0),\xi(t,0)\>+\<\eta(0,t),\xi(0,t)\>)&\text{ if }t\ne0,
-\end{cases}
-\qquad \xi,\eta\in E,\ t\in[0,1].\]
-Then, $(E,F)$ is a homotopy between $(E_0,F_0)$ and $((_{A_1}E_0)\oplus(_{A_2}E_0),F_0\oplus F_0)$, so we are done.
-\end{pf}
-
-
-
-
-\begin{prb}[Kasparov stabilization theorem]
-Let $G$ be a locally compact group.
-Let $(B,\beta)$ be a $G$-C$^*$-algebra.
-Let $(E,u)$ be an equivariant Hilbert module over $(B,\beta)$.
-Let $H_B:=\ell^2\otimes L^2(G)\otimes B$.
-If $E$ is countably generated, then there is a equivariant $B$-linear isomteric isomorphism $E\to H_B\oplus E$.
-\begin{parts}
-\item non-equivaraint version.
-\item equivariant version.
-\end{parts}
-\end{prb}
-\begin{pf}
-(a)
-The Hilbert $B$-module $E$ is countably generated if and only if there is a dense range adjointable operator
-\[\ell^2\otimes B\to E.\]
-
-
-(b)
-Let $H_E:=\ell^2\otimes L^2(G)\otimes E$.
-
-We have
-\begin{align*}
-H_B
-&=\ell^2\otimes L^2(G)\otimes B\\
-&=\ell^2\otimes L^2(G)\otimes\ell^2\otimes B\\
-&=\ell^2\otimes L^2(G)\otimes(E_0\oplus(\ell^2\otimes B))\\
-&=(\ell^2\otimes L^2(G)\otimes E_0)\oplus(\ell^2\otimes L^2(G)\otimes\ell^2\otimes B))\\
-&=(\ell^2\otimes L^2(G)\otimes E)\oplus H_B\\
-&=H_E\oplus H_B,
-\end{align*}
-where all the identities mean equivariant isometric $B$-linear isomorphisms.
-
-Since $G$ is compact, we have an equivariant linear isometry $\C\to L^2(G)$.
-It gives rise to direct sums $L^2(G)=\C\oplus \C^\perp$, and we get $L^2(G)\otimes E=E\oplus E^\perp$ by tensoring, that is, $E$ is complemented Hilbert $B$-submodule of $L^2(G)$.
-We have
-\begin{align*}
-E\oplus H_E
-&=E\oplus(\ell^2\otimes L^2(G)\otimes E)\\
-&=E\oplus(\ell^2\otimes(E\oplus E^\perp))\\
-&=E\oplus(\ell^2\otimes E)\oplus(\ell^2\otimes E^\perp)\\
-&=((\C\oplus\ell^2)\otimes E)\oplus(\ell^2\otimes E^\perp)\\
-&=(\ell^2\otimes E)\oplus(\ell^2\otimes E^\perp)\\
-&=\ell^2\otimes(E\oplus E^\perp)\\
-&=\ell^2\otimes L^2(G)\otimes E\\
-&=H_E.
-\end{align*}
-Therefore,
-\[H_B=H_E\oplus H_B=E\oplus H_E\oplus H_B=E\oplus H_B.\]
-\end{pf}
-
-\begin{prb}[Connections]
-Let $E_1$ be a super-Hilbert module over $B$, and $E_2$ be a super-correspondence from $B$ to $C$, with $E_{12}:=E_1\otimes_B E_2$.
-For $F_2\in B(E_2)$, we say $F_{12}\in B(E_{12})$ satisfies the \emph{connection property} with respect to $F_2$ for $E_1$ if
-\[F_{12}T_{\xi_1}-T_{\xi_1}F_2,\quad F_{12}^*T_{\xi_1}-T_{\xi_1}F_2^*\in K(E_2,E_{12}),\qquad\xi_1\in E_1.\]
-(How about $G$-$C_0(X)$-equivariant version?)
-\begin{parts}
-\item existence of odd connection (stabilization is used)
-\item some operations on connections
-\item Kasparov properties of $F_{12}$ from $F_2$
-\item connections on homotopy?
-\item non-degenerate correpondence assumption
-\end{parts}
-\end{prb}
-\begin{pf}
-(a)
-
-
-
-\end{pf}
-
-\begin{prb}[Quasi-central approximate units]
-Let $A$ be a $\sigma$-unital C$^*$-algebra.
-Let $Y$ be a locally compact $\sigma$-compact Hausdorff subset contained in a faithful representation $B(H)$ of $A$.
-Then, there is an increasing sequential approximate unit $e_i$ for $A$ such that $[y,e_i]\to0$ in $A$ compactly on $Y$.
-\end{prb}
-\begin{pf}
-Let $e_i$ be an approximate unit of $A$.
-Take any compact $K\subset Y$.
-Let $\Lambda$ be the algebraic convex closure of $e_i$.
-Define a bounded linear operator
-\[L:A\to C(K,A):a\mapsto(y\mapsto[y,a]).\]
-Our goal is to show the closure $L\Lambda$ in $C(K,A)$ contains zero.
-Suppose not so that there is $l\in C(K,A)^*$ such that
-\[0<\inf_{v\in\Lambda}\Re l(Lv).\]
-We claim that $Le_i\to0$ weakly in $C(K,A)$.
-We can show that it converges in
-\[\sigma(A\otimes C(K),A^*\odot\mathrm{span}\,\mathrm{PS}(C(K))).\]
-To enhance the convergence, we need to introduce vector measures and require for an approximate unit to be a sequence for applying the bounded convergence theorem!!!!
-I think we can show this using the measure topology (maybe).
-\end{pf}
-
-\begin{prb}[Kasparov technical theorem]
-Let $G$ be a locally compact $\sigma$-compact group.
-Let $J$ and $A_1$ be $\sigma$-unital $G$-C$^*$-algebras such that $A_1\subset M(J)$.
-Suppose
-\begin{enumerate}[(i)]
-\item $\Delta$ is a norm separable subset of $M(J)$ such that $[\Delta,A_1]\subset A_1$,
-\item $G$, a locally compact $\sigma$-compact group, acts on $A_1$ so that $GA_1\subset A_1$,
-\item $A_2$ is a $\sigma$-unital graded C$^*$-subalgebra of $M(J)$ such that $A_1A_2\subset J$,
-\item $\f$ is a bounded function $G\to M(J)$ such that $\f(G)A_1,A_1\f(G)\subset J$ and $g\mapsto\f(g)a,a\f(g)$ are norm continuous for every $a\in A_1+J$.
-\end{enumerate}
-Then, there is $M_2\in M(J)$ with $0\le M\le1$ such that $(1-M_2)A_1\subset J$ and
-\begin{enumerate}[(i)]
-\item $[\Delta,M_2]\subset J$,
-\item $GM_2-M_2\subset J$,
-\item $M_2A_2\subset J$,
-\item $\f(G)M_2,M_2\f(G)\subset J$ and $g\mapsto\f(g)M_2,M_2\f(g)$ are norm continuous.
-\end{enumerate}
-\end{prb}
-\begin{pf}
-
-\end{pf}
-
-\begin{prb}[Kasparov product]
-Let $(A,\alpha)$, $(B,\beta)$, and $(C,\gamma)$ be $G$-C$^*$-algebras.
-Let $(E_1,F_1)$ and $(E_2,F_2)$ be Kasparov cycles from $(A,\alpha)$ to $(B,\beta)$ and from $(B,\beta)$ to $(C,\gamma)$, and let $E_{12}:=E_1\otimes_BE_2$.
-We say a Kasparov cycle $(E_{12},F_{12})$ from $(A,\alpha)$ to $(C,\gamma)$ is a \emph{Kasparov product} if
-\begin{enumerate}[(i)]
-\item $F_{12}$ satisfies the connection property with respect to $F_2$ for $E_1$,
-\item $a^*[F_1\otimes1,F_{12}]a\ge0$ in $Q(E_{12})$ for all $a\in A$.
-\end{enumerate}
-\begin{parts}
-\item For $A$ separable and $B,C$ $\sigma$-unital, the well-definedness of the Kasparov product up to homotopy (technical lemma is used in existence)
-\item associativity (techinal lemma is used)
-\end{parts}
-\end{prb}
-\begin{pf}
-
-
-\[F_{12}:=M_1^{\frac12}(F_1\otimes1)+M_2^{\frac12}\tilde F_{12}\]
-\end{pf}
-
-\begin{prb}[Monoidality]
-\end{prb}
-
-
-\begin{prb}[$\K$-stability]
-\end{prb}
-
-
-
-
-(half and long exactness?)
-(extension of k theory and k homology?)
-(direct sum, pullback, interior tensor product, pushout, exterior tensor product?)
-
-cap product
-ring structure, $R(G)$-module structures
-
-
-
-
-inverses
-equivariant imprimitivity bimodules
-
-
-
-\begin{prb}[Examples of Kasparov cycles]
-
-For a complete Riemannian manifold $M$, $(L^2(\Lambda T^*M),m,D(1+D^*D)^{-\frac12})$, where $D:=d+d^*$ is the Hodge-Dirac operator and $D^*D$ is the Laplace-de Rham operator, is a Kasparov module from $C_0(M)$ to $\C$.
-\end{prb}
-
-\section{Extension theory}
-
-K-homology: dual algebras, extension theory.
-
-
-
-\begin{prb}[Weyl-von Neumann theorem]
-Let $A$ be a C$^*$-algebra.
-We say $a,b\in A$ are called \emph{approximately unitarily equivalent}, denoted $a\sim_ab$, if $\Ad U(A)(a)$ and $\Ad U(A)(b)$ have same closures, where $U(A)$ denotes the group of unitaries in $A$.
-
-
-
-$\pi(U(H))\subset U(Q(H))$ is proper.
-
-essentially unitarily equivalent: same orbit in $Q(H)$ by $\pi(U(H))$.
-
-If same spectrum in $Q(H)$, then they are essentially unitarily equivalent.
-We can prove this by the Weyl-von Neumann theorem.
-
-Weyl-von Neumann: every bounded self-adjoint operator on a separable Hilbert space is an arbitrarily small compact perturbation of a diagonal operator($\sigma=\sigma_p$).
-\end{prb}
-
-
-
-\section{Cuntz-Thomsen picture}
-
-
-stable uniqueness theorem(Lin or Dadarlat-Eilers)
-
-
-\chapter{}
-
-
-
-
-
-
-
-
-\part{Classification}
-\chapter{Simple nuclear algebras}
-
-
-\section{AF-algebras}
-
-Glimm's classification of UHF algebras
-Bratteli diagram
-Elliott's intertwining argument
-
-Separable AF-algebras are classified by pointed ordered $K_0$.
-
-
-\section{Kirchberg-Phillips theorem}
-
-\section{Classifiability}
-Jiang-Su stability
-Universal coefficient theorem
 
 Toms-Winter conjecture
 strongly self-absorbing
-nuclear dimension
 
 
 
@@ -1543,83 +1851,6 @@ Murray-von Neumann: hyperfinite II$_1$ factors
 
 
 
-\section{Inclusions}
-
-
-
-
-
-
-
-
-
-
-\chapter{Continuous fields}
-
-
-\section{Fell bundles}
-
-\begin{prb}[Banach bundles]
-A \emph{Banach bundle}, introduced by Fell, which is possibly not locally trivial, is a continuous open surjection $\pi:E\to X$ between topological spaces together with Banach space structure on each fiber $\pi^{-1}(x)$ such that:
-\begin{enumerate}[(i)]
-\item the addition $\{(e,e'):\pi(e)=\pi(e')\}\subset E\times E\to E:(e,e')\mapsto e+e'$ is continuous,
-\item the scalar multiplication $\C\times E\to E:(\lambda,e)\mapsto\lambda e$ is continuous,
-\item the norm $E\to\R_{\ge0}:e\mapsto\|e\|$ is continuous,
-\item the family of subsets
-\[\{e\in B:\pi(e)\in U,\ \|e\|<r\}_{U\in N(x),r>0}\]
-forms a neighborhood basis of $0\in\pi^{-1}(x)$ in $E$.
-\end{enumerate}
-The forth condition is equivalent to that if $\|e_i\|\to0$ and $\pi(e_i)\to x$ then $e_i\to 0_x\in\pi^{-1}(x)$.
-\begin{parts}
-\item For a Banach bundle $E\to X$, if $X$ is locally compact Hausdorff and every fiber $E_x$ shares a same finite dimension, then the bundle is locally trivial.
-\end{parts}
-\end{prb}
-
-
-\begin{prb}[Continuous fields of Banach spaces]
-
-
-\end{prb}
-
-
-
-
-span of $a[D,b]$
-completion of the span of the gradient of test functions,
-dual of Borel time-dependent vector field,
-
-For discussion of tangent vectors:
-sufficiently many absolutely continuous curves?
-
-compact metric space
-
-\begin{prb}[Hilbert bundles]
-A \emph{Hilbert bundle} is a Banach bundle whose norm function satisfies the parallelogram law.
-
-\begin{parts}
-\item On a compact $X$, there is an equivalence between the category of Hilbert $C(X)$-modules and the category of Hilbert bundles over $X$.
-\item On a compact $X$, there is an equivalence between the category of algebraically finitely generated Hilbert $C(X)$-modules and the category of classical locally trivial finite-rank complex vector bundle over $X$.
-It is due to that finitely generatedness implies the projectivity and the Serre-Swan theorem.
-\end{parts}
-\end{prb}
-
-
-
-\section{Dixmier-Douady theory}
-
-
-Fell's condition
-
-A C$^*$-algebra $A$ is called \emph{continuous trace} if the set of all $a\in\cA$ such that $\hat A\to\R_{\ge0}:\pi\mapsto\tr(\pi(a^*a))$ is continuous is dense in $A$.
-
-
-
-Dadarlat-Pennig theory
-
-
-Coactions and Fell bundles
-
-
 
 \section{C$^*$-dynamics}
 
@@ -1628,6 +1859,22 @@ Rokhlin property
 Evans-Kishimoto intertwining argument
 dynamical Kirchberg-Phillips
 Tikusis-White-Winter
+
+
+
+
+
+
+
+\chapter{Purely infinite algebras}
+
+\section{Kirchberg embeddings}
+A separable C$^*$-algebra is exact if and only if it is embedded in $\cO_2$.
+
+Every Kirchberg algebra is $\cO_\infty$-stable.
+
+\chapter{Stably finite algebras}
+
 
 
 

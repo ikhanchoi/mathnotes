@@ -1,11 +1,6 @@
 \documentclass{../../large}
 \usepackage{../../ikhanchoi}
 
-\newcommand{\Mon}{\mathrm{Mon}}
-\newcommand{\CMon}{\mathrm{CMon}}
-\newcommand{\Ring}{\mathrm{Ring}}
-
-
 \begin{document}
 \title{Category Theory}
 \author{Ikhan Choi}
@@ -16,37 +11,142 @@
 \part{}
 
 \chapter{Categories}
-set theoretical issues
-morphisms
-	monic
 
-\section{Functors}
-fully faithful, essentially surjective
-natural transformations and equivalence
-2-category
+
+\section{Functors and natural transformations}
+
+
+\begin{prb}[Grothendieck universes]
+In category theory, it is conventional to assume the existence of a strongly inaccessible cardinal, or equivalently the existence of a Grothendieck universe.
+It is believed that this assumption is not technically necessary over $\mathrm{ZFC}$, but without this we cannot force $\Obj(\cC)$ and $\Mor(\cC)$ to be sets and need to pay attention at subtle and dangerous set-theoretic arguments.
+However in $\mathrm{ZFC}$ with a strongly inaccessible cardinal, by enlarging the universe whenever necessary, we can make the specific classes we consider be sets by putting into the new universe but outside the old universe, and sets in the old universe are referred to be small.
+With a fixed universe, a set is called \emph{small} if it is contained in the universe.
+Consequently, a set may refer to a large set, and $\mathrm{Set}$ now denotes the category of small sets.
+If we do not assume the universe, then large sets should be treated as proper classes.
+\end{prb}
+
+
+\begin{prb}[Categories]
+A \emph{category} $\cC$ consists of
+\begin{enumerate}[(i)]
+\item a class $\Obj(\cC)$ of \emph{objects} and a class $\Mor(\cC)$ of \emph{morphisms} or \emph{arrows},
+\item class functions $\dom,\cod:\Mor(\cC)\to\Obj(\cC)$,
+\item class functions $\circ:\Hom(B,C)\times\Hom(A,B)\to\Hom(A,C)$ called the \emph{composition} for $A,B,C\in\Obj(\cC)$,
+\item a class function $\id:\Obj(\cC)\to\Mor(\cC)$,
+\end{enumerate}
+such that
+\[(h\circ g)\circ f=h\circ(g\circ f),\qquad 1\circ f=f,\qquad g\circ1=g,\]
+for every $f\in\Hom(A,B)$, $g\in\Hom(B,C)$, $h\in\Hom(C,D)$, where $1:=\id(B)\in\Hom(B,B)$ and $\Hom(A,B)$ is the subclass of $\Mor(\cC)$ defined by
+\[\Hom(A,B):=\{f\in\Mor(\cC):\dom(f)=A,\cod(f)=B\},\]
+for each object $A,B,C,D$ of $\cC$.
+\begin{parts}
+\item There is a category $\mathrm{Set}$ whose objects are small sets and morphisms are functions.
+\item There is a category $\mathrm{Grp}$ whose objects are groups and morphisms are group homomoprhisms.
+\item There is a category $\mathrm{Ab}$ whose objects are abelian groups and morphisms are group homomoprhisms.
+\item There is a category $\mathrm{Top}$ whose objects are topological spaces and morphisms are continuous functions.
+\end{parts}
+\end{prb}
+
+
+\begin{prb}[Properties of morphisms]
+monic, epic, isomorphism
+
+
+\end{prb}
+
+
+
+\begin{prb}[Functors]
+
+covariant
+
+
+
+identity functor, inclusion functor, forgetgul functor
+\end{prb}
+
+
+
+\begin{prb}[Properties of functors]
+full, faithful, essentially surjective, equivalent
+
+\end{prb}
+
+
+
+
+\begin{prb}[Natural transformations]
+\end{prb}
+
+
+
+
+A monoid is a small category of a single object.
+A groupoid is a small category such that every morphism is an isomorphism.
+A group is a small category of a single object such that every morphism is an isomorphism.
+
+A proset is a small category such that there is a unique morphism between each pair of objects.
+A directed set is a small category such that filtered proset..
+A poset is a small category such that there is a unique morphism between each pair of objects and every non-identity morphism is not an isomorphism.
+
+A simple directed graph..
+A simple undirected graph..
+
+
+
+A \emph{strcit 2-category} is a category such that every hom class is a category and the composition is a bifunctor.
+If we loose the associativity condition up to natural isomorphism, 
 
 
 \section{Categorical constructions}
-opposite category
-product category
+opposite category, contravariant functor
+
+product category, bifunctor
+
 disjoint union category
-comma category(slice category, morphism category)
+
+comma category
+slice category
+morphism category
+functor category
+
+
 
 
 \section{Representable functors}
 
-Yoneda embedding gives fully faithful functors $h:\cC\to\mathrm{PSh}(\cC)$ and $k:\cC^{\mathrm{op}}\to\mathrm{coPSh}(\cC)$.
-A presheaf $\cC^{\mathrm{op}}\to\mathrm{Set}$ is representable if and only if it is essentially contained in the image of the Yoneda embedding.
+
+
 
 \begin{prb}[Yoneda lemma]
-Let $F:\cC\to\Set$ be a functor from a locally small category $\cC$.
-Fix $c\in\Ob(\cC)$.
- we can define a function
-\[\Nat(\Hom(c,-),F)\to F(c).\]
+Let $\cC$ be a locally small category.
+Let $F:\cC^\op\to\mathrm{Set}$ be a contravariant functor.
+If we fix an object $B\in\cC$, then we have another contravariant functor $\Hom(-,B):\cC^\op\to\mathrm{Set}$ called a \emph{contravariant hom-functor} or a \emph{representable functor}.
 
-A \emph{representation} of $F$ is a pair $(c,\eta)$ of an object $c\in\cC$ and a natural isomorphism $\eta:\Hom(c,-)\to F$.
+We define a function
+\[\Nat(\Hom(-,B),F)\to F(B):\eta\mapsto\eta(1_B).\]
 
-A \emph{universal element} of $F$ is a pair $(c,x)$ with $x\in F(c)$ such that for any pair $(d,y)$ with $y\in F(d)$ there is a unique morphism $f\in\Hom(c,d)$ satisfying $F(f):x\mapsto y$.
+A presheaf $\cC^{\mathrm{op}}\to\mathrm{Set}$ is representable if and only if it is essentially contained in the image of the Yoneda embedding.
+\begin{parts}
+\item $\cC\to\Fun(\cC^\op,\mathrm{Set}):A\mapsto\Hom(-,A)$ is fully faithful. (Put $F=\Hom(-,B)$)
+\end{parts}
+\end{prb}
+\begin{pf}
+
+The inverse is constructed as follows.
+For $x\in F(B)$, define $\eta:\Hom(-,B)\to F$ such that $\eta_A:\Hom(A,B)\to F(A):f\mapsto F(f)(x)$ for each $A\in\cC$.
+We need to check it is a natural transformation such that $F(1_B)(x)=x$ and $\eta(f)=F(f)(\eta(1_B))$ for all $x\in F(B)$ and $\eta\in\Nat(\Hom(-,B),F)$.
+\end{pf}
+
+\begin{prb}[Yoneda lemma]
+Let $\cC$ be a locally small category.
+Let $F:\cC\to\mathrm{Set}$ be a functor and fix an object $A\in\Obj(\cC)$.
+We can define a function
+\[\Nat(\Hom(A,-),F)\to F(A).\]
+
+A \emph{representation} of $F$ is a pair $(A,\eta)$ of an object $A\in\cC$ and a natural isomorphism $\eta:\Hom(A,-)\to F$ from the covariant hom-functor.
+
+A \emph{universal element} of $F$ is a pair $(A,x)$ of an element $A\in\cC$ and a set $x\in F(A)$ such that for any pair $(B,y)$ with $y\in F(d)$ there is a unique morphism $f\in\Hom(A,B)$ satisfying $F(f):x\mapsto y$.
 
 \begin{parts}
 \item
@@ -65,8 +165,8 @@ Consider the diagram
 \Hom(c,d) \ar[swap]{rrrr}{\eta_d} &&&& F(d).
 \end{tikzcd}\]
 For a natural transformation $\eta:\Hom(c,-)\to F$, define $x:=\eta_c(\id_c)$ in $F(c)$.
-For $x\in F(c)$, conversely, define a $\eta_d:\Hom(c,d)\to F(d)$ by $\eta_d(f):=F(f)(x)$ for $d\in\Ob(\cC)$ and $f\in\Hom(c,d)$.
-Then, the collection $\eta=\{\eta_d:d\in\Ob(\cC)\}$ provides a natural transformation because for each $g\in\Hom(d,e)$ we can check the diagram
+For $x\in F(c)$, conversely, define a $\eta_d:\Hom(c,d)\to F(d)$ by $\eta_d(f):=F(f)(x)$ for $d\in\Obj(\cC)$ and $f\in\Hom(c,d)$.
+Then, the collection $\eta=\{\eta_d:d\in\Obj(\cC)\}$ provides a natural transformation because for each $g\in\Hom(d,e)$ we can check the diagram
 \[\begin{tikzcd}
 \Hom(c,d) \ar{r}{\eta_d}\ar[swap]{d}{g\circ-} & F(d) \ar{d}{F(g)} \\
 \Hom(c,e) \ar{r}{\eta_e} & F(e)
@@ -100,8 +200,63 @@ mono-preserving
 filtered limits
 
 
+\begin{prb}
+A \emph{diagram} in a category $\cC$ is simply a covariant functor $\cJ\to\cC$ from another category.
+A \emph{commutative diagram} can be technically seen as a diagram that factors through a proset, also called a thin category or a $(0,1)$-category.
+Important basic examples include cospans, spans, and commutative squares.
+
+
+Let $\cD$ be a commutative diagram in $\cC$, i.e.~the image of the diagram functor $\cJ\to\cC$ which factors through a thin category.
+Let $P\notin\Obj(\cD)$ be the pullback of a span $X\sqcup Y\to B$ in $\cD$, and let $\cD'$ be the diagram generated by $\cD$, the morphisms $P\to X$, $P\to Y$, and the morphisms $A\to P$ for $A\in\cD$ constructed by the universal property of $P$.
+
+If $P\to C$ is a morphism with $C\in\cD$, then it factors through either $X$ of $Y$, so since $P\to X$ and $P\to Y$ are unique in $\cD'$ because they are given, and since $X\to C$ and $Y\to C$ are unique in $\cD$, the composition $P\to C$ is unique in $\cD'$.
+
+If $A\to P$ is a morphism with $A\in\cD$, then it should factors through a morphism $A'\to P$ constructed and unique in $\cD$ by the universal property of $P$, and since $A\to A'$ is unique in $\cD$, the composition $A\to P$ is unique in $\cD'$.
+
+Therefore, $\cD'$ is commutative.
+
+
+
+
+\end{prb}
+
+
+direct limit, inductive limit, filtered colimit, directed colimit
+
+projective limit, inverse limit, filtered limit, directed limit
+
+\section{Set-theoretic issues}
+
+
+
+The category of all $\kappa$-small sets is denoted by $\mathrm{Set}_{<\kappa}$.
+A cardinal $\kappa$ is called \emph{regular} if the $\kappa$-small coproduct of $\kappa$-small sets is $\kappa$-small.
+The smallest regular cardinal is the cardinality of the standard set of natural numbers $\N$, denoted by $\aleph_0$, and the second smallest regular cardinal is the cardinality of the set of all countable ordinals, denoted by $\aleph_1$.
+A set is finite and countable if and only if it is $\aleph_0$-small and $\aleph_1$-small respectively.
+A cardinal $\kappa$ is called \emph{strongly accessible} if it is regular and the power set of a $\kappa$-small set is $\kappa$-small.
+
+
+Let $\cC$ be a category, and $\kappa$ be a cardinal.
+An object $A$ of $\cC$ is called \emph{$\kappa$-compact} if the corepresentable functor $\Hom(A,-)$ is $\kappa$-filtered cocontinuous, and \emph{$\kappa$-small} if the same is $\kappa$-linearly filtered cocontinuous.
+Clearly, a $\kappa$-compact object is $\kappa$-small.
+
+
+
+Consider the category of Banach spaces with contractions.
+Since a separable Banach space is $\aleph_1$-compact, and since every Banach space is a $\aleph_1$-filtered colimit of separable Banach spaces, the category of Banach spaces is $\aleph_1$-accessible.
+Also, since the category of Banach spaces has colimits, it is locally $\aleph_1$-presentable.
+(Really?)
+
+
 \chapter{}
 \section{Adjunctions}
+
+
+Let $G:\cD\to\cC$ be a functor.
+A functor $F:\cC\to\cD$ is \emph{left adjoint} to $G$ and write $F\dashv G$ if $\Hom_\cD(FA,B)=\Hom_\cC(A,GB)$ for all $A\in\Obj(\cC)$ and $B\in\Obj(\cD)$.
+
+The Freyd adjoint functor theorem states that when $\cD$ complete, $G$ admits a left adjoint if and only if $G$ is continuous and it satisfies the \emph{solution set condition}, which states that for each $A\in\cC$ there exists a set of morphisms $A\to GB_i$ such that every morphism $A\to GB$ factors through $A\to GB_i$ for some $i$.
+If $\cD$ is complete and well-powered category with a cogenerator, then the solution set condition is automatic.
 
 \section{Monads}
 
@@ -111,190 +266,41 @@ filtered limits
 \part{}
 
 
-\chapter{}
-
-
-
-\chapter{Abelian categories}
-\section{Regular and exact categories}
-
-split, regular, strong
-effective, normal, strict
-
-A kernel pair of a morphism $f$ is the pullback of $(f,f)$.
-
-A category is called \emph{regular} if every kernel pair admits a coequalizer.
-
-\begin{prb}
-A regular category is called \emph{exact} if every equivalence relation is given by a kernel pair.
-\begin{parts}
-\item
-\end{parts}
-\end{prb}
-
-The category $\Grp$ is regular but not coregular, since there is a monomorphism which is not regular.
-
-
-
-
-
-
-
-
-\section{Additive and abelian categories}
-
-
-
-\begin{prb}[Additive categories]
-A \emph{pre-additive category} is an $\Ab$-enriched category.
-A \emph{semi-additive category} is one of the followings:
-\begin{enumerate}[(i)]
-\item a pointed $\CMon$-enriched category.
-\item a category with finite biproducts.
-\end{enumerate}
-An \emph{additive category} is one of the followings:
-\begin{enumerate}[(i)]
-\item a pointed $\Ab$-enriched category.
-\item $\Ab$-enriched category with finite biproducts.
-\end{enumerate}
-\begin{parts}
-\item additive completion by formally adjoining finite biproducts.
-\item additive structures on a semi-additive category is unique.
-\end{parts}
-\end{prb}
-
-The notion of kernels and cokernels can be defined in a $\Set_*$-enriched category.
-In additive category, we have a natural $\Set_*$-enrichment.
-
-
-\begin{prb}[Pre-abelian categories]
-A \emph{pre-abelian category} is one of the followings:
-\begin{enumerate}[(i)]
-\item an additive category in which every morphism has the kernel and cokernel.
-\item a finitely bicomplete pre-additive category.
-\end{enumerate}
-\begin{parts}
-\item 
-\end{parts}
-\end{prb}
-
-\begin{prb}[Semi-abelian categories in the sense of Jenelidze-M\'arkin-Tholen]
-A pointed, Baar-exact, protomodular, with binary coproudcts.
-\begin{parts}
-\item short five lemma, $3\times3$ lemma, snake lemma, noehter isomorphism hold.
-\item long exact homology sequence
-\item Every semi-abelian category is exact.
-\item Every semi-abelian category is finitely bicomplete.
-\item In general, a semi-abelian category is not pre-additive nor semi-additive.
-\end{parts}
-\end{prb}
-
-\begin{prb}[Abelian categories]
-An \emph{abelian category} is a $\Ab$-enriched category which is finitely bicomplete and satisfies the first isomorphism theorem.
-
-PULLBACK/PUSHOUT, ZERO, EXACT!
-\begin{parts}
-\item A category is abelian if and only if it is additive and exact.
-\end{parts}
-\end{prb}
-
-
-\begin{prb}[Freyd-Mitchell embedding]
-\end{prb}
-
-
-\[\begin{tikzcd}[math mode=false]
-abelian\ar{r}\ar{d} & pre-abelian \ar{r} & additive \ar{r}\ar{d} & pre-additive\\
-semi-abelian (JMT) && semi-additive & \,
-\end{tikzcd}\]
-\begin{itemize}
-\item Pre-abelian: abelian topological groups, Banach spaces, Fr\'echet spaces.
-\item Semi-abelian: groups, non-unital algebras, Lie algebras, C$^*$-algebras, compact Hausdorff (profinite) spaces.
-\item Additive: projective modules
-\end{itemize}
-
-
-
-
-
-The first isomorphism theorem states that $\coim\to\im$ is an isomorphism.
-The normal subobjects and the first isomorphism theorem is generalized in the context of protomodular categories.
-The cokernel may not be defined.
-The category of unital rings is not semi-abelian but protomodular.
-\begin{itemize}
-\item A \emph{protomodular category}
-\item A \emph{homological category} is a pointed regular protomodular category. (five, nine, snake, long exact sequence, noether isomorphism)
-\item A \emph{semi-abelian category} is a homological category that is Barr-exact and finite coproducts(free products).
-\end{itemize}
-
-
-
+\chapter{Monoidal categories}
 
 \section{}
 
-How to manipulate triangles and squares!
-We use the following definitions: a triangle is a complex of two morphisms, and a square is a commutative square.
-A square is just a triangle $A\to B\oplus C\to D$.
-
-taking kernels
-
-taking pullbacks
-
-commutativity and exactness are stable under epi-mono factorization.
-
-\[\begin{tikzcd}[sep=small]
-&& B\rar\dar & C \rar & 0\\
-0 \rar & A' \rar & B' &&
-\end{tikzcd}\]
-
-\[\begin{tikzcd}[sep=small]
-&&& KC \dar &\\
-&& B\rar\dar & C \rar & 0\\
-0 \rar & A' \rar & B' &&
-\end{tikzcd}\]
-
-
-
-\chapter{Tensor categories}
-
-
-
-\section{Monoidal categories}
-closed, symmetric, cartesian
-coherence theorem, closure theorem
-
-
 \begin{prb}[Monoidal categories]
-A \emph{monoidal category} is a category $\cC$ equipped with a bifunctor $\otimes:\cC\times\cC\to\cC$ such that
+A \emph{monoidal category} is a category $\cA$ equipped with a bifunctor $\otimes:\cA\times\cA\to\cA$ such that
 \begin{enumerate}[(i)]
-\item for each triple $A,B,C\in\cC$ there is an isomorphism $\alpha_{A,B,C}:(A\otimes B)\otimes C\to A\otimes(B\otimes C)$ called the \emph{associator}, satisfying the pentagon identity
+\item for each $A,B,C\in\cA$ there is an isomorphism $\alpha_{ABC}:(A\otimes B)\otimes C\to A\otimes(B\otimes C)$ called the \emph{associator}, satisfying the following pentagonal commutative diagram in $\cA$:
 \[\begin{tikzcd}
-((A\otimes B)\otimes C)\otimes D) \rar{\alpha_{A\otimes B,C,D}} \dar{\alpha_{A,B,C}\otimes\id_D} &
-(A\otimes B)\otimes(C\otimes D) \rar{\alpha_{A,B,C\otimes D}} &
+((A\otimes B)\otimes C)\otimes D) \rar{\alpha_{(A\otimes B)CD}} \dar{\alpha_{ABC}\otimes\id_D} &
+(A\otimes B)\otimes(C\otimes D) \rar{\alpha_{AB(C\otimes D)}} &
 A\otimes(B\otimes(C\otimes D))\\
-(A\otimes(B\otimes C))\otimes D \ar{rr}{\alpha_{A,B\otimes C,D}} &&
-A\otimes((B\otimes C)\otimes D) \uar{\id_A\otimes\alpha_{B,C,D}}
+(A\otimes(B\otimes C))\otimes D \ar{rr}{\alpha_{A(B\otimes C)D}} &&
+A\otimes((B\otimes C)\otimes D) \uar{\id_A\otimes\alpha_{BCD}}
 \end{tikzcd}\]
-commutes for each $A,B,C,D\in\cC$.
-\item there is a specified object $I\in\cC$ called the \emph{unit object}, and for each $A\in\cC$ there are isomorphisms $\lambda_A:I\otimes A\to A$ and $\rho_A:A\otimes I\to A$ called the \emph{left unitor} and the \emph{right unitor}, satisfying the triangle identity
-\[\begin{tikzcd}[column sep=tiny]
-(A\otimes I)\otimes B \ar{rr}{\alpha_{A,I,B}} \ar[swap]{dr}{\rho_A\otimes\id_B} &&
+\item for each $A\in\cA$ there are isomorphisms $\lambda_A:I\otimes A\to A$ and $\rho_A:A\otimes I\to A$ called the \emph{left unitor} and the \emph{right unitor} respectively, where the specified $I\in\cA$ is called the \emph{unit object}, satisfying the commutative daigram in $\cA$:
+\[\begin{tikzcd}[row sep=small,column sep=tiny]
+(A\otimes I)\otimes B \ar{rr}{\alpha_{AIB}} \ar[swap]{dr}{\rho_A\otimes\id_B} &&
 A\otimes(I\otimes B) \ar{dl}{\id_A\otimes\lambda_B}\\
 & A\otimes B &
 \end{tikzcd}\]
-commutes for each $A,B\in\cC$.
 \end{enumerate}
+In a monoidal category, we can compose objects as if they are morphisms with common domains and codomains.
+
 We say a monoidal category is \emph{strict} if the associators and unitors are all identity morphisms.
 A \emph{cartesian} monoidal category is a monoidal category whose monoidal structure $\otimes$ is given by the categorical product.
 \end{prb}
 
 
-\begin{prb}[Coherence theorem]
+\begin{prb}[Coherence theorems]
 Let $\cC$ be a monoidal category.
 \begin{parts}
 \item
-\[\begin{tikzcd}[column sep=tiny]
-(I\otimes A)\otimes B \ar{rr}{\alpha_{I,A,B}} \ar[swap]{dr}{\lambda_A\otimes\id_B} &&
+\[\begin{tikzcd}[row sep=small,column sep=tiny]
+(I\otimes A)\otimes B \ar{rr}{\alpha_{IAB}} \ar[swap]{dr}{\lambda_A\otimes\id_B} &&
 I\otimes(A\otimes B) \ar{dl}{\lambda_{A\otimes B}}\\
 & A\otimes B &
 \end{tikzcd}\]
@@ -304,6 +310,8 @@ I\otimes(A\otimes B) \ar{dl}{\lambda_{A\otimes B}}\\
 \end{parts}
 \end{prb}
 
+\begin{prb}[Closure theorems]
+\end{prb}
 
 \begin{prb}[Monoidal functors]
 coherence maps
@@ -313,19 +321,31 @@ lax, strong, strict
 
 
 
+
+\begin{prb}[Pointed categories]
+A \emph{pointed category} is a category with a zero object.
+\begin{parts}
+\item A category is $\mathrm{Set}_*$-enriched if and only if it admits a zero morphism.
+\item Every pointed category is $\mathrm{Set}_*$-enriched.
+\end{parts}
+\end{prb}
+
+
+
+\section{}
+
 \begin{prb}[Enriched categories]
-Let $\cM$ be a monoidal category.
-A category $\cC$ is said to be \emph{enriched} over $\cM$ if for each $A,B\in\cC$ there is $\Hom(A,B)\in\cM$ such that
+For a monoidal category $\cA$, a category $\cC$ is said to be \emph{enriched} over $\cA$ if for each $X,Y\in\cC$ there is $\Hom(X,Y)\in\cA$ such that
 \begin{enumerate}[(i)]
-\item for each $A,B,C\in\cC$ there is a morphism $\circ_{A,B,C}:\Hom(A,B)\otimes\Hom(B,C)\to\Hom(A,C)$, satisfying
+\item for each $X,Y,Z\in\cC$ there is a morphism $\circ_{XYZ}:\Hom(Y,Z)\otimes\Hom(X,Y)\to\Hom(X,Z)$, satisfying
 \[\begin{tikzcd}[column sep=huge]
 \Hom(A,B)\otimes\Hom(B,C)\otimes\Hom(C,D) \rar{\id_{\Hom(A,B)}\otimes\circ_{B,C,D}} \dar[swap]{\circ_{A,B,C}\otimes\id_{\Hom(C,D)}} &
 \Hom(A,B)\otimes\Hom(B,D) \dar{\circ_{A,B,D}} \\
 \Hom(A,C)\otimes\Hom(C,D) \rar{\circ_{A,C,D}} &
 \Hom(A,D)
 \end{tikzcd}\]
-commutes for each $A,B,C,D\in\cC$.
-\item for each $A\in\cC$ there is a morphism $\id_A:I\to\Hom(A,A)$, satisfying
+commutes in $\cA$ for each $X,Y,Z,W\in\cC$.
+\item for each $X\in\cC$ there is a morphism $\id_X:I\to\Hom(X,X)$, satisfying
 \[\begin{tikzcd}
 I\otimes\Hom(A,B) \dar[swap]{\id_A\otimes\id_{\Hom_{A,B}}} \ar{dr}{\lambda_{\Hom(A,B)}} &&
 \Hom(A,B)\otimes I \ar[swap]{dl}{\rho_{\Hom(A,B)}} \dar{\id_{\Hom(A,B)}\otimes\id_B}\\
@@ -336,26 +356,64 @@ I\otimes\Hom(A,B) \dar[swap]{\id_A\otimes\id_{\Hom_{A,B}}} \ar{dr}{\lambda_{\Hom
 \end{enumerate}
 \end{prb}
 
-\begin{prb}[Pointed category]
-A \emph{pointed category} is a category with a zero object.
+\section{}
+
+\begin{prb}[Closed monoidal categories]
+\end{prb}
+
+
+\begin{prb}[Rigid monoidal categories]
+Let $\cA$ be a monoidal category.
+A \emph{left dual} of an object $A$ is an object $A^*$ together with morphisms $\eta_A:I\to A\otimes A^*$ and $\e_A:A^*\otimes A\to I$ such that the identities on $A$ and $A^*$ are factorized as
+\[\begin{tikzcd}[row sep=small]
+A \rar{\eta_A\otimes\id} & (A\otimes A^*)\otimes A \rar{\alpha_{A,A^*,A}} & A\otimes(A^*\otimes A) \rar{\id\otimes\e_A} & A,\\
+A^* \rar{\id\otimes\eta_A} & A^*\otimes(A\otimes A^*) \rar{\alpha_{A^*,A,A^*}^{-1}} & (A^*\otimes A)\otimes A^* \rar{\e_A\otimes\id} & A^*.
+\end{tikzcd}\]
+A \emph{right dual} can be defined similarly, and 
+\end{prb}
+
+\section{Symmetric and braided monoidal categories}
+
+\begin{prb}[Symmetric monoidal categories]
+\end{prb}
+
+\begin{prb}[Braided monoidal categories]
+\end{prb}
+
+\begin{prb}[Ribbon categories]
+\end{prb}
+
+graphical calculi?
+internalization?
+
+
+\chapter{Abelian categories}
+\section{Regular and exact categories}
+
+split, regular, strong
+effective, normal, strict
+
+\begin{prb}
+Let $\cA$ be a category.
+A \emph{kernel pair} of a morphism $f$ is the pair of morphisms $(i_0,i_1)$ such that
+
+\[\begin{tikzcd}[execute at end picture={\node[label={[below right]:$\lrcorner$}]at(\tikzcdmatrixname-1-1){};}]
+K \rar{i_0}\dar[swap]{i_1} & A \dar{f} \\
+A \rar[swap]{f} & B.
+\end{tikzcd}\]
+\end{prb}
+
+
+A category is called \emph{regular} if every kernel pair admits a coequalizer.
+
+\begin{prb}
+A regular category is called \emph{exact} if every equivalence relation is given by a kernel pair.
 \begin{parts}
-\item A category is $\Set_*$-enriched if and only if it admits a zero morphism.
-\item Every pointed category is $\Set_*$-enriched.
+\item
 \end{parts}
 \end{prb}
 
-rigid?
-
-\section{Braided and ribbon categories}
-
-
-
-
-
-\section{Internalization}
-
-
-\section{Tensor and fusion categories}
+The category $\mathrm{Grp}$ is regular but not coregular, since there is a monomorphism which is not regular.
 
 
 
@@ -363,6 +421,259 @@ rigid?
 
 
 
+
+\section{Additive categories}
+
+
+
+\begin{prb}[Additive categories]
+A \emph{pre-additive category} is an $\mathrm{Ab}$-enriched category.
+A \emph{semi-additive category} is a pointed $\mathrm{CMon}$-enriched category or a category with finite biproducts.
+An \emph{additive category} is an $\mathrm{Ab}$-enriched category which is pointed or has finite biproducts.
+In intuitive terms, additive categories are those in which the laws for addition of morphisms can be internalized.
+More precisely, on an additive category, we can canonically define the following functors.
+\[\Delta:A\to A\oplus A,\quad\nabla:A\oplus A\to A\]
+
+Examples include the category of projective modules and the category of vector bundles.
+\begin{parts}
+\item additive completion by formally adjoining finite biproducts.
+\item additive category structures on a semi-additive category is unique.
+\end{parts}
+\end{prb}
+
+
+\begin{prb}[Pre-abelian categories]
+A \emph{pre-abelian category} is an additive category which is finitely bicomplete or has kernels and cokernels.
+Examples include most of topological algebraic structures.
+\begin{parts}
+\item 
+\end{parts}
+\end{prb}
+
+\begin{prb}[Semi-abelian categories of Jenelidze-M\'arkin-Tholen]
+A pointed, Baar-exact, protomodular, with binary coproudcts.
+
+Examples include some non-unital or non-commutative algebraic structures such as groups, non-unital algebras, Lie algebras, C$^*$-algebras, compact Hausdorff (profinite) spaces.
+\begin{parts}
+\item short five lemma, $3\times3$ lemma, snake lemma, noehter isomorphism hold.
+\item long exact homology sequence
+\item Every semi-abelian category is exact.
+\item Every semi-abelian category is finitely bicomplete.
+\item In general, a semi-abelian category is not pre-additive nor semi-additive.
+\end{parts}
+\end{prb}
+
+
+
+\[\begin{tikzcd}[math mode=false]
+abelian\ar{r}\ar{d} & pre-abelian \ar{r} & additive \ar{r}\ar{d} & pre-additive\\
+semi-abelian (JMT) && semi-additive & \,
+\end{tikzcd}\]
+
+
+
+\begin{prb}[Protomodular categories]
+The normal subobjects and the first isomorphism theorem is generalized in the context of protomodular categories.
+The cokernel may not be defined.
+The category of unital rings is not semi-abelian but protomodular.
+\begin{itemize}
+\item A \emph{protomodular category}
+\item A \emph{homological category} is a pointed regular protomodular category. (five, nine, snake, long exact sequence, noether isomorphism)
+\item A \emph{semi-abelian category} is a homological category that is Barr-exact and finite coproducts(free products).
+\end{itemize}
+\end{prb}
+
+
+
+
+
+\section{Abelian categories}
+
+\begin{prb}[Abelian categories]
+An \emph{abelian category} is an additive category which is finitely bicomplete and satisfies the first isomorphism theorem.
+Here, the \emph{first isomorphism theorem} means that the natural morphism $\coim f\to\im f$ is an isomorphism for any morphism $f$.
+An abelian category also can be characterized by an exact additive category.
+In abelian categories, there are three kinds of central concepts, which are the pullbacks and pushouts, kernels and cokernels, and finally exactness.
+
+It is extremely important to know how to manipulate commutative triangles and commutative squares in abelian categories.
+
+exactness are stable under epi-mono factorization....?
+
+
+\begin{parts}
+\item A category is abelian if and only if it is additive and exact.
+\item The epi-mono factorization unique up to isomorphism.
+\item $A\to B\to C$ is exact if and only if $A\to\ker(B\to C)$ is epic.
+\end{parts}
+\end{prb}
+\begin{pf}
+
+Suppose $A\to B$ has two epi-mono factorizations $X$ and $Y$, and let $C:=\coker(Y\to B)$.
+\[\begin{tikzcd}[sep=small]
+A \rar[->>]\dar[->>] & Y \dar[>->] \\
+X \rar[>->] & B \dar[->>]\\
+& C
+\end{tikzcd}\]
+Then, $(A\to C)=0$ implies $(X\to C)=0$, so we have $X\to Y$.
+Similarly we also have $Y\to X$ so that $X\leftrightarrow Y$, thus the epi-mono factorization is unique up to isomorphism.
+\end{pf}
+
+
+
+
+\begin{pf}
+The proof of that the followings are equivalent:
+\begin{enumerate}[(i)]
+\item $A\to X\oplus Y\to B$ is exact.
+\item $\coker(A\to X)\to\coker(Y\to B)$ is monic.
+\item $\ker(A\to X)\to\ker(Y\to B)$ is epic.
+\end{enumerate}
+
+Step 1: pullback preserves mono. (in general category)\\
+Let $A\to X\oplus Y\to B$ be a pullback square with monic $Y\to B$, and let $K:=\ker(A\to X)$. 
+\[\begin{tikzcd}[sep=small]
+K \dar[>->] & \\
+A \rar\dar \pullback & Y \dar[>->] \\
+X \rar & B
+\end{tikzcd}\]
+Since $(K\to B)=0$ implies $(K\to Y)=0$, combining with $(K\to X)=0$ we get $(K\to A)=0$ and $K=0$.
+Therefore, $A\to X$ is monic.
+
+Step 2: pullback preserves epic.
+
+
+Step 3: pullback preserves epi-mono factorization. (1+2)
+
+
+Step 4: kernel(-cokernel) lemma.
+
+Step 5: right morphism is mono if the kernel square is pullback. (4)
+
+Step 6: Let $A\to X\oplus Y\to B$ be a pullback sqaure.
+Let $I:=\im(A\to X)$, $J:=\im(Y\to B)$, $D:=\coker(Y\to B)$, and $K':=\ker(X\to D)$.
+We claim $I\leftrightarrow K'$. (3)
+\[\begin{tikzcd}[sep=small]
+ &A\dar\rar&Y\dar \\
+K'\ar{dr}&I\dar&J\dar \\
+ &X\rar\ar{dr}&B\dar \\
+ & &D
+\end{tikzcd}\]
+Since $(A\to D)=0$ implies $(I\to D)=0$, we have $I\to K'$.
+Since $(K'\to D)=0$, we have $K'\to J$.
+Since $I\to X\oplus J\to B$ is a pullback square (why?), we have $K'\to I$.
+Therefore, $I\leftrightarrow K'$.
+
+
+Step 7: Let $P$ the pullback of $X\oplus Y\to B$.
+
+TFAE: (i), $A\to P$ is epic, $C\leftrightarrow\coker(P\to X)$, $I\leftrightarrow\im(P\to X)$.
+
+TFAE: (ii), $I\leftrightarrow\ker(X\to D)$.
+
+
+
+Or more simply, we can use the fact that left above square is cartesian in
+\[\begin{tikzcd}[sep=small]
+\ker(A\to X) \rar\dar\pullback & A \rar\dar & X \dar[equal]\\
+\ker(P\to X) \rar\dar[equal] & P \rar\dar\pullback & X \dar\\
+\ker(Y\to B) \rar & Y \rar & B.
+\end{tikzcd}\]
+If $\ker AB\to\ker CD$ is epic, then 
+\end{pf}
+
+
+
+\begin{prb}[Exactness on squares]
+kernels and pullbacks
+\[\begin{tikzcd}[sep=small]
+K\dar\rar&L\dar \\
+A\dar\rar&Y\dar \\
+X\dar\rar&B\dar \\
+C\rar&D
+\end{tikzcd}\]
+\[\begin{tikzcd}[sep=small]
+K\dar\rar&A\dar\rar&X\dar\rar&C\dar\\
+L\rar&Y\rar&B\rar&D
+\end{tikzcd}\]
+
+\begin{parts}
+\item $A\to X\oplus Y\to B$ is exact.
+\item $A\to P$ is epic.
+\item $C\to D$ is monic.
+\item $K\to L$ is epic.
+\end{parts}
+
+\begin{parts}
+\item $A\to X\oplus Y\to B$ is a pullback square.
+\item $0\to A\to X\oplus Y\to B$ is exact.
+\item $K\to L$ is an isomorphism.
+\item $K\to L$ and $C\to D$ are monic.
+\end{parts}
+
+\end{prb}
+
+pullback lemma..
+
+
+A \emph{sequence} in a commutative diagram $\cJ$ is a sequence $f_i$ of morphisms in $\cJ$ with $\cod f_i=\dom f_{i+1}$ for all $i$.
+A \emph{braid} in $\cJ$ is a distinguished sequence of morphisms, drawn such that two connected morphisms meet without an angle.
+
+
+
+\begin{prb}[Freyd-Mitchell embedding]
+\end{prb}
+
+
+
+\begin{prb}[Wall lemma]
+\end{prb}
+
+\begin{prb}[Kernel-cokernel lemma]
+\end{prb}
+
+\begin{prb}[Snake lemma]
+\end{prb}
+
+\begin{prb}[Five lemma]
+\end{prb}
+
+
+\[\begin{tikzcd}[sep=small]
+\end{tikzcd}\]
+
+
+\chapter{Tensor categories}
+
+
+
+
+
+\section{Tensor categories}
+
+
+
+\begin{prb}[Tensor categories]
+Over an algebraically closed field, a \emph{tensor category} is defined as a category which is linear abelian and rigid monoidal, such that the monoidal product bifunctor is bilinear on morphisms and the endomorphism ring of the unit object is isomorphic to the scalar field.
+
+In the [EGNO], it requires in addition that $\cC$ is locally finite-dimensional, every object has the Jordan-H\"older series of finite length, and it is indecomposable.
+\end{prb}
+
+
+\begin{prb}
+Recall that a subobject is an isomorphism class of monomorphisms.
+Let $\cA$ be an abelian category.
+An object is called \emph{simple} if it has only two subojects.
+The Schur lemma says that a non-zero morphism between simple objects is an isomorphism.
+\end{prb}
+
+
+\section{Fusion categories}
+
+\begin{prb}[Fusion categories]
+
+A \emph{fusion category} is semi-simple tensor category of finite number of isomorphism classes of simple objects.
+
+\end{prb}
 
 
 \end{document}

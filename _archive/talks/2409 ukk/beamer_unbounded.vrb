@@ -1,0 +1,16 @@
+\frametitle{Smooth algebras}
+\begin{defn}[continued]
+We can similarly define $\mathcal{A}^k\subset\mathcal{L}(M_{2^k}(E))$.
+We say $(E,D)$ is \emph{smooth} if for each $k$ the algebra $\mathcal{A}^k$ is dense in $A$ and $A$ admits a sequential approximate unit uniformly bounded in $\mathcal{A}^k$.
+\end{defn}
+\pause
+\begin{thm}[\cite{MR3213549}]
+Let $A$ and $B$ be endowed with smooth spectral triples.
+Let $\Psi_0^\infty(A,B)$ be the set of unitary classes of smooth unbounded Kasparov modules $(E,D,\nabla)$ together with a smooth transverse (we did not define) connection.
+Then, the diagram
+\[\begin{tikzcd}[sep=small]
+\Psi_0^\infty(A,B)\times\Psi_0^\infty(B,C) \rar\dar & \Psi_0^\infty(A,C) \dar\\
+KK(A,B)\times KK(B,C) \rar & KK(A,C)
+\end{tikzcd}\]
+commutes, where horizontal arrows are the (constructive) Kasparov product and vertical arrows are the bounded transforms.
+\end{thm}

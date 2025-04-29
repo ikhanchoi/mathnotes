@@ -3,6 +3,12 @@
 
 \newcommand{\Cof}{\mathrm{Cof}}
 \newcommand{\Fib}{\mathrm{Fib}}
+\newcommand{\we}{\overset\sim\to}
+\newcommand{\cof}{\rightarrowtail}
+\newcommand{\fib}{\twoheadrightarrow}
+\newcommand{\tcof}{\overset\sim\rightarrowtail}
+\newcommand{\tfib}{\overset\sim\twoheadrightarrow}
+
 
 \begin{document}
 \title{Homological Algebra}
@@ -26,14 +32,52 @@
 
 \section{Chain complexes}
 
+
+
+\begin{prb}[Differential graded objects]
+Let $\cA$ be an abelian category.
+A \emph{complex} over $\cA$ is a differential graded object
+
+
+A differential graded abelian group is traditionally called a \emph{chain complex}.
+
+The following categories are all abelian? projectives and injectives?
+We have six categories
+$\mathrm{Ch}_{\ge0}(\cA)$ and $\mathrm{Ch}_+(\cA)$, $\mathrm{Ch}^{\ge0}(\cA)$ and $\mathrm{Ch}^+(\cA)$, $\mathrm{Ch}(\cA)$ and $\mathrm{Ch}_b(\cA)$.
+
+\begin{parts}
+\item $\mathrm{Ch}_{\ge0}(\cA)$ is abelian.
+\end{parts}
+\end{prb}
+
+\begin{pf}
+Let $A,B\in\mathrm{Ch}_{\ge0}(\cA)$.
+The cokernel is given as follows.
+\end{pf}
+
+
+
+
+\begin{prb}[Differential graded algbera]
+Let $\cA$ be a symmetric monoidal abelian category.
+A \emph{differential graded algebra} over $\cA$ is a monoid object in the category of complexes over $\cA$.
+For a commutative unital ring $R$, then a differential graded algebra over $\Mod_R$ can be characterized by 
+
+Let $A\in\cA$ be a differential graded algebra.
+Then, we can consider complexes over $A$-modules.
+\end{prb}
+
+
+
+derived category of differential graded category.
+
+
+
 \begin{prb}
 Let $\cA$ and $\cB$ be abelian categories and suppose $\cA$ has enough injectives, that is, every object $A\in\cA$ admits a monomorphism $A\to I$ for an injective object $I$.
 Let $\cF:\cA\to\cB$ be a left-exact functor.
 
 \end{prb}
-
-
-derived category of differential graded category.
 
 
 
@@ -63,80 +107,193 @@ A \emph{triangulated category} is an additive functor $\cD$ together with a tran
 
 \section{Model structures}
 
+
+Dashed arrows mean that they do not commute with solid arrows in general, and bent arrows mean that they are constructed by the property of projective modules.
+
+
 \begin{prb}[Model structures]
-Let $\cC$ be a category.
-We say a pair $(\cA,\cB)$ of subcategories of $\cC$ is a \emph{functorial weak factorization system} if
+Following the definition of Hovey, a \emph{model structure} on a category $\cM$ is a triple $(\cW,\cC,\cF)$ of subcategories of $\cM$ whose morphisms are called \emph{weak equivalences}, \emph{cofibrations}, and \emph{fibrations} respectively, and a weak equivalence that is also a cofibration or a fibration is called a \emph{} such that
 \begin{enumerate}[(i)]
-\item for $i\in\Mor(\cA)$ and $p\in\Mor(\cB)$ there exists $h\in\Mor(\cC)$ such that the following commutes:
+\item (two-out-of-three)
+$\cW$,
+\item (retract)
+\item (lift)
+for a commutative square consisting of morphisms $f,g,i,p$ in $\cM$ such that $pf=gi$, if $i$ is a cofibration and $p$ are in $\cC$ and $\cF\cap\cW$, or in $\cC\cap\cW$ and $\cF$, respectively, then there exists $h\in\Mor(\cM)$ such that the following diagram commutes:
 \[\begin{tikzcd}
-A \dar[>->,swap]{i} \rar{f} & X \dar[->>]{p} \\
-B \rar[swap]{g} \ar[dashed]{ur}{h} & Y.
-\end{tikzcd}\tag{lifting}\]
-\item there are functors $\alpha:\cC\to\cA$ and $\beta:\cC\to\cB$ such that for $f\in\Mor(\cC)$ the following commutes:
+A \dar[swap]{i} \rar{f} & Y \dar{p} \\
+X \rar[swap]{g} \ar[dashed]{ur}{\exists h} & B
+\end{tikzcd}\qquad\text{ in }\cM.\]
+
+\item (factorization)
+
 \[\begin{tikzcd}[sep=small]
-A \ar{rr}{f} \ar[swap]{dr}{\alpha(f)} && B \\
-& M \ar[swap]{ur}{\beta(f)} &
-\end{tikzcd}\tag{factorization}\]
+A \ar{rr}{f} \ar[>->,dashed,swap]{dr}{\exists i} && B\\
+& C \ar[->>,dashed,swap]{ur}{\exists p} &
+\end{tikzcd}\qquad\text{ in }\cM\]
 \end{enumerate}
-
-
-
-Following the definition of Hovey, a \emph{model structure} on $\cC$ is a three subcategories of $\cC$ called \emph{weak equivalences}, \emph{cofibrations}, and \emph{fibrations} such that
-\begin{enumerate}[(i)]
-\item the weak equivalences satisfy the two-out-of-three law,
-\item cofibrations and acyclic fibrations form a functorial weak factorization system,
-\item acyclic cofibrations and fibrations form a functorial weak factorization system.
-\end{enumerate}
-We denote by $\cW$ the subcategory of weak equivalences.
-A \emph{model category} is a category with small limits and colimits equipped with a model structure.
-
-cofibrant and fibrant replacements.
+A \emph{model category} is a bicomplete category equipped with a model structure.
 
 \begin{parts}
-\item retract closedness
-\item
+\item opposite category and overcategory
+\item lifting property and retract closedness
+\item base change
 \end{parts}
+\end{prb}
+\begin{pf}
+To show $\cC$ is closed under retracts (in functorial weak factorization system generally), suppose the horizontal composites $ACA$ are the identities, $CD\in\cC$, and $XY\in\cF$ in the comutative diagram
+\[\begin{tikzcd}[sep=small]
+A\rar\dar&C\rar\dar[>->]&A\rar\dar&X\dar[->>]\\
+B\rar&D\rar&B\rar&Y.
+\end{tikzcd}\]
+Then, we have the lift $DX$, and $BDX$ defines a lift $BX$, so $AB\in\cC$.
+
+\end{pf}
+
+
+\begin{prb}
+Let $\cM$ be a model category.
+An object $X$ is called \emph{cofibrant} if the unique morphism $0\to X$ from the initial object is a cofibration.
+
+The \emph{cofibrant replacement} is the functor $Q:\cM\to\cM$ defined by the functorial factorization (if exists) such that $0\cof QX\tfib X$ for all $X\in\cM$.
+
+An object $Y$ is called \emph{fibrant} if
+
+For a pointed or unpointed space $X$, we always have a fibrant replacement $X\rightarrowtail CX\overset\sim\twoheadrightarrow*$
 \end{prb}
 
 
 
 
-
-
-
+\begin{prb}[Ken Brown lemma]
+Let $\cC$ be a model category.
+Let $\cD$ be a category with weak equivalences.
+If $F:\cC\to\cD$ be a functor that takes a acyclic cofibration between cofibrant objects to a weak equivalence, then it takes a weak equivalence between cofibrant objects to a weak equivalence.
+\end{prb}
+\begin{pf}
+Suppose $A$ and $B$ are cofibrant objects, and $AB$ is a weak equivalence.
+Factorize $(A\sqcup B)B$ into a cofibration $(A\sqcup B)B'$ followed by a acyclic fibration $B'B$ as we have
+\[\begin{tikzcd}[sep=small]
+A \dar\ar{rrd}{\sim} &&\\
+A\sqcup B \rar[>->] & B' \rar[->>]{\sim} & B.\\
+B \uar\ar[equal]{rru} &&
+\end{tikzcd}\]
+Since cofibrations are closed under pushouts, $A(A\sqcup B)$ and $B(A\sqcup B)$ are cofibrations, so are $AB'$ and $BB'$.
+On the other hand, $AB'$ and $BB'$ are weak equivalences, and hence are acyclic cofibrations.
+Then, $F(AB')$ and $F(BB')$ are weak equivalences by the assumption, so $F(AB)$ is a weak equivalence.
+\end{pf}
 
 
 
 \begin{prb}[Homotopy category of a model category]
+Let $\cM$ be a model category.
+The \emph{cylinder object} for $X\in\cM$ is an object $X'$ such that there is a factorization
+\[\begin{tikzcd}[sep=small]
+X\sqcup X\rar[>->]&X'\rar[->>]{\sim}&X.
+\end{tikzcd}\]
+The \emph{path object} for $X\in\cM$ is an object $Y'$ such that there is a factorization
+\[\begin{tikzcd}[sep=small]
+Y\rar[>->]{\sim}&Y'\rar[->>]&Y\times Y.
+\end{tikzcd}\]
+The functorial cylinder object for $X$ and the path object for $Y$ are denoted by $X\times I$ and $Y^I$.
+
+
 left homotopy and right homotopy, cofibrant-fibrant objects.
 \end{prb}
 
 \begin{prb}[Derived categories and derived functors]
-For a functor $F:\cC\to\cD$ between model categories, a \emph{left derived functor} $LF:h\cC\to\cD$ is defined as the right Kan extension of $F$ with respect to $\cC\to h\cC$.
+For a functor $F:\cM\to\cN$ between model categories, a \emph{left derived functor} $LF:\mathrm{h}\cM\to\cN$ is defined as the right Kan extension of $F$ with respect to $\cM\to\mathrm{h}\cN$.
 It may not exist in general, but there is an equivalent condition which can be easily investigated.
 \end{prb}
 
 
+A sequence $F\to Y\to B$ is called a \emph{fiber sequence} if it defines a pullback square
+\[\begin{tikzcd}
+F \rar\dar\pullback & Y \dar \\
+* \rar & B
+\end{tikzcd}\]
 
 
 \section{Quillen functors}
 
 
 
-\section{Examples of model structures}
+\section{Examples of model categories}
 
-\begin{prb}[Model structures on chain complexes]
-projective and Hurewicz(chain homotopy) model structures on non-negative chain complexes
+\begin{prb}[Projective model structure on chain complexes]
+Let $\cA$ be an abelian category with enough projective objects and $\mathrm{Ch}_{\ge0}(\cA)$ be the category of non-negatively graded chain complexes of $\cA$.
+A \emph{projective model structure} on $\mathrm{Ch}_{\ge0}(\cA)$ is defined such that a chain map is 
+\begin{enumerate}[(i)]
+\item a weak equivalence if it is a quasi-isomorphism,
+\item a cofibration if it is degree-wise monic with the projective cokernel,
+\item a fibration if it is degree-wise epic at the strictly positive degrees.
+\end{enumerate}
+Then, they define a model structure on $\mathrm{Ch}_{\ge0}(\cA)$, and its homotopy category becomes the classical derived category.
+\end{prb}
+\begin{pf}
+Assuming $\mathrm{Ch}_{\ge0}(\cA)$ is a bicomplete abelian category, we will check that the projective model structure is indeed a model structure.
+The two-out-of-three law is clear.
+We first prove $(\cC,\cF\cap\cW)$ is a weak factorization system.
+Recall that 
+
+
+(lift at degree zero)
+
+Let
+\[\begin{tikzcd}
+A \dar[>->,swap]{i} \rar{f} & Y \dar[->>]{p}\dar[swap]{\sim} \\
+X \rar[swap]{g} & B
+\end{tikzcd}\qquad\text{ in }\mathrm{Ch}_{\ge0}(\cA)\]
+be a commutative diagram such that $i:A\to X$ is a cofibration and $p:Y\to B$ is a acyclic fibration.
+
+Consider the diagram at the degree zero
+\[\begin{tikzcd}
+A_0\rar{f_0}\dar[>->,swap]{i_0}&Y_0\dar[->>]{p_0}\\
+X_0\rar[swap]{g_0}\dar[->>]&B_0\\
+P_0\uar[dashed,bend left]{\exists s_0}\ar[dashed,bend left=16,shift right=1,pos=.7]{uur}{\exists t_0}&
+\end{tikzcd}\qquad\text{ in }\cA,\]
+where $i_0:A_0\to X_0$ is monic with projective cokernel $P_0$ by definition of the cofibration $i$, and $p_0:Y_0\to B_0$ is epic by the four lemma on the diagram
+\[\begin{tikzcd}
+Y_1\rar{\partial_1}\dar[->>]{p_1}&Y_0\rar\dar{p_0}&H_0(Y)\dar[>->>]{(p_0)_*} \rar&0\\
+B_1\rar{\partial_1}&B_0\rar&H_0(B)\rar&0
+\end{tikzcd}\qquad\text{ in }\cA,\]
+where every row is exact since the zeroth homology group is the cokernel of the first boundary map, $p_1:Y_1\to B_1$ is epic since $p$ is a fibration, and $(p_0)_*:H_0(Y)\to H_0(B)$ is an isomorphism since $p$ is a weak equivalence.
+By the projectivity of $P_0$, we can lift the identity $1:P_0\to P_0$ to get $s_0:P_0\to X_0$ and lift $g_0s_0:P_0\to B_0$ to get $t_0:P_0\to Y_0$.
+Since $X_0$ is the coproduct of $A_0$ and $P_0$, a morphism $h_0:X_0\to Y_0$ is constructed by the universal property.
+To check $h_0$ commutes with solid arrows, it suffices to the commutativity with $A_0$ and $B_0$.
+Then, $h_0i_0=f_0$ is clear by definition of $h_0$, and $p_0h_0=...=g_0$.
+
+As for degree zero, we can find $h_{n+1}':X_{n+1}\to Y_{n+1}$ such that $h_{n+1}'i_{n+1}=f_{n+1}$ and $p_{n+1}h_{n+1}'=g_{n+1}$.
+For $n\ge0$, we also need to check $\partial_{n+1}h_{n+1}'=h_n\partial_{n+1}:X_{n+1}\to Y_n$, which can fail in general.
+Define the error $\e:=\partial_{n+1}h_{n+1}'-h_n\partial_{n+1}$.
+
+
+
+(factorization)
+
+\end{pf}
+
+\begin{prb}[Hurewicz model structure on chain complexes]
 \end{prb}
 
-\begin{prb}[Model structures on topological spaces]
+\begin{prb}[]
 Serre and Hurewicz model structures
 \end{prb}
 
 
 
 
+
+\section{}
+
 monoidal, simplicial, pointed, stable model categories
+
+If we let $*$ be the terminal object of $\cC$, then the coslice category or the overcategory $\cC_*:=*\downarrow\cC$, whose objects are morphisms $*\to B$ in $\cC$ for $B\in\cC$, is a pointed model category.
+The addition of disjoint basepoint $\cC\to\cC_*$ is left adjoint to the forgetful functor.
+
+
+
+
+
 
 
 
@@ -148,76 +305,194 @@ Simplicial methods convert a differential graded category to a simplicial catego
 In a simplicial model category we can expand simplicial resolutions explicitly.
 
 \begin{prb}[Simplicial sets]
-\end{prb}
+The \emph{simplex category} is the category $\Delta$ defined such that the objects are linearly ordered finite non-empty sets $[n]:=\{0,\cdots,n\}$ and the morphisms are monotone functions.
+\[\begin{tikzcd}
+\left[0\right] \rar[shift left=2]{d_0}\rar[shift right=2,swap]{d_1} & \left[1\right] \lar["s_0" description]
+\end{tikzcd}\]
 
-\begin{prb}[Simplicial complexes]
-A \emph{simplicial complex} is a set $K$ of non-empty finite subsets of a set $V$ which is closed under subsets.
-If $V$ is linearly ordered, then we say $K$ is ordered.
-To every ordered simplicial complex one can associate a simplicial setas follows.
-Let $K_n$ be the set of all ordered tuples $(v_0,\cdots,v_n)$ such that $v_0\le\cdots\le v_n$ and $\{v_0,\cdots,v_n\}\in K$.
-Then, for each morphism $\alpha:[n]\to[m]$ in $\Delta$, we can define $\alpha^*:K_m\to K_n$.
+Consider
+\[X_{n+1}\xrightarrow{d_j}X_n\xrightarrow{d_i}X_{n-1},\qquad X_{n+2}\xleftarrow{s_j}X_{n+1}\xleftarrow{s_i}X_n.\]
+For $i\in[n]$ and $j\in[n+1]$,
+\[d_id_j=\begin{cases}d_{j-1}d_i&\text{ if }j-1\ge i,\\d_jd_{i+1}&\text{ if }j<i+1,\end{cases}\qquad
+s_js_i=\begin{cases}s_is_{j-1}&\text{ if }i\le j-1,\\s_{i+1}s_j&\text{ if }i+1>j,\end{cases}\]
+and
+\[d_js_i=\begin{cases}s_{i-1}d_j&\text{ if }i-1\ge j,\\s_id_{j-1}&\text{ if }i<j-1,\\\id&\text{ otherwise},\end{cases}\qquad
+s_id_j=\begin{cases}d_js_{i+1}&\text{ if }j<i+1,\\d_{j+1}s_i&\text{ otherwise}.\end{cases}\qquad\]
+
+A \emph{standard simplex} is a simplicial set given by a representable functor in $\Delta$, and denoted by $\Delta^n=\Delta[n]:=\Hom_\Delta(-,[n]):\Delta^\op\to\mathrm{Set}$ for each $n\ge0$.
+For a simplicial set $X$, the Yoneda lemma implies $X_n:=X([n])=\Hom_{\mathrm{Set}_\Delta}(\Delta^n,X)$.
+
+
+
+The set of homotopy classes of simplicial functions $[X,Y]$?
 
 \end{prb}
 
 
 \begin{prb}[Dold-Kan correspondence]
-The Dold-Kan correspondence states that $\cA_\Delta\to\Ch_{\ge0}(\cA)$ is a categorical equivalence for an abelian category $\cA$.
+Let $\cA$ be an abelian category.
+The Dold-Kan correspondence states that $\cA_\Delta\to\mathrm{Ch}_{\ge0}(\cA)$ is a categorical equivalence.
+We also have categorical equivalence between the cosimplicial objects $\cA^\Delta$ and cochain complexes $\mathrm{Ch}^{\ge0}(\cA)$
 
-Two descriptions for normalized Moore complexes:
-\[0\to N_\bullet(A)\to C_\bullet(A)\to D_\bullet(A)\to0.\]
+For a simplicial object $A\in\cA_\Delta$, the \emph{normalized chain complex} or the \emph{Moore complex} of $A$ is the chain complex $NA\in\mathrm{Ch}_{\ge0}(\cA)$ defined such that $NA_n:=\bigcap_{i=1}^n\ker d_i\subset A_n$ and $\partial:=d_0$.
+It is known that there is a split exact sequence
+\[0\to NA\to CA\to DA\to0\]
+in $\mathrm{Ch}_{\ge0}(\cA)$.
 
 
-Eilenberg-Maclane functor $K:\mathrm{Ch}(\Z)\to\mathrm{sAb}$ as the right adjoint for the functor $N_\bullet$.
+The functor $\Gamma:\mathrm{Ch}_{\ge0}(\cA)\to\cA_\Delta$.
+
+The \emph{Eilenberg-MacLane functor} is the composition $H:\mathrm{Ch}_{\ge0}(\Z)\xrightarrow{\Gamma}\mathrm{Ab}_\Delta\to\mathrm{Set}_\Delta$ with the forgetful functor.
+Note that the cohomology group is computed by the adjoint relations
+\[H(X,A)=[N\Z[X],A]=[\Z[X],\Gamma A]=[X,HA],\qquad X\in\mathrm{Set}_\Delta,\ A\in\mathrm{Ch}_{\ge0}(\Z).\]
+If $A\in\mathrm{Ab}$, then $(HA)_n=K(A,n)$ is the Eilenberg-MacLane space for each $n\ge0$ so that $H(X,A)$.
+
+Then, the Moore complex functor $N$ is left adjoint to $K$, i.e.~$[NA,C]=[A,KC]$ for $A\in\cA_\Delta$ and $C\in\mathrm{Ch}_{\ge0}(\cA)$.
 \end{prb}
+\begin{pf}
+Let $\Z\Delta$ be the pre-additive category generated by the simplex category $\Delta$.
+\end{pf}
 
 
-
+Note that the homology group is
 \[\begin{tikzcd}
+H_n(-,M):&
 \mathrm{Top} \rar{\mathrm{Sing}} &
-\mathrm{sSet} \rar{R[\cdot]} &
-\mathrm{sMod}_R \rar{C_\bullet\text{ or }N_\bullet} &
-\mathrm{Ch}(R) \rar{H_n} &
+\mathrm{Set}_\Delta \rar{R[\cdot]\otimes_RM} &
+(\mathrm{Mod}_R)_\Delta \rar{C\text{ or }N} &
+\mathrm{Ch}_{\ge0}(R) \rar{H_n} &
 \mathrm{Mod}_R
 \end{tikzcd}\]
 
 
 
+\begin{prb}[Simplicial complexes]
+A \emph{simplicial complex} is a set $K$ of non-empty finite subsets of a set $V$ which is closed under subsets.
+If $V$ is linearly ordered, then we say $K$ is ordered.
+To every ordered simplicial complex one can associate a simplicial set as follows.
+Let $K_n$ be the set of all ordered tuples $(v_0,\cdots,v_n)$ such that $v_0\le\cdots\le v_n$ and $\{v_0,\cdots,v_n\}\in K$.
+Then, for each morphism $\alpha:[n]\to[m]$ in $\Delta$, we can define $\alpha^*:K_m\to K_n$.
+
+\end{prb}
+
+\begin{prb}[Simplicial complexes]
+A \emph{simplicial complex} is a collection $X\subset\cP(V)$ of non-empty finite subsets of a set $V$ closed under non-empty subsets.
+We denote by $X_n$ for each $n\ge0$ the set of all functions $[n]\to V$ whose image is an element of $X$.
+More categorically, it can be essentially defined as a presheaf $X:\mathrm{Fin}_{>0}\to\mathrm{Set}:[n]\mapsto X_n$ on the category of non-zero finite sets which is concrete in the sense that the canonical map $X_n\to\prod_{[n]\leftarrow[0]}X_0$ is injective for each $n\ge0$.
+
+If we fix linear orders on each object of $\mathrm{Fin}_{>0}$, then we obtain a functor $\mathrm{SimpCpx}\to\mathrm{Set}_\Delta$
+We claim that this functor is characterized as the left Kan extension of along the opposite forgetful functor relative the concrete presheaves as
+\[\begin{tikzcd}[sep=small]
+\mathrm{Fin}_{>0}^\op \ar{rr}\ar{dr}\ar[shift right=4,phantom]{rr}{\Rightarrow} && \Delta^\op \ar[dashed]{dl} \\
+& \mathrm{Set} &
+\end{tikzcd}\]
+
+For a simplicial complex $X$ and a simplicial set $Y$, it suffices to show
+\[\Hom_{\mathrm{Cpx}_\Delta}(X,Y)=\Hom_{\mathrm{Set}_\Delta}(X,Y).\]
+Suppose $\eta\in\Hom_{\mathrm{Set}_\Delta}(X,Y)$ so that
+\[\begin{tikzcd}[sep=small]
+X_m \dar[swap]{\eta_m}\rar & X_n \dar{\eta_n} \\
+Y_m \rar & Y_n
+\end{tikzcd}\]
+commutes for all monotone $[m]\leftarrow[n]$.
+If $[m]\leftarrow[n]$ is arbitrary, then since
+\[\begin{tikzcd}[sep=small]
+X_m \dar[swap]{\eta_m}\rar & \displaystyle\prod_{[n]\leftarrow[0]}X_0 \dar & X_n \dar{\eta_n}\lar \\
+Y_m \rar & \displaystyle\prod_{[n]\leftarrow[0]}Y_0 & Y_n \lar
+\end{tikzcd}\]
+still commutes and $Y_n\to\prod_{[n]\leftarrow[0]}Y_0$ is injective by the concreteness, which implies
+\[\begin{tikzcd}[sep=small]
+X_m \dar[swap]{\eta_m}\rar & X_n \dar{\eta_n} \\
+Y_m \rar & Y_n
+\end{tikzcd}\]
+commutes by cancelation of the injective function.
+
+\end{prb}
+
 
 \section{Simplicial model categories}
 \begin{prb}[Model structures on simplicial sets]
-Kan and Joyal model structures
+Kan and Joyal model structures.
+
+A \emph{Kan model structure} on $\mathrm{Set}_\Delta$ is defined such that a morphism $f:X\to Y$ of simplicial sets is
+\begin{enumerate}[(i)]
+\item a weak equivalence if the geometric realization $|X|\to|Y|$ is a homotopy equivalence,
+\item a cofibration if it is a monomorphism, i.e.~$f_n$ is injective for all $n\ge0$,
+\item a fibration if it is a \emph{Kan fibration}, i.e.~it has the right lifting property with respect to the horn pair $\Lambda_i^n\to\Delta^n$ for all $n\ge0$ and $0\le i\le n$.
+\end{enumerate}
 
 
-Via the Dold-Kan correspondence $\cA_\Delta\cong\Ch_{\ge0}(\cA)$, the Kan model structure corresponds to the projective model structures
+In a Joyal model structure,
+
+Via the Dold-Kan correspondence $\cA_\Delta\cong\mathrm{Ch}_{\ge0}(\cA)$, the Kan model structure corresponds to the projective model structures
 \end{prb}
 
 
+\chapter{}
 
 
-\chapter{Infinity categories}
-\section{Simplicial sets}
 
-Two representative examples: nerves and Kan complexes
 
-infinity categories as simplicially enriched categories
 
-\begin{prb}[Nerves]
-For an ordinary category as a nerve, two morphisms are homotopic only if they are identical.
-\end{prb}
+
+
+\part{Infinity categories}
+\chapter{Models of infinity categories}
+\section{}
+
+All the algebraic or topological structures with finitely many underlying sets will be assumed to be small.
+For example, groupoids may not be small.
+Note that $\mathrm{Set}_\Delta$ is the category of \emph{small} simplicial sets.
+
+For an ordinary category as a nerve, two morphisms are homotopic only if they are identical...
 
 \begin{prb}[Kan complexes]
+A simplicial set $Y$ is called a \emph{Kan complex} if $Y\to*$ satisfies the right lifting property with respect to all horns $\Lambda_i^n\to\Delta^n$.
+In other words, for every simplicial map $\Lambda_i^n\to Y$ there is a simplicial map $\Delta^n\to Y$ such that
+\[\begin{tikzcd}[sep=small]
+\Lambda_i^n \dar\rar & Y \\
+\Delta^n \ar[dashed]{ur}
+\end{tikzcd}\]
+commutes in the category of simplicial sets for all $n\ge0$ and $0\le i\le n$.
+
 A geometric model for infinity groupoids.
 In a Kan complex, including Sing of a topological space, every morphism is invertible up to homotopy.
-
-Infinity groupoids are usually considered as ``spaces''.
 \end{prb}
 
 
+\begin{prb}[Nerves of categories]
+A small simplicial set $Y$ is a nerve of a small category if and only if $Y\to*$ satisfies the right unique lifting property with respect to all inner horns $\Lambda_i^n\to\Delta^n$.
+In other words, for every simplicial map $\Lambda_i^n\to Y$ there is a unique simplicial map $\Delta^n\to Y$ such that
+\[\begin{tikzcd}
+\Lambda_i^n \dar\rar & Y \\
+\Delta^n \ar{ur}
+\end{tikzcd}\]
+commutes in the category of simplicial sets for all $n\ge0$ and $0<i<n$.
+(Is the smallness of $Y$ important in here?)
+\end{prb}
 
 
-\section{Kan complexes}
+\begin{prb}[Weak Kan complexes and quasi-categories]
+Intuitively, an infinity category is an enriched category over the category of small infinity groupoids, which cannot serve a definition because it includes a circular reasoning.
+A simplicial set $Y$ is called a \emph{weak Kan complex} or a \emph{quasi-category} if
 
-The \emph{infinity category of spaces}, denoted by $\mathrm{Spc}$, is defined as the homotopy-coherent nerve of the category $\mathrm{Kan}$ of Kan complexes.
+
+infinity category, infinity groupoid, infinity bicategory.
+\end{prb}
+
+Let $\mathrm{Top}$ be the category of compactly generated weakly Hausdorff spaces.
+The singular complex functor $\mathrm{Sing}:\mathrm{Top}\to\mathrm{Set}_\Delta$ admits a left adjoint $|\cdot|:\mathrm{Set}_\Delta\to\mathrm{Top}$ called the geometric realization such that the counit map $|\mathrm{Sing}(X)|\to X$ is a weak homotopy equivalence.
+
+The \emph{infinity category of spaces}, denoted by $\mathrm{Spc}$, is defined as the homotopy-coherent nerve of the category $\mathrm{Grpd}_\infty$ of small infinity groupoids.
+
+\begin{prb}
+homotopy category, weak homotopy equivalence, 
+\end{prb}
+
+
+\section{Fibrations}
+
+
 
 \section{Stable infinity categories}
 
@@ -230,16 +505,23 @@ A \emph{stable infinity category} is an infinity category such that
 \item every morphism admits a fiber and cofiber,
 \item a triangle is a fiber sequence if and only if it is a cofiber sequence.
 \end{enumerate}
-It is known that its homotopy category is tricngulated.
-\end{prb}
-
-\begin{prb}[Triangulated categories]
-\end{prb}
-
-\begin{prb}[Differential graded category]
+It is known that its homotopy category is triangulated.
+How can we construct the suspension on the homotopy category?
 \end{prb}
 
 
+\begin{prb}[Differential graded categories]
+\end{prb}
+
+
+
+
+
+
+
+
+
+\chapter{Infinity topoi}
 
 
 

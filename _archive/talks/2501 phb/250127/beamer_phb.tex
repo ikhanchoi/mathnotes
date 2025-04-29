@@ -1,0 +1,162 @@
+\documentclass{../../../../slide}
+
+
+\title{Positive Hahn-Banach separation theorems in operator algebras}
+\author{Ikhan Choi}
+\institute{The University of Tokyo}
+\date{Tokyo, January 2025}
+
+% 20 minutes
+
+\begin{document}
+
+
+\begin{frame}[plain]
+\titlepage
+\end{frame}
+
+
+
+\section{Introduction and preliminaries}
+\contents
+
+
+\begin{frame}{Positive Hahn-Banach separation theorems in operator algebras}
+In $E$ an ordered vector space, $F\subset E^+$ is called \emph{hereditary} if $0\le x\le y\in F$ implies $x\in F$.
+\begin{thm}[Haagerup '75, C. '25]
+Let $M$ be a von Neumann algebra, and let $A$ be a C$^*$-algebra.
+\begin{enumerate}[(1)]
+\item If $F$ is a $\sigma$-weakly closed convex hereditary subset of $M^+$, then for any $x\in M^+\setminus F$ there exists $\omega\in M_*^+$ such that $\omega(x)>1$ and $\omega(x')\le1$ for all $x'\in F$.
+\item If $F_*$ is a norm closed convex hereditary subset of $M_*^+$, then for any $\omega\in M_*^+\setminus F_*$ there exists $x\in M^+$ such that $\omega(x)>1$ and $\omega'(x)\le1$ for all $\omega'\in F_*$.
+\item If $F$ is a norm closed convex hereditary subset of $A^+$, then for any $a\in A^+\setminus F$\qquad there exists $\omega\in A^{*+}$ such that $\omega(a)>1$ and $\omega(a')\le1$ for all $a'\in F$.
+\item If $F^*$ is a weakly$^*$ closed convex hereditary subset of $A^{*+}$, then for any $\omega\in A^{*+}\setminus F^*$ there exists $a\in A^+$ such that $\omega(a)>1$ and $\omega'(a)\le1$ for all $\omega'\in F^*$.
+\end{enumerate}
+\end{thm}
+\pause
+Haagerup proved (1)\sim(3) in his master's thesis \cite{MR380438}, and asked if (4) holds.
+The part (1) plays a major role in the proof of some equivalence conditions for normal weights on a von Neumann algebra.
+The difficulty is (3)$<$(2)$\approx$(1)$<$(4).
+I proved (1) and (2) in different ways, and solved (4).
+\end{frame}
+
+
+\begin{frame}{Suppression by the one-parameter family of functional calculi}
+Since $F^{r+r+}=(F-E^+)^{rr+}=(\overline{F-E^+})^+$ by the usual real bipolar theorem, where $r$ denotes the real polar, each statement is equivalent to $(\overline{F-E^+})^+\subset F$.
+For example in (1), fixing $\delta>0$, we want to suppress $y_i$ to get $y_{i,\delta}$ with $\|y_{i,\delta}\|\le\delta^{-1}$ so that $y_{i,\delta}\to y_\delta$ $\sigma$-weakly.
+\[\begin{array}{ccccccc}
+F-M^+ & \ni & x_i & \le & y_i & \in & F \\
+&& \downarrow && \downarrow &&\\
+0 & \le & x & \le & ? & \in & F
+\end{array}
+\quad\leadsto\quad
+\begin{array}{ccccccc}
+F-M^+ & \ni & x_{i,\delta} & \le & y_{i,\delta} & \in & F \\
+&& \downarrow && \downarrow &&\\
+0 & \le & x_\delta & \le & y_\delta & \in & F
+\end{array}\]
+It implies $x_\delta\in F$, and if $x_\delta\to x$, then $x\in F$.
+\pause
+\begin{defn}
+For $\delta>0$, we define $f_\delta:(-\delta^{-1},\infty)\to\mathbb{R}$ such that $f_\delta(t):=t(\delta t+1)^{-1}$ for $t>-\delta^{-1}$.
+\end{defn}
+It has many interesting properties such as operator monotonicity, semi-group property, increasing strong convergence to the identity, etc.
+Haagerup used the $\sigma$-strong topology to have $f_\delta(x_i)\to f_\delta(x)$ in the proof of $(1)$.
+\pause
+Since $A^*$ has no analogue of the $\sigma$-strong topology, we use an inequality like $t-\varepsilon\le f_\delta(t)\le t$ on a suitable interval.
+\[\begin{array}{ccccccccc}
+F-M^+ & \ni & x_i-\varepsilon & \le & f_\delta(x_i) & \le & f_\delta(y_i) & \in & F \\
+&& \downarrow && && \downarrow &&\\
+0 & \le & x && \le && y_\delta & \in & F
+\end{array}\]
+\end{frame}
+
+
+
+\begin{frame}{Bounded commutant Radon-Nikodym derivatives}
+To take functional calculi on linear functionals:
+\pause
+\begin{defn}
+Let $M$ be a von Neumann algebra, and let $\psi\in M_*^+$.
+Consider the Gelfand-Naimark-Segal representation $\pi:M\to B(H)$ associated to $\psi$ with the canonical cyclic vector $\Omega\in H$.
+Then, we have a positive bounded linear map $\theta:\pi(M)'\to M_*$ defined such that
+\[\theta(h)(x):=\langle h\pi(x)\Omega,\Omega\rangle,\qquad h\in\pi(M)',\ x\in M.\]
+It has the image
+\[\operatorname{im}\theta=\{\omega\in M_*:\text{there is $C>0$ such that $|\omega(x)|\le C\psi(x)$ for all $x\in M^+$}\}.\]
+We will call $\theta^{-1}(\omega)$ the \emph{commutant Radon-Nikodym derivative} of $\omega$ with respect to $\psi$.
+\end{defn}
+\pause
+For example in (2), when $\omega_n\in F_*-M_*^+$ converges to $\omega\in M_*^+$ in norm, we can find a suitable $\psi\in M_*^+$ such that
+\[\begin{array}{ccccccc}
+F_*-M_*^+ & \ni & \theta(f_\delta(\theta^{-1}(\omega_n)) & \le & \theta(f_\delta(\theta^{-1}(\varphi_n)) & \in & F_* \\
+&& \downarrow && \downarrow &&\\
+0 & \le & \theta(f_\delta(\theta^{-1}(\omega)) & \le & \varphi_\delta & \in & F_*
+\end{array}\]
+\end{frame}
+
+\section{Proof sketches}
+\contents
+
+\begin{frame}{Proof of (1)}
+We prove (1) in a different way to motivate the proof methods of (4).
+Recall that we need to prove $(\overline{F-M^+})^+\subset F$.
+To use the Krein-\v Smulian theorem, we define a subset $G$ satisfying $F-M^+\subset G$ and $G^+\subset F$ and $\overline G\subset G$.
+\pause
+Haagerup originally defined and proved the $\sigma$-strong closedness of
+\[G:=\{x\in M^{sa}:f_\delta(x)\in F-M^+\text{ for all }\delta<\|x_-\|^{-1}\}.\]
+Instead, to avoid the use of $\sigma$-strong topology, we define
+\[G:=\left\{x\in M^{sa}:\begin{tabular}{c}
+for any $\varepsilon>0$, there is a net $y_\delta\in F$\\
+indexed on $0<\delta\le(1+\|x\|)^{-1}$ such that\\
+$\|y_\delta\|\le\delta^{-1}$ and $f_\delta(x)\le y_\delta+\varepsilon\delta^{\frac12}$
+\end{tabular}\right\}.\]
+\pause
+\begin{itemize}
+\item $F-M^+\subset G$: Easy.
+\item $G^+\subset F$: Relatively easy. Fix $\delta'>0$ and obtain $(1+\delta'\|x\|)^{-1}f_\delta(x)\in F$ by limiting
+\[0\le(1+\delta'\|x\|)^{-1}f_\delta(x)\le f_{\delta'}(f_\delta(x))\le f_{\delta'}(y_\delta+\delta^{\frac12})\le f_{\delta'}(y_\delta)+\delta^{\frac12}.\]
+\item $\overline G\subset G$: If $x_i\in G$ is bounded and $x_i\to x$ $\sigma$-weakly, then we can construct $y_\delta\in F$ such that $y_{i,\delta}\to y_\delta$ for $\delta\le\delta_0$ and $y_\delta:=f_{\delta-\delta_0}(y_{\delta_0})$ for $\delta>\delta_0$ for small $\delta_0>0$.
+The convexity follows from $F-M^+\subset G$ and $\overline{G\cap M_r}\subset G$, so the Krein-\v Smulian theorem completes the proof.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Proof of (4)}
+For (4), we define
+\pause
+\[G^*:=\left\{\omega\in A^{*sa}:\begin{tabular}{c}
+for any $\varepsilon>0$, there are nets $\psi_\delta\in A^{*+}$ and $\varphi_\delta\in F^*$\\
+indexed on $0<\delta\le(1+4\|\omega\|)^{-6}$ such that\\
+the following five conditions are satisfied:\\
+ $|\omega(a)|\le\delta^{-\frac16}\psi_\delta(a)$ for all $a\in A^+$, $\|\psi_\delta\|\le1$, $\|\varphi_\delta\|\le\delta^{-1}$,\\
+$\omega_\delta\le\varphi_\delta+\varepsilon\delta^{\frac12}\psi_\delta$, and $\omega_\delta\to\omega$ weakly$^*$ in $A^*$ as $\delta\to0$
+\end{tabular}\right\},\]
+where $\omega_\delta:=\theta_\delta(f_\delta(\theta_\delta^{-1}(\omega)))$, and here $\theta_\delta$ is associated to $\psi_\delta$.
+\pause
+\begin{itemize}
+\item $F^*-A^{*+}\subset G^*$: Take $\psi_\delta:=(1+\|\omega\|)^{-1}([\omega]+(1+\|\varphi\|)^{-1}\varphi)$ and $\varphi_\delta:=\theta(f_\delta(\theta(\varphi)))$.
+\item $G^{*+}\subset F^*$: Take the Radon-Nikodym for $\omega+\delta\varphi_\delta+\psi_\delta$ and do the same thing as (1).
+\item $\overline{G^*}\subset G^*$: we can prove in a similar way to (1), but long computations.
+\end{itemize}
+\end{frame}
+
+
+
+\begin{frame}{Questions}
+\begin{itemize}
+\item Simpler proof? (in conversation with N. Ozawa)\\
+Yes, and we succeeded in proving with
+\[G^*:=\left\{\omega\in A^{*sa}:\begin{tabular}{c}
+there is $\psi\in A^{*+}$ and there is a net $\varphi_\delta\in F^*$ such that\\
+$\|\psi\|\le1$, $\|\varphi_\delta\|\le\delta^{-1}$, and $\omega\le\varphi_\delta+\delta^{\frac12}\psi$\\
+for any sufficiently small $\delta>0$
+\end{tabular}\right\}.\]
+
+\item Weight theory on C$^*$-algebras?
+\item Convex hereditary subsets instead of convex balanced subsets?
+\item Non-commutative $L^p$ spaces?
+\end{itemize}
+\end{frame}
+
+\references
+
+
+\end{document}

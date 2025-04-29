@@ -1,6 +1,7 @@
 \documentclass{../../large}
 \usepackage{../../ikhanchoi}
 
+\newcommand{\Cl}{\mathrm{Cl}}
 
 \begin{document}
 \title{Low Dimensional Topology}
@@ -19,31 +20,6 @@
 \section{Geometric structures}
 
 
-\begin{prb}[Geometric manifolds]
-Let $M$ be a smooth manifold, on which we are concerned with metric geometries.
-For example, affine, projective, or conformal geometries are not considered to be candidates of our geometries.
-Precisely, we suggest to define a \emph{geometric manifold} as a smooth manifold $M$ together with a metric that is
-\begin{enumerate}[(i)]
-\item geodesically connected,
-\item geodesically complete,
-\item realized as a Riemannian metric,
-\item locally homogeneous: for every $p,q\in M$ an isometry $U_p\to U_q$ between open neighborhoods exists.
-\end{enumerate}
-Each condition has been obtained by modifying the first four postulates of Euclid's Elements.
-Simply, a \emph{geometric manifold} is a connected complete locally homogeneous Riemmanian manifold.
-Let $X$ and $M$ be manifolds without boundary with a metric.
-Suppose $X$ is simply connected and $M$ is connected.
-\begin{parts}
-\item $X$ is geometric if and only if it is a homogeneous Riemannian manifold.
-\item $M$ is geometric if and only if it is covered by a simply connected homogeneous Riemannian manifold.
-\end{parts}
-\end{prb}
-\begin{pf}
-(a)
-($\Rightarrow$)
-
-
-\end{pf}
 
 
 \begin{prb}[Space forms]
@@ -200,9 +176,30 @@ Why 4-manifolds are difficult?
 \chapter{Kirby calculus}
 
 
+
+
+
+
 \part{Geometry of 4-manifolds}
 \chapter{}
-\chapter{}
+\chapter{Seiberg-Witten theory}
+
+\begin{prb}
+Let $V$ be a real inner product space.
+In $\Spin(4)\subset\Cl^{\mathrm{ev}}(4)\cong\Cl(3)\cong\H\oplus\H$, the spin group $\Spin(4)$ is isomorphic to $S^3\times S^3$.
+
+If $V$ is even-dimensional, then $\Cl(V)$ has a unique finite-dimensional irreducible complex graded representation $\Cl(V)\to\End_\C(S(V))$ such that the complexification induces an isomorphism $\Cl(V)\otimes_\R\C\cong\End(S(V))=S(V)\otimes S(V)^*$.
+
+If $V$ is odd-dimensional, then $\Cl(V)$ has two non-isomorphic finite-dimensional irreducible complex representations $\Cl(V)\to\End_\C(S_+(V\oplus\R))$ and $\Cl(V)\to\End_\C(S_-(V\oplus\R))$ obtained from the direct sum decomposition of $\Cl(V)=\Cl^0(V\oplus\R)\subset\Cl^0(V\oplus\R)\otimes_\R\C\cong\End_\C(S(V\oplus\R))$.
+
+
+\end{prb}
+
+
+
+
+
+
 \chapter{}
 
 \end{document}

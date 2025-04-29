@@ -1,0 +1,511 @@
+\documentclass[noamsfonts,a4paper,10pt]{amsart}
+\usepackage[bitstream-charter,cal]{mathdesign}
+\usepackage{hyperref}
+\linespread{1.25}
+
+
+\theoremstyle{plain}
+\newtheorem{thm}{Theorem}[section]
+\newtheorem*{thm*}{Theorem}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{cor}[thm]{Corollary}
+\theoremstyle{definition}
+\newtheorem{defn}[thm]{Definition}
+\theoremstyle{remark}
+\newtheorem{rmk}[thm]{Remark}
+
+
+\title{Positive Hahn-Banach separation theorems in operator algebras}
+\author{Ikhan Choi}
+\address{}
+\subjclass[2020]{}
+
+\begin{document}
+
+
+\begin{center}
+{\huge 2024年度}\\[36pt]
+{\Huge 修士論文題目}\\[24pt]
+{\Huge Positive Hahn-Banach separation\\[8pt]
+theorems in operator algebras}\\[24pt]
+{\huge （作用素環における\\[8pt]正ハーン・バナッハ分離定理）}
+\vfill
+\begin{tabular}{cl}
+{\LARGE 学生証番号} & {\LARGE 45-236039}\\[8pt]
+フリガナ & チョイ　イカン\\[8pt]
+{\LARGE 氏名} & {\LARGE Choi Ikhan}\\[24pt]
+\end{tabular}
+\end{center}
+\thispagestyle{empty}
+\addtocounter{page}{-1}
+
+
+\newpage
+
+\begin{abstract}
+We affirmatively resolve a question suggested by Haaerup in 1975 on the positive version of the bipolar theorem on the dual space of C$^*$-algebras.
+As a direct consequence, we obtain a complete set of four positive Hahn-Banach separation theorems on von Neumann algebras, their preduals, C$^*$-algebras, and their duals.
+\end{abstract}
+
+\maketitle
+
+\section{Introduction}
+
+In this paper, we prove the following theorem.
+
+\begin{thm*}
+Let $M$ be a von Neumann algebra, and let $A$ be a C$^*$-algebra.
+\begin{enumerate}
+\item If $F$ is a $\sigma$-weakly closed convex hereditary subset of $M^+$, then for any $x\in M^+\setminus F$ there exists $\omega\in M_*^+$ such that $\omega(x)>1$ and $\omega(x')\le1$ for all $x'\in F$.
+\item If $F_*$ is a norm closed convex hereditary subset of $M_*^+$, then for any $\omega\in M_*^+\setminus F_*$ there exists $x\in M^+$ such that $\omega(x)>1$ and $\omega'(x)\le1$ for all $\omega'\in F_*$.
+\item If $F$ is a norm closed convex hereditary subset of $A^+$, then for any $a\in A^+\setminus F$\quad there exists $\omega\in A^{*+}$ such that $\omega(a)>1$ and $\omega(a')\le1$ for all $a'\in F$.
+\item If $F^*$ is a weakly$^*$ closed convex hereditary subset of $A^{*+}$, then for any $\omega\in A^{*+}\setminus F^*$ there exists $a\in A^+$ such that $\omega(a)>1$ and $\omega'(a)\le1$ for all $\omega'\in F^*$.
+\end{enumerate}
+\end{thm*}
+
+Recall the definition of hereditary subsets.
+
+\begin{defn}[Hereditary subsets]
+Let $E$ be a partially ordered real vector space.
+We say a subset $F$ of the positive cone $E^+$ is \emph{hereditary} if $0\le x\le y$ in $E$ and $y\in F$ imply $x\in F$, or equivalently $F=(F-E^+)^+$, where $F-E^+$ is the set of all elements of $E$ bounded above by an element of $F$.
+\end{defn}
+
+The first three parts of the above theorem were originally proved by Haagerup in \cite{MR380438}, and he suggested a problem that asks if (4) holds in the same paper.
+The first part (1) plays a major role in the proof of that $\sigma$-weakly lower semi-continuous weight of a von Neumann algebra is given by the pointwise supremum of a set of positive normal linear functionals.
+The statements in the original paper are written in terms of positive forms of the bipolar theorem $F^{r+r+}=F$ instead of the Hahn-Banach separation theorem as above, where the positive polar $F^{r+}$ can be defined as
+\[F^{r+}:=F^r\cap E^{*+}=\{x^*\in E^{*+}:\sup_{x\in F}x^*(x)\le1\}\]
+in an ordered real locally convex space $E$.
+They are easily checked to be equivalent by the usual Hahn-Banach separation theorem.
+
+Although the first three are already known results on the contrary to (4), we will give different proofs of them in order to motivate the idea of the proof of (4).
+In a slightly more detail, when Haagerup proved (1), he heavily used the $\sigma$-strong topology and the strong continuity of continuous bounded functions, but such a nice dual topology for the $\sigma$-weak topology for von Neumann algebras has no analogue in the dual of a C$^*$-algebra.
+In this background, we give a proof of (1) only using the $\sigma$-weak topology, and we will see that the idea is extended to prove (4) within the weak$^*$ topology.
+On the other hand, Haagerup also used (1) to prove (2), but we will also see that the Krein \v Smulian theorem, which is essential in the proof of (1) and (4), is not required in (2) so that we can directly prove it.
+The part (3) is just a corollary of (1).
+
+The roadmap of this paper is as follows.
+In Section 2, we prepare some lemmas for the main proofs, but most of all are well-known.
+The notations introduced in Section 2 will be repeatedly used throughout the paper.
+Section 3 gives the proofs of the four positive Hahn-Banach separation theorems.
+We will also give some remarks on explanation for the proof, especially of (4).
+
+
+\section{reparations for proofs}
+
+
+\subsection{Suppression by the one-parameter family of functional calculi}
+
+The first step of the proof is the reformulation of the theorem into an inclusion problem.
+More precisely, we need to prove statements of the form $(\overline{F-E^+})^+\subset F$.
+In other words, when $x_i$ is a net convergent to $x\ge0$ in a partially oredered real locally convex space $E$ such that there is a dominating net $y_i\in F$ satisfying $x_i\le y_i$, we want to prove $x$ is also dominated by an element of $F$.
+The problem is that $y_i$ has of course no limit points in general.
+To resolve it, we consider the following one-parameter family of real functions.
+\begin{defn}
+For $\delta>0$, we define a function $f_\delta:(-\delta^{-1},\infty)\to\mathbb{R}$ such that
+\[f_\delta(t):=(1+\delta t)^{-1}t,\qquad t>-\delta^{-1}.\]
+\end{defn}
+It has many interesting properties such as operator monotonicity and concavity, strong convergence to the identity as $\delta\to0$, and the semi-group property in the sense that $f_\delta(f_{\delta'}(t))=f_{\delta+\delta'}(t)$ on a suitable domain of $t\in\mathbb{R}$.
+However, we will only use the operator monotonicity and the boundedness from above given for each fixed $\delta>0$.
+With these functions, if we think of the situation of (1), we can suppress the net $y_i$ to define a bounded net $f_\delta(y_i)$ and take a $\sigma$-weakly convergent subnet to get $f_\delta(x)\in F$ by the hereditarity of $F$.
+Then, the closedness of $F$ will give $x\in F$.
+
+Unlike the $\sigma$-strong topology, for fixed sufficiently small $\delta>0$, the operation of taking the functional calculus of $f_\delta$ is not continuous in the $\sigma$-weak topology, which means that for a self-adjoint net $x_i\in B(H)$ such that $-(2\delta)^{-1}\le x_i$ for all $i$ and $x_i\to x$ $\sigma$-weakly, we may not have a $\sigma$-weak convergence $f_\delta(x_i)\to f_\delta(x)$.
+The following lemma allows us to approximate $f_\delta(x)$ directly with the $\sigma$-weakly convergent net $x_i$ instead of $f_\delta(x_i)$, but accompanied by a small error proportional to $\varepsilon\delta^{\frac12}$ for an arbitrarily small constant $\varepsilon>0$.
+We will see later that there is a device which makes this argument work also in the weak$^*$ topology on the dual space of a C$^*$-algebra.
+Following two lemmas will be used in the proof of (1) and (4).
+\begin{lem}\label{f}
+Let $\varepsilon,r,\delta>0$.
+\begin{enumerate}
+\item If $\delta\le(\varepsilon/4r^2)^2\le(2r)^{\frac32}$ and $\delta<r^{-1}$, then $t\le f_\delta(t)+(\varepsilon/2)\delta^{\frac12}$ on $|t|\le r$.
+\item If $\delta\le(\varepsilon/8)^6\le2^{-\frac65}$, then $t\le f_\delta(t)+(\varepsilon/4)\delta^{\frac12}$ on $|t|\le\delta^{-\frac16}$.
+\end{enumerate}
+\end{lem}
+\begin{proof}
+Observe that our inequalities are equivalent, since $t>-\delta^{-1}$, to
+\[\delta^{\frac12}(-t)^2+\delta(\varepsilon/(2\text{ or }4))(-t)-(\varepsilon/(2\text{ or }4))\le0.\]
+Putting the maximum value of $-t$, the condition for $\delta$ can be computed as
+\[(\varepsilon/2r)\delta+\delta^{\frac12}\le(\varepsilon/2r^2),\qquad(\varepsilon/4)\delta^{\frac56}+\delta^{\frac16}\le(\varepsilon/4),\]
+for each case respectively, then we can see $\delta\le(\varepsilon/4r^2)^2\le(2r)^{\frac32}$ and $\delta\le(\varepsilon/8)^6\le2^{-\frac65}$ give sufficient conditions.
+\end{proof}
+\begin{lem}\label{f2}
+If $0<\delta'\le\delta$ and $0\le c\le c'$, then $f_\delta(t+c)\le f_{\delta'}(t)+c'$ on $t\ge0$.
+\end{lem}
+\begin{proof}
+It can be simply checked by differentiation with respect to $t$ and put $t=0$.
+\end{proof}
+
+Finally, let us take a note on the domain issue when using the functional calculus.
+To apply the functional calculus with $f_\delta$ on a net of self-adjoint operators $x_i\in B(H)$ on a Hilbert space $H$, we need to carefully check the spectra of $x_i$ is uniformly bounded to take sufficiently small $\delta$ such that $-\delta^{-1}<x_i$ for all $i$.
+The implementation of this assumption on lower bound is one of the main difficulties in the proofs.
+In (1) the Krein-\v Smulian theorem saves the game, and in (2) the $2^{-n}$ argument is used to make an approximating net bounded below.
+For the part (4), the situation becomes more complicated.
+
+
+
+\subsection{Commutant Radon-Nikodym derivatives}
+
+\begin{defn}
+Let $M$ be a von Neumann algebra, and let $\psi\in M_*^+$.
+Consider the Gelfand-Naimark-Segal representation $\pi:M\to B(H)$ associated to $\psi$, together with the canonical cyclic vector $\Omega\in H$.
+Then, we have a positive bounded linear map $\theta:\pi(M)'\to M_*$ defined such that
+\[\theta(h)(x):=\langle h\pi(x)\Omega,\Omega\rangle,\qquad h\in\pi(M)',\ x\in M.\]
+We will call this linear map $\theta$ the \emph{commutant Radon-Nikodym map} associated to $\psi$.
+\end{defn}
+Let $\theta$ be the commutant Radon-Nikodym map associated to $\psi\in M_*^+$.
+When $M$ is commutative, the inverse map $\theta^{-1}$ assigns a linear functional to an operator, which is exactly the Radon-Nikodym derivative in the classical measure-theoretic sense.
+We put the adjective ``commutant'' to avoid confusion with the Connes Radon-Nikodym derivatives.
+The image of $\theta$ associated to $\psi\in M_*^+$ is described by
+\[\operatorname{im}\theta=\{\omega\in M_*:\text{there is $C>0$ such that $|\omega(x)|\le C\psi(x)$ for all $x\in M^+$}\},\]
+and the Radon-Nikodym derivative $\theta^{-1}(\omega)\in M_*$ of $\omega\in\operatorname{im}\theta$ satisfies the bound $\|\theta^{-1}(\omega)\|\le C$, where $C$ is a constant in the above description of the image of $\theta$.
+
+Let $\omega\in M_*^{sa}$.
+The Jordan decomposition theorem gives a unique pair $\omega_+,\omega_-\in M_*^+$ of positive normal linear functionals such that $\omega=\omega_+-\omega_-$ and $\|\omega\|=\|\omega_+\|+\|\omega_-\|$.
+The absolute value of $\omega$ is defined as $[\omega]:=\omega_++\omega_-$.
+Note that we always have $|\omega(x)|\le[\omega](x)$ for all $x\in M^+$, but if $M$ is not commutative, then for $\omega\in M_*^{sa}$ and $\psi\in M_*^+$ we cannot expect $[\omega]\le\psi$ when $|\omega(x)|\le\psi(x)$ for all $x\in M^+$.
+Note also that when $A$ is a C$^*$-algebra and $\omega_i$ is a net in $A^{*sa}$, we have $(\omega_i)_+\to0$ in norm if $\omega_i\to0$ in norm, but we do not have $(\omega_i)_+\to0$ weakly$^*$ in general if $\omega_i\to0$ weakly$^*$ in $A^*$. 
+See IV.3 for the commutant Radon-Nikodym map and III.4 for the Jordan decomposition theorem in \cite{MR1873025} for the detail.
+
+
+
+\section{Proofs of positive Hahn-Banach separation theorems}
+
+
+
+\begin{thm}\label{1}
+Let $M$ be a von Neumann algebra, and consider the dual pair $(M^{sa},M_*^{sa})$.
+If $F$ is a $\sigma$-weakly closed convex hereditary subset of $M^+$, then $F=F^{r+r+}$.
+Equivalently, if $x\in M^+\setminus F$, then there is $\omega\in M_*^+$ such that $\omega(x)>1$ and $\omega(x')\le1$ for $x'\in F$.
+\end{thm}
+\begin{proof}
+Since the positive polar is represented as the real polar
+\[F^{r+}=F^r\cap M_*^+=F^r\cap(-M^+)^r=(F\cup-M^+)^r=(F-M^+)^r,\]
+the positive bipolar can be written as $F^{r+r+}=(F-M^+)^{rr+}=(\overline{F-M^+})^+$ by the usual real bipolar theorem, where the closure is for the $\sigma$-weak topology.
+Because $F=(F-M^+)^+\subset(\overline{F-M^+})^+$, it suffices to prove the opposite inclusion $(\overline{F-M^+})^+\subset F$.
+
+Define
+\[G:=\left\{x\in M^{sa}:\begin{tabular}{c}
+for any $\varepsilon>0$, there is a net $y_\delta\in F$\\
+indexed on $0<\delta\le(1+\|x\|)^{-1}$ such that\\
+$\|y_\delta\|\le\delta^{-1}$ and $f_\delta(x)\le y_\delta+\varepsilon\delta^{\frac12}$
+\end{tabular}\right\}.\]
+Note that for $x\in G$ the functional calculus $f_\delta(x)$ in the definition of $G$ is well-defined because $\|x\|<\delta^{-1}$.
+
+If $x\in G^+$, then there is a net $y_\delta\in F$ such that $f_\delta(x)\le y_\delta+\delta^{\frac12}$ by letting $\varepsilon=1$.
+For $\delta'>0$, since $0\le f_\delta(x)\le\|x\|$, we have
+\[0\le(1+\delta'\|x\|)^{-1}f_\delta(x)\le f_{\delta'}(f_\delta(x))\le f_{\delta'}(y_\delta+\delta^{\frac12})\le f_{\delta'}(y_\delta)+\delta^{\frac12},\]
+where the last inequality comes from Lemma \ref{f2}.
+As $\delta\to0$ on the above inequality, if we take a subnet to assume the bounded net $f_{\delta'}(y_\delta)$ is convergent $\sigma$-weakly in $F$ as $\delta\to0$ for each $\delta'$, then the $\sigma$-weak convergence $f_\delta(x)\to x$ implies $(1+\delta'\|x\|)^{-1}x\in F$, so the limit $\delta'\to0$ gives $x\in F$.
+This means that $G^+\subset F$, so it suffices to show $G=\overline{F-M^+}$ to prove $(\overline{F-M^+})^+\subset F$.
+
+First we can check $F-M^+\subset G$ since if $x\in F-M^+$ with $y\in F$ such that $x\le y$, then $y_\delta:=f_\delta(y)$ satisfies the conditions in the definition of $G$ independently of the value of $\varepsilon>0$, and we also have $G\subset\overline{F-M^+}$ because $f_\delta(x)-\delta^{\frac12}\in F-M^+$ in the definition of $G$ for $\varepsilon=1$ converges to $x$ $\sigma$-weakly as $\delta\to0$.
+It means that we are enough to show that $G$ is $\sigma$-weakly closed.
+Let $x_i\in G$ be a net such that $x_i\to x$ $\sigma$-weakly.
+By the Krein-\v Smulian theorem, we may assume that $\|x_i\|\le r$ for some $r>0$.
+Assume $\varepsilon\le(2r)^{\frac{11}4}$ and let $\delta_0:=\min\{(\varepsilon/4r^2)^2,(1+r)^{-1}\}$.
+
+For $\delta\in(0,\delta_0]$, then since $\delta\le\inf_i(1+\|x_i\|)^{-1}$, we can take a net $y_{i,\delta}\in F$ following the definition of $G$ such that $f_\delta(x_i)\le y_{i,\delta}+(\varepsilon/2)\delta^{\frac12}$ for all $i$.
+Define $y_\delta$ by the limit of a $\sigma$-weakly convergent subnet of $y_{i,\delta}$.
+Note that the choice of a subnet depends on $\delta$, but it is not an imporant issue.
+We clearly have $\|y_\delta\|\le\delta^{-1}$.
+Since $\|x_i\|\le r$ and $\delta\le(\varepsilon/4r^2)^2\le(2r)^{\frac32}$, by Lemma \ref{f} (1) we have
+\[x_i\le f_\delta(x_i)+(\varepsilon/2)\delta^{\frac12}\le y_{i,\delta}+\varepsilon\delta^{\frac12},\]
+so the weak$^*$ limit for the subnet gives $f_\delta(x)\le x\le y_\delta+\varepsilon\delta^{\frac12}$.
+
+For $\delta\in(\delta_0,(1+\|x\|)^{-1}]$, since we already have taken $y_{\delta_0}\in F$ such that $x\le y_{\delta_0}+\varepsilon\delta_0^{\frac12}$, if we define $y_\delta:=f_{\delta-\delta_0}(y_{\delta_0})\in F$, then $\|y_\delta\|\le\delta^{-1}$ and by Lemma \ref{f2} we get
+\[f_{\delta}(x)\le f_\delta(y_{\delta_0}+\varepsilon\delta_0^{\frac12})\le f_{\delta-\delta_0}(y_{\delta_0})+\varepsilon\delta^{\frac12}=y_\delta+\varepsilon\delta^{\frac12}\]
+
+Therefore, the element $y_\delta$ satisfying the conditions in the definition of $G$ exists for all $\delta\le(1+\|x\|)^{-1}$, we finally have $x\in G$.
+\end{proof}
+
+
+\begin{thm}
+Let $M$ be a von Neumann algebra, and consider the dual pair $(M_*^{sa},M^{sa})$.
+If $F_*$ is a norm closed convex hereditary subset of $M_*^+$, then $F_*=F_*^{r+r+}$.
+Equivalently, if $\omega\in M_*^+\setminus F_*$, then there is $x\in M^+$ such that $\omega(x)>1$ and $\omega'(x)\le1$ for $\omega'\in F_*$.
+\end{thm}
+\begin{proof}
+It is enough to prove $(\overline{F_*-M_*^+})^+\subset F_*$, where the closure is for the weak topology or equivalently in norm by the convexity of $F_*-M_*^+$, so we begin our proof by fixing $\omega\in(\overline{F_*-M_*^+})^+$.
+Let $\omega_n\in F_*-M_*^+$ be a sequence such that $\omega_n\to\omega$ in norm of $M_*$, and take $\varphi_n\in F_*$ such that $\omega_n\le\varphi_n$ for all $n$.
+By modifying $\omega_n$ into $\omega-(\omega-\omega_n)_+=\omega_n-(\omega_n-\omega)_+\in F_*-M_*^+$ and taking a rapidly convergent subsequence, we may assume $\omega_n\le\omega$ and $\|\omega-\omega_n\|\le2^{-n}$ for all $n$ because $\|(\omega_n-\omega)_+\|\le\|\omega_n-\omega\|\to0$.
+Consider the Gelfand-Naimark-Segal representation $\pi:M\to B(H)$ associated to a positive normal linear functional \[\psi:=\sum_n(\omega-\omega_n)+\omega+\sum_n2^{-n}\frac{\varphi_n}{1+\|\varphi_n\|}\]
+on $M$ and the commutant Radon-Nikodym derivatives $h$, $h_n$, and $k_n$ in $\pi(M)'$ with respect to $\psi$, defined such that
+\[\omega=\theta(h),\qquad\omega_n=\theta(h_n),\qquad\varphi_n=\theta(k_n),\]
+where $\theta:\pi(M)'\to M_*$ is the commutant Radon-Nikodym map for $\psi$.
+Since $-1\le h_n\le h$ is bounded, the weak convergence $\omega_n\to\omega$ implies $h_n\to h$ in the weak operator topology of $\pi(M)'$.
+By the Mazur lemma, we can take a net $h_i$ in the convex hull of $h_n$ such that $h_i\to h$ strongly in $\pi(M)'$, and the corresponding $k_i$ can be defined such that $\omega_i:=\theta(h_i)$ and $\varphi_i:=\theta(k_i)$ satisfy $\omega_i\le\varphi_i$ with $\varphi_i\in F_*$ by the convexity of $F_*$.
+In fact, the net $h_i$ can be taken to be a sequence because $\pi(M)'$ is $\sigma$-finite by the existence of the separating vector, but it is not necessary in here.
+For each $i$ and $0<\delta<1$, define
+\[\omega_\delta:=\theta(f_\delta(h)),\qquad\omega_{i,\delta}:=\theta(f_\delta(h_i)),\qquad\varphi_{i,\delta}:=\theta(f_\delta(k_i)),\]
+where the functional calculus $f_\delta(h_i)$ is well-defined because $-1\le h_i$ for all $i$.
+Define $k_\delta$ as the $\sigma$-weak limit of a $\sigma$-weakly convergent subnet of $f_\delta(k_i)$, and let $\varphi_\delta:=\theta(k_\delta)$.
+Note that the choice of a subnet depends on $\delta$, but it is not an imporant issue as in the proof of Theorem \ref{1}.
+Since $f_\delta(h_i)\to f_\delta(h)$ strongly in $\pi(M)'$ by the strong continuity of $f_\delta$, and since we may assume $f_\delta(k_i)\to k_\delta$ $\sigma$-weakly, we have $\omega_{i,\delta}\to\omega_\delta$ and $\varphi_{i,\delta}\to\varphi_\delta$ weakly in $M_*$ for each $\delta$.
+Then, $0\le\varphi_{i,\delta}\le\varphi_i$ implies $\varphi_{i,\delta}\in F_*$, and the weak convergence $\varphi_{i,\delta}\to\varphi_\delta$ in $M_*$ implies $\varphi_\delta\in F_*$.
+On the other hand, $\omega_i\le\varphi_i$ implies $\omega_{i,\delta}\le\varphi_{i,\delta}$ by the operator monotonicity $f_\delta$, and it implies $0\le\omega_\delta\le\varphi_\delta$ by taking the weak limit on $i$, so $\omega_\delta\in F_*$.
+This is a fact that hold independently of the choice of subnet, so the weak convergence $\omega_\delta\to\omega$ in $M_*$ as $\delta\to0$ implies $\omega\in F_*$, and we can finally get $(\overline{F_*-M_*^+})^+\subset F_*$.
+\end{proof}
+
+
+
+\begin{thm}
+Let $A$ be a C$^*$-algebra, and consider the dual pair $(A^{sa},A^{*sa})$.
+If $F$ is a norm closed convex hereditary subset of $A^+$, then $F=F^{r+r+}$.
+Equivalently, if $a\in A^+\setminus F$, then there is $\omega\in A^{*+}$ such that $\omega(a)>1$ and $\omega(a')\le1$ for $a'\in F$.
+\end{thm}
+\begin{proof}
+We directly prove the separation without invoking the arguments of positive bipolars.
+Denote by $F^{**}$ the $\sigma$-weak closure of $F$ in the universal von Neumann algebra $A^{**}$.
+We first show that $F^{**}$ is hereditary subset of $A^{**+}$.
+Suppose $0\le x\le y$ in $A^{**}$ and $y\in F^{**}$.
+Then, there is $z\in A^{**}$ such that $x^{\frac12}=zy^{\frac12}$.
+Take bounded nets $b_i$ in $F$ and $c_i$ in $A$ such that $b_i\to y$ and $c_i\to z$ $\sigma$-strongly$^*$ in $A^{**}$ using the Kaplansky density theorem.
+We may assume the indices of these two nets are shared by considering the product directed set.
+Since both the multiplication and the involution of a von Neumann algebra on bounded parts are continuous in the $\sigma$-strong$^*$ topology, and since the square root on a positive bounded interval is strongly continuous, we have the $\sigma$-strong$^*$ limit
+\[x=y^{\frac12}z^*zy^{\frac12}=\lim_ib_i^{\frac12}c_i^*c_ib_i^{\frac12},\]
+so we obtain $x\in F^{**}$ from $b_i^{\frac12}c_i^*c_ib_i^{\frac12}\in F$.
+Thus, $F^{**}$ is hereditary in $A^{**+}$.
+
+Let $a\in A^+\setminus F$.
+If $a\in F^{**}$, then we have a net $a_i$ in $F$ such that $a_i\to a$ $\sigma$-weakly in $A^{**}$, which means that $a_i\to a$ weakly in $A$, and by the weak closedness of $F$ in $A$ we get a contradiction $a\in F^{**}\cap A=F$.
+It implies $a\in A^{**+}\setminus F^{**}$, so by Theorem \ref{1}, there is $\omega\in A^{*+}$ such that $\omega(a)>1$ and $\omega(a')\le1$ for all $a'\in F\subset F^{**}$, and we are done.
+\end{proof}
+
+
+
+
+\begin{thm}\label{4}
+Let $A$ be a C$^*$-algebra, and consider the dual pair $(A^{*sa},A^{sa})$.
+If $F^*$ is a weakly$^*$ closed convex hereditary subset of $A^{*+}$, then $F^*=(F^*)^{r+r+}$.
+Equivalently, if $\omega\in A^{*+}\setminus F^*$, then there is $a\in A^+$ such that $\omega(a)>1$ and $\omega'(a)\le1$ for $\omega'\in F^*$.
+\end{thm}
+\begin{proof}
+As same as above, our goal is to prove $(\overline{F^*-A^{*+}})^+\subset F^*$, where the bar will always mean the weak$^*$ closure throughout the whole proof.
+Let
+\[G^*:=\left\{\omega\in A^{*sa}:\begin{tabular}{c}
+for any $\varepsilon>0$, there are nets $\psi_\delta\in A^{*+}$ and $\varphi_\delta\in F^*$\\
+indexed on $0<\delta\le(1+4\|\omega\|)^{-6}$ such that\\
+the following five conditions are satisfied:\\
+ $|\omega(a)|\le\delta^{-\frac16}\psi_\delta(a)$ for all $a\in A^+$, $\|\psi_\delta\|\le1$, $\|\varphi_\delta\|\le\delta^{-1}$,\\
+$\omega_\delta\le\varphi_\delta+\varepsilon\delta^{\frac12}\psi_\delta$, and $\omega_\delta\to\omega$ weakly$^*$ in $A^*$ as $\delta\to0$
+\end{tabular}\right\},\]
+where $\omega_\delta:=\theta_\delta(f_\delta(\theta_\delta^{-1}(\omega)))$, and here $\theta_\delta$ denotes the commutant Radon-Nikodym map associated to $\psi_\delta$.
+Note that the first condition $|\omega(a)|\le\delta^{-\frac16}\psi_\delta(a)$ for all $a\in A^+$ implies $\omega$ belongs to the image of $\theta_\delta$, and the functional calculus $f_\delta(\theta_\delta^{-1}(\omega))$ in the definition of $\omega_\delta$ is well-defined since $\|\theta_\delta^{-1}(\omega)\|\le\delta^{-\frac16}\le\delta^{-1}$.
+
+Suppose $\omega\in G^{*+}$, with nets $\psi_\delta\in A^{*+}$ and $\varphi_\delta\in F^*$ such that the five conditions hold for $\varepsilon=1$.
+For any $\delta'>0$ the bound $0\le\theta_\delta^{-1}(\delta^{\frac16}\omega_\delta)\le\theta_\delta^{-1}(\delta^{\frac16}\omega)\le1$ implies
+\begin{align*}
+0&\le(1+\delta')^{-1}\theta_\delta^{-1}(\delta^{\frac16}\omega_\delta)
+\le f_{\delta'}(\theta_\delta^{-1}(\delta^{\frac16}\omega_\delta))
+\le f_{\delta'}(\theta_\delta^{-1}(\delta^{\frac16}\varphi_\delta)+\delta^{\frac12}\theta_\delta^{-1}(\delta^{\frac16}\psi_\delta))\\
+&=f_{\delta'}(\theta_\delta^{-1}(\delta^{\frac16}\varphi_\delta)+\delta^{\frac23})
+\le f_{\delta'}(\theta_\delta^{-1}(\delta^{\frac16}\varphi_\delta))+\delta^{\frac23},
+\end{align*}
+where the last inequality is by Lemma \ref{f2}, so taking $\theta_\delta$ and multplying $\delta^{-\frac16}$, we get
+\[0\le(1+\delta')^{-1}\omega_\delta\le\delta^{-\frac16}\theta_\delta(f_{\delta'}(\theta_\delta^{-1}(\delta^{\frac16}\varphi_\delta)))+\delta^{\frac12}\psi_\delta.\]
+If we denote by $\Omega_\delta$ the canonical cyclic vector of the Gelfand-Naimark-Segal representation of $A$ associated to $\psi_\delta$, then
+\[\|\delta^{-\frac16}\theta_\delta(f_{\delta'}(\theta_\delta^{-1}(\delta^{\frac16}\varphi_\delta)))\|=\delta^{-\frac16}\langle f_{\delta'}(\theta_\delta^{-1}(\delta^{\frac16}\varphi_\delta))\Omega_\delta,\Omega_\delta\rangle\le\delta^{-\frac16}\delta'^{-1},\]
+so choosing $\delta':=\delta^{\frac16}$, we may assume $\delta^{-\frac16}\theta_\delta(f_{\delta'}(\theta_\delta^{-1}(\delta^{\frac16}\varphi_\delta)))\le\varphi_\delta\in F^*$ is weakly$^*$ convergent in $F^*$ as $\delta\to0$ by taking a subnet.
+Then, since $(1+\delta^{\frac16})^{-1}\omega_\delta\to\omega$ and $\delta^{\frac12}\psi_\delta\to0$ weakly$^*$ in $A^*$ as $\delta\to0$, we obtain $\omega\in F^*$.
+It means that $G^{*+}\subset F^*$, so we claim $G^*=\overline{F^*-A^{*+}}$ to prove $(\overline{F^*-A^{*+}})^+\subset F^*$.
+
+Since every element $\omega\in G^*$, letting $\varepsilon=1$, has a net $\omega_\delta-\delta^{\frac12}\psi_\delta\in F^*-A^{*+}$ that converges to $\omega$ weakly$^*$ as $\delta\to0$, we have $G^*\subset\overline{F^*-A^{*+}}$.
+For the other direction, suppose first $\omega\in F^*-A^{*+}$ and take any $\varphi\in F^*$ such that $\omega\le\varphi$.
+Fixing any $\varepsilon>0$, for each $\delta\le(1+4\|\omega\|)^{-6}$ let
+\[\psi_\delta:=\frac{[\omega]}{1+\|\omega\|}+\frac\varphi{(1+\|\omega\|)(1+\|\varphi\|)},\qquad\varphi_\delta:=\theta_\delta(f_\delta(\theta_\delta^{-1}(\varphi))).\]
+Note that they are independent of $\varepsilon$.
+The first condition for $\omega$ holds as
+\[|\omega(a)|\le[\omega](a)\le(1+\|\omega\|)\psi_\delta(a)\le(1+4\|\omega\|)\psi_\delta(a)\le\delta^{-\frac16}\psi_\delta(a),\qquad a\in A^+,\]
+and the second condition for $\omega$ is easily checked by
+\[\|\psi_\delta\|\le\frac{\|\omega\|}{1+\|\omega\|}+\frac1{1+\|\omega\|}\frac{\|\varphi\|}{1+\|\varphi\|}\le1.\]
+The third condition for $\omega$ follows as
+\[\|\varphi_\delta\|=\varphi_\delta(1_{A^{**}})=\langle f_\delta(\theta_\delta^{-1}(\varphi))\Omega_\delta,\Omega_\delta\rangle\le\delta^{-1}\|\Omega_\delta\|^2=\delta^{-1}\|\psi_\delta\|\le\delta^{-1}.\]
+If we let $\omega_\delta:=\theta_\delta(f_\delta(\theta_\delta^{-1}(\omega)))$ as in the definition of $G^*$, then the positivity of $\theta_\delta$ and the operator monotonicity of $f_\delta$ give the fourth condition $\omega_\delta\le\varphi_\delta\le\varphi_\delta+\varepsilon\delta^{\frac12}\psi_\delta$, and since $\psi_\delta$ is independent of $\delta$ so that $f_\delta(\theta_\delta^{-1}(\omega))\to\theta_\delta^{-1}(\omega)$ in the strong operator topology as $\delta\to0$, we have the fifth condition $\omega_\delta\to\omega$ weakly$^*$ in $A^*$.
+Thus we have $\omega\in G^*$ and $F^*-A^{*+}\subset G^*$, so it is enough to show $G^*$ is weakly$^*$ closed to prove the claim.
+
+Let $\omega_i\in G^*$ be a net satisfying $\omega_i\to\omega$ weakly$^*$ in $A^*$, which may be assumed to be bounded by the Krein-\v Smulian theorem, so we let $\|\omega_i\|\le r$ for some $r>0$.
+In order to show $\omega\in G^*$, we fix $\varepsilon>0$ and aim to construct an appropriate pair of sequences $\psi_\delta$ and $\varphi_\delta$ for each $\delta\in(0,(1+4\|\omega\|)^{-6}]$.
+Assume $\varepsilon\le2^{\frac{14}5}$ so that $(\varepsilon/8)^6\le2^{-\frac65}$, and let $\delta_0:=\min\{(\varepsilon/8)^6,(1+4r)^{-6}\}$.
+
+Let $\delta\in(0,\delta_0]$.
+Since $\delta\le\inf_i(1+4\|\omega_i\|)^{-6}$, we can take $\psi_{i,\delta}\in A^{*+}$ and $\varphi_{i,\delta}\in F^*$ for all $i$ following the definition of $G^*$ such that the fourth condition is given by $\omega_{i,\delta}\le\varphi_{i,\delta}+(\varepsilon/4)\delta^{\frac12}\psi_{i,\delta}$, where $\omega_{i,\delta}:=\theta_{i,\delta}(f_\delta(\theta_{i,\delta}^{-1}(\omega)))$ is the suppressed functional via the commutant Radon-Nikodym map $\theta_{i,\delta}$ associated to $\psi_{i,\delta}$.
+Taking a convergent subnet of the net $(\psi_{i,\delta},\varphi_{i,\delta})_\delta$ in the compact space $\prod_{0<\delta\le\delta_0}\{(\psi,\varphi)\in A^{*+}:\psi\le1,\ \varphi\le\delta^{-1}\}$, we may assume the nets $\psi_{i,\delta}$ and $\varphi_{i,\delta}$ are weakly$^*$ convergent for each $\delta\le\delta_0$.
+We define $\psi_\delta\in A^{*+}$ and $\varphi_\delta\in F^*$ as the weak$^*$ limits in $A^*$ of them respectively.
+Be cautious that we still have the weak$^*$ convergence $\omega_i\to\omega$ by the initial assumption even after taking a subnet, but $\omega_{i,\delta}$ may not weakly$^*$ converge to $\omega_\delta=\theta_\delta(f_\delta(\theta_\delta^{-1}(\omega)))$.
+Considering the limits for the three weakly$^*$ convergent nets $\omega_i\to\omega$, $\psi_{i,\delta}\to\psi_\delta$, and $\varphi_{i,\delta}\to\varphi_\delta$ in $A^*$ for each $\delta$, we can easily check that $\psi_\delta$ and $\varphi_\delta$ satisfy the first three conditions for $\omega$.
+Before the check of fourth and fifth conditions, observing that the first conditions for $\omega_i$ and $\omega$ imply $\|\theta_{i,\delta}^{-1}(\omega_i)\|\le\delta^{-\frac16}$ and $\|\theta_\delta^{-1}(\omega)\|\le\delta^{-\frac16}$ respectively, we can see that $\delta\le(\varepsilon/8)^6\le2^{-\frac65}$ implies
+\[\omega_i\le\omega_{i,\delta}+(\varepsilon/4)\delta^{\frac12}\psi_{i,\delta},\qquad\omega\le\omega_\delta+(\varepsilon/4)\delta^{\frac12}\psi_\delta,\]
+by Lemma \ref{f} (2).
+Combining with $\omega_{i,\delta}\le\omega_i$ and $\omega_\delta\le\omega$, we also have
+\[|(\omega_\delta-\omega_{i,\delta})(a)|\le|(\omega-\omega_i)(a)|+(\varepsilon/4)\delta^{\frac12}\max\{\psi_{i,\delta}(a),\psi_\delta(a)\},\qquad a\in A^+.\]
+Then, by taking the weak$^*$ limit for $i$ on
+\[\omega_i\le\omega_{i,\delta}+(\varepsilon/4)\delta^{\frac12}\psi_{i,\delta}\le\varphi_{i,\delta}+(\varepsilon/2)\delta^{\frac12}\psi_{i,\delta},\]
+we obtain the fourth condition $\omega_\delta\le\omega\le\varphi_\delta+(\varepsilon/2)\delta^{\frac12}\psi_\delta\le\varphi_\delta+\varepsilon\delta^{\frac12}\psi_\delta$ for $\omega$.
+On the other hand, if we fix $i$ such that $|(\omega_i-\omega)(a)|<\varepsilon$, which is independent of $\delta$ because $\omega_i$ is taken to be a digonal subnet, then
+\begin{align*}
+|(\omega_\delta-\omega)(a)|
+&\le|(\omega_\delta-\omega_{i,\delta})(a)|+|(\omega_{i,\delta}-\omega_i)(a)|+|(\omega_i-\omega)(a)|\\
+&\le|(\omega_{i,\delta}-\omega_i)(a)|+2|(\omega_i-\omega)(a)|+(\varepsilon/4)\delta^\frac12\max\{\psi_{i,\delta}(a),\psi_\delta(a)\}\\
+&\le|(\omega_{i,\delta}-\omega_i)(a)|+2\varepsilon+(\varepsilon/4)\delta^{\frac12}\|a\|,
+\end{align*}
+so taking the limit superior $\delta\to0$ and the limit $\varepsilon\to0$ in order on the above estimate, we obtain the weak$^*$ convergence $\omega_\delta\to\omega$ as $\delta\to0$, the fifth condition for $\omega$.
+
+Let $\delta\in(\delta_0,(1+4\|\omega\|)^{-6}]$.
+Recall that we have $\omega\le\varphi_{\delta_0}+(\varepsilon/2){\delta_0}^{\frac12}\psi_{\delta_0}$.
+Define
+\[\psi_\delta:=\delta^{\frac16}[\omega]+4^{-1}\delta_0\varphi_{\delta_0}+2^{-1}\psi_{\delta_0},\qquad\varphi_\delta:=\theta_\delta(f_{\delta-(\delta_0/4)}(\theta_\delta^{-1}(\varphi_{\delta_0}))),\]
+where $\theta_\delta$ is the commutant Radon-Nikodym map associated to $\psi_\delta$.
+We do not need to check the fifth condition in the range of $\delta$ we consider.
+If we denote $h:=\theta_\delta^{-1}(\omega)$, $k_{\delta_0}:=\theta_\delta^{-1}(\varphi_{\delta_0})$, and $l_{\delta_0}:=\theta_\delta^{-1}(\psi_{\delta_0})$, then $\|k_{\delta_0}\|\le(\delta_0/4)^{-1}$ and $\|l_{\delta_0}\|\le2$ imply
+\[f_\delta(h)\le f_\delta(k_{\delta_0}+(\varepsilon/2)\delta_0^{\frac12}l_{\delta_0})\le f_\delta(k_{\delta_0}+\varepsilon\delta_0^{\frac12})\le f_{\delta-(\delta_0/4)}(k_{\delta_0})+\varepsilon\delta^\frac12\]
+by Lemma \ref{f2}, and it provides the fourth condition $\omega_\delta\le\varphi_\delta+\varepsilon\delta^{\frac12}\psi_\delta$.
+The first condition is clear by $[\omega]\le\delta^{-\frac16}\psi_\delta$, and the other two conditions also hold because
+\[\|\psi_\delta\|\le\frac{\|\omega\|}{1+4\|\omega\|}+\frac{\delta_0\|\varphi_{\delta_0}\|}4+\frac{\|\psi_{\delta_0}\|}2<\frac14+\frac14+\frac12=1\]
+and
+\[\|\varphi_\delta\|=\langle f_{\delta-(\delta_0/4)}(k_{\delta_0})\Omega_\delta,\Omega_\delta\rangle\le\langle f_{\delta-(\delta_0/4)}((\delta_0/4)^{-1})\Omega_\delta,\Omega_\delta\rangle=\delta^{-1}\|\Omega_\delta\|^2\le\delta^{-1},\]
+where $\Omega_\delta$ is the canonical cyclic vector of the cyclic representation associated to $\psi_\delta$.
+
+Therefore, $\omega\in G^*$, proving that $G^*$ is weakly$^*$ closed, hence the claim $G^*=\overline{F^*-A^{*+}}$ follows.
+\end{proof}
+
+
+
+\begin{rmk}
+We want to take some notes to try to explain the technical reasons why the constants or exponents in the definition of $G$ and $G^*$ are defined in such a way.
+
+For $G$ in the proof of Theorem \ref{1}, the restriction of the range $\delta\le(1+\|x\|)^{-1}$ is required for the well-definedness of the functional calculus $f_\delta(x)$.
+The arbitrarily small perturbation $\varepsilon\delta^{\frac12}$ is introduced because when we prove the closedness of $G$ the error between $x$ and $y_\delta$ should become greater than the error between $x_i$ and $y_{i,\delta}$ in the process of applying Lemma \ref{f}.
+The exponent $\frac12$ on $\delta$ is set because we need $p<1$ to use the inequality $x\le f_\delta(x)+(\varepsilon/2)\delta^p$ for arbitrarily small $\varepsilon>0$, provided even though $\|x\|$ is bounded by a constant, which might be arbitrarily large.
+
+Now let us consider $G^*$ in the proof of Theorem \ref{4}.
+In the first condition $|\omega|\le\delta^{-\frac16}\psi_\delta$, the coefficient in front of $\psi_\delta$ needs to grow linearly along with the size of $\omega$ because we set $\psi_\delta$ to be always bounded by one, but it is necessary to remove the explicit dependence on the norm $\|\omega\|$ from the coefficient in order to make the weak$^*$ limits $\omega_i\to\omega$ and $\psi_{i,\delta}\to\psi_\delta$ preserve the inequality $|\omega_i|\le\delta^{-\frac16}\psi_{i,\delta}$ for each fixed $\delta$.
+
+There are four remarks for the bounded range $\delta\le(1+4\|\omega\|)^{-6}$.
+First, the necessity of a bound for $\delta$ is for the well-definedness of the functional calculus $f_\delta(h)$ as in $G$.
+Second, the dependence of the bound for $\delta$ on the norm $\|\omega\|$ is needed to fix a non-zero $\delta$ uniformly on the index $i$ of a bounded net $\omega_i$ when we consider limit $\omega_{i,\delta}\to\omega_\delta$ with the Krein-\v Smulian.
+Third, to use $h\le f_\delta(h)+(\varepsilon/4)\delta^{\frac12}$ for the growing norm of $\|h\|$ as $\delta\to0$, it needs to have a sufficiently slow growth rate at least $\|h\|\le\delta^{-\frac14}$, but the value $-\frac16$ is used because $-\frac14$ is not enough to cover the choice of arbitrarily small $\varepsilon>0$.
+Finally, The number $4$ in front of $\|\omega\|$ can be technically any constant greater than $1$, and it is introduced to define $\psi_\delta$ such that $\|l_{\delta_0}\|$ becomes uniformly bounded for $\delta\ge\delta_0$.
+
+\end{rmk}
+
+
+\iffalse
+\section{Applications to Combes-type theorems}
+
+
+The positive Hahn-Banach separation theorem implies a generalization of the theorems of Combes and Haagerup on normal or lower semi-continuous subadditive weights.
+\begin{cor}
+Let $M$ be a von Neumann algebra.
+Then, there is a one-to-one correspondence
+\[\begin{array}{ccc}
+\left\{\emph{\begin{tabular}{c}normal subadditive\\weights of $M$\end{tabular}}\right\}&\leftrightarrow&\left\{\emph{\begin{tabular}{c}norm closed convex\\hereditary subsets of $M_*^+$\end{tabular}}\right\}\\[10pt]
+\varphi&\mapsto&\{\omega\in M_*^+:\omega\le\varphi\}
+\end{array}\]
+\end{cor}
+
+
+Let $\varphi$ be a completely additive weight.
+
+$\varphi(\sum_ip_i)=\sum_i\varphi(p_i)$.
+
+We always have $\varphi(\sum_ip_i)\ge\sum_i\varphi(p_i)$.
+
+
+$\varphi(x)\le1$ if and only if $\sup_{\omega\in F_*}\omega(x)\le1$?
+
+
+
+
+$p_i\omega p_i\to\omega$ in norm since $\|\omega-p\omega p\|\le2\omega(1-p)^{\frac12}$, but we do not have $p_i\omega p_i\le\omega$.
+
+$\|\omega-p\omega p\|^2\le4\omega(1)-4\omega(p)$
+
+$4\omega(1)\lesssim 4\omega(p)$
+
+
+For a normal weight $\varphi$, if we find a small closed $F_*$ such that $F_*^{r+}=\{x:\varphi(x)\le1\}$, then it means that for every $\omega$, $\omega\le\varphi$ implies $\omega\in F_*$...
+
+
+For $m\in\widehat M^+$, $F_*:=\{\omega:\omega(m)\le1\}$ is norm closed.
+Its positive polar is $\{x:x\le m\}$, and its positive polar is...
+So $\omega(m)=\sup_{x\le m}\omega(x)$ for any $\omega\in M_*^+$.
+
+
+$\varphi(m)=?$
+
+\fi
+
+\bibliographystyle{alpha}
+\bibliography{phb}
+
+
+
+
+\newpage
+\thispagestyle{empty}
+
+\begin{center}
+{\huge 修士論文の要旨}\\[36pt]
+{\Huge 修士論文題目}\\[24pt]
+{\Huge Positive Hahn-Banach separation\\[8pt]
+theorems in operator algebras}\\[24pt]
+{\huge （作用素環における\\[8pt]
+正ハーン・バナッハ分離定理）}\\[36pt]
+\begin{tabular}{cl}
+{\LARGE 氏名} & {\LARGE Choi Ikhan}\\[36pt]
+\end{tabular}
+\end{center}
+
+
+
+この修士論文では1975年にHaagerupによって提案されたC$^*$環の双対空間上の正双極定理を肯定的に解決する。
+直接的な結果として、次のような作用素環とその双対空間における正ハーン・バナッハ分離定理が得られる。
+
+\textbf{定理．}
+$M$をvon Neumann環、$A$をC$^*$環とする。
+\begin{enumerate}
+\item $F$が$M^+$の$\sigma$-弱閉凸遺伝部分集合、$x$が$M^+\setminus F$の元であれば、$\omega(x)>1$\quad かつ任意の$x'\in F$に対して$\omega(x')\le1$を満たす$\omega\in M_*^+$が存在する.
+\item $F_*$が$M_*^+$のノルム閉凸遺伝部分集合、$\omega$が$M_*^+\setminus F_*$の元であれば、$\omega(x)>1$\quad かつ任意の$\omega'\in F_*$に対して$\omega'(x)\le1$を満たす$x\in M^+$が存在する.
+\item $F$が$A^+$のノルム閉凸遺伝部分集合、$a$が$A^+\setminus F$の元であれば、$\omega(a)>1$\quad かつ任意の$a'\in F$に対して$\omega(a')\le1$を満たす$\omega\in A^{*+}$が存在する.
+\item $F^*$が$A^{*+}$の弱$^*$閉凸遺伝部分集合、$\omega$が$A^{*+}\setminus F$の元であれば、$\omega(a)>1$\quad かつ任意の$\omega'\in F^*$に対して$\omega'(a)\le1$を満たす$a\in A^+$が存在する.
+\end{enumerate}
+
+上記の定理の最初の三つは本来Haagerupによって証明されたもので、同論文にはC$^*$環の双対空間に対しても同じ結論(4)が成り立つかが問題として残されている。
+最初の(1)は、von Neumann環の$\sigma$-弱下半連続荷重が、正の正規線型汎函数の各点上限として与えられることを示す時に重要な役割を果たしている。
+
+(1)から(3)までは(4)と違ってすでに知られている結果だが、この修士論文では、(4)の証明のアイデアの動機を説明するために、(1)から(3)に対してもHaagerupの論文とは違う方針で証明する。
+もう少し詳細に述べると、Haagerupによる(1)の証明では$\sigma$-強位相が強く利用されているが、C$^*$環の双対空間には$\sigma$-強位相のような性質の良い弱$^*$位相の双対位相が存在しない。
+この故に、ここで$\sigma$-弱位相のみを使う(1)の新たな証明を紹介し、この議論が(4)の証明にも適切に拡張されることを確認する。
+また、Haagerupは(2)を証明するために(1)を使っているが、実は(1)の証明で必要なKrein-\v Smulian定理が(2)に本質的に使われないことが見られる。
+(3)は(1)の簡単な系である。
+
+上記の定理を示すためには、まず定理の主張をある包含問題に書き換える必要がある。
+具体的に、$E$を適宜の順序付き実局所凸空間とし、$(\overline{F-E^+})^+\subset F$のような形の主張を示せば良い。
+そのために、$E$の正の元$x$に収束する有向点族$x_i$に対して$x_i\le y_i$を満たす$y_i\in F$があるとし、極限$x$も$F$の元によって抑えられることを示さなければならない。
+ここで、$y_i$は一般的に極限点を持たないので、媒介変数$\delta>0$を持つ実関数族$f_\delta(t):=(1+\delta t)^{-1}t$の汎函数計算を導入することで$y_i$を抑える。
+この関数族は、作用素単調性を持ち、恒等関数に強く収束することが知られていて、例えば(1)の証明を考えると、有界有向点族$f_\delta(y_i)$の$\sigma$-弱位相に対する極限点を取ることで、$f_\delta(x)\in F$及び$x\in F$が得られる。
+
+作用素環の前双対及び双対空間の場合、線型汎函数を汎函数計算で抑えるために、作用素環でのRadon-Nikodym定理を利用し、線型汎函数を作用素に置き換える手法を使う。
+$M$をvon Neumann環とし、$\psi\in M_*^+$とした時、これに付随するGelfand-Naimark-Segal表現$\pi:M\to B(H)$と巡回ベクトル$\Omega\in H$を考えると、正線型写像$\theta:\pi(M)'\to M_*$を$h\in\pi(M)'$と$x\in M$に対して$\theta(h)(x):=\langle h\pi(x)\Omega,\Omega\rangle$を満たすように定められる。
+この写像の像は、任意の$x\in M^+$に対して$|\omega(x)|\le C\psi(x)$を満たす定数$C>0$が存在する$\omega\in M_*$の集合になる。
+
+$\sigma$-強位相を使わない(1)の証明で最も重要なアイデアは、次のような集合を導入することである：
+\[G:=\left\{x\in M^{sa}:\begin{tabular}{c}
+for any $\varepsilon>0$, there is a net $y_\delta\in F$\\
+indexed on $0<\delta\le(1+\|x\|)^{-1}$ such that\\
+$\|y_\delta\|\le\delta^{-1}$ and $f_\delta(x)\le y_\delta+\varepsilon\delta^{\frac12}$
+\end{tabular}\right\}.\]
+$G^+\subset F$及び$F-M^+\subset G\subset\overline{F-M^+}$を確認した後、$G$が$\sigma$-弱位相で閉であることを示すことで証明を完了する。
+このような集合を導入して閉性を示す問題に置き換えることにより、Krein-\v Smulian定理が使えるようになる。
+しかし、(4)の場合、ある$\psi\in A^{*+}$に対するRadon-Nikodym写像$\theta:\pi(A)'\to A^*$を通じて$\theta(f_\delta(\theta^{-1}(\varphi)))$のように$\varphi\in F^*$を抑えると、$\pi(A)'$の$\sigma$-弱収束が$A^*$上の弱収束を導くので、安易に考えると$F^*$がノルム閉であるだけで証明が成り立つ結果をうむ。
+従って、Radon-Nikodym写像を定義するための$\psi$も$\delta$によって動かし、抑えられた線型汎函数$\theta_\delta(f_\delta(\theta_\delta^{-1}(\varphi)))$を$\pi(A)'$内の有界性ではなく、$A^*$内の有界性を使うようにする。
+そのため、次のような集合を考えて(1)と同様に定理を証明する：$\omega_\delta:=\theta_\delta(f_\delta(\theta_{\delta}^{-1}(\omega)))$とし、
+\[G^*:=\left\{\omega\in A^{*sa}:\begin{tabular}{c}
+for any $\varepsilon>0$, there are nets $\psi_\delta\in A^{*+}$ and $\varphi_\delta\in F^*$\\
+indexed on $0<\delta\le(1+4\|\omega\|)^{-6}$ such that\\
+the following five conditions are satisfied:\\
+ $|\omega(a)|\le\delta^{-\frac16}\psi_\delta(a)$ for all $a\in A^+$, $\|\psi_\delta\|\le1$, $\|\varphi_\delta\|\le\delta^{-1}$,\\
+$\omega_\delta\le\varphi_\delta+\varepsilon\delta^{\frac12}\psi_\delta$, and $\omega_\delta\to\omega$ weakly$^*$ in $A^*$ as $\delta\to0$
+\end{tabular}\right\}.\]
+
+\thispagestyle{empty}
+\end{document}

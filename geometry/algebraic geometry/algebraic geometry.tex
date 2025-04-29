@@ -4,6 +4,7 @@
 \newcommand{\Cl}{\operatorname{Cl}}
 \newcommand{\Pic}{\operatorname{Pic}}
 \newcommand{\Proj}{\operatorname{Proj}}
+\newcommand{\Sch}{\mathrm{Sch}}
 
 \begin{document}
 \title{Algebraic Geometry}
@@ -16,34 +17,65 @@
 
 \chapter{Schemes}
 
-\begin{prb}
-schemes and points
-\end{prb}
-Every ring will be commutative and unital if not mentioned.
-For a ring $A$, $\Spec A$ is a ringed space defined by the set of all prime ideals of $A$, together with a sheaf of rings.
-A subset of $\Spec A$ is defined to be \emph{closed} if it is given by the zero set $\Spec A/\fa=\{\fp\in\Spec A:\fa\subset\fp\}$ for some ideal $\fa\subset A$.
-An ideal $\fa$ of $A$ is proper if and only if the corresponding zero set $\Spec A/\fa$ is non-empty.
-A \emph{generic} point of a topological space is a point whose closure is the whole space.
-specialization and generalization..
 
-\[\Spec\Z=\{(p):p\in\Z\text{ prime}\}\cup\{0\}.\]
-\[\Spec\R[x]=\A^1_\R=\{(x-a):a\in\R\}\cup\{(f):f\in\R[x]\text{ irreducible quadratic}\}\cup\{0\}.\]
+
+\begin{prb}[Affine schemes]
+Let $A$ be a ring.
+Every ring will be commutative and unital if not mentioned.
+The spectrum $\Spec A$ of $A$ is defined as the partially ordered set of all prime ideals of $A$.
+It is topologized by the Zariski topology in which a subset of $\Spec A$ is closed if and only if it is given by the zero set $\Spec A/\fa=\{\fp\in\Spec A:\fa\subset\fp\}$ of some ideal $\fa\subset A$.
+It also admits a canonical structure sheaf $\cO_{\Spec A}:\mathrm{Open}(\Spec A)^\op\to\mathrm{CRing}$ of rings characterized by
+\[\cO_{\Spec A}(D(f)):=A_f=A[f^{-1}],\qquad D(f):=(\Spec A/(f))^c=\{\fp\in\Spec A:f\notin\fp\},\qquad f\in A.\]
+In conclusion, a ring $A$ defines a locally ringed space $\Spec A$.
+\begin{parts}
+\item There is a one-to-one correspondence between Zariski closed sets and radical ideals, and a Zariski closed subset is an upper set.
+\item An ideal $\fa$ of $A$ is proper if and only if the zero set $\Spec A/\fa$ is non-empty.
+\end{parts}
+
+\end{prb}
+
+\begin{prb}[Schemes]
+A \emph{scheme} is a locally affine locally ringed space.
+Affine open subsets form a basis.
+The existence of an affine open cover is enough.
+
+
+\end{prb}
+
+
+A \emph{generic point} of a topological space is a point whose closure is the whole space.
+A \emph{closed point} of a topological space is a point which is closed.
+specialization and generalization.
+Closed points of an affine scheme are exactly maximal ideals.
+
+
+\[\Spec\Z=\{(p):p\in\Z\text{ prime}\}\cup\{(0)\}.\]
+\[\Spec\R[x]=\A^1_\R=\{(x-a):a\in\R\}\cup\{(f):f\in\R[x]\text{ irreducible quadratic}\}\cup\{(0)\}.\]
 \[\Spec\Q[x]=\A^1_\Q\]
-\[\Spec\F_p[x]=\A^1_{\F_p}=\{(f):f\in\F_p[x]\text{ irreducible}\}\cup\{0\}.\]
+\[\Spec\F_p[x]=\A^1_{\F_p}=\{(f):f\in\F_p[x]\text{ irreducible}\}\cup\{(0)\}.\]
 \[\Spec\C[x,y]=\A^2_\C=\{(x-a,y-b):(a,b)\in\C^2\}\cup\{(f):f\in\C[x,y]\text{ irreducible}\}\cup\{(0)\}.\]
 
-Nulstellensatz states that the set of closed points of $\A^n_\C$ is exactly $\C^n$.
+
+Nulstellensatz states that the set of closed points of the affine scheme $\A^n$ over an algebraically closed field $k$ is exactly $k^n$.
 It connects the theory of classical algebraic geometry to scheme theory.
 Zariski lemma, somtimes called the Nullstellensatz, states that for a field $k$ the residue field of a maximal ideal of $k[x_1,\cdots,x_n]$ is a finite extension of $k$.
 In other words, for a field extension $K/k$, $K$ is finitely generated as $k$-modules if $K$ is finitely generated as $k$-algebras.
+
+
+\begin{prb}[Functor of points]
+The \emph{functor of points} of a scheme $X$ is a functor $\mathrm{Aff}^\op\to\mathrm{Set}:\Spec A\mapsto[\Spec A,X]$ or $\mathrm{Sch}^\op\to\mathrm{Set}:T\mapsto[T,X]$.
+A \emph{rational point} of $X$ over a ring $A$ is a morphism $\Spec A\to X$ of schemes.
+
+Conversely, a functor $\mathrm{Aff}^\op\to\mathrm{Set}$ is representable by scheme if and only if it is a sheaf on the site $\mathrm{Aff}$ and it has an open cover by affine schemes.
+\end{prb}
 
 
 \begin{prb}[Quotients and localizations]
 \end{prb}
 
 For an ideal $\fa\subset A$, the spectrum of the quotient $\Spec A/\fa$ gives a closed subset of $\Spec A$.
-For an element $f\in A$, the spectrum of the localization $\Spec A_f$ gives a distinguished open subset of $\Spec A$, which generate a topological base.
-For a prime ideal $\fp\subset A$, the spectrum of the localization $\Spec A_\fp$, which is a local ring, gives the set of prime ideals $\Spec A$ containing $\fp$.
+For an element $f\in A$, the localization is $A_f=\{1,f,f^2,\cdots\}^{-1}A$, and the spectrum $\Spec A_f$ gives a distinguished open subset of $\Spec A$ with complement $\Spec A/(f)$, which generate a topological base when $f$ runs through $A$.
+For a prime ideal $\fp\subset A$, the localization $A_\fp=(A\setminus\fp)^{-1}A$ is a local ring, and the spectrum $\Spec A_\fp$ gives the set of prime ideals $\Spec A$ contained in $\fp$.
 
 
 \[\Spec\C[x]_x=\Spec\C[x]\setminus\Spec\C[x]/(x)=\{(x-a):a\in\C\setminus\{0\}\}\cup\{(0)\}\]
@@ -56,7 +88,7 @@ For a prime ideal $\fp\subset A$, the spectrum of the localization $\Spec A_\fp$
 
 \begin{prb}[Integral schemes]
 Let $X$ be a scheme.
-We say $X$ is \emph{reduced} if every stalk is reduced, that is, it has no non-zero nilpotents, i.e.~``A function is zero if it is zero at every point''.
+We say $X$ is \emph{reduced} if every stalk is reduced, that is, it has no non-zero nilpotents, i.e.~``a function is zero if it is zero at every point''.
 We say $X$ is \emph{irreducible} if every two open subsets intersects.
 It is an algebro-geometric analogue of connectedness.
 We say $X$ is \emph{integral} if it is non-empty and every non-empty affine open subset is isomorphic to the spectrum of an integral domain.
@@ -125,17 +157,22 @@ direct image, inverse image
 \chapter{Quasi-coherent sheaves}
 
 
+\part{Birational geometry}
 
 \chapter{Curves}
 
 
-In general, a variety over $k$ is meant by a scheme which is integral, separated, and of finite type.
-We wan to classify 
+In general, over an algebraically closed field, a \emph{variety} refers to an integral separated scheme of finite type.
+If the underlying field is not algebraically closed, the definition slightly differs depending on the references.
+We define a \emph{curve} as a 1-dimensional variety, and we want to classify smooth complete curves over an algebraically closed field $k$.
+I think the followings are equivalent to smooth complete curves:
 \begin{itemize}
 \item Hartshorne: integral scheme of dimension 1 which is proper and regular.
 \item Vakil: integral scheme of dimension 1 which is projective and regular.
 \end{itemize}
-I think they are equivalent to smooth complete curves.
+
+
+Representations for morphisms when varieties are embedded in a projective space.
 
 \section{Preliminaries}
 Invariants
@@ -143,6 +180,7 @@ Invariants
 \item genus: $p_a(X)=p_g(X)=h^1(\cO_X)$
 \item Weil vs Cartier divisor groups: $\Cl(X)\cong\Pic(X)$
 \end{itemize}
+The moduli stack $\cM_g$ of each genus.
 
 Computation tools
 \begin{itemize}
@@ -181,16 +219,12 @@ chow variety or hilbert scheme
 
 \chapter{Surfaces}
 
+Kodaira-Enriques
+
+Fano three-folds
 
 
+Moduli stack...?
 
-\chapter{\'Etale cohomology}
-
-\section{}
-
-\begin{prb}
-Let $\f:Y\to X$ be a morphism of schemes.
-It is called \emph{\'etale} if it is flat and unramified.
-\end{prb}
 
 \end{document}

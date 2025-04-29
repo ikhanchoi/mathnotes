@@ -1,0 +1,283 @@
+\documentclass{../../large}
+\usepackage{../../ikhanchoi}
+
+
+\begin{document}
+\title{Classical Physics}
+\author{Ikhan Choi}
+\maketitle
+\tableofcontents
+
+\part{Classical mechanics}
+
+\chapter{Analytical mechanics}
+
+\section{Lagrangian mechanics}
+Newtonian mechanics
+\begin{prb}[Laws of motion]
+Galilean structure, Galilean group
+\end{prb}
+\begin{prb}[Conservation laws]
+\end{prb}
+
+Calculus of variations
+\begin{prb}[Euler-Lagrange equation]
+\end{prb}
+\begin{prb}[Closed system]
+$\pd{\cL}{t}=0$
+\end{prb}
+\begin{prb}[Definition of generalized momentum]
+$\pd{\cL}{q}=0$
+\end{prb}
+\begin{prb}[Equivalence to Newtonian mechanics]
+\end{prb}
+
+Rigid bodies
+\begin{prb}[Inertia tensor]
+\end{prb}
+\begin{prb}[Eulerian angle]
+\end{prb}
+\begin{prb}[Lagrangian top]
+\end{prb}
+
+Oscillation
+\begin{prb}[Harmonic oscillator]
+\end{prb}
+\begin{prb}[Damped oscillation]
+\end{prb}
+\begin{prb}[Pendulum]
+\end{prb}
+\begin{prb}[Lissajous curve]
+\end{prb}
+\begin{prb}[Coupled oscillation]
+\end{prb}
+
+Central forces
+\begin{prb}[Polar coordinates]
+\end{prb}
+\begin{prb}[Effective potential]
+\end{prb}
+\begin{prb}[Kepler's problem]
+\end{prb}
+\begin{prb}[Rutherford scattering]
+\end{prb}
+
+System of particles
+\begin{prb}[Closed systems]
+\end{prb}
+\begin{prb}[Collisions]
+\end{prb}
+\begin{prb}[Two-body problem]
+\end{prb}
+\begin{prb}[Three-body problem]
+\end{prb}
+
+Euler-Lagrange equations
+\begin{prb}[Brachiostochrone]
+\end{prb}
+\begin{prb}[Geodesic on the sphere]
+\end{prb}
+\begin{prb}[Dido's isoperimetric problem]
+\end{prb}
+\begin{prb}[Pendulum with moving support]
+A rhenomic system
+\end{prb}
+\begin{prb}[Sliding beads on a rim]
+\end{prb}
+\begin{prb}[Double pulley system]
+\end{prb}
+
+
+\section{Hamiltonian mechanics}
+
+
+
+
+\chapter{Continuum mechanics}
+
+\section{Conservation laws}
+\section{Fluid mechanics}
+\section{Solid mechanics}
+plasticity, elasticity?
+
+
+\chapter{Statistical mechanics}
+
+\section{Thermodynamics}
+Laws of thermodynamics
+Equation of states
+Maxwell's relations
+
+Thermal processes
+
+
+\section{Kinetic theory}
+ergodic hypothesis
+Boltzmann statistics
+Boltzmann equation, chapman enskog
+BBGKY hierarchy
+stochastic processes
+linear response
+
+\section{Ensembles}
+ensembles
+microcanonical, canonical, grand canonical
+classical gas
+Boltzmann distribution
+
+x Two statistics
+x Fermi sea
+x Bose-Einstein condensation
+
+
+
+
+
+\part{Classical field theory}
+
+\chapter{Relativity}
+\section{Special relativity}
+\section{General relativity}
+\section{Einstein field equation}
+\section{Black holes}
+
+
+
+\chapter{Electromagnetism}
+\section{Maxwell equations}
+We use the mostly minus convention and the Einstien summation convention.
+Let $M:=\R^{1,3}$ be the Minkowski space.
+Consider a line bundle $L$ over $M$ and take an open subset $U$ on which the bundle is trivialized.
+
+A section of $L$ describes...?
+Why is the external current $J$ in $\Omega^3(U,\fg)$?
+
+A connection of $L$ describes a photon field.
+
+The Maxwell equation is the equation of motion of electromagnetic potential $A$ and electromagnetic field $F$, and the inhomogeneous version is written as
+\[d*F=\mu_0 J\qquad:\qquad\partial_\nu\,F^{\mu\nu}=\mu_0J^\mu,\]
+where $F\in\Omega^2(U,\fg)$ and $J\in\Omega^3(U,\fg)$ such that
+\[F:=dA+A\wedge A\qquad:\qquad F_{\mu\nu}=\partial_\mu\,A_\nu-\partial_\nu\,A_\mu,\]
+where $A\in\Omega^1(U,\fg)$.
+Note that we always have $A\wedge A=0$ because $\fg$ is abelian.
+
+\begin{align*}
+F&=dA=d(A_\mu\,dx^\mu)\\
+&=dA_\mu\wedge dx^\mu+A_\mu d^2x^\mu\\
+&=\partial_\nu\,A_\mu\,dx^\nu\wedge dx^\mu\\
+&=\partial_\nu\,A_\mu\,(dx^\nu\otimes dx^\mu-dx^\mu\otimes dx^\nu)\\
+&=(\partial_\mu\,A_\nu-\partial_\nu\,A_\mu)\,dx^\mu\otimes dx^\nu.
+\end{align*}
+or
+\begin{align*}
+F(X,Y)
+&=\partial_\nu\,A_\mu\,(dx^\nu\wedge dx^\mu)(X,Y)\\
+&=\partial_\nu\,A_\mu(X^\nu\,Y^\mu-Y^\nu\,X^\mu)\\
+&=\partial_\nu\,A_\mu\,X^\nu\,Y^\mu-\partial_\nu\,A_\mu\,Y^\nu\,X^\mu\\
+&=\partial_\mu\,A_\nu\,X^\mu\,Y^\nu-\partial_\nu\,A_\mu\,X^\mu\,Y^\nu\\
+&=(\partial_\mu\,A_\nu-\partial_\nu\,A_\mu)X^\mu\,Y^\nu.
+\end{align*}
+
+
+The Maxwell equation is given by the Yang-Mills action
+\[S[A]=\int_M\tr\left(-\frac1{\mu_0}F\wedge*F-A\wedge J\right)?\qquad:\qquad S=\int d^4x\left[-\frac1{\mu_0}F_{\mu\nu}F^{\mu\nu}-A_\mu J^\mu\right],\]
+where $J$ is given as an external current.
+
+
+The anti-symmetry of $F$ implies that $\partial_\mu\partial_\nu F^{\mu\nu}=0$, so we have the charge conservation $\partial_\mu J^\mu=0$.
+
+quantum fluctuation of continuous field is interpreted as a particle
+
+\begin{itemize}
+\item Poincar\'e symmetry
+\item Gauge symmetry
+\item locality
+\end{itemize}
+
+
+\[A_\mu\mapsto A_\mu'=A_\mu+\partial_\mu\alpha\]
+
+For a local gauge transform $g\in\Omega^0(U,G)$, by taking the logarithm suitably, we can identify $g$ to $\alpha\in\Omega^0(U,\fg)$ which satisfies $\exp\alpha=g$, and we have $d\alpha\in\Omega^1(U,\fg)$.
+
+Since $A\in\Omega^1(U,\fg)$ is in fact a connection form $\omega\in\Omega^1(P|_U,\fg)$ such that ... , the gauge action of $g\in\Omega^0(U,G)$ is given by
+
+\section{Optics}
+
+
+
+\chapter{Standard model}
+
+
+Lagrangian field theory
+
+connection as a section?
+
+
+\begin{prb}[Maxwell equations by action]
+\end{prb}
+
+\[\cL:=-\frac1{4\mu_0}F_{\mu\nu}F^{\mu\nu}-A_\mu J^\mu.\]
+
+Since
+\begin{align*}
+\frac{\partial\cL}{\partial A_\kappa}
+=-\frac{\partial(A_\mu J_\mu)}{\partial A_\kappa}
+=-\frac{\partial A_\mu}{\partial A_\kappa}J_\mu
+=-\delta_\mu^\kappa J_\mu
+=-J^\kappa.
+\end{align*}
+and
+\begin{align*}
+\frac{\partial\cL}{\partial(\partial_\kappa A_\lambda)}
+=-\frac1{4\mu_0}\frac{\partial(F_{\mu\nu}F^{\mu\nu})}{\partial(\partial_\kappa A_\lambda)}
+=-\frac1{2\mu_0}\frac{\partial(\partial_\mu A_\nu\partial^\mu A^\nu-\partial_\mu A_\nu\partial^\nu A^\mu)}{\partial(\partial_\kappa A_\lambda)}
+=-\frac1{\mu_0}(\partial^\kappa A^\lambda-\partial^\lambda A^\kappa)
+=-\frac1{\mu_0}F^{\kappa\lambda}
+\end{align*}
+because
+\begin{align*}
+F_{\mu\nu}F^{\mu\nu}
+&=(\partial_\mu A_\nu-\partial_\nu A_\mu)(\partial^\mu A^\nu-\partial^\nu A^\mu)\\
+&=\partial_\mu A_\nu\partial^\mu A^\nu-\partial_\mu A_\nu\partial^\nu A^\mu-\partial_\nu A_\mu\partial^\mu A^\nu+\partial_\nu A_\mu\partial^\nu A^\mu\\
+&=2(\partial_\mu A_\nu\partial^\mu A^\nu-\partial_\mu A_\nu\partial^\nu A^\mu)
+\end{align*}
+and
+\begin{align*}
+\frac{\partial(\partial_\mu A_\nu\partial^\mu A^\nu)}{\partial(\partial_\kappa A_\lambda)}
+&=\frac{\partial(\partial_\mu A_\nu)}{\partial(\partial_\kappa A_\lambda)}\partial^\mu A^\nu+\eta_\mu^\rho\eta_\nu^\sigma\partial_\mu A_\nu\frac{\partial(\partial_\rho A_\sigma)}{\partial(\partial_\kappa A_\lambda)}\\
+&=\delta_\mu^\kappa\delta_\nu^\lambda\partial^\mu A^\nu+\eta_\mu^\rho\eta_\nu^\sigma\partial_\mu A_\nu\delta_\rho^\kappa\delta^\lambda_\sigma
+=2\partial^\kappa A^\lambda
+\end{align*}
+similarly with
+\begin{align*}
+\frac{\partial(\partial_\mu A_\nu\partial^\nu A^\mu)}{\partial(\partial_\kappa A_\lambda)}
+=2\partial^\lambda A^\kappa,
+\end{align*}
+the Euler-Lagrange equation is given by
+\begin{align*}
+0=\frac{\partial\cL}{\partial A_\kappa}-\partial_\kappa\frac{\partial\cL}{\partial(\partial_\kappa A_\lambda)}
+=-J^\kappa+\frac1{\mu_0}\partial_\kappa F^{\kappa\lambda}.
+\end{align*}
+
+
+
+\begin{prb}[Noether theorem for classical fields]
+\end{prb}
+
+\[\cL:=-\partial_\mu\phi^*\partial^\mu\phi-m^2\phi^*\phi\]
+
+Under the translation symmetry $\phi(x)\to\phi'(x)=\phi(x-\e)$ with infinitesimal transform parameter vector $\e$, since we have $\delta\phi=-\e^\mu\partial_\mu\phi$ from
+\[\phi'=\phi-\e^\mu\partial_\mu\phi+O(\e^2)\]
+and $\delta\cL=$ from
+\[\cL'=\cL,\]
+we can write
+
+\begin{align*}
+\delta\cL
+&=\frac{\partial\cL}{\partial\phi}\delta\phi+\frac{\partial\cL}{\partial\phi^*}\delta\phi^*+\frac{\partial\cL}{\partial(\partial\phi)}\delta\partial\phi+\frac{\partial\cL}{\partial(\partial\phi^*)}\delta\partial\phi^*\\
+&=
+\end{align*}
+
+
+
+\end{document}

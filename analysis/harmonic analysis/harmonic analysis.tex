@@ -10,240 +10,6 @@
 \maketitle
 \tableofcontents
 
-\part{Fourier analysis}
-
-\chapter{Fourier series}
-
-\section{Fourier series in $L^p$ spaces}
-\begin{prb}
-\[\|\hat f\|_{\ell^1(\Z)}\lesssim\|f\|_{W^{1,1+\e}(\T)}.\]
-\end{prb}
-
-Inversion theorem is an approximation problem given by $\cF^*\cF=\lim_{n\to\infty}\cF_n^*\cF$.
-The condition $\hat f\in\ell^1(\Z)$ is a condition just for defining $\cF^*\hat f$ wihtout using distribution theory, and it does not affect the inversion phenomena.
-The approximation, in other words, can be seen as an extension method for $\cF^*:\ell^1(\Z)\to C(\T)$ on $c_0(\Z)$.
-Note that $\cF_n^*$ on $c_0(\Z)$ cannot be bounded directly without distribution theory, but $\cF_n^*\cF$ on $L^p(\T)$ can be bounded well.
-
-\section{Summability methods}
-\begin{itemize}
-\item If $\cF_n^*$ is the standard partial sum, then $\cF_n^*\cF$ is the Dirichlet kernel.
-\item If $\cF_n^*$ is the Ces\`aro mean, then $\cF_n^*\cF$ is the Fej\'er kernel.
-\item If $\cF_r^*$ is the Abel sum, then $\cF_r^*\cF$ is the Poisson kernel.
-\item In Fourier transform, we often use the Gauss-Weierstrass kernel.
-\end{itemize}
-
-The injectivity of $\cF$ is not an easy problem, which comes from the inversion theorem.
-
-
-
-\begin{prb}[Dirichlet kernel]
-The \emph{Dirichlet kernel} is a function $D_n\colon \bT\to\R$ defined by
-\[D_n=\hat{1_{|k|\le n}},\quad\text{or equivalently,}\quad\hat{D_n}=1_{|k|\le n}.\]
-This is because they are invariant under inverse, in other words, they are even.
-\begin{parts}
-\item
-\[D_n(x)=\frac{\sin\frac{2n+1}2x}{\sin\frac12x}.\]
-\item If $f\in\Lip(\bT)$, then $D_n*f\to f$ pointwisely as $n\to\infty$.
-\item
-\[\|D_n\|_{L^1(\bT)}\gtrsim\log n.\]
-\end{parts}
-\end{prb}
-
-\begin{pf}
-\begin{align*}
-D_n(x)&=\sum_{k=-n}^ne^{ikx}\\
-&=\frac{e^{i\frac{2n+1}2x}-e^{-i\frac{2n+1}2x}}{e^{i\frac12x}-e^{-i\frac12x}}\\
-&=\frac{\sin\frac{2n+1}2x}{\sin\frac12x}.
-\end{align*}
-
-(c)
-By (2) $\sin x\le x$ for $x\in[0,\pi/2]$, (3) change of variable,
-\begin{align*}
-\|D_n\|_{L^1(\bT)}
-&=\frac1{2\pi}\int_{-\pi}^\pi|\frac{\sin\frac{2n+1}2x}{\sin\frac12x}|\,dx\\
-&\ge\frac2\pi\int_0^\pi\frac{|\sin\frac{2n+1}2x|}x\,dx\\
-&=\frac2\pi\int_0^{\frac{2n+1}2\pi}\frac{|\sin x|}x\,dx\\
-&=\frac2\pi\sum_{k=0}^{2n}\int_{\frac k2\pi}^{\frac{k+1}2\pi}\frac{|\sin x|}x\,dx\\
-&\ge\frac2\pi\sum_{k=0}^{2n}\int_0^{\frac12\pi}\frac{\sin x}{\frac{k+1}2\pi}\,dx\\
-&\ge\frac4{\pi^2}\sum_{k=0}^{2n}\frac1{1+k}\\
-&\ge\frac4{\pi^2}\log(2n+2).
-\end{align*}
-..?
-\end{pf}
-
-\begin{prb}[Fej\'er kernel]
-The \emph{Fej\'er kernel} is
-
-\begin{parts}
-\item
-\[K_n(x)=\frac1{n+1}\frac{\sin^2\frac{n+1}2x}{\sin^2\frac12x}.\]
-\end{parts}
-\end{prb}
-\begin{pf}
-Since
-\begin{align*}
-D_n(x)=
-&=\frac{e^{i\frac{2n+1}2x}-e^{-i\frac{2n+1}2x}}{e^{i\frac12x}-e^{-i\frac12x}}\\
-&=\frac{[e^{i\frac{2n+1}2x}-e^{-i\frac{2n+1}2x}][e^{i\frac12x}-e^{-i\frac12x}]}{[e^{i\frac12x}-e^{-i\frac12x}]^2}\\
-&=\frac{[e^{i(n+1)x}+e^{-i(n+1)x}]-[e^{inx}+e^{-inx}]}{[e^{i\frac12x}-e^{-i\frac12x}]^2},
-\end{align*}
-by telescoping, we get
-\begin{align*}
-\sum_{k=0}^nD_k(x)
-&=\frac{[e^{i(n+1)x}+e^{-i(n+1)x}]-[e^{i0x}+e^{-i0x}]}{[e^{i\frac12x}-e^{-i\frac12x}]^2}\\
-&=\frac{[e^{i\frac{n+1}2x}-e^{-i\frac{n+1}2x}]^2}{[e^{i\frac12x}-e^{-i\frac12x}]^2}\\
-&=\frac{\sin^2\frac{n+1}2x}{\sin^2\frac12x}.
-\end{align*}
-\end{pf}
-
-Two important results from Fej\'er kernel:
-\begin{enumerate}
-\item If $f(x-)$, $f(x+)$ exist and $S_nf(x)$ converges, then $S_nf(x)\to\frac12(f(x-)+f(x+))$.
-\item (If $f\in L^1(\bT)$, then $\sigma_nf\to f$ a.e.)
-
-\item If $f\in L^1(\bT)$, then $S_nf\to f$ in $L^1$ and $L^2$.
-\item If $f$ is continuous and $\hat{f}\in L^1(\Z)$, then $S_nf\to f$ uniformly.
-\item Since $\sigma_nf$ is a trigonometric polynomial, the set of trigonometric polynomials are dense in $L^1(\bT)$ and $L^2(\bT)$.
-\end{enumerate}
-
-
-
-\section{Pointwise convergence of Fourier series}
-
-BV function: Dini, Jordan's criterion
-\begin{prb}[Riemann localization principle]
-\end{prb}
-
-
-
-
-
-\section*{Exercises}
-\begin{prb}[Gibbs phenomenon]
-\end{prb}
-\begin{prb}[Du Bois-Reymond function]
-\end{prb}
-
-
-
-
-
-
-
-\chapter{Fourier transform}
-\section{Fourier transform in $L^p$ space}
-There are three conventions for the Fourier transform:
-\[\cF f(\xi)=\hat f(\xi):=\begin{cases}
-\int_{\R^d}e^{-ix\xi}f(x)\,dx,\\
-(2\pi)^{-\frac d2}\int_{\R^d}e^{-ix\xi}f(x)\,dx,\\
-\int_{\R^d}e^{-2\pi ix\xi}f(x)\,dx.
-\end{cases}\]
-We will accept the second one.
-
-
-\begin{prb}[Riemann-Lebesgue lemma]
-basic estimates
-\[\|\hat f\|_{L^\infty(\R^d)}\le(2\pi)^{-\frac d2}\|f\|_{L^1(\R^d)},\qquad f\in L^1(\R^d).\]
-\[\|\hat f\|_{L^1(\R^d)}\lesssim\|f\|_{W^{d+1,1}}(\R^d),\qquad f\in W^{d+1,1}(\R^d).\]
-Lp extension
-\end{prb}
-
-\begin{prb}[Fourier inversion]
-inversion theorem
-Plancerel
-\[\|\hat f\|_{L^2(\R^d)}=\|f\|_{L^2(\R^d)},\qquad f\in L^2(\R^d).\]
-unitarity
-\end{prb}
-
-\begin{prb}[Properties]
-If $D:=-i\partial$, then
-\[\cF D_x\cF^*=M_\xi,\qquad D_\xi\cF=-\cF M_x.\]
-\[\cF(fg)=(2\pi)^{-\frac d2}\hat f*\hat g.\]
-\end{prb}
-
-
-\section{Tempered distributions}
-
-
-A routine of Fourier transform computation of $f\in\cS'$:
-\begin{enumerate}
-\item Choose a sequence $f_n\in L^1$ such that $f_n\to f$ in $\cS'$.
-\item Write $\cF f_n$ in the integral form.
-\item Compute the limit of $\cF f_n$ in $\cS'$.
-\end{enumerate}
-Since $g_n\to g$ pointwise implies $g_n\to g$ in $\cS'$ if the sequence $g_n$ is dominated by a locally integrable with polynomial growth, we can frequently check the pointwise limit instead of $\cS'$.
-
-Methods: approximate identity, indented contour, imaginary shift, Feynman's trick
-
-Examples: $e^{-\frac12x^2}$, $e^{\frac i2x^2}$, $\pv\frac1x$, $\sgn(x)$, $1$, $\delta(x)$, $\mathrm{sinc}(\frac x2)$, $1_{[-\frac12,\frac12]}$, $\frac1{1+x^2}$
-
-
-
-\section*{Exercises}
-\begin{prb}[Sampling theorem]
-\[\cF1_{[-\frac12,\frac12]}(\xi)=\operatorname{sinc}(\xi/2)\]
-$\operatorname{sinc}\in L^{1+\e}(\R)$.
-\end{prb}
-\begin{prb}[Gausssian function]
-Gaussian function computation:
-differential equation method, contour integral method, imaginary shift
-\[\cF e^{-x^2}\]
-\[\cF e^{-\frac12xQx}=\frac{e^{\frac{i\pi}4\sgn(Q)}}{|\det Q|^{\frac12}}e^{-\frac12xQ^{-1}x}.\]
-\[\cF\operatorname{sech}{(2\pi)^{\frac12}\frac x2}=\operatorname{sech}{(2\pi)^{\frac12}\frac x2}.\]
-\end{prb}
-\begin{prb}
-\[\cF1=(2\pi)^{\frac12}\delta\]
-\[\cF x=(2\pi)^{\frac12}i\delta'\]
-\end{prb}
-\begin{prb}[Poisson summation formula]
-\end{prb}
-\begin{prb}[Uncertainty principle]
-\end{prb}
-
-
-
-\begin{prb}[Paley-Wiener theorem]
-Let $f$ be an integrable compactly supported function.
-Using the Morera to prove $\hat f$ is analytic.
-
-\end{prb}
-
-\begin{prb}
-Let $f\in C^\infty(\R)$ and define $f_n(x):=\sum_{k=0}^{n-1}\frac1{k!}f^{(k)}(0)x^k$.
-Suppose $f_n\to f$ pointwise.
-\begin{parts}
-\item $f_n$ never converge to $f$ in the space of tempered distributions. (Hint: use Borel's theorem to construct a Schwarz function)
-\item $f_n$ converges to $f$ in the the space of distributions.
-\end{parts}
-\end{prb}
-
-
-\begin{prb}[Multipole expansion]
-Let $\rho$ be a compactly supported distribution on $\R^d$.
-We want to investigate the limit behavior of $\rho(\e^{-1}x)$ as $\e\to0$.
-More precisely, we want to compute an integer $k\ge d$ such that $\lim_{\e\to0+}\e^{-k}\rho(\e^{-1}x)$ defines a distribution supported at $\{0\}$, and the coefficients of derivatives of Dirac measures.
-
-We need to introduce quantities called monopole, dipole, quadrapole, octupole, etc.
-\begin{parts}
-\item A distribution supported on $\{0\}$ is a linear combination of the Dirac measure and its derivatives.
-\item 
-\end{parts}
-\end{prb}
-
-\section*{Problems}
-\begin{enumerate}
-\item Find all $\alpha>0$ such that
-\[\lim_{x\to\infty}x^{-\alpha}\int_0^xf(y)\,dy=0\]
-for all $f\in L^3([0,\infty))$.
-\end{enumerate}
-
-
-\chapter{}
-
-
-
-
-
 
 \part{Singular integral operators}
 \chapter{Calder\'on-Zygmund theory}
@@ -274,11 +40,13 @@ For $x\in\Omega$
 \end{prb}
 
 \begin{prb}[Calder\'on-Zygmund decomposition of functions]
-Let
-\[g(x):=\begin{cases}|f(x)|&,x\notin\Omega\\\frac1{|Q_x|}\int_{Q_x}|f|&,x\in\Omega\end{cases}\]
+For $f\in L^1(\R^d)$ and $\lambda>0$, let $\Omega:=\{x:Mf(x)>\lambda\}$.
+
+Depending on $\lambda>0$, let
+\[g(x):=\begin{cases}|f(x)|&\text{ if }Mf(x)\le\lambda\\\frac1{|Q_x|}\int_{Q_x}|f|&\text{ if }Mf(x)>\lambda\end{cases}\]
 and $b_i:=(|f|-g)\chi_{Q_i}$ so that $|f|=g+b$ where $b=\sum_ib_i$.
 \begin{parts}
-\item $\|g\|_{L^1}=\|f\|_{L^1}$ and $\|g\|_{L^\infty}\lesssim_d\lambda$.
+\item $\|g\|_{L^1}=\|f\|_{L^1}$ and $\|g\|_{L^\infty}\lesssim\lambda$.
 \item $\|b\|_{L^1}\le2\|f\|_{L^1}$ and $\int b_i=0$.
 \end{parts}
 \end{prb}
@@ -290,37 +58,33 @@ and $b_i:=(|f|-g)\chi_{Q_i}$ so that $|f|=g+b$ where $b=\sum_ib_i$.
 
 
 \begin{prb}[$L^p$ boundedness of Calder\'on-Zygmund operators]
-Let $T:C_c^\infty(\R^d)\to\cD'(\R^d)$ be a \emph{singular integral operator of convolution type} in the sense that there is a function $K\in L_\loc^1(\R^d\setminus\{0\})\cap\cD'(\R^d)$ such that $Tf(x)=K*f(x)$ for all $f\in\cD(\R^d)$, whenever $x\notin\supp f$.
-We say $T$ is called a \emph{Calder\'on-Zygmund} operator if
+Let $T:\cD(\R^d)\to\cD'(\R^d)$ be a \emph{singular integral operator of convolution type} in the sense that there is $K\in L_\loc^1(\R^d\setminus\{0\})\cap\cD'(\R^d)$ such that $Tf=K*f$ for all $f\in\cD(\R^d)$.
+We usually say a singular integral operator is \emph{Calder\'on-Zygmund} if we can show the boundedness in $L^p$ by the Calder\'on-Zygmund decomposition or its modification.
+Consider the following two conditions.
 \begin{enumerate}[(i)]
 \item $T$ is $L^2$-bounded: we have
 \[\|Tf\|_{L^2}\lesssim\|f\|_{L^2},\]
 \item $T$ satisfies the \emph{H\"ormander condition}: we have
-\[\int_{|x|>2|y|}|K(x-y)-K(x)|\,dx\lesssim1\]
-for every $y>0$.
+\[\int_{|x|>2|y|}|K(x-y)-K(x)|\,dx\lesssim1,\qquad y>0.\]
 \end{enumerate}
 
-Let $f=g+b=g+\sum_ib_i$ be the Calder\'on-Zygmund decomposition, and let $\Omega^*:=\bigcup_iQ_i^*$ where $Q_i^*$ is the cube with the same center as $Q_i$ and whose sides are $2\sqrt d$ times longer. 
+Let $f=g+b=g+\sum_ib_i$ be the Calder\'on-Zygmund decomposition at $\lambda>0$, and let $\Omega^*:=\bigcup_iQ_i^*$ where $Q_i^*$ is the cube with the same center as $Q_i$ and whose sides are $2\sqrt d$ times longer. 
 \begin{parts}
 \item
-The $L^2$-boundedness implies
-\[|\{x:|Tg(x)|>\tfrac\lambda2\}|\lesssim_d\frac1\lambda\|f\|_{L^1}.\]
-\item
 The H\"ormander condition implies
-\[|\{x:|Tb(x)|>\tfrac\lambda2\}\setminus\Omega^*|\lesssim_d\frac1\lambda\|f\|_{L^1}.\]
+\[|\{x:|Tb(x)|>\frac\lambda2\}\setminus\Omega^*|\lesssim_d\frac1\lambda\|f\|_{L^1}.\]
 \item
 \end{parts}
 \end{prb}
 \begin{pf}
-(a)
-Using the Chebyshev inequality and the H\"older inequality,
+Using the Chebyshev inequality and the H\"older inequality, the $L^2$-boundedness of $T$ implies
 \[|\{x:|Tg(x)|>\frac\lambda2\}|
-\le\frac4{\lambda^2}\|Tg\|_{L^2(\Omega)}^2
-\le\frac{4C}{\lambda^2}\|g\|_{L^2(\Omega)}^2
-\le\frac{4C}{\lambda^2}\|g\|_{L^1(\Omega)}\|g\|_{L^\infty(\Omega)}.
+\le\frac4{\lambda^2}\|Tg\|_{L^2(\R^d)}^2
+\lesssim\frac4{\lambda^2}\|g\|_{L^2(\R^d)}^2
+\le\frac4{\lambda^2}\|g\|_{L^1(\R^d)}\|g\|_{L^\infty(\R^d)}
+\le\frac4\lambda\|f\|_{L^1(\R^d)}.
 \]
 
-(b)
 Write
 \[|\{x:|Tb(x)|>\tfrac\lambda2\}\setminus\Omega^*|
 \le\frac2\lambda\int_{\R^d\setminus\Omega^*}|Tb(x)|\,dx
@@ -342,6 +106,15 @@ and
 
 
 \section{Truncated integrals}
+
+
+Let $E$ be a Banach space with a specified predual.
+Let $T_n$ be a bounded sequence in $L(E)$.
+The point-weak$^*$ topology on on $L(E)$ is complete on the closed unit ball.
+The point-a.e.~convergence in $L(E_0,E)$ is stronger, where $E_0$ is a dense subspace of $E$.
+Thus, if we show $T_n\to T$ in point-a.e.~in $L(E_0,E)$, then $T\in L(E)$.
+
+
 
 Homogeneous kernels
 
@@ -588,11 +361,14 @@ The analysis of $t$-quantizations is sometimes called the \emph{Kohn-Nirenberg c
 \end{prb}
 \begin{pf}
 (b)
+For $\psi=e^{ih(kx-\omega t)}$, $H=i\partial_t$, $D=-i\partial_x$
+ (we have $\xi=(\Ad\cF)D$),
+
 Since $\<D_y\>^2$ is a self-adjoint partial differential operator, for any $n\in\Z_{\ge0}$ we have
 \begin{align*}
 \Op^0(a)f(x)
 &=(2\pi)^{-d}\int_{\R^{2d}}e^{i(x-y)\xi}a(x,\xi)f(y)\,dy\,d\xi\\
-(\because D_ye^{i(x-y)\xi}=\xi e^{i(x-y)\xi})\quad
+(\because D_ye^{i(x-y)\xi}=-\xi e^{i(x-y)\xi})\quad
 &=(2\pi)^{-d}\int_{\R^{2d}}\<\xi\>^{-2n}\<D_y\>^{2n}e^{i(x-y)\xi}a(x,\xi)f(y)\,dy\,d\xi\\
 (\because\text{IBP})\quad
 &=(2\pi)^{-d}\int_{\R^{2d}}e^{i(x-y)\xi}\<\xi\>^{-2n}a(x,\xi)\<D_y\>^{2n}f(y)\,dy\,d\xi.

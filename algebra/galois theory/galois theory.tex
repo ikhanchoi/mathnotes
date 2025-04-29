@@ -113,7 +113,7 @@ Since $\f_1(H)$ is cyclic,
 Let $N$ and $H$ be groups.
 The following objects have one-to-one correspondences among each other.
 \begin{parts}
-\item Isomorphic types of groups $G$ such that a sequence \begin{es}0\>N\>G\>H\>0\end{es} is exact and right split,
+\item Isomorphic types of groups $G$ such that a sequence $0\to N\to G \to H\to 0$ is exact and right split,
 \item Isomorphic types of groups $G$ such that $N\normal G\ge H$ with $G=NH$ and $N\cap H=1$,
 \item Group homomorphisms $H\to\Aut(N)$...?
 \end{parts}
@@ -124,9 +124,7 @@ The group $G$ in the previous proposition is called the \emph{semidirect product
 \end{defn}
 
 
-\begin{es}
-0\>F\>E\>G\>0.
-\end{es}
+$0\to F\to E\to G\to0$
 Four data $G,F,\f:G\to\Aut(F),c:G\times G\to F$ completely determine the extension $E$.
 
 Suppose we have an extension $F\to E\to G$.
@@ -947,14 +945,8 @@ Define a map
 &\to&
 \{\text{subgroups of $G$}\}\\
 K&\mapsto&\Aut(E/K)
-\end{array}.\]
+\end{array}\]
 
-\begin{alignat*}{2}
-&\{\text{subextensions of $E/F$}\}
-&&\to \{\text{subgroups of $G$}\} \\
-&\ccol{}{K}
-&&\ccol{\mapsto}{\Aut(E/K)}
-\end{alignat*}
 
 \begin{parts}
 \item $K\le \Fix_E(\Aut(E/K))$ and $H\le\Aut(E/\Fix_E(H))$.

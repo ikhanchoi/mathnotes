@@ -1,0 +1,290 @@
+\documentclass[a4paper]{amsart}
+
+\usepackage[T1]{fontenc}
+\usepackage[bitstream-charter,cal]{mathdesign}
+\linespread{1.15}
+
+\newcommand{\e}{\varepsilon}
+
+\theoremstyle{plain}
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{cor}[thm]{Corollary}
+\theoremstyle{definition}
+\newtheorem{defn}[thm]{Definition}
+
+
+\title{Positive Hahn-Banach separations in operator algebras}
+\author{Ikhan Choi}
+\address{}
+\subjclass[2020]{}
+
+\begin{document}
+
+\begin{abstract}
+
+\end{abstract}
+
+\maketitle
+
+\section{Introduction}
+
+
+
+
+
+
+\begin{itemize}
+\item definition and properties of $f_\e(t):=(1+\e t)^{-1}t$
+\item commutant Radon-Nikodym, relation between $\{\omega'\in M_*^+:\omega'\le\omega\}$ and $\{h\in\pi(M)'^+:h\le1\}$, order preserving linear map
+\item Mazur lemma
+\end{itemize}
+
+
+\begin{defn}[Hereditary subsets]
+Let $E$ be a partially ordered real vector space.
+We say a subset $F$ of the positive cone $E^+$ is \emph{hereditary} if $0\le x\le y$ in $E$ and $y\in F$ imply $x\in F$, or equivalently $F=(F-E^+)^+$, where $F-E^+$ is the set of all positive elements of $E$ bounded above by an element of $F$.
+A $*$-subalgebra $B$ of a $*$-algbera $A$ is called \emph{hereditary} if the positive cone $B^+$ is a hereditary subset of $A^+$.
+We define the \emph{positive polar} of $F$ as the positive part of the real polar
+\[F^{r+}:=\{x^*\in(E^*)^+:\sup_{x\in F}x^*(x)\le1\}.\]
+\end{defn}
+An example that is a non-hereditary closed convex subset of a C$^*$-algebra is $\mathbb{C}1$ in any unital C$^*$-algebra.
+
+
+\section{Positive Hahn-Banach separation theorems}
+
+\begin{thm}[Positive Hahn-Banach separation for von Neumann algebras]\label{positive hahn-banach w*}
+Let $M$ be a von Neumann algebra.
+\begin{enumerate}
+\item If $F$ is a $\sigma$-weakly closed convex hereditary subset of $M^+$, then $F=F^{r+r+}$. In particular, if $x\in M^+\setminus F$, then there is $\omega\in M_*^+$ such that $\omega(x)>1$ and $\omega(x')\le1$ for $x'\in F$.
+\item If $F_*$ is a norm closed convex hereditary subset of $M_*^+$, then $F_*=F_*^{r+r+}$. In particular, if $\omega\in M_*^+\setminus F_*$, then there is $x\in M^+$ such that $\omega(x)>1$ and $\omega'(x)\le1$ for $\omega'\in F_*$.
+\end{enumerate}
+\end{thm}
+\begin{proof}
+(1)
+Since the positive polar is represented as the real polar
+\[F^{r+}=F^r\cap M_*^+=F^r\cap(-M^+)^r=(F\cup-M^+)^r=(F-M^+)^r,\]
+the positive bipolar can be written as $F^{r+r+}=(F-M^+)^{rr+}=(\overline{F-M^+})^+$ by the usual real bipolar theorem, where the closure is for the $\sigma$-weak topology.
+Because $F=(F-M^+)^+\subset(\overline{F-M^+})^+$, it suffices to prove the opposite inclusion $(\overline{F-M^+})^+\subset F$.
+
+Let $x\in(\overline{F-M^+})^+$.
+Take a net $x_i\in F-M^+$ such that $x_i\to x$ $\sigma$-strongly, and take a net $y_i\in F$ such that $x_i\le y_i$ for each $i$.
+Suppose we may assume that the net $x_i$ is bounded.
+For sufficiently small $\e$ so that the bounded net $x_i$ has the spectra in $[-(2\e)^{-1},\infty)$, we have $f_\e(x_i)\to f_\e(x)$ $\sigma$-strongly, and hence $\sigma$-weakly.
+On the other hand, by the hereditarity and the $\sigma$-weak compactness of $F$, we may asumme that the bounded net $f_\e(y_i)\in F$ converges $\sigma$-weakly to a point of $F$ by taking a subnet.
+Then, we have $f_\e(x)\in F-M^+$ by
+\[0\le f_\e(x)=\lim_if_\e(x_i)\le\lim_if_\e(y_i)\in F,\]
+thus we have $x\in F$ since $f_\e(x)\uparrow x$ as $\e\to0$.
+What remains is to prove the existence of a bounded net $x_i\in F-M^+$ such that $x_i\to x$ $\sigma$-strongly.
+
+Define a convex set
+\[G:=\left\{x\in\overline{F-M^+}:\begin{tabular}{c}there is a sequence $x_m\in F-M^+$\\such that $-2x\le x_m\uparrow x$ $\sigma$-weakly\end{tabular}\right\}\subset M^{sa},\]
+where $x_m$ denotes a sequence.
+In fact, it has no critical issue on allowing $x_m$ to be uncountably indexed.
+Since we clearly have $F-M^+\subset G$ and every non-decreasing net with supremum is bounded and $\sigma$-strongly convergent, it suffices to show that $G$, or equivalently its intersection with the closed unit ball by the Krein-Sm\v ulian theorem, is $\sigma$-strongly closed.
+Let $x_i\in G$ be a net such that $\sup_i\|x_i\|\le1$ and $x_i\to x$ $\sigma$-strongly.
+For each $i$, take a sequence $x_{im}\in F-M^+$ such that $-2x_i\le x_{im}\uparrow x_i$ $\sigma$-strongly as $m\to\infty$, and also take $y_{im}\in F$ such that $x_{im}\le y_{im}$.
+Since $\|x_{im}\|\le2\|x_i\|\le2$ is bounded, it implies that there is a bounded net $x_j$ in $F-M^+$ such that $x_j\to x$ $\sigma$-strongly, and we can choose arbitrarily small $\e>0$ such that $\sigma(x_j)\subset[-(2\e)^{-1},\infty)$ for all $j$.
+Since $f_\e(x_j)$ converges to $f_\e(x)$ $\sigma$-strongly and $f_\e(y_j)$ is a bounded net for each $\e>0$ so that we may assume that the net $f_\e(y_j)$ is $\sigma$-weakly covergent by taking a subnet, we have $f_\e(x)\in F-M^+$ by
+\[f_\e(x)=\lim_jf_\e(x_j)\le\lim_jf_\e(y_j)\in F,\]
+where the limits are in the $\sigma$-weak sense.
+By taking $\e$ as any decreasingly convergent sequence to zero, we have $x\in G$, hence the closedness of $G$.
+
+
+(2)
+It is enough to prove $(\overline{F_*-M_*^+})^+\subset F_*$, where the closure is for the weak topology or equivalently in norm by the convexity of $F_*-M_*^+$, so we begin our proof by fixing $\omega\in(\overline{F_*-M_*^+})^+$.
+For a sequence $\omega_n\in F_*-M_*^+$ such that $\omega_n\to\omega$ in norm of $M_*$, we can take $\varphi_n\in F_*$ such that $\omega_n\le\varphi_n$ for all $n$.
+By modifying $\omega_n$ into $\omega_n-(\omega_n-\omega)_+\in F_*-M_*^+$ and taking a rapidly convergent subsequence, we may assume $\omega_n\le\omega$ and $\|\omega-\omega_n\|\le2^{-n}$ for all $n$.
+If we consider the Gelfand-Naimark-Segal representation $\pi:M\to B(H)$ associated to a positive normal linear functional \[\widehat\omega:=\sum_n(\omega-\omega_n)+\omega+\sum_n2^{-n}\left(\frac{[\omega_n]}{1+\|\omega_n\|}+\frac{\varphi_n}{1+\|\varphi_n\|}\right)\]
+on $M$ with the canonical cyclic vector $\Omega$, we can construct commutant Radon-Nikodym derivatives $h,h_n,k_n\in\pi(M)'$ of $\omega,\omega_n,\varphi_n$ with respect to $\widehat\omega$ respectively.
+Since $-1\le h_n\le h$ is bounded, $h_n\to h$ in the weak operator topology of $\pi(M)'$.
+By the Mazur lemma, we can take a net $h_i$ by convex combinations of $h_n$ such that $h_i\to h$ strongly in $\pi(M)'$, and the corresponding linear functionals $\omega_i$ and $\varphi_i$ satisfy $\omega_i\le\varphi_i$ with $\varphi_i\in F_*$ by the convexity of $F_*$ so that $\omega_i\in F_*-M_*^+$.
+The net $h_i$ can be taken to be a sequence in fact because $\pi(M)'$ is $\sigma$-finite by the existence of the separating vector $\Omega$, but it is not necessary in here.
+For each $i$ and $0<\e<1$, define
+\[h_\e:=f_\e(h),\quad h_{i,\e}:=f_\e(h_i),\quad k_{i,\e}:=f_\e(k_i)\]
+in $\pi(M)'$, where the functional calculi are well-defined because $-1\le h_i$ and $0\le h,k_i$ for all $i$, and define $k_\e$ as the $\sigma$-weak limit of the bounded net $k_{i,\e}$, which may be assumed to be $\sigma$-weakly convergent.
+Define $\omega_\e,\omega_{i,\e},\varphi_{i,\e},\varphi_\e$ as the corresponding normal linear functionals on $M$ to $h_\e,h_{i,\e},k_{i,\e},k_\e$.
+Note that $\varphi_i\in F_*$.
+The hereditarity of $F_*$ and $0\le\varphi_{i,\e}\le\varphi_i$ imply $\varphi_{i,\e}\in F_*$, and the weak closedness of $F_*$ and the weak convergence $\varphi_{i,\e}\to\varphi_\e$ in $M_*$ imply $\varphi_\e\in F^*$.
+From $\omega_i\le\varphi_i$, we can deduce $0\le\omega_\e\le\varphi_\e$ by considering the operator monotonicity $f_\e$ and taking the weak limit on $i$.
+Thus again, the hereditarity of $F_*$ implies $\omega_\e\in F^*$, and the weak closedness of $F_*$ and the weak convergence $\omega_\e\to\omega$ in $M_*$ imply $\omega\in F^*$.
+\end{proof}
+
+
+
+\begin{thm}[Positive Hahn-Banach separation for C$^*$-algebras]
+Let $A$ be a C$^*$-algebra.
+\begin{enumerate}
+\item If $F$ is a norm closed convex hereditary subset of $A^+$, then $F=F^{r+r+}$. In particular, if $a\in A^+\setminus F$, then there is $\omega\in A^{*+}$ such that $\omega(a)>1$ and $\omega(a')\le1$ for $a'\in F$.
+\item If $F^*$ is a weakly$^*$ closed convex hereditary subset of $A^{*+}$, then $F^*=(F^*)^{r+r+}$. In particular, if $\omega\in A^{*+}\setminus F^*$, then there is $a\in A^+$ such that $\omega(a)>1$ and $\omega'(a)\le1$ for $\omega'\in F^*$.
+\end{enumerate}
+\end{thm}
+\begin{proof}
+(1)
+We directly prove the separation without invoking the arguments of positive bipolars.
+Denote by $F^{**}$ the $\sigma$-weak closure of $F$ in the universal von Neumann algebra $A^{**}$.
+We first show that $F^{**}$ is hereditary subset of $A^{**+}$.
+Suppose $0\le x\le y$ in $A^{**}$ and $y\in F^{**}$.
+Then, there is $z\in A^{**}$ such that $x^{\frac12}=zy^{\frac12}$.
+Take bounded nets $b_i$ in $F$ and $c_i$ in $A$ such that $b_i\to y$ and $c_i\to z$ $\sigma$-strongly$^*$ in $A^{**}$ using the Kaplansky density.
+We may assume the indices of these two nets are same.
+Since both the multiplication and the involution of a von Neumann algebra on bounded parts are continuous in the $\sigma$-strong$^*$ topology, and since the square root on a positive bounded interval is a strongly continuous function, we have the $\sigma$-strong$^*$ limit
+\[x=y^{\frac12}z^*zy^{\frac12}=\lim_ib_i^{\frac12}c_i^*c_ib_i^{\frac12},\]
+so we obtain $x\in F^{**}$ from $b_i^{\frac12}c_i^*c_ib_i^{\frac12}\in F$.
+Thus, $F^{**}$ is hereditary in $A^{**+}$.
+
+Let $a\in A^+\setminus F$.
+Observe that we have $a\in A^{**+}\setminus F^{**}$ because if $a\in F^{**}$, then we have a net $a_i$ in $F$ such that $a_i\to a$ $\sigma$-weakly in $A^{**}$, meaning that $a_i\to a$ weakly in $A$ and by the weak closedness of $F$ in $A$ we get a contradiction $a\in F^{**}\cap A=F$.
+By Theorem \ref{positive hahn-banach w*}, there is $\omega\in A^{*+}$ such that $\omega(a)>1$ and $\omega\le1$ on $F\subset F^{**}$, so it completes the proof.
+
+(2)
+As same as above, our goal is to prove $(\overline{F^*-A^{*+}})^+\subset F^*$, where the bar notation will always be used for the weak$^*$ topology throughout the whole proof.
+Let
+\[G^*:=\left\{\omega\in A^{*sa}:\begin{tabular}{c}
+for each $0<\e<(1+\|\omega\|)^{-4}$ we have $\widehat\omega_\e\in A^{*+}$ and $\varphi_\e\in F^*$\\
+satisfying the following five conditions:\\
+$|\omega(a)|\le\e^{-\frac14}\widehat\omega(a)$ for all $a\in A^+$, $\|\widehat\omega_\e\|\le1$, $\|\varphi_\e\|\le\e^{-1}$,\\
+$\omega_\e\le\varphi_\e$, and $\omega_\e\to\omega$ weakly$^*$ in $A^*$ as $\e\to0$,\\
+where $\omega_\e:=\theta_{\widehat\omega_\e}(f_\e(\theta_{\widehat\omega_\e}^{-1}(\omega)))$
+\end{tabular}\right\}.\]
+Since the first condition that $|\omega(a)|\le\e^{-\frac14}\widehat\omega(a)$ for all $a\in A^+$ implies $\|\theta_{\widehat\omega_\e}^{-1}(\omega)\|\le\e^{-\frac14}<\e^{-1}$, the functional $\omega_\e$ is well-defined.
+We claim $G^*=\overline{F^*-A^{*+}}$.
+If the claim is true, then $G^{*+}\subset F^*$ is clear because for $\omega\in G^{*+}$ we have $\omega_\e\in F^*$ and $\omega_\e\to\omega$ weakly$^*$ in $A^*$, so this completes the proof.
+
+Since every element $\omega\in G^*$ has a net $\omega_\e-C\e^{\frac12}\widehat\omega_\e\in F^*-A^{*+}$ converges to $\omega$ weakly$^*$ as $\e\to0$, we have $G^*\subset\overline{F^*-A^{*+}}$.
+For the other direction, suppose first $\omega\in F^*-A^{*+}$ and take any $\varphi\in F^*$ such that $\omega\le\varphi$.
+For each $0<\e<(1+\|\omega\|)^{-4}$, let
+\[\widehat\omega_\e:=\frac{[\omega]}{1+\|\omega\|}+\frac\varphi{(1+\|\omega\|)(1+\|\varphi\|)},\qquad\varphi_\e:=\theta_{\widehat\omega_\e}(f_\e(\theta_{\widehat\omega_\e}^{-1}(\varphi))).\]
+Then, we have
+\[|\omega(a)|\le[\omega](a)\le(1+\|\omega\|)\widehat\omega_\e(a)\le\e^{-\frac14}\widehat\omega(a),\qquad a\in A^+\]
+and
+\[\|\widehat\omega_\e\|\le\frac{\|\omega\|}{1+\|\omega\|}+\frac1{1+\|\omega\|}\cdot\frac{\|\varphi\|}{1+\|\varphi\|}\le1,\]
+and if we denote by $\pi_\e:A^{**}\to B(H_\e)$ the Gelfand-Naimark-Segal representation associated to $\widehat\omega_\e$ together with the canonical cyclic vector $\Omega_\e\in H_\e$, then
+\[\|\varphi_\e\|=\varphi_\e(1_{A^{**}})=\langle f_\e(\theta_{\widehat\omega_\e}^{-1}(\varphi))\Omega_\e,\Omega_\e\rangle\le\e^{-1}\|\Omega_\e\|^2=\e^{-1}\|\widehat\omega_\e\|\le\e^{-1}.\]
+If we let $\omega_\e:=\theta_{\widehat\omega_\e}(f_\e(\theta_{\widehat\omega_\e}^{-1}(\omega)))$ as in the definition of $G^*$, then the positivity of $\theta_{\widehat\omega_\e}$ and the operator monotonicity of $f_\e$ give $\omega_\e\le\varphi_\e$, and since $\widehat\omega_\e$ is independent of $\e$ so that $f_\e(\theta_{\widehat\omega_\e}^{-1}(\omega))\to\theta_{\widehat\omega_\e}^{-1}(\omega)$ weakly in $\pi_\e(A)'$ as $\e\to0$, we have $\omega_\e\to\omega$ weakly$^*$ in $A^*$.
+These show that $F^*-A^{*+}\subset G^*$.
+Thus, it is enough to show $G^*$ is weakly$^*$ closed to prove the claim.
+Let $\omega_i\in G^*$ be a net satisfying $\omega_i\to\omega$ weakly$^*$ in $A^*$, which may be assumed to be bounded by the Krein-\v Smulian theorem.
+Let $\|\omega_i\|\le1$ without loss of generality.
+For each $2^{-4}\le\e<(1+\|\omega\|)^{-4}$, since we do not need to care about the last fifth convergence condition in this range of $\e$, we can define $\widehat\omega_\e$ and $\varphi_\e$ as same as above in the proof of $F^*-A^{*+}\subset G^*$ to make them satisfy the first four conditions.
+For $0<\e<2^{-4}\le\inf_i(1+\|\omega_i\|)^{-\frac14}$, if we take $\widehat\omega_{i,\e}$ and $\varphi_{i,\e}$ for each $i$ following the definition of $G^*$, then since $\widehat\omega_{i,\e}$ and $\varphi_{i,\e}$ are bounded nets for each $\e$, we may define $\widehat\omega_\e$ and $\varphi_\e$ as weak$^*$ limits in $A^*$ of $\widehat\omega_{i,\e}$ and $\varphi_{i,\e}$ by taking a suitable subnet.
+The second and third conditions for $\omega$ automatically follow, and the weak$^*$ convergence $\omega_i\to\omega$ in $A^*$ implies the first condition.
+Before the check for the fourth and fifth conditions, introduce the notations $h_{i,\e}:=\theta_{\widehat\omega_{i,\e}}^{-1}(\omega_i)\in\pi_{i,\e}(A)'$ and $h_\e:=\theta_{\widehat\omega_\e}^{-1}(\omega)\in\pi_\e(A)'$, where $\pi_{i,\e}$ and $\pi_\e$ are the Gelfand-Naimark-Segal representations of $\widehat\omega_{i,\e}$ and $\widehat\omega_\e$ respectivelty.
+Since $\|h_{i,\e}\|\le\e^{-\frac14}$ and $\|h_\e\|\le\e^{-\frac14}$, for any $\e>0$ and $i$, we have
+\[h_{i,\e}-\e^{\frac12}\le f_\e(h_{i,\e})\le h_{i,\e},\qquad h_\e-\e^{\frac12}\le f_\e(h_\e)\le h_\e,\]
+so
+\begin{align*}
+|(\omega_{i,\e}-\omega_\e)(a^*a)|
+&=|\langle f_\e(h_{i,\e})\pi_{i,\e}(a)\Omega,\pi_{i,\e}(a)\Omega\rangle-\langle f_\e(h_\e)\pi_\e(a)\Omega,\pi_\e(a)\Omega\rangle|\\
+&\le|\langle h_{i,\e}\pi_{i,\e}(a)\Omega,\pi_{i,\e}(a)\Omega\rangle-\langle h_\e\pi_\e(a)\Omega,\pi_\e(a)\Omega\rangle|\\
+&\quad+\e^{\frac12}|\|\pi_{i,\e}(a)\Omega\|^2-\|\pi_\e(a)\Omega\|^2|\\
+&=|(\omega_i-\omega)(a^*a)|+\e^\frac12|(\widehat\omega_{i,\e}-\widehat\omega_\e)(a^*a)|,\qquad a\in A.
+\end{align*}
+If we fix $a\in A^+$, then the fourth condition $\omega_\e\le\varphi_\e$ follows from the limit for $i$ on
+\[\omega_\e(a)\le\varphi_{i,\e}(a)+\widehat\omega_{i,\e}(a)+|(\omega_i-\omega)(a)|+\e^\frac12|(\widehat\omega_{i,\e}-\widehat\omega_\e)(a)|.\]
+For arbitrary $\delta>0$, if we choose $i$ such that $|(\omega_i-\omega)(a)|<\delta$ and $|(\widehat\omega_{i,\e}-\widehat\omega_\e)(a)|<\delta$, then taking the limit superior $\e\to0$ on the inequality
+\[|(\omega_\e-\omega)(a)|\le|(\omega_{i,\e}-\omega_i)(a)|+(2+\e^{\frac12})\delta,\]
+so we obtain by letting $\delta\to0$ the fifth condition, the weak$^*$ convergence $\omega_\e\to\omega$ in $A^*$.
+Therefore, $\omega\in G^*$ proves that $G^*$ is weakly$^*$ closed, hence the claim $G^*=\overline{F^*-A^{*+}}$ follows.
+\end{proof}
+
+
+
+
+
+
+
+\begin{proof}
+As same as above, our goal is to prove $(\overline{F^*-A^{*+}})^+\subset F^*$, where the closure notation will always be used for the weak$^*$ topology throughout the whole proof.
+We first prove it when $A$ is commutative.
+On a commutative C$^*$-algebra, the rectifier function $\mathbb{R}\to\mathbb{R}:t\mapsto\max\{0,t\}$ plays the role of an operator monotone function in the sense that if $\omega_1\le\omega_2$ are functionals in $A^{*sa}$ then we have $\omega_{1+}\le\omega_{2+}$ for the Jordan decompositions.
+In this case, we can prove $F^*-A^{*+}$ is weakly$^*$ closed.
+If $\omega_i\in F^*-A^{*+}$ is a bounded net such that $\omega_i\to\omega$ weakly$^*$ in $A^*$, then $\omega_{i+}\in F^*$ is a bounded net so that we may assume $\omega_{i+}\to\omega'$ weakly$^*$ in $A^*$ by taking a subnet, and $\omega\le\omega'\in F^*$ implies $\omega\in F^*-A^{*+}$.
+By the Krein-\v Smulian theorem, it completes the proof of $(\overline{F^*-A^{*+}})^+\subset F^*$ provided that $A$ is commutative.
+
+Now we consider a general C$^*$-algebra $A$.
+For any separable C$^*$-subalgebra $B$ of $A$, define
+\[F_B^*:=\overline{\{\omega|_B\in B^{*+}:\omega\in F^*-A^{*+}\}}^{\|\cdot\|},\]
+which is clearly a norm closed and convex, and we can see that it is hereditary in $B^{*+}$ by the positive Hahn-Banach extension.
+We first claim $(\overline{F_B^*-B^{*+}})^+\subset F_B^*$.
+As a remark, we take a note that the claim implies that $F_B^*$ is weakly$^*$ closed, and if $A$ is separable itself, then the proof of the theorem follows by letting $B=A$.
+Note that the separability of $B$ makes the weak$^*$ topology on any bounded part of $B^{*sa}$ metrizable.
+Consider
+\[G_B^*:=\overline{F_B^*-B^{*+}}^{\|\cdot\|}.\]
+By Theorem \ref{positive hahn-banach w*} (2), if we prove $G_B^*$ is weakly$^*$ closed, then the claim $(\overline{F_B^*-B^{*+}})^+\subset F_B^*$ easily follows.
+To this end, we take a sequence $\omega_{B,n}\in G_B^*$ such that $\omega_{B,n}\to\omega_B$ weakly$^*$ in $B^*$ to use the Krein-\v Smulian theorem and the separability of $B$.
+We may assume $\omega_{B,n}\in F_B^*-B^{*+}$.
+
+$\omega_n\in F^*-A^{*+}$ such that $\omega_n|_B\to\omega|_B$ weakly$^*$ in $B^*$...
+How to bound $\varphi_n$...
+
+there is $y\in B^{**+}$ such that $\omega(y)>1$ and $\omega'(y)\le1$ for $\omega'\in F^*$.
+Take bounded $b_m\in B^+$ such that $b_m\to y$.
+We may assume $\omega_n\in F^*-A^{*+}$ such that $|(\omega-\omega_n)(b_m)|<(m+n)^{-1}$ for all $m\le n$.
+
+Do we have $\omega_n(b_n)\lesssim\omega_n(y)$?
+
+
+\[-\]
+
+Now let $\omega\in(\overline{F^*-A^{*+}})^+$.
+Take a net $\omega_i\in F^*-A^{*+}$ and $\varphi_i\in F^*$ such that $\omega_i\to\omega$ weakly$^*$ in $A^*$ and $\omega_i\le\varphi_i$ for each $i$.
+For each separable C$^*$-subalgebra $B$ of $A$, we have $\varphi_i|_B\in F^*_{B}$ and $\omega_i|_B\in F^*_B-B^{*+}$ with the weak$^*$ convergence $\omega_i|_B\to\omega|_B$ in $B^*$, thus we have $\omega|_B\in(\overline{F_B^*-B^{*+}})^+=F_B^*$ because $B$ is separable.
+If we consider the increasing net of all separable C$^*$-subalgebras $(B_j)_{j\in J}$ of $A$, then we have $\omega|_{B_j}\in F_{B_j}^*$ so that there is a net $\omega_{(j,\e)}\in F^*-A^{*+}$ based on the product directed set $\{(j,\e):j\in J,\ \e>0\}$ such that $\|\omega_{(j,\e)}|_{B_j}-\omega|_{B_j}\|<\e$ for each $(j,\e)$.
+With this net, as an intermediate step, we will prove that $\omega$ belongs to the $\sigma(A^*,A_0^{**})$-closure of $F^*-A^{*+}$, where $A_0^{**}$ denotes the set of all elements of $A^{**}$ whose left or right support projection is $\sigma$-finite.
+Observing that the left and right support projections of an arbitrary element of a von Neumann algebra are Murray-von Neumann equivalent, we can see $A_0^{**}$ is an algebraic ideal of $A^{**}$.
+Let $x\in A_0^{**+}$ with $\|x\|\le1$, and let $p$ be the support projection of $x$.
+Since $p$ is $\sigma$-finite so that on the $\sigma$-weakly closed left ideal $A^{**}p$ of $A^{**}$ its bounded part is $\sigma$-strongly metrizable, we can take by the Kaplansky density theorem a sequence $b_n\in A^+$ such that $\|b_n\|\le1$ for all $n$ and $b_np\to p$ $\sigma$-strongly in $A^{**}$.
+If we let $r$ be a $\sigma$-finite projection of $A^{**}$ such that $b_np\in rA^{**}r$ for all $n$, then since the closed unit ball of $rA^{**}r$ is $\sigma$-strongly metrizable and $pb_n\to p$ $\sigma$-weakly because of the $\sigma$-weak continuity of the involution, we can retake with the Mazur lemma a sequence $b_n\in A^+$ by convex combinations such that we still have $\|b_n\|\le1$ for all $n$ and $pb_n\to p$ $\sigma$-strongly, which implies that $b_npb_n\to p$ $\sigma$-weakly.
+Take a separable C$^*$-subalgebra $B$ of $A$ such that $b_n\in B$ for all $n$, and let $q:=1_{B^{**}}$.
+Then, $b_npb_n\le b_n^2\le q$ implies $p\le q$ and $xq=x$.
+Since every separable C$^*$-algebra admits a faithful state, $q$ is $\sigma$-finite, so we have a sequence $c_n\in B$ such that $\|c_n\|\le1$ and $c_n\to q$ $\sigma$-strongly.
+Using the Kaplansky density theorem and the $\sigma$-finiteness of $q$ again, take a sequence $a_n\in A^+$ such that $\|a_n\|\le1$ for all $n$ and $a_nq\to x$ $\sigma$-strongly.
+Then, $a_nc_n\to x$ $\sigma$-strongly.
+If we choose $j_0$ such that $a_nc_n\in B_{j_0}$ for all $n$, then for each $j\succ j_0$ the last term in the inequality 
+\[|(\omega_{(j,\e)}-\omega)(x)|\le|(\omega_{(j,\e)}-\omega)(x-a_nc_n)|+|(\omega_{(j,\e)}-\omega)(a_nc_n)|\]
+is uniformly estimated by $\e$ because the sequence $a_nc_n\in B_j$ is uniformly bounded by one, so we obtain $\lim_{(j,\e)}(\omega_{(j,\e)}-\omega)(x)=0$.
+This proves that $\omega$ is contained in the $\sigma(A^*,A_0^{**})$-closure of $F^*-A^{*+}$.
+
+
+
+Suppose now $\omega\notin F^*$.
+Then, there exists $x\in A^{**+}$ such that $\omega(x^2)>1$ and $\omega'(x^2)\le1$ for all $\omega'\in F^*$ by Theorem \ref{positive hahn-banach w*} (2).
+Let $\{p_i\}_{i\in I}$ be a maximal orthogonal family of $\sigma$-finite projections of the von Neumann algebra $A^{**}$ whose sum is the support projection of $x$.
+If we consider order-preserving bounded linear maps $\Gamma:c_0(I)\to A^{**}$ and $\Gamma^*:A^*\to\ell^1(I)$ given by
+\[\Gamma((c_i)_{i\in I}):=\sum_ic_ixp_ix,\qquad
+\Gamma^*(\omega'):=(\omega'(xp_ix))_{i\in I},\]
+then these maps are in dual, and $\Gamma$ is extended to the linear map $\Gamma^{**}:\ell^\infty(I)\to A^{**}$ continuous with respect to weak$^*$ topologies.
+We have $\Gamma(c_0(I))\subset A_0^{**}$ due to the fact that each element of $c_0(I)$ has at most countably many non-zero components.
+Since $\omega$ is an element of the $\sigma(A^*,A_0^{**})$-closure of $F^*-A^{*+}$, we have $\Gamma^*(\omega)\in \overline{\Gamma^*(F^*-A^{*+})}$, where the closure is taken in the weak$^*$ topology of $\ell^1(I)$.
+Then, beacuse
+\[\left(\overline{\Gamma^*(F^*-A^{*+})}\right)^+\subset\left(\overline{\Gamma^*(F^*)-\ell^1(I)^+}\right)^+\subset\left(\overline{\overline{\Gamma^*(F^*)}-\ell^1(I)^+}\right)^+\subset\overline{\Gamma^*(F^*)},\]
+where the last inclusion follows from that $c_0(I)$ is a commutative C$^*$-algebra, we have $\Gamma^*(\omega)\in\overline{\Gamma^*(F^*)}$.
+For any $\delta>0$, if we choose $c\in c_0(I)^+$ such that $c\le1$ and $|\langle1_{\ell^\infty(I)}-c,\Gamma^*(\omega)\rangle|<\delta$ using the Kaplansky density theorem, and choose $\omega'\in F^*$ such that $|\langle c,\Gamma^*(\omega)-\Gamma^*(\omega')\rangle|<\delta$, then we get a contradiction
+\begin{align*}
+1<\omega(x^2)&=\langle1_{\ell^\infty(I)},\Gamma^*(\omega)\rangle\approx_\delta\langle c,\Gamma^*(\omega)\rangle\\
+&\approx_\delta\langle c,\Gamma^*(\omega')\rangle\le\langle1_{\ell^\infty(I)},\Gamma^*(\omega')\rangle=\omega'(x^2)\le1,
+\end{align*}
+where the relation symbol $\approx_\delta$ means that the difference converges to zero as $\delta\to0$.
+Therefore, we finally have $\omega\in F^*$.
+\end{proof}
+
+
+
+
+\section{Applications to weight theory}
+
+
+The positive Hahn-Banach separation theorem implies a generalization of the Combes theorem on subadditive normal weights.
+\begin{cor}
+Let $M$ be a von Neumann algebra.
+Then, there is a one-to-one correspondence
+\[\begin{array}{ccc}
+\left\{\emph{\begin{tabular}{c}subadditive normal\\weights of $M$\end{tabular}}\right\}&\leftrightarrow&\left\{\emph{\begin{tabular}{c}hereditary closed\\convex subsets of $M_*^+$\end{tabular}}\right\}\\[10pt]
+\varphi&\mapsto&\{\omega\in M_*^+:\omega\le\varphi\}
+\end{array}\]
+\end{cor}
+
+
+
+\end{document}

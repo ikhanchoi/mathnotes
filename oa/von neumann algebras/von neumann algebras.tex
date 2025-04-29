@@ -9,7 +9,6 @@
 \tableofcontents
 
 \iffalse
-injectivity
 Connes embeddability
 property Gamma
 Connes' bicentralizer problem
@@ -33,344 +32,457 @@ noncommutative probability
 
 \begin{prb}[Weights]
 Let $M$ be a von Neumann algebra.
-A \emph{weight} is an additive homogeneous function $\f:M^+\to[0,\infty]$ in the sense that
+A \emph{weight} on $M$ is an additive homogeneous function $\f:M^+\to[0,\infty]$, in the sense that it satisfies
 \[\f(x+y)=\f(x)+\f(y),\qquad\f(tx)=t\f(x),\qquad x,y\in M^+,\ t\ge0,\]
 where we use the convention $0\cdot\infty=0$.
-Define
+We will frequently use the subalgebras
 \[\fN_\f:=\{x\in M:\f(x^*x)<\infty\},\qquad\fA_\f:=\fN_\f^*\cap\fN_\f,\qquad\fM_\f:=\fN_\f^*\fN_\f.\]
-It follows easily that $\fN_\f$ is a left ideal of $M$ equipped with a sesqui-linear form $\<x,y\>:=\f(y^*x)$ for $x,y\in\fN_\f$, $\fA_\f$ is a hereditary $*$-subalgebra of $M$, and $\fM_\f$ is a hereditary $*$-subalgebra of $M$ equipped with a linear functional which extends $\f$ by the polarization identity.
+It follows easily that $\fN_\f$ is a left ideal, and $\fA_\f$ and $\fM_\f$ are hereditary $*$-subalgebras of $M$.
+On $\fN_\f$, a sesquilinear form is defined such that $\<x,y\>:=\f(y^*x)$ for $x,y\in\fN_\f$.
+On $\fM_\f$, the weight $\f$ is extended to a linear functional $\f:\fM_\f\to\C$ by the polarization identity.
+Equivalently, a weight on $M$ can be defined as a partially defined positive linear functional on a hereditary $*$-subalgebra of $M$.
 
 Let $\f$ be a weight on $M$.
-We say $\f$ is \emph{faithful} if $\f(x)=0$ implies $x=0$ for $x\in M^+$, \emph{semi-finite} if $\fM_\f$or equivalently $\fN_\f$ is $\sigma$-weakly dense in $M$, and \emph{normal} if it is written as the supremum of some set of normal positive linear functionals.
+We say $\f$ is \emph{faithful} if $\f(x)=0$ implies $x=0$ for $x\in M^+$, \emph{semi-finite} if any of the above three subalgebras is $\sigma$-weakly dense in $M$, and \emph{normal} if it is written as the supremum of some set of normal positive linear functionals.
 \begin{parts}
 \item Every von Neumann algebra admits a faithful semi-finite normal weight.
-\item $\fM_\f^+=\{x^*x:x\in\fN_\f\}$ and $\fM_\f=\{y^*x:x,y\in\fN_\f\}$.
-%\item opposite weight
+\item We have $\fM_\f^+=\{x^*x:x\in\fN_\f\}$ and $\fM_\f=\{y^*x:x,y\in\fN_\f\}$.
 \end{parts}
 \end{prb}
 \begin{pf}
 (a)
-Let $\{\omega_i\}_{i\in I}$ be a maximal family of normal states on $M$ such that the support projections $p_i:=s(\omega_i)$ are mutually orthogonal, taken with the Zorn lemma.
+Let $\{\omega_i\}$ be a maximal family of normal states on $M$ such that the support projections $p_i:=s(\omega_i)$ are mutually orthogonal taken by the Zorn lemma.
 From the maximality, we have the $\sigma$-strong$^*$ limit $\sum_ip_i=1$.
 Define a weight $\f:M^+\to[0,\infty]$ by
 \[\f(x):=\sum_i\omega_i(x),\qquad x\in M^+.\]
-It is faithful since $\f(x^*x)=0$ means $\omega_i(x^*x)=0$ for all $i$, which implies $xp_i=0$ and
-\[\<x\xi,\xi\>=\<\sum_ip_i\xi,x^*\xi\>=\sum_i\<p_i\xi,x^*\xi\>=\sum_i\<xp_i\xi,\xi\>=0.\]
-It is semi-finite since an increasing net $p_J:=\sum_{i\in J}p_i\in\fM_\f$ converges to the unit, where $J$ runs through all finite subsets of $I$.
-It is normal by definition.
+It is faithful, since $\f(x^*x)=0$ means $\omega_i(x^*x)=0$ for all $i$, which implies $xp_i=0$ by definition of support projection so that we have $x=0$.
+It is semi-finite, since a non-decreasing net $p_J:=\sum_{j\in J}p_j\in\fM_\f$ converges to the unit, where $J$ runs through all finite subsets of indices.
+It is normal by definition of infinite sum.
 
 (b)
-Let $z:=\sum_{i=1}^ny_i^*x_i\in\fM_\f^+$ for some $x_i,y_i\in\fN_\f$.
-The polarization writes
-\[z=\frac14\sum_{i=1}^n\sum_{k=0}^3i^k|x_i+i^ky_i|^2\]
-so it follows from $z^*=z$ that
-\[z=\frac12\sum_{i=1}^n(|x_i+y_i|^2-|x_i-y_i|^2)\le\frac12\sum_{i=1}^n|x_i+y_i|^2.\]
-Since $\f(z)<\infty$ by $x_i+y_i\in\fN_\f$, if $x:=z^{\frac12}\in\fN_\f$, then $z=x^*x$.
+Let $\sum_jy_j^*x_j\in\fM_\f^+$ for some finite sequences $x_j,y_j\in\fN_\f$.
+By the self-adjoint polarization,
+\[\sum_jy_j^*x_j=\frac12\sum_j(|x_j+y_j|^2-|x_j-y_j|^2)\le\frac12\sum_j|x_j+y_j|^2.\]
+Since $x_j+y_j\in\fN_\f$, we get $(\sum_jy_j^*x_j)^{\frac12}\in\fN_\f$, and $\fM_\f^+=\{x^*x:x\in\fN_\f\}$.
 
-Let $z:=\sum_{i=1}^ny_i^*x_i\in\fM_\f$ for some $x_i,y_i\in\fM_\f$.
-Let $x:=(\sum_{i=1}^nx_i^*x_i)^{\frac12}\in\fN_\f$.
-Since $x_i^*x_i\le x^2$, we have $v_i\in M$ such that $x_i=v_ix$.
-If we let $y:=\sum_{i=1}^nv_i^*y_i\in\fN_\f$, then
-\[z=\sum_{i=1}^ny_i^*x_i=\sum_{i=1}^ny_i^*v_ix=\Bigr(\sum_{i=1}^nv_i^*y_i\Bigr)^*x=y^*x.\qedhere\]
+Let $\sum_jy_j^*x_j\in\fM_\f$ for some $x_j,y_j\in\fM_\f$.
+Let $x:=(\sum_jx_j^*x_j)^{\frac12}\in\fN_\f$.
+Since $x_j^*x_j\le x^2$, we have $v_j\in M$ such that $x_j=v_jx$.
+If we let $y:=\sum_jv_j^*y_j\in\fN_\f$, then
+\[\sum_jy_j^*x_j=\sum_jy_j^*v_jx=\Bigr(\sum_jv_j^*y_j\Bigr)^*x=y^*x,\]
+so $\fM_\f=\{y^*x:x,y\in\fN_\f\}$.
 \end{pf}
+
 
 
 
 \begin{prb}[Semi-cyclic representations]
 Let $M$ be a von Neumann algebra.
-A \emph{semi-cyclic representation} is a representation $\pi:M\to B(H)$ together with a densely defined and densely ranged left $M$-linear operator $\Lambda:\dom\Lambda\subset M\to H$.
-We say that a representation of $M$ is \emph{semi-cyclic} if it admits such an operator $\Lambda$.
-Note that it implies that a semi-cyclic representation is always non-degenerate.
-Define
-\begin{align*}
-\cF_\Lambda:=\{\omega\in M_*^+:\omega(x^*x)\le\|\Lambda(x)\|^2,\ x\in\dom\Lambda\},\\
-\cG_\Lambda:=\{\omega\in M_*^+:\omega(x^*x)<\|\Lambda(x)\|^2,\ x\in\dom\Lambda\}.
-\end{align*}
+A \emph{semi-cyclic representation} of $M$ is a representation $\pi:M\to B(H)$ together with a left $M$-linear partially defined linear operator $\Lambda:\dom\Lambda\subset M\to H$ of dense range.
+The domain of $\Lambda$ is a left ideal of $M$ by definition.
+For a weight $\f$ on $M$ and a semi-cyclic representation $(\pi,\Lambda)$ of $M$, we say they are \emph{associated} if we have
+\[\f(x^*x)=\begin{cases}
+\|\Lambda(x)\|^2&\text{ if }x\in\dom\Lambda,\\
+\infty&\text{ if }x\notin\dom\Lambda.
+\end{cases}\]
+If this is the case, it clearly follows that $\fN_\f=\dom\Lambda$.
 \begin{parts}
-\item 
-\item If $(\pi,\Lambda)$ is normal and a semi-finite normal weight $\f$ on $M$ satisfies that $\f(x^*x)=0$ whenever $\Lambda(x)=0$ for $x\in\dom\Lambda$, then there is a positive self-adjoint operator $h$ affiliated with $\pi(M)'$ such that $\ran\Lambda\subset\dom h$ and $\f(x^*x)=\<h\Lambda(x),\Lambda(x)\>$.
-\item Let $\hat\cF_\Lambda$ be the set of all semi-finite normal weights $\f$ such that $\f(x^*x)\le\|\Lambda(x)\|^2$ for $x\in\dom\Lambda$. Then, the vector functional map $(\pi(M)')^+_1\to\hat\cF_\Lambda:h\mapsto\f_h$ defined such that $\f_h(x^*x):=\<h\Lambda(x),\Lambda(x)\>$ for $x\in\dom\Lambda$ is bijective.
-The operator $h$ is called the \emph{Radon-Nikodym derivative} of $\f_h\in\cF_\Lambda$ in the commutant with respect to $\Lambda$.
-\end{parts}
-\end{prb}
-\begin{pf}
-(b)
-Using the semi-finiteness of $\f$, take a net $e_i$ in $\fN_\f$ such that $e_i\uparrow1$, and let $\f_i$ be a normal positive linear functional on $M$ defined such that $\f_i(x^*x):=\f(e_ix^*xe_i)$ for $x\in M$.
-For each fixed $y\in\dom\Lambda$ and $i$, we have $\ran\Lambda\subset H\to\C:\Lambda(x)\mapsto\f_i(y^*x)$ which is well-defined and bounded linear functional on $H$ by the assumption and
-\[|\f_i(y^*x)|^2\lesssim|\f_i(y^*y)||\f_i(x^*x)|\lesssim\|\Lambda(y)\|^2\|\Lambda(x)\|^2,\qquad x\in\dom\Lambda.\]
-
-
-(If $\f_i$ is not contained in the weakly closed convex cone $\R^+\cF_\Lambda$, then there is $x\in M^+$ such that $\f_i(x)\ne0$ and $\omega(x)=0$ for any $\omega\in\cF_\Lambda$.
-normality of $\Lambda$ and the assumption imply $|\f_i(x^*x)|\lesssim\|\Lambda(x)\|^2$.
-positive Hahn-Banachh separation?)
-
-
-By the Riesz representation theorem, we can define $h_i\in\pi(M)'$ such that $\f_i(x^*x)=\<h_i\Lambda(x),\Lambda(x)\>$ for $x\in\dom\Lambda$.
-\end{pf}
-
-Justification of positive self-adjoint operators by the limit of increasing positive bounded operators?
-
-
-
-\begin{prb}[Normal semi-cyclic representations]
-Let $M$ be a von Neumann algebra.
-A semi-cyclic representation $(\pi,\Lambda)$ of $M$ is called \emph{normal} if $\pi$ is normal and $\Lambda$ is $\sigma$-weakly closed.
-
-For a weight $\f$ on $M$, on the Hilbert space $H_\f$ constructed by separation and completion of the sesqui-linear form on $\fN_\f$, define $\pi_\f:M\to B(H_\f)$ by the left multiplication and $\Lambda_\f:\dom\Lambda_\f\subset H_\f\to H_\f$ as the canonical map with $\dom\Lambda_\f:=\fN_\f$.
-Then, $(\pi_\f,\Lambda_\f)$ is clearly a semi-cyclic representation, called the \emph{Gelfand-Naimark-Segal representation} of $\f$.
-Conversely, for a semi-cyclic representation $(\pi,\Lambda)$ of $M$ on a Hilbert space $H$, define $\f_\Lambda:=\sup\{\omega:\omega\in\cF_\Lambda\}$.
-Then, $\f_\Lambda$ is clearly a weight.
-\begin{parts}
-\item If $\f$ is normal, then $(\pi_\f,\Lambda_\f)$ is normal, and $\f=\f_{\Lambda_\f}$.
-\item If $(\pi,\Lambda)$ is normal, then $\f_\Lambda$ is normal, and there exists a unitary operator $u:H\to H_{\f_\Lambda}$ satisfying $\pi_{\f_\Lambda}=(\Ad u)\pi$ and $\Lambda_{\f_\Lambda}=u\Lambda$.
-\item For a normal $\f$, $\f$ is faithful if and only if $\Lambda_\f$ is injective, and $\f$ is semi-finite if and only if $\Lambda_\f$ is $\sigma$-weakly densely defined.
+\item There is a one-to-one correspondence between weights on $M$ and unitary classes of semi-cyclic representations of $M$ via the association relation.
+\item If $\f$ and $(\pi,\Lambda)$ are associated, and if $\f$ is normal, then $\pi$ is normal and $\Lambda$ is $\sigma$-weakly closed.
+\item If $\f$ and $(\pi,\Lambda)$ are associated, and if $\pi$ is normal and $\Lambda$ is $\sigma$-weakly closed, then $\f$ is normal.
+\item For a normal $\f$, $\f$ is faithful if and only if $\Lambda$ is injective, and $\f$ is semi-finite if and only if $\Lambda$ is $\sigma$-weakly densely defined.
+\iffalse
+\item Suppose $(\pi,\Lambda)$ is associated to $\f$. Suppose also $\f$ is normal and $\omega$ is a normal linear functional. If $\omega=0$ whenever $\f=0$ on $\fM_\f$, then there is a unique positive self-adjoint $h$ affiliated with $\pi(M)'$ such that $\omega(x^*x)=\<h\Lambda(x),\Lambda(x)\>$ for $x\in\fN_\f$.
+\item In (c), if $\f$ is faithful semi-finite normal, then $\omega$ is in fact a vector functional.
+\fi
 \end{parts}
 \end{prb}
 \begin{pf}
 (a)
-We first show $\pi_\f$ is normal.
-The proof is almost same as the normality of cyclic representation associated to normal states.
-Consider the adjoint $\pi_\f^*:B(H)_*\to M^*$.
-For a normal state $\omega\in B(H)_*$ of the form $\omega=\omega_{\Lambda_\f(x)}$ for some $x\in\fN_\f$, since
-\[\pi_\f^*(\omega)(y)=\omega_{\Lambda_\f(x)}(\pi_\f(y))=\<\pi_\f(y)\Lambda_\f(x),\Lambda_\f(x)\>=\f(x^*yx),\qquad y\in M,\]
-and since $\f$ is order continuous, we can see that $\pi_\f^*(\omega)$ is also order continuous, which means that it is contained in $M_*$.
-Because the image of $\Lambda_\f$ is dense, the linear span of states of the form $\omega_{\Lambda_\f(x)}$ with $x\in\fN_\f$ is norm-dense in $B(H)_*$ by the inequality
-\[\|\omega_\xi-\omega_\eta\|\le\|\xi-\eta\|\|\xi+\eta\|,\qquad\xi,\eta\in H.\]
-Since $M_*$ is norm-closed $M^*$, so $\pi_\f^*$ maps normal states of $B(H)$ to normal states $M_*$.
+First, let $(\pi,\Lambda)$ be a semi-cyclic representation of $M$ and define $\f$.
+The uniqueness of $\f$ is clear by definition.
+We prove that $\f$ is a well-defined weight.
+If $x,y\in M$ satisfy $x^*x=y^*y$, then there is a partial isometry $v\in M$ such that $x=vy$, so
+\[\f(x^*x)=\|\Lambda(x)\|^2=\|v\Lambda(y)\|^2=\|\Lambda(y)\|^2=\f(y^*y),\]
+which means that $\f$ is well-defined.
+To show $\f$ is a weight, let $x,y\in M$ and $z:=(x^*x+y^*y)^{\frac12}$.
+Then, there is $u,v\in M$ such that $x=uz$, $y=vz$, and $(u^*u+v^*v)z=z$.
+If $x,y\in\dom\Lambda$, then
+\[\f(x^*x+y^*y)=\|\Lambda(z)\|^2=\<(u^*u+v^*v)\Lambda(z),\Lambda(z)\>=\|u\Lambda(z)\|^2+\|v\Lambda(y)\|^2=\f(x^*x)+\f(y^*y).\]
+If $y\notin\dom\Lambda$, then $z\in\dom\Lambda$ because $\dom\Lambda$ is a left ideal, so
+\[\f(x^*x+y^*y)=\infty=\f(x^*x)+\f(y^*y).\]
+Therefore, $\f$ is additive, and it is clearly homogeneous, so $\f$ is a weight.
 
-Next, we show $\Lambda_\f$ is $\sigma$-weakly closed.
-Let $\Gamma(\Lambda_\f):=\{(x,\Lambda_\f(x)):x\in\fN_\f\}\subset M\times H$ be the graph of $\Lambda_\f$.
-Note that for closedness of convex subsets of $M\times H$ we do not have to distinguish $\sigma$-weak topology from $\sigma$-strong$^*$ topology on $M$ and weak topology from norm topology on $H$.
-Suppose a net $x_i\in\fN_\f$ satisfies $x_i\to x$ $\sigma$-strongly$^*$ in $M$ and $\Lambda_\f(x_i)\to\xi$ stronlgy in $H$.
-Since $\f$ is normal, we have
-\[\f=\sup_{\omega\in\cF_\f}\omega,\qquad\cF_\f:=\cF_{\Lambda_\f}=\{\omega\in M_*^+:\omega\le\f\}.\]
-Then, it follows that $x\in\fN_\f$ from
-\[\f(x^*x)=\sup_{\omega\in\cF_\f}\omega(x^*x)=\sup_{\omega\in\cF_\f}\lim_i\omega(x_i^*x_i)\le\lim_i\f(x_i^*x_i)=\lim_i\|\Lambda_\f(x_i)\|^2=\|\xi\|^2<\infty.\]
-For fixed $\e>0$ and any $y\in\fN_\f$, if we take $\omega\in\cF_\f$ such that $\omega(y^*y)>\f(y^*y)-\e$ and let $h\in(M')_1^+$ be the Radon-Nikodym derivative of $\omega$ with respect to $\f$ in the commutant, then
+Next, let $\f$ be a weight of $M$.
+The existence of an associated semi-cyclic representation is by the Gelfand-Naimark-Segal construction on the linear space $\fN_\f$ with a sesquilinear form given by $(x,y)\mapsto\f(y^*x)$.
+For the uniqueness, suppose $(\pi,\Lambda)$ and $(\pi',\Lambda')$ are associated semi-cyclic representations of $\f$ on $H$ and $H'$.
+We have $\dom\Lambda=\fN_\f=\dom\Lambda'$ and $\|\Lambda(x)\|=\f(x^*x)=\|\Lambda'(x)\|$ on it.
+Since the images of $\Lambda$ and $\Lambda'$ are dense in $H$ and $H'$ respectively, we can define a unitary $u:H\to H'$ such that $u\Lambda=\Lambda'$.
+We also have $\Ad u(\pi)=\pi'$ because
+\[u^*\pi'(x)u\Lambda(y)=u^*\pi'(x)\Lambda'(y)=u^*\Lambda'(xy)=\Lambda(xy)=\pi(x)\Lambda(y),\qquad x,y\in\fN_\f.\]
+
+
+
+\iffalse
+()
+For $y\in\fN_\f$, define $h^{\frac12}\Lambda(y)\in H$ such that
+
+\[|\omega(y^*x)|^2\le\cdots\le\f(x^*x)=\|\Lambda(x)\|^2?\]
+
+Let $F_*$ be a hereditary closed convex subset of $M_*^+$, and let $\f:=\sup_{\omega\in F_*}\omega$.
+We want to prove it is additive, but I think it is not in general.
+Trial:
+
+Let $G_*$ be the set of all $\omega\in F_*$ such that there is $\e>0$ such that $(1+\e)\omega\in F_*$.
+It suffices to show $G_*$ is directed.(WRONG)
+Let $\omega_1,\omega_2\in G_*$ and take $\e>0$ such that $(1+\e)\omega_1,(1+\e)\omega_2\in F_*$.
+For the cyclic representation $\pi$ with the canonical cyclic vector $\Omega$ associated to $(1+\e)(\omega_1+\omega_2)$, let $h_1,h_2\in\pi(M)'$ be the Radon-Nikodym derivatives.
+Define $h_0:=f(f^{-1}(h_1)+f^{-1}(h_2))$, where $f(t):=t/(1+t)$, $f^{-1}(t):=t/(1-t)$, and $\omega_0(x^*x):=\<h_0x\Omega,x\Omega\>$.
+If $\omega_0\notin G_*$, then there is $x\in M^+$ such that $\omega_1(x^2)\le(1+\e)^{-1}$ and $\omega_2(x^2)\le(1+\e)^{-1}$ but $\omega_0(x^2)\ge1$.
+
+()
+Let $\f$ be a faithful semi-finite normal weight and $(\pi,\Lambda)$ be the associated semi-cyclic representation of $M$.
+Let $\omega$ be a normal state, and $h\in M'$ be the Radon-Nikodym derivative of $\omega$ taken by the part (c).
+Let $e_i$ be a bounded net in $\fN_\f$ such that $e_i\to1$ $\sigma$-weakly in $M$.
+Let $\xi_i:=h^{\frac12}\Lambda(e_i)$.
+Since $\|\xi_i\|^2=\omega(e_i^*e_i)\le\|\omega\|\|e_i\|^2$ is bounded, by taking a subnet, we may assume $\xi_i\to\xi$ weakly in $H$.
+Then,
+\begin{align*}
+\<h^{\frac12}\Lambda(x),h^{\frac12}\Lambda(y)\>
+&=\omega(y^*x)=\lim_i\omega(e_iy^*x)\\
+&=\lim_i\<h^{\frac12}\Lambda(y^*x),\xi_i\>=\<h^{\frac12}\Lambda(y^*x),\xi\>=\<h^{\frac12}\Lambda(x),y\xi\>,\qquad x,y\in\fN_\f.
+\end{align*}
+It implies that for any $y\in\fN_\f$ the vector $y\xi-h^{\frac12}\Lambda(y)$ is orthogonal to $h^{\frac12}\ran\Lambda$, but since $h^{\frac12}\Lambda(ye_i)=y\xi_i\to y\xi$ weakly in $H$ so that $y\xi-h^{\frac12}\Lambda(y)$ belongs to the closure of $h^{\frac12}\ran\Lambda$, we have $y\xi-h^{\frac12}\Lambda(y)=0$.
+Therefore, $\omega(y^*y)=\<h\Lambda(y),\Lambda(y)\>=\<y^*y\xi,\xi\>$ for $y\in\fN_\f$, which means $\omega$ is a vector state.
+\fi
+
+
+(b)
+We first show $\pi$ is normal.
+The proof is almost same as the normality of cyclic representations associated to normal states.
+Consider the adjoint $\pi^*:B(H)_*\to M^*$.
+Since the image of vector functionals under $\pi^*$ is written in the form
+\[\pi^*(\omega_{\Lambda(x)})(y)=\omega_{\Lambda(x)}(\pi(y))=\<\pi(y)\Lambda(x),\Lambda(x)\>=\f(x^*yx),\qquad x\in\fN_\f,\ y\in M,\]
+the Scott continuity of the normal weight $\f$ implies the Scott continuity of $\pi^*(\omega_{\Lambda(x)})$ so that it belongs to $M_*$ for $x\in\fN_\f$.
+Since the linear span of functionals on $B(H)$ of the form $\omega_{\Lambda(x)}$ with $x\in\fN_\f$ is norm-dense in $B(H)_*$ because the image of $\Lambda$ is dense in $H$ and we have the inequality
+\[\|\omega_\xi-\omega_\eta\|\le\|\xi-\eta\|\|\xi+\eta\|,\qquad\xi,\eta\in H,\]
+and since $M_*$ is norm closed in $M^*$, the bounded linear operator $\pi^*$ can have codomain $M_*$ to write $\pi^*:B(H)_*\to M_*$.
+Therefore, $\pi$ is normal.
+
+Next, we show $\Lambda$ is $\sigma$-weakly closed.
+Suppose $x_i$ is a net in $\fN_\f$ such that $x_i\to x$ $\sigma$-weakly in $M$ and $\Lambda(x_i)\to\xi$ strongly in $H$.
+Since $\f$ is normal, we have $x\in\fN_\f$ from
+\begin{align*}
+\f(x^*x)&=\sup_{0\le\omega\le\f}\omega(x^*x)=\sup_{0\le\omega\le\f}\lim_i\omega(x_i^*x_i)\le\lim_i\sup_{0\le\omega\le\f}\omega(x_i^*x_i)\\
+&=\lim_i\f(x_i^*x_i)=\lim_i\|\Lambda(x_i)\|^2=\|\xi\|^2<\infty,
+\end{align*}
+where $\omega\in M_*$.
+To conclude $\Lambda(x)=\xi$, it suffices to show $\<\xi-\Lambda(x),\Lambda(y)\>=0$ for $y\in\fN_\f$ because $\Lambda$ has dense range.
+Fix $\e>0$ and $y\in\fN_\f$.
+If we take $\omega\in M_*$ such that $0\le\omega\le\f$ and $\omega(y^*y)>\f(y^*y)-\e$, and if we let $h\in\pi(M)'$ be the commutant Radon-Nikodym derivative of $\omega$ with respect to $\f$ such that $\omega(y^*y)=\<h\Lambda(y),\Lambda(y)\>$ for all $y\in\fN_\f$, then $0\le h\le1$ gives the norm estimate
 \begin{align*}
 \|h\Lambda(y)-\Lambda(y)\|^2
 &=\<h^2\Lambda(y),\Lambda(y)\>-2\<h\Lambda(y),\Lambda(y)\>+\<\Lambda(y),\Lambda(y)\>\\
 &\le-\<h\Lambda(y),\Lambda(y)\>+\<\Lambda(y),\Lambda(y)\>\\
-&=-\omega(y^*y)+\f(y^*y)<\e
+&=-\omega(y^*y)+\f(y^*y)<\e,
 \end{align*}
-and the convergence $\Lambda(x_i)\to\xi$ in norm imply
-\[\<\xi-\Lambda_\f(x),\Lambda_\f(y)\>\approx\<\xi-\Lambda_\f(x),h\Lambda_\f(y)\>\approx\<\Lambda(x_i)-\Lambda(x),h\Lambda(y)\>=\omega(y^*(x_i-x)),\qquad\e\to0,\]
-and the $\sigma$-weak convergence $x_i\to x$ implies $\omega(y^*(x_i-x))\to0$, we can conclude that $\<\xi-\Lambda_\f(x),\Lambda_\f(y)\>$ vanishes for all $y\in\fN_\f$.
-Since $\Lambda_\f$ has dense image, we finally have $\xi=\Lambda_\f(x)$.
-Therefore, the graph of $\Lambda_\f$ is $\sigma$-weakly closed.
+so the norm convergence $\Lambda(x_i)\to\xi$ and the $\sigma$-weak convergence $x_i\to x$ imply
+\[\<\xi-\Lambda(x),\Lambda(y)\>\approx\<\xi-\Lambda(x),h\Lambda(y)\>\approx\<\Lambda(x_i)-\Lambda(x),h\Lambda(y)\>=\omega(y^*(x_i-x))\approx0,\qquad\e\to0.\]
+Therefore, the graph of $\Lambda$ is $\sigma$-weakly closed.
 
-For $\omega\in M_*^+$, we have $\omega\le\f$ if and only if $\omega(x^*x)\le\f(x^*x)=\|\Lambda_\f(x)\|^2$ for $x\in\dom\Lambda_\f$, which means that $\cF_\f=\cF_{\Lambda_\f}$ and $\f=\f_{\Lambda_\f}$.
-
-(b)
-The weight $\f_\Lambda$ is obviously normal by definition.
-Let $x\in\dom\Lambda$.
-Then, we have
-\[\f_\Lambda(x^*x)=\sup_{\omega\in\cF_\Lambda}\omega(x^*x)\le\|\Lambda(x)\|^2\]
-by definition of $\f_\Lambda$ and $\cF_\Lambda$, so we get $x\in\fN_{\f_\Lambda}=\dom\Lambda_{\f_\Lambda}$ and $\|\Lambda_{\f_\Lambda}(x)\|\le\|\Lambda(x)\|$.
-Conversely, let $x\in\dom\Lambda_{\f_\Lambda}$.
-We have $\f_\Lambda(x^*x)=\|\Lambda_{\f_\Lambda}(x)\|^2<\infty$.
-We claim that if $\f_\Lambda(x^*x)\le1$, then $x\in\dom\Lambda$ and $\|\Lambda(x)\|^2\le1$.
-As a corollary, the inequality $\|\Lambda(x)\|\le\|\Lambda_{\f_\Lambda}(x)\|$ follows by scaling from this claim.
-
-We prove the claim.
-Since the graph of $\Lambda$ is $\sigma$-weakly closed by assumption, and since the projection $\dom\Lambda\times H_1\to\dom\Lambda$ is a closed map due to the tube lemma and the weak compactness of $H_1$, the image
-\[\{y:\|\Lambda(y)\|\le1,\ y\in\dom\Lambda\}\subset M\]
-of the graph of $\Lambda$ under this projection is $\sigma$-weakly closed.
-Since the positive part of this set is also $\sigma$-weakly closed and the square root is strongly continuous, if we temporarily consider a sufficiently large representation of $M$ in which every normal state is a vector state so that a strong and $\sigma$-strong topology coincide on $M$, we can conclude that the inverse image under the square root
-\[C:=\{y^*y:\|\Lambda(y)\|\le1,\ y\in\dom\Lambda\}\subset M\]
-is $\sigma$-weakly closed.
-Note that $C$ is also convex, and $\omega\in M_*^+$ is contained in $\cF_\Lambda$ if and only if
-\[\sup_{y^*y\in C}\omega(y^*y)\le1.\]
-
-If $x^*x\notin C$, then, by the Hahn-Banach separation, there is $\omega\in M_*^{sa}$ such that
-\[\sup_{y^*y\in C}\omega(y^*y)\le1<\omega(x^*x),\]
-and since we may assume $\omega$ is positive(How can we see $\omega(1)=\|\omega\|$?), we have $\omega\in\cF_\Lambda$.
-Thus, we have $\omega(x^*x)\le\f_\Lambda(x^*x)\le1$ by definition of $\f_\Lambda$, which leads a contradiction, so we get $x^*x\in C$.
-Now there is $y\in\dom\Lambda$ satisfying $x^*x=y^*y$ so that there is $v\in M$ with $x=vy$, and because $\dom\Lambda$ is a left ideal of $M$, we finally have $x\in\dom\Lambda$, and $x^*x\in C$ says that $\|\Lambda(x)\|\le1$, hence the claim follows.
-
-In conclusion, we have $\dom\Lambda_{\f_\Lambda}=\dom\Lambda$ and $\|\Lambda_{\f_\Lambda}(x)\|=\|\Lambda(x)\|$ on it.
-Since the images of $\Lambda$ and $\Lambda_{\f_\Lambda}$ are dense in $H$ and $H_{\f_\Lambda}$ respectively, we can define the unitary $u:H\to H_{\f_\Lambda}$ such that $u\Lambda(y):=\Lambda_{\f_\Lambda}(y)$, and hence that $u\pi(x)u^*=\pi_{\f_\Lambda}(x)$ because
-\[u^*\pi_{\f_\Lambda}(x)u\Lambda(y)=u^*\pi_{\f_\Lambda}(x)\Lambda_{\f_\Lambda}(y)=u^*\Lambda_{\f_\Lambda}(xy)=\Lambda(xy)=\pi(x)\Lambda(y),\]
-for $x,y\in\dom\Lambda_{\f_\Lambda}$.
 
 (c)
+We first prove that $\f$ is $\sigma$-weak lower semi-continuous, that is, the $\sigma$-weak closedness of the set $F:=\{x\in M^+:\f(x)\le1\}$.
+Let $\gra\Lambda\subset M\times H$ be the graph of $\Lambda$.
+The weak compactness of the closed unit ball $H_1$ of $H$ implies that the projection $M\times H_1\to M$ is a closed map by the tube lemma, so the image
+\[\{y\in\fN_\f:\|\Lambda(y)\|\le1\}\]
+of a closed set $\gra\Lambda\cap(M\times H_1)$ under the projection $M\times H\to M$ is $\sigma$-weakly closed in $M$.
+Because the positive part of this set is also $\sigma$-weakly closed and the square root $\fM_\f^+\to\fN_\f^+$ is strongly continuous, we can conclude that the inverse image of this set under the square root
+\[\{y^*y\in\fM_\f^+:\|\Lambda(y)\|\le1\}\]
+is $\sigma$-weakly closed in $M$, which is exactly same as the set $F$.
+
+Now we prove a $\sigma$-weakly lower semi-continuous weight is normal.
+Note that $F$ is a hereditary closed convex subset of the real locally convex space $M^{sa}$ equipped with the $\sigma$-weak topology, and we have
+\[F^{r+}=\{\omega\in M_*^+:\omega\le\f\},\qquad
+F^{r+r+}=\{x\in M^+:\sup_{\omega\in F^{r+}}\omega(x)\le1\},\]
+where the superscript $r$ denotes the real polar.
+If we prove $F^{r+r+}=F$, then we are done.
+Since
+\[F^{r+}=F^\circ\cap M_*^+=F^r\cap(-M^+)^r=(F\cup-M^+)^r=(F-M^+)^r,\]
+we have $F^{r+r+}=(F-M^+)^{rr+}=(\bar{F-M^+})^+$ by the real bipolar theorem.
+Because $F=(F-M^+)^+\subset(\bar{F-M^+})^+$, it suffices to prove the opposite inclusion $(\bar{F-M^+})^+\subset F$.
+
+Haagerup blabla.
+
 \end{pf}
+
 
 
 \begin{prb}[Countability of von Neumann algebras]
 Let $M$ be a von Neumann algebra.
-A projection $p\in M$ is called \emph{countably decomposable} if mutually orthogonal nonzero projections majorized by $p$ are at most countable, and we say $M$ is \emph{countably decomposable} if the identity is.
+A projection $p\in M$ is called \emph{$\sigma$-finite} or \emph{countably decomposable} if mutually orthogonal nonzero projections majorized by $p$ are at most countable, and we say $M$ is \emph{$\sigma$-finite} if the identity is, \emph{separable} if the predual is norm separable, and \emph{countably generated} if it is $\sigma$-weakly separable.
 
 \begin{parts}
-\item $M$ is countably decomposable if and only if it admits a faithful normal state.
-\item $M$ is countably decomposable if and only if $M_1$ is metrizable in the $\sigma$-strong topology.
-\item $M$ has separable predual if and only if it is countably decomposable and countably generated.
-\item $M$ has separable predual if and only if it faithfully acts on a separable Hilbert space.
-\item $M$ has separable predual if and only if $M_1$ is metrizable in the $\sigma$-weak topology.
-\end{parts}
-\end{prb}
-\begin{pf}
-\end{pf}
-
-
-\begin{prb}[Normal weights]
-Let $M$ be a von Neumann algebra, and $\f$ be a weight on $M$.
-\begin{parts}
-\item If $\f$ is order continuous, then it is $\sigma$-weakly lower semi-continuous.
-\item If $\f$ is $\sigma$-weakly lower semi-continuous, then it is normal.
-\end{parts}
-\end{prb}
-\begin{pf}
-Since the product topology of the $\sigma$-weak topology on $\fN_\f$ and the weak topology on $H$ is the weak$^*$ topology on the dual Banach space $(M_*\oplus_1H)^*\cong M\oplus_\infty H$, it suffices to show the graph is closed in this weak$^*$ topology.
-In the spirit of the Krein-S\v mulian theorem, consider the unit ball
-\[\Gamma(\Lambda_\f)_1=\{(x,\Lambda_\f(x)):x\in\fN_\f,\ \|x\|\le1,\ \|\Lambda_\f(x)\|\le1\},\]
-which is also convex.
-\end{pf}
-
-\begin{prb}[Lower semi-continuous weights]
-Let $\f$ be a weight on a C$^*$-algebra $A$.
-Definition of semi-finite weight.
-Definition of lower semi-continuous weight.
-Definition of semi-cyclic representation.
-
-\begin{parts}
-\item A semi-finite lower semi-continuous weight $\f$ is extended to the unique semi-finite normal weight of $\pi(A)''$.
-\item For a locally compact Hausdorff space $X$, a semi-finite lower semi-continuous weight of $C_0(X)$ is nothing but the positive linear functional of $C_c(X)$, the Radon measures.
-\end{parts}
-\end{prb}
-
-
-
-
-
-
-\section{Hilbert algebras}
-
-\begin{prb}[Left and right Hilbert algebras]
-A \emph{left Hilbert algebra} is a complex inner product space $A$ which is a $*$-algebra such that
-\begin{enumerate}[(i)]
-\item the left multiplication defines a non-degenerate $*$-homomorphism $L_0:A\subset H\to B(H)$,
-\item the involution defines a closable anti-linear operator $S_0:A\subset H\to H$,
-\end{enumerate}
-where $H$ is the completion of $A$.
-The involution of a left Hilbert algebra is denoted by $\xi\mapsto\xi^\sharp$.
-
-For $\eta\in H$, define $R(\eta):A\subset H\to H$ and $F\eta:A\subset H\to\C$ such that
-\[R(\eta)\xi:=L_0(\xi)\eta,\quad F\eta(\xi)=\<\eta,S_0\xi\>,\qquad\xi\in A.\]
-If we introduce
-\[\dom R:=\{\eta\in H:R(\eta)\text{ is bounded}\},\qquad\dom F:=\{\eta\in H:F\eta\text{ is bounded}\},\]
-we can let $R:\dom R\subset H\to B(H)$ and $F:\dom F\subset H\to H$ be a densely defined anti-homomorphism and a densely defined anti-linear operator.
-Let $A':=\dom R\cap\dom F$.
-We will show $A'$ is dense in $H$.
-
-Symmetrically for $\xi\in H$, after verifying $A'$ is dense in $H$, we can define $L(\xi):A'\subset H\to H$ and $S\xi:A'\subset H\to\C$ such that
-\[L(\xi)\eta:=R(\eta)\xi,\quad S\xi(\eta)=\<\xi,F\eta\>,\qquad\eta\in A',\]
-and by introducing
-\[\dom L:=\{\xi\in H:L(\xi)\text{ is bounded}\},\qquad\dom S:=\{\xi\in H:S\xi\text{ is bounded}\},\]
-we recognize $L:\dom L\subset H\to B(H)$ and $S:\dom S\subset H\to H$ as a densely defined homomorphism and a densely defined anti-linear operator which densely extend $L_0$ and $S_0$.
-Let $A'':=\dom L\cap\dom S$.
-If $A=A''$, then we say $A$ is \emph{full}.
-\begin{parts}
-\item $A'$ is a $*$-algebra with the multiplication $(\eta,\zeta)\mapsto\eta\zeta:=R(\zeta)\eta$ and the involution $\eta\mapsto\eta^\flat:=F\eta$.
-\item $A'$ is a right Hilbert algebra.
-\item $L,S,R$ and $F$ are injective and closed.
+\item $M$ is $\sigma$-finite if and only if it admits a faithful normal state.
+\item $M$ is $\sigma$-finite if and only if $M_1$ is metrizable in the $\sigma$-strong topology.
+\item $M$ is separable if and only if it is $\sigma$-finite and countably generated.
+\item $M$ is separable if and only if it faithfully acts on a separable Hilbert space.
+\item $M$ is separable if and only if $M_1$ is metrizable in the $\sigma$-weak topology.
 \end{parts}
 \end{prb}
 \begin{pf}
 (a)
-The well-definedness of the multiplication and the involution on $A'$ follows clearly by combining from (i) to (iv) in the below.
-The fact that the multiplication and the involution are really multiplication and involution on $A'$ comes from (iv) and (i), and their compatibility follows from (iii).
+Suppose $M$ is $\sigma$-finite.
+Let $\{\omega_n\}$ be a maximal family of normal states such that the support projections $p_n:=s(\omega_n)$ are mutually orthogonal, which must be countable by definition of $\sigma$-finitenss.
+Then, we have a faithful normal state
+\[\omega(x):=\sum_n2^{-n}\omega(x),\qquad x\in M.\]
+Conversely, let $\omega$ be a faithful normal state of $M$.
+For a mutually orthogonal family $\{p_i\}$ of non-zero projections in $M$, we have the countable union of finite sets
+\[\{p_i\}=\bigcup_n\{p_i:\omega(p_i)>n^{-1}\}.\]
+Thus $M$ is $\sigma$-finite.
 
-(i)
-We have $FF\eta=\eta$ in $H$ for $\eta\in \dom F$ by
-\[FF\eta(\xi)=\<F\eta,S\xi\>=\<SS\xi,\eta\>=\<\xi^{\sharp\sharp},\eta\>=\<\xi,\eta\>,\qquad\xi\in A.\]
-In particular, if $\eta\in\dom F$, then $F\eta\in\dom F$.
-
-(ii)
-We have $R(F\eta)=R(\eta)^*$ on $A$ for $\eta\in\dom F$ by
-\begin{align*}
-\<R(F\eta)\xi,\xi\>
-&=\<L(\xi)F\eta,\xi\>
-=\<F\eta,L(\xi)^*\xi\>
-=\<SL(\xi)^*\xi,\eta\>
-=\<(\xi^\sharp\xi)^\sharp,\eta\>\\
-&=\<\xi^\sharp\xi,\eta\>
-=\<L(\xi)^*\xi,\eta\>
-=\<\xi,L(\xi)\eta\>
-=\<\xi,R(\eta)\xi\>
-=\<R(\eta)^*\xi,\xi\>
-,\qquad\xi\in A.
-\end{align*}
-In particular, if $\eta\in\dom F$, then $F\eta\in\dom R$, and $R(\eta)$ is a closed densely defined operator.
-
-(iii)
-We have $F(R(\eta)^*\zeta)=R(\zeta)^*\eta$ in $H$ for $\eta,\zeta\in\dom R$ by
-\begin{align*}
-\<F(R(\eta)^*\zeta),\xi\>
-&=\<S\xi,R(\eta)^*\zeta\>
-=\<R(\eta)S\xi,\zeta\>
-=\<L(S\xi)\eta,\zeta\>
-=\<L(\xi)^*\eta,\zeta\>\\
-&=\<\eta,L(\xi)\zeta\>
-=\<\eta,R(\zeta)\xi\>
-=\<R(\zeta)^*\eta,\xi\>
-,\qquad\xi\in A.
-\end{align*}
-In particular, if $\eta,\zeta\in\dom R$, then $F(\eta)^*\zeta\in\dom F$.
-
-(iv)
-We have $R(R(\eta)^*\zeta)=R(\eta)^*R(\zeta)$ on $A$ for $\eta\in\dom R$ and $\zeta\in H$ by
-\begin{align*}
-\<R(R(\eta)^*\zeta)\xi,\xi\>
-&=\<L(\xi)R(\eta)^*\zeta,\xi\>
-=\<\zeta,R(\eta)L(\xi)^*\xi\>
-=\<\zeta,L(L(\xi)^*\xi)\eta\>\\
-&=\<\zeta,L(\xi^\sharp\xi)\eta\>
-=\<\zeta,L(\xi)^*L(\xi)\eta\>
-=\<L(\xi)\zeta,L(\xi)\eta\>\\
-&=\<R(\zeta)\xi,R(\eta)\xi\>
-=\<R(\eta)^*R(\zeta)\xi,\xi\>
-,\qquad\xi\in A.
-\end{align*}
-In particular, if $\eta,\zeta\in\dom R$, then $F(\eta)^*\zeta\in\dom R$.
+As a remark, the $\sigma$-finiteness is equivalent to the existence of a faithful normal non-degenerate representation with a cyclic and separating vector.
+If we associate the cyclic representation to a faithful normal state, then we obtain a cyclic separating vector.
+Conversely, a cyclic separating vector defines a faithful normal state whose associated cyclic representation with the canonical cyclic vector is unitarily equivalent.
 
 (b)
-Since $F$ has a densely defined adjoint $S$, it is closable, so we only need to show $R$ is non-degenerate.
-For $\dom F$ is dense in $H$ by the closability of $S$, it suffices to verify the inclusion $\dom F\subset\bar{A'^2}$ in order for density of $R(A')H$ in $H$.
-We fix $\eta\in\dom F$ and claim it is approximated by elements of $A'^2$.
-Since $R(\eta)$ is closed and densely defined by (ii) in the part (a), we can write down the polar decomposition
-\[R(\eta)=vh=kv,\qquad h:=|R(\eta)|,\quad k:=|R(\eta)^*|.\]
-To control the unboundedness of $R(\eta)$, we introduce $f\in C_c((0,\infty))^+$ to cutoff $R(\eta)$.
-Let $\acute f(t):=tf(t)$ and $\grave f(t):=t^{-1}f(t)$.
-Now we have $f(k)\in\ran R$ and $f(k)\eta\in\dom R$ because we have on $A$ that
-\[f(k)=f(vhv^*)=vf(h)v^*=v\grave f(h)hv^*=v\grave f(h)R(F\eta)=R\left(v\grave f(h)F\eta\right)\]
+Suppose $M$ is $\sigma$-finite and let $\omega$ be a faithful normal state on $M$.
+Consider $M\subset B(H)$ the associated cyclic representation of $\omega$ with the canonical cyclic vector $\Omega\in H$.
+Define a metric $d$ on the closed unit ball $M_1$ such that
+\[d(x,y):=\omega(|y-x|^2)^{\frac12},\qquad x,y\in M_1.\]
+Clearly it generates a topology coarser than strong topology, and we claim it is finer.
+Let $x_i$ be a net in $M_1$ converges to zero in the metric $d$ so that $x_i\Omega\to0$ in $H$.
+Then the faithulness of $\omega$ implies the cyclicity $H=\bar{M'\Omega}$ of the commutant, so for any $\xi\in H$ and $\e>0$ we have $y\in M'$ such that $\|\xi-y\Omega\|<\e$ and the limit on $i$ gives
+\[\|x_i\xi\|\le\|x_i\xi-x_iy\Omega\|+\|x_iy\Omega\|\le\|x_i\|\|\xi-y\Omega\|+\|yx_i\Omega\|<\e+\|y\|\|x_i\Omega\|\to\e.\]
+Therefore, we can check $x_i\to0$ $\sigma$-strongly by letting $\e\to0$ since every normal state of $M$ is a vector state in the representation $M\subset B(H)$.
+
+Conversely, for any mutually orthogonal family of non-zero projections $\{p_i\}_{i\in I}$ in $M$, since the net of finite partial sums $p_J:=\sum_{i\in J}p_i$ is a non-decreasing net $M_1$ whose supremum is $p\in M$, there is a convergent subsequence $p_{J_n}\uparrow1$ by the metrizability, which implies $I=\bigcup_nJ_n$, the countable union of finite sets.
+Therefore, $M$ is $\sigma$-finite.
+
+As a remark, since on the bounded part the strong and $\sigma$-strong topologies coincide, the two topologies on the unit ball are metrizable.
+We can do similar for the strong$^*$ and the $\sigma$-strong$^*$ topologies.
+\end{pf}
+
+
+
+\begin{prb}[Completely additive weights]
+For a state, complete additivity is defined for orthogonal projections, but for a weight, it is defined for summable families.
+\begin{parts}
+\item If $\f$ is completely additive and $M$ is $\sigma$-finite, then $\f$ is normal.
+\item If $\f$ is completely additive, then $\f$ is normal.
+\end{parts}
+\end{prb}
+\begin{pf}
+
+(a)
+
+Faithful state $\omega$.
+Take a subsequence of a non-decreasing net.
+We can see $\f$ is Scott contiuous.
+
+We give a lemma as a preparation for the next step.
+For $x,y\in\fN_\f^+$ and for any $\e>0$ there is $a\in\fM_\f^+$ such that
+\[x^2-y^2\le a,\qquad\f(a)\le\|\omega_{\Lambda(x)}-\omega_{\Lambda(y)}\|+\e.\]
+Here is a proof:
+Let $p(z):=\inf\{\f(a):z\le a\in\fM_\f^+\}$.
+We claim $p(x^2-y^2)\le\|\omega_{\Lambda(x)}-\omega_{\Lambda(y)}\|$.
+Then, we can check $p:\fM_\f^{sa}\to\R_{\ge0}$ is a semi-norm on $\fM_\f^{sa}$ such that $p(z)=\f(z)$ for $z\ge0$.
+Fix any non-zero $z_0\in\fM_\f^{sa}$.
+By the Hahn-Banach extension, there is an algebraic real linear functional $l:\fM_\f^{sa}\to\R$ such that
+\[l(z_0)=p(z_0),\qquad |l(z)|\le p(z),\qquad z\in\fM_\f^{sa}.\]
+Extend linearly $l$ to be $l:\fM_\f\to\C$.
+Since $|l(h)|\le\f(h)$ for $h\in\fM_\f^+$, by the Radon-Nikodym theorem, we have a corresponding operator $w\in\pi(M)'_1$ such that $\theta^*(w)=l$ or $l(z)=\<w\Lambda(z^{\frac12}),\Lambda(z)^{\frac12})$, hence
+\[p(z_0)=l(z_0)=\theta^*(w)(z_0)=\theta(z_0)(w)\le\|\theta(z_0)\|.\]
+
+
+Now, we prove the closedness of $\Lambda$.
+Suppose a sequence $x_n$ in $(\fN_\f)_1$ satisfies $x_n\to x$ $\sigma$-strongly in $M$ and $\Lambda(x_n)\to\xi$ in $H$.
+Since $\Lambda(x_n)$ is Cauchy and bounded, $\omega_{\Lambda(x_n)}$ is also Cauchy in the norm topology of $B(H)_*$, so we may assume $\|\omega_{\Lambda(x_{n+1})}-\omega_{\Lambda(x_n)}\|<2^{-n}$.
+In order to dominate $x_n$ with an monotone sequence, we take $a_n\in\fM_\f^+$ such that $|x_{n+1}|^2-|x_n|^2\le a_n$ and $\f(a_n)<2^{-n}$ using the previous lemma.
+Since the limit of the increasing sequence $\sum_{k=1}^n a_k$ in $n\to\infty$ may not exist, we introduce the cutoff $f_\e(t):=t(1+\e t)^{-1}$.
+By taking the limit $\e\to0$ on the inequality
+\[\f(f_\e(|x|^2))=\f(\lim_{n\to\infty}f_\e(|x_n|^2))\le\f(\sup_nf_\e(|x_1|^2+\sum_{k=1}^na_k))=\sup_n\f(f_\e(|x_1|^2+\sum_{k=1}^na_k))<\f(|x_1|^2)+1,\]
+we have $x\in(\fn_\f)_1$ and $\Lambda(x)\in H_1$.
+Next, since $\Lambda(x_n-x)$ is Cauchy, we may assume $\|\omega_{\Lambda(x_n-x)}-\omega_{\Lambda(x_{n+1}-x)}\|<2^{-n}$.
+Take $b_n\in\fm^+$ such that $|x_n-x|^2-|x_{n+1}-x|^2\le b_n$ and $\f(b_n)<2^{-n}$.
+As we did previously, by taking $\e\to0$ on the inequality
+\[\f(f_\e(|x_m-x|^2))=\f(\lim_{n\to\infty}f_\e(|x_m-x|^2-|x_n-x|^2))\le\f(\sup_nf_\e(\sum_{k=m}^nb_k))=\sup_n\f(f_\e(\sum_{k=m}^nb_k))<2^{-(m-1)},\]
+we have $\|\Lambda(x_n)-\Lambda(x)\|^2=\f(|x_n-x|^2)\to0$ and $\xi=\lim_{n\to\infty}\Lambda(x_n)=\Lambda(x)$.
+
+Since the normality of $\pi$ is clear, $(\pi,\Lambda)$ is normal, so $\f$ is normal.
+
+
+(b)
+We need some preparations to extend the result of the part (a) to the general von Neumann algebras.
+Let $\Sigma$ be the set of all $\sigma$-finite projections of $M$ and let $M_0:=\bigcup_{p\in\Sigma}pMp$.
+The equivalent condition for $x\in M$ to belong to $M_0$ is that the left and right support projections of $x$ are $\sigma$-finite.
+The $\sigma$-finiteness of the two support projections are equivalent because they are Murray-von Neumann equivalent so that there is a $*$-isomorphism between corners, and this implies that $M_0$ is an algebraic ideal of $M$.
+Note also that the countable supremum of $\sigma$-finite projections is also $\sigma$-finite.
+
+
+
+Now we prove the original statement.
+Let $M$ be an arbitrary von Neumann algebra, and let $\f$ be a completely additive weight on $M$.
+To prove that $F:=\{x\in M^+:\f(x)\le1\}$ is $\sigma$-weakly closed, by the Hahn-Banach theorem and the Krein-\v Smulian theorem, it is enough to show the closed unit ball $F_1$ of $F$ is $\sigma$-strongly closed.
+For $x^*x\in\bar{F_1}$ with $x\ge0$ and for fixed $p\in\Sigma$, it suffices to show $x^*px\in F_1$ because from the complete additivity of $\f$ we obtain $x^*x\in F_1$ by taking the supremum on $p\in\Sigma$.
+
+Let $E:=\{x\in M^+:x^2\in F\}$, which can be easily shown to be convex by the hereditarity of $F$.
+Take a net $x_i$ in $E_1$ such that $x_i^2\to x^2$ $\sigma$-strongly using the $\sigma$-strong closedness of $F_1$.
+Since the strong continuity of the square root implies the $\sigma$-strong convergence $x_i\to x$ and $px_i\to px$, and by the Cauchy-Schwarz inequality with the boundedness of $px_i$, we can check $x_ipx_i\to xpx$ $\sigma$-weakly as
+\begin{align*}
+|\omega(x_ipx_i-xpx)|
+&\le|\omega(x_ip(x_i-x))|+|\omega((x_i-x)px)|\\
+&\le\omega(|p(x_i-x)|^2)^{\frac12}\omega(|px_i|^2)^{\frac12}+\omega(|px|^2)^{\frac12}\omega(|p(x_i-x)|^2)^{\frac12}\to0,\qquad\omega\in M_*^+.
+\end{align*}
+Since $x_i^2\in F_1$ implies $x_ipx_i\in F_1$ by the hereditarity of $F$, we have $xpx\in\bar{F_1}$.
+
+
+Let $y:=(xpx)^{\frac12}$ and take a net $y_i$ in $E_1$ such that $y_i^2\to y^2$ $\sigma$-strongly.
+Let $q$ be the support projection of $y$.
+Since $y_i\to y$ $\sigma$-strongly by the strong continuity of the square root, we have $y_iq\to y$ $\sigma$-weakly.
+By the Mazur lemma and the convexity of the set $E_1q$, we may assume $y_iq\to y$ $\sigma$-strongly still with $y_i\in E_1$, in $Mq$.
+Since $Mq$ is $\sigma$-weakly closed and its bounded part is $\sigma$-strongly metrizable, we may assume the net $y_i$ is a sequence $y_n$ in $E_1$.
+Take $r\in\Sigma$ such that $y_nq\in rMr$ for all $n$.
+Then, using the $\sigma$-weak continuity of the involution again, we have $qy_n\to y$ $\sigma$-weakly in $rMr$.
+Applying the Mazur lemma on the convex set $qE_1$, we may assume $qy_n\to y$ $\sigma$-strongly in $rMr$ because the $\sigma$-strong topology is metrizable also in $rMr$.
+The Cauchy-Schwarz inequality and the boundedness of $qy_n$ imply $y_nqy_n\to y^2$ $\sigma$-weakly in $rMr$.
+Since $y_nqy_n\in F_1$, we obtain $y^2\in F_1$ by the part (a), so we are done because $y^2=x^*px$.
+\end{pf}
+
+\section{Hilbert algebras}
+
+\begin{prb}[Left and right Hilbert algebras]
+A \emph{left Hilbert algebra} is a $*$-algebra $A$ together with a dense inclusion $A\subset H$ into a Hilbert space such that there exist
+\begin{enumerate}[(i)]
+\item $S_0:A\subset H\to H$ a closable conjugate-linear operator which extends the involution,
+\item $\lambda_0:A\subset H\to B(H)$ a non-degenerate $*$-homomorphism which extends the left multiplication.
+\end{enumerate}
+The involution of a left Hilbert algebra is usually denoted by $\sharp$.
+Define
+\begin{enumerate}[(i')]
+\item $F:\dom F\subset H\to H$ as the adjoint of $S$,
+\item $\rho:\dom\rho\subset H\to B(H)$ such that
+\[\dom\rho:=\{\eta\mid A\to H:\xi\mapsto\lambda_0(\xi)\eta\text{ is bounded}\},\qquad\rho(\eta)\xi:=\lambda_0(\xi)\eta,\qquad\xi\in A,\ \eta\in\dom\rho.\]
+\end{enumerate}
+We will use the notation
+\[B:=\dom\lambda,\quad D:=\dom S,\quad B':=\dom\rho,\quad D':=\dom F.\]
+The elements of $B$ and $B'$ are called \emph{left bounded} and \emph{right bounded}.
+The left Hilbert algebra $A$ is called \emph{full} if $A=B\cap D$.
+On $A':=B'\cap D'$, define the multiplication $\eta\zeta:=\rho(\zeta)\eta$ and the involution $\eta^\flat:=F\eta$ for $\eta,\zeta\in A'$.
+\begin{parts}
+\item $\rho$ is non-degenerate and $\sigma$-weakly closed, and $A'$ is a right Hilbert algebra.
+\item $\lambda_0$ admits a injective $\sigma$-weak closure $\lambda:\dom\lambda\subset H\to B(H)$.
+\end{parts}
+\end{prb}
+\begin{pf}
+(a)
+We can see $A'$ is a $*$-algebra from (i) to (iv) in the below.
+More precisely, the involution $\flat:A'\to A'$ is well-defined and involutive by (i) and (ii), the multiplication $\cdot:A'\times A'\to A'$ is well-defined and associative by (iv), and (iii) implies that the involution and multiplication are compatible.
+
+(i)
+If $\eta\in D'$, then we have $F\eta\in D'$ and $FF\eta=\eta$ by
+\[\<\xi,FF\eta\>=\<F\eta,S\xi\>=\<SS\xi,\eta\>=\<\xi^{\sharp\sharp},\eta\>=\<\xi,\eta\>,\qquad\xi\in A.\]
+
+(ii)
+If $\eta\in D'$, then we can define a closed and densely defined operator $\rho(\eta)$ on $H$ such that $\rho(\eta)\xi:=\lambda_0(\xi)\eta$ for $\xi\in A$ by the densely definedness of the adjoint $\rho(F\eta)=\rho(\eta)^*$, shown by
+\begin{align*}
+\<\rho(F\eta)\xi,\xi\>
+&=\<\lambda_0(\xi)F\eta,\xi\>
+=\<F\eta,\lambda_0(\xi)^*\xi\>
+=\<S\lambda_0(\xi)^*\xi,\eta\>
+=\<(\xi^\sharp\xi)^\sharp,\eta\>\\
+&=\<\xi^\sharp\xi,\eta\>
+=\<\lambda_0(\xi)^*\xi,\eta\>
+=\<\xi,\lambda_0(\xi)\eta\>
+=\<\xi,\rho(\eta)\xi\>
+=\<\rho(\eta)^*\xi,\xi\>
+,\qquad\xi\in A.
+\end{align*}
+
+(iii)
+If $\eta,\zeta\in B'$, then we have $\rho(\eta)^*\zeta\in D'$ and $F\rho(\eta)^*\zeta=\rho(\zeta)^*\eta$ by
+\begin{align*}
+\<F\rho(\eta)^*\zeta,\xi\>
+&=\<S\xi,\rho(\eta)^*\zeta\>
+=\<\rho(\eta)S\xi,\zeta\>
+=\<\lambda_0(S\xi)\eta,\zeta\>
+=\<\lambda_0(\xi)^*\eta,\zeta\>\\
+&=\<\eta,\lambda_0(\xi)\zeta\>
+=\<\eta,\rho(\zeta)\xi\>
+=\<\rho(\zeta)^*\eta,\xi\>
+,\qquad\xi\in A.
+\end{align*}
+
+(iv)
+If $\eta,\zeta\in B'$, then we have $\rho(\eta)^*\zeta\in B'$ and $\rho(\rho(\eta)^*\zeta)=\rho(\eta)^*\rho(\zeta)$ by
+\begin{align*}
+\<\rho(\rho(\eta)^*\zeta)\xi,\xi\>
+&=\<\lambda_0(\xi)\rho(\eta)^*\zeta,\xi\>
+=\<\zeta,\rho(\eta)\lambda_0(\xi)^*\xi\>
+=\<\zeta,\lambda_0(\lambda_0(\xi)^*\xi)\eta\>\\
+&=\<\zeta,\lambda_0(\xi^\sharp\xi)\eta\>
+=\<\zeta,\lambda_0(\xi)^*\lambda_0(\xi)\eta\>
+=\<\lambda_0(\xi)\zeta,\lambda_0(\xi)\eta\>\\
+&=\<\rho(\zeta)\xi,\rho(\eta)\xi\>
+=\<\rho(\eta)^*\rho(\zeta)\xi,\xi\>
+,\qquad\xi\in A.
+\end{align*}
+
+
+To show $A'$ is a right Hilbert algebra, we only need to verify the anti-$*$-homomorphism $\rho:A'^{\op}\subset H\to B(H)$ is non-degenerate.
+For $D'$ is dense in $H$, it suffices to show that each element of $D'$ is approximated by $A'^2$ in order for density of $\rho(A')H$ in $H$, so we begin our proof by fixing $\eta\in D'$ and claim that it can be approximated by elements of $A'^2$.
+Since $\rho(\eta)$ is closed, we can write down the polar decomposition
+\[\rho(\eta)=vh=kv,\qquad h:=|\rho(\eta)|,\quad k:=|\rho(\eta)^*|,\]
+where these new operators are all affiliated with $\rho(A')''$, which is contained in $\lambda_0(A)'$.
+Note that $\rho:B'\to B(H)$ is left $\lambda_0(A)'$-linear because if $y\in\lambda_0(A)'$, then
+\[y\rho(\eta)\xi=y\lambda_0(\xi)\eta=\lambda_0(\xi)y\eta=\rho(y\eta)\xi,\qquad\xi\in A.\]
+
+We claim $f(k)\eta\in A'^2$ for $f\in C_c((0,\infty))^+$.
+Let $\acute f(t):=tf(t)$ and $\grave f(t):=t^{-1}f(t)$ on $t\in(0,\infty)$.
+Then, we have $f(k)\in\rho(B')$ and $f(k)\eta\in B'$ because $f(k)\in B(H)$ and $\acute f(k)v\in B(H)$ with
+\[f(k)=f(vhv^*)=vf(h)v^*=v\grave f(h)hv^*=v\grave f(h)\rho(F\eta)=\rho\left(v\grave f(h)F\eta\right),\qquad\text{ on }A,\]
 and
-\[R(f(k)\eta)=f(k)R(\eta)=f(k)kv=\acute f(k)v,\]
-which are bounded and extended to $H$.
-Applying the above for $f^{\frac13}\in C_c((0,\infty))$, 
-\[f(k)\eta=(f(k)^{\frac13})^3\eta\in(\ran R)^*(\ran R)(\ran R)^*\dom R.\]
-Because $(\ran R)^*\dom R\subset A'$ and $(\ran R)^*(\ran R)\subset R(A')$ by (iii) and (iv) in the part (a), we have $f(k)\eta\in A'^2$.
-If we consider a non-decreasing net $e_i$ in $C_c((0,\infty))$ such that $e_i\uparrow1_{(0,\infty)}$, then we get
-\[e_i(k)\eta\to1_{(0,\infty)}(k)\eta=s(k)\eta=s_l(R(\eta))\eta=\eta\in\bar{A'^2},\]
-where the last equality is due to $\eta\in\bar{L(A)\eta}=\bar{R(\eta)A}$ by the non-degeneracy of $L$.
+\[\rho(f(k)\eta)=f(k)\rho(\eta)=f(k)kv=\acute f(k)v,\qquad\text{ on }A.\]
+The commutation of $\Ad v$ and the functional calculus of $f$ is due to the uniqueness of the functional calculus.
+Applying the above for $f^{\frac13}\in C_c((0,\infty))$, we obtain
+\[f(k)\eta=(f(k)^{\frac13})^3\eta\in\rho(B')^*\rho(B')\rho(B')^*B'.\]
+Because $\rho(B')^*B'\subset A'$ and $\rho(B')^*\rho(B')\subset\rho(A')$ by (iv), the claim follows.
+
+If we consider a bounded sequence $f_n$ in $C_c((0,\infty))^+$ such that $f_n\uparrow1_{(0,\infty)}$ pointwisely, then we get the strong convergence
+\[f_n(k)\eta\to1_{(0,\infty)}(k)\eta=s(k)\eta=s_l(\rho(\eta))\eta=\eta,\]
+where the last equality is due to $\eta\in\bar{\lambda_0(A)\eta}=\bar{\rho(\eta)A}=s_l(\rho(\eta))H$, which holds because the existence of a net $e_i$ in $\lambda_0(A)$ such that $e_i\to1$ $\sigma$-strongly is guaranteed by the non-degeneracy of $\lambda_0$.
+
+
+
+(b)
+Let $M:=\lambda_0(A)''$.
+For $\lambda_0:A\subset H\to M$, consider its adjoint $\lambda^*:\dom\lambda^*\subset M_*\to H$.
+Since vector functionals on $B(H)$ are computed as
+\[\lambda^*(\omega_{\eta,\zeta})(\xi)=\omega_{\eta,\zeta}(\lambda_0(\xi))=\<\lambda_0(\xi)\eta,\zeta\>=\<\xi,\rho(\eta)^*\zeta\>,\qquad\xi\in A,\ \eta\in B',\ \zeta\in H,\]
+we have
+\[\spn\{\omega_{\eta,\zeta}:\eta\in B',\ \zeta\in H\}\subset\dom\lambda^*,\qquad\spn\{\rho(\eta)^*\zeta:\eta\in B',\zeta\in H\}\subset\ran \lambda^*,\]
+and the non-degeneracy of the right Hilbert algebra $A'$ implies that $\lambda^*$ is densely defined and has dense range.
+Therefore, $\lambda_0$ is $\sigma$-weakly closable with the injective closure $\lambda:B\subset H\to M$, and we can check
+\[\dom\lambda=B=\{\xi\mid A\to H:\eta\mapsto\rho(\eta)\xi\text{ is bounded}\}.\]
+
+
 
 (c)
-We have
-\[L_0^*(\omega_{\eta,\zeta})=R(\eta)^*\zeta,\qquad\eta\in\dom R,\ \zeta\in H.\]
-
-Is $\omega_{\dom R,H}$ weakly dense in $M_*$?
-Is $(\ran R)H$ dense in $H$?
-Yes!
+Since $\rho$ is non-degenerate, we can take a net $e_i$ in $\rho(A')$ such that $e_i\to1$ $\sigma$-strongly.
+If $y\in\lambda(A)'$, since $\rho(B')$ is a left ideal of $\lambda(A)'$ by the $\lambda(A)'$-linearity of $\rho$, then $e_iye_i\in\rho(B')^*\rho(B')\subset\rho(A')$ proves that $y\in\rho(A')''$.
+Therefore, $\lambda(A)''$ and $\rho(A')''$ are mutually commutants in $B(H)$.
 \end{pf}
 
 
 
 \begin{prb}[Semi-cyclic representations and Hilbert algebras]
 Let $M$ be a von Neumann algebra on a Hilbert space $H$.
+Consider a faithful densely defined normal semi-cyclic representation $\Lambda:\dom\Lambda\subset M\to H$ of $M$ on $H$, and a full left Hilbert algebra $A\subset H$ such that $\bar A=H$ and $L(A)''=M$.
+We say they are \emph{associated} if $\Lambda$ and $L$ are inverses of each other.
 
 \begin{parts}
-\item For a full left Hilbert algebra $A\subset H$ such that $\bar A=H$ and $L(A)''=M$, if we define $\Lambda:\dom\Lambda\subset M\to H$ as the inverse of $L:\dom L\subset H\to M$, then $\Lambda$ is a densely defined $\sigma$-weakly closed left $M$-linear operator of dense image such that $A=\Lambda((\dom\Lambda)^*\cap(\dom\Lambda))$.
-\item For a densely defined $\sigma$-weakly closed left $M$-linear operator $\Lambda:\dom\Lambda\subset M\to H$ of dense image, if we define $A:=\Lambda((\dom\Lambda)^*\cap(\dom\Lambda))$, then $A$ is a natural full left Hilbert algebra such that $\bar A=H$ and $L(A)''=M$ such that $\Lambda$ is the inverse of $L$.
+\item For a full left Hilbert algebra $A\subset H$ such that $\bar A=H$ and $L(A)''=M$, then there is a unique associated semi-cyclic representation.
+\item For a faithful densely defined normal semi-cyclic representation $\Lambda$, there is a unique associated full Hilbert algebra.
 \end{parts}
 \end{prb}
 \begin{pf}
@@ -386,58 +498,224 @@ so the closedness of $L$ implies that $L(x\xi)=xL(\xi)$.
 
 (b)
 
+We use the notation $x=\pi(x)$.
+It does not make any confusion because the semi-cyclic representation $\pi:M\to B(H)$ is always unital and is faithful due to the assumption that $\f$ is faithful.
+We clearly see that $A$ is a $*$-algebra and the left multiplication provides a $*$-homomorphism $\lambda:A\to B(H)$.
+By the construction of the semi-cyclic representation associated to $\f$, $A$ is dense in $H$.
+We need to show the non-degeneracy of $\lambda$, the closability of the involution, and the fullness of $A$.
 
+(non-degeneracy)
+Since $\f$ is semi-finite, there is a net $e_\alpha$ in $\fa_1^+$ converges $\sigma$-strongly to the identity of $M$ by the Kaplansky density theorem.
+Then, it follows that $\lambda$ is non-degenerate from
+\[\lambda(\Lambda(e_\alpha))\Lambda(x)=\Lambda(e_\alpha x)=e_\alpha\Lambda(x)\to\Lambda(x),\qquad x\in\fa.\]
 
-(c?d?)
-The main difficulty is the closability of $\Lambda(x)\mapsto\Lambda(x^*)$.
+(closability)
+We need to prove the domain of the adjoint
+\[D':=\{\eta\in H\mid A\to\C:\Lambda(x)\mapsto\<\eta,\Lambda(x^*)\>\text{ is bounded}\}\]
+is dense in $H$.
+Let
+\[\cG:=\{\omega\in M_*^+:(1+\e)\omega\le\f\text{ for some }\e>0\}.\]
+Note that the normality of $\f$ says that $\f(x^*x)=\sup_{\omega\in\cG}\omega(x^*x)$ for any $x\in M$.
+For each $\omega\in\cG$, by the bounded Radon-Nikodym theorem, there is $h_\omega\in M'^+$ such that $\|h_\omega\|<1$ and
+\[\omega(x^*x)=\<h_\omega\Lambda(x),\Lambda(x)\>,\qquad x\in\fn.\]
+Also, if we take a net $e_\alpha\in\fn_1^+$ that converges $\sigma$-strongly to the identity of $M$ using the strong density of $\fn$ in $M$, the Kaplansky density, and the coincidence of strong and the $\sigma$-strong topologies on the bounded part, then we have a $\sigma$-weak limit $\lim_{\alpha,\beta}|e_\alpha-e_\beta|^2=0$ so that by the normality of $\omega$ we obtain
+\[\lim_{\alpha,\beta}\|h_\omega^{\frac12}\Lambda(e_\alpha)-h_\omega^{\frac12}\Lambda(e_\beta)\|^2=\lim_{\alpha,\beta}\omega(|e_\alpha-e_\beta|^2)=0.\]
+Thus, the vector $\Lambda_\omega:=\lim_\alpha h_\omega^{\frac12}\Lambda(e_\alpha)$ can be defined, and in particular, we have $h_\omega^{\frac12}\Lambda(x)=x\Lambda_\omega$ for $x\in\fn$ and $\omega=\omega_{\Lambda_\omega}$.
+
+If $\eta:=h_{\omega_2}^{\frac12}y\Lambda_{\omega_1}$ for some $y\in M'$ and $\omega_1,\omega_2\in\cG$, then
+\begin{align*}
+|\<\eta,\Lambda(x^*)\>|
+&=|\<h_{\omega_2}^{\frac12}y\Lambda_{\omega_1},\Lambda(x^*)\>|=|\<y\Lambda_{\omega_1},h_{\omega_2}^{\frac12}\Lambda(x^*)\>|=|\<y\Lambda_{\omega_1},x^*\Lambda_{\omega_2}\>|\\
+&=|\<yx\Lambda_\omega,\Lambda_{\omega_2}\>|=|\<yh_{\omega_1}^{\frac12}\Lambda(x),\Lambda_{\omega_2}\>|=|\<\Lambda(x),h_{\omega_1}^{\frac12}y^*\Lambda_{\omega_2}\>|\\
+&\le\|\Lambda(x)\|\|h_{\omega_1}^{\frac12}y^*\Lambda_{\omega_2}\|,\qquad x\in\fa,
+\end{align*}
+which deduces that $\eta\in D'$.
+Therefore, it suffices to show the following space is dense in $H$:
+\[\{h_{\omega_2}^{\frac12}y\Lambda_{\omega_1}:\omega_1,\omega_2\in\cG,\ y\in M'\}.\]
+Thanks to the normality of $\f$, we can write
+\begin{align*}
+\<\Lambda(x),\Lambda(x)\>&=\|\Lambda(x)\|^2=\f(x^*x)=\sup_{\omega\in\cG}\omega(x^*x)\\
+&=\sup_{\omega\in\cG}\|x\Lambda_\omega\|^2=\sup_{\omega\in\cG}\|h_\omega^{\frac12}\Lambda(x)\|^2=\sup_{\omega\in\cG}\<h_\omega\Lambda(x),\Lambda(x)\>,\qquad x\in\fa.
+\end{align*}
+Because $A$ in $H$, for any $\xi\in H$ and $\e>0$ there is $x\in\fn\cap\fn^*$ such that $\|\xi-\Lambda(x)\|<\e$, so the inequality
+\[\<(1-h_\omega)\xi,\xi\>\le\e(\|\xi\|+\|\Lambda(x)\|)+\<(1-h_\omega)\Lambda(x),\Lambda(x)\>\]
+deduces $\inf_{\omega\in\Phi}\<(1-h_\omega)\xi,\xi\>=0$ by limiting $\e\to0$ and taking infinimum on $\omega\in\cG$.
+In other words, for each $\xi\in H$ and $\e>0$, we can find $\omega\in\cG$ such that $\<(1-h_\omega)\xi,\xi\><\e$.
+At this point, we claim the set $\{h_\omega:\omega\in\cG\}$ is upward directed.
+If the claim is true, then we can construct an increasing net $\omega_\alpha$ in $\cG$ such that $h_{\omega_\alpha}$ converges weakly to the identity of $M$, and also strongly by the nature of increasing nets.
+To prove the claim, take $h_1=h_{\omega_1}$ and $h_2=h_{\omega_2}$ with $\omega_1,\omega_2\in\cG$.
+Introduce a operator monotone function $f(t):=t/(1+t)$ and its inverse $f^{-1}(t)=t/(1-t)$ to define 
+\[h_0:=f(f^{-1}(h_1)+f^{-1}(h_2)).\]
+Then, we have $h_0\ge h_1$, $h_0\ge h_2$, and $\|h_0\|<1$.
+Consider a linear functional
+\[\omega_0:\fn\to\C:x\mapsto\<h_0\Lambda(x),\Lambda(x)\>.\]
+Write
+\begin{align*}
+\omega_0(x^*x)
+&\le\<f^{-1}(h_1)\Lambda(x),\Lambda(x)\>+\<f^{-1}(h_2)\Lambda(x),\Lambda(x)\>\\
+&\le(1-\|h_1\|)^{-1}\<h_1\Lambda(x),\Lambda(x)\>+(1-\|h_2\|)^{-1}\<h_2\Lambda(x),\Lambda(x)\>\\
+&=(1-\|h_1\|)^{-1}\omega_1(x^*x)+(1-\|h_2\|)^{-1}\omega_2(x^*x),\qquad x\in\fn.
+\end{align*}
+Then, since $\omega_1$ and $\omega_2$ are normal, we can define $\Lambda_0:=\lim_\alpha h_0^{\frac12}\Lambda(x_\alpha)\in H$ for a $\sigma$-strongly convergent net $x_\alpha\in\fn_1$ to the identity of $M$ as we have taken above, and we have the vector functional $\omega_0=\omega_{\Lambda_0}$.
+Henceforth, $\omega_0$ is extended to a normal positive linear functional on the whole $M$, and finally the norm condition $\|h_0\|<1$ tells us that $\omega_0\in\cG$, so the claim is true.
+
+Now the problem is reduced to the density of $\{y\Lambda_{\omega}:\omega\in\cG,\ y\in M'\}$ in $H$.
+Let $p\in B(H)$ be the projection to the closure of this space.
+Then, $p\Lambda_\omega=\Lambda_\omega$ for every $\omega\in\cG$.
+Since the space is left invariant under the action of the self-adjoint set $M'$, we have $p\in M$.
+Then,
+\[\f(1-p)=\sup_{\omega\in\cG}\omega(1-p)=\sup_{\omega\in\cG}\<(1-p)\Lambda_\omega,\Lambda_\omega\>=0\]
+implies $p=1$, hence the density.
+
+(fullness)
+We have $\lambda(\Lambda(x))=x$ for $x\in\fa$ since $\Lambda(\fa)=A$ is dense in $H$ and
+\[x_1\Lambda(x_2)=\Lambda(x_1x_2)=\Lambda(x_1)\Lambda(x_2)=\lambda(\Lambda(x_1))\Lambda(x_2),\qquad x_1,x_2\in\fn\cap\fn^*.\]
+Also we have for $\xi=\Lambda(x)\in A$ that
+\[\Lambda(\lambda(\xi))=\Lambda(\lambda(\Lambda(\xi)))=\Lambda(x)=\xi.\]
+For $\xi\in B$ so that $\lambda(\xi)\in M$, since
+\[\f(\lambda(\xi)^*\lambda(\xi))=\|\Lambda(\lambda(\xi))\|^2=\|\xi\|^2<\infty,\]
+we get $\lambda(B)\subset\fn$.
+Therefore, $A$ is full by
+\[\lambda(A'')=\lambda(B)\cap\lambda(B)^*\subset\fa=\lambda(A).\qedhere\]
 
 
 \end{pf}
 
 
 \begin{prb}[Hilbert algebras by cyclic separating vectors]
+Let $\Omega$ be a cyclic separating vector.
+$M\Omega$ is a left Hilbert algebra.
 \end{prb}
 
 \begin{prb}[Hilbert algebras by locally compact groups]
+Let $G$ be a locally compact group.
+$C_c(G)$ is a left Hilbert algebra.
+\begin{parts}
+\item $\lambda:C_c(G)\subset L^2(G)\to B(L^2(G))$ is non-degenerate.
+\item $\sharp:C_c(G)\to C_c(G)$ is closable.
+\end{parts}
 \end{prb}
 
 
 
 
-\begin{prb}[Modular operator and modular conjugation]
-Let $A$ be a left Hilbert algebra.
-\[S=J\Delta^{\frac12}.\]
 
-Tomita algebra
-analytic elements
+
+\begin{prb}[Flows]
+Let $X$ and $E$ be a locally compact Hausdorff space and a locally convex space, and let $\alpha:X\to L(E)$ be a weakly continuous bounded function.
+For a finite Radon measure $\mu\in M(X)$, we can justify the integral $\alpha_\mu:=\int_X\alpha_s\,d\mu(s)\in L(E)$ by a continuous extension $\alpha:M(X)\to L(E)$ of $\alpha$, where $M(X)$ and $L(E)$ are endowed with the topology generated by $C_b(G)$ and the point-weak topology respectively.
+A weakly continuous linear operator on $E$ commutes with the integral by the uniqueness of the extension.
+
+We will always assume that an \emph{action} or a \emph{representation} of a locally compact group $G$ on a locally convex space $E$ is a linear action $\alpha:G\to L(E)$ which is weakly continuous and bounded.
+Note that if $E$ is a Banach space, or is a von Neumann algebra with the $\sigma$-weak topology, then a weakly or $\sigma$-weakly continuous bounded action of a locally compact group is strongly continuous or $\sigma$-strongly continuous respectively.
+We will see the proof of the latter in the next section.
+
+Let $\sigma$ be a \emph{flow} on a locally convex space $E$, which is just an action of $\R$.
+Introduce the \emph{smoothing operators} $R_m\in L(E)$ for $m>0$ defined such that
+\[R_m(x):=\sqrt{\frac m\pi}\int_\R e^{-ms^2}\sigma_s(x)\,ds,\qquad x\in E,\]
+which coverges to the identity operator point-weakly because
+\[\lim_{m\to\infty}\sqrt{\frac m\pi}\int_\R e^{-ms^2}f(s)\,ds=f(0),\qquad f\in C_b(\R).\]
+
+For $z\in\C$, $\lambda_z$ can act on the subspace of entirely extendible functions in $M(\R)$, so we can define $\sigma_z$ as a partially defined linear operator on $E$ such that...
+\[\sigma_z(x):=\]
+
+
+$\cE$ is defined 
+
+$\sigma:\R\to L(E)$ induces $\sigma:\R\to L(\cE)$
+
+
+We say $x\in E$ is \emph{entire} for $\sigma$ if a function $\R\to\C:t\mapsto\<\sigma_t(x),x^*\>$ is entirely extended to the complex plane for all $x^*\in E^*$.
+Then the set of all entire elements of $E$ for $\sigma$ is a weakly dense subspace of $E$ on which the action $\sigma$ is well-defined.
+
+\begin{parts}
+\item If $z\in\C$, then $\sigma_z$ defines a densely defined closed operator on $E$ with respect to the weak topology.
+\item $x\in E$ is entire if and only if $x\in\dom\sigma_z$ for all $z\in\C$.
+\end{parts}
 \end{prb}
+\begin{pf}
+(a)
+closability from $(\sigma^*)_{\bar z}\subset(\sigma_z)^*$..?
+
+
+(b)
+Let $x\in E$ be entire.
+
+
+(c)
+
+Let $\f$ be a densely defined lower semi-continuous weight on $A$.
+Let $\pi_\f:A\to B(H_\f)$ be the semi-cyclic representation associated to $\f$ together with the semi-cyclic operator $\Lambda_\f:\fN_\f\subset A\to H$, which is closed.
+If $\sigma:\R\to\Aut(A)$ is a flow and $\f$ is $\sigma$-invariant, then there is a unique unitary representation $u:\R\to B(H_\f)$ such that $\Lambda_\f$ is equivariant.
+
+\begin{itemize}
+\item If $a\in\fN$, then $R_m(a)\in\fN\cap\cA$ and $R_m(a)\to a$ in $A$.
+\item If $a\in\fN\cap\cA$, then $\sigma_z(a)\in\fN\cap\cA$(maybe).
+\item If $a\in\fN$, then $\|\Lambda(R_m(a))\|\le\|\Lambda(a)\|$ and $\Lambda(R_m(a))\to \Lambda(a)$ in $H$.
+\item $\f(R_m(a))=\f(a)$
+\item If $a\in\fM$, then $R_m(a)\in\fM\cap\cA$.
+\item If $a\in\fM\cap\cA$, then $\sigma_z(a)\in\fM\cap\cA$.
+\item $\fM\cap\cA$ is a core of $\Lambda$.
+\item If $a\in\fM\cap\cA$, then $\f(\sigma_z(a))=\f(a)$.
+\end{itemize}
+
+\end{pf}
 
 
 \begin{prb}[Tomita-Takesaki commutation theorem]
-Wick rotation
-The \emph{imaginary time} is $\frac i\hbar t$.
-Let $H$ be a self-adjoint operator of bounded from below.
-Consider
-\[\Delta_\beta:=e^{-\beta H},\qquad u_t:=e^{\frac i\hbar tH}.\]
-Then, $\Delta$ is an invertible trace-class operator.
-The unitary operator $u_t^*$ is called the \emph{propagator}.
+Let $A$ be a left Hilbert algebra, and $M\subset B(H)$ be the von Neumann algebra generated by $A$.
+\[S=J\Delta^{\frac12}.\]
 
 
-The one-parameter automorphism $\sigma_t$ has the formal infinitesimal generator $\frac i\hbar\ad H=\frac i\hbar[H,-]$ with
-\[\sigma_t:=\Ad u_t=e^{\frac i\hbar tH}\cdot e^{-\frac i\hbar tH}=e^{\frac i\hbar t\ad_H}.\]
+Define $u_t:=\Delta^{it}$ and $\sigma_t:=\Ad\Delta^{it}$ for $t\in\R$.
+Tomita algebra
+analytic elements
 
-\[\begin{tikzcd}[column sep={3.5em,between origins},row sep={2.5em,between origins}]
-&A\ar{rr}{u_t=\Delta^{it}}&&A\ar{dd}{\lambda}\\
-A'\ar[<->]{ur}{J}\ar[swap]{rr}{\Delta^{it}}\ar[swap]{dd}{\rho}&&A'\ar[<->,swap]{ur}{J}\ar{dd}{\rho}&\\
-&&&\lambda(A)\\
-\rho(A')\ar[swap]{rr}{\sigma_t=\Ad\Delta^{it}}&&\rho(A')\ar[<->,swap]{ur}{\Ad J}&.
+
+Suppose $A$ is full.
+Our goal is to prove that we have a commutative diagram
+\[\begin{tikzcd}[column sep={30,between origins},row sep={20,between origins}]
+&A\ar{rr}{u_t}&&A\ar{dd}{\lambda}\\
+A'\ar[<->]{ur}{J}\ar[swap]{rr}{u_t}\ar[swap]{dd}{\rho}&&A'\ar[<->,swap]{ur}{J}\ar{dd}{\rho}&\\
+&&&M\\
+M'\ar[swap]{rr}{\sigma_t}&&M'\ar[<->,swap]{ur}{\Ad J}&
 \end{tikzcd}\]
+for each $t\in\R$.
+
+It has the formal infinitesimal generator $i(\ad h)/\hbar=i[h,-]/\hbar$ with
+\[\sigma_t:=\Ad u_t=e^{ith/\hbar}\cdot e^{-ith/\hbar}=e^{it(\ad h)/\hbar}.\]
+
+
+
+
+
 \begin{parts}
 \item Fourier inversion
+\[\int_\R\frac{e^{-ist}}{e^{\pi t}+e^{-\pi t}}\sigma_t(x)\,dt\]
 \item $(e^{-s}+\Delta)^{-1}:A'\to A\cap\dom F$.
 \item commutation theorem
 \end{parts}
 \end{prb}
+\begin{pf}
+(c)
+First we check that the square at the upper side.
+If we let $f(s):=e^{it\log s}$ on $s\in(0,\infty)$, then by the uniqueness of the functional calculus the operation $\Ad J$ commutes with the functional calculus, so we have
+\[\Delta^{-it}=f(\Delta^{-1})=f(J\Delta J)=J\bar{f(\Delta)}J=J(\Delta^{it})^*J=J\Delta^{-it}J.\]
+Now it is enough to prove the following boundary diagram
+\[\begin{tikzcd}[column sep={30,between origins},row sep={20,between origins}]
+&D\ar{rr}{u_t}&&D\ar{dd}{\bar L}\\
+A'\ar{ur}{J}\ar[swap]{dd}{R}&&&\\
+&&&C(H)\\
+R(A')\ar[swap]{rr}{\sigma_t}&&B(H)\ar[swap]{ur}{\Ad J}&
+\end{tikzcd}\]
+commutes for each $t\in\R$, where $C(H)$ denotes the set of all closed densely defined operators on $H$, because the case $t=0$ proves the commutativity of the square at the right side, and we have seen the square at the upper side is commutative, so the commutativity of the front side will follow.
+
+
+
+\end{pf}
+
+
+
 
 
 
@@ -449,7 +727,7 @@ A'\ar[<->]{ur}{J}\ar[swap]{rr}{\Delta^{it}}\ar[swap]{dd}{\rho}&&A'\ar[<->,swap]{
 \begin{prb}[Standard forms]
 For a subset $P$ of a complex vector space $H$, the \emph{dual cone} is the closed convex cone $P^\circ:=\{\eta\in H:\<\xi,\eta\>\ge0,\ \xi\in P\}$, and we say $P$ is a \emph{self-dual cone} if $P=P^\circ$.
 Let $M$ be a von Neumann algebra.
-A \emph{standard form} $(M,H,J,P)$ of $M$ is a faithful unital normal representation $M\subset B(H)$ together with an anti-linear isometric involution $J:H\to H$ and a self-dual cone $P\subset H$ satisfying the following axioms:
+A \emph{standard form} $(M,H,J,P)$ of $M$ is a faithful unital normal representation $M\subset B(H)$ together with an conjugate-linear isometric involution $J:H\to H$ and a self-dual cone $P\subset H$ satisfying the following axioms:
 \begin{enumerate}[(i)]
 \item $JMJ=M'$,
 \item $z'=z^*$ for $z\in Z(M)$,
@@ -458,56 +736,202 @@ A \emph{standard form} $(M,H,J,P)$ of $M$ is a faithful unital normal representa
 \end{enumerate}
 where $x':=JxJ\in M'$ for $x\in M$.
 \begin{parts}
-\item For projections $p\in M$ and $q:=pp'=p'p\in B(H)$ in a standard form, then $q\ne0$ if and only if $p\ne0$, and $(qMq,qH,qJq,qP)$ is also a standard form.
+\item Let $(M,H,J,P)$ be a standard form. For projections $p\in M$ and $q:=pp'=p'p\in B(H)$, we have a $*$-isomorphism $pMp\to qMq$, and $(qMq,qH,qJq,qP)$ is a standard form.
 \end{parts}
 \end{prb}
 \begin{pf}
-From $(JpJ)\in M'$, we have $pq=q=qp$ and $pxq=qxq=qxp$ for $x\in M$.
-Note also that $q$ is a projection such that $Jq=pJp=qJ$.
-Consider a surjective linear map $pMp\to qMq:pxp\mapsto p'pxpp'=qxq$.
-It is well-defined because $pxp=0$ implies $qxq=p'pxpp'=0$, and is a $*$-homomorphism because
-\[q(px_1p)(px_2p)q=qx_1px_2q=qx_1qx_2q=(qx_1q)(qx_2q),\qquad x_1,x_2\in M.\]
-It is also injective since if $qxq=0$, then
-\[p=Jp'J\le Jz(p')J=z(p')^*=z(p')\]
-implies $pH\subset z(p')H=\bar{M'p'H}$ and
-\[pxpH\subset\bar{pxpM'p'H}=\bar{M'pxpp'H}=\bar{M'qxqH}=0,\qquad x\in M.\]
-Therefore, $pMp\to qMq$ is a $*$-isomorphism, hence $q\ne0$ if and only if $p\ne0$.
+(a)
+Note that $q$ is a projection that commutes with $J$.
+Consider a surjective idempotent linear map $\Ad q:pMp\to qMq:pxp\mapsto qxq$, which is a $*$-homomorphism because
+\[q(pxp)(pyp)q=qxpyq=qxqyq=(qxq)(qyq),\qquad x,y\in M.\]
+It is also injective because if $qxq=0$ for $x\in M$, then since the central support $z(p')$ of $p'$ majorize $p$ as
+\[p=Jp'J\le Jz(p')J=z(p')^*=z(p'),\]
+we have
+\[pxpH=pxpz(p')H\subset\bar{pxpM'p'H}=\bar{M'pxpp'H}=\bar{M'qxqH}=0.\]
+Therefore, $pMp\to qMq$ is a $*$-isomorphism.
 
-We can check that $qJq$ is an anti-linear isometric involution on $qH$ by $J(qH)=q(JH)=qH$ and $(qJq)^2=q$, and $qP$ is a self-dual cone by $qP=pp'P\subset P=P^\circ\subset(qP)^\circ$ and conversely the inequality $\<q\xi,\eta\>=\<q\xi,q\eta\>\ge0$ for any $\eta\in P$ implies $q\xi\in P^\circ=P$ and $q\xi\in qP$ whenever $q\xi\in(qP)^\circ$.
-The first condition follows from
-\[(qJq)(qMq)(qJq)=qJMJq=qM'q=q(p'M'p')q=q(p'Mp')'q=(qMq)',\]
+We can check that $qJq$ is an conjugate-linear isometric involution on $qH$ from $JqH=qH$ and $(qJq)^2=q$, and the self-duality of the closed convex cone $qP$ in $qH$ follows from $(qP)^\circ\cap qH=qP^\circ\cap qH=qP\cap qH$.
+Here we used $(xP^\circ)=x^*P^\circ$ for $x\in B(H)$.
+The first condition for the standard forms follows from
+\[(qJq)(qMq)(qJq)=qJMJq=qM'q=qp'M'p'q=q((p'Mp')'\cap p'B(H)p')q=(qMq)'.....????\]
 and the second condition follows because $Z(qMq)=qMq\cap(qMq)'=qMq\cap qM'q=qZ(M)q$ so that an element of $Z(qMq)$ is equal to $qzq$ for some $z\in Z(M)$, we have
 \[(qJq)(qzq)(qJq)=qJzJq=qz^*q=(qzq)^*,\qquad qzq\in Z(qMq).\]
 Since the third and forth axioms for standard forms are clear.
 \end{pf}
 
+
+
 \begin{prb}[Existence of standard forms]
+Let $A$ be a left Hilbert algebra, and $A_0$ is the maximal Tomita algebra.
+Define
+\[P_0^\flat:=\{\eta\eta^\flat:\eta\in A_0\},\qquad P_0:=\{\zeta J\zeta:\zeta\in A_0\},\qquad P_0^\sharp:=\{\xi\xi^\sharp:\xi\in A_0\},\]
+and $P^\flat:=\bar{P_0^\flat}$, $P:=\bar{P_0}$, $P^\sharp:=\bar{P_0^\sharp}$.
+\begin{parts}
+\item $P^\flat$ and $P^\sharp$ are dual.
+\end{parts}
 \end{prb}
+\begin{pf}
+(a)
+We have $P^\sharp\subset(P^\flat)^\circ$ since $\<\xi\xi^\sharp,\eta\eta^\flat\>=\|\xi^\sharp\eta\|^2\ge0$ for $\xi,\eta\in A_0$.
+Now we suppose $\xi\in(P^\flat)^\circ$ and claim that $\xi$ can be approximated by elements of $P_0^\sharp$.
+Since
+\[\<L(\xi)\eta,\eta\>=\<R(\eta)\xi,\eta\>=\<\xi,R(\eta)^*\eta\>=\<\xi,\eta\eta^\flat\>\ge0,\qquad\eta\in A_0,\]
+we have a densely defined non-negative symmetric operator $L(\xi)$, and by the Friedrichs extension, we can take a positive self-adjoint extension $h$ of $L(\xi)$ affiliated with $M$.
+
+\[L(f(h)\xi)=?=\acute f(h)\]
+\[f(h)\xi\in P_0^\sharp?\]
+$s(h)\xi=\xi$ from $\xi\in\bar{R(A')\xi}=\bar{L(\xi)A'}=?=s(h)H$?
+
+\[L(e_n\xi)=e_nL(e_n\xi)=L(e_n\xi)e_n=L(\xi)e_n=he_n\]
+implies $\Lambda(e_nh)=e_n\xi$, since $\xi$ is contained in the closure of the range of $L(\xi)$ so that $1_{\{0\}}(h)\xi=0$,
+\[\Lambda(e_nx^{\frac12})\Lambda(e_nx^{\frac12})^\sharp=\Lambda(e_nx)=e_n\xi\to1_{(0,\infty)}(h)\xi=\xi\]
+by $\xi\in\bar{x\dom x}$.
+From $\Lambda(e_nx^{\frac12})\in A$, and $A^2$ can be approximated by $A_0^2$ using $R_n$, we have $\xi\in P^\sharp$, hence the duality between $P^\sharp$ and $P^\flat$.
+
+--
+Since $A_0^2$ is dense in $H$ and $\<\xi,\eta\eta^\flat\>\in\R_{\ge0}\subset\R$ implies
+\[\<S\xi,\eta\eta^\flat\>=\<F(\eta\eta^\flat),\xi\>=\<\eta\eta^\flat,\xi\>=\<\xi,\eta\eta^\flat\>,\qquad\eta\in A_0,\]
+we have $\xi\in\dom S$ and $S\xi=\xi$, so $L(\xi)$ is a closable densely defined operator.
+But here we used Friedrichs extension instead of the polar decomposition.
+
+(b)
+Here, since $J\Delta^{\frac14}J=\Delta^{-\frac14}$, we get $\Delta^{\frac14}S\Delta^{-\frac14}=J=\Delta^{-\frac14}F\Delta^{\frac14}$ and $\Delta^{\frac14}P_0^\sharp=P_0=\Delta^{-\frac14}P_0^\flat$.
+If $\xi\in P$, then
+\[\<\xi,\eta\>=\<\Delta^{\frac14}\xi,\Delta^{-\frac14}\eta\>\ge0,\qquad\eta\in P,\]
+so $\xi\in P^\circ$.
+Conversely, let $\xi\in P^\circ$.
+Then, we do not know if $\xi\in D$, but by introducing $R_n(\xi)\in D$, and the inequality $\<\xi,\eta\>\ge0$ implies
+\[\<\Delta^{\frac14}R_n(\xi),\Delta^{-\frac14}\eta\>=\sqrt{\frac n\pi}\int_\R e^{-n^2t^2}\<\Delta^{\frac14}\Delta^{it}\xi,\Delta^{-\frac14}\eta\>\,dt=\sqrt{\frac n\pi}\int_\R e^{-n^2t^2}\<\Delta^{it}\xi,\eta\>\,dt\ge0\]
+for all $\eta\in P$ by $\Delta^{it}P=P$ (Tomita-Takesaki commutation).
+Thus, $\Delta^{\frac14}R_n(\xi)\in P^\flat\subset\bar{\Delta^{\frac14}P}$ and the limit shows $\xi\in P$.
+
+Now we check the four conditions.
+The first and third condition is clear.
+For the second condition, taking a central $z\in Z(M)\cap\fa$ which can be compensated by approximation to the whole $Z(M)$,
+\[\lambda(Sz\xi)=\lambda(z\xi)^*=(z\lambda(\xi))^*=z^*\lambda(\xi)^*=\lambda(z^*S\xi)\]
+implies $Sz=z^*S$.
+Every $u\in U(Z(M))$ satisfies $J\Delta^{\frac12}=uJuu^*\Delta^{\frac12}u$, and by the uniqueness of the polar decomposition, $J=uJu$.
+Then, by linearly extend the identity $Ju=u^*J$, we have $Jz=z^*J$ and $JzJ=z^*$ for all $z\in Z(M)$.
+To show the forth condition, approximate $\lambda(\xi)\in\fa$ to arbitrary $x\in M$ using the Kaplansky density keeping a net bounded, in the equation
+\[\lambda(\xi)J\lambda(\xi)J(\eta\eta^*)=\lambda(\xi)\rho(\xi^*)(\eta\eta^*)=\xi\eta(\xi\eta)^*\in P,\qquad\eta\in A_0\]
+to obtain $xJxJP\in P$.
+\end{pf}
 
 \begin{prb}[Uniqueness of standard forms]
+Let $(M,H,J,P)$ and $(\tilde M,\tilde H,\tilde J,\tilde P)$ be standard forms.
+If $\pi:M\to\tilde M$ is a $*$-isomorphism, then there exists a unique unitary $u:H\to\tilde H$ such that $\pi=\Ad u$, $\tilde J=uJu^*$, and $\tilde P=uP$.
 \end{prb}
+\begin{pf}
+(Uniqueness)
+If $u':H\to \tilde H$ also satisfies the condition and let $v:=u^*u'$.
+The first condition implies $x=vxv^*$ for $x\in M$, we have $v\in M'$.
+The second condition implies $v=JvJ\in M$ and $v\in Z(M)$ so that $v=JvJ=v^*$.
+Apply the spectral decomposition to write $v=p-q$ for orthogonal central projections $p$ and $q$ such that $p+q=1$.
+Then, $JqJ=q^*$ implies $qP=qJqJP\subset P$.
+For any $\xi\in qP$, we have $p\xi=0$ by orthogonality, and the third condition $vP=P$ deduces that
+\[0\le\<v\xi,\xi\>=-\|q\xi\|.\]
+Thus, $qP=q(qP)=0$, and because $P$ spans $H$, we have $q=0$.
+Therefore, $v=1$.
+
+(Existence)
+First we assume $M$ is $\sigma$-finite.
+We first claim there is a cyclic separating vector in $P$.
+Let $\{\xi_i\}_{i\in I}$ be a maximal family of non-zero vectors in $P$ such that the support projections $s(\omega_{\xi_i})$ are mutually orthogonal.
+Suppose $p:=1-\sum_is(\omega_{\xi_i})\ne0$.
+Take $\xi\in pP$ so that $p\xi=\xi$ and implies $s(\omega_\xi)\le p$.
+It constradicts to the maximality of the family $\{\xi_i\}$, we have $p=0$.
+Since $M$ is $\sigma$-finite the index set $I$ is countable, and we may assume $\sum_i\|\xi_i\|^2<\infty$.
+Let $\xi:=\sum_i\xi_i\in P$.
+The orthogonality of $e(\xi_i)$ is saying that $M'\xi_i$ are mutually orthogonal, and the commutation $JMJ=M'$ implies that $M\xi_i$ are all mutually orthogonal, hence $\omega_\xi=\sum_i\omega_{\xi_i}$ by expansion of the sum.
+Then,
+\[e(\xi)=s(\omega_\xi)=\sum_is(\omega_{\xi_i})=\sum_ie(\xi_i)=1,\]
+and $\xi$ is separating.
+For $J\xi=\xi$ and $JMJ=M'$, $\xi$ is also cyclic.
+
+Now with any fixed cyclic separating vector $\xi$ taken as above, we construct a left Hilbert algebra $M\xi$ in $H$ and the associated standard form $(M,H,J_\xi,P_\xi)$.
+Note that $M\xi$ is a core of $F_\xi J$ and $JS_\xi$.
+Since
+\[(JS_\xi)^*x\xi=F_\xi Jx\xi=F_\xi(JxJ)\xi=(JxJ)^*\xi=Jx^*J\xi=Jx^*\xi=JS_\xi x\xi,\qquad x\in M\]
+and
+\[\<JS_\xi x\xi,x\xi\>=\<Jx\xi,S_\xi x\xi\>=\<JxJ\xi,x^*\xi\>=\<xJxJ\xi,\xi\>\ge0,\qquad x\in M\]
+from $xJxJP\subset P$, $JS_\xi$ is a non-negative self-adjoint operator.
+By the uniqueness of the polar decomposition for $S_\xi$, we have $J=J_\xi$.
+By definition of $P$ and $P_\xi$, we also have $P=P_\xi$.
+Therefore, for a $\sigma$-finite von Neumann algebra on a fixed Hilbert space the standard form is uniquely determined as sets if it admits, so is the unitary $u:H\to\tilde H$.
+
+In general case, take an increasing net $p_i$ of $\sigma$-finite projections of $M$ whose supremum is the unit.
+Define $q_i:=p_iJp_iJ$.
+Consider $\sigma$-finite von Neumann algebras $q_iMq_i$ and projections $r_i\in\tilde M$ defined such that $\pi(q_iMq_i)=r_i\tilde Mr_i$.
+We can see that $q_i$ and $r_i$ also increase to the units.
+For each $i$, we have a unitary $u_i:q_iH\to r_i\tilde H$ which preserves the unique standard forms on $(q_iMq_i,q_iH)$ and $(r_i\tilde M r_i,r_i\tilde H)$.
+By the uniqueness of the unitaries, if $q_i\le q_j$ then $u_i\subset u_j$, so the limit $u=\bar{\bigcup_iu_i}$ is a well-defined unitary satisfying the desired conditions.
+\end{pf}
 
 \begin{prb}[Unitary implementation]
 Powers-St\o rmer inequality (see Bratelli-Robinson)
 
-$\Aut(M)$ and the set of unitaries preserving standard form are not homeomorphic! (Takesaki seems to be wrong)
-But on locally compact subgroups, the topologies are same.
-For example,
-If $\alpha:G\to\Aut(M)$ is $\sigma$-weakly continuous, then $\alpha^*:G\to\Aut(M_*)$ is weakly continuous.
-By smearing argument on $G$, we can see $\alpha^*:G\to\Aut(M_*)$ is strongly continuous.
-Inserting the homeomorphism $P\cong M_*^+$, we have strongly continuous unitary representation on $H$.
+$\Ad:U(H)\to\Aut(M)$ is a surjective group homomorphism with $\ker\Ad=U(H)\cap M'$.
+The quotient $U(H)/\ker\Ad$ can be described by the subgroup of $U(H)$ of the $J$-invariant and $P$-invariant unitaries.
+
+$\Aut(M)$ and the set of unitaries preserving standard form are homeomorphic if we consider the point-$\sigma$-strong topology on $\Aut(M)$ and the strong topology on the unitaries.
+
+But on locally compact subgroups, we can consider point-$\sigma$-weak topology on $\Aut(M)$.
+If $\alpha:G\to\Aut(M)$ is $\sigma$-weakly continuous, then $\alpha^*:G\to\Aut(M_*)$ is weakly continuous, and strongly continuous by the local compactness of $G$.
+Inserting the homeomorphism $P\cong M_*^+$, we have strongly continuous unitary representation on $H$, so $\alpha:G\to\Aut(M)$ becomes $\sigma$-strongly continuous.
+
 \end{prb}
 
 
 
 
 
-\section{Modular actions}
+\section{Modular flows}
+
+If $\f$ is $\sigma$-invariant, then $\Lambda$ is equivariant.
+KMS is equivalent to the existence of $J$ such that $J\Lambda(a)=\Lambda(\sigma_{-i\frac\beta2}(a)^*)$.
+Lemma 2.4.2 in Thomsen seems to be very important.
+
+dl weight on $A$ gives rise to a fsn weight on $\pi(A)''$.
+
+
+
+
+
+
 
 \begin{prb}[Kubo-Martin-Schwinger weights]
+Let $M$ be a von Neumann algebra with a flow $\sigma:\R\to\Aut(M)$.
+Fix a parameter $\beta\in\R$ called the \emph{inverse temperature}.
+For a semi-finite normal weight $\f$ on $M$, the \emph{two-point function} of $x,y\in M$ at $\beta$ is a function $f:\Im^{-1}([\beta,0]\cup[0,\beta])\subset\C\to\C$ such that
+\begin{enumerate}[(i)]
+\item $f$ is continuous and bounded on the closed horizontal strip $\Im^{-1}([\beta,0]\cup[0,\beta])$,
+\item $f$ is holomorphic on the open horizontal strip $\Im^{-1}((\beta,0)\cup(0,\beta))$,
+\item we have
+\[f(t+i\beta)=\f(\sigma_t(x)y),\qquad f(t)=\f(y\sigma_t(x)),\qquad t\in\R.\]
+\end{enumerate}
+We say a semi-finite normal weight $\f$ on $M$ is \emph{Kubo-Martin-Schwinger} for $\sigma$ at $\beta$ if it is invariant under $\sigma$ and every $x,y\in\fA_\f$ admit two-point functions at $\beta$.
+
+The notion of the two-point functions are often used to verify that a flow is the modular flow of a given weight, or to show that an element is invariant using the Liouville theorem.
+\begin{parts}
+\item If $\f$ is a state, then the invariance in the definition of Kubo-Martin-Schwinger weight is redundant.
+\item The modular flow $\sigma^\f$ is the unique flow such that $\f$ is Kubo-Martin-Schwinger at $\beta=-1$.
+\item 
+\end{parts}
 \end{prb}
+\begin{pf}
+(a) Since $\fM_\f=M$, we can put $y=1$ to show the invariant using the Liouville theorem and the Schwarz reflection principle.
+
+
+\end{pf}
 
 \begin{prb}[Centralizer of weights]
+Let $\f$ and $\sigma^\f$ be a faithful semi-finite normal weight and its modular flow on a von Neumann algebra $M$.
+\begin{parts}
+\item $\sigma^\f_t(x)=x$ for all $t\in\R$ if and only if $x$ is a multiplier of $\fM_\f$ with $\f(xy)=\f(yx)$ for all $y\in\fM_y$.
+\item If $h$ is a positive self-adjoint operator affiliated with $M^\f$, then a semi-finite normal weight $\f_h$ is well-defined, and $\sigma^{\f_h}_t=(\Ad h^{it})\sigma^\f_t$.
+\item $\psi$ is invariant under $\sigma^\f$ if and only if $\psi=\f_h$ for some positive self-adjoint operator affiliated with $M^\f$.
+\item If $\psi$ is a faithful semi-finite normal weight on $M$, then we say $\psi$ and $\f$ commute if one is invariant under the modular flow of the other. This defines an equivalence relation.
+\end{parts}
 \end{prb}
 
 
@@ -520,26 +944,51 @@ Radon-Nikodym derivative
 \begin{prb}[Conditional expectations]
 \end{prb}
 
-\begin{prb}[Operator-valued weights]
-Let $M$ and $N$ be von Neumann algebras.
-The \emph{extended positive cone} $\hat N^+$ of $N$ is defined as the set of lower semi-continuous additive homogeneous functions $y:N_*^+\to[0,\infty]$.
-An \emph{operator-valued weight} is a additive homogeneous function $T:M^+\to\hat N^+$.
 
-faithful semi-finite normal operator-valued weight...
+\begin{prb}[Affiliated operators]
+Let $M$ be a von Neumann algebra on a Hilbert space $H$.
+A closed densely defined operator $T$ on $H$ is said to be \emph{affiliated with} $M$ if 
+
+
+strongly commuting operators
+
 \end{prb}
 
+
+
+
+\begin{prb}[Operator-valued weights]
+Let $M$ be a von Neumann algebra and $N$ be a unital von Neumann subalgebra of $M$.
+The \emph{extended positive cone} $\hat M^+$ of $M$ is defined as the set of lower semi-continuous $\R_{\ge0}$-linear functions $y:M_*^+\to[0,\infty]$.
+An \emph{operator-valued weight} or an \emph{unbounded conditional expectation} is a $N^+$-bilinear function $T:M^+\to\hat N^+$.
+
+
+\begin{parts}
+\item If $M$ is on a Hilbert space $H$, then there is a one-to-one correspondence between $\hat M^+$ and the set of all pairs $(h,p)$, where $h$ is a positive self-adjoint operator on $pH$ and $p$ is a projection, both are affiliated with $M$.
+\end{parts}
+\end{prb}
 
 
 
 \section*{Exercises}
 
-\begin{prb}[Completely additive weights]
-Let $\f$ be a \emph{completely additive} weight on a von Neumann algebra in the sense that for every orthogonal family $\{p_\alpha\}$ of projections we have $\f(\sum_\alpha p_\alpha)=\sum_\alpha\f(p_\alpha)$.
-\begin{parts}
-\item A completely additive state on a von Neumann algebra is normal.
-\item A completely additive and lower semi-continuous weight on a commutative von Neumann algebra is normal.
-\end{parts}
-\end{prb}
+
+
+
+
+Keep with the Heisenberg picture.
+
+Let $H$ be the fermionic or bosonic, Hilbert or Fock space of multi-particles, and let $h$ be a self-adjoint operator on $H$ of bounded from below, which will be interpreted as the Hamiltonian.
+
+With $\beta>0$, consider $\Delta_\beta:=e^{-\beta h}$.
+The normalized positive trace-class operator $\rho_\beta:=Z_\beta^{-1}e^{-\beta h}\in L^1(H)^+$ defines the \emph{Gibbs state} $\omega_\beta$ on $B(H)$, where $Z_\beta:=\Tr e^{-\beta h}\in\R_{>0}$ is the \emph{partition function}.
+The \emph{internal energy} of the system $h$ is $\omega_\beta(h)$.
+
+Fix $\hbar>0$.
+The time translate of an operator is given by $\alpha:=\Ad u:\R\to\Aut(B(H))$, where $u_t:=e^{ith/\hbar}\in U(H)$ for $t\in\R$, whose adjoint $u_t^*$ is called the \emph{propagator}.
+
+Then, we can compute
+\[\omega_\beta(\alpha_t(x)y)=\omega_\beta(y\alpha_{t+i\beta}(x)).\]
 
 
 
@@ -550,61 +999,45 @@ Let $\f$ be a \emph{completely additive} weight on a von Neumann algebra in the 
 
 
 
-
-\chapter{Non-commutative integral}
-
+\chapter{Non-commutative integration}
 
 
-\section{Haagerup spaces}
-
-\begin{prb}[Semi-finite and tracial von Neumann algebras]
-Let $M$ be a von Neumann algebra.
-We say $M$ is \emph{semi-finite} if it admits a faithful semi-finite normal trace, and \emph{tracial} if it admits a faithful normal tracial state.
-\begin{parts}
-\item regular representation and antilinear isometric involution $J$. $L(G)=\rho(G)'$
-\item $M$ is semi-finite if and only if type III does not occur in the direct sum.
-
-\item A factor $M$ has at most one tracial state, which is normal and faithful.
-\item A factor is tracial if and only if it is type II$_1$.
-\end{parts}
-\end{prb}
 
 
-\begin{prb}[Semi-finite traces]
-Let $M$ be a von Neumann algebra and $\tau$ is a trace.
-For a trace $\tau$
-\begin{parts}
-\item $\tau$ is semi-finite if and only if $x\in M^+$ has a net $x_\alpha\in L^1(M,\tau)^+$ such that $x_\alpha\uparrow x$ strongly.
-\item Let $\tau$ be normal and faithful. Then, $\tau$ is semi-finite if and only if
-\[\tau(x)=\sup\{\,\tau(y):y\le x,\ y\in L^1(M,\tau)^+\,\}\quad\text{ for }\quad x\in M^+.\]
-\end{parts}
-\end{prb}
 
-\begin{prb}[Uniformly hyperfinite algebras]
-Let $A$ be a uniformly hyperfinite algebra.
-\begin{parts}
-\item Every matrix algebra admits a unique tracial state.
-\item Every UHF algebra admits a unique tracial state.
-\item Every hyperfinite 
-\end{parts}
-\end{prb}
+\section{Non-commutative Lebesgue spaces}
 
 
-measurable operators,
-unbounded operators affilated with $M$,
-noncommutative $L^p$ spaces for semi-finite con Neumann algebras,
-noncommutative $L^p$ space for general von Neumann algebras: by Haagerup(crossed product), and by Kosaki-Terp(complex interpolation).
-
-On semi-finite von Neumann algebras, measurable operators are affiliated.
-On a finite von Neumann algebras, affiliated operators are measurable.
 
 
 
 \begin{prb}[Measurable operators]
 
+
+order topology, measure topology, $\sigma$-weak topology
+
+
+unbounded operators affilated with $M$,
+noncommutative $L^p$ spaces for semi-finite von Neumann algebras,
+noncommutative $L^p$ space for general von Neumann algebras: by Haagerup(crossed product), and by Kosaki-Terp(complex interpolation).
+
+On semi-finite von Neumann algebras, $\tau$-measurable operators are affiliated.
+On a finite von Neumann algebras, affiliated operators are measurable.
+
+
 \end{prb}
 
+\begin{prb}[Measure topology]
+Let $M$ be a semi-finite von Neumann algebra with a faithful semi-finite normal trace $\tau$.
+The \emph{global measure topology} on $M$ with respect to $\tau$ is the locally convex topology whose neighborhood system at zero is generated by
+\[N(\e,\delta):=\{x\in M:\exists p\in P(M),\ \|xp\|<\e,\ \tau(1-p)<\delta\},\qquad\e,\delta>0.\]
 
+The set of $\tau$-measurable operators is a complete metrizable locally convex $*$-algebra.
+\end{prb}
+
+Let $T$ be a closed desely defined linear operator affiliated with $M$.
+It is called \emph{measurable} if there is a net $p_i$ of projections such that $Tp_i$ is bounded, $p_i\uparrow1$, and $1-p_i$ is finite.
+It is called \emph{locally measurable} if there is a net $z_i$ of central projections such that $Tz_i$ is measurable and $z_i\uparrow1$.
 
 \begin{itemize}
 \item density of $C(X)$ in $L^p(X,\mu)$
@@ -622,24 +1055,575 @@ The sequentiality of a net is required for the relation between the almost every
 In particular, an almost everywhere convergent net might not converges locally in measure.
 Monotone, bounded, dominated convergence theorems are true for nets that converge locally in measure.
 
-For a localizable measure space $(X,\mu)$, $L_\loc^0(\mu)\cong S(L^\infty(\mu))$.
+When $|x|^p$ and $|y|^q$ are sufficiently nice(?), then a function $f:\Re^{-1}([0,1])\to\C$ defined by
+\[f(z):=\tau(u(|x|^p)^{1-z}v(|y|^q)^z),\qquad\Re z\in[0,1],\]
+where $x=u|x|$ and $y=v|y|$ are the polar decompositions, is extended to an entire function.
+Note that
+\[f(q^{-1})=\tau(xy),\quad|f(it)|\le|\tau(|x|^p)|,\quad|f(1+it)|\le|\tau(|y|^q),\qquad t\in\R.\]
+Then, by the Hadamard three-line theorem, we have
+\[|\tau(xy)|=|f(q^{-1})|\le\sup_{\Re z=0}|f(z)|^{1-\frac1q}\cdot\sup_{\Re z=1}|f(z)|^{\frac1q}\le\tau(|x|^p)^{\frac1p}\tau(|y|^q)^{\frac1q}.\]
+By the density, we can extend.
 
+\section{Tensor products of von Neumann algebras}
 
-
-
-
-
-
-\chapter{}
-
-
-\section{Commutative von Neumann algebras}
-\subsection{}
 
 \begin{prb}
-For a normal weight $\f$ of a commutative von Neumanna algebra $M$, $\f$ is semi-finite if and only if for every projection $p\in M$ with $\f(p)=\infty$, there is another projection $q\in M$ such that $q\le p$ and $0<\f(q)<\infty$.
+Let $M$ and $N$ be von Neumann algebras.
+Consider the embedding $M_*\odot N_*\subset(M\otimes_{\min}N)^*$.
+The closure $M_*\bar\otimes N_*$ is invariant under $M\otimes_{\min}N$, so it defines a von Neumann subalgebra of $(M\otimes_{\min}N)^{**}$ by a central projection.
+This is the tensor product von Neumann algebra of $M$ and $N$.
+\end{prb}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\chapter{Commutative von Neumann algebras}
+
+
+\section{Hyperstonean duality}
+
+
+
+By the Zorn lemma, we always have separable family of vectors and cyclic family of vectors.
+We want to consider the cardinalities(one, countable, uncountable) of these families.
+$M$ is $\sigma$-finite iff all/some separable family of vectors is countable.
+
+
+If $M$ has a separating vector, then every normal state is a vector state (V.1.12.)
+
+
+Suppose $M$ is commutative and $\sigma$-finite.
+$\pi$ has a cyclic vector iff $M$ is maximal.
+$\pi$ has a separating vector always.
+
+
+\begin{prb}[Maximal commutative subalgebras]
+Let $M$ be a commutative von Neumann algebra and $\f$ be a semi-finite normal weight on $M$.
+Since it is faithful on $\pi(M)$, assume $\f$ is faithful?
+By the associated semi-cyclic representation to $\f$, embed $M\subset B(H)$.
+
+\begin{parts}
+\item $M$ is a maximal commutative subalgebra of $B(H)$.
+\end{parts}
 \end{prb}
 \begin{pf}
+
+
+Let $z\in M'^+$ with $\|z\|\le1$.
+We see that a linear functional $M_*\to\C:\omega_{\Lambda(x),\Lambda(y)}\mapsto\omega_{\Lambda(x),\Lambda(y)}(z)$ is well-defined and bounded, where $x,y\in\fN_\f$.
+Take a net $e_i\in\fN_\f$ such that $e_i\to1$ $\sigma$-strongly and $\|e_i\|\le1$ for all $i$.
+Considering a cofinal ultrafilter on the index set, we may assume $\Lambda(xe_i)=e_i\Lambda(x)$ is weakly convergent in $H$ by the boundedness for each $x\in\fN_\f$, and the limit is $\Lambda(x)$ by the closedness of $\Lambda$.
+By the Mazur lemma, we may assume $\Lambda(|y^*x|^{\frac12}e_i)\to\Lambda(|y^*x|^{\frac12})$ in norm of $H$.
+If we denote by $y^*x=vh$ the polar decomposition of $y^*x$ in $M$, then the limit for $i$ on
+\begin{align*}
+|\<z\Lambda(xe_i),\Lambda(ye_i)\>|
+&=|\<zy^*x\Lambda(e_i),\Lambda(e_i)\>|
+=|\<h^{\frac12}zvh^{\frac12}\Lambda(e_i),\Lambda(e_i)\>|\\
+&\le\<h\Lambda(e_i),\Lambda(e_i)\>
+=\<\Lambda(h^{\frac12}e_i),\Lambda(h^{\frac12}e_i)\>
+\end{align*}
+gives $|\omega_{\Lambda(x),\Lambda(y)}(z)|\le\|\Lambda(h^{\frac12})\|^2=\|\omega_{\Lambda(x),\Lambda(y)}\|$.
+Thus, there is $z'\in M$ such that $\omega_{\Lambda(x)}(z)=\omega_{\Lambda(x)}(z')$ for all $x\in\fN_\f$, which implies $z=z'\in M$.
+
+
+\end{pf}
+
+\begin{prb}[Stone duality]
+Let $\cA$ be a Boolean algebra.
+The \emph{Stone representation} of $\cA$ is a function $\cA\to\cP(Z):a\mapsto\hat a:=\{z\in Z:z(a)=1\}$, where $Z$ is the \emph{Stone space} of $\cA$, defined as the topological space of all ring homomorphisms from $\cA$ to $\Z/2\Z$, whose topology is generated by the image of the Stone representation of $\cA$.
+
+\begin{parts}
+\item The category of Boolean algebras with unital homomorphisms and the category of Stone spaces with continuous maps are contravariantly equivalent.
+\end{parts}
+\end{prb}
+\begin{pf}
+
+A compact Hausdorff space $Z$ is Stone iff zero-dimensional, Stonean iff extremally disconnected.
+
+The Stone representation of $\cA$ is an injective unital ring homomorphism.
+
+\end{pf}
+
+
+
+\begin{prb}[Stonean duality]
+sup and inf in the Stone space,
+(sequentially) order-closed subalgebra and $\sigma$-algebra
+order dense
+\begin{parts}
+\item The category of complete Boolean algebras with Scott-continuous unital homomorphisms and the category of Stonean spaces with continuous open maps are contravariantly equivalent.
+\end{parts}
+\end{prb}
+
+
+
+
+
+\begin{prb}[Hyperstonean duality]
+\begin{parts}
+\item The category of localizable Boolean algebras with Scott-continuous unital homomorphisms and the category of hyperstonean spaces with continuous open maps are contravariantly equivalent.
+\end{parts}
+\end{prb}
+
+
+
+
+\section{Localizable measure algebras}
+
+
+\begin{prb}[Localizable measure spaces and measure algebras]
+A \emph{measurable algebra} is an $\sigma$-complete Boolean algebra, and a \emph{measure algebra} is a measurable algebra $\cL$ together with a \emph{measure}, which means a faithful completely additive monotone function $\mu:\cL\to[0,\infty]$.
+A measure algbera $(\cL,\mu)$ is called \emph{localizable} if $\cL$ is complete and $\mu$ is semi-finite, and a measurable algebra $\cL$ is called \emph{localizable} if it is complete and it admits a semi-finite measure.
+We consider the following categories.
+\begin{enumerate}[(i)]
+\item $\mathrm{MAlg}_\loc$ is the category in which objects are localizable measure algebras and morphisms are measure-preserving unital Scott-continuous ring homomorphisms.
+\item $\mathrm{MSp}_\loc$ is the category in which objects are localizable measure spaces and morphisms are weak almost everywhere equivalence classes of measure-preserving measurable maps.
+\item $\mathrm{BAlg}_\loc$ is the category in which objects are localizable measurable algebras and morphisms are unital Scott-continuous ring homomorphisms.
+\item $\mathrm{BSp}_\loc$ is the category in which objects are localizable enhanced measurable spaces and morphisms are weak almost everywhere equivalence classes of negligible-reflecting measurable maps.
+\end{enumerate}
+Two measurable maps $f$ and $g$ are said to be \emph{weakly equal almost everywhere} if the preimages of measurable sets are equal up to a subnegligible set.
+\begin{parts}
+\item The composition in $\mathrm{BSp}_\loc$ and $\mathrm{BAlg}_\loc$ are well-defined.
+\item $\mathrm{MSp}_\loc^\op\to\mathrm{MAlg}_\loc$ and $\mathrm{BSp}_\loc^\op\to\mathrm{BAlg}_\loc$ are categorical equivalences.
+\item If two localizable measure spaces are isomorphic in $\mathrm{MSp}_\loc$, then there is a meausre-preserving measurable bijection in each isomorphism.
+\end{parts}
+\end{prb}
+\begin{pf}
+(b)
+essential surjectivity and fullness require the hyperstonean duality...
+other things are direct.
+
+
+\end{pf}
+
+
+
+Let $X$ be the Stone space of $\cA$, $\cM$ the set of clopen subsets, and $\cN$ the set of meager sets.
+Then, $\cM$ is a $\sigma$-algebra on $X$ and $\cN$ is a $\sigma$-ideal of $X$.
+
+complete extension of Scott(?)-continuous homomorphisms and universal property.
+regular open algebra of $X$.
+
+
+
+
+
+
+
+
+
+
+\begin{prb}[Gelfand duality for commutative von Neumann algebras]
+categorical equivalences.
+\begin{parts}
+\item Construction of projection lattice functor.
+\item Construction of $L^\infty$ functor.
+\item Equivalence.
+\end{parts}
+\end{prb}
+\begin{pf}
+(a)
+Let $M$ be a commutative von Neumann algebra with a faithful semi-finite normal weight $\mu$.
+The lattice $P(M)$ of projections of $M$ is an complete Boolean algebra.
+Then, we can easily see that the weight $\mu$ defines a measurable algebra $(P(M),\mu)$.
+
+Suppose $\f:M\to N$ is a unital normal $*$-homomorphism between commutative von Neumann algebras.
+Then, the restriction $\f:P(M)\to P(N)$ is clearly a unital Scott-continuous ring homomorphism.
+
+
+(b)
+Let $(\cL,\mu)$ be a localizable measure algebra.
+
+We define $L^\infty(\cL)$ to be the set of all functions $x^{-1}:\mathrm{Open}(\C)\to\cL$ preserving finite infima and arbitrary suprema, and factors through $\mathrm{Open}(B(0,r))$ for some $r>0$.
+In other words, bounded localic maps $L\to\C$, where $L$ is the corresponding locale of the frame $\cL$.
+
+
+Define
+\[S(\cL):=\spn\cL/\spn\{p+q-p\vee q-p\wedge q:p,q\in\cL\}.\]
+We can show that it is a normed lattice.
+Define $L^1(\cL)$ as the completion of $S(\cL)$.
+Define $L^\infty(\cL)_1$ as the completion of $S(\cL)_1$ with respect to the locally convex topology generated by $L^1(\cL)$.
+(If we prove the equivalence between measure, order, weak$^*$ topologies on closed unit ball of a von Neumann algebra, then it would suggest an easier definition of $L^\infty(\cL)$.)
+Then, the multiplication can be extended so that its linear span $L^\infty(\cL)$ becomes a commutative normed $*$-algebra satisfying C$^*$-identity.
+Now it suffices to check $L^1(\cL)^*=L^\infty(\cL)$ in order to verify $L^\infty(\cL)$ is a von Neumann algebra.
+
+
+
+
+Recall that $\mu:\cL\to[0,\infty]$ is faithful semi-finite completely additive monotone function.
+Suppose $\cL=P(M)$.
+How can we define $\mu:M^+\to[0,\infty]$?
+It is easy if $\mu$ is finite.
+
+
+\end{pf}
+
+
+
+
+
+
+
+
+\begin{prb}[Maharam classification]
+Let $\cL$ be an localizable measurable algebra.
+A \emph{Maharam type} or just a \emph{type} of $\cL$ is the smallest cardinal $\tau(\cL)$ of any dense subset of $\cL$.
+If $\tau(\cL)=\tau(\cL\wedge a)$ for all non-zero $a\in\cL$, then we say $\cL$ is \emph{Maharam homogeneous}.
+For an infinite cardinal $\kappa$, the \emph{Maharam component} of type $\kappa$ is the supremum $e_\kappa$ of any non-zero elements $a\in\cL$ such that $\cL\wedge a$ is Maharam homogeneous of type $\kappa$.
+
+A \emph{cellularity} of a Boolean algebra $\cL$ is the supremum $c(\cL)$ of the cardinalities of any disjoint subset of $\cL\setminus\{0\}$.
+Note that the cellularity is either zero or infinite if $\cL$ is atomless, and $\cL\wedge e_\kappa$ is atomless if $\kappa$ is infinite.
+We define a cellularity function $c:\mathrm{InfCard}\to\mathrm{InfCard}\cup\{0\}$ such that $c(\kappa):=c(\cL\wedge e_\kappa)$.
+
+\begin{parts}
+\item 
+\item All Maharam homogeneous probability algebras of same type are isomorphic.
+\item A measure algebra $(\cB_\kappa,\mu)$ associated to the measure space $(\{0,1\}^\kappa,\mu)$ is Maharam homogeneous probability algebra of type $\kappa$.
+\item A
+\end{parts}
+\end{prb}
+
+
+
+A disjoint union and product of localizable measurable algebras is passed to the direct product and the tensor product.
+Every commutative von neumann algebra can be realized as $L^\infty$ of the disjoint union, or equivalently, the direct product of $L^\infty$, of countably decomposable enhanced measurable spaces $\{0,1\}^\kappa$.
+Every countably decomposable commutative von Neumann algebra is the tensor product of $\ell^\infty$'s.
+
+The invariants of localizable measure algebras:
+\[n:(0,\infty)\to\mathrm{Card},\qquad m:\mathrm{InfCard}\to\mathrm{Card}.\]
+
+The invariants of localizable measurable algebras: $(a,c)$ of
+\[a\in\mathrm{Card},\qquad c:\mathrm{InfCard}\to\mathrm{InfCard}\cup\{0\},\]
+where
+\[a:=\sum_{r\in(0,\infty)}n(r),\qquad c(\kappa):=\begin{cases}\omega&,0<m(\kappa)<\infty\\m(\kappa)&,\text{ otherwise}\end{cases}.\]
+
+We have $m(\kappa)\le c(\kappa)$ and $m(\kappa)<c(\kappa)$ only if $c(\kappa)=\omega$.
+
+For an atomless commutative von Neumann algebra $M$ (no minimal projections), countable decomposability says that there is a countable collection of cardinals $S$ such that $c(\kappa)=\omega$ if $\kappa\in S$ and $c(\kappa)=0$, i.e.~the countable product of $L^\infty(\{0,1\}^\kappa)$, and separability says that $c(\omega)=\omega$ and $c(\kappa)=0$ for $\kappa>\omega$, i.e.~$L^\infty(\{0,1\}^\omega)$.
+
+
+
+\begin{prb}[$\sigma$-finite measure spaces]
+Let $(X,\mu)$ be a localizable measure space.
+\begin{parts}
+\item $(X,\mu)$ is $\sigma$-finite if and only if the von Neumann algebra $L^\infty(\mu)$ is countably decomposable, i.e.~$a\le\aleph_0$ and on finitely many cardinals $\kappa$ satisfy $c(\kappa)=\aleph_0$ and $c(\kappa)=0$ otherwise.
+\end{parts}
+\end{prb}
+
+\begin{prb}[Standard measure spaces]
+We say a localizable measure space $(X,\mu)$ is \emph{standard} if the von Neumann algebra $L^\infty(\mu)$ is separable.
+It is equivalent to $a\le\aleph_0$, $c(\aleph_0)\le\aleph_0$, and $c(\kappa)=0$ for $\kappa>\aleph_0$.
+As measure spaces, all the followings are equivalent up to isomorphism:
+\begin{enumerate}[(i)]
+\item standard
+\item $\sigma$-finite separable
+\item semi-finite separable
+\item $\sigma$-finite Borel on either a Polish space, $\R$, or $\{0,1\}^\N$
+\item union of countablly many atoms and a Lebesgue measure space $[0,a)$ for some $a\in(0,\infty]$. In particular, a standard measure spaces are classified by the values in $[0,\infty)$ at countably many atoms and the value in $[0,\infty]$ at the continuous part.
+\end{enumerate}
+\end{prb}
+
+
+
+
+\begin{prb}[Loomis-Sikorski representation]
+An \emph{enhanced measurable space} is a measurable space $(X,M)$ together with a $\sigma$-ideal $N$ of $M$.
+A morphism between enhanced measurable spaces is a partial function $f:X_1\to X_2$ on a conegligible set such that $f^*$ induces a ring homomorphism $M_2/N_2\to M_1/N_1$.
+
+
+a $\sigma$-ideal is sometimes called a measure class because it corresponds to an equivalence class of measures up to absolute continuity.
+
+
+For a measure space $(X,\cM,\mu)$, the completion always does not change the measure algebra, and the complete locally determined version
+\[\tilde\cM:=\{E\subset X:E\cap A\in\cM\triangle\cN,\ \mu(A)<\infty\},\qquad\tilde\mu(E):=\sup\{\mu(E\cap A):\mu(A)<\infty\}\]
+does not change the measure algebra when the measure space is localizble.
+\begin{parts}
+\item Every measurable algebra $\cL$ is realized as $\cM/\cN$ from a enhanced measurable space $(X,\cM,\cN)$.
+\item How about morphisms?
+\item A $\sigma$-finiten and standard measure spaces
+\end{parts}
+\end{prb}
+
+
+
+\begin{itemize}
+\item $\mathrm{HSTop}$: hyperstonean spaces with open continuous maps,
+\item $\mathrm{HSLoc}$: hyperstonean locales with open localic maps,
+\item $\mathrm{LBAlg}$: localizable boolean lattices with continuous lattice homomorphisms,
+\item $\mathrm{CW^*Alg}$: commutative W$^*$ algebras with unital normal $*$-homomorphisms.
+\end{itemize}
+
+\[\begin{tikzcd}
+\mathrm{HSTop} \rar[shift left]{top}&
+\mathrm{HSLoc} \lar[shift left]{sp}\rar[shift left]{clopen}&
+\mathrm{LBAlg}^\op=\mathrm{MLoc} \lar[shift left]{ideal}\rar[shift left]{L^\infty}&
+\mathrm{CW^*Alg}^\op \lar[shift left]{proj}
+\end{tikzcd}\]
+
+
+In the below diagrams, morphisms of each category are supposed to be as follows: negligible reflecting measurable maps between enhanced measurable spaces, continuous homomorphisms between measurable algebras, and unital normal $*$-homomorphisms between von Neumann algebras.
+The arrow $\twoheadrightarrow$ means an essentially surjective functor.
+
+\[\begin{tikzcd}[sep=small]
+\tab{measure space\\$(X,\cM,\mu)$} \rar\dar &
+\tab{measure algebra\\$((\cM\triangle\cN)/\cN,\mu)$} \dar \\
+\tab{enhanced\\measurable space\\$(X,\cM,\cN)$} \rar[->>] \dar &
+\tab{measurable algebra\\$(\cM\triangle\cN)/\cN$} &
+\tab{commutative\\von Neumann algebra} \lar[hook']\\
+\tab{measurable space\\$(X,\cM)$} \rar &?&
+\end{tikzcd}\]
+above functors are fully faithful?
+Essential surjectivity of the horizontal functors are by the Loomis-Sikorski representation theorem.
+
+
+\[\begin{tikzcd}
+\tab{localizable\\measure space\\$(X,\cM,\mu)$} \rar[->>]\dar[->>] &
+\tab{localizable\\measure algebra\\$((\cM\triangle\cN)/\cN,\mu)$} \dar[->>]\rar[<->] &
+\tab{commutative\\von Neumann algebra\\with a f.s.n.~weight} \dar[->>] \\
+\tab{localizable\\enhanced measurable space\\$(X,\cM,\cN)$} \rar[->>] &
+\tab{localizable\\measurable algebra\\$(\cM\triangle\cN)/\cN$} \rar[<->] &
+\tab{commutative\\von Neumann algebra}
+\end{tikzcd}\]
+
+
+
+\section{Topological measures}
+
+
+
+
+\begin{prb}[Radon meausres and finite Borel measures]
+Let $X$ be a locally compact Hausdorff space.
+A \emph{real Borel measure} or a \emph{finite signed Borel measure}, a \emph{complex Borel measure}.
+
+\begin{parts}
+\item There is one-to-one correspondence between semi-finite lower semi-continuous weights of $C_0(X)$ and Radon measures on $X$.
+\item There is a one-to-one correspondence between positive linear functionals of $C_0(X)$ and finite Borel measures on $X$.
+\item A semi-finite lower semi-continuous weight on a C$^*$-algebra $A$ is uniquely extended to a semi-finite normal weight on $\pi(A)''$, where $\pi$ is the associated semi-cyclic representation.
+\end{parts}
+\end{prb}
+\begin{pf}
+(a)
+By the Riesz-Kakutani-Markov theorem, Radon measures correspond to positive linear functionals on $C_c(X)$.
+
+Let $\f$ be a positive linear functional on $C_c(X)$.
+We can extend it to $\f:C_0(X)^+\to[0,\infty]$ by letting
+\[\f(f):=\sup\{\f(g):g\le f,\ g\in C_c(X)\}.\]
+Since $C_0(X)\cap L^1(\f)$ is dense in $C_0(X)$ by compact truncation, $\f$ is semi-finite.
+If $f_n\in C_0(X)$ such that $\int|f_n|\le1$ and $f_n\to f$ uniformly, then taking compact $K\subset X$ such that $\int_{K^c}|f|<\e$, we can prove $\int|f|\le1$, so $\f$ is lower semi-continuous.
+By taking the restriction on $C_c(X)$, we can reconstrcut the original linear functional.
+
+Conversely, let $\f$ be a semi-finite lower semi-continuous weight on $C_0(X)$.
+If there is a point $\omega\in X$ such that $\f(f)=\infty$ whenever $f\in C_0(X)^+$ and $f(\omega)>0$, then $\fM_\f\cap C_0(X)\subset C_0(X\setminus\{\omega\})$, which contradicts to the assumption that $\f$ is semi-finite.
+Then, using compactness, we can prove $C_c(X)\subset\fM_\f$.
+Now we can check $\f(f)=\sup\{\f(g):g\le f,\ g\in C_c(X)\}$ by constructing an increasing net in $C_c(X)$ that converges to $f$ uniformly.
+\end{pf}
+
+
+\begin{prb}[Topological standard measures]
+\begin{enumerate}[(i)]
+\item A $\sigma$-finite measure on a Polish space
+\item A Radon measure on a second countable locally compact Hausdorff space
+\end{enumerate}
+For compact Hausdorff $X$,
+\[\text{$X$ is metrizable}\quad\Leftrightarrow\quad
+\text{$C(X)$ is separable}\quad\Leftrightarrow\quad
+\text{$X$ is Polish}.\]
+For locally compact Hausdorff $X$,
+\[\text{$X$ is second countable}\quad\Leftrightarrow\quad
+\text{$C_0(X)$ is separable}\quad\Leftrightarrow\quad
+\text{$X$ is Polish}.\]
+In these cases, every Radon measure is $\sigma$-finite since they are all $\sigma$-compact.
+
+$C_0(X)$ $\sigma$-unital, $L^\infty(X)$ $\sigma$-finite, $X$ $\sigma$-compact?
+$C_0(X)$ separable, $L^\infty(X)$ separable, $X$ second countable?
+
+\end{prb}
+
+
+\begin{prb}[Convergence theorems]
+Let $A$ be a commutative unital C$^*$-algebra.
+Let $a_n$ be a sequence in $A^+$ such that $a_n\to0$ in $\sigma(A,\spn PS(A))$.
+Fix $\e>0$.
+For each pure state $\omega_0$, there is $n$ such that whenever $i>n$ we have $|\omega_0(a_i)|<\e$.
+Since $\omega_0$ is pure, the induced state on $C(\sigma(a_i))$ is also pure, for $\chi\in C_c([0,\infty))$ such that $1_{[0,\e]}\le\chi\le1_{[0,2\e)}$, we have $\omega_0(\chi(a_i))=1$ for every $i>n$.
+
+Define $p_{\e,n}:=\bigwedge_{i=n+1}^\infty1_{[0,\e)}(a_i)$ in $A^{**}$ and $p_{\e,n}\uparrow p_\e$.
+Then,
+\[1=\omega_0(f_i(a_i))\le\omega_0^{**}(1_{[0,\e)}(a_i))\le1,\qquad i>n\]
+implies $\omega_0(p_{\e,n})=1$, so $\omega_0(p_\e)=1$.
+Since pure states cannot separate points of $A^{**}$, we need more to show $p_\e=1$.
+
+(I did not check if it works also in non-commutative cases, but purity seems to be required.)
+
+egorov, bounded, dominated
+\end{prb}
+
+
+\begin{prb}[Stone-Weierstrass theorem]
+The \emph{support} of $\mu^+\in M(X)^+$ is the set $\supp\mu^+$ of points $x\in X$ such that $\mu^+(f^+)=0$ implies $\delta_x(f^+)=0$ for $f^+\in C_0(X)^+$.
+The \emph{support} of $\mu\in M(X)$ is $\supp\mu:=\supp|\mu|$.
+
+Let $\mu\in M(X)^{sa}$.
+\begin{parts}
+\item $\supp\mu=\supp\mu^+\cup\supp\mu^-$, where $\mu=\mu^+-\mu^-$ is the Jordan decomposition.
+\item $\mu^+(f^+)=0$ if and only if $\delta_x(f^+)=0$ for all $x\in\supp\mu^+$.
+\item For $a\in C_0(X)$, $\mu=\mu a$ if and only if $\delta_x(a)=1$ for all $x\in\supp\mu$. In particular, if $\delta_x(a)\ne\delta_y(a)$ and $x,y\in\supp\mu$, then $\mu$ and $\mu a$ is linearly independent.*
+\item $|\supp\mu|\le1$ if and only if $\mu\in\C X$.*
+\item If $\|\mu^+\|=1$, then $\mu^+\in\bar\conv\,(\supp\mu^+)$.
+\item $\supp\mu^+$ is closed in $X$.*
+\item operator algebraic proof of Stone-Weierstrass theorem.
+\end{parts}
+\end{prb}
+\begin{pf}
+(a)
+Suppose $x\in\supp|\mu|\setminus\supp\mu^-$ and $\mu^+(f^+)=0$.
+Take $g^+$ such that $\mu^-(g^+)=0$ and $\delta_x(g_+)>0$.
+Then, $|\mu|(f^+g^+)=0$, and $\delta_x(f^+g^+)=0$.
+Since $\delta_x$ is a $*$-homomorphism, blabla.
+
+(b) a closed ideal is the intersection of all maximal ideals containing it.
+
+(c)
+$|\mu|(|1-a|^2)$ implies $\mu((1-a)C_0(X))=0$?
+
+(d)
+
+(e)
+$\mu^+\notin\bar\conv\supp\mu^+$ implies $\mu^+\notin\bar\spn\supp\mu^+$.
+Hahn-Banach separation.
+
+\end{pf}
+
+\begin{prb}[Arzela-Ascoli theorem]
+
+\end{prb}
+
+
+
+
+\section{Spectral theory on Hilbert spaces}
+
+
+Spectral theory is in other words the representation theory of commutative topological algebras, in particular $C_0(X)$.
+
+As we understand a matrix as a $F[x]$-module for a field $F$, is there a way to understand bounded linear operators as modules or representations?
+
+
+\begin{prb}[Bounded Borel functions]
+Let $X$ be a locally compact Hausdorff space.
+If we denote by $B_b(X)$ the set of bounded Borel complex-valued functions on $X$, then one can embed $B_b(X)$ using the Riesz-Markov-Kakutani representation theorem in $C_0(X)^{**}$ as a unital C$^*$-subalgebra that is not weakly$^*$ closed in general.
+
+Since an inclusion $\ell^\infty(X)=\prod_x L^\infty(\delta_x)\subset C_0(X)^{**}$ is neither canonical nor unital, we need to take care when we write $B_b(X)\subset\ell^\infty(X)$, which may mean that the unital normal $*$-homomorphism $B_b(X)\to C_0(X)^{**}\to\ell^\infty(X)$, which is injective for any choice of $\{\mu_i\}\supset\{\delta_x\}_x$.
+
+\begin{parts}
+\item For each state $\mu\in M(X)$ of $C_0(X)$, we have a $*$-isomorphism $L^\infty(\mu)=\pi_\mu(C_0(X))''$ and a surjective $*$-homomorphism $B_b(X)\to L^\infty(\mu)$.
+(Since $\mu$ is ($\sigma$-)finite, we can use the ordinary measure theory to define $L^\infty(\mu)$ wihtout any measure-theoretic issues.)
+\item For a maximal family $\{\mu_i\}\subset M(X)$ of mutually orthogonal states of $C_0(X)$ taken by the Zorn lemma, we have a $*$-isomorphism $C_0(X)^{**}=\prod_iL^\infty(\mu_i)$.
+In fact, for any normal representation $\pi^{**}:C_0(X)^{**}\to B(H)$, by a cyclic decomposition of $\pi:C_0(X)\to B(H)$, there is a family $\{\mu_i\}\subset M(X)$ of mutually orthogonal states of $C_0(X)$ such that $\im\pi^{**}=\prod_iL^\infty(\mu_i)$.
+In other words, an arbitrary projection $1-\ker\pi^{**}$ is the sum of the support projections of $\mu_i$.
+If $s\in C_0(X)^{**}$ is the support projection of a state $\mu\in M(X)$ so that $C_0(X)^{**}s=L^\infty(\mu)$, then ...
+
+
+For every non-zero projection $p\in C_0(X)^{**}$, is there a non-zero Borel set $e$ such that $e\le p$?
+Is the Borel $\sigma$-algebra $\sigma$-complete in $P(C_0(X)^{**})$?
+
+Let $p\in C_0(X)^{**}$ be a non-zero projection.
+For any projection $z\in C_0(X)^{**}$, we have a faithful semi-finite normal weight $\mu_z$ on $(1-z)C_0(X)^{**}$ so that $\pi_z(p)\in L^\infty(X,\nu)$ is a projection.
+Thus we have a Borel set $e_z$ such that $\pi_z(e_z)=\pi_z(p)$, which is equivalent to $z(p-e_z)=0$.
+Choose $z=1-p$.
+Then, $e_{1-p}=pe_{1-p}$ implies $e_{1-p}\le p$.
+Since $\pi_{1-p}(e_{1-p})=0...$
+
+\item How about compact, open, $G_\delta$, $F_\sigma$ projections?
+
+\item Classical Radon-Nikodym: If $\mu$ is a state on $C_0(X)$ and $\mu(e)=0$ implies $\nu(e)=0$ for Borel sets $e\in P(B_b(X))$, then $\nu$ is a well-defined normal state on $L^\infty(\mu)$.
+$z_\mu\le z_\nu$...?
+\end{parts}
+\end{prb}
+\begin{pf}
+(b)
+
+(c)
+
+
+Now, we can see that $\mu$ defines a linear functional on $L^2(\mu+\nu)$ by $x$.
+Riesz representation: $g$ such that $d\mu=g\,d(\mu+\nu)$, $g^{-1}-1$ gives the Radon-Nikodym derivative.
+\end{pf}
+
+
+\begin{prb}[Projection-valued measures]
+Let $X$ be a locally compact Hausdroff space.
+Let $\pi:C_0(X)\to B(H)$ be a non-degenerate representation, and $\pi^{**}:C_0(X)^{**}\to B(H)$ be its normal extension.
+As we can define a Radon measure as a unital positive linear functional, we can define the \emph{projection-valued measure} associated to $\pi$ by the restriction $e:B^\infty(X)\to B(H)$ of $\pi^{**}$, which is conventionally written with the notations
+\[e(f)=\int f(s)\,de(s),\quad
+\<e(f)\xi,\eta\>=\int f(s)\,d\<e(s)\xi,\eta\>,\qquad f\in B^\infty(X).\]
+More generally if $\pi:C_0(X)\to B(H)$ is a non-degenerate completely positive map, then we can call the restriction $e:B^\infty(X)\to B(H)$ of $\pi^{**}$ the \emph{positive operator-valued Radon measure} associated to $\pi$.
+Every operator-valued measure in this context is a generalization of probability Borel measures.
+
+
+
+
+
+Given a non-degenerate representation $\pi:C_0(X)\to B(H)$, following Conway, we will say a state $\mu\in M(X)$ of $C_0(X)$ is a \emph{scalar-valued spectral measure} if $\mu(\Delta)=0$ if and only if $\pi^{**}(\Delta)=0$ for every projection $\Delta\in B^\infty(X)$.
+We claim that for a scalar-valued spectral measure $\mu$ for $\pi$ there is a $*$-isomorphism $L^\infty(\mu)=\pi(C_0(X))''$.
+
+Since $L^\infty(\mu)\cong\pi_\mu(C_0(X))''$, it suffices to prove $\ker\pi^{**}=\ker\pi_\mu^{**}$ in $C_0(X)^{**}$ because $C_0(X)^{**}/\ker\pi^{**}=\pi(C_0(X))''$ and $C_0(X)^{**}/\ker\pi_\mu^{**}=\pi_\mu(C_0(X))''$.
+Let $z$ and $z_\mu$ be projections of $C_0(X)^{**}$ such that $\ker\pi^{**}=zC_0(X)^{**}$ and $\ker\pi_\mu^{**}=z_\mu C_0(X)^{**}$.
+The condition for $\mu$ to be a scalar-valued spectral measure implies that $P(B^\infty(X)\cap zC_0(X)^{**})=P(B^\infty(X)\cap z_\mu C_0(X)^{**})$.
+.......
+If they are different, then take a non-zero Borel set dominated by the symmetric difference.
+Using this, we can approximate any projection by increasing Borel sets....
+
+For $\mu$ and $\nu$ normal states of $C_0(X)^{**}$, between the GNS representations $L^2(\mu)\to L^2(\nu):\pi_\mu(x)\mapsto\pi_\nu(x)$ for $x\in C_0(X)^{**}$ is a well defined invertible linear operators but not bounded so that we cannot extend.
+
+
+
+\end{prb}
+
+
+\begin{prb}[Multiplicity theory]
+Consder a cyclic decomposition of any representation $\pi:C_0(X)\to B(H)$.
+
+For a faithful non-degenerate representation $\pi$ of a separable abelian unital C$^*$-algebra $A$ on a separable (maybe?) Hilbert space, there is a unique canonical cyclic decomposition (up to unitary equivalence)
+\[\pi\approx\bigoplus_{m=1}^\infty\pi_m^{\oplus m}:A\to\bigoplus_{m=1}^\infty B(L^2(\mu_m))^{\oplus m},\]
+such that the sequence $\mu_m$ measures has disjoint supports.
+Also we can show that if the measure classes of $\mu_m$, which corresponds to the equivalence classes of cyclic representations without cyclic vectors, are same, then two such representations are unitarily equivalent.
+(I don't know the detailed proofs yet, for example, where to define support of a measure)
+\end{prb}
+
+
+
+
+
+\section*{Exercises}
+
+
+\begin{prb}
+Let $M$ be a commutative von Neumann algebra and $\f$ a normal weight on $M$.
+\begin{parts}
+\item $\f$ is semi-finite if and only if for every projection $p\in M$ with $\f(p)=\infty$ there is another projection $q\in M$ such that $q\le p$ and $0<\f(q)<\infty$.
+It is the classical definition of semi-finite measures.
+\end{parts}
+\end{prb}
+\begin{pf}
+(a)
 ($\Rightarrow$)
 Take $e\in M^+$ such that $0<\f(ep)<\infty$.
 Approximate $ep$ from below by the simple functions $s=\sum_ia_ip_i$ such that $0<\f(ep)-\e<\f(s)\le\f(ep)<\infty$ by the normality, where $a_i\ge0$ and $p_i$ are mutually orthogonal.
@@ -652,385 +1636,7 @@ Then, $1-p$ is a counterexample of the contradictory assumption.
 \end{pf}
 
 
-
-Monotone convergence theorem states that a measure on a countably decomposable(?) enhanced measurable space $X$ uniquely defines a `countably' normal weight on the space of all measurable functions.
-Note that a `countably' normal weight is normal on a countably decomposable von Neumann algebra.
-
-
-separable commutative von Neumann algebra is generated by one self-adjoint element.
-
-\begin{prb}[semi-finite lower semi-continuous weights]
-Let $\Omega$ be a locally compact Hausdorff space.
-There is a one-to-one correspondence between semi-finite lower semi-continuous weights of $C_0(\Omega)$ and positive linear functionals on $C_c(\Omega)$.
-
-A semi-finite lower semi-continuous weight on a C$^*$-algebra $A$ is uniquely extended to a semi-finite normal weight on $A^{**}$, and to $\pi(A)''$, where $\pi$ is the semi-cyclic representation.
-\end{prb}
-\begin{pf}
-Let $\f$ be a positive linear functional on $C_c(\Omega)$.
-We can extend it to $\f:C_0(\Omega)^+\to[0,\infty]$ by letting
-\[\f(f):=\sup\{\f(g):g\le f,\ g\in C_c(\Omega)\}.\]
-Since $C_0(\Omega)\cap L^1(\f)$ is dense in $C_0(\Omega)$ by compact truncation, $\f$ is semi-finite.
-If $f_n\in C_0(\Omega)$ such that $\int|f_n|\le1$ and $f_n\to f$ uniformly, then taking compact $K\subset\Omega$ such that $\int_{K^c}|f|<\e$, we can prove $\int|f|\le1$, so $\f$ is lower semi-continuous.
-By taking the restriction on $C_c(\Omega)$, we can reconstrcut the original linear functional.
-
-Conversely, let $\f$ be a semi-finite lower semi-continuous weight on $C_0(\Omega)$.
-If there is a point $\omega\in\Omega$ such that $\f(f)=\infty$ whenever $f\in C_0(\Omega)^+$ and $f(\omega)>0$, then $\fm\subset C_0(\Omega\setminus\{\omega\})$, which contradicts to the assumption that $\f$ is semi-finite.
-Then, using compactness, we can prove $C_c(\Omega)\subset\fm$.
-Now we can check $\f(f)=\sup\{\f(g):g\le f,\ g\in C_c(\Omega)\}$ by constructing an increasing net in $C_c(\Omega)$ that converges to $f$ uniformly.
-\end{pf}
-
-
-
-
-\begin{prb}
-The set of projections is a complete orthomodular lattice.
-If $M$ is commutative, then the set of projections is a complete boolean algebra.
-\end{prb}
-
-\begin{itemize}
-\item commutative ring - distributive lattice - coherent locale
-\item clean ring+$\alpha$ - boolean algebra - stone space
-\item - complete boolean algebra - stonean space
-\item commutative von Neumann algebra - localizable boolean algebra - hyperstonean space
-\end{itemize}
-
-
-A \emph{frame} is a partially ordered set $F$ that admits a finite meets and arbitrary joins, and for any $a\in F$ the map $F\to F:x\mapsto x\wedge a$ preserves suprema.
-A \emph{locale} is an object of the opposite category of frames.
-An element of a locale is called \emph{open}.
-
-
-A locale is called \emph{coherent} if the set of compact opens is closed under finite meets and every open is the join of compact opens, i.e.~generates opens.
-It is known that a coherent locale is spatial.
-\begin{enumerate}[(i)]
-\item $X$ is a coherent space.
-\item $X$ is a (compact) sober space such that the set of compact open subsets is closed under finite intersections and forms a base.
-\item $X$ is homeomorphic to the underlying space of an affine scheme.
-\end{enumerate}
-A morphism of $\mathrm{CohLoc}$ is a compact open preserving local morphism.
-A morphism of $\mathrm{DistLat}$ is just a lattice morphism.
-We can consider the compact open functor $\mathrm{CohLoc}\to\mathrm{DistLat}^{\mathrm{op}}$ and the ideal functor $\mathrm{DistLat}^{\mathrm{op}}\to\mathrm{CohLoc}$.
-They form a categorical equivalence between the category of coherent locales and the opposite category of distributive lattices with lattice morphisms (i.e.~preserving finite meets and joins).
-
-A locale is called \emph{Stone} if it is a coherent locale in which every open is the join of all subopens of it.
-\begin{enumerate}[(i)]
-\item $X$ is a Stone space.
-\item $X$ is totally disconnected and compact Hausdorff.
-\item $X$ is a compact zero-dimesional sober space.
-\item $X$ is a compact zero-dimesional Hausdorff space.
-\item $X$ is coherent and Hausdorff.
-\end{enumerate}
-A morphism of $\mathrm{StoneLoc}$ is a compact open (clopen) preserving locale morphism.
-A morphism of $\mathrm{BoolLat}$ is just a lattice morphism.
-
-
-
-
-
-A locale is called \emph{Stonean} if it is a Stone locale in which the (unique) complement of any element is clopen.
-A morphism of $\mathrm{StoneanLoc}$ is an open locale morphism.
-A morphism of $\mathrm{CpltBoolLat}$ is a continuous lattice morphism.
-
-A locale is called \emph{Hyperstonean} if...
-A boolean lattice is called \emph{localizable} if it is complete, and the identity is approximated by elements admitting a faithful continuous valuation on their compression.
-The category $\mathrm{LBAlg}$ admits small products, and the products are preserved by the forgetful functor $\mathrm{LBAlg}\to\mathrm{BAlg}$.
-
-
-
-\[*\]
-
-\begin{prb}[Boolean algebra]
-A \emph{boolean ring} is a ring in which every element is idempotent, which is automatically commutative.
-A \emph{boolean algebra} is a unital boolean ring.
-A \emph{boolean lattice} is a complemented distributive lattice.
-\begin{parts}
-\item There is a one-to-one correspondence between boolean rings and boolean lattices.
-\item The category of boolean algebras with unital homomorphisms and the category of Stone spaces with continuous maps are equivalent.
-\item The category of complete boolean algebras with order continuous unital homomorphisms and the category of Stonean spaces with open continuous maps are equivalent.
-In the Stonean space, the join and meet is realized as the closure of union and the interior of intersection, respectively.
-\end{parts}
-\end{prb}
-
-
-\begin{prb}[Measurable algebras]
-For a boolean algebra, existences of sequential suprema and sequential infima are equivalent.
-A boolean algebra is called a \emph{measurable algebra} if it is order $\sigma$-complete.
-\begin{parts}
-\item (Loomis-Sikorski representation) Every measurable algebra $\cL$ is realized as $\cM/\cM\cap\cN$ from a enhanced measurable space $(X,\cM,\cN)$.
-\item (Dedekind completion) Every boolean algbera $\cL$
-\end{parts}
-\end{prb}
-\begin{pf}
-(a)
-Let $X$ be the Stone space of $\cL$, $\cM$ the set of clopen subsets, and $\cN$ the set of meager sets.
-Then, $\cM$ is a $\sigma$-algebra on $X$ and $\cN$ is a $\sigma$-ideal of $X$.
-
-(b)
-complete extension of order continuous homomorphisms and universal property.
-regular open algebra of $X$.
-\end{pf}
-
-
-
-\begin{prb}[Measure algebras]
-A \emph{measure} on a measurable algebra $\cL$ is a completely additive monotone function $\cL\to[0,\infty]$.
-A \emph{measure algebra} is a measurable algebra together with a faithful measure.
-
-Let $(X,M,\mu)$ be a measure space, which is not necessarily faithful.
-There is a canonically associated measure algebra $(\cM/\cM\cap\cN,\mu)$, which is faithful, where $\cN:=\mu^{-1}(0)$.
-
-\end{prb}
-
-
-\begin{prb}[Localizable measure algebras]
-
-For a measure space $(X,\cM,\mu)$, the completion always does not change the measure algebra, and the complete locally determined version
-\[\tilde\cM:=\{E\subset X:E\cap A\in\cM\triangle\cN,\ \mu(A)<\infty\},\qquad\tilde\mu(E):=\sup\{\mu(E\cap A):\mu(A)<\infty\}\]
-does not change the measure algebra when the measure space is localizble.
-
-
-\begin{parts}
-\item Every localizable measure algebra is obtained from a compact decomposable measure space.
-\item A $\sigma$-finite measure space is compact decomposable.
-\end{parts}
-\end{prb}
-
-
-
-
-
-
-
-
-
-\begin{itemize}
-\item $\mathrm{HSTop}$: hyperstonean spaces with open continuous maps,
-\item $\mathrm{HSLoc}$: hyperstonean locales with open localic maps,
-\item $\mathrm{LBAlg}$: localizable boolean lattices with continuous lattice homomorphisms,
-\item $\mathrm{CW^*Alg}$: commutative W$^*$ algebras with normal $*$-homomorphisms.
-\end{itemize}
-
-\[\begin{tikzcd}
-\mathrm{HSTop} \rar[shift left]{top}&
-\mathrm{HSLoc} \lar[shift left]{sp}\rar[shift left]{clopen}&
-\mathrm{LBAlg}^\op=\mathrm{MLoc} \lar[shift left]{ideal}\rar[shift left]{L^\infty}&
-\mathrm{CW^*Alg}^\op \lar[shift left]{proj}
-\end{tikzcd}\]
-
-
-\begin{prb}[]
-\begin{parts}
-\item Construction of projection lattice functor.
-\item Construction of $L^\infty$ functor.
-\item Equivalence.
-\end{parts}
-\end{prb}
-\begin{pf}
-(b)
-Let $L$ be a measurable locale.
-For $\F\in\{\R,\C\}$, define $L^\infty(L,\F)$ to be the set of all bounded localic maps $x:L\to\F$, which are given by the opposite of lattice homomorphism $x^{-1}:\mathrm{top}(\F)\to L$ which preserves finite meets and arbitrary joins, and factors an open ball of $\F$.
-We can define a normed $*$-algebra structure on $L^\infty(L,\F)$ such that
-\begin{gather*}
-(x+y)^{-1}(U):=\bigvee_{U_x+U_y\subset U}(x^{-1}(U_x)\wedge y^{-1}(U_y)),\qquad(xy)^{-1}(U):=\bigvee_{U_xU_y\subset U}(x^{-1}(U_x)\wedge y^{-1}(U_y)),\\
-(x^*)^{-1}(U):=x^{-1}(\{\bar z:z\in U\}),\qquad\|x\|=\inf\{\sup_{z\in U}|z|:x^{-1}(U)=1\in L\}.
-\end{gather*}
-Using the axioms of locales, for example that the meet with a single element preserves arbitrary joins, we can manually check that $L^\infty(L,\F)$ is a commutative normed $*$-algebra, and in particular the C$^*$-identity when $\F=\C$.
-Furthermore, since $L^\infty(L,\C)$ is the complexification of $L^\infty(L,\R)$, if we prove $L^\infty(L,\R)$ has a predual, then the completeness with respect to norm follows automatically, so $L^\infty(L,\C)$ becomes a C$^*$-algebra with a predual, i.e.~a von Neumann algebra.
-
-Define $L^1(L,\R)$ the real linear span of continuous valuations on $L$, equipped with the variation norm.
-Recall that a continuous valuation is a monotone function $v:L\to[0,\infty)$ such that $v(0)=0$ and $v(p)+v(q)=v(p\vee q)+v(p\wedge q)$, which preserves directed suprema.
-Note that $L^\infty(L,\R)$....
-\end{pf}
-
-
-
-
-$\sigma$-field is a unital $\sigma$-ring.
-$\sigma$-ideal is an ideal of a $\sigma$-ring which is a $\sigma$-ring.
-$\sigma$-ideal is sometimes called the measure class because it corresponds to an equivalence class of measures up to absolute continuity.
-
-
-\begin{prb}[Enhanced measurable spaces]
-An \emph{enhanced measurable space} is a measurable space $(X,M)$ together with a $\sigma$-ideal $N$ of $M$.
-A morphism between enhanced measurable spaces is a partial function $f:X_1\to X_2$ on a conegligible set such that $f^*$ induces a ring homomorphism $M_2/N_2\to M_1/N_1$.
-\begin{parts}
-\item Maharam's theoem: every enhanced measurable space is isomorphic to the disjoint union of $\{0,1\}^I$, where $I$ is an aribitrary cardinality...?
-\item A $\sigma$-finite enhanced measurable space is isomorphic to a enhenced measurable space induced from a standard probability space...?
-\item For $\sigma$-finite enhanced measurable spaces, a $*$-homomorphism $L^\infty(X_2)\to L^\infty(X_1)$ induces a morphism $X_1\to X_2$...?
-\end{parts}
-\end{prb}
-
-
-Premaps: 
-
-Strict maps: an a.e.~equivalence class of premaps. For each strict map with non-empty codomain, there is a everywhere defined representative.
-
-
-Quotients on morphisms:
-\[\mathrm{PreEMS}\to\mathrm{StrictEMS}\to\mathrm{EMS}.\]
-Fully faithful functors:
-\[\mathrm{REMS}\to\mathrm{CDEMS}\to\mathrm{DEMS}\to\mathrm{LEMS}, \mathrm{DEMS}\to\mathrm{LDEMS}.\]
-The functor $\mathrm{LEMS}\to\mathrm{LBAlg}:(X,M,N)\mapsto M/N$ is a well-defined essentially surjective functor, which is fully faithful on the full subcategory $\mathrm{CDEMS}$.
-
-We say a enhanced measurable space is \emph{decomposable} or \emph{strictly localizable} if it is isomorphic to the small coproduct of countably decomposable enhanced measurable spaces.
-
-$\mathrm{DEMS}$ is a full subcategory of $\mathrm{PreEMS}$, but not of $\mathrm{EMS}$, and we embed it to $\mathrm{LDEMS}$
-
-
-
-
-\subsection{Complete Boolean algebras}
-
-
-
-
-
-\subsection{Measure algebras}
-
-\begin{defn*}
-An (complete) \emph{enhanced measurable space} is a set $X$ together with a $\sigma$-algebra $\cM$ on $X$ and a $\sigma$-ideal $\cN$ of $\cP(X)$.
-\end{defn*}
-\begin{defn*}
-A \emph{measurable algebra} is another name of a $\sigma$-complete Boolean algebra.
-A \emph{measure} on a measurable algebra $\cA$ is a countably additive monotone function $\mu:\cA\to[0,\infty]$.
-A \emph{measure algbera} is a measurable algebra together with a measure.
-We consider continuous homomorphisms and measure-preserving continuous homomorphisms as morphisms of the categories of measurable algebras and measure algebras.
-\end{defn*}
-
-In the below diagrams, morphisms of each category are supposed to be as follows: negligible reflecting measurable maps between enhanced measurable spaces, continuous homomorphisms between measurable algebras, and unital normal $*$-homomorphisms between von Neumann algebras.
-The arrow $\twoheadrightarrow$ means an essentially surjective functor.
-
-\[\begin{tikzcd}
-\tab{measure space\\$(X,\cM,\mu)$} \rar\dar &
-\tab{measure algebra\\$((\cM\triangle\cN)/\cN,\mu)$} \dar \\
-\tab{enhanced measurable space\\$(X,\cM,\cN)$} \rar[->>] &
-\tab{measurable algebra\\$(\cM\triangle\cN)/\cN$} &
-\tab{commutative\\von Neumann algebra} \lar[hook]
-\end{tikzcd}\]
-above functors are fully faithful?
-Essential surjectivity of the horizontal functors are by the Loomis-Sikorski representation theorem.
-It states that every $\sigma$-complete Boolean algebra is isomorphic to $\cM/\cM\cap\cN$, where $(X,\cM,\cN)$ is an enhanced measurable space.
-
-\begin{prb}[Measure space]
-\end{prb}
-
-
-\subsection{Maharam classification}
-
-
-
-\begin{prb}[Localizable measure algebras]
-A measure algbera $(\cA,\mu)$ is called \emph{localizable} if $\cA$ is complete and $\mu$ is semi-finite.
-A measurable algebra $\cA$ is called \emph{localizable} if it is complete and it admits a semi-finite measure.
-\[\begin{tikzcd}
-\tab{localizable\\measure space\\$(X,\cM,\mu)$} \rar[->>]\dar[->>] &
-\tab{localizable\\measure algebra\\$((\cM\triangle\cN)/\cN,\mu)$} \dar[->>]\rar[<->] &
-\tab{commutative\\von Neumann algebra\\with a f.s.n.~weight} \dar[->>] \\
-\tab{localizable\\enhanced measurable space\\$(X,\cM,\cN)$} \rar[->>] &
-\tab{localizable\\measurable algebra\\$(\cM\triangle\cN)/\cN$} \rar[<->] &
-\tab{commutative\\von Neumann algebra}
-\end{tikzcd}\]
-
-\begin{parts}
-\item A $\sigma$-finite measure algebra is localizable.
-\end{parts}
-\end{prb}
-
-\begin{prb}[Maharam classification]
-Let $\cA$ be an localizable measurable algebra.
-A \emph{Maharam type} or just a \emph{type} of $\cA$ is the smallest cardinal $\tau(\cA)$ of any dense subset of $\cA$.
-If $\tau(\cA)=\tau(\cA\wedge a)$ for all non-zero $a\in\cA$, then we say $\cA$ is \emph{Maharam homogeneous}.
-For an infinite cardinal $\kappa$, the \emph{Maharam component} of type $\kappa$ is the supremum $e_\kappa$ of any non-zero elements $a\in\cA$ such that $A\wedge a$ is Maharam homogeneous of type $\kappa$.
-
-A \emph{cellularity} of a Boolean algebra $\cA$ is the supremum $c(\cA)$ of the cardinalities of any disjoint subset of $\cA\setminus\{0\}$.
-Note that the cellularity is either zero or infinite if $\cA$ is atomless, and $\cA\wedge e_\kappa$ is atomless if $\kappa$ is infinite.
-We define a cellularity function $c:\mathrm{InfCard}\to\mathrm{InfCard}\cup\{0\}$ such that $c(\kappa):=c(\cA\wedge e_\kappa)$.
-
-\begin{parts}
-\item 
-\item All Maharam homogeneous probability algebras of same type are isomorphic.
-\item A measure algebra $(\cB_\kappa,\mu)$ from the measure space $(\{0,1\}^\kappa,\mu)$ is Maharam homogeneous probability algebra of type $\kappa$.
-\item A
-\end{parts}
-\end{prb}
-
-
-
-A disjoint union and product of localizable measurable algebras is passed to the direct product and the tensor product.
-Every commutative von neumann algebra can be realized as $L^\infty$ of the disjoint union, or equivalently, the direct product of $L^\infty$, of countably decomposable enhanced measurable spaces $\{0,1\}^\kappa$.
-Every countably decomposable commutative von Neumann algebra is the tensor product of $\ell^\infty$'s.
-
-The invariants of localizable measure algebras:
-\[m:\mathrm{InfCard}\to\mathrm{Card},\qquad n:(0,\infty)\to\mathrm{Card}.\]
-
-The invariants of localizable measurable algebras:
-\[c:\mathrm{InfCard}\to\mathrm{InfCard}\cup\{0\},\qquad a\in\mathrm{Card},\]
-where
-\[c(\kappa):=\begin{cases}\omega&,0<m(\kappa)<\infty\\m(\kappa)&,\text{ otherwise}\end{cases},\qquad a:=\sum_{r\in(0,\infty)}n(r).\]
-
-We have $m(\kappa)\le c(\kappa)$ and $m(\kappa)<c(\kappa)$ only if $c(\kappa)=\omega$.
-
-For an atomless commutative von Neumann algebra $M$ (no minimal projections), countable decomposability says that there is a countable collection of cardinals $S$ such that $c(\kappa)=\omega$ if $\kappa\in S$ and $c(\kappa)=0$, i.e.~the countable product of $L^\infty(\{0,1\}^\kappa)$, and separability says that $c(\omega)=\omega$ and $c(\kappa)=0$ for $\kappa>\omega$, i.e.~$L^\infty(\{0,1\}^\omega)$.
-
-
-
-\begin{prb}[$\sigma$-finite and standard measure spaces]
-Let $(X,\mu)$ be a localizable measure space.
-\begin{parts}
-\item $(X,\mu)$ is $\sigma$-finite if and only if $L^\infty(\mu)$ is countably decomposable.
-\item $(X,\mu)$ is standard if and only if $L^\infty(\mu)$ is separable.
-\end{parts}
-\end{prb}
-
-
-\begin{prb}[Radon measures]
-semi-finite lower semi-continuous weight
-\end{prb}
-
-
-
-
-
-
-
-\subsection{Spectral theory}
-Spectral theory = representation theory of commutative operator algebras
-
-\begin{prb}
-Let $X$ be a locally compact Hausdorff space and $\pi:C_0(X)\to B(H)$ be a representation.
-Then, we have $\pi(C_0(X))\subset\pi(C_0(X))'$.
-
-A \emph{multiplication representation} of $C_0(X)$ refers to nothing but the associated semi-cyclic representation of some Radon measure of $C_0(X)$.
-If the Radon measure is finite, then the multiplication representation would be cyclic.
-\end{prb}
-\begin{pf}
-Let $\mu$ be a Radon measure on $X$ and $m:C_0(X)\to B(L^2(\mu))$ be the multiplication representation.
-The representation $m$ is normally extended to $L^\infty(\mu)$ such that $m(L^\infty(\mu))=m(C_0(X))''$, and we have $L^1(\mu)\cong L^\infty(\mu)_*$.
-The semi-cyclic data $\Lambda$ is given by the identity on $\dom\Lambda=L^2(\mu)\cap L^\infty(\mu)$.
-Since $(m(C_0(X))')_1^+$ each defines a semi-finite normal weight $\f\le\mu$, which gives $L^\infty(\mu)_1^+$, we have $m(C_0(X))'=L^\infty(\mu)=m(C_0(X))''$. (In other words, we use the two versions of Radon-Nikodym, commutant and centralizer.)
-Therefore, $L^\infty(\mu)$ is maximal abelian subalgebra of $B(L^2(\mu))$.
-\end{pf}
-
-\begin{prb}
-Multiplicity theory.
-Consdier a cyclic decomposition of any representation $\pi:C_0(X)\to B(H)$.
-
-\end{prb}
-
-
-
-\section{Tensor products and direct integrals}
-
-
-\begin{prb}
-Let $M$ and $N$ be von Neumann algebras.
-Consider the embedding $M_*\odot N_*\subset(M\otimes_{\min}N)^*$.
-The closure $M_*\bar\otimes N_*$ is invariant under $M\otimes_{\min}N$, so it defines a von Neumann subalgebra of $(M\otimes_{\min}N)^{**}$ by a central projection.
-This is the tensor product von Neumann algebra of $M$ and $N$.
-\end{prb}
-
-
-\begin{prb}[Dixmier's measurable fields]
+\begin{prb}[Measurable fields of Dixmier]
 Let $(X,\mu)$ be a localizable measure space.
 Suppose $\{H_s\}_{s\in X}$ is a family of Hilbert spaces, and define $F:=\prod_{s\in X}H_s$ the section space.
 We say $\{H_s\}_{s\in X}$ is \emph{measurable} if $F$ has a linear subspace $S$ such that
@@ -1045,12 +1651,10 @@ The space of square-integrable vector fields has a natural sesquilinear form, wh
 The obtained Hilbert space is called the \emph{direct integral} of the field $\{H_s\}_{s\in X}$ of Hilbert spaces.
 
 
-
 A field of bounded linear operators $\{T_s\}_{s\in X}$ is called \emph{measurable} if it sends a measurable vector field to a measurable vector field.
 
 An operator $T$ in $B(H)$ is called \emph{decomposable} if it is represented by a measurable field of bounded linear operators.
 A decomposable operator is called \emph{diagonalizable} if it is represented by an element of $L^\infty(\mu)$.
-
 
 \end{prb}
 
@@ -1071,147 +1675,36 @@ Every von Neumann algebra $M$ admits a faithful unital normal representation $M\
 \end{prb}
 
 
+\begin{prb}[Coherent spaces]
+A locale is called \emph{coherent} if the set of compact opens is closed under finite meets and every open is the join of compact opens, i.e.~generates opens.
+It is known that a coherent locale is spatial.
+The followings are equivalent:
+\begin{enumerate}[(i)]
+\item $X$ is a coherent space.
+\item $X$ is a (compact) sober space such that the set of compact open subsets is closed under finite intersections and forms a base.
+\item $X$ is homeomorphic to the underlying space of an affine scheme.
+\end{enumerate}
+A morphism of $\mathrm{CohLoc}$ is a compact open preserving local morphism.
+A morphism of $\mathrm{DistLat}$ is just a lattice morphism.
+We can consider the compact open functor $\mathrm{CohLoc}\to\mathrm{DistLat}^{\mathrm{op}}$ and the ideal functor $\mathrm{DistLat}^{\mathrm{op}}\to\mathrm{CohLoc}$.
+They form a categorical equivalence between the category of coherent locales and the opposite category of distributive lattices with lattice morphisms (i.e.~preserving finite meets and joins).
 
-
-\section{Type}
-
-For a von Neumann algebra $M$, $M^{sa}$ is a conditionally monotone complete poset, and $P(M)$ is a complete orthomodular lattice.
-For a commutative von Neumann algebra $M$, $M^{sa}$ is a Dedekind complete Banach lattice, and $P(M)$ is a complete Boolean lattice.
-
-For von Neumann algebras, we want to compare order topology, measure topology, and operator topologies.
-- commutative and non-commutative.
-- $M$, $M^{sa}$, $M_1^{sa}$.
-- closedness for convex sets or bounded sets.
-- continuity of linear operators and functionals.
-
-
-
-For subsets:
-- bounded lattices
-- complemented lattices
-- orthocomplemented lattices
-- orthomodular lattices
-- complete orthomodular lattices <- vN
-- complete Boolean lattices <- CvN
-
-- For functions:
-- distributive lattices
-- vector lattices
-- Dedekind complete vector lattice
-
-
-
-
-\[*\qquad *\qquad *\]
-
-
-abelian, finite, purely infinite, properly infinite projections
-
-central projection = union of components
-central support = a kind of minimal union of components
-centrally orthogonal
-
-\begin{prb}
-We say a von Neumann algebra is of \emph{type I} if every non-zero central projection has a non-zero abelian subprojection, \emph{type II} if has no non-zero abelian projection and every non-zero central projection has a non-zero finite subprojection, and \emph{type III} if it has no non-zero finite projection.
-
-For a type II von Neumann algebra, it is called of \emph{type II$_1$} if it is finite, and of \emph{type II$_\infty$} if it has no central finite projections.
-
-A projection is called \emph{semi-finite} if every non-zero central subprojection has a non-zero finite subprojection.
-\end{prb}
-
-\begin{itemize}
-\item type I = semi-abelian
-\item type II = purely non-abelian semi-finite
-\item type III= purely infinite
-\end{itemize}
-V.1.35. For a purely non-abelian von Neumann algebra, every projection is the sum of two equivalent orthogonal projections.
-
-\begin{prb}[Type I]
-Let $M$ be a von Neumann algebra of type I.
-Then, there are families $\{M_\kappa\}_\kappa$ and $\{H_\kappa\}_\kappa$ of commutative von Neumann algebras $M_\kappa$ and Hilbert spaces $H_\kappa$ satisfying $\dim H_\kappa=\kappa$, indexed by cardinals $\kappa$, such that
-\[M\cong\bigoplus_{\kappa\in\mathrm{Card}}M_\kappa\bar\otimes B(H_\kappa).\]
-If $M$ is a factor, then $M\cong B(H)$ for a Hilbert space $H$.
+A topological space is Stone iff it is a coherent Hausdorff space.
 \end{prb}
 
 
 
 
-finite: f.n.~center-valued trace, \\
-semi-finite: f.s.n.~extended center-valued trace, 2.34
-
-tensor product and types
 
 
 
 
 
-Type I factors.
-It possess a minimal projection.
-It is isomorphic to the whole $B(H)$ for some Hilbert space.
-Therefore, it is classified by the cardinality of $H$.
-
-Type II factors.
-No minimal projection, but there are non-zero finite projections so that every projection can be ``halved'' by two Murray-von Neumann equivalent projections.
-
-In type II$_1$ factors, the identity is a finite projection
-Also, Murray and von Neumann showed there is a unique finite tracial state and the set of traces of projections is $[0,1]$.
-Examples of II$_1$ factors include crossed product, tensor product, free product, ultraproduct.
-Free probability theory attacks the free groups factors, which are type II$_1$.
-
-In type II$_\infty$ factors.
-There is a unique semifinite tracial state up to rescaling and the set of traces of projections is $[0,\infty]$.
-
-In type III factors no non-zero finite projections exists.
-Classified the $\lambda\in[0,1]$ appeared in its Connes spectrum, they are denoted by III$_\lambda$.
-Tomita-Takesaki theory.
-It is represented as the crossed product of a type II$_\infty$ factor and $\R$.
-
-\begin{itemize}
-\item Type III$_{0<\lambda<1}$ factor: unique $N\rtimes_\alpha\Z$, $N$ II$_\infty$ factor,
-\item Type III$_1$ factor: unique $N\rtimes_\alpha\R$, $N$ II$_\infty$ factor,
-\item Type III$_0$ factor: one-to-one correpondence with nontransitive ergodic flows.
-\end{itemize}
-
-Amenability, equivalently hyperfiniteness is a very nice condition in von Neumann algebra theory.
-Group-measure space construction can construct them.
-There are unique hyperfinite type II$_1$ and II$_\infty$ factors, and their property is well-known.
-Fundamental groups of type II factors, discrete group theory, Kazhdan's property (T) are used.
-
-Tensor product factors such as Araki-Woods factors and Powers factors.
+Monotone convergence theorem states that a measure on a $\sigma$-finite enhanced measurable space $X$ uniquely defines a `countably' normal weight on the space of all measurable functions.
+Note that a `countably' normal weight is normal on a countably decomposable von Neumann algebra.
 
 
-
-
-
-
-
-
-cyclic group actions implies the classification of injective factors.
-
-\begin{itemize}
-\item cyclic groups: Connes (II, III$<1$), Haagerup (III$_1$),
-\item finite groups: Jones (II$_1$)
-\item discrete amenable groups: Ocneanu (II$_1$), 
-\item property T:
-\item one-parameter:
-\item compact abelian: Takesaki duality?
-\end{itemize}
-
-Type I:
-Every automorphism of type I factor is inner.
-Cocycle conjugacy classes of actions of $\Gamma$ on the injective type I factor $B(\ell^2)$ is correponded to $H^2(\Gamma,\T)$.
-
-approximately inner automorphisms
-centrally trivial automorphisms
-pointwise inner automorphisms
-
-minimal action
-
-
-
-
-
-
+separable commutative von Neumann algebra is generated by one self-adjoint element.
 
 
 
@@ -1260,21 +1753,20 @@ The associated left von Neumann algebra is equal to the crossed product $G\ltime
 
 \begin{prb}[Crossed products]
 Let $(M,G,\alpha)$ be a W$^*$-dynamical system.
-For a faithful unital normal representation $\pi:M\to B(H)$, we have an covariant representation
-\[(M,\alpha)\xrightarrow{\pi_\alpha}(B(L^2(G)\otimes H),\Ad\lambda\otimes\id),\qquad(\pi_\alpha(x)\xi)(s):=\pi(\alpha_s^{-1}(x))\xi(s),\]
+For a faithful unital normal representation $\pi:M\to B(H)$, we always have a covariant representation $\pi_\alpha:(M,\alpha)\to(B(L^2(G)\otimes H),\Ad(\lambda\otimes1))$ defined such that
+\[(\pi_\alpha(x)\xi)(t):=\pi(\alpha_t^{-1}(x))\xi(t),\qquad x\in M,\ t\in G,\ \xi\in C_c(G,H),\]
 called the \emph{regular representation} associated to $\pi$.
-Do we have an embedding $C_c(G,M)\subset B(L^2(G)\otimes H)$?
-
-Suppose $\pi$ is a priori covariant in the sense that there is a unitary representation $u:G\to U(H)$ such that we have $(M,\alpha)\to(B(H),\Ad u)$.
-If we introduce $(w\xi)(s):=u_s\xi(s)$, then we have
+If $\pi$ is covariant in the sense that there is a unitary representation $u:G\to U(H)$ such that we have $(M,\alpha)\to(B(H),\Ad u)$, and if we introduce an operator $w\in B(L^2(G)\otimes H)$ such that $(w\xi)(s):=u_s\xi(s)$ for $\xi\in C_c(G,H)$, then we have
 \[\begin{tikzcd}
-(M,G,\alpha) \rar{\pi_\alpha} \dar[equal]&
-(B(L^2(G)\otimes H),G,\Ad\lambda\otimes\id) \dar{\Ad w} &
+(M,\alpha) \rar{\pi_\alpha} \dar[equal]&
+(B(L^2(G)\otimes H),\Ad(\lambda\otimes1)) \dar{\Ad w} &
 \lambda_s\otimes1,\quad\pi_\alpha(x) \dar[mapsto]{\Ad w}\\
-(M,G,\alpha) \rar{\pi\otimes1} &
-(B(L^2(G)\otimes H),G,\Ad\lambda\otimes\Ad u) &
-\lambda_s\otimes u_s,\quad1\otimes x.
+(M,\alpha) \rar{1\otimes\pi(\cdot)} &
+(B(L^2(G)\otimes H),\Ad(\lambda\otimes u)) &
+\lambda_s\otimes u_s,\quad1\otimes\pi(x),
 \end{tikzcd}\]
+as for $s,t\in G$ and $\xi\in C_c(G,H)$ we have
+\[((\lambda_s\otimes u_s)w\xi)(t)=u_s(w\xi)(s^{-1}t)=u_t\xi(s^{-1}t)=u_t((\lambda_s\otimes1)\xi)(t)=(w(\lambda_s\otimes1)\xi)(t).\]
 \begin{parts}
 \item $G\ltimes_\alpha M$ generated by $\{\lambda_s\otimes1,\pi_\alpha(x):s\in G,\ x\in M\}$.
 \end{parts}
@@ -1286,6 +1778,7 @@ Heisenberg-Weyl commutation relation
 \end{prb}
 \begin{pf}
 Note that a W$^*$-dynamical system admits a covariant representation.
+We use the notation $x=\pi(x)$ for the embedding $\pi:M\subset B(H)$.
 In $U(L^2(\hat G)\otimes L^2(G)\otimes H)$, for $x\in U(M)\subset U(H)$,
 \[\begin{tikzcd}
 1\otimes1\otimes x,\quad1\otimes\lambda_s\otimes u_s,\quad\lambda_p\otimes\mu_p\otimes1 \dar[mapsto]{\Ad\cF\otimes\id\otimes\id} \\
@@ -1296,6 +1789,15 @@ In $U(L^2(\hat G)\otimes L^2(G)\otimes H)$, for $x\in U(M)\subset U(H)$,
 $\hat G\ltimes(G\ltimes M)\cong\C\mathrel{\bar\otimes}B(H)\mathrel{\bar\otimes}M$.
 \end{pf}
 
+
+
+
+\begin{prb}
+Let $(M,G,\alpha)$ be a commutative W$^*$-dynamical system.
+A semi-finite normal weight $\f$ on $M$ is called \emph{quasi-invariant} if the group action on $M$ is induced to $\pi_\f(M)''$(maybe?).
+
+A measure $\nu$ on $(L^\infty(\mu),T)$ is called \emph{quasi-invariant} if $L^\infty(\nu)$ is a $T$-invariant subalgebra.
+\end{prb}
 
 \section{Spectral analysis}
 
@@ -1315,7 +1817,34 @@ Rokhlin property
 (kazhdan T, some properties like pointwise inner, etc.)
 
 
-\chapter{}
+
+
+
+cyclic group actions implies the classification of injective factors.
+
+\begin{itemize}
+\item cyclic groups: Connes (II, III$<1$), Haagerup (III$_1$),
+\item finite groups: Jones (II$_1$)
+\item discrete amenable groups: Ocneanu (II$_1$), 
+\item property T:
+\item one-parameter:
+\item compact abelian: Takesaki duality?
+\end{itemize}
+
+Type I:
+Every automorphism of type I factor is inner.
+Cocycle conjugacy classes of actions of $\Gamma$ on the injective type I factor $B(\ell^2)$ is correponded to $H^2(\Gamma,\T)$.
+
+approximately inner automorphisms
+centrally trivial automorphisms
+pointwise inner automorphisms
+
+minimal action
+
+
+
+
+\chapter{Ultraproducts}
 \chapter{}
 
 
@@ -1325,11 +1854,69 @@ Rokhlin property
 
 
 \chapter{Type III factors}
-\section{Connes invariants}
+
+
+
+Type I factors.
+It possess a minimal projection.
+It is isomorphic to the whole $B(H)$ for some Hilbert space.
+Therefore, it is classified by the cardinality of $H$.
+
+Type II factors.
+No minimal projection, but there are non-zero finite projections so that every projection can be ``halved'' by two Murray-von Neumann equivalent projections.
+
+In type II$_1$ factors, the identity is a finite projection
+Also, Murray and von Neumann showed there is a unique finite tracial state and the set of traces of projections is $[0,1]$.
+Examples of II$_1$ factors include crossed product, tensor product, free product, ultraproduct.
+Free probability theory attacks the free groups factors, which are type II$_1$.
+
+In type II$_\infty$ factors.
+There is a unique semifinite tracial state up to rescaling and the set of traces of projections is $[0,\infty]$.
+
+In type III factors no non-zero finite projections exists.
+Classified the $\lambda\in[0,1]$ appeared in its Connes spectrum, they are denoted by III$_\lambda$.
+Tomita-Takesaki theory.
+It is represented as the crossed product of a type II$_\infty$ factor and $\R$.
+
+\begin{itemize}
+\item Type III$_{0<\lambda<1}$ factor: unique $N\rtimes_\alpha\Z$, $N$ II$_\infty$ factor,
+\item Type III$_1$ factor: unique $N\rtimes_\alpha\R$, $N$ II$_\infty$ factor,
+\item Type III$_0$ factor: one-to-one correpondence with nontransitive ergodic flows.
+\end{itemize}
+
+Amenability, equivalently hyperfiniteness is a very nice condition in von Neumann algebra theory.
+Group-measure space construction can construct them.
+There are unique hyperfinite type II$_1$ and II$_\infty$ factors, and their property is well-known.
+Fundamental groups of type II factors, discrete group theory, Kazhdan's property (T) are used.
+
+Tensor product factors such as Araki-Woods factors and Powers factors.
+
+
 
 \section{Flow of weights}
 
+\begin{prb}[Takesaki structure theorem of type III]
+A \emph{non-commutative flow of weights} is a triple $(N,\tau,\theta)$ consisting of
+\begin{enumerate}[(i)]
+\item a von Neumann algebra $N$ of type II$_\infty$,
+\item a faithful semi-finite normal trace $\tau$ on $N$,
+\item an action $\theta$ of $\R$ on $N$ such that $\tau\circ\theta_t=e^{-t}\tau$ for $t\in\R$,
+\end{enumerate}
+such that $(Z(N),\theta)$ has no invariant subsystem isomorphic to $(L^\infty(\R),\lambda)$.
+\[\begin{array}{ccc}
+\dfrac{\{(N,\tau,\theta)\}}{\text{conjugacy}}&\to&\dfrac{\{\text{von Neumann algebras of type III}\}}{\text{$*$-isomorphism}}
+\end{array}\]
+It is also called the continuous decomposition.
+\begin{parts}
+\item $M:=N\rtimes_\theta\R$ is of type III.
+\item If $M$ is a von Neumann algebra of type III, then there is unique triple $(N,\tau,\theta)$ as above up to conjugacy such that $M:=N\rtimes_\theta\R$.
+\item $Z(M)=Z(N)^\theta$.
+\end{parts}
+\end{prb}
 
+\section{Type III$_{0<\lambda<1}$}
+
+\section{Type III$_0$}
 
 \chapter{Amenable factors}
 

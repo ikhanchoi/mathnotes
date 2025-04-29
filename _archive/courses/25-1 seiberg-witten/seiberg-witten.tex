@@ -1,0 +1,355 @@
+\documentclass{../../../small}
+\usepackage{../../../ikhanchoi}
+
+\begin{document}
+\title{Seiberg-Witten Theory}
+\author{Ikhan Choi\\Lectured by Konno Hokuto\\University of Tokyo, Spring 2025}
+\maketitle
+\tableofcontents
+
+\newpage
+\section{Day 1: April 7}
+
+cancelled: 4/28, 5/19
+
+References
+\begin{itemize}
+\item Morgan ``The Seiberg-Witten equations and applications to the topology of smooth 4-manifolds''
+\item Sasahira ``Saibaagu-wittenhouteishiki'' (Japanese)
+\item Matsumoto ``Yojigentayoutai I,II''
+\end{itemize}
+
+Plan
+\begin{itemize}
+\item Introduction/results from SW theory
+\item SW equations
+\item SW invariant (definition/properties)
+\item Finite-dimensional approximation of the SW equation
+\item Bauer-Furuta invariant, Donaldson's diagonalization theorem
+\end{itemize}
+
+
+\subsection*{Introduction}
+
+SW theory $\subset$ Gauge theory.
+We do not regard physical aspects.
+
+Gauge theory: Using some non-linear PDE, study the topology of smooth 4-manifolds.
+
+Two big methods:
+\begin{enumerate}
+\item 
+By ``counting'' solutions to the PDE, construct an invariant of smooth 4-manifolds.
+Distinguish smooth 4-manifolds (detect exotic 4-manifolds, and two smooth manifolds are called \emph{exotic} if they are homeomorphic but not diffeomorphic)
+\item
+By studying the ``solution space''(moduli space) for the PDE, give a constraint on the topology of smooth 4-manifolds. (Donaldson)
+Detect non-smoothable topological 4-manifolds, such manifolds are known to exist for dimension $\ge4$.
+\end{enumerate}
+
+More about 1.
+There is a fact that a compact topological manifold of dimension $\ne4$ admits at most finitely many smooth structures.
+(cf. Kirby-Siebenmann theory in dim $>4$.)
+It is still difficult to compute the number in general.
+On the other hand, there are many compact 4-manifolds that admit infinitely many smooth structures.
+It is shown by gauge theoretic invariants such as Donaldson, SW, Bauer-Furuta.
+For example, Kodaira showed the K3 surface is unique up to diffeomorphism (of course uncountably many up to isomorphism).
+If $K3:=\{[z_0:\cdots:z_3]\in\CP^3:z_0^4+\cdots+z_3^4=0\}$, then it is known to admit infinitely many smooth structures.
+(cf. log transform, (elliptic fibration$\to$new elliptic fibration, this is closed in complex geometry, and Kronheimer showed $SO(3)$-Donaldson invariant), knot-surgery)
+
+More about 2.
+Donaldson's diagonalization theorem and Furuta 10/8 inequality.
+
+
+It is an open problem that asks if every smoothable topological 4-manifold has infinitely many smooth structures.
+Bauer-Furuta invariant gives a hint, but it is negative to be solved in this way...
+In experience true, knot theoretically?
+Gauge theory is effective when the intersection form is far from trivial.
+Example that we do not know if it is exotic: $S^4$, $\CP^2$, $S^2\times S^2$, $\CP^2\#\bar\CP^2$.
+
+\subsection{Intersection form}
+
+Let $X$ be an oriented closed topological 4-manifold.
+Then, $Q_X:(H^2(X,\Z)/\Tor)^{\otimes2}\to\Z:\alpha\otimes\beta\mapsto\<\alpha\smile\beta,[X]\>$ is called the \emph{intersection form}, and it is clearly homotopy invariant.
+As a remark, by the Poincar\'e duality we can identify $H^2(X,\Z)$ with $H_2(X,\Z)$, and $Q_X(\alpha,\beta)$ means $\#(\Sigma\cap\Sigma')$ counting with sign, where $\alpha=[\Sigma]$ and $\beta=[\Sigma']$ with $\Sigma$ and $\Sigma'$ oriented closed embedded surfaces in $X$ (existence of such representative may not be clear for topological cases, but relatively clear for smooth cases.).
+
+For example if $X=S^4$, then $H^2(S^4)=0$ and $Q_{S^4}=*$ with size zero.
+
+For example if $X=\CP^2$, then $H_2(\CP^2)=\Z[\CP^1]$ and $Q_{\CP^2}=(1)$ with size one.
+
+For example if $X=S^2\times S^2$, then $H_2(S^2\times S^2)=\Z[S^2\times*]\oplus\Z[*\times S^2]$ and $Q_{S^2\times S^2}=\left(\mat[small]{0&1\\1&0}\right)$.
+We can check self-intersection vanishes and off-diagonal part has a single intersection. (perturbing using trivial normal bundle?)
+
+In general, $Q_X$ is symmetric.
+If we consider the same device for 2-dimensional, it becomes anti-symmetric.
+It is also bilinear over $\Z$ and non-degenerate.
+
+\begin{exe}
+The intersection form is non-degenerate.
+Use the Poincar\'e duality.
+\end{exe}
+
+There is a converse question.
+When is a non-degenerate symmetric bilinear form over $\Z$ the intersection form of a topological 4-manifold?
+
+\begin{thm}[Freedman, 1982]
+Let $Q$ be a non-degenerate symmetric bilinear form over $\Z$.
+Then, there is a topological simply connected closed orientable 4-manifold $X$ such that $Q_X\cong Q$ over $\Z$.
+Moreover, such $X$ are at most two up to homeomorphism, and determined by the Kirby-Siebenmann invariant $KS(X)\in H^4(X,\Z/2\Z)\cong\Z/2\Z$.
+\end{thm}
+
+(proved by wild topology such as approximation with Cantor sets, and there would be almost no people understanding the proof.)
+
+This theorem says that the intersection form is strong enough in topological cases.
+Also it is known that the Kirby-Siebenmann invariant of a smoothable simply connected closed orientable 4-manifold vanishes.
+
+In general, there are many definite quadratic form $Q$, i.e.~$Q(\alpha,\alpha)\ge0$ for all $\alpha$ or $Q(\alpha,\alpha)\ge0$ for all $\alpha$, when fixed the rank.
+If the rank is $32$, then there are many more than $10^7$.
+
+
+\begin{thm}[Donaldson's diagonalization theorem, 1983]
+If $X$ is a smooth closed orientable 4-manifold (originally assumed to be simply connected, but it is revealed that it is not required) with $Q_X$ is negative-definite, then $Q_X$ is isomorphic to $\diag(-1,\cdots,-1)$ over $\Z$.
+\end{thm}
+
+In particular, there should be many many non-smoothable topological 4-manifolds by the diagonalization theorem and Freedman's thoeorem.
+
+
+High-dimensional $>4$, exotic structures can be detected by characteristic classes, which is a dominating method.
+Simply connected 4-manifolds, it is hard to say that there is another method to detect such phenomena...?
+
+With boundary: Khovanov homology...
+
+
+More about intersection forms:
+\begin{defn}
+Let $Q:L\otimes L\to\Z$ be a symmetric non-degenerate bilinear form over $\Z$, where $L$ is a lattice, i.e.~finitely generated free abelian group.
+Then,
+\[b^+(Q):=\text{max dim of positive-definite subspace of $L\otimes_\Z\R$ with respect to $Q$},\]
+\[b^-(Q):=\text{max dim of negative-definite subspace of $L\otimes_\Z\R$ with respect to $Q$},\]
+and the signature
+\[\sigma(Q):=b^+(Q)-b^-(Q).\]
+Note that the rank of $L$ is $b^+(Q)+b^-(Q)$.
+
+Also, $Q$ is called \emph{even} if $Q(\alpha,\alpha)\cong0$ modulo $2$ for all $\alpha$, and \emph{odd} if it not even.
+
+When $X$ is a closed orientable topological 4-manifold, then we use the following notations:
+\[b^\pm(X):=b^\pm(Q_X),\qquad\sigma(X):=\sigma(Q_X),\]
+and parity and definiteness of $X$ is defined by the parity and definiteness of $Q_X$.
+\end{defn}
+
+\begin{ex}
+\[\begin{array}{c|cccc}
+&b^+&b^-&\sigma&\text{parity}\\\hline
+S^4&0&0&0&\text{even}\\
+\CP^2&1&0&1&\text{odd}\\
+S^2\times S^2&1&1&0&\text{even}\\
+K3&3&19&-16&\text{even}
+\end{array}\]
+\end{ex}
+
+\begin{exe}
+$Q_{K3}=3\left(\mat[small]{0&1\\1&0}\right)\oplus2(-E_8)$, where $-E_8$ is an even, rank 8, negative definite form, given by
+\[-E_8:=\mat{
+-2&&&1&&&&\\
+&-2&1&&&&&\\
+&1&-2&1&&&&\\
+1&&1&-2&1&&&\\
+&&&1&-2&1&&\\
+&&&&1&-2&1&\\
+&&&&&1&-2&1\\
+&&&&&&1&-2
+}.\]
+\end{exe}
+See the following theorem in the course in arithmetic written by Serre.
+\begin{thm}
+Let $(Q,L)$ be a symmetric non-degenerate bilinear form over $\Z$.
+Suppose $Q$ is indefinite, i.e.~not definite.
+Then, over $\Z$,
+\[Q\cong\begin{cases}
+b^+(Q)(1)\oplus b^-(Q)(-1)&\text{ if $Q$ odd}\\
+m\left(\mat[small]{0&1\\1&0}\right)\oplus n(-E_8)&\text{ if $Q$ even and $\sigma(Q)\le0$},
+\end{cases}\]
+for some $m\ge1$ and $n\ge0$.
+\end{thm}
+
+Other constraints on the intersection form of a smooth 4-manifold.
+\begin{thm}[Rokhlin, 1952, before gauge theory]
+Let $X$ be a smooth closed spin 4-manifold.
+It is known that $X$ admits a spin structure iff $X$ is even, when $X$ is simply connected.
+Then, $16$ divides $\sigma(X)$.
+\end{thm}
+
+In general, $8$ divides $\sigma(Q)$ if $Q$ is even.
+Since $\sigma(-E_8)=-8$, so we can discover a non-smoothable manifold.
+
+A conjecture by Y.~Matsumoto, 1982: For $X$ be a smooth closed spin 4-manifold, do we have $b_2(X)\ge\frac{11}8|\sigma(X)|$? Note that $b_i(X)$ is the rank of $H_i(X,\Z)$.
+The equality is attained by $K3^{\#n}$ for $n\ge1$.
+\begin{exe}
+$Q_{X_1\# X_2}=Q_{X_1}\oplus Q_{X_2}$.
+Use the Mayer-Vietoris.
+\end{exe}
+
+If this $11/8$-conjecture is solved, then we can obtain a complete classification of simply connected closed smooth 4-manifolds up to homeomorphism.
+
+\begin{exe}
+If this $11/8$-conjecture is solved, then simply connected closed smooth 4-manifolds are exhausted by $S^2\times S^2$, $\CP^2$, $\bar\CP^2$, $K3$, $-K3$, up to homeomorphism.
+\end{exe}
+
+There are no known examples whose smooth structures are classified.
+
+\begin{thm}[Furuta, $10/8$-inequality, 2001]
+Let $X$ be a smooth closed spin indefinite 4-manifold, then
+\[b_2(X)\ge\frac{10}8|\sigma(X)|+2,\]
+and the equality is attained by K3.
+\end{thm}
+
+
+
+
+
+
+
+\newpage
+\section{Day 2: April 21}
+
+
+Correction: non-degenerate $\to$ unimodular.
+\subsection{SW invariant}
+
+Input of SW invariant: closed oriented smooth 4-manifold $X^4$ with $b^+(X)\ge2$.
+
+
+\begin{rmk}
+There is a version for $b^+(X)=1$.
+There is no reasonable definition of the SW invariant for $b^+(X)=0$.
+\end{rmk}
+
+Output is a $\Z$-valued invariant $SW(X,\fs)\in\Z$, where $\fs$ is a spin$^c$ structure on $X$.
+The sign of this invariant is determined by an orientation of $H^1(X,\R)\oplus^+(X)$ called a \emph{homology orientation}.
+Here $H^+(X)$ is a maximal dimensional positive-definite subspace of $H^2(X,\R)$ with respect to $Q_X$, meaning that $Q_X|_{H^+(X)}$ is a positive definite and $\dim H^+(X)=b^+(X)$.
+
+
+\begin{ex}
+Let $X=\CP^2\#2\bar\CP^2$.
+Then, $H_2(X)=\Z H\oplus\Z E_1\oplus\Z E_2\cong\Z^3$, where $H$ is hyperplane class, and $E_1$ and $E_2$ are exceptional curve classes.
+The smooth structure underlied on the connected sum with $\bar\CP^2$ corresponds to the blow-up at a point.
+In $H_2(X,\R)$, the equation $Q_X\equiv0$ defines a subset of a real vector space $H_2(X,\R)$ which can be called the light cone, and $H^+(X)$ is a line in the `interior' of the light cone.
+In this example, the set of choices of $H^+(X)$ is homeomorphic to the open unit disk.
+\end{ex}
+
+In general, we have a following exercise, which is not easy to prove at a first glance.
+
+\begin{lem}
+The moduli space of linear subspaces $H\subset H^2(X,\R)$ such that $b^+(X)=\dim H$ and $Q_X|_H$ is positive definite is contractible.
+\end{lem}
+
+Thanks to this lemma, if you pick one choice of $H^+(X)$, and fix an orientation on it, then it induces an orientation on another choice of $H^+(X)$ in a canonical way.
+Every choice of $H^+(X)$ is unique up to homotopy.
+
+Let $\cO$ be a homology orientation on $X$.
+Precisely, the SW invariant is an invariant of triple: $SW(X,\fd,\cO)\in\Z$ with property that $SW(X,\fs,-\cO)=-SW(X,\fs,\cO)$.
+Usually $\cO$ is dropped from our notation.
+
+\subsection{Spin and Spin$^c$ sturctures}
+
+
+\begin{lem}
+\[\pi_1\SO(n)=\begin{cases}
+\Z/2\Z&\text{ if }n\ge3,\\
+\Z&\text{ if }n=2.
+\end{cases}\]
+\end{lem}
+\begin{pf}
+Exercise.
+Use the fibration $\SO(n)\to\SO(n+1)\to S^n$.
+\end{pf}
+
+We define the spin group $\Spin(n)$ as the unique double cover of $\SO(n)$ for $n\ge3$.
+
+\begin{defn}
+Let $X$ be a oriented smooth manifold of dimension $n$ equipped with a metric $g$.
+A \emph{spin structure} $\fs$ on $X$ is a pair $(P,\Psi)$, where $P$ is a principal $\Spin(n)$-bundle over $X$ and $\Psi$ is an isomorphism of principal $\SO(n)$-bundles
+\[\Psi:P\times_{\Spin(n)}\SO(n)\xrightarrow{\sim}\mathrm{Fr}(X).\]
+We should not forget $\Psi$, a compatibility with the data of tangent bundle.
+In other words, a spin structure is a choice of a lift of the frame bundle map $X\to B\SO(n)$ along $B\Spin(n)\to B\SO(n)$. Of course it is up to homotopy because classifying spaces are defined up to homotopy equivalence, which corresponds to isomorphism classes of principal $\Spin(n)$-bundles.
+\end{defn}
+
+\begin{rmk}
+To consider an isomorphism class of a spin($^c$) structure, one does not need to pick a metric, because $\GL^+(n,\R)$ is homotopy equivalent to $\SO(n)$.
+However, a choice of a metric is needed to define the Dirac operator. 
+\end{rmk}
+
+\begin{rmk}
+A 4-manifold may or may not admit a spin structure.
+For examples, $S^2\times S^2$ and $K3$ admit spin structures, but $\CP^2$ does not.
+\end{rmk}
+
+We have another exercise.
+\begin{lem}
+Let $X^4$ be a closed oriented smooth 4-manifold.
+If $X$ admits a spin structure, then $Q_X$ is even.
+The converse holds if $\pi_1(X)=1$.
+\end{lem}
+
+
+\begin{defn}
+\[\Spin^c(n):=\frac{\Spin(n)\times\rU(1)}{\Z/2\Z},\]
+where $\Z/2\Z$ acts on $\Spin(n)$ as the covering transformation and on $\rU(1)$ faithfully as the scalar multiplication.
+The alphabet $c$ stands for ``complex''.
+We have a canonical surjection $\Spin^c(n)\to\SO(n)$.
+\end{defn}
+
+\begin{defn}
+Let $X$ be a oriented smooth $n$-manifold equipped with a metric.
+A \emph{spin$^c$ structure} $\fs$ on $X$ is a pair $(P,\Psi)$, where $P$ is a principal $\Spin^c(n)$-bundle and $\Psi$ is an isomorphism of principal $\SO(n)$-bundles
+\[\Psi:P\times_{\Spin^c(n)}\SO(n)\xrightarrow{\sim}\mathrm{Fr}(X).\]
+\end{defn}
+
+There is a fact that every oriented 4-manifold admits a spin$^c$ structure.
+(It is open that every topological 4-manifold has a CW complex structure.)
+We usually do not use this fact because almost every argument begin with fixing a concretely given spin$^c$ structure.
+Since we have a natural $\Spin(n)\to\Spin^c(n)$, a spin structure induces a spin$^c$ structure.
+
+
+We have another exercise.
+\begin{lem}
+Let $X$ be an oriented smooth manifold.
+If $X$ admits a spin structure, then there is a non-canonical bijection between the set of isomorphism classes of spin structures on $X$ and $H^1(X,\Z/2\Z)$.
+If $X$ admits a spin$^c$ structure, then there is a non-canonical bijection between the set of isomorphism classes of spin$^c$ structures on $X$ and $H^2(X,\Z)$.
+\end{lem}
+
+If $\pi_1(X)=1$, then spin structure is unique up to isomorphism.
+
+orientability iff $w_1=0$, spin iff $w_2=0$, spin$^c$ iff $w_2$ is lifted to $H^2(X,\Z)$.
+
+\subsection{SW equations}
+Let $X$ be an oriented smooth 4-manifold with a metric $g$ and a spin$^c$ structure $\fs$.
+We can write down the SW equation
+\[\left\{\begin{alignedat}{1}
+F_A^+&=\sigma(\Phi)\\
+D_A\Phi&=0
+\end{alignedat}\right.\]
+where $(A,\Phi)$ is unknown functions.
+Here $A$ is a $\rU(1)$-connection on the determinant line bundle for $\fs$, and $\Phi$ is a positive spinor for $\fs$.
+Roughly, $SW(X,\fs)$ is the signed count of
+\[\frac{\#\{\text{solutions $(A,\Phi)$}\}}{\text{gauge symmetry}}.\]
+It is typically an oriented compact 0-dimensional manifold.
+
+$b^+\ge2$, the singularity with codimension 1?
+
+
+\begin{lem}
+\[\Spin(4)\cong\Sp(1)\times\Sp(1),\qquad\Sp(1)=S(\H).\]
+\end{lem}
+\begin{pf}
+$\Sp(1)\times\Sp(1)\to\SO(\H):(q_+,q_-)\mapsto(q\mapsto q_-q_+)$ is a double cover.
+\end{pf}
+
+Since $\Sp(1)\cong\SU(2):a+jb\mapsto\mat{a&b\\-\bar b&\bar a}$ canonically, we have four representations of
+\[\Spin^c(4)=\frac{\SU(2)\times\SU(2)\times\rU(1)}{\Z/2\Z}\]
+given by
+\[\Delta_+:\Spin^c(4)\to\rU(2):[q_+,q_-,\lambda]\mapsto\lambda q_+,\]
+\[\Delta_-:\Spin^c(4)\to\rU(2):[q_+,q_-,\lambda]\mapsto\lambda q_-,\]
+\[\det:\Spin^c(4)\to\rU(1):[q_+,q_-,\lambda]\mapsto\lambda^2.\]
+These representations induces positive spinor bundle $S^+$, negative spincor bundle $S^-$, and the determinant line bundle $L$.
+
+\end{document}

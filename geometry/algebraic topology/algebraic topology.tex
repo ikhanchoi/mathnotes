@@ -57,6 +57,25 @@ characteristic class of projective spaces
 \chapter{Spectral sequences}
 \section{Serre spectral sequence}
 	(Lyndon-Hochschild-Serre)
+
+
+
+A \emph{Serre fibration} is a continuous map $Y\to B$ satisfying the homotopy lifting property for CW complexes: for any CW complex $A$,
+\[\begin{tikzcd}
+A\rar{f}\dar[>->,swap]{\iota_0}&Y\dar[->>]{\pi}\\
+A\times I\rar[swap]{g}\ar[dashed]{ur}{\exists\,h}&B
+\end{tikzcd}\]
+
+
+\begin{prb}[Serre spectral sequence]
+Let $Y\to B$ be a Serre fibration with fiber space $F$.
+Let $R$ be a commutative unital ring.
+\begin{parts}
+\item If $B$ is either simply connected or connected with $R$ has characteristic two, then $\pi_1(B)$ acts trivially on $H_*(F,R)$...?
+\item In this case we have a multiplicative
+\[E_2^{p,q}=H^p(B,H^q(F,R))\rightarrow H^{p+q}(Y,R).\]
+\end{parts}
+\end{prb}
 \section{Adams spectral sequence}
 
 
@@ -70,88 +89,86 @@ characteristic class of projective spaces
 \section{Principal bundles}
 
 \begin{prb}[Locally trivial fiber bundles]
-Let $p:E\to B$ be a map and $F$ a space.
-An \emph{atlas} or \emph{local trivialization} for $p$ with respect to $F$ is a family $\{\f_\alpha\}$ of homeomorphisms $\f_\alpha:p^{-1}(U_\alpha)\to U_\alpha\times F$ satisfying $p=\pr_{U_\alpha}\f_\alpha$ as maps $p^{-1}(U_\alpha)\to U_\alpha$, indexed by an open cover $\{U_\alpha\}$ of $B$: 
-\[\begin{tikzcd}[column sep=tiny]
-p^{-1}(U_\alpha) \ar[swap]{dr}{p}\ar{rr}{\f_\alpha} & \, & U_\alpha\times F \ar{dl} \\
-& U_\alpha \uar[phantom]{\circlearrowleft} &.
-\end{tikzcd}\]
-A \emph{locally trivial fiber bundle}, or just a \emph{fiber bundle}, is a map $p:E\to B$ together with an equivalence class of atlases $\{\f_\alpha\}$ for $p$ with respect to $F$.
-The spaces $F,E,B$ are called the \emph{fiber space}, \emph{total space}, and \emph{base space} of the fiber bundle $p$.
-A \emph{bundle map} between fiber bundles $p_i:E_i\to B_i$ with fiber space $F_i$ for $i\in\{1,2\}$ is a map of pairs $(u,f):(E_1,B_1)\to(E_2,B_2)$ such that
-\[\begin{tikzcd}
-E_1 \ar[swap]{d}{p_1}\ar{r}{u}\ar[phantom]{dr}{\circlearrowleft} & E_2 \ar{d}{p_2} \\
-B_1 \ar[swap]{r}{f} & B_2.
-\end{tikzcd}\]
-The category $\mathrm{Bun}_F(B)$ is defined such that objects are fiber bundles over a base space $B$ with fiber space $F$, and morphisms are commutative squares.
+A \emph{local trivialization} or an \emph{atlas} of a continuous map $\pi:E\to B$ between topological spaces is a family $\{\f_\alpha\}$, indexed by an open cover $\{U_\alpha\}$ of $B$, of homeomorphisms $\f_\alpha:\pi^{-1}(U_\alpha)\to U_\alpha\times F_\alpha$ satisfying $\pi=\pr_1\f_\alpha$ on $\pi^{-1}(U_\alpha)$.
+We say $\pi$ is \emph{locally trivial} if there is an atlas $\{\f_\alpha\}$ on $\pi$.
+Note that a locally trivial map does not hold any atlases as its data, but only considers the existence as a property of it.
+
+We define a \emph{fiber bundle} as a locally trivial map $\pi:E\to B$ such that $\pi^{-1}(b)$ is homeomorphic to a topological space $F$.
+The spaces $F,E,B$ are called the \emph{fiber space}, \emph{total space}, and \emph{base space} of the fiber bundle $\pi$.
+For a fiber bundle with fiber space $F$, we may always assume that atlases $\{\f_\alpha\}$ have $F_\alpha=F$.
+A \emph{bundle map} between fiber bundles $\pi:E\to B$ and $\pi':E'\to B$ is a continuous map $u:E\to E'$ such that $\pi=\pi'u$.
+The category $\mathrm{Bun}_F(B)$ is defined such that objects are fiber bundles over a base space $B$ with fiber space $F$ and morphisms are bundle maps.
+Let $\pi:E\to B$ be a fiber bundle with fiber space $F$.
 \begin{parts}
-\item $p$ is surjective and open.
+\item 
+\item $\pi$ is surjective and open.
 \end{parts}
 \end{prb}
 
-\begin{prb}[Structure groups]
-Let $p:E\to B$ be a fiber bundle whose fiber space $F$ is an effective left $G$-space for a topological group $G$.
-An atlas $\{\f_\alpha\}$ for $p$ is called a \emph{$G$-atlas} if there is a family $\{g_{\alpha\beta}\}$, which is unique if it exists by effectiveness of $F$, of maps $g_{\alpha\beta}:U_\alpha\cap U_\beta\to G$ such that
-\[\f_\beta\f_\alpha^{-1}(b,v)=(b,g_{\alpha\beta}(b)v),
-\qquad b\in U_\alpha\cap U_\beta,\ v\in F.\]
-A \emph{$G$-bundle} is a fiber bundle $p$ whose fiber space is an effective left $G$-space together with an equivalence class of $G$-atlases $\{\f_\alpha\}$ for $p$.
 
-A bundle map $(u,f):(E_1,B_1)\to(E_2,B_2)$ between $G$-bundles $p_i:E_i\to B_i$ with a common fiber space $F$ for $i\in\{1,2\}$ is called a \emph{$G$-bundle map} if there is a family $\{h_{\alpha\beta}\}$, which is unique if it exists also by effectiveness of $F$, of maps $h_{\alpha\beta}:U_{1\alpha}\cap f^{-1}(U_{2\beta})\to G$ such that
-\[\f_{2\beta}u\f_{1\alpha}^{-1}(b,v)=(f(b),h_{\alpha\beta}(b)v),\qquad b\in U_{1\alpha}\cap f^{-1}(U_{2\beta}),\ v\in F,\]
-where $\{\f_{i\alpha}\}$ is a $G$-atlas for $p_i$.
-Note that the definition of $G$-bundle maps does not depend on the choice of $G$-atlases of $p_i$.
+\begin{prb}[$G$-bundles]
+Let $G$ be a topological group, and $F$ is an effective left $G$-space.
+Consider a fiber bundle $\pi:E\to B$ with fiber space $F$.
+A \emph{$G$-atlas} on $\pi$ is an atlas $\{\f_\alpha\}$ with $\f_\alpha:\pi^{-1}(U_\alpha)\to U_\alpha\times F$, such that there exists a family $\{g_{\alpha\beta}\}$, which is unique if it exists by effectiveness of $F$ for a given atlas, of continuous maps $g_{\alpha\beta}:U_\alpha\cap U_\beta\to G$ such that
+\[\f_\alpha\f_\beta^{-1}(b,f)=(b,g_{\alpha\beta}(b)f),
+\qquad b\in U_\alpha\cap U_\beta,\ f\in F.\]
+A \emph{$G$-structure} on $\pi$ is defined as an equivalence class of $G$-atlases for $\pi$, where two $G$-atlases for $\pi$ are defined to be \emph{equivalent} if their union is also a $G$-atlas for $\pi$.
+A \emph{$G$-bundle} is a fiber bundle $\pi$ together with a $G$-structure.
+For a $G$-bundle, there is a unique maximal $G$-atlas in the $G$-structure, so a $G$-structure is sometimes defined as a maximal $G$-atlas.
+
+A bundle map $u:E\to E'$ between $G$-bundles $\pi:E\to B$ and $\pi':E'\to B$ with a common fiber space $F$ is called a \emph{$G$-bundle map} if there is a family $\{h_\alpha\}$, which is unique if it exists also by effectiveness of $F$, of continuous maps $h_\alpha:U_\alpha\to G$ such that
+\[\f'_\alpha u\f_\alpha^{-1}(b,f)=(b,h_\alpha(b)f),\qquad b\in U_\alpha,\ f\in F,\]
+where $\{\f_\alpha\}$ and $\{\f'_\alpha\}$ are $G$-atlases for $\pi$ and $\pi'$ indexed by a common open cover $\{U_\alpha\}$.
+Such an open cover always exists by taking refinement.
+Note that the definition of $G$-bundle maps does not depend on the choice of $G$-atlases in the given $G$-structure.
+We will consider $G$-bundle maps as the morphisms of $\mathrm{Bun}_F(B)$ if $F$ is an effective left $G$-space.
 \begin{parts}
-\item A $G$-bundle map $(u,f)$ is an isomorphism if and only if $u$ is a homeomorphism. In particular, the category of $G$-bundles over $B$ with fiber space $F$ is a groupoid.
-\item A bundle map $(u,\id_B):(E_1,B)\to(E_2,B)$ is a $G$-bundle map if and only if there is a family $\{h_\alpha\}$ of maps $h_\alpha:U_\alpha\to G$ such that
-\[\f_{2\alpha}u\f_{1\alpha}^{-1}(b,v)=(b,h_\alpha(b)v),
-\qquad b\in U_\alpha,\ v\in F,\]
-where $\{\f_{i\alpha}\}$ is a $G$-atlas for $p_i$ defined on a common open cover $\{U_\alpha\}$ of $B$.
+\item A $G$-bundle map $u$ is an isomorphism if and only if $u$ is a homeomorphism. In particular, the category of $G$-bundles over $B$ with fiber space $F$ is a groupoid.
 \end{parts}
 \end{prb}
 \begin{pf}
 \end{pf}
 
-
-
 \begin{prb}[Fiber bundle construction theorem]
 Let $\{U_\alpha\}$ be an open cover of a space $B$, and $G$ a topological group.
-A \emph{\v Cech 1-cocyle} on $\{U_\alpha\}$ with coefficients in $G$ is a family $\{g_{\alpha\beta}\}$ of maps $g_{\alpha\beta}:U_\alpha\cap U_\beta\to G$ satisfying the \emph{cocycle condition}:
-\[g_{\alpha\gamma}(b)=g_{\beta\gamma}(b)g_{\alpha\beta}(b),\qquad b\in U_\alpha\cap U_\beta\cap U_\gamma.\]
+A \emph{\v Cech 1-cocyle} on $\{U_\alpha\}$ with coefficients in $G$ is a family $\{g_{\alpha\beta}\}$ of maps $g_{\alpha\beta}:U_\alpha\cap U_\beta\to G$ satisfying the \emph{cocycle condition}
+\[g_{\alpha\gamma}(b)=g_{\alpha\beta}(b)g_{\beta\gamma}(b),\qquad b\in U_\alpha\cap U_\beta\cap U_\gamma.\]
 A \emph{\v Cech 0-cochain} on $\{U_\alpha\}$ with coefficients in $G$ is a family $\{h_\alpha\}$ of maps $h_\alpha:U_\alpha\to G$ of maps without any conditions.
 The set of \v Cech 1-cocycles and \v Cech 0-cochains on $\{U_\alpha\}$ with coefficients in $G$ are denoted by $\check Z^1(\{U_\alpha\},G)$ and $\check C^0(\{U_\alpha\},G)$ repspectively.
 The \emph{first \v Cech cohomology} $\check H^1(\{U_\alpha\},G)$ of $\{U_\alpha\}$ with coefficients in $G$ is defined to be the orbit space of an action of $\check C^0(\{U_\alpha\},G)$ on $\check Z^1(\{U_\alpha\},G)$ defined as
-\[(\{h_\alpha\}\{g_{\alpha\beta}\})_{\alpha\beta}(b):=h_\beta(b)g_{\alpha\beta}(b)h_\alpha(b)^{-1},
+\[(\{h_\alpha\}\{g_{\alpha\beta}\})_{\alpha\beta}(b):=h_\alpha(b)g_{\alpha\beta}(b)h_\beta(b)^{-1},
 \qquad b\in U_\alpha\cap U_\beta.\]
 We define the \emph{first \v Cech cohomology} of $B$ with coefficients in $G$ as the direct limit of sets
 \[\check H^1(B,G):=\varinjlim_{\{U_\alpha\}}\check H^1(\{U_\alpha\},G).\]
 Let $F$ be an effective left $G$-space.
-Let $\mathrm{Bun}_F(B)$ be the set of all isomorphism classes of $G$-bundles over $B$ with fiber space $F$.
+Let $\mathrm{Bun}_F(B)$ be the category $G$-bundles over $B$ with fiber space $F$.
 \begin{parts}
-\item $\mathrm{Bun}_F(B)\to\check H^1(B,G)$ is well-defined and sujective.
-\item $\mathrm{Bun}_F(B)\to\check H^1(B,G)$ is injective.
+\item $\mathrm{Bun}_F(B)/\text{iso}\to\check H^1(B,G)$ is well-defined and sujective.
+\item $\mathrm{Bun}_F(B)/\text{iso}\to\check H^1(B,G)$ is injective.
 \end{parts}
 \end{prb}
 \begin{pf}
 (a)
-Suppose $p_i:E_i\to B$ are isomorphic $G$-bundles with fiber space $F$, and $u:E_1\to E_2$ is a $G$-bundle isomorphism.
-Considering the refinement, we fix an open cover $\{U_\alpha\}$ of $B$ on which $E_i$ are simultaneously locally trivialized.
+Suppose $\pi:E\to B$ and $p\pi':E'\to B$ are isomorphic $G$-bundles with fiber space $F$, and $u:E\to E'$ is a $G$-bundle isomorphism.
+Considering the refinement, we fix an open cover $\{U_\alpha\}$ of $B$ on which $E$ and $E'$ are simultaneously locally trivialized.
 
+Now we prove the surjectivity.
 Let $\{g_{\alpha\beta}\}\in\check Z^1(\{U_\alpha\},G)$.
 Define
-\[E:=\Bigl(\bigsqcup_\alpha(U_\alpha\times F)\Bigr)/\sim,\]
+\[E:=\left(\bigsqcup_\alpha(U_\alpha\times F)\right)/\sim,\]
 where $\sim$ is an equivalence relation generated by
-\[(b,v)_\alpha\sim(b,g_{\alpha\beta}(b)v)_\beta,
-\qquad b\in U_\alpha\cap U_\beta,\ v\in F.\]
-Define $p:E\to B$ and $\f_\alpha^{-1}:U_\alpha\times F\to p^{-1}(U_\alpha)$ such that
-\[p([(b,v)_\alpha]):=b,\qquad\f_\alpha^{-1}(b,v):=[(b,v)_\alpha],\qquad b\in U_\alpha,\ v\in F.\]
+\[(b,g_{\alpha\beta}(b)f)_\alpha\sim(b,f)_\beta,
+\qquad b\in U_\alpha\cap U_\beta,\ f\in F.\]
+Define $\pi:E\to B$ and $\f_\alpha^{-1}:U_\alpha\times F\to\pi^{-1}(U_\alpha)$ such that
+\[p([(b,f)_\alpha]):=b,\qquad\f_\alpha^{-1}(b,f):=[(b,f)_\alpha],\qquad b\in U_\alpha,\ f\in F.\]
 They are clearly continuous and surjective.
-We need to show $\f_\alpha^{-1}$ is a hoemomorphism.
+To show that $\pi:E\to B$ is a fiber bundle, it remains to prove $\f_\alpha^{-1}$ is injective and open.
 
 We first claim that $\f_\alpha^{-1}$ is injective.
-Assume $\f_\alpha^{-1}(b,v)=\f_\alpha^{-1}(b',v')$, which means $(b,v)_\alpha\sim(b',v')_\alpha$.
-Then, we have $b=b'$ and there is a finite sequence $(\alpha_i)_{i=0}^n$ such that $\alpha_0=\alpha_n=\alpha$ and
-\[v'=g_{\alpha_{n-1}\alpha_n}(b)g_{\alpha_{n-2}\alpha_{n-1}}(b)\cdots g_{\alpha_0\alpha_1}(b)v.\]
-Applying the cocycle condition inductively, we obtain $v=v'$, which implies the injectivity of $\f_\alpha^{-1}$.
+Assume $\f_\alpha^{-1}(b,f)=\f_\alpha^{-1}(b',f')$, which means that we have $(b,f)_\alpha\sim(b',f')_\alpha$.
+Then, we know $b=b'$ and there is a finite sequence $(\alpha_i)_{i=0}^n$ such that $\alpha_0=\alpha_n=\alpha$ and
+\[f=g_{\alpha_0\alpha_1}(b)\cdots g_{\alpha_{n-1}\alpha_n}(b)f'.\]
+Applying the cocycle condition inductively, we obtain $f=f'$, which implies the injectivity of $\f_\alpha^{-1}$.
 
 Next we claim that $\f_\alpha^{-1}$ is open.
 The map $\f_\alpha^{-1}$ is given by the composition
@@ -159,51 +176,159 @@ The map $\f_\alpha^{-1}$ is given by the composition
 where $\iota$ and $\pi$ are the canonical inclusion and the canonical projection.
 Since $\iota$ is clearly open, it suffices to show $\pi$ is open.
 Suppose $V\subset\bigsqcup_\alpha U_\alpha\times F$ is open so that we have $V=\bigsqcup_\alpha V_\alpha\times F$ for open subsets $V_\alpha\subset U_\alpha$.
-Observe that for each $\beta$ we have $(b,v)_\beta\in\pi^{-1}\pi(V_\alpha\times F)$ if and only if $(b,v)_\beta\sim(b',v')_\alpha$ for some $(b',v')\in V_\alpha\times F$.
+Observe that for each $\beta$ we have $(b',f')_\beta\in\pi^{-1}\pi(V_\alpha\times F)$ if and only if $(b',f')_\beta\sim(b,f)_\alpha$ for some $(b,f)\in V_\alpha\times F$.
 It is equivalent to that $b=b'$ and 
-\[v'=g_{\alpha_{n-1}\alpha_n}(b)g_{\alpha_{n-2}\alpha_{n-1}}(b)\cdots g_{\alpha_0\alpha_1}(b)v,\]
-where $(\alpha_i)_{i=0}^n$ is a finite sequence such that $\alpha_0=\beta$ and $\alpha_n=\alpha$.
-Applying the cocycle condition inductively, we can see that it is just $g_{\alpha\beta}(b)v'=v$.
+\[f=g_{\alpha_0\alpha_1}(b)\cdots g_{\alpha_{n-1}\alpha_n}(b)f',\]
+where $(\alpha_i)_{i=0}^n$ is a finite sequence such that $\alpha_0=\alpha$ and $\alpha_n=\beta$.
+Applying the cocycle condition inductively, we can see that it is just $f=g_{\alpha\beta}(b)f'$.
 Thus, the set $\pi^{-1}\pi(V_\alpha\times F)\cap(U_\beta\times F)$ is exactly the same as the inverse image of the open set $V_\alpha\times F$ under the map
-\[(U_\alpha\cap U_\beta)\times F\to U_\alpha\times F:(b,v)\mapsto(b,g_{\alpha\beta}(b)v).\]
+\[(U_\alpha\cap U_\beta)\times F\to U_\alpha\times F:(b,f')\mapsto(b,g_{\alpha\beta}(b)f').\]
 It concludes that
 \[\pi^{-1}\pi(V)=\bigcup_{\alpha,\beta}\pi^{-1}\pi(V_\alpha\times F)\cap(U_\beta\times F)\]
 is open, so $\pi(V)$ is open.
 Therefore, $\pi$ is open.
 
-Finally, it obviously follows that the transition maps of the $G$-atlas $\{\f_\alpha\}$ constructed as above coincides with the cocycle $\{g_{\alpha\beta}\}$ up to 0-cochain by the cocycle condition, hence the surjectivity.
+Finally, we can check that the constructed fiber bundles has the transition maps of the $G$-atlas $\{\f_\alpha\}$ coincides with the cocycle $\{g_{\alpha\beta}\}$ up to 0-cochain by the cocycle condition, hence the surjectivity.
 
 (b)
 \end{pf}
 
 
-\begin{prb}[Principal bundles]
-Let $G$ be a topological group.
-A \emph{principal $G$-bundle} is a fiber bundle $\pi:P\to B$ together with a continuous right action of $G$ on $P$ such that $\pi^{-1}(b)$ is a right principal homogeneous $G$-space for each $b\in B$.
-The right action $\rho$ is called the \emph{principal right action} or \emph{(global) gauge transformation}.
-Having right $G$-equivariant maps as morphisms, let $\mathrm{Prin}_G(B)$ be the isomorphism classes of principal $G$-bundles over $B$.
+\section{Vector bundles}
+subbundles, quotient bundles, bundle maps,
+constant rank, then ker, im, coker bundles are locally trivial so that they are vector bundles.
+pullback: vector bundle structure
 
-Let $F$ be an effective left $G$-space.
-For a principal $G$-bundle $\pi:P\to B$, define $p:E\to B$ by
-\[E:=P\times_GF=P\times F/\sim,\qquad p([u,v]):=\pi(u),\]
-where the equivalence relation $\sim$ is generated by
-\[(ug,v)\sim(u,gv),\qquad u\in P,\ g\in G,\ v\in F.\]
-The $G$-bundle $p$ with fiber space $F$ is called the \emph{associated bundle} to the principal bundle $\pi$.
-The associated bundles gives rise to a natural function $\mathrm{Prin}_G(B)\to\mathrm{Bun}_F(B)$.
+vector fields(trivial subbundles), parallelizable
+bundle operations: sum, tensor, dual, hom, exterior
+
+reduction and metrics
+
+
+\[\mathrm{Bun}_{\GL(n,\F)}(B)\to\mathrm{Vect}_n^\F(B)\]
+is an isomorphism-preserving faithful essentially surjective functor, but not full.
+If we drop the non-invertible morphisms in $\mathrm{Vect}_n(B)$, then the functor becomes an equivalence.
+
+
+Let $1\le n\le\infty$.
+If $f,g:B\to G_k(\F^n)$ such that $f^*(\gamma_{k^n})\cong g^*(\gamma_{k^n})$, then $jf\simeq jg$, where $j:G_k(\F^n)\to G_k(\F^{2n})$ is the natural inclusion.
+
+
+\begin{prb}[Vector bundles]
+A \emph{vector bundle} over a topological field $\F$ is a fiber bundle $\pi:V\to B$ together with continuous maps $+:V\times_BV\to V$ and $\cdot:\F\times V\to V$ such that each fiber is a finite-dimensional vector space over $\F$.
+The dimension of a fiber space is uniquely determined, and it is called the \emph{rank} of the vector bundle.
+
+For a vector bundle over $\F$ of rank $r$, we can fix a vector space $\F^r$ as the fiber space.
 \begin{parts}
-\item $\mathrm{Prin}_G(B)\to\mathrm{Bun}_F(B)$ is well-defined.
-\item $\mathrm{Prin}_G(B)\to\mathrm{Bun}_F(B)$ is injective.
-\item $\mathrm{Prin}_G(B)\to\mathrm{Bun}_F(B)$ is surjective.
-\item A principal bundle is trivial if it has a global section.
+\item A vector bundle over $\F$ of rank $r$ has a unique $\GL(r,\F)$-structure whose charts are linear at each fiber.
+\item Whitney sum can be constructed as a pullback, and is a biproduct (in which category?).
+\item tensor product, dual (we have to prove the existence using the fiber bundle construction)
+\item universal properties of sum, tensor, dual.
+\end{parts}
+\end{prb}
+\begin{pf}
+Construction of the Whitney sum by the fiber bundle construction theorem:
+We need to first define a cocycle.
+Let $V_1\to B$ and $V_2\to B$ be vector bundles of rank $r_1$ and $r_2$, respectively.
+Let $\{\f_\alpha^1\}$ and $\{\f_\alpha^2\}$ be an atlas that locally trivializes both bundles.
+Then, we have two cocycles $g_{\alpha\beta}^1:U_\alpha\cap U_\beta\to\GL(r_1,\F)$ and $g_{\alpha\beta}^2:U_\alpha\cap U_\beta\to\GL(r_2,\F)$.
+Define
+\[(g_{\alpha\beta}^1,g_{\alpha\beta}^2):U_\alpha\cap U_\beta\to\GL(r_1,\F)\times\GL(r_2,\F)\to\GL(r_1+r_2,\F).\]
+We can easily check that it satisfies the cocycle condition.
+With the standard left action of $\GL(r_1+r_2,\F)$ on $\F^{r_1}\times\F^{r_2}$, let
+\[V_1\oplus V_2:=\left(\bigsqcup_\alpha(U_\alpha\times\F^{r_1}\times\F^{r_2})\right)/\sim\]
+be the total space defined in the proof of the fiber bundle construction theorem.
+
+Define a function $V_1\to V_1\oplus V_2:v\mapsto[(\f_\alpha(v),0)_\alpha]$, which is well-defined independently of the choice of $\alpha$, because for any $\alpha$ and $\beta$ if we let $\f_\alpha(v)=(b,f)$ and $\f_\beta(v)=(b,f')$ in $(U_\alpha\cap U_\beta)\times\F^r$, then since $f=g_{\alpha\beta}^1(b)f'$ we have
+\[(\f_\alpha(v),0)_\alpha=(b,f,0)_\alpha=(b,g_{\alpha\beta}^1(b)f',0)_\alpha=(b,(g_{\alpha\beta}^1(b),g_{\alpha\beta}^2(b))(f',0))_\alpha\sim(b,f',0)_\beta=(\f_\beta(v),0)_\beta.\]
+We need to show this function is continuous, fiber-preserving, fiberwise linear, and satisfies the universal property in the category of vector bundles.
+\end{pf}
+
+\begin{prb}[Hermitian bundles]
+A \emph{Hermitian bundle} is a complex vector bundle $V\to B$ together with $\<\cdot,\cdot\>:V\times_BV\to\C$ such that each fiber is a complex inner product space.
+
+Let $V\to B$ be a Hermitian bundle of rank $r$.
+Fix a complex inner product space $\C^r$ as the fiber space.
+\begin{parts}
+\item A Hermitian bundle has a unique $\rU(r)$-structure whose charts are unitary at each fiber.
+\end{parts}
+\end{prb}
+
+
+\begin{prb}[Serre-Swan theorem]
+\end{prb}
+\begin{pf}
+Let $B$ be a compact Hausdorff space.
+Let $V\to B$ be a vector bundle.
+
+trivialization
+projection-valued continuous function $B\to M_n(\F)$?
+\end{pf}
+
+\[\Spin(n)\to\SO(n)\to\GL(n,\R)\]
+
+
+
+
+\section{Principal bundles}
+
+
+\begin{prb}[Principal bundles]
+A \emph{principal $G$-bundle} for a topological group $G$ is a fiber bundle $\pi:P\to B$ together with a continuous map $P\times G\to P$ such that each fiber is a right principal homogeneous $G$-space.
+Such a right action on $P$ is called the \emph{principal right action}.
+Having right equivariant maps as morphisms, denote by $\mathrm{Prin}_G(B)$ the category of principal $G$-bundles over $B$.
+
+For a principal $G$-bundle, we may assume the fiber space is the left principal homogeneous $G$-space $G$, which is also a right principal homogeneous $G$-space.
+\begin{parts}
+\item A principal $G$-bundle has a unique $G$-structure whose charts are right $G$-equivariant.
+\end{parts}
+\end{prb}
+\begin{pf}
+(a)
+For any atlas $\{\f_\alpha\}$ of the fiber bundle $P\to B$, there is a one-to-one correspondence between families $\{s_\alpha\}$ of local sections $s_\alpha:U_\alpha\to\pi^{-1}(U_\alpha)$ and families $\{\psi_\alpha\}$ of fiber-preserving homeomorphisms $\psi_\alpha:U_\alpha\times G\to U_\alpha\times G$ such that $\psi_\alpha\f_\alpha$ is right $G$-equivariant, by the formula $\psi_\alpha\f_\alpha(s_\alpha(b)g)=(b,g)$ for $(b,g)\in U_\alpha\times G$.
+In other words, if we call the choice of an atlas $\{\f_\alpha\}$ together with a family of local sections $\{s_\alpha\}$ a \emph{gauge fixing}, then each gauge fixing gives rise to a right $G$-equivariant $G$-atlas.
+The existence of $G$-structure follows from the existence of any local section.
+
+For any two gauge fixing $(\{\f_\alpha\},\{s_\alpha\})$ and $(\{\f_\beta'\},\{s_\beta'\})$, if we define a function $g_{\alpha\beta}:U_\alpha\cap U_\beta\to G$ such that $s_\alpha g_{\alpha\beta}=s_\beta$ on $\pi^{-1}(U_\alpha\cap U_\beta)$, then we can check that
+\[\psi_\alpha\f_\alpha\f_\beta'^{-1}\psi_\beta'^{-1}(b,g)=(b,g_{\alpha\beta}(b)g),\qquad b\in U_\alpha\cap U_\beta,\ g\in G.\]
+To complete the proof of the equivalence of $\{\psi_\alpha\f_\alpha\}$ and $\{\psi_\beta'\f_\beta'\}$, it remains to show that $g_{\alpha\beta}$ is continuous.
+Obeserve that, writing $U=U_\alpha\cap U_\beta$, the function $g_{\alpha\beta}$ is given by the composition
+\[\begin{tikzcd}[sep=small]
+U\ar{rr}{(s_\alpha,s_\beta)}&&\pi^{-1}(U)\times_U\pi^{-1}(U)&\pi^{-1}(U)\times G\lar\rar{\pr_2}& G\rar{(\cdot)^{-1}}&G,
+\end{tikzcd}\]
+where the inverted morphism at the middle is a continuous bijection defined by the right action at fibers.
+In the commutative diagram
+\[\begin{tikzcd}[sep=small]
+\pi^{-1}(U)\times G \rar\dar[swap]{\sim} & \pi^{-1}(U)\times_U\pi^{-1}(U) \dar{\sim}\\
+U\times G\times G \rar{\sim} & (U\times G)\times_U(U\times G)
+\end{tikzcd}\]
+of continuous maps, where the horizontal map in the second row is $(b,g,h)\mapsto((b,g),(b,gh))$, the three maps with tilde are homeomorphisms hence is the other, so the continuity of $g_{\alpha\beta}$ follows.
+\end{pf}
+
+
+
+\begin{prb}[Associated bundles]
+Let $\pi:P\to B$ be a principal $G$-bundle and $F$ be an effective left $G$-space.
+Define $\pi:E\to B$ by
+\[E:=P\times_GF=P\times F/\sim,\qquad \pi([u,f]):=\pi(u),\qquad u\in P,\ f\in F,\]
+where the equivalence relation $\sim$ is generated by
+\[(ug,f)\sim(u,gf),\qquad u\in P,\ g\in G,\ f\in F.\]
+We need to show the above procedure canonically defines a $G$-structure for $\pi:E\to B$.
+The $G$-bundle $\pi:E\to B$ with fiber space $F$ is called the \emph{associated bundle} to the principal bundle $\pi$.
+We claim that the construction of the associated bundles gives rise to a categorical equivalence $\mathrm{Prin}_G(B)\to\mathrm{Bun}_F(B)$.
+\begin{parts}
+\item $\mathrm{Prin}_G(B)\to\mathrm{Bun}_F(B)$ is a well-defined functor.
+\item $\mathrm{Prin}_G(B)\to\mathrm{Bun}_F(B)$ is fully faithful.
+\item $\mathrm{Prin}_G(B)\to\mathrm{Bun}_F(B)$ is essentially surjective.
 \end{parts}
 \end{prb}
 \begin{pf}
 (a)
 Let $u:P\to P'$ be a right $G$-equivariant map.
-By fixing $x_0\in X$ and using the fact that the left action is free and transitive, define $g_i:U_i\to G$ such that
-\[(b,g_i(b)x_0):=\f_i\circ u\circ\f_i^{-1}(b,x_0).\]
-The function $g_i$ is continuous since it factors as
-\[b\mapsto(b,x_0)\xmapsto{\f_i\circ u\circ\f_i^{-1}}(b,g_i(b)x_0)\mapsto g_i(b)x_0\mapsto g_i(b).\]
+By fixing $x_0\in X$ and using the fact that the left action is free and transitive, define $g_\alpha:U_\alpha\to G$ such that
+\[(b,g_\alpha(b)x_0):=\f_\alpha u\f_\alpha^{-1}(b,x_0).\]
+The function $g_\alpha$ is continuous since it factors as
+\[b\mapsto(b,x_0)\xmapsto{\f_\alpha u\f_\alpha^{-1}}(b,g_\alpha(b)x_0)\mapsto g_\alpha(b)x_0\mapsto g_\alpha(b).\]
 The continuity of the last map is due to the assumption that the map $(g,x)\mapsto(gx,x)$ is a homeomorphism.
 
 Then, for every $(b,x)\in U_i\times X$ there is a unique $s\in G$ such that
@@ -249,16 +374,8 @@ It is well defined, fiber preserving, continuous.
 also for any $b$ and any chart $\f_j$ containing $b$, the action on $\{b\}\times X$ defines a principal homogeneous as we have seen.
 Therefore, $\rho$ is a gauge tranformation.
 
-(d)
-($\Rightarrow$)
-Clear.
-
-($\Leftarrow$)
-Let $s:B\to E$ be a global section and define
-\[\tilde u:B\times X\to E:(b,gx_0)\mapsto s(b)g\]
-for any fixed $x_0\in X$.
-Then, the continuous map $(\tilde f,\id_B)$ preserves fibers and defines a right $G$-equivariant isomorphism.
 \end{pf}
+
 
 \begin{prb}[Quotient principal bundles]
 
@@ -266,52 +383,24 @@ Then, the continuous map $(\tilde f,\id_B)$ preserves fibers and defines a right
 
 
 \begin{prb}[Reduction of structure groups]
-Let $H$ be a closed subgroup of $G$.
+Let $H\to G$ be a continuous group homomorphism between topological groups.
+If $F$ is an effective left $G$-space, then it is an effective left $H$-space.
+If $\pi:E\to B$ is a $G$-bundle with fiber space $F$, and if $\{\f_\alpha\}$ be a $G$-atlas with $\f_\alpha:\pi^{-1}(U_\alpha)\to U_\alpha\times F$, 
+
 Then, there is a function $\check H^1(B,H)\to\check H^1(B,G)$, which is neither in general injective nor surjective.
 If a $G$-bundle $p$ is contained in the image of $\check H^1(B,H)$ through the correspondence $\mathrm{Bun}_F(B)\twoheadrightarrow\check H^1(B,G)$, then we may give a $H$-bundle structure on $p$.
 
 A \emph{reduction} of $G$ to $H$ is a $H$-structure on a principal $G$-bundle.
+A reduction is corresponded not to an additional structure itself, but to an equivalence class of additional structures, hence it tells the existence of additional structures.
+
+A \emph{spin structure} on a oriented Euclidean vector bundle $V\to B$ is a principal $\Spin(n)$-bundle $P_{\Spin(n)}\to B$ together with a right $\Spin(n)$-equivariant bundle map $P_{\Spin(n)}\to P_{\SO(n)}$.
+Associated to a spin structure, we can canonically define a spinor bundle $S\to B$.
 \end{prb}
 
 
 
 
 
-
-\section{Vector bundles}
-subbundles, quotient bundles, bundle maps,
-constant rank, then ker, im, coker bundles are locally trivial so that they are vector bundles.
-pullback: vector bundle structure
-
-vector fields(trivial subbundles), parallelizable
-bundle operations: sum, tensor, dual, hom, exterior
-
-reduction and metrics
-
-
-\[\mathrm{Bun}_{\GL(n,\F)}(B)\to\mathrm{Vect}_n^\F(B)\]
-is a faithful essentially surjective functor.
-If we drop the non-invertible morphisms in $\mathrm{Vect}_n(B)$, then the functor becomes an equivalence.
-
-\[\Spin(n)\to\SO(n)\to\GL(n,\R)\]
-
-\begin{prb}[Vector bundles]
-Let $p:E\to B$ and $p:E'\to B$ be vector bundles.
-\begin{parts}
-\item A vector bundle map $u$ over $B$ is a vector bundle isomorphism if and only if it is a fiberwise linear isomorphism.
-\end{parts}
-\end{prb}
-
-
-
-Let $1\le n\le\infty$.
-If $f,g:B\to G_k(\F^n)$ such that $f^*(\gamma_{k^n})\cong g^*(\gamma_{k^n})$, then $jf\simeq jg$, where $j:G_k(\F^n)\to G_k(\F^{2n})$ is the natural inclusion.
-
-
-\begin{prb}
-Riemannian and Hermitian metrics
-spin structures
-\end{prb}
 
 \section{Classifying spaces}
 
@@ -377,6 +466,18 @@ In this case, we can say $c$ is the \emph{characteristic class} for $G$-bundles.
 By Thom and Gysin, we can compute the cohomology ring
 \[H^*(BG,A)\cong A[w_1,\cdots,w_r].\]
 \end{enumerate}
+
+\begin{prb}[Stiefel-Whitney classes]
+Let $V\to B$ be a vector bundle of rank $r$.
+The 
+\[\begin{tikzcd}
+H^0(H^0(\rO(r))
+\end{tikzcd}\]
+\end{prb}
+
+
+\begin{prb}[Chern classes]
+\end{prb}
 
 \begin{prb}[Thom isomorphism]
 Let $E$ be a real vector bundle of rank $r$ over a paracompact arc-connected space $B$.
@@ -477,8 +578,6 @@ Spin, Spin$_\C$ structure
 
 
 \chapter{Simplicial methods}
-
-
 
 
 

@@ -321,7 +321,6 @@ so we conclude $f_\e(x)\in F-M^+$.
 
 
 \begin{lem}
-Let 
 For $z\in\fm^{sa}$, we have
 \[\inf\{\f(a):z\le a\in\fm^+\}\le\|\theta(z)\|.\]
 In particular, for $x,y\in\fn^+$ and for any $\e>0$ there is $a\in\fm^+$ such that $x^2-y^2\le a$ and
@@ -397,7 +396,7 @@ This fact is not needed in the proof.)
 
 We first claim that $\f^{-1}([0,1])_1$ is relatively $\sigma$-weakly closed in $M_0$.
 Let $y\in\bar{\f^{-1}([0,1])_1}^{\sigma w}\cap M_0$ so that there is a net $y_\alpha\in\f^{-1}([0,1])_1$ converges $\sigma$-weakly to $y$, and there is $p\in\Sigma$ such that $pyp=y$.
-Note that the previous theorem states that $\f^{-1}([0,1])\cap pMp$ is $\sigma$-weakly closed.
+Note that the previous theorem states that $\f^{-1}([0,1])\cap pMp$ is $\sigma$-weakly closed in $pMp$, and hence in $M$.
 Since $py_\alpha p$ is a net in $\f^{-1}([0,1])_1\cap pMp$ that also converges $\sigma$-weakly to $pyp=y$, we have $y\in\f^{-1}([0,1])$.
 The claim proved.
 
@@ -413,7 +412,7 @@ Because $p_J\in M_0$ and $M_0$ is an ideal,
 \[x^{\frac12}p_Jx^{\frac12}\in\bar{\f^{-1}([0,1])_1}^{\sigma w}\cap M_0.\]
 By the above claim,
 \[x^{\frac12}p_Jx^{\frac12}\in\f^{-1}([0,1])_1.\]
-By the complete additivity of $\f$, we finally obtain
+By the complete additivity (or the order continuity) of $\f$, we finally obtain
 \[x\in\f^{-1}([0,1])_1.\]
 Therefore, $\f^{-1}([0,1])_1$ is $\sigma$-weakly closed.
 \end{pf}
@@ -1885,21 +1884,18 @@ to obtain $xJxJP\in P$.
 
 \begin{lem}
 Let $M$ be a von Neumann algebra on a Hilbert space $H$.
-Let $p\in M$ be a projection and let $\xi\in H$.
-The \emph{central support projection} of $p$ is the smallest central projection $z(p)$ majorizing $p$, and the \emph{cyclic projection} of $\xi$ is the smallest projection $e(\xi)$ in $M$ fixing $\xi$.
+The \emph{central support projection} of $x\in M$ is the smallest central projection $z(p)$ that fixes $x$ from left and right, and the \emph{cyclic projection} of $\xi\in H$ is the smallest projection $e(\xi)$ in $M$ that fixes $\xi$.
 \begin{parts}
-\item $z(p)H=\bar{MpH}$.
+\item $z(p)H=MpH$.
 \item $e(\xi)H=\bar{M'\xi}$.
 \item $e(\xi)=s(\omega_\xi)$.
 \end{parts}
 \end{lem}
 \begin{pf}
 (a)
-Let $zH:=\bar{MpH}$.
-From $pH\subset\bar{MpH}=zH$ we have $p\le z$.
-Because
-\[MzH=M\bar{MpH}\subset\bar{MpH}=zH,\]
-if $z\notin M'$ so that there is a projection $q\in M$ not orthogonal to $z$, then we have $qzH\not\subset zH$, so it implies that $z$ is central and $z(p)\le z$ by definition of $z(p)$.
+Let $z\in B(H)$ be the projection onto $MxH$.
+We clearly have $p\le z$.
+Since every element of $Mz$ or $M'z$ is fixed by the left action of $z$, we have that $z$ is central and $z(p)\le z$.
 We also have
 \[zH=\bar{MpH}=\bar{Mz(p)pH}=\bar{z(p)MpH}\subset z(p)H,\]
 so $z\le z(p)$.
@@ -1978,7 +1974,7 @@ Therefore, $v=1$.
 (Existence)
 First we assume $M$ is countably decomposable.
 We first claim there is a cyclic separating vector in $P$.
-Let $\{\xi_i\}_{i\in I}$ be a maximal family of non-zero vectors in $P$ such that $e(\xi_i)$ are mutually orthogonal.
+Let $\{\xi_i\}_{i\in I}$ be a maximal family of non-zero vectors in $P$ such that the cyclic projections $e(\xi_i)$ are mutually orthogonal.
 Suppose $p:=1-\sum_ie(\xi_i)\ne0$ and let $q:=pJpJ$.
 Then, $(qMq,qH,qJq,qP)$ is a standard form.
 Take $\xi\in qP$ so that $p\xi=\xi$ and $pM'\xi=M'p\xi=M'\xi$ implies $e(\xi)\le p$.

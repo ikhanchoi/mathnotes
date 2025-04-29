@@ -140,6 +140,35 @@ Artin map factors through $\Gal(\Q(\zeta_m)/\Q)\to\Gal(K/\Q)$!
 \part{Langlands program}
 \chapter{Modular forms}
 
+modular forms are sections of some line bundles over a moduli stack $\cM$ of complex elliptic curves.
+By modular forms, we can investigate the algebraic nature of $\cM$.
+
+
+Let $N\ge1$ and $k\ge2$.
+Let $\chi:(\Z/N\Z)^\times\to\C^\times$ be a Dirichlet character.
+
+Let $\Gamma$ be a congruence subgroup which acts on $\H$.
+The vector space of all cusp forms and modular forms weight $k$ with respect to $\Gamma$ is denoted by $S_k(\Gamma)\subset M_k(\Gamma)$.
+
+
+Since $\Gamma_1(N)$ acts trivially on $S_k(\Gamma_1(N))$, we have an action of $\Gamma_0(N)/\Gamma_1(N)\cong(\Z/N\Z)^\times$ on $S_k(\Gamma_1(N))$, and we define $S_k(N,\chi)$ by the decomposition
+\[S_k(\Gamma_1(N))=\bigoplus_{\chi:(\Z/N\Z)^\times\to\C^\times}S_k(N,\chi).\]
+We also define $S_k(N):=S_k(N,1)=S_k(\Gamma_0(N))$.
+
+The Hecke operators are defined as a commuting family of endomorphisms $(T_n)_{n=1}^\infty$ on $S_k(\Gamma_1(N))$.
+Let $f=\sum_{n\ge1}a_nq^n\in S_k(\Gamma_1(N))$ be a cusp form.
+We say $f$ is a normalized eigenform if $a_1=1$ and it is an eigenvector of Hecke operators, and in this case we have $T_nf=a_nf$.
+It is known that the field $\Q(f):=\Q(a_n:n\ge1)$ is a finite extension of $\Q$.
+We have an $L$-function given by
+\[L(f,s):=\sum_{n\ge1}a_nn^{-s}.\]
+
+
+$G_{\Q_p}$ is a subgroup of $G_\Q$, called the decomposition group, well-defined up to conjugacy.
+
+Let $f\in S_k(N,\chi)$ be a normalized eigenform, and let $\lambda\mid\ell$ be a place.
+Then, there is a two-dimensional representation $V_{f,\lambda}$ over an $\ell$-adic field $\Q(f)_\lambda$ of $G_\Q$ such that
+\[\Tr_{V_{f,\lambda}}(\Frob_p)=a_p\]
+for every prime $p$ such that $p\nmid N\ell$ and $V_{f,\lambda}$ is unramified at $p$, where $\Frob_p\in G_{\Q_p}$ is the Frobenius automorphism.
 
 
 
@@ -152,9 +181,13 @@ Hasse-Weil $\zeta_X(s)$
 
 \section{Dirichlet $L$-functions}
 
-\begin{prb}[Hecke character]
-Dirichlet character can be understood as a group homomorphism $\chi:\hat\Z^\times\to\C$ of finite order, which means that there is $n$ such that $\chi$ factors through $(\Z/n\Z)^\times$.
+By the Kronecker-Weber theorem, a continuous one-dimensional complex representation $G_\Q\to\C^\times$ of the absolute Galois group factors through the Galois group $\Gal(\Q(\zeta_n)/\Q)\cong(\Z/n\Z)^\times$ of some cyclotomic extension to be a Dirichlet character.
 
+We also want to study $\ell$-adic Galois representations.
+
+
+\begin{prb}[Hecke character]
+Let $\chi:(\Z/N\Z)^\times\to\C^\times$ be a Dirichlet character.
 In order to construct an $L$-function from a character, we need to extend a character as a function of ideals.
 We interpret $(\Z/n\Z)^\times$ as the ray class group modulo $\fm$.
 

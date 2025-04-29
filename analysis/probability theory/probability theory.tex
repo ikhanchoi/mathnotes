@@ -109,12 +109,25 @@ Denote by $\ell(\cP)$ the smallest $\lambda$-system containing $\cP$.
 \end{prb}
 
 \begin{prb}[Kolmogorov extension theorem]
-Let $\{S_i\}_{i\in I}$ be a family of Polish spaces and 
-consider the product $S=\prod_{i\in I}S_i$ with projections $\pi_i:S\to S_i$ and $\pi_J:S\to\prod_{j\in J}S_j$ for finite $J\subset I$.
-A \emph{cylinder set} is a set of the form $\pi_J^{-1}(A)\subset S$ for a measurable $A\in S_J$.
-Let $\cA$ be the semi-algebra containing $\varnothing$ and all cylinders in $S_I$.
-Let $(\mu_J)_J$ be a net of probability measures on $S_I$ satisfying $\sigma(\mu_J)\subset\sigma(\pi_J)$ and the \emph{consistency condition}.
-Define a set function $\mu_0:\cA\to[0,\infty]$ by $\mu_0(A)=\mu_n(A^*)$ and $\mu_0(\varnothing)=0$.
+Let $\{(S_i,\mu_i)\}$ be a family of probability spaces.
+Let $S:=\prod_iS_i$ be the product set with projections $\pi_i:S\to S_i$ and $\pi_J:S\to S_J:=\prod_{j\in J}S_j$ for finite $J\subset I$ so that $S_J$ is a probability space with the probability measure $\mu_J$ by the Fubini theorem.
+A \emph{cylinder set} is a subset of the form $\pi_J^{-1}(A_J)\subset S$, where $A_J$ is measurable in $S_J$ for some $J$.
+Let $\cA$ be the set of all cylinder sets in $S$.
+
+Suppose the family $\{\mu_J\}$ satisfies the \emph{consistency condition} for cylinder sets.
+Then, we can define a set function $\mu_0:\cA\to[0,\infty]$ by $\mu_0(A):=\mu_J(\pi_J(A))$ for $A\in\cA$.
+\end{prb}
+\begin{pf}
+To apply the Carath\'eodory extension for outer measures to extend $\mu_0$ to a measure, we need to check that $\mu_0$ is monotonically countably additive and every cylinder set is Carath\'eodory measurable.
+
+
+Let $C_i\in\cA$ be a sequence of cylinder sets that covers a cylinder set $C\in\cA$.
+Then,
+\[\mu_0(C)\le\sum_i\mu_0(C_i).\]
+
+\end{pf}
+
+
 \begin{parts}
 \item $\mu_0$ is well-defined.
 \item $\mu_0$ is finitely additive.
@@ -122,7 +135,6 @@ Define a set function $\mu_0:\cA\to[0,\infty]$ by $\mu_0(A)=\mu_n(A^*)$ and $\mu
 \item If $\mu_0(B_n)\ge\delta$, then we can find decreasing $D_n\subset B_n$ such that $\mu_0(D_n)\ge\frac\delta2$ and $D_n=D_n^*\times\R^\N$ for a compact rectangle $D_n^*$.
 
 \end{parts}
-\end{prb}
 \begin{pf}
 
 
@@ -207,20 +219,22 @@ Similarly, $P(A|X)=\frac13$ and $P(B|X)=0$.
 % pi system that generates sigma alg is separating
 % in \R^\infty and C(I), set of finite dimensional sets is separating
 
+For a Polish space $S$, let $\Prob(S)$ be the space of probability Borel measures.
+Note that regularity automatically follows for finite Borel measures on a metrizable space.
 
 
 
 \begin{prb}[Portmanteau theorem]
-Let $S$ be a normal space.
-We say a net $\mu_\alpha$ in $\Prob(S)$ \emph{converges in distribution} or \emph{weakly} to $\mu$ if
-\[\int f\,d\mu_\alpha\to\int f\,d\mu,\qquad f\in C_b(S).\]
+Let $S$ be a metrizable space.
+We say a net $\mu_i$ in $\Prob(S)$ \emph{converges in distribution} or \emph{weakly} to $\mu$ if
+\[\int f\,d\mu_i\to\int f\,d\mu,\qquad f\in C_b(S).\]
 The following statements are all equivalent.
 \begin{parts}
-\item $\mu_\alpha\to\mu$ in distribution.
-\item $\mu_\alpha(g)\to\mu(g)$ for every uniformly continuous $g\in C_b(S)$.
-\item $\limsup_\alpha\mu_\alpha(F)\le\mu(F)$ for every closed $F\subset S$.
-\item $\liminf_\alpha\mu_\alpha(U)\ge\mu(U)$ for every open $U\subset S$.
-\item $\lim_\alpha\mu_\alpha(A)=\mu(A)$ for every Borel $A\subset S$ such that $\mu(\partial A)=0$.
+\item $\mu_i\to\mu$ in distribution.
+\item $\mu_i(g)\to\mu(g)$ for every uniformly continuous $g\in C_b(S)$.
+\item $\limsup_i\mu_i(F)\le\mu(F)$ for every closed $F\subset S$.
+\item $\liminf_i\mu_i(U)\ge\mu(U)$ for every open $U\subset S$.
+\item $\lim_i\mu_i(A)=\mu(A)$ for every Borel $A\subset S$ such that $\mu(\partial A)=0$.
 \end{parts}
 \end{prb}
 \begin{pf}
@@ -229,7 +243,7 @@ Clear.
 
 (b)$\Rightarrow$(c)
 Let $U$ be an open set such that $F\subset U$.
-There is uniformly continuous $g\in C_b(S)$ such that $1_F\le g\le1_U$.
+Since $S$ is normal, there is $g\in C_b(S)$ such that $1_F\le g\le1_U$.
 Therefore,
 \[\limsup_\alpha\mu_\alpha(F)\le\limsup_\alpha\mu_\alpha(g)=\mu(g)\le\mu(U).\]
 By the outer regularity of $\mu$, we obtain $\limsup_\alpha\mu_\alpha(F)\le\mu(F)$.
@@ -258,14 +272,14 @@ Since $\e$ is arbitrary, we are done.
 
 
 \begin{prb}[L\'evy-Prokhorov metric]
-Let $S$ be a metric space, and $\Prob(S)$ be the set of probability (regular) Borel measures on $S$.
+Let $S$ be a metric space.
 Define $\pi:\Prob(S)\times\Prob(S)\to[0,\infty)$ such that
-\[\pi(\mu,\nu):=\inf\{\,r>0:\mu(A)\le\nu(B(A,r))+r,\ \nu(A)\le\mu(B(A,r))+r,\ \forall A\in\cB(S)\,\},\]
+\[\pi(\mu,\nu):=\inf\{\,r>0:\mu(A)\le\nu(B(A,r))+r,\ \nu(A)\le\mu(B(A,r))+r,\ A\in\cB(S)\,\},\]
 where $B(A,r):=\bigcup_{a\in A}B(a,r)$.
 \begin{parts}
 \item $\pi$ is a metric.
 \item If $\mu_n\to\mu$ in $\pi$, then $\mu_n\to\mu$ in distribution.
-\item If $\mu_\alpha\to\mu$ in distribution, then $\mu_\alpha\to\mu$ in $\pi$, if $S$ is separable.
+\item If $\mu_i\to\mu$ in distribution, then $\mu_i\to\mu$ in $\pi$, when $S$ is separable.
 \item $(S,d)$ is separable if and only if $(\Prob(S),\pi)$ is separable.
 \item $(S,d)$ is compact if and only if $(\Prob(S),\pi)$ is compact
 \item $(S,d)$ is complete if and only if $(\Prob(S),\pi)$ is complete.
@@ -279,9 +293,8 @@ where $B(A,r):=\bigcup_{a\in A}B(a,r)$.
 
 \begin{prb}[Prokhorov theorem]
 Let $S$ be a Polish space.
-Let $\Prob(S)$ be the space of probability measures on $S$ endowed with the topology of convergence in distribution.
-Let $M\subset\Prob(S)$.
-We say $M$ is \emph{tight} if for each $\e>0$ there is compact $K\subset S$ such that
+Let $\Prob(S)$ be the space of probability Borel measures on $S$ endowed with the topology of convergence in distribution.
+We say a set $M\subset\Prob(S)$ is \emph{tight} if for each $\e>0$ there is compact $K\subset S$ such that
 \[\inf_{\mu\in M}\mu(K)>1-\e.\]
 \begin{parts}
 \item If $M$ is relatively compact, then it is tight.
@@ -493,26 +506,36 @@ Let $S$ be a locally compact Hausdorff space.
 
 \section{Laws of large numbers}
 
+Let $X_i$ be a squence of random variables, and let $S_n:=\sum_{i=1}^nX_i$.
+
+Laws of large numbers are techniques to find increasing sequences $a_n\gtrsim b_n$ such that
+\[S_n=a_n+o(b_n),\qquad n\to\infty\]
+in probability or almost everywhere.
+
+Central limit theorems consist of techniques to find $a_n\gtrsim b_n$ such that
+\[S_n=a_n+b_n+o(b_n)\]
 
 \begin{prb}[Weak law of large numbers]
-Let $(X_i)$ be an uncorrelated sequence of random variables, that is, $E(X_iX_j)=EX_iEX_j$ for all $i,j$.
+Let $X_i$ be an uncorrelated sequence of random variables, that is, $E(X_iX_j)=EX_iEX_j$ for all $i,j$.
 Define
 \[g(x):=\sup_ixP(|X_i|>x).\]
-Note that for any $\e>0$, $\sup_iE|X_i|<\infty$ implies $\sup_xg(x)<\infty$, which implies $\sup_iE|X_i|^{1-\e}<\infty$.
-In particular, the condition $\lim_{x\to\infty}g(x)=0$ is called the Kolmogorov-Feller condition.
-Consider the truncation $Y_{n,i}:=X_i1_{|X_i|\le c_n}$.
+The boundedness of $g$ is a necessary condition for $\sup_iE|X_i|<\infty$ and is a sufficient condition for $\sup_iE|X_i|^{1-\e}<\infty$ for any $\e>0$.
+In particular, if we have $\lim_{x\to\infty}g(x)=0$, then $X_i$ is said to satisfy the \emph{Kolmogorov-Feller condition}.
+Consider the truncation $Y_{n,i}:=X_i1_{|X_i|\le c_n}$ and $T_n:=\sum_{i=1}^nY_{n,i}$.
+Write
+\[P\left(\left|\frac{S_n-ET_n}n\right|>\e\right)\le P(S_n\ne T_n)+P\left(\left|\frac{T_n-ET_n}{b_n}\right|>\e\right)\]
+Let $a_n\sim ET_n$.
+We claim
+\[\frac{S_n-a_n}{b_n}\to0\qquad\text{in probability}.\]
 \begin{parts}
 \item If $(n/c_n)g(c_n)\to0$, then
 \[P(S_n\ne T_n)\to0.\]
 \item If $(nc_n/b_n^2)\int_0^\infty g(c_nx)\,dx\to0$, then
 \[P\left(\left|\frac{T_n-ET_n}{b_n}\right|>\e\right)\to0.\]
-\item If the above two conditions are satisfied and $a_n\sim ET_n$, then
-\[\frac{S_n-a_n}{b_n}\to0\qquad\text{in probability}.\]
 \end{parts}
 \end{prb}
 \begin{pf}
 (a)
-Write $g(x):=\sup_ixP(|X_i|>x)$ so that $g(x)\to0$ as $x\to\infty$.
 It follows from
 \[P(S_n\ne T_n)\le\sum_{i=1}^nP(|X_i|>c_n)\le\sum_{i=1}^n\frac1{c_n}g(c_n)=\frac{ng(c_n)}{c_n}\to0.\]
 If the Kolmogorov-Feller condition holds, then we may let $c_n\sim n$.
@@ -531,9 +554,6 @@ P\left(\left|\frac{T_n-ET_n}{b_n}\right|>\e\right)
 We are done.
 If the Kolmogorov-Feller condition holds, then we may let $nc_n\sim b_n^2$ by the bounded convergence theorem.
 
-(c)
-From the part (a) and (b) we have
-\[P\left(\left|\frac{S_n-ET_n}n\right|>\e\right)\le P(S_n\ne T_n)+P\left(\left|\frac{T_n-ET_n}{b_n}\right|>\e\right)\to0.\qedhere\]
 \end{pf}
 
 
@@ -648,7 +668,7 @@ Berry-Esseen ineaulity
 
 \section*{Exercises}
 \begin{prb}[Bernstein polynomial]
-Let $X_n\sim\Bern(x)$ be i.i.d. random variables.
+Let $X_n\sim\Bern(x)$ be independent and identically distributed random variables.
 Since $S_n\sim\Binom(n,x)$, $E(S_n/n)=x$, $V(S_n/n)=x(1-x)/n$.
 The $L^2$ law of large numbers implies $E(|S_n/n-x|^2)\to0$.
 Define $f_n(x):=E(f(S_n/n))$.
@@ -656,7 +676,7 @@ Then, by the uniform continuity $|x-y|<\delta$ implies $|f(x)-f(y)|<\e$,
 \[|f_n(x)-f(x)|\le E(|f(S_n/n)-f(x)|)\le\e+2\|f\|P(|S_n/n-x|\ge\delta)\to\e.\]
 \end{prb}
 \begin{prb}[High-dimensional cube is almost a sphere]
-Let $X_n\sim\Unif(-1,1)$ be i.i.d. random variables and $Y_n:=X_n^2$.
+Let $X_n\sim\Unif(-1,1)$ be independent and identically distributed random variables and $Y_n:=X_n^2$.
 Then, $E(Y_n)=\frac13$ and $V(Y_n)\le1$.
 \end{prb}
 \begin{prb}[Coupon collector's problem]
@@ -797,6 +817,7 @@ So we are done.
 
 \section{Markov chains}
 
+A Markov process on a discrete state space $S$ is a weakly$^*$ continuous affine action of $\R_{\ge0}$ on $\Prob(S)$.
 
 Random walks
 
@@ -823,15 +844,32 @@ Meyer's section theorems.
 
 \section{Semi-martingales}
 
-\begin{prb}[Filtrated proability space]
-Let $(\Omega,(\cF_t),P)$ be a filtrated probability space with the usual condition.
-We say a process $X$ is \emph{adapted} if $X_t\in\cF_t$ for all $t$.
-A $\R_{\ge0}$-valued random variable $\tau$ is called a \emph{stopping time} if $\{\tau\le t\}\in\cF_t$ for all $t$.
+\begin{prb}[Filtered proability space]
+A \emph{filtered probability space} is a probability space $(\Omega,\cF,P)$ together with a \emph{filtration}, which is a non-decreasing family $(\cF_t)$ of $\sigma$-subalgebras of $\cF$ indexed by a totally ordered set $\T$.
+A filtered probability space is said to satisfy the \emph{usual condition} if
+\begin{enumerate}[(i)]
+\item every subset of a negilible set belongs to $\cF_t$ for every $t$,\hfill(completeness)
+\item $\cF_t=\bigcap_{s>t}\cF_s$.\hfill(right continuity)
+\end{enumerate}
+From now on, we will always assume that a filtered probability space satisfies the usual condition.
+
+The totally ordered set $\T$ of indices is endowed with the natural Borel $\sigma$-algebra induced from the order topology.
+A random variable $\tau$ that is valued in $\T$ is called a \emph{stopping time} if $\{\tau\le t\}\in\cF_t$ for all $t\in\T$.
+
+\begin{parts}
+\item If $\{\tau<t\}\in\cF_t$ for all $t\in\T$, then $\tau$ is a stopping time.
+\end{parts}
 \end{prb}
 
 
 \begin{prb}[C\`adl\`ag modifications]
-Two processes $X$ and $Y$ are called \emph{modifications} of each other if $X_t=Y_t$ a.s.~for each $t$, and \emph{indistinguishable} if $\sup_t|X_t-Y_t|=0$ a.s.
+A \emph{stochastic process} or simply a \emph{process} is a collection $X=(X_t)$ of random variables indexed by $\T$.
+We say a process $X$ is \emph{adapted} if $X_t\in\cF_t$ for all $t\in\T$.
+
+modification: $L^0_\loc(\Omega,\R^d)^\T$
+indistinguishable: $L^0_\loc(\Omega,(\R^d)^\T)$
+
+Two processes $X$ and $Y$ are called \emph{modifications} of each other if $X_t=Y_t$ almost surely for each $t\in\T$, and are \emph{indistinguishable} if $\sup_{t\in\T}|X_t-Y_t|=0$ almost surely.
 
 jump process $\Delta X$ defined such that $\Delta X_t:=X_t-X_{t-}$.
 \begin{parts}

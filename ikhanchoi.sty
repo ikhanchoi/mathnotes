@@ -59,12 +59,56 @@
 
 
 
-
 %///////////////////////%
 %  Theorems and Proofs  %
 %///////////////////////%
 
 \RequirePackage{amsthm,xparse}
+
+\newif\if@kor
+\@korfalse
+\DeclareOption{kor}{\@kortrue}
+\ProcessOptions\relax
+
+\if@kor
+\RequirePackage[hangul]{kotex}
+\setmainfont{XCharter}
+\setmainhangulfont{Hakgyoansim}[
+  UprightFont = *SantteutbatangM,
+  ItalicFont = *SantteutdotumM,
+  BoldItalicFont = *MalgeunnalM,
+  Path = {../},
+  Extension = {.otf}
+]
+\def\th@definition{\thm@headfont{\itshape\bfseries}}
+
+\RequirePackage[mathlines]{lineno}
+\renewcommand\linenumberfont{\normalfont\small}
+
+\RequirePackage{mdframed}
+\mdfdefinestyle{leftbar}{
+topline=false,rightline=false,bottomline=false,
+innertopmargin=-4pt,innerbottommargin=4pt,
+linewidth=2pt,linecolor=lightgray
+}
+\theoremstyle{definition}
+\newtheorem*{axiom*}{공리}
+\newtheorem{corollary}{따름정리}[section]
+\newtheorem{definition}{정의}[section]
+\newtheorem{example}{예제}[section]
+\newtheorem{lemma}{도움정리}[section]
+\newtheorem{proposition}{명제}[section]
+\newtheorem{theorem}{정리}[section]
+\surroundwithmdframed[style=leftbar]{axiom*}
+\surroundwithmdframed[style=leftbar]{corollary}
+\surroundwithmdframed[style=leftbar]{definition}
+\surroundwithmdframed[style=leftbar]{example}
+\surroundwithmdframed[style=leftbar]{lemma}
+\surroundwithmdframed[style=leftbar]{proposition}
+\surroundwithmdframed[style=leftbar]{theorem}
+\newtheorem{problem}{}[chapter]
+
+\else
 \theoremstyle{plain}
   \newtheorem{thm}{Theorem}[section]
   \newtheorem*{thm*}{Theorem}
@@ -89,13 +133,14 @@
   \newtheorem*{rmk*}{Remark}
   \newtheorem{exe}[thm]{Exercise}
   \newtheorem*{exe*}{Exercise}
-
 \NewDocumentEnvironment{pf}{}
   {\begin{proof}}
   {\end{proof}}
 \NewDocumentEnvironment{sol}{}
   {\begin{proof}[Solution]}
   {\end{proof}}
+
+\fi
 
 
 
@@ -139,21 +184,7 @@
 %  Commutative diagrams  %
 %////////////////////////%
 
-\RequirePackage{tikz-cd,xparse}
-\NewDocumentEnvironment{es}{}
-  {
-    %\renewcommand{\>}{\rar\&}
-    \RenewDocumentCommand{\>}{g}{\IfNoValueTF{##1}{\rar\&}{\rar{##1}\&}}
-    \tikzcdset{ampersand replacement=\&}
-    \[\begin{tikzcd}
-  }
-  {\end{tikzcd}\]\ignorespacesafterend}
-\NewDocumentEnvironment{rd}{}
-  {
-    \tikzcdset{math mode=false,labels={font=\scriptsize}}
-    \[\begin{tikzcd}
-  }
-  {\end{tikzcd}\]}
+\RequirePackage{tikz-cd}
 \tikzcdset{
   mapsto/.code={\pgfsetarrows{Bar[width=+0pt 4.5]-tikzcd to}},
   arrow style=tikz,
@@ -169,6 +200,8 @@
   }
 }
 
+\newcommand{\pullback}{\ar[dr,phantom,pos=-0.1,yshift=1.5pt,"\lrcorner"]}
+\newcommand{\pushout}{\ar[ul,phantom,pos=-0.1,yshift=-1.5pt,"\ulcorner"]}
 
 
 %//////////////////////////%
@@ -256,8 +289,24 @@
   \let\macc@kerna\z@
   \let\macc@kernb\z@
   \let\macc@nucleus\@empty
-  \hat{\raisebox{.33ex}{\vphantom{#1}}\smash{\hat{#1}}}
+  \hat{\raisebox{.33ex}{\vphantom{\ensuremath{#1}}}\smash{\hat{#1}}}
 \endgroup
+}
+\newcommand{\ttilde}[1]{
+\begingroup
+  \let\macc@kerna\z@
+  \let\macc@kernb\z@
+  \let\macc@nucleus\@empty
+  \tilde{\raisebox{.33ex}{\vphantom{\ensuremath{#1}}}\smash{\tilde{#1}}}
+\endgroup
+}
+\newcommand{\doubletilde}[1]{{%
+  \mathpalette\double@tilde{#1}%
+}}
+\newcommand{\double@tilde}[2]{%
+  \sbox\z@{$\m@th#1\tilde{#2}$}%
+  \ht\z@=.9\ht\z@
+  \tilde{\box\z@}%
 }
 
 \DeclareFontFamily{U}{mathx}{}
@@ -278,11 +327,15 @@
   \begin{tabular}{#1}#2\end{tabular}
 }
 
+
+
 \newcommand\tint{{\textstyle\int}}
 \newcommand\loc{\mathrm{loc}}
 \newcommand\op{\mathrm{op}}
+\newcommand\const{\mathrm{const}}
+\newcommand\cyc{\mathrm{cyc}}
 
-\newcommand\ccol[2]{\omit${}#1\hfill#2\hfill$}
+%\renewcommand{\arraycolsep}{1pt}
 
 
 
@@ -316,6 +369,7 @@
 \renewcommand\P{\mathbb{P}}
 \newcommand\Q{\mathbb{Q}}
 \newcommand\R{\mathbb{R}}
+\renewcommand\S{\mathbb{S}}
 \newcommand\T{\mathbb{T}}
 \newcommand\Z{\mathbb{Z}}
 \newcommand\RP{\mathbb{RP}}
@@ -441,6 +495,8 @@
 \newcommand\ff{\mathfrak{f}}
 \newcommand\fg{\mathfrak{g}}
 \newcommand\fh{\mathfrak{h}}
+\newcommand\fraki{\mathfrak{i}}
+\newcommand\fj{\mathfrak{j}}
 \newcommand\fk{\mathfrak{k}}
 \newcommand\fm{\mathfrak{m}}
 \newcommand\fn{\mathfrak{n}}
@@ -470,30 +526,31 @@
 \newcommand\Spin{\mathrm{Spin}}
 
 
-% Miscellany
-\let\Re\relax
+
+
+% Operators which may be used without parantheses
 \let\Im\relax
+\let\Re\relax
+\let\division\div
 \newcommand{\ad}{\operatorname{ad}}
 \newcommand{\Ad}{\operatorname{Ad}}
 \newcommand{\adj}{\operatorname{adj}}
-\newcommand{\Ann}{\operatorname{Ann}}
 \newcommand{\argmax}{\operatorname*{arg\,max}}
 \newcommand{\argmin}{\operatorname*{arg\,min}}
 \newcommand{\Aut}{\operatorname{Aut}}
-\renewcommand{\char}{\operatorname{char}}
 \newcommand{\conv}{\operatorname{conv}}
+\newcommand{\cod}{\operatorname{cod}}
 \newcommand{\codim}{\operatorname{codim}}
 \newcommand{\coim}{\operatorname{coim}}
 \newcommand{\coker}{\operatorname{coker}}
 \newcommand{\colim}{\operatorname*{colim}}
-\newcommand{\const}{\operatorname{const}}
-\newcommand{\cyc}{\operatorname{cyc}}
+\newcommand{\cone}{\operatorname{cone}}
+\newcommand{\cyl}{\operatorname{cyl}}
 \newcommand{\Der}{\operatorname{Der}}
 \newcommand{\diag}{\operatorname{diag}}
 \newcommand{\diam}{\operatorname{diam}}
 \newcommand{\Diff}{\operatorname{Diff}}
-\newcommand{\disc}{\operatorname{disc}}
-\let\division\div
+\newcommand{\dist}{\operatorname{dist}}
 \renewcommand{\div}{\operatorname{div}}
 \newcommand{\dom}{\operatorname{dom}}
 \newcommand{\End}{\operatorname{End}}
@@ -503,7 +560,9 @@
 \newcommand{\Ext}{\operatorname{Ext}}
 \newcommand{\Fix}{\operatorname{Fix}}
 \newcommand{\Frac}{\operatorname{Frac}}
+\newcommand{\Fun}{\operatorname{Fun}}
 \newcommand{\Gal}{\operatorname{Gal}}
+\newcommand{\gra}{\operatorname{gra}}
 \newcommand{\grad}{\operatorname{grad}}
 \newcommand{\Hess}{\operatorname{Hess}}
 \newcommand{\Hol}{\operatorname{Hol}}
@@ -519,19 +578,21 @@
 \newcommand{\Mod}{\operatorname{Mod}}
 \newcommand{\Mor}{\operatorname{Mor}}
 \newcommand{\Nat}{\operatorname{Nat}}
-\newcommand{\Ob}{\operatorname{Ob}}
+\newcommand{\Obj}{\operatorname{Obj}}
 \newcommand{\Orb}{\operatorname{Orb}}
 \newcommand{\ord}{\operatorname{ord}}
 \newcommand{\pr}{\operatorname{pr}}
 \newcommand{\Prob}{\operatorname{Prob}}
 \newcommand{\pv}{\operatorname{p.v.}}
 \newcommand{\Re}{\operatorname{Re}}
+\newcommand{\rad}{\operatorname{rad}}
 \newcommand{\ran}{\operatorname{ran}}
 \newcommand{\rel}{\operatorname{rel}}
 \newcommand{\res}{\operatorname{res}}
 \newcommand{\Res}{\operatorname*{Res}}
 \newcommand{\rk}{\operatorname{rk}}
 \newcommand{\sgn}{\operatorname{sgn}}
+\newcommand{\Sing}{\operatorname{Sing}}
 \newcommand{\Spec}{\operatorname{Spec}}
 \newcommand{\spn}{\operatorname{span}}
 \newcommand{\Stab}{\operatorname{Stab}}
@@ -543,16 +604,6 @@
 \newcommand{\tr}{\operatorname{tr}}
 \newcommand{\Tr}{\operatorname{Tr}}
 
-\newcommand{\Ab}{\mathrm{Ab}}
-\newcommand{\grAb}{\mathrm{grAb}}
-\newcommand{\Ch}{\mathrm{Ch}}
-\newcommand{\CsAlg}{\mathrm{C^*Alg}}
-\newcommand{\CRing}{\mathrm{CRing}}
-\newcommand{\Grp}{\mathrm{Grp}}
-\newcommand{\Grpd}{\mathrm{Grpd}}
-\newcommand{\Set}{\mathrm{Set}}
-\newcommand{\Top}{\mathrm{Top}}
-\newcommand{\hTop}{\mathrm{hTop}}
 
 
 \makeatother

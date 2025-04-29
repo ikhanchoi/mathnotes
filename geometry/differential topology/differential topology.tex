@@ -9,10 +9,10 @@
 \tableofcontents
 
 
-
 \part{De Rham theory}
-\chapter{De Rham theorem}
-\chapter{\v Cech-de Rham complexes}
+\chapter{De Rham theory}
+\section{De Rham theorem}
+
 \chapter{Hodge theory}
 elliptic operators
 
@@ -146,11 +146,215 @@ Moreover, the index of $p$ is equal to
 
 
 \part{Topological quantum field theory}
-\chapter{Chern-Weil theory}
-\chapter{Three-dimensional TQFT}
-\chapter{Four-dimensional TQFT}
+\chapter{Chern-Simons theory}
 
-\part{Symplectic topology}
+
+
+\begin{prb}[Lie algebra-valued forms]
+Let $\pi:P\to M$ be a smooth principal $G$-bundle for a compact Lie group $G$.
+The three vector bundles $P\times\fg$, $TP$, $T^*P$ over $P$ and their section spaces
+\[\Gamma(P\times\fg)=\Omega^0(P,\fg),\qquad\Gamma(TP)=\fX(P),\qquad\Gamma(T^*P)=\Omega^1(P)\]
+admit smooth right $G$-actions $\ad^{-1}$, $dR$, $(dR^*)^{-1}$ respectively.
+The actions are not equivariant in the sense that they trivially act on the base space $P$.
+The right $G$-action on $\Omega^1(P,\fg)$ is given in the identification $\Omega^1(P,\fg):=\Omega^0(P,\fg)\otimes_P\Omega^1(P)$ with the tensor product bundle as $\ad^{-1}\otimes(dR^*)^{-1}$.
+
+\[((dR^*_h)^{-1}(dR^*_g)^{-1}\omega)(X)
+=\omega(dR_{g^{-1}}dR_{h^{-1}}X)
+=\omega(d(R_{(gh)^{-1}})X)
+=((dR^*_{gh})^{-1}\omega)(X)\]
+
+
+notation: if $F$ is a vector space, then
+\[\Omega^k(M,F):=\Gamma(M\times F)\otimes_M\Omega^k(M),\]
+and if $E$ is a vector bundle over $M$, then
+\[\Omega^k(M,E):=\Gamma(E)\otimes_M\Omega^k(M).\]
+
+ trace and determinant.
+
+Consider the universal enveloping algebra $U(\fg)$.
+Then, $\Omega(P,U(\fg))$ is an algebra bundle over $P$ because it is the tensor product of two algebra bundles over $P$.
+Concretely, if we denote the multiplication of $\omega_1\in\Omega^k(P,U(\fg))$ and $\omega_2\in\Omega^l(P,U(\fg))$ by $\omega_1\wedge\omega_2\in\Omega^{k+l}(P,U(\fg))$, then it is computed in the geometric wedge product convention as
+\[(\omega_1\wedge\omega_2)(X_1,\cdots,X_{k+l}):=\frac1{k!l!}\sum_{\sigma\in S_{k+l}}\sgn(\sigma)\omega_1(X_{\sigma(1)},\cdots,X_{\sigma(k)})\omega_2(X_{\sigma(k+1)},\cdots,X_{\sigma(k+l)})\]
+and we also define $[\omega_1,\omega_2]\in\Omega^{k+l}(P,U(\fg))$ such that
+\[[\omega_1,\omega_2](X_1,\cdots,X_{k+l}):=\frac1{k!l!}\sum_{\sigma\in S_{k+l}}\sgn(\sigma)[\omega_1(X_{\sigma(1)},\cdots,X_{\sigma(k)}),\omega_2(X_{\sigma(k+1)},\cdots,X_{\sigma(k+l)})]\]
+and
+\begin{align*}
+d\omega(X_0,X_1,\cdots,X_k):&=\frac1{k+1}\sum_{0\le i\le k}(-1)^iX_i(\omega(X_0,\cdots,\hat X_i,\cdots,X_k))\\
+&+\frac1{k+1}\sum_{0\le i<j\le k}(-1)^{i+j}\omega([X_i,X_j],X_0,\cdots,\hat X_i,\cdots,\hat X_j,\cdots,X_k).
+\end{align*}
+
+Let $\omega\in\Omega^1(P,\fg)$.
+We can embed $\Omega(P,\fg)\subset\Omega(P,U(\fg))$ to do computations.
+Then,
+\[(\omega\wedge\omega)(X,Y)=\omega(X)\omega(Y)-\omega(Y)\omega(X)=[\omega(X),\omega(Y)]\]
+and
+\[[\omega,\omega](X,Y)=[\omega(X),\omega(Y)]-[\omega(Y),\omega(X)]=2[\omega(X),\omega(Y)]\]
+imply that $\omega\wedge\omega=\frac12[\omega,\omega]\in\Omega^2(P,\fg)$.
+We also have
+\[d\omega(X,Y)=\frac12(X(\omega(Y))-Y(\omega(X)))+\frac12\omega([X,Y]).\]
+
+The coefficient conventions are not so important that coefficients are eventually cancelled when we write an equation of forms.
+\end{prb}
+
+
+\begin{prb}[Ehresmann connections]
+Let $\pi:E\to M$ be a smooth fiber bundle.
+An \emph{Ehresmann connection} on $E$ is a vector subbundle $HE\to E$ of the tangent bundle $TE$ such that $VE\oplus HE=TE$, where $VE\to E$ is defined by the kernel of $TE\to TM$.
+It is the choice of the splitting section of the exact sequence
+\[0\to VE\to TE\to\pi^*TM\to0.\]
+This horizontal subbundle $HE$ gives rise to a surjective linear bundle map $TE\to VE$ to the vertical subbundle, and also a cartesian square
+\[\begin{tikzcd}
+HE \rar{d\pi}\dar\pullback & TM\dar\\
+E \rar{\pi} & M,
+\end{tikzcd}\]
+so that we have a Lie algebra bundle map $\fX(M)\to\fX(E)$ with horizontal image, called the \emph{horizontal lift}.
+
+parallel transport
+\end{prb}
+
+\begin{prb}[Connection forms]
+Let $\pi:P\to M$ be a smooth principal $G$-bundle.
+Keep in mind that the vertical bundle $VP$ is canonically trivialized by the right $G$-equivariant bundle map $P\times\fg\to VP\subset TP$ constructed by the image of the injective linear bundle map
+\[P\times\fg\to T(P\times G)\to TP,\qquad\text{ over }P,\]
+where the first map is $P\times\fg\to T(P\times G):(u,A)\mapsto((u,e),(0,A))$ and the second map is the differential $T(P\times G)\to TP$ of the principal action $P\times G\to P$.
+This trivialization induces a right $G$-equivariant $P$-linear embedding $\Omega^0(P,\fg)\to\fX(P)$, and for a constant section $A\in\Omega^0(P,\fg)$ we can assign the \emph{fundamental vector field} $A^\#\in\fX(P)$.
+
+A \emph{connection form} is simply a right $G$-equivariant left inverse of this fundamental vector field map.
+More precisely, it is defined as a Lie algebra-valued 1-form $\omega\in\Omega^1(P,\fg)$ or a $P$-linear map $\omega:\fX(P)\to\Omega^0(P,\fg)$ which is
+\begin{enumerate}[(i)]
+\item right $G$-invariant in the sense that $\omega(dR_gX)=\ad_g^{-1}(\omega(X))\in\Omega^0(P,\fg)$ for all $X\in\fX(P)$,
+\item vertical in the sense that $\omega(A^\#)=A$ for constant sections $A\in\fg$.
+\end{enumerate}
+A connection form decompose the vector bundle $TP$ into the direct sum of $VP$ and the kernel, which gives rise to the corresponding horizontal subbundle.
+A connection form $\omega$ projects $X\in\fX(P)$ to the vertical one.
+\begin{parts}
+\item We can also define a connection as an right $G$-invariant Ehresmann connection $HP\to P$.
+
+\end{parts}
+\end{prb}
+\begin{pf}
+(a)
+Since a right $G$-equivariant Ehresmann connection gives rise to a linear map $TP\to VP$, so by composition with $VP\cong P\times \fg$, we get the corresponding connection form $TP\to P\times\fg$.
+\end{pf}
+
+
+\begin{prb}
+Note that $G$ is itself a principal $G$-bundle over a point.
+There is a natural connection form $\omega_G\in\Omega^1(G,\fg)$ called the \emph{Maurer-Cartan form}, defined such that $\omega_G:\fX(G)\to\Omega^0(G,\fg):X\mapsto(g\mapsto dL_g^{-1}(X|_g))$.
+The right $G$-invariance of the Maurer-Cartan form $\omega_G$ is due to
+\[\omega_G(dR_h(v))=dL_{gh}^{-1}dR_h(v)=dL_h^{-1}dR_hdL_g^{-1}(v)=\ad_h^{-1}\omega_G(v),\qquad v\in T_gG,\ h\in G.\]
+We can check $\omega_G$ is a connection form.
+\end{prb}
+
+\begin{prb}[Curvature form]
+Let $P$ be a principal $G$-bundle over $M$.
+The \emph{curvature form} of the connection form $\omega\in\Omega^1(P,\fg)$ can be defined either the covariant derivative of $\omega$ or the Cartan structural equation $\Omega=d\omega+\frac12[\omega,\omega]\in\Omega^2(P,\fg)$.
+
+The curvature form is horizontal in the sense that for every vertical vector field $X\in\fX(P)$ we have $\iota_X\Omega=0\in\Omega^1(P,\fg)$.
+\end{prb}
+
+
+
+\begin{prb}[Exterior covariant derivatives]
+Let $\pi:P\to M$ be a smooth principal $G$-bundle.
+Let $F$ be a faithful representation of $G$.
+We have a right $G$-equivariant trivial vector bundle $P\times F$ over $P$, where the action is given such that $(p,f)g=(pg,g^{-1}f)$, and the associated vector bundle $E:=P\times_GF$ over $M$.
+
+We say a $F$-valued form $\omega\in\Omega^k(P,F)$ is \emph{horizontal} if $\iota_X\omega=0$ for vertical $X\in\fX(P)$.
+We have
+\[\Omega^k(M,E)\cong\Omega_h^k(P,F)^G,\]
+where $\Omega_h^k(P,F)^G$ denotes the set of right $G$-invariant horizontal $F$-valued $k$-forms on $P$, since we have a cartesian square
+\[\begin{tikzcd}
+P\times F \pullback\rar\dar & E \dar \\ P \rar & M.
+\end{tikzcd}\]
+
+The exterior derivative $d:\Omega^k(P,F)^G\to\Omega^{k+1}(P,F)^G$ does not preserve horizontality in general.
+For a connection form $\omega\in\Omega^1(P,\fg)^G$, we can define the \emph{exterior covariant derivative} $\nabla:\Omega^0(M,E)\to\Omega^1(M,E)$ is defined such that we have a commutative diagram
+\[\begin{tikzcd}
+\Omega^k(M,E) \rar{\nabla}\dar[equal] & \Omega^{k+1}(M,E)\dar[equal]\\
+\Omega_h^k(P,F)^G \rar{d_\omega} & \Omega_h^{k+1}(P,F)^G,
+\end{tikzcd}\]
+where $d_\omega$ is defined by
+\[d_\omega\psi(X_0,\cdots,X_k):=d\psi(HX_0^*,\cdots,HX_k^*),\]
+where $HX_i=X_i-\omega(X_i)\in\fX(P)$ are horizontal components of $X_i\in\fX(P)$.
+The most important case is $k=0$.
+\[\nabla_Xs=\]
+\end{prb}
+
+
+
+\begin{prb}[Local expression of principal connections]
+Let $\pi:P\to M$ be a smooth principal $G$-bundle, where $G$ is a compact Lie group.
+Then, we can fix $\{\f_\alpha\}$ be a local trivialization of $\pi$ such that $\f_\alpha:\pi^{-1}(U_\alpha)\to U_\alpha\times G$ is right $G$-equivariant.
+Consider a bundle map
+\[(\Omega^1(U_\alpha,\fg),\ad^{-1}\otimes\id)\to(\Omega^1(\pi^{-1}(U_\alpha),\fg),\ad^{-1}\otimes(dR^*)^{-1}):A\mapsto\f_\alpha^*(\pr_2^*(\omega_G)+\pr_1^*(A))\]
+along the map $\pi^{-1}(U_\alpha)\to U_\alpha$, where $A\in\Omega^1(U_\alpha,\fg)$ and the vertical term $\omega_G$ denotes the Maurer-Cartan form.
+In the physical contexts of gauge theory such as the standard model, the 1-form $A\in\Omega^1(U_\alpha,\fg)$ is mainly used to describe principal connections.
+\begin{parts}
+\item The above local representation is a right $G$-equivariant affine bundle map.
+\item The above local representation is injective and the image is exactly the set of connection forms on the trivial principal $G$-bundle $\pi^{-1}(U_\alpha)$ over $U_\alpha$.
+\item What is the meaning of the expression $\nabla=d+A$?
+\item Local expression of $\Omega=d\omega+\frac12[\omega,\omega]$?
+\item What is the meaning of the expression $dA\wedge A+\frac23A\wedge A\wedge A$ and how can we write it in terms of principal connections.
+\end{parts}
+\end{prb}
+\begin{pf}
+(a)
+We interpret $A\in\Omega^1(U_\alpha,\fg)$ as $A:\fX(U_\alpha)\to\Omega^0(U_\alpha,\fg)$ so that for every $X\in\fX(U_\alpha)$,
+\[\]
+
+(c)
+
+Let $L\to M$ be a trivial line bundle.
+
+Let $s\in\Omega^0(M,L)$, so that $ds:\Omega^1(M,L)$ or
+\[ds:\fX(M)\to\Omega^0(M,L):X\mapsto X^\mu\partial_\mu s.\]
+
+Let $A\in\Omega^1(M,\fu(1))$ or
+\[A:\fX(M)\to\Omega^0(M,\fu(1)):X\mapsto X^\mu A_\mu.\]
+
+We have
+\[\nabla_Xs=(\nabla s)(X)=((d+A)s)(X)=X^\mu\partial_\mu s+X^\mu A_\mu s\]
+\end{pf}
+
+
+\[S:=\frac k{4\pi}\int_M\tr\left(dA\wedge A+\frac23A\wedge A\wedge A\right)\]
+
+In this case, the field equation is $F=0$.
+
+\section{Chern-Weil theory}
+
+
+\[(\Sym^n\fg^*)^G\cong(\Sym^n\ft^*)^W\cong H^{2n}(BG,\R).\]
+
+Given a principal $G$-bundle $P\to X$, this isomorphism induces a ring homomorphism
+\[\mathrm{CW}:(\Sym^*\fg^*)^G\to H^{\mathrm{ev}}(X,\R),\]
+called the \emph{Chern-Weil homomorphism}.
+In fact, when $X$ is a smooth manifold, then there is a direct construction of the Chern-Weil homomorphism using connections.
+Choose any connection $\omega$ on $P$, and let $\Omega$ be the curvature.
+
+
+
+\[(\Sym^n\fg^*)^G\otimes\Omega^{2n}(P,\fg^{\otimes n})\to\Omega^{2n}(P)\]
+
+\section{Chern-Simons invariants}
+
+
+\section{Differential cohomology}
+
+\chapter{}
+\chapter{}
+
+
+
+
+\part{Index theory}
+\chapter{}
+\chapter{}
+\chapter{}
+
+
+\part{Symplectic geometry}
 \chapter{}
 \chapter{}
 \chapter{}

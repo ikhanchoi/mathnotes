@@ -1,0 +1,115 @@
+\documentclass{../../../small}
+\usepackage{../../../ikhanchoi}
+
+\newcommand{\Ell}{\mathrm{Ell}}
+\newcommand{\Sh}{\mathrm{Sh}}
+
+\begin{document}
+
+\title{Shimura Varieties}
+\author{Ikhan Choi\\Lectured by \\University of Tokyo, Spring 2024}
+\maketitle
+
+\newpage
+\section{Day 1: April 11}
+\subsection{Modular curves}
+[DS05]
+Let $\cH$ be the upper half plane.
+For $N\ge1$, let $\Gamma(N):=\ker(\SL_2(\Z)\to\SL_2(\Z/n\Z))$ and $Y(N):=\Gamma(N)\setminus\cH$ be the left quotient.
+Then, $Y(N)$ has a Riemann surface structure, and is called the \emph{modular curve} of level $\Gamma(N)$.
+
+\begin{rmk*}
+If $N\ge2$, then the projection $\cH\to Y(N)$ is a local homeomorphism, so that $Y(N)$ is a Riemann surface.
+\end{rmk*}
+
+\begin{defn*}
+For an elliptic curve $E$ over $\C$, a \emph{level $\Gamma(N)$-structure} is a pair $(P,Q)$ of generators of $E[N]$ satisfying $e_N(P,Q)=e^{\frac{2\pi i}N}$, where $e_N:E[N]\times E[N]\to\mu_N$ is the Weil pairing.
+We denote by $\Ell(\Gamma(N))$ the set of isomorphism classes of elliptic curves over $\C$ with level $\Gamma(N)$-structure.
+\end{defn*}
+
+For $\tau\in\cH$, let $E_\tau:=\C/{\tau\Z\oplus\Z}$.
+
+\begin{prop*}
+$\tau\mapsto(E_\tau,([N^{-1}],[-\tau N^{-1}])$ is bijective and induces $Y(N)\to\Ell(\Gamma(N))$.
+\end{prop*}
+\begin{rmk*}
+$(E_\tau,([N^{-1}],[-\tau N^{-1}]))\cong(E_{-\tau^{-1}},([-\tau^{-1}N],[N^{-1}]))$.	
+\end{rmk*}
+
+\begin{rmk*}
+If $N\ge3$, then $Y(N)$ can be regarded as the moduli space of elliptic curves with $\Gamma(N)$-level structure.
+\end{rmk*}
+
+
+Let $\cH^\pm:=\C\setminus\R$.
+Then, $\GL_2(\R)$ acts on $\cH^\pm$.
+Let $\A^\infty:=\hat\Z\otimes_\Z\Q$ be the finite adele ring.
+For a compact open subgroup $K\subset\GL_2(\A^\infty)$, define the double coset space
+\[\Sh_K:=\GL_2(\Q)\setminus\cH^\pm\times\GL_2(\A^\infty)/K.\]
+For $N\ge3$, let $K(N):=\ker(\GL_2(\hat\Z)\to\GL_2(\Z/N\Z))$.
+\begin{prop*}
+We have a bijection
+\[\coprod_{a\in(\Z/N\Z)^\times}\Gamma(N)\setminus\cH\to\Sh_{K(N)}:[\tau]_a\mapsto[(\tau,\mat{\hat a&0\\0&1})],\]
+where $\hat a\in\hat\Z$ is the lift of $a$.
+\end{prop*}
+\begin{rmk*}
+To give a moduli interpretation on $\Sh_{K(N)}$, we can remove the condition $e_N(P,Q)=e^{2\pi i/N}$ in the definition of level structures.
+More generally, $\Sh_K$ has a natural scheme structure over $\C$, called the \emph{Shimura variety of level $K$ for $(\GL_2,\cH^\pm)$}.
+\end{rmk*}
+
+
+
+Let $\Ell_K$ be the set of isogeny classes of $(E,\eta K)$, where $E$ is a complex elliptic curve and
+\[\eta:(\A^\infty)^2\xrightarrow{\sim}V^\infty(E):=(\lim_nE[n])\otimes_\Z\Q.\]
+Fix $[(E,\eta K)]\in\Ell_K$.
+
+Take $\psi:H_1(E,\Q)\xrightarrow{\sim}\Q^2$.
+Then, by the Hodge decomposition $H^1(E,\C)\cong H^1(E,\cO_E)\oplus H^0(E,\Omega_E)$, we can define a unique $\tau_\psi\in\cH^\pm$ such that $\ker\rho_\psi=\C(\tau_\psi,1)$, where
+\[\rho_\psi:\C^2\to H_1(E,\Q)\otimes_\Q\C\cong H_1(E,\C)\cong H^1(E,\C)^*\cong H^1(E,\cO_E)^*\oplus H^0(E,\Omega_E)^*\twoheadrightarrow H^0(E,\Omega_E)^*.\]
+Define $g_{\eta,\psi}\in\GL_2(\A^\infty)$ by
+\[(\A^\infty)^2\xrightarrow{\eta}V^\infty(E)\cong(\lim_nE[n])\otimes_\Z\Q\cong(\lim_nH_1(E,\Z/n\Z))\otimes_\Z\Q\cong\H_1(E,\Q)\otimes_\Q\A^\infty\xrightarrow{\psi\otimes1}(\A^\infty)^2.\]
+
+Now, it is known that we have a bijection
+\[\Phi:\Ell_K\to\Sh_K:[(E,\eta K)]\mapsto[(\tau_\psi,g_{\eta,\psi})].\]
+Then, $\cH^\pm\times\GL_2(\A^\infty)/K$ can be seen as the set of all isogeny classes of $(E,\eta K,\psi)$, and we have the following diagram:
+\[\begin{tikzcd}
+\Sh_K&\cH_\pm\times\GL_2(\A^\infty)/K\rar\lar&\cH^\pm
+\end{tikzcd}\]
+\[\begin{tikzcd}
+\left[(E,\eta K)\right]&\left[(E,\eta K,\psi)\right]\ar[mapsto]{r}\ar[mapsto]{l}&\tau_\psi
+\end{tikzcd}\]
+
+
+\subsection{$\cH^\pm$ for the theory of Shimura varieties}
+
+Let $\S$ be the \emph{Deligne torus}, defined as the Weil restriction $\mathrm{Res}_{\C/\R}\G_m$.
+This is a group scheme over $\R$ characterized such that for $\R$-algebra $R$, we have $\S(R)=\G_m(\C\otimes_\R R)\cong(\C\otimes_\R R)^\times$.
+For a real vector space $V$, the homomorphism $h:\S\to\GL(V)$ corresponds to the Hodge structure on $V$ such that $h(z_1,z_2)v=z_1^{-p}z_2^{-q}v$ if $v\in V^{p,q}$.
+
+Let $h:\S\to\GL_{2,\R}:a+bi\mapsto(\mat[small]{a&-b\\b&a})$.
+If we let $X$ be a $\GL_2(\R)$-conjugacy class of $h$, then $X\to\cH^\pm:\ad(g)h\mapsto gi$ is bijective.
+Since $\C\otimes_\R\C\cong\C^2:a\otimes b\mapsto(ab,a\bar b)$, we have $\S_\C\cong\G_{m,\C}\times\G_{m,\C}$, and we can define
+\[\mu_h:\G_{m,\C}\xrightarrow{z\mapsto(z,1)}\G_{m,\C}^2\cong\S_\C\xrightarrow{h\otimes\C}\GL_{2,\C}.\]
+Let $M_X$ be the $GL_2(\C)$-conjugacy classes of $\mu_h$, and consider $X\to M_X:\ad(g)h\mapsto\ad(g)\mu_h$.
+For $\mu\in M_X$, by associate a one-dimensional subspace of $\C^2$ such that $\mu(z)$ acts as the scaling by $z$, we have $M_X\to\P^1(\C)$.
+Therefore, we can put a complex structure on $X$ by $X\to\P^1(\C)$, which is compatible with the one of $\cH^\pm$.
+
+For $\sigma\in\Aut(\C/\Q)$ and $\mu\in M_X$, we determine $\sigma(\mu)$ such that
+\[\begin{tikzcd}
+\G_{m,\C}\otimes_{\C,\sigma}\C \rar{\mu_{\otimes_{\C,\sigma}\C}}\dar[equal] & \GL_{2,\C}\otimes_{\C,\sigma}\C\dar[equal]\\
+\G_{m,\C} \rar{\sigma(\mu)} & \GL_{2,\C}
+\end{tikzcd}\]
+commutes.
+Let $\sigma(M_X)$ be the $\GL_2(\C)$-conjugacy class of $\sigma(\mu)$.
+The fixed field determined by $\{\sigma\in\Aut(\C/\Q):\sigma(M_X)=M_x\}$ is called the \emph{relfex field} of $M_X$.
+In the case we have seen, the reflex field of $M_X$ is $\Q$, which means that we have a standard model of $\Sh_K$ on $\Q$.
+
+
+Matome:
+\[\begin{tikzcd}
+X\times\GL_2(\A^\infty) \rar[->>]\dar\ar{dr} & X \rar[>->]\dar[>->] & M_X \ar{dl} \\
+\Sh_K &\P^1(\C)&
+\end{tikzcd}\]
+
+
+\end{document}

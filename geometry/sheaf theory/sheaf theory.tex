@@ -2,6 +2,10 @@
 \usepackage{../../ikhanchoi}
 
 
+\newcommand{\PSh}{\mathrm{PSh}}
+\newcommand{\Sh}{\mathrm{Sh}}
+\newcommand{\Open}{\mathrm{Open}}
+
 \begin{document}
 \title{Sheaves}
 \author{Ikhan Choi}
@@ -17,25 +21,32 @@
 
 
 
-A subset $F\subset E$ is defines a \'etale subbundle if and only if $F$ is open in $E$.
-A covering space is nothing but a locally constant local homeomorphism.
-
-
 
 \begin{prb}[Sheaves]
-Let $X$ be a topological space.
-The category $\mathrm{Open}(X)$ is the category defined such that objects are open sets of $X$ and morphisms are inclusions.
-A \emph{presheaf} (of sets) on $X$ is a contravariant functor $\cF:\mathrm{Open}(X)^\op\to\mathrm{Set}$.
-The category $\mathrm{PSh}(X)$ is defined such that objects are presheaves of sets on $X$ and morphisms are natural transformations.
-For a presheaf $\cF$ on $X$, the set $\cF_x:=\colim_{U\ni x}\cF(U)$ and its element is called a \emph{stalk} and a \emph{germ} at $x$ respectively.
+Let $X$ be a topological space, which has a natural category $\Open(X)$ whose objects are open sets of $X$ and morphisms are inclusions.
+Let $\cC$ be a category, set to be the category of sets if no mentioned, but we will see also the case when $\cC$ is the category of abelian groups or commutative unital rings.
+A \emph{presheaf} of $\cC$ on $X$ is just a contravariant functor $\cF:\Open(X)^\op\to\cC$.
+The category $\PSh(X)$ is defined such that objects are presheaves of sets on $X$ and morphisms are natural transformations.
 
-A \emph{sheaf} (of sets) on $X$ is a presheaf on $X$ such that for every cover $\{U_i\to U\}$ of an open set $U$ in $X$ we have a bijection
-\[\cF(U)\xrightarrow{\sim}\mathrm{eq}\left(\prod_i\cF(U_i)\rightrightarrows\prod_{i,j}\cF(U_i\cap U_j)\right)=\left\{(s_i)\in\prod_i\cF(U_i):s_i|_{U_i\cap U_j}=s_j|_{U_i\cap U_j}\right\}.\]
-The injectivity and the surjectivity are sometimes referred as the \emph{locality axiom} and the \emph{gluing axiom}.
-The category $\mathrm{Sh}(X)$ of sheaves on $X$ is defined to be the full subcategory of $\mathrm{PSh}(X)$.
+For a point $x\in X$ and a presheaf $\cF$ of a filtered cocomplete category $\cC$ on $X$, the colimit $\cF_x:=\colim_{U\ni x}\cF(U)$ and its element is called a \emph{stalk} and a \emph{germ} at $x$ respectively.
+
+Note that the set of morphisms $\{U_i\to U\}$ in $\Open(X)$ is an open cover of $U$ if and only if $U$ is given by the coequalizer in the category $\mathrm{Set}$
+\[\coprod_{i,j}U_i\cap U_j\rightrightarrows\coprod_iU_i\to U.\]
+A \emph{sheaf} of $\cC$ on $X$ is a presheaf of $\cC$ on $X$ such that for every open cover $\{U_i\to U\}$ of any open subset $U$ of $X$ $\cF(U)$ is given by the equalizer in $\cC$
+\[\cF(U)\to\prod_i\cF(U_i)\rightrightarrows\prod_{i,j}\cF(U_i\cap U_j).\]
+It is equivalent to the bijectivity of
+\[\cF(U)\to\left\{(s_i)\in\prod_i\cF(U_i):s_i|_{U_i\cap U_j}=s_j|_{U_i\cap U_j}\right\},\]
+and the injectivity and the surjectivity are referred as the \emph{locality axiom} and the \emph{gluing axiom}.
+The category $\Sh(X)$ of sheaves on $X$ is defined to be the full subcategory of $\PSh(X)$.
+
+Let $\mathrm{LH}(X)$ be the category of local homeomorphisms over $X$.
+We construct a functor
+\[\PSh(X)\to\mathrm{LH}(X)\to\Sh(X)\]
+called the \emph{sheafification}, which is left adjoint to the inclusion.
+The first functor to $\mathrm{LH}(X)$ is called the \emph{\'etale space construction}.
 \begin{parts}
-\item There is a functor $\mathrm{PSh}(X)\to\mathrm{LH}(X):\cF\mapsto(\coprod_{x\in X}\cF_x\to X)$. This functor is called the \emph{\'etale space construction}.
-\item There is an equivalence $\mathrm{LH}(X)\to\mathrm{Sh}(X):(Y\to X)\mapsto(U\mapsto\Gamma(U,Y))$. The composition of the \'etale space construction is equal to the \emph{sheafification}.
+\item There is a functor $\PSh(X)\to\mathrm{LH}(X):\cF\mapsto(\coprod_{x\in X}\cF_x\to X)$.
+\item There is an equivalence $\mathrm{LH}(X)\to\Sh(X):(Y\to X)\mapsto(U\mapsto\Gamma(U,Y))$.
 \end{parts}
 \end{prb}
 \begin{pf}
@@ -57,22 +68,47 @@ If $\{s_i\}$ satisfies $s_i|_{U_i\cap U_j}=s_j|_{U_i\cap U_j}$ for all $i,j$, th
 
 (?)
 Sheafification of other target categories(I do not know the exact condition for it) can also be described as follows:
-since the condition for sheaves is conditioned by limits, the fully faithful inclusion $\mathrm{Sh}(X)\to\mathrm{PSh}(X)$ preserves limits, so it admits a left adjoint $\cF\mapsto\cF^\sharp$.
+since the condition for sheaves is conditioned by limits, the fully faithful inclusion $\Sh(X)\to\PSh(X)$ preserves limits, so it admits a left adjoint $\cF\mapsto\cF^\sharp$.
 One of the explicit construction is as follows:
 \[\cF^\natural(U):=\colim_{\{U_i\to U\}\in J(U)}\mathrm{eq}\left(\prod_i\cF(U_i)\rightrightarrows\prod_{i,j}\cF(U_i\cap U_j)\right)\]
 and $\cF^\sharp:=\cF^{\natural\natural}$.
+
+
+
+(?)
+
+A subset $F\subset E$ is defines a \'etale subbundle if and only if $F$ is open in $E$.
+A covering space is nothing but a locally constant local homeomorphism.
+
 
 \end{pf}
 
 \begin{prb}[Morphism of sheaves]
 epic and monic.
 The description for $\cF(U)$ and the description for $\cF_x$.
+
+Let $f:X\to Y$ be a continuous map between topological spaces.
+\end{prb}
+
+\begin{prb}[Image functors]
+We have two naturally associated functors between the categories of sheaves given as follows.
+The \emph{direct image functor} $f_*:\Sh(X)\to\Sh(Y)$ is defined by
+\[\begin{tikzcd}[column sep=tiny]
+\Open(X)^\op \ar{dr}
+\ar[Rightarrow, shorten >=10, shorten <=10, shift right=4, swap]{rr}{f_*}
+&& \Open(Y)^\op \ar[swap]{ll}{f^{-1}}\ar{dl}\\
+&\mathrm{Set}
+\end{tikzcd}\]
+and the \emph{inverse image functor} or the \emph{pullback functor} $\Sh(X)\leftarrow\Sh(Y):f^*$ is defined by the left adjoint functor to $f_*$.
+
+\begin{parts}
+\item $f_*$ preserves small limits, and $f^*$ preserves small colimits.
+\item $f^*$ is left exact in that it preserves every finite limits.
+\end{parts}
 \end{prb}
 
 
 \begin{prb}[Operations on sheaves]
-inverse image functor(restriction, pullback)
-direct image functor(pushforward)
 Whitney sum, constant sheaf, subsheaf
 
 \'etale space descriptions
@@ -83,16 +119,19 @@ Whitney sum, constant sheaf, subsheaf
 
 
 \begin{prb}[Sheaves of rings]
-Let $X$ be a topological space.
+Every ring is assumed to be commutative and unital.
+A \emph{ringed space} is a topological space $X$ together with a sheaf $\cO_X$ of rings on $X$.
+A \emph{morphism} between ringed spaces is a continuous map $f:Y\to X$ together with a natural transform $f^\sharp:\cO_X\to f_*\cO_Y$.
 
-A \emph{ringed space} is a pair $(X,\cO_X)$ of a topological space $X$ and a sheaf $\cO_X$ of rings on $X$.
+A \emph{locally ringed space} is a ringed space $X$ on which every stalk is a local ring.
+A \emph{morphism} between locally ringed spaces $X$ and $Y$ is a morphism $f$ of ringed spaces such that the ring homomorphism $f^\sharp_x:\cO_{Y,f(x)}\to f_*\cO_{X,x}$ between local rings preserves the maximal ideal at each $x\in X$.
 
 \end{prb}
 
 \begin{prb}[Sheaves of module]
-Let $X$ be a topological space.
+Let $X$ be a ringed space.
 
-A sheaf $\cF_X$ of $\cO_X$-modules is called \emph{locally finite} or \emph{finite type} if there is an open cover $\{U_i\}$ of $X$ together with surjective ring homomorphisms $\cO_X(U_i)\twoheadrightarrow\cF_X(U_i)$ for all $i$.
+An $\cO_X$-module $\cF_X$ is called \emph{locally finite} or \emph{finite type} if there is an open cover $\{U_i\}$ of $X$ together with surjective ring homomorphisms $\cO_X(U_i)^p\twoheadrightarrow\cF_X(U_i)$ for all $i$.
 The section space $\Gamma(U,\cO_X)$ will be also denoted by $\cO_X(U)$.
 \begin{parts}
 \item The category of sheaves of modules over $\cO_X$ is abelian.
@@ -137,9 +176,16 @@ Then, $K_2$ is finitely generated by the coherence of $\cO'$, $K_1$ is finitely 
 
 Note that affine schemes, complex model spaces, Euclidean open subsets are all locally ringed spaces.
 
-A \emph{scheme} is a ringed space modeled on affine schemes.
-A \emph{complex (analytic) space} is a Hausdorff ringed space modeled on complex model spaces.
-A \emph{manifold} is a second countable Hausdorff ringed space modeled on Euclidean open subsets $(U,C(U))$.
+
+A \emph{scheme} is a locally ringed space such that affine open subsets form a basis.
+
+A \emph{complex (analytic) space} is a Hausdorff locally ringed space such that open complex model spaces form a basis...?
+
+A \emph{manifold} is a Hausdorff locally ringed space such that Euclidean open subsets $(U,C(U,\R))$ form a basis.
+
+
+
+In the case of manifolds, a morphism of locally rigned spaces is determined by the underlying continuous map. (maybe)
 
 They are all locally ringed.
 For the latter two, the residue field at every stalk is isomorphic to $\C$ or $\R$.
@@ -148,6 +194,38 @@ For schemes over a field $k$, the relation between residue fields and $k$ is rel
 
 \section{}
 
+
+\chapter{Stacks}
+
+
+
+\chapter{Sites}
+
+\begin{prb}
+Let $\cT$ be a category.
+A \emph{sieve} over $U\in\cT$ is a subset $\{U_i\to U\}$ of $\cT/U$ that is stable under composition in $\cT$.
+If $\cT$ is locally small, then it is equivalently a subfunctor of the representable functor $\Hom(-,U):\cT^\op\to\mathrm{Set}$.
+(a subfunctor means that $S:\cT^\op\to\mathrm{Set}$ has $S(U_i)\subset\Hom(U_i,U)$ and each $U_j\to U_i$ in $\cT$ gives $S(U_i)\to S(U_j)$, if we define $\{U_i\to U\}:=\bigcup_{U_i\in\cT}S(U_i)$, then $S$ is closed under composition in $\cT$.)
+
+A \emph{Grothendieck topology} or just a \emph{topology} on $\cT$ is a datum that indicates which sieve is a \emph{covering sieve}, such that
+\begin{enumerate}[(i)]
+\item $\{U\to U\}$ is a covering sieve,
+\item if $\{U_i\to U\}$ is a covering sieve and if $V\to U$ admits $V_i:=U_i\times_UV$ for all $U_i\to U$ in the sieve, then $\{V_i\to V\}$ is a covering sieve,
+\item if $\{U_i\to U\}$ is a covering sieve and $\{U_{ij}\to U_i\}$ is a covering sieve for each $i$, then $\{U_{ij}\to U\}$ is a covering sieve.
+\end{enumerate}
+
+A category equipped with a topology is called a \emph{site}.
+
+equivalence between topologies?
+\end{prb}
+
+\begin{prb}
+Let $\cS$ be a site.
+A morphism $V\to U$ in $\cS^\wedge$ with $U\in\cS$ is called a \emph{local epimorphism} if $\{V_i\to V\to U\}$ is a covering sieve.
+
+\end{prb}
+
+\chapter{Topoi}
 
 
 \end{document}

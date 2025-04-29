@@ -1,8 +1,5 @@
 
 
-derived algebraic geometry and motivic theory
-chromatic homotopy theory
-algebraic K-theory
+chromatic homotopy theory?
 prismatic cohomology?
-
-condensed sets
+condensed mathematics?

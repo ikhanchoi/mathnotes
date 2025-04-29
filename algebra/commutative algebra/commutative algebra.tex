@@ -2,13 +2,20 @@
 \usepackage{../../ikhanchoi}
 
 
+\newcommand{\hgt}{\operatorname{ht}}
+\renewcommand{\fd}{\operatorname{fd}}
+\renewcommand{\pd}{\operatorname{pd}}
+\newcommand{\edim}{\operatorname{edim}}
+\newcommand{\gldim}{\operatorname{gldim}}
+\newcommand{\depth}{\operatorname{depth}}
+
 \begin{document}
 \title{Commutative Algebra}
 \author{Ikhan Choi}
 \maketitle
 \tableofcontents
 
-\part{Affine algebraic geometry}
+\part{Affine schemes}
 \chapter{Nullstellensatz}
 
 \section{Radicals}
@@ -28,13 +35,21 @@ $\Spec(\C+(x^2-1)\C[x])=\{0,\C\}$.
 \chapter{Primary decomposition}
 
 \section{Primary ideals}
+\begin{prb}[Primary ideals]
+Let $A$ be a ring.
+An ideal $\fq$ of $A$ is called \emph{primary} if $A/\fq$ is non-zero and every zero-divisor of $A/\fq$ is nilpotent.
+Let $\fq$ be a primary ideal of $A$.
+\begin{parts}
+\item The radical $r(\fq)$ is the smallest prime ideal of $A$ containing $\fq$.
+\end{parts}
+\end{prb}
 
 \section{Uniqueness theorems}
 Noether-Lasker
 
 \section{Gr\"obner basis}
 
-\begin{prb}[Buchberger's algorithm]
+\begin{prb}[Buchberger algorithm]
 \end{prb}
 
 \section*{Exercises}
@@ -47,8 +62,19 @@ primary vs prime radical
 
 
 \chapter{Localization}
+\section{}
+
+For $f\in A$, $A_f:=A[f^{-1}]$.
+
+For $\fp\in\Spec A$, $A_\fp:=(A\setminus\fp)^{-1}A$ is a local ring.
+
 local ring
 extension of ideals
+
+
+Since $S^{-1}A$ is a flat $A$-module for a multiplicative set $S\subset A$, the localization functor $S^{-1}:=-\otimes_AS^{-1}A:\Mod_A\to\Mod_{S^{-1}A}$ is always exact.
+
+\[\Spec(A_\fp)\leftrightarrow\{\fq\in\Spec A:\fq\subset\fp\}.\]
 
 \section{Valuation}
 
@@ -63,8 +89,90 @@ dedekind domains
 
 \chapter{}
 
-\begin{prb}[Krull's Hauptidealsatz]
+
+\begin{prb}
+Let $A$ be a ring.
+A strictly increasing finite sequence $(\fp_i)_{i=0}^n$ of prime ideals of $A$ is called a \emph{prime chain} of length $n$ in $A$.
+The \emph{height} of a prime ideal $\fp$ of $A$ is the supremum of the length of prime chains containing $\fp$:
+\[\hgt(\fp):=\sup\{n:\fp_0\subsetneq\cdots\subsetneq\fp_n=\fp,\ \fp_i\in\Spec A\}.\]
+The \emph{Krull dimension} or simply the \emph{dimension} of $A$ is the supremum of the heights of prime ideals of $A$:
+\[\dim A:=\sup\{\hgt(\fp):\fp\in\Spec A\}.\]
 \end{prb}
+
+\begin{prb}[Krull Hauptidealsatz]
+\end{prb}
+
+\begin{prb}[Hilbert polynomials]
+\end{prb}
+
+
+
+\begin{prb}[Minimal number of generators of modules]
+The \emph{embedding dimension} of $A$ is defined $\edim A:=\dim_{A/\fm}\fm/\fm^2$.
+
+For a noetherian local ring $A$, $\edim A=\dim A$ is the minimal number of generators of $\fm$.
+\end{prb}
+
+
+
+\chapter{Homological dimensions}
+
+
+
+
+\begin{prb}[First change of rings]
+Let $A$ be a ring, and let $A':=A/xA$ be the quotient for a regular element $x\in A$.
+If $M'$ is a non-zero $A'$-module with $\pd_{A'}(M')<\infty$, then $\pd_A(M')=\pd_{A'}(M')+1$.
+\end{prb}
+\begin{pf}
+We introduce the inductive hypothesis on $p':=\pd_{A'}(M')$.
+Consider a short exact sequence of $A'$-modules
+\[0\to K'\to F'\to M'\to0,\]
+where $F'$ is a free $A'$-module.
+
+
+On the other hand, we get $\pd_{A'}(K')=p'-1$ because for any $A'$-module $N'$ we have $\Ext_{A'}^i(K',N')=0$ for $i\ge p'$ by the long exact sequence of $A'$-modules
+\[0\cong\Ext_{A'}^i(F',N')\to\Ext_{A'}^i(K',N')\to\Ext_{A'}^{i+1}(M',N')\cong0,\qquad i\ge p'.\]
+Therefore, the inductive hypothesis deduces
+\[\pd_A(M')=\pd_A(K')+1=\pd_{A'}(K')+1=(p'-1)+1=p'.\]
+\end{pf}
+
+$\gldim A=\pd_A(A/\fm)$.
+
+
+
+
+\begin{prb}
+Let $A$ be a noetherian local ring.
+
+Let $d:=\dim A$, $g:=\gldim A=\pd_A(k)$, and $e:=\edim A$.
+\begin{parts}
+\item If $A$ is regular, then $A$ has finite global dimension.
+\item If $A$ has finite global dimension, then $A$ is regular.
+\end{parts}
+\end{prb}
+\begin{pf}
+(a)
+
+(b)
+It suffices to show $e=d$.
+
+
+We want to find $x\in A$ such that
+\begin{enumerate}[(i)]
+\item $x$ is regular in $A$ with $\gldim A'<\infty$,
+\item $x\in\fm\setminus\fm^2$.
+\end{enumerate}
+where we denote by $A':=A/xA$ the quotient local ring with the maximal ideal $\fm'$ and the residue field $k'=k$.
+Since the first condition implies $d=d'+1$ by the first change of rings and the second condition implies that
+
+$d'=\pd_{A'}(k)<\infty$ implies that we can apply the first change of rings.
+
+
+
+We have , $d'=e'$ by the inductive hypothesis, and $e'+1=e$ by the fact $\ker(\fm/\fm^2\to\fm'/\fm'^2$
+
+\end{pf}
 
 
 

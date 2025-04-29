@@ -174,7 +174,7 @@ symmetric, exterior
 
 \part{Lie algebras}
 \chapter{Semisimple Lie algebras}
-\section{Linear Lie algebras}
+\section{}
 
 group acts on an algebra $A$(e.g. $\End(V)$).
 then its group algebra acts on $A$.
@@ -220,9 +220,6 @@ Automorphisms of the form $\exp(\ad x)$ with nilpotent $\ad x$ generates a norma
 
 
 
-
-
-\section{Solvable Lie algebras}
 
 
 \begin{prb}[Solvable and nilpotent Lie algebras]
@@ -302,56 +299,74 @@ For a representation $\pi:\fg\to\fgl(V)$, then a weight of $V$ is a linear funct
 
 
 \begin{prb}[Jordan-Chevalley decomposition]
-Let $\char\F$ be arbitrary.
-We say $x\in\End(V)$ is called \emph{semisimple} if the roots of its minimal polynomial are all distinct.
-If $\F$ is algebraically closed, $x\in\End(V)$ is semisimple if and only if it is diagonalizable.
-Let $x\in\End V$.
+Let $V$ be a finite-dimensional vector space over a field $K$.
+Let $x\in\End(V)$.
 Even if $\F$ is not algebraically closed, we have a generalization of Jordan decomposition as follows:
+
+$x=x_s+x_n$ iff $x$ is the product of separable polynomials.
 \begin{parts}
-\item There exist unique $x_s,x_n\in\End V$ such that $x=x_s+x_n$ and $x_s$ semisimple, $x_n$ nilpotent.
+\item There exist unique $x_s,x_n\in\End(V)$ such that $x=x_s+x_n$ and $x_s$ semisimple, $x_n$ nilpotent.
 \item $x_s$ and $x_n$ are polynomials in $x$.
 \item If $x$ maps $B$ to $A$, then $x_s$ and $x_n$ also map $B$ to $A$ for subspaces $A\le B\le V$.
 \end{parts}
 \end{prb}
+\begin{pf}
 
-\begin{prb}[Cartan's criterion]
+\end{pf}
+
+\begin{prb}[Cartan criterion]
 We will show a powerful criterion for solvability.
+Let $\fg$ be a finite-dimensional Lie algebra over a field $\F$, and consider a finite-dimensional faithful representation $\fg\subset\fgl(V)$.
 \begin{parts}
-\item Let $A\subset B$ be two subspaces of $\fgl(V)$, $V$ finite dimensional. Let
-\[M:=\{x\in\fgl(V):[x,B]\subset A\}.\]
-If $x\in M$ satisfies $\Tr(xy)=0$ for all $y\in M$, then $x$ is nilpotent.
-\item Let $L\subset\fgl(V)$, $V$ finite dimensional. If $\Tr(xy)=0$ for all $x\in[L,L]$ and $y\in L$, then $L$ is solvable.
+\item If $\tr(xy)=0$ for all $x\in[\fg,\fg]$ and $y\in \fg$, then $\fg$ is solvable.
 \end{parts}
 \end{prb}
+\begin{pf}
+Since the nilpotency of $[\fg,\fg]$ implies the solvability of $\fg$, it suffices to show the derived Lie algebra $[\fg,\fg]$ is nilpotent.
 
 
-\section{Semisimple Lie algebras}
+
+\item Let $A\subset B$ be two linear subspaces of $\fgl(V)$. Let
+\[M:=\{x\in\fgl(V):[x,B]\subset A\}.\]
+If $x\in M$ satisfies $\tr(xy)=0$ for all $y\in M$, then $x$ is nilpotent.
+\end{pf}
+
+
 
 
 \begin{prb}[Levi decomposition]
-Therefore, $L$ admits a unique maximal solvable ideal, called \emph{radical}.
-If the radical is trivial, then we say $L$ is \emph{semisimple}.
+
+Therefore, $\fg$ admits a unique maximal solvable ideal, called \emph{radical}.
 Since the center is a solvable ideal, the center of a semisimple Lie algebra is trivial.
+
+A canonical example of a solvable Lie algebra is the Lie algbera of upper triangular matrices.
+The radical of $\fgl(n,K)$ is $\fsl(n,K)$.($K$ cahracteristic zero?) Upper triangular matrices do not form an ideal of $\fgl(n,K)$.
+
+We have $[\ft,\ft]=\fn$, $\ft=\fd\otimes\fn$. $\ft$ is a solvable subalgebra of $\fgl$, but not a solvable ideal.
+
+$\fsl(n,\F)$ is simple if $\char K=0$.
 \begin{parts}
-\item A canonical example of a solvable Lie algebra is the Lie algbera of upper triangular matrices.
-\item The radical of $\fgl(n,\F)$ is $\fsl(n,\F)$.($\F$ cahracteristic zero?) Upper triangular matrices do not form an ideal of $\fgl(n,\F)$.
-\item $[\ft,\ft]=\fn$, $\ft=\fd\otimes\fn$. $\ft$ is a solvable subalgebra of $\fgl$, but not a solvable ideal.
-\item $\fsl(n,\F)$ is simple if $\char\F=0$.
+\item $\fg$ is semi-simple if and only if the radical is trivial.
 \end{parts}
 \end{prb}
 
+
 \begin{prb}[Killing form]
-Let $L$ be a Lie algebra.
-\[\kappa(x,y):=\Tr(\ad x\ad y)\]
-is a symmetric bilinear form on $L$, which is called the \emph{Killing form} on $L$, i.e. it is the trace form for the adjoint representation.
+Let $\fg$ be a finite-dimensional Lie algebra over a field $\F$.
+Since an endomorphism algebra of a finite-dimensional vector space over a field has a canonical symmetric bilinear form defined called the trace form, the adjoint representation $\ad:\fg\to\fgl(\fg)$ induces a symmetric bilinear form $\kappa:\fg\times\fg\to\F$ called the \emph{Killing form} such that $\kappa(x,y):=\tr(\ad x\ad y)$ for $x,y\in\fg$.
 \begin{parts}
-\item On an ideal $I\subset L$, the Killing form is given by restriction.
 \item The kernel of $\kappa$ is contained in the radical of $L$, and triviality is equivalent; $L$ is semisimple if and only if $L$ is non-degenerate. (Here we use Cartan's criterion)
 \item If $L$ is semisimple, then it is the direct sum of simple ideals.
 \item If $L$ is semisimple, then every derivation is inner.
 \item If $L$ is semisimple, then $L=[L,L]$ and every subalgebras and quotients are semisimple.
 \end{parts}
 \end{prb}
+\begin{pf}
+
+Suppose $\rad\fg=0$.
+The restriction of the Killing form of $\fg$ to an ideal $\fraki\subset\fg$ is the Killing form of $\fraki$.
+
+\end{pf}
 
 
 \begin{prb}[Weyl's theorem on complete reducibility]
@@ -424,12 +439,101 @@ Then, the \emph{Casimir element} of the representation $\f$ is $C_\f:=\sum_i\f(x
 
 
 \part{Algebraic groups}
+\chapter{Group schemes}
+
+Usually we define a variety as an integral separated scheme of finite type over a field.
+However, here we define a \emph{variety} as a reduced separated scheme of finite type over a field to allow its reducibility.
+If a group scheme is a variety over a field, then we call it an \emph{algebraic group}.
 
 
+\[\text{Reductive group schemes}
+\subset\text{Affine group schemes}
+\supset\text{Linear group schemes}\]
+
+\[\text{Reductive group varieties}
+\subset\text{Affine algebraic groups}
+=\text{Linear algebraic groups}\]
+\[\text{Projective algebraic groups}=\text{Abelian varieties}\]
+
+
+
+
+
+\chapter{Linear algebraic groups}
+
+\section{Affine group schemes}
+
+\section{Reductive groups}
+
+
+
+
+
+\chapter{Abelian varieties}
+
+\section{Projective}
 
 
 \part{Hopf algebras}
 \chapter{}
+\section{}
+
+The category of affine group schemes is the opposite of the category of commutative Hopf algebras.
+
+\begin{prb}[Hopf algebras]
+Over the complex field, recall that the category of vector spaces is a symmetric monoidal category with the swap map $\sigma_A:A\otimes A\to A\otimes A$ for each vector space $A$.
+A unital algebra can be internally defined as a vector space $A$ together with linear maps $\mu:A\otimes A\to A$ and $\eta:\C\to A$ such that we have the following commutative diagrams:
+\[\begin{tikzcd}
+A\otimes A\otimes A \rar{\mu\otimes\id}\dar[swap]{\id\otimes\mu} & A\otimes A \dar{\mu} \\
+A\otimes A\rar{\mu} & A
+\end{tikzcd}
+\qquad
+\begin{tikzcd}
+A \rar{\eta\otimes\id}\dar[swap]{\id\otimes\eta}\ar{dr}{\id} & A\otimes A \dar{\mu} \\
+A\otimes A \rar[swap]{\mu} & A
+\end{tikzcd}\]
+A \emph{counital coalgebra} is a vector space $A$ together with linear maps $\delta:A\to A\otimes A$ and $\e:A\to\C$ such that we have following commutative diagrams:
+\[\begin{tikzcd}
+A \rar{\delta}\dar[swap]{\delta} & A\otimes A \dar{\delta\otimes\id} \\
+A\otimes A\rar{\id\otimes\delta} & A\otimes A\otimes A
+\end{tikzcd}
+\qquad
+\begin{tikzcd}
+A \rar{\delta}\dar[swap]{\delta}\ar{dr}{\id} & A\otimes A \dar{\e\otimes\id} \\
+A\otimes A \rar[swap]{\id\otimes\e} & A
+\end{tikzcd}\]
+The linear maps $\mu$, $\eta$, $\delta$, and $\e$ are called the multiplication, unit, comultiplication, and counit.
+
+A \emph{biunital bialgebra}, or just simply a \emph{bialgebra}, is a vector space $A$ which is simultaneously a unital algebra and a counital algebra, satisfying the compatibility condition as the following four commutative diagrams:
+\[\begin{tikzcd}[sep=small]
+A\otimes A \rar{\mu}\dar[swap]{\delta\otimes\delta} & A \rar{\delta} & A\otimes A\\
+A\otimes A\otimes A\otimes A\ar{rr}{1\otimes\sigma_A\otimes1}&&A\otimes A\otimes A\otimes A\uar[swap]{\mu\otimes\mu}
+\end{tikzcd}
+\quad
+\begin{tikzcd}[row sep=small,column sep=tiny]
+A\otimes A \ar{rr}{\e\otimes\e}\ar[swap]{dr}{\mu} && \C\\
+&A\ar[swap]{ur}{\e}&
+\end{tikzcd}
+\quad
+\begin{tikzcd}[row sep=small,column sep=tiny]
+\C \ar{rr}{\eta\otimes\eta}\ar[swap]{dr}{\delta} && A\otimes A\\
+&A\ar[swap]{ur}{\eta}&
+\end{tikzcd}
+\quad
+\begin{tikzcd}[row sep=small,column sep=tiny]
+\C \ar{rr}{\id}\ar[swap]{dr}{\eta} &&\C\\
+&A\ar[swap]{ur}{\e}&
+\end{tikzcd}\]
+This compatibility condition is equivalent to that the comultiplication and the counit are algebra homomorphisms, or that the multiplication and the unit are coalgebra homomorphisms.
+A \emph{Hopf algebra} is a bialgebra $A$ equipped with an invertible linear map $\kappa:A\to A$, called the \emph{antipode}, satisfying the following hexagonal commutative diagram:
+\[\begin{tikzcd}[row sep=small,column sep=tiny]
+&A\otimes A\ar{rr}{\kappa\otimes\id}&&A\otimes A\ar{dr}{\delta}& \\
+A\ar{rr}{\e}\ar{ur}{\mu}\ar[swap]{dr}{\mu}&&\C\ar{rr}{\eta}&&A \\
+&A\otimes A\ar{rr}{\id\otimes\kappa}&&A\otimes A\ar[swap]{ur}{\delta}&
+\end{tikzcd}\]
+A morphism between Hopf algebras is a linear map preserving the five structure maps $\mu$, $\eta$, $\delta$, $\e$, $\kappa$.
+
+\end{prb}
 \chapter{Quantum groups}
 
 
