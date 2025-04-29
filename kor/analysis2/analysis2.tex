@@ -1,0 +1,308 @@
+\documentclass{../../large}
+\usepackage{../../ikhanchoi}
+
+
+\begin{document}
+\title{Analysis II}
+\author{Ikhan Choi}
+\maketitle
+
+
+
+
+\tableofcontents
+
+
+
+
+\part{Integration}
+\chapter{Riemann integral}
+
+
+\section{Riemann integral}
+We are concerned only with integral on a closed interval, until considering improper integral.
+
+
+
+\begin{prb}
+Let $[a,b]\subset\R$ be a closed interval.
+\begin{parts}
+\item The space of real-valued functions $[a,b]\to\R$ is Dedekind complete.
+\item The space of continuous functions $C([a,b],\R)$ is not Dedekind complete.
+\end{parts}
+\end{prb}
+
+
+\begin{prb}[Step functions]
+A function $f:[a,b]\to\R$ is called a \emph{step function} if it is given by the real linear combination of indicator functions of closed intervals in $[a,b]$.
+\end{prb}
+
+\begin{prb}[Definition of Riemann integral]
+Let $R$ be a vector space of some real-valued functions on a closed interval $[a,b]$ containing all step functions.
+Let $R^+$ be the subset of all non-negative functions in $R$.
+The \emph{Riemann integral} can be defined as a map $I:R^+\to[0,\infty]$ such that
+\begin{parts}
+\item it is additive and homogeneous,
+\item it is normal...
+\item $I(1_{[s,t]})=t-s$ for all closed intervals $[s,t]\subset[a,b]$.
+\end{parts}
+Such a linear functional is given, then we denote as
+\[I(f)=\int_a^bf(x)\,dx,\qquad f\in R.\]
+
+On the space of Riemann integrable functions, the Riemann integral uniquely exists.
+
+\begin{parts}
+\item The integral $\int_a^bs(x)\,dx:=\sum_{i=1}^nc_i(b_i-a_i)$, where $s(x)=\sum_{i=1}^nc_i1_{[a_i,b_i]}(x)$, is well-defined.
+\item The integral $\int_a^bf(x)\,dx:=\lim_{n\to\infty}\int_a^bs_n(x)\,dx$ is well-defined.
+\end{parts}
+\end{prb}
+\begin{pf}
+\end{pf}
+
+
+simple functions are norm dense in $L^\infty(I)$.
+step functions are not norm dense in $L^\infty(I)$.
+step functions are order dense(?) in $L^\infty(I)$.
+
+% \R^I 안에서 클로져를 취해도 바나흐 완비는 되지 못하는 게 리만적분의 한계
+% 그런데 Dedekind complete에서도 closure 개념이 있나?
+
+
+
+For a given real function on interval, each (tagged) partition provides a step function.
+Riemann integral: tagged partition
+Darboux integral: partition
+
+\section{Fundamental theorem of calculus}
+
+
+
+\chapter{Lebesgue integral}
+
+
+\section{Measurability}
+
+\begin{prb}[Measurable sets]
+\end{prb}
+
+\begin{prb}[Measurable functions]
+\end{prb}
+
+
+
+\begin{prb}[Integral of complex-valued functions]
+\end{prb}
+
+
+\section{Improper integral}
+It is about a infinite measure.
+For integrable function, it has no problem.
+
+An improper integral must be interpreted as an extension of operators from $L^1$.
+There are various way to approximate the improper integral.
+We need to be able to justify the reason why each specific approximation is reasonable or not.
+
+principal values
+
+
+\section*{Exercises}
+
+\section*{Problems}
+\begin{enumerate}
+\item Find the value of $\lim_{n\to\infty}\frac1n\left(\sum_{k=1}^n\frac1nf\left(\frac kn\right)-\int_0^1f(x)\,dx\right)$.
+\item Find all $a>0$ and $b>0$ such that $\int_0^\infty x^{-b}|\tan x|^a\,dx$ converges.
+\item* If $xf'(x)$ is bounded and $x^{-1}\int_0^xf(t)\,dt\to L$ then $f(x)\to L$ as $x\to\infty$.
+\item Show that for a continuous function $f:[0,1]\to\R$ we have $\int_0^1x^2f(x)\,dx=\frac13f(c)$ for some $c\in[0,1]$.
+\end{enumerate}
+
+
+\chapter{Lebesgue spaces}
+
+
+\begin{pf}
+\[\int fg\le C^p\int\frac{|f|^p}p+\frac1{C^q}\int\frac{|g|^q}q\]
+Take $C$ such that
+\[C^p\int\frac{|f|^p}p=\frac1{C^q}\int\frac{|g|^q}q.\]
+Then,
+\[C^p\int\frac{|f|^p}p+\frac1{C^q}\int\frac{|g|^q}q=2p^{-\frac1p}q^{-\frac1q}\Bigl(\int|f|^p\Bigr)^{\frac1p}\Bigl(\int|g|^p\Bigr)^{\frac1q}.\]
+Note that we can show that $1\le2p^{-\frac1p}q^{-\frac1q}\le2$ and the minimum is attained only if $p=q=2$, so this method does not provide the sharpest constant.
+\end{pf}
+
+
+
+
+
+
+
+
+
+\part{Multi-variable calculus}
+\chapter{Fr\'echet derivatives}
+% 편미분이 그냥 계산도구라는 것을 배운다
+% 편미분의 교환도 사실은 항상 다 되는 걸... 배울 수 있나
+% 접공간 개념을 배운다
+\section{Tangent spaces}
+\begin{prb}[Vector fields]
+
+\end{prb}
+
+\section{Inverse function theorem}
+
+
+\section{}
+
+
+
+
+\chapter{Differential forms}
+
+\section{De Rham complex}
+
+\begin{prb}[Tensor product]
+\end{prb}
+
+\begin{prb}[Wedge product]
+\end{prb}
+
+\begin{prb}[One-forms]
+\end{prb}
+
+\begin{prb}[Exterior derivative]
+\end{prb}
+
+
+\section{Riemannian metrics}
+
+
+\begin{prb}[Musical isomorphisms]
+\end{prb}
+
+\begin{prb}[Inner product of differential forms]
+ONB
+\end{prb}
+
+
+\begin{prb}[Hodge star operator]
+Identification of 2-forms and vector fields
+\end{prb}
+
+\section{Vector calculus}
+
+
+\begin{prb}[Gradient, curl, and divergence]
+\end{prb}
+
+\begin{prb}[Potentials]
+\end{prb}
+
+\begin{prb}[Vector calculus identities]
+\end{prb}
+
+
+
+\section{Integral of differential forms}
+
+\begin{prb}[Multiple integral]
+volume forms,
+stone weierstrass and fubini
+\end{prb}
+
+\begin{prb}[$C^1$ singular chains]
+
+\end{prb}
+
+\begin{prb}[Line integrals]
+A $C^1$ singular 1-cycle is the formal sum of \emph{contours}, piecewise $C^1$ closed curves.
+\end{prb}
+
+\begin{prb}[Surface integrals]
+A $C^1$ singular 2-cycles.
+\end{prb}
+
+
+
+\section*{Exercises}
+
+\begin{prb}[Multivariable Taylor's theorem]
+Symmetric product
+\end{prb}
+
+\begin{prb}[Vector analysis in two dimension]
+\end{prb}
+
+\begin{prb}[Geometric algebra]
+\end{prb}
+
+
+
+
+
+
+
+
+\chapter{Stokes theorem}
+
+
+\section{}
+
+embedded chains instead of manifolds
+triangulation
+
+\section{Local coordinates}
+
+
+\begin{prb}[Spherical coordinates]
+Let $U=\R^3\setminus\{\,(x,y,z):x=0,\ y\ge0\,\}$.
+\[(x,y,z)=(r\sin\theta\cos\f,r\sin\theta\sin\f,r\cos\theta)\]
+for $(r,\theta,\f)\in(0,\infty)\times(0,\pi)\times(0,2\pi)$.
+Orthonormal bases are
+\[\left\{\pd_r,\ \frac1r\pd_\theta,\ \frac1{r\sin\theta}\pd_\f\right\}\subset\fX(U),\]
+\[\{dr,\ r\,d\theta,\ r\sin\theta\,d\f\}\subset\Omega^1(U),\]
+\[\{r^2\sin\theta\,d\theta\wedge d\f,\ r\sin\theta\,d\f\wedge dr,\ r\,dr\wedge d\theta\}\subset\Omega^2(U).\]
+\begin{parts}
+\item
+\item The Laplacian is given by
+\[\Delta f=\frac1{r^2}\pd{r}\left(r^2\pd{f}{r}\right)+\frac1{r^2\sin\theta}\pd{\theta}\left(\sin\theta\pd{f}{\theta}\right)+\frac1{r^2\sin^2\theta}\pd[2]{f}{\f}.\]
+\end{parts}
+\end{prb}
+\begin{pf}
+Write $df$ in the orthonormal basis $\{dr,\ r\,d\theta,\ r\sin\theta\,d\f\}$ as
+\begin{align*}
+df&=\pd{f}{r}\,dr+\pd{f}{\theta}\,d\theta+\pd{f}{\f}\,d\f\\
+&=\left(\pd{f}{r}\right)\,dr+\left(\frac1r\pd{f}{\theta}\right)\,r\,d\theta+\left(\frac1{r\sin\theta}\pd{f}{\f}\right)\,r\sin\theta\,d\f.
+\end{align*}
+After taking the Hodge star operator, write in the basis $\{d\theta\wedge d\f,d\f\wedge dr,dr\wedge d\theta\}$ as
+\begin{align*}
+{}*df&=\left(\pd{f}{r}\right)\,r^2\sin\theta\,d\theta\wedge d\f+\left(\frac1r\pd{f}{\theta}\right)\,r\sin\theta\,d\f\wedge dr+\left(\frac1{r\sin\theta}\pd{f}{\f}\right)\,r\,dr\wedge d\theta\\
+&=r^2\sin\theta\pd{f}{r}\,d\theta\wedge d\f+\sin\theta\pd{f}{\theta}\,d\f\wedge dr+\frac1{\sin\theta}\pd{f}{\f}\,dr\wedge d\theta.
+\end{align*}
+Then, the differential is computed as
+\begin{align*}
+d*df&=d\left(r^2\sin\theta\pd{f}{r}\right)\,d\theta\wedge d\f+d\left(\sin\theta\pd{f}{\theta}\right)\,d\f\wedge dr+d\left(\frac1{\sin\theta}\pd{f}{\f}\right)\,dr\wedge\theta\\
+&=\left[\sin\theta\pd{r}\left(r^2\pd{f}{r}\right)+\pd{\theta}\left(\sin\theta\pd{f}{\theta}\right)+\frac1{\sin\theta}\pd[2]{f}{\f}\right]\,dr\wedge d\theta\wedge d\f.
+\end{align*}
+Finally we have
+\begin{align*}
+\Delta f={}*d*df&=\frac1{r^2\sin\theta}\left[\sin\theta\pd{r}\left(r^2\pd{f}{r}\right)+\pd{\theta}\left(\sin\theta\pd{f}{\theta}\right)+\frac1{\sin\theta}\pd[2]{f}{\f}\right]\\
+&=\frac1{r^2}\pd{r}\left(r^2\pd{f}{r}\right)+\frac1{r^2\sin\theta}\pd{\theta}\left(\sin\theta\pd{f}{\theta}\right)+\frac1{r^2\sin^2\theta}\pd[2]{f}{\f}
+\end{align*}
+
+\end{pf}
+
+
+
+
+
+\section{Stokes theorems}
+% 미분기하보다 피디이스럽게
+\begin{prb}[Bump functions]
+\end{prb}
+
+\begin{prb}[Partition of unity]
+\end{prb}
+
+\begin{prb}
+\end{prb}
+
+
+\end{document}

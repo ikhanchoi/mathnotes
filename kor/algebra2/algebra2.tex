@@ -1,0 +1,594 @@
+\documentclass{../../large}
+\usepackage{../../ikhanchoi}
+
+\newcommand{\Cl}{\mathrm{Cl}}
+\newcommand{\Alt}{\operatorname{Alt}}
+
+\begin{document}
+\title{Algebra II}
+\author{Ikhan Choi}
+\maketitle
+\tableofcontents
+
+\part{Modules}
+
+
+
+\chapter{Modules}
+\section{Modules}
+
+\begin{prb}[Definition of modules]
+Let $R$ be a ring, which is possibly neither commutative nor unital.
+A \emph{left $R$-module} is an abelian group $(M,+,0)$ together with a binary operation $\cdot:R\times M\to M$ satisfying
+\begin{enumerate}[(i)]
+\item for all $r,s\in R$ and $m\in M$ we have $(rs)m=r(sm)$,\hfill(associativity)
+\item for all $r,s\in R$ and $m\in M$ we have $(r+s)m=rm+sm$.\hfill(distributivity)
+\end{enumerate}
+When $R$ is unital, a left $R$-module $M$ is called \emph{unital} if
+\begin{enumerate}
+\item[(iii)] for all $m\in M$ we have $1m=m$.\hfill(identity)
+\end{enumerate}
+Throughout the entire book, we will always assume modules are unital over commutative unital rings.
+\begin{parts}
+\item
+\end{parts}
+\end{prb}
+
+submodules
+quotient modules
+isomorphism theorems
+
+
+
+\section{Free modules}
+generators, cyclic
+direct sum
+free modules
+
+\section{Tensor product modules}
+
+
+\begin{prb}[Tensor product of algebras]
+Let $R$ be a commutative unital ring.
+Let $M$ and $N$ are $R$-modules.
+A \emph{bilinear form} or a \emph{pairing} is a function $M\times N\to R$ such that...
+
+
+
+\end{prb}
+
+
+\begin{prb}[Base change of modules]
+Given a ring homomorphism $R\to A$, we can write $A\in\Mod_R$, and the induced tensoring functor $-\otimes_RA:\Mod_R\to\Mod_A$ is left adjoint to the forgetful functor, that is,
+\[\Hom_A(M\otimes_RA,N)\cong\Hom_R(M,N),\qquad M\in\Mod_R,\ N\in\Mod_A.\]
+\end{prb}
+
+
+\section{Homomorphism modules}
+
+
+
+\chapter{Exact sequences}
+
+
+
+\section{Chain complexes}
+
+
+Let $R$ be a commutative unital ring.
+Let $C_\bullet\in\mathrm{Ch}_{\ge0}(R)$ be a non-negatively graded chain complex of $R$-modules.
+Let $M$ be an $R$-module.
+
+Define the homology group with coefficients in $M$ by
+\[(C\otimes_RM)_\bullet:=C_\bullet\otimes_RM\in\mathrm{Ch}_{\ge0}(R),\qquad H_n(C,M):=H_n((C\otimes_RM)_\bullet)\in\Mod_R.\]
+Define the cohomology group with coefficients in $M$ by
+\[\Hom_R(C,M)^\bullet:=\Hom_R(C_\bullet,M)\in\mathrm{Ch}^{\ge0}(R),\qquad H^n(C,M):=H^n(\Hom_R(C,M)^\bullet)\in\Mod_R.\]
+If $M$ is a commutative unital $R$-algebra, then the resulting homology groups are $M$-modules.
+
+When do we have $H^n(C,M)\otimes_RN\cong H^n(C,M\otimes_RN)$?
+
+
+
+
+\section{Projective and injective modules}
+
+
+
+
+\begin{prb}[Projective modules]
+Let $R$ be a commutative unital ring.
+An $R$-module $P$ is called \emph{projective} if the zero map $0\to P$ has the left lifting property with respect to surjective module maps.
+That is, for every surjective module map $M_1\to M_0$ and a module map $P\to M_0$ there exists a module map $P\to M_1$ such that we have a commutative diagram
+\[\begin{tikzcd}[sep=small]
+&P\dar\ar[dashed,swap]{dl}{\exists}&\\
+M_1\rar&M_0\rar&0
+\end{tikzcd}\]
+\[\begin{tikzcd}[sep=small]
+&M_1\dar[->>]\\
+P\rar\ar[dashed]{ur}{\exists}&M_0
+\end{tikzcd}\]
+Let $P$ be an $R$-module.
+
+free implies projective, every module is a quotient of a free module....
+\begin{parts}
+\item $P$ is projective if and only if it is a direct summand of a free module.
+\item $P$ is projective if and only if the left exact functor $\Hom_R(P,-)$ preserves surjectivity.
+\item $P$ is projective if and only if every short exact sequence $0\to M_1\to M_0\to P\to0$ is split.
+\item The direct sum $\bigoplus_iP_i$ is projective iff $P_i$ are projective.
+\end{parts}
+\end{prb}
+
+PID: projective iff free (note sub of free is free in PID)
+
+\begin{prb}[Injective modules]
+Let $R$ be a commutative unital ring.
+An $R$-module $I$ is called \emph{injective} if the zero map $I\to0$ has the right lifting property with respect to injective module maps.
+That is, for every injective module map $M^0\to M^1$ and a module map $M^0\to I$ there exists a module map $M^1\to I$ such that we have a commutative diagram
+\[\begin{tikzcd}[sep=small]
+0\rar&M^0\dar\rar&M^1\ar[dashed,swap]{dl}{\exists}\\
+&I&
+\end{tikzcd}\]
+\[\begin{tikzcd}[sep=small]
+M^0\rar\dar[hook]&I\\
+M^1\ar[dashed,swap]{ur}{\exists}&
+\end{tikzcd}\]
+\begin{parts}
+\item 
+\item Every module is embedded in an injective module.
+\item $I$ is injective if and only if the left exact contravariant functor $\Hom_R(-,I)$ preserves the surjectivity.
+\item direct product of injectives is injective
+\end{parts}
+\end{prb}
+
+PID: injective iff divisible ($r\cdot:M\to M$ surj) (lem: $\Hom_\Z(R,M)$ is injective if $M$ is injective $\Z$-module)
+
+\begin{prb}[Flat modules]
+\begin{parts}
+\item PID: flat iff ($\cdot a:M\to M$ inj)
+\item $M$ flat iff $\Hom(M,\Q/\Z)$ is injective
+\item $M$ flat iff $I\otimes M\to R\otimes M$ inj
+\item if projective, then flat
+\end{parts}
+\end{prb}
+
+
+\begin{prb}[Projective resolutions]
+Let $R$ be a commutative unital ring, and $M$ be an $R$-module.
+A \emph{projective resolution} of $M$ is a chain complex $P_\bullet\in\mathrm{Ch}_{\ge0}(R)$ together with an $R$-homomorphism $q:P_0\to M$ such that each module in $P_\bullet$ is projective and we have an exact sequence of $R$-modules
+\[\cdots\to P_2\to P_1\to P_0\xrightarrow{q}M\to0.\]
+\begin{parts}
+\item
+\end{parts}
+\end{prb}
+
+
+
+
+
+\section{Tor and Ext}
+
+
+\begin{prb}[Tor functor]
+Let $R$ be a commutative unital ring, and let $M$ and $N$ be $R$-modules.
+We define the \emph{Tor functor} as either
+\[\Tor_n^R(M,N):=H_n(P_\bullet\otimes_RN)\quad\text{ or }\quad\Tor_n^R(M,N):=H_n(M\otimes_RQ_\bullet),\]
+where $P_\bullet$ and $Q_\bullet$ are projective resolutions of $M$ and $N$ respectively.
+It is the left derived functor of a right exact functor.
+It is symmetric by definition.
+\begin{parts}
+\item Two definitions coincide.
+\item It does not depend on the choice of resolutions.
+\item It has a long exact sequence.
+\item It preserves possibly infinite direct sums and filtered colimits in each variable.
+\item We may only assume $P_\bullet$ is a flat resolution. (Flat resolution lemma)
+\end{parts}
+\end{prb}
+
+\begin{prb}[Ext functor]
+Let $R$ be a commutative unital ring, and let $M$ and $N$ be $R$-modules.
+We define the \emph{Ext functor} as wither
+\[\Ext_R^n(M,N):=H^n(\Hom_R(P_\bullet,N))\quad\text{ or }\quad\Ext_R^n(M,N):=H^n(\Hom_R(M,I^\bullet)),\]
+where $P_\bullet$ and $I^\bullet$ are projective and injective resolutions of $M$ and $N$ respectively.
+It is the right derived functor of a left exact functor.
+\begin{parts}
+\item Two definitions coincide.
+\item It does not depend on the choice of resolutions.
+\item It has a long exact sequence.
+\item It preserves...
+\end{parts}
+\end{prb}
+
+
+\begin{prb}[Universal coefficient theorem]
+Let $R$ be a commutative unital ring.
+Let $C_\bullet\in\mathrm{Ch}_{\ge0}(R)$ be a chain complex of flat right $R$-modules and $M$ be a left $R$-module.
+\[0\to H_n(C)\otimes_RM\to H_n(C,M)\to\Tor_1^R(H_{n-1}(C),M)\to0.\]
+\begin{parts}
+\item If $R$ is a principal ideal domain, then the K\"unneth formula splits non-canonically.
+\end{parts}
+\end{prb}
+\begin{pf}
+We first prove the K\"unneth formula.
+Note that modules in $Z_\bullet$ and $B_\bullet$ are also flat.
+We start from that we have a short exact sequence of chain complexes
+\[0\to Z_\bullet\to C_\bullet\to B_{\bullet-1}\to0.\]
+Since modules in $B_{\bullet-1}$ are flat, we have a short exact sequence of chain complexes
+\[0\to Z_\bullet\otimes_RM\to C_\bullet\otimes_RM\to B_{\bullet-1}\otimes_RM\to0.\]
+Since $H_n(B_{\bullet-1})=H_{n-1}(B_\bullet)$ for any chain complex $C_\bullet$, we have a long exact sequence
+\[H_n(B_\bullet\otimes_RM)\to H_n(Z_\bullet\otimes_RM)\to H_n(C_\bullet\otimes_RM)\to H_{n-1}(B_\bullet\otimes_RM)\to H_{n-1}(Z_\bullet\otimes_RM).\]
+Since every module map inside $B_\bullet$ and $Z_\bullet$ is zero, we have an exact sequence
+\[B_n\otimes_RM\xrightarrow{f_n}Z_n\otimes_RM\to H_n(C_\bullet\otimes_RM)\to B_{n-1}\otimes_RM\xrightarrow{f_{n-1}}Z_{n-1}\otimes_RM.\]
+Therefore, we have a short exact sequence
+\[0\to\coker f_n\to H_n(C_\bullet\otimes_RM)\to\ker f_{n-1}\to0.\]
+Now we want to compute the cokernel and kernel of $f_n$.
+
+Since
+\[0\to B_n\to Z_n\to H_n(C_\bullet)\to0\]
+is a flat resolution of $H_n(C_\bullet)$, by the flat resolution lemma, we have a long exact sequence
+\[\Tor_1^R(Z_n,M)\to\Tor_1^R(H_n(C_\bullet),M)\to B_n\otimes_RM\xrightarrow{f_n}Z_n\otimes_RM\to H_n(C_\bullet)\otimes_RM\to0.\]
+Since $Z_n$ is flat so that $\Tor_1^R(Z_n,M)=0$, we have
+\[\coker f_n=H_n(C_\bullet)\otimes_RM,\quad\ker f_n=\Tor_1^R(H_n(C_\bullet),M).\]
+Therefore, we have an exact sequence
+\[0\to H_n(C_\bullet)\otimes_RM\to H_n(C_\bullet\otimes_RM)\to\Tor_1^R(H_{n-1}(C_\bullet),M)\to0.\]
+
+\end{pf}
+
+
+
+
+\[\begin{tikzcd}[sep=small]
+K \rar & A \rar\dar[->>] & B \rar\dar & 0\\
+K' \rar & A' \rar & B' \rar & 0\\
+\end{tikzcd}\]
+\begin{parts}
+\item If $A\to A'$ is monic, then $K\to K'$ is monic.
+\item If $B\to B'$ is monic, then $K\to K'$ is epic.
+\end{parts}
+
+
+hom functor and tensor functor commtues...? no
+
+
+
+
+\chapter{Linear algebra}
+\section{Modules over principal ideal domains}
+
+
+Over a principal ideal, a finitely generated module is also finitely presented, a projective module is free.
+
+
+\begin{prb}[Torsion modules]
+Let $R$ be a commutative unital ring.
+An element of an $R$-module is called a \emph{torsion element} if there is $r\in R$ annihilating the element.
+An $R$-module is called a \emph{torsion-free module} if every non-zero element is not a torsion element, and called a \emph{torsion module} if every element is a torsion element.
+\begin{parts}
+\item A finitely generated torsion-free module embeds in a free module, over an integral domain.
+\item A submodule of a free module is a free module, over a principal ideal ring.
+\item A finitely generated module is the direct sum of a free module and a torsion module, over a principal ideal domain.
+\end{parts}
+\end{prb}
+\begin{pf}
+(a)
+Let $M$ be a finitely generated torsion-free module over an integral domain $R$.
+We may assume $M$ is non-zero.
+Since $M$ is finitely generated, there is a finite set $X\subset M$ that generates $M$.
+Take a maximal subset $Y\subset X$ that is $R$-linearly independent.
+If we denote by $N:=RY\subset M$ the submodule of $M$ generated by $Y$, then $N$ is free by the linear independence of $Y$.
+For each $x\in X\setminus Y$, since $Y\cup\{x\}$ is $R$-linearly dependent by the maximality assumption, there is a non-zero $r_x\in R$ such that $r_xx\in RY=N$.
+If we define $r:=\prod_{x\in X\setminus Y}r_x$, which is valid since $X$ is finite, then $r(X\setminus Y)\subset N$ implies $rM\subset N$.
+Since $M$ is torsion-free and since $r$ is non-zero because $R$ is an integral domain, the multiplication $r\cdot:M\to M$ is injective, so $M$ embeds to a free module $N$.
+Note that $N$ can be assumed finitely generated.
+
+(b)
+(Converse also holds)
+
+
+(c)
+Let $M$ be a finitely generated module over a principal ideal domain $R$.
+Let $\Tor(M)$ be the set of all torsion elements of $M$.
+Then, $\Tor(M)$ is a torsion module, and $M/\Tor(M)$ is a torsion-free module. (proof?)
+
+The quotient module $M/\Tor(M)$ is finitely generated and torsion-free, so it is free by the parts (a) and (b), and is projective.
+The projectivity of $M/\Tor(M)$ concludes that $M$ is the direct sum of $M/\Tor(M)$ and $\Tor(M)$.
+
+\end{pf}
+
+\begin{prb}[Primary modules]
+Let $R$ be a commutative unital ring.
+
+We will decompose torsion modules into primary modules.
+
+elementary divisors
+\end{prb}
+
+
+\begin{prb}[Cyclic modules]
+Let $R$ be a commutative unital ring.
+An $R$-module $M$ is said to be \emph{cyclic} if it is generated by one element.
+
+invariant factors
+\begin{parts}
+\item A cyclic $R$-module is isomorphic to a quotient of $R$.
+\item A cyclic $R$-module is torsion-free if and only if it is isomorphic to $R$.
+\end{parts}
+\end{prb}
+\[
+(\Z/2\Z)\oplus(\Z/4\Z)\oplus(\Z/12\Z)\oplus(\Z/48\Z)
+\Leftrightarrow
+\begin{tabular}{c|cccc}
+& 2 & 4 & 12 & 48 \\\hline
+2 & $2^1$ & $2^2$ & $2^2$ & $2^4$ \\
+3 & 0 & 0 & $3^1$ & $3^1$
+\end{tabular}
+\]
+\[
+(\Z/2\Z)\oplus(\Z/2^2\Z)^2\oplus(\Z/2^4\Z)\oplus(\Z/3\Z)^2
+\Leftrightarrow
+\begin{tabular}{c|cccc}
+$p\setminus e$ & 1 & 2 & 3 & 4 \\\hline
+2 & 1 & 2 & 0 & 1 \\
+3 & 2 & 0 & 0 & 0
+\end{tabular}
+\]
+
+
+
+
+
+
+
+
+\section{Normal forms}
+\begin{prb}[Frobenius normal form]
+Let $F$ be a field.
+Each element $a\in M_n(F):=\End(F^n)$ gives rise to a finitely generated $F[x]$-module $F^n$.
+
+Let $M$ be a finitely generated $F[x]$-module without free component?
+Let $e_i\in M$ be generators of the $F[x]$-module.
+We can define a matrix $a_{ij}\in F$ such thtat $xe_j=\sum_ja_{ij}e_i$.
+
+
+$a_{ij}=\<ae_j,e_i\>$, $v=\sum_jv_je_j$, $av=\sum_{i,j}a_{ij}v_je_i$
+
+$av=\sum_{i,j}\<av_je_j,e_i\>e_i=\sum_{i,j}\<ae_j,e_i\>v_je_i$
+
+
+
+
+\emph{Frobenius normal form} or the \emph{rational canonical form}
+
+have the same normal form iff they generate isomorphic $F[x]$-modules...
+
+
+Invariant factor form
+\begin{parts}
+\item There is a one-to-one correspondence between the similarity classes of square matrices over $F$ and the isomorphism classes of finitely generated $F[x]$-modules.
+\item Every finitely generated $F[x]$-module is a direct sum of cylic torsion $F[x]$-modules, i.e.~no free submodules.
+\item Every cyclic torsion $F[x]$-module $V\cong R/(a)$ can be represented by the associated companion matrix $C_a$, constructed by the coefficients of $a$.
+\end{parts}
+\end{prb}
+
+For $A\in M_n(F)$, the minimal polynomial $m_A(x)$ can be defined by the generator of the annihilator of the associated $F[x]$-module $(V,A)$.
+The minimal polynomial is the largest invariant factor of $(V,A)$.
+For each invariant factor $a_i$, we can construct a companion matrix with its coefficients.
+
+\begin{pf}
+
+\end{pf}
+
+
+\begin{prb}[Jordan normal form]
+\end{prb}
+
+
+
+
+\begin{prb}[Commuting matrices]
+\end{prb}
+
+
+
+
+
+
+
+\section{Vector spaces}
+
+\begin{prb}[Fields]
+homomorphisms
+\end{prb}
+
+\begin{prb}[Dual spaces]
+Double dual
+\end{prb}
+
+
+
+\begin{prb}[Polarization identity]
+\begin{parts}
+\item Let $F$ be a field of characteristic not $2$. If $\<-,-\>$ is a symmetric bilinear form, then
+\[\<x,y\>=\frac12(\|x+y\|^2-\|x\|^2-\|y\|^2).\]
+\item Let $F=\C$. If $\<-,-\>$ is a sesquilinear form, then
+\[\<x,y\>=\frac14\sum_{k=0}^3i^k\|x+i^ky\|^2.\]
+\item isometry check
+\end{parts}
+\end{prb}
+
+\begin{prb}[Cauchy-Schwarz inequality]
+\begin{parts}
+\item Let $F=\R$. If $\<-,-\>$ is a positive semi-definite symmetric bilinear form, then
+\item Let $F=\C$. If $\<-,-\>$ is a positive semi-definite Hermitian form, then
+\end{parts}
+\end{prb}
+
+\begin{prb}[Dual space identification]
+Let $\<-,-\>$ be a non-degenerate bilinear form
+\end{prb}
+
+
+\begin{prb}[Adjoint linear transforms]
+\end{prb}
+
+
+spectral theorems
+
+
+
+
+\section*{Exercises}
+
+\begin{prb}[Conjugacy classes of $\GL_2(\F_p)$]
+The conjugacy classes are classified by normal forms.
+There are four cases: for some $a$ and $b$ in $\F_p$,
+\begin{parts}
+\item $\mat{a&0\\0&b}$: $\binom{p-1}2$ classes of size $\frac{|G|}{(p-1)^2}=p(p+1)$.
+\item $\mat{a&0\\0&a}$: $p-1$ classes of size $1$.
+\item $\mat{a&1\\0&a}$: $p-1$ classes of size $\frac{|G|}{p(p-1)}=p^2-1$.
+\item otherwise, the eigenvalues are in $\F_{p^2}\setminus\F_p$.
+In this case, the number of conjugacy classes is same as the number of monic irreducible qudratic polynomials over $\F_p$; $\frac{|\F_{p^2}|-|\F_p|}2=\frac{p(p-1)}2$ classes.
+Their size is $\frac{p(p-1)}2$.
+\end{parts}
+\end{prb}
+
+\begin{prb}[Conjugacy classes of $\GL_3(\F_p)$]
+There are eight types of invariant factors:
+\[(x-a)(x-b)(x-c),\ (x-a)^2(x-b),\ (x-a)^3,\ (x^2+ax+b)(x-c),\ (x^3+ax^2+bx+c),\]
+\[(x-a)\mid(x-a)(x-b),\ (x-a)\mid(x-a)^2,\ (x-a)\mid(x-a)\mid(x-a)\]
+\end{prb}
+
+Show that a square matrix $A$ over $\F_p$ satisfying $A^p=A$ is diagonalizable.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\part{Algebras}
+
+\chapter{Tensor algebras}
+
+\section{Algebras}
+\begin{prb}[Definition of algebras]
+Let $R$ be a commutative ring.
+An \emph{associative algebra} or simply an \emph{algebra} over $R$, or more simply \emph{$R$-algebra}, is a ring $A$ that is also an $R$-module satisfying
+\begin{enumerate}[(i)]
+\item for all $r\in R$ and $a,b\in A$ we have $r(ab)=(ra)b=a(rb)$.
+\end{enumerate}
+Unital?
+
+Although there are some important examples of \emph{non-associative} algebras in which the associativity of multiplication is dropped, we will assume that an $R$-algebra is associative if no mention.
+\begin{parts}
+\item The set of matrices $M_n(R)$ over a ring $R$ is a unital $R$-algebra.
+\item The set of quaternions $\H$ is an $\R$-algebra.
+\end{parts}
+\end{prb}
+
+
+
+\section{Graded and filtered algebras}
+
+All of them are possible for $R$-modules?
+
+\begin{prb}
+Let $V$ be a vector space over a field $F$.
+As vector spaces, define $T(V):=\bigoplus_{k=0}^\infty T^k(V)$, where $T^k(V):=V^{\otimes_Rk}$.
+Then, it has a canonical algebra structure.
+This tensor algebra has the universal property.
+For any linear map $f:V\to A$ to an $F$-algebra $A$, there is a unique algebra homomorphism $\f:T(V)\to A$ such that
+
+
+
+For any linear map $f:V\to A$ such that $f(v)^2=0$ for all $v\in V$, there is a unique algebra homomorphism $\f:\Lambda(v)\to A$ such that
+\end{prb}
+
+\begin{prb}[Multilinear forms]
+A \emph{multilinear form} is an element of $T^k(V)^*$.
+We have a canonical isomorphism $T^k(V)^*\cong T^k(V^*)$ defined such that
+\[T^k(V^*)\to T^k(V)^*:v_1^*\otimes\cdots\otimes v_k^*\mapsto(v_1\otimes\cdots\otimes v_k\mapsto v_1^*(v_1)\cdots v_k^*(v_k)),\]
+
+The \emph{alternatization} or the \emph{anti-symmetrization} is an idempotent linear map $\Alt:T(V)^*\to T(V)^*$ defined degree-wise such that
+\[\Alt(\omega)(v_1\otimes\cdots\otimes v_k):=\frac1{k!}\sum_{\sigma\in S_k}\sgn(\sigma)\omega(v_{\sigma(1)}\otimes\cdots\otimes v_{\sigma(k)}),\qquad\omega\in T^k(V)^*,\ v_j\in V,\ 1\le j\le k.\]
+An \emph{alternating multilinear form} is an element of the image $\operatorname{Alt}(T(V)^*)$ of the alternatization.
+
+For each $k\ge0$ we canonically have a commutative diagram of linear maps
+\[\begin{tikzcd}[sep=small]
+\Alt(T^k(V)^*) \rar[phantom,"\subset"]\dar[sloped,phantom,"\subset"] & T^k(V)^* \rar[phantom,"\cong"]\dar[sloped,phantom,"\subset"] & T^k(V^*) \rar[->>]\dar[sloped,phantom,"\subset"] & \Lambda^k(V^*)\dar[sloped,phantom,"\subset"]\\
+\Alt(T(V)^*) \rar[phantom,"\subset"] & T(V)^* \rar[phantom,"\cong"] & T(V^*) \rar[->>] & \Lambda(V^*)
+\end{tikzcd}\]
+such that the horizontal composition $\Alt(T^k(V)^*)\to\Lambda^k(V^*)$ is a linear isomorphism for each degree $k\ge0$.
+Then, we can describe the wedge product in terms of alternating forms by $\omega\wedge\eta:=\Alt(\omega\otimes\eta)$, where the tensor product is induced from the identification $T(V)^*\cong T(V^*)$.
+Concretely,
+\[(\omega\wedge\eta)(v_1\otimes\cdots\otimes v_{k+l})=\frac1{(k+l)!}\sum_{\sigma\in S_{k+l}}\sgn(\sigma)\omega(v_{\sigma(1)}\otimes\cdots\otimes v_{\sigma(k)})\eta(v_{\sigma(k+1)}\otimes\cdots\otimes v_{\sigma(k+l)}).\]
+
+\end{prb}
+
+\begin{prb}[Geometric convention]
+In geometry, we often differently choose the canonical isomorphism
+\[T^k(V^*)\to T^k(V)^*:v_1^*\otimes\cdots\otimes v_k^*\mapsto(v_1\otimes\cdots\otimes v_k\mapsto k!\ v_1^*(v_1)\cdots v_k^*(v_k)),\]
+which makes $T^k(V)^*$ an algebra such that the geometric area of the unit hypercube $[0,1]^k$ is one, not $n!$.
+Then, to make the linear isomorphism $\Alt(T(V)^*)\to\Lambda(V^*)$ an algebra isomorphism, we have no choice but to define
+\[\omega\wedge\eta:=\frac{(k+l)!}{k!l!}\Alt(\omega\otimes\eta),\qquad\omega\in\Alt(T^k(V)^*),\ \eta\in\Alt(T^l(V)^*),\]
+or equivalently,
+\begin{align*}
+(\omega\wedge\eta)(v_1\otimes\cdots\otimes v_{k+l}):=\frac1{k!l!}\sum_{\sigma\in S_{k+l}}\operatorname{sgn}(\sigma)\omega(v_{\sigma(1)}\otimes\cdots\otimes v_{\sigma(k)})\eta(v_{\sigma(k+1)}\otimes\cdots\otimes v_{\sigma(k+l)}).
+\end{align*}
+In this convention, we have
+\[dx\wedge dy=dx\otimes dy-dy\otimes dx.\]
+(geometric: Kobayashi-Nomizu convention, algebraic: Spivak convention)
+
+\end{prb}
+
+\section{Exterior algebras}
+
+
+\begin{prb}[Determinants]
+\end{prb}
+\section{Symmetric algebras}
+
+
+\chapter{}
+
+\section{Clifford algebras}
+
+Let $V$ be a quadratic vector space over a field $k$ with a quadratic form $Q$, usually assumed to be non-degenerate.
+The \emph{Clifford algebra} of $V$ is defined as the universal map $V\to\Cl(V,Q)$ among linear maps $f:V\to A$ to a unital $k$-algebra such that $f(v)^2=Q(v)$.
+We have a construction $T(V)/(v^2-Q(v):v\in V)$.
+Note that it is the exterior algebra if $Q=0$.
+It has a natural $\Z/2\Z$-grading.
+
+\begin{prb}[Real Clifford algebras]
+
+If $V=\R^n$, then the grading automorphism is represented by the Clifford multiplication of the complexified volume element $\omega_\C:=i^{\lfloor\frac{n+1}2\rfloor}e_1\cdots e_n$ of the complexified Clifford algebra, and the direct sum decomposition into even and odd parts is the eigenspace decomposition with respect to $\omega_\C$.
+
+\end{prb}
+
+\begin{prb}[]
+$\Cl(V,Q)$
+
+\end{prb}
+
+
+
+
+
+
+
+\chapter{Semi-simple algebras}
+
+\section{Artin-Wedderburn theorem}
+
+\section{Character theory}
+
+\section{Central simple algebras}
+
+
+\end{document}

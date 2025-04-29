@@ -1,0 +1,1476 @@
+\documentclass{../../large}
+\usepackage{../../ikhanchoi}
+
+
+\begin{document}
+\title{Analysis I}
+\author{Ikhan Choi}
+\maketitle
+
+
+
+% \chapter*{Preface}
+% the main objectives
+% the audience
+% the structure of the book
+% how to use this book
+% acknowledgements
+% references
+
+
+\tableofcontents
+
+
+\part{Limits}
+\chapter{Real numbers}
+
+\section{Ordered fields}
+
+\begin{prb}[Fields]
+Roughly, a field is a set where the four fundamental arithmetic operations are justified.
+Mathematically, a \emph{field} is a set $F$ equipped with two binary operations $+:F\times F\to F$ and $\cdot:F\times F\to F$, and two constants $0\in F$ and $1\in F\setminus\{0\}$, called the \emph{addition}, \emph{multiplication}, \emph{zero}, and \emph{one} respectively, such that the addition and zero satisfy
+\begin{enumerate}[(i)]
+\item for all $a,b,c\in F$, we have $(a+b)+c=a+(b+c)$,\hfill(associativity)
+\item for all $a\in F$, we have $a+0=0+a=a$,\hfill(identity)
+\item for all $a\in F$, there is $-a\in F$ such that $a+(-a)=(-a)+a=0$,\hfill(inverses)
+\item for all $a,b\in F$, we have $a+b=b+a$,\hfill(commutativity)
+\end{enumerate}
+and the multiplication and one satisfy
+\begin{enumerate}[(i)]
+\setcounter{enumi}{4}
+\item for all $a,b,c\in F$, we have $(a\cdot b)\cdot c=a\cdot(b\cdot c)$,\hfill(associativity)
+\item for all $a\in F$, we have $a\cdot 1=1\cdot a=a$,\hfill(identity)
+\item for all $a\in F\setminus\{0\}$, there is $a^{-1}\in F$ such that $a\cdot a^{-1}=a^{-1}\cdot a=1$,\hfill(inverses) 
+\item for all $a,b\in F$, we have $a\cdot b=b\cdot a$,\hfill(commutativity)
+\end{enumerate}
+and finally the following compatibility condition for the two binary operations is satisfied:
+\begin{enumerate}[(i)]
+\setcounter{enumi}{8}
+\item for all $a,b,c\in F$, we have $(a+b)\cdot c=a\cdot c+b\cdot c$.\hfill(distributivity)
+\end{enumerate}
+Let $F$ be a field and let $a,b\in F$ and $u\in F\setminus\{0\}$.
+We use the usual notations for $n\in\Z_{\ge0}$
+\[a-b:=a+(-b),\quad ab:=a\cdot b,\quad a/u:=au^{-1},\quad na:=a+\cdots+a,\quad a^n:=a\cdots a,\quad u^{-n}:=(u^{-1})^n.\]
+\begin{parts}
+\item The identities are uniquely determined by the addition and the multiplication.
+\item The inverses are also uniquely determined by the addition and the multiplication.
+\item $-(-u)=u$ and $(u^{-1})^{-1}=u$.
+\item We have $a0=0$, $a(-b)=-(ab)$, and $(-a)(-b)=ab$.
+\end{parts}
+\end{prb}
+\begin{pf}
+(a)
+Before beginning the proof, let us make the statement we want to show more clear.
+What we want to prove is that the zero and one are redundant in the definition of a field, in the sense that they do not have to be given as specified data of a field.
+More precisely, the statement that identities, zero and one, are unique means that there are at most one zero and one one, where a zero is defined as an element $0\in F$ such that $a+0=0+a=a$ for all $a\in F$, and a one is defined as an element $1\in F$ such that $a\cdot 1=1\cdot a=a$ for all $a\in F$.
+By showing their uniqueness, we can equivalently define a field as a set $F$ equipped just with two binary operations $+$ and $\cdot$ satisfying (i)\sim(ix), but the four axioms (ii), (iii), (vi), (vii) are replaced into
+\begin{enumerate}
+\item[(ii')] there is a zero,
+\item[(iii')] for all $a\in F$, there is $-a\in F$ such that $a+(-a)=(-a)+a$ is a zero,
+\item[(vi')] there is a one,
+\item[(vii')] for all $a\in F\setminus\{0\}$, there is $a^{-1}\in F$ such that $a\cdot a^{-1}=a^{-1}\cdot a$ is a one.
+\end{enumerate}
+The original definition specifies the zero and the one, but after we prove the uniqueness, it is enough to be given an axiom which guarantees their existences, (ii') and (vi').
+From this definition without zero and one, in order to specify the zero and one, since we already know that there exist a zero and a one by the axiom (ii') and (iii'), we are enough to prove that there should be at most a single zero and a single one in a field.
+We first show the zero is uniquely determined by the addition.
+
+The proof is short.
+Suppose $0,0'\in F$ are zeros so that they simultaneously satisfy the second axiom $a+0=0+a=a$ and $a+0'=0'+a=a$ for all $a\in F$.
+Then, $0=0+0'=0'$, and it means that the zero is unique.
+Similarly, $1,1'\in F\setminus\{0\}$ are ones so that they satisfy $a\cdot 1=1\cdot a=a$ and $a\cdot 1'=1'\cdot a=a$ for all $a\in F$.
+Then, $1=1\cdot 1'=1'$, so the one is unique.
+
+
+
+(b)
+Next, we will prove that there are at most a single additive or multiplicative inverse for each given element $a\in F$ or $a\in F\setminus\{0\}$, respectively.
+
+
+We have the cancellation law that $a+c=b+c$ implies $a=a+0=a+(c-c)=(a+c)-c=(b+c)-c=b+(c-c)=b+0=b$ for addition, and similarly for multiplication.
+Then, $(-c)+c=0=-c'+c$ implies $-c=-c'$ and $c^{-1}c=1=c'^{-1}c$ implies $c^{-1}=c'^{-1}$.
+
+
+(c)
+Since $c-c=0=-(-c)-c$ by the definition of inverses, the cancellation of $-c$ implies $c=-(-c)$.
+Similarly for multiplication.
+
+(d)
+First, $a0=a(0+0)=a0+a0$ implies $a0=0$ by cancellation.
+The others follow from $a(-b)+ab=a(-b+b)=a0=0$ and $(-a)(-b)=-(a(-b))=-(-(ab))=ab$.
+\end{pf}
+
+\begin{prb}[Total orders]
+A \emph{totally ordered set} is a set equipped with a binary relation $\le$ on $F$ called a \emph{total order} or a \emph{linear order}, such that
+\begin{enumerate}[(i)]
+\item for all $a\in F$, we have $a\le a$,\hfill(reflexivity)
+\item for all $a,b,c\in F$, if $a\le b$ and $b\le c$, then $a\le c$,\hfill(transitivity)
+\item for all $a,b\in F$, if $a\le b$ and $b\le a$, then $a=b$,\hfill(anti-symmetry)
+\item for all $a,b\in F$, we have $a\le b$ or $b\le a$.\hfill(totality)
+\end{enumerate}
+For $a,b$ in a totally ordered set, we write $a<b$ if $a\le b$ and $a\ne b$.
+
+Let $S$ be a subset of a totally ordered set $F$.
+An element $b\in F$ is called an \emph{upper bound} of $S$ if $a\le b$ for all $a\in S$, and if there is an upper bound of $S$, then we say $S$ is \emph{bounded above}.
+The \emph{maximum} of $S$ is an upper bound contained in $S$.
+The \emph{least upper bound} or the \emph{supremum} of $S$ is a smallest upper bound $s\in F$ in the sense that $s$ is an upper bound of $S$ and $s\le b$ if $b$ is any upper bound of $S$.
+Symmetrically, we can also define \emph{lower bound}, \emph{boundedness below}, and the \emph{minimum}, \emph{greatest lower bound} or \emph{infimum}, of $S$.
+If $S$ is bounded above and below, then it is called \emph{bounded}.
+\begin{parts}
+\item A supremum is unique if it exists.
+\end{parts}
+\end{prb}
+\begin{pf}
+
+\end{pf}
+
+\begin{prb}[Ordered fields]
+A \emph{totally ordered field}, or simply an \emph{ordered field} is a field $F$ together with a total order $\le$ on $F$ such that we have the compatibility conditions of the field structure and the order structure in the sense that
+\begin{enumerate}[(i)]
+\item for $a,b,c\in F$, if $a\le b$, then $a+c\le b+c$,
+\item for $a,b\in F$, if $a\ge0$ and $b\ge0$, then $ab\ge0$.
+\end{enumerate}
+Let $F$ be an ordered field, and let $a,b,c\in F$.
+\begin{parts}
+\item If $a\ge0$ and $b\ge0$, then $a+b\ge0$.
+\item If $a\le b$ and $c\ge0$ then $ac\le bc$, and if $a\le b$ and $c\le0$, then $ac\ge bc$.
+\item If $c\ge0$, then $-c\le0$, and if $0<a\le b$, then $0<b^{-1}\le a^{-1}$.
+\item We always have $a^2\ge0$.
+\end{parts}
+\end{prb}
+\begin{pf}
+(b)
+
+(c)
+
+(d)
+If $a\ge0$, then $a^2\ge0$ is clear from the second condition for ordered fields.
+If $a<0$, then $a^2=(-a)^2\ge0$ because $-a\ge0$.
+
+
+\end{pf}
+
+
+\begin{prb}[Definition of rational numbers]
+If $F$ is an ordered field, then there is a unique non-zero field homomorphism $\Q\to F$.
+\end{prb}
+
+\begin{pf}
+
+
+Suppose there is $n\in\Z_{>0}$ such that $n1=0$ in $F$.
+From $0<1$, we can prove that $(n-1)1\ge0$ by the mathmatical induction, which leads to a contradiction $0=n1=(n-1)1+1\ge0+1=1$.
+Therefore, there is no $n\in\Z_{>0}$ such that $n1=0$.
+\end{pf}
+
+
+
+
+\section{Least upper bound property}
+
+
+
+\begin{prb}[Definition of real numbers]
+We say a totally ordered set is \emph{Dedekind complete} if every non-empty bounded subset admits a supremum and a infimum, and satisfies the \emph{least upper bound property} if every non-empty bounded above subset admits a supremum.
+The two properties are easily shown to be equivalent to for a totally ordered set.
+We define the \emph{set of real numbers} as a Dedekind complete ordered field, usually denoted by $\R$.
+A \emph{real number} is an element of $\R$.
+Since the multiplication by minus one reverses the order, we may only assume the existence of supremum for the Dedekind completeness of ordered fields.
+Let $\R$ be a set of real numbers, and let $a,b\in\R$.
+We give the following two basic properties of $\R$.
+\begin{parts}
+\item If $a>0$, then there is a positive integer $n$ such that $na>b$. In other words, $\R$ is \emph{archimedean}.
+\item If $a<b$, then there is a rational number $r$ such that $a<r<b$. In other words, $\Q$ is \emph{dense} in $\R$.
+\end{parts}
+\end{prb}
+\begin{pf}
+(a)
+Suppose not so that every $n\in\Z_{>0}$ satisfies $na\le b$.
+Then, the existence of such $b\in\R$ means the set $S:=\{na:n\in\Z_{>0}\}$ is bounded above in $\R$.
+Since $S$ is non-empty by $a\in S$, we have the least upper bound $s\in\R$ of $S$ by the Dedekind completeness of $\R$.
+Since $s-a<s$ implies that $s-a$ cannot be an upper bound of $S$, there should be an element $na\in S$ such that $s-a<na$.
+This is equivalent to $s<(n+1)a$, which is impossible because $(n+1)a\in S$ contradicts to that $s$ is an upper bound of $S$.
+Therefore, there must be $n\in\Z_{>0}$ such that $na>b$.
+
+(b)
+Using the archimedean property of $\R$, take $n\in\Z_{>0}$ such that $n(b-a)>1$.
+Consider a subset $S:=\{m\in\Z:m<nb\}$ of $\R$.
+The subset $S$ is bounded above by an upper bound $nb$, and is non-empty because if we take $n'\in\Z_{>0}$ such that $n'>-nb$ using the archimedean property of $\R$, then $-n'<nb$ implies $-n'\in S$.
+By the Dedekind completeness of $\R$, we have the least upper bound $s$ of $S$.
+
+Since $s-1$ is not an upper bound of $S$, we can take $m\in S$ such that $s-1<m$.
+Then, we have $nb-1\le m$ because its negation $m<nb-1$ implies $m+1\in S$, which is impossible by $s<m+1$ and the definition of least upper bound.
+Therefore, it follows that $na<nb-1\le m<nb$.
+If we define $r:=m/n\in\Q$, then we can check $a<r<b$.
+\end{pf}
+
+
+
+
+
+
+
+\begin{prb}[Uniqueness of real numbers]
+Let $\R_1$ and $\R_2$ are Dedekind complete ordered fields.
+Denote by $\Q_1$ and $\Q_2$ the subfields of $\R_1$ and $\R_2$ isomorphic to the field of rational numbers.
+Let $\f:\Q_1\to\Q_2$ be the unique field isomorphism, and define $\tilde\f:\R_1\to\R_2$ such that
+\[\tilde\f(a):=\sup\{\f(r)\in\Q_2:r<a,\ r\in\Q_1\},\qquad a\in\R_1.\]
+\begin{parts}
+\item well-definedess and order preserving
+\item addition and multiplication
+\item injective and surjective
+\item uniqueness of field isomorphisms
+\end{parts}
+\end{prb}
+\begin{pf}
+(a)
+First we prove $\f$ preserves order.
+
+It is well-defined by the Dedekind completeness of $\R_2$ since for $n,n'\in\Z_{>0}$ such that $n>a$ and $n'>-a$ taken by the archimedean property of $\R$ we have an upper bound $\f(n)$ and an element $\f(-n')$ of the set $\{\f(r)\in\Q_2:r<a,\ r\in\Q_1\}$.
+
+
+(b)
+We always have if $r<a+b$
+\[\f(r)\le\tilde\f(a)+\tilde\f(b)\]
+We can find $r<a+b$ such that
+\[\tilde\f(a)+\tilde\f(b)<\f(r)+\e\]
+
+\end{pf}
+
+
+\begin{prb}[Dedekind construction]
+We prove the existence of the set of real numbers by a method called the Dedekind construction.
+We assume that the set of rational numbers $\Q$ exists.
+A \emph{Dedekind cut} is a non-empty proper subset $a$ of $\Q$ that is downward closed and does not have the maximum.
+For example, $\{s\in\Q:s<r\}$ is a Dedekind cut for each $r\in\Q$.
+
+Let $\R$ be the set of all Dedekind cuts.
+Define a relation $\le$ on $\R$ such that $a\le b$ if and only if $a\subset b$ for $a,b\in\R$.
+Define an operation $+:\R\times\R\to\R$ such that
+\[a+b:=\{r+s:r\in a,\ s\in b\},\qquad -a:=\{r:r<-s\text{ for some }s\in\Q\setminus a\},\qquad a,b\in\R,\]
+and define an operation $\cdot:\R\times\R\to\R$ such that
+\[ab:=\begin{cases}
+\{rs:r\in a\cap\Q_{\ge0},\ s\in b\cap\Q_{\ge0}\}\cup\Q_{<0}&\text{ if }a,b\ge0,\\
+-(a(-b))&\text{ if }a\ge0,\ b<0,\\
+-((-a)b)&\text{ if }a<0,\ b\ge0,\\
+(-a)(-b)&\text{ if }a,b<0,
+\end{cases},\qquad a,b\in\R.\]
+
+\begin{parts}
+\item $\R$ is a field.
+\item $\R$ is an ordered field.
+\item $\R$ is Dedekind complete.
+\end{parts}
+\end{prb}
+
+
+
+
+\begin{prb}[Existence of $n$th roots]
+\begin{parts}
+\item There is no rational number $q$ such that $q^2=2$.
+\item If $a\ge0$ and $n\in\Z_{>0}$, then there exists a unique $b\ge0$ such that $b^n=a$.
+\end{parts}
+\end{prb}
+\begin{pf}
+(a)
+
+(b)
+The uniqueness is clear if $0\le b_1<b_2$ then $b_1^n<b_2^n$ leads a contradiction to $b_1^n=a=b_2^n$.
+If $a=0$, then we trivially have $b=0$, so assume $a>0$.
+Let $S:=\{x\in\R_{\ge0}:x^n<a\}$, which is non-empty since $0\in S$, and bounded above since $1+a$ is an upper bound of $S$.
+For $b:=\sup S$, which is clearly non-negative, we claim $b^n=a$.
+It suffices to show $b^n<a$ and $b^n>a$ lead contradictions.
+
+Assume $b^n<a$.
+Then, we have $b+\e\in S$ by
+\[(b+\e)^n=b^n+\e\sum_{k=0}^{n-1}(b+\e)^kb^{n-1-k}<b^n+\e n(b+\e)^{n-1}<b^n+\e n(b+1)^{n-1}<a,\]
+where $\e$ is any real number taken sufficiently small such that
+\[0<\e<\min\{1,\frac{a-b^n}{n(b+1)^{n-1}}\},\]
+which contradicts to that $b$ is an upper bound of $S$.
+
+Assume $b^n>a$.
+Then, we can see $b-\e$ is an upper bound of $S$ by
+\[(b-\e)^n=b^n-\e\sum_{k=0}^{n-1}b^k(b-\e)^{n-1-k}>b^n-\e nb^{n-1}>a,\]
+where $\e$ is any real number taken sufficiently small such that
+\[0<\e<\frac{b^n-a}{nb^{n-1}},\]
+which contradicts to the minimality of $b$ among upper bounds of $S$.
+\end{pf}
+
+
+\begin{prb}[Uncountability of real numbers]
+\end{prb}
+
+
+
+
+\section{Real sequences}
+
+
+\begin{prb}[Extended real numbers]
+An \emph{extended real number} refers to an element of the disjoint union $\bar\R:=\R\cup\{\pm\infty\}$ of the set $\R$ of real numbers and the set of two distinguished elements denoted by $\infty$ and $-\infty$.
+Note that $-\infty$ is not the additive inverse of $\infty$ and is nothing but a notation, because we do not have a well-defined a binary operation on the set $\bar\R$ which extends the addition of $\R$.
+However, $\bar\R$ is given a canonical total order defined such that $-\infty\le a\le\infty$ for all $a\in\bar\R$.
+In other words, we consider $\bar\R$ as a totally ordered set without any well-defined binary operations, so it is far from a field.
+We can introduce the notations for open, closed, and half-closed intervals in extended real numbers as we did in real numbers, and in particular we have $\bar\R=[-\infty,\infty]$.
+
+\begin{parts}
+\item $\bar\R$ extends the four fundamental arithmetic operations of $\R$ such that associativity and commutativity of two operations, and other compatibility conditions for ordered fields are all satisfied as long as the occurring expressions are defined, except the followings: the addition is not defined for $(\infty,-\infty)$, $(-\infty,\infty)$, the multiplication is not defined for $(\infty,0)$, $(-\infty,0)$, $(0,\infty)$, $(0,-\infty)$, and the additive and multiplicative inverses are not defined for $\infty$ and $-\infty$.
+\item The set of extended real numbers is a bounded totally ordered set that is Dedekind complete.
+\end{parts}
+
+\end{prb}
+\begin{pf}
+The field operations can be partially defined as follows: for $a\in\R\cup\{\pm\infty\}$,
+\[a+\infty=\infty,\qquad a\ne-\infty\]
+\[a-\infty=-\infty,\qquad a\ne\infty\]
+\[a\cdot(\pm\infty)=(\pm\infty\cdot)a=\pm\sgn(a)\infty,\qquad,\qquad a\ne0,\]
+\[\frac a{\pm\infty}=0,\qquad a\in\R\]
+\[\frac{\pm\infty}a=\pm\sgn(a)\infty,\qquad a\ne0,\pm\infty.\]
+
+The addition is not defined for $(\infty,-\infty)$, $(-\infty,\infty)$, the multiplication is not defined for $(\infty,0)$, $(-\infty,0)$, $(0,\infty)$, $(0,-\infty)$, and the multiplicative inverse is not defined for both the positive and negative infinity.
+
+\end{pf}
+
+
+\begin{prb}[Convergence of real sequences]
+A \emph{sequence} in a set $X$ is a function to $X$ defined either on the totally ordered set $\Z_{\ge0}$ or $\Z_{>0}$.
+
+When $\lim_{n\to\infty}a_n=\infty$, both expressions that $a_n$ converges to infinity and diverges to infinity, are possible.
+\end{prb}
+
+
+\begin{prb}[Monotone sequences]
+preserving inequalities
+monotone convergence theorem
+
+Let $(a_n)$ be a sequence of extended real numbers.
+The sequence $(a_n)$ is called \emph{monotonically increasing} or \emph{non-decreasing} if $a_n\le a_{n'}$ whenever $n\le n'$.
+\begin{parts}
+\item If $(a_n)$ converges in $[-\infty,\infty]$ and $a_n\ge0$ for all $n$, then $\lim_{n\to\infty}a_n\ge0$.
+\item If $(a_n)$ is non-decreasing, then $\lim_{n\to\infty}a_n=\sup_na_n$ in $[-\infty,\infty]$.
+\item
+\end{parts}
+\end{prb}
+
+
+\begin{prb}[Limit superior and limit inferior]
+Let $(a_n)$ be a sequence of extended real numbers.
+We define the \emph{limit superior} and the \emph{limit inferior} of $(a_n)$ respectively as
+\[\limsup_{n\to\infty}a_n:=\lim_{n\to\infty}\sup_{k\ge n}a_k,\qquad\liminf_{n\to\infty}a_n:=\lim_{n\to\infty}\inf_{k\ge n}a_k,\]
+where the limits are taken in $[-\infty,\infty]$.
+\begin{parts}
+\item If $a_n\le b_n$ for all $n$, then $\limsup_{n\to\infty}a_n\le\limsup_{n\to\infty}b_n$.
+\item $(a_n)$ converges if and only if $\liminf_{n\to\infty}a_n=\limsup_{n\to\infty}a_n$.
+\end{parts}
+\end{prb}
+\begin{pf}
+(a)
+Since the sequence $\sup_{k\ge n}a_n$ is non-decreasing, we have
+Taking supremum for $k\ge n$ and infimum for $n$ on the inequality $a_k\le b_k$, we easily get
+\[\limsup_{n\to\infty}a_n=\inf_n\sup_{k\ge n}a_n\le\inf_n\sup_{k\ge n}b_n\le\limsup_{n\to\infty}b_n.\]
+
+(b)
+Let $a:=\lim_{n\to\infty}a_n\in\R$.
+Fix $\e>0$ arbitrarily.
+Then, there is $n_0$ such that
+\[a_n-a<\e,\qquad n\ge n_0.\]
+Taking the supremum on $n$, we get
+\[\sup_{k\ge n}a_k-a\le\e,\qquad n\ge n_0.\]
+As $n\to\infty$, we have
+\[\limsup_{n\to\infty}a_n-a\le\e.\]
+Since $\e>0$ is arbitrary, we finally obtain
+\[\limsup_{n\to\infty}a_n-a\le0.\]
+We can do same thing similarly for limit inferior to write an inequality
+\[a\le\liminf_{n\to\infty}a_n\le\limsup_{n\to\infty}a_n\le a,\]
+so the claim follows.
+
+Conversely, assume that $\liminf_{n\to\infty}a_n=\limsup_{n\to\infty}a_n$ and let $a$ be the value of it, which is finite since the limit superior and limit inferior cannot be $\infty$ and $-\infty$ respectively.
+Fix $\e>0$.
+Take $n_1$ and $n_2$ such that 
+\[-\e<\inf_{k\ge n}a_k-a,\qquad n\ge n_1,\qquad\qquad\sup_{k\ge n}a_k-a<\e,\qquad n\ge n_2.\]
+If we let $n_0:=\max\{n_1,n_2\}$, then
+\[-\e<\inf_{k\ge n}a_k-a\le a_n-a\le\sup_{k\ge n}a_k-a<\e,\qquad n\ge n_0,\]
+hence the estimate $|a_n-a|<\e$ for all $n\ge n_0$.
+Therefore, $\lim_{n\to\infty}a_n=a$.
+\end{pf}
+
+\begin{prb}[Asymptotics]
+sufficiently large
+asymptotic notations
+growth and decay
+\end{prb}
+
+
+
+
+\section{Elementary functions}
+
+
+
+\begin{prb}[Exponential functions]
+The \emph{exponential function} is the function $\exp:\C\to\C$ defined by the power series
+\[\exp(z):=\lim_{n\to\infty}\sum_{k=0}^n\frac{z^k}{k!},\qquad z\in\C.\]
+
+\[e^z=\lim_{n\to\infty}\left(1+\frac zn\right)^{\frac1n}.\]
+\begin{parts}
+\item exponential law
+\item image, periodicity
+\end{parts}
+\end{prb}
+
+
+
+
+
+
+
+
+
+
+
+
+\section*{Exercises}
+\begin{prb}[Real number fields]
+\end{prb}
+
+\begin{prb}[Fields of rational functions]
+\end{prb}
+
+\begin{prb}[Hyper-real numbers]
+\end{prb}
+
+\begin{prb}[Real division algebras]
+The Frobenius theorem states that there are only three finite dimensional real division algebras.
+\end{prb}
+
+\begin{prb}[Cantor set]
+Let $C\subset[0,1]$ be the ternary Cantor set.
+\begin{parts}
+\item $C$ is uncountable.
+\item $C$ is closed in the sense that if every sequence in $C$ converges then the limit is in $C$.
+\end{parts}
+\end{prb}
+
+\begin{prb}[Diophantine approximation]
+
+\end{prb}
+
+\begin{prb}[Irrational rotations]
+
+\end{prb}
+
+
+\begin{prb}[Ces\`aro mean]
+
+\end{prb}
+
+\begin{prb}[Non-linear recursive sequences]
+Let $f:\R\to\R$ be a function, and $a\in\R$ be a real number.
+We investigate the asymptotic behavior of a recursive real sequence $(a_n)$ defined such that
+\[\left\{\begin{aligned}
+a_{n+1}&=a_n-f(a_n)&&\text{ for }n\ge0,\\
+a_0&=a.&&
+\end{aligned}\right.\]
+\begin{parts}
+\item If $a_{n+1}=\frac12(a_n+a_n^{-1})$ for $n\ge0$ and $a_0=2$, then
+The Newton method for $x\mapsto x^2-1$.
+\item If $a_{n+1}=3a_n(1-a_n)$ for $n\ge0$ and $a_0=1/2$, then
+\[a_n=\frac23+...\]
+The first bifurcation of the logistic map.
+\item If $a_{n+1}=\sin a_n$ for $n\ge0$ and $a_0=1$, then
+\[a_n=\sqrt3n^{-\frac12}-\frac{3\sqrt3}{20}n^{-\frac32}+o(n^{-\frac32}).\]
+\end{parts}
+\end{prb}
+\begin{pf}
+(a)
+We do not know the convergence of $(a_n)$ yet.
+However, if we assume $a_n\to a$ as an ansatz for a guess, then we must have $a=1$ from $a=\frac12(a+a^{-1})$.
+We first claim $a_n\to1$.
+
+We have $a_n\ge1$.
+
+Estimate the error as
+\[a_{n+1}-1=\frac{(a_n-1)^2}{2a_n}.\]
+
+
+Define $b_n:=\log\log(a_n-1)$.
+Then,
+\[b_{n+1}-b_n=\log\left(2-\frac{\log(2a_n)}{\log(a_n-1)}\right)\sim\log2\]
+\[b_{n+2}-2b_{n+1}-b_n=\]
+implies by the Ces\`aro mean
+\[b_n\sim n\log2.\]
+In this way, we cannot find the exact rate of convergence of $a_n-1$...
+
+
+
+(c)
+We have bounds $0<a_n\le1$ by induction.
+By the monotone convergence theorem, we can see that $a_n$ is decreasing and covergent, and the limit is zero because it is the only fixed point of the sine function.
+Define $b_n:=1/a_n^2$.
+Since
+\[\frac{a_{n+1}}{a_n}=\frac{\sin a_n}{a_n}\sim1,\]
+we have
+\[b_{n+1}-b_n=\frac1{a_{n+1}^2}-\frac1{a_n^2}=\frac{(a_n+a_{n+1})a_n^3}{a_{n+1}^2a_n^2}\frac{a_n-\sin a_n}{a_n^3}\sim2\cdot\frac16=\frac13.\]
+By the limit of the Ces\`aro mean, we have
+\[b_n=\frac n3+o(n).\]
+It implies that
+\[a_n-\sqrt{\frac 3n}=\frac{3a_n^2}{a_n+\sqrt{3/n}}\frac1n\left(b_n-\frac n3\right)=o(n^{-\frac12}).\]
+
+\end{pf}
+
+
+
+\section*{Problems}
+\begin{enumerate}
+\item Show that every real sequence $(a_n)$ has a subsequence $(a_{n_k})$, indexed by $k$, such that $\lim_{k\to\infty}a_{n_k}=\limsup_{n\to\infty}a_n$.
+\item Show that a subset $E$ of $\R$ such that $(a+b)/2\in E$ for every $a,b\in E$ containing an interval is an interval.
+\item Find all real numbers which can be the limit of a sequence in $\{(\sqrt m-\sqrt n)/(\sqrt m+\sqrt n):m,n\in\Z_{>0}\}$.
+\item Show that a subset $E$ of $(0,\infty)$ such that $a/2\in E$ and $\sqrt{a^2+b^2}\in E$ for all $a,b\in E$ is dense in $(0,\infty)$.
+\item Find all real numbers $x$ such that a sequence $(\sin(2^nx))$ coverges.
+\item If $a_n\ge0$ and $\sum a_n$ diverges, then $\sum\frac{a_n}{1+a_n}$ also diverges.
+\item If $a_n\ge0$ and $\sum a_n<\infty$, then there are sequences $b_n\downarrow0$ and $\sum c_n<\infty$ such that $a_n=b_nc_n$.
+\end{enumerate}
+
+
+
+
+
+
+\chapter{Metrics}
+\section{Topology}
+\begin{prb}[Metric spaces]
+A \emph{metric} on a set $X$ is a function $d:X\times X\to\R_{\ge0}$ such that for all $x,y,z\in X$
+\begin{parts}[(i)]
+\item $d(x,y)=0$ if and only if $x=y$, \hfill(nondegeneracy)
+\item $d(x,z)\le d(x,y)+d(y,z)$, \hfill(triangle inequality)
+\item $d(x,y)=d(y,x)$. \hfill(symmetry)
+\end{parts}
+A \emph{metric space} is a set $X$ equipped with a metric on $X$.
+A \emph{point} of a metric space $X$ is just an element of $X$.
+\begin{parts}
+\item A subset of a metric space is a metric space with a metric given by restriction.
+\item If $d:\R\times\R\to\R_{\ge0}$ is defined by $d(a,b):=|a-b|$ for $a,b\in\R$, then $d$ is a metric on $\R$.
+\item If $d:X\times X\to\R_{\ge0}$ is defined such that for $x,y\in X$ we have $d(x,y):=1$ if $x\ne y$ and $d(x,y):=0$ if $x=y$, then $d$ is a metric on any set $X$.
+\end{parts}
+\end{prb}
+
+\begin{prb}[Neighborhood systems]
+Metrics are often misguided to those that measure the distance between two points in the study of geoemtry.
+However, virtually the most important role of a metric is to provide a reasonable system of small balls, the sets of points whose distances from specified center points are less than some fixed radii.
+The balls centered at each point provide a concrete example of a system of neighborhoods at a point in a more intuitive sense.
+In this viewpoint, a metric can be considered as a structure that allows someone to perceive the notion of neighborhoods more friendly.
+
+Let $X$ be a metric space.
+The set
+\[B(x,\e)=B_\e(x):=\{y\in X:d(x,y)<\e\},\qquad x\in X,\ \e>0,\]
+is called the \emph{open ball centered at $x$ with radius $\e$}.
+Taking positive real numbers denoted by either $\e>0$ or $\delta>0$ in mathematical analysis usually really means taking a ball of the radius $\e$ or $\delta$.
+
+
+\end{prb}
+
+
+\begin{prb}[Convergence of sequences]
+Let $X$ be a metric space, and let $(x_n)$ be a sequence in $X$.
+As we did in $\R$, we can define a \emph{limit} of the sequence $(x_n)$ as a point $x\in X$ or the sequence $(x_n)$ \emph{converges} to a point $x\in X$ if for arbitrarily small $\e>0$ there exists $n_0$ such that $d(x_n,x)<\e$ for all $n\ge n_0$.
+The choice of $n_0$ may depend on $\e$.
+If it is satisfied, then we write $\lim_{n\to\infty}x_n=x$, or $x_n\to x$ as $n\to\infty$.
+We say a sequence in a metric space is \emph{convergent} if it converges to a point.
+If it does not converge to any points, then we say the sequence \emph{diverges}.
+\begin{parts}
+\item A sequence $x_n$ in a metric space $X$ converges to $x\in X$ if and only if $d(x_n,x)$ converges to zero.
+\end{parts}
+\end{prb}
+
+
+
+
+
+
+
+\begin{prb}[Open sets and closed sets]
+Let $X$ be a metric space.
+A subset $U\subset X$ is called \emph{open} if for every point $x\in U$ there is $r>0$ such that $B(x,r)\subset U$.
+A subset $F\subset X$ is called \emph{closed} if for every sequence $(x_n)$ in $F$ with $x_n\to x$ in $X$ we have $x\in F$.
+The set of all open subsets of $X$ is called the \emph{topology} of $X$.
+
+limit points, boundary, closure
+\begin{parts}
+\item If $U$ is a subset of $X$ and $F:=X\setminus U$ be the complement, then $U$ is open if and only if $F$ is closed.
+\end{parts}
+\end{prb}
+
+\begin{prb}[Continuous functions]
+Let $X$ and $Y$ be metric spaces, and let $f:X\to Y$ be a function.
+We say $f$ is \emph{continuous at $x\in X$} if for any ball $B(f(x),\e)\subset Y$ of radius $\e>0$ there is a ball $B(x,\delta)\subset X$ of radius $\delta>0$ such that $f(B(x,\delta))\subset B(f(x),\e)$.
+The function $f$ is called \emph{continuous} if it is continuous at every point on $X$.
+\begin{parts}
+\item $f$ is continuous if and only if $f^{-1}(V)$ is open in $U$ whenever $V$ is open in $Y$.
+\item $f$ is continuous if and only if $f(x_n)\to f(x)$ whenever $x_n\to x$, where $(x_n)$ is a sequence in $X$.
+\item 
+Let $f:X\to Y$ be a function between two metric spaces.
+If there is a constant $C$ such that $d(x,y)\le Cd(f(x),f(y))$ for all $x$ and $y$ in $X$, then $f$ is continuous.
+In this case, $f$ is particularly called \emph{Lipschitz continuous} with the \emph{Lipschitz constant} $C$.
+\end{parts}
+\end{prb}
+
+\begin{prb}[Equivalence of metrics]
+topologically, uniformly, Lipschitz.
+\end{prb}
+
+
+
+
+\section{Completeness}
+\begin{prb}[Cauchy sequences]
+Cauchy continuous functions
+
+\begin{parts}
+\item $\R$ is a complete metric space.
+\end{parts}
+\end{prb}
+
+
+\begin{prb}[Uniform continuous functions]
+Lipschitz
+Heine-Cantor theorem
+\end{prb}
+
+
+\begin{prb}[Continuous extension]
+A subset $D$ of a metric space $X$ is called \emph{dense} in $X$ if $\bar D=X$, that is, for every $x\in X$ there is a sequence $(x_n)$ in $D$ such that $x_n\to x$ in $X$.
+We frequently says that the point $x$ of the metric space $X$ is approximated by points of $D$.
+
+If $D$ is a dense subset of a metric space $X$, and if $Y$ is a complete metric space, then a uniformly continuous function $f:D\to Y$ is uniquely extended to a continuous function $\tilde f:X\to Y$.
+\end{prb}
+
+\begin{prb}[Completion of metric spaces]
+Let $X$ be a metric space.
+A \emph{completion} of $X$ is a complete metric space $\bar X$ together with an isometry $X\to\bar X$ with dense image.
+We will prove that there always exists a completion, and it is unique up to isometry.
+To construct a completion, we consider an equivalence relation on the set of all Cauchy sequences in $X$, defined such that two Cauchy sequences $(x_n)_n$ and $(y_n)_n$ in $X$ are equivalent if and only if $d(x_n,y_n)\to0$ as $n\to\infty$.
+Let $X^*$ be the set of all equivalence classes $[(x_n)_n]$ of Cauchy sequences $(x_n)_n$ in $X$.
+\begin{parts}
+\item $X^*$ has a metric $d^*$ defined such that $d^*([(x_n)_n],[(y_n)_n]):=\lim_{n\to\infty}d(x_n,y_n)$ for $[(x_n)_n],[(y_n)_n]\in X^*$.
+\item The metric space $(X^*,d^*)$ is complete.
+\item The constant sequence map $X\to X^*$ is an isometry with dense image.
+\item The completion of $X$ is unique up to isometry.
+\end{parts}
+\end{prb}
+\begin{pf}
+(a)
+First we can check the limit is well-defined since the real sequence $d(x_n,y_n)$ is Cauchy if $(x_n)_n$ and $(y_n)_n$ are Cauchy in $X$ due to the repeated applications of triangle inequalities
+\begin{align*}
+|d(x_n,y_n)-d(x_{n'},y_{n'})|
+&\le|d(x_n,y_n)-d(y_n,x_{n'})|+|d(y_n,x_{n'})-d(x_{n'},y_{n'})|\\
+&\le d(x_n,x_{n'})+d(y_n,y_{n'})\to0,\qquad n,n'\to\infty.
+\end{align*}
+The metric function $d^*:X^*\times X^*\to\R_{\ge0}$ is well-defined since if $[(x_n)_n]=[(x_n')_n]$ and $[(y_n)_n]=[(y_n')_n]$ in $X^*$, then
+\begin{align*}
+|d(x_n,y_n)-d(x_n',y_n')|
+&\le|d(x_n,y_n)-d(y_n,x_n')|+|d(y_n,x_n')-d(x_n',y_n')|\\
+&\le d(x_n,x_n')+d(y_n,y_n')\to0,\qquad n\to\infty.
+\end{align*}
+The non-degeneracy follows from the definition of the equivalence relation on the Cauchy sequences in $X$, and the symmetry can be trivially verified.
+The triangle inequality is also not difficult to see by taking limit $n\to\infty$ on the triangle inequality $d(x_n,z_n)\le d(x_n,y_n)+d(y_n,z_n)$ for Cauchy sequences $(x_n)_n$, $(y_n)_n$, and $(z_n)_n$ in $X$.
+
+
+(b)
+Suppose $([(x_{nm})_n])_m$ is a Cauchy sequence in the metric space $X^*$ indexed by $m$, meaning that
+\[\lim_{n\to\infty}d(x_{nm},x_{nm'})=d^*([(x_{nm})_n],[(x_{nm'})_n])\to0\qquad m,m'\to\infty.\]
+Fix any $\e>0$.
+Then, since there is $m_0$ such that
+\[\lim_{n\to\infty}d(x_{nm},x_{nm'})<\e,\qquad m,m'\ge m_0,\]
+there is $n_0$, by definition of limit $n\to\infty$, which satisfies
+\[d(x_{nm},x_{nm'})<\e,\qquad m,m'\ge m_0,\quad n\ge n_0.\]
+By letting $m'=n$, we obtain
+\[d(x_{nm},x_{nn})<\e\qquad m\ge m_0,\quad n\ge\max\{m_0,n_0\}.\]
+
+Define a sequence $(x_n)_n$ in $X$ by $x_n:=x_{nn}$.
+First we prove $(x_n)_n$ is Cauchy in $X$ so that we can define a point $[(x_n)_n]$ of $X^*$.
+Fix any sufficiently large $m$ with $m\ge m_0$.
+Then, we can write
+\begin{align*}
+d(x_n,x_{n'})=d(x_{nn},x_{n'n'})&
+\le d(x_{nn},x_{nm})+d(x_{nm},x_{n'm})+d(x_{n'm},x_{n'n'})\\
+&<\e+d(x_{nm},x_{n'm})+\e,\qquad n,n'\ge\max\{m_0,n_0\}.
+\end{align*}
+Since, by definition of $X^*$, the sequence $(x_{nm})_n$ indexed by $n$ in $X$ is Cauchy in $X$ for each $m$, if we take the limit superior $n,n'\to\infty$ on the previous inequality, then we have
+\[\limsup_{n,n'\to\infty}d(x_n,x_{n'})\le2\e,\]
+so we can further take the limit $\e\to0$ to see that $(x_n)_n$ is Cauchy in $X$.
+
+Next, we check the convergence $[(x_{nm})_n]\to[(x_n)_n]$ as $m\to\infty$ in $X^*$.
+Since
+\[d^*([(x_{nm})_n],[(x_n)_n])=\lim_{n\to\infty}d(x_{nm},x_{nn})\le\e,\qquad m\ge m_0,\]
+if we take the limit superior $m\to\infty$ to get
+\[\limsup_{m\to\infty}d^*([(x_{nm})_n],[(x_n)_n])\le\e,\]
+then the limit $\e\to0$ shows that $[(x_{nm})_n]\to[(x_n)_n]$ as $m\to\infty$ in $X^*$.
+Therefore, the metric space $X^*$ is complete.
+
+(c)
+If the equivalence classes of constant sequences $[(x)_n]$ and $[(y)_n]$ are elements of $X^*$ induced from points $x,y\in X$, then
+\[d^*([(x)_n],[(y)_n])=\lim_{n\to\infty}d(x,y)=d(x,y),\]
+so the map $X\to X^*$ is an isometry.
+Also for any $[(x_n)_n]\in X^*$, the sequence $([(x_m)_n])_m$ defined by the image, for each $m$, of the $m$-th point $x_m\in X$ in the sequence $(x_n)_n$ under the isometry $X\to X^*$ converges to $[(x_n)_n]$ because $(x_n)_n$ is Cauchy in $X$ so that
+\[\lim_{m\to\infty}d^*([(x_n)],[(x_m)])=\lim_{m\to\infty}\lim_{n\to\infty}d(x_n,x_m)=0.\]
+Therefore, the isometry $X\to X^*$ has dense range.
+
+(d)
+\end{pf}
+
+
+\begin{prb}[Separable metric spaces]
+separable iff second countable iff lindelof
+\end{prb}
+
+
+\section{Compactness}
+
+\begin{prb}[Open cover]
+
+compact image
+\end{prb}
+
+\begin{prb}[Finite intersection property]
+Nested intervals
+\end{prb}
+
+\begin{prb}[Sequential compactness]
+Bolzano-Weierstrass
+\end{prb}
+
+\begin{prb}[Total boundedness]
+\end{prb}
+
+
+\begin{prb}[Heine-Borel theorem]
+\end{prb}
+
+
+
+\section{Connectedness}
+
+
+
+\section*{Exercises}
+\section*{Problems}
+
+
+
+
+
+
+
+
+\chapter{Norms}
+
+
+
+
+\section{Series}
+
+
+\begin{prb}[Normed spaces]
+Vector spaces
+\end{prb}
+
+\begin{prb}[Noremd algebras]
+Algebras
+\end{prb}
+
+A \emph{series} is technically nothing but a sequence $(a_n)$, but written in the form $\sum_ka_k$.
+In analysis, this notation of series alludes that we will investigate the limit behavior of sequence of partial sums $(\sum_{k\le n}a_k)$.
+
+
+convergence tests
+comparison
+limit comparison
+cauchy condensation
+integral....
+
+ratio
+root
+
+
+\begin{prb}[Unconditional convergence]
+\end{prb}
+
+
+
+\begin{prb}[Abel transform]
+\[A_n(B_n-B_{n-1})+(A_n-A_{n-1})B_{n-1}=A_nB_n-A_{n-1}B_{n-1}\]
+\[\sum_{m<k\le n}A_kb_k=A_nB_n-A_mB_m-\sum_{m<k\le n}a_kB_{k-1}.\]
+abel test
+\end{prb}
+
+
+
+\begin{prb}[Dirichlet test]
+\end{prb}
+
+
+\begin{prb}[Mertens theorem]
+Let $E$ be a normed algebra.
+If a series $\sum_{k\ge0}a_k$ converges to $A$ absolutely and a series $\sum_{k\ge0}b_k$ converges to $B$, then their Cauchy product $\sum_{k\ge0}c_k$ with $c_k:=\sum_{l\le k}a_lb_{k-l}$ converges to $AB$.
+Let
+\[A_n:=\sum_{k\le n}a_k,\quad B_n:=\sum_{k\le n}b_k,\quad\text{ and }\quad C_n:=\sum_{k\le n}c_k.\]
+\end{prb}
+\begin{pf}
+Note that $\sup_n\|B_n\|<\infty$ is bounded.
+Write
+\[\|C_n-AB\|\le\|C_n-A_nB_n\|+\|(A_n-A)B_n\|+\|A(B_n-B)\|.\]
+Fix any $\e>0$.
+Fix $m$ such that
+\[\sum_{k=m+1}^\infty\|a_k\|<\e.\]
+Then, since
+\[C_n=\sum_{k\le n}\sum_{l\le k}a_lb_{k-l}=\sum_{l\le n}\sum_{l\le k\le n}a_lb_{k-l}=\sum_{l\le n}\sum_{k\le n-l}a_lb_k=\sum_{l\le n}a_lB_{n-l},\]
+we can write
+\begin{align*}
+\|C_n-A_nB_n\|
+&=\|\sum_{l\le n}a_l(B_n-B_{n-l})\|\\
+&\le\|\sum_{l\le m}a_l(B_n-B_{n-l})\|+\|\sum_{m<l\le n}a_l(B_n-B_{n-l})\|\\
+&\lesssim\sum_{l\le m}\|a_l\|\|B_n-B_{n-l}\|+\sum_{m<l\le n}\|a_l\|\\
+&<\sum_{l\le m}\|a_l\|\|B_n-B_{n-l}\|+\e,
+\end{align*}
+so the limit superior $n\to\infty$ and the limit $\e\to0$ obtain $\|C_n-A_nB_n\|\to0$.
+Since the other two terms $\|(A_n-A)B_n\|$ and $\|A(B_n-B)\|$ clearly converge to zero, the claim follows.
+\end{pf}
+
+
+
+
+\section{Banach spaces}
+
+\begin{prb}
+Let $E$ be a normed space.
+Then, $E$ is Banach if and only every absolutely convergent series converges.
+\end{prb}
+\begin{pf}
+($\Rightarrow$)
+Let $\sum_ka_k$ be an absolutely convergent series.
+Then, the partial sum $A_n:=\sum_{k\le n}a_k$ is a Cauchy sequence since the absolute convergence implies
+\[\|A_n-A_{n'}\|\le\sum_{n'<k\le n}\|a_k\|=\sum_{k\le n}\|a_k\|-\sum_{k\le n'}\|a_k\|\to0,\qquad n\ge n'\to\infty.\]
+Since $E$ is Banach, $A_n$ converges.
+
+($\Leftarrow$)
+Let $a_n$ be a Cauchy sequence.
+Then, we can take a subsequence $a_{n_k}$ of $a_n$ such that
+\[a_{n_0}=0,\qquad\|a_{n_k}-a_{n_{k'}}\|<\frac1{2^{k'}},\qquad k\ge k'>0.\]
+Consider a series $\sum_{j>0}(a_{n_j}-a_{n_{j-1}})$, which is absolutely convergent.
+Then, the partial sum
+\[\sum_{0<j\le k}(a_{n_j}-a_{n_{j-1}})=a_{n_k}-a_{n_0}=a_{n_k}\]
+converges to some point $a\in E$ by the assumption.
+Then, fixing sufficiently large $k>0$ for any $\e>0$ such that $\|a_{n_k}-a\|<\e$ and $2^{-k}<\e$, we have
+\[\|a_n-a\|\le\|a_n-a_{n_k}\|+\|a_{n_k}-a\|<\frac1{2^k}+\e<2\e,\qquad n\ge n_k,\]
+so the limit superior $n\to\infty$ and the limit $\e\to0$ imply the convergence $a_n\to a$.
+\end{pf}
+
+
+
+\begin{prb}[Space of linear operators]
+\end{prb}
+
+\section{Hilbert spaces}
+
+
+\begin{prb}
+Projections and closed linear subspaces.
+
+Let $H$ be a Hilbert space and $V$ be a closed linear subspace of $H$.
+
+It is a big theorem that every closed subspace is complemented in a Hilbert space.
+
+
+\begin{parts}
+\item For $x\in H$, there is a unique $y\in V$ such that $x-y\in V^\perp$.
+\item $V^{\perp\perp}=V$.
+\end{parts}
+\end{prb}
+\begin{pf}
+(a)
+
+
+(b)
+If $x\in V^{\perp\perp}$, then there is $y\in V$ such that $x-y\in V^\perp$, but since $x-y\in V^{\perp\perp}$ implies $x-y\in V^\perp\cap V^{\perp\perp}=0$, so $x\in V$.
+
+\end{pf}
+
+\section{Sequence spaces}
+
+$\ell^1$, $\ell^\infty$, $\ell^p$, $c_0$, $c_c$
+
+
+
+\section*{Exercises}
+
+
+\section*{Problems}
+
+
+
+
+\part{Functions}
+
+\chapter{Continuity}
+
+
+\section{Uniform convergence}
+
+\begin{prb}
+Let $X$ and $Y$ be metric spaces.
+The set of all continuous functions $f:X\to Y$ is denoted by $C(X,Y)$.
+If $Y=\R$ or $Y=\C$, then we usually write $C(X)$ to denote $C(X,Y)$.
+\begin{parts}
+\item If $X$ is compact and $Y$ is complete, then $C(X,Y)$ is complete.
+\end{parts}
+\end{prb}
+\begin{pf}
+(a)
+Suppose $(f_n)$ is a Cauchy sequence in $C(X)$.
+Since it is pointwise Cauchy, we have a function $f:X\to\R$ such that $f_n\to f$ pointwisely.
+We first claim that $f_n\to f$ uniformly.
+Fix $\e>0$.
+Write
+\begin{align*}
+|f_n(x)-f(x)|
+&\le|f_n(x)-f_{n'}(x)|+|f_{n'}(x)-f(x)|\\
+&\le\|f_n-f_{n'}\|+|f_{n'}(x)-f(x)|\qquad n,n'\ge0,\ x\in X.
+\end{align*}
+Since $(f_n)$ is uniformly Cauchy, there is $n_0$ such that
+\[\|f_n-f_{n'}\|<\e,\qquad n,n'>n_0,\]
+so that the pointwise limit $n'\to\infty$ has the inequality
+\[|f_n(x)-f(x)|\le\e,\qquad n>n_0,\ x\in X.\]
+The limit $\e\to0$ after the supremum over $x\in X$ and the limit superior $n\to\infty$ implies the uniform limit $f_n\to f$.
+
+Now we claim $f$ is continuous.
+Let $a\in X$ and fix $\e>0$.
+Divide the error as
+\begin{align*}
+|f(x)-f(a)|
+&\le|f(x)-f_n(x)|+|f_n(x)-f_n(a)|+|f_n(a)-f(a)|\\
+&\le2\|f-f_n\|+|f_n(x)-f_n(a)|,\qquad n\ge0,\ x\in X.
+\end{align*}
+Using the uniform convergence $f_n\to f$, we can fix $n$ such that
+\[|f(x)-f(a)|<\e+|f_n(x)-f_n(a)|,\qquad x\in X.\]
+Then, taking the limit superior $x\to a$ and $\e\to0$, the continuity of $f$ follows from the continuity of $f_n$.
+
+(b)
+
+\end{pf}
+
+\begin{prb}[Dini theorem]
+\end{prb}
+
+
+
+
+
+\section{Arzela-Ascoli theorem}
+
+\begin{prb}[Arzela-Ascoli theorem]
+Let $X$ be a compact metric space, and $Y$ be a metric space.
+Let $\cF\subset C(X,Y)$ be an \emph{equi-continuous} family of functions in the sense that at each point $x\in X$ for every $\e>0$ there is a $\delta>0$ such that
+\[\sup_{f\in\cF}d(f(x),f(x'))<\e,\qquad x'\in B(x,\delta).\]
+Suppose further that $\cF$ is pointwisely totally bounded.
+\begin{parts}
+\item $\cF$ is uniformly totally bounded.
+\end{parts}
+\end{prb}
+\begin{pf}
+(a)
+Let $(f_n)$ be a sequence in $\cF$.
+We prove the existence of a Cauchy subsequence.
+Fix $\e>0$.
+Since $\cF$ is equi-continuous, each point $x\in X$ has an open neighborhood $U_x$ such that
+\[d(f_n(x),f_n(x'))<\e,\qquad x'\in U_x,\ n\ge0.\]
+Since $\{U_x\}_{x\in X}$ is an open cover of a compact set $X$, there is finite subcover $\{U_{x_j}\}_j$.
+Since $\cF$ is pointwisely totally bounded, we can take a subsequence $(f_{n_k})_k$ of $(f_n)$ finitely many times such that $(f_{n_k}(x_j))_k$ is a Cauchy sequence for each $j$.
+For any $x\in X$, since there is $j$ such that $x\in U_{x_j}$, we have
+\begin{align*}
+d(f_{n_k}(x),f_{n_{k'}}(x))
+&\le d(f_{n_k}(x),f_{n_k}(x_j))+d(f_{n_k}(x_j),f_{n_{k'}}(x_j))+d(f_{n_{k'}}(x_j),f_{n_{k'}}(x))\\
+&<\e+\max_jd(f_{n_k}(x_j),f_{n_{k'}}(x_j))+\e
+\end{align*}
+for all $k,k'$.
+The right-hand side does not depend on $x$, so after taking supremum for $x\in X$, by limiting $k,k'\to\infty$ and $\e\to0$, we get
+\[\sup_{x\in X}d(f_{n_k}(x),f_{n_{k'}}(x))\to0,\qquad k,k'\to\infty.\]
+Therefore, the subsequence $(f_{n_k})_k$ is uniformly Cauchy.
+\end{pf}
+
+
+
+\begin{prb}
+Let $X$ be a topological space and $Y$ be a uniform space.
+Consider the compact-open topology on $C(X,Y)$, which is the topology of compact convergence since $Y$ is a uniform space.
+If $\cF\subset C(X,Y)$ is pointwise totally bounded and locally equi-continuous, then it is totally bounded.
+\begin{parts}
+\item
+\end{parts}
+\end{prb}
+\begin{pf}
+We may assume $X$ is compact so that $\cF$ is globally equi-continuous.
+Let $f_i$ be a net in $\cF$ and fix an entourage $E$ of $Y$ with a smaller entourage $E'$ such that $E'^3\subset E$.
+Since $\cF$ is globally equi-continuous, each point $x\in X$ has an open neighborhood $U_x$ such that
+\[(f(x),f(x'))\in E',\qquad x'\in U_x,\ f\in\cF.\]
+Take a finite subcover $\{U_{x_j}\}$.
+Since $\cF$ is pointwisely totally bounded, taking subnets repeatedly but finitely many, we may assume that $f_i(x_j)$ is Cauchy for each $j$.
+Find $i_0$ such that for all $j$
+\[(f_i(x_j),f_{i'}(x_j))\in E',\qquad i,i'\succ i_0.\]
+Then, for every $x\in X$ there is $j$ with $x\in U_{x_j}$ so that
+\[(f_i(x),f_{i'}(x))=(f_i(x),f_i(x_j))\circ(f_i(x_j),f_{i'}(x_j))\circ(f_{i'}(x_j),f_{i'}(x))\in E'^3\subset E,\qquad i,i'\succ i_0.\]
+Therefore, $f_i$ is uniformly Cauchy.
+\end{pf}
+
+
+\begin{prb}[Topology of compact convergence]
+Let $X$ and $Y$ be metric spaces.
+\end{prb}
+
+
+\section{Stone-Weierstrass theorem}
+
+\begin{prb}[Polynomial approximation of square root]
+\end{prb}
+\begin{pf}
+Let $(p_n)$ be the sequence of functions in $C[0,1]$ defined recursively such that
+\[p_{n+1}(s):=p_n(s)+\frac12(s-p_n^2(s)),\qquad p_0(s)=0,\qquad n\ge0,\ s\in[0,1].\]
+Then, we can check $p_n$ is non-decreasing sequence of real polynomials satisfying $p_n(s)\le\sqrt s$ for all $n\ge0$ and $s\in[0,1]$ by the induction, as we have $p_0(s)=0\le\sqrt s$ and the inductive hypothesis $p_n(s)\le\sqrt s$ implies
+\begin{align*}
+p_{n+1}(s)
+&=p_n(s)+\frac s2-\frac12p_n^2(s)\\
+&=-\frac12(1-p_n(s))^2+\frac12(1+s)\\
+&\le-\frac12(1-\sqrt s)^2+\frac12(1+s)=\sqrt s,\qquad s\in[0,1].
+\end{align*}
+Then,
+\[\sqrt s-p_{n+1}(s)=(\sqrt s-p_n(s))\left(1-\frac12(\sqrt s+ p_n(s))\right)\le(\sqrt s-p_n(s))\left(1-\frac{\sqrt s}2\right)\]
+implies the inequality
+\[\sqrt s-p_n(s)\le\sqrt s\left(1-\frac{\sqrt s}2\right)^n,\qquad n\ge0,\ s\in[0,1].\]
+By the Dini theorem or the computation $\sup_{t\in[0,1]}t(1-t)^n=n^n/(n+1)^{n+1}$, the right hand side converges to zero uniformly on $[0,1]$, so $p_n$ converges uniformly to the square root function on $[0,1]$.
+\end{pf}
+
+\begin{prb}[Stone-Weierstrass theorem]
+Let $X$ be a compact metric space.
+Suppose $A$ is a unital subalgebra of $C(X,\R)$ that separates points of $X$.
+In other words, suppose $A$ is a linear subspace containing a constant function and closed under the multiplication, and for every distinct pair $x\ne y$ in $X$ there is $f\in A$ such that $f(x)\ne f(y)$.
+
+
+\begin{parts}
+\item $\bar A$ is also a unital subalgebra.
+\item $\bar A$ is a lattice.
+\item $A$ is uniformly dense in $C(X,\R)$.
+\end{parts}
+\end{prb}
+\begin{pf}
+(a)
+
+(b)
+Since $|f|=\sqrt{f^2}$ and
+\[\max\{f,g\}=\frac12(f+g+|f-g|),\qquad\min\{f,g\}=\frac12(f+g-|f-g|)\]
+for $f,g\in\bar A$, it is enough to show $\sqrt f\in\bar A$ for any $f\in\bar A$ with $f\ge0$.
+We may assume $f\le1$ because $\bar A$ is linear.
+
+Let $(p_n)$ be a sequence of real polynomials uniformly convergent to the square root function in $C([0,1],\R)$.
+Since $\bar A$ is a unital algebra, we have $p_n(f)\in\bar A$ for each $n$.
+Then, the claim $\sqrt f\in\bar A$ follows from
+\[\|p_n(f)-\sqrt f\|=\sup_{x\in X}|p_n(f(x))-\sqrt{f(x)}|\le\sup_{s\in[0,1]}|p_n(s)-\sqrt s|\to0,\qquad n\to\infty.\]
+
+(c)
+It suffices to show $\bar A$ is uniformly dense in $C(X,\R)$, since a closed dense subset is the whole set $\bar A=C(X,\R)$, which means that $A$ is dense in $C(X,\R)$.
+Fix $f\in C(X,\R)$ and $\e>0$.
+We will construct $g\in\bar A$ such that $\|f-g\|<\e$.
+Because the linear space $A$ contains a constant and separates points, for each pair of points $x$ and $y$ in $X$ we always have $g_{x,y}\in A$ such that
+\[g_{x,y}(x)=f(x),\qquad g_{x,y}(y)=f(y).\]
+Let
+\[U_{x,y}:=\{z\in X:|g_{x,y}(z)-f(z)|<\e\},\qquad x,y\in X.\]
+Since $|g_{x,y}-f|$ is continuous and since $y\in U_{x,y}$, the collection $\{U_{x,y}\}_{y\in X}$ is an open cover of $X$ for each $x\in X$, so we have a finite subcover $\{U_{x,y_j}\}_j$ by the compactness of $X$.
+Define
+\[g_x:=\min_jg_{x,y_j},\]
+which is an element of $\bar A$ by the part (b).
+Then, because for any $z\in X$ there is $j$ satisfying $z\in U_{x,y_j}$ so that $g_x(z)\le g_{x,y_j}(z)<f(z)+\e$, we have
+\[g_x(x)=f(x),\qquad g_x<f+\e.\]
+Let
+\[U_x:=\{z\in X:|g_x(z)-f(z)|<\e\},\qquad x\in X.\]
+Then, similarly $\{U_x\}_{x\in X}$ is an open cover of $X$, so we have a finite subcover $\{U_{x_j}\}_j$.
+Define
+\[g:=\max_jg_{x_j},\]
+which is also an element of $\bar A$ by the part (b).
+Then, because for every $j$ we have $g_{x_j}<f+\e$ and for any $z\in X$ there is $j$ satisfying $z\in U_{x_j}$ so that $g(z)\ge g_{x_j}(z)>f(z)-\e$, we have
+\[f-\e<g<f+\e.\]
+Therefore, we have $\|f-g\|<\e$.
+\end{pf}
+
+
+Locally compact version:
+We say $A\subset C_0(X,\R)$ \emph{vanishes nowhere} if for every $x$ in $X$ there is $f\in A$ such that $f(x)\ne0$.
+Then, $A$ vanishes nowhere if and only if $A+\C$ separates points of the one-point compactification $X_+$.
+Let $A$ be a subalgebra of $C_0(X,\R)$ that separates points and vanishes nowhere.
+Then, $A+\C$ is dense in $C(X_+,\R)$.
+If $f\in C_0(X,\R)$ and $a_n+\lambda_n\in A+\C$ converges to $f$, then $\lambda_n\to0$ implies $a_n\to f$.
+Therefore, $A$ is dense in $C_0(X,\R)$.
+
+
+
+
+Complex version:
+Let $A$ be a $*$-subalgebra of $C_0(X,\C)$ that separates points and vanishes nowhere.
+Then, $A^{sa}$ is a subalgebra of $C_0(X,\R)$ that separates points and vanishes nowhere since $A^{sa}$ contains all real parts and imaginary parts of $A$.
+Then, $A^{sa}$ is dense in $C_0(X,\R)$.
+For $f\in C_0(X,\C)$, take $a_n,b_n\in A^{sa}$ such that $a_n\to\Re f$ and $b_n\to\Im f$.
+Then, $a_n+ib_n\in A$ and $a_n+ib_n\to f$, so we are done.
+
+
+
+
+\section{Normality of metric spaces}
+
+
+\begin{prb}[Urysohn lemma]
+Let $X$ be a metric space.
+Let $A$ and $B$ be disjoint closed subsets of $X$.
+\begin{parts}
+\item A metric space is normal in the sense that there are disjoint open subsets $U$ and $V$ of $X$ such that $A\subset U$ and $B\subset V$.
+\item There is a continuous function $f:X\to[0,1]$ such that $f(a)=0$ for $a\in A$ and $f(b)=1$ for $b\in B$.
+\end{parts}
+\begin{pf}
+(a)
+
+(b)
+First we construct a collection $\{U_r:r\in\Q\cap[0,1]\}$ of open subsets such that
+\[A\subset U_0,\quad\bar U_r\subset U_{r'},\quad\bar U_1\subset B,\qquad r<r'.\]
+Since $\Q\cap[0,1]$ is countable, we can take its numeration, a seuqence $(r_n)$ indexed by $n\in\Z_{\ge0}$ such that $\{r_n:n\in\Z_{\ge0}\}=\Q\cap[0,1]$ and $r_n\ne r_{n'}$ whenever $n\ne n'$.
+We may assume $r_0=0$ and $r_1=1$.
+Let $U_1:=X\setminus B$, and using the normality of $X$, choose an open subset $U_0$ of $X$ such that $A\subset U_0$ and $\bar U_0\subset U_1$.
+If we suppose we have constructed $U_{r_0},\cdots,U_{r_n}$, then taking $r,r'$ such that $\{r_0,\cdots,r_{n+1}\}\cap[r,r']=\{r,r_{n+1},r'\}$ and using the normality of $X$, we can choose an open subset $U_{r_{n+1}}$ of $X$ such that $\bar U_r\subset U_{r_{n+1}}$ and $\bar U_{r_{n+1}}\subset U_{r'}$.
+Then we are done by induction.
+
+Define $f:X\to[0,1]$ by
+\[f(x):=\inf\{r\in\Q\cap[0,1]:x\in U_r\},\qquad x\in X.\]
+We clearly have $f(a)=0$ for $a\in A$ and $f(b)=1$ for $b\in B$.
+For any $x\in X$ and $\e>0$, if we take $r,r'\in\Q\cap[0,1]$ such that $f(x)-\e<r<f(x)<r'<f(x)+\e$, then $U:=U_{r'}\setminus\bar U_r$ satisfies $x\in U$ and $|f(x)-f(y)|<\e$ for all $y\in U$, so $f$ is continuous at every point of $X$.
+\end{pf}
+
+\end{prb}
+\begin{prb}[Tietze extension]
+Let $X$ be a metric space.
+Let $A$ be a closed subset of $X$ and $f:A\to[-1,1]$ be a continuous function.
+Then, there is a continuous extension $\tilde f:X\to[-1,1]$ of $f$.
+\end{prb}
+\begin{pf}
+Initially, by the Urysohn lemma, we can take a continuous function $g_1:X\to[-\frac13,\frac13]$ such that $g_1(a)=-\frac13$ on $a\in f^{-1}([-1,-\frac13])$ and $g_1(b)=\frac13$ on $b\in f^{-1}([\frac13,1])$ so that
+\[\sup_{x\in X}|g_1(x)|\le\frac13,\qquad\sup_{a\in A}|(f-g_1)(a)|\le\frac23.\]
+Suppose we have constructed $g_1,\cdots,g_n$.
+
+Define a sequence of continuous functions $f_n:A\to\left[-\left(\frac23\right)^n,\left(\frac23\right)^n\right]$ by $f_0:=f$ and
+\[f_n(a):=f_{n-1}(a)-g_n(a)=f(a)-\sum_{k=1}^ng_k(a),\qquad a\in A,\ n\ge1.\]
+Using the Urysohn lemma, take a continuous function
+\[g_{n+1}:X\to\left[-\frac13\left(\frac23\right)^n,\frac13\left(\frac23\right)^n\right]\]
+such that
+\[g_{n+1}(a)=-\frac13\left(\frac23\right)^n,\qquad a\in f_n^{-1}\left(\left[-\left(\frac23\right)^n,-\frac13\left(\frac23\right)^n\right]\right)\]
+and
+\[g_{n+1}(b)=\frac13\left(\frac23\right)^n,\qquad b\in f_n^{-1}\left(\left[\frac13\left(\frac23\right)^n,\left(\frac23\right)^n\right]\right)\]
+so that we have
+\[\sup_{x\in X}|g_{n+1}(x)|\le\frac13\left(\frac23\right)^n,\qquad\sup_{a\in A}|(f_n-g_{n+1})(a)|\le\left(\frac23\right)^{n+1}.\]
+
+\end{pf}
+
+
+\begin{prb}[Continuous partition of unity]
+Let $X$ be a metric space.
+A family $\{F_i\}$ of subsets of $X$ is called \emph{locally finite} if every point $x\in X$ has an open neighborhood $U$ such that there are only finitely many $i$ satisfying $U\cap F_i\ne\varnothing.$
+Let $\{U_i\}$ be an open cover of $X$.
+A \emph{continuous partition of unity} subordinate to $\{U_i\}$ is a collection $\{\chi_i\}$ of continuous functions $\chi_i:X\to[0,1]$ such that $\supp\chi_i\subset U_i$ for each $i$ and $\sum_i\chi_i(x)=1$ for all $x\in X$.
+Suppose $\{U_i\}$ is locally finite.
+\begin{parts}
+\item There is a locally finite open cover $\{V_i\}$ of $X$ such that $\bar V_i\subset U_i$ for each $i$.
+\item A continuous partition of unity subordinate to $\{U_i\}$ exists.
+\end{parts}
+\end{prb}
+\begin{pf}
+(a)
+
+
+(b)
+Applying the part (a) twice, find locally finite open covers $\{V_i\}$ and $\{W_i\}$ such that $\bar W_i\subset V_i$ and $\bar V_i\subset U_i$ for each $i$.
+By the Urysohn lemma, we can construct for each $i$ a continuous function $f_i:X\to[0,1]$ such that $f_i=0$ on $X\setminus V_i$ and $f_i=1$ on $\bar W_i$.
+Note that we have $\supp f_i\subset\bar V_i\subset U_i$ and $1\le\sum_if_i(x)<\infty$ for all $x\in X$.
+Define $\chi_i:X\to[0,1]$ by
+\[\chi_i(x):=\frac{f_i(x)}{\sum_if_i(x)},\qquad x\in X.\]
+Then, $\{\chi_i\}$ is a continuous partition of unity subordinate to the open cover $\{U_i\}$.
+\end{pf}
+
+
+
+
+
+\section*{Exercises}
+\begin{prb}[Space filling curves]
+\end{prb}
+\begin{prb}[Bernstein polynomial]
+We want to show $\R[x]$ is dense in $C([0,1],\R)$.
+Let $f\in C([0,1],\R)$ and define \emph{Berstein polynomials} $B_n(f)\in\R[x]$ for each $n$ such that
+\[B_n(f)(x):=\sum_{k=0}^nf\left(\frac kn\right)\binom nkx^k(1-x)^{n-k}.\]
+\begin{parts}
+\item $B_n(f)$ uniformly converges to $f$ on $[0,1]$.
+\item There is a sequence $p_n\in\R[x]$ with $p_n(0)=0$ uniformly convergent to $x\mapsto|x|$ on $[-1,1]$.
+\end{parts}
+\end{prb}
+\begin{pf}
+(b)
+Let
+\[B_n(x):=\sum_{k=0}^n\left|1-\frac{2k}n\right|\binom nk(1-2x)^k(2x-1)^{n-k}.\]
+Since $B_n(x)\to|x|$ uniformly on $[-1,1]$ and $B_n(0)\to0$, we have $B_n(x)-B_n(0)\to|x|$ uniformly on $[-1,1]$.
+\end{pf}
+
+\begin{prb}[Taylor series of square root]
+We want to show the absolute value is approximated by polynomials in $C([-1,1],\R)$ in another way.
+Let
+\[f_n(x):=\sum_{k=0}^n a_k(x-1)^k\]
+be the partial sum of the Taylor series of the square root function $\sqrt x$ at $x=1$.
+\begin{parts}
+\item By Abel's theorem, $f_n$ uniformly converges to $\sqrt x$ on $[0,1]$
+\item There is a sequence $p_n\in\R[x]$ with $p_n(0)=0$ uniformly convergent to $x\mapsto|x|$ on $[-1,1]$.
+\end{parts}
+\end{prb}
+
+\begin{prb}[Semi-continuity]
+\end{prb}
+
+
+
+\begin{prb}
+Some examples
+\begin{parts}
+\item If $K\subset\C$, then $\C[z,\bar z]$ is dense in $C(K)$.
+\item If $K\subset\R$ or $K\subset\T$, then $\C[z]$ is dense in $C(K)$.
+\item If $K\subset\R\setminus\{0\}$, then $z\C[z]$ is dense in $C(K)$.
+\end{parts}
+\end{prb}
+
+
+
+\section*{Problems}
+\begin{enumerate}
+\item* Show that a sequence of functions $f_n:[0,1]\to[0,1]$ that satisfies $|f_n(x)-f_n(y)|\le|x-y|$ whenever $|x-y|\ge\frac1n$ has a uniformly convergent subsequence.
+\item Show that for a sequence of differentiable functions $f_n:\R\to\R$ that satisfies $|f_n'(x)|\le1$ for all $n\ge1$ and $x\in\R$ its pointwise limit is continuous if it exists.
+\item Show that a sequence of $C^1$ functions $f_n:[0,1]\to\R$ such that $|f_n'(x)|\le x^{-\frac12}$ for $x\in(0,1]$ and $\int_0^1f_n(x)\,dx=0$ for all $n\ge1$ has a uniformly convergent subsequence.
+\end{enumerate}
+
+
+\begin{enumerate}
+\item The set of local minima of a convex real function is connected.
+\item Let $f:\R\to\R$ be continuous.
+The equation $f(x)=c$ cannot have exactly two solutions for every constant $c\in\R$.
+\item A continuous function that takes on no value more than twice takes on some value exactly once.
+\item Let $f$ be a function that has the intermediate value property.
+If the preimage of every singleton is closed, then $f$ is continuous.
+\item If a continuous function $f:[0,\infty)\to\R$ has a limit at infinity, then it is uniformly continuous.
+\item If $f:[0,1]^2\to\R$ is continuous, then $g:[0,1]\to\R$ defined by $g(x):=\max_{y\in[0,1]}f(x,y)$ is continuous.
+\item A metric space $X$ is compact if and only if every continuous function $f:X\to\R$ has bounded image.
+\end{enumerate}
+
+
+
+
+
+
+
+\chapter{Differentiability}
+
+\section{Taylor theorem}
+\begin{prb}[Rolle theorem]
+Let $f:[a,b]\to\R$ be a function that is continuous on $[a,b]$ and differentiable on $(a,b)$.
+\begin{parts}
+\item If $f(a)=f(b)=0$, then there is $c\in(a,b)$ such that $f'(c)=0$.
+\item Suppose $f$ is $(n+1)$-times differentiable. If $f(a)=f'(a)=\cdots=f^{(n)}(a)=0$ and $f(b)=0$, then there is $c\in(a,b)$ such that $f^{(n+1)}(c)=0$.
+\end{parts}
+\end{prb}
+\begin{pf}
+(a)
+If $f\equiv0$, then it is clear.
+If not, we may assume there is $x\in(a,b)$ such that $f(x)>0$ by multiplying $-1$.
+Since $f$ is continuous, by the extreme value theorem, there is $c\in(a,b)$ such that $c$ attains the maximum of $f$.
+Then, $f'(c)=0$.
+
+(b)
+By the induction, we have $c_n\in(a,b)$ such that $f^{(n)}(c)=0$.
+By applying Rolle's theorem (the part (a)) for $f^{(n)}$, we have $c_{n+1}\in(a,c_n)$ such that $f^{(n+1)}(c_{n+1})=0$.
+\end{pf}
+
+\begin{prb}[Mean value theorem]
+\[\frac{f(b)-f(a)}{b-a}=f'(c)\]
+\end{prb}
+
+\begin{prb}[Taylor theorem]
+\end{prb}
+
+
+\section{Optimization}
+\begin{prb}[L'hopital theorem]
+\end{prb}
+
+monotone and convex
+
+
+\section{Differentiable classes}
+
+\begin{prb}[Continuously differentiable functions]
+A function $f:[a,b]\to\R$ is called \emph{continuously differentiable} if it is differentiable on the open interval $(a,b)$ and the derivative $f'$ is continuously extended to the closed interval $[a,b]$.
+
+\[C^1([a,b])\subset C([a,b])\cap C^1((a,b)).\]
+\begin{parts}
+\item $C^1([a,b])$ is Banach.
+\end{parts}
+\end{prb}
+\begin{pf}
+(a)
+Let $(f_n)$ be a Cauchy sequence in $C^1([a,b])$.
+Then, we have $f_n\to f$ and $f_n'\to g$ uniformly in $C([a,b])$.
+Fix $x\in[a,b]$.
+For each $h\ne0$ and $n$, using the mean value theorem, we can find $c\in[a,b]$ such that $D_hf_n(x)=f_n'(c)$ with $|c-x|<|h|$, so we have
+\begin{align*}
+|D_hf(x)-g(x)|
+&\le|D_hf(x)-D_hf_n(x)|+|D_hf_n(x)-f_n'(c)|+|f_n'(c)-g(c)|+|g(c)-g(x)|\\
+&\le\frac2h\|f-f_n\|+0+\|f_n'-g\|+\sup_{y:|y-x|<|h|}|g(y)-g(x)|,\qquad h\ne0,\ n\ge0.
+\end{align*}
+As $n\to\infty$ and $h\to0$, the continuity of $g$ concludes that $f'=g$.
+\end{pf}
+
+
+\begin{prb}[H\"older spaces]
+\end{prb}
+
+
+
+\begin{prb}[Compact embeddings]
+Let $X$ be a compact metric space.
+We consider the topology of compact convergence on $C(X,\R)$.
+Let $\cF\subset C(X,\R)$ be a family of functions with constants $C>0$ and $\alpha>0$ such that every point of $X$ has an open neighborhood $U$ satisfying
+\[|f(x)-f(y)|\le Cd(x,y)^\alpha,\qquad f\in\cF,\ x,y\in U.\]
+In other words, $\cF$ is bounded in $C^{0,\alpha}(X,\R)$.
+Then, $\cF$ is totally bounded in $C(X,\R)$.
+\end{prb}
+
+
+\section{Smooth functions}
+
+partition of unity
+density
+
+
+\begin{prb}[Smooth partition of unity]
+\end{prb}
+
+
+
+
+\section*{Exercises}
+\begin{prb}[Variations on the mean value theorem]
+Let $f$ be a differentiable function on the unit closed interval.
+\begin{parts}
+\item If $f(0)=0$ there is $c$ such that $cf'(c)=f(c)$. (Flett)
+\item If $f(0)=0$ there is $c$ such that $cf(c)=(1-c)f'(c)$.
+\end{parts}
+\end{prb}
+\begin{prb}[Nowhere differentiable function]
+\end{prb}
+\begin{prb}[Dini derivatives]
+\end{prb}
+\begin{prb}[Darboux theorem]
+\end{prb}
+
+\section*{Problems}
+\begin{enumerate}
+\item If $\lim_{x\to\infty}f(x)=a$ and $\lim_{x\to\infty}f'(x)=b$, then $a=0$.
+\item Let $f$ be a real $C^2$ function with $f(0)=0$ and $f''(0)\ne0$.
+Defined a function $\xi$ such that $f(x)=xf'(\xi(x))$ with $|\xi|\le|x|$, we have $\xi'(0)=1/2$.
+\item Let $f$ be a $C^2$ function such that $f(0)=f(1)=0$.
+We have $\|f\|\le\frac18\|f''\|$.
+\item A smooth function such that for each $x$ there is $n$ having the $n$th derivative vanish is a polynomial.
+\item If a real $C^1$ function $f$ satisfies $f(x)\ne0$ for $x$ such that $f'(x)=0$, then in a bounded set there are only finite points at which $f$ vanishes.
+\item Let a real function $f$ be differentiable.
+For $a<a'<b<b'$ there exist $a<c<b$ and $a'<c'<b'$ such that $f(b)-f(a)=f'(c)(b-a)$ and $f(b')-f(a')=f'(c')(b'-a')$.
+\item Let $f:[1,\infty)\to\R$ satisfy that $f(1)=1$ and $f'(x)=(x^2+f(x)^2)^{-1}$. Show that $\lim_{x\to\infty}f(x)$ exists in the open interval $(1,1+\frac\pi4)$.
+\item If $f:(0,\infty)\to\R$ is $C^2$ and satisfies $f'(x)\le0<f(x)$ for all $x>0$, then the boundedness of $f''$ implies $f'(x)\to0$ as $x\to\infty$.
+\item If a function $f:[0,1]\to\R$ that is continuous on $[0,1]$ and differentiable on $(0,1)$ satisfies $f(0)=0$ and $0\le f'(x)\le2f(x)$, then $f$ is identically zero.
+\item For $C^2$ function $f:\R\to\R$ we have $\|f'\|^2\le4\|f\|\|f''\|$.
+\item For a smooth function $f:\R\to\R$ such that $f'''(x)<0$, we have $\frac{f'(x)+f'(y)}2<\frac{f(x)-f(y)}{x-y}$ for all $x\ne y\in\R$.
+\end{enumerate}
+
+
+
+
+\chapter{Analyticity}
+
+
+% We do not consider isolated singularities and meromorphic functions.
+
+
+\section{Power series}
+
+
+\begin{prb}[Power series]
+A \emph{power series} at $a\in\C$ is a series $\sum_{k\ge0}$
+
+For a smooth function $f:I\to\R$ on an open interval $I\subset\R$ and a point $a\in I$, we can associate a power series
+\[\sum_{k\ge0}\frac{f^{(k)}(a)}{k!}(x-a)^k\]
+
+\end{prb}
+
+uniform convergence and absolute convergence, abel theorem?
+differentiation
+convergence of radius, complex domain
+sum, product, composition, reciprocal?
+closed under uniform convergence
+
+\begin{prb}[Analytic functions]
+Let $U\subset\C$ be an open set.
+A function $f:U\to\C$ is called \emph{analytic} at a point $a\in U$ if the Taylor series expanded at $a$ converges  on an open neighborhood of $a$, and \emph{analytic} if it is analytic at every point of $U$.
+
+
+For $a\in\C$ and $r>0$, the space $\cO(a,r)$ can be defined by the set of complex sequences $(c_k)_{k\ge0}$ such that $c_kz^k\to0$ for each $|z|<r$.
+For $f\in\cO(a,r)$, the associted sequence $c_k$ is written as $f^{(k)}(a)/k!$.
+It is an Arens-Michael Fr\'echet algebra.
+
+By definition, the set of functions analytic at $a$ is $\bigcup_{r>0}\cO(a,r)$.
+
+
+For a complex sequence $(c_k)$, the supremum of $r_0$ such that $c_kz^k\to0$ for each $|z|<r$ is called the radius of convergence.
+The density of polynomials
+\end{prb}
+
+\begin{prb}[Cauchy estimate]
+\end{prb}
+
+\begin{prb}[Identity theorem]
+\end{prb}
+
+\begin{prb}[Open mapping theorem]
+\end{prb}
+
+
+\section{Analytic continuation}
+
+
+functional equations!
+
+
+\section{}
+\section{}
+% every functions as power series
+% root, exponential, logarithmic, trigonometric, hyperbolic
+% hypergeometric, bessel, gamma, zeta are not treated before integrals
+
+
+
+
+
+\section*{Problems}
+
+	
+\begin{enumerate}
+\item Show that if $f:(-1,1)\to\R$ is a smooth function such that $|f^{(n)}(x)|\le1$ for all $n\ge1$ uniformly then $f$ is analytic.
+\end{enumerate}
+
+
+
+\end{document}

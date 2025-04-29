@@ -1,0 +1,804 @@
+\documentclass{../../large}
+\usepackage{../../ikhanchoi}
+
+
+\begin{document}
+\title{Geometry II}
+\author{Ikhan Choi}
+\maketitle
+\tableofcontents
+
+
+
+
+
+\part{Smooth surfaces}
+
+\chapter{Smooth manifolds}
+\section{Local coordinates}
+
+\begin{prb}
+Let $n$ be a positive integer.
+A topological space $M$ is called \emph{locally Euclidean} of dimension $n$ if there is an open cover $\{U_\alpha\}$ of $M$ such that each open set $U_\alpha$ is homeomorphic to an open set of $\R^n$.
+A \emph{topological manifold} is defined as a paracompact Hausdorff locally Euclidean space.
+
+A \emph{chart} of dimension $n$ on $M$ is a topological embedding $\f:U\to\R^n$ of an open subset $U$ of $M$ onto an open subset $\f(U)$ of $\R^n$.
+An \emph{atlas} of dimension $n$ on a topological space is a family $\{\f_\alpha\}$ of charts $\f_\alpha:U_\alpha\to\R^n$ such that $\{U_\alpha\}$ is an open cover of $M$.
+By definition, a topological space is locally Euclidean if and only if it admits an atlas.
+
+Two smooth atlases are called \emph{smoothly equivalent} if their addition is a smooth atlas.
+\end{prb}
+
+Given a smooth atlas, we can define the \emph{smoothness} of a function $f:M\to\R$ with respect to the smooth atlas as follows: we say that $f$ is smooth if its \emph{coordinate representation} $f\f_\alpha^{-1}:\f_\alpha(U)\to\R$ is smooth for all charts $\f_\alpha$.
+
+\begin{prb}[Immersions and embeddings]
+
+If $\alpha:U\to\R^n$ is a topological embedding, then we can endow with a unique smooth structure on $\im\alpha$ such that $\alpha$ is smooth.(?)
+\begin{parts}
+\item The image of a regular parameterization is an embedded manifold.
+\item Every open subset of a embedded manifold is a embedded manifold.
+\item Monge patch.
+\item The sphere $S^2=\{\,(x,y,z)\in\R^3:x^2+y^2+z^2=1\,\}$ is a regular surface.
+\item The set $\{\,(x,y)\in\R^2:y^2=x^3+x^2\,\}$ is not a regular curve.
+\item The set $\{\,(x,y)\in\R^2:y=|x|\,\}$ is not a regular curve.
+\end{parts}
+\end{prb}
+
+
+\section{Space curves}
+
+\section{Space surfaces}
+
+%         선형독립    벡터들이 한점에서 주어졌을 때 ->
+%         선형독립    벡터장이 근방에서 주어졌을 때 -> 일반적으론 2차원에서만
+%         선형독립 가환벡터장이 근방에서 주어졌을 때 -> n차원 다돼
+%         선형독립    직교벡터들이 한점에서 주어졌을 때
+%         선형독립    직교벡터장이 근방에서 주어졌을 때
+%         선형독립 직교가환벡터장이 근방에서 주어졌을 때
+%             -> 곡률의 선, 점근곡선, 측지좌표
+
+% preimage theorem
+
+Reparametrizations
+
+\begin{thm}
+Let $S$ be a regular surface.
+Let $v,w$ be linearly independent tangent vectors in $T_pS$ for a point $p\in S$.
+Then, $S$ admits a parametrization $\alpha$ such that $\alpha_x|_p=v$ and $\alpha_y|_p=w$.
+\end{thm}
+\begin{thm}
+Let $X,Y$ be linearly independent tangent vector fields on a regular surface $S$.
+Then, $S$ admits a parametrization $\alpha$ such that $\alpha_x|_p$ and $\alpha_y|_p$ are parallel to $X|_p,Y|_p$ respectively for each $p\in S$.
+\end{thm}
+\begin{thm}
+Let $X,Y$ be linearly independent tangent vector fields on a regular surface $S$.
+If $\pd_XY=\pd_YX$, then $S$ admits a parametrization $\alpha$ such that $\alpha_x|_p=X|_p$ and $\alpha_y|_p=Y|_p$ for each $p\in S$.
+\end{thm}
+
+Let $S$ be a regular surface embedded in $\R^3$.
+The inner product on $T_pS$ induced from the standard inner product of $\R^3$ can be represented not only as a matrix
+\[\mat{1&0&0\\0&1&0\\0&0&1}\]
+in the basis $\{(1,0,0),(0,1,0),(0,0,1)\}\subset\R^3$, but also as a matrix
+\[\mat{\<\alpha_x,\alpha_x\>&\<\alpha_x,\alpha_y\>\\\<\alpha_y,\alpha_x\>&\<\alpha_y,\alpha_y\>}\]
+in the basis $\{\alpha_x|_p,\alpha_y|_p\}\subset T_pS$.
+
+\begin{defn}
+\emph{Metric coefficients}
+\begin{alignat*}{2}
+\<\alpha_x,\alpha_x\>&=:g_{11}&\qquad
+\<\alpha_x,\alpha_y\>&=:g_{12}\\
+\<\alpha_y,\alpha_x\>&=:g_{21}&
+\<\alpha_y,\alpha_y\>&=:g_{22}
+\end{alignat*}
+\end{defn}
+
+\begin{thm}[Normal coordinates]
+...?
+\end{thm}
+
+
+
+
+\subsection*{Differentiation of tangent vectors}
+
+\begin{defn}
+Let $\alpha:U\to\R^3$ be a regular surface.
+The \emph{Gauss map} or \emph{normal unit vector} $\nu:U\to\R^3$ is a vector field on $\alpha$ defined by:
+\[\nu(x,y):=\frac{\alpha_x\times \alpha_y}{\|\alpha_x\times \alpha_y\|}(x,y).\]
+The set of vector fields $\{\alpha_x|_p,\alpha_y|_p,\nu|_p\}$ forms a basis of $T_p\R^3$ at each point $p$ on $\alpha$.
+The Gauss map is uniquely determined up to sign as $\alpha$ changes.
+\end{defn}
+
+\begin{defn}[Gauss formula, $\Gamma_{ij}^k$, $L_{ij}$]
+Let $\alpha:U\to\R^3$ be a regular surface.
+Define indexed families of smooth functions $\{\Gamma_{ij}^k\}_{i,j,k=1}^2$ and $\{L_{ij}\}_{i,j=1}^2$ by the Gauss formula
+\begin{alignat*}{2}
+\alpha_{xx}&=:\Gamma_{11}^1\alpha_x+\Gamma_{11}^2\alpha_y+L_{11}\nu,&\qquad
+\alpha_{xy}&=:\Gamma_{12}^1\alpha_x+\Gamma_{12}^2\alpha_y+L_{12}\nu,\\
+\alpha_{yx}&=:\Gamma_{21}^1\alpha_x+\Gamma_{21}^2\alpha_y+L_{21}\nu,&
+\alpha_{yy}&=:\Gamma_{22}^1\alpha_x+\Gamma_{22}^2\alpha_y+L_{22}\nu.
+\end{alignat*}
+The \emph{Christoffel symbols} refer to eight functions $\{\Gamma_{ij}^k\}_{i,j,k=1}^2$.
+The Christoffel symbols and $L_{ij}$ \emph{do depend} on $\alpha$.
+\end{defn}
+We can easily check the symmetry $\Gamma_{ij}^k=\Gamma_{ji}^k$ and $L_{ij}=L_{ji}$.
+Also,
+\begin{align*}
+\pd_XY
+&=X^i\pd_i(Y^j\alpha_j)\\
+&=X^i(\pd_iY^k)\alpha_k+X^iY^j\pd_i\alpha_j\\
+&=\left(X^i\pd_iY^k+X^iY^j\Gamma_{ij}^k\right)\alpha_k+X^iY^jL_{ij}\nu.
+\end{align*}
+
+% Examples
+
+
+\subsection*{Differentiation of normal vector}
+
+The partial derivative $\pd_X\nu$ is a tangent vector field since
+\[\<\pd_X\nu,\nu\>=\frac12\pd_X\<\nu,\nu\>=0.\]
+Therefore, we can define the following useful operator.
+\begin{defn}
+Let $S$ be a regular surface embedded in $\R^3$.
+The \emph{shape operator} is $\cS:\fX(S)\to\fX(S)$ defined as
+\[\cS(X):=-\pd_X\nu.\]
+\end{defn}
+\begin{prop}
+The shape operator is self-adjoint, i.e. symmetric.
+\end{prop}
+\begin{pf}
+Recall that $\pd_XY-\pd_YX$ is a tangent vector field.
+Then,
+\[\<X,\cS(Y)\>=\<X,-\pd_Y\nu\>=\<\pd_YX,\nu\>=\<\pd_XY,\nu\>=\<\cS(X),Y\>.\qedhere\]
+\end{pf}
+
+% The reason of minus sign in the shape operator.
+
+\begin{thm}
+Let $\alpha:U\to\R^3$ be a regular surface and $\cS$ be the shape operator.
+Then $\cS$ has the coordinate representation
+\[\cS=\mat{g_{11}&g_{12}\\g_{21}&g_{22}}^{-1}\mat{L_{11}&L_{12}\\L_{21}&L_{22}}\]
+with respect to the frame $\{\alpha_x,\alpha_y\}$ for tangent spaces.
+In other words, if we let $X=X^i\alpha_i$ and $\cS(X)=\cS(X)^j\alpha_j$, then
+\[\mat{\cS(X)^1\\\cS(Y)^2}=\mat{g_{11}&g_{12}\\g_{21}&g_{22}}^{-1}\mat{L_{11}&L_{12}\\L_{21}&L_{22}}\mat{X^1\\X^2}.\]
+\end{thm}
+\begin{pf}
+Let $\cS(X)^j=\cS_i^jX_i$.
+Then,
+\[g_{ik}X^i\cS_j^kY^j=\<X,\cS(Y)\>=\<\pd_XY,\nu\>=X^iY^jL_{ij}\]
+implies $g_{ik}\,\cS_j^k=L_{ij}$.
+\end{pf}
+
+% principal curvature
+% mean curvature, gaussian curvature
+
+
+
+% curvature tensor?
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\chapter{Fundamental forms}
+
+\section{Riemannian metrics}
+
+\section{Gaussian curvatures}
+Theorema egregium
+surfaces of constant gaussian curvature
+
+% 제1기본형식, 크리스토펠: 
+% 모양 연산자, 제2기본형식: 바인가르텐 이퀘이션
+
+% 가우스곡률
+\begin{defn}
+Let $\alpha:U\to\R^3$ be a regular surface.
+\begin{gather*}
+E:=\<\alpha_x,\alpha_x\>=g_{11},\qquad F:=\<\alpha_x,\alpha_y\>=g_{12},\qquad G:=\<\alpha_y,\alpha_y\>=g_{22},\\
+L:=\<\alpha_{xx},\nu\>=L_{11},\qquad M:=\<\alpha_{xy},\nu\>=L_{12},\qquad N:=\<\alpha_{yy},\nu\>=L_{22}.
+\end{gather*}
+\end{defn}
+
+
+\begin{cor}
+We have $GM-FN=EM-FL$, and the \emph{Weingarten equations}:
+\begin{align*}
+\nu_x&=\frac{FM-GL}{EG-F^2}\alpha_x+\frac{FL-EM}{EG-F^2}\alpha_y,\\
+\nu_y&=\frac{FN-GM}{EG-F^2}\alpha_x+\frac{FM-EN}{EG-F^2}\alpha_y.
+\end{align*}
+\end{cor}
+
+
+
+\begin{thm}
+\[\Gamma_{ij}^l=\frac12g^{kl}(g_{ik,j}-g_{ij,k}+g_{kj,i}).\]
+\end{thm}
+
+\[\frac12(\log g)_x=\Gamma_{11}^1.\]
+
+\[\nu_x\times\nu_y=K\sqrt{\det g}\ \nu.\]
+\[\alpha_x\times\alpha_y=\sqrt{\det g}\ \nu\]
+\[\<\nu_x\times\nu_y,\alpha_x\times\alpha_y\>=\det\mat{\<\nu_x,\alpha_x\>&\<\nu_x,\alpha_y\>\\\<\nu_y,\alpha_x\>&\<\nu_y,\alpha_y\>}=\det\mat{-L&-M\\-M&-N}=K\det g\]
+
+
+
+
+
+
+
+
+
+
+
+\begin{prb}[Gaussian curvature formula]
+\begin{parts}
+\item
+In general,
+\[K=\frac{LN-M^2}{EG-F^2}.\]
+\item
+For orthogonal coordinates such that $F\equiv0$,
+\[K=-\frac1{2\sqrt{\det g}}\left((\frac1{\sqrt{\det g}}E_y)_y+(\frac1{\sqrt{\det g}}G_x)_x\right).\]
+\item
+For $f(x,y,z)=0$,
+\[K=-\frac1{|\nabla f|^4}\mat[v]{0&\nabla f\\\nabla f^T&\Hess(f)},\]
+where $\nabla f$ denotes the gradient $\nabla f=(f_x,f_y,f_z)$.
+\item(Beltrami-Enneper) If $\tau$ is the torsion of an asymptotic curve, then
+\[K=-\tau^2.\]
+\item(Brioschi) $E,F,G$ describes $K$.
+\end{parts}
+\end{prb}
+
+\begin{pf}
+(a) Clear.
+
+(b)
+We have $GM=EM$ and
+\[\nu_x=-\frac LE\alpha_x-\frac MG\alpha_y,\qquad\nu_y=-\frac ME\alpha_x-\frac NG\alpha_y.\]
+\[\nu_x\times\nu_y=\frac{LN-M^2}{EG}\alpha_x\times\alpha_y\]
+After curvature tensors...
+
+\end{pf}
+
+
+
+\begin{prb}[Computation of Gaussian curvatures]
+\begin{parts}
+\item
+(Monge's patch)
+For $(x,y,f(x,y))$,
+\[K=\frac{f_{xx}f_{yy}-f_{xy}^2}{(1+f_x^2+f_y^2)^2}.\]
+
+\item
+(Surface of revolution).
+Let $\gamma(t)=(r(t),z(t))$ be a plane curve with $r(t)>0$.
+If $t\mapsto(r(t),z(t))$ is a unit-speed curve, then
+\[K=-\frac{r''}r.\]
+
+\item
+(Models of hyperbolic planes)
+\end{parts}
+\end{prb}
+\begin{pf}
+(b)
+Let
+\[\alpha(\theta,t)=(r(t)\cos\theta,r(t)\sin\theta,z(t))\]
+be a parametrization of a surface of revolution.
+Then,
+\begin{align*}
+\alpha_\theta&=(-r(t)\sin\theta,r(t)\cos\theta,0)\\
+\alpha_t&=(r'(t)\cos\theta,r'(t)\sin\theta,z'(t))\\
+\nu&=\frac1{\sqrt{r'(t)^2+z'(t)^2}}(z'(t)\cos\theta,z'(t)\sin\theta,-r'(t)),
+\end{align*}
+and
+\begin{align*}
+\alpha_{\theta\theta}&=(-r(t)\cos\theta,-r(t)\sin\theta,0)\\
+\alpha_{\theta t}&=(-r'(t)\sin\theta,-r'(t)\cos\theta,0)\\
+\alpha_{tt}&=(r''(t)\cos\theta,r''(t)\sin\theta,z''(t)).
+\end{align*}
+Thus we have
+\[E=r(t)^2,\quad F=0,\quad G=r'(t)^2+z'(t)^2,\]
+and
+\[L=-\frac{r(t)z'(t)}{\sqrt{r'(t)^2+z'(t)^2}},\quad M=0,\quad N=\frac{r''(t)z'(t)-r'(t)z''(t)}{\sqrt{r'(t)^2+z'(t)^2}}.\]
+Therefore,
+\[K=\frac{LN-M^2}{EG-F^2}=\frac{z'(r'z''-r''z')}{r(r'^2+z'^2)^2}.\]
+In particular, if $t\mapsto(r(t),z(t))$ is a unit-speed curve, then
+\[K=-\frac{r''}r.\]
+\end{pf}
+
+
+% asymptotic curve -> hyperbolic
+% line of curvature -> non-umbilic
+
+% minimal surface
+% 	회전곡면
+% asymptotic curve
+% 	Beltrami-Enneper
+% ruled surface
+% developable surface
+
+
+\begin{prb}[Local isomorphism]
+Surfaces of the same constant Gaussian curvature are locally isomorphic.
+\end{prb}
+\begin{pf}
+Let
+\[\mat{\|\alpha_r\|^2&\<\alpha_r,\alpha_t\>\\\<\alpha_t,\alpha_r\>&\|\alpha_t\|^2}=\mat{1&0\\0&h(r,t)^2}\]
+be the first fundamental form for a geodesic coordinate chart along a geodesic curve so that $\alpha_{tt}$ and $\alpha_{rr}$ are normal to the surface.
+Then,
+\[K=-\frac{h_{rr}}h\]
+is constant.
+Also, since
+\[\frac12(h^2)_r+\<\alpha_r,\alpha_{tt}\>=\<\alpha_{rt},\alpha_t\>+\<\alpha_r,\alpha_{tt}\>=\<\alpha_r,\alpha_t\>_t=0\]
+implies $h_r=0$ at $r=0$, the function $f:r\mapsto h(r,t)$ satisfies the following initial value problem
+\[f_{rr}=-Kf,\quad f(0)=1,\quad f'(0)=0.\]
+Therefore, $h$ is uniquely determined by $K$.
+\end{pf}
+
+
+% Global theory of curves
+%  Isoperimetric inequality
+%  Four vertex theorem
+%  Ovals
+
+% Global theory of surfaces
+%  Minimal surfaces
+
+% Total curvatures
+%  Fary-Milnor
+%  Fenchel
+%  Gauss-Bonnet, euler characteristic
+
+
+
+
+\chapter{Geometric surfaces}
+
+\section{}
+
+\begin{prb}[Geometric manifolds]
+We are concerned only with metric geometries.
+A \emph{geometric manifold} is a smooth manifold together with a metric that is
+\begin{enumerate}[(i)]
+\item geodesically connected,
+\item geodesically complete,
+\item realized by a Riemannian metric,
+\item locally homogeneous, i.e.~every pair of points is connected by an isometry between neigborhoods.
+\end{enumerate}
+Each condition has been obtained by modifying the first four postulates of Euclid's Elements.
+On a smooth manifold, we define a \emph{geometric structure} as a locally homogeneous Riemannian metric, which embodies the third and fourth postulates.
+The completeness is sometimes assumed.
+A geometric manifold is a connected smooth manifold together with a complete geometric structure.
+\begin{parts}
+\item On a connected smooth surface, a geometric structure is same as a Riemannian metric of constant Gaussian curvature.
+\item The isotropy group of a manifold with a geometric structure is a compact Lie group uniquely determined up to isomorphism.
+
+\item On a connected smooth manifold, there is a unique complete geometric structure up to...?
+\end{parts}
+\end{prb}
+
+
+\begin{prb}
+A \emph{geometry} is a smooth $G$-manifold $X$ such that
+\begin{enumerate}
+\item $X$ is connected and simply connected,
+\item $G$ acts on $X$ effectively and transitively,
+\item the isotropy group is compact,
+\item there exists a cocompactly freely properly discretely acting subgroup of $G$.
+\end{enumerate}
+A \emph{maximal geometry} or a \emph{model geometry} is a geometry such that there is no properly large group $G'$ satisfying the above assumptions.
+We want to classify model geometries up to intertwining maps, or equivalently as subgroups of $\Diff(X)$ up to conjugacy.
+
+
+\begin{parts}
+\item
+\item A surface is geometric if and only if it is universally covered by a simply connected geometric surface, which is one of $\S^2$, $\E^2$, and $\H^2$.
+\item A complete geometric structure lifts to a complete geometric structure on the universal covering, and a complete geometric structure on a simply connected manifold is homogeneous.
+\end{parts}
+\end{prb}
+\begin{pf}
+Let $M$ be a connected smooth manifold, and let $X$ be the universal covering.
+A complete locally homogeneous Riemannian metric on $M$ naturally induces a complete homogeneous Riemannian metric on $X$ such that the covering map is a local isometry.
+Let $G$ be the group of isometries on $X$.
+Is the geometry $(X,G)$ maximal?
+For another complete locally homogeneous Riemannian metric on $M$, we have $(X,G')$.
+In which sense $(X,G)$ and $(X,G')$ are equivalent?
+
+
+Let $(X,G)$ be a model geometry.
+If $\dim X=n$, then the isotropy subgroup $G_x$ is compact, we can show that there is a $G_x$-invariant inner-product on $T_xX$ by using the Haar integral.
+Thus, $G_x$ is naturally embedded in $\GL(T_xX)$.
+If $(X,G')$ is a geometry such that $G\subset G'$, then $G'_x$ is also embedded in $\GL(T_xX)$.
+Does the maximality imply $G$ is isomorphic to $\rO(n)$?
+
+
+
+\end{pf}
+
+
+
+\begin{prb}[Properly discontinuous actions]
+
+A proper action of a discrete group on a locally compact Hausdorff space is said to be \emph{properly discontinuous}.
+
+On locally compact spaces: properly discontinuous action iff orbit counted with multiplicity is locally finite iff orbit is discrete and stabilizer is finite
+
+Fuchsian groups act on H2 properly discontinuously (and faithfully) (and PSL(2,R) has compact stabilizer so that it has finite stabilizer), so the quotient is an orbifold.
+
+Fuchsian group acts on H2 freely iff it is torsion-free because an element of PSL(2,R) has finite order iff it has a fixed point (properly discontinuous action is free iff the stabilizer is trivial at every point iff the quotient is a manifold.)
+
+torsion-free Fuchsian groups conjugate iff quotient space form is isometric?
+\end{prb}
+
+(convex, locally finite) fundamental domains
+poincare polygon
+
+\begin{prb}
+Liebmann theorem
+Hilbert problem
+\end{prb}
+
+
+
+
+
+\part{Riemann surfaces}
+
+
+\chapter{Uniformization}
+
+\begin{prb}[Riemann surfaces]
+
+
+A \emph{Riemann surface} is a connected two-dimensional complex manifold.
+\end{prb}
+
+Recall that a \emph{meromorphic function} on $X$ is a holomorphic function $f:U\to\C$ on an open subset $U\subset X$ such that $X\setminus U$ is discrete closed in $X$ and the Laurent expansion at each point of $X\setminus U$ has the finite principal part.
+The set of meromorphpic functions $\cM(X)$ is a field extension over the complex field $\C$ by the removable singularity theorem.
+
+
+
+On a surface, complex structures, conformal structures, geomtric structures of curvature in $\{-1,0,1\}$ are all equivalent.
+The equivalence between the last two is usually called the uniformization.
+
+
+
+
+
+\begin{itemize}
+\item $g=0$: Riemann sphere (spherical) $\to$ Riemann sphere itself
+\item $g=1$: complex plane (Euclidean) $\to$ elliptic curves
+\item $g\ge2$: open unit disk (hyperbolic) $\to$ hyperbolic surfaces, classified by Fuchsian groups(with which properties?)
+\end{itemize}
+
+\begin{prb}
+holomorphic actions of $\PSL(2,\C)$ and $\SO(3)$ on the Riemann sphere $\CP^1$.
+
+properly discontinuous actions of $\PSL(2,\Z)$ on the complex plane $\C$.
+\end{prb}
+
+Let $p:Y\to X$ be a non-constant holomorphic map.
+A point $y\in Y$ is called a \emph{branch point} or a \emph{ramification point} over $x\in X$ if $p(y)=x$ and $p$ is not injective on any neighborhoods $V$ of $y$.
+
+For a non-constant holomorphic map, it is unbranched if and only if it is locally homeomorphic.
+
+For a proper non-constant holomorphic map, a branch point is isolated in $X$ (closed and discrete), and the multiplicity is finitely well-defined.
+
+\begin{prb}
+Let $p:Y\to X$ be a local homeomorphism from a topological space $Y$ to a locally complex space $X$.
+Then, $Y$ admits a unique complex structure such that $p$ is holomorphic.
+\end{prb}
+\begin{pf}
+Consider the set of all open embeddings $\psi:V\to\C$ that factor through $p$ and a chart on $X$.
+It is a complex atlas since $\psi_\alpha\psi_\beta^{-1}=\f_\alpha p(\f_\beta p)^{-1}=\f_\alpha\f_\beta^{-1}$ is biholomorphic
+The domains $V$ form an open cover since $p$ is a local homeomorphism.
+Therefore, it defines a complex atlas.
+The uniqueness follows from the identity theorem.
+\end{pf}
+
+
+For a holomorphic function germ in $\cO_x$, there is a maximal analytic continuation.
+An analytic continuation of a holomorphic function germ in $\cO_x$ is a triple of an unbranched non-constant holomorphic map $p:Y\to X$, a holomorphic function $f:Y\to\C$, and a point $y\in Y$ such that $p_*f_y$ is the germ.
+
+
+$dz$ and $d\bar z$ forms a basis of a two-dimensional complex vector space $T_x^*X\otimes_\R\C=\Omega^1_x(X,\C)$.
+
+Laurent expansion of a holomorphic 1-form on $U$ at an isolated singularity.
+A \emph{meromorphic 1-form} is defined by the finiteness of the negative part of the Laurent expansion.
+
+
+\chapter{Riemann-Roch theorem}
+
+The ultimate goal is to prove a compact Riemann surface is algebraic.
+
+cpt Riemann surfaces, existence of meromorphic, Chow, projective embedding, GAGA, coherence, sheaf cohomology
+
+Not using sheaf cohomology and doing everything in line bundles?
+How can we define line bundle over an algebraic curve?
+How can we describe $\cO^\times$, $\cM^\times$ without sheaves?
+
+How can we translate the following fact in terms of line bundles:
+sheaf of holomorphic/meromorphic functions and regular/rational functions: the category of coherent sheaves are equivalent!
+
+
+\section{\v Cech cohomology}
+
+On a compact Riemann surface $X$,
+\begin{parts}
+\item $\underline\Z$, $\underline\C$ are constant sheaves.
+\item $\cO$, $\cO(D)$, $\cK$ are invertible sheaves over $\underline\C$.
+\item $\cM$ is a locally free sheaf over $\underline\C$.
+\item $\underline\Z$, $\underline\C$, $\cO^\times$, $\cM^\times$ are sheaves over $\underline\Z$.
+\item $\underline\C$ is not locally free over $\underline\C$.
+\item $\cO=\Omega^0$ and $\cK=\Omega^1$ is the space of holomorphic functions and holomorphic 1-forms.
+\end{parts}
+
+\begin{prb}[Leray cover]
+\end{prb}
+
+\begin{prb}[Dolbeault theorem]
+\end{prb}
+
+\section{Divisors and line bundles}
+
+
+Let $X$ be a compact Riemann surface.
+The Cartier divisor group is just the global section space $\mathrm{Div}(X):=H^0(X,\cM^\times/\cO^\times)$ of the sheaf $\cM^\times/\cO^\times$ of abelian groups.
+The Picard group, defined by the group of line bundles, is just the cohomology group $\mathrm{Pic}(X):=H^1(X,\cO^\times)$.
+We have an exact sequence of abelian groups
+\[H^0(X,\cM^\times)\to\mathrm{Div}(X)\to\mathrm{Pic}(X)\to H^1(X,\cM^\times).\]
+We will prove $H^1(X,\cM^\times)=0$ be showing the surjectivity of $\mathrm{Div}(X)\to\mathrm{Pic}(X)$.
+
+If we use the exponential exact sequence $0\to\underline\Z\to\cO\to\cO^\times\to0$, we can define the first Chern class $\mathrm{Pic}(X)\to H^2(X,\Z)$.
+
+
+
+
+On a scheme, a line bundle is usually defined as the locally free $\cO$-module of rank one.
+On nice schemes, a sheaf would be invertible if and only if it is a line bundle.
+But more precisely, they are different objects.
+For a locally free sheaf $\cF$ of finite rank, then the total space can be defined as $\Spec(\Sym\cF^\vee)\to X$.
+(Recall that $\A_k^r=\Spec k[x_1,\cdots,x_r]=\Spec\Sym\<x_1,\cdots,x_r\>_k$, where $\<x_1,\cdots,x_r\>_k$ denotes the $k$-linear span)
+
+Let $\pi:L\to X$ be a line bundle on a compact Riemann surface $X$.
+It means that $\pi$ is a holomorphic map and there is an family $\{f_\alpha\}$ of biholomorphic maps $\f_\alpha:\pi^{-1}(U_\alpha)\to U_\alpha\times\C$.
+
+
+
+
+\begin{prb}[Divisors]
+Let $X$ be a compact Riemann surface.
+A \emph{Weil divisor} $D$ on $X$ is an element of the free abelian group generated by points of $X$.
+A \emph{Cartier divisor} is a family $\{f_\alpha\}$ of non-zero meromorphic functions $f_\alpha\in\cM^\times(U_\alpha)$ indexed by an open cover $\{U_\alpha\}$ of $X$ such that $f_\alpha/f_\beta$ is extended to a holomorphic function on $U_\alpha\cap U_\beta$.
+
+
+
+
+By compactness of $X$, a non-zero meromorphic function $f\in\cM^\times(X)$ gives rise to a Weil divisor $(f):=\sum_{P\in X}\ord_P(f)P$, called the \emph{principal divisor} of $f$.
+
+Let $D=\sum_i n_iP_i$ be a Weil divisor on $X$.
+Each point $P\in X$ has a meromorphic function $f$ on an open neighborhood $U$ of $P$ such that $(f)=D$ on $U$.
+It implies that there is a collection $\{f_\alpha\}$ of meromorphic functions $f_\alpha$ defined on $U_\alpha$, where $\{U_\alpha\}$ is an open cover of $X$, such that $f_\alpha/f_\beta$ is a well-defined holomorphic functions on $U_\alpha\cap U_\beta$.
+In other words, a Cartier divisor is assigned to each Weil divisor.
+
+
+A Cartier divisor defines a line bundle.
+
+Here is a direct way to construct a line bundle from Weil divisors.
+Note that a field $\cM(X)=\cM^\times(X)\cup\{0\}$ of meromorphic functions contains the field of constant functions $\C$.
+For a Weil divisor $D$ on $X$, define
+\[L(D):=\{f\in\cM^\times(X):(f)+D\ge0\}\cup\{0\}.\]
+It is a complex vector subspace of $\cM(X)$.
+We can construct a line bundle $\cO(D)$ such that $L(D)=H^0(X,\cO(D))$.
+
+\end{prb}
+
+
+
+
+\begin{prb}
+Given $\{P_i\}_{i=1}^n$ points and $\{f_i\}_{i=1}^n$ principal parts, there is a meromorphic function $f$ with pre-described principal parts if and only if for every holomorphic 1-form $\omega$ we have $\sum_{i=1}^n\Res(f_i\omega,P_i)=0$.
+\end{prb}
+
+\begin{prb}
+\[l(D)-l(K-D)=\deg(D)+1-g.\]
+The genus can be defined by $g=h^0(X,\Omega^1)$.
+For algebraic curves, it can be proved as follows:
+Assuming the Serre duality, we have $\chi(D)=h^0(D)-h^1(D)=l(D)-l(K-D)$ and $\chi(0)=h^0(0)-h^1(0)=1-g$.
+Then, the Riemann-Roch is boiled down to $\chi(D)=\deg(D)+\chi(0)$, which can be shown inductively.
+
+However, we want to prove a compact Riemann surface is projective as an application of the Riemann-Roch theorem, we need to prove the Riemann-Roch theorem without theory of algebraic curves.
+\begin{parts}
+\item If $\deg D<0$, then $l(D)=0$.
+\end{parts}
+\end{prb}
+\begin{pf}
+(a)
+Let $f\in L(D)\setminus\{0\}$.
+Then, $(f)+D\ge0$ and $\deg(f)=0$ imply $\deg D\ge0$, which is a contradiction.
+
+(b)
+Let $D=0$.
+Then, it follows from $l(K)=g$ and $l(0)=1$.
+
+Let $D>0$.
+We may assume $D=\sum_{i=1}^nn_iP_i$ with $n_i>0$. (why?)
+Let
+\[V_i:=\Bigl\{\sum_{k=-n_i}^{-1}c_k(z-P_i)^k:c_k\in\C\Bigr\}\]
+and $V:=\bigoplus_{i=1}^nV_i$. (how can we define the principal part of $f$ on Riemann surface?)
+Then, $\dim V=\deg D$.
+Define $L(D)\to V$ by principal part at each point $p_i$.
+
+
+\end{pf}
+
+\begin{prb}[Embedding theorem]
+Let $X$ be a compact Riemann surface.
+
+Let $L$ be a line bundle over $X$, and let $(s_i)_{i=0}^n$ be a family of sections of $L$ such that every point $P$ of $X$ has a section $s_i$ which does not vanish at $P$.
+
+The \emph{complete linear system} of a Weil divisor $D$ on $X$ is the set
+\[|D|:=\{(f)+D:f\in\cO(X)\}.\]
+Then, by the map $L(D)\setminus\{0\}\to|D|:f\mapsto...$
+the set $|D|$ can be identified with the projective space $(L(D)\setminus\{0\})/\C^\times=\CP^{l(D)-1}$.
+Let $(f_i)_{i=0}^{l(D)-1}$ be an ordered basis of $L(D)$.
+
+For a linear system $\Delta$ of projective dimension $n-1$, we can take (how?) a basis $(e_i)_{i=0}^{n-1}$ such that the following map is well-defined:
+\[X\setminus\mathrm{Bl}(\Delta)\to\CP^{n-1}:p\mapsto(e_0:\cdots:e_{n-1}).\]
+\end{prb}
+
+
+
+
+
+
+\section{Serre duality}
+
+Mittag-Leffler
+
+
+0→O(-D)→O→O(D)→0  for effective D
+
+adjunction formula? hyperplane section?
+
+\section{Hodge decomposition}
+
+
+\begin{prb}[Finiteness of genus]
+Let $X$ be a compact Riemann surface.
+\[0\to\underline\C\to\cO\xrightarrow{d}\cK\to0.\]
+
+\[\begin{array}{c|ccc}
+h^-(X,-) & \C & \cO & \cK \\\hline
+0 & 1 & 1 & g \\
+1 & 2g & g & 1 \\
+2 & 1 & 0 & \,
+\end{array}\]
+
+We start from
+\begin{itemize}
+\item $h^0(X,\C)=1$ by connectedness.
+\item $h^0(X,\cO)=1$ by the Liouville theorem.
+\end{itemize}
+By the Serre duality,
+\begin{itemize}
+\item $h^0(X,\cK)=h^1(X,\cO)$.
+\item $h^1(X,\cK)=h^0(X,\cO)=1$.
+\end{itemize}
+Then,
+\begin{itemize}
+\item $h^1(X,\C)=2g$ by the rank-nullity theorem from $h^1(X,\cO)=g$ and $h^0(X,\cK)=g$.
+\end{itemize}
+Also,
+\begin{itemize}
+\item $h^2(X,\C)=1$ by the Poincar\'e theorem.
+\item $h^2(X,\cO)=0$ by the Dolbeault theorem?
+\end{itemize}
+
+
+
+The \emph{Euler characteristic} is defined by
+\[\chi:=h^0(X,\C)-h^1(X,\C)+h^2(X,\C),\]
+and the \emph{genus} can be defined by the formula
+\[\chi=:2-2g.\]
+
+Since $h^0(X,\C)=1$, $h^2(X,\C)=1$, by the rank-nullity theorem we have
+\[g=h^1(X,\cO).\]
+
+
+Let $D\subset\C$ be an open set.
+Then, $U$ has the canonical volume form $dx\wedge dy$.
+Let $L^2(D,\cO)$ be the completion of sqaure-integrable holomorphic functions on $D$ with respect to the $L^2$-norm.
+We have $L^2(D,\cO)\subset L^2(D)$.
+\begin{parts}
+\item $L^2(D,\cO)\subset\Gamma(D,\cO)=\cO(D)$.
+\item If $D'\Subset D$, then for every $\e>0$ there is a finite-codimensional linear subspace $A\subset L^2(D,\cO)$ such that
+\[\|f\|_{L^2(D')}\le\e\|f\|_{L^2(D)},\qquad f\in A.\]
+\end{parts}
+\end{prb}
+\begin{pf}
+(a)
+For $r>0$, let $U_r:=\{z\in U:B(z,r)\subset U\}$.
+It suffices to show
+\[\|f\|_{L^\infty(U_r)}\le\frac1{\sqrt\pi r}\|f\|_{L^2(U)},\qquad f\in\cO(U).\]
+
+(b)
+
+Take $r>0$ and a finite subset $\{a_j\}$ of $D'$ such that $D'\subset\bigcup_jB(a_j,\frac r2)$ and $\bigcup_jB(a_j,r)\subset D$.
+Take $n$ such that $2^{-n-1}|\{a_j\}|^{\frac12}<\e$.
+Let
+\[A:=\{f\in L^2(D,\cO):f^{(k)}(a_j)=0\text{ for all $k\le n$ and $j$}\}.\]
+If $f\in A$, then at $a_j$ we have the power series expansion
+\[f(z)=\sum_{k=n}^\infty c_k(z-a_j)^k,\qquad z\in B(a_j,r).\]
+Thus
+\begin{align*}
+\|f\|_{L^2(D')}^2&\le\sum_j\|f\|_{L^2(B(a_j,\frac r2))}^2\\
+&=\sum_j\sum_{k=n}^\infty\frac{\pi(\frac r2)^{2n+2}}{k+1}|c_k|^2\\
+&=2^{-2n-2}\sum_j\sum_{k=n}^\infty\frac{\pi r^{2n+2}}{k+1}|c_k|^2\\
+&=2^{-2n-2}\sum_j\|f\|_{L^2(B(a_j,r))}^2\\
+&\le2^{-2n-2}|\{a_j\}|\|f\|_{L^2(D)}^2,\qquad f\in A,
+\end{align*}
+so the desired inequality follows.
+
+(c)
+14.6?
+
+(d)
+\[L:=\{(\xi,\eta,\zeta)\in Z_{L^2}^1(\cU,\cO)\oplus Z_{L^2}^1(\cV,\cO)\oplus C_{L^2}^0(\cW,\cO):\eta=\xi+\delta\zeta\text{ on }\cW\}.\]
+
+Since the projection$L\to Z_{L^2}^1(\cV,\cO)$ is a surjective bounded linear operator, by the Bartle-Graves theorem, there is a non-necessary linear bounded map $Z_{L^2}^1(\cV,\cO)\to L$ which is a right inverse.
+
+
+\end{pf}
+
+A method using Hodge decomposition may be more natural?
+
+
+
+
+
+
+
+\chapter{Algebraic curves}
+
+\section{Projective varieties}
+
+multiplicities, Bezout theorem
+
+\section{Chow theorem}
+divisors, line bundles
+euler characteristic
+(tangent line bundle degree 2-2g, canonical line bundle 2g-2)
+$L(D):=\Gamma(X,\cO(D))=H^0(X,\cO(D))$
+
+Jacobian variety (moduli spaces....)
+
+
+\begin{prb}[Chow theorem]
+A complex submanifold of a projective space is algebraic.
+\end{prb}
+
+
+\section{Moduli spaces}
+
+
+
+
+
+\end{document}
