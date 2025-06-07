@@ -12,7 +12,20 @@
 \part{}
 
 \chapter{Convenient categories}
-\section{Compactly generated weakly Hausdorff spaces}
+
+
+
+\section{CW complexes}
+
+
+Whitehead theorem
+
+Sing functor and the geometric realization
+
+simplicial sets
+
+
+\section{Compactly generated spaces}
 bicomplete cartesian closed monoidal category.
 Here, closed means that the right tensoring admits an adjoint called internal hom functor.
 braided and symmetric...?
@@ -23,60 +36,11 @@ The smash product is the categorical product in the category of pointed space.
 
 
 Let $\mathrm{Top}$ be the bicomplete cartesian closed monoidal category of CGWH spaces.
-\section{CW complexes}
-
-
-
-\section{Simplicial complexes}
 
 
 
 
 
-
-\chapter{Cohomology operations}
-\section{Eilenberg-Steenrod axioms}
-cohomology
-cup product
-universal coefficient theorem
-Poincar\'e duality
-
-
-
-
-
-
-\section*{Exercises}
-
-characteristic class of projective spaces
-
-
-
-
-
-\chapter{Spectral sequences}
-\section{Serre spectral sequence}
-	(Lyndon-Hochschild-Serre)
-
-
-
-A \emph{Serre fibration} is a continuous map $Y\to B$ satisfying the homotopy lifting property for CW complexes: for any CW complex $A$,
-\[\begin{tikzcd}
-A\rar{f}\dar[>->,swap]{\iota_0}&Y\dar[->>]{\pi}\\
-A\times I\rar[swap]{g}\ar[dashed]{ur}{\exists\,h}&B
-\end{tikzcd}\]
-
-
-\begin{prb}[Serre spectral sequence]
-Let $Y\to B$ be a Serre fibration with fiber space $F$.
-Let $R$ be a commutative unital ring.
-\begin{parts}
-\item If $B$ is either simply connected or connected with $R$ has characteristic two, then $\pi_1(B)$ acts trivially on $H_*(F,R)$...?
-\item In this case we have a multiplicative
-\[E_2^{p,q}=H^p(B,H^q(F,R))\rightarrow H^{p+q}(Y,R).\]
-\end{parts}
-\end{prb}
-\section{Adams spectral sequence}
 
 
 
@@ -565,6 +529,50 @@ In the category of smooth manifolds, if $f$ diffeomorphic, then $\tilde f$ diffe
 
 
 
+characteristic class of projective spaces
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\chapter{Spectral sequences}
+\section{Serre spectral sequence}
+	(Lyndon-Hochschild-Serre)
+
+
+
+A \emph{Serre fibration} is a continuous map $Y\to B$ satisfying the homotopy lifting property for CW complexes: for any CW complex $A$,
+\[\begin{tikzcd}
+A\rar{f}\dar[>->,swap]{\iota_0}&Y\dar[->>]{\pi}\\
+A\times I\rar[swap]{g}\ar[dashed]{ur}{\exists\,h}&B
+\end{tikzcd}\]
+
+
+\begin{prb}[Serre spectral sequence]
+Let $Y\to B$ be a Serre fibration with fiber space $F$.
+Let $R$ be a commutative unital ring.
+\begin{parts}
+\item If $B$ is either simply connected or connected with $R$ has characteristic two, then $\pi_1(B)$ acts trivially on $H_*(F,R)$...?
+\item In this case we have a multiplicative
+\[E_2^{p,q}=H^p(B,H^q(F,R))\rightarrow H^{p+q}(Y,R).\]
+\end{parts}
+\end{prb}
+\section{Adams spectral sequence}
+
+
+
+
 
 
 \chapter{}
@@ -573,12 +581,6 @@ In the category of smooth manifolds, if $f$ diffeomorphic, then $\tilde f$ diffe
 \section{Hurewicz theorem}
 $H_\bullet(\Omega S_n)$ and $H_\bullet(U(n))$
 Spin, Spin$_\C$ structure
-
-
-
-
-\chapter{Simplicial methods}
-
 
 
 

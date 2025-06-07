@@ -1,0 +1,106 @@
+\documentclass{../../../small}
+\usepackage{../../../ikhanchoi}
+
+\begin{document}
+\title{}
+\author{Ikhan Choi}
+\maketitle
+\tableofcontents
+
+
+\section{21 May}
+
+
+\section{26 May}
+
+
+\begin{itemize}
+\item Ivo Dell' Ambrogio, \textit{The unitary symmetric monoidal model category of small C$^*$-categories}
+\item Emily Riehl, \textit{Homotopical categories: from model categories to $(\infty,1)$-categories}
+\end{itemize}
+
+
+\begin{thm*}[Dell' Ambrogio]
+$\mathrm{C^*Cat}$ is a model category.
+\end{thm*}
+
+\begin{defn*}
+A \emph{model category} is a bicomplete category with a \emph{model structure}.
+\end{defn*}
+
+\begin{defn*}[C$^*$-category]
+A C$^*$-category is a category $A$ which is a $\C$-linear category with conjugate-linear involutions $*:A(x,y)\to A(y,x)$ and complete norms $\|\cdot\|:A(x,y)\to[0,\infty)$ on each hom-set $A(x,y)$ such that $\|fg\|\le\|f\|\|g\|$ and $\|f^*f\|=\|f\|^2$ and $f^*f\ge0$ are satisfied.
+\end{defn*}
+\begin{ex*}
+A C$^*$-algebra is a C$^*$-category with a single object.
+\end{ex*}
+\begin{ex*}
+The category $\mathrm{Hilb}$ defined such that objects are separable Hilbert spaces and morphisms are bounded linear operators is a C$^*$-category. 
+\end{ex*}
+\begin{defn*}
+The category $\mathrm{C^*Cat}$ is the category of C$^*$-categories whose morphisms are given by $*$-functors.
+\end{defn*}
+
+\begin{defn*}
+Two C$^*$-categories $A$ and $B$ are called \emph{unitary equivalent} if there are $*$-functors $F:A\to B$ and $G:B\to A$ such that $GF\simeq\id_A$ and $FG\simeq\id_B$.
+Here, $GF\simeq\id_A$ means that for each morphism $f:a\to a'$ in $A$, we have unitaries $u_a:GF(a)\to a$ and $u_{a'}:GF(a')\to a'$ such that $fu_a=u_{a'}GF(f)$.
+The unitarity of $u_a$ means that $u_a^*u_a=\id_{GF(a)}$ and $u_au_a^*=\id_a$.
+\end{defn*}
+\begin{defn*}
+We define a model structure on $\mathrm{C^*Cat}$ as follows:
+\begin{itemize}
+\item weak equivalences are unitary equivalences,
+\item cofibrations are $*$-functors injective on objects,
+\item fibrations are $*$-functors such that whenever there is a unitary (equivalence) $u:b\sim Fa'$ for some $a'\in A$ we have $a\in A$ and unitary $v:a\to a'$ such that $Fv=u$, and hence $Fa=b$.
+\end{itemize}
+\end{defn*}
+
+\begin{pf}[Proof of Theorem]
+\textbf{Axiom 1: Two-out-of-Three law}
+
+Clear.
+
+\textbf{Axiom 2: Retracts}
+
+Consider the diagram in $\mathrm{C^*Cat}$
+\[\begin{tikzcd}
+A\rar{P}\dar{f}&A'\rar{Q}\dar{g}&A\dar{f}\\
+B\rar{I}&B'\rar{J}&B
+\end{tikzcd}\]
+such that each row is composed to the indentites.
+
+Assuming $g$ is a fibration, we want to show $f$ is a fibration.
+Let $u:b\sim fa'$ for $b\in B$ and $a'\in A$.
+Then, $Ib\sim Ifa'=gPa'$.
+Since $g$ is a fibration, there is $\tilde a\in A'$ with a unitary $\tilde a\to Pa'$ and $g\tilde a=Ib$.
+Then, $Q\tilde a\sim QPa'=a'$ and $fQ\tilde a=Jg\tilde a=JIb=b$.
+
+Cofibrations are clear.
+
+For weak equivalences, if $h$ is the `weak inverse' of $g$ and $\tilde f:=QhI$, then $f$ and $\tilde f$ show that $f$ is unitary.
+
+
+\textbf{Axiom 3: Lifting}
+
+Consider
+\[\begin{tikzcd}
+A\rar{P}\dar{\alpha}&B\dar{\beta}\\
+C\rar{Q}&D
+\end{tikzcd}\]
+
+Suppose first $\alpha$ is an acylic cofibration and $\beta$ is a fibration.
+Take a weak inverse $\tilde\alpha:C\to A$ of $\alpha$.
+Since for $c\in C$ we have $Q(c)\sim Q\alpha\tilde\alpha(c)=\beta P\tilde\alpha(c)\in D$, there is $b\in B$ and unitary $u_b:b\to P\tilde\alpha(c)$ and $\beta(b)=Q(c)$.
+Define $\gamma:C$ as follows.
+Let $\gamma(c):=b$.
+For $f:c\to c'$ in $C$, we define $\gamma(f):b\to b'$ such that
+\[b\sim P\tilde\alpha(c)\xrightarrow{P\tilde\alpha(f)}P\tilde\alpha(c')\sim b'.\]
+Now we check the commutation.
+Since $\alpha$ is an acylic cofibration, by Lemma in the paper, we may assume $\tilde\alpha\alpha=\id_A$.
+Then, $\beta P(a)=\beta P\tilde\alpha\alpha(a)=\beta P$
+
+
+\end{pf}
+
+
+\end{document}

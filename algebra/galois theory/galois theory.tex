@@ -54,15 +54,12 @@ subgroups by conjugacy class.
 
 
 \begin{prb}[Semidirect product]
-Let $N,H$ be groups, and let $\f:H\to\Aut(N)$ be a group homomorphism.
-The homomorphism $\f$ can be considered as the permutation representation of a group action $H\times N\to N$ by automorphism.
-The \emph{semidirect product}, written as $N\rtimes_\f H$ or just simply $N\rtimes H$ if no confusion, is a group defined on the set $N\times H$ by
-\[(n,h)(n',h')=(n\f(h)n',hh').\]
+Suppose a group $H$ acts on a group $N$, that is, we have a group homomorphism $\f:H\to\Aut(N)$ as its representation, where $\Aut(N)$ denotes the group of group automorphisms of $N$.
+The \emph{semidirect product}, written as $N\rtimes_\f H$ or just simply $N\rtimes H$ if there is no confusion, is a group with the underlying set $N\times H$ defined such that the group structure is given by
+\[(n,h)(n',h')=(n\f(h)n',hh'),\qquad(n,h)\in N\times H.\]
 \begin{parts}
-\item The semidirect product $N\rtimes H$ is really a group.
-\item If $N,H$ are subgroups of another group $G$ such that
-\[N\normal G,\quad N\cap H=1,\quad NH=G,\]
-then $G\cong N\rtimes_\f H$, where $\f(h):n\mapsto hnh^{-1}$.
+\item The semidirect product $N\rtimes H$ is indeed a group.
+\item If $N$ is a normal subgroup and $H$ is a subgroup of a group $G$ such that $N\cap H=1$ and $NH=G$, then the group $G$ is isomorphic to $N\rtimes_\f H$, where $\f:H\to\Aut(N)$ is given by the conjugation $\f(h):n\mapsto hnh^{-1}$ for $n\in N$ and $h\in H$.
 In this case, we sometimes call $G$ the \emph{internal semidirect product}.
 \end{parts}
 \end{prb}
@@ -71,22 +68,22 @@ In this case, we sometimes call $G$ the \emph{internal semidirect product}.
 
 
 \begin{prb}[Classification of semidirect products]
-Let $N$ and $H$ be groups.
-On the set $\Hom(H,\Aut(N))$ of all group homomorphisms $H\to\Aut(N)$, we can establish an action by the group $\Aut(H)\times\Aut(N)$ with the following two operations:
-the \emph{twisting} by $\eta\in\Aut(H)$ such that $\f\mapsto\f\circ\eta$, and the \emph{intertwining} by $\nu\in\Aut(N)$ such that $\f\mapsto\nu\f\nu^{-1}$.
-Consider the following map from the orbit space, constructed by the definition of semidirect products:
-\[\begin{array}{cccc}
-&\dfrac{\Hom(H,\Aut(N))}{\Aut(H)\times\Aut(N)}
-&\to&
-\left\{\begin{tabular}{c}isomorphism classes of\\semidirect products $N\rtimes H$\end{tabular}\right\}\\
-&\f&\mapsto&N\rtimes_\f H.
-\end{array}\]
-Also, we can define a map which takes images:
+Let $H$ and $N$ be groups.
+Define a left action of the product group $\Aut(H)\times\Aut(N)$ on the set $\Hom(H,\Aut(N))$ of group homomorphisms such that for all $\f\in\Hom(H,\Aut(N))$ and $h\in H$
+\[(\eta\f)(h):=\f(\eta^{-1}(h)),\qquad(\nu\f)(h):=\nu\f(h)\nu^{-1},\qquad \eta\in\Aut(H),\ \nu\in\Aut(N).\]
+Consider the following maps from the orbit space, constructed by the definition of semidirect products
 \[\begin{array}{ccc}
-\dfrac{\Hom(H,\Aut(N))}{\Aut(H)\times\Aut(N)}
+\Hom(H,\Aut(N))/(\Aut(H)\times\Aut(N))
 &\to&
-\left\{\begin{tabular}{c}conjugacy classes of\\subgroups of $\Aut(N)$\end{tabular}\right\}\\
-\f&\mapsto&\im\f.
+\{\text{ semidirect products $N\rtimes H$ }\}/\text{ isomorphism }\\
+{[\f]}&\mapsto&{[N\rtimes_\f H]}
+\end{array}\]
+and their images
+\[\begin{array}{ccc}
+\Hom(H,\Aut(N))/(\Aut(H)\times\Aut(N))
+&\to&
+\{\text{ subgroups of $\Aut(N)$ }\}/\text{ conjugacy }\\
+{[\f]}&\mapsto&{[\im\f]}
 \end{array}\]
 \begin{parts}
 \item The first map is well-defined and surjective.
@@ -215,19 +212,26 @@ abelianization
 \section{Sylow subgroups}
 
 \begin{prb}[Existence of Sylow subgroups]
-Two proofs:
+Let $G$ be a finite group of order $n=p^am$ for a prime $p\nmid m$.
+A \emph{Sylow $p$-subgroup} is a subgroup of order $p^a$.
+Denote by $\Syl_p(G)$ the set of Sylow $p$-subgroups and by $n_p(G)$ its cardinality.
+\begin{parts}
+\item If a prime number $p$ divides the order of a finite group $G$, then $G$ admits a subgroup of order $p$. This is called the Cauchy theorem.
+\item For a finite group $G$ and a prime number $p$, there is a Sylow $p$-subgroup of $G$.
+\end{parts}
 \end{prb}
 \begin{pf}
 (a)
-Suppose $\Syl_p(G)\ne\varnothing$ for all finite groups $G$ such that $|G|<n$.
-The class equation for the action of $G$ on $G$ by conjugation is
-\[n=|Z(G)|+\sum_{i=1}^r|G:C_G(g_i)|,\]
-where $r$ is the number of non-trivial orbits.
+We use the induction on the order of $G$.
+For $|G|=1$ or $p\nmid|G|$, then the Sylow $p$-subgroup is the identity group, so it is clear.
 
-If $p\mid|Z(G)|$, then, by the Cauchy theorem for abelian groups, $Z(G)$ has a normal subgroup $P_p$ of order $p$, and so is a normal subgroup of $G$.
-For $Q\in\Syl_p(G/P_p)$, the inverse image of $Q$ under the projection $G\to G/P_p$ is a Sylow $p$-subgroup of $G$.
-If $p\nmid|Z(G)|$, then we have $p\nmid|G:C_G(g)|$ for some $g\in G$, and with this $g$, we have $\Syl_p(C_G(g))\subset\Syl_p(G)$.
-Then, we are done by induction.
+Now for $|G|>1$ with $p\mid|G|$, suppose there is a Sylow $p$-subgroup for all finite groups order less than $|G|$.
+
+If $p\mid|Z(G)|$, then by the Cauchy theorem for abelian groups, the center $Z(G)$ has a subgroup $P_p$ of order $p$, which is normal in $G$, so the inverse image of a Sylow $p$-subgroup of $G/P_p$ under the projection $G\to G/P_p$ is a Sylow $p$-subgroup of $G$.
+If $p\nmid|Z(G)|$, then since we may assume $p\mid|G|$ and the class equation for the action of $G$ on $G$ by conjugation is written as
+\[|G|=|Z(G)|+\sum_{i=1}^r[G:C_G(g_i)],\]
+where $r$ is the number of non-trivial orbits and $g_i$ are representatives of each orbit(?), we have $p\nmid|G:C_G(g)|$ for some $g\in G$, and a Sylow $p$-subgroup of $C_G(g)$ is a Sylow $p$-subgroup of $G$.
+Therefore, $G$ admits a Sylow $p$-subgroup, and this completes the proof.
 
 (Wielandt)
 We use the lemma $\binom{p^am}{p^a}\equiv m\pmod p$..?
@@ -245,8 +249,7 @@ It is only possible when $H\subset A$, hence $|H|=p^a$.
 
 \begin{prb}[Number of Sylow subgroups]
 Let $G$ be a finite group of order $n=p^am$ for a prime $p\nmid m$.
-A \emph{Sylow $p$-subgroup} is a subgroup of order $p^a$.
-Denote by $\Syl_p(G)$ the set of Sylow $p$-subgroups and by $n_p(G)$ its cardinality.
+Let $n_p:=|\mathrm{Syl}_p(G)|$ be the number of Sylow $p$-subgroups of $G$.
 \begin{parts}
 \item If $P$ normalizes $P'$, then $P=P'$.
 \item $n_p\equiv1\pmod p$.
@@ -324,7 +327,7 @@ In order to find the size of conjugacy classes:
 
 \begin{prb}[Classification of groups of order $p^2q$]
 Let $G$ be a finite group of order $p^2q$, where $p$ and $q$ are distinct primes.
-If we let $P$ and $Q$ be Sylow $p$ and $q$-subgroup of $G$, then $P\cong Z_{p^2}\text{ or }Z_p^2$, and $Q\cong Z_q$.
+If we let $P$ and $Q$ be Sylow $p$ and $q$-subgroup of $G$, then $P\cong C_{p^2}\text{ or }C_p^2$, and $Q\cong C_q$.
 By the Sylow theorem, we consider three cases:
 \begin{parts}
 \item If $p+2\le q$, then $G\cong Q\rtimes P$, and there are
@@ -346,22 +349,22 @@ non-isomorphic groups of order $p^2q$
 \end{parts}
 \end{prb}
 \begin{pf}
-(a) $G\cong Z_q\rtimes Z_{p^2}$.
-\[\f:Z_{p^2}\to Z_{q-1}.\]
-There are $1+\min\{v_p(q-1),2\}$ (conjugacy classes of) subgroups of order dividing $p^2$ in $Z_{q-1}$.
+(a) $G\cong C_q\rtimes C_{p^2}$.
+\[\f:C_{p^2}\to C_{q-1}.\]
+There are $1+\min\{v_p(q-1),2\}$ (conjugacy classes of) subgroups of order dividing $p^2$ in $C_{q-1}$.
 
-(b) $G\cong Z_q\rtimes Z_p^2$.
-\[\f:Z_p^2\to Z_{q-1}.\]
-Since $\Aut(Z_p^2)\cong\GL(2,\F_p)$ transitively acts on the set of surjective homomorphisms $Z_p^2\to Z_p$ by twist, there are $1+\min\{v_p(q-1),1\}$ cases.
+(b) $G\cong C_q\rtimes C_p^2$.
+\[\f:C_p^2\to C_{q-1}.\]
+Since $\Aut(C_p^2)\cong\GL(2,\F_p)$ transitively acts on the set of surjective homomorphisms $C_p^2\to C_p$ by twist, there are $1+\min\{v_p(q-1),1\}$ cases.
 
-(c) $G\cong Z_{p^2}\rtimes Z_q$.
-\[\f:Z_q\to Z_{p(p-1)}.\]
-There are $1+\min\{v_q(p-1),1\}$ (conjugacy classes of) subgroups of order dividing $q$ in $Z_{p(p-1)}$.
+(c) $G\cong C_{p^2}\rtimes C_q$.
+\[\f:C_q\to C_{p(p-1)}.\]
+There are $1+\min\{v_q(p-1),1\}$ (conjugacy classes of) subgroups of order dividing $q$ in $C_{p(p-1)}$.
 
-(d) $G\cong Z_p^2\rtimes Z_q$.
-\[\f:Z_q\to\GL(2,\F_p).\]
-To compute the number of non-trivial semidirect products, we will find all the conjugacy classes of subgroups of $\GL(2,\F_p)$ with order $q$.
-Note that $|\GL(2,\F_p)|=(p^2-1)(p^2-p)=(p-1)^2p(p+1)$ so that we must have $q\mid p-1$ or $q\mid p+1$.
+(d) $G\cong C_p^2\rtimes C_q$.
+\[\f:C_q\to\GL_2(\F_p).\]
+To compute the number of non-trivial semidirect products, we will find all the conjugacy classes of subgroups of $\GL_2(\F_p)$ with order $q$.
+Note that $|\GL_2(\F_p)|=(p^2-1)(p^2-p)=(p-1)^2p(p+1)$ so that we must have $q\mid p-1$ or $q\mid p+1$.
 
 Let $q=2$.
 Then
@@ -370,7 +373,7 @@ up to conjugation, and they generate distinct subgroups of $\GL(2,\F_p)$ up to c
 
 Let $q\ne2$ and $q\mid p+1$.
 We claim that there is a unique subgroup of order $q$ in $\GL_2(\F_p)$ up to conjugation.
-Let $A\in\GL(2,\F_p)$ be of order $q$, and $\lambda^{\pm1}\in\bar\F_p$ be eigenvalues of $A$.
+Let $A\in\GL_2(\F_p)$ be of order $q$, and $\lambda^{\pm1}\in\bar\F_p$ be eigenvalues of $A$.
 Then, $\lambda^i$ is a root of $x^q-1=0$ for each integer $i$, and the polynomial $x^q-1$ has $q$ distinct roots $\lambda^i$ for $0\le i<q$.
 It means that the eigenvalues of $\f(1)$ must be $\lambda^{\pm i}$ for some integer $i$, the image of $\f$ is always conjugate to the subgroup generated by $A$.
 Therefore, 
@@ -384,7 +387,7 @@ To sum up, there are
 1&\text{ if }q\ne2,\ q\mid p+1,\\
 \frac{q+3}2&\text{ if }q\ne2,\ q\mid p-1,\\
 0&\text{ otherwise }\end{cases}\]
-non-abelian groups of the form $Z_p^2\rtimes Z_q$.
+non-abelian groups of the form $C_p^2\rtimes C_q$.
 
 
 (c)
@@ -400,17 +403,16 @@ non-abelian groups of the form $Z_p^2\rtimes Z_q$.
 
 
 
-\begin{table}[h!]
-\centering
-\begin{tabular}{c|c|ccccccc}
+
+\[\begin{tabular}{c|c|ccccccc}
 \hline
 $|G|=p^2q\ (p<q)$&12&20&28&44&45&52&63\\
 \hline
 $\#$ of groups&5&5&4&4&2&5&4\\
 \hline
-\end{tabular}
-\vspace{10pt}\\
-\begin{tabular}{c|cccc}
+\end{tabular}\]
+
+\[\begin{tabular}{c|cccc}
 \hline
 $|G|=p^2q\ (p>q)$&18&50&75\\
 \hline
@@ -424,24 +426,25 @@ $|G|=pqr$&30&42\\
 \hline
 $\#$ of groups&4&6\\
 \hline
-\end{tabular}
-\vspace{10pt}\\
-\begin{tabular}{c|c|cccc|c|c}
+\end{tabular}\]
+
+Four prime factors less than 100
+\[\begin{tabular}{c|c|cccc|c|c}
 \hline
-$|G|=\prod^4p$&16&24&40&54&56&36&60\\
+$|G|$&16&24&40&54&56&36&60\\
 \hline
 $\#$ of groups&14&15&14&15&13&14&13\\
 \hline
-\end{tabular}
-\vspace{10pt}\\
-\begin{tabular}{c|c|c||c}
+\end{tabular}\]
+
+Five or six prime factors less than 100
+\[\begin{tabular}{c|c|c||c}
 \hline
-$|G|=\prod^{5\text{ or }6}p$&32&48&64\\
+$|G|$&32&48&64\\
 \hline
 $\#$ of groups&51&52&267\\
 \hline
-\end{tabular}
-\end{table}
+\end{tabular}\]
 
 
 \section{Finite simple groups}
@@ -511,40 +514,36 @@ straightedge and compass construction
 
 \begin{prb}[Algebraic elements]
 Let $E/F$ be a field extension and let $\alpha\in E$.
-Let $I(\alpha)$ be the set of all $f\in F[x]$ such that $f(\alpha)=0$.
-It is equal to the kernel of the evaluation homomorphism $\ev_\alpha:F[x]\to F[\alpha]:f\mapsto f(\alpha)$, which is surjective.
-We say $\alpha$ is \emph{algebraic} over $F$ if $I(\alpha)$ contains a non-zero polynomial, and call it \emph{transcendental} over $F$ if it is not.
-
-If $\alpha$ is algebraic over $F$, then since the quotient $F[x]/I(\alpha)\cong F[\alpha]$ is an integral domain and $F[x]$ is a principal ideal domain, the non-zero prime ideal $I(\alpha)$ is maximal so that it has a unique monic irreducible generator $\mu_{\alpha,F}\in F[x]$, called the \emph{minimal polynomial} of $\alpha$ over $F$.
-
+We say $\alpha$ is \emph{algebraic} over $F$ if the surjective ring homomorphism $F[x]\to F[\alpha]:f\mapsto f(\alpha)$ called the \emph{evaluation} at $\alpha$ is not injective, and is \emph{transcendental} over $F$ if it is injective.
+If $\alpha$ is algebraic over $F$, then the kernel of the evaluation $F[x]\to F[\alpha]$ is a prime ideal since its image $F[\alpha]$ is an integral domain, and is a maximal ideal since the domain $F[x]$ is a principal ideal domain.
+Because a maximal ideal of $F[x]$ has a unique monic irreducible generator, we can define the \emph{minimal polynomial} $\mu_{\alpha,F}\in F[x]$ of $\alpha$ over $F$ as the unique monic irreducible polynomial such that the evaluation at $\alpha$ induces the isomorhpism $F[x]/(\mu_{\alpha,F})\to F[\alpha]$.
 Two algebraic elements $\alpha,\beta\in E$ over $F$ are said to be \emph{conjugate} over $F$ if they share the common minimal polynomial.
 \begin{parts}
-\item $\alpha$ is algebraic over $F$ if and only if the simple extension $F(\alpha)/F$ is finite, and moreover we  have the degree formula $[F(\alpha):F]=\deg\mu_{\alpha,F}$.
-\item $\alpha,\beta\in E$ are conjugate over $F$ if and only if there is a (unique) field isomorphism $\phi:F(\alpha)\to F(\beta)$ such that $\phi(\alpha)=\beta$ and $\phi$ fixes $F$.
+\item $\alpha$ is algebraic over $F$ if and only if the simple extension $F(\alpha)/F$ is finite. Moreover, we have the degree formula $[F(\alpha):F]=\deg\mu_{\alpha,F}$.
+\item $\alpha,\beta\in E$ are conjugate over $F$ if and only if there is a field isomorphism $\f:F(\alpha)\to F(\beta)$ such that $\f(\alpha)=\beta$ and $\f$ fixes $F$.
 \end{parts}
 \end{prb}
 \begin{pf}
 (a)
-If $\alpha$ is algebraic over $F$, then since $I(\alpha)$ is maximal in $F[x]$, the quotient $F[\alpha]$ is a field, and hence $F[\alpha]=F(\alpha)$.
-Fix any non-zero $f\in I(\alpha)$.
-If we take an arbitrary element $g(\alpha)\in F(\alpha)=F[\alpha]$ for some $g\in F[x]$, then by the Euclidean algorithm in $F[x]$, there exist $q,r\in F[x]$ such that $g=qf+r$ and $\deg r<\deg f$, so $g(\alpha)=q(\alpha)f(\alpha)+r(\alpha)=r(\alpha)$ is a linear combination of $\{1,\alpha,\cdots,\alpha^{\deg f-1}\}$ over $F$.
-Thus we have $[F(\alpha):F]\le\deg f$.
+Let $\alpha$ be algebraic over $F$.
+Since the quotient $F[\alpha]$ is a field because $(\mu_{\alpha,F})$ is maximal in $F[x]$, we have $F[\alpha]=F(\alpha)$ by definition of $F(\alpha)$.
+If we fix any non-zero $f\in(\mu_{\alpha,F})$, then for any element $g(\alpha)\in F(\alpha)=F[\alpha]$ with $g\in F[x]$ there exist $q,r\in F[x]$ such that $g=qf+r$ and $\deg r<\deg f$ by the Euclidean algorithm in $F[x]$, so $g(\alpha)=q(\alpha)f(\alpha)+r(\alpha)=r(\alpha)$ is a linear combination of $\{1,\alpha,\cdots,\alpha^{\deg f-1}\}$ over $F$, which gives $[F(\alpha):F]\le\deg f<\infty$.
 
 Conversely, if $[F(\alpha):F]<\infty$, then there is a linearly dependent finite subset over $F$ of an infinite set $\{1,\alpha,\alpha^2,\cdots\}\subset F(\alpha)$.
-The coefficients on the linear dependency relation construct a non-zero polynomial in $I(\alpha)$.
+The coefficients on the linear dependency relation construct a non-zero polynomial vanishing at $\alpha$.
 
 For the degrees, since $F[x]/(\mu_{\alpha,F})\cong F(\alpha)$, the claim follows from that $\{1,x,\cdots,x^{\deg\mu_{\alpha,F}-1}\}$ is a basis, which can be checked with the Euclidean algorithm.
 
 (b)
 Let $\mu\in F[x]$ be the common minimal polynomial of $\alpha$ and $\beta$ over $F$ and consider a field isomorphism
-\[\phi:F(\alpha)\to F[x]/(\mu)\to F(\beta):\alpha\mapsto x+(\mu)\mapsto\beta.\]
-It is easy to check that $\phi(\alpha)=\beta$ and $\phi$ fixes $F$.
+\[\f:F(\alpha)\to F[x]/(\mu)\to F(\beta):\alpha\mapsto x+(\mu)\mapsto\beta.\]
+It is easy to check that $\f(\alpha)=\beta$ and $\f$ fixes $F$.
 The uniqueness is clear.
 
-Conversely, suppose $\phi:F(\alpha)\to F(\beta):\alpha\mapsto\beta$ is a field isomomorphism fixing $F$.
-Then, $\phi$ commutes with a polynomial function with coefficients in $F$.
+Conversely, suppose $\f:F(\alpha)\to F(\beta):\alpha\mapsto\beta$ is a field isomomorphism fixing $F$.
+Then, $\f$ commutes with a polynomial function with coefficients in $F$.
 From
-\[\mu_{\alpha,F}(\beta)=\mu_{\alpha,F}(\phi(\alpha))=\phi(\mu_{\alpha,F}(\alpha))=\phi(0)=0,\]
+\[\mu_{\alpha,F}(\beta)=\mu_{\alpha,F}(\f(\alpha))=\f(\mu_{\alpha,F}(\alpha))=\f(0)=0,\]
 we get $\mu_{\beta,F}\mid\mu_{\alpha,F}$.
 The irreducibility of $\mu_{\alpha,F}$ implies $\mu_{\alpha,F}=\mu_{\beta,F}$.
 \end{pf}
@@ -557,36 +556,13 @@ A field extension $E/F$ is called \emph{algebraic} if every element of $E$ is al
 \end{parts}
 \end{prb}
 
-Now, we are going to get some basic criteria for determining or constructing algebraic extensions.
-If summarized, we can just say any basic operations of algebraic extensions are algebraic.
-Before that, we introduce a good notion about algebraic extensions: the set of all algebraic elements in a given field.
-
-In the rest of this subsection, assume that we have fixed a sufficiently large ambient field $L$.
-Restricting the ``domain of discourse'' by assuming a large entire field is a greatly helpful idea in order not to be confused in the theory of extensions.
-For example, if we do not fix such a field $L$, we might be able to consider useless large fields which may grow without limits.
-Moreover, we cannot think about the number of field extensions satisfying particular properties.
-
-Note that the following definition \emph{depends on the choice of $L$}, and we will use it \emph{only in this subsection}.
-\begin{defn}
-Let $\bar F$ denote the set of all algebraic elements in $L$ over $F$.
-\end{defn}
-\begin{prop}
-The set $\bar F$ of $F$ in $L$ is always a field.
-\end{prop}
-\begin{pf}
-An element is algebraic over $F$ if and only if it is contained in a finite extension $E/F$ because $\alpha\in E$ is equivalent to $F(\alpha)\le E$.
-
-\end{pf}
 
 
 
 
 
 
-
-
-
-\begin{prb}[Algebraically closed field]
+\begin{prb}[Algebraically closed fields]
 An \emph{algebraically closed} field is a field that has no proper algebraic extension.
 For a field $F$, the following statements are all equivalent, and in particular, a field isomorphic to an algebraically closed field is algebraiclly closed:
 \begin{parts}
@@ -605,26 +581,63 @@ If $F$ is not algebraically closed so that there is a proper algebraic extension
 \end{pf}
 
 
-\begin{prb}[Algebraic closure]
-A field $\bar F$ is called an \emph{algebraic closure} of a field $F$ if $\bar F$ is algebraically closed field and $\bar F/F$ is algebraic.
-Let $E/F$ be a field extension with $E$ algebraically closed.
-Denote by $\bar F$ the set of all algebraic elements in $E$ over $F$
+\begin{prb}[Algebraic closures]
+An \emph{algebraic closure} of a field $F$ is an algebraically closed field $\bar F$ together with an algebraic field extension $\bar F/F$.
 \begin{parts}
-\item $\bar F$ is a field.
-\item $\bar F$ is an algebraic closure of $F$.
+\item
+If $E/F$ is a field extension and $E$ is algebraically closed, then the set of all algebraic elements in $E$ over $F$ is an algebraic closure of $F$.
+\item 
+Let $\f:F_1\to F_2$ be a field isomorphism.
+If $E_1/F_1$ is an algebraic extension and $\bar F_2/F_2$ is an algebraic closure, then there is a field embedding $\tilde\f:E_1\to\bar F_2$ extending $\f$.
+This is called the \emph{isomorphism extension theorem}.
+\item
+An algebraic closure is unique up to isomorphism.
+\item
+Every field has an algebraic closure.
 \end{parts}
 \end{prb}
 \begin{pf}
 (a)
+Let $\bar F$ be the set of algebraic elements in $E$ over $F$.
+The extension $\bar F/F$ is clearly algebraic.
+
+First, we prove that $\bar F$ is a field.
 Let $\alpha,\beta\in\bar F$.
 Since $\alpha+\beta$, $\alpha\beta$, and $\alpha^{-1}$ are all in $F(\alpha,\beta)$, which is a finite extension of $F$ with degree $\deg_F(\alpha)\deg_F(\beta)$, we are done.
 
-(b)
-We will show that $\bar F$ is algebraically closed because the extension $\bar F/F$ is clearly algebraic.
+Now we show that $\bar F$ is algebraically closed.
 Let $f\in\bar F[x]$ and take a root $\alpha\in E$.
 Since both $\bar F(\alpha)/\bar F$ and $\bar F/F$ are algebraic, $\alpha$ is algebraic over $F$.
 Thus we have $\alpha\in\bar F$, and by the previous proposition, $\bar F$ is algebraically closed.
+
+
+(b)
+Let $S$ be the set of all pairs $(K_1,\psi)$ of a subfield $K_1\le E_1$ and a field embedding $\psi:K_1\to\bar F_2$ which extends $\f$.
+The set $S$ is nonempty since $\f\in S$.
+It also satisfies the chain condition since the increasing union defines the upper bound of chain.
+Use the Zorn lemma on $S$ to obtain a maximal element $\tilde\f:K_1\to\bar F_2$.
+If there is $\alpha\in E_1\setminus K_1$, then letting $\beta\in\bar F_2$ be a root of the pushforward polynomial $\f_*(\mu_{\alpha,F_1})\in F_2[x]$, we can construct a field embedding $K_1(\alpha)\to\bar F_2:\alpha\mapsto\beta$.
+It leads a contradiction to the maximality of $\tilde\f$, so $K_1=E_1$.
+
+(c)
+Suppose there are two algebraic closures $\bar F_1, \bar F_2$ of a field $F$.
+By the isomorphism extension theorem, we have a field embedding $\f:\bar F_1\to\bar F_2$ which extends the identitiy map on $F$.
+Since the image $\f(\bar F_1)$ is also algebraically closed and the field extension $\bar F_2/\f(\bar F_1)$ is algebraic, we must have $\f(\bar F_1)=\bar F_2$ by the definition of algebraically closedness.
+Thus, $\f$ is surjective so that it is an isomorphism.
+
+(d)
+Let $F$ be a field.
+If we let $S$ be the set of all non-constant monic irreducibles in $F[x]$, then since $f(x_f)$ does not generate a constant in the polynomial ring $F[x_f]_{f\in S}$, there is a maximal ideal $\fm$ of $F[x_f]_{f\in S}$ containing $f(x_f)$ for all $f\in S$.
+Then, every non-constant polynomial, with a monic irreducible factor $f$, has a root $x_f+\fm$ in the field $L_1:=F[x_f]_{f\in S}/\fm$.
+
+As we did in the above, construct an increasing tower $L_n$ of fields inductively such that every nonconstant polynomial over $L_n$ has a root in $L_{n+1}$, and define $L:=\colim_nL_n$ as the inductive limit, which is in other word just the directed union of $L_n$ through $n\in\N$.
+Then, $L$ is easily checked to be algebraically closed, so if we define $\bar F$ to be the set of all algebraic elements of $L$ over $F$, then $\bar F/F$ is an algebraic closure of $F$.
+
+As a remark, in fact, this $L_1$ is already algebraically closed.
+Since it is difficult to prove directly, so we constructed an algebraically closed field $L$ in another way.
 \end{pf}
+
+
 
 
 \begin{prb}[Relations of algebraic extensions]
@@ -669,109 +682,43 @@ Since $E_1,E_2\le\bar F$, we have $E_1E_2\le\bar F$, so $\bar{E_1E_2}=\bar{F}$.
 \end{pf}
 
 
-\begin{prb}[Isomorphism extension theorem]
-Let $E/F$ be an algebraic extension.
-Let $\phi:F\cong F'$ be a field isomorphism.
-Let $\bar F'$ be an algebraic closure of $F'$.
-Then, there is an embedding $\tilde\phi:E\to\bar F'$ which extends $\phi$.
-\[\begin{tikzcd}
-&\bar F' \ar{dd}\\
-E\ar{r}{\tilde\phi}\dar[dashed]&\quad\\
-F\ar{r}{\phi}&F'
-\end{tikzcd}\]
-\end{prb}
-\begin{pf}
-Let $S$ be the set of all pairs $(K,\psi)$ of a subfield $K\le E$ and a field homomorphism $\psi:K\to\bar F'$ which extends $\phi$.
-The set $S$ is nonempty since $\phi\in S$.
-It also satisfies the chain condition since the increasing union defines the upper bound of chain.
-Use the Zorn lemma on $S$ to obtain a maximal element $\tilde\phi:K\to\bar F'$.
-We now claim $K=E$.
-
-Suppose $K$ is a proper subfield of $E$ and let $\alpha\in E\setminus K$.
-Let $\alpha'\in\bar F'$ be a root of the pushforward polynomial $\phi_*(\mu_{\alpha,F})\in F'[x]$.
-Then, we can construct a field homomorphism $K(\alpha)\to\bar F':\alpha\mapsto\alpha'$.
-It leads a contradiction to the maximality of $\tilde\phi$.
-Therefore, $K=E$.
-\end{pf}
-
-
-\begin{prb}[Algebraic closures]
-\begin{parts}
-\item An algebraic closure is unique up to isomorphism.
-\item Every field has an algebraic closure.
-\end{parts}
-\end{prb}
-\begin{pf}
-(a)
-Suppose there are two algebraic closures $\bar F_1, \bar F_2$ of a field $F$.
-By the isomorphism extension theorem, we have a field homomorphism $\phi:\bar F_1\to\bar F_2$ which extends the identitiy map on $F$.
-Since the image $\phi(F_1)$ is also algebraically closed and the field extension $F_2/\phi(F_1)$ is algebraic, we must have $\phi(F_1)=F_2$ by the definition of algebraically closedness.
-Thus, $\phi$ is surjective so that it is an isomorphism.
-
-(b)
-Let $F$ be a field.
-
-Construct an algebraically closed field containing $F$:
-At first we want to construct a field $K_1\ge F$ such that every $f\in F[x]$ has a root in $K_1$.
-This is satisfied by $K_1:=R/\fm$, where a ring $R$ and its maximal ideal $\fm$ is defined as follows:
-Let $S$ be the set of all nonconstant irreducibles in $F[x]$.
-Define $R:=F[\{x_f\}_{f\in S}]$.
-Let $I$ be an ideal in $R$ generated by $f(x_f)$ as $f$ runs through all $S$.
-It has a maximal ideal $\fm\supset I$ in $R$ since $I$ does not contain constants.
-If $f\in F[x]$, then $\alpha=x_f+\fm\in K_1$ satisfies $f(\alpha)=f(x_f)+\fm=\fm$.
-
-Construct a sequence $\{K_n\}_n$ of fields inductively such that every nonconstant $k\in K_n[x]$ has a root in $K_{n+1}$.
-Define $K:=\lim_{\to}K_n$ as the inductive limit.
-It is in other word just the directed union of $K_n$ through all $n\in\N$.
-Then, $K$ is easily checked to be algebraically closed.
-
-Construct the algebraic closure of $F$:
-Let $\bar F$ be the set of all algebraic elements of $K$ over $F$.
-Then, this is an algebraic closure.
-
-
-As a remark, in fact, this $K_1$ is already algebraically closed.
-Since it is difficult to prove directly, so we constructed an algebraically closed field $K$ in another way.
-\end{pf}
 
 
 
 
 \section{Finite fields}
 \begin{prb}[Finite field as a splitting field]
-Let $E$ be a finite field of characteristic $p$.
-Clearly $p>0$ so that $E$ has a subfield $F$ of size $p$ generated by $1\in E$.
-Since $E/F$ is finite, $E$ is isomorphic to a subfield of $\bar{\F_p}$ by the isomorphism extension theorem.
-There we assume $E$ is a subfield of a fixed algebraic closure $\bar{\F_p}$.
-Let $\alpha\in\bar{\F_p}$ and $n$ the degree of $E/F$.
+Let $E$ be a finite field of positive characteristic $p$ for a prime $p$.
+Then, $E$ has a subfield $F$ of size $p$ additively generated by $1\in E$.
+We may assume $F=\F_p$.
+Since $E/F$ is trivially finite, $E$ is isomorphic to a subfield of $\bar\F_p$ by the isomorphism extension theorem.
+There we assume $E$ is a subfield of a fixed algebraic closure $\bar\F_p$.
+Let $\alpha\in\bar\F_p$ and $n$ the degree of $E/F$.
 \begin{parts}
 \item If $\alpha\in E$, then $\alpha^{p^n}-\alpha=0$.
 \item If $\alpha^{p^n}-\alpha=0$, then $\alpha\in E$.
-\item For each $m\in\N$, in $\bar{\F_p}$ is a unique field $E$ of size $p^m$.
+\item For each $n\in\Z_{>0}$, there is a unique field of size $p^n$ in $\bar\F_p$.
 \end{parts}
 \end{prb}
 
 
 \begin{prb}[Cyclic groups in finite fields]
+The \emph{Euler totient} is a function
+
+Let $q=p^n$.
 \begin{parts}
-\item The number of elements of order $d$ in a cyclic group of order $n$ is $\phi(d)$ when $d\mid n$.
-\item The group of units $(\F_{p^n})^\times$ is cyclic.
-\item The Galois group $\Gal(\F_{p^n}/\F_p)$ is cyclic.*
+\item The number of elements of order $d$ in a cyclic group is either zero or $\phi(d)$.
+\item The group of units $\F_q^\times$ is cyclic.
+\item The group of automorphisms of $\F_q$ fixing $\F_p$ is cyclic.
 \end{parts}
 \end{prb}
 \begin{pf}
 (b)
-We partition the elements of $G:=(\F_{p^n})^\times$ by their orders.
-Let
-\[A_d:=\{\,\alpha\in G:\ord(\alpha)=d\,\}\]
-for $d\mid p^n-1$.
-It is contained in the subgroup $H:=\{x\in\F_{p^n}:x^d=1\}$, of which the order is $|H|=d$ because $x^d-1$ is separable.
-
-If $|A_d|\ne0$, then any element of $A_d$ is a generator of $H$, so $H$ is cyclic.
-Since the number of elements of order $d$ in a cyclic group is given by the Euler totient function $\phi(d)$, as a result we have $|A_d|\in\{0,\phi(d)\}$.
-Then,
-\[|G|=\sum_{d\mid p^n-1}|A_d|\le\sum_{d\mid p^n-1}\phi(d)=p^n-1\]
-implies $|A_{p^n-1}|\ne0$, $G$ is hence cyclic.
+We partition the elements of $\F_q^\times$ by their orders.
+Since each element of $\ord^{-1}(d):=\{\,\alpha\in\F_q^\times:\ord(\alpha)=d\,\}$, if it exists, defines a generator of the group $\mu_d(\F_q):=\{x\in\F_q:x^d=1\}$ of $d$-th roots of unity in $\F_q^\times$ whose order is at most $d$, so we have $|\ord^{-1}(d)|\in\{0,\phi(d)\}$ by the part (a).
+Then, since $\ord^{-1}(d)$ is empty unless $d\mid q-1$, we have
+\[|\F_q^\times|=\sum_{d\mid q-1}|\ord^{-1}(d)|\le\sum_{d\mid q-1}\phi(d)=q-1=|\F_q^\times|,\]
+and it implies that $\ord^{-1}(q-1)$ is non-empty, $\F_q^\times$ is hence cyclic.
 \end{pf}
 
 \begin{prb}[Degree of an element in finite fields]
@@ -791,7 +738,7 @@ The degree of $\alpha$ is computed by the order of $p$ in $(\Z/\ord(\alpha)\Z)^\
 
 \begin{prb}[Separable polynomials]
 Let $F$ be a field.
-A polynomial $f\in F[x]$ is called \emph{separable} if it is square-free in $\bar F[x]$.
+A polynomial $f\in F[x]$ is called \emph{separable} over $F$ if it is square-free in $\bar F[x]$.
 An element $\alpha\in\bar F$ is called \emph{separable} over $F$ if its minimal polynomial $\mu_{\alpha,F}$ is separable.
 \end{prb}
 
@@ -1320,7 +1267,7 @@ A field extension $L/K$ is called a \emph{Kummer extension} if $\zeta_n\in K$ an
 \item If $\zeta_n\in K$, 
 \end{parts}
 \end{prb}
-Let $\sigma\in\Gal(L/K)\cong Z_n$ be a generator.
+Let $\sigma\in\Gal(L/K)\cong C_n$ be a generator.
 If $f:\Gal(L/K)\to L^\times:g\mapsto\zeta_n$, then $f\in H^1(\Gal(L/K),L^\times)$.
 Hilbert 90 states that $H^1(\Gal(L/K),L^\times)=0$, so we have $\alpha\in L$ such that $g(\alpha)/\alpha=f(g)$ for all $g\in\Gal(K/L)$.
 Then,

@@ -350,6 +350,228 @@ given by
 \[\Delta_+:\Spin^c(4)\to\rU(2):[q_+,q_-,\lambda]\mapsto\lambda q_+,\]
 \[\Delta_-:\Spin^c(4)\to\rU(2):[q_+,q_-,\lambda]\mapsto\lambda q_-,\]
 \[\det:\Spin^c(4)\to\rU(1):[q_+,q_-,\lambda]\mapsto\lambda^2.\]
-These representations induces positive spinor bundle $S^+$, negative spincor bundle $S^-$, and the determinant line bundle $L$.
+These representations induces positive spinor bundle $S^+$, negative spinor bundle $S^-$, and the determinant line bundle $L$.
+
+We will frequently use the multiplication of quaternions for computations.
+
+
+
+
+\newpage
+\section{}
+
+What is $\Omega^+$? it is related to $b^+>0$?
+
+\newpage
+\section{Day 4: May 12}
+
+
+Let $X^4$ be an oriented closed smooth 4-manifold together with a metric $g$ and a spin$^c$-structure $\fs$.
+The \emph{configuration space} of the SW equation is
+\[\cC(X,\fs,g):=\cA(L)\times\Gamma(S^+).\]
+The \emph{gauge group} is
+\[\cG(X):=C^\infty(X,\rU(1)).\]
+Then, $\cG$ acts from right(?) on $A\in\cA(L)$, $\Phi\in\Gamma(S^\pm)$, $\omega\in i\Omega^+(X)$ such that
+\[A\cdot u:=u^*A:=u^{-1}\,du+A,\qquad \Phi\cdot u:=\Phi u,\qquad \omega\cdot u:=\omega.\]
+
+
+
+Let $\eta\in i\Omega^+$.
+The $\eta$-perturbed SW equations are
+\[\left\{\begin{aligned}
+F_A^+&=\sigma(\Phi)+\eta,\\\qquad D_A\Phi&=0.
+\end{aligned}\right.\]
+It is introduced to get a degree of freedom for transversality.
+
+\begin{lem}
+Let $\eta\in i\Omega^+$.
+Then, $\mathrm{SW}_\eta:\cC\to i\Omega^+\oplus\Gamma(S^-):(A,\Phi)\mapsto(F_A^+-\sigma(\Phi)-\eta,D_A\Phi)$ is $\cG$-equivariant.
+\end{lem}
+\begin{pf}
+Let $u\in\cG$.
+
+First,
+\[F_{u^*A}^+=F_{u^{-1}\,du+A}^+=p^+d(u^{-1}\,du +A)=p^+d(u^{-1}\,du)+F_A^+.\]
+Here, lifting $u:U\subset X\to\rU(1)$ to get $\tilde u:U\subset X\to\R$ locally in the sense that $u=e^{2\pi i\tilde u}$, it is locally exact, so it is globally closed
+\[d(u^{-1}\,du)=d((2\pi i)^{-1}\,d\log u)=0,\]
+and $F_{u^*A}^+=F_A^+$.
+
+Second, recall that $\sigma(\Phi)$ is defined by a $\Spin^c(4)$-equivariant map $\sigma:\H_{S^+}\to\Im\H_{\Lambda^+}:\Phi\mapsto\Phi i\bar\Phi$, so it is clear.
+
+Third, recall that $\nabla_A:\Gamma(S^+)\to\Gamma(T^*X\otimes S^+)$ is $\cG$-equivariant by $\nabla_{u^*A}(\Phi u)=(\nabla_A\Phi)\cdot u$.
+On the Clifford multiplication, it is $c:T^*X\otimes S^+\to S^-$ induced from the quaternion multiplication $\H_{T^*X}\otimes\H_{S^+}\to\H_{S^-}$, so it is $\cG$-equivariant.
+So we are done.
+\end{pf}
+
+By the lemma, the solution space $\mathrm{SW}_\eta^{-1}(0)$ has a right $\cG$-action.
+We define the \emph{moduli space of solutions to the ($\eta$-perturbed) SW equations} is
+\[\cM(X,\fs,g,\eta):=\mathrm{SW}_\eta^{-1}(0)/\cG.\]
+It may not be good to call this the ``moduli space'', because it has no relation with stable bundles, representable functors, etc.
+
+\begin{lem}
+If $b^+>0$, for ``generic'' $(g,\eta)$, $\mathrm{SW}_\eta^{-1}(0)$ is a (infinite-dimensional) submanifold of $\cC=\cA(L)\times\Gamma(S^+)\leftrightarrow i\Omega^1(X)\oplus\Gamma(S^+)$.
+\end{lem}
+\begin{proof}[Sketch]
+For the space $\mathrm{Met}(X)$ of all metrics on $X$, on the space $\bigcup_{g\in\mathrm{Met}(X)}\Omega_g^+$, we can consider an affine bundle $\bigcup_{g\in\mathrm{Met}(X)}(\cC_g\times\Omega_g^+)$.
+Then, we can prove
+\[\bigcup_{g\in\mathrm{Met}(X)}\bigcup_{\eta\in i\Omega_g^+}\mathrm{SW}_\eta^{-1}(0)\subset\bigcup_{g\in\mathrm{Met}(X)}(\cC_g\times\Omega_g^+)\]
+is a submanifold.
+
+Then, we finally get the desired consequence by the implicit function theorem and the Sard-Smale theorm for infinite-dimensional manifolds.
+\end{proof}
+
+
+
+\begin{thm}
+If $b^+>0$, for ``generic'' $(g,\eta)$, $\cM$ is a smooth \textbf{closed} manifold of dimension
+\[d(\fs):=\frac14(c_1(\fs)^2-2\chi(X)-3\sigma(X))\in\Z,\]
+where $c_1(\fs):=c_1(L)$, $c_1(\fs)^2=\<c_1(\fs)^2,[X]\>\in\Z$.
+It is a consequence of the Atiyah-Singer index theorem and the Hausdorffness of $\cG$(?).
+\end{thm}
+
+The number $d(\fs)$ is called the \emph{formal dimension}, and it maybe negative, and in this case $\cM=\varnothing$.
+The compactness of $\cM$ is the most important property of SW theory.
+An orientation, also called the homology orientation, on $H^1(x,\R)\oplus H^+(X)$ gives rise to an orientation of $\cM$.
+Define
+\[\mathrm{SW}(X,\fs):=\begin{cases}
+\#\cM&\text{ if }d(\fs)=0,\\
+\<\mu^d,[\cM]\>&\text{ if }d(\fs)\in2\Z_{\ge0},\\
+0&\text{ if }d(\fs)\text{ is odd or negative,}
+\end{cases}\]
+where $\mu\in H^2(\cB,\Z)$ is defined as follows:
+We define $\cB^*:=\cC^*/\cG\supset\cM$.
+Pick $x_0\in X$ and let $\cG_0:=\{u\in\cG:u(x_0)=1\}$.
+Since $\rU(1)$ freely acts on $\tilde\cB^*:=\cC^*/\cG_0$, we can define $\mu:=c_1(\tilde\cB\to\cB)$.
+
+
+\begin{thm}
+If $b^+\ge2$, $\mathrm{SW}(X,\fs)$ is independent of the choice of generic $(g,\eta)$.
+\end{thm}
+\begin{rmk}
+If $b^+=1$, we get a pair $(\mathrm{SW}^+(X,\fs),\mathrm{SW}^-(X,\fs))\in\Z^2$ as an invariant of $(X,\fs)$.
+For $b_1=0$, \emph{wall-crossing formula} $\mathrm{SW}^+(X,\fs)=\mathrm{SW}^-(X,\fs)\pm1$
+\end{rmk}
+
+\begin{rmk}[Simple type conjecture]
+If $b^+\ge2$, then $\mathrm{SW}(X,\fs)=0$ if $d(\fs)>0$.
+\end{rmk}
+
+So $d(\fs)=0$ is important for computations.
+
+
+
+\subsection{How to think of the formal dimension}
+
+An equivariant map $\mathrm{SW}_\eta:\cC\to i\Omega^+\oplus\Gamma(S^-)=:V$ induces a section of $s:\cC\times_\cG V=:\cE\to\cB:=\cC/\cG$.
+Then, $\cM:=s^{-1}(0)$, and intuitively $d(\fs)=\dim\cB-\dim V$.
+It is rigorously given by the Fredholm index of $ds:T_b\cB\to V$ at $b\in\cM\subset\cB$, and computed by the Atiyah-Singer index.
+
+
+
+\begin{lem}
+Let $(A,\Phi)\in\cC$.
+Then, the stabilizer of the action by $\cG$ on $\cC$ at $(A,\Phi)$ is
+\[\mathrm{Stab}_{(A,\Phi)}=\begin{cases}
+\{1\}&\text{ if }\Phi\ne0,\\
+\rU(1)&\text{ if }\Phi\ne0.
+\end{cases}\]
+\end{lem}
+\begin{pf}
+If $\Phi\ne0$, for $u\in\cG$, the stabilization means $du=0$ with $\Phi(x_0)u(x_0)=\Phi(x_0)$ for some $x_0$ with $\Phi(x_0)\ne0$.
+
+If $\Phi=0$, then $(A,0)u=(A,0)$ implies $u=1$.
+\end{pf}
+Therefore, $\cG$ acts from right on $\cC^*:=\cC\setminus(\cA(L)\times\{0\})$.
+
+
+
+\newpage
+\section{Day 5: May 26}
+
+$X^4$ is an oriented
+
+\begin{defn*}
+$(A,\Phi)\in\cC$ is called \emph{irreducible} if $\Phi\ne0$ in $\Gamma(S^+)$.
+\end{defn*}
+
+It comes from the relation to algebraic geometry and the decomposability of vector bundles in Donaldson theory.
+
+We want to know when the perturbed SW equations have a reducible solution.
+If we let the space of perturbations $\Pi(X):=\bigcup_{g\in\mathrm{Met}(X)}i\Omega_g^+$, then $\Pi(X)\to\mathrm{Met}(X)$ forms a Hilbert bundle.
+For $g\in\mathrm{Met}(X)$,
+\[\cW_g(X):=F_{A_0}^++\Im(d^+:i\Omega^1\to i\Omega_g^+)\subset\Pi_g(X).\]
+Then, $\cW_g(X)$ does not depend on the choice of $A_0$ because $A_0,A_1\in\cA(L)$ has $F_{A_1}^+-F_{A_0}^+=d^+(A_1-A_0)\in\Im d^+$.
+Now we let $\cW(X):=\bigcup_{g\in\mathrm{Met}(X)}\cW_g(X)$.
+
+\begin{lem*}
+For $\eta\in i\Omega_g^+$, the $\eta$-perturbed SW equations have a reducible solution iff $\eta\in\cW_g(X)$.
+\end{lem*}
+\begin{pf}
+Suppose there is a reducible solution.
+It means that $\Phi=0$, so $F_A^+=\eta$.
+
+Conversely, if $\eta\in\cW_g(X)$, then there is $a\in i\Omega^1$ such that $\eta=F_{A_0}^++d^+a=F_{A_0+a}^+$.
+Thus we have a reducible solution.
+\end{pf}
+
+\begin{prop*}
+The complement $\Pi(X)\setminus\cW(X)$ is homotopy equivalent to $S^{b^+(X)-1}$.
+\end{prop*}
+\begin{pf}
+$\cW_g(X)=F_{A_0}^++\im d^+$ is an affine subspace of $i\Omega^+$ of codimension $\dim\cH^+=b^+$ by the Hodge theory.
+Then, since $\mathrm{Met}(X)$ is contractible, we are done.
+\end{pf}
+
+\begin{rmk*}[Hodge theory]
+In general, let $(X,g)$ be an oriented closed Riemannian manifold.
+For $d^*:=(-1)^k*^{-1}d*:\Omega^k\to\Omega^{k-1}$, it is easy to show $(d\omega,\eta)_{L^2}=(\omega,d^*\eta)_{L^2}$, where $\omega\in\Omega^k$, $\eta\in\Omega^{k-1}$, and $(\alpha,\beta):=\int \alpha\wedge *\beta$ for $\alpha,\beta\in\Omega^k$.
+The Laplacian is defined by $dd^*+d^*d$ which acts on $\Omega^k$.
+Let $\cH^k(X):=\ker\Delta\subset\Omega^k$.
+The Hodge theorem states that
+\[\Omega^k=\cH^k\oplus\im(d:\Omega^{k-1}\to\Omega^k)\oplus\im(d^*:\Omega^{k+1}\to\Omega^k).\]
+For $\dim X=4$, set $\cH^+:=\cH^2\cap\Omega^+$, called harmonic self-dual 2-forms.
+
+We prove that $\dim\cH^+(X)=b^+(X)$, $\dim\cH^-(X)=b^-(X)$.
+Before the proof, recall that there is also a canonical isomorphism $\cH^k\to H_{\mathrm{dR}}^k$ once fixing a metric.
+Since $Q_X|{\cH^\pm(X)}$ is positively/negatively definite, $\cH^+(X)$ gives a model of $H^+(X)$.
+Now give the proof.
+For $\omega\in\cH^+(X)$,
+\[Q_X([\omega],[\omega])=\int_X\omega\wedge\omega=\int_X\omega\wedge*\omega=\|\omega\|_{L^2}^2\ge0.\]
+Similarly, $\omega\in\cH^-(X)$ has
+\[Q_X([\omega],[\omega])\int_X\omega\wedge\omega=-\int_X\omega\wedge*\omega=-\|\omega\|_{L^2}^2\le0.\]
+So we are done.
+
+We also prove that $\Omega^+=\cH^+\oplus\im(d^+:\Omega^1\to\Omega^+)$.
+If $h\in\cH^*$, then $*h\in\cH^{\dim X-*}$.
+In the decomposition $\Omega^2=\cH^2\oplus\im d\oplus\im d^*$, if $\omega=h+d\alpha+d^*\beta$, then $*\omega=*h+*d^*\beta+*d\alpha$, so $h=*h$.
+Thus, $\omega\in\Omega^+$ has
+\[\omega=h+d\alpha+d^*\beta=h+d\alpha+*d\alpha=h+d^+(2\alpha)\in\cH^+\im d^+.\]
+Further, $d^+(2\alpha)=d\alpha+d^*\beta\in\im d\oplus\im d^*$, so $\Omega^+=\cH\oplus\im d^+$.
+\end{rmk*}
+
+
+\begin{prop*}
+If $b^+\ge2$, then for ``generic'' $\eta_0,\eta_1\in\Pi(X)$, $\#\cM(X,\fs,g_0,\eta_0)=\#\cM(X,\fs,g_1,\eta_1)$, where $g_0$ and $g_1$ are base-points of $\eta_0$ and $\eta_1$.
+\end{prop*}
+\begin{pf}
+For simplicity assume $d(\fs)=0$.
+Since $\Pi(X)\setminus\cW(X)$ is path-connected, there is a ``generic'' path $\eta_t$ such that $\bigcup_{t\in[0,1]}\cM(\eta_t)$ is a compact oriented 1-manifold, whose the boundary has zero signed count.
+(Such an argument is called the ``cobordism argument''.)
+\end{pf}
+
+When $b^+=1$, an orientation on $H^+(X)$ determines which component of $\Pi(X)\setminus\cW(X)\simeq S^0$ is ``positive''.
+It defines $\mathrm{SW}^+$ and $\mathrm{SW}^-$ for each component, which is independent of $(g,\eta)$.
+
+
+\subsection*{Analytic preliminaries}
+
+A differential operator $D:\Gamma(E)\to\Gamma(F)$ of order $k$ gives rise to a map $\sigma(D):T^*X\to\Hom(E,F)$ such that
+\[\sum_{i=1}^du_i\,dx_i\mapsto\sum_{|\alpha|=k}a_\alpha(x)u^\alpha,\]
+where $u^\alpha:=u_1^\alpha_1\cdots u_d^{\alpha_d}$.
+Then, $\sigma(D)$ is independent of charts and local trivializations.
+It is not $C^\infty(M)$-linear unless $k=1$.
+If $E\cong F$ and $\sigma(D):T^*X_0\to\Hom(E,F)_0$, then we call $D$ an \emph{elliptic operator}.
+
+
 
 \end{document}

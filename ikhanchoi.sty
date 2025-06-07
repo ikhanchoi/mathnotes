@@ -65,80 +65,73 @@
 
 \RequirePackage{amsthm,xparse}
 
-\newif\if@kor
-\@korfalse
-\DeclareOption{kor}{\@kortrue}
+\newif\if@hangul
+\@hangulfalse
+\DeclareOption{hangul}{\@hangultrue}
 \ProcessOptions\relax
 
-\if@kor
-\RequirePackage[hangul]{kotex}
-\setmainfont{XCharter}
-\setmainhangulfont{Hakgyoansim}[
-  UprightFont = *SantteutbatangM,
-  ItalicFont = *SantteutdotumM,
-  BoldItalicFont = *MalgeunnalM,
-  Path = {../},
-  Extension = {.otf}
-]
-\def\th@definition{\thm@headfont{\itshape\bfseries}}
+\if@hangul %% only used in cal, la, va, sgb
+\newtheoremstyle{hangul}
+{}{}{}{}{\dgms\bfseries}{.}{ }
+{\thmname{#1}\thmnumber{#2}\thmnote{{\dgms\mdseries\ (#3)}}}
+\theoremstyle{hangul}
+  \newtheorem*{axiom*}{공리}
+  \newtheorem*{corollary*}{따름정리}
+  \newtheorem*{definition*}{정의}
+  \newtheorem{example}{예 }[section]
+  \newtheorem*{example*}{예}
+  \newtheorem*{lemma*}{도움정리}
+  \newtheorem*{proposition*}{명제}
+  \newtheorem*{theorem*}{정리}
+  \@ifclassloaded{report}
+    {\newtheorem{prb}{}[chapter]}
+    {\newtheorem{prb}{}[section]}
+
+\RequirePackage{mdframed}
+\mdfdefinestyle{leftbar}{
+  topline=false,rightline=false,bottomline=false,
+  innertopmargin=-4pt,innerbottommargin=4pt,
+  linewidth=2pt,linecolor=lightgray
+}
+\surroundwithmdframed[style=leftbar]{axiom*}
+\surroundwithmdframed[style=leftbar]{corollary*}
+\surroundwithmdframed[style=leftbar]{definition*}
+\surroundwithmdframed[style=leftbar]{example}
+\surroundwithmdframed[style=leftbar]{example*}
+\surroundwithmdframed[style=leftbar]{lemma*}
+\surroundwithmdframed[style=leftbar]{proposition*}
+\surroundwithmdframed[style=leftbar]{theorem*}
 
 \RequirePackage[mathlines]{lineno}
 \renewcommand\linenumberfont{\normalfont\small}
 
-\RequirePackage{mdframed}
-\mdfdefinestyle{leftbar}{
-topline=false,rightline=false,bottomline=false,
-innertopmargin=-4pt,innerbottommargin=4pt,
-linewidth=2pt,linecolor=lightgray
-}
-\theoremstyle{definition}
-\newtheorem*{axiom*}{공리}
-\newtheorem{corollary}{따름정리}[section]
-\newtheorem{definition}{정의}[section]
-\newtheorem{example}{예제}[section]
-\newtheorem{lemma}{도움정리}[section]
-\newtheorem{proposition}{명제}[section]
-\newtheorem{theorem}{정리}[section]
-\surroundwithmdframed[style=leftbar]{axiom*}
-\surroundwithmdframed[style=leftbar]{corollary}
-\surroundwithmdframed[style=leftbar]{definition}
-\surroundwithmdframed[style=leftbar]{example}
-\surroundwithmdframed[style=leftbar]{lemma}
-\surroundwithmdframed[style=leftbar]{proposition}
-\surroundwithmdframed[style=leftbar]{theorem}
-\newtheorem{problem}{}[chapter]
-
 \else
 \theoremstyle{plain}
-  \newtheorem{thm}{Theorem}[section]
-  \newtheorem*{thm*}{Theorem}
-  \newtheorem{prop}[thm]{Proposition}
-  \newtheorem*{prop*}{Proposition}
-  \newtheorem{cor}[thm]{Corollary}
-  \newtheorem*{cor*}{Corollary}
-  \newtheorem{lem}[thm]{Lemma}
-  \newtheorem*{lem*}{Lemma}
-  \newtheorem{clm}[thm]{Claim}
-  \newtheorem*{clm*}{Claim}
+  \newtheorem{theorem}{Theorem}[section]
+  \newtheorem*{theorem*}{Theorem}
+  \newtheorem{proposition}[theorem]{Proposition}
+  \newtheorem*{proposition*}{Proposition}
+  \newtheorem{corollary}[theorem]{Corollary}
+  \newtheorem*{corollary*}{Corollary}
+  \newtheorem{lemma}[theorem]{Lemma}
+  \newtheorem*{lemma*}{Lemma}
+  \newtheorem{claim}[theorem]{Claim}
+  \newtheorem*{claim*}{Claim}
 \theoremstyle{definition}
-  \newtheorem{defn}[thm]{Definition}
-  \newtheorem*{defn*}{Definition}
-  \newtheorem{ex}[thm]{Example}
-  \newtheorem*{ex*}{Example}
-  \newtheorem{notn}{Notation}[section]
-  \newtheorem*{notn*}{Notation}
-  \@ifclassloaded{report}{\newtheorem{prb}{}[chapter]}{\newtheorem{prb}{}[section]}
+  \newtheorem{definition}[theorem]{Definition}
+  \newtheorem*{definition*}{Definition}
+  \newtheorem{example}[theorem]{Example}
+  \newtheorem*{example*}{Example}
+  \newtheorem{notation}{Notation}[section]
+  \newtheorem*{notation*}{Notation}
+  \@ifclassloaded{report}
+    {\newtheorem{prb}{}[chapter]}
+    {\newtheorem{prb}{}[section]}
 \theoremstyle{remark}
-  \newtheorem{rmk}[thm]{Remark}
-  \newtheorem*{rmk*}{Remark}
-  \newtheorem{exe}[thm]{Exercise}
-  \newtheorem*{exe*}{Exercise}
-\NewDocumentEnvironment{pf}{}
-  {\begin{proof}}
-  {\end{proof}}
-\NewDocumentEnvironment{sol}{}
-  {\begin{proof}[Solution]}
-  {\end{proof}}
+  \newtheorem{remark}[theorem]{Remark}
+  \newtheorem*{remark*}{Remark}
+  \newtheorem{exercise}[theorem]{Exercise}
+  \newtheorem*{exercise*}{Exercise}
 
 \fi
 
@@ -525,8 +518,13 @@ linewidth=2pt,linecolor=lightgray
 \newcommand\Sp{\mathrm{Sp}}
 \newcommand\Spin{\mathrm{Spin}}
 
-
-
+% Categories
+\newcommand\Set{\operatorname{Set}}
+\newcommand\Grp{\operatorname{Grp}}
+\newcommand\Ab{\operatorname{Ab}}
+\newcommand\Mod{\operatorname{Mod}}
+\newcommand\Top{\operatorname{Top}}
+\newcommand\Cat{\operatorname{Cat}}
 
 % Operators which may be used without parantheses
 \let\Im\relax
@@ -538,6 +536,7 @@ linewidth=2pt,linecolor=lightgray
 \newcommand{\argmax}{\operatorname*{arg\,max}}
 \newcommand{\argmin}{\operatorname*{arg\,min}}
 \newcommand{\Aut}{\operatorname{Aut}}
+\newcommand{\Ch}{\operatorname{Ch}}
 \newcommand{\conv}{\operatorname{conv}}
 \newcommand{\cod}{\operatorname{cod}}
 \newcommand{\codim}{\operatorname{codim}}
@@ -575,7 +574,7 @@ linewidth=2pt,linecolor=lightgray
 \newcommand{\Iso}{\operatorname{Iso}}
 \newcommand{\Isom}{\operatorname{Isom}}
 \newcommand{\Lip}{\operatorname{Lip}}
-\newcommand{\Mod}{\operatorname{Mod}}
+\newcommand{\Map}{\operatorname{Map}}
 \newcommand{\Mor}{\operatorname{Mor}}
 \newcommand{\Nat}{\operatorname{Nat}}
 \newcommand{\Obj}{\operatorname{Obj}}

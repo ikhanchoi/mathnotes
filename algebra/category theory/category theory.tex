@@ -21,7 +21,7 @@ In category theory, it is conventional to assume the existence of a strongly ina
 It is believed that this assumption is not technically necessary over $\mathrm{ZFC}$, but without this we cannot force $\Obj(\cC)$ and $\Mor(\cC)$ to be sets and need to pay attention at subtle and dangerous set-theoretic arguments.
 However in $\mathrm{ZFC}$ with a strongly inaccessible cardinal, by enlarging the universe whenever necessary, we can make the specific classes we consider be sets by putting into the new universe but outside the old universe, and sets in the old universe are referred to be small.
 With a fixed universe, a set is called \emph{small} if it is contained in the universe.
-Consequently, a set may refer to a large set, and $\mathrm{Set}$ now denotes the category of small sets.
+Consequently, a set may refer to a large set, and $\Set$ now denotes the category of small sets.
 If we do not assume the universe, then large sets should be treated as proper classes.
 \end{prb}
 
@@ -40,7 +40,7 @@ for every $f\in\Hom(A,B)$, $g\in\Hom(B,C)$, $h\in\Hom(C,D)$, where $1:=\id(B)\in
 \[\Hom(A,B):=\{f\in\Mor(\cC):\dom(f)=A,\cod(f)=B\},\]
 for each object $A,B,C,D$ of $\cC$.
 \begin{parts}
-\item There is a category $\mathrm{Set}$ whose objects are small sets and morphisms are functions.
+\item There is a category $\Set$ whose objects are small sets and morphisms are functions.
 \item There is a category $\mathrm{Grp}$ whose objects are groups and morphisms are group homomoprhisms.
 \item There is a category $\mathrm{Ab}$ whose objects are abelian groups and morphisms are group homomoprhisms.
 \item There is a category $\mathrm{Top}$ whose objects are topological spaces and morphisms are continuous functions.
@@ -119,28 +119,35 @@ functor category
 
 
 \begin{prb}[Yoneda lemma]
-Let $\cC$ be a locally small category.
-Let $F:\cC^\op\to\mathrm{Set}$ be a contravariant functor.
-If we fix an object $B\in\cC$, then we have another contravariant functor $\Hom(-,B):\cC^\op\to\mathrm{Set}$ called a \emph{contravariant hom-functor} or a \emph{representable functor}.
+Let $\cC$ be a locally small category, and let $F:\cC^\op\to\Set$ be a contravariant functor.
+A \emph{contravariant hom-functor} or a \emph{representable functor} is a contravariant functor $\Hom(-,B):\cC^\op\to\Set$, where $B\in\cC$.
+We want to show that there is a canonical bijection $\Nat(\Hom(-,B),F)\to F(B)$ for each $B\in\cC$.
 
-We define a function
-\[\Nat(\Hom(-,B),F)\to F(B):\eta\mapsto\eta(1_B).\]
-
-A presheaf $\cC^{\mathrm{op}}\to\mathrm{Set}$ is representable if and only if it is essentially contained in the image of the Yoneda embedding.
 \begin{parts}
-\item $\cC\to\Fun(\cC^\op,\mathrm{Set}):A\mapsto\Hom(-,A)$ is fully faithful. (Put $F=\Hom(-,B)$)
+\item 
+\item $\cC\to\Fun(\cC^\op,\Set):A\mapsto\Hom(-,A)$ is fully faithful. (Put $F=\Hom(-,B)$)
 \end{parts}
 \end{prb}
-\begin{pf}
+\begin{proof}
 
+\[\Nat(\Hom_\cC(-,B),F)\to F(B):\eta\mapsto\eta_B(1_B).\]
+
+\[F(B)\to\Nat(\Hom(-,B),F):y\mapsto\eta\]
+such that $\eta_A:\Hom(A,B)\to F(A):f\mapsto F(f)(y)$.
+This $\eta$ is indeed a natural transformation because $F(h)\eta_{A'}=\eta_Ah^*:\Hom(A',B)\to F(A)$ for all morphisms $f:A\to A'$ in $\cC$
+
+Then, they are mutually inverses.
+
+
+(b)
 The inverse is constructed as follows.
 For $x\in F(B)$, define $\eta:\Hom(-,B)\to F$ such that $\eta_A:\Hom(A,B)\to F(A):f\mapsto F(f)(x)$ for each $A\in\cC$.
 We need to check it is a natural transformation such that $F(1_B)(x)=x$ and $\eta(f)=F(f)(\eta(1_B))$ for all $x\in F(B)$ and $\eta\in\Nat(\Hom(-,B),F)$.
-\end{pf}
+\end{proof}
 
 \begin{prb}[Yoneda lemma]
 Let $\cC$ be a locally small category.
-Let $F:\cC\to\mathrm{Set}$ be a functor and fix an object $A\in\Obj(\cC)$.
+Let $F:\cC\to\Set$ be a functor and fix an object $A\in\Obj(\cC)$.
 We can define a function
 \[\Nat(\Hom(A,-),F)\to F(A).\]
 
@@ -154,7 +161,7 @@ A \emph{universal element} of $F$ is a pair $(A,x)$ of an element $A\in\cC$ and 
 \end{prb}
 
 
-\begin{pf}
+\begin{proof}
 (a)
 Consider the diagram
 \[\begin{tikzcd}[row sep=small, column sep=small]
@@ -174,7 +181,7 @@ Then, the collection $\eta=\{\eta_d:d\in\Obj(\cC)\}$ provides a natural transfor
 commutes from
 \[F(g)(\eta_d(f))=F(g)(F(f)(x))=F(g\circ f)(x)=\eta_e(g\circ f),\qquad f\in\Hom(c,d).\]
 The correspondences $\eta\mapsto x$ and $x\mapsto\eta$ are inverses of each other, hence the bijection.
-\end{pf}
+\end{proof}
 
 
 
@@ -228,16 +235,17 @@ projective limit, inverse limit, filtered limit, directed limit
 \section{Set-theoretic issues}
 
 
+Fix a strongly inaccessible cardinal $\kappa$.
 
-The category of all $\kappa$-small sets is denoted by $\mathrm{Set}_{<\kappa}$.
-A cardinal $\kappa$ is called \emph{regular} if the $\kappa$-small coproduct of $\kappa$-small sets is $\kappa$-small.
-The smallest regular cardinal is the cardinality of the standard set of natural numbers $\N$, denoted by $\aleph_0$, and the second smallest regular cardinal is the cardinality of the set of all countable ordinals, denoted by $\aleph_1$.
-A set is finite and countable if and only if it is $\aleph_0$-small and $\aleph_1$-small respectively.
-A cardinal $\kappa$ is called \emph{strongly accessible} if it is regular and the power set of a $\kappa$-small set is $\kappa$-small.
+The category of all $\kappa$-small sets is denoted by $\Set_{<\kappa}$.
+The first and second smallest regular cardinals are $\aleph_0$ and $\aleph_1$ respectively.
+A cardinal $\kappa$ is called \emph{regular} if $\Set_{<\kappa}$ admits coproducts.
+A cardinal $\kappa$ is called \emph{strongly accessible} if $\Set_{<\kappa}$ admits coproducts and power sets.
 
 
 Let $\cC$ be a category, and $\kappa$ be a cardinal.
-An object $A$ of $\cC$ is called \emph{$\kappa$-compact} if the corepresentable functor $\Hom(A,-)$ is $\kappa$-filtered cocontinuous, and \emph{$\kappa$-small} if the same is $\kappa$-linearly filtered cocontinuous.
+An object of $\cC$ is called \emph{$\kappa$-compact} if the corepresentable functor is $\kappa$-filtered cocontinuous, and \emph{$\kappa$-small} if the same is $\kappa$-linearly filtered cocontinuous.
+An object is called \emph{small} if it is $\kappa$-compact for a small regular cardinal $\kappa$.
 Clearly, a $\kappa$-compact object is $\kappa$-small.
 
 
@@ -246,6 +254,20 @@ Consider the category of Banach spaces with contractions.
 Since a separable Banach space is $\aleph_1$-compact, and since every Banach space is a $\aleph_1$-filtered colimit of separable Banach spaces, the category of Banach spaces is $\aleph_1$-accessible.
 Also, since the category of Banach spaces has colimits, it is locally $\aleph_1$-presentable.
 (Really?)
+
+
+weakly saturated means that it is closed under pushouts, transfinite compositions, retracts.
+
+
+A category is called \emph{locally presentable} if it is a locally small cocomplete category such that there is a set of small objects generating the category by colimits.
+Let $\cC$ be a locally presentable category with a set $\cI$ of morphisms.
+Then, there is a functor $T:\cC^{[1]}\to\cC^{[2]}$ such that $d_2T$ belongs to the weakly saturated class of morphisms generated by $\cI$, $d_0T$ has the right lifting property with respect to the morphisms in $\cI$, and $T$ is $\kappa$-filtered cocontinuous for a small regular cardinal $\kappa$ such that each domain and codomain of morphisms in $\cI$ is $\kappa$-compact.
+
+
+
+A model category is called \emph{combinatorial} if it is locally presentable and cofibrantly generated.
+
+
 
 
 \chapter{}
@@ -325,8 +347,8 @@ lax, strong, strict
 \begin{prb}[Pointed categories]
 A \emph{pointed category} is a category with a zero object.
 \begin{parts}
-\item A category is $\mathrm{Set}_*$-enriched if and only if it admits a zero morphism.
-\item Every pointed category is $\mathrm{Set}_*$-enriched.
+\item A category is $\Set_*$-enriched if and only if it admits a zero morphism.
+\item Every pointed category is $\Set_*$-enriched.
 \end{parts}
 \end{prb}
 
@@ -506,7 +528,7 @@ exactness are stable under epi-mono factorization....?
 \item $A\to B\to C$ is exact if and only if $A\to\ker(B\to C)$ is epic.
 \end{parts}
 \end{prb}
-\begin{pf}
+\begin{proof}
 
 Suppose $A\to B$ has two epi-mono factorizations $X$ and $Y$, and let $C:=\coker(Y\to B)$.
 \[\begin{tikzcd}[sep=small]
@@ -516,12 +538,12 @@ X \rar[>->] & B \dar[->>]\\
 \end{tikzcd}\]
 Then, $(A\to C)=0$ implies $(X\to C)=0$, so we have $X\to Y$.
 Similarly we also have $Y\to X$ so that $X\leftrightarrow Y$, thus the epi-mono factorization is unique up to isomorphism.
-\end{pf}
+\end{proof}
 
 
 
 
-\begin{pf}
+\begin{proof}
 The proof of that the followings are equivalent:
 \begin{enumerate}[(i)]
 \item $A\to X\oplus Y\to B$ is exact.
@@ -579,7 +601,7 @@ Or more simply, we can use the fact that left above square is cartesian in
 \ker(Y\to B) \rar & Y \rar & B.
 \end{tikzcd}\]
 If $\ker AB\to\ker CD$ is epic, then 
-\end{pf}
+\end{proof}
 
 
 

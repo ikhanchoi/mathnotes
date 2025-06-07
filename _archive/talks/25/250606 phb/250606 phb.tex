@@ -1,0 +1,418 @@
+\documentclass{../../../../small}
+\usepackage{../../../../ikhanchoi}
+
+\begin{document}
+\title{A solution to Haagerup's problem on normal weights}
+\author{Ikhan Choi}
+\date{Kyoto Operator Algebra Seminars\\6 June 2025}
+\maketitle
+
+\begin{abstract}
+We will introduce three open problems related to normal weights posed by Haagerup fifty years ago in his master's thesis. Among these, we especially discuss a solution to the last problem and its meaning. This will provide a complete set of the positive Hahn-Banach separation theorems on operator algebras and shed light on why the weak$^*$ topologies on the duals of C$^*$-algebras are relatively difficult to work with. (arXiv:2501.16832.)
+\end{abstract}
+
+\tableofcontents
+\thispagestyle{empty}
+\addtocounter{page}{-1}
+
+\newpage
+\section{Weights}
+
+U. Haagerup, \emph{Normal weights on W$^*$-algebras}, J. Funct. Anal. (1975)
+
+\subsection{Normality}
+
+We will always denote a C$^*$-algbera and a von Neumann algebra by $A$ and $M$ respectively.
+
+\begin{definition*}
+A \emph{weight} on $A$ is a homogeneous additive functional $\f:A^+\to[0,\infty]$.
+A \emph{subadditive weight} on $A$ is a homogeneous subadditive functional $\f:A^+\to[0,\infty]$.
+\end{definition*}
+
+\begin{definition*}
+For a weight $\f$ on $A$, we say it is
+\begin{enumerate}[(i)]
+\item \emph{faitfhul} if $\f(a)=0$ implies $a=0$ for $a\in A^+$,
+\item \emph{densely defined} if $\f^{-1}([0,\infty))$ is norm dense in $A^+$,
+\item \emph{lower semi-continuous} if $\f^{-1}([0,1])$ is norm closed in $A^+$.
+\end{enumerate}
+For a weight $\f$ on $M$, we say it is
+\begin{enumerate}
+\item[(ii')] \emph{semi-finite} if $\f^{-1}([0,\infty))$ is $\sigma$-weakly dense in $M^+$,
+\item[(iii')] \emph{normal} if ...?
+\end{enumerate}
+\end{definition*}
+
+\begin{theorem*}[Haagerup, 1975]
+For a weight $\f$ on a von Neumann algebra, the followings are all equivalent.
+\begin{enumerate}[(1)]
+\item $\f$ is completely additive for positive elements.
+\item $\f$ preserves directed suprema.
+\item $\f$ is $\sigma$-weakly lower semi-continuous.
+\item $\f$ is given by the pointwise supremum of normal positive linear functionals.
+\end{enumerate}
+\end{theorem*}
+
+\begin{remark*}
+Each step in decreasing direction is easy.
+Haagerup proved (1)$\Rightarrow$(3) and (3)$\Rightarrow$(4).
+\end{remark*}
+
+\begin{remark*}
+Every von Neumann algebra admits a faithful semi-finite normal weight.
+There is a C$^*$-algebra that does not admit a faithful densely defined lower semi-continuous weight.
+\end{remark*}
+
+
+
+
+
+
+\subsection{Semi-cyclic representations}
+
+
+\begin{definition*}
+A \emph{semi-cyclic representation} of a C$^*$-algebra $A$ is a representation $\pi:A\to B(H)$ together with a partially defined left $A$-linear operator $\Lambda:A\to H$ with dense range.
+\end{definition*}
+\begin{proposition*}
+There is a one-to-one correspondence between weights on $M$ and the unitary equivalence classes of semi-cyclic representations.
+\end{proposition*}
+\begin{proposition*}
+For a weight $\f$ on $M$ and its associated semi-cyclic representation $(\pi,\Lambda)$ of $M$, $\f$ is faithful if and only if $\Lambda$ is injective, $\f$ is semi-finite if and only if $\Lambda$ is densely defined, and $\f$ is normal if and only if $\pi$ is normal and $\Lambda$ is $\sigma$-weakly closed.
+\end{proposition*}
+
+
+\newpage
+\section{Haagerup's three problems}
+
+\subsection{Problem 1.10}
+\smallskip
+\[\left\{\begin{tabular}{c}
+\textit{For a subadditive weight on a von Neumann algebra,}\\
+\textit{is it $\sigma$-weakly lower semi-continuous if it preserves directed suprema?}
+\end{tabular}\right\}\]
+
+Haagerup provided a proof of (1)$\Rightarrow$(3) directly without an intermediate step (2).
+The proof is divided into two parts.
+First, it is proved for $\sigma$-finite von Neumann algebras, and extended to general von Neumann algebras.
+In a $\sigma$-finite von Neumann algebra, the $\sigma$-strong topology on the unit ball is metrizable.
+The additivity of a weight is used in the proof for the case of $\sigma$-finite von Neumann algebras, so it is enough to solve in the $\sigma$-finite case for this problem.
+
+
+
+
+\subsection{Problem 1.11}
+\smallskip
+\[\left\{\begin{tabular}{c}
+\textit{For a weight on a von Neumann algebra,}\\
+\textit{is it normal if it is normal on every commutative von Neumann subalgebra?}
+\end{tabular}\right\}\]
+
+\begin{theorem*}[Dixmier, 1953]
+For a positive linear functional $\omega$ on $M$, the followings are all equivalent.
+\begin{enumerate}
+\item[(0)] $\omega$ is completely additive for orthogonal projections.
+\item[(1)] $\omega$ is completely additive for positive elements.
+\item[(2)] $\omega$ preserves directed suprema.
+\item[(3)] $\omega$ is $\sigma$-weakly continuous.
+\end{enumerate}
+\end{theorem*}
+
+\begin{corollary*}
+A (positive) linear functional on $M$ is normal if it is normal on every commutative von Neumann subalgebra.
+\end{corollary*}
+
+\begin{remark*}
+This corollary is used to prove some equivalent characterizations for weak compactness in $M_*$.
+\end{remark*}
+
+\begin{remark*}
+(0)$\Rightarrow$(1) is false for weights.
+\end{remark*}
+
+
+\subsection{Problem 2.7}
+\smallskip
+\[\left\{\begin{tabular}{c}
+\textit{Does the positive bipolar theorem hold for dual C$^*$-algerbas?}
+\end{tabular}\right\}\]
+
+\begin{definition*}
+Let $(E,E^*)$ be a dual pair of (directed partially) ordered real vector spaces such that $E^+$ and $E^{*+}$ are mutually dual cones, i.e.~$E^{*+}=\{x^*\in E:x^*(x)\ge0\text{ for }x\in E\}$.
+For a subset $F$ of $E^+$, we say it is \emph{hereditary} if $0\le x\le y\in F$ implies $x\in F$, and its \emph{positive polar} is defined by the positive part of the real polar
+\[F^{r+}:=\{x^*\in E^{*+}:\sup_{x\in F}x^*(x)\le1\}.\]
+\end{definition*}
+
+\begin{theorem*}[Haagerup 1975]
+Consider the ordered real dual pairs $(M^{sa},M_*^{sa})$ and $(A^{sa},A^{sa*})$.
+\begin{enumerate}[(a)]
+\item If $F$ is a $\sigma$-weakly closed convex hereditary subset of $M^+$, then $F=F^{r+r+}$.
+\item If $F_*$ is a norm closed convex hereditary subset of $M_*^+$, then $F_*=F_*^{r+r+}$.
+\item If $F$ is a norm closed convex hereditary subset of $A^+$, then $F=F^{r+r+}$.
+\end{enumerate}
+\end{theorem*}
+\begin{theorem*}[C.~2025]\,
+\begin{enumerate}
+\item[(d)] If $F^*$ is weakly$^*$ closed convex hereditary subset of $A^{*+}$, then $F^*=(F^*)^{r+r+}$.
+\end{enumerate}
+\end{theorem*}
+\begin{remark*}
+They can be written in the form of Hahn-Banach separation theorems.
+\end{remark*}
+
+
+\newpage
+
+\subsection{Corollaries of positive bipolar theorems}
+
+\begin{corollary*}[Haagerup, 1975]
+For a weight $\f$ on a von Neumann algbera, the followings are all equivalent.
+\begin{enumerate}
+\item[(3)] $\f$ is $\sigma$-lower semi-continuous.
+\item[(4)] $\f$ is given by the pointwise supremum of normal positive linear functionals.
+\end{enumerate}
+\end{corollary*}
+
+\begin{proof}
+Let $\f$ be a $\sigma$-weakly lower semi-continuous subadditive weight on a von Neumann algebra $M$.
+Define
+\[F:=\{x\in M^+:\f(x)\le1\},\qquad F_*:=\{\omega\in M_*^+:\omega\le\f\}.\]
+Note that
+\[F_*=F^{r+}:=\{\omega\in M_*^+:\sup_{x\in F}\omega(x)\le1\}\]
+Then, the statement
+\[\f(x)=\sup_{\omega\in F_*}\omega(x),\qquad x\in M^+,\]
+is equivalent to
+\[F=F_*^{r+}:=\{x\in M^+:\sup_{\omega\in F_*}\omega(x)\le1\}.\]
+Since $F$ is $\sigma$-weakly closed by the $\sigma$-weak lower semi-continuity of $\f$, and since $F$ is clearly convex and hereditary by definition of subadditive weights, we have $F=F^{r+r+}$ by the part (a) of the previous theorem.
+\end{proof}
+
+
+
+\begin{corollary*}[Combes, 1968]
+For a weight $\f$ on a C$^*$-algbera, the followings are all equivalent.
+\begin{enumerate}
+\item[(3)] $\f$ is lower semi-continuous.
+\item[(4)] $\f$ is given by the pointwise supremum of positive linear functionals.
+\end{enumerate}
+\end{corollary*}
+\begin{proof}
+Same as above but by (c) instead of (a).
+\end{proof}
+
+
+\begin{remark*}
+(c) follows from the direct application of (a), but it can be also shown by purely C$^*$-algebraic methods with unitization, and this is what Combes essentially did in 1968. (probably?)
+\end{remark*}
+
+
+
+\begin{corollary*}
+There are one-to-one correspondences
+\[\begin{array}{ccccc}
+\left\{\begin{tabular}{c}
+normal\\subadditive\\weights on $M$
+\end{tabular}\right\}&
+\leftrightarrow&
+\left\{\begin{tabular}{c}
+$\sigma$-weakly closed\\convex hereditary\\subsets of $M^+$
+\end{tabular}\right\}&
+\leftrightarrow&
+\left\{\begin{tabular}{c}
+norm closed\\convex hereditary\\subsets of $M_*^+$
+\end{tabular}\right\}
+\end{array}\]
+and
+\[\begin{array}{ccccc}
+\left\{\begin{tabular}{c}
+lower semi-continuous\\subadditive\\weights on $A$
+\end{tabular}\right\}&
+\leftrightarrow&
+\left\{\begin{tabular}{c}
+norm closed\\convex hereditary\\subsets of $A^+$
+\end{tabular}\right\}&
+\leftrightarrow&
+\left\{\begin{tabular}{c}
+weakly$^*$ closed\\convex hereditary\\subsets of $A^{*+}$
+\end{tabular}\right\}
+\end{array}\]
+\end{corollary*}
+
+\begin{remark*}
+For a subadditive weight $\f$ on $A$, it is a weight if and only if
+\[G^*:=\{\omega\in A^{*+}:\exists\e>0,\ (1+\e)\omega\le\f\}\]
+is directed.
+Similarly for von Neumann algebras.
+\end{remark*}
+
+
+
+\newpage
+\section{Proofs}
+
+
+
+\subsection{Proof of (a)}
+
+
+\begin{definition*}[Suppression by the one-parameter family of functional calculi]
+For $\delta>0$, we define a function $f_\delta:(-\delta^{-1},\infty)\to\mathbb{R}$ such that
+\[f_\delta(t):=t(1+\delta t)^{-1},\qquad t>-\delta^{-1}.\]
+Then, $f_\delta$ is operator monotone, $\sigma$-strongly continuous, and enjoys a semi-group property, etc.
+\end{definition*}
+
+\begin{proof}[Proof sketch of (a) by Haagerup]
+Since the positive polar and the positive bipolar can be written as
+\begin{align*}
+F^{r+}&=F^r\cap M_*^+=F^r\cap(-M^+)^r=(F\cup-M^+)^r=(F-M^+)^r,\\
+F^{r+r+}&=(F-M^+)^{rr+}=(\overline{F-M^+})^+
+\end{align*}
+by the usual real bipolar theorem and $F=(F-M^+)^+\subset(\overline{F-M^+})^+$, we need to to show $(\overline{F-M^+})^+\subset F$.
+
+\textbf{Heuristics:}
+Let $x\in(\overline{F-M^+})^+$ with nets $x_i$ and $y_i$ such that $x_i\to x$ $\sigma$-weakly in $M$ and $x_i\le y_i\in F$ for all $i$.
+Observe that if $x_i$ were bounded by $r>0$, then assuming $x_i\to x$ $\sigma$-strongly and $f_\delta(y_i)\to y_\delta$ $\sigma$-weakly for each $0<\delta<r^{-1}$, we get
+\[x_i\le y_i\in F,\qquad f_\delta(x_i)\le f_\delta(y_i)\in F,\qquad 0\le f_\delta(x)\le y_\delta\in F,\qquad f_\delta(x)\in F,\qquad x\in F.\]
+However, $x_i$ may not be bounded, so we want to find a proof that uses the Krein-\v Smulian theorem.
+
+\textbf{Solution:}
+Define
+\[G:=\{x\in M^{sa}:\text{for any sufficiently small $\delta>0$, $f_\delta(x)\in F-M^+$}\}.\]
+Since $F-M^+\subset G$ and $G^+\subset F$, we are done if we prove $G$ is $\sigma$-weakly closed in $M$.
+Fix $r>0$ arbitrarily and let $M_r:=\{x\in M:\|x\|\le r\}$.
+The proof of the $\sigma$-weak closedness is divided into the two steps: $G\cap M_r$ is $\sigma$-strongly closed, $G\cap M_r$ is convex.
+Now we can deduce that, because $G$ is convex and $G\cap M_r$ is $\sigma$-weakly closed, $G$ is $\sigma$-weakly closed by the Krein-\v Smulian theorem.
+\end{proof}
+
+
+\subsection{Proof of (b)}
+
+
+\begin{definition*}[Bounded commutant Radon-Nikodym derivatives]
+Let $\psi\in M_*^+$ and let $\pi:M\to B(H)$ be associated cyclic representation to $\psi$ with the canonical cyclic vector $\Omega\in H$.
+Then, we have a positive bounded linear map $\theta:\pi(M)'\to M_*$ defined such that
+\[\theta(h)(x):=\langle h\pi(x)\Omega,\Omega\rangle,\qquad h\in\pi(M)',\ x\in M.\]
+If $\omega\in M_*$ satisfies $|\omega(x)|\le\psi(x)$ for all $x\in M^+$, then $\theta^{-1}(\omega)$ is uniquely defined and $\|\theta^{-1}(\omega)\|\le1$.
+\end{definition*}
+
+\begin{proof}[Proof sketch of (b)]
+It is enough to prove $(\overline{F_*-M_*^+})^+\subset F_*$.
+
+Let $\omega\in(\overline{F_*-M_*^+})^+$ with sequences $\omega_n$ and $\varphi_n$ such that $\omega_n\to\omega$ in norm of $M_*$ and $\omega_n\le\varphi_n\in F_*$ for all $n$.
+We may assume $\|\omega_n-\omega\|\le2^{-n}$ for all $n$ by passing to a subsequence.
+Define
+\[\psi:=\omega+\sum_n[\omega_n-\omega]+\sum_n2^{-n}\frac{\varphi_n}{1+\|\varphi_n\|}\in M_*^+,\]
+and let $\theta:\pi(M)'\to M_*$ be the commutant Radon-Nikodym map associated to $\psi$.
+Since $-\psi\le\omega_n\le\psi$ implies the boundedness $\|\theta^{-1}(\omega_n)\|\le1$ for all $n$, the weak convergence $\omega_n\to\omega$ in $M_*$ implies the convergence $\theta^{-1}(\omega_n)\to\theta^{-1}(\omega)$ in the weak operator topology of $\pi(M)'$.
+
+By the Mazur lemma, we can take a net $\omega_i$ in the convex hull of $\omega_n$ such that $\theta^{-1}(\omega_i)\to\theta^{-1}(\omega)$ strongly in $\pi(M)'$, and the corresponding $\varphi_i\in F^*$ can be defined such that $\omega_i\le\varphi_i$ for all $i$.
+(In fact, the net $\omega_i$ can be taken to be a sequence because the commutant is $\sigma$-finite by the existence of the separating vector, but it is not necessary in here.)
+For each $i$ and $0<\delta<1$, define
+\[\omega_\delta:=\theta(f_\delta(\theta^{-1}(\omega))),\qquad\omega_{i,\delta}:=\theta(f_\delta(\theta^{-1}(\omega_i))),\qquad\varphi_{i,\delta}:=\theta(f_\delta(\theta^{-1}(\varphi_i))).\]
+
+Then, the strong convergence $f_\delta(\theta^{-1}(\omega_i))\to f_\delta(\theta^{-1}(\omega))$ in $\pi(M)'$ implies $\omega_{i,\delta}\to\omega_\delta$ weakly in $M_*$, and the strong convergence $f_\delta(\theta^{-1}(\omega))\to\theta^{-1}(\omega)$ in $\pi(M)'$ implies $\omega_\delta\to\omega$ weakly in $M_*$ as $\delta\to0$.
+If we define $\f_\delta:=\theta(\lim_if_\delta(\theta^{-1}(\f_i)))$ by taking a subnet or a cofinal ultrafilter, then $\f_{i,\delta}\to\f_\delta$ weakly in $M_*$.
+Since $\omega_i\le\varphi_i$ and $0\le\varphi_{i,\delta}\le\varphi_i\in F_*$, we get
+\[\omega_{i,\delta}\le\varphi_{i,\delta}\in F_*,\qquad 0\le\omega_\delta\le\varphi_\delta\in F_*,\qquad\omega_\delta\in F_*,\qquad\omega\in F_*.\qedhere\]
+\end{proof}
+
+
+\subsection{Strategies for (d)}
+
+Let $\omega\in(\bar{F^*-A^{*+}})^+$ with nets $\omega_i$ and $\f_i$ such that $\omega_i\to\omega$ weakly$^*$ in $A^*$ and $\omega_i\le\f_i\in F^*$ for all $i$.
+
+
+
+\noindent\textbf{Question 1.}
+How can we choose $\psi$?
+
+To construct $\psi$ such that $\omega_i$ and $\f_i$ are all absolutely continuous, it seems that we need to assume $A$ is separable so that the weak$^*$ topology on the unit ball of $A^*$ is metrizable and we may assume $\omega_i$ and $\f_i$ are sequences.
+But even if this is the case, we can have $[\omega_n-\omega]\not\to0$ in the weak$^*$ topology, contrary to the norm.
+So it seems difficult to construct $\psi$ such that $\theta^{-1}(\omega_n)$ is bounded.
+However, we can still have $-2^n\le\theta^{-1}(\omega_n)\le\theta^{-1}(\f_n)\le2^n$, etc.
+
+In fact, we should not have $\theta^{-1}(\omega_n)$ bounded.
+This is because the weak operator topology of $\pi(A)'$ is too strong.
+The topologies on $\pi(A)'$ generated by vectors $\pi(A)\Omega$ and $\pi^{**}(A^{**})\Omega$ are totally different when they are induced in $A^*$ via $\theta$, i.e.~weak$^*$ and weak topologies.
+The weak (operator) convergence of $\theta^{-1}(\omega_n)$ implies the weak convergence of $\omega_n$.
+The Mazur lemma tells us that we may assume $\omega_n\to\omega$ in norm.
+Something is strange.
+
+Then, we can try to use the weak$^*$ compactness of the unit ball of $A^*$ directly!
+Since $\theta^{-1}(\omega_n)$ is unbounded but controllable, we can try to take $\delta$ dynamically.
+We want to have the following properties:
+\[-\delta_n<\theta^{-1}(\omega_n),\qquad\theta(f_{\delta_n}(\theta^{-1}(\f_n)))\lesssim1.\]
+However, it is desparate to control the norm of $\theta(k)$ in terms of $k$, except by the norm of $k$.
+Also, by the ``stiffness'' or ``rigidness'' of the operator monotone functional calculi, two conditions are hardly satisfied simultaneously for non-commutative cases.
+When $A$ is non-commutative, for example, $\omega_n\le\f_n$ and $0\le\f_n$ do not imply $\omega_{n+}\le\f_n$ because the ramp function is way far from operator monotone functions.
+
+\noindent\textbf{Solution 1.}
+Take $\psi$ dynamically!
+
+
+
+\noindent\textbf{Question 2.}
+How can we make the weak$^*$ limit of $\omega_i$ commute with $f_\delta$ without strong topology?
+
+\noindent\textbf{Solution 2.}
+We can approximate $f_\delta$ with affine functions
+by
+\[t-\delta^{\frac12}\le f_\delta(t)\le t,\qquad|t|\le2^{-1}\delta^{-\frac14},\qquad\qquad(1+\delta^{-1})t\le f_\delta(t)\le t,\qquad 0\le t\le1.\]
+
+
+
+\newpage
+
+\subsection{Proof of (d)}
+
+\begin{proof}[Proof of (d)]
+
+As above, we will prove $(\overline{F^*-A^{*+}})^+\subset F^*$.
+Define
+\[G^*:=\left\{\omega\in A^{*sa}:\begin{tabular}{c}
+there is $\psi\in A^{*+}$, and there is $\varphi_\delta\in F^*$ \\
+for any sufficiently small $\delta>0$,
+such that\\
+$\|\psi\|\le1$, $\|\varphi_\delta\|\le\delta^{-1}$, and $\omega\le\varphi_\delta+\delta^{\frac12}\psi$
+\end{tabular}\right\}.\]
+It suffices to show $F^*-A^{*+}\subset G^*$, $G^{*+}\subset F^*$, and $\overline{G^*}\subset G^*$.
+
+Let $\omega\in F^*-A^{*+}$.
+Take $\varphi\in F^*$ such that $\omega\le\varphi$.
+Define, for $\delta>0$,
+\[\psi:=\frac{[\omega]}{1+\|\omega\|}+\frac\varphi{(1+\|\omega\|)(1+\|\varphi\|)},\qquad\varphi_\delta:=\theta(f_\delta(\theta^{-1}(\varphi))),\]
+where $\theta$ is the commutant Radon-Nikodym map associated to $\psi$.
+The norm conditions $\|\psi\|\le1$ and $\|\varphi_\delta\|\le\delta^{-1}$ are easily checked.
+For sufficiently small $\delta>0$ such that $\|\theta^{-1}(\omega)\|\le1+\|\omega\|\le2^{-1}\delta^{-\frac14}$ and $\delta\le1$, we have
+\[\theta^{-1}(\omega)\le f_\delta(\theta^{-1}(\omega))+\delta^{\frac12}\le f_\delta(\theta^{-1}(\varphi))+\delta^{\frac12},\]
+so $\omega\le\varphi_\delta+\delta^{\frac12}\psi$ and $\omega\in G^*$.
+
+Let $\omega\in G^{*+}$.
+Take $\psi\in A^{*+}$ and $\varphi_\delta\in F^*$ such that $\|\psi\|\le1$, $\|\varphi_\delta\|\le\delta^{-1}$, and $\omega\le\varphi_\delta+\delta^{\frac12}\psi$, for any sufficiently small $\delta>0$.
+Let $\psi_\delta:=\omega+\delta\varphi+\psi$, and let $\theta_\delta$ be the associated commutant Radon-Nikodym map.
+For any fixed $\delta'>0$, since $0\le\theta_\delta^{-1}(\omega)\le1$, we have
+\[0\le(1+\delta')^{-1}\theta_\delta^{-1}(\omega)\le f_{\delta'}(\theta_\delta^{-1}(\omega))\le f_{\delta'}(\theta_\delta^{-1}(\varphi_\delta+\delta^{\frac12}\psi))
+\le f_{\delta'}(\theta_\delta^{-1}(\varphi_\delta)+\delta^{\frac12})\le f_{\delta'}(\theta_\delta^{-1}(\varphi_\delta))+\delta^{\frac12},\]
+and it implies $0\le(1+\delta')^{-1}\omega\le\theta_\delta(f_{\delta'}(\theta_\delta^{-1}(\varphi_\delta)))+\delta^{\frac12}\psi_\delta$.
+Since $\|\psi_\delta\|\le\|\omega\|+2$ is bounded and $\theta_\delta(f_{\delta'}(\theta_\delta^{-1}(\varphi_\delta)))\in F^*$ is also bounded for fixed $\delta'$ as $\delta\to0$, by considering the limit along a cofinal ultrafilter on the set of $\delta$, we have $(1+\delta')^{-1}\omega\in F^*$, so $\delta'\to0$ gives $\omega\in F^*$.
+
+To show $G^*$ is weakly$^*$ closed, we claim for any $r>0$ that 
+\[\overline{(F^*-A^{*+})\cap A_{2r}^*}\subset G^*,\qquad G^*\cap A_r^*\subset\overline{(F^*-A^{*+})\cap A_{2r}^*},\]
+where $A_r^*:=\{\omega\in A^*:\|\omega\|\le r\}$.
+If these are true, then
+\[G^*\cap A_r^*=\overline{(F^*-A^{*+})\cap A_{2r}^*}\cap A_r^*\]
+is weakly$^*$ closed and convex in $A^*$ for all $r>0$, so the Krein-\v Smulian theorem shows the claim.
+
+Let $\omega_i\in(F^*-A^{*+})\cap A_{2r}^*$ be a net such that $\omega_i\to\omega$ weakly$^*$ in $A^*$ with $\|\omega_i\|\le2r$ for all $i$.
+Following the proof of $F^*-A^{*+}\subset G^*$, we can take $\psi_i\in A^{*+}$ and $\f_{i,\delta}\in F^*$ such that $\|\psi_i\|\le1$, $\|\f_{i,\delta}\|\le\delta^{-1}$, $\omega_i\le\f_{i,\delta}+\delta^{\frac12}\psi_i$, for uniformly sufficiently small $\delta$ such that $1+2r\le2^{-1}\delta^{-\frac14}$ because $\|\omega_i\|$ is bounded by $2r$.
+Since the three conditions are preserved by the weak$^*$ convergence, taking the limit along a cofinal ultrafilter on the index set of $i$, we can obtain limit points $\psi$ and $\f_\delta$ so that $\omega\in G^*$.
+
+Let $\omega\in G^*\cap A_r^*$.
+Take $\psi\in A^{*+}$ and $\varphi_\delta\in F^*$ such that $\|\psi\|\le1$, $\|\varphi_\delta\|\le\delta^{-1}$, and $\omega\le\varphi_\delta+\delta^{\frac12}\psi$, for any sufficiently small $\delta>0$.
+If $\delta^{\frac12}<r$, then $\omega-\delta^{\frac12}\psi\in(F^*-A^{*+})\cap A_{2r}^*$ converges to $\omega$ weakly$^*$ in $A^*$ as $\delta\to0$, we have $\omega\in\overline{(F^*-A^{*+})\cap A_{2r}^*}$.
+This completes the proof.
+\end{proof}
+
+
+
+
+\end{document}

@@ -1,8 +1,8 @@
 \documentclass{../../large}
 \usepackage{../../ikhanchoi}
 
-\newcommand{\Cof}{\mathrm{Cof}}
-\newcommand{\Fib}{\mathrm{Fib}}
+\newcommand{\Cof}{\operatorname{Cof}}
+\newcommand{\Fib}{\opera{Fib}}
 \newcommand{\we}{\overset\sim\to}
 \newcommand{\cof}{\rightarrowtail}
 \newcommand{\fib}{\twoheadrightarrow}
@@ -43,17 +43,17 @@ A differential graded abelian group is traditionally called a \emph{chain comple
 
 The following categories are all abelian? projectives and injectives?
 We have six categories
-$\mathrm{Ch}_{\ge0}(\cA)$ and $\mathrm{Ch}_+(\cA)$, $\mathrm{Ch}^{\ge0}(\cA)$ and $\mathrm{Ch}^+(\cA)$, $\mathrm{Ch}(\cA)$ and $\mathrm{Ch}_b(\cA)$.
+$\Ch_{\ge0}(\cA)$ and $\Ch_+(\cA)$, $\Ch^{\ge0}(\cA)$ and $\Ch^+(\cA)$, $\Ch(\cA)$ and $\Ch_b(\cA)$.
 
 \begin{parts}
-\item $\mathrm{Ch}_{\ge0}(\cA)$ is abelian.
+\item $\Ch_{\ge0}(\cA)$ is abelian.
 \end{parts}
 \end{prb}
 
-\begin{pf}
-Let $A,B\in\mathrm{Ch}_{\ge0}(\cA)$.
+\begin{proof}
+Let $A,B\in\Ch_{\ge0}(\cA)$.
 The cokernel is given as follows.
-\end{pf}
+\end{proof}
 
 
 
@@ -101,14 +101,18 @@ A \emph{triangulated category} is an additive functor $\cD$ together with a tran
 
 
 
-\part{Homotopical algebra}
 
-\chapter{Model categories}
+\part{Model categories}
 
-\section{Model structures}
+\chapter{Model structures}
+
+\section{}
+
+\[\tab{Dashed arrows mean that they exist but may NOT commute with solid arrows in general unless mentioned,\\ and bent dashed arrows mean that they are constructed by the property of projective modules.}\]
 
 
-Dashed arrows mean that they do not commute with solid arrows in general, and bent arrows mean that they are constructed by the property of projective modules.
+model categories are presentations of infinity categories, in the sense that for a model category, the localization at the category of weak equivalences gives rise to an infinity category.
+For a simplicial model category, homotopy coherent nerve of the category of fibrant-cofibrant objects.
 
 
 \begin{prb}[Model structures]
@@ -139,7 +143,7 @@ A \emph{model category} is a bicomplete category equipped with a model structure
 \item base change
 \end{parts}
 \end{prb}
-\begin{pf}
+\begin{proof}
 To show $\cC$ is closed under retracts (in functorial weak factorization system generally), suppose the horizontal composites $ACA$ are the identities, $CD\in\cC$, and $XY\in\cF$ in the comutative diagram
 \[\begin{tikzcd}[sep=small]
 A\rar\dar&C\rar\dar[>->]&A\rar\dar&X\dar[->>]\\
@@ -147,7 +151,7 @@ B\rar&D\rar&B\rar&Y.
 \end{tikzcd}\]
 Then, we have the lift $DX$, and $BDX$ defines a lift $BX$, so $AB\in\cC$.
 
-\end{pf}
+\end{proof}
 
 
 \begin{prb}
@@ -169,7 +173,7 @@ Let $\cC$ be a model category.
 Let $\cD$ be a category with weak equivalences.
 If $F:\cC\to\cD$ be a functor that takes a acyclic cofibration between cofibrant objects to a weak equivalence, then it takes a weak equivalence between cofibrant objects to a weak equivalence.
 \end{prb}
-\begin{pf}
+\begin{proof}
 Suppose $A$ and $B$ are cofibrant objects, and $AB$ is a weak equivalence.
 Factorize $(A\sqcup B)B$ into a cofibration $(A\sqcup B)B'$ followed by a acyclic fibration $B'B$ as we have
 \[\begin{tikzcd}[sep=small]
@@ -180,7 +184,7 @@ B \uar\ar[equal]{rru} &&
 Since cofibrations are closed under pushouts, $A(A\sqcup B)$ and $B(A\sqcup B)$ are cofibrations, so are $AB'$ and $BB'$.
 On the other hand, $AB'$ and $BB'$ are weak equivalences, and hence are acyclic cofibrations.
 Then, $F(AB')$ and $F(BB')$ are weak equivalences by the assumption, so $F(AB)$ is a weak equivalence.
-\end{pf}
+\end{proof}
 
 
 
@@ -220,17 +224,17 @@ F \rar\dar\pullback & Y \dar \\
 \section{Examples of model categories}
 
 \begin{prb}[Projective model structure on chain complexes]
-Let $\cA$ be an abelian category with enough projective objects and $\mathrm{Ch}_{\ge0}(\cA)$ be the category of non-negatively graded chain complexes of $\cA$.
-A \emph{projective model structure} on $\mathrm{Ch}_{\ge0}(\cA)$ is defined such that a chain map is 
+Let $\cA$ be an abelian category with enough projective objects and $\Ch_{\ge0}(\cA)$ be the category of non-negatively graded chain complexes of $\cA$.
+A \emph{projective model structure} on $\Ch_{\ge0}(\cA)$ is defined such that a chain map is 
 \begin{enumerate}[(i)]
 \item a weak equivalence if it is a quasi-isomorphism,
 \item a cofibration if it is degree-wise monic with the projective cokernel,
 \item a fibration if it is degree-wise epic at the strictly positive degrees.
 \end{enumerate}
-Then, they define a model structure on $\mathrm{Ch}_{\ge0}(\cA)$, and its homotopy category becomes the classical derived category.
+Then, they define a model structure on $\Ch_{\ge0}(\cA)$, and its homotopy category becomes the classical derived category.
 \end{prb}
-\begin{pf}
-Assuming $\mathrm{Ch}_{\ge0}(\cA)$ is a bicomplete abelian category, we will check that the projective model structure is indeed a model structure.
+\begin{proof}
+Assuming $\Ch_{\ge0}(\cA)$ is a bicomplete abelian category, we will check that the projective model structure is indeed a model structure.
 The two-out-of-three law is clear.
 We first prove $(\cC,\cF\cap\cW)$ is a weak factorization system.
 Recall that 
@@ -242,7 +246,7 @@ Let
 \[\begin{tikzcd}
 A \dar[>->,swap]{i} \rar{f} & Y \dar[->>]{p}\dar[swap]{\sim} \\
 X \rar[swap]{g} & B
-\end{tikzcd}\qquad\text{ in }\mathrm{Ch}_{\ge0}(\cA)\]
+\end{tikzcd}\qquad\text{ in }\Ch_{\ge0}(\cA)\]
 be a commutative diagram such that $i:A\to X$ is a cofibration and $p:Y\to B$ is a acyclic fibration.
 
 Consider the diagram at the degree zero
@@ -270,7 +274,7 @@ Define the error $\e:=\partial_{n+1}h_{n+1}'-h_n\partial_{n+1}$.
 
 (factorization)
 
-\end{pf}
+\end{proof}
 
 \begin{prb}[Hurewicz model structure on chain complexes]
 \end{prb}
@@ -297,19 +301,58 @@ The addition of disjoint basepoint $\cC\to\cC_*$ is left adjoint to the forgetfu
 
 
 
-\chapter{Simplicial categories}
+\part{Simplicial categories}
+
+\chapter{Simplicial sets}
 
 \section{Simplicial sets}
 
-Simplicial methods convert a differential graded category to a simplicial category via the Dold-Kan correspondence, so that a model structure on the differential graded category becomes simplicial.
-In a simplicial model category we can expand simplicial resolutions explicitly.
+
 
 \begin{prb}[Simplicial sets]
-The \emph{simplex category} is the category $\Delta$ defined such that the objects are linearly ordered finite non-empty sets $[n]:=\{0,\cdots,n\}$ and the morphisms are monotone functions.
-\[\begin{tikzcd}
-\left[0\right] \rar[shift left=2]{d_0}\rar[shift right=2,swap]{d_1} & \left[1\right] \lar["s_0" description]
+The \emph{simplex category} is the category $\Delta$ defined such that objects are totally ordered finite non-empty sets and morphisms are non-decreasing functions.
+It has a skeleton whose objects are $[n]:=\{0,\cdots,n\}$ for $n\ge0$ with the usual order.
+In $\Delta$, there are special morphisms as in the following diagram
+\[\begin{tikzcd}[sep=large]\,
+&{[0]}
+\rar["\delta_1^0"description,pos=0.65,shift left=3]
+\rar["\delta_1^1"description,pos=0.65,shift right=3]
+&{[1]}
+\lar["\sigma_0^0"description,pos=0.65]
+\rar["\delta_2^0"description,pos=0.65,shift left=6]
+\rar["\delta_2^1"description,pos=0.65]
+\rar["\delta_2^2"description,pos=0.65,shift right=6]
+&{[2]}
+\lar["\sigma_1^0"description,pos=0.65,shift left=3]
+\lar["\sigma_1^1"description,pos=0.65,shift right=3]
+\rar[phantom,"\cdots"]
+&\,
 \end{tikzcd}\]
+defined such that for every $0\le i\le n$
+\[\delta_n^i:[n-1]\to[n]:k\mapsto k+1_{\ge i}(k),\qquad\sigma_n^i:[n+1]\to[n]:k\mapsto k-1_{>i}(k),\]
+called the \emph{coface maps} and \emph{codegeneracy maps}.
 
+A \emph{simplicial set} is a contravariant functor $X:\Delta^\op\to\Set$.
+We usually write $X_n:=X([n])$ to mean the set of \emph{simplices}, and $d_i^n:=X(\delta_n^i):X_n\to X_{n-1}$ and $s_i^n:=X(\sigma_n^i):X_n\to X_{n+1}$ for $0\le i\le n$ are called \emph{face maps} and \emph{degeneracy maps}.
+It is intuitively something that consists of a sequence $X_n$ of sets that enjoys the combinatorics of face and degeneracy maps.
+As the image of the skeleton $\{[n]\}$, we have a diagram
+\[\begin{tikzcd}[sep=large]
+\,\rar[phantom,"\cdots"]
+&X_2
+\rar["d^2_0"description,pos=0.65,shift left=6]
+\rar["d^2_1"description,pos=0.65]
+\rar["d^2_2"description,pos=0.65,shift right=6]
+&X_1
+\lar["s^1_0"description,pos=0.65,shift left=3]
+\lar["s^1_1"description,pos=0.65,shift right=3]
+\rar["d^1_0"description,pos=0.65,shift left=3]
+\rar["d^1_1"description,pos=0.65,shift right=3]
+&X_0
+\lar["s^0_0"description,pos=0.65]&\,
+\end{tikzcd}\]
+A \emph{simplicial map} between simplicial sets is a natural transformation.
+The category of simplicial sets and simplicial maps is denoted by $\Set_\Delta$.
+\iffalse
 Consider
 \[X_{n+1}\xrightarrow{d_j}X_n\xrightarrow{d_i}X_{n-1},\qquad X_{n+2}\xleftarrow{s_j}X_{n+1}\xleftarrow{s_i}X_n.\]
 For $i\in[n]$ and $j\in[n+1]$,
@@ -318,114 +361,171 @@ s_js_i=\begin{cases}s_is_{j-1}&\text{ if }i\le j-1,\\s_{i+1}s_j&\text{ if }i+1>j
 and
 \[d_js_i=\begin{cases}s_{i-1}d_j&\text{ if }i-1\ge j,\\s_id_{j-1}&\text{ if }i<j-1,\\\id&\text{ otherwise},\end{cases}\qquad
 s_id_j=\begin{cases}d_js_{i+1}&\text{ if }j<i+1,\\d_{j+1}s_i&\text{ otherwise}.\end{cases}\qquad\]
+\fi
+\begin{parts}
+\item Every morphism of $\Delta$ is uniquely decomposed into the composition of codegeneracy maps on the left and coface maps on the right.
+\end{parts}
+\end{prb}
 
-A \emph{standard simplex} is a simplicial set given by a representable functor in $\Delta$, and denoted by $\Delta^n=\Delta[n]:=\Hom_\Delta(-,[n]):\Delta^\op\to\mathrm{Set}$ for each $n\ge0$.
-For a simplicial set $X$, the Yoneda lemma implies $X_n:=X([n])=\Hom_{\mathrm{Set}_\Delta}(\Delta^n,X)$.
+
+
+
+\begin{prb}[Simplicial complexes]
+A \emph{simplicial complex} is a collection $X$ of non-empty finite subsets of a set $V$ closed under non-empty subsets.
+We denote by $X_n$ for each $n\ge0$ the set of all functions $[n]\to V$ whose image coincides with an element of $X$.
+More categorically, it can be essentially defined as a functor $X:\operatorname{Fin}_{>0}^\op\to\Set:[n]\mapsto X_n$ on the category of non-zero finite sets which is concrete in the sense that the canonical map $X_n\to\prod_{\Hom_\Delta([0],[n])}X_0$ is injective for each $n\ge0$.
+
+If we chose each skeleton of the simplex category and the category of non-empty finite sets, and if we denote the objects of each skeleton as $[n]$ for non-negative integer $n$, then the forgetful functor $\Delta\to\operatorname{Fin}_{>0}$ gives rise to a linear order on the chosen skeleton of $\operatorname{Fin}_{>0}$, and the composition with the forgetgul functor provides a functor $\operatorname{Cpx}_\Delta\to\Set_\Delta$.
+We can prove that this is fully faithful.
+
+\iffalse
+For simplicial complexes $X$ and $Y$, it suffices to show
+\[\Hom_{\operatorname{Cpx}_\Delta}(X,Y)=\Hom_{\Set_\Delta}(X,Y).\]
+Suppose $f\in\Hom_{\Set_\Delta}(X,Y)$ so that
+\[\begin{tikzcd}[sep=small]
+X_n \dar[swap]{f_n}\rar & X_m \dar{f_m} \\
+Y_n \rar & Y_m
+\end{tikzcd}\]
+commutes for all monotone $[m]\to[n]$.
+If $[m]\to[n]$ is arbitrary, then since
+\[\begin{tikzcd}[sep=small]
+X_n \dar[swap]{f_n}\rar & \displaystyle\prod_{[0]\to[m]}X_0 \dar & X_m \dar{f_m}\lar \\
+Y_n \rar & \displaystyle\prod_{[0]\to[m]}Y_0 & Y_m \lar
+\end{tikzcd}\]
+still commutes and the lower right horizontal arrow $Y_m\to\prod_{[0]\to[m]}Y_0$ is injective by the concreteness, so
+\[\begin{tikzcd}[sep=small]
+X_n \dar[swap]{f_n}\rar & X_m\dar{f_m} \\
+Y_n \rar & Y_m
+\end{tikzcd}\]
+commutes by cancelation of the injective function.
+\fi
+\end{prb}
+
+
+\begin{prb}[Standard simplices]
+A \emph{standard simplex} is a simplicial set given by the representable functor in $\Delta$.
+More precisely, the \emph{standard $n$-simplex} for $n\ge0$ is the simplicial set $\Delta^n:=\Hom_\Delta(-,[n]):\Delta^\op\to\Set$.
+For a simplicial set $X$, the Yoneda lemma implies $X_n=X([n])=\Hom_{\Set_\Delta}(\Delta^n,X)$.
 
 
 
 The set of homotopy classes of simplicial functions $[X,Y]$?
 
-\end{prb}
-
-
-\begin{prb}[Dold-Kan correspondence]
-Let $\cA$ be an abelian category.
-The Dold-Kan correspondence states that $\cA_\Delta\to\mathrm{Ch}_{\ge0}(\cA)$ is a categorical equivalence.
-We also have categorical equivalence between the cosimplicial objects $\cA^\Delta$ and cochain complexes $\mathrm{Ch}^{\ge0}(\cA)$
-
-For a simplicial object $A\in\cA_\Delta$, the \emph{normalized chain complex} or the \emph{Moore complex} of $A$ is the chain complex $NA\in\mathrm{Ch}_{\ge0}(\cA)$ defined such that $NA_n:=\bigcap_{i=1}^n\ker d_i\subset A_n$ and $\partial:=d_0$.
-It is known that there is a split exact sequence
-\[0\to NA\to CA\to DA\to0\]
-in $\mathrm{Ch}_{\ge0}(\cA)$.
-
-
-The functor $\Gamma:\mathrm{Ch}_{\ge0}(\cA)\to\cA_\Delta$.
-
-The \emph{Eilenberg-MacLane functor} is the composition $H:\mathrm{Ch}_{\ge0}(\Z)\xrightarrow{\Gamma}\mathrm{Ab}_\Delta\to\mathrm{Set}_\Delta$ with the forgetful functor.
-Note that the cohomology group is computed by the adjoint relations
-\[H(X,A)=[N\Z[X],A]=[\Z[X],\Gamma A]=[X,HA],\qquad X\in\mathrm{Set}_\Delta,\ A\in\mathrm{Ch}_{\ge0}(\Z).\]
-If $A\in\mathrm{Ab}$, then $(HA)_n=K(A,n)$ is the Eilenberg-MacLane space for each $n\ge0$ so that $H(X,A)$.
-
-Then, the Moore complex functor $N$ is left adjoint to $K$, i.e.~$[NA,C]=[A,KC]$ for $A\in\cA_\Delta$ and $C\in\mathrm{Ch}_{\ge0}(\cA)$.
-\end{prb}
-\begin{pf}
-Let $\Z\Delta$ be the pre-additive category generated by the simplex category $\Delta$.
-\end{pf}
-
-
-Note that the homology group is
-\[\begin{tikzcd}
-H_n(-,M):&
-\mathrm{Top} \rar{\mathrm{Sing}} &
-\mathrm{Set}_\Delta \rar{R[\cdot]\otimes_RM} &
-(\mathrm{Mod}_R)_\Delta \rar{C\text{ or }N} &
-\mathrm{Ch}_{\ge0}(R) \rar{H_n} &
-\mathrm{Mod}_R
-\end{tikzcd}\]
-
-
-
-\begin{prb}[Simplicial complexes]
-A \emph{simplicial complex} is a set $K$ of non-empty finite subsets of a set $V$ which is closed under subsets.
-If $V$ is linearly ordered, then we say $K$ is ordered.
-To every ordered simplicial complex one can associate a simplicial set as follows.
-Let $K_n$ be the set of all ordered tuples $(v_0,\cdots,v_n)$ such that $v_0\le\cdots\le v_n$ and $\{v_0,\cdots,v_n\}\in K$.
-Then, for each morphism $\alpha:[n]\to[m]$ in $\Delta$, we can define $\alpha^*:K_m\to K_n$.
-
-\end{prb}
-
-\begin{prb}[Simplicial complexes]
-A \emph{simplicial complex} is a collection $X\subset\cP(V)$ of non-empty finite subsets of a set $V$ closed under non-empty subsets.
-We denote by $X_n$ for each $n\ge0$ the set of all functions $[n]\to V$ whose image is an element of $X$.
-More categorically, it can be essentially defined as a presheaf $X:\mathrm{Fin}_{>0}\to\mathrm{Set}:[n]\mapsto X_n$ on the category of non-zero finite sets which is concrete in the sense that the canonical map $X_n\to\prod_{[n]\leftarrow[0]}X_0$ is injective for each $n\ge0$.
-
-If we fix linear orders on each object of $\mathrm{Fin}_{>0}$, then we obtain a functor $\mathrm{SimpCpx}\to\mathrm{Set}_\Delta$
-We claim that this functor is characterized as the left Kan extension of along the opposite forgetful functor relative the concrete presheaves as
-\[\begin{tikzcd}[sep=small]
-\mathrm{Fin}_{>0}^\op \ar{rr}\ar{dr}\ar[shift right=4,phantom]{rr}{\Rightarrow} && \Delta^\op \ar[dashed]{dl} \\
-& \mathrm{Set} &
-\end{tikzcd}\]
-
-For a simplicial complex $X$ and a simplicial set $Y$, it suffices to show
-\[\Hom_{\mathrm{Cpx}_\Delta}(X,Y)=\Hom_{\mathrm{Set}_\Delta}(X,Y).\]
-Suppose $\eta\in\Hom_{\mathrm{Set}_\Delta}(X,Y)$ so that
-\[\begin{tikzcd}[sep=small]
-X_m \dar[swap]{\eta_m}\rar & X_n \dar{\eta_n} \\
-Y_m \rar & Y_n
-\end{tikzcd}\]
-commutes for all monotone $[m]\leftarrow[n]$.
-If $[m]\leftarrow[n]$ is arbitrary, then since
-\[\begin{tikzcd}[sep=small]
-X_m \dar[swap]{\eta_m}\rar & \displaystyle\prod_{[n]\leftarrow[0]}X_0 \dar & X_n \dar{\eta_n}\lar \\
-Y_m \rar & \displaystyle\prod_{[n]\leftarrow[0]}Y_0 & Y_n \lar
-\end{tikzcd}\]
-still commutes and $Y_n\to\prod_{[n]\leftarrow[0]}Y_0$ is injective by the concreteness, which implies
-\[\begin{tikzcd}[sep=small]
-X_m \dar[swap]{\eta_m}\rar & X_n \dar{\eta_n} \\
-Y_m \rar & Y_n
-\end{tikzcd}\]
-commutes by cancelation of the injective function.
+For $0\le i\le n$, \emph{horns} and \emph{boundaries} are simplicial sets $\Lambda_i^n$ and $\partial\Delta^n$ defined such that
+\begin{align*}
+\Lambda_i^n([m])&:=\{\alpha:[m]\to[n]\mid\alpha([m])\not\supset[n]\setminus\{i\}\},\\
+\partial\Delta^n([m])&:=\{\alpha:[m]\to[n]\mid\alpha([m])\ne[n]\}.
+\end{align*}
 
 \end{prb}
 
 
-\section{Simplicial model categories}
-\begin{prb}[Model structures on simplicial sets]
+
+
+\begin{prb}[Nerves]
+We say a simplicial set $Y$ satisfies the \emph{Segal condition} if $Y\to*$ has the unique right lifting property with respect to the horn inclusions $\Lambda_i^n\to\Delta^n$ for all $0<i<n$.
+
+
+Let $\cC$ be a small category.
+The \emph{nerve} of $\cC$ is a simplicial defined as follows.
+
+
+
+
+The nerve, or its geometric realization, of a small category $\cC$ is also called the \emph{classifying space} of $\cC$.
+For example, if we interpret a group $G$ as a category of a single object with invertible morphisms, then its nerve gives rise to its classifying space $BG$.
+\begin{parts}
+\item The nerve of a small category satisfies the Segal condition.
+\item A simplicial set satisfying the Segal condition is isomoprhic to the nerve of a small category.
+\item The nerve functor is fully faithful.
+\item The nerve functor admits a left adjoint, which is called the \emph{homotopy category functor}.
+\end{parts}
+\end{prb}
+
+
+
+
+\begin{prb}[Kan complexes]
+We say a simplicial set $Y$ satisfies the \emph{Kan filler condition} or $Y$ is a \emph{Kan complex} if $Y\to*$ has the right lifting property with respect to the horn inclusions $\Lambda_i^n\to\Delta^n$ for all $0\le i\le n$.
+
+\begin{parts}
+\item The singular complex of a topological space is a Kan complex.
+\item A simplicial group is a Kan complex.
+\item The nerve of a groupoid is a Kan complex.
+\item The singular complex functor admits a left adjoint, which is called the \emph{geometric realization}.
+\end{parts}
+\end{prb}
+
+
+\[\operatorname{hCW}\to\operatorname{hCG?}\to\Top[\cW^{-1}]\]
+
+The category of simplicial sets is basically the category of presheaves.
+
+
+\section{Model structures on simplicial sets}
+
+\begin{prb}
+
+bi-completeness,
+cartesian closed (product and function complex)
+\end{prb}
+
+
+\begin{prb}[Kan fibrations]
+\end{prb}
+
+\begin{prb}[Anodynes]
+\end{prb}
+
+
+\begin{prb}[Kan fibrant replacement]
+\end{prb}
+
+\begin{prb}[Simplicial weak equivalences]
+\end{prb}
+
+\begin{prb}[Kan-Quillen model structure]
 Kan and Joyal model structures.
 
-A \emph{Kan model structure} on $\mathrm{Set}_\Delta$ is defined such that a morphism $f:X\to Y$ of simplicial sets is
+The \emph{Kan-Quillen model structure} on $\Set_\Delta$ is defined such that a morphism $f:X\to Y$ of simplicial sets is
 \begin{enumerate}[(i)]
 \item a weak equivalence if the geometric realization $|X|\to|Y|$ is a homotopy equivalence,
 \item a cofibration if it is a monomorphism, i.e.~$f_n$ is injective for all $n\ge0$,
-\item a fibration if it is a \emph{Kan fibration}, i.e.~it has the right lifting property with respect to the horn pair $\Lambda_i^n\to\Delta^n$ for all $n\ge0$ and $0\le i\le n$.
+\item a fibration if it is a \emph{Kan fibration}, i.e.~it has the right lifting property with respect to the horn pair $\Lambda_i^n\to\Delta^n$ for all $0\le i\le n$.
 \end{enumerate}
 
-
-In a Joyal model structure,
-
-Via the Dold-Kan correspondence $\cA_\Delta\cong\mathrm{Ch}_{\ge0}(\cA)$, the Kan model structure corresponds to the projective model structures
 \end{prb}
+
+
+
+
+\begin{prb}[Joyal model structure]
+\end{prb}
+
+
+
+simplicial homotopy group is defined for Kan complexes?
+long exact sequences?
+abelianness for higher?
+
+path object is acyclic cofibration that factors through the diagonal map with a fibration
+
+
+
+\section{Homotopy groups}
+\begin{prb}[Connected components]
+For a simplicial set $S$, $\pi_0(S)$ has many equivalent descriptions...
+colimit of the diagram $\Delta^\op\to\Set$.
+left adjoint to the constant inclusion $\Set\to\Set_\Delta$.
+coequalizer of two face maps.
+
+$\Delta^n$ and $\partial\Delta^n$ are connected...
+\begin{parts}
+\item If $f:S\to T$ is a simplicial map and $S$ is connected, then there is a unique component $T'\subset T$ such that $f(S)\subset T'$.
+\item closed under finite products and $\pi_0$ preserves finite products.
+\end{parts}
+\end{prb}
+
 
 
 \chapter{}
@@ -433,7 +533,55 @@ Via the Dold-Kan correspondence $\cA_\Delta\cong\mathrm{Ch}_{\ge0}(\cA)$, the Ka
 
 
 
+\section{Simplicial groups}
 
+
+\section{Simplicial modules}
+
+Simplicial methods convert a differential graded category to a simplicial category via the Dold-Kan correspondence, so that a model structure on the differential graded category becomes simplicial.
+In a simplicial model category we can expand simplicial resolutions explicitly.
+
+\begin{prb}[Dold-Kan correspondence]
+Let $\cA$ be an abelian category.
+The Dold-Kan correspondence states that the normalized chain complex functor $N:\cA_\Delta\to\Ch_{\ge0}(\cA)$ defined such that for $A\in\cA_\Delta$ we have $NA_n:=\bigcap_{i=1}^n\ker d_i\subset A_n$ and $\partial_n:=d_0^n$ is a categorical equivalence.
+We also have categorical equivalence between the cosimplicial objects $\cA^\Delta$ and cochain complexes $\Ch^{\ge0}(\cA)$.
+
+It is known that there is a split exact sequence
+\[0\to NA\to CA\to DA\to0\]
+in $\Ch_{\ge0}(\cA)$.
+
+
+The functor $\Gamma:\Ch_{\ge0}(\cA)\to\cA_\Delta$.
+
+The \emph{Eilenberg-MacLane functor} is the composition $H:\Ch_{\ge0}(\Z)\xrightarrow{\Gamma}\Ab_\Delta\to\Set_\Delta$ with the forgetful functor.
+Note that the cohomology group is computed by the adjoint relations
+\[H(X,A)=[N\Z X,A]=[\Z X,\Gamma A]=[X,HA],\qquad X\in\Set_\Delta,\ A\in\Ch_{\ge0}(\Z).\]
+If $A\in\Ab$, then $(HA)_n=K(A,n)$ is the Eilenberg-MacLane space for each $n\ge0$ so that $H(X,A)$.
+
+Then, the Moore complex functor $N$ is left adjoint to $K$, i.e.~$[NA,C]=[A,KC]$ for $A\in\cA_\Delta$ and $C\in\Ch_{\ge0}(\cA)$.
+\end{prb}
+\begin{proof}
+Let $\Z\Delta$ be the pre-additive category generated by the simplex category $\Delta$.
+\end{proof}
+
+
+Note that the homology group is
+\[\begin{tikzcd}
+H_n(-,M):&
+\Top \rar{\Sing} &
+\Set_\Delta \rar{(R\cdot)\otimes_RM} &
+(\Mod_R)_\Delta \rar{C\text{ or }N} &
+\Ch_{\ge0}(R) \rar{H_n} &
+\Mod_R
+\end{tikzcd}\]
+
+
+
+\begin{prb}
+\begin{parts}
+\item Via the Dold-Kan correspondence $\cA_\Delta\cong\Ch_{\ge0}(\cA)$, the Kan-Quillen model structure on $\cA_\Delta$ induces the projective model structure.
+\end{parts}
+\end{prb}
 
 
 \part{Infinity categories}
@@ -442,7 +590,7 @@ Via the Dold-Kan correspondence $\cA_\Delta\cong\mathrm{Ch}_{\ge0}(\cA)$, the Ka
 
 All the algebraic or topological structures with finitely many underlying sets will be assumed to be small.
 For example, groupoids may not be small.
-Note that $\mathrm{Set}_\Delta$ is the category of \emph{small} simplicial sets.
+Note that $\Set_\Delta$ is the category of \emph{small} simplicial sets.
 
 For an ordinary category as a nerve, two morphisms are homotopic only if they are identical...
 
@@ -474,16 +622,18 @@ commutes in the category of simplicial sets for all $n\ge0$ and $0<i<n$.
 
 \begin{prb}[Weak Kan complexes and quasi-categories]
 Intuitively, an infinity category is an enriched category over the category of small infinity groupoids, which cannot serve a definition because it includes a circular reasoning.
-A simplicial set $Y$ is called a \emph{weak Kan complex} or a \emph{quasi-category} if
+
+A possibly large simplicial set $Y$ is called a \emph{infinity category} if $Y\to*$ has the right lifting property with respect to all horns $\Lambda_i^n\to\Delta^n$ for $0<i<n$.
+We will sometimes call a small infinity category by a \emph{weak Kan complex}.
 
 
 infinity category, infinity groupoid, infinity bicategory.
 \end{prb}
 
-Let $\mathrm{Top}$ be the category of compactly generated weakly Hausdorff spaces.
-The singular complex functor $\mathrm{Sing}:\mathrm{Top}\to\mathrm{Set}_\Delta$ admits a left adjoint $|\cdot|:\mathrm{Set}_\Delta\to\mathrm{Top}$ called the geometric realization such that the counit map $|\mathrm{Sing}(X)|\to X$ is a weak homotopy equivalence.
+Let $\Top$ be the category of compactly generated weakly Hausdorff spaces.
+The singular complex functor $\Sing:\Top\to\Set_\Delta$ admits a left adjoint $|\cdot|:\Set_\Delta\to\Top$ called the geometric realization such that the counit map $|\Sing(X)|\to X$ is a weak homotopy equivalence.
 
-The \emph{infinity category of spaces}, denoted by $\mathrm{Spc}$, is defined as the homotopy-coherent nerve of the category $\mathrm{Grpd}_\infty$ of small infinity groupoids.
+The \emph{infinity category of spaces}, denoted by $\operatorname{Spc}$, is defined as the homotopy-coherent nerve of the category $\operatorname{Grpd}_\infty$ of small infinity groupoids.
 
 \begin{prb}
 homotopy category, weak homotopy equivalence, 
