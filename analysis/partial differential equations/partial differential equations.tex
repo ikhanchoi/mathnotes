@@ -96,26 +96,53 @@ Since $\cS$ is dense in $X$, we can take a net $u_\alpha\in\cS$ such that $u_\al
 Then, $u_\alpha$ is Cauchy in $Y$ by the inequality, we have $v\in Y$ such that $u_\alpha\to v$ in $Y$.
 The uniqueness of limits in $\cS'$ implies that $u=v$, hence $u\in Y$.
 
-\begin{prb}
-We introduce the \emph{Sobolev regularity} $\frac sd-\frac1p$ for a triple of $s\in\R$, $p\in[1,\infty]$, $d\in\Z_{>0}$, and the \emph{H\"older regularity} $\frac{k+\alpha}d$ for a triple $k\in\Z_{\ge0}$, $\alpha\in[0,1)$, $d\in\Z_{>0}$.
-\begin{parts}
-\item
-\[\|u\|_{W^{k,p}(\R^d)}\lesssim\|u\|_{W^{k',p'}(\R^d)}.\]
-\item If $\frac kd<\frac sd-\frac1p$, then
-\[\|\nabla^\alpha u\|_{C_0(\R^d)}\lesssim\|u\|_{W^{s,p}(\R^d)},\qquad u\in W^{s,p}(\R^d).\]
-\end{parts}
-\end{prb}
-
 $\cS'=\bigcup_{\alpha,\beta\in\Z_{\ge0}^d}\<x\>^{-\alpha}\<\xi\>^{-\beta}L^2$.
 
+\begin{prb}
+We introduce the \emph{Sobolev regularity} $s/d-1/p$ for a triple of $(s,d,p)\in\R\times\Z_{>0}\times[1,\infty]$, and the \emph{H\"older regularity} $(k+\alpha)/d$ for a triple $(k,\alpha,d)\in\Z_{\ge0}\times[0,1)\times\Z_{>0}$.
+\end{prb}
 
 \begin{prb}[Gagliardo-Nirenberg-Sobolev inequality]
-If $\frac1d-\frac1p=-\frac1{p'}$, then
-\[\|u\|_{L^{p'}}\lesssim\|\nabla u\|_{L^p},\qquad u\in C_c^\infty(\R^d).\]
+for $(p,d)\in[1,\infty]\times\Z_{>0}$
+for $q\in[1,\infty]$,
+\begin{parts}
+\item If $p<d$ and $-1/q=1/d-1/p$, then
+\[\|u\|_{L^q(\R^d)}\lesssim\|u\|_{\dot W^{1,1}(\R^d)},\qquad u\in C_c^\infty(\R^d).\]
+\end{parts}
 \end{prb}
+\begin{proof}
+(a)
+We first show $W^{1,1}\to L^q$ for $1<d$, where $q:=\frac d{1-d}$, using the averaging argument by Gagliardo.
+Fix $u\in C_c^\infty(\R^d)$.
+Define a smooth bounded functions $F_\kappa$ on $\R^d$ for $\kappa\subset\{1,\cdots,d\}$ such that
+\[F_\kappa(x):=\left(\int_{\R^{|\kappa|}}|\nabla u(x)|\,dx_\kappa\right)^{\frac1{d-1}},\qquad x\in\R^d.\]
+Then,
+\[|u(x)|\le\int_\R|\partial_iu(x)|\,dx_i\le\int_\R|\nabla u(x)|\,dx_i=F_i(x)^{d-1},\qquad x\in\R^d,\ 0\le i\le d,\]
+implies $|u|^q\le F_1\cdots F_d$.
+Since $F_\kappa$ is constant along the direction $x_i$ if $i\in\kappa$, the H\"older inequalities get
+\[\int_\R|u|^q\,dx_1\le F_1\int_\R F_2\cdots F_d\,dx_1\le F_1\prod_{i=2}^d\left(\int_\R F_i^{d-1}\,dx_1\right)^{\frac1{d-1}}=F_1F_{12}\cdots F_{1d},\]
+and
+\[\int_{\R^2}|u|^q\,dx_{12}\le F_{12}\int_\R F_1F_{13}\cdots F_{1d}\,dx_2\le F_{12}^2F_{123}\cdots F_{12d},\]
+which continues inductively and leads finally
+\[\int_{\R^d}|u|^q\,dx\le F_{1\cdots d}^d=\left(\int_{\R^d}|\nabla u(x)|\,dx\right)^q,\]
+so
+\[\|u\|_{L^q(\R^d)}\lesssim\|u\|_{\dot W^{1,1}(\R^d)}.\]
+
+Now we prove $W^{1,p}\to L^q$ for $1<p<d$ and $q:=\frac{d-p}{pd}$.
+If we choose $\gamma>0$ such that
+
+
+\end{proof}
+
+
+
 \begin{prb}[H\"older spaces]
 \end{prb}
 \begin{prb}[Morrey inequality]
+\begin{parts}
+\item If $\frac kd<\frac sd-\frac1p$, then
+\[\|\nabla^\alpha u\|_{C_0(\R^d)}\lesssim\|u\|_{W^{s,p}(\R^d)},\qquad u\in W^{s,p}(\R^d).\]
+\end{parts}
 \end{prb}
 \begin{prb}[Poincar\'e inequality] BMO
 \end{prb}
@@ -136,7 +163,7 @@ Let $\eta_\e$ be a standard mollifier.
 \item If $\frac ld-\frac1q<\frac kd-\frac1p$, then the embedding $W^{k,p}(\Omega)\hookrightarrow W^{l,q}(\Omega)$ is a compact.
 \end{parts}
 \end{prb}
-\begin{pf}[Sketch]
+\begin{proof}[Sketch]
 Take an approximate unit $e_n\in C_c^1(\R^d)$ of $L^1(\R^d)$ and let $T_n:=e_n*-$.
 First we prove
 \[T_n:L^1(\R^d)\to C_0(\R^d)\]
@@ -151,10 +178,10 @@ that is compact for each $n$.
 We can show that it converges to the embedding in norm by some estimates, so the restriction $W^{1,1}(\R^d)\to L^1(\Omega)$ is compact.
 Since $\Omega$ has the Lipschitz boundary, we have $W^{1,1}(\Omega)\to W^{1,1}(\R^d)$.
 Therefore, the embedding $W^{1,1}(\Omega)\to L^1(\Omega)$ is compact.
-\end{pf}
+\end{proof}
 
 
-\begin{pf}
+\begin{proof}
 (a)
 The sequence $(\eta_\e*u_n)_n$ is pointwise bounded from
 \[\|\eta_\e*u_n\|_{C_0(\R^d)}\le\|\eta_\e\|_{C_0(\R^d)}\|u_n\|_{L^1(\R^d)}\lesssim1,\qquad n\in\N,\]
@@ -192,7 +219,7 @@ so for a subsequence $(\eta_\e*u_{n_k})_k$ that is Cauchy in $L^q(\Omega)$, we h
 and by the diagonal argument reducing $\delta$ to zero, we can construct the desired subsequence.
 
 (e)
-\end{pf}
+\end{proof}
 
 
 
@@ -239,13 +266,13 @@ Then, $u=a_\alpha\pd^\alpha\Phi$.
 Let $L:H\to H$ be a densely defined linear operator.
 If there is a Hilbert space $V$ containing $\dom L$ and densely embedded in $H$ such that $(u,v)\mapsto\<Lu,v\>_H$ defines a coercive bilinear form on $V$, then $L$ is admits a surjective closure.
 \end{prb}
-\begin{pf}
+\begin{proof}
 For $f\in H$, there is $v\in V$ such that $\<f,\f\>_H=\<v,\f\>_V$ for all $\f\in V$.
 If we let $u:=A^{-1}v$, where $A\in B(V)$ is defined such that $\<L-,-\>_H=\<A-,-\>_V$.
 Then,
 \[\<Lu,\f\>_H=\<Au,\f\>_V=\<v,\f\>_V=\<f,\f\>_H\]
 implies $Lu=f$.
-\end{pf}
+\end{proof}
 
 \begin{prb}[Poisson equation]
 Let $\Omega$ be a bounded open subset of $\R^d$.
@@ -298,7 +325,7 @@ for all $u$ such that $Lu\in L^2(\Omega)$ and $u\in H^1(\Omega)$.
 for all $u$ such that  $Lu,u\in L^2(\Omega)$.
 \end{parts}
 \end{prb}
-\begin{pf}
+\begin{proof}
 (a)
 Since $\zeta^2u\in H_0^1(\Omega)$,
 \begin{align*}
@@ -354,7 +381,7 @@ we obtain
 \[\int(Lu-b^i\pd_iu-cu)\f
 \lesssim\frac1\e\int(|Lu|^2+|u|^2)+\left(\e+\frac1\e\right)\int|\nabla u|^2+\e\int\zeta^2|\pd_k^h\nabla u|^2.\]
 Taking small $\e>0$, we are done.
-\end{pf}
+\end{proof}
 
 
 

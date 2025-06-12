@@ -83,19 +83,19 @@ In general, $Q_X$ is symmetric.
 If we consider the same device for 2-dimensional, it becomes anti-symmetric.
 It is also bilinear over $\Z$ and non-degenerate.
 
-\begin{exe}
+\begin{exercise}
 The intersection form is non-degenerate.
 Use the Poincar\'e duality.
-\end{exe}
+\end{exercise}
 
 There is a converse question.
 When is a non-degenerate symmetric bilinear form over $\Z$ the intersection form of a topological 4-manifold?
 
-\begin{thm}[Freedman, 1982]
+\begin{theorem}[Freedman, 1982]
 Let $Q$ be a non-degenerate symmetric bilinear form over $\Z$.
 Then, there is a topological simply connected closed orientable 4-manifold $X$ such that $Q_X\cong Q$ over $\Z$.
 Moreover, such $X$ are at most two up to homeomorphism, and determined by the Kirby-Siebenmann invariant $KS(X)\in H^4(X,\Z/2\Z)\cong\Z/2\Z$.
-\end{thm}
+\end{theorem}
 
 (proved by wild topology such as approximation with Cantor sets, and there would be almost no people understanding the proof.)
 
@@ -106,9 +106,9 @@ In general, there are many definite quadratic form $Q$, i.e.~$Q(\alpha,\alpha)\g
 If the rank is $32$, then there are many more than $10^7$.
 
 
-\begin{thm}[Donaldson's diagonalization theorem, 1983]
+\begin{theorem}[Donaldson's diagonalization theorem, 1983]
 If $X$ is a smooth closed orientable 4-manifold (originally assumed to be simply connected, but it is revealed that it is not required) with $Q_X$ is negative-definite, then $Q_X$ is isomorphic to $\diag(-1,\cdots,-1)$ over $\Z$.
-\end{thm}
+\end{theorem}
 
 In particular, there should be many many non-smoothable topological 4-manifolds by the diagonalization theorem and Freedman's thoeorem.
 
@@ -120,7 +120,7 @@ With boundary: Khovanov homology...
 
 
 More about intersection forms:
-\begin{defn}
+\begin{definition}
 Let $Q:L\otimes L\to\Z$ be a symmetric non-degenerate bilinear form over $\Z$, where $L$ is a lattice, i.e.~finitely generated free abelian group.
 Then,
 \[b^+(Q):=\text{max dim of positive-definite subspace of $L\otimes_\Z\R$ with respect to $Q$},\]
@@ -134,9 +134,9 @@ Also, $Q$ is called \emph{even} if $Q(\alpha,\alpha)\cong0$ modulo $2$ for all $
 When $X$ is a closed orientable topological 4-manifold, then we use the following notations:
 \[b^\pm(X):=b^\pm(Q_X),\qquad\sigma(X):=\sigma(Q_X),\]
 and parity and definiteness of $X$ is defined by the parity and definiteness of $Q_X$.
-\end{defn}
+\end{definition}
 
-\begin{ex}
+\begin{example}
 \[\begin{array}{c|cccc}
 &b^+&b^-&\sigma&\text{parity}\\\hline
 S^4&0&0&0&\text{even}\\
@@ -144,9 +144,9 @@ S^4&0&0&0&\text{even}\\
 S^2\times S^2&1&1&0&\text{even}\\
 K3&3&19&-16&\text{even}
 \end{array}\]
-\end{ex}
+\end{example}
 
-\begin{exe}
+\begin{exercise}
 $Q_{K3}=3\left(\mat[small]{0&1\\1&0}\right)\oplus2(-E_8)$, where $-E_8$ is an even, rank 8, negative definite form, given by
 \[-E_8:=\mat{
 -2&&&1&&&&\\
@@ -158,9 +158,9 @@ $Q_{K3}=3\left(\mat[small]{0&1\\1&0}\right)\oplus2(-E_8)$, where $-E_8$ is an ev
 &&&&&1&-2&1\\
 &&&&&&1&-2
 }.\]
-\end{exe}
+\end{exercise}
 See the following theorem in the course in arithmetic written by Serre.
-\begin{thm}
+\begin{theorem}
 Let $(Q,L)$ be a symmetric non-degenerate bilinear form over $\Z$.
 Suppose $Q$ is indefinite, i.e.~not definite.
 Then, over $\Z$,
@@ -169,38 +169,38 @@ b^+(Q)(1)\oplus b^-(Q)(-1)&\text{ if $Q$ odd}\\
 m\left(\mat[small]{0&1\\1&0}\right)\oplus n(-E_8)&\text{ if $Q$ even and $\sigma(Q)\le0$},
 \end{cases}\]
 for some $m\ge1$ and $n\ge0$.
-\end{thm}
+\end{theorem}
 
 Other constraints on the intersection form of a smooth 4-manifold.
-\begin{thm}[Rokhlin, 1952, before gauge theory]
+\begin{theorem}[Rokhlin, 1952, before gauge theory]
 Let $X$ be a smooth closed spin 4-manifold.
 It is known that $X$ admits a spin structure iff $X$ is even, when $X$ is simply connected.
 Then, $16$ divides $\sigma(X)$.
-\end{thm}
+\end{theorem}
 
 In general, $8$ divides $\sigma(Q)$ if $Q$ is even.
 Since $\sigma(-E_8)=-8$, so we can discover a non-smoothable manifold.
 
 A conjecture by Y.~Matsumoto, 1982: For $X$ be a smooth closed spin 4-manifold, do we have $b_2(X)\ge\frac{11}8|\sigma(X)|$? Note that $b_i(X)$ is the rank of $H_i(X,\Z)$.
 The equality is attained by $K3^{\#n}$ for $n\ge1$.
-\begin{exe}
+\begin{exercise}
 $Q_{X_1\# X_2}=Q_{X_1}\oplus Q_{X_2}$.
 Use the Mayer-Vietoris.
-\end{exe}
+\end{exercise}
 
 If this $11/8$-conjecture is solved, then we can obtain a complete classification of simply connected closed smooth 4-manifolds up to homeomorphism.
 
-\begin{exe}
+\begin{exercise}
 If this $11/8$-conjecture is solved, then simply connected closed smooth 4-manifolds are exhausted by $S^2\times S^2$, $\CP^2$, $\bar\CP^2$, $K3$, $-K3$, up to homeomorphism.
-\end{exe}
+\end{exercise}
 
 There are no known examples whose smooth structures are classified.
 
-\begin{thm}[Furuta, $10/8$-inequality, 2001]
+\begin{theorem}[Furuta, $10/8$-inequality, 2001]
 Let $X$ be a smooth closed spin indefinite 4-manifold, then
 \[b_2(X)\ge\frac{10}8|\sigma(X)|+2,\]
 and the equality is attained by K3.
-\end{thm}
+\end{theorem}
 
 
 
@@ -218,29 +218,29 @@ Correction: non-degenerate $\to$ unimodular.
 Input of SW invariant: closed oriented smooth 4-manifold $X^4$ with $b^+(X)\ge2$.
 
 
-\begin{rmk}
+\begin{remark}
 There is a version for $b^+(X)=1$.
 There is no reasonable definition of the SW invariant for $b^+(X)=0$.
-\end{rmk}
+\end{remark}
 
 Output is a $\Z$-valued invariant $SW(X,\fs)\in\Z$, where $\fs$ is a spin$^c$ structure on $X$.
 The sign of this invariant is determined by an orientation of $H^1(X,\R)\oplus^+(X)$ called a \emph{homology orientation}.
 Here $H^+(X)$ is a maximal dimensional positive-definite subspace of $H^2(X,\R)$ with respect to $Q_X$, meaning that $Q_X|_{H^+(X)}$ is a positive definite and $\dim H^+(X)=b^+(X)$.
 
 
-\begin{ex}
+\begin{example}
 Let $X=\CP^2\#2\bar\CP^2$.
 Then, $H_2(X)=\Z H\oplus\Z E_1\oplus\Z E_2\cong\Z^3$, where $H$ is hyperplane class, and $E_1$ and $E_2$ are exceptional curve classes.
 The smooth structure underlied on the connected sum with $\bar\CP^2$ corresponds to the blow-up at a point.
 In $H_2(X,\R)$, the equation $Q_X\equiv0$ defines a subset of a real vector space $H_2(X,\R)$ which can be called the light cone, and $H^+(X)$ is a line in the `interior' of the light cone.
 In this example, the set of choices of $H^+(X)$ is homeomorphic to the open unit disk.
-\end{ex}
+\end{example}
 
 In general, we have a following exercise, which is not easy to prove at a first glance.
 
-\begin{lem}
+\begin{lemma}
 The moduli space of linear subspaces $H\subset H^2(X,\R)$ such that $b^+(X)=\dim H$ and $Q_X|_H$ is positive definite is contractible.
-\end{lem}
+\end{lemma}
 
 Thanks to this lemma, if you pick one choice of $H^+(X)$, and fix an orientation on it, then it induces an orientation on another choice of $H^+(X)$ in a canonical way.
 Every choice of $H^+(X)$ is unique up to homotopy.
@@ -252,57 +252,57 @@ Usually $\cO$ is dropped from our notation.
 \subsection{Spin and Spin$^c$ sturctures}
 
 
-\begin{lem}
+\begin{lemma}
 \[\pi_1\SO(n)=\begin{cases}
 \Z/2\Z&\text{ if }n\ge3,\\
 \Z&\text{ if }n=2.
 \end{cases}\]
-\end{lem}
-\begin{pf}
+\end{lemma}
+\begin{proof}
 Exercise.
 Use the fibration $\SO(n)\to\SO(n+1)\to S^n$.
-\end{pf}
+\end{proof}
 
 We define the spin group $\Spin(n)$ as the unique double cover of $\SO(n)$ for $n\ge3$.
 
-\begin{defn}
+\begin{definition}
 Let $X$ be a oriented smooth manifold of dimension $n$ equipped with a metric $g$.
 A \emph{spin structure} $\fs$ on $X$ is a pair $(P,\Psi)$, where $P$ is a principal $\Spin(n)$-bundle over $X$ and $\Psi$ is an isomorphism of principal $\SO(n)$-bundles
 \[\Psi:P\times_{\Spin(n)}\SO(n)\xrightarrow{\sim}\mathrm{Fr}(X).\]
 We should not forget $\Psi$, a compatibility with the data of tangent bundle.
 In other words, a spin structure is a choice of a lift of the frame bundle map $X\to B\SO(n)$ along $B\Spin(n)\to B\SO(n)$. Of course it is up to homotopy because classifying spaces are defined up to homotopy equivalence, which corresponds to isomorphism classes of principal $\Spin(n)$-bundles.
-\end{defn}
+\end{definition}
 
-\begin{rmk}
+\begin{remark}
 To consider an isomorphism class of a spin($^c$) structure, one does not need to pick a metric, because $\GL^+(n,\R)$ is homotopy equivalent to $\SO(n)$.
 However, a choice of a metric is needed to define the Dirac operator. 
-\end{rmk}
+\end{remark}
 
-\begin{rmk}
+\begin{remark}
 A 4-manifold may or may not admit a spin structure.
 For examples, $S^2\times S^2$ and $K3$ admit spin structures, but $\CP^2$ does not.
-\end{rmk}
+\end{remark}
 
 We have another exercise.
-\begin{lem}
+\begin{lemma}
 Let $X^4$ be a closed oriented smooth 4-manifold.
 If $X$ admits a spin structure, then $Q_X$ is even.
 The converse holds if $\pi_1(X)=1$.
-\end{lem}
+\end{lemma}
 
 
-\begin{defn}
+\begin{definition}
 \[\Spin^c(n):=\frac{\Spin(n)\times\rU(1)}{\Z/2\Z},\]
 where $\Z/2\Z$ acts on $\Spin(n)$ as the covering transformation and on $\rU(1)$ faithfully as the scalar multiplication.
 The alphabet $c$ stands for ``complex''.
 We have a canonical surjection $\Spin^c(n)\to\SO(n)$.
-\end{defn}
+\end{definition}
 
-\begin{defn}
+\begin{definition}
 Let $X$ be a oriented smooth $n$-manifold equipped with a metric.
 A \emph{spin$^c$ structure} $\fs$ on $X$ is a pair $(P,\Psi)$, where $P$ is a principal $\Spin^c(n)$-bundle and $\Psi$ is an isomorphism of principal $\SO(n)$-bundles
 \[\Psi:P\times_{\Spin^c(n)}\SO(n)\xrightarrow{\sim}\mathrm{Fr}(X).\]
-\end{defn}
+\end{definition}
 
 There is a fact that every oriented 4-manifold admits a spin$^c$ structure.
 (It is open that every topological 4-manifold has a CW complex structure.)
@@ -311,11 +311,11 @@ Since we have a natural $\Spin(n)\to\Spin^c(n)$, a spin structure induces a spin
 
 
 We have another exercise.
-\begin{lem}
+\begin{lemma}
 Let $X$ be an oriented smooth manifold.
 If $X$ admits a spin structure, then there is a non-canonical bijection between the set of isomorphism classes of spin structures on $X$ and $H^1(X,\Z/2\Z)$.
 If $X$ admits a spin$^c$ structure, then there is a non-canonical bijection between the set of isomorphism classes of spin$^c$ structures on $X$ and $H^2(X,\Z)$.
-\end{lem}
+\end{lemma}
 
 If $\pi_1(X)=1$, then spin structure is unique up to isomorphism.
 
@@ -337,12 +337,12 @@ It is typically an oriented compact 0-dimensional manifold.
 $b^+\ge2$, the singularity with codimension 1?
 
 
-\begin{lem}
+\begin{lemma}
 \[\Spin(4)\cong\Sp(1)\times\Sp(1),\qquad\Sp(1)=S(\H).\]
-\end{lem}
-\begin{pf}
+\end{lemma}
+\begin{proof}
 $\Sp(1)\times\Sp(1)\to\SO(\H):(q_+,q_-)\mapsto(q\mapsto q_-q_+)$ is a double cover.
-\end{pf}
+\end{proof}
 
 Since $\Sp(1)\cong\SU(2):a+jb\mapsto\mat{a&b\\-\bar b&\bar a}$ canonically, we have four representations of
 \[\Spin^c(4)=\frac{\SU(2)\times\SU(2)\times\rU(1)}{\Z/2\Z}\]
@@ -383,11 +383,11 @@ F_A^+&=\sigma(\Phi)+\eta,\\\qquad D_A\Phi&=0.
 \end{aligned}\right.\]
 It is introduced to get a degree of freedom for transversality.
 
-\begin{lem}
+\begin{lemma}
 Let $\eta\in i\Omega^+$.
 Then, $\mathrm{SW}_\eta:\cC\to i\Omega^+\oplus\Gamma(S^-):(A,\Phi)\mapsto(F_A^+-\sigma(\Phi)-\eta,D_A\Phi)$ is $\cG$-equivariant.
-\end{lem}
-\begin{pf}
+\end{lemma}
+\begin{proof}
 Let $u\in\cG$.
 
 First,
@@ -401,16 +401,16 @@ Second, recall that $\sigma(\Phi)$ is defined by a $\Spin^c(4)$-equivariant map 
 Third, recall that $\nabla_A:\Gamma(S^+)\to\Gamma(T^*X\otimes S^+)$ is $\cG$-equivariant by $\nabla_{u^*A}(\Phi u)=(\nabla_A\Phi)\cdot u$.
 On the Clifford multiplication, it is $c:T^*X\otimes S^+\to S^-$ induced from the quaternion multiplication $\H_{T^*X}\otimes\H_{S^+}\to\H_{S^-}$, so it is $\cG$-equivariant.
 So we are done.
-\end{pf}
+\end{proof}
 
 By the lemma, the solution space $\mathrm{SW}_\eta^{-1}(0)$ has a right $\cG$-action.
 We define the \emph{moduli space of solutions to the ($\eta$-perturbed) SW equations} is
 \[\cM(X,\fs,g,\eta):=\mathrm{SW}_\eta^{-1}(0)/\cG.\]
 It may not be good to call this the ``moduli space'', because it has no relation with stable bundles, representable functors, etc.
 
-\begin{lem}
+\begin{lemma}
 If $b^+>0$, for ``generic'' $(g,\eta)$, $\mathrm{SW}_\eta^{-1}(0)$ is a (infinite-dimensional) submanifold of $\cC=\cA(L)\times\Gamma(S^+)\leftrightarrow i\Omega^1(X)\oplus\Gamma(S^+)$.
-\end{lem}
+\end{lemma}
 \begin{proof}[Sketch]
 For the space $\mathrm{Met}(X)$ of all metrics on $X$, on the space $\bigcup_{g\in\mathrm{Met}(X)}\Omega_g^+$, we can consider an affine bundle $\bigcup_{g\in\mathrm{Met}(X)}(\cC_g\times\Omega_g^+)$.
 Then, we can prove
@@ -422,12 +422,12 @@ Then, we finally get the desired consequence by the implicit function theorem an
 
 
 
-\begin{thm}
+\begin{theorem}
 If $b^+>0$, for ``generic'' $(g,\eta)$, $\cM$ is a smooth \textbf{closed} manifold of dimension
 \[d(\fs):=\frac14(c_1(\fs)^2-2\chi(X)-3\sigma(X))\in\Z,\]
 where $c_1(\fs):=c_1(L)$, $c_1(\fs)^2=\<c_1(\fs)^2,[X]\>\in\Z$.
 It is a consequence of the Atiyah-Singer index theorem and the Hausdorffness of $\cG$(?).
-\end{thm}
+\end{theorem}
 
 The number $d(\fs)$ is called the \emph{formal dimension}, and it maybe negative, and in this case $\cM=\varnothing$.
 The compactness of $\cM$ is the most important property of SW theory.
@@ -444,17 +444,17 @@ Pick $x_0\in X$ and let $\cG_0:=\{u\in\cG:u(x_0)=1\}$.
 Since $\rU(1)$ freely acts on $\tilde\cB^*:=\cC^*/\cG_0$, we can define $\mu:=c_1(\tilde\cB\to\cB)$.
 
 
-\begin{thm}
+\begin{theorem}
 If $b^+\ge2$, $\mathrm{SW}(X,\fs)$ is independent of the choice of generic $(g,\eta)$.
-\end{thm}
-\begin{rmk}
+\end{theorem}
+\begin{remark}
 If $b^+=1$, we get a pair $(\mathrm{SW}^+(X,\fs),\mathrm{SW}^-(X,\fs))\in\Z^2$ as an invariant of $(X,\fs)$.
 For $b_1=0$, \emph{wall-crossing formula} $\mathrm{SW}^+(X,\fs)=\mathrm{SW}^-(X,\fs)\pm1$
-\end{rmk}
+\end{remark}
 
-\begin{rmk}[Simple type conjecture]
+\begin{remark}[Simple type conjecture]
 If $b^+\ge2$, then $\mathrm{SW}(X,\fs)=0$ if $d(\fs)>0$.
-\end{rmk}
+\end{remark}
 
 So $d(\fs)=0$ is important for computations.
 
@@ -468,19 +468,19 @@ It is rigorously given by the Fredholm index of $ds:T_b\cB\to V$ at $b\in\cM\sub
 
 
 
-\begin{lem}
+\begin{lemma}
 Let $(A,\Phi)\in\cC$.
 Then, the stabilizer of the action by $\cG$ on $\cC$ at $(A,\Phi)$ is
 \[\mathrm{Stab}_{(A,\Phi)}=\begin{cases}
 \{1\}&\text{ if }\Phi\ne0,\\
 \rU(1)&\text{ if }\Phi\ne0.
 \end{cases}\]
-\end{lem}
-\begin{pf}
+\end{lemma}
+\begin{proof}
 If $\Phi\ne0$, for $u\in\cG$, the stabilization means $du=0$ with $\Phi(x_0)u(x_0)=\Phi(x_0)$ for some $x_0$ with $\Phi(x_0)\ne0$.
 
 If $\Phi=0$, then $(A,0)u=(A,0)$ implies $u=1$.
-\end{pf}
+\end{proof}
 Therefore, $\cG$ acts from right on $\cC^*:=\cC\setminus(\cA(L)\times\{0\})$.
 
 
@@ -490,9 +490,9 @@ Therefore, $\cG$ acts from right on $\cC^*:=\cC\setminus(\cA(L)\times\{0\})$.
 
 $X^4$ is an oriented
 
-\begin{defn*}
+\begin{definition*}
 $(A,\Phi)\in\cC$ is called \emph{irreducible} if $\Phi\ne0$ in $\Gamma(S^+)$.
-\end{defn*}
+\end{definition*}
 
 It comes from the relation to algebraic geometry and the decomposability of vector bundles in Donaldson theory.
 
@@ -503,26 +503,26 @@ For $g\in\mathrm{Met}(X)$,
 Then, $\cW_g(X)$ does not depend on the choice of $A_0$ because $A_0,A_1\in\cA(L)$ has $F_{A_1}^+-F_{A_0}^+=d^+(A_1-A_0)\in\Im d^+$.
 Now we let $\cW(X):=\bigcup_{g\in\mathrm{Met}(X)}\cW_g(X)$.
 
-\begin{lem*}
+\begin{lemma*}
 For $\eta\in i\Omega_g^+$, the $\eta$-perturbed SW equations have a reducible solution iff $\eta\in\cW_g(X)$.
-\end{lem*}
-\begin{pf}
+\end{lemma*}
+\begin{proof}
 Suppose there is a reducible solution.
 It means that $\Phi=0$, so $F_A^+=\eta$.
 
 Conversely, if $\eta\in\cW_g(X)$, then there is $a\in i\Omega^1$ such that $\eta=F_{A_0}^++d^+a=F_{A_0+a}^+$.
 Thus we have a reducible solution.
-\end{pf}
+\end{proof}
 
-\begin{prop*}
+\begin{proposition*}
 The complement $\Pi(X)\setminus\cW(X)$ is homotopy equivalent to $S^{b^+(X)-1}$.
-\end{prop*}
-\begin{pf}
+\end{proposition*}
+\begin{proof}
 $\cW_g(X)=F_{A_0}^++\im d^+$ is an affine subspace of $i\Omega^+$ of codimension $\dim\cH^+=b^+$ by the Hodge theory.
 Then, since $\mathrm{Met}(X)$ is contractible, we are done.
-\end{pf}
+\end{proof}
 
-\begin{rmk*}[Hodge theory]
+\begin{remark*}[Hodge theory]
 In general, let $(X,g)$ be an oriented closed Riemannian manifold.
 For $d^*:=(-1)^k*^{-1}d*:\Omega^k\to\Omega^{k-1}$, it is easy to show $(d\omega,\eta)_{L^2}=(\omega,d^*\eta)_{L^2}$, where $\omega\in\Omega^k$, $\eta\in\Omega^{k-1}$, and $(\alpha,\beta):=\int \alpha\wedge *\beta$ for $\alpha,\beta\in\Omega^k$.
 The Laplacian is defined by $dd^*+d^*d$ which acts on $\Omega^k$.
@@ -547,17 +547,17 @@ In the decomposition $\Omega^2=\cH^2\oplus\im d\oplus\im d^*$, if $\omega=h+d\al
 Thus, $\omega\in\Omega^+$ has
 \[\omega=h+d\alpha+d^*\beta=h+d\alpha+*d\alpha=h+d^+(2\alpha)\in\cH^+\im d^+.\]
 Further, $d^+(2\alpha)=d\alpha+d^*\beta\in\im d\oplus\im d^*$, so $\Omega^+=\cH\oplus\im d^+$.
-\end{rmk*}
+\end{remark*}
 
 
-\begin{prop*}
+\begin{proposition*}
 If $b^+\ge2$, then for ``generic'' $\eta_0,\eta_1\in\Pi(X)$, $\#\cM(X,\fs,g_0,\eta_0)=\#\cM(X,\fs,g_1,\eta_1)$, where $g_0$ and $g_1$ are base-points of $\eta_0$ and $\eta_1$.
-\end{prop*}
-\begin{pf}
+\end{proposition*}
+\begin{proof}
 For simplicity assume $d(\fs)=0$.
 Since $\Pi(X)\setminus\cW(X)$ is path-connected, there is a ``generic'' path $\eta_t$ such that $\bigcup_{t\in[0,1]}\cM(\eta_t)$ is a compact oriented 1-manifold, whose the boundary has zero signed count.
 (Such an argument is called the ``cobordism argument''.)
-\end{pf}
+\end{proof}
 
 When $b^+=1$, an orientation on $H^+(X)$ determines which component of $\Pi(X)\setminus\cW(X)\simeq S^0$ is ``positive''.
 It defines $\mathrm{SW}^+$ and $\mathrm{SW}^-$ for each component, which is independent of $(g,\eta)$.
@@ -567,10 +567,68 @@ It defines $\mathrm{SW}^+$ and $\mathrm{SW}^-$ for each component, which is inde
 
 A differential operator $D:\Gamma(E)\to\Gamma(F)$ of order $k$ gives rise to a map $\sigma(D):T^*X\to\Hom(E,F)$ such that
 \[\sum_{i=1}^du_i\,dx_i\mapsto\sum_{|\alpha|=k}a_\alpha(x)u^\alpha,\]
-where $u^\alpha:=u_1^\alpha_1\cdots u_d^{\alpha_d}$.
+where $u^\alpha:=u_1^\alpha\cdots u_d^{\alpha_d}$.
 Then, $\sigma(D)$ is independent of charts and local trivializations.
 It is not $C^\infty(M)$-linear unless $k=1$.
 If $E\cong F$ and $\sigma(D):T^*X_0\to\Hom(E,F)_0$, then we call $D$ an \emph{elliptic operator}.
+
+
+
+
+
+\newpage
+\section{}
+
+
+elliptic complexes
+\begin{enumerate}
+\item de Rham complex
+\item Atiyah-Hitchin-Singer complex
+\[0\to\Omega^0\to\Omega^1\to\Omega^+\to0\]
+\item
+spin$^c$ 4-manifold,
+\[0\to\Gamma(S^+)\xrightarrow{D_A}\Gamma(S^-)\to0\]
+\end{enumerate}
+
+Let $X$ be a closed oriented manifold, and $E$ is a vector bundle.
+Fix a metric on $X$ and $E$, and fix a connection on $E$.
+\[\|s\|_{W^{k,p}(E)}:=\left(\sum_{i=0}^k\int_X|\tilde\nabla^{(i)}s|^p\,d\vol\right),\]
+\[\tilde\nabla^{(i)}=\nabla^{(i-1)}\circ\cdots\circ\nabla^{(0)}:\Gamma(E)\to\Gamma(T^*X^{\otimes i}\otimes E),\]
+\[\nabla^{(i)}:=\id_{T^*X^{\otimes i}}\otimes\nabla+\nabla_{\mathrm{LC}}\otimes\id_E.\]
+
+
+
+\subsection{}
+Let $X$ be a spin$^c$ closed smooth 4-manifold equipped with a metric $g$.
+\[\operatorname{SW}:\cA(L)\times\Gamma(S^+)\to i\Omega^+\oplus\Gamma(S^-)\]
+is (non-trivially) extended to
+\[\operatorname{SW}:H^k(i\Lambda^1)\otimes H^k(S^+)\to H^{k-1}(i\Lambda^+)\oplus H^{k-1}(S^-)\]
+for $k\ge3$.
+
+This follows from the boundedness of the multiplication $H^k\otimes H^k\to H^{k-1}$ for $k\ge3$ because on $d=4$ we have Sobolev embeddings $H^3\subset C^0$ and $H^2\subset L^4$.
+
+If
+\[d\operatorname{SW}:T\cC_{H^k}:=T(\cA_{H^k}\times H^k(S^+))\to H^{k-1}(i\Lambda^+)\oplus H^{k-1}(S^-)\]
+surjective at every point, then the implicit function theorem says that $\operatorname{SW}^{-1}(0)$ is a Hilbert manifold.
+
+The gauge group $\cG_{H^{k+1}}:=H^{k+1}(X,\C)\cap C^0(X,\rU(1))$ is a Hilbert Lie group.
+It acts on the domain and the codomain of the Seiberg-Witten map smoothly.
+Then, $\cM:=\operatorname{SW}^{-1}(0)/\cG_{H^{k+1}}$ is a smooth manifold.
+Following is the proof idea.
+
+$\cG_{H^{k+1}}$-action has local slices on $\cC_{H^k}$, i.e. for every $\gamma\in\cC_{H^k}^*$, there is a submanifold $S\subset\cC_{H^k}^*$ containing $\gamma$ such that $\cG_{H^{k+1}}\times S\to\cC_{H^k}^*$ gives a diffeomorphism onto a neighborhood of the orbit $\cG_{H^{k+1}}$.
+This slice $S$ gives a local chart of $\cB_{H^k}^*:=\cC_{H^k}^*/\cG_{H^{k+1}}$, making $\cB_{H^k}^*$ a Hilbert manifold.
+$\operatorname{SW}^{-1}(0)\cap S$ gives a local slice for the action of $\cG$ on $\operatorname{SW}^{-1}(0)$, giving a local chart for $\cM$ near $[\gamma]$.
+
+In fact, Hausdorff is not trivial.
+We need to show $\cB_{H^k}^*$ is Hausdorff.
+This follows from the compactness of $\rU(1)$.
+
+
+The dimension of $\cM$ is computed by the middle cohomology of
+\[T_e\cG_{H^{k+1}}\to T_\gamma\cC_{H^k}\to H^{k-1}(i\Lambda^+)\oplus H^{k-1}(S^-).\]
+Ignoring zeroth order terms, this is the direct sum of the Atiyah-Hitchin-Singer compelx and the Dirac operator complex $0\to0\to\Gamma(S^+)\to\Gamma(S^-)\to0$, which is eventually the index, computed by the Atiyah-Singer to be $(-1+b_1(X)-b^+(X))+\frac14(c_1(\fs)^2-\sigma(X))=\frac14(c_1(\fs)^2-2\chi(X)-3\sigma(X))$.
+
 
 
 

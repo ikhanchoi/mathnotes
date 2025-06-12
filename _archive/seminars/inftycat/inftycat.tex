@@ -7,11 +7,165 @@
 \maketitle
 \tableofcontents
 
+\newpage
+\section{May 21}
 
-\section{21 May}
+
+\begin{prb}[Simplicial sets]
+The \emph{simplex category} is the category $\Delta$ defined such that objects are totally ordered finite non-empty sets and morphisms are non-decreasing functions.
+It has a skeleton whose objects are $[n]:=\{0,\cdots,n\}$ for $n\ge0$ with the usual order.
+In $\Delta$, there are special morphisms as in the following diagram
+\[\begin{tikzcd}[sep=large]\,
+&{[0]}
+\rar["\delta_1^0"description,pos=0.65,shift left=3]
+\rar["\delta_1^1"description,pos=0.65,shift right=3]
+&{[1]}
+\lar["\sigma_0^0"description,pos=0.65]
+\rar["\delta_2^0"description,pos=0.65,shift left=6]
+\rar["\delta_2^1"description,pos=0.65]
+\rar["\delta_2^2"description,pos=0.65,shift right=6]
+&{[2]}
+\lar["\sigma_1^0"description,pos=0.65,shift left=3]
+\lar["\sigma_1^1"description,pos=0.65,shift right=3]
+\rar[phantom,"\cdots"]
+&\,
+\end{tikzcd}\]
+defined such that for every $0\le i\le n$
+\[\delta_n^i:[n-1]\to[n]:k\mapsto k+1_{\ge i}(k),\qquad\sigma_n^i:[n+1]\to[n]:k\mapsto k-1_{>i}(k),\]
+called the \emph{coface maps} and \emph{codegeneracy maps}.
+
+A \emph{simplicial set} is a contravariant functor $X:\Delta^\op\to\Set$.
+We usually write $X_n:=X([n])$ to mean the set of \emph{simplices}, and $d_i^n:=X(\delta_n^i):X_n\to X_{n-1}$ and $s_i^n:=X(\sigma_n^i):X_n\to X_{n+1}$ for $0\le i\le n$ are called \emph{face maps} and \emph{degeneracy maps}.
+It is intuitively something that consists of a sequence $X_n$ of sets that enjoys the combinatorics of face and degeneracy maps.
+As the image of the skeleton $\{[n]\}$, we have a diagram
+\[\begin{tikzcd}[sep=large]
+\,\rar[phantom,"\cdots"]
+&X_2
+\rar["d^2_0"description,pos=0.65,shift left=6]
+\rar["d^2_1"description,pos=0.65]
+\rar["d^2_2"description,pos=0.65,shift right=6]
+&X_1
+\lar["s^1_0"description,pos=0.65,shift left=3]
+\lar["s^1_1"description,pos=0.65,shift right=3]
+\rar["d^1_0"description,pos=0.65,shift left=3]
+\rar["d^1_1"description,pos=0.65,shift right=3]
+&X_0
+\lar["s^0_0"description,pos=0.65]&\,
+\end{tikzcd}\]
+A \emph{simplicial map} between simplicial sets is a natural transformation.
+The category of simplicial sets and simplicial maps is denoted by $\Set_\Delta$.
+\iffalse
+Consider
+\[X_{n+1}\xrightarrow{d_j}X_n\xrightarrow{d_i}X_{n-1},\qquad X_{n+2}\xleftarrow{s_j}X_{n+1}\xleftarrow{s_i}X_n.\]
+For $i\in[n]$ and $j\in[n+1]$,
+\[d_id_j=\begin{cases}d_{j-1}d_i&\text{ if }j-1\ge i,\\d_jd_{i+1}&\text{ if }j<i+1,\end{cases}\qquad
+s_js_i=\begin{cases}s_is_{j-1}&\text{ if }i\le j-1,\\s_{i+1}s_j&\text{ if }i+1>j,\end{cases}\]
+and
+\[d_js_i=\begin{cases}s_{i-1}d_j&\text{ if }i-1\ge j,\\s_id_{j-1}&\text{ if }i<j-1,\\\id&\text{ otherwise},\end{cases}\qquad
+s_id_j=\begin{cases}d_js_{i+1}&\text{ if }j<i+1,\\d_{j+1}s_i&\text{ otherwise}.\end{cases}\qquad\]
+\fi
+\begin{parts}
+\item Every morphism of $\Delta$ is uniquely decomposed into the composition of codegeneracy maps on the left and coface maps on the right.
+\end{parts}
+\end{prb}
 
 
-\section{26 May}
+
+
+\begin{prb}[Simplicial complexes]
+A \emph{simplicial complex} is a collection $X$ of non-empty finite subsets of a set $V$ closed under non-empty subsets.
+We denote by $X_n$ for each $n\ge0$ the set of all functions $[n]\to V$ whose image coincides with an element of $X$.
+More categorically, it can be essentially defined as a functor $X:\operatorname{Fin}_{>0}^\op\to\Set:[n]\mapsto X_n$ on the category of non-zero finite sets which is concrete in the sense that the canonical map $X_n\to\prod_{\Hom_\Delta([0],[n])}X_0$ is injective for each $n\ge0$.
+
+If we chose each skeleton of the simplex category and the category of non-empty finite sets, and if we denote the objects of each skeleton as $[n]$ for non-negative integer $n$, then the forgetful functor $\Delta\to\operatorname{Fin}_{>0}$ gives rise to a linear order on the chosen skeleton of $\operatorname{Fin}_{>0}$, and the composition with the forgetgul functor provides a functor $\operatorname{Cpx}_\Delta\to\Set_\Delta$.
+We can prove that this is fully faithful.
+
+\iffalse
+For simplicial complexes $X$ and $Y$, it suffices to show
+\[\Hom_{\operatorname{Cpx}_\Delta}(X,Y)=\Hom_{\Set_\Delta}(X,Y).\]
+Suppose $f\in\Hom_{\Set_\Delta}(X,Y)$ so that
+\[\begin{tikzcd}[sep=small]
+X_n \dar[swap]{f_n}\rar & X_m \dar{f_m} \\
+Y_n \rar & Y_m
+\end{tikzcd}\]
+commutes for all monotone $[m]\to[n]$.
+If $[m]\to[n]$ is arbitrary, then since
+\[\begin{tikzcd}[sep=small]
+X_n \dar[swap]{f_n}\rar & \displaystyle\prod_{[0]\to[m]}X_0 \dar & X_m \dar{f_m}\lar \\
+Y_n \rar & \displaystyle\prod_{[0]\to[m]}Y_0 & Y_m \lar
+\end{tikzcd}\]
+still commutes and the lower right horizontal arrow $Y_m\to\prod_{[0]\to[m]}Y_0$ is injective by the concreteness, so
+\[\begin{tikzcd}[sep=small]
+X_n \dar[swap]{f_n}\rar & X_m\dar{f_m} \\
+Y_n \rar & Y_m
+\end{tikzcd}\]
+commutes by cancelation of the injective function.
+\fi
+\end{prb}
+
+
+\begin{prb}[Standard simplices]
+A \emph{standard simplex} is a simplicial set given by the representable functor in $\Delta$.
+More precisely, the \emph{standard $n$-simplex} for $n\ge0$ is the simplicial set $\Delta^n:=\Hom_\Delta(-,[n]):\Delta^\op\to\Set$.
+For a simplicial set $X$, the Yoneda lemma implies $X_n=X([n])=\Hom_{\Set_\Delta}(\Delta^n,X)$.
+Especially, since $\Delta_m^n=\Hom_\Delta([m],[n])=\Hom_{\Set_\Delta}(\Delta^m,\Delta^n)$ by the Yoneda lemma, we will identify a monotone function $\alpha:[m]\to[n]$ with the simplicial map $\alpha:\Delta^m\to\Delta^n$.
+
+
+The set of homotopy classes of simplicial functions $[X,Y]$?
+
+For $0\le i\le n$, \emph{horns} and \emph{boundaries} are simplicial sets $\Lambda_i^n$ and $\partial\Delta^n$ defined such that
+\begin{align*}
+\Lambda_i^n([m])&:=\{\alpha:[m]\to[n]\mid\alpha([m])\not\supset[n]\setminus\{i\}\},\\
+\partial\Delta^n([m])&:=\{\alpha:[m]\to[n]\mid\alpha([m])\ne[n]\}.
+\end{align*}
+
+\end{prb}
+
+
+
+
+\begin{prb}[Nerves]
+We say a simplicial set $Y$ satisfies the \emph{Segal condition} if $Y\to*$ has the unique right lifting property with respect to the horn inclusions $\Lambda_i^n\to\Delta^n$ for all $0<i<n$.
+
+
+Let $\cC$ be a small category.
+The \emph{nerve} of $\cC$ is a simplicial defined as follows.
+
+
+
+
+The nerve, or its geometric realization, of a small category $\cC$ is also called the \emph{classifying space} of $\cC$.
+For example, if we interpret a group $G$ as a category of a single object with invertible morphisms, then its nerve gives rise to its classifying space $BG$.
+\begin{parts}
+\item The nerve of a small category satisfies the Segal condition.
+\item A simplicial set satisfying the Segal condition is isomoprhic to the nerve of a small category.
+\item The nerve functor is fully faithful.
+\item The nerve functor admits a left adjoint, which is called the \emph{homotopy category functor}.
+\end{parts}
+\end{prb}
+
+
+
+
+\begin{prb}[Kan complexes]
+We say a simplicial set $Y$ satisfies the \emph{Kan filler condition} or $Y$ is a \emph{Kan complex} if $Y\to*$ has the right lifting property with respect to the horn inclusions $\Lambda_i^n\to\Delta^n$ for all $0\le i\le n$.
+
+\begin{parts}
+\item The singular complex of a topological space is a Kan complex.
+\item A simplicial group is a Kan complex.
+\item The nerve of a groupoid is a Kan complex.
+\item The singular complex functor admits a left adjoint, which is called the \emph{geometric realization}.
+\end{parts}
+\end{prb}
+
+
+\[\operatorname{hCW}\to\operatorname{hCG?}\to\Top[\cW^{-1}]\]
+
+The category of simplicial sets is basically the category of presheaves.
+
+
+\newpage
+\section{May 26}
 
 
 \begin{itemize}
@@ -20,42 +174,42 @@
 \end{itemize}
 
 
-\begin{thm*}[Dell' Ambrogio]
+\begin{theorem*}[Dell' Ambrogio]
 $\mathrm{C^*Cat}$ is a model category.
-\end{thm*}
+\end{theorem*}
 
-\begin{defn*}
+\begin{definition*}
 A \emph{model category} is a bicomplete category with a \emph{model structure}.
-\end{defn*}
+\end{definition*}
 
-\begin{defn*}[C$^*$-category]
+\begin{definition*}[C$^*$-category]
 A C$^*$-category is a category $A$ which is a $\C$-linear category with conjugate-linear involutions $*:A(x,y)\to A(y,x)$ and complete norms $\|\cdot\|:A(x,y)\to[0,\infty)$ on each hom-set $A(x,y)$ such that $\|fg\|\le\|f\|\|g\|$ and $\|f^*f\|=\|f\|^2$ and $f^*f\ge0$ are satisfied.
-\end{defn*}
-\begin{ex*}
+\end{definition*}
+\begin{example*}
 A C$^*$-algebra is a C$^*$-category with a single object.
-\end{ex*}
-\begin{ex*}
+\end{example*}
+\begin{example*}
 The category $\mathrm{Hilb}$ defined such that objects are separable Hilbert spaces and morphisms are bounded linear operators is a C$^*$-category. 
-\end{ex*}
-\begin{defn*}
+\end{example*}
+\begin{definition*}
 The category $\mathrm{C^*Cat}$ is the category of C$^*$-categories whose morphisms are given by $*$-functors.
-\end{defn*}
+\end{definition*}
 
-\begin{defn*}
+\begin{definition*}
 Two C$^*$-categories $A$ and $B$ are called \emph{unitary equivalent} if there are $*$-functors $F:A\to B$ and $G:B\to A$ such that $GF\simeq\id_A$ and $FG\simeq\id_B$.
 Here, $GF\simeq\id_A$ means that for each morphism $f:a\to a'$ in $A$, we have unitaries $u_a:GF(a)\to a$ and $u_{a'}:GF(a')\to a'$ such that $fu_a=u_{a'}GF(f)$.
 The unitarity of $u_a$ means that $u_a^*u_a=\id_{GF(a)}$ and $u_au_a^*=\id_a$.
-\end{defn*}
-\begin{defn*}
+\end{definition*}
+\begin{definition*}
 We define a model structure on $\mathrm{C^*Cat}$ as follows:
 \begin{itemize}
 \item weak equivalences are unitary equivalences,
 \item cofibrations are $*$-functors injective on objects,
 \item fibrations are $*$-functors such that whenever there is a unitary (equivalence) $u:b\sim Fa'$ for some $a'\in A$ we have $a\in A$ and unitary $v:a\to a'$ such that $Fv=u$, and hence $Fa=b$.
 \end{itemize}
-\end{defn*}
+\end{definition*}
 
-\begin{pf}[Proof of Theorem]
+\begin{proof}[Proof of Theorem]
 \textbf{Axiom 1: Two-out-of-Three law}
 
 Clear.
@@ -100,7 +254,328 @@ Since $\alpha$ is an acylic cofibration, by Lemma in the paper, we may assume $\
 Then, $\beta P(a)=\beta P\tilde\alpha\alpha(a)=\beta P$
 
 
-\end{pf}
+\end{proof}
+
+
+\newpage
+\section{June 4}
+
+
+\subsection{Small and large}
+
+If $\cC$ is a locally small category, then its free cocompletion is a full subcategory of $\Fun(\cC^\op,\Set)$.
+
+\begin{proposition}
+Every representable is continuous.
+\end{proposition}
+\begin{proof}
+Omitted.
+\end{proof}
+
+
+\begin{proposition}
+A left adjoint functor is cocontinuous and left exact.
+\end{proposition}
+\begin{proof}
+Omitted.
+\end{proof}
+
+
+\begin{proposition}
+Every presheaf over a small category is a colimit of representables.
+\end{proposition}
+\begin{proof}
+Let $\cA$ be a small category and $X\in\hat\cA$.
+We identify objects of $\cA$ and representables to regard $\cA$ as a subcategory of $\hat\cA$.
+Then, $X(A)$ is the set of morphisms $A\to X$ for $A\in\cA$, and $X(f)$ is the pre-composition with $f$ for $f:A'\to A$.
+Define a small category $\cI$ such that
+\begin{enumerate}[(i)]
+\item an object $i$ is given by a pair $(A_i,f_i)$ consisting of $A_i\in\cA$ and $f_i:A_i\to X$,
+\item a morphism $i'\to i$ is given by a morphism $f_{i'i}:A_{i'}\to A_i$ in $\cA$ satisfying $f_if_{i'i}=f_{i'}$.
+\end{enumerate}
+Then, we have a diagram $\cI\to\cA:i\mapsto A_i$ because the composition of morphisms in $\cI$ is defined by the composition of corresponding morphisms in $\cA$.
+Note that for every $f:A\to X$ with $A\in\cA$, there is unique $i\in\cI$ such that $f=f_i$, and for every $h:A'\to A$ and $f:A\to X$ with $A,A'\in\cA$, there are unique $i,i'\in\cI$ such that $f=f_i$ and $f_ih=f_{i'}$.
+With these $i,i'$, the last condition implies that $h$ induces a morphism $i'\to i$.
+
+We claim $X=\colim_iA_i$ in $\hat\cA$.
+Choose a cocone $g_i:A_i\to Y$ in $\hat\cA$ for the diagram $A_i$.
+For each $A\in\cA$, define a function $g_A:X(A)\to Y(A)$ such that $g_A(f):=g_i$ for $f:A\to X$, where $i\in\cI$ is chosen such that $f=f_i$.
+Then, the family $\{g_A\}$ defines a natural transformation $g:X\to Y$ since for every $h:A'\to A$ in $\cA$
+\[Y(h)(g_A(f))=Y(h)(g_i)=g_ih=g_{i'}=g_{A_{i'}}(f_{i'})=g_{A_{i'}}(f_ih)=g_{A'}(X(h)(f)),\qquad f\in\Hom(A,X),\]
+where $i,i'\in\cI$ are chosen such that $f=f_i$ and $f_ih=f_{i'}$, because $h$ induces a morphism in $\cI$ and $g_i$ is a cocone so that $g_ih=g_{i'}$.
+Furthermore, we have $gf_i=g_i$ for all $i\in\cI$ because for all $A'\in\cA$
+\[(gf_i)_{A'}(h)=g_{A'}((f_i)_{A'}(h))=g_{A'}(f_ih)=g_{A'}(f_{i'})=g_{i'}=g_ih=(g_i)_{A'}(h),\qquad h\in\Hom(A',A_i),\]
+where $i'$ is chosen such that $f_ih=f_{i'}$, and the condition $g_{A'}(f_{i'})=g_{i'}$ forces $g$ is unique, so $X$ satisfies the universal property and the claim follows.
+\end{proof}
+
+\subsection{Nerves and realizations}
+
+\begin{proposition}[Nerves and realizations]
+For a functor $F:\cS\to\cC$, the \emph{nerve} for $F$ is the restricted Yoneda embedding
+\[N:\cC\to\hat\cC\xrightarrow{\circ F^\op}\hat\cS,\]
+and the \emph{realization} for $F$ is the left Kan extension $R$ of $F$ along the Yoneda embedding
+\[\begin{tikzcd}
+\cS\rar{F}\dar\dar[shift left=5,Rightarrow,shorten >= 8]&\cC\\
+\hat\cS\ar[swap,dashed]{ur}{R}
+\end{tikzcd}\]
+If $\cS$ is essentially small and $\cC$ is locally small and cocomplete, then the realization exists and is left adjoint to the nerve.
+\end{proposition}
+\begin{proof}
+For each $S\in\cS$ and $C\in\cC$, 
+Now let $S\in\hat\cS$.
+Since $\cS$ is essentially small, we may write $S=\colim_iS_i$ for a diagram $S_i$ of representables.
+Since $\cC$ is cocomplete, we can define $R(S):=\colim_iF(S_i)$.
+Then, $R$ is a functor such that for every $F'\in\Fun(\hat\cS,\cC)$ there is a bijection
+\[\Hom_{\Fun(\hat\cS,\cC)}(R,F')\to\Hom_{\Fun(\cS,\cC)}(F,F'Y)\]
+by...
+If $\eta,\eta':R\to F'$ satisfies $\eta_S=\eta'_S:R(S)\to F'Y(S)$ for all $S\in\cS$, then $\eta_S=\eta'_S$ for all $S\in\hat\cS$? yes.
+For $S\in\hat\cS$, we can construct a function $R(S)\to F'(S)$.. blahblah
+
+For the adjunction, since we have a bijection
+\[\Hom_\cC(F(S_i),C)=C(F(S_i))=N(C)(S_i)=\Hom_{\hat\cS}(S_i,N(C))\]
+by the definition of the nerve and the Yoneda lemma, we can check there is a bijection
+\[\Hom_\cC(R(S),C)=\lim_i\Hom_\cC(F(S_i),C)=\lim_i\Hom_{\hat\cS}(S_i,N(C))=\Hom_{\hat\cS}(S,N(C))\]
+by the continuity of representable functors.
+\end{proof}
+
+\begin{example}\,
+\begin{parts}
+\item $\Delta\to\Top$ gives rise to $|\cdot|\dashv\Sing$.
+\item $\Delta\to\Cat$ gives rise to $\operatorname{h}\dashv N$.
+\item $\Delta\to\Set$ gives rise to $\pi_0$ left adjoint to the constant functor.
+\item $\Delta\to\Cat_\Delta$ gives rise to the homotopy coherent nerve $N:\Cat_\Delta\to\Set_\Delta$.
+
+We describe the canonical cosimplicial simplicial category $\Delta\to\Cat_\Delta$.
+For $[n]\in\Delta$, the corresponding category has $[n]$ as its object set, and the simplicial set of morphisms $\Hom(i,j)$ is given by the nerve of the partially ordered set of strictly increasing paths from $i$ to $j$ in $[n]$, whose order is defined by the subdivision such that $i\to j$ is the largest and $i\to i+1\to\cdots\to j-1\to j$ is the smallest.
+The composition is the concatenation.
+
+For a (combinatorial) model category, the category of fibrant-cofibrant objects is simplicially enriched, and its homotopy coherent nerve is an infinity category.
+\end{parts}
+\end{example}
+
+
+
+\[\begin{tikzcd}
+{|\cdot|}:\Set_\Delta
+\rar[shift left=2]\rar[phantom,"\scriptstyle\perp"]&\lar[shift left=2]
+\Top:\Sing
+\end{tikzcd}\]
+
+
+
+
+\newpage
+\section{June 11}
+
+
+\subsection{Mapping complexes}
+
+
+\begin{definition*}[Coproducts and products]
+Let $X$ and $Y$ be simplicial sets.
+Since the category of simplicial sets is just another name of the category of presheaves on the simplex category, many categorical constructions that can be done in the category of sets are valid.
+For example, the initial and terminal simplicial sets are $\varnothing$ and $*:=\Delta^0$, and the coproduct and product are given by
+\[(X\sqcup Y)_n:=X_n\sqcup Y_n,\qquad(X\times Y)_n:=X_n\times Y_n.\]
+\end{definition*}
+
+\begin{definition*}[Mapping complexes]
+Let $X$ and $Y$ be simplicial sets.
+The \emph{mapping complex} $\Map(X,Y)$ is a simplicial set defined by
+\[\Map(X,Y)_n:=\Hom_{\Set_\Delta}(\Delta^n\times X,Y),\]
+and the face maps and degeneracy maps are canonically defined by
+\begin{align*}
+d_i^nf_n&:=f_n\circ(\delta_n^i\times\id)\in\Hom_{\Set_\Delta}(\Delta^{n-1}\times X,Y),\\
+s_i^nf_n&:=f_n\circ(\sigma_n^i\times\id)\in\Hom_{\Set_\Delta}(\Delta^{n+1}\times X,Y),
+\end{align*}
+for $f_n\in\Hom_{\Set_\Delta}(\Delta^n\times X,Y)$ and $0\le i\le n$.
+The simplicial identities for $d$ and $s$ follow from the cosimplicial identities for $\delta$ and $\sigma$.
+\end{definition*}
+\begin{theorem*}
+The category of simplicial sets $\Set_\Delta$ is cartesian closed.
+\end{theorem*}
+\begin{proof}
+The evaluation map $\operatorname{ev}:\Map(X,Y)\times X\to Y$ between simplicial sets defined by
+\[\operatorname{ev}_n:\Map(X,Y)_n\times X_n\to Y_n:(f_n,x_n)\mapsto f_n(\iota_n,x_n),\]
+where $\iota_n\in\Delta^n\to\Delta^n$ is the identity, is a simplicial map since
+\begin{align*}
+\operatorname{ev}_n(d^n_i(f_n,x_n))
+&=\operatorname{ev}_n(d^n_if_n,d^n_ix_n)
+=(d^n_if_n)_n(\iota_{n-1},d^n_ix_n)
+=(f_n)_n(\delta^i_n\iota_{n-1},d^n_ix_n)
+=(f_n)_n(\iota_n\delta_n^i,d^n_ix_n)\\
+&=(f_n)_n(d^n_i\iota_n,d^n_ix_n)
+=(f_n)_n(d^n_i(\iota_n,x_n))
+=d^n_i(f_n)_n(\iota_n,x_n)
+=d^n_i(\operatorname{ev}_n(f_n,x_n))
+\end{align*}
+for $(f_n,x_n):\Delta^n\to\Map(X,Y)\times X$, and the similar identity for degeneracy maps.
+
+To show the exponential law of mapping complexes, consider the functions of sets
+\[\Hom_{\Set_\Delta}(X\times Y,Z)\to\Hom_{\Set_\Delta}(X,\Map(Y,Z)):f\mapsto f(-\times\id),\]
+and
+\[\Hom_{\Set_\Delta}(X,\Map(Y,Z))\to\Hom_{\Set_\Delta}(X\times Y,Z):g\mapsto\operatorname{ev}\,(g\times\id).\]
+We can check that they are mutually inverses by
+\[\operatorname{ev}((f\circ(-\times\id))\times\id)(x_n,y_n)
+=\operatorname{ev}((f\circ(x_n\times\id))\times y_n)
+=f(x_n\times\id)(\iota_n,y_n)
+=f(x_n,y_n)\]
+as $\Delta^n\to Z$ for every $f:X\times Y\to Z$ and $(x_n,y_n):\Delta^n\to X\times Y$, and
+\[(\operatorname{ev}\,(g\times\id))(-\times\id)(x_n)
+=\operatorname{ev}\,(g\times\id)(x_n\times\id)
+=\operatorname{ev}\,(g(x_n)\times\id)
+=g(x_n)(\iota_n,\id)=g(x_n)\]
+as $\Delta^n\times Y\to Z$ for every $g:X\to\Map(Y,Z)$, $x_n:\Delta^n\to X$.
+
+Therefore, the object side has
+\[\Map(X\times Y,Z)_n=\Hom_{\Set_\Delta}(\Delta^n\times X\times Y,Z)\cong\Hom_{\Set_\Delta}(\Delta^n\times X,\Map(Y,Z))=\Map(X,\Map(Y,Z))_n,\]
+and the morphism side...
+\end{proof}
+
+
+
+
+
+\subsection{Homotopy theory}
+
+
+\begin{definition*}[Connected components]
+A \emph{summand} of a simplicial set is a simplicial subset whose degree-wise complement is also a simplicial subset.
+A simplicial set is called \emph{connected} if it is non-empty and there is no non-trivial summand.
+A \emph{connected component} of a simplicial set is a connected summand.
+The set of components of a simplicial set $X$ is denoted by $\pi_0(X)$.
+\end{definition*}
+
+\begin{proposition*}
+Let $X$ be a simplicial set.
+
+\begin{parts}
+\item
+$\pi_0$ is given by the left Kan extension of the constant functor $\Delta\to\Set$ along the Yoneda embedding.
+\item
+$\pi_0$ is exhibited as the coequalizer of the face maps $d_0$ and $d_1$ for each simplicial set.
+\end{parts}
+\end{proposition*}
+\begin{proof}
+(a)
+As a lemma we first show that for a simplicial map $f:X\to Y$ from connected $X$ there is a unique connected component of $Y$ containing $f(X)$.
+Let $Y'$ be the smallest summand containing $f(X)$, which exists by taking intersections.
+Since $X$ and $Y'$ should be non-empty, it is enough to show $Y'$ is connected.
+If $Y''$ is a summand of $Y'$, then $f^{-1}(Y'')$ is a summand of $X$, so $Y''=Y'$ or $Y''=\varnothing$, and this says that $Y'$ is connected.
+
+Now we prove the statement.
+The corresponding nerve functor $\Set\to\Set_\Delta$ of the constant functor $\Delta\to\Set$ is described such that a set $S$ associates a simplicial set $\underline S$ such that $\underline S_n=S$ as sets for all $n$ and all face and degeneracy maps are identities.
+It has a canonical bijection between $S$ and $\pi_0(\underline S)$.
+Thus, we are enough to show
+\[\Hom_{\Set}(\pi_0(X),S)=\Hom_{\Set_\Delta}(X,\underline S)\]
+for any set $S$, and it easily follows from the special case
+\[\Hom_{\Set}(*,S)=\Hom_{\Set_\Delta}(X,\underline S),\]
+provided $X$ is connected.
+This is true by the lemma.
+
+
+(b)
+Suppose a function $f:X_0\to S$ between sets satisfies $fd_0=fd_1$.
+Since all face and degeneracy maps in the simplicial set $\underline S$ are identities, $f$ provides a simplicial map $X\to\underline S$.
+By the adjunction in the part (a), we can induce $\pi_0(X)\to S$, so $\pi_0(X)$ is the coequalizer of $d_0$ and $d_1$.
+\end{proof}
+
+\begin{definition*}[Homotopy category]
+$[X,Y]:=\pi_0(\Map(X,Y))$.
+\end{definition*}
+
+\begin{proposition*}
+Let $X$ be a simplicial set.
+\begin{parts}
+\item
+$\pi_{\le1}$ is given by the left Kan extension of the inclusion $\Delta\to\Cat$ along the Yoneda embedding.
+\end{parts}
+\end{proposition*}
+
+
+\begin{definition*}[Homotopy 2-category]
+
+\end{definition*}
+
+
+
+
+
+
+
+\subsection{Kan fibrations and anodynes}
+
+
+\begin{definition*}[Kan fibrations]
+A simplicial map $p:Y\to B$ is called a \emph{Kan fibration} if it has the right lifting property with respect to horn inclusions $\Lambda_i^n\to\Delta^n$ for $0\le i\le n$.
+\end{definition*}
+
+\begin{proposition*}
+Closure properties.
+\end{proposition*}
+
+\begin{definition*}[Anodynes]
+Gabriel-Zisman
+\end{definition*}
+
+
+
+
+
+\newpage
+\section{}
+
+
+
+
+Kan complexes!
+
+\subsection{Simplicial homotopy groups}
+
+
+simplicial quotient
+
+\begin{definition}[Spheres]
+The \emph{simplicial sphere} of dimension $n\ge0$ is the simplicial quotient $S^n:=\Delta^n/\partial\Delta^n$, which can be canonically understood as a pointed simplicial set.
+As unpointed simplicial sets, we have $S^n\cong\partial\Delta^{n+1}$ in which sense?
+\end{definition}
+
+
+\begin{theorem}
+group structure
+\end{theorem}
+
+
+\subsection{Whitehead lemma}
+
+
+homotopy equivalence
+
+
+\subsection{Fibrant replacement}
+
+
+\subsection{Category of topological spaces}
+
+
+The concrete description of the geometric realization $|S|$ of a simplicial set $S$ is given as follows.
+topological space $\bigsqcup_{n\ge0}(S_n\times|\Delta^n|)/\sim$, where the equivalence relation is given by the face and degeneracy maps?
+
+
+
+
+
+\begin{prb}[Finite simplicial sets]
+\begin{parts}
+\item
+A simplicial set is finite if and only if it is a compact object of $\Set_\Delta$, i.e.~the corepresentable functor preserves filtered colimit. 3.6.1.9.
+\item
+For a simplicial set $S$, a subset $K\subset|S|$ is compact if and only if it is closed and there is a finite simplicial subset $S'\subset S$ such that $K\subset|S'|$.
+In particular, $|S|$ is compact if and only if $S$ is finite. 3.6.1.11.
+\end{parts}
+\end{prb}
+
+A left adjoint generally does not preserve finite limits, which is equivalent to the exactness.
+
 
 
 \end{document}

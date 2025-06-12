@@ -4,7 +4,6 @@
 
 \newcommand{\PSh}{\mathrm{PSh}}
 \newcommand{\Sh}{\mathrm{Sh}}
-\newcommand{\Open}{\mathrm{Open}}
 
 \begin{document}
 \title{Sheaves}
@@ -23,21 +22,23 @@
 
 
 \begin{prb}[Sheaves]
-Let $X$ be a topological space, which has a natural category $\Open(X)$ whose objects are open sets of $X$ and morphisms are inclusions.
-Let $\cC$ be a category, set to be the category of sets if no mentioned, but we will see also the case when $\cC$ is the category of abelian groups or commutative unital rings.
-A \emph{presheaf} of $\cC$ on $X$ is just a contravariant functor $\cF:\Open(X)^\op\to\cC$.
-The category $\PSh(X)$ is defined such that objects are presheaves of sets on $X$ and morphisms are natural transformations.
+Let $(X,\cT)$ be a topological space.
+Since the topology $\cT$ is naturally partially ordered by inclusions, we will always consider this $\cT$ as a small subcategory of the category $\Set$.
+Let $\cC$ be a category, set to be the category of sets if no mentioned, but we will also consider the case when $\cC$ is the category of abelian groups or commutative unital rings.
 
-For a point $x\in X$ and a presheaf $\cF$ of a filtered cocomplete category $\cC$ on $X$, the colimit $\cF_x:=\colim_{U\ni x}\cF(U)$ and its element is called a \emph{stalk} and a \emph{germ} at $x$ respectively.
-
-Note that the set of morphisms $\{U_i\to U\}$ in $\Open(X)$ is an open cover of $U$ if and only if $U$ is given by the coequalizer in the category $\mathrm{Set}$
+A \emph{presheaf} of $\cC$ on $X$ is just a contravariant functor $\cF:\cT^\op\to\cC$.
+A \emph{sheaf} of $\cC$ on $X$ is a presheaf of $\cC$ on $X$ such that for every $U\in\cT$ we have the equalizer in $\cC$
+\[\cF(U)\to\prod_i\cF(U_i)\rightrightarrows\prod_{i,j}\cF(U_i\cap U_j)\]
+whenever $\{U_i\to U\}$ is an open cover of $U$ in the sense that we have the coequalizer in $\cT$
 \[\coprod_{i,j}U_i\cap U_j\rightrightarrows\coprod_iU_i\to U.\]
-A \emph{sheaf} of $\cC$ on $X$ is a presheaf of $\cC$ on $X$ such that for every open cover $\{U_i\to U\}$ of any open subset $U$ of $X$ $\cF(U)$ is given by the equalizer in $\cC$
-\[\cF(U)\to\prod_i\cF(U_i)\rightrightarrows\prod_{i,j}\cF(U_i\cap U_j).\]
 It is equivalent to the bijectivity of
 \[\cF(U)\to\left\{(s_i)\in\prod_i\cF(U_i):s_i|_{U_i\cap U_j}=s_j|_{U_i\cap U_j}\right\},\]
 and the injectivity and the surjectivity are referred as the \emph{locality axiom} and the \emph{gluing axiom}.
-The category $\Sh(X)$ of sheaves on $X$ is defined to be the full subcategory of $\PSh(X)$.
+The category $\PSh(X)$ of presheaves of sets on $X$ is defined to have natural transformations as morphisms, and the category $\Sh(X)$ of sheaves on $X$ is defined to be the full subcategory of $\PSh(X)$.
+
+
+For a point $x\in X$ and a presheaf $\cF$ of a filtered cocomplete category $\cC$ on $X$, the colimit $\cF_x:=\colim_{U\ni x}\cF(U)$ and its element is called a \emph{stalk} and a \emph{germ} at $x$ respectively.
+
 
 Let $\mathrm{LH}(X)$ be the category of local homeomorphisms over $X$.
 We construct a functor
@@ -46,10 +47,10 @@ called the \emph{sheafification}, which is left adjoint to the inclusion.
 The first functor to $\mathrm{LH}(X)$ is called the \emph{\'etale space construction}.
 \begin{parts}
 \item There is a functor $\PSh(X)\to\mathrm{LH}(X):\cF\mapsto(\coprod_{x\in X}\cF_x\to X)$.
-\item There is an equivalence $\mathrm{LH}(X)\to\Sh(X):(Y\to X)\mapsto(U\mapsto\Gamma(U,Y))$.
+\item There is an equivalence $\mathrm{LH}(X)\to\Sh(X):Y\mapsto\Gamma(-,Y)$.
 \end{parts}
 \end{prb}
-\begin{pf}
+\begin{proof}
 (a)
 
 There exists a unique natural topology on $E(\cF)$ such that $p:E\to X$ is a local homeomorphism:
@@ -59,7 +60,7 @@ There exists a unique natural function $\cF(U)\to\Gamma(U,E(\cF))$ such that .. 
 For $x\in U$ and $s\in\cF(U)$, we define $s_x\in p^{-1}(x)$ by the image of $\cF(U)\to\cF_x$ at $s$, and it defines a morphism of presheaves $\cF\to\Gamma(E(\cF))$.
 
 (b)
-Let $p:Y\to X$ is a local homeomorphism.
+Let $Y\to X$ be a local homeomorphism.
 The functoriality of $\Gamma(-,Y)$ is clear.
 Let $\{U_i\to U\}$ be a cover of an open set $U$ in $X$.
 If $s,t\in\cF(U)=\Gamma(U,Y)$ satisfies $s|_{U_i}=t|_{U_i}$ for all $i$, then $s=t$.
@@ -81,7 +82,7 @@ A subset $F\subset E$ is defines a \'etale subbundle if and only if $F$ is open 
 A covering space is nothing but a locally constant local homeomorphism.
 
 
-\end{pf}
+\end{proof}
 
 \begin{prb}[Morphism of sheaves]
 epic and monic.
@@ -92,18 +93,11 @@ Let $f:X\to Y$ be a continuous map between topological spaces.
 
 \begin{prb}[Image functors]
 We have two naturally associated functors between the categories of sheaves given as follows.
-The \emph{direct image functor} $f_*:\Sh(X)\to\Sh(Y)$ is defined by
-\[\begin{tikzcd}[column sep=tiny]
-\Open(X)^\op \ar{dr}
-\ar[Rightarrow, shorten >=10, shorten <=10, shift right=4, swap]{rr}{f_*}
-&& \Open(Y)^\op \ar[swap]{ll}{f^{-1}}\ar{dl}\\
-&\mathrm{Set}
-\end{tikzcd}\]
-and the \emph{inverse image functor} or the \emph{pullback functor} $\Sh(X)\leftarrow\Sh(Y):f^*$ is defined by the left adjoint functor to $f_*$.
+For a continuous map $f:X\to Y$, its \emph{direct image functor} $f_*:\Sh(X)\to\Sh(Y)$ is defined by the precomposition of the opposite of $f^{-1}:\cT_Y\to\cT_X$, and the \emph{inverse image functor} or the \emph{pullback functor} $f^*:\Sh(Y)\to\Sh(X)$ is defined by the left adjoint to $f_*$.
 
 \begin{parts}
-\item $f_*$ preserves small limits, and $f^*$ preserves small colimits.
-\item $f^*$ is left exact in that it preserves every finite limits.
+\item $f_*$ is continuous, and $f^*$ is cocontinuous.
+\item $f^*$ is left exact in the sense that it is finitely continuous.
 \end{parts}
 \end{prb}
 
@@ -121,10 +115,10 @@ Whitney sum, constant sheaf, subsheaf
 \begin{prb}[Sheaves of rings]
 Every ring is assumed to be commutative and unital.
 A \emph{ringed space} is a topological space $X$ together with a sheaf $\cO_X$ of rings on $X$.
-A \emph{morphism} between ringed spaces is a continuous map $f:Y\to X$ together with a natural transform $f^\sharp:\cO_X\to f_*\cO_Y$.
+A \emph{morphism} between ringed spaces is a continuous map $f:X\to Y$ together with a natural transform $f^\sharp:\cO_Y\to f_*\cO_X$ in $\Sh(Y)$.
 
 A \emph{locally ringed space} is a ringed space $X$ on which every stalk is a local ring.
-A \emph{morphism} between locally ringed spaces $X$ and $Y$ is a morphism $f$ of ringed spaces such that the ring homomorphism $f^\sharp_x:\cO_{Y,f(x)}\to f_*\cO_{X,x}$ between local rings preserves the maximal ideal at each $x\in X$.
+A \emph{morphism} between locally ringed spaces $X$ and $Y$ is a morphism $f:X\to Y$ of ringed spaces such that the ring homomorphism $f^\sharp_x:\cO_{Y,f(x)}\to f_*\cO_{X,x}$ between local rings preserves the maximal ideals at each $x\in X$.
 
 \end{prb}
 
@@ -159,7 +153,7 @@ We say $\cF_X$ is \emph{coherent} if $\cF_X$ is of finite type and the relation 
 \item If a ring $\cO$ has a split epi $\cO\to\cO'$ to a coherent $\cO'$, then $\cO$ is coherent.
 \end{parts}
 \end{prb}
-\begin{pf}
+\begin{proof}
 Consider the following diagram in which every row is exact and $K$, $K_1$, $K_2$ are kernels:
 \[\begin{tikzcd}[sep=small]
 K \rar & \cO^p \rar\dar[equals] & \cO \rar\dar[two heads] & 0\\
@@ -167,7 +161,7 @@ K_1 \rar & \cO^p \rar\dar[two heads] & \cO' \rar\dar[equals]\uar[hookrightarrow,
 K_2 \rar & \cO'^p \rar & \cO' \rar & 0.
 \end{tikzcd}\]
 Then, $K_2$ is finitely generated by the coherence of $\cO'$, $K_1$ is finitely generated by the Schanuel lemma, and $K$ is finitely generated by the snake lemma.
-\end{pf}
+\end{proof}
 
 
 
@@ -203,27 +197,50 @@ For schemes over a field $k$, the relation between residue fields and $k$ is rel
 
 \begin{prb}
 Let $\cT$ be a category.
-A \emph{sieve} over $U\in\cT$ is a subset $\{U_i\to U\}$ of $\cT/U$ that is stable under composition in $\cT$.
-If $\cT$ is locally small, then it is equivalently a subfunctor of the representable functor $\Hom(-,U):\cT^\op\to\mathrm{Set}$.
+A \emph{sieve} over $U\in\cT$ is a leftward closed subcategory of the overcategory $\cT\downarrow U$.
+If $\cT$ is locally small, then it is equivalently a subfunctor of the representable functor $\Hom_\cT(-,U):\cT^\op\to\mathrm{Set}$.
+
+For example, when $\cT$ is the topology of a topological space, then since $\cT$ is thin so that a sieve is nothing but a collection of objects of $\cT$ satisfying some property.
 (a subfunctor means that $S:\cT^\op\to\mathrm{Set}$ has $S(U_i)\subset\Hom(U_i,U)$ and each $U_j\to U_i$ in $\cT$ gives $S(U_i)\to S(U_j)$, if we define $\{U_i\to U\}:=\bigcup_{U_i\in\cT}S(U_i)$, then $S$ is closed under composition in $\cT$.)
 
 A \emph{Grothendieck topology} or just a \emph{topology} on $\cT$ is a datum that indicates which sieve is a \emph{covering sieve}, such that
 \begin{enumerate}[(i)]
 \item $\{U\to U\}$ is a covering sieve,
-\item if $\{U_i\to U\}$ is a covering sieve and if $V\to U$ admits $V_i:=U_i\times_UV$ for all $U_i\to U$ in the sieve, then $\{V_i\to V\}$ is a covering sieve,
-\item if $\{U_i\to U\}$ is a covering sieve and $\{U_{ij}\to U_i\}$ is a covering sieve for each $i$, then $\{U_{ij}\to U\}$ is a covering sieve.
+\item if $\{U_i\to U\}$ is a covering sieve and if a morphism $V\to U$ admits pullbacks $V_i:=U_i\times_UV$ for all $U_i$, then $\{V_i\to V\}$ is a covering sieve,\hfill(base change)
+\item if $\{U_i\to U\}$ is a covering sieve and $\{U_{ij}\to U_i\}$ is a covering sieve for each $i$, then $\{U_{ij}\to U\}$ is a covering sieve.\hfill(local character)
 \end{enumerate}
 
-A category equipped with a topology is called a \emph{site}.
+A category $\cT$ equipped with a Grothendieck topology is called a \emph{site}.
 
 equivalence between topologies?
 \end{prb}
 
 \begin{prb}
-Let $\cS$ be a site.
-A morphism $V\to U$ in $\cS^\wedge$ with $U\in\cS$ is called a \emph{local epimorphism} if $\{V_i\to V\to U\}$ is a covering sieve.
+Let $\cT$ be a site.
+A morphism $V\to U$ in $\hat\cT$ with $U\in\cT$ is called a \emph{local epimorphism} if $\{V_i\to V\to U\}$ is a covering sieve.
 
 \end{prb}
+
+
+\begin{prb}
+A \emph{sheaf} on a site $\cT$ is a presheaf $\cF:\cT^\op\to\Set$ such that for every covering sieve $\cS=\{U_i\to U\}$,
+
+\[\Hom(\Hom(-,U),\cF)\to\Hom(\cS,\cF)\]
+is bijecive..
+
+
+\[\Hom(\Hom(-,U),\cS')\to\Hom(\cS,\cS'),\qquad\forall U,\cS\]
+is bijective?
+
+\end{prb}
+
+
+
+\section{}
+
+Zariski topology
+
+
 
 \chapter{Topoi}
 

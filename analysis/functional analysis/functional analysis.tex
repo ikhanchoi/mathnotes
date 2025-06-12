@@ -36,6 +36,15 @@ A linear functional $l:X\to\F$ is continuous if and only if $\ker l$ is closed, 
 \end{prb}
 
 
+\begin{prb}
+A locally convex topological vector space is finite-dimensional.
+\end{prb}
+\begin{proof}
+Let $X$ be a locally convex topological vector space, and let $K$ be a compact neighborhood of the origin.
+By the compactness, there is a finite-dimensional subspace $F\subset X$ such that $K\subset F+2^{-1}K$, which implies inductively that $K\subset F+2^{-n}K$ for all $n\ge1$.
+Since $K$ is bounded so that any open neighborhood $U$ of the origin has $n$ such that $K\subset2^nU$, we have $K\subset F+U$.
+Therefore, $K\subset F$ and hence $X\subset F$ is finite-dimensional.
+\end{proof}
 
 \section{Seminorms and convex sets}
 
